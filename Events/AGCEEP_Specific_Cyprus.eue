@@ -1,0 +1,863 @@
+#Cyprus (CYP)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419) The loss of Famagusta
+event = {
+	id = 154000
+	random = no
+	country = CYP
+	name = "EVENTNAME154000" #Famagusta is in the hands of the Genoese
+	desc = "EVENTHIST154000"
+	#-#In 1372, due to a dispute with the Venetians during the coronation of King Pierre II, the Genoese invaded Cyprus and taking advantage of the usual disputes between the Lusignans, conquered Famagusta. Since then, they hold our main port. This situation is crippling our economy. It is the duty of every King of Cyprus to recover our former capital.
+
+	date = { day = 4 month = january year = 1419 }
+
+	action_a = {
+		name = "ACTIONNAME154000A" #We shall recover it
+		command = { type = casusbelli which = GEN value = 546 }
+	}
+}
+
+#(1425) The Piracy from Cyprus
+event = {
+	id = 154001
+	random = no
+	country = CYP
+	name = "EVENTNAME154001" #The Piracy from Cyprus
+	desc = "EVENTHIST154001"
+	#-#Cyprus is a poor country, and some of our subjects make a good living from assaulting the Muslim merchant ships and pillaging the coast of Egypt. In fact, the royal navy is being used for such purposes, because we are after all a crusading state and the Muslims are a legitimate prey. Barsbey, ruler of the Mamluks, has raided Limassol to demonstrate us that he will not tolerate such practices. A prudent ruler would seek an understanding with the Mamluks.
+
+	date = { day = 1 month = january year = 1425 }
+
+	action_a = {
+		name = "ACTIONNAME154001A" #Counterattack with another assault on the coasts of Syria
+		command = { type = relation which = MAM value = -50 }
+		command = { type = relation which = PAP value = 50 }
+		command = { type = relation which = KNI value = 50 }
+		command = { type = treasury value = 50 }
+	}
+}
+
+#(1426) The Disaster of Nicosia
+event = {
+	id = 154002
+	trigger = { 
+		exists = MAM
+		NOT = {	vassal = { country = CYP country = MAM } } 
+	}
+	random = no
+	country = CYP
+	name = "EVENTNAME154002" #The Disaster of Nicosia
+	desc = "EVENTHIST154002"
+	#-#Barsbey of the Mamluks, very angry for the last raid, sent a huge army to Cyprus. After disembarking and finding an agreement with the Genoese of Famagusta, the Bey's general asked Janus to surrender and recognize the Bey as his suzerain, but Janus answered by killing the messenger. The two armies clashed at the battle of Khirokitia, but the cypriot peasants did not hold, and Janus army was destroyed and the King captured. The Mamluks proceeded to sack Nicosia, burning the palace and taking thousands of slaves. With the slaves and the King, the Mamluks finally left for Cairo. In the absence of the King, several revolts started.
+
+	date = { day = 7 month = july year = 1426 }
+
+	action_a = {
+		name = "ACTIONNAME154002A" #Damm it!
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 8 value = 5 }
+		command = { type = provincetax which = 484 value = -1 } #Cyprus
+		command = { type = desertion which = 484 value = 5000 } #Cyprus
+	}
+}
+
+#(1427) The Rescue of Janus
+event = {
+	id = 154003
+	trigger = { event = 154002 }
+	random = no
+	country = CYP
+	name = "EVENTNAME154003" #The Rescue of Janus
+	desc = "EVENTHIST154003"
+	#-#Janus was taken before Barsbey of the Mamluks, were he was humiliated and mistreated. He spent eight months prisoner in Cairo, and had to agree to recognize the Bey as his suzerain and pay a huge ransom of 200,000 ducats. Although the Venetians, the Hospitalliers, and the Pope provided part of the rescue, Cyprus struggled to pay the rest. But King Janus spirit was broken and never recovered fully from the experience.
+
+	date = { day = 1 month = march year = 1427 }
+
+	action_a = {
+		name = "ACTIONNAME154003A" #Damm it! and Damm it!
+		command = { type = stability value = 1 }
+		command = { type = treasury value = -100 }
+		command = { type = trigger which = 24034 } #MAM: The submission of Cyprus
+		command = { type = relation which = MAM value = 200 }
+		command = { type = ADM which = -3 value = 69 }
+	}
+}
+
+#(1434) Marriage of Jean II
+#revised by Aylo1
+event = {
+	id = 154004
+	random = no
+	country = CYP
+	name = "EVENTNAME154004" #The Marriage of Jean II
+	desc = "EVENTHIST154004"
+	#-#As the last Kings of Jerusalem, the Lusignans were great defenders of the Catholic faith, often in collusion with their Greek subjects. The decision of Jean II to marry Helen Paléologue, daughter of Theodore II of Morea, and granddaughter of the Basileos Rhomaion Manuel II (Emperor of Byzantium) was unprecedented and well received by the Cypriot-Greeks. Through her patronage, local Greek culture flourished and royal power was strengthened. Her actions naturally alarmed the Catholic Franks but they couldn't depose her without upsetting the Cypriot-Greeks who revered her as a heroine.
+
+	date = { day = 1 month = january year = 1434 }
+
+	action_a = {
+		name = "ACTIONNAME154004A" #Best wishes to the royal couple
+		command = { type = stability value = 1 }
+		command = { type = revoltrisk which = 24 value = -2 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = relation which = SPR value = 50 }
+		command = { type = relation which = KNI value = -25 } #Catholic states
+		command = { type = relation which = NAP value = -25 }
+		command = { type = relation which = VEN value = -25 }
+		command = { type = relation which = GEN value = -25 }
+		command = { type = relation which = PAP value = -25 }
+		command = { type = add_countryculture which = greek }
+	}
+}
+
+#(1457) The First Marriage of princess Charlotte
+event = {
+	id = 154005
+	random = no
+	country = CYP
+	name = "EVENTNAME154005" #Palace intrigues
+	desc = "EVENTHIST154005"
+	#-#Helena Palaelogus was a dominant, intrigant Queen. She gave Jean a daughter, princess Charlotte. Queen Helena did not take well that Jean had a son, Jacques, from her mistress Marietta Patras, to the point of biting her nose off. When Charlotte was fourteen, Helena married her daughter to Joao of Coimbra, grandson of Joao I of Portugal. But Joao proved to be too strong minded and opposed the Queen pro-orthodox policies, so a year later she had him poisoned by her foster-brother the Chamberlain Thomas. Charlotte called from help from her half-brother Jacques, who had the Queen's foster-brother Thomas murdered. King Jean, who loved his 15 year old son very much, and had previously made him archbishop of Nicosia, responded to the Queen's wrath by sending him to Rhodes, were he was well received for opposing the orthodox Queen.
+
+	date = { day = 1 month = july year = 1457 }
+
+	action_a = {
+		name = "ACTIONNAME154005A" #The Lusignan's infightings are not news to Cyprus
+		command = { type = stability value = -1 }
+		command = { type = relation which = POR value = -50 }
+	}
+}
+
+#(1458) The Fall between two brothers
+event = {
+	id = 154006
+	random = no
+	country = CYP
+	name = "EVENTNAME154006" #Jacques seeks the help of the Mamluks
+	desc = "EVENTHIST154006"
+	#-#Whith the new marriage of Charlotte to her cousin Louis, son of the Duke of Savoy, already arranged, both Helena and Jean died within three months. Charlotte was only seventeen and fell under control of the high court. But Jacques, one year younger, was soon to know that he was persona-non-grata to the nobles. He was forbidden from entering the palace, and was impeded from attending the coronation, that as archbishop of Nicosia he should have officiated. Jacques, as the favourite of his father, had expected to inherit the Kingdom, indeed a possibility had Jean lived longer. But now he had few supporters if any. He had a bad press in the west and the Pope, the Hospitallers and Savoy were strong supporters of his half-sister. The Genoese were, as always, his enemies. So he went to Cairo, where he gained the support of Cyprus suzerain, the Mamluk bey, that as a Muslim and strange to the concept of bastardy, could not understand that the crown of his viceroyalty could be given to a woman.
+
+	date = { day = 26 month = july year = 1458 }
+
+	action_a = {
+		name = "ACTIONNAME154006A" #The Lusignan's infightings are not news to Cyprus
+		command = { type = stability value = -1 }
+		command = { type = relation which = MAM value = -50 }
+	}
+}
+
+#(1460) Charlotte's Web
+event = {
+	id = 3841
+	random = no
+	country = CYP
+	name = "EVENTNAME3841" #Charlotte's Web
+	desc = "EVENTHIST3841"
+	#-#Our scheming Queen Charlotte has enveloped the island of Cyprus in a web of plots and intrigue. She and her Savoyard husband have infuriated the nobles and oppressed the common folk. Her bastard half-brother Jacques has raised the flag of rebellion to end this misrule. Who do we support?
+
+	date = { day = 26 month = september year = 1460 }
+
+	action_a = {
+		name = "ACTIONNAME3841A" #Crown the bastard Jacques Lusignan
+		command = { type = stability value = 1 }
+		command = { type = relation which = MAM value = 100 }
+		command = { type = relation which = SAV value = -100 }
+		command = { type = relation which = PAP value = -100 }
+		command = { type = relation which = KNI value = -50 }
+		command = { type = domestic which = centralization value = -1 }
+	}
+}
+
+#(1464) The Recovery of Famagusta
+event = {
+	id = 154007
+	random = no
+	country = CYP
+	name = "EVENTNAME154007" #The recovery of Famagusta
+	desc = "EVENTHIST154007"
+	#-#Even before the loyalist supporters of his half-sister Charlotte finally surrendered Kyrenia, the redoubtable Jacques II Lusignan at last reconquered the city of Famagusta from the declining Genoese. Jacques became the ruler of the entire island. For the first time in 90 years Cyprus was reunited. The Venetian merchants were quick to supplant the expelled Genoese.
+
+	date = { day = 1 month = january year = 1464 }
+
+	action_a = {
+		name = "ACTIONNAME154007A" #Let's celebrate
+		command = { type = provincetax which = 484 value = 1 } #Cyprus
+		command = { type = stability value = 1 }
+		command = { type = relation which = GEN value = -50 }
+		command = { type = trade value = 200 }
+		command = { type = treasury value = 50 }
+		command = { type = merchants value = 3 }
+	}
+}
+
+#(1464) Finding a bride
+event = {
+	id = 154008
+	random = no
+	country = CYP
+	name = "EVENTNAME154008" #Finding a bride
+	desc = "EVENTHIST154008"
+	#-#Jacques, supported only by the Mamluks, was in a weak position, should Savoy or Genoa attempt to overthrow him. A possibility increased by the refusal of Pope Pius II to recognize him as sovereign of Cyprus. He also needed a bride. Some nobles and the Pope suggested Zoe Palaeologus, daughter of the last Despot of Morea, and granddaughter of the last Basileos of Byzantium. The Venetians proposed to find him a Venetian bride between the noble families of the Republic, thus increasing their support to him.
+
+	date = { day = 1 month = april year = 1464 }
+
+	action_a = {
+		name = "ACTIONNAME154008A" #Choose the Byzantine princess but demand Papal recognition
+		command = { type = stability value = 1 }
+		command = { type = relation which = VEN value = -10 }
+	}
+	action_b = {
+		name = "ACTIONNAME154008B" #Let the Venetians find a bride
+		command = { type = stability value = -1 } #She is catholic
+		command = { type = relation which = VEN value = 50 }
+		command = { type = sleepevent which = 154010 } #Finding a bride II #CYP: The Venetian candidate
+	}
+}
+
+#(1464) The crusade that never was
+event = {
+	id = 154009
+	trigger = {
+		OR = {
+			owned = { province = 491 data = -1 } #Holy Land conquests
+			owned = { province = 492 data = -1 }
+			owned = { province = 493 data = -1 }
+		}
+	}
+	random = no
+	country = CYP
+	name = "EVENTNAME154009" #The crusade that never was
+	desc = "EVENTHIST154009"
+	#-#Pope Pius II has called all princes of Christianity to join his crusade against the Turk. He appears to have forgotten us, but since we are the last crusade state, he will surely be happy if we give a hand. Perhaps he will finally grant us recognition.
+
+	date = { day = 26 month = august year = 1464 }
+
+	action_a = {
+		name = "ACTIONNAME154009A" #That crusade is a pathetic attempt doomed to failure
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME154009B" #It is our duty as crusaders to fight the infidel
+		command = { type = stability value = -1 } #Populace is worried about monarch sanity
+		command = { type = relation which = VEN value = 50 }
+		command = { type = relation which = BUR value = 50 }
+		command = { type = relation which = PAP value = 100 }
+		command = { type = relation which = HUN value = 50 }
+		command = { type = casusbelli which = TUR value = 6 }
+	}
+}
+
+#(1467) Finding a bride II
+event = {
+	id = 154010
+	random = no
+	country = CYP
+	name = "EVENTNAME154010" #The Venetian candidate
+	desc = "EVENTHIST154010"
+	#-#Pius II rejected to recognize Jacques, faithful to his support of Charlotte. The recognition would temporarily be granted by the Venetian Pope Paul II in 1467, and later reverted by Sixtus IV. But it came too late. The marriage to Zoe (Sophia) Palaeologus falled through, and she later married to the Grand Duke of Muscovy, Ivan III, taking as her dowry the double headed eagle of Byzantium to the Romanov. Still an outcast, Jacques was falling more and more under Venetian tutelage.
+
+	date = { day = 1 month = july year = 1467 }
+
+	action_a = {
+		name = "ACTIONNAME154010A" #Well, the Venetian bride then
+		command = { type = relation which = VEN value = 50 }
+	}
+}
+
+#(1469) Finding a bride III
+event = {
+	id = 154011
+	trigger = { exists = VEN }
+	random = no
+	country = CYP
+	name = "EVENTNAME154011" #Again two brides to choose
+	desc = "EVENTHIST154011"
+	#-#The Venetian Corner, rich landowners in Cyprus, long time lenders and even coucilors to the Lusignans, proposed their fourteen years old relative Caterina Cornaro, who had a few drops of the Palaeologus blood from a Trebizond emperor grand-grandfather. The negotiations took time because the Venetians insisted that the bride had to be no mere royal consort, but full Queen and heir to the Kingdom. The married by proxy took place at the Hall of the Signoria of the ducal palace on July 1468. But due to the outstanding situation of Cyprus to control the trade route with levant, a new candidate appeared. Ferrante I of Naples is offering his daughter Leonora as a bride to us. This is upsetting the Venetians very much. Their envoy Domenico Gradenigo has threatened with supporting Charlotte if we join their enemy of Naples. Be aware that the Venetians are our only friends.
+
+	date = { day = 1 month = july year = 1469 }
+
+	action_a = {
+		name = "ACTIONNAME154011A" #The Venetians are our trusted allies, let's honor our word
+		command = { type = stability value = 1 }
+		command = { type = relation which = VEN value = 25 }
+		command = { type = sleepevent which = 154014 } #Alternative death of Jacques #CYP: The Venetians murder Jacques II Lusignan
+	}
+	action_b = {
+		name = "ACTIONNAME154011B" #Leonora is an intriguing name, she is the lucky winner
+		command = { type = stability value = -1 }
+		command = { type = relation which = VEN value = -200 }
+		command = { type = relation which = NAP value = 50 }
+		command = { type = treasury value = -50 }
+		command = { type = provincetax which = -3 value = -1 } #Loss of Venice trade
+		command = { type = trade value = -200 }
+		command = { type = trigger which = 154012 } #CYP: The Venetians are now supporting Charlotte
+	}
+}
+#(1469) The Venetian support for Charlotte (Cyprus version)
+event = {
+	id = 154012 #triggered by CYP_154011 B
+	random = no
+	country = CYP
+	name = "EVENTNAME154012" #The Venetians are now supporting Charlotte
+	desc = "EVENTHIST154012"
+	#-#The Venetians are too stablished in Cyprus to let her go without a fight. They have made public their support for Charlotte and have assembled a big fleet. We should prepare for the fight.
+
+	action_a = {
+		name = "ACTIONNAME154012A" #On second thought, Caterina is prettier
+		command = { type = stability value = 1 }
+		command = { type = relation which = VEN value = 100 }
+		command = { type = relation which = NAP value = -100 }
+		command = { type = provincetax which = 484 value = 1 } #Cyprus
+		command = { type = sleepevent which = 154014 } #Alternative death of Jacques #CYP: The Venetians murder Jacques II Lusignan
+	}
+	action_b = {
+		name = "ACTIONNAME154012B" #I am not afraid of those treacherous Venetians
+		command = { type = stability value = -1 }
+		command = { type = sleepmonarch which = 039005 } #Jacques III
+		command = { type = sleepmonarch which = 039006 } #Caterina Cornero
+		command = { type = trigger which = 3842 } #The Venetian support for Charlotte (Venetian version) means war declaration. #VEN: The Venetians are humiliated by Cyprus
+		command = { type = sleepevent which = 154013 } #CYP: The death of Jacques Lusignan and the rise of the Venetians
+		command = { type = sleepevent which = 154015 } #CYP: The Catalan coup
+		command = { type = sleepevent which = 154017 } #CYP: The death of Jacques III, last of the Lusignan
+		command = { type = sleepevent which = 154018 } #Abdication 1 #CYP: Venice worries about Cyprus
+		command = { type = sleepevent which = 154019 } #Abdication 2a #CYP: The abdication of Caterina Cornero
+		command = { type = sleepevent which = 154020 } #Abdication 2b #CYP: The abdication of Caterina Cornero
+	}
+}
+
+#(1473) The death of Jacques Lusignan and the rise of the Venetians
+event = {
+	id = 154013
+	random = no
+	country = CYP
+	name = "EVENTNAME154013" #The death of Jacques Lusignan and the rise of the Venetians
+	desc = "EVENTHIST154013"
+	#-#When finally Jacques II Lusignan sent for her bride Caterina Cornaro, and had her crowned with the triple crown of Cyprus, Armenia, and Jerusalem, he sealed his destiny. A few months later, Andrea Cornaro and Marco Bembo, uncle and cousin of Caterina, took him on a hunting party during which he fell violently ill dying a week later. Caterina was now the Queen until the birth of the child, and the Venetians took control of the Regency Council. The Greek population had endured the pesky Lusignans, and did not care who between the Latins was the master, but the nobility was apalled, and soon started conspiring with the Catalans in the court.
+
+	date = { day = 6 month = july year = 1473 }
+
+	action_a = {
+		name = "ACTIONNAME154013A" #Those Venetians weren't so trustworthy after all
+		command = { type = stability value = -1 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = revoltrisk which = 12 value = 3 }
+	}
+}
+#(1473) Alternative death of Jacques II Lusignan
+event = {
+	id = 154014
+	random = no
+	country = CYP
+	name = "EVENTNAME154014" #The Venetians murder Jacques II Lusignan
+	desc = "EVENTHIST154014"
+	#-#The Venetians were so upset for the lost of Cyprus that they have sent two men, Andrea Cornaro and Marco Bembo, to kill our King. Jacques II Lusignan has been murdered. The Venetians have already been executed, but we have no choice but to call Charlotte to become Queen of Cyprus once more. But she is too old to have children now. It is only a temporary solution.
+
+	date = { day = 6 month = july year = 1473 }
+
+	action_a = {
+		name = "ACTIONNAME154014A" #We were right in not trusting the Venetians
+		command = { type = stability value = -1 }
+		command = { type = wakemonarch which = 039003 } #2nd Charlotte
+		command = { type = casusbelli which = VEN value = 24 }
+		command = { type = revoltrisk which = 12 value = 3 }
+		command = { type = relation which = PAP value = 50 }
+		command = { type = relation which = KNI value = 50 }
+		command = { type = relation which = VEN value = -200 }
+		command = { type = relation which = SAV value = 50 }
+	}
+}
+
+#(1473) The Catalan coup
+event = {
+	id = 154015
+	trigger = { exists = VEN }
+	random = no
+	country = CYP
+	name = "EVENTNAME154015" #The Catalan coup
+	desc = "EVENTHIST154015"
+	#-#Ferrante I of Naples did not give up on Cyprus. He had the support of the Catalan party in the court, and he obtained a letter from the anti-Venetian Pope Sixtus VI denouncing Andrea Cornaro and Marco Bembo as murderers of Jacques, addressed to one of the conspirators, the archbishop of Nicosia, Luis Perez Fabregues. With Napolitan reinforcements the coup took place. The Catalans killed the uncle and cousin of Queen Caterina and her personal surgeon in front of her eyes and kept her prisoner. The plan was to marry Charla, illegitimate daughter of Jacques, to Alonso, illegitimate son of Ferrante that had been adopted by Charlotte. But the Venetians were not going to sit still, and they sent a military expedition to rescue Caterina. The conspirators jumped into the Napolitan galleys and left the island. If the conspirators had had more support, perhaps they would have stayed, but that would mean a war with Venice for sure. But it would be a better idea to marry Alonso to Caterina
+
+	date = { day = 1 month = november year = 1473 }
+
+	action_a = {
+		name = "ACTIONNAME154015A" #Let's welcome the rescuers of our Queen Caterina
+		command = { type = stability value = 1 }
+		command = { type = relation which = VEN value = 50 }
+		command = { type = relation which = NAP value = -100 }
+	}
+	action_b = {
+		name = "ACTIONNAME154015B" #Let's support the coup
+		command = { type = stability value = -1 }
+		command = { type = relation which = VEN value = -200 }
+		command = { type = relation which = NAP value = 50 }
+		command = { type = treasury value = -50 }
+		command = { type = provincetax which = 484 value = -1 } #Cyprus
+		command = { type = trade value = -200 }
+		command = { type = trigger which = 154016 } #CYP: The Venetians are coming to support Caterina
+	}
+}
+#(1473) The Venetian support for Caterina (Cyprus version)
+event = {
+	id = 154016 #triggered by CYP_154015 B
+	random = no
+	country = CYP
+	name = "EVENTNAME154016" #The Venetians are coming to support Caterina
+	desc = "EVENTHIST154016"
+	#-#The Venetians are too stablished in Cyprus to let her go without a fight. They have assembled a big fleet that is already on its way to Cyprus. We should prepare for the fight.
+
+	action_a = {
+		name = "ACTIONNAME154016A" #Let's call it off and release Caterina
+		command = { type = stability value = 1 }
+		command = { type = relation which = VEN value = 100 }
+		command = { type = relation which = NAP value = -100 }
+		command = { type = provincetax which = 484 value = 1 } #Cyprus
+	}
+	action_b = {
+		name = "ACTIONNAME154016B" #I am not afraid of those murderers Venetians
+		command = { type = stability value = -1 }
+		command = { type = wakemonarch which = 039013 } #Caterina & Alonso °
+		command = { type = sleepmonarch which = 039007 } #Cypriot Council *
+		command = { type = trigger which = 03843 } #The Venetian support for Caterina (Venetian version) means war declaration. #VEN: The Venetians defend Caterina
+		command = { type = sleepevent which = 154017 } #CYP: The death of Jacques III, last of the Lusignan
+		command = { type = sleepevent which = 154018 } #Abdication 1 #CYP: Venice worries about Cyprus
+		command = { type = sleepevent which = 154019 } #Abdication 2a #CYP: The abdication of Caterina Cornero
+		command = { type = sleepevent which = 154020 } #Abdication 2b #CYP: The abdication of Caterina Cornero
+	}
+}
+
+#(1474) The death of the last Lusignan
+event = {
+	id = 154017
+	random = no
+	country = CYP
+	name = "EVENTNAME154017" #The death of Jacques III, last of the Lusignan
+	desc = "EVENTHIST154017"
+	#-#The tragedy was not finished for young Caterina Cornaro. At 20 years of age she had seen too many people die, but now it was her son, the King Jacques III Lusignan who died while she was preparing his first birthday party. With him, the Lusignan dinasty became extinct. It also meant the last of the Frankish Kingdoms in Levant and the end of a dream built over blood. By virtue of having named her -Daughter of St. Mark-, Venice became the heir of the Kingdom of Cyprus, but only under condition for her to not re-marry or have any children. Her destiny had also been sealed. Her life would be spared, but her freedom had disappeared. She would always be watched and controlled. Perhaps due to her tragedy, Caterina won the love of her Greek subjects, that for the first time supported a Latin ruler.
+
+	date = { day = 6 month = july year = 1474 }
+
+	action_a = {
+		name = "ACTIONNAME154017A" #It is all very sad
+		command = { type = flagname which = "" } #Default CoA
+		command = { type = relation which = VEN value = 50 }
+		command = { type = ADM which = -2 value = 12 }
+		command = { type = remove_countryculture which = french }
+	}
+}
+
+#(1476) The Abdication of Caterina Cornero I
+event = {
+	id = 154018
+	trigger = { exists = VEN }
+	random = no
+	country = CYP
+	name = "EVENTNAME154018" #Venice worries about Cyprus
+	desc = "EVENTHIST154018"
+	#-#The Venetians were always worried that Cyprus could be lost when they were so close to get it, and only their relationship with Egypt stopped them. With time they were starting to get more and more nervous. They even removed, Marietta Patra, mother of Jacques II together with the three illegitamate children of her son, Eugene, Jean and Charla as prisoners to Padua in 1476, where Charla, who had signed a marriage contract with Alonso of Naples, died soon after. But Caterina was still young, and there were always talks of diplomats attempting to get to her with marriage offers. Ferrante was entertaining the idea of marrying her to Alonso, a plan she could have favored. Nothing could actually happen, since she was not allowed out of sight, and she could not sign a paper without permission. But the growing Ottoman menace and Ferrante's plans moved Venice to accelerate the take over.
+
+	date = { day = 1 month = july year = 1476 }
+
+	action_a = {
+		name = "ACTIONNAME154018A" #The Venetians deserve to inherit Cyprus (End Game in 1489)
+		command = { type = stability value = 1 }
+		command = { type = relation which = VEN value = 25 }
+		command = { type = sleepevent which = 154020 } #The alternate pathway #CYP: The abdication of Caterina Cornero
+	}
+	action_b = {
+		name = "ACTIONNAME154018B" #Let's keep other possibilities open
+		command = { type = stability value = -1 }
+		command = { type = relation which = VEN value = -50 }
+		command = { type = sleepevent which = 154019 } #The standard pathway #CYP: The abdication of Caterina Cornero
+	}
+}
+
+#(1489) The Abdication of Caterina Cornero II, the standard pathway
+event = {
+	id = 154019
+	random = no
+	country = CYP
+	name = "EVENTNAME154019" #The abdication of Caterina Cornero
+	desc = "EVENTHIST154019"
+	#-#Finally, the Venetians decided not to wait until the death of Caterina. Her brother Giorgio Cornaro was sent to Cyprus to convince Caterina of abdicating her Kingdom to Venice. When she refused she was threatened with the retreat of the venetian forces that kept the Turks from taking over the island. Her last remark was: -Are not my lords of Venice content to have their island when I am dead, that they would deprive me thus soon of what my husband left me?. She was given a pension and the lordship of Asolo. Agreement was obtained from the bey of the Mamluks, suzerain of the island. The abdication ceremony was celebrated at the church of St. Mark in Venice.
+
+	date = { day = 1 month = february year = 1489 }
+
+	action_a = {
+		name = "ACTIONNAME154019A" #We have no choice but to submit (End Game)
+		command = { type = breakvassal which = MAM }
+		command = { type = trigger which = 3845 } #Venetian inheritance #VEN: The adquisition of Cyprus
+	}
+}
+#(1489) The Abdication of Caterina Cornero II, the alternate pathway
+event = {
+	id = 154020
+	random = no
+	country = CYP
+	name = "EVENTNAME154020" #The abdication of Caterina Cornero
+	desc = "EVENTHIST154020"
+	#-#Finally, the Venetians decided not to wait until the death of Caterina. Her brother Giorgio Cornaro was sent to Cyprus to convince Caterina of abdicating her Kingdom to Venice. When she refused she was threatened with the retreat of the venetian forces that kept the Turks from taking over the island. Her last remark was: -Are not my lords of Venice content to have their island when I am dead, that they would deprive me thus soon of what my husband left me?. She has departed for the abdication ceremony in Venice, and the Venetians have obtained the agreement from the bey of the Mamluks, our suzerain. But the Cypriots are unhappy with the solution and are willing to fight the Venetians for their freedom.
+
+	date = { day = 1 month = february year = 1489 }
+
+	action_a = {
+		name = "ACTIONNAME154020A" #We have no choice but to submit (End Game)
+		command = { type = breakvassal which = MAM }
+		command = { type = trigger which = 3845 } #Venetian inheritance #VEN: The adquisition of Cyprus
+	}
+	action_b = {
+		name = "ACTIONNAME154020B" #Let's fight for our freedom
+		command = { type = stability value = 2 }
+		command = { type = relation which = VEN value = -200 }
+		command = { type = trigger which = 3844 } #VEN war declaration #VEN: The Cypriots refuse their annexation
+	}
+}
+
+#(1490-1500) The Great choice
+event = {
+	id = 154021
+	trigger = { atwar = no }
+	random = no
+	country = CYP
+	name = "EVENTNAME154021" #The future of Cyprus rests on our hands
+	desc = "EVENTHIST154021"
+	#-#The country is at peace and we need to look to the future of our Kingdom. We only have one legal claimant, Herion Lusignan, second cousin to late Jacques II, he is also the papal candidate, but he has no support within the Kingdom. We also have three candidates that could start a new dynasty for Cyprus. Alonso d'Aragona, son of King Ferrante of Naples is the candidate of the Catalan faction in the High Council. He is willing to marry Caterina if we support him. He would implicate us in Italian policies. The Frankish nobles support Antoine de Valois-Burgundy, known as the Great Bastard, son of Philip the Good, who will make good our crusading destiny and implicate us in French policies. Finally we have been able to find a heir to the Byzantine empire, Boniface III Palaeologus, margrave of Montferrat. He is the favourite of our Greek subjects and would direct us towards Greek policies. By an irony of history, he is also a descendant of Boniface of Montferrat, the leader of the fourth crusade.
+
+	date = { day = 1 month = january year = 1490 }
+	offset = 60
+	deathdate = { day = 1 month = february year = 1500 }
+
+	action_a = {
+		name = "ACTIONNAME154021A" #Make Herion Lusignan our new King
+		command = { type = stability value = -2 }
+		#Lusignan branch
+		command = { type = wakemonarch which = 039008 } #Herion Lusignan °
+		command = { type = wakemonarch which = 039009 } #Philippe Lusignan *
+		command = { type = wakemonarch which = 039010 } #Phoebus Lusignan *
+		command = { type = wakemonarch which = 039011 } #Jason Lusignan *
+		command = { type = wakemonarch which = 039012 } #Pierre-Antoine Lusignan *
+		command = { type = sleepevent which = 154022 } #Naples pathway #CYP: Our King claims the crown of Naples
+		command = { type = sleepevent which = 154023 } #Burgundy pathway #CYP: Our King claims the Duchy of Burgundy
+		command = { type = sleepevent which = 154024 } #Byzantium pathway #CYP: Our King claims the title of Basileos Romaion
+	}
+	action_b = {
+		name = "ACTIONNAME154021B" #Reinstate Caterina Cornaro and Alonso d'Aragona as our monarchs
+		command = { type = stability value = 1 }
+		#Caterina Naples branch
+		command = { type = wakemonarch which = 039013 } #Caterina & Alonso °
+		command = { type = wakemonarch which = 039014 } #Fernando d'Aragona *
+		command = { type = wakemonarch which = 039015 } #Alfonso d'Aragona *
+		command = { type = relation which = NAP value = 200 }
+		command = { type = sleepevent which = 154023 } #Burgundy pathway #CYP: Our King claims the Duchy of Burgundy
+		command = { type = sleepevent which = 154024 } #Byzantium pathway #CYP: Our King claims the title of Basileos Romaion
+	}
+	action_c = {
+		name = "ACTIONNAME154021C" #Make Antoine de Bourgogne our new King
+		command = { type = stability value = -1 }
+		#Burgundy branch
+		command = { type = wakemonarch which = 039016 } #Antoine de Bourgogne °
+		command = { type = wakemonarch which = 039017 } #Philippe de Bourgogne *
+		command = { type = wakemonarch which = 039018 } #Adolphe de Bourgogne *
+		command = { type = wakemonarch which = 039019 } #Maximilien de Bourgogne *
+		command = { type = sleepevent which = 154022 } #Naples pathway #CYP: Our King claims the crown of Naples
+		command = { type = sleepevent which = 154024 } #Byzantium pathway #CYP: Our King claims the title of Basileos Romaion
+		command = { type = wakeleader which = 039301 } #A. de Bourgogne (CYP)
+	}
+	action_d = {
+		name = "ACTIONNAME154021D" #Make Boniface Palaeologus our new King
+		command = { type = stability value = 2 }
+		command = { type = relation which = BYZ value = 200 }
+		#Byzantium branch
+		command = { type = wakemonarch which = 039020 } #Boniface III °
+		command = { type = wakemonarch which = 039021 } #Guillaume IX *
+		command = { type = wakemonarch which = 039022 } #Boniface IV *
+		command = { type = wakemonarch which = 039023 } #Jean Georges *
+		command = { type = sleepevent which = 154022 } #Naples pathway #CYP: Our King claims the crown of Naples
+		command = { type = sleepevent which = 154023 } #Burgundy pathway #CYP: Our King claims the Duchy of Burgundy
+	}
+}
+
+#(1500-1790) Naples pathway
+event = {
+	id = 154022
+	trigger = {
+		OR = {
+			monarch = 039013 #Caterina & Alonso °
+			monarch = 039014 #Fernando d'Aragona *
+			monarch = 039015 #Alfonso d'Aragona *
+		}
+		NOT = {
+			exists = NAP
+		}
+	}
+	random = no
+	country = CYP
+	name = "EVENTNAME154022" #Our King claims the crown of Naples
+	desc = "EVENTHIST154022"
+	#-#Our King has taken a bold step indeed. He has made an official claim to the crown of Naples that his ancestor Ferrante held until 1494. He is indeed the last d'Aragona in conditions of claiming it, but the Kings of France, Spain and the Pope are having a good laugh with this.
+
+	date = { day = 1 month = february year = 1500 }
+	offset = 400
+	deathdate = { day = 1 month = february year = 1790 }
+
+	action_a = {
+		name = "ACTIONNAME154022A" #They won't laugh for long
+		command = { type = addcore which = 393 } #Napoli
+		command = { type = addcore which = 394 } #Apulia
+		command = { type = addcore which = 395 } #Messina
+		command = { type = addcore which = 396 } #Sicily
+		command = { type = addcore which = 819 } #Malta
+		command = { type = add_countryculture which = italian }
+		command = { type = technology which = latin }
+		command = { type = stability value = -1 }
+		command = { type = relation which = FRA value = -100 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = relation which = ARG value = -100 }
+		command = { type = relation which = PAP value = -100 }
+		command = { type = revoltrisk which = 12 value = 3 }
+	}
+}
+#(1500-1790) Burgundy pathway
+event = {
+	id = 154023
+	trigger = {
+		OR = {
+			monarch = 039016 #Antoine de Bourgogne °
+			monarch = 039017 #Philippe de Bourgogne *
+			monarch = 039018 #Adolphe de Bourgogne *
+			monarch = 039019 #Maximilien de Bourgogne *
+		}
+		NOT = {
+			exists = BUR
+		}
+	}
+	random = no
+	country = CYP
+	name = "EVENTNAME154023" #Our King claims the Duchy of Burgundy
+	desc = "EVENTHIST154023"
+	#-#Our King has taken a bold step indeed. He has made an official claim to the Duchy of Burgundy that his ancestor Philip the Good held until 1467. He is indeed the last Valois in conditions of claiming it, but the King of France, and the Archduke of Austria are having a good laugh with this.
+
+	date = { day = 1 month = february year = 1500 }
+	offset = 400
+	deathdate = { day = 1 month = february year = 1790 }
+
+	action_a = {
+		name = "ACTIONNAME154023A" #They won't laugh for long
+		command = { type = addcore which = 380 } #Flandern
+		command = { type = addcore which = 387 } #Franche-Comté
+		command = { type = addcore which = 409 } #Bourgogne
+		command = { type = addcore which = 383 } #Picardie
+		command = { type = add_countryculture which = french }
+		command = { type = technology which = latin }
+		command = { type = stability value = -1 }
+		command = { type = relation which = FRA value = -100 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = revoltrisk which = 12 value = 3 }
+	}
+}
+#(1500-1790) Byzantium pathway
+event = {
+	id = 154024
+	trigger = {
+		OR = {
+			monarch = 039020 #Boniface III °
+			monarch = 039021 #Guillaume IX *
+			monarch = 039022 #Boniface IV *
+			monarch = 039023 #Jean Georges *
+		}
+		NOT = {
+			exists = BYZ
+			exists = SPR #Morea
+		}
+	}
+	random = no
+	country = CYP
+	name = "EVENTNAME154024" #Our King claims the title of Basileos Romaion
+	desc = "EVENTHIST154024"
+	#-#Our King has taken a bold step indeed. He has made an official claim to the title of Basileos Romaion or emperor of Byzantium that his ancestor Andronicus II held until 1328. He is indeed the last Palaeologus in conditions of claiming it, but the sultan of the Ottoman Empire and the Doge of Venice are having a good laugh with this.
+
+	date = { day = 1 month = february year = 1500 }
+	offset = 400
+	deathdate = { day = 1 month = february year = 1790 }
+
+	action_a = {
+		name = "ACTIONNAME154024A" #They won't laugh for long
+		command = { type = addcore which = 357 } #Thrace
+		command = { type = addcore which = 358 } #Macedonia
+		command = { type = addcore which = 359 } #Hellas
+		command = { type = addcore which = 360 } #Morea
+		command = { type = addcore which = 321 } #Rumelia
+		command = { type = addcore which = 477 } #Anatolia
+		command = { type = addcore which = 478 } #Smyrna
+		command = { type = addcore which = 479 } #Ionia
+		command = { type = addcore which = 820 } #Corfu
+		command = { type = removecore which = 483 } #Adana
+		command = { type = removecore which = 491 } #Lebanon
+		command = { type = removecore which = 492 } #Samaria
+		command = { type = removecore which = 493 } #Judea
+		command = { type = religion which = orthodox }
+		command = { type = stability value = 6 }
+		command = { type = conversion which = -2 } #Just in case is catholic now
+		command = { type = relation which = TUR value = -100 }
+		command = { type = relation which = VEN value = -100 }
+		command = { type = revoltrisk which = 24 value = -2 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Random Events
+#-----------------------------------------------------------------------------------------------
+
+#Crusading wars I (Ottoman Empire)
+event = {
+	id = 154025
+	trigger = {
+		atwar = no
+		religion = catholic
+		exists = TUR
+		countrysize = 2
+		exists = KNI
+	}
+	random = yes
+	country = CYP
+	name = "EVENTNAME154025" #Holy Crusade
+	desc = "EVENTHIST154025"
+	#-#The Great Master of the Order of the Knights Hospitalliers of St. John is sending ambassade telling us that it is our duty as soldiers of Christ to declare war to the perfid Turk and end their attacks on the princes of Christendom. If we do so, the elite Hospitallier troops will join our army, and they will also sent gallies for their transport. They will also help finance the expedition.
+
+	action_a = {
+		name = "ACTIONNAME154025A" #We are too weak for such noble enterprise
+		command = { type = relation which = KNI value = -10 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME154025B" #For Christ and the Holy Cross, death to the infidel
+		command = { type = stability value = -1 }
+		command = { type = relation which = KNI value = 100 }
+		command = { type = relation which = PAP value = 50 }
+		command = { type = revoltrisk which = 12 value = 3 }
+		command = { type = treasury value = 100 }
+		command = { type = INF which = -2 value = 4000 }
+		command = { type = CAV which = -2 value = 4000 }
+		command = { type = galleys which = -2 value = 10 }
+		command = { type = domestic which = offensive value = 1 }
+		command = { type = domestic which = quality value = 1 }
+		command = { type = war which = TUR }
+	}
+}
+
+#Crusading wars II (Ottoman Empire)
+event = {
+	id = 154026
+	trigger = {
+		atwar = no
+		religion = catholic
+		exists = TUR
+		countrysize = 2
+		exists = KNI
+	}
+	random = yes
+	country = CYP
+	name = "EVENTNAME154025" #Holy Crusade
+	desc = "EVENTHIST154025"
+	#-#The Great Master of the Order of the Knights Hospitalliers of St. John is sending ambassade telling us that it is our duty as soldiers of Christ to declare war to the perfid Turk and end their attacks on the princes of Christendom. If we do so, the elite Hospitallier troops will join our army, and they will also sent gallies for their transport. They will also help finance the expedition.
+
+	action_a = {
+		name = "ACTIONNAME154025A" #We are too weak for such noble enterprise
+		command = { type = relation which = KNI value = -10 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME154025B" #For Christ and the Holy Cross, death to the infidel
+		command = { type = stability value = -1 }
+		command = { type = relation which = KNI value = 100 }
+		command = { type = relation which = PAP value = 50 }
+		command = { type = revoltrisk which = 12 value = 3 }
+		command = { type = treasury value = 100 }
+		command = { type = INF which = -2 value = 4000 }
+		command = { type = CAV which = -2 value = 4000 }
+		command = { type = galleys which = -2 value = 10 }
+		command = { type = domestic which = offensive value = 1 }
+		command = { type = domestic which = quality value = 1 }
+		command = { type = war which = TUR }
+	}
+}
+
+#Crusading wars III (Mamluks)
+event = {
+	id = 154027
+	trigger = {
+		atwar = no
+		religion = catholic
+		exists = MAM
+		countrysize = 2
+		exists = KNI
+	}
+	random = yes
+	country = CYP
+	name = "EVENTNAME154025" #Holy Crusade
+	desc = "EVENTHIST154025"
+	#-#The Great Master of the Order of the Knights Hospitalliers of St. John is sending ambassade telling us that it is our duty as soldiers of Christ to declare war to the perfid Mamluks and end their attacks on the princes of Christendom. If we do so, the elite Hospitallier troops will join our army, and they will also sent gallies for their transport. They will also help finance the expedition.
+
+	action_a = {
+		name = "ACTIONNAME154025A" #We are too weak for such noble enterprise
+		command = { type = relation which = KNI value = -10 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME154025B" #For Christ and the Holy Cross, death to the infidel
+		command = { type = stability value = -1 }
+		command = { type = relation which = KNI value = 100 }
+		command = { type = relation which = PAP value = 50 }
+		command = { type = revoltrisk which = 12 value = 3 }
+		command = { type = treasury value = 100 }
+		command = { type = INF which = -2 value = 4000 }
+		command = { type = CAV which = -2 value = 4000 }
+		command = { type = galleys which = -2 value = 10 }
+		command = { type = domestic which = offensive value = 1 }
+		command = { type = domestic which = quality value = 1 }
+		command = { type = war which = MAM }
+	}
+}
+
+#Crusading wars IV (Mamluks)
+event = {
+	id = 154028
+	trigger = {
+		atwar = no
+		religion = catholic
+		exists = MAM
+		countrysize = 2
+		exists = KNI
+	}
+	random = yes
+	country = CYP
+	name = "EVENTNAME154025" #Holy Crusade
+	desc = "EVENTHIST154025"
+	#-#The Great Master of the Order of the Knights Hospitalliers of St. John is sending ambassade telling us that it is our duty as soldiers of Christ to declare war to the perfid Mamluks and end their attacks on the princes of Christendom. If we do so, the elite Hospitallier troops will join our army, and they will also sent gallies for their transport. They will also help finance the expedition.
+
+	action_a = {
+		name = "ACTIONNAME154025A" #We are too weak for such noble enterprise
+		command = { type = relation which = KNI value = -10 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME154025B" #For Christ and the Holy Cross, death to the infidel
+		command = { type = stability value = -1 }
+		command = { type = relation which = KNI value = 100 }
+		command = { type = relation which = PAP value = 50 }
+		command = { type = revoltrisk which = 12 value = 3 }
+		command = { type = treasury value = 100 }
+		command = { type = INF which = -2 value = 4000 }
+		command = { type = CAV which = -2 value = 4000 }
+		command = { type = galleys which = -2 value = 10 }
+		command = { type = domestic which = offensive value = 1 }
+		command = { type = domestic which = quality value = 1 }
+		command = { type = war which = MAM }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 154029

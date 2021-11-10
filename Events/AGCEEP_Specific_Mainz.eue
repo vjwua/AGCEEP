@@ -1,0 +1,127 @@
+#Mainz (MAI)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1455) Johann Gutenberg
+#The description is part paraphrase and part copy
+#of Daniel Boorstin's exegesis in The Discoverers:
+#A History of Man's Search to Know His World and Himself
+#Vintage Books, New York, 1983, pp. 510-7.
+#It is also partly my pontification.
+event = {
+	id = 217002
+	random = no
+	country = MAI
+	name = "EVENTNAME217002" #Johann Gutenberg
+	desc = "EVENTHIST331045"
+	#-#There was printing in Europe prior to Johann Gutenberg (c. 1394 - 1468) if what is meant is the making of images by applying pressure. Others had thought of carving an image in reverse on wood or metal, then pressing with color onto paper or what have you. Gutenberg's crucial invention was a new way of multiplying the multiple type for individual letters. He saw that a page of text was the task of printing frequently repeated individual letters, which led to the idea of making many copies of each letter to be reused as often as possible. Gutenberg's profession as a goldsmith and metal caster helped him solve the problems of casting letters that were interchangeable. In 1448, after some failed business dealings in Strasbourg having to do with his invention, Gutenberg found a wealthy investor in Mainz - his birthplace - in the person of Johann Fust, a wealthy lawyer. Fust invested two installments of 800 guilders in the project, but after five years had not received the expected return on his investment. In 1455 Fust sued for his principal plus compound interest and possession of all Gutenberg's assets. Gutenberg lost the suit, was ordered to pay 2,026 guilders and had over all his materials and equipment. Fust's son-in-law, Peter Schöffer, had beenGutenberg's foreman and so knew all the secrets of his invention and the product of his efforts, 'The Gutenberg Bible' - which was published sometime before 1456 - as well as the process itself became the property of the new firm of Fust and Schöffer. They promptly published a Latin Psalter (1467) and the Catholicon (1460). Even after his bankruptcy, another Mainz personage staked him a full set of printing equipment. Later, Count Adolph of Nassau, the Arch-Bishop of Mainz, rewarded Gutenberg, who was by then destitute and nearly blind, a modest pension. There are too many effects of the printed book to mention here. The key is a decrease in the cost of books. This made it much cheaper to build a nice library which meant that learning was from then on available to many more. It also facilitated the triumph of national languages over Latin, since many who were literate did not read Latin. It also spelled doom for many dialects - we know of more than 3,000 in Europe in Gutenberg's day - as mass production made choosing one language for a broad area a profitable choice. It marks the beginning of the democratization of ideas that continues to this day.
+
+	date = { day = 1 month = june year = 1455 }
+
+	action_a = {
+		name = "ACTIONNAME217002A" #A great inventor
+		command = { type = infra value = 500 }
+	}
+}
+
+#(1488-1493) The Swabian League
+#by Bordic
+event = {
+	id = 217003 #triggered by HAB_179087 A
+	random = no
+	country = MAI
+	name = "EVENTNAME179087" #The Swabian League
+	desc = "EVENTHIST179087"
+	#-#Due to the aggressive policies of the House of Wittelsbach aiming at the extension of the duchy of Bavaria at the expenses of neighbouring countries and the strong independence claims of the Swiss subjects opposing the imperial rule, the princes of South-West Germany and Austria formed a league with military defensive purposes, such as the preservation of the imperial status quo. Supporters of the Swabian league were Frederick V of Austria, Eberhard VI of Wirtemberg and Berthold I Archbishop of Mainz, the latter saw this a a first step towards the realization of his planned reform of the Reich's administration.
+
+	action_a = {
+		name = "ACTIONNAME217003A" #Encourage the league
+		command = { type = relation which = BAY value = -50 }
+		command = { type = relation which = HEL value = -50 }
+		command = { type = relation which = HAB value = 25 }
+		command = { type = relation which = WUR value = 25 }
+	}
+	action_b = {
+		name = "ACTIONNAME217003B" #Try to compromise
+		command = { type = relation which = BAY value = 25 }
+		command = { type = relation which = HEL value = 25 }
+		command = { type = relation which = HAB value = -25 }
+		command = { type = relation which = WUR value = -25 }
+		command = { type = relation which = LOR value = -25 }
+		command = { type = relation which = PFA value = -25 }
+		command = { type = relation which = STR value = -25 }
+		command = { type = relation which = PRM value = -25 }
+		command = { type = relation which = TYR value = -25 }
+		command = { type = DIP which = 2 value = 6 }
+	}
+}
+
+#(1514) Albrecht of Hohenzollern acquires Mainz
+event = {
+	id = 217000
+	#trigger = {
+		#exists = MAG
+		#NOT = { war = { country = MAI country = MAG } }
+	#}
+	random = no
+	country = MAI
+	name = "EVENTNAME217000" #Albrecht of Brandenburg, Archbishop of Magdeburg and Mainz
+	desc = "EVENTHIST217000"
+	#-#After becoming Archbishop of Magdeburg and administrator of Halberstadt, Albrecht of Brandenburg began an expensive campaign for the Archbishop-Electorate of Mainz. In order to gain the money needed, he borrowed a large sum from the Fuggers and let the dominican monk Tezel sell indulgences in his domains (which was the actual cause for the protest of Martin Luther). Having obtained an extraordinary permission of the Pope and the Emperor to hold such a multitude of titles and fiefs, he succeeded to the Archbishopric-Electorate on March 9th 1514, which gained the Hohenzollern family a second vote in the electoral college and made them the second dynasty in the Empire.
+
+	date = { day = 9 month = march year = 1514 }
+
+	action_a = {
+		name = "OK"
+		command = { type = dynastic which = BRA }
+		#command = { type = trigger which = 215004 }
+		command = { type = trigger which = 132002 } #BRA: Albrecht of Hohenzollern is elected Archbishop-Elector of Mainz
+		#command = { type = relation which = MAG value = 50 } #Magdeburg
+		command = { type = relation which = BRA value = 50 }
+	}
+}
+
+#(1514) Albrecht of Brandenburg succeeds to the Archbishopric-Electorate
+event = {
+	id = 217001
+	trigger = {
+		#event = 215004
+		NOT = {
+			#alliance = { country = MAI country = MAG }
+			alliance = { country = MAI country = BRA }
+		}
+		exists = BRA
+	}
+	random = no
+	country = MAI
+	name = "EVENTNAME217001" #Albrecht of Brandenburg succeeds to the Archbishopric-Electorate
+	desc = "EVENTHIST217001"
+	#-#With his new throne Albrecht brought Brandenburg and Magdeburg into Mainz's alliance
+
+	date = { day = 29 month = march year = 1514 }
+
+	action_a = {
+		name = "OK"
+		command = { type = alliance which = BRA }
+		#command = { type = alliance which = MAG } #Magdeburg
+	}
+}
+
+#(1518-1520) Response of the Papacy to Luther
+event = {
+	id = 217004 #triggered by 102
+	random = no
+	country = MAI
+	name = "EVENTNAME251074" #Response of the Papacy to Luther
+	desc = "EVENTHIST251074"
+	#-#After receiving checked for heresy and forwarded Luther's letter, Leo X responded over the next three years, ''with great care as is proper,'' by deploying a series of papal theologians and envoys against Luther. Perhaps he hoped the matter would die down of its own accord, because in 1518 he dismissed Luther as ''a drunken German'' who ''when sober will change his mind''.
+
+	action_a = {
+		name = "ACTIONNAME251074A" #Luther will change his mind...
+		command = { type = religion which = counterreform }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 217005

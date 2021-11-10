@@ -1,0 +1,449 @@
+#Styria (PRM)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1820) Styria becomes Austria - Ahistorical
+event = {
+	id = 261002
+	trigger = {
+		NOT = { exists = HAB }
+		countrysize = 2
+		atwar = no
+	}
+	random = no
+	country = PRM
+	name = "EVENTNAME261002" #Styria becomes Austria
+	desc = "EVENTHIST261002"
+	#-#Since the main branch of the Austrian Habsburgs has ceased to exist, it is now upon the Dukes of Styria to lead the dynasty.
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME261002A" #Lead the House of Habsburg
+		command = { type = flagname which = "" }
+		command = { type = country which = HAB }
+		command = { type = add_countryculture which = german }
+		command = { type = addcore which = 350 } #Salzburg
+		command = { type = addcore which = 351 } #Austria
+		command = { type = addcore which = 327 } #Ostmarch
+	}
+	action_b = {
+		name = "ACTIONNAME261002B" #Remain Dukes of Styria
+		command = { type = stability value = 1 }
+		command = { }
+	}
+}
+
+#(1424) Regency of Friedrich IV, Count of Tyrol
+event = {
+	id = 261010
+	trigger = { NOT = { war = { country = PRM country = TYR } } }
+	random = no
+	country = PRM
+	name = "EVENTNAME261010" #Death of Ernest the Iron
+	desc = "EVENTHIST261010"
+	#-#Although by the treaty of Neuberg of 1379 the Habsburg lands had been partitioned into separate entities, to be held by different members of the Habsburg family, the idea of the unity of the family survived. The most important consequence of this was that by a clause in the treaty in the case of a minor inheriting one of the states the oldest member of the family was to assume tutelage over the minor ruler and regency of his countries. Therefore when Archduke Ernst the Iron of Styria prematurely died in his best manhood in 1424 at the age of 47, and his sons Friedrich and Albrecht were only 9 and 5 years old, their uncle Friedrich IV, Count of Tyrol, became tutor of the two brothers and administered Styria, Carinthia and Carniola not only for them as their tutor, but personally as regent. The large noble dynasties of Styria, especially the Cilli, who quickly rose in power with the close personal friendship of Count Herman II and Holy Roman Emperor Sigismund, used the rather weak central authority during the regency, to enhance their power and autonomy.
+
+	date = { day = 9 month = june year = 1424 }
+
+	action_a = {
+		name = "ACTIONNAME261010A" #Let Friedrich IV be our regent
+		command = { type = relation which = TYR value = 100 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = trigger which = 322015 } #TYR: Regency of Friedrich IV in Inner Austria
+	}
+	action_b = {
+		name = "ACTIONNAME261010B" #Refuse Friedrich and have Hermann II of Cilli instead
+		command = { type = relation which = TYR value = -200 }
+		command = { type = relation which = HAB value = -200 }
+		command = { type = relation which = HUN value = 200 } #Friend of emperor Sigismund, King of HUN and BOH
+		command = { type = relation which = BOH value = 200 }
+		command = { type = relation which = ROM value = 200 }
+		command = { type = wakemonarch which = 0111017 } #Hermann II von Cilli
+		command = { type = sleepmonarch which = 0111018 } #Friedrich IV
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = remove_countryculture which = german }
+		command = { type = stability value = -1 }
+	}
+}
+#(1424) Regency of Friedrich IV, Count of Tyrol
+event = {
+	id = 261012 #triggered by TYR_322015
+	random = no
+	country = PRM
+	name = "EVENTNAME261012" #Regency of Friedrich IV, Count of Tyrol
+	desc = "EVENTHIST261012"
+	#-#Friedrich IV's regency, during which Styria was governed from Tyrol by a regent whose main interest was to get as much profit as possible for himself out of his office, led to a notable weakening of central power and further strengthened the local noble dynasties and landowners, which led to increased taxes they demanded from their peasants, making the decline of their situation even more rapid.
+
+	action_a = {
+		name = "OK"
+		command = { type = stability value = 4 }
+	}
+}
+#(1424) Regency of Herman II of Cilli - Ahistorical
+event = {
+	id = 261011
+	trigger = { war = { country = PRM country = TYR } }
+	random = no
+	country = PRM
+	name = "EVENTNAME261011" #Regency of Herman II of Cilli
+	desc = "EVENTHIST261011"
+	#-#Archduke Ernest the Iron was in his best manhood when he passed away in 1424 at the age of 47. His body was interred in the Abbey Reun near Graz. His successors were his three minor sons, Frederic V (*1415), Albert VI (*1418), and Ernest II (*1420). Since Styria was at war with Tyrol, whose ruler Friedrich IV would otherwise, according to Habsburg tradition, be chosen as the guardian of Ernest's sons, the Estates decided to trust the regency to Hermann II of Cilli, member of a noble family of Styrian magnates that was quickly rising in power due to Herman's close personal Friendship with the Holy Roman Emperor Sigismund, whose life he saved in the battle against the Turks at Nicopolis. Thus Herman was made regent of Croatia in 1406, and in 1436 the family was raised to the rank of the princes of state.
+
+	date = { day = 9 month = june year = 1424 }
+
+	action_a = {
+		name = "OK"
+		command = { type = relation which = HUN value = 200 } #Friend of emperor Sigismund, King of HUN and BOH
+		command = { type = relation which = BOH value = 200 }
+		command = { type = relation which = ROM value = 200 }
+		command = { type = wakemonarch which = 0111017 } #Hermann II von Cilli
+		command = { type = sleepmonarch which = 0111018 } #Friedrich IV
+	}
+}
+
+#(1425-1439) Change of regent
+event = {
+	id = 261013
+	trigger = {
+		exists = TYR
+		monarch = 0111018 #Friedrich IV
+		NOT = { vassal = { country = PRM country = TYR } }
+	}
+	random = no
+	country = PRM
+	name = "EVENTNAME261013" #Change of regent
+	desc = "EVENTHIST261013"
+	#-#Unsatisfied with Friedrich IV's handling of matters in Styria, the estates of Inner Austria decided to entrust the regency into the hands of the Counts of Cilli. In 1437, Emperor Siegmund of Luxembourg, elevated the Counts of Cilli to State Princes. Since Hermann II was the son of Hermann I, Count of Cilli, and his wife was Katerina of Bosnia. The title of Lord of Bosnia was entrusted to the counts of Styria.
+
+	date = { day = 0 month = january year = 1425 }
+	offset = 30
+	deathdate = { day = 23 month = june year = 1439 }
+
+	action_a = {
+		name = "ACTIONNAME261013A" #We prefer Herman of Cilli
+		command = { type = relation which = TYR value = -200 }
+		command = { type = relation which = HAB value = -200 }
+		command = { type = relation which = HUN value = 200 } #Friend of emperor Sigismund, King of HUN and BOH
+		command = { type = relation which = BOH value = 200 }
+		command = { type = relation which = ROM value = 200 }
+		command = { type = addcore which = 364 } #Bosnia
+		command = { type = addcore which = 366 } #Croatia
+		command = { type = wakemonarch which = 0111017 } #Hermann II von Cilli
+		command = { type = stability value = 3 }
+	}
+}
+
+#(1431) Frederich V ascends the throne
+event = {
+	id = 261014 #triggered by TYR_322016 B
+	random = no
+	country = PRM
+	name = "EVENTNAME261014" #Friedrich V comes of age
+	desc = "EVENTHIST261014"
+	#-#Friedrich IV, regent for the minors Friedrich V and Albrecht VI, only reluctantly accepted to turn over Styria to his nephews. Usually, regencies in Habsburg lands lasted until the heir had reached adulthood, which was by Habsburg law at the age of 16. However when Friedrich V came of age in 1431, Friedrich IV managed to extend his term until Albrecht VI's 16th birthday in 1435, under the pretext that a possible partition between the two brothers could only be negotiated fairly when both had reached adulthood. Even in 1435, Friedrich IV refused to give up rule of Styria. Only because of the arbitration of Albrecht V of Austria did Friedrich IV finally agree to end his regency on March 25th 1436.
+
+	action_a = {
+		name = "ACTIONNAME261014A"#Friedrich V becomes Duke of Inner Austria
+		command = { type = breakvassal which = TYR }
+		command = { type = relation which = TYR value = -50 }
+		command = { type = stability value = 3 }
+		command = { type = diplomats value = 3 }
+		command = { type = relation which = HAB value = 30 }
+	}
+}
+#(1431-1435) Frederich V ascends the throne
+event = {
+	id = 261015
+	trigger = {
+		monarch = 0111017 #Hermann II von Cilli
+	}
+	random = no
+	country = PRM
+	name = "EVENTNAME261014" #Friedrich V comes of age
+	desc = "EVENTHIST261015"
+	#-#Friedrich V, later emperor Friedrich III, became of age in 1431, on his 16th birthday, and took up the rulership of Inner Austria, thus terminating the regency of Cilli.
+
+	date = { day = 20 month = september year = 1431 }
+	offset = 30
+	deathdate = { day = 0 month = january year = 1435 }
+
+	action_a = {
+		name = "ACTIONNAME261014A" #Friedrich V becomes Duke of Inner Austria
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = TYR value = 50 }
+		command = { type = relation which = BOH value = -100 }
+		command = { type = relation which = ROM value = -100 }
+		command = { type = relation which = HUN value = -100 }
+		command = { type = wakemonarch which = 0111019 } #Friedrich V (early instance)
+		command = { type = sleepmonarch which = 0111001 } #Friedrich V
+	}
+}
+#(1436) Frederich V ascends the throne
+event = {
+	id = 261016
+	trigger = { monarch = 0111018 } #Friedrich IV
+	random = no
+	country = PRM
+	name = "EVENTNAME261014" #Friedrich V comes of age
+	desc = "EVENTHIST261014"
+	#-#Friedrich IV, regent for the minors Friedrich V and Albrecht VI, only reluctantly accepted to turn over Styria to his nephews. Usually, regencies in Habsburg lands lasted until the heir had reached adulthood, which was by Habsburg law at the age of 16. However when Friedrich V came of age in 1431, Friedrich IV managed to extend his term until Albrecht VI's 16th birthday in 1435, under the pretext that a possible partition between the two brothers could only be negotiated fairly when both had reached adulthood. Even in 1435, Friedrich IV refused to give up rule of Styria. Only because of the arbitration of Albrecht V of Austria did Friedrich IV finally agree to end his regency on March 25th 1436.
+
+	date = { day = 24 month = march year = 1436 }
+
+	action_a = {
+		name = "ACTIONNAME261014A" #Friedrich V becomes Duke of Inner Austria
+		command = { type = breakvassal which = TYR }
+		command = { type = relation which = TYR value = -50 }
+		command = { type = stability value = 3 }
+		command = { type = diplomats value = 3 }
+		command = { type = relation which = HAB value = 30 }
+	}
+}
+
+#(1435-1456) Cilli lands
+event = {
+	id = 261003 #triggered by TYR_322030 A
+	random = no
+	country = PRM
+	name = "EVENTNAME261003" #Cilli's rule
+	desc = "EVENTHIST261003"
+	#-#Having first supported the Habsburgs in their war against the counts of Gorizia-Tyrol in 1308. The Cilli family where always amongst the favorites of the Habsburgs. The Cilli family slowly acquired large estates in the adjoining duchies of Styria, Carinthia,and Carniola as well as in the territories of the Hungarian crown in Croatia and Slavonia. Their influence rose and they became one of the most powerful families in the area.
+
+	action_a = {
+		name = "ACTIONNAME261003A" #Krain is now ours
+		command = { type = capital which = 367 } #Krain
+		command = { type = flagname which = "Cilli" }
+		command = { type = setflag which = [Cilli] }
+		command = { type = provincetax which = 367 value = 3 } #Krain
+		command = { type = secedeprovince which = TYR value = 369 } #Steirmark
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = TYR value = 30 }
+		command = { type = relation which = VEN value = 50 }
+		command = { type = relation which = HUN value = 50 }
+	}
+}
+
+#(1436) The Counts of Cilli
+event = {
+	id = 261004
+	trigger = {
+		owned = { province = 369 data = -1 } #Steiermark
+	}
+	random = no
+	country = PRM
+	name = "EVENTNAME261004" #The Counts of Cilli
+	desc = "EVENTHIST261004"
+	#-#In 1396 count Hermann II of Cilli was in command of Styrian troops that took part in the Battle of Nicopolis. The Ottoman army won the battle decisively, but the count saved the life of the Hungarian King Sigismund of Luxemburg. A strong bond between the two men, which was further strengthened when Sigismund married Hermann's daughter Barbara, was created. In 1436 the Emperor Sigismund elevated the counts of Cilli to the rank of dukes. This triggered a feud with the Habsburg duke Frederick V, who was their formal liege lord.
+
+	date = { day = 2 month = march year = 1436 }
+
+	action_a = {
+		name = "ACTIONNAME261004A" #This is unacceptable
+		command = { type = relation which = HUN value = -50 }
+		command = { type = relation which = BOH value = -50 }
+		command = { type = addcore which = 366 } #Croatia
+		command = { type = province_revoltrisk which = 369 value = 5 } #Steiermark
+		command = { type = revolt which = 369 } #Steiermark
+	}
+}
+
+#(1436-1439) Treaty with Albrecht VI
+event = {
+	id = 261017
+	trigger = {
+		OR = {
+			monarch = 0111019 #Friedrich V (early instance)
+			monarch = 0111001 #Friedrich V
+		}
+	}
+	random = no
+	country = PRM
+	name = "EVENTNAME261017" #Treaty with Albrecht VI
+	desc = "EVENTHIST261017"
+	#-#Soon after taking over Styria, Friedrich V had to deal with the demands of his younger brother, Albrecht VI, for a part of their father's estate. Their first treaty was concluded on May 13th 1436 in Vienna. By the terms of the treaty, Friedrich remained governor of all of Styria, but had to provide Albrecht with an income sufficient to fund a princely lifestyle. This soon wasn't enough for the extravagant, ambitious and warlike Albrecht.
+
+	date = { day = 12 month = may year = 1436 }
+	offset = 30
+	deathdate = { day = 0 month = may year = 1439 }
+
+	action_a = {
+		name = "ACTIONNAME261017A" #Accept the treaty
+		command = { type = provincetax which = 369 value = -1 } #Steiermark
+		command = { type = revoltrisk which = 36 value = 3 }
+	}
+	action_b = {
+		name = "ACTIONNAME261017B" #Don't make any concessions to Albrecht
+		command = { type = revoltrisk which = 312 value = 6 }
+		command = { type = revolt which = -2 }
+		command = { type = setflag which = [no_concessions] }
+	}
+}
+
+#(1443) End of the feud
+event = {
+	id = 261005
+	trigger = {
+		owned = { province = 369 data = -1 } #Steiermark
+	}
+	random = no
+	country = PRM
+	name = "EVENTNAME261005" #End of the feud
+	desc = "EVENTHIST261005"
+	#-#The feud between Duke Frederick V of Styria and Duke Ulrich of Cilli lasted until 1443, and the fighting in which local nobles, their entourages and foreign mercenaries took part spread over much of Styria and Carniola. Many castles and towns were besieged and destroyed. The troops of the Counts of Cilli even unsuccessfully laid siege to the Carniolan capital Ljubljana. The conflict was solved in 1443 with the signing of several documents; one of them foresaw a mutual inheritance in case one of the families became extinct.
+
+	date = { day = 11 month = april year = 1443 }
+
+	action_a = {
+		name = "AT_LAST"
+		command = { type = provincetax which = 369 value = -2 } #Steiermark
+		command = { type = province_revoltrisk which = 369 value = -5 } #Steiermark
+	}
+}
+
+#(1456) Death of Duke Ulrich of Cilli
+event = {
+	id = 261006
+	trigger = {
+		owned = { province = 369 data = -1 } #Steiermark
+	}
+	random = no
+	country = PRM
+	name = "EVENTNAME261006" #Death of Duke Ulrich of Cilli
+	desc = "EVENTHIST261006"
+	#-#When last Count of Cilli, Ulrich, was killed in Belgrade (1456), Frederick had to fight Ulrich's widow, Hungarian King Ladislaus Postumus, the count of Görz and the Croatian counts of Frankopani for his promised inheritance of Cilli. Unfortunately the region has become volatile once again.
+
+	date = { day = 24 month = july year = 1456 }
+
+	action_a = {
+		name = "DAMN"
+		command = { type = relation which = HUN value = -150 }
+		command = { type = relation which = BOH value = -50 }
+		command = { type = relation which = CRO value = -50 }
+		command = { type = province_revoltrisk which = 369 value = 3 } #Steiermark
+	}
+}
+
+#(1460) The stubborn widow
+event = {
+	id = 261007
+	trigger = {
+		event = 277018 #SER: Katarina Brankovic
+		owned = { province = 369 data = -1 } #Steiermark
+		owned = { province = 367 data = -1 } #Krain
+		exists = HAB
+	}
+	random = no
+	country = PRM
+	name = "EVENTNAME261007" #The stubborn widow
+	desc = "EVENTHIST261007"
+	#-#After Ladislaus died in 1457, Frederick III managed to strike a deal with the widow of Ulrich II, Catherine, and the conflict between Austria and Styria was practically settled. The war of succession ended in 1460 with Frederick gaining all the former possessions of the Counts of Cilli.
+
+	date = { day = 24 month = august year = 1460 }
+
+	action_a = {
+		name = "ACTIONNAME261007A" #The county is now ours
+		command = { type = provincetax which = 369 value = 3 } #Steiermark
+		command = { type = province_revoltrisk which = 369 value = -3 } #Steiermark
+		command = { type = secedeprovince which = HAB value = 367 } #Krain
+		command = { type = trigger which = 179154 } #HAB: The stubborn widow
+	}
+}
+
+#(1463) Austria inherits Styria
+event = {
+	id = 261000
+	trigger = {
+		exists = HAB
+		exists = TYR
+		NOT = { event = 261001 } #PRM: Death of Duke Albert
+	}
+	random = no
+	country = PRM
+	name = "EVENTNAME261000" #Death of Duke Albert
+	desc = "EVENTHIST261000"
+	#-#In december 1463 Duke Albert of Styria died childlessly. Despite their former conflicts, he let his brother, Emperor Friedrich III. inherit all his possessions.
+
+	date = { day = 1 month = december year = 1463 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1464 }
+
+	action_a = {
+		name = "ACTIONNAME261000A" #The duke's brother is heir (End Game)
+		#command = { type = independence which = SLZ } #Salzburg
+		command = { type = independence which = BAY }
+		command = { type = independence which = WUR }
+		command = { type = independence which = MLO }
+		command = { type = independence which = MAN }
+		command = { type = independence which = VEN } #Weird things can happen :-)
+		command = { type = secedeprovince which = VEN value = 368 } #Istria
+		command = { type = secedeprovince which = VEN value = 365 } #Dalmatia
+		command = { type = secedeprovince which = HUN value = 352 } #Odenburg
+		command = { type = secedeprovince which = HUN value = 326 } #Presburg
+		command = { type = trigger which = 179002 } #HAB: Austria inherits Styria
+	}
+	action_b = {
+		name = "ACTIONNAME261000B" #Let Sigmund of Tyrol have it instead (End Game)
+		command = { type = trigger which = 322014 } #TYR: Styria and Krain are willed to Tyrol
+	}
+	action_c = {
+		name = "ACTIONNAME261000C" #Friedrich is our enemy! Styria remains independent
+		command = { type = stability value = -3 }
+		command = { type = revolt which = 367 } #Krain
+		command = { type = revolt which = 369 } #Steiermark
+		command = { type = relation which = HAB value = -200 }
+		command = { type = relation which = TYR value = -100 }
+		#command = { type = relation which = SLZ value = -100 } #Salzburg
+	}
+}
+#(1463) Austria inherits Styria (Tyrol doesn't exist)
+event = {
+	id = 261001
+	trigger = {
+		exists = HAB
+		NOT = {
+			exists = TYR
+			event = 261000 #PRM: Death of Duke Albert
+		}
+	}
+	random = no
+	country = PRM
+	name = "EVENTNAME261000" #Death of Duke Albert
+	desc = "EVENTHIST261000"
+	#-#In december 1463 Duke Albert of Styria died childlessly. Despite their former conflicts, he let his brother, Emperor Friedrich III. inherit all his possessions.
+
+	date = { day = 1 month = december year = 1463 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1464 }
+
+	action_a = {
+		name = "ACTIONNAME261000A" #The duke's brother is heir (End Game)
+		#command = { type = independence which = SLZ } #Salzburg
+		command = { type = independence which = TYR }
+		command = { type = independence which = BAY }
+		command = { type = independence which = WUR }
+		command = { type = independence which = MLO }
+		command = { type = independence which = MAN }
+		command = { type = independence which = VEN } #Weird things can happen :-)
+		command = { type = secedeprovince which = VEN value = 368 } #Istria
+		command = { type = secedeprovince which = VEN value = 365 } #Dalmatia
+		command = { type = secedeprovince which = HUN value = 352 } #Odenburg
+		command = { type = secedeprovince which = HUN value = 326 } #Presburg
+		command = { type = trigger which = 179002 } #HAB: Austria inherits Styria
+	}
+	action_b = {
+		name = "ACTIONNAME261000C" #Friedrich is our enemy! Styria remains independent
+		command = { type = stability value = -3 }
+		command = { type = revolt which = 367 } #Krain
+		command = { type = revolt which = 369 } #Steiermark
+		command = { type = relation which = HAB value = -200 }
+		#command = { type = relation which = SLZ value = -100 } #Salzburg
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 261008-261009 - next: 261018

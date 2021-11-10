@@ -1,0 +1,108 @@
+#Karaman (KAR)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1442-1460) Crusade against the Turks
+event = {
+	id = 197001
+	trigger = {
+		neighbour = TUR
+		event = 188099 #HUN: Crusade against the Turks
+		owned = { province = 482 data = KAR }
+		control = { province = 482 data = KAR } #Konya
+		owned = { province = 1611 data = KAR }
+		control = { province = 1611 data = KAR } #Taurus
+		NOT = { 
+			vassal = { country = KAR country = TUR }
+			alliance = { country = KAR country = TUR }
+		}
+		OR = {
+			war = { country = TUR country = HUN }
+			war = { country = TUR country = SER }
+			war = { country = TUR country = VEN }
+		}
+	}
+	random = no
+	country = KAR
+	name = "EVENTNAME188099" #Crusade against the Turks
+	desc = "EVENTHIST188099"
+	#-#After King Wladyslaw managed to pacify the opposition Hungary, he turned his attention to the Ottoman Empire. At the same time, this problem was brought more closely into the attention of other Christian powers. Knights of Saint John, remnants of the Byzantine Empire and Republic of Ragusa were the most active in demands for coordinated offensive against the Turks. The dynastic civil war in Ottoman Empire made these initiatives sound more realistic than before. Pope's first reaction was to send Cardinal Julian Cesarini to aid the pacification of Wladyslaw's opponents in Hungary. Between Cesarini's splendid efforts and Hunyadi's great military leadership, Hungary was more ready for war than ever. Hunyadi won his first crushing vicotory against an invading Ottoman army in Hungary in 1442, and already in 1443 he broke the 80000-strong Ottoman army in Wallachia. These victories and the news of Ottoman defeat against Karaman greatly emboldened the Christian monarchs. Just after Hunyadi's victory in Wallachia, the Pope decided to aid the war effort with a fifth of his annual income. In June 1443, an army of 25,000 with focus on cavalry headed south to attack the Ottomans in Serbia. The army was lead by King Wladyslaw himself and his most loyal vassals: Janos Hunyadi, Djuradj Brankovic and Dracul. In November, Janos Hunyadi lead the charge of 12000 Hungarian knights that completely broke the Ottoman army near Nis. Sofia fell to Christian forces in December. The winter stop the Christian invasion and tired Hungarian soldiers returned to their Kingdom in January 1444. Invasion resumed in June 1444, aided by a fleet made of Venetian and Papal galleys, with Burgundian fleet on its way.
+
+	date = { day = 2 month = june year = 1442 }
+	offset = 10
+	deathdate = { year = 1460 }
+
+	action_a = {
+		name = "ACTIONNAME188099A" #Now let's take care of the Turks
+		command = { type = stability value = 1 }
+		command = { type = treasury value = 100 }
+		command = { type = CAV which = -2 value = 3000 }
+		command = { type = relation which = HAB value = 10 }
+		command = { type = relation which = VEN value = 10 }
+		command = { type = relation which = SER value = 10 }
+		command = { type = relation which = PAP value = 10 }
+		command = { type = relation which = MAM value = 30 }
+		command = { type = war which = TUR }
+	}
+	action_b = {
+		name = "ACTIONNAME188099B" #We dare not
+		command = { type = stability value = -2 }
+		command = { type = vp value = -5 }
+	}
+}
+
+#(1444-1478) The Weakened Karamani State
+event = {
+	id = 197000 #triggered by TUR_301504
+	random = no
+	country = KAR
+	name = "EVENTNAME197000" #The Weakened Karamani State
+	desc = "EVENTHIST197000"
+	#-#The armies of Ottoman Sultan Murad were sent to Anatolia where they defeated Karaman in 1428. In 1444 a treaty was finally signed forcing the Karamani Emir Ibrahim to accept a humiliating treaty which reduced the Karamanis to be Ottoman vassals. This form of new treaty was clearly that of a vassal unilaterally making a promise to his lord to maintain peace and to abstain from actions which would damage interests to his sovereign.
+
+	action_a = {
+		name = "ACTIONNAME197000A" #Does the end draw near?
+		command = { type = vp value = -10 }
+		command = { type = relation which = TUR value = -300 }
+		command = { type = removecore which = 476 } #Angora
+		command = { type = removecore which = 477 } #Anatolia
+		command = { type = removecore which = 1610 } #Antalya
+	}
+}
+
+#(1487-1820) End of the Karamani beylik
+event = {
+	id = 197002
+	trigger = {
+		NOT = { countrysize = 2 }
+		OR = {
+			war = { country = TUR country = KAR}
+			vassal = { country = KAR country = TUR }
+		}
+	}
+	random = no
+	country = KAR
+	name = "EVENTNAME197002" #End of the Karamani beylik
+	desc = "EVENTHIST197002"
+	#-#In 1487 the Karamanli state was finally absorbed as a province into the Ottoman Empire.
+
+	date = { year = 1487 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME141000A" #A generous offer (End Game)
+		command = { type = trigger which = 301135 } #TUR: Karaman submits
+	}
+	action_b = {
+		name = "ACTIONNAME141000B" #Continue to hold out
+		command = { type = population which = -1 value = -500 }
+		command = { type = infra value = -100 }
+		command = { type = trade value = -200 }
+		command = { type = manpower value = -2 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 197003

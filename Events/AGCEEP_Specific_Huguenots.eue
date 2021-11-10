@@ -1,0 +1,1388 @@
+#Huguenots (FPR)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1562-1563) Huguenots setup event
+event = {
+	id = 169001 #triggered by FRA_170104
+	random = no
+	country = FPR
+	name = "EVENTNAME169001" #The Wars of Religion
+	desc = "EVENTHIST169001"
+	#-#With the outbreak of open warfare between the factions of Conde and Guise, royal authority, such as it was in the hands of a boy-king and a widow, all but dissolved in France. Having been forced into the arms of the Guise faction, Catherine de Medici's reluctant sanction gave the Guise Catholic faction the aura of legitimacy, but for the prince of Conde and his Huguenot followers Catherine's support for Guise relieved them of any moral obligation toward the Crown. The consequence was the secession of Huguenot-controlled territories from the French Kingdom in everything but name and prolonged civil war.
+
+	action_a = {
+		name = "ACTIONNAME169001A" #Death to the Papist Idolators!
+		command = { type = breakvassal which = FRA }
+		command = { type = dynastic which = NAV }
+		command = { type = alliance which = NAV }
+		command = { type = relation which = NAV value = 100 }
+		command = { type = relation which = ENG value = 100 }
+		command = { type = relation which = HOL value = 100 }
+		command = { type = war which = FRA }
+		command = { type = stability value = 2 }
+		command = { type = religion which = reformed }
+		command = { type = provincereligion which = -2 value = reformed }
+		command = { type = INF which = -2 value = 10000 }
+		command = { type = CAV which = -2 value = 10000 }
+		command = { type = ART which = -2 value = 50 }
+		command = { type = relation which = SPA value = -200 }
+		command = { type = relation which = HAB value = -200 }
+		command = { type = relation which = FRA value = -200 }
+		command = { type = relation which = PAP value = -200 }
+	}
+}
+
+#(1562-1610) La Rochelle
+event = {
+	id = 169013
+	trigger = {
+		owned = { province = 418 data = -1 } #Poitou
+		control = { province = 418 data = -1 } #Poitou
+	}
+	random = no
+	country = FPR
+	name = "EVENTNAME169013" #La Rochelle
+	desc = "EVENTHIST169013"
+	#-#During the Renaissance, La Rochelle adopted Protestant ideas, and became a centre for the Huguenots. \n \nThe city was besieged during the French Wars of Religion: the conflict started in November 1572 when inhabitants of the city refused to receive Armand de Gontaut, baron de Biron as royal governor. From 11 February 1573, the siege was led by the Duke of Anjou (the future Henri III). The end of hostilities was brought on by the election (11 - 15 May 1573) of the Duke of Anjou to the throne of Poland. An end to the siege was negotiated on 24 June 1573 and the Catholic troops lifted the siege on 6 July 1573. The Edict of Boulogne (signed in July 1573) brought an end to this phase of the civil war.
+
+	date = { day = 1 month = march year = 1562 }
+	offset = 5
+	deathdate = { day = 1 month = january year = 1610 }
+
+	action_a = {
+		name = "GOOD"
+		command = { type = capital which = 418 } #Poitou
+		command = { type = fortress which = 418 value = 1 } #Poitou
+		command = { type = religion which = reformed }
+		command = { type = provincereligion which = 418 value = reformed } #Poitou
+		command = { type = setflag which = [LaRochelle] }
+	}
+}
+
+#(1562-1600) English Aid Arrives for the French Huguenots
+event = {
+	id = 21051 #triggered by ENG_21050 A
+	random = no
+	country = FPR
+	name = "EVENTNAME21051" #English Aid Arrives for the French Huguenots
+	desc = "EVENTHIST21051"
+	#-#As the Huguenots fight for freedom from French Catholic tyranny, English aid is welcomed with open arms.
+
+	action_a = {
+		name = "ACTIONNAME21051A" #Bless the English
+		command = { type = INF which = -1 value = 5000 }
+		command = { type = CAV which = -3 value = 1000 }
+		command = { type = treasury value = 100 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1562-1675) The Crown of France
+event = {
+	id = 28014
+	trigger = {
+		owned = { province = 385 data = -1 } #Ile de France
+		control = { province = 385 data = -1 } #Ile de France
+		control = { province = 376 data = -1 } #Champagne
+		NOT = {
+			exists = FRA
+			exists = DAU
+		}
+	}
+	random = no
+	country = FPR
+	name = "EVENTNAME3606" #The Crown of France
+	desc = "EVENTHIST3606"
+	#-#Since the Early Medieval times one of the most powerful Frankish Kingdoms had been centered at Paris and around Ile-de-France from which it took its name. Later on one of its Kings managed not only to unite the large area formerly called 'Gallia', but also to conquer most of Germany, Northern Italy and become chosen as Holy Roman Emperor, namely Charlemagne. His heritage was very powerful and important. The Duke of Normandy might be the most powerful man in France, but he was not France, only the French King was never so powerless. The Legacy of Charlemagne lived on and the greatest wish of man powerful monarch was bear the Crown of France...
+
+	date = { day = 1 month = march year = 1562 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1675 }
+
+	action_a = {
+		name = "HURRAH"
+		command = { type = vp value = 200 }
+		command = { type = stability value = 3 }
+		command = { type = flagname which = "" }
+		command = { type = country which = FRA }
+		command = { type = capital which = 385 } #Ile de France
+		command = { type = sleepevent which = 170112 } #FRA: At the Gates of Paris
+		#command = { type = addcore which = 375 } #Lorraine
+		command = { type = addcore which = 376 } #Champagne
+		#command = { type = addcore which = 379 } #Artois
+		command = { type = addcore which = 382 } #Calais
+		command = { type = addcore which = 383 } #Picardie
+		command = { type = addcore which = 384 } #Caux
+		command = { type = addcore which = 385 } #Ile de France
+		command = { type = addcore which = 386 } #Nivernais
+		#command = { type = addcore which = 387 } #Franche-Comté
+		command = { type = addcore which = 406 } #Provence
+		command = { type = addcore which = 407 } #Dauphiné
+		command = { type = addcore which = 408 } #Lyonnais
+		command = { type = addcore which = 409 } #Bourgogne
+		command = { type = addcore which = 410 } #Berri
+		command = { type = addcore which = 411 } #Orleanais
+		command = { type = addcore which = 412 } #Maine
+		command = { type = addcore which = 413 } #Normandie
+		command = { type = addcore which = 414 } #Armor
+		command = { type = addcore which = 415 } #Bretagne
+		command = { type = addcore which = 416 } #Morbihan
+		command = { type = addcore which = 417 } #Vendée
+		command = { type = addcore which = 418 } #Poitou
+		command = { type = addcore which = 419 } #Limousin
+		command = { type = addcore which = 420 } #Auvergne
+		command = { type = addcore which = 421 } #Cévennes
+		command = { type = addcore which = 422 } #Languedoc
+		command = { type = addcore which = 423 } #Guyenne
+		command = { type = addcore which = 424 } #Gascogne
+		command = { type = addcore which = 425 } #Béarn
+		#command = { type = addcore which = 426 } #Roussillon
+		command = { type = provinceculture which = 425 value = french } #Béarn
+		command = { type = conversion which = 385 } #Ile de France
+		command = { type = conversion which = -1 }
+		command = { type = conversion which = -1 }
+		command = { type = conversion which = -1 }
+		command = { type = trigger which = 170011 } #FRA: A Huguenot King for France
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#(1563-1589) Foreign Aid events
+#by Garbon
+
+event = {
+	id = 169005
+	trigger = {
+		atwar = yes
+		OR = {
+			event = 21051 #FPR: English Aid Arrives for the French Huguenots
+			event = 21052 #FRA: England Aids the Enemies of Catholic France
+			event = 169003 #FPR: English Support
+		}
+	}
+	random = no
+	country = FPR
+	name = "EVENTNAME169005" #Foreign Aid
+	desc = "EVENTHIST169005"
+	#-#Throughout the wars of religion, the Huguenots were assisted at several times by foreign powers. Providing troops and money, foreign intervention allowed the Huguenots to remain a powerful entity.
+
+	date = { day = 22 month = july year = 1563 }
+	offset = 30
+	deathdate = { day = 1 month = july year = 1565 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = treasury value = 25 }
+		command = { type = INF which = -1 value = 5000 }
+	}
+}
+event = {
+	id = 169006
+	trigger = {
+		atwar = yes
+		OR = {
+			relation = { country = HOL data = 100 }
+			relation = { country = PFA data = 100 }
+		}
+	}
+	random = no
+	country = FPR
+	name = "EVENTNAME169005" #Foreign Aid
+	desc = "EVENTHIST169005"
+	#-#Throughout the wars of religion, the Huguenots were assisted at several times by foreign powers. Providing troops and money, foreign intervention allowed the Huguenots to remain a powerful entity.
+
+	date = { day = 22 month = january year = 1565 }
+	offset = 100
+	deathdate = { day = 1 month = july year = 1567 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = treasury value = 25 }
+		command = { type = INF which = -1 value = 2000 }
+	}
+}
+event = {
+	id = 169007
+	trigger = {
+		atwar = yes
+		OR = {
+			event = 21051 #FPR: English Aid Arrives for the French Huguenots
+			event = 21052 #FRA: England Aids the Enemies of Catholic France
+			event = 169003 #FPR: English Support
+		}
+	}
+	random = no
+	country = FPR
+	name = "EVENTNAME169005" #Foreign Aid
+	desc = "EVENTHIST169005"
+	#-#Throughout the wars of religion, the Huguenots were assisted at several times by foreign powers. Providing troops and money, foreign intervention allowed the Huguenots to remain a powerful entity.
+
+	date = { day = 22 month = january year = 1568 }
+	offset = 100
+	deathdate = { day = 1 month = july year = 1572 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = treasury value = 75 }
+		command = { type = INF which = -1 value = 1000 }
+	}
+}
+event = {
+	id = 169008
+	trigger = {
+		atwar = yes
+		OR = {
+			relation = { country = HOL data = 100 }
+			relation = { country = PFA data = 100 }
+		}
+	}
+	random = no
+	country = FPR
+	name = "EVENTNAME169005" #Foreign Aid
+	desc = "EVENTHIST169005"
+	#-#Throughout the wars of religion, the Huguenots were assisted at several times by foreign powers. Providing troops and money, foreign intervention allowed the Huguenots to remain a powerful entity.
+
+	date = { day = 22 month = january year = 1572 }
+	offset = 100
+	deathdate = { day = 1 month = july year = 1575 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = treasury value = 25 }
+		command = { type = INF which = -1 value = 4000 }
+	}
+}
+event = {
+	id = 169009
+	trigger = {
+		atwar = yes
+		OR = {
+			event = 21051 #FPR: English Aid Arrives for the French Huguenots
+			event = 21052 #FRA: England Aids the Enemies of Catholic France
+			event = 169003 #FPR: English Support
+			event = 169005 #FPR: Foreign Aid
+		}
+	}
+	random = no
+	country = FPR
+	name = "EVENTNAME169005" #Foreign Aid
+	desc = "EVENTHIST169005"
+	#-#Throughout the wars of religion, the Huguenots were assisted at several times by foreign powers. Providing troops and money, foreign intervention allowed the Huguenots to remain a powerful entity.
+
+	date = { day = 22 month = january year = 1572 }
+	offset = 100
+	deathdate = { day = 1 month = july year = 1575 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = treasury value = 25 }
+		command = { type = INF which = -1 value = 2000 }
+	}
+}
+event = {
+	id = 169010
+	trigger = {
+		atwar = yes
+		OR = {
+			relation = { country = HOL data = 100 }
+			relation = { country = PFA data = 100 }
+		}
+	}
+	random = no
+	country = FPR
+	name = "EVENTNAME169005" #Foreign Aid
+	desc = "EVENTHIST169005"
+	#-#Throughout the wars of religion, the Huguenots were assisted at several times by foreign powers. Providing troops and money, foreign intervention allowed the Huguenots to remain a powerful entity.
+
+	date = { day = 22 month = january year = 1577 }
+	offset = 300
+	deathdate = { day = 1 month = july year = 1583 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = treasury value = 25 }
+		command = { type = INF which = -1 value = 2000 }
+	}
+}
+event = {
+	id = 169011
+	trigger = {
+		atwar = yes
+		OR = {
+			relation = { country = HOL data = 100 }
+			relation = { country = PFA data = 100 }
+			event =	169010 #FPR: Foreign Aid
+		}
+	}
+	random = no
+	country = FPR
+	name = "EVENTNAME169005" #Foreign Aid
+	desc = "EVENTHIST169005"
+	#-#Throughout the wars of religion, the Huguenots were assisted at several times by foreign powers. Providing troops and money, foreign intervention allowed the Huguenots to remain a powerful entity.
+
+	date = { day = 22 month = january year = 1583 }
+	offset = 350
+	deathdate = { day = 1 month = july year = 1589 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = treasury value = 25 }
+		command = { type = INF which = -1 value = 5000 }
+	}
+}
+#End of Foreign Aid events
+#-----------------------------------------------------------------------------------------------
+
+#(1567-1572) Surprise de Meaux
+event = {
+	id = 169004 #triggered by FRA_170148
+	random = no
+	country = FPR
+	name = "EVENTNAME170148" #Surprise de Meaux
+	desc = "EVENTHIST170148"
+	#-#In the summer of 1567, Charles hired 6,000 swiss mercenaries to protect France from possible encroachments by foreign powers. Spain, England and the Empire were all suitable prepared to be considered potential threats.Huguenots became increasingly convinced that a secret plan existed between Philip of Spain and Catherine to use the troops against them. Aftermore rumors that Catherine was planning to attack them, Huguenot leaders met at Conde's Chateau de Vallery to discuss their options. Hearing reportsof Huguenot scheming, Catherine sent a military commander to investigae. Pleased with the results of inquiry when they turned up negative, she decided to stay to her hunting and resting at an unprotected chateau. However as more and more rumbling of amassing troops and reports of confirmed sightings of soldiers came forth, she could no longer ignore the truth. The Court quickly retreated to the fortified town nearby Meaux. When word came of soldiers approaching Meaux, the Court, with the hired Swiss troops as escort, made a mad dash for Paris. France was once again at war.
+
+	action_a = {
+		name = "ACTIONNAME172000A" #The time is upon us!
+		command = { type = INF which = -1 value = 2500 }
+		command = { type = INF which = -1 value = 5000 }
+		command = { type = religion which = reformed }
+	}
+}
+
+#(1571-1575) Queen Margot
+event = {
+	id = 169002
+	trigger = {
+		exists = FRA
+		NOT = { war = { country = FRA country = FPR } }
+	}
+	random = no
+	country = FPR
+	name = "EVENTNAME169002" #Queen Margot
+	desc = "EVENTHIST169002"
+	#-#After almost a decade of turbulance and civil war between the Crown and the Huguenots, it seemed as if peace was within reach in the early 1570s. Catherine de Medici, concerned as always to bring about a religious reconcilation, proposed a marriage between her daughter Marguerite (called Margot) and the young Bourbon prince Henry of Navarre. The proposal divided the Huguenot leaders; at first both Henry's mother, the zealously Calvinist Jeanne d'Albret, and the Huguenots' military leader, Admiral Coligny were opposed to it. Coligny in particular preferred an alliance with England involving a marriage between Navarre and Elizabeth I. However, Jeanne died in June 1573 (thereby making Henry King of Navarre) while Coligny was gradually won over when he realised the marriage to Marguerite was necessary to achieve his plan for assisting his Dutch, coreligionists by making war on Spain.
+
+	date = { day = 1 month = august year = 1571 }
+	offset = 30
+	deathdate = { day = 1 month = july year = 1575 }
+
+	action_a = {
+		name = "ACTIONNAME169002A" #Accept the marriage with Marguerite
+		command = { type = stability value = 1 }
+		command = { type = inherit which = NAV }
+		command = { type = inherit which = BEA }
+		command = { type = trigger which = 170177 } #FRA: Queen Margot
+	}
+	action_b = {
+		name = "ACTIONNAME169002B" #Pursue an English alliance
+		command = { type = relation which = ENG value = 100 }
+		command = { type = relation which = HOL value = 100 }
+		command = { type = relation which = FRA value = -100 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = PAP value = -100 }
+		command = { type = trigger which = 164101 } #ENG: Navarre's proposal
+		command = { type = sleepevent which = 170107 } #FRA: St. Bartholomew's Day
+	}
+}
+#(1571-1575) English support
+event = {
+	id = 169003 #triggered by ENG_164101 B
+	random = no
+	country = FPR
+	name = "EVENTNAME169003" #English Support
+	desc = "EVENTHIST169003"
+	#-#The English Queen will not marry Navarre, but she sends money to support the cause of the Godly.
+
+	action_a = {
+		name = "ACTIONNAME169003A" #Cash
+		command = { type = treasury value = 100 }
+	}
+}
+
+#(1572) Consequence of Coligny's war policy -I-
+event = {
+	id = 169014 #triggered by FRA_170107 C
+	trigger = {
+		flag = [LaRochelle]
+	}
+	random = no
+	country = FPR
+	name = "EVENTNAME169014" #Consequence of Coligny's war policy
+	desc = "EVENTHIST170107"
+	#-#On 18 August 1572 the marriage of Marguerite and Navarre was celebrated in Paris. Four days later, Coligny was shot by an assassin from the window of a house owned by the Guise family. On the night of August 23, Charles IX apparently decided that since renewed civil war was inevitable, it was better to destroy the Huguenots in Paris than wait for open warfare. The result was a massacre the next day, the Feast of St. Bartholomew, in which Coligny was dragged from his bed and slaughtered together with several thousand Huguenots.
+
+	action_a = {
+		name = "OK"
+		command = { type = secedeprovince which = FRA value = 376 } #Champagne
+		#command = { type = secedeprovince which = FRA value = 379 } #Artois
+		command = { type = secedeprovince which = FRA value = 382 } #Calais
+		command = { type = secedeprovince which = FRA value = 383 } #Picardie
+		command = { type = secedeprovince which = FRA value = 384 } #Caux
+		command = { type = secedeprovince which = FRA value = 385 } #Ile de France
+		command = { type = secedeprovince which = FRA value = 386 } #Nivernais
+		#command = { type = secedeprovince which = FRA value = 387 } #Franche-Comté
+		command = { type = secedeprovince which = FRA value = 406 } #Provence
+		command = { type = secedeprovince which = FRA value = 407 } #Dauphiné
+		command = { type = secedeprovince which = FRA value = 408 } #Lyonnais
+		command = { type = secedeprovince which = FRA value = 409 } #Bourgogne
+		command = { type = secedeprovince which = FRA value = 410 } #Berri
+		command = { type = secedeprovince which = FRA value = 411 } #Orleanais
+		command = { type = secedeprovince which = FRA value = 412 } #Maine
+		command = { type = secedeprovince which = FRA value = 413 } #Normandie
+		command = { type = secedeprovince which = FRA value = 414 } #Armor
+		command = { type = secedeprovince which = FRA value = 415 } #Bretagne
+		command = { type = secedeprovince which = FRA value = 416 } #Morbihan
+		command = { type = secedeprovince which = FRA value = 417 } #Vendée
+		#Capital
+		#command = { type = secedeprovince which = FRA value = 418 } #Poitou
+		command = { type = secedeprovince which = FRA value = 419 } #Limousin
+		command = { type = secedeprovince which = FRA value = 420 } #Auvergne
+		command = { type = secedeprovince which = FRA value = 421 } #Cévennes
+		command = { type = secedeprovince which = FRA value = 422 } #Languedoc
+		command = { type = secedeprovince which = FRA value = 423 } #Guyenne
+		command = { type = secedeprovince which = FRA value = 424 } #Gascogne
+		command = { type = secedeprovince which = FRA value = 425 } #Béarn
+		#command = { type = secedeprovince which = FRA value = 426 } #Roussillon
+		command = { type = trigger which = 170253 } #FRA: Consequence of Coligny's war policy
+	}
+}
+#(1572) Consequence of Coligny's war policy -II-
+event = {
+	id = 169015 #triggered by FRA_170107 C
+	trigger = {
+		NOT = { flag = [LaRochelle] }
+	}
+	random = no
+	country = FPR
+	name = "EVENTNAME169014" #Consequence of Coligny's war policy
+	desc = "EVENTHIST170107"
+	#-#On 18 August 1572 the marriage of Marguerite and Navarre was celebrated in Paris. Four days later, Coligny was shot by an assassin from the window of a house owned by the Guise family. On the night of August 23, Charles IX apparently decided that since renewed civil war was inevitable, it was better to destroy the Huguenots in Paris than wait for open warfare. The result was a massacre the next day, the Feast of St. Bartholomew, in which Coligny was dragged from his bed and slaughtered together with several thousand Huguenots.
+
+	action_a = {
+		name = "OK"
+		command = { }
+		command = { type = trigger which = 170253 } #FRA: Consequence of Coligny's war policy
+	}
+}
+
+#(1576-1577) The Estates-General of Blois
+event = {
+	id = 169012 #triggered by FRA_170182
+	random = no
+	country = FPR
+	name = "EVENTNAME170181" #The Estates-General of Blois
+	desc = "EVENTHIST170181"
+	#-#In 1576, the Estates-General of Blois were held as promised by Henri III in the Edict of Beaulieu. Of focal importance at the meeting of the Estates was acceptance of the policy of religious unity. Unfortunately, the Catholics at the meeting were unwilling to accept the tolerant policy of the King. Having expected the worst, the Huguenots raised the flag of rebellion. Although warfare would be short, a new period of virtual anarchy in the provinces began.
+
+	action_a = {
+		name = "ACTIONNAME169001A" #Death to the Papist Idolators!
+		command = { type = breakvassal which = FRA }
+		command = { type = dynastic which = NAV }
+		command = { type = alliance which = NAV }
+		command = { type = relation which = NAV value = 100 }
+		command = { type = relation which = ENG value = 100 }
+		command = { type = relation which = HOL value = 100 }
+		command = { type = war which = FRA }
+		command = { type = stability value = 2 }
+		command = { type = religion which = reformed }
+		command = { type = provincereligion which = -2 value = reformed }
+		command = { type = INF which = -2 value = 10000 }
+		command = { type = CAV which = -2 value = 10000 }
+		command = { type = relation which = SPA value = -200 }
+		command = { type = relation which = HAB value = -200 }
+		command = { type = relation which = FRA value = -200 }
+		command = { type = relation which = PAP value = -200 }
+	}
+}
+
+#(1589) Consequence of the assassination of Henri III -I-
+event = {
+	id = 169016 #triggered by FRA_170111
+	trigger = {
+		flag = [LaRochelle]
+	}
+	random = no
+	country = FPR
+	name = "EVENTNAME169016" #Consequence of the assassination of Henri III
+	desc = "EVENTHIST172002"
+	#-#During a siege of Paris using the combined forces of Henri III and Henri of Navarre, a Catholic monk assassinated Henri III. The King's bodyguards immediately threw themselves at Henri of Navarre's feet and swore fealty to him. The Catholic League responded by proclaiming Cardinal de Bourbon the true King of France. But Henri surprised everyone by abjuring Protestantism. Paris soon surrendered and his legitimacy soared. The Catholic League suffered continued defeats and eventually dispersed.
+
+	action_a = {
+		name = "OK"
+		command = { type = secedeprovince which = FRA value = 376 } #Champagne
+		#command = { type = secedeprovince which = FRA value = 379 } #Artois
+		command = { type = secedeprovince which = FRA value = 382 } #Calais
+		command = { type = secedeprovince which = FRA value = 383 } #Picardie
+		command = { type = secedeprovince which = FRA value = 384 } #Caux
+		command = { type = secedeprovince which = FRA value = 385 } #Ile de France
+		command = { type = secedeprovince which = FRA value = 386 } #Nivernais
+		#command = { type = secedeprovince which = FRA value = 387 } #Franche-Comté
+		command = { type = secedeprovince which = FRA value = 406 } #Provence
+		command = { type = secedeprovince which = FRA value = 407 } #Dauphiné
+		command = { type = secedeprovince which = FRA value = 408 } #Lyonnais
+		command = { type = secedeprovince which = FRA value = 409 } #Bourgogne
+		command = { type = secedeprovince which = FRA value = 410 } #Berri
+		command = { type = secedeprovince which = FRA value = 411 } #Orleanais
+		command = { type = secedeprovince which = FRA value = 412 } #Maine
+		command = { type = secedeprovince which = FRA value = 413 } #Normandie
+		command = { type = secedeprovince which = FRA value = 414 } #Armor
+		command = { type = secedeprovince which = FRA value = 415 } #Bretagne
+		command = { type = secedeprovince which = FRA value = 416 } #Morbihan
+		command = { type = secedeprovince which = FRA value = 417 } #Vendée
+		#Capital
+		#command = { type = secedeprovince which = FRA value = 418 } #Poitou
+		command = { type = secedeprovince which = FRA value = 419 } #Limousin
+		command = { type = secedeprovince which = FRA value = 420 } #Auvergne
+		command = { type = secedeprovince which = FRA value = 421 } #Cévennes
+		command = { type = secedeprovince which = FRA value = 422 } #Languedoc
+		command = { type = secedeprovince which = FRA value = 423 } #Guyenne
+		command = { type = secedeprovince which = FRA value = 424 } #Gascogne
+		command = { type = secedeprovince which = FRA value = 425 } #Béarn
+		#command = { type = secedeprovince which = FRA value = 426 } #Roussillon
+		command = { type = trigger which = 170254 } #FRA: Consequence of the assassination of Henri III
+	}
+}
+#(1589) Consequence of the assassination of Henri III -II-
+event = {
+	id = 169017 #triggered by FRA_170111
+	trigger = {
+		NOT = { flag = [LaRochelle] }
+	}
+	random = no
+	country = FPR
+	name = "EVENTNAME169016" #Consequence of the assassination of Henri III
+	desc = "EVENTHIST172002"
+	#-#During a siege of Paris using the combined forces of Henri III and Henri of Navarre, a Catholic monk assassinated Henri III. The King's bodyguards immediately threw themselves at Henri of Navarre's feet and swore fealty to him. The Catholic League responded by proclaiming Cardinal de Bourbon the true King of France. But Henri surprised everyone by abjuring Protestantism. Paris soon surrendered and his legitimacy soared. The Catholic League suffered continued defeats and eventually dispersed.
+
+	action_a = {
+		name = "OK"
+		command = { }
+		command = { type = trigger which = 170254 } #FRA: Consequence of the assassination of Henri III
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#(1589-1610) The fight goes on - Ahistorical
+event = {
+	id = 169040
+	trigger = {
+		exists = FUC
+		NOT = {
+			war = { country = FUC country = FPR }
+			OR = {
+				vassal = { country = FUC country = FPR }
+				vassal = { country = FPR country = FUC }
+			}
+			AND = {
+				vassal = { country = FRA country = FUC }
+				vassal = { country = FRA country = FPR }
+			}
+		}
+	}
+	random = no
+	country = FPR
+	name = "EVENTNAME172005" #The fight goes on
+	desc = "EVENTHIST172005"
+	#-#No truce is possible...
+
+	date = { day = 16 month = september year = 1589 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1591 }
+
+	action_a = {
+		name = "WAR"
+		command = { type = religion which = reformed }
+		command = { type = war which = FUC }
+		command = { type = stability value = 3 }
+	}
+}
+event = {
+	id = 169041
+	trigger = {
+		exists = FUC
+		NOT = {
+			war = { country = FUC country = FPR }
+			OR = {
+				vassal = { country = FUC country = FPR }
+				vassal = { country = FPR country = FUC }
+			}
+			AND = {
+				vassal = { country = FRA country = FUC }
+				vassal = { country = FRA country = FPR }
+			}
+		}
+	}
+	random = no
+	country = FPR
+	name = "EVENTNAME172005" #The fight goes on
+	desc = "EVENTHIST172005"
+	#-#No truce is possible...
+
+	date = { day = 1 month = january year = 1592 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1593 }
+
+	action_a = {
+		name = "WAR"
+		command = { type = religion which = reformed }
+		command = { type = war which = FUC }
+		command = { type = stability value = 3 }
+	}
+}
+event = {
+	id = 169042
+	trigger = {
+		exists = FUC
+		NOT = {
+			war = { country = FUC country = FPR }
+			OR = {
+				vassal = { country = FUC country = FPR }
+				vassal = { country = FPR country = FUC }
+			}
+			AND = {
+				vassal = { country = FRA country = FUC }
+				vassal = { country = FRA country = FPR }
+			}
+		}
+	}
+	random = no
+	country = FPR
+	name = "EVENTNAME172005" #The fight goes on
+	desc = "EVENTHIST172005"
+	#-#No truce is possible...
+
+	date = { day = 1 month = january year = 1594 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1595 }
+
+	action_a = {
+		name = "WAR"
+		command = { type = religion which = reformed }
+		command = { type = war which = FUC }
+		command = { type = stability value = 3 }
+	}
+}
+event = {
+	id = 169043
+	trigger = {
+		exists = FUC
+		NOT = {
+			war = { country = FUC country = FPR }
+			OR = {
+				vassal = { country = FUC country = FPR }
+				vassal = { country = FPR country = FUC }
+			}
+			AND = {
+				vassal = { country = FRA country = FUC }
+				vassal = { country = FRA country = FPR }
+			}
+		}
+	}
+	random = no
+	country = FPR
+	name = "EVENTNAME172005" #The fight goes on
+	desc = "EVENTHIST172005"
+	#-#No truce is possible...
+
+	date = { day = 1 month = january year = 1596 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1597 }
+
+	action_a = {
+		name = "WAR"
+		command = { type = religion which = reformed }
+		command = { type = war which = FUC }
+		command = { type = stability value = 3 }
+	}
+}
+event = {
+	id = 169044
+	trigger = {
+		exists = FUC
+		NOT = {
+			war = { country = FUC country = FPR }
+			OR = {
+				vassal = { country = FUC country = FPR }
+				vassal = { country = FPR country = FUC }
+			}
+			AND = {
+				vassal = { country = FRA country = FUC }
+				vassal = { country = FRA country = FPR }
+			}
+		}
+	}
+	random = no
+	country = FPR
+	name = "EVENTNAME172005" #The fight goes on
+	desc = "EVENTHIST172005"
+	#-#No truce is possible...
+
+	date = { day = 1 month = january year = 1598 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1599 }
+
+	action_a = {
+		name = "WAR"
+		command = { type = religion which = reformed }
+		command = { type = war which = FUC }
+		command = { type = stability value = 3 }
+	}
+}
+event = {
+	id = 169045
+	trigger = {
+		exists = FUC
+		NOT = {
+			war = { country = FUC country = FPR }
+			OR = {
+				vassal = { country = FUC country = FPR }
+				vassal = { country = FPR country = FUC }
+			}
+			AND = {
+				vassal = { country = FRA country = FUC }
+				vassal = { country = FRA country = FPR }
+			}
+		}
+	}
+	random = no
+	country = FPR
+	name = "EVENTNAME172005" #The fight goes on
+	desc = "EVENTHIST172005"
+	#-#No truce is possible...
+
+	date = { day = 1 month = january year = 1598 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1599 }
+
+	action_a = {
+		name = "WAR"
+		command = { type = religion which = reformed }
+		command = { type = war which = FUC }
+		command = { type = stability value = 3 }
+	}
+}
+event = {
+	id = 169046
+	trigger = {
+		exists = FUC
+		NOT = {
+			war = { country = FUC country = FPR }
+			OR = {
+				vassal = { country = FUC country = FPR }
+				vassal = { country = FPR country = FUC }
+			}
+			AND = {
+				vassal = { country = FRA country = FUC }
+				vassal = { country = FRA country = FPR }
+			}
+		}
+	}
+	random = no
+	country = FPR
+	name = "EVENTNAME172005" #The fight goes on
+	desc = "EVENTHIST172005"
+	#-#No truce is possible...
+
+	date = { day = 1 month = january year = 1600 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1601 }
+
+	action_a = {
+		name = "WAR"
+		command = { type = religion which = reformed }
+		command = { type = war which = FUC }
+		command = { type = stability value = 3 }
+	}
+}
+event = {
+	id = 169047
+	trigger = {
+		exists = FUC
+		NOT = {
+			war = { country = FUC country = FPR }
+			OR = {
+				vassal = { country = FUC country = FPR }
+				vassal = { country = FPR country = FUC }
+			}
+			AND = {
+				vassal = { country = FRA country = FUC }
+				vassal = { country = FRA country = FPR }
+			}
+		}
+	}
+	random = no
+	country = FPR
+	name = "EVENTNAME172005" #The fight goes on
+	desc = "EVENTHIST172005"
+	#-#No truce is possible...
+
+	date = { day = 1 month = january year = 1602 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1603 }
+
+	action_a = {
+		name = "WAR"
+		command = { type = religion which = reformed }
+		command = { type = war which = FUC }
+		command = { type = stability value = 3 }
+	}
+}
+event = {
+	id = 169048
+	trigger = {
+		exists = FUC
+		NOT = {
+			war = { country = FUC country = FPR }
+			OR = {
+				vassal = { country = FUC country = FPR }
+				vassal = { country = FPR country = FUC }
+			}
+			AND = {
+				vassal = { country = FRA country = FUC }
+				vassal = { country = FRA country = FPR }
+			}
+		}
+	}
+	random = no
+	country = FPR
+	name = "EVENTNAME172005" #The fight goes on
+	desc = "EVENTHIST172005"
+	#-#No truce is possible...
+
+	date = { day = 1 month = january year = 1604 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1605 }
+
+	action_a = {
+		name = "WAR"
+		command = { type = religion which = reformed }
+		command = { type = war which = FUC }
+		command = { type = stability value = 3 }
+	}
+}
+event = {
+	id = 169049
+	trigger = {
+		exists = FUC
+		NOT = {
+			war = { country = FUC country = FPR }
+			OR = {
+				vassal = { country = FUC country = FPR }
+				vassal = { country = FPR country = FUC }
+			}
+			AND = {
+				vassal = { country = FRA country = FUC }
+				vassal = { country = FRA country = FPR }
+			}
+		}
+	}
+	random = no
+	country = FPR
+	name = "EVENTNAME172005" #The fight goes on
+	desc = "EVENTHIST172005"
+	#-#No truce is possible...
+
+	date = { day = 1 month = january year = 1606 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1607 }
+
+	action_a = {
+		name = "WAR"
+		command = { type = religion which = reformed }
+		command = { type = war which = FUC }
+		command = { type = stability value = 3 }
+	}
+}
+event = {
+	id = 169050
+	trigger = {
+		exists = FUC
+		NOT = {
+			war = { country = FUC country = FPR }
+			OR = {
+				vassal = { country = FUC country = FPR }
+				vassal = { country = FPR country = FUC }
+			}
+			AND = {
+				vassal = { country = FRA country = FUC }
+				vassal = { country = FRA country = FPR }
+			}
+		}
+	}
+	random = no
+	country = FPR
+	name = "EVENTNAME172005" #The fight goes on
+	desc = "EVENTHIST172005"
+	#-#No truce is possible...
+
+	date = { day = 1 month = january year = 1608 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1609 }
+
+	action_a = {
+		name = "WAR"
+		command = { type = religion which = reformed }
+		command = { type = war which = FUC }
+		command = { type = stability value = 3 }
+	}
+}
+#-----------------------------------------------------------------------------------------------
+
+#(1595-1610) Consequence of the absolution of Clement VIII -I-
+event = {
+	id = 169018 #triggered by FRA_170112
+	trigger = {
+		flag = [LaRochelle]
+	}
+	random = no
+	country = FPR
+	name = "EVENTNAME169018" #Consequence of the absolution of Clement VIII
+	desc = "EVENTHIST170255"
+	#-#With the acceptance of Henri IV back into the Catholic community, the Leaguers gave up the resistance.
+
+	action_a = {
+		name = "OK"
+		command = { type = secedeprovince which = FRA value = 376 } #Champagne
+		#command = { type = secedeprovince which = FRA value = 379 } #Artois
+		command = { type = secedeprovince which = FRA value = 382 } #Calais
+		command = { type = secedeprovince which = FRA value = 383 } #Picardie
+		command = { type = secedeprovince which = FRA value = 384 } #Caux
+		command = { type = secedeprovince which = FRA value = 385 } #Ile de France
+		command = { type = secedeprovince which = FRA value = 386 } #Nivernais
+		#command = { type = secedeprovince which = FRA value = 387 } #Franche-Comté
+		command = { type = secedeprovince which = FRA value = 406 } #Provence
+		command = { type = secedeprovince which = FRA value = 407 } #Dauphiné
+		command = { type = secedeprovince which = FRA value = 408 } #Lyonnais
+		command = { type = secedeprovince which = FRA value = 409 } #Bourgogne
+		command = { type = secedeprovince which = FRA value = 410 } #Berri
+		command = { type = secedeprovince which = FRA value = 411 } #Orleanais
+		command = { type = secedeprovince which = FRA value = 412 } #Maine
+		command = { type = secedeprovince which = FRA value = 413 } #Normandie
+		command = { type = secedeprovince which = FRA value = 414 } #Armor
+		command = { type = secedeprovince which = FRA value = 415 } #Bretagne
+		command = { type = secedeprovince which = FRA value = 416 } #Morbihan
+		command = { type = secedeprovince which = FRA value = 417 } #Vendée
+		#Capital
+		#command = { type = secedeprovince which = FRA value = 418 } #Poitou
+		command = { type = secedeprovince which = FRA value = 419 } #Limousin
+		command = { type = secedeprovince which = FRA value = 420 } #Auvergne
+		command = { type = secedeprovince which = FRA value = 421 } #Cévennes
+		command = { type = secedeprovince which = FRA value = 422 } #Languedoc
+		command = { type = secedeprovince which = FRA value = 423 } #Guyenne
+		command = { type = secedeprovince which = FRA value = 424 } #Gascogne
+		command = { type = secedeprovince which = FRA value = 425 } #Béarn
+		#command = { type = secedeprovince which = FRA value = 426 } #Roussillon
+		command = { type = trigger which = 170255 } #FRA: Consequence of the absolution of Clement VIII for Huguenots
+	}
+}
+#(1595-1610) Consequence of the absolution of Clement VIII -II-
+event = {
+	id = 169019 #triggered by FRA_170112
+	trigger = {
+		NOT = { flag = [LaRochelle] }
+	}
+	random = no
+	country = FPR
+	name = "EVENTNAME169018" #Consequence of the absolution of Clement VIII
+	desc = "EVENTHIST170255"
+	#-#With the acceptance of Henri IV back into the Catholic community, the Leaguers gave up the resistance.
+
+	action_a = {
+		name = "OK"
+		command = { type = trigger which = 170255 } #FRA: Consequence of the absolution of Clement VIII for Huguenots
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Random Events
+#-----------------------------------------------------------------------------------------------
+
+#Huguenots should stay Reformed - Set of 20 random events
+
+event = {
+	id = 169020
+	trigger = {
+		NOT = {
+			religion = reformed
+		}
+		ai = yes
+	}
+	random = yes
+	country = FPR
+	name = "AI_EVENT"
+	desc = ""
+
+	action_a = {
+		name = "OK"
+		command = { type = religion which = reformed }
+		command = { type = stability value = 3 }
+	}
+}
+event = {
+	id = 169021
+	trigger = {
+		NOT = {
+			religion = reformed
+		}
+		ai = yes
+	}
+	random = yes
+	country = FPR
+	name = "AI_EVENT"
+	desc = ""
+
+	action_a = {
+		name = "OK"
+		command = { type = religion which = reformed }
+		command = { type = stability value = 3 }
+	}
+}
+event = {
+	id = 169022
+	trigger = {
+		NOT = {
+			religion = reformed
+		}
+		ai = yes
+	}
+	random = yes
+	country = FPR
+	name = "AI_EVENT"
+	desc = ""
+
+	action_a = {
+		name = "OK"
+		command = { type = religion which = reformed }
+		command = { type = stability value = 3 }
+	}
+}
+event = {
+	id = 169023
+	trigger = {
+		NOT = {
+			religion = reformed
+		}
+		ai = yes
+	}
+	random = yes
+	country = FPR
+	name = "AI_EVENT"
+	desc = ""
+
+	action_a = {
+		name = "OK"
+		command = { type = religion which = reformed }
+		command = { type = stability value = 3 }
+	}
+}
+event = {
+	id = 169024
+	trigger = {
+		NOT = {
+			religion = reformed
+		}
+		ai = yes
+	}
+	random = yes
+	country = FPR
+	name = "AI_EVENT"
+	desc = ""
+
+	action_a = {
+		name = "OK"
+		command = { type = religion which = reformed }
+		command = { type = stability value = 3 }
+	}
+}
+event = {
+	id = 169025
+	trigger = {
+		NOT = {
+			religion = reformed
+		}
+		ai = yes
+	}
+	random = yes
+	country = FPR
+	name = "AI_EVENT"
+	desc = ""
+
+	action_a = {
+		name = "OK"
+		command = { type = religion which = reformed }
+		command = { type = stability value = 3 }
+	}
+}
+event = {
+	id = 169026
+	trigger = {
+		NOT = {
+			religion = reformed
+		}
+		ai = yes
+	}
+	random = yes
+	country = FPR
+	name = "AI_EVENT"
+	desc = ""
+
+	action_a = {
+		name = "OK"
+		command = { type = religion which = reformed }
+		command = { type = stability value = 3 }
+	}
+}
+event = {
+	id = 169027
+	trigger = {
+		NOT = {
+			religion = reformed
+		}
+		ai = yes
+	}
+	random = yes
+	country = FPR
+	name = "AI_EVENT"
+	desc = ""
+
+	action_a = {
+		name = "OK"
+		command = { type = religion which = reformed }
+		command = { type = stability value = 3 }
+	}
+}
+event = {
+	id = 169028
+	trigger = {
+		NOT = {
+			religion = reformed
+		}
+		ai = yes
+	}
+	random = yes
+	country = FPR
+	name = "AI_EVENT"
+	desc = ""
+
+	action_a = {
+		name = "OK"
+		command = { type = religion which = reformed }
+		command = { type = stability value = 3 }
+	}
+}
+event = {
+	id = 169029
+	trigger = {
+		NOT = {
+			religion = reformed
+		}
+		ai = yes
+	}
+	random = yes
+	country = FPR
+	name = "AI_EVENT"
+	desc = ""
+
+	action_a = {
+		name = "OK"
+		command = { type = religion which = reformed }
+		command = { type = stability value = 3 }
+	}
+}
+event = {
+	id = 169030
+	trigger = {
+		NOT = {
+			religion = reformed
+		}
+		ai = yes
+	}
+	random = yes
+	country = FPR
+	name = "AI_EVENT"
+	desc = ""
+
+	action_a = {
+		name = "OK"
+		command = { type = religion which = reformed }
+		command = { type = stability value = 3 }
+	}
+}
+event = {
+	id = 169031
+	trigger = {
+		NOT = {
+			religion = reformed
+		}
+		ai = yes
+	}
+	random = yes
+	country = FPR
+	name = "AI_EVENT"
+	desc = ""
+
+	action_a = {
+		name = "OK"
+		command = { type = religion which = reformed }
+		command = { type = stability value = 3 }
+	}
+}
+event = {
+	id = 169032
+	trigger = {
+		NOT = {
+			religion = reformed
+		}
+		ai = yes
+	}
+	random = yes
+	country = FPR
+	name = "AI_EVENT"
+	desc = ""
+
+	action_a = {
+		name = "OK"
+		command = { type = religion which = reformed }
+		command = { type = stability value = 3 }
+	}
+}
+event = {
+	id = 169033
+	trigger = {
+		NOT = {
+			religion = reformed
+		}
+		ai = yes
+	}
+	random = yes
+	country = FPR
+	name = "AI_EVENT"
+	desc = ""
+
+	action_a = {
+		name = "OK"
+		command = { type = religion which = reformed }
+		command = { type = stability value = 3 }
+	}
+}
+event = {
+	id = 169034
+	trigger = {
+		NOT = {
+			religion = reformed
+		}
+		ai = yes
+	}
+	random = yes
+	country = FPR
+	name = "AI_EVENT"
+	desc = ""
+
+	action_a = {
+		name = "OK"
+		command = { type = religion which = reformed }
+		command = { type = stability value = 3 }
+	}
+}
+event = {
+	id = 169035
+	trigger = {
+		NOT = {
+			religion = reformed
+		}
+		ai = yes
+	}
+	random = yes
+	country = FPR
+	name = "AI_EVENT"
+	desc = ""
+
+	action_a = {
+		name = "OK"
+		command = { type = religion which = reformed }
+		command = { type = stability value = 3 }
+	}
+}
+event = {
+	id = 169036
+	trigger = {
+		NOT = {
+			religion = reformed
+		}
+		ai = yes
+	}
+	random = yes
+	country = FPR
+	name = "AI_EVENT"
+	desc = ""
+
+	action_a = {
+		name = "OK"
+		command = { type = religion which = reformed }
+		command = { type = stability value = 3 }
+	}
+}
+event = {
+	id = 169037
+	trigger = {
+		NOT = {
+			religion = reformed
+		}
+		ai = yes
+	}
+	random = yes
+	country = FPR
+	name = "AI_EVENT"
+	desc = ""
+
+	action_a = {
+		name = "OK"
+		command = { type = religion which = reformed }
+		command = { type = stability value = 3 }
+	}
+}
+event = {
+	id = 169038
+	trigger = {
+		NOT = {
+			religion = reformed
+		}
+		ai = yes
+	}
+	random = yes
+	country = FPR
+	name = "AI_EVENT"
+	desc = ""
+
+	action_a = {
+		name = "OK"
+		command = { type = religion which = reformed }
+		command = { type = stability value = 3 }
+	}
+}
+event = {
+	id = 169039
+	trigger = {
+		NOT = {
+			religion = reformed
+		}
+		ai = yes
+	}
+	random = yes
+	country = FPR
+	name = "AI_EVENT"
+	desc = ""
+
+	action_a = {
+		name = "OK"
+		command = { type = religion which = reformed }
+		command = { type = stability value = 3 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 169051

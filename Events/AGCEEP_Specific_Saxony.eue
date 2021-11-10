@@ -1,0 +1,1410 @@
+#Saxony (SAC)
+
+#See AGCEEP_Alt_Germany.eue for KoG Alternative events
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419) The Hussite Wars
+event = {
+	id = 273600 #triggered by SIL_401000 / ROM_398000
+	random = no
+	country = SAC
+	name = "EVENTNAME188600" #The Hussite Wars
+	desc = "EVENTHIST188600"
+	#-#The Czech priest and professor Jan Hus developed radical reformatory demands on the base of the teachings of John Wyclif. Despite a guarantee of safe-conduct by Emperor Sigismund, he was executed at the stake for heresy at the Council of Constance in 1415. This could however not stop the Hussite movement in Bohemia. Hus' followers were rapidly growing, and when King Vaclav IV of Bohemia died and his brother Sigismund, already Emperor and King of Hungary was to succeed him, they, unwilling to forgive him the betrayal of Hus and afraid that he would suppress them, refused to acknowledge him and gained control of most of Bohemia proper - while the lands of the Bohemian crown and the catholic part of Bohemia accepted Sigismund. Due to its radical anti-clerical and anti-feudal tendencies Hussitism posed a big threat to the church and nobility in the countries adjacent to Bohemia. Several German and European princes therefore decided to oppose the Hussites and to support Sigismund in his struggle with them that lasted for almost two decades. Should we decide to fight these heretics, we should be aware that this would be internationally regarded as an intervention in favour of Sigismund as rightful King of Bohemia rather than a war of conquest, and that therefore, if Sigismund prevails and manages to restore royal authority, we would be expected to turn over any conquests in Bohemia to the Kingdom of Bohemia.
+
+	action_a = {
+		name = "ACTIONNAME258600B" #Express hostility
+		command = { type = relation which = SIL value = -200 }
+		command = { type = casusbelli which = SIL value = 120 }
+	}
+	action_b = {
+		name = "ACTIONNAME258600A" #Covertly provide aid
+		command = { type = treasury value = -25 }
+		command = { type = relation which = SIL value = 25 }
+	}
+}
+
+#(1419-1499) Catholicism restored in Bohemia
+event = {
+	id = 273601
+	trigger = {
+		OR = {
+			religion = reformed
+			religion = protestant
+		}
+		NOT = { exists = SIL }
+		NOT = {
+			AND = {
+				exists = BOH
+				OR = {
+					event = 129051 #BOH: Taborite republic
+					event = 129052 #BOH: Utraquist republic
+					event = 129053 #BOH: Podiebrad dynasty
+				}
+			}
+		}
+	}
+	random = no
+	country = SAC
+	name = "EVENTNAME179601" #The Hussite heresy is suppressed
+	desc = "EVENTHIST179601"
+	#-#The Kingdom of Bohemia has finally been won back for catholicism. As a consequence, the German princes who have been forced by the Hussites to adapt their misguided faith can now safely return to the Roman church. By a general indulgence the Pope will make sure they will be forgiven having turned to the heresy under compulsion.
+
+	date = { day = 17 month = august year = 1419 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1499 }
+
+	action_a = {
+		name = "ACTIONNAME179601A" #Restore Catholicism
+		command = { type = religion which = catholic }
+		command = { type = stability value = 3 }
+	}
+}
+
+#(1422) Wettins inherit the Electorate
+event = {
+	id = 273000
+	trigger = {
+		exists = MEI
+		exists = BRA
+	}
+	random = no
+	country = SAC
+	name = "EVENTNAME273000" #Extinction of the Askanians in Wittenberg
+	desc = "EVENTHIST273000"
+	#-#The influence of the Askanians who had once been the most powerful dynasty in Eastern Germany slowly faded in the 14th and 15th century. First in Brandenburg, then in Lauenburg and finally 1423 in electoral Saxony the branches got extinct, and the remaining members of the family lacked unity and determination to secure the territories. Instead, the Hohenzollern and Wettins were given the old Askanian lands and took their former rank. The last step in this process was the extinction of the electoral branch in Saxony-Wittenberg with the heirless death of Albrecht III. This caused a tough contest between the Hohenzoller Elector Friedrich of Brandenburg and the Wettin Margrave Friedrich IV of Meissen for Albrecht's possessions. Eventually, Emperor Sigismund decided in favour of the Wettin and granted the Electorate and Saxony-Wittenberg to him. Henceforth, the electoral title remained within the Wettin family that managed to become one of the predominant forces in the Empire while the Askanians left in Anhalt were virtually powerless.
+
+	date = { day = 22 month = november year = 1422 }
+
+	action_a = {
+		name = "ACTIONNAME273000A" #The Wettins inherit the Electorate of Saxony (End Game)
+		#command = { type = independence which = MAG } #Magdeburg
+		command = { type = independence which = MEC }
+		command = { type = independence which = POM }
+		command = { type = secedeprovince which = POM value = 304 } #Vorpommern
+		command = { type = secedeprovince which = BRA value = 313 } #Küstrin
+		command = { type = secedeprovince which = BRA value = 311 } #Magdeburg (replace independence MAG)
+		command = { type = independence which = BOH }
+		command = { type = secedeprovince which = BOH value = 329 } #Erz
+		command = { type = secedeprovince which = BOH value = 314 } #Silesia
+		command = { type = secedeprovince which = BOH value = 330 } #Sudeten
+		command = { type = secedeprovince which = BOH value = 315 } #Moravia
+		command = { type = secedeprovince which = PFA value = 348 } #Ansbach
+		command = { type = secedeprovince which = HAB value = 327 } #Ostmarch
+		#command = { type = independence which = THU } #Bayreuth
+		command = { type = independence which = WUR }
+		command = { type = independence which = BAD }
+		command = { type = independence which = MAI }
+		command = { type = independence which = HES }
+		command = { type = independence which = KLE }
+		command = { type = independence which = MUN }
+		command = { type = independence which = HAN }
+		command = { type = independence which = OLD }
+		command = { type = independence which = BRE }
+		command = { type = trigger which = 319000 } #MEI: Meißen inherits Saxony-Wittenberg
+	}
+	action_b = {
+		name = "ACTIONNAME273000B" #Friedrich of Brandenburg inherits the Electorate of Saxony (End Game)
+		command = { type = trigger which = 132000 } #BRA: Brandenburg inherits Electoral Saxony
+	}
+	action_c = {
+		name = "ACTIONNAME273000C" #The Askanians keep Saxony
+		command = { type = stability value = -4 }
+		command = { type = desertion which = -2 value = 7000 }
+		command = { type = relation which = SAC value = -100 }
+		command = { type = relation which = HUN value = -100 } #new monarchs needed
+	}
+}
+
+#(1438) Saxonian estates
+event = {
+	id = 273003
+	trigger = {
+		event = 319000 #MEI: Meißen inherits Saxony-Wittenberg
+	}
+	random = no
+	country = SAC
+	name = "EVENTNAME273003" #First summoning of the Saxonian estates
+	desc = "EVENTHIST273003"
+	#-#In 1438 Saxony was in a precarious financial situation; the long war against the Hussites, several feuds with Saxonian nobles and Friedrich II's expensive bid for the German crown after the extinction of the Luxemburgs had cost the Elector a lot of money. Therefore, he took a quite drastical step: for the first time in Saxony's history, he summoned the estates of Saxony in Leipzig. In exchange for confirming their privileges, he was allowed to levy a consumption tax that soon filled his treasury again.
+
+	date = { day = 1 month = january year = 1438 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1438 }
+
+	action_a = {
+		name = "ACTIONNAME273003A" #Summon the estates
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = stability value = -1 }
+		command = { type = treasury value = 30 }
+		command = { type = gainbuilding which = -2 value = bailiff }
+		command = { type = gainbuilding which = 332 value = bailiff } #Anhalt
+	}
+	action_b = {
+		name = "ACTIONNAME273003B" #Levy the tax without the estates' consent
+		command = { type = stability value = -4 }
+		command = { type = treasury value = 30 }
+		command = { type = gainbuilding which = -2 value = bailiff }
+		command = { type = gainbuilding which = 332 value = bailiff } #Anhalt
+	}
+	action_c = {
+		name = "ACTIONNAME273003C" #Do nothing about our financial problems
+		command = { type = treasury value = -10 }
+	}
+}
+
+#(1439) The Burggraviate of Meißen
+#By Twoflower
+event = {
+	id = 273004
+	trigger = {
+		event = 319000 #MEI: Meißen inherits Saxony-Wittenberg
+		owned = { province = 331 data = -1 } #Sachsen
+	}
+	random = no
+	country = SAC
+	name = "EVENTNAME273004" #Inheritance of the Burgraviate of Meißen
+	desc = "EVENTHIST273004"
+	#-#The Meinheringer dynasty who were Burgraves of Meißen died out when Heinrich II was killed in a battle against the Hussites in 1426. Emperor Sigismund intended to reward his faithful Imperial Court Judge Heinrich of Plauen with the fief, but this was opposed by the Wettins who wanted to achieve full control of the Meißen area. After thirteen years of struggle, the Wettins eventually prevailed because Sigismund died and the new Habsburg emperor needed to appease the electors. The Plauens kept the title and privileges of the Burggraviate, but Friedrich II of Saxony remained in factual control of it.
+
+	date = { day = 1 month = january year = 1439 }
+	offset = 200
+	deathdate = { day = 29 month = december year = 1439 }
+
+	action_a = {
+		name = "ACTIONNAME273004A" #We have prevailed
+		command = { type = relation which = HUN value = -50 }
+		command = { type = provincetax which = 331 value = 1 }
+		command = { type = provincemanpower which = 331 value = 1 }
+		command = { type = population which = 331 value = 1500 }
+		command = { type = fortress which = 331 value = 1 } #that's the most valuable aspect of a Burggraviate
+	}
+}
+
+#(1440) Fraternal war in Saxony
+event = {
+	id = 273005
+	trigger = {
+		event = 319000 #MEI: Meißen inherits Saxony-Wittenberg
+		owned = { province = 331 data = -1 } #Sachsen
+		NOT = { exists = MEI }
+	}
+	random = no
+	country = SAC
+	name = "EVENTNAME273005" #Fraternal war in Saxony
+	desc = "EVENTHIST273005"
+	#-#The childless death of Friedrich, the Wettin Landgrave of Thuringia, in 1440, caused a serious conflict within the Wettin family about Thuringia. Wilhelm III, the brother of Elector Friedrich II, questioned his brother's assumption of all of Thuringia and began to fight him. A serious civil war devastated the Wettin lands for almost eleven years. Several attempts to achieve a reconciliation failed until the emperor himself intervened and forced the Wettin brothers to make peace.
+
+	date = { day = 1 month = january year = 1440 }
+	offset = 100
+	deathdate = { day = 29 month = december year = 1440 }
+
+	action_a = {
+		name = "ACTIONNAME273005A" #Fight the usurper Wilhelm
+		command = { type = revoltrisk which = 132 value = 5 }
+		command = { type = stability value = -3 }
+		command = { type = revolt which = 331 } #Sachsen
+	}
+	action_b = {
+		name = "ACTIONNAME273005B" #Accept a division of the Wettin possessions
+		command = { type = independence which = MEI }
+		command = { type = sleepevent which = 273001 } #SAC: Partition of the Wettin lands
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1455) Saxonian princes kidnapped
+event = {
+	id = 273006
+	trigger = { event = 319000 }
+	random = no
+	country = SAC
+	name = "EVENTNAME273006" #Kunz of Kaufungen kidnaps the Saxonian princes
+	desc = "EVENTHIST273006"
+	#-#The Wettin fraternal war destabilised the family's holdings and saw several local nobles taking advantage of the situation by demanding extended privileges or fiefs for support. One of these nobles was Kunz of Kaufungen, a knight fighting on the side of Friedrich II. When the conflict was over, he demanded a compensation for the damages inflicted to his Thuringian territory of Milowitz and for the ransom of 4000 Gulden he had to pay after being arrested near Gera in 1446. Since Friedrich refused Kaufungen took him to an imperial arbitrarian court. However, the court decided in favour of the elector which caused Kaufungen to leave it angrily and to swear that he would take revenge on Friedrich's own offspring. It was no empty promise: In the night between July 7th and 8th 1455 he kidnapped the Saxonian princes Ernst and Albrecht from the castle of Altenburg with the intention to take them to Bohemia. This could only be prevented by the coincidental help of two charburners who arrested Kaufungen and saved the princes. Already on July 14th, Kaufungen and his accomplices were beheaded at the marketplace of Freiberg.
+
+	date = { day = 8 month = july year = 1455 }
+
+	action_a = {
+		name = "ACTIONNAME273006A" #Kill the villain
+		command = { type = stability value = -2 }
+		command = { type = domestic which = centralization value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME273006B" #Friedrich accepts to compensate Kaufungen's expenses
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = provincetax which = -2 value = -1 }
+		command = { type = treasury value = -40 }
+	}
+}
+
+#(1455-1490) Elector Ernst moves to Wittenberg
+event = {
+	id = 273002 #triggered by MEI_319008 A
+	random = no
+	country = SAC
+	name = "EVENTNAME273002" #Elector Ernst moves to Wittenberg
+	desc = "EVENTHIST273002"
+	#-#While Albrecht remained in Dresden and got the richest part of the Wettin possessions, his brother Ernst moved to the old capital of the electorate, Wittenberg, and was formally in a superior rank. Nevertheless, after less than a century, the Albertine branch proved to be more powerful and achieved hegemony over the Ernestines.
+
+	action_a = {
+		name = "OK"
+		command = { type = capital which = 332 } #Anhalt
+		command = { type = breakvassal which = MEI }
+		command = { type = alliance which = MEI }
+		command = { type = relation which = MEI value = 200 }
+	}
+}
+#(1455-1490) Partition of Leipzig
+event = {
+	id = 273001
+	trigger = {
+		owned = { province = 331 data = -1 } #Sachsen
+		control = { province = 331 data = -1 }
+		owned = { province = 332 data = -1 } #Anhalt
+		control = { province = 332 data = -1 }
+		NOT = { exists = MEI }
+	}
+	random = no
+	country = SAC
+	name = "EVENTNAME273001" #The electorate and Thuringia are given to Ernst
+	desc = "EVENTHIST273001"
+	#-#The Treaty of Leipzig was signed on August 26, 1485 between Ernest, Elector of Saxony and Albert, Duke of Saxony, sons of Frederick II, Elector of Saxony. Based on the terms of the treaty, Saxony was divided into two realms whereby Duke Ernest acquired the western regions and Duke Albert obtained the eastern regions. Ernst had also already annexed Thuringia in 1482. Albrecht remained in Dresden and got the richest part of the Wettin possessions, his brother Ernst moved to the old capital of the electorate, Wittenberg, and was formally in a superior rank. Nevertheless, after less than a century, the Albertine branch proved to be more powerful and achieved hegemony over the Ernestines.
+
+	date = { day = 26 month = august year = 1485 }
+	offset = 0
+	deathdate = { day = 29 month = december year = 1490 }
+
+	action_a = {
+		name = "OK"
+		command = { type = sleepevent which = 319002 } #MEI: Partition of the Wettin lands
+		command = { type = independence which = MEI }
+		#command = { type = addcore which = 347 } #Wurzburg/Thuringia
+		command = { type = trigger which = 319008 } #MEI: Elector Ernst moves to Wittenberg
+	}
+}
+
+#(1458) Tin mining in Altenberg
+event = {
+	id = 273008
+	trigger = {
+		event = 319000 #MEI: Meißen inherits Saxony-Wittenberg
+	}
+	random = no
+	country = SAC
+	name = "EVENTNAME273008" #Tin mining in Altenberg
+	desc = "EVENTHIST273008"
+	#-#Around 1440 the largest tin deposits in Central Europe were discovered in the Saxonian part of the Erz mountains. A mining village that later became the city of Altenberg was founded in 1451 and in 1458 the exploitation of the vast ressources began which soon produced a great deal of income. In the beginning of the 16th century, Altenberg's tin output had rosen to 4000 centners per annum.
+
+	date = { day = 1 month = january year = 1458 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1458 }
+
+	action_a = {
+		name = "OK"
+		command = { type = mine which = -2 value = 3 }
+		command = { type = infra value = 200 }
+	}
+}
+
+#(1468) Trade fair in Leipzig
+event = {
+	id = 273010
+	trigger = {
+		event = 319000 #MEI: Meißen inherits Saxony-Wittenberg
+	}
+	random = no
+	country = SAC
+	name = "EVENTNAME273010" #Trade fair in Leipzig
+	desc = "EVENTHIST273010"
+	#-#Leipzig was the principal trade town of Saxony ever since Margrave Otto the Rich had established a market in the 12th century. With the increase in mining activities in the 15th century, trade in Saxony grew, which made annual trade fairs in Leipzig necessary. A few years later, even an occasional second yearly fair was introduced and finally became permanent by a privilege of the elector issued in 1468. As a consequence, the city's population, wealth and importance rose significantly as several prominent merchant families, including the Fuggers, opened offices and factories in Leipzig.
+
+	date = { day = 1 month = january year = 1468 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1468 }
+
+	action_a = {
+		name = "ACTIONNAME273010A" #Establish the trade fair in Leipzig
+		command = { type = treasury value = -80 }
+		command = { type = trade value = 300 }
+		command = { type = merchants value = 5 }
+		command = { type = population which = -2 value = 2000 }
+		command = { type = domestic which = mercantilism value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME273010B" #We can't afford it
+		command = { type = trade value = -100 }
+		command = { type = sleepevent which = 319004 } #MEI: Imperial privilege for the Leipzig trade fair
+		command = { type = sleepevent which = 273011 } #SAC: Imperial privilege for the Leipzig trade fair
+	}
+}
+
+#(1480) Ernst of Saxony is awarded the Golden Rose
+event = {
+	id = 273007
+	trigger = {
+		event = 319000 #MEI: Meißen inherits Saxony-Wittenberg
+	}
+	random = no
+	country = SAC
+	name = "EVENTNAME273007" #Elector Ernst is awarded the Golden Rose
+	desc = "EVENTHIST273007"
+	#-#During his rule, Elector Ernst was always at good terms with the church. He managed to get two of his sons into archepiscopal sees (in Mainz and Magdeburg), protected the convent of Quedlinburg against an attempted seizure, helped Magdeburg expand its territory and mediated in several quarrels within the clerus. When he visited Rome in 1480, he was awarded the Golden Rose, one of the church's highest honours, by Pope Sixtus IV for these deeds.
+
+	date = { day = 1 month = january year = 1480 }
+	offset = 200
+	deathdate = { day = 29 month = december year = 1480 }
+
+	action_a = {
+		name = "ACTIONNAME273007A" #Thank you, your holiness
+		command = { type = relation which = PAP value = 50 }
+		command = { type = relation which = MAI value = 30 }
+		#command = { type = relation which = THU value = 30 } #Bayreuth
+		command = { type = relation which = MUN value = 30 }
+		command = { type = relation which = BRE value = 30 }
+		#command = { type = relation which = SLZ value = 30 } #Salzburg
+		#command = { type = relation which = MAG value = 30 } #Magdeburg
+		command = { type = vp value = 5 }
+	}
+}
+
+#(1497) Imperial privilege for the Leipzig trade fair
+event = {
+	id = 273011
+	trigger = {
+		event = 273010 #SAC: Trade fair in Leipzig
+		owned = { province = 331 data = -1 } #Sachsen
+		NOT = { event = 319004 } #same event for Meissen
+	}
+	random = no
+	country = SAC
+	name = "EVENTNAME273011" #Imperial privilege for the Leipzig trade fair
+	desc = "EVENTNAME273011"
+	#-#In 1497 Emperor Maximilian granted the Imperial privilege for a third annual trade fair to Leipzig, making it the empire's most important non-Hansa trading town. Almost all trade to the east was directed through Leipzig which therefore prospered and rapidly grew. The Pope confirmed Leipzig's privilege in 1514.
+
+	date = { day = 1 month = january year = 1497 }
+	offset = 250
+	deathdate = { day = 29 month = december year = 1497 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = trade value = 350 }
+		command = { type = merchants value = 3 }
+		command = { type = relation which = HAB value = 100 }
+	}
+}
+
+#(1498) The lordship of Friesland - Ahistorical
+event = {
+	id = 273036
+	trigger = {
+		exists = FRI
+		NOT = { event = 22005 } #MEI: The lordship of Friesland
+		NOT = { exists = MEI }
+	}
+	random = no
+	country = SAC
+	name = "EVENTNAME22005" #The lordship of Friesland
+	desc = "EVENTHIST22005"
+	#-#In return for services rendered, the Emperor has decided to bestow the lordship over Friesland upon us.
+
+	date = { day = 1 month = january year = 1498 }
+	offset = 350
+	deathdate = { day = 29 month = december year = 1498 }
+
+	action_a = {
+		name = "SPLENDID"
+		command = { type = vassal which = FRI }
+		command = { type = trigger which = 22006 } #FRI: Albrecht von Sachsen
+		command = { type = relation which = OLD value = -50 }
+		command = { type = relation which = GEL value = -50 }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = INF which = 337 value = 2000 } #Albrecht sent between 2000 and 3000 men to Friesland# #Friesen
+		command = { type = CAV which = 337 value = 1000 } #Friesen
+		command = { type = sleepevent which = 22005 } #MEI: The lordship of Friesland
+	}
+	action_b = {
+		name = "ACTIONNAME273036B" #No, thanks
+		command = { type = treasury value = 25 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = sleepevent which = 22005 } #MEI: The lordship of Friesland
+	}
+}
+
+#Ernst of Saxony, Archbishop of Magdeburg
+#event = {
+#	id = 273012
+#	random = no
+#	country = SAC
+#	name = "Ernst of Saxony is elected Archbishop of Magdeburg"
+#	desc = "In 1475 Ernst, the son of the Saxonian elector Ernst, became Archbishop of Magdeburg. During his reign, he relied on his father's and uncle's support."
+#
+#	action_a = {
+#		name = "OK"
+#		command = { type = relation which = MAG value = 50 }
+#		command = { type = vassal which = MAG }
+#		command = { type = alliance which = MAG }
+#	}
+#}
+
+#(1502) University of Wittenberg
+event = {
+	id = 273013
+	trigger = {
+		event = 273001 #Partition of Leipzig; the University was founded because of the loss of the Leipzig University
+		owned = { province = 332 data = -1 } #Anhalt
+		control = { province = 332 data = -1 } #Anhalt
+	}
+	random = no
+	country = SAC
+	name = "EVENTNAME273013" #Foundation of the Leucorea
+	desc = "EVENTHIST273013"
+	#-#Having lost the university of Leipzig by the partition in 1485, the Ernestine Elector Friedrich III saw the need to create an academy in his own territory. Without waiting for papal allowance, he obtained the Emperor's approval and opened the Academia Leucorea in his capital Wittenberg on October 18th 1502. By the rich income from the Saxonian mines he was able to finance studies for particularly gifted poor students and to employ some of the most able and innovative scholars of his time, such as Philipp Melanchton and Martin Luther. It was in the tolerant, humanist atmosphere of the Leucorea where these two men prepared their revolutionary teachings that changed the fate of Europe, the thoughts of the Reformation.
+
+	date = { day = 18 month = october year = 1502 }
+	offset = 0
+	deathdate = { day = 29 month = december year = 1502 }
+
+	action_a = {
+		name = "ACTIONNAME273013A" #Found a university in Wittenberg
+		command = { type = capital which = 332 } #Anhalt
+		command = { type = treasury value = -90 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = infra value = 250 }
+		command = { type = population which = -2 value = 1000 }
+	}
+}
+
+#(1511) Inheritance of Jülich-Berg
+event = {
+	id = 273030 #triggered by MUN_235002 C / MUN_235003 B / MUN_235004 C / MUN_235005 B / MUN_235007
+	random = no
+	country = SAC
+	name = "EVENTNAME273030" #Inheritance of Jülich-Berg
+	desc = "EVENTHIST273030"
+	#-#Wilhelm IV of Jülich-Berg died in 1511, lacking a male heir. His only daughter had been betrothed to Johann, the son of Duke Johann of Kleve-Mark, and by a hereditary union in 1496 Kleve-Mark and Jülich-Berg had guaranteed each other right of succession in case of one of them lacking a direct heir. Nevertheless, Karel of Guelders and the elector also made claims to Jülich-Berg. Fortunately our claim has prevailed and we can add Jülich-Berg to our possessions.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = addcore which = 343 } #Kleves
+		command = { type = inherit which = MUN }
+		command = { type = relation which = KLE value = -50 }
+	}
+}
+
+#(1515) The sale of Friesland
+event = {
+	id = 273037
+	trigger = {
+		exists = BUR
+		OR = {
+			owned = { province = 339 data = HAB } #Holland
+			AND = {
+				owned = { province = 339 data = BUR } #Holland
+				OR = {
+					event = 3178 #HAB: The Habsburg inheritance of Burgundy (1477)
+					event = 137012 #BUR: Settlement at Arras (1482-1492)
+					event = 137021 #BUR: The new Archduke of Burgundy (1494)
+				}
+			}
+		}
+		OR = {
+			vassal = { country = SAC country = FRI }
+			owned = { province = 337 data = -1 } #Friesen
+		}
+		NOT = { event = 22007 } #MEI: The sale of Friesland
+	}
+	random = no
+	country = SAC
+	name = "EVENTNAME22007" #The sale of Friesland
+	desc = "EVENTHIST22007"
+	#-#In 1515, Georg had become so disappointed with being unable to control Friesland that he sold it to Charles II of Burgundy, who was trying to unite the Netherlands.
+
+	date = { day = 1 month = january year = 1515 }
+	offset = 25
+	deathdate = { day = 2 month = february year = 1515 }
+
+	action_a = {
+		name = "ACTIONNAME22007A" #Sell it!
+		command = { type = relation which = BUR value = 50 }
+		command = { type = trigger which = 22008 } #BUR: The sale of Friesland
+		command = { type = sleepevent which = 22007 } #MEI: The sale of Friesland
+	}
+	action_b = {
+		name = "ACTIONNAME22007B" #Do not sell it!
+		command = { type = relation which = BUR value = -50 }
+		command = { type = sleepevent which = 22007 } #MEI: The sale of Friesland
+	}
+}
+#(1515) Charles II bought Friesland
+event = {
+	id = 273038 #triggered by BUR_22008 A
+	trigger = {
+		event = 273037 #SAC: The sale of Friesland
+	}
+	random = no
+	country = SAC
+	name = "EVENTNAME22009" #Charles II bought Friesland
+	desc = "EVENTHIST22009"
+	#-#Charles II of Burgundy accepted our offer of selling Friesland to him for 200 ducats.
+
+	action_a = {
+		name = "SPLENDID"
+		command = { type = secedeprovince which = BUR value = 337 } #Friesen
+		command = { type = treasury value = 200 }
+		command = { type = breakvassal which = FRI }
+		command = { type = trigger which = 22025 } #FRI: The sale of Friesland (GEL doesn't exist)
+	}
+}
+
+#(1518) The candidate to the imperial crown
+event = {
+	id = 273016 #triggered by HAB_179088
+	random = no
+	country = SAC
+	name = "EVENTNAME179088" #The candidate to the imperial crown
+	desc = "EVENTHIST179088"
+	#-#In the same way as his father did for him, at the end of his life Emperor Maximilian made attempts to keep the imperial title amongst the members of the House of Habsburg. But his son Philip died unexpectedly early in 1506, leaving two male heirs, Charles and Ferdinand which were respectively born in 1500 and 1503. Maximilian decided to support Charles, who in 1516 was already Archduke of Burgundy, King of Spain, Sicily and Naples, in his investiture as King of the Romans and future Holy Roman Emperor. But this diplomatic move would have been very expensive. Most of the German princes were already supporting the French candidate, King François Ier. Maximilian seemed to successfully convoy the favour of the imperial electors towards the Habsburg cause, by means of granting investitures and making promises of large sums of money with the help of bankers such as the Fuggers and the Welsers. The Pope, who couldn't accept the presence of an Emperor with territorial claims in Italy as it was under the rule of Emperor Frederick II, would have supported a German prince like Friedrich III of Saxony, with no particular interest laying beyond the Alps. Looking for international credit, also Henry VIII King of England took part in the imperial election offering his candidature but withdrew soon after the first consultations.
+
+	action_a = {
+		name = "ACTIONNAME285251D" #We have no chances to persuade the electors
+		command = { type = stability value = 1 }
+		command = { type = relation which = HAB value = 30 }
+		command = { type = relation which = SPA value = 30 }
+		command = { type = relation which = FRA value = 30 }
+		command = { type = relation which = PAP value = -30 }
+	}
+	action_b = {
+		name = "ACTIONNAME170178A" #We have some chances to get the title
+		command = { type = treasury value = -150 }
+		command = { type = relation which = SPA value = -25 }
+		command = { type = relation which = FRA value = -25 }
+		command = { type = relation which = PAP value = 30 }
+		command = { type = relation which = BAY value = 15 }
+		command = { type = relation which = BOH value = 15 }
+		command = { type = relation which = BRA value = 15 }
+		command = { type = relation which = BRE value = 15 }
+		command = { type = relation which = HAB value = 15 }
+		command = { type = relation which = HAN value = 15 }
+		command = { type = relation which = HES value = 15 }
+		command = { type = relation which = KLE value = 15 }
+		command = { type = relation which = KOL value = 15 }
+		command = { type = relation which = LOR value = 15 }
+		command = { type = relation which = MAI value = 15 }
+		command = { type = relation which = MEC value = 15 }
+		command = { type = relation which = MUN value = 15 }
+		command = { type = relation which = OLD value = 15 }
+		command = { type = relation which = PFA value = 15 }
+		command = { type = relation which = POM value = 15 }
+		command = { type = relation which = PRM value = 15 }
+		command = { type = relation which = PRU value = 15 }
+		command = { type = relation which = ROM value = 15 }
+		command = { type = relation which = SHL value = 15 }
+		command = { type = relation which = STR value = 15 }
+		command = { type = relation which = STT value = 15 }
+		command = { type = relation which = TYR value = 15 }
+		command = { type = relation which = MEI value = 15 }
+		command = { type = relation which = WUR value = 15 }
+	}
+	action_c = {
+		name = "ACTIONNAME273016C" #We may have good chances with a 'holy' support
+		command = { type = stability value = -1 }
+		command = { type = treasury value = -300 }
+		command = { type = relation which = SPA value = -50 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = relation which = BAY value = 30 }
+		command = { type = relation which = BOH value = 30 }
+		command = { type = relation which = BRA value = 30 }
+		command = { type = relation which = BRE value = 30 }
+		command = { type = relation which = HAB value = 30 }
+		command = { type = relation which = HAN value = 30 }
+		command = { type = relation which = HES value = 30 }
+		command = { type = relation which = KLE value = 30 }
+		command = { type = relation which = KOL value = 30 }
+		command = { type = relation which = LOR value = 30 }
+		command = { type = relation which = MAI value = 30 }
+		command = { type = relation which = MEC value = 30 }
+		command = { type = relation which = MUN value = 30 }
+		command = { type = relation which = OLD value = 30 }
+		command = { type = relation which = PFA value = 30 }
+		command = { type = relation which = POM value = 30 }
+		command = { type = relation which = PRM value = 30 }
+		command = { type = relation which = PRU value = 30 }
+		command = { type = relation which = ROM value = 30 }
+		command = { type = relation which = SHL value = 30 }
+		command = { type = relation which = STR value = 30 }
+		command = { type = relation which = STT value = 30 }
+		command = { type = relation which = TYR value = 30 }
+		command = { type = relation which = MEI value = 30 }
+		command = { type = relation which = WUR value = 30 }
+		command = { type = trigger which = 251065 } #PAP: The imperial candidature
+	}
+}
+
+#(1527-1529) The League of Schmalkalden
+event = {
+	id = 3622
+	trigger = {
+		exists = HAB
+		OR = {
+			religion = protestant
+			religion = reformed
+		}
+	}
+	random = no
+	country = SAC
+	name = "EVENTNAME3109" #The League of Schmalkalden
+	desc = "EVENTHIST3109"
+	#-#After Emperor Charles V had rejected the Protestants' confessional positions at the Imperial Parliament of Augsburg (1529-1530), the North German Protestant Imperial estates formed the League of Schmalkalden, with a joint army and treasury and seeking ties abroad (France). The League enjoyed early successes in the years 1532-1540 as the Emperor was threaten by Turkish danger and forced to conclude Religious peace settlements in Nuremberg (1532) and Kaaden (1534).
+
+	date = { day = 1 month = january year = 1527 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1529 }
+
+	action_a = {
+		name = "ACTIONNAME3109A" #Give it our support
+		command = { type = relation which = FRA value = 100 }
+		command = { type = relation which = HES value = 150 }
+		command = { type = relation which = PFA value = 150 }
+		command = { type = relation which = PAP value = -100 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = relation which = HAB value = -150 }
+		command = { type = relation which = STR value = 150 }
+	}
+	action_b = {
+		name = "ACTIONNAME3109B" #Ignore it
+		command = { type = relation which = HES value = -100 }
+		command = { type = relation which = PFA value = -100 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = STR value = -100 }
+		command = { type = sleepevent which = 319006 } #MEI: Recovery of the Electorate; Meißen could only legitimately claim the Electorate because Johann Friedrich had been outlawed for opposing the Emperor and Catholicism #MEI: Recovery of the Electorate
+	}
+}
+
+#(1535-1550) Saxony helps Ulrich of Wirtemberg (Hessen doesn't exist)
+event = {
+	id = 273014
+	trigger = {
+		event = 179004 #HAB: Purchase of Wirtemberg
+		owned = { province = 372 data = HAB }
+		OR = {
+			religion = protestant
+			religion = reformed
+		}
+		atwar = no
+		NOT = { event = 185000 }
+	}
+	random = no
+	country = SAC
+	name = "EVENTNAME273014" #Ulrich of Wirtemberg
+	desc = "EVENTHIST273014"
+	#-#Ulrich, former duke of Wirtemberg - his country had been sold to the Habsburgs - fled to Saxony. In his exile he became a protestant and convinced Johann Friedrich of Saxony to help him recover his possession for the sake of protestantism. Johann Friedrich occupied Wirtemberg with his troops and demanded the restoration of the independent duchy. Eventually the Habsburgs gave in to the protestant's pressure and returned Wirtemberg to Ulrich.
+
+	date = { day = 1 month = january year = 1535 }
+	offset = 200
+	deathdate = { day = 29 month = december year = 1550 }
+
+	action_a = {
+		name = "ACTIONNAME273014A" #Protestantism must be promoted everywhere!
+		command = { type = relation which = HAB value = -50 }
+		command = { type = treasury value = -100 }
+		command = { type = stability value = 1 }
+		command = { type = trigger which = 179006 } #HAB: The loss of Wirtemberg
+	}
+	action_b = {
+		name = "ACTIONNAME273014B" #We don't care for Wirtemberg
+		command = { type = stability value = -2 }
+		command = { type = vp value = -20 }
+		command = { type = relation which = HAB value = 30 }
+	}
+}
+
+#(1535-1549) Liberation of Wirtemberg
+event = {
+	id = 273015
+	trigger = {
+		event = 179006 #HAB: Loss of Wirtemberg (Saxony)
+		owned = { province = 372 data = -1 }
+	}
+	random = no
+	country = SAC
+	name = "EVENTNAME273015" #Liberation of Wirtemberg
+	desc = "EVENTHIST273015"
+	#-#Saxony has managed to defeat the Habsburgs and to free Wirtemberg. Its rightful duke Ulrich now asks us to give it to him as promised.
+
+	date = { day = 1 month = january year = 1535 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1549 }
+
+	action_a = {
+		name = "ACTIONNAME273015A" #Return Wirtemberg to Ulrich
+		command = { type = independence which = WUR }
+		command = { type = vp value = 25 }
+		command = { type = stability value = 1 }
+		command = { type = relation which = HES value = 50 } #likely German protestants
+		command = { type = relation which = PFA value = 50 }
+		command = { type = relation which = BRA value = 50 }
+		command = { type = relation which = KLE value = 50 }
+		command = { type = relation which = SHL value = 50 }
+		command = { type = relation which = BRE value = 50 }
+		command = { type = relation which = OLD value = 50 }
+		command = { type = relation which = MEC value = 50 }
+		command = { type = relation which = POM value = 50 }
+		command = { type = province_revoltrisk which = 372 value = -5 } #Württemberg
+	}
+	action_b = {
+		name = "ACTIONNAME273015B" #Why bother? We'll keep Wirtemberg ourselves!
+		command = { type = stability value = -1 }
+		command = { type = relation which = HES value = -50 } #likely German protestants
+		command = { type = relation which = PFA value = -50 }
+		command = { type = relation which = BRA value = -50 }
+		command = { type = relation which = KLE value = -50 }
+		command = { type = relation which = SHL value = -50 }
+		command = { type = relation which = BRE value = -50 }
+		command = { type = relation which = OLD value = -50 }
+		command = { type = relation which = MEC value = -50 }
+		command = { type = relation which = POM value = -50 }
+		command = { type = revolt which = 372 } #Württemberg
+	}
+}
+
+#(1547-1560) Albertine line inherits the Ernestine line
+event = {
+	id = 273020
+	trigger = {
+		exists = MEI
+	}
+	random = no
+	country = SAC
+	name = "EVENTNAME273020" #Albertine line rules Saxony
+	desc = "EVENTHIST273020"
+	#-#In 1547 Emperor Charles V, with the assistance of the Duke of Alva, captured Wittenberg after the Battle of Mühlberg, where John Frederick I of Saxony was taken prisoner. Then, the Duke of Alva presided over a court-martial and condemned him to death. To save his life, John Frederick conceded the capitulation of Wittenberg, and, after having been compelled to resign the government of his country in favor of his relative, Maurice of Saxony-Meissen, his condemnation was commuted to imprisonment for life. John Frederick's capital at Wittenberg declined after 1547, when Dresden, residence of the Albertine dukes, replaced it as the Saxon capital.
+
+	date = { day = 26 month = april year = 1547 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1560 }
+
+	action_a = {
+		name = "ACTIONNAME273020A" #A united Saxony, again
+		command = { type = inherit which = MEI }
+	}
+}
+
+#(1605-1609) The Evangelic Union
+event = {
+	id = 3623
+	trigger = {
+		OR = {
+			religion = protestant
+			religion = reformed
+		}
+	}
+	random = no
+	country = SAC
+	name = "EVENTNAME3634" #The Evangelic Union
+	desc = "EVENTHIST3634"
+	#-#The Holy Roman Empire had a fragile balance, split between 10 major and nearly 400 minor states and principalities, as well as two opposing religions. The power of the Emperor was quite limited beyond his direct domains and the erratic and inconsistent behavior of some of them as Rudolph II, such increased frictions. In 1608, the Protestant city of Donauwerth refused Catholics the right to practice their cult and was banned from the Empire. As a reaction, most German Protestant states formed the Evangelic Union to defend their freedom.
+
+	date = { day = 1 month = january year = 1605 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1609 }
+
+	action_a = {
+		name = "ACTIONNAME3634A" #Stay Neutral
+		command = { type = relation which = BRA value = -100 }
+		command = { type = relation which = HAN value = -100 }
+		command = { type = relation which = HES value = -100 }
+		command = { type = relation which = PFA value = -100 }
+		command = { type = relation which = BAD value = -100 }
+		#command = { type = relation which = THU value = -100 } #Bayreuth
+		command = { type = relation which = HAB value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME3634B" #Prepare to Join
+		command = { type = relation which = FRA value = 100 }
+		command = { type = relation which = BRA value = 150 }
+		command = { type = relation which = HAN value = 150 }
+		command = { type = relation which = HES value = 150 }
+		command = { type = relation which = PFA value = 150 }
+		command = { type = relation which = BAD value = 150 }
+		#command = { type = relation which = THU value = 150 } #Bayreuth
+		command = { type = relation which = SHL value = 150 }
+		command = { type = relation which = KLE value = 100 }
+		command = { type = relation which = KOL value = 50 }
+		command = { type = relation which = BAY value = 50 }
+		command = { type = relation which = PAP value = -100 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = relation which = HAB value = -150 }
+	}
+}
+
+#(1607-1609) The Catholic League
+event = {
+	id = 3624
+	trigger = {
+		OR = {
+			religion = catholic
+			religion = counterreform
+		}
+	}
+	random = no
+	country = SAC
+	name = "EVENTNAME3192" #The Catholic League
+	desc = "EVENTHIST3192"
+	#-#The German Catholic states felt threatened by the 1608 creation of the Evangelic Union of their northern Protestant neighbors, following the Donauwerth exclusion from the Empire. Feeling the urge to unite, they regrouped into a Catholic League that same year. The stage was set for the Thirty Years War.
+
+	date = { day = 1 month = january year = 1607 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1609 }
+
+	action_a = {
+		name = "ACTIONNAME3192A" #Prepare to Join
+		command = { type = relation which = FRA value = -100 }
+		command = { type = relation which = BRA value = -150 }
+		command = { type = relation which = HAN value = -150 }
+		command = { type = relation which = HES value = -150 }
+		command = { type = relation which = PFA value = -150 }
+		command = { type = relation which = BAD value = -150 }
+		#command = { type = relation which = THU value = -150 } #Bayreuth
+		command = { type = relation which = SHL value = -150 }
+		command = { type = relation which = KLE value = 50 }
+		command = { type = relation which = KOL value = 100 }
+		command = { type = relation which = BAY value = 100 }
+		command = { type = relation which = PAP value = 100 }
+		command = { type = relation which = SPA value = 100 }
+		command = { type = relation which = HAB value = 150 }
+	}
+	action_b = {
+		name = "ACTIONNAME3192B" #Stay Neutral
+		command = { type = relation which = BRA value = 50 }
+		command = { type = relation which = HAN value = 50 }
+		command = { type = relation which = HES value = 50 }
+		command = { type = relation which = PFA value = 50 }
+		command = { type = relation which = BAD value = 50 }
+		#command = { type = relation which = THU value = 50 } #Bayreuth
+		command = { type = relation which = BAY value = -50 }
+		command = { type = relation which = KLE value = -50 }
+		command = { type = relation which = KOL value = -50 }
+		command = { type = relation which = HAB value = -100 }
+	}
+}
+
+#(1609) The Cleves succession
+event = {
+	id = 273032 #triggered by KLE_200101 A/C/D / KLE_200103 A/C/D / KLE_200105 A/B/D / KLE_200107 A/C/D
+	random = no
+	country = SAC
+	name = "EVENTNAME273032" #The Cleves succession
+	desc = "EVENTHIST273032"
+	#-#Duke Johann Wilhelm of Jülich, Cleves and Berg died on March 25th 1609, in a state of complete insanity and without a child or brother. While in the United Duchies a woman could not succeed to the throne herself, succession through a female relative was possible. Hence the husbands of Johann Wilhelm's sisters claimed the inheritance. Duke Albrecht Friedrich of Prussia, married to the oldest sister Marie-Eleonore, had no male heir himself and ceded his claim to the husband of his daughter Anna, Elector Johann Sigismund of Brandenburg. This claim was questioned by the husband of the second sister Anna, Philipp Ludwig of Palatinate-Neuburg, who wanted the inheritance for his son Wolfgang Wilhelm. The Count of Nevers-Rethel, originally a sidebranch of the Cleves ducal dynasty, and the Elector of Saxony considered themselves legitimate heirs by virtue of several treaties, and the Emperor, desiring to expand the Habsburgs' supply base near the rebellious Netherlands, declared both female succession and the treaties invalid and was about to confiscate the United Duchies as a lapsed fief. The protestant princes of Brandenburg and Palatinate-Neuburg however, encouraged by the Evangelic Union, France and the Netherlands, managed to agree on a common administration in order to fight off all other claimants. They proclaimed complete religious toleration for all Christian confessions in the Duchies and were acknowledged by the Estates in Jule 1609. Unable to push his claim and unwilling to go to war over the matter, the Elector of Saxony made no real attempt to conquer the territories. The titles of Duke Jülich,Cleves and Berg and Count of Mark and Ravensberg were however used by the Electors of Saxony until the 18th century.
+
+	action_a = {
+		name = "ACTIONNAME273032A" #Claim the titles, but not the territories
+		command = { type = vp value = 20 }
+		command = { type = relation which = BRA value = -50 }
+		command = { type = relation which = KLE value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME273032B" #The Cleves inheritance is rightfully ours!
+		command = { type = addcore which = 334 } #Münster
+		command = { type = addcore which = 343 } #Kleves
+		command = { type = addcore which = 338 } #Geldre
+		command = { type = relation which = BRA value = -100 }
+		command = { type = relation which = KLE value = -100 }
+		command = { type = stability value = -1 }
+	}
+}
+#(1609) Inheritance of Cleves
+event = {
+	id = 273031 #triggered by KLE_200101 B / KLE_200103 B / KLE_200105 C / KLE_200107 B
+	random = no
+	country = SAC
+	name = "EVENTNAME273031" #Inheritance of Cleves
+	desc = "EVENTHIST273031"
+	#-#Duke Johann Wilhelm of Jülich, Cleves and Berg died on March 25th 1609, in a state of complete insanity and without a child or brother. While in the United Duchies a woman could not succeed to the throne herself, succession through a female relative was possible. Hence the husbands of Johann Wilhelm's sisters claimed the inheritance. Duke Albrecht Friedrich of Prussia, married to the oldest sister Marie-Eleonore, had no male heir himself and ceded his claim to the husband of his daughter Anna, Elector Johann Sigismund of Brandenburg. This claim was questioned by the husband of the second sister Anna, Philipp Ludwig of Palatinate-Neuburg, who wanted the inheritance for his son WolfgangWilhelm. The Count of Nevers-Rethel, originally a sidebranch of the Cleves ducal dynasty, and the Elector of Saxony considered themselves legitimate heirs by virtue of several treaties, and the Emperor, desiring to expand the Habsburgs' supply base near the rebellious Netherlands, declared both female succession and the treaties invalid and was about to confiscate the United Duchies as a lapsed fief. Our legitimate claim eventually prevailed and we are now in possession of the whole United Duchies.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = addcore which = 334 } #Münster
+		command = { type = addcore which = 343 } #Kleves
+		command = { type = addcore which = 338 } #Geldre
+		command = { type = inherit which = KLE }
+		command = { type = relation which = BRA value = -50 }
+	}
+}
+
+#(1682-1690) The Ottoman war
+event = {
+	id = 273009
+	trigger = {
+		atwar = no
+		war = { country = HAB country = TUR }
+		NOT = { exists = HUN }
+	}
+	random = no
+	country = SAC
+	name = "EVENTNAME179076" #The Ottoman war
+	desc = "EVENTHIST179076"
+	#-#In the winter of 1682-83 a defensive-offensive coalition of powers formed against the Turks. The Pope organized another Holy League comprising of Austria, Poland, Saxony and Bavaria. The Venetians determined to join the struggle, signed in March 1684. Russia was eventually to join this League in 1686.
+
+	date = { day = 0 month = january year = 1682 }
+	offset = 90
+	deathdate = { day = 0 month = june year = 1690 }
+
+	action_a = {
+		name = "ACTIONNAME179076A" #War then
+		command = { type = casusbelli which = TUR value = 100 }
+		command = { type = relation which = TUR value = -200 }
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = alliance which = HAB }
+	}
+}
+
+#(1689-1720) Hanover needs our support to become Elector
+event = {
+	id = 48007 #triggered by HAN_48006 A
+	random = no
+	country = SAC
+	name = "EVENTNAME48007" #Hanover needs our support to become Elector
+	desc = "EVENTHIST48007"
+	#-#The Duke of Hanover wants to stress his arguments and shows a token of his wealth.
+
+	action_a = {
+		name = "ACTIONNAME48007A" #You are welcome
+		command = { type = treasury value = 50 }
+	}
+}
+
+#(1697) The Polish Succession of 1697
+event = {
+	id = 3627 #triggered by POL_3486 A / POL_258084 A
+	trigger = {
+		NOT = {
+			vassal = { country = POL country = SAC }
+		}
+	}
+	random = no
+	country = SAC
+	name = "EVENTNAME3486" #The Polish Succession of 1697
+	desc = "EVENTHIST3486"
+	#-#The political sickness of the Polish body manifested itself fully after the death of Jan III Sobieski in 1696. The election that followed was one of the most dismal episodes in Polish parliamentary history. The primary candidates were the King's son Jakub Sobieski, François Louis de Bourbon, Prince de Conti, and Friedrich Augustus Wettin, Elector of Saxony. Jakub Sobieski was in Silesia at the time and was unlucky enough to be arrested by Saxon troops. On 27th June 1697 the Szlachta assembled on the election field voted overwhelmingly for the Prince de Conti and the Primate proclaimed him King. On the same evening a small group of malcontents 'elected' Friedrich Augustus, who marched into Poland at the head of a Saxon army. On September 15th, as the Prince de Conti, escorted by a French squadron under Jean Bart, was sailing through the Sound, Friedrich Augustus was crowned in Kraków by the Bishop of Kujavia as Augustus II of Poland. At the end of the month the Prince of Conti came ashore only to discover that he had been pipped at the post. His supporters were not keen to start a civil war, so he re-embarked and sailed back to France.
+
+	action_a = {
+		name = "ACTIONNAME3627A" #The Wettin Dynasty in Poland
+		command = { type = vassal which = POL }
+		command = { type = vp value = 200 }
+		command = { type = relation which = POL value = 100 }
+		command = { type = relation which = FRA value = -100 }
+		command = { type = relation which = RUS value = 100 }
+		command = { type = stability value = 2 }
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+	}
+}
+#(1697) The Polish Succession of 1697 (POL liege of SAC)
+event = {
+	id = 273018 #triggered by POL_3486 A / POL_258084 A
+	trigger = {
+		vassal = { country = POL country = SAC }
+	}
+	random = no
+	country = SAC
+	name = "EVENTNAME3486" #The Polish Succession of 1697
+	desc = "EVENTHIST3486"
+	#-#The political sickness of the Polish body manifested itself fully after the death of Jan III Sobieski in 1696. The election that followed was one of the most dismal episodes in Polish parliamentary history. The primary candidates were the King's son Jakub Sobieski, Francois Louis de Bourbon, Prince de Conti, and Friedrich Augustus Wettin, Elector of Saxony. Jakub Sobieski was in Silesia at the time and was unlucky enough to be arrested by Saxon troops. On 37th June 1697 the Szlachta assembled on the election field voted overwhelmingly for the Prince de Conti and the Primate proclaimed him King. On the same evening a small group of malcontents 'elected' Friedrich Augustus, who marched into Poland at the head of a Saxon army. On September 15th, as the Prince de Conti, escorted by a French squadron under Jean Bart, was sailing through the Sound, Friedrich Augustus was crowned in Kraków by the Bishop of Kujavia as Augustus II of Poland. At the end of the month the Prince of Conti came ashore only to discover that he had been pipped at the post. His supporters were not keen to start a civil war, so he re-embarked and sailed back to France.
+
+	action_a = {
+		name = "ACTIONNAME3627A" #The Wettin Dynasty in Poland
+		command = { type = breakvassal which = POL }
+		command = { type = vp value = 200 }
+		command = { type = dynastic which = POL }
+		command = { type = relation which = POL value = 100 }
+		command = { type = relation which = FRA value = -100 }
+		command = { type = relation which = RUS value = 100 }
+		command = { type = stability value = 5 }
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+	}
+}
+
+#(1697-1700) The Great Northern Conflict
+event = {
+	id = 3621
+	trigger = {
+		vassal = { country = SAC country = POL }
+		OR = {
+			owned = { province = 282 data =SWE }
+			owned = { province = 283 data =SWE }
+			owned = { province = 289 data =SWE }
+			owned = { province = 290 data =SWE }
+			owned = { province = 301 data =SWE }
+			owned = { province = 303 data =SWE }
+			owned = { province = 300 data =SWE }
+			owned = { province = 331 data =SWE }
+			owned = { province = 332 data =SWE }
+		}
+	}
+	random = no
+	country = SAC
+	name = "EVENTNAME3621" #The Great Northern Conflict
+	desc = "EVENTHIST3621"
+	#-#In 1697, the 15 year old Charles XII ascended the Swedish throne. Seeing the opportunity, the Russian Czar Peter I allied with Denmark and Poland-Saxony in 1699. However, with British and Dutch naval assistance, Charles XII landed on Zealand and promptly defeated the Danes, then moved to Estland where his badly outnumbered Swedes (1 to 5) won a crushing victory over the Russians. Instead of finishing the Russians, Charles moved against August II of Poland-Saxony and drove him out of Poland in 1704 (having the pro-Swedish Stanislaw Leszczynski elected King), then subjugating Saxony in 1706. While the Russians started the construction of St-Petersburg (1703) and rebuilt their armies, they also took parts of Estland (1704-1706). Charles then decided to march to Moscow via the Ukraine where the Cossacks under Mazeppa had again risen in revolt (1708). The harsh winter and Russian raids decimated his army and he was finally beaten at the battle of Poltava in 1709. The wounded King escaped to the Ottomans. The Russians were encircled by the Ottomans on the Prut River, but Peter succeeded through bribery to obtain a safe conduct in exchange for Azov. While Charles was still exiled in Turkey, Russian, Danish, Hanoverian and even Prussian troops captured most of the Swedish territory around the Baltic. Having emerged from Turkish internment, Charles got killed in 1718 in front of the Norwegian fortress of Frederickshald. The peace treaties that followed Sweden lost most of her Baltic empire.
+
+	date = { day = 15 month = june year = 1697 }
+	offset = 10
+	deathdate = { day = 1 month = april year = 1700 }
+
+	action_a = {
+		name = "ACTIONNAME3621A" #Advance!
+		command = { type = casusbelli which = SWE value = 36 }
+		command = { type = relation which = SWE value = -150 }
+		command = { type = relation which = DAN value = 150 }
+		command = { type = relation which = RUS value = 150 }
+		command = { type = relation which = POL value = 200 }
+		command = { type = INF which = -1 value = 15000 }
+		command = { type = CAV which = -3 value = 3000 }
+		command = { type = ART which = -3 value = 10 }
+		command = { type = stability value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3621B" #Let the Poles meet the Elephant first
+		command = { type = casusbelli which = SWE value = 36 }
+		command = { type = relation which = SWE value = -100 }
+		command = { type = relation which = DAN value = 50 }
+		command = { type = relation which = RUS value = -150 }
+		command = { type = relation which = POL value = 50 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1700-1720) August the Strong returns to the Throne of Poland
+event = {
+	id = 3737 #triggered by POL_3501
+	trigger = {
+		NOT = {
+			vassal = { country = POL country = SAC }
+		}
+	}
+	random = no
+	country = SAC
+	name = "EVENTNAME3737" #August the Strong returns to the Throne of Poland
+	desc = "EVENTHIST3737"
+	#-#Stanislaw Leszczynski had been elected Polish King in the light of the supreme power of Sweden in Eastern Europe. When that supremacy was lost on the Steppes of Russia in 1709, Russia picked up the mantle of supremacy. In the light of these new circumstances the Polish Szlachta easily found consensus for returning Friedrich Augustus II to the throne.
+
+	action_a = {
+		name = "ACTIONNAME3737A" #I am back!
+		command = { type = vassal which = POL }
+		command = { type = relation which = POL value = 150 }
+		command = { type = stability value = 2 }
+	}
+}
+#(1700-1720) August the Strong returns to the Throne of Poland (POL liege of SAC)
+event = {
+	id = 273019 #triggered by POL_3501
+	trigger = {
+		vassal = { country = POL country = SAC }
+	}
+	random = no
+	country = SAC
+	name = "EVENTNAME3737" #August the Strong returns to the Throne of Poland
+	desc = "EVENTHIST3737"
+	#-#Stanislaw Leszczynski had been elected Polish King in the light of the supreme power of Sweden in Eastern Europe. When that supremacy was lost on the Steppes of Russia in 1709, Russia picked up the mantle of supremacy. In the light of these new circumstances the Polish Szlachta easily found consensus for returning Friedrich Augustus II to the throne.
+
+	action_a = {
+		name = "ACTIONNAME3737A" #I am back!
+		command = { type = breakvassal which = POL }
+		command = { type = dynastic which = POL }
+		command = { type = relation which = POL value = 150 }
+		command = { type = stability value = 4 }
+	}
+}
+
+#(1729-1740) Bach (original by Paradox) - Flavor
+#by Henrik 'Doomdark' Fåhraeus - modified by Mfigueras
+event = {
+	id = 5170
+	trigger = {
+		stability = -1
+		OR = {
+			religion = reformed
+			religion = protestant
+		}
+	}
+	random = no
+	country = SAC
+	name = "EVENTNAME5170" #Johann Sebastian Bach
+	desc = "EVENTHIST5170"
+	#-#Bach was a composer of the Baroque era the most celebrated member of a large family of northern German musicians. Although he was admired by his contemporaries primarily as an outstanding harpsichordist organist and expert on organ building Bach is now generally regarded as one of the greatest composers of all time.
+
+	date = { day = 1 month = january year = 1729 }
+	offset = 90
+	deathdate = { day = 29 month = december year = 1740 }
+
+	action_a = {
+		name = "OK"
+		command = { type = vp value = 15 }
+		command = { type = infra value = 15 }
+	}
+}
+
+#(1730) Gottsched publishes the Versuch einer rationalistischen Dichtkunst
+#by Twoflower
+event = {
+	id = 273029
+	random = no
+	country = SAC
+	name = "EVENTNAME273029" #Johann Christoph Gottsched
+	desc = "EVENTHIST273029"
+	#-#The works of Johann Christoph Gottsched introduced the principles of the, Enlightenment to German literature. As a literary critic and theorist, Gottsched tried to construct a completely new literature on, rationalist principles. In his main work, 'Versuch einer critischen, Dichtkunst' (A Critical Approach to Poetry) published in 1730, Gottsched rejected poetic conceit, stressing instead the purity of, language and classical form. Gottsched worked as a professor of poetry, and literature at the University of Leipzig for most of his life, dominating the intellectual life of that city as well as 18th century, German literature until Lessing began to question these ideas and the, Sturm und Drang movement established another understanding of poetry, in the Germanic states.
+
+	date = { day = 1 month = january year = 1730 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1730 }
+
+	action_a = {
+		name = "ACTIONNAME273029A" #Interesting ideas
+		command = { type = infra value = 30 }
+	}
+}
+
+#(1733) The Polish Succession of 1733
+event = {
+	id = 3628 #triggered by POL_3495 A
+	trigger = {
+		NOT = {
+			vassal = { country = POL country = SAC }
+		}
+	}
+	random = no
+	country = SAC
+	name = "EVENTNAME3495" #The Polish Succession of 1733
+	desc = "EVENTHIST3628"
+	#-#In 1733, the death of August II prompted a new election for the Polish monarch. Due to the permanent practice of Liberum Veto and the ensuing constant bribery, the Polish Sejm was unable to agree between the French Candidate, Stanislaw Leszczynski and his opponent, August III of Saxony, supported by Austria and Russia. The Sejm finally agreed on Stanislaw, but this was rejected by Austria and Russia starting the war of Polish Succession. The war ended with August III on the Polish throne. We have been elected!
+
+	action_a = {
+		name = "ACTIONNAME3628A" #Risk Major War for this Kingdom
+		command = { type = dynastic which = POL }
+		command = { type = alliance which = POL }
+		command = { type = vassal which = POL }
+		command = { type = relation which = POL value = 100 }
+		command = { type = relation which = RUS value = 200 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = FRA value = -150 }
+		command = { type = relation which = PRU value = 100 }
+		command = { type = relation which = SWE value = -100 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3628B" #Back down
+		command = { type = trigger which = 3487 } #POL: Friedrich Augustus Wettin backs down
+		command = { type = relation which = POL value = -100 }
+		command = { type = relation which = RUS value = -100 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = FRA value = 150 }
+		command = { type = relation which = PRU value = -100 }
+		command = { type = relation which = SWE value = 100 }
+		command = { type = stability value = -2 }
+		command = { type = sleepevent which = 3136 } #FRA: The Polish Succession of 1733
+		command = { type = sleepevent which = 3429 } #RUS: The Polish Succession of 1733
+		command = { type = sleepevent which = 3204 } #HAB: The Polish Succession of 1733
+		command = { type = sleepevent which = 285271 } #SPA: The Polish Succession of 1733
+		command = { type = sleepevent which = 275025 } #SAV: The Polish Succession of 1733
+		command = { type = sleepevent which = 390029 } #PAR: The Polish Succession of 1733
+		command = { type = sleepevent which = 390025 } #PAR: Regno delle Due Sicilie
+		command = { type = sleepevent which = 3625 } #SAC: The Effects of the Pragmatic Sanction
+		command = { type = sleepevent which = 285096 } #SPA: The Kingdom of Naples and Sicily
+		command = { type = sleepevent which = 239025 } #NAP: The Bourbon Dynasty in Naples
+	}
+}
+#(1733) The Polish Succession of 1733
+event = {
+	id = 273017 #triggered by POL_3495 A
+	trigger = {
+		vassal = { country = POL country = SAC }
+	}
+	random = no
+	country = SAC
+	name = "EVENTNAME3495" #The Polish Succession of 1733
+	desc = "EVENTHIST3628"
+	#-#In 1733, the death of August II prompted a new election for the Polish monarch. Due to the permanent practice of Liberum Veto and the ensuing constant bribery, the Polish Sejm was unable to agree between the French Candidate, Stanislaw Leszczynski and his opponent, August III of Saxony, supported by Austria and Russia. The Sejm finally agreed on Stanislaw, but this was rejected by Austria and Russia starting the war of Polish Succession. The war ended with August III on the Polish throne. We have been elected!
+
+	action_a = {
+		name = "ACTIONNAME3628A" #Risk Major War for this Kingdom
+		command = { type = breakvassal which = POL }
+		command = { type = stability value = 4 }
+		command = { type = dynastic which = POL }
+		command = { type = alliance which = POL }
+		command = { type = relation which = POL value = 200 }
+		command = { type = relation which = RUS value = 200 }
+		command = { type = relation which = HAB value = 200 }
+		command = { type = relation which = FRA value = -100 }
+		command = { type = relation which = PRU value = 100 }
+		command = { type = relation which = SWE value = -100 }
+	}
+	action_b = {
+		name = "ACTIONNAME3628B" #Back down
+		command = { type = relation which = POL value = -100 }
+		command = { type = relation which = RUS value = -100 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = FRA value = 150 }
+		command = { type = relation which = PRU value = -100 }
+		command = { type = relation which = SWE value = 100 }
+		command = { type = stability value = -2 }
+		command = { type = trigger which = 3487 } #POL: Friedrich Augustus Wettin backs down
+		command = { type = sleepevent which = 3136 } #FRA: The Polish Succession of 1733
+		command = { type = sleepevent which = 3429 } #RUS: The Polish Succession of 1733
+		command = { type = sleepevent which = 3204 } #HAB: The Polish Succession of 1733
+		command = { type = sleepevent which = 285271 } #SPA: The Polish Succession of 1733
+		command = { type = sleepevent which = 275025 } #SAV: The Polish Succession of 1733
+		command = { type = sleepevent which = 390029 } #PAR: The Polish Succession of 1733
+		command = { type = sleepevent which = 390025 } #PAR: Regno delle Due Sicilie
+		command = { type = sleepevent which = 3625 } #SAC: The Effects of the Pragmatic Sanction
+		command = { type = sleepevent which = 285096 } #SPA: The Kingdom of Naples and Sicily
+		command = { type = sleepevent which = 239025 } #NAP: The Bourbon Dynasty in Naples
+	}
+}
+#(1733) The Polish Succession of 1733
+event = {
+	id = 3626 #triggered by POL_3495 B / POL_285086 A
+	random = no
+	country = SAC
+	name = "EVENTNAME3495" #The Polish Succession of 1733
+	desc = "EVENTHIST3626"
+	#-#In 1733, the death of August II prompted a new election for the Polish monarch. Due to the permanent practice of Liberum Veto and the ensuing constant bribery, the Polish Sejm was unable to agree between the French Candidate, Stanislaw Leszczynski and his opponent, August III of Saxony, supported by Austria and Russia. The Sejm finally agreed on Stanislaw, but this was rejected by Austria and Russia starting the war of Polish Succession. The war ended with August III on the Polish throne. The evil Stanislaw have been elected!
+
+	action_a = {
+		name = "ACTIONNAME3626A" #I want revenge
+		command = { type = relation which = POL value = 100 }
+		command = { type = relation which = RUS value = 200 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = FRA value = -150 }
+		command = { type = relation which = PRU value = 100 }
+		command = { type = relation which = SWE value = -100 }
+		command = { type = stability value = 1 }
+		command = { type = trigger which = 3528 } #PRU: The Polish Succession of 1733
+	}
+	action_b = {
+		name = "ACTIONNAME3626B" #Let's listen to some poetry instead
+		command = { type = relation which = POL value = -100 }
+		command = { type = relation which = RUS value = -100 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = FRA value = 150 }
+		command = { type = relation which = PRU value = -100 }
+		command = { type = relation which = SWE value = 100 }
+		command = { type = stability value = 3 }
+		command = { type = sleepevent which = 3136 } #FRA: The Polish Succession of 1733
+		command = { type = sleepevent which = 3429 } #RUS: The Polish Succession of 1733
+		command = { type = sleepevent which = 3204 } #HAB: The Polish Succession of 1733
+		command = { type = sleepevent which = 285271 } #SPA: The Polish Succession of 1733
+		command = { type = sleepevent which = 275025 } #SAV: The Polish Succession of 1733
+		command = { type = sleepevent which = 390029 } #PAR: The Polish Succession of 1733
+		command = { type = sleepevent which = 390025 } #PAR: Regno delle Due Sicilie
+		command = { type = sleepevent which = 285096 } #SPA: The Kingdom of Naples and Sicily
+		command = { type = sleepevent which = 239025 } #NAP: The Bourbon Dynasty in Naples
+	}
+}
+
+#(1741) The Effects of the Pragmatic Sanctions
+event = {
+	id = 3625
+	trigger = {
+		exists = HAB
+		OR = {
+			event = 3527 #PRU: The Effects of the Pragmatic Sanction
+			event = 3616 #BAY: The Effects of the Pragmatic Sanction
+		}
+	}
+	random = no
+	country = SAC
+	name = "EVENTNAME3205" #The Effects of the Pragmatic Sanction
+	desc = "EVENTHIST3205"
+	#-#The Pragmatic Sanction, solemnly rendered by Emperor Charles VI on 19th April 1713, established the indivisibility of the Habsburg patrimony, and ruled the order of succession by order of first born child, even to a woman. This made Maria-Theresa, born in 1717, the heir of the Empire. The Pragmatic Sanction was recognized by Spain in 1725 (confirmed in 1731), Russia in 1726, Prussia in 1728, the United Provinces in 1731, Hanover in 1732, the Heiliges Reich (except Bavaria) in 1732 and France in 1738 only. Bavarian refusal would lead to the War of the Austrian Succession.
+
+	date = { day = 1 month = january year = 1741 }
+	offset = 10
+	deathdate = { day = 1 month = june year = 1741 }
+
+	action_a = {
+		name = "ACTIONNAME3616C" #Pro-Habsburg
+		command = { type = casusbelli which = HAB value = 36 }
+		command = { type = stability value = -1 }
+		command = { type = relation which = PRU value = 150 }
+		command = { type = relation which = BAY value = 150 }
+		command = { type = relation which = GEN value = 50 }
+		command = { type = relation which = FRA value = 150 }
+		command = { type = relation which = ENG value = -100 }
+		command = { type = relation which = HOL value = -100 }
+		command = { type = relation which = RUS value = -100 }
+		command = { type = relation which = HES value = -50 }
+		command = { type = relation which = HAN value = -50 }
+		command = { type = relation which = HAB value = -150 }
+	}
+	action_b = {
+		name = "ACTIONNAME3616B" #Neutral
+		command = { type = relation which = PRU value = -50 }
+		command = { type = relation which = BAY value = -50 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = relation which = ENG value = 100 }
+		command = { type = relation which = HOL value = 100 }
+		command = { type = relation which = RUS value = 50 }
+		command = { type = relation which = HES value = 100 }
+		command = { type = relation which = HAN value = 100 }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = stability value = 1 }
+	}
+	action_c = {
+		name = "ACTIONNAME3616A" #Anti-Habsburg
+		command = { type = relation which = PRU value = -150 }
+		command = { type = relation which = BAY value = -150 }
+		command = { type = relation which = FRA value = -150 }
+		command = { type = relation which = ENG value = 150 }
+		command = { type = relation which = HOL value = 100 }
+		command = { type = relation which = RUS value = 50 }
+		command = { type = relation which = HES value = 150 }
+		command = { type = relation which = HAN value = 150 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = stability value = -2 }
+		command = { type = casusbelli which = PRU value = 12 }
+	}
+}
+
+#(1753-1772) The Prussian threat
+#by Bordic
+event = {
+	id = 273033
+	trigger = { event = 179053 } #HAB: The Reversion of all alliances
+	random = no
+	country = SAC
+	name = "EVENTNAME271003" #The Prussian threat
+	desc = "EVENTHIST179053"
+	#-#In 1740s the problem of Maria Theresia's succession to the Austrian throne and to the Habsburg inheritance caused a big instability in the European balance of powers which led to the War of Austrian succession. The peace that followed the conflict, provoked by the foreign opposition to the Pragmatic Sanction stated by the former Emperor Charles VI and ended with the Treaty of Aix-la-Chapelle in 1748, resulted in a well defined rivalry between major European powers forming essentially two main political formations: the alliance of the socalled 'Bourbon family pact' (France, Spain, Naples and the latest Parma, all with members of the same House of Bourbons) with Prussia and the alliance between Austria, Russia and England. Disappointed by England's interested approaches to the emerging power of Prussia wich led to the Convention of Westminster, a treaty with which both countries would avoid any foreign military presence or access in the German territories, Austria strengthened her political ties with Saxony, Russia and Sweden and started new diplomatic handlings with France, traditionally an arch-enemy of the Habsburgs since the old dispute over the Burgundian inheritance but for sure the most powerful antagonist to the rising British colonial empire. And an alliance with France would also mean the support of Spain and the Bourbon Italian monarchies. That diplomatic move would lead to a huge world conflict fought in the years between 1756 and 1763: the socalled 'Seven Years War'.
+
+	date = { day = 1 month = January year = 1753 }
+	offset = 20
+	deathdate = { day = 0 month = january year = 1772 }
+
+	action_a = {
+		name = "ACTIONNAME170120A" #Side with the Habsburgs
+		command = { type = casusbelli which = PRU value = 36 }
+		command = { type = relation which = FRA value = 150 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = RUS value = 150 }
+		command = { type = relation which = SWE value = 150 }
+		command = { type = relation which = PRU value = -150 }
+	}
+	action_b = {
+		name = "ACTIONNAME179053B" #Stay Neutral
+		command = { type = stability value = -1 }
+		command = { type = relation which = FRA value = 25 }
+		command = { type = relation which = HAB value = -25 }
+		command = { type = relation which = RUS value = 25 }
+		command = { type = relation which = SWE value = 25 }
+		command = { type = relation which = PRU value = 25 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 273021-273028 - 273034-273035 - next: 273039

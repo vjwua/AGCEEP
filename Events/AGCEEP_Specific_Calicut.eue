@@ -1,0 +1,235 @@
+#Calicut (FAT)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1502-1523) Bombardment of Calicut
+event = {
+	id = 364000 #triggered by POR_260034
+	random = no
+	country = FAT
+	name = "EVENTNAME364000" #Bombardment of Calicut
+	desc = "EVENTHIST364000"
+	#-#After refusing Vasco Da Gama's request that he eject all Muslim merchants from the city, Calicut finds itself under Portuguese attack. The market area of the city suffers substantial damage.
+
+	action_a = {
+		name = "ACTIONNAME364000A" #Confounded Swine!
+		command = { type = relation which = POR value = -300 }
+		command = { type = merchants value = -6 }
+		command = { type = population which = -2 value = -3000 }
+		command = { type = trigger which = 355000 } #COI: Da Gama's Proposition
+	}
+}
+
+#(1503-1523) The Treachery of Cochin
+event = {
+	id = 364001
+	trigger = {
+		OR = {
+			AND = {
+				event = 260220 #POR: Malabar Coast
+				exists = POR
+			}
+			vassal = { country = POR country = COI }
+		}
+	}
+	random = no
+	country = FAT
+	name = "EVENTNAME364001" #The Treachery of Cochin
+	desc = "EVENTHIST364001"
+	#-#Using Vasco Da Gama's attack as a smoke screen, the Raja of Cochin treacherously breaks his ties to the Samoothiri Kingdom of Calicut.
+
+	date = { day = 1 month = march year = 1503 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1523 } #just before Vasco da Gama's death
+
+	action_a = {
+		name = "ACTIONNAME364001A" #They Shall not Escape
+		command = { type = trigger which = 355001 } #COI: Samoothiri Invasion
+		command = { type = casusbelli which = COI value = 120 }
+		command = { type = relation which = COI value = -100 }
+		command = { type = relation which = POR value = -100 }
+	}
+	action_b = {
+		name = "ACTIONNAME364001B" #Who Needs Them
+		command = { type = relation which = COI value = 100 }
+		command = { type = relation which = POR value = 100 }
+	}
+}
+
+#(1503-1523) Anti-Portuguese Feelings
+event = {
+	id = 364002
+	trigger = {
+		event = 260221 #POR: Cochin Asks for Assistance
+		NOT = {
+			event = 364003 #FAT: Commercial Treaty with Portugal
+		}
+	}
+	random = no
+	country = FAT
+	name = "EVENTNAME364002" #Anti-Portuguese Feelings
+	desc = "EVENTHIST364002"
+	#-#Resentful of the Portuguese usurpation of their position in the Indian Ocean carrying trade as well as their loss of control over Cochin, the rulers of Calicut constantly intrigued against the Portuguese as well as occasionally attacking them.
+
+	date = { day = 1 month = march year = 1503 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1533 }
+
+	action_a = {
+		name = "ACTIONNAME364002A" #Damn the Interlopers!
+		command = { type = relation which = POR value = -200 }
+		command = { type = casusbelli which = POR value = 120 }
+	}
+}
+
+#(1513-1523) Commercial Treaty with Portugal
+event = {
+	id = 364003
+	trigger = {
+		owned = { province = 573 data = POR } #Cochin
+	}
+	random = no
+	country = FAT
+	name = "EVENTNAME364003" #Commercial Treaty with Portugal
+	desc = "EVENTHIST364003"
+	#-#After over a decade of hostility, Portugal and Calicut normalize relations with the signing of a treaty of peace, friendship, and commerce.
+
+	date = { day = 1 month = march year = 1513 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1523 } #just before Vasco da Gama's death
+
+	action_a = {
+		name = "ACTIONNAME364003A" #Sign the Treaty
+		command = { type = relation which = POR value = 250 }
+		command = { type = treasury value = 200 }
+		command = { type = merchants value = 3 }
+		command = { type = trigger which = 260222 } #POR: Commercial Treaty with Calicut
+	}
+	action_b = {
+		name = "ACTIONNAME364003B" #Refuse the Treaty
+		command = { type = relation which = POR value = -100 }
+	}
+}
+
+#(1524-1540) Assassination Attempt
+event = {
+	id = 364005
+	trigger = {
+		owned = { province = 573 data = POR } #Cochin
+	}
+	random = no
+	country = FAT
+	name = "EVENTNAME364005" #Assassination Attempt
+	desc = "EVENTHIST364005"
+	#-#When an attempt was made on the King's life, Calicut's nobles suspected Portuguese instigation, ruining a decade's worth of detente between the two trading powers.
+
+	date = { day = 1 month = january year = 1524 }
+	offset = 5000
+	deathdate = { day = 29 month = december year = 1540 }
+
+	action_a = {
+		name = "ACTIONNAME364005A" #Unconscionable Swine!
+		command = { type = relation which = POR value = -300 }
+		command = { type = casusbelli which = POR value = 120 }
+	}
+}
+
+#(1591-1597) Portuguese Factory at Calicut
+event = {
+	id = 364006
+	trigger = {
+		owned = { province = 573 data = POR } #Cochin
+	}
+	random = no
+	country = FAT
+	name = "EVENTNAME364006" #Portuguese Factory at Calicut
+	desc = "EVENTHIST364006"
+	#-#After years of fruitless hostility and economic hardship, Calicut finally agrees to accept a Portuguese factory within its walls.
+
+	date = { day = 1 month = january year = 1591 }
+	offset = 180
+	deathdate = { day = 29 month = december year = 1597 }
+
+	action_a = {
+		name = "ACTIONNAME364006A" #Permit the Factory
+		command = { type = relation which = POR value = 200 }
+		command = { type = removecore which = 573 } #Cochin
+		command = { type = merchants value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME364006B" #Maintain Hostility to Portugal
+		command = { type = casusbelli which = POR value = 120 }
+		command = { type = merchants value = -2 }
+		command = { type = treasury value = -100 }
+	}
+}
+
+#(1598-1600) The Surrender of Kunjali Marakkar
+event = {
+	id = 364007
+	trigger = {
+		exists = POR
+		event = 364006 #POR: Portuguese Factory at Calicut
+	}
+	random = no
+	country = FAT
+	name = "EVENTNAME364007" #The Surrender of Kunjali Marakkar
+	desc = "EVENTHIST364007"
+	#-#Calicut's fearless naval commander Kunjali Marakkar has fought on against the Portuguese despite his government's decision to normalize relations with the colonial powers. Having apprehended Kunjali, Calicut's King now has the chance to turn him over to the Portuguese.
+
+	date = { day = 1 month = january year = 1598 }
+	offset = 700
+	deathdate = { day = 29 month = december year = 1600 }
+
+	action_a = {
+		name = "ACTIONNAME364007A" #Give Kunjali to Portugal
+		command = { type = relation which = POR value = 200 }
+		command = { type = sleepleader which = 047304 } #Marakkar (FAT)
+		command = { type = breakvassal which = VIJ } #one of the most plausible overlords
+		command = { type = trigger which = 364004 } #FAT: Submission to Portugal
+	}
+	action_b = {
+		name = "ACTIONNAME364007B" #Free Kunjali
+		command = { type = relation which = POR value = -100 }
+		command = { type = merchants value = -3 }
+		command = { type = treasury value = -200 }
+	}
+}
+#(1598-1600) Submission to Portugal
+event = {
+	id = 364004 #triggered by FAT_364007 A
+	random = no
+	country = FAT
+	name = "EVENTNAME364004" #Submission to Portugal
+	desc = "EVENTHIST364004"
+	#-#With Kunjali Marakkar out of the way, our ruler is now free to submit to the Portuguese.
+
+	action_a = {
+		name = "AT_LAST"
+		command = { type = trigger which = 260223 } #POR: Calicut is cowed
+	}
+}
+
+#(1658-1740) Dutch ascendancy in Malabar
+event = {
+	id = 364008 #triggered by POR_260225 A
+	trigger = {
+		vassal = { country = POR country = FAT }
+	}
+	random = no
+	country = FAT
+	name = "EVENTNAME364008" #Dutch ascendancy in Malabar
+	desc = "EVENTHIST260225"
+	#-#Symptomatic of a larger decline in Portuguese fortunes, Cochin falls to Dutch forces in 1662.
+
+	action_a = {
+		name = "OH_WELL"
+		command = { type = secedeprovince which = HOL value = 573 } #Cochin
+		command = { type = breakvassal which = POR }
+		command = { type = stability value = 3 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 364009

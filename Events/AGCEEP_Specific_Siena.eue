@@ -1,0 +1,497 @@
+#Siena (PIS)
+
+#See AGCEEP_Alt_Italy.eue for KoI Alternative events
+
+#-----------------------------------------------------------------------------------------------
+
+#(1454) The Peace of Lodi
+#by Bordic
+event = {
+	id = 257000
+	trigger = {
+		exists = VEN
+		exists = MLO
+		exists = TOS
+		exists = PAP
+		OR = {
+			event = 239022 #NAP: The Peace of Lodi
+			event = 111018 #ARG: The Peace of Lodi
+		}
+		atwar = no
+	}
+	random = no
+	country = PIS
+	name = "EVENTNAME228034" #The Peace of Lodi
+	desc = "EVENTHIST326038"
+	#-#During the war of succession in Milan, all the belligerent nations were brought to exhaustion of money and troops. Francesco Sforza, ruler of Milan and Venice, the chief state of the league confederates, who was more and more threatened by the advancing Ottomans in her eastern Mediterranean territories, convened a cease-fire while a bilateral treaty was hastily signed in Lodi on 7 April 1454. With that treaty Sforza was legitimated Duke of Milan. Without even being called for, Florence and the Pope had no choice then to endorse the treaty. The King of Naples, being a rightful claimant on the ducal throne reluctantly joined the alliance under the condition to keep Genoa out of it. Intended 'infra terminos italicos', that treaty showed the objective impossibility for all the Italian major powers (specifically Milan, Tuscany, Venice, Naples and Papal States) to prevail upon each other in the struggle for the hegemony in Italy and that the better solution was to come to terms with each other. That would have also avoided the practice of very expensive and pointless wars in the next future. Although the treaty actually played a minor part in Italian balance of powers and so won't be able to avoid future wars of aggression from inside as well from outside Italy, the post-Lodi era historically represented a period of relative peace in which the figurative arts definitively flourished in the whole Italian peninsula, as well as economy and trade and, last but not the least, the skills and tricks of the art of diplomacy.
+
+	date = { day = 7 month = April year = 1454 }
+	offset = 30
+	deathdate = { day = 9 month = March year = 1466 }
+
+	action_a = {
+		name = "ACTIONNAME111018A" #Yes, peace
+		command = { type = relation which = VEN value = 50 }
+		command = { type = relation which = PAP value = 50 }
+		command = { type = relation which = TOS value = 50 }
+		command = { type = relation which = MLO value = 50 }
+		command = { type = relation which = NAP value = 50 }
+		command = { type = stability value = 1 }
+		command = { type = diplomats value = 4 }
+		command = { type = merchants value = 3 }
+	}
+}
+
+#(1458-1464) Election of Pius II
+event = {
+	id = 17345
+	trigger = {
+		exists = PAP
+		NOT = { war = { country = PIS country = PAP } }
+	}
+	random = no
+	country = PIS
+	name = "EVENTNAME17345" #Election of Pius II
+	desc = "EVENTHIST17345"
+	#-#In 1458 a Sienese was elected as Pope Pius II. With the stature he achieved by rising to the pontificate he and his partisans were able to assert control over the foreign policy of the Republic. The nobility were allowed to return to the city and given certain rights in the governement.
+
+	date = { day = 7 month = august year = 1458 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1464 }
+
+	action_a = {
+		name = "OK"
+		command = { type = stability value = 2 }
+		command = { type = DIP which = 2 value = 60 }
+		command = { type = trigger which = 17346 } #PAP: Election of Pius II
+		command = { type = domestic which = aristocracy value = 1 }
+	}
+}
+
+#(1464) Death of Pius II
+event = {
+	id = 17347
+	trigger = {
+		event = 17346 #PAP: election Pius II
+		vassal = { country = PAP country = PIS }
+	}
+	random = no
+	country = PIS
+	name = "EVENTNAME17347" #Death of Pius II
+	desc = "EVENTHIST17347"
+	#-#With the death of Pius II all papal influence over Siena was lost. His party's pre-eminence in Sienese policy was shattered, and all nobles were again expelled from any share in government.
+
+	date = { day = 16 month = august year = 1464 }
+
+	action_a = {
+		name = "OK"
+		command = { type = breakvassal which = PAP }
+		command = { type = stability value = 2 } #they need this because they are losing stab from breaking the vassalage
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = domestic which = mercantilism value = -1 } #merchants back in control
+	}
+}
+
+#(1482) Civil unrest
+event = {
+	id = 17348
+	random = no
+	country = PIS
+	name = "EVENTNAME17348" #Civil unrest
+	desc = "EVENTHIST17348"
+	#-#Between June 1482 and February 1483 Siena was torn by serious factional rioting. This led to yet another change in governement.
+
+	date = { day = 1 month = june year = 1482 }
+	offset = 10
+	deathdate = { day = 1 month = august year = 1482 }
+
+	action_a = {
+		name = "OK"
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 8 value = 8 }
+		command = { type = revolt which = -2 }
+	}
+}
+
+#(1487) Pandolfo Petrucci
+event = {
+	id = 17349
+	random = no
+	country = PIS
+	name = "EVENTNAME17349" #Pandolfo Petrucci
+	desc = "EVENTHIST17349"
+	#-#The rioting of 1482 brought a government of the party of the popolani - the party of the artisans, and the exile of many powerful merchants known as the 'noveschi'. However, within 5 years the noveschi had recovered their strength and unity, and in 1487 they returned to Siena and seized power under Pandolfo Petrucci. Without ever taking formal control, Petrucci ruled the city with an iron fist. However he brought good government to Siena and ended the constant feuding between factions. His foreign policy was based on friendship with Florence and France and Siena avoided the worst of the Italian Wars during his lifetime. Who should rule Siena?
+
+	date = { day = 21 month = july year = 1487 }
+
+	action_a = {
+		name = "ACTIONNAME17349A" #Petrucci
+		command = { type = gainbuilding which = -2 value = bailiff }
+		command = { type = stability value = 1 }
+		command = { type = infra value = 200 }
+		command = { type = domestic which = centralization value = 2 } #reduce power of factions
+		command = { type = domestic which = innovative value = -1 } #repressive
+		command = { type = domestic which = serfdom value = 1 }
+		command = { type = provincetax which = -2 value = 1 }
+		command = { type = relation which = FRA value = 100 }
+		command = { type = relation which = TOS value = 100 }
+		command = { type = sleepmonarch which = 0107500 } #Repubblica
+	}
+	action_b = {
+		name = "ACTIONNAME17349B" #The popolani
+		command = { type = sleepmonarch which = 0107503 } #Pandolfo Petrucci
+		command = { type = sleepmonarch which = 0107504 } #Borghese Petrucci
+		command = { type = sleepmonarch which = 0107505 } #Raffaele Petrucci
+		command = { type = sleepmonarch which = 0107506 } #Francesco Petrucci
+		command = { type = sleepmonarch which = 0107507 } #Fabio Petrucci
+		command = { type = sleepevent which = 17350 } #PIS: The fall of the Petrucci
+		command = { type = sleepevent which = 17353 } #PIS: The fall of the Petrucci
+		command = { type = sleepevent which = 257002 } #PIS: Il Valentino's offer
+		command = { type = stability value = -2 } #they were in trouble
+		command = { type = infra value = 200 }
+		command = { type = domestic which = centralization value = -1 } #more factionalism
+		command = { type = domestic which = mercantilism value = -1 } #small merchants more powerful
+		command = { type = relation which = NAP value = 100 } #the opposite of Franco-Florentine
+		command = { type = relation which = SPA value = 100 }
+		command = { type = relation which = ARG value = 100 }
+	}
+}
+
+#(1503) Siena in the Italian Wars - Il Valentino's proposal
+#by Bordic
+event = {
+	id = 257002
+	trigger = {
+		event = 17386 #PAP: The Rise of Duke Valentino
+		NOT = { war = { country = PIS country = FRA } }
+	}
+	random = no
+	country = PIS
+	name = "EVENTNAME257002" #Il Valentino's proposal
+	desc = "EVENTHIST257002"
+	#-#In conquering Milan, King Louis XII of France helped Cesare Borgia, Pope Alexander VI's son, to carve himself a principality in Romagna and Marche. In November 1499 Cesare Borgia, also known as 'il Valentino' because of his ducal title, started his adventure in Romagna and Marche, territories belonging to the Papal States only nominally and where the fiefs of Rimini, Pesaro, Imola, Faenza, Forli, Urbino and Camerino were declared forfeited with a Papal bull because they didn't pay the census to the Church. Imola and Faenza were his first conquests then he took Cesena but he had to suspend the military operations because of il Moro's restoration in Milan. He used the ceasefire to pay a visit in Rome for the Holy Year and to be appointed Gonfaloniere of the Church by his father. By the end of the year, Borgia resumed his military campaign and the following year, in 1501, with the conquests of Pesaro, Rimini and Faenza, he took control of Romagna, for which he obtained the ducal investiture by Pope Alexander VI. Cesare Borgia's greed wasn't yet satisfied, he also wanted to submit Bologna and Florence but since these asked Louis XII's military protection, he diverted to the other minor principalities in Tuscany, Umbria and Marches, where he managed to easily submit the signoria of Piombino, the duchies of Urbino and Camerino and the cities in Umbria. Then Borgia moved to Siena to offer his protection to the city with the promise to chase away the tyrannical Petrucci who in the meanwhile took refuge in Lucca. But the city of Siena, alarmed by Borgia's thirst of power, preferred to confirm Petrucci as 'Signore' and to look for French military protection. In 1503, Cesare's father (Pope Alexander VI) died and with him also the Duchy with which he was invested fell apart: Romagna went into chaos and Venice saw the opportunity to take control over there while the other principalities welcomed back their former 'signorie'. Still hoping to be of any help for the expansionist plans of the new elected Pope Julius II (formerly a sworn enemy of the Borgia family), he was arrested instead and sent to Spain.
+
+	date = { day = 17 month = January year = 1503 }
+
+	action_a = {
+		name = "ACTIONNAME257002A" #Ask for Louis XII's military protection
+		command = { type = treasury value = -75 } #price for the protection
+		command = { type = INF which = -2 value = 6000 }
+		command = { type = relation which = FRA value = 75 }
+		command = { type = relation which = PAP value = -75 }
+	}
+	action_b = {
+		name = "ACTIONNAME257002B" #He has made an offer we can't refuse
+		command = { type = stability value = -1 }
+		command = { type = sleepmonarch which = 0107501 } #Pandolfo Petrucci (doesn't work: just as a reminder)
+		command = { type = wakemonarch which = 0107502 } #Cesare Borgia ° (until the day of the arrest, 29 nov 1503)
+		command = { type = wakemonarch which = 0107503 } #Pandolfo Petrucci (restored to the throne)
+		command = { type = relation which = PAP value = 25 }
+		command = { type = revoltrisk which = 5 value = 24 }
+		command = { type = land value = 200 }
+	}
+}
+
+#(1524-1526) The fall of the Petrucci (SPA exists)
+event = {
+	id = 17350
+	trigger = {
+		event = 17349 #Pandolfo Petrucci
+		exists = SPA
+		NOT = { war = { country = PIS country = SPA } }
+	}
+	random = no
+	country = PIS
+	name = "EVENTNAME17350" #The fall of the Petrucci
+	desc = "EVENTHIST17350"
+	#-#After the death of Pandolfo Petrucci in 1512, Siena remained under the Petrucci family, but power passed betwen members of the family in bloody fashion. The Pope increasingly exerted his influence on the city and the various members of the family to further his goals in Siena. In 1524 the last of the Petrucci was driven from the city by an angry mob and Siena placed itself under the protection of Charles V of Spain. Who should protect us?
+
+	date = { day = 1 month = december year = 1524 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1526 }
+
+	action_a = {
+		name = "ACTIONNAME17350A" #Spain
+		command = { type = dynastic which = SPA }
+		command = { type = relation which = SPA value = 100 }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = relation which = PAP value = -50 }
+		command = { type = inflation value = -5 }#well seems like it would help get the finances in order
+		command = { type = stability value = 2 }
+		command = { type = trigger which = 17351 } #SPA: Sienese request
+		command = { type = sleepevent which = 17353 } #PIS: The fall of the Petrucci (no SPA)
+	}
+	action_b = {
+		name = "ACTIONNAME17350B" #Protect Ourselves
+		command = { type = sleepmonarch which = 0107508 } #Habsburg Regency
+		command = { type = wakemonarch which = 0107509 } #Repubblica *
+		command = { type = relation which = PAP value = -100 }
+		command = { type = stability value = -2 } #disorders
+		command = { type = infra value = -100 }
+		command = { type = revolt which = -2 }
+		command = { type = domestic which = centralization value = -2 } #more factionalism
+		command = { type = trigger which = 17352 } #PAP: Sienese defiance
+		command = { type = sleepevent which = 17353 } #PIS: The fall of the Petrucci (no SPA)
+	}
+}
+#(1524-1526) The Fall of the Petrucci (SPA doesn't exists, HAB must exist)
+event = {
+	id = 17353
+	trigger = {
+		event = 17349 #Pandolfo Petrucci
+		NOT = { war = { country = PIS country = HAB } }
+		NOT = { exists = SPA }
+		NOT = { event = 17350 } #PIS: The fall of the Petrucci
+		exists = HAB
+	}
+	random = no
+	country = PIS
+	name = "EVENTNAME17350" #The fall of the Petrucci
+	desc = "EVENTHIST17350"
+	#-#After the death of Pandolfo Petrucci in 1512, Siena remained under the Petrucci family, but power passed betwen members of the family in bloody fashion. The Pope increasingly exerted his influence on the city and the various members of the family to further his goals in Siena. In 1524 the last of the Petrucci was driven from the city by an angry mob and Siena placed itself under the protection of Charles V of Spain. Who should protect us?
+
+	date = { day = 1 month = december year = 1524 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1526 }
+
+	action_a = {
+		name = "ACTIONNAME17353A" #Austria
+		command = { type = dynastic which = HAB }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = relation which = PAP value = -50 }
+		command = { type = inflation value = -5 } #well seems like it would help get the finances in order
+		command = { type = stability value = 2 }
+		command = { type = trigger which = 17354 } #HAB: Sienese request
+		command = { type = sleepevent which = 17350 } #PIS: The fall of the Petrucci (SPA exists)
+	}
+	action_b = {
+		name = "ACTIONNAME17353B" #Protect Ourselves
+		command = { type = sleepmonarch which = 0107508 } #Habsburg Regency
+		command = { type = wakemonarch which = 0107509 } #Repubblica *
+		command = { type = relation which = PAP value = -100 }
+		command = { type = stability value = -2 } #disorders
+		command = { type = infra value = -100 }
+		command = { type = revolt which = -2 }
+		command = { type = domestic which = centralization value = -2 } #more factionalism
+		command = { type = trigger which = 17352 } #PAP: Sienese defiance
+		command = { type = sleepevent which = 17350 } #PIS: The fall of the Petrucci (SPA exists)
+	}
+}
+
+#(1552) Burnt Siena (SPA exists) -I-
+#with apologies to Crayola
+event = {
+	id = 17355
+	trigger = {
+		NOT = { event = 17354 } #HAB: Vassalizes PIS
+		exists = SPA
+		OR = {
+			AND = {
+				event = 17351 #SPA: Vassalizes PIS
+				vassal = { country = SPA country = PIS }
+			}
+			AND = {
+				vassal = { country = SPA country = PIS }
+				event = 338431 #ProvinceSpec*400: The Rebellion of Siena
+			}
+		}
+	}
+	random = no
+	country = PIS
+	name = "EVENTNAME17355" #Burnt Siena
+	desc = "EVENTHIST17355"
+	#-#In 1549 after increasing turmoil in Siena, the Spanish representative of the city, Don Diego di Mendoza, decided to build a fortress to ensure Spanish control of the territory. This decision was received with horror by the Sienese who begged with Charles V not to proceed. He refused, and several Sienese citizens in Rome received aid from French agents and collected an army. In 1552, as they marched on Siena the people revolted and threw out the Spanish troops, and an independent Siena took up a pro-French policy. Henri II, King of France, tried to exploit the situation by sending there an army led by Paul de Termes, who was successively substituted by Strozzi when an invasion of Corsica was attempted with the help of the Turkish fleet. On Emperor Charles V's decision to inflict an exemplary punishment upon the rebeling city, Cosimo I Duke of Tuscany responded to his call by invading and pillaging the villages surrounding Siena with the help of Spanish/imperial troops. After a year long siege laid by Medeghino and his Florentine troops, the city of Siena was eventually taken. Should we resist the Spanish, or accept the fortification?
+
+	date = { day = 28 month = july year = 1552 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1552 }
+
+	action_a = {
+		name = "ACTIONNAME17355A" #Resist
+		command = { type = breakvassal which = SPA }
+		command = { type = manpower value = 10 }
+		command = { type = treasury value = 50 }
+		command = { type = diplomats value = 2 }
+		command = { type = INF which = -2 value = 6000 }
+		command = { type = relation which = FRA value = 100 }
+		command = { type = relation which = TOS value = -100 }
+		command = { type = relation which = HAB value = -200 }
+		command = { type = sleepevent which = 17358 } #PIS: Burnt Siena -II-
+		command = { type = trigger which = 17356 } #SPA: Tuscany and the revolt in Siena
+		command = { type = trigger which = 285291 } #SPA: Revolt in Siena
+	}
+	action_b = {
+		name = "ACTIONNAME17355B" #Submit
+		command = { type = sleepmonarch which = 0107508 } #Habsburg Regency
+		command = { type = wakemonarch which = 0107509 } #Repubblica *
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = SPA value = 300 } #should allow them to annex
+		command = { type = relation which = HAB value = 100 }
+		command = { type = stability value = -3 }
+		command = { type = revolt which = -2 }
+		command = { type = fortress which = -2 value = 1 }
+		command = { type = sleepevent which = 17358 } #PIS: Burnt Siena -II-
+	}
+}
+#(1552) Burnt Siena (SPA doesn't exist, HAB must exist) -II-
+#with apologies to Crayola
+event = {
+	id = 17358
+	trigger = {
+		NOT = { exists = SPA }
+		NOT = { event = 17351 } #SPA: vassalized PIS
+		exists = HAB
+		OR = {
+			AND = {
+				event = 17354 #HAB: Vassalizes PIS
+				vassal = { country = HAB country = PIS }
+			}
+			AND = {
+				vassal = { country = HAB country = PIS }
+				event = 338431 #ProvinceSpec*400: The Rebellion of Siena
+			}
+		}
+	}
+	random = no
+	country = PIS
+	name = "EVENTNAME17355" #Burnt Siena
+	desc = "EVENTHIST17358"
+	#-#In 1549 after increasing turmoil in Siena, the Spanish representative of the city, Don Diego di Mendoza, decided to build a fortress to ensure Spanish control of the territory. This decision was received with horror by the Sienese who begged with Charles V not to proceed. He refused, and several Sienese citizens in Rome received aid from French agents and collected an army. In 1552, as they marched on Siena the people revolted and threw out the Spanish troops, and an independent Siena took up a pro-French policy. Henri II, King of France, tried to exploit the situation by sending there an army led by Paul de Termes, who was successively substituted by Strozzi when an invasion of Corsica was attempted with the help of the Turkish fleet. On Emperor Charles V's decision to inflict an exemplary punishment upon the rebeling city, Cosimo I Duke of Tuscany responded to his call by invading and pillaging the villages surrounding Siena with the help of Spanish/imperial troops. After a year long siege laid by Medeghino and his Florentine troops, the city of Siena was eventually taken. Should we resist the Austrians, or accept the fortification?
+
+	date = { day = 28 month = july year = 1552 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1552 }
+
+	action_a = {
+		name = "ACTIONNAME17355A" #Resist
+		command = { type = breakvassal which = HAB }
+		command = { type = manpower value = 10 }
+		command = { type = treasury value = 50 }
+		command = { type = diplomats value = 2 }
+		command = { type = INF which = -2 value = 6000 }
+		command = { type = relation which = FRA value = 100 }
+		command = { type = relation which = TOS value = -100 }
+		command = { type = sleepevent which = 17355 } #PIS: Burnt Siena -I-
+		command = { type = trigger which = 17359 } #HAB: Tuscany and the revolt in Siena
+		command = { type = trigger which = 179152 } #HAB: Revolt in Siena
+	}
+	action_b = {
+		name = "ACTIONNAME17355B" #Submit
+		command = { type = sleepmonarch which = 0107508 } #Habsburg Regency
+		command = { type = wakemonarch which = 0107509 } #Repubblica *
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = HAB value = 300 } #should allow them to annex
+		command = { type = stability value = -3 }
+		command = { type = revolt which = -2 }
+		command = { type = fortress which = -2 value = 1 }
+		command = { type = sleepevent which = 17355 } #PIS: Burnt Siena -I-
+	}
+}
+
+#(1559-1569) The fate of the Sienese Republic
+event = {
+	id = 257006
+	trigger = {
+		event = 285112 #SPA: The Treaty of Cateau-Cambrésis
+		event = 17357 #TOS: Revolt in Siena
+		atwar = no
+		exists = TOS
+	}
+	random = no
+	country = PIS
+	name = "EVENTNAME257006" #The fate of the Sienese Republic
+	desc = "EVENTHIST257006"
+	#-#In 1552 Siena rebelled to Emperor Charles V. As answer he sent troops to besiege the city to inflict an exemplary punishment upon it. After long siege the city of Siena eventually surrendered on 17 April 1555 and was forced to renew her allegiance to the Emperor. The Emperor, in return, granted the Republican liberty of the Sienese state and confirmed her magistrates. He also abandoned the project to build a new fortress offering a garrison at his expenses and conceded the general pardon to the citizenship. The Sienese republic would remain under imperial protection until 1557, when Felipe II King of Spain assigned the administration of the Sienese territory to Duke Cosimo I de' Medici with the exception of the Sienese coastal cities which constituted the Spanish State of Presidi. The fate of Siena was confirmed by the treaty of Cateau-Cambrésis in 1559.
+
+	date = { day = 2 month = April year = 1559 }
+	offset = 60
+	deathdate = { day = 20 month = April year = 1574 } #Cosimo's death
+
+	action_a = {
+		name = "ACTIONNAME257006A" #Submit to Cosimo de' Medici (End Game)
+		command = { type = trigger which = 297023 } #TOS: The Grand Duchy of Tuscany
+	}
+	action_b = {
+		name = "ACTIONNAME257006B" #Reject any foreign rule
+		command = { type = breakvassal which = FRA }
+		command = { type = breakvassal which = SPA }
+		command = { type = breakvassal which = HAB }
+		command = { type = breakvassal which = TOS }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = TOS value = -200 }
+		command = { type = trigger which = 297033 } #TOS: The defiance of Siena
+	}
+}
+
+#(1635-1670) The Economic Crisis in case Siena still exists - Ahistorical
+#by Bordic
+event = {
+	id = 257008 #triggered by ProvinceSpec_338238
+	trigger = {
+		owned = { province = 400 data = -1 } #Siena
+	}
+	random = no
+	country = PIS
+	name = "EVENTNAME220013" #The Economic Crisis
+	desc = "EVENTHIST220013"
+	#-#The Spanish hegemony in the Italian peninsula was exercised by means of heavy bureaucracy and harsh taxation directly in the Habsburg dominions of Milan and Naples and indirectly in the rest of the peninsula by forcing the other minor Italian states to respect Spanish economic and diplomatic directives. The vassalage to Spain, which granted to some extent an enduring peace in Italy afer the Italian Wars, which the historians would call 'the pax hispanica', together with the disuse of the Mediterranean sea as international trade route towards the East Indies brought the Italian economic system to eventually collapse. As a result of this agriculture will become the prevailing economic activity in Italy until the end of XIXth century. That meant the coming back to power of the landowning aristocracy.
+
+	action_a = {
+		name = "ACTIONNAME220013A" #We hope for better times!
+		command = { type = stability value = -2 }
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = domestic which = MERCANTILISM value = 1 }
+		command = { type = domestic which = SERFDOM value = 1 }
+		command = { type = domestic which = LAND value = 1 }
+		command = { type = trade value = -500 }
+		command = { type = infra value = -500 }
+		command = { type = naval value = -500 }
+	}
+}
+
+#(1675-1715) Economic and Social Decadence - Ahistorical
+#by Bordic
+event = {
+	id = 257009
+	trigger = {
+		NOT = {
+			countrysize = 10
+			domestic = { type = innovative value = 9 }
+			domestic = { type = serfdom value = 3 }
+			domestic = { type = aristocracy value = 1 }
+			event = 338232 #ProvinceSpec*389: The plague in Milan
+		}
+	}
+	random = no
+	country = PIS
+	name = "EVENTNAME251066" #Economic and Social Decadence
+	desc = "EVENTHIST251066"
+	#-#In the late XVIIth century, the disuse of the Mediterranean sea as the main international trade junction between Europa and the East Indies brought the Italian economic system to collapse. Italy became more removed from the mainstream of European development and each local administration along the peninsula lagged behind that of any other European contemporary. The practice of agriculture as prevailing economic activity meant the coming back to power of the most conservative landowning aristocracy. That economic backwardness associated with the effects of Counterreform deeply affected Italian social life too, now less and less inclined to accept innovation and to develop some entrepreneurial attitude.
+
+	date = { day = 26 month = january year = 1675 }
+	offset = 60
+	deathdate = { day = 0 month = january year = 1715 }
+
+	action_a = {
+		name = "ALAS"
+		command = { type = stability value = -1 }
+		command = { type = provincetax which = -2 value = -2 }
+		command = { type = provincemanpower which = -2 value = -1 }
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = domestic which = MERCANTILISM value = 1 }
+		command = { type = domestic which = SERFDOM value = 1 }
+		command = { type = domestic which = LAND value = 1 }
+		command = { type = trade value = -500 }
+		command = { type = infra value = -500 }
+		command = { type = naval value = -500 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 257010

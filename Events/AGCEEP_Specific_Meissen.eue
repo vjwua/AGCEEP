@@ -1,0 +1,410 @@
+#Meissen - Meiﬂen (MEI)
+
+#See AGCEEP_Alt_Germany.eue for KoG Alternative events
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419) The Hussite Wars
+event = {
+	id = 319600 #triggered by SIL_401000 / ROM_398000
+	random = no
+	country = MEI
+	name = "EVENTNAME188600" #The Hussite Wars
+	desc = "EVENTHIST188600"
+	#-#The Czech priest and professor Jan Hus developed radical reformatory demands on the base of the teachings of John Wyclif. Despite a guarantee of safe-conduct by Emperor Sigismund, he was executed at the stake for heresy at the Council of Constance in 1415. This could however not stop the Hussite movement in Bohemia. Hus' followers were rapidly growing, and when King Vaclav IV of Bohemia died and his brother Sigismund, already Emperor and King of Hungary was to succeed him, they, unwilling to forgive him the betrayal of Hus and afraid that he would suppress them, refused to acknowledge him and gained control of most of Bohemia proper - while the lands of the Bohemian crown and the catholic part of Bohemia accepted Sigismund. Due to its radical anti-clerical and anti-feudal tendencies Hussitism posed a big threat to the church and nobility in the countries adjacent to Bohemia. Several German and European princes therefore decided to oppose the Hussites and to support Sigismund in his struggle with them that lasted for almost two decades. Should we decide to fight these heretics, we should be aware that this would be internationally regarded as an intervention in favour of Sigismund as rightful King of Bohemia rather than a war of conquest, and that therefore, if Sigismund prevails and manages to restore royal authority, we would be expected to turn over any conquests in Bohemia to the Kingdom of Bohemia.
+
+	action_a = {
+		name = "ACTIONNAME258600B" #Express hostility
+		command = { type = relation which = SIL value = -200 }
+		command = { type = casusbelli which = SIL value = 120 }
+	}
+	action_b = {
+		name = "ACTIONNAME258600A" #Covertly provide aid
+		command = { type = treasury value = -25 }
+		command = { type = relation which = SIL value = 25 }
+	}
+}
+
+#(1419-1499) Catholicism restored in Bohemia
+event = {
+	id = 319601
+	trigger = {
+		OR = {
+			religion = reformed
+			religion = protestant
+		}
+		NOT = { exists = SIL }
+		NOT = {
+			AND = {
+				exists = BOH
+				OR = {
+					event = 129051 #BOH: Taborite republic
+					event = 129052 #BOH: Utraquist republic
+					event = 129053 #BOH: Podiebrad dynasty
+				}
+			}
+		}
+	}
+	random = no
+	country = MEI
+	name = "EVENTNAME179601" #The Hussite heresy is suppressed
+	desc = "EVENTHIST179601"
+	#-#The Kingdom of Bohemia has finally been won back for catholicism. As a consequence, the German princes who have been forced by the Hussites to adapt their misguided faith can now safely return to the Roman church. By a general indulgence the Pope will make sure they will be forgiven having turned to the heresy under compulsion.
+
+	date = { day = 17 month = august year = 1419 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1499 }
+
+	action_a = {
+		name = "ACTIONNAME179601A" #Restore Catholicism
+		command = { type = religion which = catholic }
+		command = { type = stability value = 3 }
+	}
+}
+
+#(1422) Wettins inherit the Electorate
+event = {
+	id = 319000 #triggered by SAC_273000 A
+	random = no
+	country = MEI
+	name = "EVENTNAME319000" #Meiﬂen inherits Saxony-Wittenberg
+	desc = "EVENTHIST273000"
+	#-#The influence of the Askanians who had once been the most powerful dynasty in Eastern Germany slowly faded in the 14th and 15th century. First in Brandenburg, then in Lauenburg and finally 1423 in electoral Saxony the branches got extinct, and the remaining members of the family lacked unity and determination to secure the territories. Instead, the Hohenzollern and Wettins were given the old Askanian lands and took their former rank. The last step in this process was the extinction of the electoral branch in Saxony-Wittenberg with the heirless death of Albrecht III. This caused a tough contest between the Hohenzoller Elector Friedrich of Brandenburg and the Wettin Margrave Friedrich IV of Meissen for Albrecht's possessions. Eventually, Emperor Sigismund decided in favour of the Wettin and granted the Electorate and Saxony-Wittenberg to him. Henceforth, the electoral title remained within the Wettin family that managed to become one of the predominant forces in the Empire while the Askanians left in Anhalt were virtually powerless.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = addcore which = 332 } #Anhalt
+		command = { type = inherit which = SAC }
+		command = { type = relation which = BRA value = -50 }
+	}
+}
+
+#(1425) The Wettin Electorate of Saxony
+event = {
+	id = 319001
+	trigger = {
+		event = 319000 #MEI: Meiﬂen inherits Saxony-Wittenberg
+		owned = { province = 332 data = -1 } #Anhalt
+		control = { province = 332 data = -1 } #Anhalt
+	}
+	random = no
+	country = MEI
+	name = "EVENTNAME319001" #The Wettin Electorate of Saxony
+	desc = "EVENTHIST319001"
+	#-#On August 1st 1425 the Electorate of Saxony was officially bestowed upon Friedrich of Meiﬂen in a ceremony in Ofen, along with the office of Imperial Archmarshall and the introduction to the electoral college.
+
+	date = { day = 0 month = august year = 1425 }
+
+	action_a = {
+		name = "ACTIONNAME319001A" #Thank you
+		command = { type = inherit which = SAC }
+		command = { type = vp value = 50 }
+		command = { type = flagname which = "" }
+		command = { type = country which = SAC }
+		command = { type = capital which = 332 } #Anhalt
+		command = { type = diplomats value = 6 }
+		command = { type = relation which = HUN value = 50 }
+		command = { type = relation which = MAI value = 50 }
+		command = { type = relation which = KOL value = 50 }
+		command = { type = relation which = PFA value = 50 }
+	}
+}
+
+#(1455-1490) Partition of Leipzig
+event = {
+	id = 319002
+	trigger = {
+		owned = { province = 331 data = -1 } #Sachsen
+		control = { province = 331 data = -1 }
+		owned = { province = 332 data = -1 } #Anhalt
+		control = { province = 332 data = -1 }
+		NOT = { exists = SAC }
+	}
+	random = no
+	country = MEI
+	name = "EVENTNAME319002" #Partition of the Wettin lands
+	desc = "EVENTHIST319002"
+	#-#The brothers Albrecht and Ernst ruled all Wettin lands except for the Duchy of Saxony-Wittenberg jointly since their father's death in 1464. For 20 years, they cooperated very well, conducted successful administrative, commercial and territorial reforms and led their country to prosperity. However, the heirless death of Wilhelm of Thuringia in 1480 sparked a quarrel between the two about who would rule Thuringia, also some differences about the government of Saxony emerged then. Eventually, Ernst, the elder who had the electoral title, was fed up with this and decided, against the resistance of the Saxonian estates, to partition all Wettin territories between him and his brother. On August 26th 1485 the partition was sealed in Leipzig, granting the Margraviate of Meissen and a small part of Thuringia to Albrecht and the rest, including the electorate, to Ernst. This division between the Ernestine and the Albertine branch of the Wettin dynasty turned out to be a perpetual one and their territories were never again entirely united.
+
+	date = { day = 26 month = august year = 1485 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1490 }
+
+	action_a = {
+		name = "ACTIONNAME319002A" #Remain in Dresden and govern the Albertine possessions
+		command = { type = stability value = -2 }
+		command = { type = capital which = 331 } #Sachsen
+		command = { type = independence which = SAC }
+		command = { type = secedeprovince which = SAC value = 332 } #Sachsen
+		command = { type = trigger which = 273002 } #SAC: Elector Ernst moves to Wittenberg
+		command = { type = sleepevent which = 273001 } #SAC: The electorate and Thuringia are given to Ernst
+	}
+	action_b = {
+		name = "ACTIONNAME319002B" #Move to Wittenberg and govern the Ernestine electorate
+		command = { type = inherit which = SAC }
+		command = { type = capital which = 332 } #Anhalt
+		command = { type = stability value = -2 }
+		command = { type = flagname which = "" }
+		command = { type = country which = SAC }
+	}
+}
+#(1455-1490) Elector Ernst moves to Wittenberg
+event = {
+	id = 319008 #triggered by SAC_273001
+	random = no
+	country = MEI
+	name = "EVENTNAME273002" #Elector Ernst moves to Wittenberg
+	desc = "EVENTHIST273002"
+	#-#While Albrecht remained in Dresden and got the richest part of the Wettin possessions, his brother Ernst moved to the old capital of the electorate, Wittenberg, and was formally in a superior rank. Nevertheless, after less than a century, the Albertine branch proved to be more powerful and achieved hegemony over the Ernestines.
+
+	action_a = {
+		name = "OK"
+		command = { type = breakvassal which = SAC }
+		command = { type = alliance which = SAC }
+		command = { type = relation which = SAC value = 200 }
+	}
+}
+
+#(1497) Trade Fair in Leipzig
+event = {
+	id = 319004
+	trigger = {
+		event = 273010
+		owned = { province = 331 data = -1 }
+		NOT = { event = 273011 } #same event for Saxony
+	}
+	random = no
+	country = MEI
+	name = "EVENTNAME273011" #Imperial privilege for the Leipzig trade fair
+	desc = "EVENTHIST273011"
+	#-#In 1497 Emperor Maximilian granted the Imperial privilege for a third annual trade fair to Leipzig, making it the empire's most important non-Hansa trading town. Almost all trade to the east was directed through Leipzig which therefore prospered and rapidly grew. The Pope confirmed Leipzig's privilege in 1514.
+
+	date = { day = 1 month = january year = 1497 }
+	offset = 250
+	deathdate = { day = 29 month = december year = 1497 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = trade value = 350 }
+		command = { type = merchants value = 3 }
+		command = { type = relation which = HAB value = 100 }
+	}
+}
+
+#(1498) The lordship of Friesland
+event = {
+	id = 22005
+	trigger = {
+		exists = FRI
+		NOT = { event = 273036 } #SAC: The lordship of Friesland
+	}
+	random = no
+	country = MEI
+	name = "EVENTNAME22005" #The lordship of Friesland
+	desc = "EVENTHIST22005"
+	#-#In return for services rendered, the Emperor has decided to bestow the lordship over Friesland upon us.
+
+	date = { day = 1 month = january year = 1498 }
+	offset = 350
+	deathdate = { day = 29 month = december year = 1498 }
+
+	action_a = {
+		name = "SPLENDID"
+		command = { type = vassal which = FRI }
+		command = { type = trigger which = 22006 } #FRI: Albrecht von Sachsen
+		command = { type = relation which = OLD value = -50 }
+		command = { type = relation which = GEL value = -50 }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = INF which = 337 value = 2000 } #Albrecht sent between 2000 and 3000 men to Friesland# #Friesen
+		command = { type = CAV which = 337 value = 1000 } #Friesen
+		command = { type = sleepevent which = 273036 } #SAC: The lordship of Friesland
+	}
+	action_b = {
+		name = "ACTIONNAME22005B" #No, thanks
+		command = { type = treasury value = 25 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = sleepevent which = 273036 } #SAC: The lordship of Friesland
+	}
+}
+
+#(1515) The sale of Friesland
+event = {
+	id = 22007
+	trigger = {
+		exists = BUR
+		OR = {
+			owned = { province = 339 data = HAB } #Holland
+			AND = {
+				owned = { province = 339 data = BUR } #Holland
+				OR = {
+					event = 3178 #HAB: The Habsburg inheritance of Burgundy (1477)
+					event = 137012 #BUR: Settlement at Arras (1482-1492)
+					event = 137021 #BUR: The new Archduke of Burgundy (1494)
+				}
+			}
+		}
+		OR = {
+			vassal = { country = MEI country = FRI }
+			owned = { province = 337 data = -1 } #Friesen
+		}
+		NOT = { event = 273037 } #MEI: The sale of Friesland
+	}
+	random = no
+	country = MEI
+	name = "EVENTNAME22007" #The sale of Friesland
+	desc = "EVENTHIST22007"
+	#-#In 1515, Georg had become so disappointed with being unable to control Friesland that he sold it to Charles II of Burgundy, who was trying to unite the Netherlands.
+
+	date = { day = 1 month = may year = 1515 }
+	offset = 25
+	deathdate = { day = 2 month = june year = 1515 }
+
+	action_a = {
+		name = "ACTIONNAME22007A" #Sell it!
+		command = { type = relation which = BUR value = 50 }
+		command = { type = trigger which = 22008 } #BUR: The sale of Friesland
+		command = { type = sleepevent which = 273037 } #SAC: The sale of Friesland
+	}
+	action_b = {
+		name = "ACTIONNAME22007B" #Do not sell it!
+		command = { type = relation which = BUR value = -50 }
+		command = { type = sleepevent which = 273037 } #SAC: The sale of Friesland
+	}
+}
+#(1515) Charles II bought Friesland
+event = {
+	id = 22009 #triggered by BUR_22008 A
+	trigger = {
+		event = 22007 #MEI: The sale of Friesland
+	}
+	random = no
+	country = MEI
+	name = "EVENTNAME22009" #Charles II bought Friesland
+	desc = "EVENTHIST22009"
+	#-#Charles II of Burgundy accepted our offer of selling Friesland to him for 200 ducats.
+
+	action_a = {
+		name = "SPLENDID"
+		command = { type = secedeprovince which = BUR value = 337 } #Friesen
+		command = { type = treasury value = 200 }
+		command = { type = breakvassal which = FRI }
+		command = { type = trigger which = 22025 } #FRI: The sale of Friesland (GEL doesn't exist)
+	}
+}
+
+#(1520-1590) Recovery of the Electorate
+event = {
+	id = 319006
+	trigger = {
+		NOT = { exists = SAC }
+		owned = { province = 332 data = -1 } #Anhalt
+		event = 273001 #Partition of Leipzig
+		event = 3622 #SAC: League of Schmalkalden
+	}
+	random = no
+	country = MEI
+	name = "EVENTNAME319006" #Recovery of the Electorate
+	desc = "EVENTHIST319006"
+	#-#When Johann Friedrich of Saxony and Philipp of Hessen attacked the catholic Duchy of Brunswick, violating, imperial law, the emperor used the opportunity to outlaw the leaders of the Schmalkaldic League and promised Johann Friedrich's, lands and the Saxon electorate to his Albertine relative Moritz of Meiﬂen. The Saxon army was engaged and completely defeated, by the joint forces of the Empire, Spain and Meiﬂen in the battle of M¸hlberg on April 24th 1547. A Saxon knight called Thilo, von Throta captured the fleeing Elector. Soon after, on June 4th 1547 Charles V bestowed all possessions of the Ernestine, branch upon Moritz and appointed him elector.
+
+	date = { day = 1 month = january year = 1520 }
+	offset = 100
+	deathdate = { day = 29 month = december year = 1590 }
+
+	action_a = {
+		name = "ACTIONNAME319006A" #Reclaim the Saxon Electorate
+		command = { type = flagname which = "" }
+		command = { type = country which = SAC }
+		command = { type = vp value = 30 }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = relation which = BAY value = 100 }
+		command = { type = relation which = HES value = -100 }
+		command = { type = relation which = BRA value = -100 }
+		#command = { type = relation which = MAG value = -100 } #Magdeburg
+		command = { type = relation which = PFA value = -100 }
+	}
+}
+
+#(1527-1529) The League of Schmalkalden
+event = {
+	id = 319005
+	trigger = {
+		exists = HAB
+		OR = {
+			religion = protestant
+			religion = reformed
+		}
+	}
+	random = no
+	country = MEI
+	name = "EVENTNAME3109" #The League of Schmalkalden
+	desc = "EVENTHIST3109"
+	#-#After Emperor Charles V had rejected the Protestants' confessional positions at the Imperial Parliament of Augsburg (1529-1530), the North German Protestant Imperial estates formed the League of Schmalkalden, with a joint army and treasury and seeking ties abroad (France). The League enjoyed early successes in the years 1532-1540 as the Emperor was threaten by Turkish danger and forced to conclude Religious peace settlements in Nuremberg (1532) and Kaaden (1534).
+
+	date = { day = 1 month = january year = 1527 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1529 }
+
+	action_a = {
+		name = "ACTIONNAME3109B" #Ignore it
+		command = { type = relation which = HES value = -100 }
+		command = { type = relation which = PFA value = -100 }
+		command = { type = relation which = SAC value = -100 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = STR value = -100 }
+	}
+	action_b = {
+		name = "ACTIONNAME3109A" #Give it our support
+		command = { type = relation which = FRA value = 100 }
+		command = { type = relation which = HES value = 150 }
+		command = { type = relation which = PFA value = 150 }
+		command = { type = relation which = SAC value = 150 }
+		command = { type = relation which = PAP value = -100 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = relation which = HAB value = -150 }
+		command = { type = relation which = STR value = 150 }
+		command = { type = sleepevent which = 319006 } #MEI: Recovery of the Electorate
+	}
+}
+
+#(1600-1803) Recovery of the Electorate
+#Switch to SAC tag after 1600
+event = {
+	id = 319007
+	trigger = {
+		atwar = no
+		NOT = { exists = SAC }
+	}
+	random = no
+	country = MEI
+	name = "EVENTNAME319007" #Recovery of the Electorate
+	desc = "EVENTHIST319007"
+	#-#Since the Ernestine branch of the Wettin family that has owned the electorate is extinct, the Albertine branch in Meiﬂen has the opportunity to lead the Wettin dynasty and assume the Saxon electorate.
+
+	date = { day = 1 month = january year = 1600 }
+	offset = 100
+	deathdate = { day = 29 month = december year = 1803 }
+
+	action_a = {
+		name = "ACTIONNAME319007A" #Reclaim the Saxon Electorate
+		command = { type = flagname which = "" }
+		command = { type = country which = SAC }
+		command = { type = addcore which = 332 } #Anhalt
+		command = { type = capital which = 331 } #Sachsen - just in case
+		command = { type = capital which = 332 } #Anhalt
+		command = { type = vp value = 15 }
+	}
+	action_b = {
+		name = "ACTIONNAME319007B" #Stay Margraves of Meiﬂen
+		command = { type = capital which = 331 } #Sachsen - just in case
+		command = { type = vp value = -5 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#319003 reserved
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 319010

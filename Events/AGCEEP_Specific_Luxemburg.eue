@@ -1,0 +1,343 @@
+#Luxemburg (LUX)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419) The Hussite Wars
+event = {
+	id = 213600 #triggered by SIL_401000 / ROM_398000
+	random = no
+	country = LUX
+	name = "EVENTNAME188600" #The Hussite Wars
+	desc = "EVENTHIST188600"
+	#-#The Czech priest and professor Jan Hus developed radical reformatory demands on the base of the teachings of John Wyclif. Despite a guarantee of safe-conduct by Emperor Sigismund, he was executed at the stake for heresy at the Council of Constance in 1415. This could however not stop the Hussite movement in Bohemia. Hus' followers were rapidly growing, and when King Vaclav IV of Bohemia died and his brother Sigismund, already Emperor and King of Hungary was to succeed him, they, unwilling to forgive him the betrayal of Hus and afraid that he would suppress them, refused to acknowledge him and gained control of most of Bohemia proper - while the lands of the Bohemian crown and the catholic part of Bohemia accepted Sigismund. Due to its radical anti-clerical and anti-feudal tendencies Hussitism posed a big threat to the church and nobility in the countries adjacent to Bohemia. Several German and European princes therefore decided to oppose the Hussites and to support Sigismund in his struggle with them that lasted for almost two decades. Should we decide to fight these heretics, we should be aware that this would be internationally regarded as an intervention in favour of Sigismund as rightful King of Bohemia rather than a war of conquest, and that therefore, if Sigismund prevails and manages to restore royal authority, we would be expected to turn over any conquests in Bohemia to the Kingdom of Bohemia.
+
+	action_a = {
+		name = "ACTIONNAME258600B" #Express hostility
+		command = { type = relation which = SIL value = -200 }
+		command = { type = casusbelli which = SIL value = 120 }
+	}
+	action_b = {
+		name = "ACTIONNAME258600A" #Covertly provide aid
+		command = { type = treasury value = -25 }
+		command = { type = relation which = SIL value = 25 }
+	}
+}
+
+#(1420) Jan and the Schieringers -1-
+event = {
+	id = 213003
+	trigger = {
+		control = { province = 339 data = -1 } #Holland
+		exists = FRI
+	}
+	random = no
+	country = LUX
+	name = "EVENTNAME213003" #Schieringers request aid
+	desc = "EVENTHIST213003"
+	#-#From 1392 to 1498, civil war between two parties, the Schieringers and the Vetkopers raged in Friesland. In june 1420, the Schieringers asked Jan of Bavaria to aid them in their civil war against the Vetkopers, Jan was too busy with internal affairs.
+
+	date = { day = 15 month = june year = 1420 }
+	offset = 14
+	deathdate = { day = 1 month = july year = 1420 }
+
+	action_a = {
+		name = "ACTIONNAME213003A" #No thanks, too busy
+		command = { type = trigger which = 22011 } #FRI: Reconciliation effort of the Schieringers
+	}
+	action_b = {
+		name = "ACTIONNAME213003B" #With pleasure
+		command = { type = addcore which = 337 } #Friesen
+		command = { type = war which = FRI }
+		command = { type = stability value = -2 }
+		command = { type = trigger which = 22012 } #FRI: Vetkoper reaction to the Schieringer pact with Jan VI
+		command = { type = sleepevent which = 213004 } #LUX: Jan and the Schieringers
+	}
+}
+
+#(1420) Jan and the Schieringers -2-
+event = {
+	id = 213004
+	trigger = {
+		control = { province = 339 data = -1 } #Holland
+		exists = FRI
+	}
+	random = no
+	country = LUX
+	name = "EVENTNAME213004" #Jan and the Schieringers
+	desc = "EVENTHIST213004"
+	#-#Despite their previous reconciliation effort, the Schieringers came to Jan once more, this time Jan accepted and became lord over Friesland.
+
+	date = { day = 4 month = october year = 1420 }
+	offset = 10
+	deathdate = { day = 4 month = november year = 1420 }
+
+	action_a = {
+		name = "ACTIONNAME213004A" #A great oppurtunity
+		command = { type = addcore which = 337 } #Friesen
+		command = { type = war which = FRI }
+		command = { type = trigger which = 22012 } #FRI: Vetkoper reaction to the Schieringer pact with Jan VI
+	}
+	action_b = {
+		name = "ACTIONNAME213004B" #We have no interest in Friesland
+		command = { type = relation which = FRI value = 50 }
+	}
+}
+
+#(1422) Jan loses control of the Schieringers -I-
+event = {
+	id = 213005
+	trigger = {
+		owned = { province = 337 data = -1 } #Friesen
+	}
+	random = no
+	country = LUX
+	name = "EVENTNAME213005" #Jan loses control of the Schieringers
+	desc = "EVENTHIST213005"
+	#-#After stepping on the Shieringers' toes once too many, Jan lost control of the Schieringers. After losing Dokkum, his last foothold in Friesland, on the 29th of May 1422, the treaty ending his Frisian adventure was signed on the 17th of August.
+
+	date = { day = 16 month = august year = 1422 }
+
+	action_a = {
+		name = "ACTIONNAME213005A" #Let go of Friesland
+		command = { type = independence which = FRI }
+		command = { type = removecore which = 337 } #Friesen
+		command = { type = trigger which = 22015 } #FRI: Jan loses control of the Schieringers
+		command = { type = sleepevent which = 213006 } #LUX: Jan loses control of the Schieringers -II-
+	}
+	action_b = {
+		name = "ACTIONNAME213005B" #Crush the Frisian rebels
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = province_revoltrisk which = 337 value = 25 } #Friesen
+		command = { type = sleepevent which = 213006 } #LUX: Jan loses control of the Schieringers -II-
+	}
+}
+#(1422) Jan loses control of the Schieringers -II-
+event = {
+	id = 213006
+	trigger = {
+		vassal = { country = LUX country = FRI }
+	}
+	random = no
+	country = LUX
+	name = "EVENTNAME213005" #Jan loses control of the Schieringers
+	desc = "EVENTHIST213005"
+	#-#After stepping on the Shieringers' toes once too many, Jan lost control of the Schieringers. After losing Dokkum, his last foothold in Friesland, on the 29th of May 1422, the treaty ending his Frisian adventure was signed on the 17th of August.
+
+	date = { day = 16 month = august year = 1422 }
+
+	action_a = {
+		name = "ACTIONNAME213005A" #Let go of Friesland
+		command = { type = removecore which = 337 } #Friesen
+		command = { type = trigger which = 22015 } #FRI: Jan loses control of the Schieringers
+		command = { type = sleepevent which = 213005 } #LUX: Jan loses control of the Schieringers -I-
+	}
+}
+
+#(1424) Jacqueline's invasion of Hainault
+event = {
+	id = 213000
+	trigger = {
+		owned = { province = 379 data = -1 } #Artois
+	}
+	random = no
+	country = LUX
+	name = "EVENTNAME213000" #The Countess of Hainault and the Duke of Gloucester
+	desc = "EVENTHIST213000"
+	#-#Jacqueline, daughter of Wilhelm, the last Count of Holland, Hainault and Zeeland, and rightful heiress to his possessions, was deprived of her inheritance by her uncle Jan of Bavaria and her husband Jan IV of Brabant. In an angry reaction, she declared her marriage invalid, fled to England and there fell in love with Humphrey of Gloucester, brother of the King, whom, after obtaining a dispens from the Antipope, she married and declared her coregent. With an English army, the couple on October 26th crossed the channel, landed in Calais and invaded Hainault. They managed to take control of most of the county. The Duke of Burgundy offers us support against the impertinent niece of Jan of Bavaria, pawnee of Luxemburg.
+
+	date = { day = 26 month = october year = 1424 }
+
+	action_a = {
+		name = "ACTIONNAME213000A" #Beat her back with Burgundian help
+		command = { type = revolt which = 379 } #Artois
+		command = { type = revolt which = 379 } #Artois
+		command = { type = province_revoltrisk which = 379 value = 8 } #Artois
+		command = { type = INF which = -2 value = 6000 }
+		command = { type = CAV which = -2 value = 3000 }
+		command = { type = relation which = ENG value = -100 }
+		command = { type = trigger which = 137010 } #BUR: Support for Jan of Bavaria
+	}
+	action_b = {
+		name = "ACTIONNAME213000B" #Fight her alone
+		command = { type = revolt which = 379 } #Artois
+		command = { type = revolt which = 379 } #Artois
+		command = { type = province_revoltrisk which = 379 value = 8 } #Artois
+		command = { type = relation which = ENG value = -100 }
+	}
+}
+
+#(1425) Elizabeth of Görlitz
+event = {
+	id = 213101
+	random = no
+	country = LUX
+	name = "EVENTNAME213101" #Elizabeth of Görlitz
+	desc = "EVENTHIST213101"
+	#-#Due to the inability of Sigismund to repay his debts, Elizabeth of Görlitz assumed the rule of Luxembourg, trying to regain her money.
+
+	date = { day = 1 month = january year = 1425 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1426 }
+
+	action_a = {
+		name = "ACTIONNAME213101A" #Welcome my liege!
+		command = { }
+	}
+}
+
+#(1425) Death of Jan the Merciless -I-
+event = {
+	id = 213001
+	trigger = {
+		OR = {
+			owned = { province = 339 data = -1 } #Holland
+			owned = { province = 379 data = -1 } #Artois
+		}
+		exists = BUR
+	}
+	random = no
+	country = LUX
+	name = "EVENTNAME213001" #Death of Jan the Merciless
+	desc = "EVENTHIST213001"
+	#-#Jan of Bavaria, husband of Elisabeth of Görlitz and as such pawnee of Luxemburg, died, probably of poison, on January 6th 1425. While his wife retained her pawn Luxemburg, the Duchy of Bavaria-Straubing was seized by Emperor Sigismund as a vacant Imperial fief and his part of the Dutch Wittelsbach inheritance passed to Burgundy, on the base of a treaty that had just been concluded, which is why the Duke of Burgundy was immediately suspected of having ordered the assassination of Jan.
+
+	date = { day = 5 month = january year = 1425 }
+
+	action_a = {
+		name = "ACTIONNAME213001A" #Honour the agreement with Burgundy
+		command = { 
+			trigger = { 
+				NOT = { exists = HAU }
+			}
+			type = secedeprovince which = BUR value = 339  #just in case HAU doesn't exist #Holland
+		}
+		command = { type = cedeprovince which = BUR value = 339 } #just in case HAU doesn't exist #Holland
+		command = { type = cedeprovince which = HAU value = 339 } #Holland
+		command = { type = cedeprovince which = BUR value = 379 } #Artois
+		command = { type = cedeprovince which = HUN value = 348 } #Ansbach
+		command = { type = independence which = FRI }
+		command = { type = breakvassal which = FRI }
+		command = { type = removecore which = 339 } #Holland
+		command = { type = removecore which = 379 } #Artois
+		command = { type = removecore which = 348 } #Ansbach
+		command = { type = remove_countryculture which = dutch }
+		command = { type = sleepevent which = 213002 } #LUX: Death of Jan the Merciless -II-
+		command = { type = trigger which = 137026 } #BUR: The Dutch Wittelsbach possessions
+		command = { type = trigger which = 182004 } #HAU: The Dutch Wittelsbach possessions
+	}
+	action_b = {
+		name = "ACTIONNAME213001B" #Don't turn over anything to the murderers of my husband!
+		command = { type = secedeprovince which = HUN value = 348 } #Ansbach
+		command = { type = removecore which = 348 } #Ansbach
+		command = { type = war which = BUR }
+		command = { type = stability value = -3 }
+		command = { type = remove_countryculture which = dutch }
+		command = { type = sleepevent which = 213002 } #LUX: Death of Jan the Merciless -II-
+		command = { type = trigger which = 137027 } #BUR: The Dutch Wittelsbach possessions
+	}
+}
+#(1425) Death of Jan the Merciless -II-
+event = {
+	id = 213002
+	trigger = {
+		OR = {
+			NOT = {
+				owned = { province = 339 data = -1 } #Holland
+				owned = { province = 379 data = -1 } #Artois
+			}
+			NOT = {
+				exists = BUR
+			}
+		}
+	}
+	random = no
+	country = LUX
+	name = "EVENTNAME213001" #Death of Jan the Merciless
+	desc = "EVENTHIST213002"
+	#-#Jan of Bavaria, husband of Elisabeth of Görlitz and as such pawnee of Luxemburg, died, probably of poison, on January 6th 1425. While his wife retained her pawn Luxemburg, the Duchy of Bavaria-Straubing was seized by Emperor Sigismund as a vacant Imperial fief.
+
+	date = { day = 5 month = january year = 1425 }
+
+	action_a = {
+		name = "ACTIONNAME213002A" #My dear husband
+		command = { type = secedeprovince which = HAU value = 339 } #Holland
+		command = { type = secedeprovince which = HAU value = 379 } #Artois
+		command = { type = secedeprovince which = HUN value = 348 } #Ansbach
+		command = { type = removecore which = 339 } #Holland
+		command = { type = removecore which = 379 } #Artois
+		command = { type = removecore which = 348 } #Ansbach
+		command = { type = remove_countryculture which = dutch }
+		command = { type = sleepevent which = 213001 } #LUX: Death of Jan the Merciless -I-
+		command = { type = trigger which = 182005 } #HAU: The Dutch Wittelsbach possessions
+	}
+}
+
+#(1441) The Luxemburgian sale
+event = {
+	id = 213102
+	trigger = {
+		exists = BUR
+		event = 213101 #LUX: Elizabeth of Görlitz
+	}
+	random = no
+	country = LUX
+	name = "EVENTNAME213102" #The Luxemburgian sale
+	desc = "EVENTHIST213102"
+	#-#Since Philip of Burgundy was interested in the Duchy and Elizabeth didn't see another way to regain her money, she offered the Duchy to the Burgundians.
+
+	date = { day = 1 month = january year = 1441 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1442 }
+
+	action_a = {
+		name = "ACTIONNAME213102A" #Offer to sell the Duchy
+		command = { type = trigger which = 137305 } #BUR: The purchase of Luxembourg
+	}
+	action_b = {
+		name = "ACTIONNAME213102B" #I earn better the money back by keeping Luxembourg
+		command = { type = relation which = BUR value = -200 }
+		command = { type = stability value = -1 }
+		command = { type = infra value = -100 }
+		command = { type = inflation value = -15 }
+	}
+}
+
+#(1443) A nightly ambush
+event = {
+	id = 213103
+	trigger = {
+		event = 137305 #BUR: Sale of Luxemburg
+		exists = BUR
+	}
+	random = no
+	country = LUX
+	name = "EVENTNAME213103" #A nightly ambush
+	desc = "EVENTHIST213103"
+	#-#Having bought the Duchy of Luxembourg from Elisabeth of Görlitz, Philip the Good needed some time to secure his new possession. Full control of the Duchy was finally achieved when they took the city of Luxemburg by a nightly ambush. Thereby, another step on Burgundy's way towards achieving the primary goal of its policies, connecting their hereditary lands with their Dutch possessions, had been made.
+
+	date = { day = 1 month = january year = 1443 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1444 }
+
+	action_a = {
+		name = "ACTIONNAME213103A" #All hope is lost! (End Game)
+		command = { type = independence which = KOL }
+		command = { type = independence which = PFA }
+		command = { }
+		command = { type = trigger which = 137306 } #BUR: Annexation of Luxemburg
+	}
+	action_b = {
+		name = "ACTIONNAME213103B" #We'll beat them back
+		command = { type = breakvassal which = BUR }
+		command = { type = breakdynastic which = BUR }
+		command = { type = war which = BUR }
+		command = { type = relation which = BUR value = -200 }
+		command = { type = stability value = -5 }
+		command = { type = trigger which = 137028 } #BUR: Resistance in Luxemburg
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 213007

@@ -1,0 +1,2494 @@
+#England (ENG) - Ahistorical events - range: 164900-164999
+
+#See AGCEEP_Alt_Wales.eue for other ENG events in same range
+#See AGCEEP_Alt_Iberia.eue for other ENG events in same range
+
+#-----------------------------------------------------------------------------------------------
+#Ahistorical Events: England Wins the Hundred Years' War
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1820) Burgundy and the End of the Hundred Years' War - Titles, and the such...
+#Created by Fate
+event = {
+	id = 20043
+	trigger = {
+		event = 164180 #ENG: English Final Victory
+		NOT = { event = 20007 } #FRA: The Glory of France is Reborn!
+		exists = BUR
+		owned = { province = 385 data = ENG } #Ile de France
+		stability = 2
+		NOT = {
+			vassal = { country = BUR country = ENG }
+		}
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME20044" #Titles, and the such...
+	desc = "EVENTHIST20043"
+	#-#Nothing could be more repugnant to the interests of the house of Burgundy than to unite the crowns of France and England on the same head, an event which, had it taken place, would have reduced the duke to the rank of a petty prince. The Kingdoms of England and France are united under one crown, and the time has come to sort out matters of the state. The lands of Bourgogne, Picardie, and Artois are rightful lands of the English crown, and as such the Duke of Burgundy is subject to our rule. We now have a choice. Do we reduce the rank of the duke to a prince, or shall we allow him to rule his lands free of English overlords?
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 360
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME20043A" #Demand that the Duke submit to English Authority
+		command = { type = trigger which = 20044 } #BUR: Titles, and the such...
+	}
+	action_b = {
+		name = "ACTIONNAME20043B" #Allow the Duke to Go His Separate Way
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = stability value = -1 }
+		command = { type = relation which = BUR value = 200 }
+	}
+
+}
+#(1419-1820) Philippe the Fool
+event = {
+	id = 20045 #triggered by BUR_20044 A
+	random = no
+	country = ENG
+	name = "EVENTNAME20045" #Philippe the Fool
+	desc = "EVENTHIST20045"
+	#-#The foolish Duke of Burgundy dares to defy our rightful claim, and refuses to submit to our authority. We shall now exercise our claim to their French lands, and they shall loath the day they defied fuedal law.
+
+	action_a = {
+		name = "ACTIONNAME20045A" #They Shall Loath the Day...
+		command = { type = casusbelli which = BUR value = 4800 }
+	}
+}
+#(1419-1820) Philippe the Good
+event = {
+	id = 20046 #triggered by BUR_20044 B
+	random = no
+	country = ENG
+	name = "EVENTNAME20046" #Philippe the Good
+	desc = "EVENTHIST20046"
+	#-#The wise and former Duke of Burgundy accepts rightful claim, and submits to our overlordship. We will reserve our claim to their French lands until a later date as long as they remain loyal to the Anglo-French crown.
+
+	action_a = {
+		name = "ACTIONNAME20046A" #As It Should Be
+		command = { type = vassal which = BUR }
+		command = { type = relation which = BUR value = 100 }
+	}
+}
+#(1429-1430) The Revolt of Joan of Arc
+#Created by Lambert Simnel
+ event = {
+	id = 20000
+	trigger = {
+		event = 164180
+		NOT = { event = 361027 }
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME20000" #The Revolt of Joan of Arc
+	desc = "EVENTHIST20000"
+	#-#At a young age Joan of Arc began to hear voices - those of St. Michael, St. Catherine, and St. Margaret. When she was about 16, the voices exhorted her to bear aid to the dauphin, the would-be King Charles VII, who was trying to gather support for an attempt to retake the French crown. Joan's religious fervour would inspire the peasantry into a revolt which linked up with the dauphin's small force of exiles and mercenaries to produce a real threat to English rule in France.
+
+	date = { day = 1 month = january year = 1429 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1430 }
+
+	action_a = {
+		name = "ACTIONNAME20000A" #The Rebels Must be Crushed
+		command = { type = revolt which = 376 } #Champagne
+		command = { type = revolt which = 376 } #Champagne
+		command = { type = revolt which = 386 } #Nivernais
+		command = { type = revolt which = 385 } #Ile de France
+		command = { type = stability value = -1 }
+	}
+ }
+
+#(1431-1450) Henry VI is anointed at Rheims (England Won the HYW)
+event = {
+	id = 164995
+	trigger = {
+		owned = { province = 385 data = ENG }
+		event = 164171 #ENG: The Legacy of Charles VI
+		event = 164180 #ENG: English Final Victory
+		NOT = {
+			event = 361028 #The Consecration of Charles VII
+		}
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME164995" #Henry VI is Annointed at Rheims
+	desc = "EVENTHIST164995"
+	#-#The dual monarch, Henry VI arrived at Saint Denis and from there made a glorious entry into the capital of his Kingdom. All of Paris seemed to turn out to catch a glimpse of their young King 'Henri II'. Yellow-haired and in cloth of gold, Henry VI rode on a white charger through the streets of Paris to be greeted by the Provost and the Councillors of the Parliament in their red satin. Several days later, Henry went to Rheims. Cardinal Beaufort had wished to preside over the entire ceremony, but Bedford had resisted Beaufort's ill-considered plans. Instead, the Archbishop of Rheims presided over the ceremony. All of the formal traditions of France were to be observed.
+
+	date = { day = 2 month = december year = 1431 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1450 }
+
+	action_a = {
+		name = "ACTIONNAME164995A" #What a glorious occasion!
+		command = { type = stability value = 1 }
+		command = { type = province_revoltrisk which = 384 value = -4 } #Caux
+		command = { type = province_revoltrisk which = 385 value = -2 } #Ile de France
+		command = { type = province_revoltrisk which = 413 value = -4 } #Normandie
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#The War of the Roses in France Sequence
+#Created by Lambert Simnel - Edited by Johnny Canuck
+
+#(1455-1485) The War of the Roses in France
+event = {
+	id = 20005
+	trigger = {
+		event = 164065 #ENG: St. Albans
+		event = 164180 #England conquers France
+		NOT = { event = 20007 } #France frees itself from England
+		NOT = {
+			event = 21111
+			event = 21112
+		}
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME20005" #The War of the Roses in France
+	desc = "EVENTHIST20005"
+	#-#The War of the Roses were as much about the crown of France as they were about that of England, so it should come as no surprise that much of the most vicious fighting was in the larger of the two Kingdoms. Both the Lancastrians and the Yorkists saw France as an important battleground and recruitment centre. The situation was further complicated by attempts by some members of the French nobility to restore the House of Valois to the French throne.
+
+	date = { day = 1 month = january year = 1455 }
+	offset = 360
+	deathdate = { day = 22 month = august year = 1485 }
+
+	action_a = {
+		name = "ACTIONNAME20005A" #The Battles Spread to France
+		command = { type = province_revoltrisk which = 375 value = 5 } #All French CB Provinces #Lorraine
+		command = { type = province_revoltrisk which = 376 value = 5 } #Champagne
+		command = { type = province_revoltrisk which = 379 value = 5 } #Artois
+		command = { type = province_revoltrisk which = 382 value = 5 } #Calais
+		command = { type = province_revoltrisk which = 383 value = 5 } #Picardie
+		command = { type = province_revoltrisk which = 384 value = 5 } #Caux
+		command = { type = province_revoltrisk which = 385 value = 5 } #Ile de France
+		command = { type = province_revoltrisk which = 386 value = 5 } #Nivernais
+		command = { type = province_revoltrisk which = 387 value = 5 } #Franche-Comté
+		command = { type = province_revoltrisk which = 406 value = 5 } #Provence
+		command = { type = province_revoltrisk which = 407 value = 5 } #Dauphiné
+		command = { type = province_revoltrisk which = 408 value = 5 } #Lyonnais
+		command = { type = province_revoltrisk which = 409 value = 5 } #Bourgogne
+		command = { type = province_revoltrisk which = 410 value = 5 } #Berri
+		command = { type = province_revoltrisk which = 411 value = 5 } #Orleanais
+		command = { type = province_revoltrisk which = 412 value = 5 } #Maine
+		command = { type = province_revoltrisk which = 413 value = 5 } #Normandie
+		command = { type = province_revoltrisk which = 414 value = 5 } #Armor
+		command = { type = province_revoltrisk which = 415 value = 5 } #Bretagne
+		command = { type = province_revoltrisk which = 416 value = 5 } #Morbihan
+		command = { type = province_revoltrisk which = 417 value = 5 } #Vendée
+		command = { type = province_revoltrisk which = 418 value = 5 } #Poitou
+		command = { type = province_revoltrisk which = 419 value = 5 } #Limousin
+		command = { type = province_revoltrisk which = 420 value = 5 } #Auvergne
+		command = { type = province_revoltrisk which = 421 value = 5 } #Cévennes
+		command = { type = province_revoltrisk which = 422 value = 5 } #Languedoc
+		command = { type = province_revoltrisk which = 423 value = 5 } #Guyenne
+		command = { type = province_revoltrisk which = 424 value = 5 } #Gascogne
+		command = { type = province_revoltrisk which = 425 value = 5 } #Béarn
+		command = { type = province_revoltrisk which = 426 value = 5 } #Roussillon
+	}
+}
+#(1485) The End of the War of the Roses in France
+event = {
+	id = 20006
+	trigger = {
+		event = 20005
+		OR = {
+			event = 21111 #Lancastrian Succession
+			event = 21112 #Bosworth Field
+		}
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME20006" #The End of the Wars of the Roses in France
+	desc = "EVENTHIST20006"
+	#-#With the War of the Roses at an end, the English were able to concentrate on restoring their authority in France.
+
+	date = { day = 23 month = august year = 1485 }
+
+	action_a = {
+		name = "ACTIONNAME20006A" #The War Ends in France
+		command = { type = province_revoltrisk which = 375 value = -5 } #All French CB Provinces #Lorraine
+		command = { type = province_revoltrisk which = 376 value = -5 } #Champagne
+		command = { type = province_revoltrisk which = 379 value = -5 } #Artois
+		command = { type = province_revoltrisk which = 382 value = -5 } #Calais
+		command = { type = province_revoltrisk which = 383 value = -5 } #Picardie
+		command = { type = province_revoltrisk which = 384 value = -5 } #Caux
+		command = { type = province_revoltrisk which = 385 value = -5 } #Ile de France
+		command = { type = province_revoltrisk which = 386 value = -5 } #Nivernais
+		command = { type = province_revoltrisk which = 387 value = -5 } #Franche-Comté
+		command = { type = province_revoltrisk which = 406 value = -5 } #Provence
+		command = { type = province_revoltrisk which = 407 value = -5 } #Dauphiné
+		command = { type = province_revoltrisk which = 408 value = -5 } #Lyonnais
+		command = { type = province_revoltrisk which = 409 value = -5 } #Bourgogne
+		command = { type = province_revoltrisk which = 410 value = -5 } #Berri
+		command = { type = province_revoltrisk which = 411 value = -5 } #Orleanais
+		command = { type = province_revoltrisk which = 412 value = -5 } #Maine
+		command = { type = province_revoltrisk which = 413 value = -5 } #Normandie
+		command = { type = province_revoltrisk which = 414 value = -5 } #Armor
+		command = { type = province_revoltrisk which = 415 value = -5 } #Bretagne
+		command = { type = province_revoltrisk which = 416 value = -5 } #Morbihan
+		command = { type = province_revoltrisk which = 417 value = -5 } #Vendée
+		command = { type = province_revoltrisk which = 418 value = -5 } #Poitou
+		command = { type = province_revoltrisk which = 419 value = -5 } #Limousin
+		command = { type = province_revoltrisk which = 420 value = -5 } #Auvergne
+		command = { type = province_revoltrisk which = 421 value = -5 } #Cévennes
+		command = { type = province_revoltrisk which = 422 value = -5 } #Languedoc
+		command = { type = province_revoltrisk which = 423 value = -5 } #Guyenne
+		command = { type = province_revoltrisk which = 424 value = -5 } #Gascogne
+		command = { type = province_revoltrisk which = 425 value = -5 } #Béarn
+		command = { type = province_revoltrisk which = 426 value = -5 } #Roussillon
+	}
+}
+#End of The War of the Roses in France Sequence
+#-----------------------------------------------------------------------------------------------
+
+#(1461-1820) France Rises Again
+#Created by Lambert Simnel - Edited by Johnny Canuck
+event = {
+	id = 20008 #triggered by FRA_20007
+	random = no
+	country = ENG
+	name = "EVENTNAME20008" #France Rises Again
+	desc = "EVENTHIST20008"
+	#-#Though England had triumphed in the Hundred Years' War, French resistance continued under the surface. Now, the state of France has been reborn, and a new King of France has been crowned. Those French who remain under English rule are becoming increasingly restless, and no longer recognize the claims of England to the lands of France. English rule in the French provinces has been dealt a staggering blow.
+
+	action_a = {
+		name = "CURSES"
+		command = { type = stability value = -2 }
+		command = { type = remove_countryculture which = french }
+		command = { type = casusbelli which = FRA value = 120 }
+		command = { type = relation which = FRA value = -100 }
+		command = { type = revoltrisk which = 24 value = 2 }
+		command = { type = vp value = -25 }
+		#All French CB Provinces
+		command = { type = removecore which = 375 } #Lorraine
+		command = { type = removecore which = 376 } #Champagne
+		command = { type = removecore which = 379 } #Artois
+		command = { type = removecore which = 382 } #Calais
+		command = { type = removecore which = 383 } #Picardie
+		command = { type = removecore which = 384 } #Caux
+		command = { type = removecore which = 385 } #Ile de France
+		command = { type = removecore which = 386 } #Nivernais
+		command = { type = removecore which = 387 } #Franche-Comté
+		command = { type = removecore which = 406 } #Provence
+		command = { type = removecore which = 407 } #Dauphiné
+		command = { type = removecore which = 408 } #Lyonnais
+		command = { type = removecore which = 409 } #Bourgogne
+		command = { type = removecore which = 410 } #Berri
+		command = { type = removecore which = 411 } #Orleanais
+		command = { type = removecore which = 412 } #Maine
+		command = { type = removecore which = 413 } #Normandie
+		command = { type = removecore which = 414 } #Armor
+		command = { type = removecore which = 415 } #Bretagne
+		command = { type = removecore which = 416 } #Morbihan
+		command = { type = removecore which = 417 } #Vendée
+		command = { type = removecore which = 418 } #Poitou
+		command = { type = removecore which = 419 } #Limousin
+		command = { type = removecore which = 420 } #Auvergne
+		command = { type = removecore which = 421 } #Cévennes
+		command = { type = removecore which = 422 } #Languedoc
+		command = { type = removecore which = 423 } #Guyenne
+		command = { type = removecore which = 424 } #Gascogne
+		command = { type = removecore which = 425 } #Béarn
+		command = { type = removecore which = 426 } #Roussillon
+		command = { type = province_revoltrisk which = 375 value = 2 } #All French CB Provinces #Lorraine
+		command = { type = province_revoltrisk which = 376 value = 2 } #Champagne
+		command = { type = province_revoltrisk which = 379 value = 2 } #Artois
+		command = { type = province_revoltrisk which = 382 value = 2 } #Calais
+		command = { type = province_revoltrisk which = 383 value = 2 } #Picardie
+		command = { type = province_revoltrisk which = 384 value = 2 } #Caux
+		command = { type = province_revoltrisk which = 385 value = 2 } #Ile de France
+		command = { type = province_revoltrisk which = 386 value = 2 } #Nivernais
+		command = { type = province_revoltrisk which = 387 value = 2 } #Franche-Comté
+		command = { type = province_revoltrisk which = 406 value = 2 } #Provence
+		command = { type = province_revoltrisk which = 407 value = 2 } #Dauphiné
+		command = { type = province_revoltrisk which = 408 value = 2 } #Lyonnais
+		command = { type = province_revoltrisk which = 409 value = 2 } #Bourgogne
+		command = { type = province_revoltrisk which = 410 value = 2 } #Berri
+		command = { type = province_revoltrisk which = 411 value = 2 } #Orleanais
+		command = { type = province_revoltrisk which = 412 value = 2 } #Maine
+		command = { type = province_revoltrisk which = 413 value = 2 } #Normandie
+		command = { type = province_revoltrisk which = 414 value = 2 } #Armor
+		command = { type = province_revoltrisk which = 415 value = 2 } #Bretagne
+		command = { type = province_revoltrisk which = 416 value = 2 } #Morbihan
+		command = { type = province_revoltrisk which = 417 value = 2 } #Vendée
+		command = { type = province_revoltrisk which = 418 value = 2 } #Poitou
+		command = { type = province_revoltrisk which = 419 value = 2 } #Limousin
+		command = { type = province_revoltrisk which = 420 value = 2 } #Auvergne
+		command = { type = province_revoltrisk which = 421 value = 2 } #Cévennes
+		command = { type = province_revoltrisk which = 422 value = 2 } #Languedoc
+		command = { type = province_revoltrisk which = 423 value = 2 } #Guyenne
+		command = { type = province_revoltrisk which = 424 value = 2 } #Gascogne
+		command = { type = province_revoltrisk which = 425 value = 2 } #Béarn
+		command = { type = province_revoltrisk which = 426 value = 2 } #Roussillon
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Removal of the +RR in various provinces
+
+#(1461-1481) Normandy Recovers
+event = {
+	id = 164996
+	trigger = {
+		atwar = no
+		event = 164007 #ENG: Normandy is Laid to Waste
+		OR = {
+			owned = { province = 384 data = ENG } #Caux
+			owned = { province = 413 data = ENG } #Normandie
+		}
+		NOT = {
+			event = 164995 #ENG: Henry VI is Annointed at Rheims (England Won the HYW)
+		}
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME164996" #Normandy Recovers
+	desc = "EVENTHIST164996"
+	#-#Normandy suffered greatly after decades of warfare. Now, finally, as peace reigned throughout the realm, if even only for a brief period of time, Normandy could focus on recovery.
+
+	date = { day = 1 month = january year = 1461 }
+	offset = 60
+	deathdate = { day = 29 month = december year = 1481 }
+
+	action_a = {
+		name = "GOOD"
+		command = { type = stability value = 1 }
+		command = { type = provincetax which = 384 value = 2 } #Caux
+		command = { type = provincetax which = 413 value = 2 } #Normandie
+		command = { type = province_revoltrisk which = 384 value = -4 } #Caux
+		command = { type = province_revoltrisk which = 413 value = -4 } #Normandie
+	}
+}
+#(1461-1481) Ile de France Settles
+event = {
+	id = 164998
+	trigger = {
+		atwar = no
+		owned = { province = 385 data = ENG } #Ile de France
+		event = 164171 #ENG: The Legacy of Charles VI
+		event = 164180 #ENG: English Final Victory
+		NOT = {
+			event = 164995 #ENG: Henry VI is Annointed at Rheims (England Won the HYW)
+		}
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME164998" #Ile de France Settles
+	desc = "EVENTHIST164998"
+	#-#Ile de France has been subjugated.
+
+	date = { day = 1 month = january year = 1461 }
+	offset = 60
+	deathdate = { day = 29 month = december year = 1481 }
+
+	action_a = {
+		name = "GOOD"
+		command = { type = stability value = 1 }
+		command = { type = province_revoltrisk which = 385 value = -2 } #Ile de France
+	}
+}
+#(1480) Maine and Anjou are Pacified
+event = {
+	id = 164997
+	trigger = {
+		event = 164217 #ENG: Maine and Anjou is Ours!
+		owned = { province = 412 data = -1 } #Maine
+		NOT = {
+			event = 164008 #ENG: Maine and Anjou are Pacified
+		}
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME164997" #Maine and Anjou are Pacified
+	desc = "EVENTHIST164997"
+	#-#Maine and Anjou had been seeds of unrest for some time. As long as the rival claimant to the Duchy of Anjou and County of Maine lived, England would have to endure rebellious activity in these regions. However, On July 10th, 1480, Rene of Anjou died leaving no surviving direct male heir. Finally, the primary source for grievance and unrest had been removed.
+
+	date = { day = 10 month = july year = 1480 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1480 }
+
+	action_a = {
+		name = "GOOD"
+		command = { type = province_revoltrisk which = 412 value = -4 } #Maine
+		command = { type = provincetax which = 412 value = 1 } #Maine
+	}
+}
+#-----------------------------------------------------------------------------------------------
+
+#(1465-1470) The League of the Public Weal
+#Concept by Richard IV - Scripted by Johnny Canuck
+event = {
+	id = 20002
+	trigger = {
+		event = 164180
+		NOT = { event = 20008 }
+		monarch = 046002 #Edward IV
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME20002" #The League of the Public Weal
+	desc = "EVENTHIST20002"
+	#-#With England distracted by the War of the Roses, ambitious French nobleman plotted to throw off English rule and crown Louis of Valois King of France as Louis XI. A League of the Public Weal was formed, and it mobilized support for a rising against the English.
+
+	date = { day = 1 month = january year = 1465 }
+	offset = 1000
+	deathdate = { day = 1 month = january year = 1470 }
+
+	action_a = {
+		name = "ACTIONNAME20002A" #Destroy the Nobles
+		command = { type = stability value = -1 }
+		command = { type = treasury value = -75 }
+		command = { type = revolt which = 385 } #Ile de France
+		command = { type = revolt which = 411 }	#Orléanais
+		command = { type = revolt which = 422 } #Languedoc
+		command = { type = relation which = BUR value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME20002B" #Appease the Nobles
+		command = { type = treasury value = -300 }
+	}
+}
+
+#(1477) The Inheritance of Burgundy (England Wins the Hundred Years' War)
+#The English claim on Burgundian lands
+#Created by Johnny Canuck
+event = {
+	id = 20048 #triggered by BUR_20047 A
+	random = no
+	country = ENG
+	name = "EVENTNAME20048" #The English claim on Burgundian lands
+	desc = "EVENTHIST20048"
+	#-#With the death of Charles the Bold, the Burgundian lands passed through his daughter Mary to the Habsburgs by marriage. However, certain Burgundian lands remain under the vassalage of the King of England, and England hence has legitimate claims to these territories.
+
+	action_a = {
+		name = "ACTIONNAME20048A" #These Territories Belong to England
+		command = { type = addcore which = 379 } #Artois
+		command = { type = addcore which = 383 } #Picardie
+		command = { type = addcore which = 409 } #Bourgogne
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#English Ownership of Non-Valois Royal Land Provinces Sequence
+#Created by Johnny Canuck
+
+#(1485-1700) English Ownership of Artois
+event = {
+	id = 20080
+	trigger = {
+		event = 164180 #ENG: English Final Victory
+		NOT = { event = 20007 }
+		owned = { province = 379 data = ENG } #Artois
+		NOT = { event = 20048 }
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME20080" #English Ownership of Artois
+	desc = "EVENTHIST20080"
+	#-#England's control of Artois has made the English claim to the province unanswerable.
+
+	date = { day = 1 month = january year = 1485 }
+	offset = 1
+	deathdate = { day = 1 month = january year = 1700 }
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = addcore which = 379 } #Artois
+	}
+}
+#(1485-1700) English Ownership of Picardie
+event = {
+	id = 20081
+	trigger = {
+		event = 164180 #ENG: English Final Victory
+		NOT = { event = 20007 }
+		owned = { province = 383 data = ENG } #Picardie
+		NOT = { event = 20048 }
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME20081" #English Ownership of Picardie
+	desc = "EVENTHIST20081"
+	#-#England's control of Picardie has made the English claim to the province unanswerable.
+
+	date = { day = 1 month = january year = 1485 }
+	offset = 1
+	deathdate = { day = 1 month = january year = 1700 }
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = addcore which = 383 } #Picardie
+	}
+}
+#(1485-1700) English Ownership of Bourgogne
+event = {
+	id = 20082
+	trigger = {
+		event = 164180 #ENG: English Final Victory
+		NOT = { event = 20007 }
+		owned = { province = 409 data = ENG } #Bourgogne
+		NOT = { event = 20048 }
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME20082" #English Ownership of Bourgogne
+	desc = "EVENTHIST20082"
+	#-#England's control of Bourgogne has made the English claim to the province unanswerable.
+
+	date = { day = 1 month = january year = 1485 }
+	offset = 1
+	deathdate = { day = 1 month = january year = 1700 }
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = addcore which = 409 } #Bourgogne #Bourgogne
+	}
+}
+#(1485-1700) English Ownership of Bearn
+event = {
+	id = 20091
+	trigger = {
+		event = 164180 #ENG: English Final Victory
+		NOT = { event = 20007 }
+		owned = { province = 425 data = ENG } #Bearn
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME20091" #English Ownership of Bearn
+	desc = "EVENTHIST20091"
+	#-#England's acquisition of Bearn has made the English claim to the province unanswerable.
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 1
+	deathdate = { day = 1 month = january year = 1700 }
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = addcore which = 425 } #Bearn
+	}
+}
+#End of English Ownership of Non-Valois Royal Land Provinces Sequence
+#-----------------------------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------------------------
+#The Succession in Brittany (No France) Sequence
+#Created by Johnny Canuck
+
+#(1488-1491) The Marriage of Anne of Brittany
+event = {
+	id = 20072 #triggered by BRI_20071 A
+	random = no
+	country = ENG
+	name = "EVENTNAME20072" #The Marriage of Anne of Brittany
+	desc = "EVENTHIST20072"
+	#-#After the English victory in the Hundred Years' War, Brittany became concerned about its independence. With the death of Duke Francois II in 1488, his daughter inherited the duchy, which lead to a competition for her hand in marriage. Fearful of English aggression, she married Maximilian of Austria, thus denying the English claims to her duchy.
+
+	action_a = {
+		name = "ACTIONNAME20072A" #Their Insolence Must be Punished
+		command = { type = breakvassal which = BRI }
+		command = { type = relation which = BRI value = -150 }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = casusbelli which = BRI value = 4800 }
+	}
+}
+#(1488-1491) English Claims on Brittany
+event = {
+	id = 20073 #triggered by BRI_20071 B
+	random = no
+	country = ENG
+	name = "EVENTNAME20073" #English Claims on Brittany
+	desc = "EVENTHIST20073"
+	#-#Upon the death of Duke Francois II of Brittany in 1488, the duchy passed to her daughter. She has spurned the marriage proposals of Maximilian of Austria, who coveted her lands. This leaves England with the best claims to the duchy.
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = addcore which = 414 } #Armor
+		command = { type = addcore which = 415 } #Bretagne
+		command = { type = addcore which = 416 } #Morbihan
+	}
+}
+#(1519-1820) English Claims on Brittany
+event = {
+	id = 20074
+	trigger = {
+		event = 164180
+		NOT = {
+			event = 20007
+			event = 20071
+		}
+		exists = BRI
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME20073" #English Claims on Brittany
+	desc = "EVENTHIST20074"
+	#-#Upon the death of Duke Francois II of Brittany in 1488, the duchy passed to her daughter. She refused marriage offers, and with her death, the duchy has passed to an obscure relative. This leaves England with the best claims to the duchy.
+
+	date = { day = 1 month = january year = 1519 }
+	offset = 100
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = addcore which = 414 } #Armor
+		command = { type = addcore which = 415 } #Bretagne
+		command = { type = addcore which = 416 } #Morbihan
+	}
+}
+#End of The Succession in Brittany (No France) Sequence
+#-----------------------------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------------------------
+#Anglo-French Colonization Sequence
+#Created by RepublicofGenoa
+
+#(1525-1530) French Colonists
+event = {
+	id = 21085
+	trigger = {
+		event = 164180
+		owned = { province = 414 data = -1 }
+		owned = { province = 415 data = -1 }
+		owned = { province = 416 data = -1 }
+		owned = { province = 234 data = -1 }
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME21085" #French Colonists
+	desc = "EVENTHIST21085"
+	#-#With the conquest of France, England had French who wished to move to new areas. There are three options available that they could travel to: emigrate to our far-flung colonies, resettle in Brittany, or colonize Leinster.
+
+	date = { day = 1 month = january year = 1525 }
+	offset = 1000
+	deathdate = { day = 29 month = december year = 1530 }
+
+	action_a = {
+		name = "ACTIONNAME21085A" #Let Them Go to our Colonies
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = sleepevent which = 21088 } #ENG: The Armor Resettlement
+		command = { type = sleepevent which = 21089 } #ENG: The Morbihan Resettlement
+		command = { type = sleepevent which = 21090 } #ENG: The Bretagne Resettlement
+		command = { type = sleepevent which = 21091 } #ENG: The Leinster Plantation
+	}
+	action_b = {
+		name = "ACTIONNAME21085B" #Let Them Resettle in Brittany
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = sleepevent which = 21086 } #ENG: French Colonists Overseas
+		command = { type = sleepevent which = 21087 } #ENG: French Colonists Overseas
+		command = { type = sleepevent which = 21091 } #ENG: The Leinster Plantation
+	}
+	action_c = {
+		name = "ACTIONNAME21085C" #Let Them Resettle in Leinster
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = sleepevent which = 21086 } #ENG: French Colonists Overseas
+		command = { type = sleepevent which = 21087 } #ENG: French Colonists Overseas
+		command = { type = sleepevent which = 21088 } #ENG: The Armor Resettlement
+		command = { type = sleepevent which = 21089 } #ENG: The Morbihan Resettlement
+		command = { type = sleepevent which = 21090 } #ENG: The Bretagne Resettlement
+	}
+}
+#(1531-1534) French Colonists Overseas
+event = {
+	id = 21086
+	trigger = { event = 21085 }
+	random = no
+	country = ENG
+	name = "EVENTNAME21086" #French Colonists Overseas
+	desc = "EVENTHIST21086"
+	#-#With permission to travel to the colonies, some French settlers left France. Sometimes they would gather in a single colony and dominate culturally and religiously.
+
+	date = { day = 1 month = january year = 1531 }
+	offset = 500
+	deathdate = { day = 29 month = december year = 1534 }
+
+	action_a = {
+		name = "ACTIONNAME21086A" #The French Have Taken Over One of Our Colonies
+		command = { type = population which = -4 value = 500 }
+		command = { type = provinceculture which = -3 value = french }
+		command = { type = provincereligion which = -3 value = catholic }
+	}
+}
+#(1535-1539) French Colonists Overseas
+event = {
+	id = 21087
+	trigger = { event = 21085 }
+	random = no
+	country = ENG
+	name = "EVENTNAME21086" #French Colonists Overseas
+	desc = "EVENTHIST21086"
+	#-#With permission to travel to the colonies, some French settlers left France. Sometimes they would gather in a single colony and dominate culturally and religiously.
+
+	date = { day = 1 month = january year = 1535 }
+	offset = 500
+	deathdate = { day = 29 month = december year = 1539 }
+
+	action_a = {
+		name = "ACTIONNAME21086A" #The French Have Taken Over One of Our Colonies
+		command = { type = population which = -4 value = 1000 }
+		command = { type = provinceculture which = -3 value = french }
+		command = { type = provincereligion which = -3 value = catholic }
+	}
+}
+#(1531-1534) The Armor Resettlement
+event = {
+	id = 21088
+	trigger = {
+		event = 21085
+		owned = { province = 414 data = -1 }
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME21088" #The Armor Resettlement
+	desc = "EVENTHIST21088"
+	#-#Over time the French migrated into Brittany and began to overwhelm the native culture.
+
+	date = { day = 1 month = january year = 1531 }
+	offset = 500
+	deathdate = { day = 29 month = december year = 1534 }
+
+	action_a = {
+		name = "ACTIONNAME21088A" #The French Have Resettled in Armor
+		command = { type = province_revoltrisk which = 414 value = 3 } #Armor
+		command = { type = population which = 414 value = 1000 } #Armor
+		command = { type = provinceculture which = 414 value = french } #Armor
+		command = { type = provincereligion which = 414 value = catholic } #Armor
+	}
+}
+#(1535-1539) The Morbihan Resettlement
+event = {
+	id = 21089
+	trigger = {
+		event = 21088
+		owned = { province = 416 data = -1 }
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME21089" #The Morbihan Resettlement
+	desc = "EVENTHIST21088"
+	#-#Over time the French migrated into Brittany and began to overwhelm the native culture.
+
+	date = { day = 1 month = january year = 1535 }
+	offset = 500
+	deathdate = { day = 29 month = december year = 1539 }
+
+	action_a = {
+		name = "ACTIONNAME21089A" #The French Have Resettled in Morbihan
+		command = { type = province_revoltrisk which = 416 value = 3 } #Morbihan
+		command = { type = province_revoltrisk which = 414 value = -3 } #Armor
+		command = { type = population which = 416 value = 1000 } #Morbihan
+		command = { type = provinceculture which = 416 value = french } #Morbihan
+		command = { type = provincereligion which = 416 value = catholic } #Morbihan
+	}
+}
+#(1540-1544) The Bretagne Resettlement
+event = {
+	id = 21090
+	trigger = {
+		event = 21089
+		owned = { province = 415 data = -1 }
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME21090" #The Bretagne Resettlement
+	desc = "EVENTHIST21088"
+	#-#Over time the French migrated into Brittany and began to overwhelm the native culture.
+
+	date = { day = 1 month = january year = 1540 }
+	offset = 500
+	deathdate = { day = 29 month = december year = 1544 }
+
+	action_a = {
+		name = "ACTIONNAME21090A" #The French Have Resettled in Bretagne
+		command = { type = province_revoltrisk which = 415 value = 3 } #Bretagne
+		command = { type = province_revoltrisk which = 416 value = -3 } #Morbihan
+		command = { type = population which = 415 value = 1000 } #Bretagne
+		command = { type = provinceculture which = 415 value = french } #Bretagne
+		command = { type = provincereligion which = 415 value = catholic } #Bretagne
+	}
+}
+#(1540-1545) The Leinster Plantation
+event = {
+	id = 21091
+	trigger = {
+		event = 21085
+		owned = { province = 234 data = -1 }
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME21091" #The Leinster Plantation
+	desc = "EVENTHIST21091"
+	#-#Over time the French colonization of Leinster caused the French to outnumber the Irish. Though this caused some resentment the fact that they shared a religion enabled them to coexist after a few years.
+
+	date = { day = 1 month = january year = 1540 }
+	offset = 1000
+	deathdate = { day = 29 month = december year = 1545 }
+
+	action_a = {
+		name = "ACTIONNAME21091A" #The French Have Resettled in Leinster
+		command = { type = province_revoltrisk which = 234 value = 1 } #Leinster
+		command = { type = population which = 234 value = 3000 } #Leinster
+		command = { type = provinceculture which = 234 value = french } #Leinster
+		command = { type = provincereligion which = 234 value = catholic } #Leinster
+	}
+}
+#(1546-1549) The Situation in Leinster Calms
+event = {
+	id = 21092
+	trigger = { event = 21091 }
+	random = no
+	country = ENG
+	name = "EVENTNAME21092" #The Situation in Leinster Calms
+	desc = "EVENTHIST21092"
+	#-#After awhile the situation in Leinster settled down.
+
+	date = { day = 1 month = january year = 1546 }
+	offset = 500
+	deathdate = { day = 29 month = december year = 1549 }
+
+	action_a = {
+		name = "ACTIONNAME21092A" #The French and Irish Coexist Peacefully in Leinster
+		command = { type = province_revoltrisk which = 234 value = -1 } #Leinster
+	}
+}
+#(1545-1549) The Situation in Bretagne Calms
+event = {
+	id = 21093
+	trigger = { event = 21090 }
+	random = no
+	country = ENG
+	name = "EVENTNAME21093" #The Situation in Bretagne Calms
+	desc = "EVENTHIST21093"
+	#-#After awhile the situation in Bretagne settled down.
+
+	date = { day = 1 month = january year = 1545 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1549 }
+
+	action_a = {
+		name = "ACTIONNAME21093A" #The French Come to Dominate Bretagne
+		command = { type = province_revoltrisk which = 415 value = -3 } #Bretagne
+	}
+}
+#(1540-1549) Post-Reformation French Colonists
+event = {
+	id = 21094
+	trigger = {
+		event = 21087
+		event = 101
+		NOT = { event = 21095 }
+		OR = {
+			religion = catholic
+			religion = counterreform
+		}
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME21094" #Post-Reformation French Colonists
+	desc = "EVENTHIST21094"
+	#-#After the Reformation France came to have a large number of Huguenots. The English government had to determine whether to allow them into the colonies.
+
+	date = { day = 1 month = january year = 1540 }
+	offset = 1500
+	deathdate = { day = 29 month = december year = 1549 }
+
+	action_a = {
+		name = "ACTIONNAME21094A" #Catholics Only
+		command = { type = population which = -4 value = 500 }
+		command = { type = provinceculture which = -3 value = french }
+		command = { type = provincereligion which = -3 value = catholic }
+		command = { type = population which = -4 value = 1000 }
+		command = { type = provinceculture which = -3 value = french }
+		command = { type = provincereligion which = -3 value = catholic }
+	}
+	action_b = {
+		name = "ACTIONNAME21094B" #Let the Huguenots Colonize
+		command = { type = population which = -4 value = 500 }
+		command = { type = provinceculture which = -3 value = french }
+		command = { type = provincereligion which = -3 value = catholic }
+		command = { type = population which = -4 value = 1000 }
+		command = { type = provinceculture which = -3 value = french }
+		command = { type = provincereligion which = -3 value = reformed }
+	}
+}
+#(1540-1549) Post-Reformation French Colonists
+event = {
+	id = 21095
+	trigger = {
+		event = 21087
+		event = 101
+		NOT = { event = 21094 }
+		OR = {
+			religion = protestant
+			religion = reformed
+		}
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME21094" #Post-Reformation French Colonists
+	desc = "EVENTHIST21094"
+	#-#After the Reformation France came to have a large number of Huguenots. The English government had to determine whether to allow them into the colonies.
+
+	date = { day = 1 month = january year = 1540 }
+	offset = 1500
+	deathdate = { day = 29 month = december year = 1549 }
+
+	action_a = {
+		name = "ACTIONNAME21094B" #Let the Huguenots Colonize
+		command = { type = population which = -4 value = 500 }
+		command = { type = provinceculture which = -3 value = french }
+		command = { type = provincereligion which = -3 value = catholic }
+		command = { type = population which = -4 value = 1000 }
+		command = { type = provinceculture which = -3 value = french }
+		command = { type = provincereligion which = -3 value = reformed }
+	}
+	action_b = {
+		name = "ACTIONNAME21094A" #Catholics Only
+		command = { type = population which = -4 value = 500 }
+		command = { type = provinceculture which = -3 value = french }
+		command = { type = provincereligion which = -3 value = catholic }
+		command = { type = population which = -4 value = 1000 }
+		command = { type = provinceculture which = -3 value = french }
+		command = { type = provincereligion which = -3 value = catholic }
+	}
+}
+#(1590-1600) Huguenot Refugees
+event = {
+	id = 21096
+	trigger = { event = 20017 }
+	random = no
+	country = ENG
+	name = "EVENTNAME21096" #Huguenot Refugees
+	desc = "EVENTHIST21096"
+	#-#After being driven off by the English government and French Ultra-Catholics, many Huguenots had nowhere to go but the colonies.
+
+	date = { day = 1 month = january year = 1590 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1600 }
+
+	action_a = {
+		name = "ACTIONNAME21096A" #The Huguenots Have Taken Over Some of our Colonies
+		command = { type = population which = -4 value = 500 }
+		command = { type = provinceculture which = -3 value = french }
+		command = { type = provincereligion which = -3 value = reformed }
+		command = { type = population which = -4 value = 500 }
+		command = { type = provinceculture which = -3 value = french }
+		command = { type = provincereligion which = -3 value = reformed }
+	}
+}
+#(1590-1600) Ultra-Catholics Refugees
+event = {
+	id = 21097
+	trigger = {
+		OR = {
+			event = 20019
+			event = 20020
+			event = 20021
+		}
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME21097" #Ultra-Catholic Refugees
+	desc = "EVENTHIST21097"
+	#-#After being driven off by the English government and French Huguenots, many Catholics had nowhere to go but the colonies.
+
+	date = { day = 1 month = january year = 1590 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1600 }
+
+	action_a = {
+		name = "ACTIONNAME21097A" #The Ultra-Catholics Have Taken Over Some of Our Colonies
+		command = { type = population which = -4 value = 500 }
+		command = { type = provinceculture which = -3 value = french }
+		command = { type = provincereligion which = -3 value = counterreform }
+		command = { type = population which = -4 value = 500 }
+		command = { type = provinceculture which = -3 value = french }
+		command = { type = provincereligion which = -3 value = counterreform }
+		command = { type = population which = -4 value = 500 }
+		command = { type = provinceculture which = -3 value = french }
+		command = { type = provincereligion which = -3 value = counterreform }
+	}
+}
+#End of Anglo-French Colonization Sequence
+#-----------------------------------------------------------------------------------------------
+
+#(1553) The French Revolt Against Northumberland
+#Concept by Pishtaco - Scripted by Johnny Canuck
+event = {
+	id = 20106
+	trigger = {
+		event = 164180 #ENG: English Final Victory
+		NOT = { event = 20007 }
+		event = 3013
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME20106" #The French Revolt Against Northumberland
+	desc = "EVENTHIST20106"
+	#-#On his deathbed Edward VI, encouraged by his regent the Duke of Northumberland, signed a device excluding his sisters Mary and Elizabeth from the throne. Instead, to maintain Edward's religious settlement and Northumberland's grip on power he named Lady Jane Grey, Northumberland's daughter in law, as his heir. She ruled for only nine days. England came out in support of Mary, and Northumberland's forces there were dispersed by troops loyal to her. Jane and her husband were executed. Meanwhile in France segments of the French nobility, who had never become reconciled with English rule, saw this usurpation as an opportunity to regain their power. They took control of Paris and proclaimed their own candidate, Henri duc d'Orleans, as rightful King of the French part of the English empire.
+
+	date = { day = 20 month = july year = 1553 }
+
+	action_a = {
+		name = "ACTIONNAME20106A" #The Usurpation Must be Crushed
+		command = { type = revolt which = 376 } #Champagne
+		command = { type = revolt which = 385 } #Ile de France
+		command = { type = revolt which = 385 } #Ile de France
+		command = { type = revolt which = 385 } #Ile de France
+		command = { type = revolt which = 407 } #Dauphiné
+		command = { type = revolt which = 411 } #Orleanais
+		command = { type = revolt which = 411 } #Orleanais
+		command = { type = revolt which = 412 } #Maine
+		command = { type = revolt which = 419 } #Limousin
+		command = { type = revolt which = 420 } #Auvergne
+		command = { type = stability value = -2 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#The Wars of Religion Sequence
+#Created by Johnny Canuck
+
+#(1562-1572) The Wars of Religion in the French Provinces - Catholic
+event = {
+	id = 20009
+	trigger = {
+		event = 164180 #ENG: English Final Victory
+		NOT = {
+			event = 20010
+			event = 20011
+			event = 20012
+			event = 20008
+		}
+		OR = {
+			religion = catholic
+			religion = counterreform
+		}
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME20009" #The Wars of Religion in the French Provinces
+	desc = "EVENTHIST20009"
+	#-#By the early 1560s, the simmering religious unrest in the French provinces had exploded into open rivalry and conflict. Various factions maneouvred for power and numerous massacres were commented on all sides. There were the Ultra-Catholics, generally based in the centre and northeast of France, and the Reformed Huguenots, generally based in the south, with the moderate Catholics and Protestants stuck in between these two extremes. All factions desired the support and aid of the English government to achieve their religious aims. England could not remain neutral. A choice had to be made. However, the faction England chooses to support may not be popular with the English people or nobility themselves. Also, there was the always present danger that if the factional and religious fighting got out of hand, England's ability to rule its French provinces might be forever damaged.
+
+	date = { day = 1 month = january year = 1562 }
+	offset = 1000
+	deathdate = { day = 1 month = january year = 1572 }
+
+	action_a = {
+		name = "ACTIONNAME20009A" #Support the Ultra-Catholics
+		#FPR Provinces
+		command = { type = province_revoltrisk which = 407 value = 5 } #Dauphiné
+		command = { type = province_revoltrisk which = 418 value = 5 } #Poitou
+		command = { type = province_revoltrisk which = 419 value = 5 } #Limousin
+		command = { type = province_revoltrisk which = 421 value = 5 } #Cévennes
+		command = { type = province_revoltrisk which = 422 value = 5 } #Languedoc
+		command = { type = province_revoltrisk which = 423 value = 5 } #Guyenne
+		command = { type = province_revoltrisk which = 425 value = 5 } #Béarn
+		#FUC Provinces
+		command = { type = province_revoltrisk which = 376 value = 3 } #Champagne
+		command = { type = province_revoltrisk which = 382 value = 3 } #Calais
+		command = { type = province_revoltrisk which = 383 value = 3 } #Picardie
+		command = { type = province_revoltrisk which = 384 value = 3 } #Caux
+		command = { type = province_revoltrisk which = 386 value = 3 } #Nivernais
+		command = { type = province_revoltrisk which = 410 value = 3 } #Berri
+		command = { type = province_revoltrisk which = 411 value = 3 } #Orleanais
+		command = { type = province_revoltrisk which = 417 value = 3 } #Vendée
+		#Other French Provinces
+		command = { type = province_revoltrisk which = 375 value = 2 } #Lorraine
+		command = { type = province_revoltrisk which = 379 value = 2 } #Artois
+		command = { type = province_revoltrisk which = 385 value = 2 } #Ile de France
+		command = { type = province_revoltrisk which = 387 value = 2 } #Franche-Comté
+		command = { type = province_revoltrisk which = 406 value = 2 } #Provence
+		command = { type = province_revoltrisk which = 408 value = 2 } #Lyonnais
+		command = { type = province_revoltrisk which = 409 value = 2 } #Bourgogne
+		command = { type = province_revoltrisk which = 412 value = 2 } #Maine
+		command = { type = province_revoltrisk which = 413 value = 2 } #Normandie
+		command = { type = province_revoltrisk which = 414 value = 2 } #Armor
+		command = { type = province_revoltrisk which = 415 value = 2 } #Bretagne
+		command = { type = province_revoltrisk which = 416 value = 2 } #Morbihan
+		command = { type = province_revoltrisk which = 420 value = 2 } #Auvergne
+		command = { type = province_revoltrisk which = 424 value = 2 } #Gascogne
+		command = { type = province_revoltrisk which = 426 value = 2 } #Roussillon
+		command = { type = stability value = -1 }
+		command = { type = sleepevent which = 20016 } #ENG: Huguenots Declare Independence
+		command = { type = sleepevent which = 20017 } #ENG: Ultra-Catholics and Huguenots Declare Independence
+		command = { type = sleepevent which = 20018 } #ENG: Ultra-Catholics Fight Off English Repression
+		command = { type = sleepevent which = 20020 } #ENG: Ultra-Catholics Strike Out on their Own
+		command = { type = sleepevent which = 20021 } #ENG: Huguenots Strike Out on their Own
+		command = { type = sleepevent which = 20025 } #ENG: The End of the Wars of Religion in the French Provinces
+		command = { type = sleepevent which = 20026 } #ENG: The End of the Wars of Religion in the French Provinces
+		command = { type = sleepevent which = 20027 } #ENG: The End of the Wars of Religion in the French Provinces
+	}
+	action_b = {
+		name = "ACTIONNAME20009B" #Support the Moderates
+		#FPR Provinces
+		command = { type = province_revoltrisk which = 407 value = 4 } #Dauphiné
+		command = { type = province_revoltrisk which = 418 value = 4 } #Poitou
+		command = { type = province_revoltrisk which = 419 value = 4 } #Limousin
+		command = { type = province_revoltrisk which = 421 value = 4 } #Cévennes
+		command = { type = province_revoltrisk which = 422 value = 4 } #Languedoc
+		command = { type = province_revoltrisk which = 423 value = 4 } #Guyenne
+		command = { type = province_revoltrisk which = 425 value = 4 } #Béarn
+		#FUC Provinces
+		command = { type = province_revoltrisk which = 376 value = 4 } #Champagne
+		command = { type = province_revoltrisk which = 382 value = 4 } #Calais
+		command = { type = province_revoltrisk which = 383 value = 4 } #Picardie
+		command = { type = province_revoltrisk which = 384 value = 4 } #Caux
+		command = { type = province_revoltrisk which = 386 value = 4 } #Nivernais
+		command = { type = province_revoltrisk which = 410 value = 4 } #Berri
+		command = { type = province_revoltrisk which = 411 value = 4 } #Orleanais
+		command = { type = province_revoltrisk which = 417 value = 4 } #Vendée
+		#Other French Provinces
+		command = { type = province_revoltrisk which = 375 value = 2 } #Lorraine
+		command = { type = province_revoltrisk which = 379 value = 2 } #Artois
+		command = { type = province_revoltrisk which = 385 value = 2 } #Ile de France
+		command = { type = province_revoltrisk which = 387 value = 2 } #Franche-Comté
+		command = { type = province_revoltrisk which = 406 value = 2 } #Provence
+		command = { type = province_revoltrisk which = 408 value = 2 } #Lyonnais
+		command = { type = province_revoltrisk which = 409 value = 2 } #Bourgogne
+		command = { type = province_revoltrisk which = 412 value = 2 } #Maine
+		command = { type = province_revoltrisk which = 413 value = 2 } #Normandie
+		command = { type = province_revoltrisk which = 414 value = 2 } #Armor
+		command = { type = province_revoltrisk which = 415 value = 2 } #Bretagne
+		command = { type = province_revoltrisk which = 416 value = 2 } #Morbihan
+		command = { type = province_revoltrisk which = 420 value = 2 } #Auvergne
+		command = { type = province_revoltrisk which = 424 value = 2 } #Gascogne
+		command = { type = province_revoltrisk which = 426 value = 2 } #Roussillon
+		command = { type = stability value = -2 }
+		command = { type = sleepevent which = 20015 } #ENG: Ultra-Catholics Declare Independence
+		command = { type = sleepevent which = 20016 } #ENG: Huguenots Declare Independence
+		command = { type = sleepevent which = 20018 } #ENG: Ultra-Catholics Fight Off English Repression
+		command = { type = sleepevent which = 20019 } #ENG: Huguenots Fight Off English Repression
+		command = { type = sleepevent which = 20024 } #ENG: The End of the Wars of Religion in the French Provinces
+		command = { type = sleepevent which = 20026 } #ENG: The End of the Wars of Religion in the French Provinces
+		command = { type = sleepevent which = 20027 } #ENG: The End of the Wars of Religion in the French Provinces
+	}
+	action_c = {
+		name = "ACTIONNAME20009C" #Support the Huguenots
+		#FPR Provinces
+		command = { type = province_revoltrisk which = 407 value = 3 } #Dauphiné
+		command = { type = province_revoltrisk which = 418 value = 3 } #Poitou
+		command = { type = province_revoltrisk which = 419 value = 3 } #Limousin
+		command = { type = province_revoltrisk which = 421 value = 3 } #Cévennes
+		command = { type = province_revoltrisk which = 422 value = 3 } #Languedoc
+		command = { type = province_revoltrisk which = 423 value = 3 } #Guyenne
+		command = { type = province_revoltrisk which = 425 value = 3 } #Béarn
+		#FUC Provinces
+		command = { type = province_revoltrisk which = 376 value = 5 } #Champagne
+		command = { type = province_revoltrisk which = 382 value = 5 } #Calais
+		command = { type = province_revoltrisk which = 383 value = 5 } #Picardie
+		command = { type = province_revoltrisk which = 384 value = 5 } #Caux
+		command = { type = province_revoltrisk which = 386 value = 5 } #Nivernais
+		command = { type = province_revoltrisk which = 410 value = 5 } #Berri
+		command = { type = province_revoltrisk which = 411 value = 5 } #Orleanais
+		command = { type = province_revoltrisk which = 417 value = 5 } #Vendée
+		#Other French Provinces
+		command = { type = province_revoltrisk which = 375 value = 2 } #Lorraine
+		command = { type = province_revoltrisk which = 379 value = 2 } #Artois
+		command = { type = province_revoltrisk which = 385 value = 2 } #Ile de France
+		command = { type = province_revoltrisk which = 387 value = 2 } #Franche-Comté
+		command = { type = province_revoltrisk which = 406 value = 2 } #Provence
+		command = { type = province_revoltrisk which = 408 value = 2 } #Lyonnais
+		command = { type = province_revoltrisk which = 409 value = 2 } #Bourgogne
+		command = { type = province_revoltrisk which = 412 value = 2 } #Maine
+		command = { type = province_revoltrisk which = 413 value = 2 } #Normandie
+		command = { type = province_revoltrisk which = 414 value = 2 } #Armor
+		command = { type = province_revoltrisk which = 415 value = 2 } #Bretagne
+		command = { type = province_revoltrisk which = 416 value = 2 } #Morbihan
+		command = { type = province_revoltrisk which = 420 value = 2 } #Auvergne
+		command = { type = province_revoltrisk which = 424 value = 2 } #Gascogne
+		command = { type = province_revoltrisk which = 426 value = 2 } #Roussillon
+		command = { type = stability value = -3 }
+		command = { type = revolt which = 241 } #Yorkshire
+		command = { type = revolt which = 231 } #Connaught
+		command = { type = desertion which = -1 value = 10000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = sleepevent which = 20015 } #ENG: Ultra-Catholics Declare Independence
+		command = { type = sleepevent which = 20017 } #ENG: Ultra-Catholics and Huguenots Declare Independence
+		command = { type = sleepevent which = 20019 } #ENG: Huguenots Fight Off English Repression
+		command = { type = sleepevent which = 20020 } #ENG: Ultra-Catholics Strike Out on their Own
+		command = { type = sleepevent which = 20021 } #ENG: Huguenots Strike Out on their Own
+		command = { type = sleepevent which = 20024 } #ENG: The End of the Wars of Religion in the French Provinces
+		command = { type = sleepevent which = 20025 } #ENG: The End of the Wars of Religion in the French Provinces
+		command = { type = sleepevent which = 20027 } #ENG: The End of the Wars of Religion in the French Provinces
+	}
+}
+#(1562-1572) The Wars of Religion in the French Provinces - CRC
+event = {
+	id = 20010
+	trigger = {
+		event = 164180
+		NOT = {
+			event = 20009
+			event = 20011
+			event = 20012
+			event = 20008
+		}
+		OR = {
+			religion = catholic
+			religion = counterreform
+		}
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME20009" #The Wars of Religion in the French Provinces
+	desc = "EVENTHIST20009"
+	#-#By the early 1560s, the simmering religious unrest in the French provinces had exploded into open rivalry and conflict. Various factions maneouvred for power and numerous massacres were commented on all sides. There were the Ultra-Catholics, generally based in the centre and northeast of France, and the Reformed Huguenots, generally based in the south, with the moderate Catholics and Protestants stuck in between these two extremes. All factions desired the support and aid of the English government to achieve their religious aims. England could not remain neutral. A choice had to be made. However, the faction England chooses to support may not be popular with the English people or nobility themselves. Also, there was the always present danger that if the factional and religious fighting got out of hand, England's ability to rule its French provinces might be forever damaged.
+
+	date = { day = 1 month = january year = 1562 }
+	offset = 1000
+	deathdate = { day = 1 month = january year = 1572 }
+
+	action_a = {
+		name = "ACTIONNAME20009A" #Support the Ultra-Catholics
+		#FPR Provinces
+		command = { type = province_revoltrisk which = 407 value = 6 } #Dauphiné
+		command = { type = province_revoltrisk which = 418 value = 6 } #Poitou
+		command = { type = province_revoltrisk which = 419 value = 6 } #Limousin
+		command = { type = province_revoltrisk which = 421 value = 6 } #Cévennes
+		command = { type = province_revoltrisk which = 422 value = 6 } #Languedoc
+		command = { type = province_revoltrisk which = 423 value = 6 } #Guyenne
+		command = { type = province_revoltrisk which = 425 value = 6 } #Béarn
+		#FUC Provinces
+		command = { type = province_revoltrisk which = 376 value = 3 } #Champagne
+		command = { type = province_revoltrisk which = 382 value = 3 } #Calais
+		command = { type = province_revoltrisk which = 383 value = 3 } #Picardie
+		command = { type = province_revoltrisk which = 384 value = 3 } #Caux
+		command = { type = province_revoltrisk which = 386 value = 3 } #Nivernais
+		command = { type = province_revoltrisk which = 410 value = 3 } #Berri
+		command = { type = province_revoltrisk which = 411 value = 3 } #Orleanais
+		command = { type = province_revoltrisk which = 417 value = 3 } #Vendée
+		#Other French Provinces
+		command = { type = province_revoltrisk which = 375 value = 2 } #Lorraine
+		command = { type = province_revoltrisk which = 379 value = 2 } #Artois
+		command = { type = province_revoltrisk which = 385 value = 2 } #Ile de France
+		command = { type = province_revoltrisk which = 387 value = 2 } #Franche-Comté
+		command = { type = province_revoltrisk which = 406 value = 2 } #Provence
+		command = { type = province_revoltrisk which = 408 value = 2 } #Lyonnais
+		command = { type = province_revoltrisk which = 409 value = 2 } #Bourgogne
+		command = { type = province_revoltrisk which = 412 value = 2 } #Maine
+		command = { type = province_revoltrisk which = 413 value = 2 } #Normandie
+		command = { type = province_revoltrisk which = 414 value = 2 } #Armor
+		command = { type = province_revoltrisk which = 415 value = 2 } #Bretagne
+		command = { type = province_revoltrisk which = 416 value = 2 } #Morbihan
+		command = { type = province_revoltrisk which = 420 value = 2 } #Auvergne
+		command = { type = province_revoltrisk which = 424 value = 2 } #Gascogne
+		command = { type = province_revoltrisk which = 426 value = 2 } #Roussillon
+		command = { type = stability value = -1 }
+		command = { type = sleepevent which = 20016 } #ENG: Huguenots Declare Independence
+		command = { type = sleepevent which = 20017 } #ENG: Ultra-Catholics and Huguenots Declare Independence
+		command = { type = sleepevent which = 20018 } #ENG: Ultra-Catholics Fight Off English Repression
+		command = { type = sleepevent which = 20020 } #ENG: Ultra-Catholics Strike Out on their Own
+		command = { type = sleepevent which = 20021 } #ENG: Huguenots Strike Out on their Own
+		command = { type = sleepevent which = 20024 } #ENG: The End of the Wars of Religion in the French Provinces
+		command = { type = sleepevent which = 20025 } #ENG: The End of the Wars of Religion in the French Provinces
+		command = { type = sleepevent which = 20026 } #ENG: The End of the Wars of Religion in the French Provinces
+	}
+	action_b = {
+		name = "ACTIONNAME20009B" #Support the Moderates
+		#FPR Provinces
+		command = { type = province_revoltrisk which = 407 value = 4 } #Dauphiné
+		command = { type = province_revoltrisk which = 418 value = 4 } #Poitou
+		command = { type = province_revoltrisk which = 419 value = 4 } #Limousin
+		command = { type = province_revoltrisk which = 421 value = 4 } #Cévennes
+		command = { type = province_revoltrisk which = 422 value = 4 } #Languedoc
+		command = { type = province_revoltrisk which = 423 value = 4 } #Guyenne
+		command = { type = province_revoltrisk which = 425 value = 4 } #Béarn
+		#FUC Provinces
+		command = { type = province_revoltrisk which = 376 value = 4 } #Champagne
+		command = { type = province_revoltrisk which = 382 value = 4 } #Calais
+		command = { type = province_revoltrisk which = 383 value = 4 } #Picardie
+		command = { type = province_revoltrisk which = 384 value = 4 } #Caux
+		command = { type = province_revoltrisk which = 386 value = 4 } #Nivernais
+		command = { type = province_revoltrisk which = 410 value = 4 } #Berri
+		command = { type = province_revoltrisk which = 411 value = 4 } #Orleanais
+		command = { type = province_revoltrisk which = 417 value = 4 } #Vendée
+		#Other French Provinces
+		command = { type = province_revoltrisk which = 375 value = 2 } #Lorraine
+		command = { type = province_revoltrisk which = 379 value = 2 } #Artois
+		command = { type = province_revoltrisk which = 385 value = 2 } #Ile de France
+		command = { type = province_revoltrisk which = 387 value = 2 } #Franche-Comté
+		command = { type = province_revoltrisk which = 406 value = 2 } #Provence
+		command = { type = province_revoltrisk which = 408 value = 2 } #Lyonnais
+		command = { type = province_revoltrisk which = 409 value = 2 } #Bourgogne
+		command = { type = province_revoltrisk which = 412 value = 2 } #Maine
+		command = { type = province_revoltrisk which = 413 value = 2 } #Normandie
+		command = { type = province_revoltrisk which = 414 value = 2 } #Armor
+		command = { type = province_revoltrisk which = 415 value = 2 } #Bretagne
+		command = { type = province_revoltrisk which = 416 value = 2 } #Morbihan
+		command = { type = province_revoltrisk which = 420 value = 2 } #Auvergne
+		command = { type = province_revoltrisk which = 424 value = 2 } #Gascogne
+		command = { type = province_revoltrisk which = 426 value = 2 } #Roussillon
+		command = { type = stability value = -3 }
+		command = { type = sleepevent which = 20015 } #ENG: Ultra-Catholics Declare Independence
+		command = { type = sleepevent which = 20016 } #ENG: Huguenots Declare Independence
+		command = { type = sleepevent which = 20018 } #ENG: Ultra-Catholics Fight Off English Repression
+		command = { type = sleepevent which = 20019 } #ENG: Huguenots Fight Off English Repression
+		command = { type = sleepevent which = 20024 } #ENG: The End of the Wars of Religion in the French Provinces
+		command = { type = sleepevent which = 20026 } #ENG: The End of the Wars of Religion in the French Provinces
+		command = { type = sleepevent which = 20027 } #ENG: The End of the Wars of Religion in the French Provinces
+	}
+	action_c = {
+		name = "ACTIONNAME20009C" #Support the Huguenots
+		#FPR Provinces
+		command = { type = province_revoltrisk which = 407 value = 3 } #Dauphiné
+		command = { type = province_revoltrisk which = 418 value = 3 } #Poitou
+		command = { type = province_revoltrisk which = 419 value = 3 } #Limousin
+		command = { type = province_revoltrisk which = 421 value = 3 } #Cévennes
+		command = { type = province_revoltrisk which = 422 value = 3 } #Languedoc
+		command = { type = province_revoltrisk which = 423 value = 3 } #Guyenne
+		command = { type = province_revoltrisk which = 425 value = 3 } #Béarn
+		#FUC Provinces
+		command = { type = province_revoltrisk which = 376 value = 5 } #Champagne
+		command = { type = province_revoltrisk which = 382 value = 5 } #Calais
+		command = { type = province_revoltrisk which = 383 value = 5 } #Picardie
+		command = { type = province_revoltrisk which = 384 value = 5 } #Caux
+		command = { type = province_revoltrisk which = 386 value = 5 } #Nivernais
+		command = { type = province_revoltrisk which = 410 value = 5 } #Berri
+		command = { type = province_revoltrisk which = 411 value = 5 } #Orleanais
+		command = { type = province_revoltrisk which = 417 value = 5 } #Vendée
+		#Other French Provinces
+		command = { type = province_revoltrisk which = 375 value = 2 } #Lorraine
+		command = { type = province_revoltrisk which = 379 value = 2 } #Artois
+		command = { type = province_revoltrisk which = 385 value = 2 } #Ile de France
+		command = { type = province_revoltrisk which = 387 value = 2 } #Franche-Comté
+		command = { type = province_revoltrisk which = 406 value = 2 } #Provence
+		command = { type = province_revoltrisk which = 408 value = 2 } #Lyonnais
+		command = { type = province_revoltrisk which = 409 value = 2 } #Bourgogne
+		command = { type = province_revoltrisk which = 412 value = 2 } #Maine
+		command = { type = province_revoltrisk which = 413 value = 2 } #Normandie
+		command = { type = province_revoltrisk which = 414 value = 2 } #Armor
+		command = { type = province_revoltrisk which = 415 value = 2 } #Bretagne
+		command = { type = province_revoltrisk which = 416 value = 2 } #Morbihan
+		command = { type = province_revoltrisk which = 420 value = 2 } #Auvergne
+		command = { type = province_revoltrisk which = 424 value = 2 } #Gascogne
+		command = { type = province_revoltrisk which = 426 value = 2 } #Roussillon
+		command = { type = stability value = -4 }
+		command = { type = revolt which = 241 } #Yorkshire
+		command = { type = revolt which = 241 } #Yorkshire
+		command = { type = revolt which = 231 } #Connaught
+		command = { type = revolt which = 231 } #Connaught
+		command = { type = desertion which = -1 value = 10000 }
+		command = { type = desertion which = -1 value = 10000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = sleepevent which = 20015 } #ENG: Ultra-Catholics Declare Independence
+		command = { type = sleepevent which = 20017 } #ENG: Ultra-Catholics and Huguenots Declare Independence
+		command = { type = sleepevent which = 20019 } #ENG: Huguenots Fight Off English Repression
+		command = { type = sleepevent which = 20020 } #ENG: Ultra-Catholics Strike Out on their Own
+		command = { type = sleepevent which = 20021 } #ENG: Huguenots Strike Out on their Own
+		command = { type = sleepevent which = 20024 } #ENG: The End of the Wars of Religion in the French Provinces
+		command = { type = sleepevent which = 20025 } #ENG: The End of the Wars of Religion in the French Provinces
+		command = { type = sleepevent which = 20027 } #ENG: The End of the Wars of Religion in the French Provinces
+	}
+}
+#(1562-1572) The Wars of Religion in the French Provinces - Protestant
+event = {
+	id = 20011
+	trigger = {
+		event = 164180
+		NOT = {
+			event = 20009
+			event = 20010
+			event = 20012
+			event = 20008
+		}
+		religion = protestant
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME20009" #The Wars of Religion in the French Provinces
+	desc = "EVENTHIST20009"
+	#-#By the early 1560s, the simmering religious unrest in the French provinces had exploded into open rivalry and conflict. Various factions maneouvred for power and numerous massacres were commented on all sides. There were the Ultra-Catholics, generally based in the centre and northeast of France, and the Reformed Huguenots, generally based in the south, with the moderate Catholics and Protestants stuck in between these two extremes. All factions desired the support and aid of the English government to achieve their religious aims. England could not remain neutral. A choice had to be made. However, the faction England chooses to support may not be popular with the English people or nobility themselves. Also, there was the always present danger that if the factional and religious fighting got out of hand, England's ability to rule its French provinces might be forever damaged.
+
+	date = { day = 1 month = january year = 1562 }
+	offset = 1000
+	deathdate = { day = 1 month = january year = 1572 }
+
+	action_a = {
+		name = "ACTIONNAME20009B" #Support the Moderates
+		#FPR Provinces
+		command = { type = province_revoltrisk which = 407 value = 4 } #Dauphiné
+		command = { type = province_revoltrisk which = 418 value = 4 } #Poitou
+		command = { type = province_revoltrisk which = 419 value = 4 } #Limousin
+		command = { type = province_revoltrisk which = 421 value = 4 } #Cévennes
+		command = { type = province_revoltrisk which = 422 value = 4 } #Languedoc
+		command = { type = province_revoltrisk which = 423 value = 4 } #Guyenne
+		command = { type = province_revoltrisk which = 425 value = 4 } #Béarn
+		#FUC Provinces
+		command = { type = province_revoltrisk which = 376 value = 4 } #Champagne
+		command = { type = province_revoltrisk which = 382 value = 4 } #Calais
+		command = { type = province_revoltrisk which = 383 value = 4 } #Picardie
+		command = { type = province_revoltrisk which = 384 value = 4 } #Caux
+		command = { type = province_revoltrisk which = 386 value = 4 } #Nivernais
+		command = { type = province_revoltrisk which = 410 value = 4 } #Berri
+		command = { type = province_revoltrisk which = 411 value = 4 } #Orleanais
+		command = { type = province_revoltrisk which = 417 value = 4 } #Vendée
+		#Other French Provinces
+		command = { type = province_revoltrisk which = 375 value = 2 } #Lorraine
+		command = { type = province_revoltrisk which = 379 value = 2 } #Artois
+		command = { type = province_revoltrisk which = 385 value = 2 } #Ile de France
+		command = { type = province_revoltrisk which = 387 value = 2 } #Franche-Comté
+		command = { type = province_revoltrisk which = 406 value = 2 } #Provence
+		command = { type = province_revoltrisk which = 408 value = 2 } #Lyonnais
+		command = { type = province_revoltrisk which = 409 value = 2 } #Bourgogne
+		command = { type = province_revoltrisk which = 412 value = 2 } #Maine
+		command = { type = province_revoltrisk which = 413 value = 2 } #Normandie
+		command = { type = province_revoltrisk which = 414 value = 2 } #Armor
+		command = { type = province_revoltrisk which = 415 value = 2 } #Bretagne
+		command = { type = province_revoltrisk which = 416 value = 2 } #Morbihan
+		command = { type = province_revoltrisk which = 420 value = 2 } #Auvergne
+		command = { type = province_revoltrisk which = 424 value = 2 } #Gascogne
+		command = { type = province_revoltrisk which = 426 value = 2 } #Roussillon
+		command = { type = stability value = -1 }
+		command = { type = sleepevent which = 20015 } #ENG: Ultra-Catholics Declare Independence
+		command = { type = sleepevent which = 20016 } #ENG: Huguenots Declare Independence
+		command = { type = sleepevent which = 20018 } #ENG: Ultra-Catholics Fight Off English Repression
+		command = { type = sleepevent which = 20019 } #ENG: Huguenots Fight Off English Repression
+		command = { type = sleepevent which = 20024 } #ENG: The End of the Wars of Religion in the French Provinces
+		command = { type = sleepevent which = 20026 } #ENG: The End of the Wars of Religion in the French Provinces
+		command = { type = sleepevent which = 20027 } #ENG: The End of the Wars of Religion in the French Provinces
+	}
+	action_b = {
+		name = "ACTIONNAME20009C" #Support the Huguenots
+		#FPR Provinces
+		command = { type = province_revoltrisk which = 407 value = 3 } #Dauphiné
+		command = { type = province_revoltrisk which = 418 value = 3 } #Poitou
+		command = { type = province_revoltrisk which = 419 value = 3 } #Limousin
+		command = { type = province_revoltrisk which = 421 value = 3 } #Cévennes
+		command = { type = province_revoltrisk which = 422 value = 3 } #Languedoc
+		command = { type = province_revoltrisk which = 423 value = 3 } #Guyenne
+		command = { type = province_revoltrisk which = 425 value = 3 } #Béarn
+		#FUC Provinces
+		command = { type = province_revoltrisk which = 376 value = 5 } #Champagne
+		command = { type = province_revoltrisk which = 382 value = 5 } #Calais
+		command = { type = province_revoltrisk which = 383 value = 5 } #Picardie
+		command = { type = province_revoltrisk which = 384 value = 5 } #Caux
+		command = { type = province_revoltrisk which = 386 value = 5 } #Nivernais
+		command = { type = province_revoltrisk which = 410 value = 5 } #Berri
+		command = { type = province_revoltrisk which = 411 value = 5 } #Orleanais
+		command = { type = province_revoltrisk which = 417 value = 5 } #Vendée
+		#Other French Provinces
+		command = { type = province_revoltrisk which = 375 value = 2 } #Lorraine
+		command = { type = province_revoltrisk which = 379 value = 2 } #Artois
+		command = { type = province_revoltrisk which = 385 value = 2 } #Ile de France
+		command = { type = province_revoltrisk which = 387 value = 2 } #Franche-Comté
+		command = { type = province_revoltrisk which = 406 value = 2 } #Provence
+		command = { type = province_revoltrisk which = 408 value = 2 } #Lyonnais
+		command = { type = province_revoltrisk which = 409 value = 2 } #Bourgogne
+		command = { type = province_revoltrisk which = 412 value = 2 } #Maine
+		command = { type = province_revoltrisk which = 413 value = 2 } #Normandie
+		command = { type = province_revoltrisk which = 414 value = 2 } #Armor
+		command = { type = province_revoltrisk which = 415 value = 2 } #Bretagne
+		command = { type = province_revoltrisk which = 416 value = 2 } #Morbihan
+		command = { type = province_revoltrisk which = 420 value = 2 } #Auvergne
+		command = { type = province_revoltrisk which = 424 value = 2 } #Gascogne
+		command = { type = province_revoltrisk which = 426 value = 2 } #Roussillon
+		command = { type = stability value = -2 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = sleepevent which = 20015 } #ENG: Ultra-Catholics Declare Independence
+		command = { type = sleepevent which = 20017 } #ENG: Ultra-Catholics and Huguenots Declare Independence
+		command = { type = sleepevent which = 20019 } #ENG: Huguenots Fight Off English Repression
+		command = { type = sleepevent which = 20020 } #ENG: Ultra-Catholics Strike Out on their Own
+		command = { type = sleepevent which = 20021 } #ENG: Huguenots Strike Out on their Own
+		command = { type = sleepevent which = 20024 } #ENG: The End of the Wars of Religion in the French Provinces
+		command = { type = sleepevent which = 20025 } #ENG: The End of the Wars of Religion in the French Provinces
+		command = { type = sleepevent which = 20027 } #ENG: The End of the Wars of Religion in the French Provinces
+	}
+	action_c = {
+		name = "ACTIONNAME20009A" #Support the Ultra-Catholics
+		#FPR Provinces
+		command = { type = province_revoltrisk which = 407 value = 5 } #Dauphiné
+		command = { type = province_revoltrisk which = 418 value = 5 } #Poitou
+		command = { type = province_revoltrisk which = 419 value = 5 } #Limousin
+		command = { type = province_revoltrisk which = 421 value = 5 } #Cévennes
+		command = { type = province_revoltrisk which = 422 value = 5 } #Languedoc
+		command = { type = province_revoltrisk which = 423 value = 5 } #Guyenne
+		command = { type = province_revoltrisk which = 425 value = 5 } #Béarn
+		#FUC Provinces
+		command = { type = province_revoltrisk which = 376 value = 3 } #Champagne
+		command = { type = province_revoltrisk which = 382 value = 3 } #Calais
+		command = { type = province_revoltrisk which = 383 value = 3 } #Picardie
+		command = { type = province_revoltrisk which = 384 value = 3 } #Caux
+		command = { type = province_revoltrisk which = 386 value = 3 } #Nivernais
+		command = { type = province_revoltrisk which = 410 value = 3 } #Berri
+		command = { type = province_revoltrisk which = 411 value = 3 } #Orleanais
+		command = { type = province_revoltrisk which = 417 value = 3 } #Vendée
+		#Other French Provinces
+		command = { type = province_revoltrisk which = 375 value = 2 } #Lorraine
+		command = { type = province_revoltrisk which = 379 value = 2 } #Artois
+		command = { type = province_revoltrisk which = 385 value = 2 } #Ile de France
+		command = { type = province_revoltrisk which = 387 value = 2 } #Franche-Comté
+		command = { type = province_revoltrisk which = 406 value = 2 } #Provence
+		command = { type = province_revoltrisk which = 408 value = 2 } #Lyonnais
+		command = { type = province_revoltrisk which = 409 value = 2 } #Bourgogne
+		command = { type = province_revoltrisk which = 412 value = 2 } #Maine
+		command = { type = province_revoltrisk which = 413 value = 2 } #Normandie
+		command = { type = province_revoltrisk which = 414 value = 2 } #Armor
+		command = { type = province_revoltrisk which = 415 value = 2 } #Bretagne
+		command = { type = province_revoltrisk which = 416 value = 2 } #Morbihan
+		command = { type = province_revoltrisk which = 420 value = 2 } #Auvergne
+		command = { type = province_revoltrisk which = 424 value = 2 } #Gascogne
+		command = { type = province_revoltrisk which = 426 value = 2 } #Roussillon
+		command = { type = stability value = -3 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = sleepevent which = 20016 } #ENG: Huguenots Declare Independence
+		command = { type = sleepevent which = 20017 } #ENG: Ultra-Catholics and Huguenots Declare Independence
+		command = { type = sleepevent which = 20018 } #ENG: Ultra-Catholics Fight Off English Repression
+		command = { type = sleepevent which = 20020 } #ENG: Ultra-Catholics Strike Out on their Own
+		command = { type = sleepevent which = 20021 } #ENG: Huguenots Strike Out on their Own
+		command = { type = sleepevent which = 20025 } #ENG: The End of the Wars of Religion in the French Provinces
+		command = { type = sleepevent which = 20026 } #ENG: The End of the Wars of Religion in the French Provinces
+		command = { type = sleepevent which = 20027 } #ENG: The End of the Wars of Religion in the French Provinces
+	}
+}
+#(1562-1572) The Wars of Religion in the French Provinces - Reformed
+event = {
+	id = 20012
+	trigger = {
+		event = 164180
+		NOT = {
+			event = 20009
+			event = 20010
+			event = 20011
+			event = 20008
+		}
+		religion = reformed
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME20009" #The Wars of Religion in the French Provinces
+	desc = "EVENTHIST20009"
+	#-#By the early 1560s, the simmering religious unrest in the French provinces had exploded into open rivalry and conflict. Various factions maneouvred for power and numerous massacres were commented on all sides. There were the Ultra-Catholics, generally based in the centre and northeast of France, and the Reformed Huguenots, generally based in the south, with the moderate Catholics and Protestants stuck in between these two extremes. All factions desired the support and aid of the English government to achieve their religious aims. England could not remain neutral. A choice had to be made. However, the faction England chooses to support may not be popular with the English people or nobility themselves. Also, there was the always present danger that if the factional and religious fighting got out of hand, England's ability to rule its French provinces might be forever damaged.
+
+	date = { day = 1 month = january year = 1562 }
+	offset = 1000
+	deathdate = { day = 1 month = january year = 1572 }
+
+	action_a = {
+		name = "ACTIONNAME20009C" #Support the Huguenots
+		#FPR Provinces
+		command = { type = province_revoltrisk which = 407 value = 3 } #Dauphiné
+		command = { type = province_revoltrisk which = 418 value = 3 } #Poitou
+		command = { type = province_revoltrisk which = 419 value = 3 } #Limousin
+		command = { type = province_revoltrisk which = 421 value = 3 } #Cévennes
+		command = { type = province_revoltrisk which = 422 value = 3 } #Languedoc
+		command = { type = province_revoltrisk which = 423 value = 3 } #Guyenne
+		command = { type = province_revoltrisk which = 425 value = 3 } #Béarn
+		#FUC Provinces
+		command = { type = province_revoltrisk which = 376 value = 5 } #Champagne
+		command = { type = province_revoltrisk which = 382 value = 5 } #Calais
+		command = { type = province_revoltrisk which = 383 value = 5 } #Picardie
+		command = { type = province_revoltrisk which = 384 value = 5 } #Caux
+		command = { type = province_revoltrisk which = 386 value = 5 } #Nivernais
+		command = { type = province_revoltrisk which = 410 value = 5 } #Berri
+		command = { type = province_revoltrisk which = 411 value = 5 } #Orleanais
+		command = { type = province_revoltrisk which = 417 value = 5 } #Vendée
+		#Other French Provinces
+		command = { type = province_revoltrisk which = 375 value = 2 } #Lorraine
+		command = { type = province_revoltrisk which = 379 value = 2 } #Artois
+		command = { type = province_revoltrisk which = 385 value = 2 } #Ile de France
+		command = { type = province_revoltrisk which = 387 value = 2 } #Franche-Comté
+		command = { type = province_revoltrisk which = 406 value = 2 } #Provence
+		command = { type = province_revoltrisk which = 408 value = 2 } #Lyonnais
+		command = { type = province_revoltrisk which = 409 value = 2 } #Bourgogne
+		command = { type = province_revoltrisk which = 412 value = 2 } #Maine
+		command = { type = province_revoltrisk which = 413 value = 2 } #Normandie
+		command = { type = province_revoltrisk which = 414 value = 2 } #Armor
+		command = { type = province_revoltrisk which = 415 value = 2 } #Bretagne
+		command = { type = province_revoltrisk which = 416 value = 2 } #Morbihan
+		command = { type = province_revoltrisk which = 420 value = 2 } #Auvergne
+		command = { type = province_revoltrisk which = 424 value = 2 } #Gascogne
+		command = { type = province_revoltrisk which = 426 value = 2 } #Roussillon
+		command = { type = stability value = -1 }
+		command = { type = sleepevent which = 20015 } #ENG: Ultra-Catholics Declare Independence
+		command = { type = sleepevent which = 20017 } #ENG: Ultra-Catholics and Huguenots Declare Independence
+		command = { type = sleepevent which = 20019 } #ENG: Huguenots Fight Off English Repression
+		command = { type = sleepevent which = 20020 } #ENG: Ultra-Catholics Strike Out on their Own
+		command = { type = sleepevent which = 20021 } #ENG: Huguenots Strike Out on their Own
+		command = { type = sleepevent which = 20024 } #ENG: The End of the Wars of Religion in the French Provinces
+		command = { type = sleepevent which = 20025 } #ENG: The End of the Wars of Religion in the French Provinces
+		command = { type = sleepevent which = 20027 } #ENG: The End of the Wars of Religion in the French Provinces
+	}
+	action_b = {
+		name = "ACTIONNAME20009B" #Support the Moderates
+		#FPR Provinces
+		command = { type = province_revoltrisk which = 407 value = 4 } #Dauphiné
+		command = { type = province_revoltrisk which = 418 value = 4 } #Poitou
+		command = { type = province_revoltrisk which = 419 value = 4 } #Limousin
+		command = { type = province_revoltrisk which = 421 value = 4 } #Cévennes
+		command = { type = province_revoltrisk which = 422 value = 4 } #Languedoc
+		command = { type = province_revoltrisk which = 423 value = 4 } #Guyenne
+		command = { type = province_revoltrisk which = 425 value = 4 } #Béarn
+		#FUC Provinces
+		command = { type = province_revoltrisk which = 376 value = 4 } #Champagne
+		command = { type = province_revoltrisk which = 382 value = 4 } #Calais
+		command = { type = province_revoltrisk which = 383 value = 4 } #Picardie
+		command = { type = province_revoltrisk which = 384 value = 4 } #Caux
+		command = { type = province_revoltrisk which = 386 value = 4 } #Nivernais
+		command = { type = province_revoltrisk which = 410 value = 4 } #Berri
+		command = { type = province_revoltrisk which = 411 value = 4 } #Orleanais
+		command = { type = province_revoltrisk which = 417 value = 4 } #Vendée
+		#Other French Provinces
+		command = { type = province_revoltrisk which = 375 value = 2 } #Lorraine
+		command = { type = province_revoltrisk which = 379 value = 2 } #Artois
+		command = { type = province_revoltrisk which = 385 value = 2 } #Ile de France
+		command = { type = province_revoltrisk which = 387 value = 2 } #Franche-Comté
+		command = { type = province_revoltrisk which = 406 value = 2 } #Provence
+		command = { type = province_revoltrisk which = 408 value = 2 } #Lyonnais
+		command = { type = province_revoltrisk which = 409 value = 2 } #Bourgogne
+		command = { type = province_revoltrisk which = 412 value = 2 } #Maine
+		command = { type = province_revoltrisk which = 413 value = 2 } #Normandie
+		command = { type = province_revoltrisk which = 414 value = 2 } #Armor
+		command = { type = province_revoltrisk which = 415 value = 2 } #Bretagne
+		command = { type = province_revoltrisk which = 416 value = 2 } #Morbihan
+		command = { type = province_revoltrisk which = 420 value = 2 } #Auvergne
+		command = { type = province_revoltrisk which = 424 value = 2 } #Gascogne
+		command = { type = province_revoltrisk which = 426 value = 2 } #Roussillon
+		command = { type = stability value = -2 }
+		command = { type = sleepevent which = 20015 } #ENG: Ultra-Catholics Declare Independence
+		command = { type = sleepevent which = 20016 } #ENG: Huguenots Declare Independence
+		command = { type = sleepevent which = 20018 } #ENG: Ultra-Catholics Fight Off English Repression
+		command = { type = sleepevent which = 20019 } #ENG: Huguenots Fight Off English Repression
+		command = { type = sleepevent which = 20024 } #ENG: The End of the Wars of Religion in the French Provinces
+		command = { type = sleepevent which = 20026 } #ENG: The End of the Wars of Religion in the French Provinces
+		command = { type = sleepevent which = 20027 } #ENG: The End of the Wars of Religion in the French Provinces
+	}
+	action_c = {
+		name = "ACTIONNAME20009A" #Support the Ultra-Catholics
+		#FPR Provinces
+		command = { type = province_revoltrisk which = 407 value = 5 } #Dauphiné
+		command = { type = province_revoltrisk which = 418 value = 5 } #Poitou
+		command = { type = province_revoltrisk which = 419 value = 5 } #Limousin
+		command = { type = province_revoltrisk which = 421 value = 5 } #Cévennes
+		command = { type = province_revoltrisk which = 422 value = 5 } #Languedoc
+		command = { type = province_revoltrisk which = 423 value = 5 } #Guyenne
+		command = { type = province_revoltrisk which = 425 value = 5 } #Béarn
+		#FUC Provinces
+		command = { type = province_revoltrisk which = 376 value = 3 } #Champagne
+		command = { type = province_revoltrisk which = 382 value = 3 } #Calais
+		command = { type = province_revoltrisk which = 383 value = 3 } #Picardie
+		command = { type = province_revoltrisk which = 384 value = 3 } #Caux
+		command = { type = province_revoltrisk which = 386 value = 3 } #Nivernais
+		command = { type = province_revoltrisk which = 410 value = 3 } #Berri
+		command = { type = province_revoltrisk which = 411 value = 3 } #Orleanais
+		command = { type = province_revoltrisk which = 417 value = 3 } #Vendée
+		#Other French Provinces
+		command = { type = province_revoltrisk which = 375 value = 2 } #Lorraine
+		command = { type = province_revoltrisk which = 379 value = 2 } #Artois
+		command = { type = province_revoltrisk which = 385 value = 2 } #Ile de France
+		command = { type = province_revoltrisk which = 387 value = 2 } #Franche-Comté
+		command = { type = province_revoltrisk which = 406 value = 2 } #Provence
+		command = { type = province_revoltrisk which = 408 value = 2 } #Lyonnais
+		command = { type = province_revoltrisk which = 409 value = 2 } #Bourgogne
+		command = { type = province_revoltrisk which = 412 value = 2 } #Maine
+		command = { type = province_revoltrisk which = 413 value = 2 } #Normandie
+		command = { type = province_revoltrisk which = 414 value = 2 } #Armor
+		command = { type = province_revoltrisk which = 415 value = 2 } #Bretagne
+		command = { type = province_revoltrisk which = 416 value = 2 } #Morbihan
+		command = { type = province_revoltrisk which = 420 value = 2 } #Auvergne
+		command = { type = province_revoltrisk which = 424 value = 2 } #Gascogne
+		command = { type = province_revoltrisk which = 426 value = 2 } #Roussillon
+		command = { type = stability value = -3 }
+		command = { type = revolt which = 244 } #Midlands
+		command = { type = revolt which = 248 } #Kent
+		command = { type = desertion which = -1 value = 10000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = sleepevent which = 20016 } #ENG: Huguenots Declare Independence
+		command = { type = sleepevent which = 20017 } #ENG: Ultra-Catholics and Huguenots Declare Independence
+		command = { type = sleepevent which = 20018 } #ENG: Ultra-Catholics Fight Off English Repression
+		command = { type = sleepevent which = 20020 } #ENG: Ultra-Catholics Strike Out on their Own
+		command = { type = sleepevent which = 20021 } #ENG: Huguenots Strike Out on their Own
+		command = { type = sleepevent which = 20025 } #ENG: The End of the Wars of Religion in the French Provinces
+		command = { type = sleepevent which = 20026 } #ENG: The End of the Wars of Religion in the French Provinces
+		command = { type = sleepevent which = 20027 } #ENG: The End of the Wars of Religion in the French Provinces
+	}
+}
+#(1572) St. Batholomew's Day Massacre
+event = {
+	id = 20013
+	trigger = {
+		OR = {
+			event = 20009
+			event = 20010
+			event = 20011
+			event = 20012
+		}
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME20013" #St. Bartholomew's Day Massacre
+	desc = "EVENTHIST20013"
+	#-#In the summer of 1572, the Huguenot Henry of Navarre was to marry the Catholic Margarite of Valois, and prominent leaders on all sides of the religious conflicts converged on Paris for the ceremony. On August 22nd, however, Admiral Coligny, a leading Huguenot, was assassinated. Ultra-Catholic leaders, fearing Huguenot reprisals, decided to strike first. On the 24th a three-day massacre of Huguenots began in Paris, and soon spread to nearby Catholic towns. The surviving Huguenot leaders redoubled their efforts to oppose the Ultra-Catholics, and their resistance increased accordingly.
+
+	date = { day = 23 month = august year = 1572 }
+
+	action_a = {
+		name = "ACTIONNAME20013A" #Massacres of Huguenots Worsen the Situation
+		#FPR Provinces
+		command = { type = province_revoltrisk which = 407 value = 1 } #Dauphiné
+		command = { type = province_revoltrisk which = 418 value = 1 } #Poitou
+		command = { type = province_revoltrisk which = 419 value = 1 } #Limousin
+		command = { type = province_revoltrisk which = 421 value = 1 } #Cévennes
+		command = { type = province_revoltrisk which = 422 value = 1 } #Languedoc
+		command = { type = province_revoltrisk which = 423 value = 1 } #Guyenne
+		command = { type = province_revoltrisk which = 425 value = 1 } #Béarn
+		command = { type = stability value = -1 }
+	}
+}
+#(1572-1600) Unrest Subsides
+event = {
+	id = 164990
+	trigger = {
+		event = 20013 #ENH: St. Batholomew's day massacre
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME164990" #Unrest Subsides
+	desc = "EVENTHIST164990"
+	#-#Years after the brutal events of St. Batholomew's day massacre, the residual dissidence and unrest finally subsided.
+
+	date = { day = 24 month = august year = 1572 }
+	offset = 60
+	deathdate = { day = 29 month = december year = 1600 }
+
+	action_a = {
+		name = "GOOD"
+		command = { type = stability value = 1 }
+		#FPR Provinces
+		command = { type = province_revoltrisk which = 407 value = -1 } #Dauphiné
+		command = { type = province_revoltrisk which = 418 value = -1 } #Poitou
+		command = { type = province_revoltrisk which = 419 value = -1 } #Limousin
+		command = { type = province_revoltrisk which = 421 value = -1 } #Cévennes
+		command = { type = province_revoltrisk which = 422 value = -1 } #Languedoc
+		command = { type = province_revoltrisk which = 423 value = -1 } #Guyenne
+		command = { type = province_revoltrisk which = 425 value = -1 } #Béarn
+	}
+}
+#(1582-1590) Foreign Support for the Ultra-Catholics
+event = {
+	id = 20014
+	trigger = {
+		OR = {
+			event = 20009
+			event = 20010
+			event = 20011
+			event = 20012
+		}
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME20014" #Foreign Support for the Ultra-Catholics
+	desc = "EVENTHIST20014"
+	#-#By the early 1580s, the Ultra-Catholics in the French provinces were increasingly concerned about their position and power, and questioned the continuing ability of the English government to treat them in the way they felt proper. Not surprisingly, foreign Catholic powers were more than willing to support the French Ultra-Catholics, and indirectly undermine English control over their wealthy French provinces.
+
+	date = { day = 1 month = january year = 1582 }
+	offset = 500
+	deathdate = { day = 1 month = january year = 1590 }
+
+	action_a = {
+		name = "ACTIONNAME20014A" #The Ultra-Catholics Receive Support from Abroad
+		#FUC Provinces
+		command = { type = province_revoltrisk which = 376 value = 1 } #Champagne
+		command = { type = province_revoltrisk which = 382 value = 1 } #Calais
+		command = { type = province_revoltrisk which = 383 value = 1 } #Picardie
+		command = { type = province_revoltrisk which = 384 value = 1 } #Caux
+		command = { type = province_revoltrisk which = 386 value = 1 } #Nivernais
+		command = { type = province_revoltrisk which = 410 value = 1 } #Berri
+		command = { type = province_revoltrisk which = 411 value = 1 } #Orleanais
+		command = { type = province_revoltrisk which = 417 value = 1 } #Vendée
+		command = { type = stability value = -1 }
+	}
+}
+#(1562-1590) Ultra-Catholics Declare Independence
+event = {
+	id = 20015
+	trigger = {
+		OR = {
+			event = 20009
+			event = 20010
+			event = 20011
+			event = 20012
+			}
+		exists = FUC
+		NOT = { event = 20017 } #Crook
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME20015" #Ultra-Catholics Declare Independence
+	desc = "EVENTHIST20015"
+	#-#Despite the support of the English government, the Ultra-Catholics of France concluded that they could not protect their interests under the English crown. They declared independence and established a state in which they could pursue their religious and political aims. Having lost the support of French Catholics as well as Protestants, English rule in France was shattered.
+
+	date = { day = 1 month = january year = 1562 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1590 }
+
+	action_a = {
+		name = "ACTIONNAME20015A" #Our Policy is in Ruins
+		command = { type = remove_countryculture which = french }
+		command = { type = stability value = -3 }
+	}
+}
+#(1562-1590) Huguenots Declare Independence
+event = {
+	id = 20016
+	trigger = {
+		OR = {
+			event = 20009
+			event = 20010
+			event = 20011
+			event = 20012
+		}
+		exists = FPR
+		NOT = { event = 20017 }
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME20016" #Huguenots Declare Independence
+	desc = "EVENTHIST20016"
+	#-#Despite the support of the English government, the Huguenots of France concluded that they could not protect their interests under the English crown. They declared independence and established a state in which they could pursue their religious and political aims. Having lost the support of French Protestants as well as Catholics, English rule in France was shattered.
+
+	date = { day = 1 month = january year = 1562 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1590 }
+
+	action_a = {
+		name = "ACTIONNAME20015A" #Our Policy is in Ruins
+		command = { type = remove_countryculture which = french }
+		command = { type = stability value = -3 }
+	}
+}
+#(1562-1590) Ultra-Catholics and Huguenots Declare Independence
+event = {
+	id = 20017
+	trigger = {
+		OR = {
+			event = 20009
+			event = 20010
+			event = 20011
+			event = 20012
+		}
+		exists = FUC
+		exists = FPR
+		NOT = { event = 20015 }
+		NOT = { event = 20016 }
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME20017" #Ultra-Catholics and Huguenots Declare Independence
+	desc = "EVENTHIST20017"
+	#-#Despite the neutrality of the English government, the Huguenots and Ultra-Catholics of France concluded that they could not protect their interests under the English crown. They have both declared independence and established states in which they could pursue their separate religious and political aims. Having lost the support of both French Protestants and Catholics, English rule in France was shattered.
+
+	date = { day = 1 month = january year = 1562 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1590 }
+
+	action_a = {
+		name = "ACTIONNAME20015A" #Our Policy is in Ruins
+		command = { type = remove_countryculture which = french }
+		command = { type = stability value = -3 }
+	}
+}
+#(1562-1590) Ultra-Catholics Fight Off English Repression
+event = {
+	id = 20018
+	trigger = {
+		OR = {
+			event = 20009
+			event = 20010
+			event = 20011
+			event = 20012
+		}
+		exists = FUC
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME20018" #Ultra-Catholics Fight Off English Repression
+	desc = "EVENTHIST20018"
+	#-#The English policy of allying with the French Huguenots ultimately led to the breaking away of the Ultra-Catholics to form an independent state. If they are allowed to remain free, their flaunting of English power could irreparably harm English control over its French provinces.
+
+	date = { day = 1 month = january year = 1562 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1590 }
+
+	action_a = {
+		name = "ACTIONNAME20018A" #We Cannot Allow Them to Remain Free
+		command = { type = stability value = -1 }
+	}
+}
+#(1562-1590) Huguenots Fight Off English Repression
+event = {
+	id = 20019
+	trigger = {
+		OR = {
+			event = 20009
+			event = 20010
+			event = 20011
+			event = 20012
+		}
+		exists = FPR
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME20019" #Huguenots Fight Off English Repression
+	desc = "EVENTHIST20019"
+	#-#The English policy of allying with the French Ultra-Catholics ultimately led to the breaking away of the Huguenots to form an independent state. If they are allowed to remain free, their flaunting of English power could irreparably harm English control over its French provinces.
+
+	date = { day = 1 month = january year = 1562 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1590 }
+
+	action_a = {
+		name = "ACTIONNAME20018A" #We Cannot Allow Them to Remain Free
+		command = { type = stability value = -1 }
+	}
+}
+#(1562-1590) Ultra-Catholics Strike Out on their Own - Moderates
+event = {
+	id = 20020
+	trigger = {
+		OR = {
+			event = 20009
+			event = 20010
+			event = 20011
+			event = 20012
+		}
+		NOT = { event = 20021 }
+		exists = FUC
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME20020" #Ultra-Catholics Strike Out on their Own
+	desc = "EVENTHIST20020"
+	#-#Though England attempted to work with French moderates to keep the peace in the Wars of Religion, the Ultra-Catholics ultimately believed it necessary to form their own state in order to defend their religious and political beliefs. If the Huguenots reach a similar conclusion, the effect for English rule could be devasting.
+
+	date = { day = 1 month = january year = 1562 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1590 }
+
+	action_a = {
+		name = "ACTIONNAME20018A" #We Cannot Allow Them to Remain Free
+		command = { type = stability value = -1 }
+	}
+}
+#(1562-1590) Huguenots Strike Out on their Own - Moderates
+event = {
+	id = 20021
+	trigger = {
+		OR = {
+			event = 20009
+			event = 20010
+			event = 20011
+			event = 20012
+		}
+		NOT = { event = 20020 }
+		exists = FPR
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME20021" #Huguenots Strike Out on their Own
+	desc = "EVENTHIST20021"
+	#-#Though England attempted to work with French moderates to keep the peace in the Wars of Religion, the Huguenots ultimately believed it necessary to form their own state in order to defend their religious and political beliefs. If the Ultra-Catholics reach a similar conclusion, the effect for English rule could be devasting.
+
+	date = { day = 1 month = january year = 1562 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1590 }
+
+	action_a = {
+		name = "ACTIONNAME20018A" #We Cannot Allow Them to Remain Free
+		command = { type = stability value = -1 }
+	}
+}
+#(1590) The End of the Wars of Religion in the French Provinces - Ultra-Catholics
+event = {
+	id = 20024
+	trigger = {
+		OR = {
+			event = 20009
+			event = 20010
+			event = 20011
+			event = 20012
+		}
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME20024" #The End of the Wars of Religion in the French Provinces
+	desc = "EVENTHIST20024"
+	#-#By 1590, the various religious factions within the French provinces have fought themselves to the point of exhaustion. The situation calms across the Channel, as neither side has the will or ability to dominate the other. However, if any faction has achieved independence and retains that independence for more than a few years, English rule will be discredited.
+
+	date = { day = 1 month = january year = 1590 }
+
+	action_a = {
+		name = "ACTIONNAME20024A" #The Religious Factions are Exhausted
+		#FPR Provinces
+		command = { type = province_revoltrisk which = 407 value = -5 } #Dauphiné
+		command = { type = province_revoltrisk which = 418 value = -5 } #Poitou
+		command = { type = province_revoltrisk which = 419 value = -5 } #Limousin
+		command = { type = province_revoltrisk which = 421 value = -5 } #Cévennes
+		command = { type = province_revoltrisk which = 422 value = -5 } #Languedoc
+		command = { type = province_revoltrisk which = 423 value = -5 } #Guyenne
+		command = { type = province_revoltrisk which = 425 value = -5 } #Béarn
+		#FUC Provinces
+		command = { type = province_revoltrisk which = 376 value = -3 } #Champagne
+		command = { type = province_revoltrisk which = 382 value = -3 } #Calais
+		command = { type = province_revoltrisk which = 383 value = -3 } #Picardie
+		command = { type = province_revoltrisk which = 384 value = -3 } #Caux
+		command = { type = province_revoltrisk which = 386 value = -3 } #Nivernais
+		command = { type = province_revoltrisk which = 410 value = -3 } #Berri
+		command = { type = province_revoltrisk which = 411 value = -3 } #Orleanais
+		command = { type = province_revoltrisk which = 417 value = -3 } #Vendée
+		#Other French Provinces
+		command = { type = province_revoltrisk which = 375 value = -2 } #Lorraine
+		command = { type = province_revoltrisk which = 379 value = -2 } #Artois
+		command = { type = province_revoltrisk which = 385 value = -2 } #Ile de France
+		command = { type = province_revoltrisk which = 387 value = -2 } #Franche-Comté
+		command = { type = province_revoltrisk which = 406 value = -2 } #Provence
+		command = { type = province_revoltrisk which = 408 value = -2 } #Lyonnais
+		command = { type = province_revoltrisk which = 409 value = -2 } #Bourgogne
+		command = { type = province_revoltrisk which = 412 value = -2 } #Maine
+		command = { type = province_revoltrisk which = 413 value = -2 } #Normandie
+		command = { type = province_revoltrisk which = 414 value = -2 } #Armor
+		command = { type = province_revoltrisk which = 415 value = -2 } #Bretagne
+		command = { type = province_revoltrisk which = 416 value = -2 } #Morbihan
+		command = { type = province_revoltrisk which = 420 value = -2 } #Auvergne
+		command = { type = province_revoltrisk which = 424 value = -2 } #Gascogne
+		command = { type = province_revoltrisk which = 426 value = -2 } #Roussillon
+		command = { type = stability value = 1 }
+	}
+}
+#(1590) The End of the Wars of Religion in the French Provinces - Moderates
+event = {
+	id = 20025
+	trigger = {
+		OR = {
+			event = 20009
+			event = 20010
+			event = 20011
+			event = 20012
+		}
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME20024" #The End of the Wars of Religion in the French Provinces
+	desc = "EVENTHIST20024"
+	#-#By 1590, the various religious factions within the French provinces have fought themselves to the point of exhaustion. The situation calms across the Channel, as neither side has the will or ability to dominate the other. However, if any faction has achieved independence and retains that independence for more than a few years, English rule will be discredited.
+
+	date = { day = 1 month = january year = 1590 }
+
+	action_a = {
+		name = "ACTIONNAME20024A" #The Religious Factions are Exhausted
+		#FPR Provinces
+		command = { type = province_revoltrisk which = 407 value = -4 } #Dauphiné
+		command = { type = province_revoltrisk which = 418 value = -4 } #Poitou
+		command = { type = province_revoltrisk which = 419 value = -4 } #Limousin
+		command = { type = province_revoltrisk which = 421 value = -4 } #Cévennes
+		command = { type = province_revoltrisk which = 422 value = -4 } #Languedoc
+		command = { type = province_revoltrisk which = 423 value = -4 } #Guyenne
+		command = { type = province_revoltrisk which = 425 value = -4 } #Béarn
+		#FUC Provinces
+		command = { type = province_revoltrisk which = 376 value = -4 } #Champagne
+		command = { type = province_revoltrisk which = 382 value = -4 } #Calais
+		command = { type = province_revoltrisk which = 383 value = -4 } #Picardie
+		command = { type = province_revoltrisk which = 384 value = -4 } #Caux
+		command = { type = province_revoltrisk which = 386 value = -4 } #Nivernais
+		command = { type = province_revoltrisk which = 410 value = -4 } #Berri
+		command = { type = province_revoltrisk which = 411 value = -4 } #Orleanais
+		command = { type = province_revoltrisk which = 417 value = -4 } #Vendée
+		#Other French Provinces
+		command = { type = province_revoltrisk which = 375 value = -2 } #Lorraine
+		command = { type = province_revoltrisk which = 379 value = -2 } #Artois
+		command = { type = province_revoltrisk which = 385 value = -2 } #Ile de France
+		command = { type = province_revoltrisk which = 387 value = -2 } #Franche-Comté
+		command = { type = province_revoltrisk which = 406 value = -2 } #Provence
+		command = { type = province_revoltrisk which = 408 value = -2 } #Lyonnais
+		command = { type = province_revoltrisk which = 409 value = -2 } #Bourgogne
+		command = { type = province_revoltrisk which = 412 value = -2 } #Maine
+		command = { type = province_revoltrisk which = 413 value = -2 } #Normandie
+		command = { type = province_revoltrisk which = 414 value = -2 } #Armor
+		command = { type = province_revoltrisk which = 415 value = -2 } #Bretagne
+		command = { type = province_revoltrisk which = 416 value = -2 } #Morbihan
+		command = { type = province_revoltrisk which = 420 value = -2 } #Auvergne
+		command = { type = province_revoltrisk which = 424 value = -2 } #Gascogne
+		command = { type = province_revoltrisk which = 426 value = -2 } #Roussillon
+		command = { type = stability value = 1 }
+	}
+}
+#(1590) The End of the Wars of Religion in the French Provinces - Huguenots
+event = {
+	id = 20026
+	trigger = {
+		OR = {
+			event = 20009
+			event = 20010
+			event = 20011
+			event = 20012
+		}
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME20024" #The End of the Wars of Religion in the French Provinces
+	desc = "EVENTHIST20024"
+	#-#By 1590, the various religious factions within the French provinces have fought themselves to the point of exhaustion. The situation calms across the Channel, as neither side has the will or ability to dominate the other. However, if any faction has achieved independence and retains that independence for more than a few years, English rule will be discredited.
+
+	date = { day = 1 month = january year = 1590 }
+
+	action_a = {
+		name = "ACTIONNAME20024A" #The Religious Factions are Exhausted
+		#FPR Provinces
+		command = { type = province_revoltrisk which = 407 value = -3 } #Dauphiné
+		command = { type = province_revoltrisk which = 418 value = -3 } #Poitou
+		command = { type = province_revoltrisk which = 419 value = -3 } #Limousin
+		command = { type = province_revoltrisk which = 421 value = -3 } #Cévennes
+		command = { type = province_revoltrisk which = 422 value = -3 } #Languedoc
+		command = { type = province_revoltrisk which = 423 value = -3 } #Guyenne
+		command = { type = province_revoltrisk which = 425 value = -3 } #Béarn
+		#FUC Provinces
+		command = { type = province_revoltrisk which = 376 value = -5 } #Champagne
+		command = { type = province_revoltrisk which = 382 value = -5 } #Calais
+		command = { type = province_revoltrisk which = 383 value = -5 } #Picardie
+		command = { type = province_revoltrisk which = 384 value = -5 } #Caux
+		command = { type = province_revoltrisk which = 386 value = -5 } #Nivernais
+		command = { type = province_revoltrisk which = 410 value = -5 } #Berri
+		command = { type = province_revoltrisk which = 411 value = -5 } #Orleanais
+		command = { type = province_revoltrisk which = 417 value = -5 } #Vendée
+		#Other French Provinces
+		command = { type = province_revoltrisk which = 375 value = -2 } #Lorraine
+		command = { type = province_revoltrisk which = 379 value = -2 } #Artois
+		command = { type = province_revoltrisk which = 385 value = -2 } #Ile de France
+		command = { type = province_revoltrisk which = 387 value = -2 } #Franche-Comté
+		command = { type = province_revoltrisk which = 406 value = -2 } #Provence
+		command = { type = province_revoltrisk which = 408 value = -2 } #Lyonnais
+		command = { type = province_revoltrisk which = 409 value = -2 } #Bourgogne
+		command = { type = province_revoltrisk which = 412 value = -2 } #Maine
+		command = { type = province_revoltrisk which = 413 value = -2 } #Normandie
+		command = { type = province_revoltrisk which = 414 value = -2 } #Armor
+		command = { type = province_revoltrisk which = 415 value = -2 } #Bretagne
+		command = { type = province_revoltrisk which = 416 value = -2 } #Morbihan
+		command = { type = province_revoltrisk which = 420 value = -2 } #Auvergne
+		command = { type = province_revoltrisk which = 424 value = -2 } #Gascogne
+		command = { type = province_revoltrisk which = 426 value = -2 } #Roussillon
+		command = { type = stability value = 1 }
+	}
+}
+#(1590) The End of the Wars of Religion in the French Provinces - Ultra-Catholics (CRC)
+event = {
+	id = 20027
+	trigger = {
+		OR = {
+			event = 20009
+			event = 20010
+			event = 20011
+			event = 20012
+		}
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME20024" #The End of the Wars of Religion in the French Provinces
+	desc = "EVENTHIST20024"
+	#-#By 1590, the various religious factions within the French provinces have fought themselves to the point of exhaustion. The situation calms across the Channel, as neither side has the will or ability to dominate the other. However, if any faction has achieved independence and retains that independence for more than a few years, English rule will be discredited.
+
+	date = { day = 1 month = january year = 1590 }
+
+	action_a = {
+		name = "ACTIONNAME20024A" #The Religious Factions are Exhausted
+		#FPR Provinces
+		command = { type = province_revoltrisk which = 407 value = -6 } #Dauphiné
+		command = { type = province_revoltrisk which = 418 value = -6 } #Poitou
+		command = { type = province_revoltrisk which = 419 value = -6 } #Limousin
+		command = { type = province_revoltrisk which = 421 value = -6 } #Cévennes
+		command = { type = province_revoltrisk which = 422 value = -6 } #Languedoc
+		command = { type = province_revoltrisk which = 423 value = -6 } #Guyenne
+		command = { type = province_revoltrisk which = 425 value = -6 } #Béarn
+		#FUC Provinces
+		command = { type = province_revoltrisk which = 376 value = -3 } #Champagne
+		command = { type = province_revoltrisk which = 382 value = -3 } #Calais
+		command = { type = province_revoltrisk which = 383 value = -3 } #Picardie
+		command = { type = province_revoltrisk which = 384 value = -3 } #Caux
+		command = { type = province_revoltrisk which = 386 value = -3 } #Nivernais
+		command = { type = province_revoltrisk which = 410 value = -3 } #Berri
+		command = { type = province_revoltrisk which = 411 value = -3 } #Orleanais
+		command = { type = province_revoltrisk which = 417 value = -3 } #Vendée
+		#Other French Provinces
+		command = { type = province_revoltrisk which = 375 value = -2 } #Lorraine
+		command = { type = province_revoltrisk which = 379 value = -2 } #Artois
+		command = { type = province_revoltrisk which = 385 value = -2 } #Ile de France
+		command = { type = province_revoltrisk which = 387 value = -2 } #Franche-Comté
+		command = { type = province_revoltrisk which = 406 value = -2 } #Provence
+		command = { type = province_revoltrisk which = 408 value = -2 } #Lyonnais
+		command = { type = province_revoltrisk which = 409 value = -2 } #Bourgogne
+		command = { type = province_revoltrisk which = 412 value = -2 } #Maine
+		command = { type = province_revoltrisk which = 413 value = -2 } #Normandie
+		command = { type = province_revoltrisk which = 414 value = -2 } #Armor
+		command = { type = province_revoltrisk which = 415 value = -2 } #Bretagne
+		command = { type = province_revoltrisk which = 416 value = -2 } #Morbihan
+		command = { type = province_revoltrisk which = 420 value = -2 } #Auvergne
+		command = { type = province_revoltrisk which = 424 value = -2 } #Gascogne
+		command = { type = province_revoltrisk which = 426 value = -2 } #Roussillon
+		command = { type = stability value = 1 }
+	}
+}
+#(1593) Ultra-Catholics Remain Independent
+event = {
+	id = 20022
+	trigger = {
+		OR = {
+			event = 20018
+			event = 20020
+		}
+		exists = FUC
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME20022" #Ultra-Catholics Remain Independent
+	desc = "EVENTHIST20022"
+	#-#Even though the Wars of Religion had come to an end, the Ultra-Catholics remained independent of English rule. England could either let the Ultra-Catholics go, and retain control over the rest of France, or force them to return to English rule, ensuring that the alienated Ultra-Catholics would undermine English control of the French provinces.
+
+	date = { day = 1 month = january year = 1593 }
+
+	action_a = {
+		name = "ACTIONNAME20022A" #Let the Ultra-Catholics Go
+		command = { type = secedeprovince which = FUC value = 382 } #Calais
+		command = { type = secedeprovince which = FUC value = 383 } #Picardie
+		command = { type = secedeprovince which = FUC value = 384 } #Caux
+		command = { type = secedeprovince which = FUC value = 410 } #Berri
+		command = { type = secedeprovince which = FUC value = 411 } #Orleanais
+		command = { type = stability value = -2 }
+	}
+	action_b = {
+		name = "ACTIONNAME20022B" #Force Them Back Under Our Rule
+		command = { type = inherit which = FUC }
+		command = { type = remove_countryculture which = french }
+		command = { type = stability value = -1 }
+	}
+}
+#(1593) Huguenots Remain Independent
+event = {
+	id = 20023
+	trigger = {
+		OR = {
+			event = 20019
+			event = 20021
+		}
+		exists = FPR
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME20023" #Huguenots Remain Independent
+	desc = "EVENTHIST20023"
+	#-#Even though the Wars of Religion had come to an end, the Huguenots remained independent of English rule. England could either let the Huguenots go, and retain control over the rest of France, or force them to return to English rule, ensuring that the alienated Huguenots would undermine English control of the French provinces.
+
+	date = { day = 1 month = january year = 1593 }
+
+	action_a = {
+		name = "ACTIONNAME20023A" #Let the Huguenots Go
+		command = { type = secedeprovince which = FPR value = 407 } #Dauphiné
+		command = { type = secedeprovince which = FPR value = 418 } #Poitou
+		command = { type = secedeprovince which = FPR value = 419 } #Limousin
+		command = { type = secedeprovince which = FPR value = 421 } #Cévennes
+		command = { type = secedeprovince which = FPR value = 422 } #Languedoc
+		command = { type = secedeprovince which = FPR value = 423 } #Guyenne
+		command = { type = stability value = -2 }
+	}
+	action_b = {
+		name = "ACTIONNAME20022B" #Force Them Back Under Our Rule
+		command = { type = inherit which = FPR }
+		command = { type = remove_countryculture which = french }
+		command = { type = stability value = -1 }
+	}
+}
+#(1593-1600) Unrest Subsides
+event = {
+	id = 164989
+	trigger = {
+		event = 20014 #ENG: Foreign Support for the Ultra-Catholics
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME164989" #Unrest Subsides
+	desc = "EVENTHIST164989"
+	#-#Years after the religious uprisings and ensuring civil war, the residual dissidence and unrest finally subsided in the Catholic League provinces.
+
+	date = { day = 24 month = august year = 1593 }
+	offset = 60
+	deathdate = { day = 29 month = december year = 1600 }
+
+	action_a = {
+		name = "GOOD"
+		command = { type = stability value = 1 }
+		#FUC Provinces
+		command = { type = province_revoltrisk which = 376 value = -1 } #Champagne
+		command = { type = province_revoltrisk which = 382 value = -1 } #Calais
+		command = { type = province_revoltrisk which = 383 value = -1 } #Picardie
+		command = { type = province_revoltrisk which = 384 value = -1 } #Caux
+		command = { type = province_revoltrisk which = 386 value = -1 } #Nivernais
+		command = { type = province_revoltrisk which = 410 value = -1 } #Berri
+		command = { type = province_revoltrisk which = 411 value = -1 } #Orleanais
+		command = { type = province_revoltrisk which = 417 value = -1 } #Vendée
+	}
+}
+#End of The Wars of Religion Sequence
+#-----------------------------------------------------------------------------------------------
+
+#(1568-1571) The Holy League
+#Revised by Fate
+event = {
+	id = 20095
+	trigger = {
+		exists = TUR
+		OR = {
+			religion = catholic
+			religion = counterreform
+		}
+		event = 3549
+		event = 164180
+		NOT = { event = 20007 }
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME3549" #The Holy League
+	desc = "EVENTHIST3549"
+	#-#When in 1570 the Turks sent an ultimatum to Venice asking for the ceding of Cyprus and then invaded the island after the Republic of San Marco failed to respond, a great uproar was created in the Catholic world by the facts and rumors of Ottoman atrocities in the last Christian bastion of the eastern Mediterranean. After a first failure in the summer of 1570, Pope Pius V managed to convince major Catholic nations (except France) to join a Holy League against the heathens Turks, and it was proclaimed in May 1571. The League would lead to the great naval victory of Don Juan on the Turks at Lepanto, but would not outlast this first and final triumph. Selim II is rumored to have said, after the news he had lost 200 galleys at Lepanto: At Lepanto, the Christians have shaved me. At Cyprus, I cut their arm. My beard will grow again.
+
+	date = { day = 1 month = january year = 1568 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1571 }
+
+	action_a = {
+		name = "ACTIONNAME3161A" #Support the Holy League
+		command = { type = casusbelli which = TUR value = 72 }
+		command = { type = relation which = TUR value = -150 }
+		command = { type = relation which = PAP value = 150 }
+		command = { type = relation which = KNI value = 150 }
+		command = { type = relation which = SPA value = 150 }
+		command = { type = relation which = TOS value = 150 }
+		command = { type = relation which = VEN value = 150 }
+		command = { type = relation which = NAP value = 150 }
+		command = { type = relation which = SAV value = 150 }
+	}
+	action_b = {
+		name = "ACTIONNAME3549B" #Let the matter fall
+		command = { type = relation which = TUR value = 50 }
+		command = { type = relation which = PAP value = -50 }
+		command = { type = relation which = KNI value = -50 }
+		command = { type = relation which = SPA value = -50 }
+		command = { type = relation which = TOS value = -50 }
+		command = { type = relation which = VEN value = -50 }
+		command = { type = relation which = NAP value = -50 }
+		command = { type = relation which = SAV value = -50 }
+	}
+}
+
+#(1605-1609) The Evangelic Union - England Wins the Hundred Years' War
+#Revised by Lambert Simnel
+event = {
+	id = 20092
+	trigger = {
+		event = 164180
+		NOT = { event = 20007 }
+		NOT = { event = 20093 }
+		OR = {
+			religion = protestant
+			religion = reformed
+		}
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME3634" #The Evangelic Union
+	desc = "EVENTHIST3634"
+	#-#The Holy Roman Empire had a fragile balance, split between 10 major and nearly 400 minor states and principalities, as well as two opposing religions. The power of the Emperor was quite limited beyond his direct domains and the erratic and inconsistent behavior of some of them as Rudolph II, such increased frictions. In 1608, the Protestant city of Donauwerth refused Catholics the right to practice their cult and was banned from the Empire. As a reaction, most German Protestant states formed the Evangelic Union to defend their freedom.
+
+	date = { day = 1 month = january year = 1605 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1609 }
+
+	action_a = {
+		name = "ACTIONNAME3634A" #Prepare to Join
+		command = { type = relation which = BRA value = 150 }
+		command = { type = relation which = HAN value = 150 }
+		command = { type = relation which = HES value = 150 }
+		command = { type = relation which = PFA value = 150 }
+		command = { type = relation which = SAC value = 150 }
+		#command = { type = relation which = THU value = 150 } #Bayreuth
+		command = { type = relation which = SHL value = 150 }
+		command = { type = relation which = KLE value = 100 }
+		command = { type = relation which = KOL value = 50 }
+		command = { type = relation which = BAY value = 50 }
+		command = { type = relation which = PAP value = -100 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = relation which = HAB value = -150 }
+	}
+	action_b = {
+		name = "ACTIONNAME3634B" #Stay Neutral
+		command = { type = relation which = BRA value = -100 }
+		command = { type = relation which = HAN value = -100 }
+		command = { type = relation which = HES value = -100 }
+		command = { type = relation which = PFA value = -100 }
+		command = { type = relation which = SAC value = -100 }
+		#command = { type = relation which = THU value = -100 } #Bayreuth
+		command = { type = relation which = PAP value = 50 }
+	}
+}
+
+#(1607-1609) The Catholic League - England Wins the Hundred Years' War
+#Revised by Lambert Simnel
+event = {
+	id = 20093
+	trigger = {
+		event = 164180
+		NOT = { event = 20007 }
+		NOT = { event = 20092 }
+		OR = {
+			religion = catholic
+			religion = counterreform
+		}
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME3192" #The Catholic League
+	desc = "EVENTHIST3192"
+	#-#The German Catholic states felt threatened by the 1608 creation of the Evangelic Union of their northern Protestant neighbors, following the Donauwerth exclusion from the Empire. Feeling the urge to unite, they regrouped into a Catholic League that same year. The stage was set for the Thirty Years War.
+
+	date = { day = 1 month = january year = 1607 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1609 }
+
+	action_a = {
+		name = "ACTIONNAME3192A" #Prepare to Join
+		command = { type = relation which = BRA value = -150 }
+		command = { type = relation which = HAN value = -150 }
+		command = { type = relation which = HES value = -150 }
+		command = { type = relation which = PFA value = -150 }
+		command = { type = relation which = SAC value = -150 }
+		#command = { type = relation which = THU value = -150 } #Bayreuth
+		command = { type = relation which = SHL value = -150 }
+		command = { type = relation which = KLE value = 50 }
+		command = { type = relation which = KOL value = 100 }
+		command = { type = relation which = BAY value = 100 }
+		command = { type = relation which = PAP value = 150 }
+		command = { type = relation which = SPA value = 100 }
+		command = { type = relation which = HAB value = 100 }
+	}
+	action_b = {
+		name = "ACTIONNAME3192B" #Stay Neutral
+		command = { type = relation which = BRA value = 50 }
+		command = { type = relation which = HAN value = 50 }
+		command = { type = relation which = HES value = 50 }
+		command = { type = relation which = PFA value = 50 }
+		command = { type = relation which = SAC value = 50 }
+		#command = { type = relation which = THU value = 50 } #Bayreuth
+		command = { type = relation which = BAY value = -50 }
+		command = { type = relation which = KLE value = -50 }
+		command = { type = relation which = KOL value = -50 }
+		command = { type = relation which = HAB value = -100 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 164988

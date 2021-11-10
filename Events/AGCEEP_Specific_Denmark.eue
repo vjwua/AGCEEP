@@ -1,0 +1,3097 @@
+#Denmark (DAN)
+
+#See AGCEEP_Alt_Germany.eue for KoG Alternative events
+
+#-----------------------------------------------------------------------------------------------
+#Erik VII Sequence
+
+#(1419-1439) Erik issues war taxes in Sweden
+event = {
+	id = 159043
+	trigger = {
+		atwar = yes
+		monarch = 042000 #Erik VII
+		vassal = { country = DAN country = SWE }
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME159043" #Erik issues war taxes in Sweden
+	desc = "EVENTHIST159043"
+	#-#During his wars King Erik needed money for troops badly. Therefore he issued a series of war taxes in Sweden.
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 1
+	deathdate = { day = 1 month = january year = 1439 }
+
+	action_a = {
+		name = "ACTIONNAME159043A" #Issue the war taxes
+		command = { type = treasury value = 80 }
+		command = { type = ADM which = 1 value = 360 }
+		command = { type = relation which = SWE value = -25 }
+		command = { type = trigger which = 291018 } #SWE: Erik issues war taxes
+	}
+	action_b = {
+		name = "ACTIONNAME159043B" #We can manage without Swedish gold
+		command = { type = relation which = SWE value = 25 }
+		command = { type = sleepevent which = 159045 } #DAN: Rebellion in Sweden
+	}
+}
+#(1419-1439) Erik issues war taxes in Norway
+event = {
+	id = 159044
+	trigger = {
+		atwar = yes
+		monarch = 042000 #Erik VII
+		vassal = { country = DAN country = NOR }
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME159044" #Erik issues war taxes in Norway
+	desc = "EVENTHIST159044"
+	#-#During his wars King Erik needed money for troops badly. Therefore he issued a series of war taxes in Norway.
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 1
+	deathdate = { day = 1 month = january year = 1439 }
+
+	action_a = {
+		name = "ACTIONNAME159044A" #Issue the war taxes
+		command = { type = treasury value = 40 }
+		command = { type = ADM which = 1 value = 360 }
+		command = { type = relation which = NOR value = -25 }
+		command = { type = trigger which = 244003 } #NOR: Erik issues war taxes
+	}
+	action_b = {
+		name = "ACTIONNAME159044B" #We can manage without Norwegian gold
+		command = { type = relation which = NOR value = 25 }
+	}
+}
+#(1419-1439) Rebellion in Sweden
+event = {
+	id = 159045
+	trigger = {
+		event = 159043 #Erik issues war taxes in Sweden
+		monarch = 042000 #Erik VII
+		vassal = { country = DAN country = SWE }
+		OR = {
+			control = { province = 254 data = REB } #Svealand
+			event = 3217 #SWE: The Engelbrekt Rebellion
+		}
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME159045" #Rebellion in Sweden
+	desc = "EVENTHIST159045"
+	#-#Following the wars against the counts of Holstein the unrest in Sweden was very high due to the war taxes imposed by Erik. In 1434 this resulted in major rebellion in northern and central Sweden. Erik had no choice but to sign a treaty that severely reduced his power in Sweden or face a full-scale Swedish war. He ended up signing the treaty and was now obliged to heed the advice of the Swedish State Council as well as only allow Swedish nobles to govern Swedish provinces. Erik was furious and left for his castle in Gotland, leaving the administration of Denmark in the hands of the Danish State Council.
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 1
+	deathdate = { day = 4 month = april year = 1439 }
+
+	action_a = {
+		name = "ACTIONNAME159045A" #Sign the treaty
+		command = { type = relation which = SWE value = 100 }
+		command = { type = trigger which = 291019 } #SWE: Unrest in Sweden
+	}
+	action_b = {
+		name = "ACTIONNAME159045B" #The treaty is unacceptable
+		command = { type = relation which = SWE value = -100 }
+		command = { type = trigger which = 291020 } #SWE: Rebellion in Sweden
+	}
+}
+#(1419-1439) The future heir
+event = {
+	id = 159046
+	trigger = {
+		event = 159045 #DAN: Rebellion in Sweden
+		OR = {
+			NOT = { stability = -2 }
+			year = 1437
+		}
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME159046" #The future heir
+	desc = "EVENTHIST159046"
+	#-#In 1437 the Danish State Council summoned Erik from Gotland because the increased unrest among the peasantry had unleashed a fullscale revolt. Erik arrived in Denmark with the demand that the State Council should accept Bogislaw IX of Pomerania as his heir. The Danish State Council rejected this demand and Erik returned to Gotland from where he began a profitable pirating business.
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 90
+	deathdate = { day = 1 month = january year = 1439 }
+
+	action_a = {
+		name = "ACTIONNAME159046A" #Reject Bogislaw IX as the heir of Erik
+		command = { type = stability value = 1 }
+		command = { type = treasury value = -100 } #Erik leaves with his treasures.
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = relation which = SWE value = 50 }
+		command = { type = relation which = NOR value = 50 }
+		command = { type = revolt which = -1 } #Peasant revolt
+		command = { type = sleepevent which = 259007 } #POM: Bogislaw dies before Erik
+	}
+	action_b = {
+		name = "ACTIONNAME159046B" #Accept Bogislaw IX as the heir of Erik
+		command = { type = stability value = -3 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = relation which = SWE value = -100 }
+		command = { type = relation which = NOR value = -100 }
+		command = { type = revolt which = -1 } #Peasant revolt
+		command = { type = trigger which = 259003 } #POM: Bogislaw IX is the heir to the Danish throne
+	}
+}
+#(1440-1447) Erik inherits Gotland for Pomerania
+event = {
+	id = 159048
+	trigger = {
+		owned = { province = 308 data = -1 } #Gotland
+		exists = POM
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME159048" #Erik takes Gotland
+	desc = "EVENTHIST159048"
+	#-#In 1440, Erik, having been deposed in Denmark and Sweden, was succeeded by his nephew, Christopher of Bavaria, who had been chosen for the thrones. After he had been deposed as king in Sweden and Denmark, the Norwegian Riksråd remained loyal to him, and wanted him to remain king of Norway only. Erik left Denmark and settled at his castle Visborg in Gotland. In 1448, Erik handed over Gotland to Denmark in return for the permission to leave for Pomerania.
+
+	date = { day = 1 month = march year = 1440 }
+	offset = 120
+	deathdate = { day = 30 month = december year = 1447 }
+
+	action_a = {
+		name = "ACTIONNAME159048A" #Pomerania rules Gotland
+		command = { type = secedeprovince which = POM value = 308 } #Gotland
+	}
+}
+#(1448-1458) The invasion of Gotland
+event = {
+	id = 159049 #also triggered by POM_259008
+	trigger = {
+		owned = { province = 308 data = POM } #Gotland
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME259008" #The invasion of Gotland
+	desc = "EVENTHIST159049"
+	#-#In 1439 the Danish forces overrun and annex Gotland. Gotland agrees to Danish rule and everlasting peace under Erik.
+
+	date = { day = 11 month = may year = 1448 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1458 }
+
+	action_a = {
+		name = "ACTIONNAME159049A" #Gotland needs Danish rule
+		command = { type = stability value = 1 }
+		command = { type = addcore which = 308 } #Gotland
+		command = { type = sleepevent which = 338011 } #Random National: Merchants are being plundered
+	}
+}
+#End of Erik VII Sequence
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1429) Friesland still supports the pirates - Ahistorical
+event = {
+	id = 159053 #triggered by FRI_171005 B
+	trigger = {
+		NOT = {
+			war = { country = FRI country = DAN }
+		}
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME222002" #Friesland still supports the pirates
+	desc = "EVENTHIST222002"
+	#We cannot tolerate such activities...
+
+	action_a = {
+		name = "ACTIONNAME222002A" #Act, but not at once
+		command = { type = casusbelli which = FRI value = 72 }
+	}
+}
+
+#(1419-1600) Fate of the Kalmar Union
+event = {
+	id = 159038
+	trigger = {
+		owned = { province = 254 data = -1 }
+		owned = { province = 255 data = -1 }
+		NOT = { exists = SWE }
+		NOT = { exists = NOR }
+		NOT = { core = { province = 254 data = -1 } }
+		core = { province = 255 data = -1 }
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME159038" #Fate of the Kalmar Union
+	desc = "EVENTHIST159038"
+	#-#Finally all of the Kalmar Union was again under the direct rule of the Danish Crown. The time had now come to decide the fate and future of the old and troublesome Union.
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1600 }
+
+	action_a = {
+		name = "ACTIONNAME159038A" #Maintain the old union
+		command = { type = stability value = 2 }
+		command = { type = domestic which = innovative value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME159038B" #Dissolve the union and seize direct control
+		command = { type = stability value = -6 }
+		command = { type = revoltrisk which = 120 value = 3 }
+		command = { type = badboy value = 5 }
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = addcore which = 252 } #Småland
+		command = { type = addcore which = 253 } #Västergötland
+		command = { type = addcore which = 254 } #Svealand
+		command = { type = addcore which = 257 } #Bergslagen
+		command = { type = addcore which = 260 } #Lappland
+		command = { type = addcore which = 263 } #Österbotten
+		command = { type = addcore which = 264 } #Tavastland
+		command = { type = addcore which = 265 } #Nyland
+		command = { type = addcore which = 273 } #Savolaks
+		command = { type = addcore which = 341 } #Västerbotten
+		command = { type = addcore which = 342 } #Finland
+		command = { type = addcore which = 1469 } #Gästrikland
+	}
+}
+
+#(1429-1566) The Sound Due
+event = {
+	id = 3284
+	trigger = {
+		owned = { province = 307 data = -1 } #Sjælland
+		control = { province = 307 data = -1 } #Sjælland
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME3284" #The Sound Due
+	desc = "EVENTHIST3284"
+	#-#The Sound Due was introduced by King Erik in 1429 and was not abolished until 1857. All ships passing through the Sound ('Øresund') were forced to anchor off Helsingør and pay dues to the Danish Crown. The merchants had no choice but to comply since the Sound was the only water lane into the Baltic Sea. The due was enormous, and its impact on politics was almost as big as on the economy - the Danish King could easily decide on different levels of tariffs for the various nationalities of the ships passing through. Swedish merchants were often particularly targeted, which was an important contributing factor to the bitter enmity between the nations.
+
+	date = { day = 1 month = january year = 1429 }
+	offset = 180
+	deathdate = { day = 29 month = december year = 1566 }
+
+	action_a = {
+		name = "ACTIONNAME3284A" #Impose the Sound Due
+		command = { type = domestic which = MERCANTILISM value = 2 }
+		command = { type = provincetax which = -2 value = 4 }
+		command = { type = relation which = SWE value = -50 }
+		command = { type = relation which = MEC value = -50 }
+		command = { type = relation which = POM value = -50 }
+		command = { type = relation which = LAT value = -50 }
+		command = { type = relation which = ENG value = -50 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = removecot which = 305 } #Mecklenburg
+		command = { type = cot which = 307 } #Sjælland
+	}
+}
+
+#(1433-1435) The Engelbrekt Rebellion
+event = {
+	id = 3283
+	trigger = {
+		vassal = { country = DAN country = SWE }
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME3283" #The Engelbrekt Rebellion
+	desc = "EVENTHIST3283"
+	#-#Union King Erik was a harsh man, and his sheriffs reflected all of his worst traits. One of the cruellest was Jösse Eriksson, a nobleman of Danish birth and appointed sheriff of Bergslagen in Sweden. Acting like a petty chieftain, Jösse took whatever he fancied from the oppressed people - including their women. Finally, the peasants and miners had had enough and sent Engelbrekt to demand that Jösse be replaced by a decent man. King Erik agreed and sent an almost equally cruel sheriff, a German named Hans von Eberstein, to Bergslagen. The flames of revolt rose up in 1434...
+
+	date = { day = 1 month = january year = 1433 }
+	offset = 720
+	deathdate = { day = 1 month = january year = 1435 }
+
+	action_a = {
+		name = "ACTIONNAME3283A" #Replace Jösse with Hans von Eberstein
+		command = { type = trigger which = 3217 } #SWE: The Engelbrekt Rebellion
+		command = { type = relation which = SWE value = -100 }
+		command = { type = domestic which = centralization value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3283B" #Replace Jösse with a lenient sheriff
+		command = { type = treasury value = -100 } #Lost taxes
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = stability value = -2 } #Angry noblemen
+	}
+}
+#(1433-1435) The Rebellion spreads
+event = {
+	id = 3756 #triggered by SWE_3217 B
+	random = no
+	country = DAN
+	name = "EVENTNAME3756" #The Rebellion Spreads
+	desc = "EVENTHIST3756"
+	#-#The Swedish rebel Engelbrekt has spread his accursed rebellion to our peaceful realm!
+
+	action_a = {
+		name = "OK"
+		command = { type = revolt which = 251 } #Skåne
+		command = { type = revolt which = 251 } #Skåne
+		command = { type = revolt which = 308 } #Gotland
+	}
+}
+
+#(1448-1481) Christian of Oldenburg is elected King of Denmark
+event = {
+	id = 159032
+	trigger = { exists = OLD }
+	random = no
+	country = DAN
+	name = "EVENTNAME159032" #Christian of Oldenburg is elected King of Denmark
+	desc = "EVENTHIST159032"
+	#-#When Christoffer III died without heirs in 1448, the Rigsraad, the danish convention of nobles, first chose Count Adolf VIII of Holstein. But since he waS himself old and childless, he suggested to crown his nephew, Christian of Oldenburg instead, and so did the Rigsraad. Christian accepted the proposal and ascended the danish and norwegian throne. He left the County of Oldenburg to his younger brother Gerhard. The Oldenburg dynasty remained on the danish throne until 1863.
+
+	date = { day = 6 month = january year = 1448 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1481 }
+
+	action_a = {
+		name = "ACTIONNAME159032A" #Rule Oldenburg as part of the Holy Roman Empire through Gerhard
+		command = { type = vassal which = OLD }
+		command = { type = alliance which = OLD }
+		command = { type = relation which = OLD value = 200 }
+		command = { type = relation which = SHL value = 50 }
+		#command = { type = add_countryculture which = german } #edited by mnor, after Committee decision
+		command = { type = trigger which = 247000 } #1 #OLD: Christian of Oldenburg is elected King of Denmark.
+	}
+	action_b = {
+		name = "ACTIONNAME159032B" #Incorporate Oldenburg into Denmark
+		#command = { type = add_countryculture which = german } #edited by mnor, after Committee decision
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = BRE value = -50 }
+		command = { type = relation which = MEC value = -25 }
+		command = { type = relation which = POM value = -25 }
+		command = { type = trigger which = 247001 } #2 #OLD: Christian of Oldenburg is elected King of Denmark.
+	}
+}
+#(1448-1481) Oldenburg is incorporated into Denmark
+event = {
+	id = 159033 #triggered by OLD_247001 A
+	random = no
+	country = DAN
+	name = "EVENTNAME159033" #Oldenburg is incorporated into Denmark
+	desc = "EVENTHIST159033"
+	#-#The nobles in Oldenburg accepted Christian's proposal to integrate the Duchy of Oldenburg into Denmark.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = inherit which = OLD }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = addcore which = 335 } #Oldenburg
+	}
+}
+
+#(1460-1481) Denmark inherits Holstein
+event = {
+	id = 159034 #triggered by SHL_279003 A
+	random = no
+	country = DAN
+	name = "EVENTNAME159034" #Denmark inherits Holstein
+	desc = "EVENTHIST159034"
+	#-#As expected long before, Adolf VIII Duke of Schleswig and Count of Holstein died childlessly in 1459. His closest male relative was his nephew Christian of Oldenburg who had become King of Denmark in 1448. Christian was proclaimed Duke of Schleswig and Count of Holstein after swearing that both territories would remain 'up ewig ungedelt' (eternally undivided) and granting privileges to the estates in a charter signed in Riben on March 5th 1460.
+
+	action_a = {
+		name = "ACTIONNAME159034A" #Inherit Schleswig and Holstein and grant the privileges
+		command = { type = inherit which = SHL }
+		command = { type = addcore which = 306 } #Holstein
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = stability value = 1 }
+	}
+}
+#(1460-1481) Christian of Oldenburg is elected Duke of Schleswig and Count of Holstein
+event = {
+	id = 159035 #triggered by SHL_279003 B
+	random = no
+	country = DAN
+	name = "EVENTNAME159035" #Christian of Oldenburg is elected Duke of Schleswig and Count of Holstein
+	desc = "EVENTHIST159035"
+	#-#As expected long before, Adolf VIII Duke of Schleswig and Count of Holstein died childlessly in 1459. His closest male relative was his nephew Christian of Oldenburg who had become King of Denmark in 1448. Christian was proclaimed Duke of Schleswig and Count of Holstein after swearing that both territories would remain 'up ewig ungedelt' (eternally undivided) and granting privileges to the estates in a charter signed in Riben on March 5th 1460. He also had to guarantee that both territories would be governed separately from Denmark.
+
+	action_a = {
+		name = "ACTIONNAME159035A" #Grant the privileges of Riben
+		command = { type = vassal which = SHL }
+		command = { type = alliance which = SHL }
+		command = { type = relation which = SHL value = 200 }
+	}
+}
+
+#(1470-1497) Rise of Sten Sture den äldre (the elder)
+event = {
+	id = 159000
+	trigger = {
+		vassal = { country = DAN country = SWE }
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME159000" #Rise of Sten Sture den äldre (the elder)
+	desc = "EVENTHIST159000"
+	#-#The newly appointed regent of Sweden Sten Sture den äldre (the elder) has been gathering support for Swedish independence of the Kalmer Union. How shall we handle the rebellion?
+
+	date = { day = 1 month = january year = 1470 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1497 }
+
+	action_a = {
+		name = "ACTIONNAME159000A" #Let the rebels meet our armies
+		command = { type = relation which = SWE value = -100 }
+		command = { type = desertion which = -1 value = 3000 }
+		command = { type = desertion which = -1 value = 3000 }
+		command = { type = desertion which = -1 value = 2000 }
+	}
+	action_b = {
+		name = "ACTIONNAME159000B" #Accept Sten Stures demands
+		command = { type = stability value = -2 }
+		command = { type = relation which = SWE value = 200 }
+		command = { type = vp value = -50 }
+		command = { type = trigger which = 291001 } #SWE: Sten Stures demands accepted
+		command = { type = sleepevent which = 291000 } #SWE: The Battle at Brunkeberg
+	}
+}
+
+#(1471-1497) The Battle at Brunkeberg
+event = {
+	id = 159001 #triggered by SWE_291000
+	random = no
+	country = DAN
+	name = "EVENTNAME159001" #The Battle at Brunkeberg
+	desc = "EVENTHIST159001"
+	#-#In 1471 the Danish monarch Christian I decided to make good on his claim to the Swedish throne, and his fleet set sail for Stockholm. There it met with the mobilized armies of his allies among the swedish nobility. However the Swedish regent Sten Sture den äldre (the elder) massed an army combining both Swedish nobles, the commoners from Dalarna and the burghers of Stockholm, and met him in battle at Brunkeberg outside the city walls. Here King Christian lost the battle and he was forced to leave swedish ground. Sten Sture den äldre (the elder) would remain ruler of sweden for several years.
+
+	action_a = {
+		name = "ACTIONNAME159001A" #Let Sweden keep her independence for now
+		command = { type = INF which = -2 value = 2000 }
+		command = { type = INF which = -2 value = 2000 }
+		command = { type = CAV which = -2 value = 1500 }
+	}
+	action_b = {
+		name = "ACTIONNAME159001B" #This insult can only mean war
+		command = { type = stability value = -1 }
+		command = { type = revolt which = 251 } #Skåne
+		command = { type = revolt which = 308 } #Gotland
+		command = { type = INF which = -2 value = 2000 }
+		command = { type = INF which = -2 value = 2000 }
+		command = { type = CAV which = -2 value = 1500 }
+		command = { type = war which = SWE }
+	}
+}
+
+#(1479) University of Copenhagen
+event = {
+	id = 159115
+	trigger = {
+		owned = { province = 307 data = -1 } #Sjælland
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME159115" #Foundation of the University of Copenhagen
+	desc = "EVENTHIST159115"
+	#-#In 1475 Pope Sixtus IV approved Christian I's request for the construction of a Danish University and four years later (in 1479) the University of Copenhagen was opened. Like most universities of the later middle ages it housed the four classic sciences of Theology, Philosophy, Medicine, and Law.
+
+	date = { day = 1 month = january year = 1479 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1479 }
+
+	action_a = {
+		name = "ACTIONNAME159115A" #Found the university
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = infra value = 100 }
+		command = { type = treasury value = -50 }
+		command = { type = relation which = PAP value = 20 }
+	}
+	action_b = {
+		name = "ACTIONNAME159115B" #We don't need it
+		command = { type = vp value = -5 }
+	}
+}
+
+#(1482-1501) The coronation of King Hans
+event = {
+	id = 159002
+	trigger = {
+		OR = {
+			AND = {
+				exists = NOR
+				NOT = { event = 159039 } #DAN: Hans claims Norway
+			}
+			AND = {
+				exists = SWE
+				NOT = { event = 159003 } #DAN: Hans claims Sweden
+			}
+		}
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME159002" #The coronation of King Hans
+	desc = "EVENTHIST159002"
+	#-#In may 1482 Hans the son of Christian I and Dorothea of Brandenburg were crowned King of Denmark. According to an old agreement he was to rule both Denmark, Norway and Sweden.
+
+	date = { day = 1 month = may year = 1482 }
+	offset = 30
+	deathdate = { day = 8 month = august year = 1501 }
+
+	action_a = {
+		name = "ACTIONNAME159002A" #They will honor the agreement
+		command = { type = stability value = 1 }
+		command = { type = domestic which = innovative value = -1 }
+	}
+}
+
+#(1482-1501) Hans claims Norway
+event = {
+	id = 159039
+	trigger = {
+		NOT = { event = 244000 } #NOR: The coronation of King Hans
+		NOT = { exists = NOR }
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME159039" #Hans claims Norway
+	desc = "EVENTHIST159039"
+	#-#After his coronation King Hans claimed the Norwegian territory. Since Norway didn't have a ruling body this claim was accepted both by European rulers and by the Norwegian nobles.
+
+	date = { day = 1 month = june year = 1482 }
+	offset = 30
+	deathdate = { day = 8 month = august year = 1501 }
+
+	action_a = {
+		name = "ACTIONNAME159039A" #Claim Norway
+		command = { type = stability value = 1 }
+		command = { type = relation which = SWE value = -50 }
+		command = { type = addcore which = 255 } #Østlandet
+		command = { type = addcore which = 256 } #Bergenshus
+		command = { type = addcore which = 258 } #Trøndelag
+		command = { type = addcore which = 259 } #Narvik
+		command = { type = addcore which = 261 } #Finnmark
+		command = { type = addcore which = 381 } #Jämtland
+		command = { type = addcore which = 1466 } #Iceland
+		command = { type = sleepevent which = 244000 } #NOR: The coronation of King Hans.
+	}
+}
+
+#(1482-1501) Norway crowns Hans as their King
+event = {
+	id = 159007 #triggered by NOR_244000 A
+	random = no
+	country = DAN
+	name = "EVENTNAME159007" #Norway crowns Hans as their King
+	desc = "EVENTHIST159007"
+	#-#The year following Hans's coronation in Danmark he was acknowledged by the Norwegian rigsråd as their lawful King.
+
+	action_a = {
+		name = "GOOD"
+		command = { type = stability value = 1 }
+		command = { type = vassal which = NOR }
+		command = { type = alliance which = NOR }
+	}
+}
+#(1482-1501) Norway refuses to acknowledge Hans
+event = {
+	id = 159008 #triggered by NOR_244000 B
+	random = no
+	country = DAN
+	name = "EVENTNAME159008" #Norway refuses to acknowledge Hans
+	desc = "EVENTHIST159008"
+	#-#Norway has broken the agreement that Hans was to be their King!
+
+	action_a = {
+		name = "ACTIONNAME159008A" #Norway is ours by right
+		command = { type = war which = NOR }
+		command = { type = MIL which = 3 value = 36 }
+		command = { type = ADM which = -2 value = 18 }
+		command = { type = DIP which = -2 value = 18 }
+	}
+	action_b = {
+		name = "ACTIONNAME159008B" #Norway will be ours in time
+		command = { type = stability value = -1 }
+		command = { type = relation which = NOR value = 50 }
+		command = { type = casusbelli which = NOR value = 36 }
+		command = { type = vp value = -15 }
+	}
+	action_c = {
+		name = "ACTIONNAME159008C" #Let the Norwegians choose their own King.
+		command = { type = stability value = -2 }
+		command = { type = relation which = NOR value = 100 }
+		command = { type = vp value = -30 }
+	}
+}
+
+#(1482-1501) Hans claims Sweden
+event = {
+	id = 159003
+	trigger = {
+		NOT = { event = 291002 } #1 #SWE: The coronation of King Hans
+		NOT = { event = 291003 } #2 #SWE: The coronation of King Hans
+		NOT = { exists = SWE }
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME159003" #Hans claims Sweden
+	desc = "EVENTHIST159003"
+	#-#After his coronation King Hans claimed the Swedish territory. Since Sweden didn't have a ruling body this claim was accepted both by European rulers and by the Swedish nobles.
+
+	date = { day = 1 month = june year = 1482 }
+	offset = 30
+	deathdate = { day = 8 month = august year = 1501 }
+
+	action_a = {
+		name = "ACTIONNAME159003A" #Claim Sweden
+		command = { type = stability value = 1 }
+		command = { type = relation which = NVG value = -50 }
+		command = { type = relation which = MOS value = -50 } #If they havn't become Russia.
+		command = { type = relation which = RUS value = -50 }
+		command = { type = addcore which = 252 } #Småland
+		command = { type = addcore which = 253 } #Västergötland
+		command = { type = addcore which = 254 } #Svealand
+		command = { type = addcore which = 257 } #Bergslagen
+		command = { type = addcore which = 260 } #Lappland
+		command = { type = addcore which = 263 } #Österbotten
+		command = { type = addcore which = 264 } #Tavastland
+		command = { type = addcore which = 265 } #Nyland
+		command = { type = addcore which = 273 } #Savolaks
+		command = { type = addcore which = 341 } #Västerbotten
+		command = { type = addcore which = 342 } #Finland
+		command = { type = addcore which = 1469 } #Gästrikland
+		command = { type = sleepevent which = 291002 } #1 #SWE: The coronation of King Hans
+		command = { type = sleepevent which = 291003 } #2 #SWE: The coronation of King Hans
+	}
+}
+
+#(1482-1501) Sweden crowns Hans as their King
+event = {
+	id = 159009 #triggered by SWE_291002 B / SWE_291003 A
+	random = no
+	country = DAN
+	name = "EVENTNAME159009" #Sweden crowns Hans as their King
+	desc = "EVENTHIST159009"
+	#-#Not long after Hans was proclaimed King of Denmark and Norway, the Swedish regent Sten Sture den äldre (the elder) recognized that he had no other option than to honor the agreement.
+
+	action_a = {
+		name = "GOOD"
+		command = { type = stability value = 1 }
+		command = { type = vassal which = SWE }
+		command = { type = alliance which = SWE }
+	}
+}
+#(1482-1501 or 1497-1501) Sten Sture den äldre (the elder) refuses to crown Hans
+event = {
+	id = 159010 #triggered by SWE_291002 C / SWE_291003 B or SWE_291005 B
+	random = no
+	country = DAN
+	name = "EVENTNAME159010" #Sten Sture den äldre (the elder) refuses to crown Hans
+	desc = "EVENTHIST159010"
+	#-#Despite Hans's legal claim to Sweden their regent Sten Sture den äldre (the elder) decided that Hans shouldn't become King of Sweden.
+
+	action_a = {
+		name = "ACTIONNAME159010A" #Sweden is ours by right
+		command = { type = war which = SWE }
+		command = { type = MIL which = 3 value = 36 }
+		command = { type = ADM which = -2 value = 18 }
+		command = { type = DIP which = -2 value = 18 }
+		command = { type = sleepevent which = 159016 } #DAN: Sweden defies Hans's claim to their throne
+	}
+	action_b = {
+		name = "ACTIONNAME159010B" #Sweden will be ours in time
+		command = { type = stability value = -1 }
+		command = { type = relation which = SWE value = 50 }
+		command = { type = casusbelli which = SWE value = 36 }
+		command = { type = vp value = -15 }
+	}
+	action_c = {
+		name = "ACTIONNAME159010C" #Accept Sten Stures refusal
+		command = { type = stability value = -2 }
+		command = { type = relation which = SWE value = 100 }
+		command = { type = vp value = -30 }
+		command = { type = sleepevent which = 291004 } #DAN: Swedish nobles support Sten Sture den äldre (the elder)
+	}
+}
+
+#(1482-1501) Sweden defies Hans's claim to their throne
+event = {
+	id = 159016
+	trigger = {
+		exists = SWE
+		event = 291004 #SWE: Swedish nobles support Sten Sture den äldre (the elder)
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME159016" #Sweden defies Hans's claim to their throne
+	desc = "EVENTHIST159016"
+	#-#When the Danish King Hans tried to make claims on the Swedish crown Sten Sture den äldre (the elder) went to the Swedish nobles to get their support against Hans. Because of Christian I acceptance of an independent Sweden the nobles narrowly accepted Sten Stures proposal of rejecting Hanses demand.
+
+	date = { day = 1 month = may year = 1482 }
+	offset = 10
+	deathdate = { day = 8 month = august year = 1501 }
+
+	action_a = {
+		name = "ACTIONNAME159016A" #Sweden is ours by right
+		command = { type = war which = SWE }
+		command = { type = MIL which = 3 value = 36 }
+		command = { type = ADM which = -2 value = 18 }
+		command = { type = DIP which = -2 value = 18 }
+	}
+	action_b = {
+		name = "ACTIONNAME159016B" #Sweden will be ours in time
+		command = { type = stability value = -1 }
+		command = { type = relation which = SWE value = 50 }
+		command = { type = casusbelli which = SWE value = 36 }
+		command = { type = vp value = -15 }
+	}
+	action_c = {
+		name = "ACTIONNAME159016C" #Accept Sten Stures rejection
+		command = { type = stability value = -2 }
+		command = { type = relation which = SWE value = 100 }
+		command = { type = vp value = -30 }
+	}
+}
+
+#(1483) The Scandinavian Constitution
+event = {
+	id = 3287
+	trigger = {
+		exists = SWE
+		vassal = { country = DAN country = SWE }
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME3287" #The Scandinavian Constitution
+	desc = "EVENTHIST3287"
+	#-#In 1481 King Christian I died and left the throne to his son Hans. Since the Battle of Brunkeberg in 1471, Sweden had not been a part of the Union in anything but the name. In 1483 the Councils of the Scandinavian Kingdoms drafted the Halmstad Recess, an attempt to provide a Scandinavian constitution which asserted the supremacy of the high nobility, but Sten Sture den äldre (the elder), the chancellor of Sweden, refused to send a delegation to Halmstad. The Swedes delayed signing the document until 1484, and then with certain provisos.
+
+	date = { day = 1 month = february year = 1483 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1483 }
+
+	action_a = {
+		name = "ACTIONNAME3287A" #Draft the Scandinavian Constitution
+		command = { type = relation which = SWE value = 50 }
+		command = { type = domestic which = ARISTOCRACY value = 2 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = stability value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME3287B" #Drop the whole idea
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1485-1513) Swedish nobles demand greater independence
+event = {
+	id = 159004
+	trigger = {
+		event = 159003 #DAN: Hans claims Sweden
+		owned = { province = 254 data = -1 }
+		NOT = { exists = SWE }
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME159004" #Swedish nobles demand greater independence
+	desc = "EVENTHIST159004"
+	#-#Not long after King Hans had secured control over Svealand did the Swedish nobles begin their request for a more independent Sweden. King Hans resisted the requests at first, but soon he had to deside between either a full scale civil war or granting Sweden independence as vassals.
+
+	date = { day = 1 month = june year = 1485 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1513 }
+
+	action_a = {
+		name = "ACTIONNAME159004A" #Let Sweden have self-government
+		command = { type = independence which = SWE }
+		command = { type = alliance which = SWE }
+		command = { type = stability value = 3 }
+		command = { type = badboy value = -3 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = removecore which = 252 } #Småland
+		command = { type = removecore which = 253 } #Västergötland
+		command = { type = removecore which = 254 } #Svealand
+		command = { type = removecore which = 257 } #Bergslagen
+		command = { type = removecore which = 260 } #Lappland
+		command = { type = removecore which = 263 } #Österbotten
+		command = { type = removecore which = 264 } #Tavastland
+		command = { type = removecore which = 265 } #Nyland
+		command = { type = removecore which = 273 } #Savolaks
+		command = { type = removecore which = 341 } #Västerbotten
+		command = { type = removecore which = 342 } #Finland
+		command = { type = removecore which = 1469 } #Gästrikland
+		command = { type = sleepevent which = 291008 } #DAN: Hans defeated in Ditmarsken
+	}
+	action_b = {
+		name = "ACTIONNAME159004B" #There is no and never will be a Sweden
+		command = { type = stability value = -6 }
+		command = { type = revoltrisk which = 120 value = 3 }
+		command = { type = revolt which = 252 } #Småland
+		command = { type = revolt which = 253 } #Västergötland
+		command = { type = revolt which = 254 } #Svealand
+		command = { type = revolt which = 257 } #Bergslagen
+		command = { type = revolt which = 260 } #Lappland
+		command = { type = revolt which = 263 } #Österbotten
+		command = { type = revolt which = 264 } #Tavastland
+		command = { type = revolt which = 265 } #Nyland
+		command = { type = revolt which = 273 } #Savolaks
+		command = { type = revolt which = 341 } #Västerbotten
+		command = { type = revolt which = 342 } #Finland
+		command = { type = revolt which = 1469 } #Gästrikland
+	}
+}
+
+#(1485-1513) Swedish nobles pledge alligiance to Sweden
+event = {
+	id = 159006
+	trigger = {
+		exists = SWE
+		event = 159003 #DAN: Hans claims Sweden
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME159006" #Swedish nobles pledge alligiance to Sweden
+	desc = "EVENTHIST159006"
+	#-#When Sweden was recreated the nobles that claimed rule overthe old Sweden provinces gathered at Stockholm. Here they agreed to pledge alligiance to the new Swedish crown.
+
+	date = { day = 1 month = june year = 1485 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1513 }
+
+	action_a = {
+		name = "ACTIONNAME159006A" #Treacherous bastards!
+		command = { type = casusbelli which = SWE value = 36 }
+		command = { type = removecore which = 252 } #Småland
+		command = { type = removecore which = 253 } #Västergötland
+		command = { type = removecore which = 254 } #Svealand
+		command = { type = removecore which = 257 } #Bergslagen
+		command = { type = removecore which = 260 } #Lappland
+		command = { type = removecore which = 263 } #Österbotten
+		command = { type = removecore which = 264 } #Tavastland
+		command = { type = removecore which = 265 } #Nyland
+		command = { type = removecore which = 273 } #Savolaks
+		command = { type = removecore which = 341 } #Västerbotten
+		command = { type = removecore which = 342 } #Finland
+		command = { type = removecore which = 1469 } #Gästrikland
+		command = { type = secedeprovince which = SWE value = 252 } #Småland
+		command = { type = secedeprovince which = SWE value = 253 } #Västergötland
+		command = { type = secedeprovince which = SWE value = 254 } #Svealand
+		command = { type = secedeprovince which = SWE value = 257 } #Bergslagen
+		command = { type = secedeprovince which = SWE value = 260 } #Lappland
+		command = { type = secedeprovince which = SWE value = 263 } #Österbotten
+		command = { type = secedeprovince which = SWE value = 264 } #Tavastland
+		command = { type = secedeprovince which = SWE value = 265 } #Nyland
+		command = { type = secedeprovince which = SWE value = 273 } #Savolaks
+		command = { type = secedeprovince which = SWE value = 341 } #Västerbotten
+		command = { type = secedeprovince which = SWE value = 342 } #Finland
+		command = { type = secedeprovince which = SWE value = 1469 } #Gästrikland
+	}
+}
+
+#(1490-1513) The fate of Holstein
+event = {
+	id = 159011
+	trigger = {
+		owned = { province = 306 data = -1 }
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME159011" #The fate of Holstein
+	desc = "EVENTHIST159011"
+	#-#In 1490 King Hans gave Holstein to his younger brother Frederik. This happened after much debate since Hans's mother Dorothea desired that Frederik should get not only Holstein but also Slesvig. Hans wouldn't part with both Slesvig and Holstein so he allowed Frederik to choose one of the provinces. Frederik chose Holstein. However Slesvig and Holstein had been promised that they would never be devided, so the brothers agreed to rule both provinces together. In reality though Frederik ruled Holstein alone as duke, and Hans kept Slesvig.
+
+	date = { day = 1 month = january year = 1490 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1513 }
+
+	action_a = {
+		name = "ACTIONNAME159011A" #Let Frederik have Holstein
+		command = { type = stability value = 1 }
+		command = { type = independence which = SHL }
+		command = { type = alliance which = SHL }
+	}
+	action_b = {
+		name = "ACTIONNAME159011B" #Holstein shall remain a part of Denmark
+		command = { type = stability value = -3 }
+		command = { type = revolt which = 306 } #Holstein
+		command = { type = revoltrisk which = 240 value = 1 }
+	}
+}
+
+#(1493-1496) Vornedskab
+event = {
+	id = 3286
+	random = no
+	country = DAN
+	name = "EVENTNAME3286" #Vornedskab
+	desc = "EVENTHIST3286"
+	#-#Up until the late 15th century the peasants in Denmark, like in Sweden, had been blessed with liberties uncommon to their class in Europe at the time. Under King Hans however, this took a bitter end with the adoption of 'vornedskab', or serfdom. Peasant sons were no longer allowed to move from their lands, and particularly the peasants who worked the fields of the aristocracy soon found themselves oppressed like never before.
+
+	date = { day = 1 month = february year = 1493 }
+	offset = 720
+	deathdate = { day = 1 month = february year = 1496 }
+
+	action_a = {
+		name = "ACTIONNAME3286A" #Adopt Vornedskab
+		command = { type = domestic which = SERFDOM value = 3 }
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = revoltrisk which = 120 value = 3 }
+	}
+	action_b = {
+		name = "ACTIONNAME3286B" #Let the peasants be free
+		command = { type = domestic which = SERFDOM value = -1 }
+		command = { type = domestic which = ARISTOCRACY value = -1 }
+		command = { type = stability value = -4 }
+	}
+}
+
+#(1494-1513) The fate of Norway -1-
+event = {
+	id = 159012
+	trigger = {
+		vassal = { country = DAN country = NOR }
+		exists = SHL
+		NOT = { event = 159013 } #Danish event: The fate of Norway. #2
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME159012" #The fate of Norway
+	desc = "EVENTHIST159012"
+	#-#While Hans ruled Denmark and Norway his mother Dorothea tried to convince him, that he should share his Kingdoms with his younger brother Frederik. She suggested that Hans should give Norway to Duke Frederik of Holstein. Hans had no desire to part with Norway however, so in 1494 he called for a Assembly of the Estates of the Realm in Kalundborg. Here it was declared that the Kingdoms of Denmark and Norway should forever be one.
+
+	date = { day = 1 month = january year = 1494 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1513 }
+
+	action_a = {
+		name = "ACTIONNAME159012A" #Declare Norway and Denmark indivisible
+		command = { type = stability value = -1 }
+		command = { type = relation which = SHL value = -50 }
+		command = { type = domestic which = centralization value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME159012B" #Give Norway to Frederik
+		command = { type = relation which = SHL value = 200 }
+		command = { type = trigger which = 244004 } #NOR: The fate of the Kingdom
+		command = { type = sleepevent which = 244001 } #NOR: The meeting in Kalundborg
+		command = { type = sleepevent which = 3847 } #DAN: Norway Declares Independence
+	}
+}
+#(1494-1513) The fate of Norway -2-
+event = {
+	id = 159013
+	trigger = {
+		vassal = { country = DAN country = NOR }
+		NOT = { exists = SHL }
+		NOT = { event = 159012 } #DAN: The fate of Norway
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME159013" #The fate of Norway
+	desc = "EVENTHIST159013"
+	#-#While Hans ruled Denmark and Norway his mother Dorothea tried to convince him, that he should give Norway to his younger brother Frederik. Hans had no desire to part with Norway however, so in 1494 he called for a Assembly of the Estates of the Realm in Kalundborg. Here it was declared that the Kingdoms of Denmark and Norway should forever be one.
+
+	date = { day = 1 month = january year = 1494 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1513 }
+
+	action_a = {
+		name = "ACTIONNAME159013A" #Declare Norway and Denmark indivisible
+		command = { type = stability value = -1 }
+		command = { type = domestic which = centralization value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME159013B" #Give Norway to Frederik
+		command = { type = relation which = NOR value = 200 }
+		command = { type = sleepevent which = 244001 } #DAN: The meeting in Kalundborg
+		command = { type = sleepevent which = 3847 } #DAN: Norway Declares Independence
+	}
+}
+
+#(1494-1513) Norway accepts the declaration at Kalundborg
+event = {
+	id = 159014 #triggered by NOR_244001 A
+	random = no
+	country = DAN
+	name = "EVENTNAME159014" #Norway accepts the declaration at Kalundborg
+	desc = "EVENTHIST159014"
+	#-#In 1494 at the Assembly of the Estates of the Realm in Kalundborg the Kingdoms of Norway and Denmark were declared to be indivisible.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = inherit which = NOR }
+		command = { type = addcore which = 255 } #Østlandet
+		command = { type = addcore which = 256 } #Bergenshus
+		command = { type = addcore which = 258 } #Trøndelag
+		command = { type = addcore which = 259 } #Narvik
+		command = { type = addcore which = 261 } #Finnmark
+		command = { type = addcore which = 381 } #Jämtland
+		command = { type = addcore which = 1466 } #Iceland
+	}
+}
+#(1494-1513) Norway rejects the declaration at Kalundborg
+event = {
+	id = 159015 #triggered by NOR_244001 B
+	random = no
+	country = DAN
+	name = "EVENTNAME159015" #Norway rejects the declaration at Kalundborg
+	desc = "EVENTHIST159015"
+	#-#In 1494 at the Assembly of the Estates of the Realm in Kalundborg Hans were forced by Norwegian nobles to accept ruling the Kingdom of Norway as a seperate Kingdom.
+
+	action_a = {
+		name = "ACTIONNAME159015A" #In time they will accept the inevitable.
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = domestic which = centralization value = -2 }
+	}
+}
+
+#(1497-1501) Sweden is stalling
+event = {
+	id = 159017
+	trigger = {
+		exists = SWE
+		event = 291002 #SWE: The coronation of King Hans
+		NOT = { vassal = { country = DAN country = SWE } }
+		NOT = { vassal = { country = SWE country = DAN } }
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME159017" #Sweden is stalling
+	desc = "EVENTHIST159017"
+	#-#By 1497 it was painfully clear that Swedens regent Sten Sture den äldre (the elder) had been stalling the coronation of King Hans. Hans mobilised an army which headed for Stäket north of Stockholm. Stäket were under siege by Sten Sture den äldre (the elder), but with the arrival of King Hans's army Sten Sture den äldre (the elder) was forced to retreat to Stockholm.
+
+	date = { day = 1 month = january year = 1497 }
+	offset = 180
+	deathdate = { day = 8 month = august year = 1501 }
+
+	action_a = {
+		name = "ACTIONNAME159017A" #Attack Sten Sture
+		command = { type = desertion which = -1 value = 4000 }
+		command = { type = desertion which = -1 value = 4000 }
+		command = { type = desertion which = -1 value = 4000 }
+		command = { type = trigger which = 291005 } #SWE: The arrival of King Hans
+	}
+	action_b = {
+		name = "ACTIONNAME159017B" #Accept Sten Sture as King of Sweden
+		command = { type = stability value = -2 }
+		command = { type = relation which = SWE value = 100 }
+	}
+}
+
+#(1497-1501) Sten Sture den äldre (the elder) submits to Hans
+event = {
+	id = 159018
+	trigger = {
+		exists = SWE
+		event = 291005 #SWE: The arrival of King Hans
+		NOT = { vassal = { country = DAN country = SWE } }
+		NOT = { vassal = { country = SWE country = DAN } }
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME159018" #Sten Sture den äldre (the elder) submits to Hans
+	desc = "EVENTHIST159018"
+	#-#In november 1497 Hans was crowned King of Sweden, and he returned to Denmark with his army. Sten Stures peasant army had been defeated in two great battles, and he had no other option than to capitulate to Hans. Sten Sture den äldre (the elder) still had great support among the Swedish commoners though, and Hans desided to let him live.
+
+	date = { day = 1 month = november year = 1497 }
+	offset = 30
+	deathdate = { day = 8 month = august year = 1501 }
+
+	action_a = {
+		name = "ACTIONNAME159018A" #Let Sten Sture live
+		command = { type = stability value = 1 }
+		command = { type = vassal which = SWE }
+		command = { type = alliance which = SWE }
+		command = { type = relation which = SWE value = 100 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = INF which = -2 value = 2500 }
+		command = { type = INF which = -2 value = 2500 }
+		command = { type = CAV which = -2 value = 2500 }
+		command = { type = trigger which = 291006 } #SWE: Sten Sture den äldre (the elder) submits to Hans
+	}
+	action_b = {
+		name = "ACTIONNAME159018B" #Sten Sture must die
+		command = { type = stability value = -2 }
+		command = { type = vassal which = SWE }
+		command = { type = alliance which = SWE }
+		command = { type = relation which = SWE value = -100 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = INF which = -2 value = 2500 }
+		command = { type = INF which = -2 value = 2500 }
+		command = { type = CAV which = -2 value = 2500 }
+		command = { type = trigger which = 291007 } #SWE: Sten Sture den äldre (the elder) executed
+		command = { type = sleepevent which = 291008 } #DAN: Hans defeated in Ditmarsken
+	}
+}
+
+#(1501-1513) The defeat at Ditmarsken -1-
+event = {
+	id = 159019
+	trigger = {
+		vassal = { country = DAN country = SHL }
+		NOT = { event = 159020 } #DAN: The defeat at Ditmarsken -II-
+		NOT = { event = 159021 } #DAN: The gift to Frederik
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME159019" #The defeat at Ditmarsken
+	desc = "EVENTHIST159019"
+	#-#Following his victory at Stockholm King Hans allied with his brother Frederik of Holstein and attacked the minor peasant republic Ditmarsken. The result was a humiliating defeat and while both Hans and Frederik managed to escape capture they lost their entire army. This was primarily due to the fact that the weather turned the roads into mud. This combined with the fact that their heavy cavalry wasn't designed for fighting on the narrow roads made the army useless.
+
+	date = { day = 1 month = january year = 1501 }
+	offset = 90
+	deathdate = { day = 1 month = january year = 1513 }
+
+	action_a = {
+		name = "DAMN"
+		command = { type = stability value = -1 }
+		command = { type = desertion which = -1 value = 2500 }
+		command = { type = desertion which = -1 value = 2500 }
+		command = { type = desertion which = -1 value = 2500 }
+		command = { type = MIL which = -2 value = 18 }
+		command = { type = trigger which = 279001 } #SHL: The defeat at Ditmarsken
+	}
+}
+#(1501-1513) The defeat at Ditmarsken -II-
+event = {
+	id = 159020
+	trigger = {
+		owned = { province = 306 data = -1 }
+		NOT = { event = 159019 } #DAN: The defeat at Ditmarsken -I-
+		NOT = { event = 159021 } #DAN: The gift to Frederik
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME159020" #The defeat at Ditmarsken
+	desc = "EVENTHIST159020"
+	#-#Following his victory at Stockholm King Hans attacked the minor peasant republic Ditmarsken. The result was a humiliating defeat and while Hans managed to escape capture he lost his entire army. This was primarily due to the fact that the weather turned the roads into mud. This combined with the fact that his heavy cavalry wasn't designed for fighting on the narrow roads made the army useless.
+
+	date = { day = 1 month = january year = 1501 }
+	offset = 90
+	deathdate = { day = 1 month = january year = 1513 }
+
+	action_a = {
+		name = "DAMN"
+		command = { type = stability value = -2 }
+		command = { type = revolt which = 306 } #Holstein
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = MIL which = -2 value = 18 }
+	}
+}
+
+#(1501-1513) The gift to Frederik
+event = {
+	id = 159021
+	trigger = {
+		exists = SHL
+		NOT = { vassal = { country = DAN country = SHL } }
+		NOT = { event = 159019 } #DAN: The defeat at Ditmarsken -I-
+		NOT = { event = 159020 } #DAN: The defeat at Ditmarsken -II-
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME159021" #The gift to Frederik
+	desc = "EVENTHIST159021"
+	#-#Following his victory at Stockholm King Hans of Denmark lent a part of his army to his brother Frederik. Frederik had always wanted to rule part of Hans's realm, which of course didn't sit well with Hans. So to appease his brother King Hans desided to help him conquer Holstein. This was to a large extend successful, but at a battle against the peasant republic Ditmarsken Hans's army were defeated. The end result was the vassalisation of Holstein, but a loss of respect of the Danish army.
+
+	date = { day = 1 month = january year = 1501 }
+	offset = 90
+	deathdate = { day = 1 month = january year = 1513 }
+
+	action_a = {
+		name = "ACTIONNAME159021A" #Frederik better be grateful
+		command = { type = stability value = -1 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = MIL which = -2 value = 18 }
+		command = { type = vassal which = SHL }
+		command = { type = alliance which = SHL }
+		command = { type = relation which = SHL value = 200 }
+		command = { type = trigger which = 279002 } #SHL: The subjugation of Holstein
+	}
+}
+
+#(1501-1504) Sweden declares itself independent
+event = {
+	id = 159022 #triggered by SWE_291008 A
+	random = no
+	country = DAN
+	name = "EVENTNAME159022" #Sweden declares itself independent
+	desc = "EVENTHIST159022"
+	#-#The 9th of August 1501 King Hans recieved a letter of independence from the Swedish nobles. He mobilized the fleet and army and headed for Stockholm, but by the time he arrived the Stockholm Castle had fallen to the rebel army and the Swedish held his Queen Christine as hostage. She had kept the enemy at bay for seven month with only a 1000 men, but had surrendered to the Swedish three days before Hans arrived. Hans wouldn't risk the life of Christine who he claimed the Swedish treatened to torture so he withdrew to Denmark. Christine wasn't released before 1503.
+
+	action_a = {
+		name = "ACTIONNAME159022A" #Withdraw and negotiate for Christines release
+		command = { type = stability value = 1 }
+		command = { type = DIP which = 1 value = 36 }
+		command = { type = relation which = SWE value = 25 }
+		command = { type = trigger which = 291009 } #SWE: Denmark withdraws
+	}
+	action_b = {
+		name = "ACTIONNAME159022B" #Use Christine's capture as casus belli
+		command = { type = stability value = -1 }
+		command = { type = MIL which = 1 value = 36 }
+		command = { type = DIP which = -2 value = 60 }
+		command = { type = casusbelli which = SWE value = 36 }
+	}
+}
+#(1501-1504 or 1503-1513) Christine is released
+event = {
+	id = 159023 #also triggered by SWE_291009 A
+	trigger = {
+		event = 291009 #SWE: Denmark withdraws
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME159023" #Christine is released
+	desc = "EVENTHIST159023"
+	#-#After long negotiations Christine was finally released.
+
+	date = { day = 1 month = january year = 1503 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1513 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = stability value = 1 }
+		command = { type = relation which = SWE value = 25 }
+	}
+}
+#(1501-1504) Christine is executed!
+event = {
+	id = 159025 #triggered by the SWE_291009 D
+	random = no
+	country = DAN
+	name = "EVENTNAME159025" #Christine is not going to be released
+	desc = "EVENTHIST159025"
+	#-#Following Christines capture by the Swedish, Sten Sture den äldre (the elder) had her executed despite of King Hans's attemps to negotiate her release.
+
+	action_a = {
+		name = "ACTIONNAME159025A" #Her death shall be avenged!
+		command = { type = stability value = -1 }
+		command = { type = casusbelli which = SWE value = 60 }
+		command = { type = MIL which = 2 value = 36 }
+		command = { type = relation which = SWE value = -75 }
+	}
+}
+
+#(1503-1513) Christine is not going to be released
+event = {
+	id = 159024
+	trigger = {
+		event = 291009 #SWE: Denmark withdraws
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME159024" #Christine is not going to be released
+	desc = "EVENTHIST159024"
+	#-#After long negotiations it became apparent, that Christine wasn't going to be released.
+
+	date = { day = 1 month = january year = 1503 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1513 }
+
+	action_a = {
+		name = "ACTIONNAME159024A" #Consider military actions
+		command = { type = casusbelli which = SWE value = 36 }
+		command = { type = MIL which = 1 value = 36 }
+		command = { type = relation which = SWE value = -25 }
+	}
+}
+
+#(1501-1513) War has come
+event = {
+	id = 159026 #triggered by SWE_291010 A
+	random = no
+	country = DAN
+	name = "EVENTNAME159026" #War has come
+	desc = "EVENTHIST159026"
+	#-#Despite of the fact that Sten Sture den äldre (the elder) held Queen Christine of Denmark captured the Danish King desided to wage war against Sweden. This cause Sten Sture den äldre (the elder) to promptly have Queen Christine executed. This caused major unrest among the Danish nobles as they blamed King Hans for his lack of judgement in waging war against Sweden when they held his Queen captured.
+
+	action_a = {
+		name = "ACTIONNAME159026A" #Sten Sture will pay dearly for this!
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 120 value = 1 }
+		command = { type = casusbelli which = SWE value = 60 }
+	}
+}
+
+#(1501-1513) Christine is rescued
+event = {
+	id = 159027
+	trigger = {
+		event = 291009 #SWE: Denmark withdraws
+		control = { province = 254 data = -1 }
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME159027" #Christine is rescued
+	desc = "EVENTHIST159027"
+	#-#When the triumphant Danish forces marched into Stockholm King Hans had the extreme pleasure of releasing his wife Christine from the hands of the Swedish. Now Sweden had no hold over him any longer, and he had sent a clear signal to the rest of Europe that this King would not be blackmailed.
+
+	date = { day = 9 month = august year = 1501 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1513 }
+
+	action_a = {
+		name = "ACTIONNAME159027A" #United with my Queen at last!
+		command = { type = stability value = 3 }
+		command = { type = DIP which = 1 value = 60 }
+		command = { type = MIL which = 1 value = 60 }
+		command = { type = vp value = 25 }
+	}
+}
+
+#(1509) The Great Naval Reform
+event = {
+	id = 3288
+	trigger = {
+		OR = {
+			owned   = { province = 307 data = -1 } #Sjælland
+			owned   = { province = 309 data = -1 } #Jylland
+			owned   = { province = 306 data = -1 } #Holstein
+			owned   = { province = 255 data = -1 } #Østlandet
+			owned   = { province = 256 data = -1 } #Bergenshus
+			owned   = { province = 258 data = -1 } #Trøndelag
+		}
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME3288" #The Great Naval Reform
+	desc = "EVENTHIST3288"
+	#-#Under King Hans, who came to the throne in 1481, the fleet was given a more organised structure, and during his reign large ships were built by royal order. The 'Engelen' was built in Sønderborg, where there was a good supply of oak for shipbuilding. The 'Maria', which was just as big, seems to have been built in Copenhagen, which has gradually become the home port of the fleet. By 1509 Denmark had one of the largest and best navies in Europe.
+
+	date = { day = 1 month = february year = 1509 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1509 }
+
+	action_a = {
+		name = "ACTIONNAME3288A" #Expand the Navy
+		command = { type = domestic which = LAND value = -2 }
+		command = { type = naval value = 2000 }
+		command = { type = treasury value = -150 }
+	}
+	action_b = {
+		name = "ACTIONNAME3288B" #Expand the Army
+		command = { type = domestic which = LAND value = 1 }
+		command = { type = land value = 1500 }
+		command = { type = treasury value = -100 }
+	}
+	action_c = {
+		name = "ACTIONNAME3288C" #Build Fortifications
+		command = { type = fortress which = -2 value = 1 }
+		command = { type = fortress which = -1 value = 1 }
+		command = { type = fortress which = -1 value = 1 }
+		command = { type = fortress which = -1 value = 1 }
+		command = { type = treasury value = -200 }
+	}
+}
+
+#(1513) King Hans dies without having captured Sweden
+event = {
+	id = 159005
+	trigger = {
+		event = 159003 #DAN: Hans claims Sweden
+		NOT = { owned = { province = 254 data = -1 } }
+		NOT = { event = 159004 } #DAN: Swedish nobles demand greater independence
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME159005" #King Hans dies without having captured Sweden
+	desc = "EVENTHIST159005"
+	#-#When King Hans died without having captured Sweden, Denmark was the laughing stock of Europe. Hans had claimed that Sweden was rightfully his, and he had failed to bring it under his control. This made the Danish royal family look weak and made their claim to Sweden dubious at best. In Denmark their position was further damaged has the nobles twisted the situation to their advantage.
+
+	date = { day = 2 month = january year = 1513 }
+
+	action_a = {
+		name = "ACTIONNAME159005A" #Accept the humiliation
+		command = { type = vp value = -50 }
+		command = { type = DIP which = -2 value = 18 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = removecore which = 252 } #Småland
+		command = { type = removecore which = 253 } #Västergötland
+		command = { type = removecore which = 254 } #Svealand
+		command = { type = removecore which = 257 } #Bergslagen
+		command = { type = removecore which = 260 } #Lappland
+		command = { type = removecore which = 263 } #Österbotten
+		command = { type = removecore which = 264 } #Tavastland
+		command = { type = removecore which = 265 } #Nyland
+		command = { type = removecore which = 273 } #Savolaks
+		command = { type = removecore which = 341 } #Västerbotten
+		command = { type = removecore which = 342 } #Finland
+		command = { type = removecore which = 1469 } #Gästrikland
+	}
+}
+
+#(1517-1520) The Pluralistic Reforms of Christian II
+event = {
+	id = 3285
+	random = no
+	country = DAN
+	name = "EVENTNAME3285" #The Pluralistic Reforms of Christian II
+	desc = "EVENTHIST3285"
+	#-#Upon succeeding to the throne, Christian II bypassed the Rigsråd and used the chancellery to grant commercial privileges to merchants, overriding the claims of Danish nobles and traders of the Hanseatic League. In 1517 Christian accused the governor of Copenhagen Castle of poisoning his lover Dyveke, and thereafter he ignored the Rigsråd and the royal charter. He created an essentially bourgeois government with the burgomaster of Malmö, Hans Mikkelsen, as his special counsellor
+
+	date = { day = 1 month = january year = 1517 }
+	offset = 720
+	deathdate = { day = 1 month = january year = 1520 }
+
+	action_a = {
+		name = "ACTIONNAME3285A" #Reform the Government
+		command = { type = domestic which = MERCANTILISM value = -2 }
+		command = { type = domestic which = ARISTOCRACY value = -2 }
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 72 value = 3 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3285B" #Maintain Status Quo
+		command = { type = stability value = 2 }
+	}
+}
+
+#(1517) Trial of Trolle
+event = {
+	id = 159028 #triggered by SWE_291011 A
+	random = no
+	country = DAN
+	name = "EVENTNAME159028" #Trial of Trolle
+	desc = "EVENTHIST159028"
+	#-#Gustav Trolle was the Archbishop of Sweden and a clearly pro-union politician. He was one of the richer men in Sweden and his castle (Stäket) was situated strategically between Stockholm and Bergslagen, and could thus in the event of war be used to prevent reinforcements from arriving that way. In addittion to this the struggle between Sten Sture den yngre (the younger) and Trolle was a matter of land and riches, in 1517 the swedish Riksdag therefore decided to remove the bishop from his position and raze his castle, even though this was something that only the Pope was allowed to do. Christian II used this as an excuse to declare war on Sweden and in 1520 he placed a large army under the command of Otto Krumpen and charged him with reconquering Sweden.
+
+	action_a = {
+		name = "ACTIONNAME159028A" #Sweden is mine by right!
+		command = { type = wakeleader which = 042344 } #Otto Krumpen (DAN)
+		command = { type = relation which = PAP value = 50 }
+		command = { type = addcore which = 252 } #Småland
+	}
+}
+
+#(1517-1535) Trolle supports the Danish army
+event = {
+	id = 159029
+	trigger = {
+		event = 291011 #SWE: Trial of Trolle
+		control = { province = 254 data = -1 }
+		war = { country = SWE country = DAN }
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME159029" #Trolle supports the Danish army
+	desc = "EVENTHIST159029"
+	#-#Gustav Trolle was the Archbishop of Sweden and a clearly pro-union politician. He was one of the richer men in Sweden and his castle (Stäket) was situated strategically between Stockholm and Bergslagen, and could thus in the event of war be used to prevent reinforcements from arriving that way. In addittion to this the struggle between Sten Sture den yngre (the younger) and Trolle was a matter of land and riches, but despite of this Sten Sture den äldre (the elder) couldn't gather the support he needed to remove Trolle. So when the Danish army marched into Stäket Trolle supplied them with both food, weapons and manpower.
+
+	date = { day = 1 month = january year = 1517 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1535 }
+
+	action_a = {
+		name = "ACTIONNAME159029A" #Long live Archbishop Trolle!
+		command = { type = treasury value = 50 }
+		command = { type = INF which = 254 value = 2000 } #Svealand
+		command = { type = CAV which = 254 value = 1000 } #Svealand
+		command = { type = manpower value = 5 }
+	}
+}
+
+#(1520-1530) Battle of Åsunden
+event = {
+	id = 159030
+	trigger = {
+		atwar = no
+		exists = SWE
+		event = 159028 #DAN: Trial of Trolle
+		OR = { #Danish Monarch
+			monarch = 042004 #Christian II
+			monarch = 042016 #Christian II
+		}
+		owned = { province = 252 data = -1 } #Småland
+		NOT = {
+			vassal = { country = DAN country = SWE }
+			vassal = { country = SWE country = DAN }
+		}
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME159030" #Battle of Åsunden
+	desc = "EVENTHIST159030"
+	#-#At the Battle of Åsunden's ice Christian II defeated the swedish army under Sten Sture den yngre (the younger)'s command. Sture was fatally wounded during the battle and died soon afterwards. Within a few months most of Sweden was in the hands of King Christian II. He arranged to have himself crowned King of Sweden in exchange of returning the conquered territories to their rightful noble owners.
+
+	date = { day = 20 month = january year = 1520 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1530 }
+
+	action_a = {
+		name = "ACTIONNAME159030A" #I will rule Sweden
+		command = { type = vassal which = SWE }
+		command = { type = alliance which = SWE }
+		command = { type = relation which = SWE value = 400 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = secedeprovince which = SWE value = 252 } #Småland
+		command = { type = secedeprovince which = SWE value = 253 } #Västergötland
+		command = { type = secedeprovince which = SWE value = 254 } #Svealand
+		command = { type = secedeprovince which = SWE value = 257 } #Bergslagen
+		command = { type = secedeprovince which = SWE value = 260 } #Lappland
+		command = { type = secedeprovince which = SWE value = 263 } #Österbotten
+		command = { type = secedeprovince which = SWE value = 264 } #Tavastland
+		command = { type = secedeprovince which = SWE value = 265 } #Nyland
+		command = { type = secedeprovince which = SWE value = 273 } #Savolaks
+		command = { type = secedeprovince which = SWE value = 341 } #Västerbotten
+		command = { type = secedeprovince which = SWE value = 342 } #Finland
+		command = { type = secedeprovince which = SWE value = 1469 } #Gästrikland
+		command = { type = trigger which = 291012 } #SWE: Battle of Åsunden
+	}
+	action_b = {
+		name = "ACTIONNAME159030B" #The Crown shall keep the Swedish lands
+		command = { type = stability value = -3 }
+		command = { type = vassal which = SWE }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = revolt which = 252 } #Småland
+		command = { type = revolt which = 253 } #Västergötland
+		command = { type = revolt which = 254 } #Svealand
+		command = { type = revolt which = 257 } #Bergslagen
+		command = { type = revolt which = 260 } #Lappland
+		command = { type = revolt which = 263 } #Österbotten
+		command = { type = revolt which = 264 } #Tavastland
+		command = { type = revolt which = 265 } #Nyland
+		command = { type = revolt which = 273 } #Savolaks
+		command = { type = revolt which = 341 } #Västerbotten
+		command = { type = revolt which = 342 } #Finland
+		command = { type = revolt which = 1469 } #Gästrikland
+	}
+}
+
+#(1520-1530) The Stockholmian Massacre
+event = {
+	id = 159031
+	trigger = {
+		atwar = no
+		event = 159028 #DAN: Trial of Trolle
+		vassal = { country = DAN country = SWE }
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME159031" #The Stockholmian Massacre
+	desc = "EVENTHIST159031"
+	#-#The fourth of November 1520 King Christian II was crowned as King of Sweden having promised amnesty for any and all that opposed him, and he had invitited a large part of the Sture-party to his coronation. Suddenly, the 7th of November, King Christian summoned the nobles to the Great Hall, where he proceeded to accuse them of heresy and conspiracy against the True Church. The reason cited for this was the removal of Trolle, and Trolle himself demanded, that he be repaid for the destruction of his castle and his removal. Sten Sture's widow, Kristian Gyllenstierna, however, made the fatal mistake of showing King Christian the list of the names of the people who had signed the document of Trolles removal. Christian took the opportunity, and declared all the involved (except Hans Brask, the Bishop of Skara) to be heretics and enemies of the Church, a few days later the executions began, it is estimated that between 60 and 90 noblemen were executed, and many more burghers and regular Stockholmers.
+
+	date = { day = 4 month = november year = 1520 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1530 }
+
+	action_a = {
+		name = "ACTIONNAME159031A" #Execute the heretical traitor!
+		command = { type = stability value = -2 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = relation which = PAP value = 100 }
+		command = { type = relation which = SWE value = -200 }
+		command = { type = removecore which = 252 } #Småland
+		command = { type = trigger which = 291013 } #SWE: The Stockholmian Massacre
+	}
+	action_b = {
+		name = "ACTIONNAME159031B" #Let us only demand what is Trolle's due
+		command = { type = stability value = -1 }
+		command = { type = relation which = PAP value = 75 }
+		command = { type = relation which = SWE value = -100 }
+		command = { type = removecore which = 252 } #Småland
+	}
+	action_c = {
+		name = "ACTIONNAME159031C" #Pay Trolle's compensation out of the state treasury
+		command = { type = treasury value = -200 }
+		command = { type = relation which = PAP value = 50 }
+		command = { type = removecore which = 252 } #Småland
+		command = { type = sleepevent which = 3219 } #SWE: The End of the Kalmar Union
+	}
+}
+
+#(1521-1525) The End of the Kalmar Union
+event = {
+	id = 3289 #triggered by SWE_3219 A
+	random = no
+	country = DAN
+	name = "EVENTNAME3289" #The End of the Kalmar Union
+	desc = "EVENTHIST3289"
+	#-#The crown councils of Norway, Sweden and Denmark had agreed in 1397 to the Union of Kalmar, a kind of united monarchy of northern nations where Danish influence was dominant. Constant fighting in the late 1470's between Sweden and Denmark led to the dissolution of the Union in 1523, under the reign of Swedish King Gustav I Vasa (1523-1560), long after Regent Sten Sture den äldre (the elder) of Sweden had defeated the Danes at the battle of the Brunkeberg (1471). The Union has fallen.
+
+	action_a = {
+		name = "OK"
+		command = { type = relation which = SWE value = -50 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+	}
+}
+#(1521-1525) Sweden remains in the Kalmar Union
+event = {
+	id = 159036 #triggered by SWE_3219 B
+	random = no
+	country = DAN
+	name = "EVENTNAME159036" #Sweden remains in the Kalmar Union
+	desc = "EVENTHIST159036"
+	#-#When Gustav Vasa tried to claim the throne of Sweden and withdraw the country from the Kalmar Union, he faced a massive unexpected resistance from the Swedish nobles. The end result was that Sweden proclaimed their everlasting support of the Kalmar Union. This gave King Christian an opputunity to proclaim a united union and integrate Sweden into his other holdings, however this would lead the unrest both in his current holdings and in Sweden. In the former because the nobles didn't want to share the power to proclaim a new King with the Swedish, and in the latter because this would be seen as an end to Sweden as a independent country.
+
+	action_a = {
+		name = "ACTIONNAME159036A" #Sweden shall become one with our other holdings
+		command = { type = trigger which = 291014 } #SWE: Centralization of the Kalmar Union
+	}
+	action_b = {
+		name = "ACTIONNAME159036B" #Let Sweden remain seperat of our other holdings
+		command = { type = stability value = 2 }
+		command = { type = relation which = SWE value = 200 }
+	}
+}
+#(1521-1525) Centralization of the Kalmar Union
+event = {
+	id = 159037 #triggered by SWE_291014 A
+	random = no
+	country = DAN
+	name = "EVENTNAME159037" #Centralization of the Kalmar Union
+	desc = "EVENTHIST159037"
+	#-#The centralization of the Kalmer Union under Christian II brought internal unrest, but finally the Union were truly united again. The expansion of the Danish territory also brought a needed decentralization of command, and reduction of the nobles power as the increased number of nobles lacked unity.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = inherit which = SWE }
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 120 value = 3 }
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = relation which = SHL value = -100 }
+		command = { type = relation which = NVG value = -100 }
+		command = { type = relation which = ENG value = -50 }
+		command = { type = relation which = OLD value = -50 }
+		command = { type = relation which = MEC value = -50 }
+		command = { type = relation which = POM value = -50 }
+		command = { type = relation which = BRE value = -50 }
+		command = { type = relation which = PSK value = -50 }
+		command = { type = relation which = LAT value = -50 }
+		command = { type = relation which = LIV value = -50 }
+		command = { type = relation which = KUR value = -50 }
+		command = { type = relation which = KOL value = -25 }
+	}
+}
+#(1521-1525) Norway requests annexation
+event = {
+	id = 5848 #triggered by NOR_3846 A
+	random = no
+	country = DAN
+	name = "EVENTNAME5848" #Norway Requests Annexation
+	desc = "EVENTHIST5848"
+	#-#The Norwegian nobles and clergy are weak and mostly happy with our rule. With Sweden out of the Union, the pro-Danish faction in Norway seeks even closer ties with us. From now on, Norway shall be a part of Denmark!
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = inherit which = NOR }
+		command = { type = addcore which = 255 } #Østlandet
+		command = { type = addcore which = 256 } #Bergenshus
+		command = { type = addcore which = 258 } #Trøndelag
+		command = { type = addcore which = 259 } #Narvik
+		command = { type = addcore which = 261 } #Finnmark
+		command = { type = addcore which = 381 } #Jämtland
+		command = { type = addcore which = 1466 } #Iceland
+	}
+}
+#(1521-1525) Norway declares independence! - Ahistorical
+event = {
+	id = 3847 #triggered by NOR_3846 B/C
+	random = no
+	country = DAN
+	name = "EVENTNAME3847" #Norway Declares Independence
+	desc = "EVENTHIST3847"
+	#-#The Norwegian nobles and clergy have renounced the King and declared independence from our wise overlordship! I never thought I'd see the day... The Norwegians have always been loyal and trustworthy, but now they shall have to be punished!
+
+	action_a = {
+		name = "CURSES"
+		command = { type = addcore which = 255 } #Østlandet
+		command = { type = addcore which = 256 } #Bergenshus
+		command = { type = addcore which = 258 } #Trøndelag
+		command = { type = addcore which = 259 } #Narvik
+		command = { type = addcore which = 261 } #Finnmark
+		command = { type = addcore which = 381 } #Jämtland
+		command = { type = addcore which = 1466 } #Iceland
+	}
+}
+
+#(1533) Count's Feud
+event = {
+	id = 3293
+	random = no
+	country = DAN
+	name = "EVENTNAME3293" #The Count's Feud
+	desc = "EVENTHIST3293"
+	#-#When Frederik I died in 1533 the bishops and most of the aristocracy were initially opposed to the election of his son Christian, duke of Holstein, as King because he was a Lutheran. The burghers and peasants on their part wanted a return of the deposed Christian II who was imprisoned at Sønderborg. The mayors of Copenhagen and Malmö devised a plan together with the Hansa to free Christian II and turn the two largest Danish cities into partners of the Hanseatic League. The Danish Council gained the help of arch-enemy Gustav Vasa to thwart the plot, which became known as 'Grevefejden' (The Count's Feud) because the rebel forces were led by Count Christoffer of Oldenburg.
+
+	date = { day = 11 month = april year = 1533 }
+
+	action_a = {
+		name = "ACTIONNAME3293A" #Support Christian of Holstein
+		command = { type = religion which = protestant }
+		command = { type = domestic which = MERCANTILISM value = 1 }
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = relation which = SWE value = 100 }
+		command = { type = relation which = SHL value = 100 }
+		command = { type = revoltrisk which = 48 value = 8 }
+		command = { type = stability value = -3 }
+	}
+	action_b = {
+		name = "ACTIONNAME3293B" #Support Christian II
+		command = { type = domestic which = ARISTOCRACY value = -2 }
+		command = { type = domestic which = MERCANTILISM value = -2 }
+		command = { type = sleepmonarch which = 042006 } #Christian III
+		command = { type = wakemonarch which = 042016 } #His line ends with him anyway. #Christian II
+		command = { type = relation which = MEC value = 100 }
+		command = { type = relation which = POM value = 100 }
+		command = { type = revoltrisk which = 48 value = 5 }
+		command = { type = stability value = -6 }
+	}
+}
+
+#(1560-1590) The Fate of the Livonian Order
+event = {
+	id = 3290 #triggered by LIV_3620 A
+	random = no
+	country = DAN
+	name = "EVENTNAME3290" #The Fate of the Livonian Order
+	desc = "EVENTHIST3290"
+	#-#Following Russian attacks in the 1550's, and out of collapse of the Livonian Order, Master Gotthard Ketteler salvaged Kurland from the Order's territory as a secular duchy under Polish sovereignty. This vassalage brought Poland into conflict with Russia, allied with Denmark and started the 1563-1570 War of the Three Crowns against Sweden. At the 1582 armistice of Jan Zapolski, Russia was beaten, gave up Livland and Polotsk and Sweden won the Baltic province of Estland while Livland and Kurland remained under Polish control. At this time the Grandmaster has accepted an Agreement with Poland and Sweden.
+
+	action_a = {
+		name = "ACTIONNAME3290A" #Accept the Agreement
+		command = { type = relation which = KUR value = 150 }
+		command = { type = relation which = RUS value = -50 }
+		command = { type = relation which = SWE value = 100 }
+		command = { type = relation which = POL value = 100 }
+		command = { type = stability value = 1 }
+		command = { type = treasury value = 200 }
+	}
+	action_b = {
+		name = "ACTIONNAME3290B" #Defy the Agreement
+		command = { type = addcore which = 282 } #Livland
+		command = { type = relation which = KUR value = -50 }
+		command = { type = relation which = RUS value = 150 }
+		command = { type = relation which = SWE value = -150 }
+		command = { type = relation which = POL value = -150 }
+		command = { type = casusbelli which = SWE value = 60 }
+		command = { type = casusbelli which = POL value = 60 }
+		command = { type = stability value = -2 }
+	}
+}
+#(1560-1590) The Fate of the Livonian Order
+event = {
+	id = 3291 #triggered by LIV_3620 B
+	random = no
+	country = DAN
+	name = "EVENTNAME3291" #The Fate of the Livonian Order
+	desc = "EVENTHIST3291"
+	#-#Following Russian attacks in the 1550's, and out of collapse of the Livonian Order, Master Gotthard Ketteler salvaged Kurland from the Order's territory as a secular duchy under Polish sovereignty. This vassalage brought Poland into conflict with Russia, allied with Denmark and started the 1563-1570 War of the Three Crowns against Sweden. At the 1582 armistice of Jan Zapolski, Russia was beaten, gave up Livland and Polotsk and Sweden won the Baltic province of Estland while Livland and Kurland remained under Polish control. At this time the Grandmaster has accepted an Agreement with Denmark and Russia.
+
+	action_a = {
+		name = "ACTIONNAME3291A" #Accept Agreement
+		command = { type = vassal which = KUR }
+		command = { type = addcore which = 282 } #Livland
+		command = { type = relation which = KUR value = 150 }
+		command = { type = relation which = RUS value = 100 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3291B" #Only accept our part of the Agreement
+		command = { type = vassal which = KUR }
+		command = { type = addcore which = 282 } #Livland
+		command = { type = addcore which = 276 } #Estland
+		command = { type = addcore which = 275 } #Ingermanland
+		command = { type = relation which = KUR value = -100 }
+		command = { type = relation which = RUS value = -100 }
+		command = { type = stability value = -2 }
+	}
+}
+#(1560-1590) The Fate of the Livonian Order
+event = {
+	id = 3292 #triggered by LIV_3620 C
+	random = no
+	country = DAN
+	name = "EVENTNAME3292" #The Fate of the Livonian Order
+	desc = "EVENTHIST3292"
+	#-#Following Russian attacks in the 1550's, and out of collapse of the Livonian Order, Master Gotthard Ketteler salvaged Kurland from the Order's territory as a secular duchy under Polish sovereignty. This vassalage brought Poland into conflict with Russia, allied with Denmark and started the 1563-1570 War of the Three Crowns against Sweden. At the 1582 armistice of Jan Zapolski, Russia was beaten, gave up Livland and Polotsk and Sweden won the Baltic province of Estland while Livland and Kurland remained under Polish control. The Grandmaster has announced that the Knights have converted back to Catholicism and will defend their freedom.
+
+	action_a = {
+		name = "ACTIONNAME3292A" #Defy the Knights
+		command = { type = addcore which = 282 } #Livland
+		command = { type = casusbelli which = LIV value = 60 }
+		command = { type = stability value = -2 }
+		command = { type = relation which = LIV value = -150 }
+		command = { type = relation which = SWE value = 50 }
+		command = { type = relation which = RUS value = 50 }
+		command = { type = relation which = POL value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME3292B" #Accept this Government
+		command = { type = stability value = 1 }
+		command = { type = treasury value = 200 }
+		command = { type = relation which = LIV value = 150 }
+		command = { type = relation which = SWE value = -50 }
+		command = { type = relation which = RUS value = -50 }
+		command = { type = relation which = POL value = -50 }
+	}
+}
+
+#(1566) Peder Oxe
+#Modified by Sute]{h
+event = {
+	id = 3294
+	random = no
+	country = DAN
+	name = "EVENTNAME3294" #Peder Oxe
+	desc = "EVENTHIST3294"
+	#-#Peder Oxe was a financial genius who was recalled from exile by Frederik II when the Nordic Seven Years War had ruined the Danish economy. With Oxe at the helm from 1567 it did not take long before the state finances had recovered. He convinced the aristocracy to contribute more and reorganized the Sound Due so that the revenues tripled. He also improved the agriculture and educational system. Until his death in 1577, Peder Oxe and a few other lords were the de-facto rulers of Denmark.
+
+	date = { day = 1 month = january year = 1566 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1566 }
+
+	action_a = {
+		name = "OK"
+		command = { type = DIP which = 1 value = 260 }
+		command = { type = ADM which = 5 value = 260 }
+		command = { type = MIL which = 2 value = 260 }
+		command = { type = infra value = 500 }
+		command = { type = stability value = 2 }
+	}
+}
+
+#(1576) Tycho Brahe in Hven (original by Paradox)
+#Modified by mfigueras
+event = {
+	id = 5080
+	random = no
+	country = DAN
+	name = "EVENTNAME5080" #Tycho Brahe
+	desc = "EVENTHIST5080"
+	#-#The danish astronomer Tycho Brahe came from the nobility, and was intended by his family for a career as a lawyer and diplomat, but he became an astronomer. With financial help from the King of Denmark, he went on to set up an observatory on the island of Hveen in Copenhagen Sund. The observatory, called Uraniborg, was equipped with exceptionally large and accurate instruments. At Uraniborg Tycho made twenty years worth of astronomical observations. Tycho intended that this work should prove the truth of his cosmological model, in which the Earth (with the Moon in orbit around it) was at rest in the centre of the Universe and the Sun went round the Earth (all other planets being in orbit about the Sun and thus carried round with it).
+
+	date = { day = 1 month = march year = 1576 }
+
+	action_a = {
+		name = "WELCOME"
+		command = { type = treasury value = -40 }
+		command = { type = infra value = 75 }
+	}
+	action_b = {
+		name = "ACTIONNAME5080B" #What an annoying man! Get out of my palace!
+		command = { type = infra value = -25 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = sleepevent which = 5081 } #BOH: Tycho Brahe offers his services
+		command = { type = sleepevent which = 5082 } #BOH: Johannes Kepler meets Tycho Brahe
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Greenland Sequence
+#by Sute]{h
+
+#(1585-1820) Greenland is reclaimed
+event = {
+	id = 25100
+	trigger = {
+		OR = {
+			owned = { province = 1537 data = -1 }
+			owned = { province = 1538 data = -1 }
+		}
+		NOT = { exists = NOR }
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME25100" #Greenland is reclaimed
+	desc = "EVENTHIST25100"
+	#-#In 1585 the country of Greenland where rediscovered by John Davis and Martin Frobisher, having been forgotton since it lost contact with Norway in 1410. Christian IV claimed the long lost Norwegian territory part of Denmark. This claim of territory was widely accepted in Europe due to the Danish control of Norway, and granted Danish whalers an edge in the competition against the Dutch.
+
+	date = { day = 1 month = january year = 1585 }
+	offset = 360
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME25100A" #Claim sovereignty over Greenland
+		command = { type = relation which = HOL value = -25 }
+		command = { type = addcore which = 1537 } #Vestbygden
+		command = { type = addcore which = 1538 } #Eiriksfjord
+		command = { type = trade value = 50 }
+		command = { type = domestic which = mercantilism value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME25100B" #Abandon the claims on Greenland
+		command = { type = stability value = -1 }
+		command = { type = relation which = HOL value = 25 }
+		command = { type = domestic which = mercantilism value = -1 }
+	}
+}
+#(1721-1773) Colonization of Greenland begins
+event = {
+	id = 25102
+	trigger = {
+		owned = { province = 1537 data = -1 }
+		owned = { province = 1538 data = -1 }
+		NOT = { event = 25103 } #NOR: Colonization of Greenland begins
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME25102" #Colonization of Greenland begins
+	desc = "EVENTHIST25102"
+	#-#In 1721 colonization and conversion of Greenland is initiated by Hans Egede. These colonizations where funded and operated as a joint danish/norwegian project without involvement of the state.
+
+	date = { day = 1 month = january year = 1721 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1773 }
+
+	action_a = {
+		name = "ACTIONNAME25102A" #Accept the private colonization attempts
+		command = { type = population which = 1537 value = 500 } #Vestbygden
+		command = { type = population which = 1538 value = 500 } #Eiriksfjord
+		command = { type = population which = -2 value = -1000 }
+		command = { type = conversion which = 1537 } #Vestbygden
+		command = { type = colonists value = -1 }
+		command = { type = missionaries value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME25102B" #Accept the attempts and provide extra funding
+		command = { type = treasury value = -200 }
+		command = { type = population which = 1537 value = 1000 } #Vestbygden
+		command = { type = population which = 1538 value = 1000 } #Eiriksfjord
+		command = { type = population which = -2 value = -1500 }
+		command = { type = conversion which = 1537 } #Vestbygden
+		command = { type = conversion which = 1538 } #Eiriksfjord
+		command = { type = colonists value = -3 }
+		command = { type = missionaries value = -2 }
+	}
+	action_c = {
+		name = "ACTIONNAME25102C" #Refuse to allow colonization of Greenland
+		command = { type = stability value = -1 }
+		command = { type = domestic which = serfdom value = 1 }
+	}
+}
+#(1774-1781) Colonization of Greenland continues
+event = {
+	id = 25104
+	trigger = {
+		owned = { province = 1537 data = -1 }
+		owned = { province = 1538 data = -1 }
+		OR = {
+			event = 25102 #DAN: Colonization of Greenland begins
+			event = 25103 #NOR: Colonization of Greenland begins
+		}
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME25104" #Colonization of Greenland continues
+	desc = "EVENTHIST25104"
+	#-#By 1774 the danish state assumed control of the colonization of Greenland.
+
+	date = { day = 1 month = january year = 1774 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1781 }
+
+	action_a = {
+		name = "ACTIONNAME25104A" #Time has come to assume control
+		command = { type = stability value = -1 }
+		command = { type = colonists value = 6 }
+		command = { type = domestic which = centralization value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME25104B" #Let the private colonizations continue
+		command = { type = population which = 1537 value = 100 } #Vestbygden
+		command = { type = population which = 1538 value = 100 } #Eiriksfjord
+		command = { type = colonists value = -1 }
+		command = { type = sleepevent which = 25105 } #DAN_Greenland colonized by royal decree
+	}
+}
+#(1782-1799) Greenland colonized by royal decree
+event = {
+	id = 25105
+	trigger = {
+		owned = { province = 1537 data = -1 }
+		owned = { province = 1538 data = -1 }
+		event = 25104 #DAN: Colonization of Greenland continues
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME25105" #Greenland colonized by royal decree
+	desc = "EVENTHIST25105"
+	#-#In 1782 a royal decree was issued that the west coast of Greenland were to be colonized. This were the first major colonization attempt by the Danish King, since he assumed control of the colonizations in 1774.
+
+	date = { day = 1 month = january year = 1782 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1799 }
+
+	action_a = {
+		name = "ACTIONNAME25105A" #The colonization of Greenland must be completed!
+		command = { type = treasury value = -300 }
+		command = { type = population which = 1537 value = 1000 } #Vestbygden
+		command = { type = population which = 1538 value = 1000 } #Eiriksfjord
+		command = { type = colonists value = -2 }
+		command = { type = population which = -2 value = -2000 }
+		command = { type = vp value = 10 }
+	}
+	action_b = {
+		name = "ACTIONNAME25105B" #Greenland is a barren place, let's go elsewhere
+		command = { type = treasury value = -100 }
+		command = { type = explorer which = -2 }
+	}
+}
+#End of Greenland Sequence
+#-----------------------------------------------------------------------------------------------
+
+#(1610) The Modernisation of the Navy
+event = {
+	id = 3298
+	trigger = {
+		OR = {
+			owned   = { province = 307 data = -1 } #Sjælland
+			owned   = { province = 309 data = -1 } #Jylland
+			owned   = { province = 306 data = -1 } #Holstein
+			owned   = { province = 255 data = -1 } #Østlandet
+			owned   = { province = 256 data = -1 } #Bergenshus
+			owned   = { province = 258 data = -1 } #Trøndelag
+		}
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME3298" #The Modernisation of the Navy
+	desc = "EVENTHIST3298"
+	#-#The reign of Frederik II saw a marked increase in Danish sea power, and the King took a deep personal interest in building up the fleet. This policy was continued and further developed by his legendary son, Christian IV, who sailed with the fleet every year during his reign. Christian IV's intense interest in the fleet was manifest at all levels, from the naval base at Bremerholm to the duties of his admirals and the equipment of the ships.
+
+	date = { day = 1 month = february year = 1610 }
+	offset = 330
+	deathdate = { day = 29 month = december year = 1610 }
+
+	action_a = {
+		name = "ACTIONNAME3298A" #Reform the Navy
+		command = { type = domestic which = LAND value = -2 }
+		command = { type = naval value = 2000 }
+		command = { type = treasury value = -150 }
+	}
+	action_b = {
+		name = "ACTIONNAME3298B" #Reform the Army
+		command = { type = domestic which = LAND value = 1 }
+		command = { type = land value = 1500 }
+		command = { type = treasury value = -100 }
+	}
+	action_c = {
+		name = "ACTIONNAME3298C" #Build fortifications
+		command = { type = fortress which = -1 value = 1 }
+		command = { type = fortress which = -1 value = 1 }
+		command = { type = fortress which = -1 value = 1 }
+		command = { type = fortress which = -1 value = 1 }
+		command = { type = treasury value = -200 }
+	}
+}
+
+#(1613-1669) Peace of Stolbovo
+event = {
+	id = 40076 #triggered by RUS_40078 A
+	trigger = {
+		OR = {
+			owned = { province = 267 data = -1 } #Olonets
+			owned = { province = 268 data = -1 } #Vologda
+			owned = { province = 269 data = -1 } #Arkhangelsk
+			owned = { province = 271 data = -1 } #Vladimir
+			owned = { province = 274 data = -1 } #Novgorod
+			owned = { province = 277 data = -1 } #Pskov
+			owned = { province = 278 data = -1 } #Tver
+			owned = { province = 279 data = -1 } #Tula
+			owned = { province = 280 data = -1 } #Welikia
+			owned = { province = 1470 data = -1 } #Karelia
+			owned = { province = 262 data = -1 } #Kola
+			owned = { province = 275 data = -1 } #Ingermanland
+			owned = { province = 266 data = -1 } #Kexholm
+		}
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME40074" #Peace of Stolbovo
+	desc = "EVENTHIST40074"
+	#-#In 1617, following a messy Russian Time of Troubles, and Polish-Swedish intervention, peace between Russia and Sweden was finally reached in the Treaty of Stolbovo, with English mediation. In it, Sweden renounced all claims to the Russian throne and Novgorod, gave back three towns for 20,000 rubles, and held Gdov until new boundaries were delimited. Russia gave up Ivangorod, Jama, Kopor'e, Nöteborg, abandoned claims on Livonia, ceded Kexholm to Sweden, and agreed not to aid Poles against Sweden.
+
+	action_a = {
+		name = "ACTIONNAME3143A" #Sign it
+		command = { type = secedeprovince which = RUS value = 262 } #Kola
+		command = { type = secedeprovince which = RUS value = 267 } #Olonets
+		command = { type = secedeprovince which = RUS value = 268 } #Vologda
+		command = { type = secedeprovince which = RUS value = 269 } #Arkhangelsk
+		command = { type = secedeprovince which = RUS value = 271 } #Vladimir
+		command = { type = secedeprovince which = RUS value = 274 } #Novgorod
+		command = { type = secedeprovince which = RUS value = 277 } #Pskov
+		command = { type = secedeprovince which = RUS value = 278 } #Tver
+		command = { type = secedeprovince which = RUS value = 279 } #Tula
+		command = { type = secedeprovince which = RUS value = 280 } #Welikia
+		command = { type = secedeprovince which = RUS value = 1470 } #Karelia
+		command = { type = relation which = RUS value = 150 }
+		command = { type = removecore which = 276 } #Estland
+		command = { type = removecore which = 275 } #Ingermanland
+		command = { type = removecore which = 282 } #Livland
+	}
+	action_b = {
+		name = "ACTIONNAME3023B" #Refuse to sign it
+		command = { type = relation which = RUS value = -150 }
+	}
+}
+
+#(1616) Danish East Indian Company
+event = {
+	id = 3295
+	random = no
+	country = DAN
+	name = "EVENTNAME3295" #Danish East Indian Company
+	desc = "EVENTHIST3295"
+	#-#The founding of the first Danish East India Company was based chiefly on hopes and ambitions that had been aroused by the enormous revenues produced by the initial ventures of the British and Dutch companies. At the same time, there was a desire upon the part of the Danish monarch to play a dominant role in contemporary world trade, a desire that was apparently not always wholeheartedly endorsed by the Danish merchants of the period. In fact, the Danish trading venture proved to be without large or durable profits. The company itself lasted for only 34 years, and, throughout its existence, the company brought only seven cargoes of Asiatic goods to Copenhagen.
+
+	date = { day = 1 month = january year = 1616 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1616 }
+
+	action_a = {
+		name = "ACTIONNAME3295A" #Found an East Indian Company
+		command = { type = treasury value = -500 }
+		command = { type = domestic which = LAND value = -1 }
+		command = { type = colonists value = 6 }
+		command = { type = merchants value = 6 }
+		command = { type = trade value = 1000 }
+		command = { type = naval value = 1000 }
+	}
+	action_b = {
+		name = "ACTIONNAME3295B" #It is a useless venture
+		command = { } #Nothing happens
+	}
+}
+
+#(1625-1629) The Threat to Protestantism in Germany (modelled on SWE_3754)
+#by Bordic
+event = {
+	id = 159040
+	trigger = {
+		OR = {
+			religion = protestant
+			religion = reformed
+		}
+		event = 3643 #BOH: The Winter King in Prague
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME3754" #The Threat to Protestantism in Germany
+	desc = "EVENTHIST159040"
+	#-#The first phase of the Thirty Years War saw the defeat of the rebellious protestant nobles of Bohemia who were punished severely and their lands expropriated because of their decision to depose Ferdinand of Austria in favor of the Protestant Palatine elector as Bohemian King. Consequently religious persecutions began in Bohemia to eradicate Protestantism from that land. To penalize Friedrich V of the Palatinate and to reward Maximilian of Bavaria, Ferdinand deprived Friedrich of his electorate and of the Upper Palatinate and granted both to Bavaria. That was an obvious violation of imperial law, but since no German prince was really in a position to defy Ferdinand and Maximilian, it was done and Maximilian had achieved a recognition proportionate to his power. An attempt to help the Lutheran rulers of neighboring Lower Saxony made by King Christian IV of Denmark who, himself a Lutheran and, as Duke of Holstein, an Imperial nobleman, feared that Denmark's sovereignty as a Protestant nation was being threatened. The Danish army had to face the fiercer imperial troops formed by mercenaries under the command of Albrecht von Wallenstein, who was given by Emperor Ferdinand II free hand in pillaging all the territories his army would have crossed or captured from the enemy.
+
+	date = { day = 1 month = january year = 1625 }
+	offset = 25
+	deathdate = { day = 1 month = january year = 1629 }
+
+	action_a = {
+		name = "ACTIONNAME3754A" #Make it our cause
+		command = { type = stability value = -1 }
+		command = { type = casusbelli which = HAB value = 36 }
+		command = { type = addcore which = 306 } #Holstein (probably already a core)
+		command = { type = relation which = HOL value = 150 }
+		command = { type = relation which = BRA value = 150 }
+		command = { type = relation which = HAN value = 150 }
+		command = { type = relation which = HES value = 150 }
+		command = { type = relation which = PFA value = 150 }
+		command = { type = relation which = SWE value = 150 }
+		command = { type = relation which = SAC value = 150 }
+		#command = { type = relation which = THU value = 150 } #Bayreuth
+		command = { type = relation which = FRA value = 100 }
+		command = { type = relation which = SHL value = -150 }
+		command = { type = relation which = KLE value = -100 }
+		command = { type = relation which = KOL value = -150 }
+		command = { type = relation which = BAY value = -150 }
+		command = { type = relation which = PAP value = -150 }
+		command = { type = relation which = SPA value = -150 }
+		command = { type = relation which = HAB value = -200 }
+	}
+	action_b = {
+		name = "ACTIONNAME3754B" #Don't mess around in Germany
+		command = { type = stability value = 1 }
+		command = { type = removecore which = 302 } #Hinterpommern
+		command = { type = removecore which = 335} #Oldenburg
+		command = { type = removecore which = 306 } #Holstein
+		command = { type = relation which = HOL value = -50 }
+		command = { type = relation which = SWE value = -50 }
+		command = { type = relation which = BRA value = -50 }
+		command = { type = relation which = HAN value = -50 }
+		command = { type = relation which = HES value = -50 }
+		command = { type = relation which = PFA value = -50 }
+		command = { type = relation which = SAC value = -50 }
+		#command = { type = relation which = THU value = -50 } #Bayreuth
+		command = { type = relation which = FRA value = 25 }
+		command = { type = relation which = SHL value = 50 }
+		command = { type = relation which = KLE value = 100 }
+		command = { type = relation which = KOL value = 100 }
+		command = { type = relation which = BAY value = 100 }
+		command = { type = relation which = PAP value = 100 }
+		command = { type = relation which = SPA value = 100 }
+		command = { type = relation which = HAB value = 100 }
+	}
+}
+
+#(1625-1635) The Mercantile Reforms of Christian IV
+event = {
+	id = 3296
+	random = no
+	country = DAN
+	name = "EVENTNAME3296" #The Mercantile Reforms of Christian IV
+	desc = "EVENTHIST3296"
+	#-#Christian IV was inclined to occupy himself with every minor detail of his administration while losing sight of the larger problems. Not only did he personally lay down the lines of Denmark's mercantilist policy, he even established the import duties, he started state-subsidized and privileged trading companies and manufactories--all of them with no marked success--and insisted on auditing their accounts personally.
+
+	date = { day = 1 month = january year = 1625 }
+	offset = 3600
+	deathdate = { day = 1 month = january year = 1635 }
+
+	action_a = {
+		name = "ACTIONNAME3296A" #Mercantilist Reforms
+		command = { type = domestic which = MERCANTILISM value = 2 }
+		command = { type = trade value = 1000 }
+		command = { type = naval value = 500 }
+	}
+	action_b = {
+		name = "ACTIONNAME3296B" #Free Trade Reforms
+		command = { type = stability value = -3 }
+		command = { type = domestic which = MERCANTILISM value = -2 }
+		command = { type = trade value = 1000 }
+		command = { type = naval value = 500 }
+	}
+}
+
+#(1634-1648) Fredrik of Denmark, Archbishop of Bremen
+event = {
+	id = 159100 #triggered by BRE_133007
+	trigger = {
+		NOT = {
+			vassal = { country = BRE country = DAN }
+		}
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME159100" #Fredrik of Denmark is elected Archbishop of Bremen
+	desc = "EVENTHIST159100"
+	#-#In 1634, the future King Fredrik III of Denmark was chosen as Archbishop of Bremen. He did however not have much control over his new possession that was devastated by the Thirty Years War and occupied by pillaging mercenary troops.
+
+	date = { day = 4 month = september year = 1634 }
+
+	action_a = {
+		name = "OK"
+		command = { type = relation which = BRE value = 50 }
+		command = { type = vassal which = BRE }
+		command = { type = alliance which = BRE }
+	}
+}
+
+#(1642-1700) The northern lion rears its ugly head
+#by YodaMaster and ConjurerDragon
+event = {
+	id = 159042
+	trigger = {
+		core = { province = 251 data = SWE } #Skane
+		core = { province = 381 data = SWE } #Jämtland
+		neighbour = SWE #also ensures that Sweden exists
+		NOT = { vassal = { country = SWE country = DAN } }
+		NOT = {
+			AND = {
+				owned = { province = 381 data = -1 } #Jämtland
+				owned = { province = 251 data = -1 } #Skane
+				owned = { province = 308 data = -1 } #Gotland
+				countrysize = 15 #way out for an "imperial Denmark-Norway"
+			}
+		}
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME159042" #The northern lion rears its ugly head
+	desc = "EVENTHIST159042"
+	#-#Historically the treaty of Bromsebrö was signed on August 13, 1645 and was the result of Danish strength failing and Swedish power rising during the Thirty Years War. Sweden became so strong that Denmark could not contain its neighbour any longer despite having owned lands all around Sweden (Norway, Skane, Gotland) but had to accept the loss of Jämtland, Gotland and the remains of its Baltic possessions. Halland (western part of Skane) was ceded to Sweden for 30 years as pawn that Denmark fulfilled the conditions of the treaty.
+
+	date = { day = 13 month = august year = 1642 }
+	offset = 30
+	deathdate = { year = 1700 }
+
+	action_a = {
+		name = "OH_NO"
+		command = { type = removecore which = 308 } #Gotland
+		command = { type = removecore which = 275 } #Ingermanland
+		command = { type = removecore which = 276 } #Estland
+		command = { type = removecore which = 282 } #Livland
+		command = { type = removecore which = 381 } #Jämtland
+		command = { type = removecore which = 251 } #Skane here Halland
+		command = { type = removecore which = 302 } #Hinterpommern
+		command = { type = removecore which = 335 } #Oldenburg
+	}
+}
+
+#(1657) Danish intervention in the first Northern War
+#by Duc de Guise
+event = {
+	id = 159041
+	trigger = {
+		war = { country = SWE country = POL }
+		NOT = {
+			war = { country = DAN country = POL }
+			war = { country = DAN country = SWE }
+		}
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME159041" #Danish intervention in the first Northern War
+	desc = "EVENTHIST159041"
+	#-#Danish intervention becomes inevitable in order to prevent Sweden from total domination in the Baltics.
+
+	date = { day = 1 month = january year = 1657 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1657 }
+
+	action_a = {
+		name = "ACTIONNAME159041A" #We must prevent the Swedish domination in Baltic area!
+		command = { type = relation which = SWE value = -400 }
+		command = { type = casusbelli which = SWE value = 6 }
+	}
+}
+
+#(1660) The Absolutism
+event = {
+	id = 3297
+	random = no
+	country = DAN
+	name = "EVENTNAME3297" #The Absolutism
+	desc = "EVENTHIST3297"
+	#-#Absolutism in Denmark was a result of the lengthy political crisis and the acute state of emergency which resulted from the last of the Karl Gustav wars against Sweden in 1657-60. Despite his weak position when elected King in 1648, Frederik III's political skill allowed him to succeed in ousting two of his main adversaries in the Rigsråd as early as the 1650s. The two were the seneschal Corfitz Ulfeldt and the governor of Norway Hannibal Sehested, who were both married to Frederik's half-sisters. The King's heroic conduct during the siege of Copenhagen in the winter of 1659 had, in addition, made him widely popular at a time when the nobility and the Rigsråd were increasingly being discredited. In October 1660, these events led the estates - the nobility only reluctantly - to create a hereditary monarchy. The new system meant that the King was no longer dependent on the Rigsråd, and he immediately used his new power to introduce absolutism, which was temporarily established on 10 January 1661 in the Hereditary Monarchy Act before being fully set out in Kongeloven (the King's Law) of 1665, the basic law of Danish absolutism.
+
+	date = { day = 1 month = january year = 1660 }
+	offset = 720
+	deathdate = { day = 1 month = january year = 1663 }
+
+	action_a = {
+		name = "ACTIONNAME3297A" #Establish Absolutism
+		command = { type = stability value = -3 }
+		command = { type = domestic which = ARISTOCRACY value = -4 }
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME3297B" #Maintain the present system
+		command = { type = stability value = 3 }
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+	}
+}
+
+#(1667) Inheritance of Oldenburg
+event = {
+	id = 159050 #triggered by OLD_247006 A
+	random = no
+	country = DAN
+	name = "EVENTNAME159050" #Denmark inherits Oldenburg
+	desc = "EVENTHIST159050"
+	#-#In 1667 Count Anton Günther of Oldenburg died without a direct successor. The Count's closest relatives and potential heirs, Frederik III., King of Denmark, and Christian Albert of Holstein-Gottorp, had achieved a compact in 1649 giving the biggest part of Oldenburg to Denmark. Oldenburg would be danish for more than hundred years.
+
+	action_a = {
+		name = "ACTIONNAME159050A" #Take Oldenburg, but let it remain part of the Holy Roman Empire
+		command = { type = addcore which = 335 } #Oldenburg
+		command = { type = inherit which = OLD }
+		command = { type = domestic which = centralization value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME159050B" #Incorporate Oldenburg into Denmark
+		command = { type = addcore which = 335 } #Oldenburg
+		command = { type = inherit which = OLD }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = relation which = HAB value = -100 }
+	}
+}
+#(1667) Danish claim ignored
+event = {
+	id = 159051 #triggered by OLD_247006 C
+	random = no
+	country = DAN
+	name = "EVENTNAME159051" #Oldenburg ignores our claim
+	desc = "EVENTHIST159051"
+	#-#In 1667 Count Anton Günther of Oldenburg died without a direct successor. The Count's closest relatives and potential heirs, Frederik III., King of Denmark, and Christian Albert of Holstein-Gottorp, had achieved a compact in 1649 giving the biggest part of Oldenburg to Denmark. The impertinent estates of Oldenburg dared to ignore our legitimate claim and to make a local noble Count of Oldenburg.
+
+	action_a = {
+		name = "ACTIONNAME159051A" #This is outrageous
+		command = { type = addcore which = 335 } #Oldenburg
+		command = { type = casusbelli which = OLD value = 120 }
+	}
+}
+
+#(1673) Peder Griffenfeld
+event = {
+	id = 3299
+	random = no
+	country = DAN
+	name = "EVENTNAME3299" #Peder Griffenfeld
+	desc = "EVENTHIST3299"
+	#-#Peder Griffenfeld was perhaps the most brilliant advisor a Danish King has ever had. Peder was born Schumacher to a wealthy Copenhagen family. After study and travel abroad in 1654-62, he returned to enter state service as royal librarian. Soon winning the favour of the absolutist King Frederick III, he became secretary of the King's chamber, in which post he drafted the 1665 Kongeloven ('King's Law'), which was a justification of absolutism. In 1670, the year of the King's death, Schumacher was made Count Griffenfeld. By 1674 he had risen to the post of high chancellor of Denmark under King Christian V.
+
+	date = { day = 1 month = february year = 1673 }
+	offset = 330
+	deathdate = { day = 1 month = january year = 1674 }
+
+	action_a = {
+		name = "OK"
+		command = { type = DIP which = 3 value = 120 }
+		command = { type = ADM which = 2 value = 120 }
+		command = { type = MIL which = 2 value = 120 }
+		command = { type = stability value = 2 }
+	}
+}
+
+#(1683) Den Danske Lov
+event = {
+	id = 3301
+	random = no
+	country = DAN
+	name = "EVENTNAME3301" #Den Danske Lov
+	desc = "EVENTHIST3301"
+	#-#The concentration of power in the person of the King strengthened the tendency toward juridical unity in the entire Kingdom. On 15 April 1683 Christian V signed the Danish Law ('Danske Lov'), a comprehensive Statute Book, which represented a break with the regional juridical variations of earlier times (the provincial laws, or 'landskabslove'). In the Danish Law it was expressly forbidden to criticize the King, the government and Absolutism, while the situation was also maintained regarding censorship. Yet, the Danish Law of 1683 and Norwegian Law of 1687 were exceptional for their time in their uncommonly humane legislation. The peasant laws were also important, providing as they did tenant farmers with legal recourse against abuses by the landlords.
+
+	date = { day = 1 month = february year = 1683 }
+	offset = 330
+	deathdate = { day = 1 month = january year = 1684 }
+
+	action_a = {
+		name = "ACTIONNAME3301A" #Sign the Danish Law
+		command = { type = domestic which = ARISTOCRACY value = -1 }
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = domestic which = SERFDOM value = -1 }
+		command = { type = stability value = -2 }
+	}
+	action_b = {
+		name = "ACTIONNAME3301B" #Keep the old system
+		command = { type = stability value = 2 }
+	}
+}
+
+#(1697-1700) The Great Northern Conflict
+event = {
+	id = 3300
+	trigger = {
+		OR = {
+			exists = SHL
+			owned = { province = 309 data = SWE }
+			owned = { province = 251 data = SWE }
+			owned = { province = 255 data = SWE }
+			owned = { province = 256 data = SWE }
+			owned = { province = 258 data = SWE }
+			owned = { province = 259 data = SWE }
+			owned = { province = 261 data = SWE }
+			owned = { province = 381 data = SWE }
+			owned = { province = 308 data = SWE }
+		}
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME3300" #The Great Northern Conflict
+	desc = "EVENTHIST3300"
+	#-#In 1697, the 15 years old Charles XII ascended the Swedish throne. Seeing the opportunity, the Russian Czar Peter I allied with Denmark and Poland-Saxony in 1699. However, with British and Dutch naval assistance, Charles XII landed on Zealand and promptly defeated the Danes, then moved to Estland where his badly outnumbered Swedes (1 to 5) won a crushing victory over the Russians. Instead of finishing the Russians, Charles moved against August II of Poland-Saxony and drove him out of Poland in 1704 (having the pro-Swedish Stanislas Leszinski elected King), then subjugating Saxony in 1706. While the Russians started the construction of St-Petersburg (1703) and rebuilt their armies, they also took parts of Estland (1704-1706). Charles then decided to march to Moscow via the Ukraine where the Cossacks under Mazeppa had again risen in revolt (1708). The harsh winter and Russian raids decimated his army and he was finally beaten at the battle of Poltava in 1709. The wounded King escaped to the Ottomans. The Russians were encircled by the Ottomans on the Prut River, but Peter succeeded through bribery to obtain a safe conduct in exchange for Azov. While Charles was still exiled in Turkey, Russian, Danish, Hanoverian and even Prussian troops captured most of the Swedish territory around the Baltic. Having emerged from Turkish internment, Charles got killed in 1718 in front of the Norwegian fortress of Frederickshald. The peace treaties that followed Sweden lost most of her Baltic empire.
+
+	date = { day = 15 month = june year = 1697 }
+	offset = 10
+	deathdate = { day = 1 month = april year = 1700 }
+
+	action_a = {
+		name = "ACTIONNAME3300A" #Try to balance things
+		command = { type = casusbelli which = SWE value = 36 }
+		command = { type = casusbelli which = SHL value = 36 }
+		command = { type = stability value = -2 }
+		command = { type = INF which = -1 value = 5000 }
+		command = { type = warships which = -2 value = 10 }
+		command = { type = relation which = SHL value = -150 }
+		command = { type = relation which = SWE value = -150 }
+		command = { type = relation which = RUS value = 150 }
+		command = { type = relation which = POL value = 100 }
+		command = { type = relation which = SAC value = 100 }
+	}
+	action_b = {
+		name = "ACTIONNAME3300B" #The Navy adequate founds
+		command = { type = casusbelli which = SWE value = 36 }
+		command = { type = casusbelli which = SHL value = 36 }
+		command = { type = stability value = -1 }
+		command = { type = warships which = -2 value = 30 }
+		command = { type = relation which = SHL value = -150 }
+		command = { type = relation which = SWE value = -150 }
+		command = { type = relation which = RUS value = 150 }
+		command = { type = relation which = POL value = 100 }
+		command = { type = relation which = SAC value = 100 }
+	}
+	action_c = {
+		name = "ACTIONNAME3300C" #The Army adequate founds
+		command = { type = casusbelli which = SWE value = 36 }
+		command = { type = casusbelli which = SHL value = 36 }
+		command = { type = stability value = -1 }
+		command = { type = INF which = -1 value = 15000 }
+		command = { type = CAV which = -3 value = 2000 }
+		command = { type = ART which = -3 value = 10 }
+		command = { type = relation which = SHL value = -150 }
+		command = { type = relation which = SWE value = -150 }
+		command = { type = relation which = RUS value = 150 }
+		command = { type = relation which = POL value = 100 }
+		command = { type = relation which = SAC value = 100 }
+	}
+}
+
+#(1721) Containing Russia (Denmark)
+event = {
+	id = 159121
+	trigger = {
+		control = { province = 276 data = RUS } #Estland
+		control = { province = 283 data = RUS } #Kurland
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME159121" #Containing Russia
+	desc = "EVENTHIST159121"
+	#-#The death of King Karl XII of Sweden marked the end of the last great inter-Scandinavian conflicts. During this period the two countries agreed to put centuries of hostilities behind themselves and instead focus on containing Europe's new superpower, the expansionistic Russia of Tzar Peter the Great.
+
+	date = { day = 1 month = january year = 1721 }
+	offset = 200
+	deathdate = { day = 29 month = december year = 1721 }
+
+	action_a = {
+		name = "ACTIONNAME159121A" #Pro-Sweden
+		command = { type = relation which = SWE value = 100 }
+		command = { type = removecore which = 275 } #Ingermanland
+		command = { type = removecore which = 276 } #Estland
+		command = { type = removecore which = 282 } #Livland
+	}
+	action_b = {
+		name = "ACTIONNAME159121B" #Take no definite stance
+		command = { type = relation which = DAN value = -25 }
+		command = { type = relation which = RUS value = 25 }
+		command = { type = removecore which = 275 } #Ingermanland
+		command = { type = removecore which = 276 } #Estland
+		command = { type = removecore which = 282 } #Livland
+	}
+	action_c = {
+		name = "ACTIONNAME159121C" #Pro-Russia
+		command = { type = relation which = RUS value = 100 }
+		command = { type = removecore which = 275 } #Ingermanland
+		command = { type = removecore which = 276 } #Estland
+		command = { type = removecore which = 282 } #Livland
+	}
+}
+
+#(1721) Lands of the House Gottorp (Denmark)
+event = {
+	id = 159122
+	trigger = {
+		owned = { province = 306 data = -1 }
+		control = { province = 306 data = -1 }
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME159122" #Lands of the House Gottorp
+	desc = "EVENTHIST159122"
+	#-#In 1721, the results of the Danish policy of trying to attain the small independent lands of the house Gottorp in Holstein finally suceeded and these lands were peacefully incorporated into Denmark.
+
+	date = { day = 20 month = january year = 1721 }
+	offset = 200
+	deathdate = { day = 29 month = december year = 1721 }
+
+	action_a = {
+		name = "ACTIONNAME159122A" #Celebrate!
+		command = { type = population which = 306 value = 5000 } #Holstein
+		command = { type = provincetax which = 306 value = 1 } #Holstein
+	}
+}
+
+#(1722-1754) Ludvig Holberg (Denmark)
+event = {
+	id = 159118
+	trigger = {
+		owned = { province = 256 data = -1 }
+		NOT = { exists = NOR }
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME159118" #Ludvig Holberg
+	desc = "EVENTHIST159118"
+	#-#In the early 18th century the French Enlightenment and English rationalism started to influence Scandinavian literary circles, and satires became fashionable. The prime apostle of these new schools of thought in Scandinavia was the Norwegian-born dramatist, poet, historian, philosopher, and scientist Ludvig Holberg whose joyous and witty works had an enormous impact on most Scandinavian writers of the following generations. Holberg may perhaps be called the father of modern Norwegian and Danish literature.
+
+	date = { day = 1 month = january year = 1722 }
+	offset = 900
+	deathdate = { day = 28 month = january year = 1754 }
+
+	action_a = {
+		name = "ACTIONNAME159118A" #An excellent polymath!
+		command = { type = infra value = 100 }
+	}
+}
+
+#(1728) The Great Fire in Copenhagen
+event = {
+	id = 159119
+	trigger = {
+		owned = { province = 307 data = -1 } #Sjælland
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME159119" #The Great Fire in Copenhagen
+	desc = "EVENTHIST159119"
+	#-#On the 21. of October 1728 some extremely unfortunate circumstances lead to the great fire of Copenhagen. The fire started in a small attic and would easily have been containable, had the fire brigade not been out drinking in the hours leading up to the fire. What started as a small fire ended in a hellish inferno which raged for more than 60 hours. After the fire died out and the smoke had cleared the humanitarian damages turned out to be relatively small but the administrative ones where disasterous: The entire archives of city (including the works of the university) went up in flames along with the administrative files from the old capital of Roskilde which were on loan to Copenhagen that day!
+
+	date = { day = 20 month = october year = 1728 }
+
+	action_a = {
+		name = "ACTIONNAME159119A" #This is a disaster!
+		command = { type = infra value = -1000 }
+		command = { type = population which = -2 value = -500 }
+		command = { type = provincetax which = -2 value = -2 }
+	}
+}
+
+#(1730-1740) The Mercantile Reforms of Christian VI
+event = {
+	id = 3305
+	random = no
+	country = DAN
+	name = "EVENTNAME3305" #The Mercantile Reforms of Christian VI
+	desc = "EVENTHIST3305"
+	#-#Christian VI was a firm believer in heavy-handed mercantilism and large state controlled manufactories. Although his protectionist reforms did have a positive effect on the for Denmark all-important agriculture, they were mostly costly failures that retarded the commercial development of the nation for decades to come.
+
+	date = { day = 1 month = january year = 1730 }
+	offset = 3600
+	deathdate = { day = 1 month = january year = 1740 }
+
+	action_a = {
+		name = "ACTIONNAME3305A" #Mercantilist Reforms
+		command = { type = treasury value = -600 }
+		command = { type = gainmanufactory which = -1 value = navalequipment }
+		command = { type = gainmanufactory which = -1 value = goods }
+		command = { type = domestic which = MERCANTILISM value = 4 }
+		command = { type = provincetax which = -2 value = 2 }
+		command = { type = provincetax which = 251 value = 2 } #Skåne
+		command = { type = provincetax which = 309 value = 2 } #Jylland
+	}
+	action_b = {
+		name = "ACTIONNAME3305B" #No Reforms
+		command = { }
+	}
+	action_c = {
+		name = "ACTIONNAME3305C" #Free Trade Reforms
+		command = { type = domestic which = MERCANTILISM value = -2 }
+		command = { type = trade value = 1000 }
+		command = { type = merchants value = 6 }
+		command = { type = stability value = -2 }
+	}
+}
+
+#(1733) The 'Stavnsbåndet' Law -I-
+event = {
+	id = 3306
+	trigger = {
+		countrysize = 6
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME3306" #Stavnsbåndet
+	desc = "EVENTHIST3306"
+	#-#The serfdom, or 'vornedskab', was first abolished in 1702 (it was in use only on the islands), then re-invented for all of Denmark in 1733 under the name of 'stavnsbåndet' - male peasants below the age of 36 were forbidden to move from the manor without the consent of the landowner. (Less than 5 percent of the land was owned by peasants.) The new law had the effect of securing cheap labor for the nobles as well as a good supply of soldiers for the state but was, of course, intensely hated by the victims.
+
+	date = { day = 1 month = january year = 1733 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1733 }
+
+	action_a = {
+		name = "ACTIONNAME3306A" #Pass the law
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = domestic which = SERFDOM value = 3 }
+		command = { type = revoltrisk which = 120 value = 3 }
+		command = { type = provincemanpower which = -1 value = 2 }
+		command = { type = provincemanpower which = -1 value = 2 }
+		command = { type = provincemanpower which = -1 value = 2 }
+		command = { type = provincemanpower which = -1 value = 2 }
+		command = { type = provincetax which = -1 value = 2 }
+		command = { type = provincetax which = -1 value = 2 }
+		command = { type = provincetax which = -1 value = 2 }
+		command = { type = provincetax which = -1 value = 2 }
+		command = { type = sleepevent which = 159052 } #DAN: The 'Stavnsbåndet' Law -II-
+	}
+	action_b = {
+		name = "ACTIONNAME3306B" #Drop the law
+		command = { type = stability value = -3 }
+		command = { type = sleepevent which = 159052 } #DAN: The 'Stavnsbåndet' Law -II-
+	}
+}
+#(1733) The 'Stavnsbåndet' Law -II-
+event = {
+	id = 159052
+	trigger = {
+		NOT = { countrysize = 6 }
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME3306" #Stavnsbåndet
+	desc = "EVENTHIST3306"
+	#-#The serfdom, or 'vornedskab', was first abolished in 1702 (it was in use only on the islands), then re-invented for all of Denmark in 1733 under the name of 'stavnsbåndet' - male peasants below the age of 36 were forbidden to move from the manor without the consent of the landowner. (Less than 5 percent of the land was owned by peasants.) The new law had the effect of securing cheap labor for the nobles as well as a good supply of soldiers for the state but was, of course, intensely hated by the victims.
+
+	date = { day = 1 month = january year = 1733 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1733 }
+
+	action_a = {
+		name = "ACTIONNAME3306A" #Pass the law
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = domestic which = SERFDOM value = 3 }
+		command = { type = revoltrisk which = 120 value = 3 }
+		command = { type = provincemanpower which = -2 value = 2 }
+		command = { type = provincetax which = -2 value = 2 }
+		command = { type = sleepevent which = 3306 } #DAN: The 'Stavnsbåndet' Law -I-
+	}
+	action_b = {
+		name = "ACTIONNAME3306B" #Drop the law
+		command = { type = stability value = -3 }
+		command = { type = sleepevent which = 3306 } #DAN: The 'Stavnsbåndet' Law -I-
+	}
+}
+
+#(1735-1738) Pietism
+event = {
+	id = 3307
+	trigger = {
+		OR = {
+			religion = protestant
+			religion = reformed
+		}
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME3307" #Pietism
+	desc = "EVENTHIST3307"
+	#-#Like his consort, Sophie Magdalene of Brandenburg-Kulmbach, Christian VI was imbued with German pietism and devoutly encouraged a pietistic national church. He banned theater performances on Sundays and holidays, and after 1738 actors and entertainers were not even allowed to enter the country. Frivolous amusements were also banned at court, but the royal couple's love of splendor led to costly buildings, such as Christiansborg Castle (built 1733-45).
+
+	date = { day = 1 month = january year = 1735 }
+	offset = 720
+	deathdate = { day = 1 month = january year = 1738 }
+
+	action_a = {
+		name = "ACTIONNAME3307A" #Endorse Pietism
+		command = { type = domestic which = INNOVATIVE value = -2 }
+		command = { type = stability value = 1 }
+		command = { type = missionaries value = 3 }
+	}
+}
+
+#(1735) Grain monopoly
+event = {
+	id = 159117
+	trigger = {
+		OR = { #Denmark owns one of the three most important Norvegian provinces
+			owned = { province = 255 data = -1 } #Østlandet
+			owned = { province = 256 data = -1 } #Bergenshus
+			owned = { province = 258 data = -1 } #Trøndelag
+		}
+		NOT = { exists = NOR }
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME159117" #Grain monopoly
+	desc = "EVENTHIST159117"
+	#-#On the 16. of September 1735 King Christian VI outlawed import of foreign grain into Denmark and Southern Norway. This prohibition ensured that Danish farmers always had access to a stable market where they could unload their produce at reasonable prices as well as rendering Norway totally dependent on Danish grain.
+
+	date = { day = 15 month = september year = 1735 }
+
+	action_a = {
+		name = "ACTIONNAME159117A" #Impose the grain monopoly
+		command = { type = domestic which = mercantilism value = 2 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = provincetax which = -2 value = 1 }
+		command = { type = trade value = -500 }
+	}
+	action_b = {
+		name = "ACTIONNAME159117B" #Don't impose it
+		command = { type = domestic which = mercantilism value = -1 }
+	}
+}
+
+#(1740) The Effects of the Pragmatic Sanction
+event = {
+	id = 3302
+	trigger = {
+		exists = HAB
+		OR = {
+			event = 3527 #PRU: The Effects of the Pragmatic Sanction
+			event = 3616 #BAY: The Effects of the Pragmatic Sanction
+		}
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME3205" #The Effects of the Pragmatic Sanction
+	desc = "EVENTHIST3205"
+	#-#The Pragmatic Sanction, solemnly rendered by Emperor Charles VI on 19th April 1713, established the indivisibility of the Habsburg patrimony, and ruled the order of succession by order of first born child, even to a woman. This made Maria-Theresa, born in 1717, the heir of the Empire. The Pragmatic Sanction was recognized by Spain in 1725 (confirmed in 1731), Russia in 1726, Prussia in 1728, the United Provinces in 1731, Hanover in 1732, the Holy Roman Empire (except Bavaria) in 1732 and France in 1738 only. Bavarian refusal would lead to the War of the Austrian Succession.
+
+	date = { day = 1 month = july year = 1740 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1741 }
+
+	action_a = {
+		name = "ACTIONNAME3616B" #Neutral
+		command = { type = relation which = BAY value = 50 }
+		command = { type = relation which = SAC value = 50 }
+		command = { type = relation which = PRU value = 50 }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = ENG value = 50 }
+		command = { type = relation which = RUS value = -50 }
+		command = { type = relation which = HES value = 50 }
+		command = { type = relation which = HAN value = 50 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = SWE value = 50 }
+		command = { type = stability value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME3616C" #Pro-Habsburg
+		command = { type = relation which = BAY value = -150 }
+		command = { type = relation which = SAC value = -150 }
+		command = { type = relation which = PRU value = -150 }
+		command = { type = relation which = FRA value = -150 }
+		command = { type = relation which = ENG value = 150 }
+		command = { type = relation which = RUS value = 150 }
+		command = { type = relation which = HES value = 150 }
+		command = { type = relation which = HAN value = 150 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = SWE value = -150 }
+		command = { type = stability value = -1 }
+		command = { type = casusbelli which = SWE value = 12 }
+	}
+	action_c = {
+		name = "ACTIONNAME3616A" #Anti-Habsburg
+		command = { type = relation which = BAY value = 150 }
+		command = { type = relation which = SAC value = 150 }
+		command = { type = relation which = PRU value = 150 }
+		command = { type = relation which = FRA value = 150 }
+		command = { type = relation which = ENG value = -150 }
+		command = { type = relation which = RUS value = -150 }
+		command = { type = relation which = HES value = -150 }
+		command = { type = relation which = HAN value = -150 }
+		command = { type = relation which = HAB value = -150 }
+		command = { type = stability value = -3 }
+		command = { type = casusbelli which = HAB value = 12 }
+	}
+}
+
+#(1743) The Election of a Swedish Crownprince - Russian Candidate
+event = {
+	id = 3303 #triggered by SWE_3252 A
+	random = no
+	country = DAN
+	name = "EVENTNAME3303" #The Election of a Swedish Crown prince
+	desc = "EVENTHIST3303"
+	#-#The Swedes have scorned our prince and elected Adolf Frederik from Holstein-Gottorp as their new crown prince!
+
+	action_a = {
+		name = "ACTIONNAME3303A" #We have been insulted
+		command = { type = casusbelli which = SWE value = 12 }
+		command = { type = relation which = SWE value = -200 }
+		command = { type = relation which = RUS value = -100 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3303B" #Such is politics
+		command = { type = relation which = SWE value = 100 }
+		command = { type = relation which = RUS value = 100 }
+		command = { type = stability value = 1 }
+	}
+}
+#(1743) The Election of a Swedish Crownprince - Danish Candidate
+event = {
+	id = 3304 #triggered by SWE_3252 B
+	trigger = {
+		NOT = {
+			vassal = { country = SWE country = DAN }
+		}
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME3304" #The Election of a Swedish Crown prince
+	desc = "EVENTHIST3304"
+	#-#The Swedes have elected our dear prince Frederik heir to the Swedish throne! It would appear that the Union of Kalmar has risen from the dust.
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = relation which = SWE value = 200 }
+		command = { type = dynastic which = SWE }
+		command = { type = alliance which = SWE }
+		command = { type = vassal which = SWE }
+		command = { type = stability value = 3 }
+		command = { type = trigger which = 3538 } #SWE: The Election of a Swedish Crown prince
+	}
+}
+
+#(1766) The Regency of J.H.E. Bernstorff
+event = {
+	id = 3308
+	random = no
+	country = DAN
+	name = "EVENTNAME3308" #The Regency of J.H.E. Bernstorff
+	desc = "EVENTHIST3308"
+	#-#In 1766 Christian VII was crowned King of Denmark, succeeding his father Frederik V. Christian was unfortunately quite insane. His mental instability has been attributed to a brutal childhood governor and to morally corrupt court pages. After his 1766 marriage to Caroline Matilda, the daughter of Frederick, Prince of Wales, he gave himself up to debauchery. During his entire reign the country was run by others. First up was the foreign minister J.H.E. Bernstorff, a devious and competent man who managed to get Catherine II of Russia to renounce certain of her claims to parts of the duchy of Holstein. However, Bernstorff's position grew increasingly precarious and he was dismissed from office on Sep. 15, 1770.
+
+	date = { day = 16 month = january year = 1766 }
+
+	action_a = {
+		name = "OK"
+		command = { type = DIP which = 4 value = 50 }
+		command = { type = ADM which = 3 value = 50 }
+		command = { type = MIL which = 3 value = 50 }
+		command = { type = relation which = RUS value = 100 }
+	}
+}
+
+#(1770) The Regency of Struensee
+#Modified by Sute]{h
+event = {
+	id = 3309
+	random = no
+	country = DAN
+	name = "EVENTNAME3309" #The Regency of Struensee
+	desc = "EVENTHIST3309"
+	#-#Johann Friedrich Struensee took over as the real ruler of Denmark after Bernstorff was dismissed. Originally a German physician, Struensee came to know the Danish King when he was named to accompany the mentally unstable Christian VII on a European tour (1768-69), a post that led to Struensee's appointment as court physician in 1769. Dominating the King, he became the lover of Queen Caroline Matilda in 1770. He was soon able to abolish the council of state and the office of statholder (governor) of Norway in 1770. In June 1771 he had the King name him privy Cabinet minister, and in July he was made a count. From March 1771 until January 1772 Struensee introduced a number of reforms, including freedom of the press, reduction of peasant labor service, a unitary judiciary, and reform of Copenhagen's municipal government. Having alienated many officials,however, he was the victim of a conspiracy in January 1772, when he was arrested and tortured to death for his liaison with the Queen.
+
+	date = { day = 1 month = may year = 1770 }
+	offset = 240
+	deathdate = { day = 29 month = december year = 1770 }
+
+	action_a = {
+		name = "OK"
+		command = { type = revoltrisk which = 24 value = 2 }
+		command = { type = DIP which = 1 value = 24 }
+		command = { type = ADM which = 4 value = 24 }
+		command = { type = MIL which = 1 value = 24 }
+		command = { type = infra value = 500 }
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = domestic which = SERFDOM value = -1 }
+		command = { type = domestic which = ARISTOCRACY value = -1 }
+	}
+}
+
+#(1773) The Regency of Ove Hoeg-Guldberg
+event = {
+	id = 3312
+	random = no
+	country = DAN
+	name = "EVENTNAME3312" #The Regency of Ove Høegh-Guldberg
+	desc = "EVENTHIST3312"
+	#-#Høegh-Guldberg was of humble background. He earned a theology degree in 1753, and in 1761 became professor of rhetoric at Sorø academy. He was appointed tutor to Prince Frederik, half brother of the future King Charles VII, in 1764. As Frederick's private secretary in 1771, he shared Frederik's hostility to Count Johann Friedrich Struensee, then supreme in Denmark through his domination of Christian VII - Høegh-Guldberg took part in a conspiracy that led to Struensee's arrest and execution in 1772. Thereafter, Høegh-Guldberg, along with Prince Frederik and the dowager Queen Juliana Maria, gained significant power in the Danish state. In 1774 Høegh-Guldberg was made confidential cabinet secretary. Soon, without consulting the other council ministers, he was issuing orders signed by the incompetent Christian VII. He took over control of foreign policy after dismissing foreign minister Count A.P. Bernstorff in 1780. Høegh-Guldberg was forced out of power during a 1784 coup d'état led by Prince Frederik.
+
+	date = { day = 1 month = january year = 1773 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1773 }
+
+	action_a = {
+		name = "OK"
+		command = { type = DIP which = 3 value = 120 }
+		command = { type = ADM which = 2 value = 120 }
+		command = { type = MIL which = 2 value = 120 }
+	}
+}
+
+#(1780-1790) End of Pietism
+event = {
+	id = 159120
+	trigger = {
+		event = 3307 #DAN: Pietism
+	}
+	random = no
+	country = DAN
+	name = "EVENTNAME159120" #End of Pietism
+	desc = "EVENTHIST159120"
+	#-#Towards the end of the century, pietism in Denmark-Norway slowly and silently slipped out of the public sphere. Theaters, symphonies and other secular activities which had previously been banned returned to colour everyday life once again and science was free once more.
+
+	date = { day = 1 month = january year = 1780 }
+	offset = 3000
+	deathdate = { day = 1 month = january year = 1790 }
+
+	action_a = {
+		name = "ACTIONNAME159120A" #How times change...
+		command = { type = domestic which = INNOVATIVE value = 1 }
+	}
+}
+
+#(1781) The Great Agricultural Reform
+event = {
+	id = 3311
+	random = no
+	country = DAN
+	name = "EVENTNAME3311" #The Great Agricultural Reform
+	desc = "EVENTHIST3311"
+	#-#Denmark was and is primarily an agricultural nation, and it was one of the first to adopt the new farming methods and tools that were invented in the late 18th and early 19th centuries. Fields were reallotted, improved ploughs were used, crop rotation was introduced and new high-yield crops (potato, Indian corn) from the new world were taken into wide use. Not all of the reforms were greeted with joy by the peasants, but the most unpopular by far involved the splitting of villages into separate farms so that the peasants could live closer to their fields.
+
+	date = { day = 1 month = january year = 1781 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1781 }
+
+	action_a = {
+		name = "ACTIONNAME3311A" #Reform the agriculture
+		command = { type = infra value = 250 }
+		command = { type = provincetax which = -1 value = 2 }
+		command = { type = provincetax which = -1 value = 2 }
+		command = { type = provincetax which = -1 value = 2 }
+		command = { type = provincetax which = -1 value = 2 }
+		command = { type = provincetax which = -1 value = 2 }
+		command = { type = revoltrisk which = 48 value = 3 } #Upset peasants
+	}
+	action_b = {
+		name = "ACTIONNAME3311B" #Do not upset the people
+		command = { } #Nothing happens
+	}
+}
+
+#(1784) The Regency of A.P.Bernstorff
+event = {
+	id = 3313
+	random = no
+	country = DAN
+	name = "EVENTNAME3313" #The Regency of A.P.Bernstorff
+	desc = "EVENTHIST3313"
+	#-#Recalled to office in April 1784, Bernstorff, until his death, served as foreign minister in a moderate liberal government. He supported a series of reform measures including the regulation of landlord-peasant relations and the emancipation of the serfs. In foreign affairs, Bernstorff carefully pursued a policy of neutrality. When the French Revolution broke out, he condemned any interference in the domestic affairs of France and avoided every anti-French coalition. In March 1794 he negotiated a neutrality treaty with Sweden for protecting the merchant shipping of both countries by combined squadrons. Bernstorff's foreign policy won him the respect of European diplomats - his domestic policy gained him such popularity among the Danes that his death (June 21, 1797) was regarded as a national calamity.
+
+	date = { day = 1 month = january year = 1784 }
+	offset = 80
+	deathdate = { day = 29 month = december year = 1784 }
+
+	action_a = {
+		name = "OK"
+		command = { type = DIP which = 5 value = 156 }
+		command = { type = ADM which = 3 value = 156 }
+		command = { type = MIL which = 3 value = 156 }
+		command = { type = stability value = 2 }
+		command = { type = domestic which = SERFDOM value = -1 }
+	}
+}
+
+#(1784-1785) The Landbo Commission
+event = {
+	id = 3310
+	random = no
+	country = DAN
+	name = "EVENTNAME3310" #The Landbo Commission
+	desc = "EVENTHIST3310"
+	#-#In 1784, by order of the crown prince, Count Ludvig Reventlow drew up a plan to improve the conditions for the serfs ('fæstebønder'). The plan was approved on Jul. 18 and the so called Landbo Commission was appointed to see to its execution. Thanks to the strong leadership of Reventlow, a compassionate humanitarian, the original commission was expanded in 1786 and, through gradual improvements and temporary setbacks, eventually led to the complete abolishment of serfdom ('stavnsbåndet') in Denmark in 1800.
+
+	date = { day = 1 month = may year = 1784 }
+	offset = 360
+	deathdate = { day = 1 month = may year = 1785 }
+
+	action_a = {
+		name = "ACTIONNAME3310A" #Assign the commission
+		command = { type = stability value = -3 } #Upset nobles
+		command = { type = domestic which = SERFDOM value = -3 }
+		command = { type = domestic which = ARISTOCRACY value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3310B" #Stavnbåndet works well
+		command = { type = revoltrisk which = 120 value = 4 } #Upset serfs
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 159047 - next: 159054

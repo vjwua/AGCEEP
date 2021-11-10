@@ -1,0 +1,128 @@
+#Italy (ITA)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1796) The Cisalpine Republic
+#by Bordic
+event = {
+	id = 193800 #triggered by FRA_170127
+	random = no
+	country = ITA
+	name = "EVENTNAME193800" #The Cisalpine Republic
+	desc = "EVENTHIST170023"
+	#-#After the first successful Italian campaign with the battle of Lodi in 1796, General Napoléon Bonaparte proceeded to organize two states in Northern Italy: one on the south of the Po River, the Cispadane Republic, and one on the north, the Transpadane Republic. These two were successively merged into the Cisalpine Republic on 29 June 1797 with the capital in Milan. The Cisalpine Republic consisted of roughly the former Duchy of Milan, those portions of the Republic of Venice west of the Adige River, the Duchy of Modena, the Papal Legations, the Piedmontese province of Novara, west of Ticino River and the Valtellina. But The Republic would have dissolved after the defeats of France against the Second Coalition in 1799 occupied by Austro-Russian forces. Only in 1800 in the second Italian campaign after the Battle of Marengo First Consul Napoléon Bonaparte retook the territories which this time were extended to the former Austrian lands of the Veneto and the Papal Legations. In January 1802, the Cisalpine Republic changed its name to Italian Republic with Napoléon Bonaparte as its president.
+
+	action_a = {
+		name = "ACTIONNAME193800A" #Viva l'Italia!
+		command = { type = stability value = -1 }
+		command = { type = flagname which = "Cisalpine" }
+		command = { type = addcore which = 390 } #Mantua
+		command = { type = addcore which = 391 } #Romagna
+		command = { type = domestic which = ARISTOCRACY value = -2 }
+		command = { type = domestic which = INNOVATIVE value = 2 }
+		command = { type = domestic which = SERFDOM value = -2 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = INF which = -2 value = 8000 }
+		command = { type = wakemonarch which = 064624 } #Direttorio
+		command = { type = wakemonarch which = 064625 } #Consulta
+		command = { type = wakemonarch which = 064626 } #Napoleone Bonaparte
+	}
+}
+
+#(1797-1805) The Betrayal of Napoléon
+#by Bordic
+event = {
+	id = 193801 #triggered by FRA_170024 A
+	random = no
+	country = ITA
+	name = "EVENTNAME193801" #The Betrayal of Napoléon
+	desc = "EVENTHIST170024"
+	#-#The treaty of Campoformio signed between France and Austria stated that Austria would enter in possession of the territories of the Republic of Venice, while the Lombardy, large part of the Emilia and Romagna and the territories of the Cispadane Republic were united in the Cisalpine Republic. France was also recognized her rights of ownership over the Low Countries and the Left Rhine Bank.
+
+	action_a = {
+		name = "ACTIONNAME193801A" #Napoléon sold the Serenissima to the enemy!
+		command = { type = relation which = FRA value = -75 } #Venice given to Austria
+		command = { type = relation which = HAB value = -75 }
+		command = { type = domestic which = serfdom value = 2 }
+	}
+}
+
+#(1805-1820) The Kingdom of Italy
+#by Bordic
+event = {
+	id = 193802
+	trigger = {
+		monarch = 064626 #Napoleone Bonaparte
+		event = 170126 #FRA: Napoléon's ambitions
+		event = 170127 #FRA: The military expedition in Italy
+		NOT = {	event = 170030 } #FRA: The Restoration of the Italian Monarchies
+	}
+	random = no
+	country = ITA
+	name = "EVENTNAME193802" #The Kingdom of Italy
+	desc = "EVENTHIST193802"
+	#-#In 1805, following Bonaparte's assumption of the title of Emperor of the French, the Italian Republic was transformed into the Kingdom of Italy (Regno d'Italia), with Napoléon as King and his stepson Eugène de Beauharnais as Viceroy. The 'Corona Ferrea' or the 'Iron Crown of the Lombards' (still nowadays kept in Monza's Dome, a city near Milan) so called from a narrow band of iron within it, said to be beaten out of one of the nails used at the Crucifixion, was worn for the last time in history by Charles V of Habsburg when he was crowned Holy Roman Emperor and King of Italy by the Pope Clemens VII at Bologna in 1530. On 26 May 1805 in a ceremony arranged in Milan's Dome Napoléon crowned himself King of Italy and said the ritual words: 'God gave it to me, woe to him who touches it'. These were the words spoken for the first time by Charlemagne when he received the crown as King of the Lombards in 774.
+
+	date = { day = 1 month = may year = 1805 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME193802A" #Viva Napoleone!
+		command = { type = wakemonarch which = 064627 } #Napoleone I
+		command = { type = flagname which = "Bonaparte" }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = domestic which = aristocracy value = 3 }
+		command = { type = domestic which = serfdom value = 2 }
+	}
+}
+
+#(1810-1820) The Fate of the Italian Kingdom
+#(in case Cisalpine Republic, then Napoleonic KoI, was previously released by France)
+#by Bordic
+event = {
+	id = 193803
+	trigger = {
+		monarch = 064627 #Napoleone I
+		exists = HAB
+		event = 170127 #FRA: The military expedition in Italy
+		OR = {
+			event = 3785
+			event = 3786
+			event = 3787
+			event = 3788
+			event = 3789
+		} #FRA: The Restoration of the Monarchy (in France)
+	}
+	random = no
+	country = ITA
+	name = "EVENTNAME193803" #The Fate of the Italian Kingdom
+	desc = "EVENTHIST193803"
+	#-#In the congress of Vienna, the Prince of Metternich, Austrian minister of foreign affairs, managed to gain Lombardy and Veneto from the spoils of the Napoleonic Kingdom of Italy, with the creation of the Kingdom of Lombardy-Veneto, a Vassal-State under the direct rule of the Austrian Emperor by means of a Viceroy.
+
+	date = { day = 1 month = january year = 1810 }
+	offset = 90
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME193803A" #The dream ends here! (End Game)
+		command = { type = revolt which = 389 } #Lombardia
+		command = { type = revolt which = 390 } #Mantua
+		command = { type = revolt which = 391 } #Romagna
+		command = { type = independence which = PAM } #Modena
+		command = { type = trigger which = 179055 } #HAB: Austrian foothold in Italy
+	}
+	action_b = {
+		name = "ACTIONNAME193803B" #Let's withstand the enemy
+		command = { type = wakemonarch which = 064628 } #Eugenio de Beauharnais
+		command = { type = war which = HAB }
+		command = { type = stability value = -2 }
+		command = { type = relation which = HAB value = -200 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#193000-193799 reserved for Alt_Italy
+
+#First free id: 193804

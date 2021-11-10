@@ -1,0 +1,1092 @@
+#Mataram (MTR)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1447) Adoption of Islam
+event = {
+	id = 65151
+	random = no
+	country = MTR
+	name = "EVENTNAME65151" #Adoption of Islam
+	desc = "EVENTHIST65151"
+	#-#Kertawijaya, brother of Suhita, became King of Majapahit in 1447. He converted to Islam on the advice of his wife, Darawati, a princess of Champa. His nephew, Sunan Ampel, the first notable member of the Nine Walis or Walisongo, Islamic teachers who worked to spread Islam around Java in the late 1400s and early 1500s, begins his conversion work in central Java.
+
+	date = { day = 1 month = january year = 1447 }
+	offset = 60
+	deathdate = { day = 1 month = january year = 1448 }
+
+	action_a = {
+		name = "ACTIONNAME65151A" #Convert to one true faith
+		command = { type = provincetax which = 703 value = 2 } #Bandung
+		command = { type = religion which = sunni }
+		command = { type = stability value = -3 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = revoltrisk value = 3 }
+		command = { type = domestic which = offensive value = 1 }
+		command = { type = missionaries value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME65151B" #Retain the faith of grandfathers
+		command = { type = provincetax which = 703 value = -1 } #Bandung
+		command = { type = stability value = 1 }
+		command = { type = domestic which = centralization value = -1 }
+	}
+}
+
+#(1451) The reign of Rajasavardhana (part 1)
+event = {
+	id = 234226
+	trigger = {
+		NOT = { religion = sunni }
+	}
+	random = no
+	country = MTR
+	name = "EVENTNAME234226" #The reign of Rajasavardhana
+	desc = "EVENTHIST234226"
+	#-#King Kertavijaya was murdered and replaced by Rajasavardhana, who hinders the spread of Islam in Majapahit.
+
+	date = { day = 1 month = january year = 1451 }
+	offset = 50
+	deathdate = { day = 1 month = january year = 1452 }
+
+	action_a = {
+		name = "ACTIONNAME234226A" #Suppress that religion!
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 24 value = 2 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = domestic which = serfdom value = 1 }
+		command = { type = missionaries value = 2 }
+		command = { type = provincetax which = -1 value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME234226B" #Let them spread their religion
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = innovative value = 2 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = missionaries value = -1 }
+		command = { type = revoltrisk which = 240 value = 6 }
+		command = { type = revolt which = -2 }
+	}
+}
+#(1451) The reign of Rajasavardhana (part 2)
+event = {
+	id = 234227
+	trigger = {
+		religion = sunni
+		NOT = { event = 234226 } #MTR: The reign of Rajasavardhana
+	}
+	random = no
+	country = MTR
+	name = "EVENTNAME234227" #The reign of Rajasavardhana
+	desc = "EVENTHIST234227"
+	#-#King Kertavijaya was murdered and replaced by Rajasavardhana, who hinders the spread of Islam in Majapahit.
+
+	date = { day = 1 month = january year = 1451 }
+	offset = 50
+	deathdate = { day = 1 month = january year = 1452 }
+
+	action_a = {
+		name = "ACTIONNAME234227A" #We are Hindu Kingdom, not Islam!
+		command = { type = stability value = -3 }
+		command = { type = religion which = hinduism }
+		command = { type = revoltrisk which = 24 value = 3 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = serfdom value = 1 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = missionaries value = 2 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = sleepevent which = 234226 } #MTR: The reign of Rajasavardhana
+	}
+}
+
+#(1467) Court Rebellion
+event = {
+	id = 65152
+	random = no
+	country = MTR
+	name = "EVENTNAME65152" #Court Rebellion
+	desc = "EVENTHIST65152"
+	#-#Bhre Kertabhumi rebelled against Suraprabhawa and drove out the latter out of his court at Tumapel. Suraprabhawa moved his seat to Daha, near Kediri. The great state of Majapahit is in chaos. At this time many remaining Hindus flee Java for Bali.
+
+	date = { day = 29 month = december year = 1467 }
+
+	action_a = {
+		name = "ACTIONNAME65152A" #Rebellion!
+		command = { type = stability value = -3 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = revoltrisk which = 24 value = 4 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#(1478-1820) The End of the Majapahit Empire
+#MKJ(?)
+event = {
+	id = 234000
+	trigger = {
+		NOT = { religion = sunni }
+	}
+	country = MTR
+	random = no
+	name = "EVENTNAME234000" #The End of the Majapahit Empire
+	desc = "EVENTHIST234000"
+	#-#In 1478, the region of Daha revolted, and the disintegrating Majapahit empire fell into chaos, losing virtually all their posessions outside of Java. The Sultanate of Demak was rapidly founded and quickly inherited the Majapahit mantle. They began to convert Java to Islam.
+
+	date = { day = 1 month = january year = 1478 }
+	offset = 300
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME234000A" #The Sultanate of Demak will now rule
+		command = { type = population which = 703 value = -3000 } #Bandung
+		command = { type = population which = -1 value = -1000 }
+		command = { type = population which = -1 value = -1000 }
+		command = { type = religion which = sunni }
+		command = { type = independence which = BJR }
+		command = { type = independence which = BLI }
+		command = { type = independence which = LUW }
+		command = { type = independence which = KUT }
+		command = { type = independence which = TER }
+		command = { type = independence which = SWA }
+		command = { type = independence which = BTM }
+		command = { type = independence which = SUL }
+		command = { type = independence which = PAL }
+		command = { type = independence which = BEI }
+		command = { type = trigger which = 427000 } #BJR: The End of the Majapahit Empire
+		command = { type = trigger which = 80707 } #BLI: The End of the Majapahit Empire
+		command = { type = trigger which = 320000 } #LUW: The End of the Majapahit Empire
+		command = { type = trigger which = 426000 } #KUT: The End of the Majapahit Empire
+		command = { type = trigger which = 308003 } #TER: The End of the Majapahit Empire
+		command = { type = trigger which = 407001 } #SWA: The End of the Majapahit Empire
+		command = { type = trigger which = 439001 } #BTM: The End of the Majapahit Empire
+		command = { type = trigger which = 438000 } #SUL: The End of the Majapahit Empire
+		command = { type = trigger which = 80708 } #PAL: The End of the Majapahit Empire
+		command = { type = trigger which = 126000 } #BEI: The End of the Majapahit Empire
+		command = { type = provincereligion which = -2 value = sunni }
+		command = { type = provincereligion which = -1 value = sunni }
+	}
+	action_b = {
+		name = "ACTIONNAME234000B" #No! We must keep the empire alive!
+		command = { type = stability value = -6 }
+		command = { type = revoltrisk which = 60 value = 10 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = provincereligion which = -1 value = sunni }
+	}
+}
+
+#(1518-1521) Demak attacks Portuguese in Malacca
+event = {
+	id = 234228
+	trigger = {
+		NOT = { war = { country = MTR country = POR } }
+		owned = { province = 677 data = POR }
+		religion = sunni
+	}
+	random = no
+	country = MTR
+	name = "EVENTNAME234228" #Demak attacks Portuguese in Malacca
+	desc = "EVENTHIST234228"
+	#-#Yunus (Pangeran Sabrang Lor) led fleet from Demak and Cirebon against the Portuguese in Melaka. Yunus was killed in battle.
+
+	date = { day = 1 month = january year = 1518 }
+	offset = 50
+	deathdate = { day = 1 month = january year = 1521 }
+
+	action_a = {
+		name = "ACTIONNAME234228A" #Liberate Malacca from the infidels!
+		command = { type = stability value = 1 }
+		command = { type = domestic which = offensive value = 1 }
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = galleys which = -1 value = 5 }
+		command = { type = war which = POR }
+		command = { type = casusbelli which = POR value = 36 }
+		command = { type = relation which = MLC value = 50 }
+		command = { type = relation which = PAL value = 50 }
+		command = { type = relation which = SIA value = 50 }
+		command = { type = relation which = ATJ value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME234228B" #We aren't strong enough
+		command = { type = stability value = -2 }
+		command = { type = revolt which = -2 }
+		command = { type = casusbelli which = POR value = 36 }
+	}
+}
+
+#(1523-1525) Banten converts to Islam
+event = {
+	id = 234229
+	trigger = {
+		owned = { province = 701 data = -1 }
+		NOT = { exists = BTM }
+	}
+	random = no
+	country = MTR
+	name = "EVENTNAME234229" #Banten converts to Islam
+	desc = "EVENTHIST234229"
+	#-#Gunungjati and son Hasanuddin did both covert and overt missionary work in West Java to weaken the Kingdom of Pajajaran and its alliance with the Portuguese. Local ruler of Banten, formerly dependent on Pajajaran, converted to Islam and joined Demak's side.
+
+	date = { day = 1 month = january year = 1523 }
+	offset = 50
+	deathdate = { day = 1 month = january year = 1525 }
+
+	action_a = {
+		name = "ACTIONNAME234229A" #Convert to Islam
+		command = { type = provincereligion which = 701 value = sunni } #Sunda
+		command = { type = relation which = POR value = -50 }
+		command = { type = province_revoltrisk which = 701 value = 4 } #Sunda
+	}
+}
+
+#(1525-1540) Islam spreads in Java
+event = {
+	id = 65156
+	trigger = { religion = sunni }
+	random = no
+	country = MTR
+	name = "EVENTNAME65156" #Islam spreads in Java
+	desc = "EVENTHIST65156"
+	#-#Sultan Trenggana (of Demak) is remembered as a ruler who did much to spread Islam throughout East and Central Java. Gunungjati and son Hasan ud-Din do both missionary work in West Java to weaken the Kingdom of Pajajaran and its alliance with the Portuguese. Local ruler of Banten, formerly dependent on Pajajaran, converts to Islam and joins Demak's side (1524).
+
+	date = { day = 1 month = january year = 1525 }
+	offset = 600
+	deathdate = { day = 1 month = january year = 1540 }
+
+	action_a = {
+		name = "ACTIONNAME65156A" #Convert the heathens to one true faith
+		command = { type = provincereligion which = -1 value = sunni }
+		command = { type = stability value = -1 }
+		command = { type = provincemanpower which = -3 value = 1 }
+		command = { type = missionaries value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME65156B" #Forbid preaching of Islam
+		command = { type = stability value = -2 }
+		command = { type = missionaries value = -3 }
+	}
+}
+
+#(1577) Ki Ageng Pemanahan founds Kota Gede
+event = {
+	id = 234224
+	trigger = {
+		owned = { province = 703 data = -1 } #Bandung
+	}
+	random = no
+	country = MTR
+	name = "EVENTNAME234224" #Ki Ageng Pemanahan founds Kota Gede
+	desc = "EVENTHIST234224"
+	#-#In 1577 Ki Ageng Pemanahan founded Kota Gede (near today's Yogya).
+
+	date = { day = 1 month = january year = 1577 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1578 }
+
+	action_a = {
+		name = "ACTIONNAME234224A" #Found the city
+		command = { type = population which = 703 value = 1000 } #Bandung
+		command = { type = provincetax which = 703 value = 1 } #Bandung
+		command = { type = provincemanpower which = 703 value = 1 } #Bandung
+		command = { type = treasury value = -100 }
+	}
+	action_b = {
+		name = "ACTIONNAME234224B" #We don't have money
+		command = { type = vp value = -20 }
+	}
+}
+
+#(1618) Sultan Agung bans the sale of rice to the VOC (Mataram's part)
+event = {
+	id = 234200
+	trigger = {
+		owned = { province = 703 data = -1 } #Bandung
+		exists = HOL
+		event = 3503 #HOL: Vereenigde Oostindische Compagnie
+	}
+	random = no
+	country = MTR
+	name = "EVENTNAME234200" #Sultan Agung banned the sale of rice to the VOC
+	desc = "EVENTHIST234200"
+	#-#Sultan Agung banned the sale of rice to the VOC. Agung's governor of Jepara attacked the VOC post there; Dutch burned down much of Jepara in retaliation.
+
+	date = { day = 1 month = december year = 1618 }
+	offset = 5
+	deathdate = { day = 1 month = january year = 1619 }
+
+	action_a = {
+		name = "ACTIONNAME234200A" #Ban the sale!
+		command = { type = relation which = HOL value = -100 }
+		command = { type = revolt which = 703 } #Bandung
+		command = { type = trade value = -200 }
+		command = { type = merchants value = -2 }
+		command = { type = losebuilding which = 703 value = courthouse } #Bandung
+		command = { type = trigger which = 186400 } #HOL: Sultan Agung banned the sale of rice to the VOC
+	}
+	action_b = {
+		name = "ACTIONNAME234200B" #Sale the rice
+		command = { type = relation which = HOL value = 50 }
+		command = { type = treasury value = 100 }
+	}
+}
+
+#(1619) Jan Pieterszoon Coen burns Jepara (Mataram's part)
+event = {
+	id = 234201
+	trigger = {
+		owned = { province = 703 data = -1 } #Bandung
+		exists = HOL
+	}
+	random = no
+	country = MTR
+	name = "EVENTNAME234201" #Jan Pieterszoon Coen burnt Jepara
+	desc = "EVENTHIST234201"
+	#-#Jan Pieterszoon Coen passed through Jepara, and burnt down the city again, including the English trading post.
+
+	date = { day = 1 month = may year = 1619 }
+	offset = 5
+	deathdate = { day = 1 month = june year = 1619 }
+
+	action_a = {
+		name = "DARN"
+		command = { type = casusbelli which = HOL value = 6 }
+		command = { type = relation which = HOL value = -50 }
+		command = { type = provincetax which = 703 value = -1 } #Bandung
+		command = { type = population which = 703 value = -500 } #Bandung
+		command = { type = trigger which = 164500 } #ENG: Jan Pieterszoon Coen burnt Jepara
+	}
+}
+
+#(1626-1629) Sultan Agung attacks Batavia for the first time
+event = {
+	id = 234202
+	trigger = {
+		owned = { province = 702 data = HOL } #Jakarta
+		NOT = { war = { country = MTR country = HOL } }
+		event = 3503 #HOL: Vereenigde Oostindische Compagnie
+	}
+	random = no
+	country = MTR
+	name = "EVENTNAME234202" #Sultan Agung attacks Batavia for the first time
+	desc = "EVENTHIST234202"
+	#-#Sultan Agung sent army against VOC in Batavia; dammed Ciliwung River in attempt to deny fresh water to the VOC. He failed to oust the Dutch, who prevent his army from receiving supplies by sea. Commanders of the Mataram army were executed for failure.
+
+	date = { day = 1 month = january year = 1628 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1629 }
+
+	action_a = {
+		name = "ACTIONNAME234202A" #Attack Batavia!
+		command = { type = war which = HOL }
+		command = { type = relation which = HOL value = -200 }
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = CAV which = -2 value = 1000 }
+		command = { type = galleys which = -1 value = 5 }
+		command = { type = domestic which = offensive value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME234202B" #We aren't strong enough
+		command = { type = stability value = -1 }
+		command = { type = casusbelli which = HOL value = 12 }
+	}
+}
+
+#(1629) Sultan Agung attacks Batavia for the second time
+event = {
+	id = 234203
+	trigger = {
+		owned = { province = 702 data = HOL } #Jakarta
+		NOT = { war = { country = MTR country = HOL } }
+	}
+	random = no
+	country = MTR
+	name = "EVENTNAME234203" #Sultan Agung attacks Batavia for the second time
+	desc = "EVENTHIST234203"
+	#-#Sultan Agung attacked Batavia again. He was defeated, although Coen died during the siege.
+
+	date = { day = 1 month = january year = 1629 }
+	offset = 30
+	deathdate = { day = 20 month = september year = 1629 }
+
+	action_a = {
+		name = "ACTIONNAME234203A" #Attack Batavia!
+		command = { type = war which = HOL }
+		command = { type = relation which = HOL value = -200 }
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = CAV which = -2 value = 1000 }
+		command = { type = galleys which = -1 value = 5 }
+		command = { type = domestic which = offensive value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME234203B" #We aren't strong enough
+		command = { type = stability value = -1 }
+		command = { type = casusbelli which = HOL value = 12 }
+	}
+}
+
+#(1637) Refugee from Batavia (Mataram's part)
+event = {
+	id = 234204
+	trigger = {
+		owned = { province = 703 data = -1 } #Bandung
+		owned = { province = 702 data = HOL } #Jakarta
+	}
+	random = no
+	country = MTR
+	name = "EVENTNAME234204" #Refugee from Batavia
+	desc = "EVENTHIST234204"
+	#-#Sultan Agung gave permission for Portuguese and Catholic refugees from Batavia to settle around Jepara.
+
+	date = { day = 1 month = january year = 1637 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1638 }
+
+	action_a = {
+		name = "ACTIONNAME234204A" #Give permission
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = population which = 703 value = 500 } #Bandung
+		command = { type = provincetax which = 703 value = 1 } #Bandung
+		command = { type = trigger which = 186403 } #HOL: Refugee from Batavia
+	}
+}
+
+#(1646) Cooperation treaty between VOC and Mataram
+event = {
+	id = 234205
+	trigger = {
+		owned = { province = 702 data = HOL }
+		event = 3503 #HOL: Vereenigde Oostindische Compagnie
+	}
+	random = no
+	country = MTR
+	name = "EVENTNAME234205" #Cooperation treaty between VOC and Mataram
+	desc = "EVENTHIST234205"
+	#-#Cooperation treaty between VOC and Mataram, involving promises of mutual assistance against enemies and extradition of runaway debtors, among other things. Ships of Mataram may trade at any VOC port except Ambon, Ternate or Banda, but must apply for a pass at Batavia if they are sailing for Melaka or points beyond.
+
+	date = { day = 24 month = september year = 1646 }
+
+	action_a = {
+		name = "ACTIONNAME234205A" #Sign the treaty
+		command = { type = relation which = HOL value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME234205B" #Don't sign the treaty
+		command = { type = relation which = HOL value = -50 }
+	}
+}
+
+#(1652) Amangkurat I bans the export of rice or timber
+event = {
+	id = 234206
+	random = no
+	country = MTR
+	name = "EVENTNAME234206" #Amangkurat I bans the export of rice or timber
+	desc = "EVENTHIST234206"
+	#-#Amangkurat I banned the export of rice or timber
+
+	date = { day = 1 month = january year = 1652 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1653 }
+
+	action_a = {
+		name = "ACTIONNAME234206A" #Ban the export
+		command = { type = domestic which = mercantilism value = 1 }
+		command = { type = merchants value = -2 }
+		command = { type = trade value = -200 }
+	}
+	action_b = {
+		name = "ACTIONNAME234206B" #Keep the export
+		command = { type = domestic which = mercantilism value = -1 }
+		command = { type = merchants value = 2 }
+	}
+}
+
+#(1659) Royal family have been murdered
+event = {
+	id = 234207
+	random = no
+	country = MTR
+	name = "EVENTNAME234207" #Royal family have been murdered
+	desc = "EVENTHIST234207"
+	#-#Amangkurat I had several family members murdered, including the mother of the future Amangkurat II.
+
+	date = { day = 1 month = january year = 1659 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1660 }
+
+	action_a = {
+		name = "ACTIONNAME234207A" #This is a sad day
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1660-1664) Incompetence of Amangkurat I
+event = {
+	id = 65153
+	random = no
+	country = MTR
+	name = "EVENTNAME65153" #Incompetence of Amangkurat I
+	desc = "EVENTHIST65153"
+	#-#Amangkurat I had a reputation for being cruel and unpredictable. Besides his disastrous interference in the economy, at one time he had many of the Islamic scholars in Mataram killed, then took their former judicial powers for himself, turning himself into an absolute ruler. In 1661 a group of nobles attempted a court rebellion against Amangkurat I, which was cruelly suppressed.
+
+	date = { day = 29 month = december year = 1660 }
+	offset = 200
+	deathdate = { day = 1 month = january year = 1664 }
+
+	action_a = {
+		name = "ACTIONNAME65153A" #Assume the dictatorial powers
+		command = { type = stability value = -3 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = ADM which = -2 value = 48 }
+		command = { type = MIL which = 2 value = 48 }
+		command = { type = revoltrisk which = 24 value = 4 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = infra value = -500 }
+		command = { type = domestic which = mercantilism value = 1 }
+		command = { type = domestic which = serfdom value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME65153B" #Maintain the old system
+		command = { type = stability value = 1 }
+		command = { type = ADM which = 2 value = 48 }
+		command = { type = MIL which = -2 value = 48 }
+		command = { type = domestic which = mercantilism value = -1 }
+	}
+}
+
+#(1673) Famine of 1674
+event = {
+	id = 65154
+	random = no
+	country = MTR
+	name = "EVENTNAME65154" #Famine of 1674
+	desc = "EVENTHIST65154"
+	#-#In 1674 famine has struck Mataram.
+
+	date = { day = 1 month = january year = 1674 }
+	offset = 270
+	deathdate = { day = 29 month = december year = 1674 }
+
+	action_a = {
+		name = "CURSES"
+		command = { type = stability value = -1 }
+		command = { type = population which = -2 value = -3000 }
+	}
+}
+
+#(1675) Rebellion in Mataram
+event = {
+	id = 234208
+	random = no
+	country = MTR
+	name = "EVENTNAME234208" #Rebellion in Mataram
+	desc = "EVENTHIST234208"
+	#-#Rebellion in Mataram, with help from Trunojoyo. Makassarese exiles attacked ports on north coast of Java. Trunojoyo of Madura took Surabaya. Rebels appeal to Islamic sentiments among the common people against both the court of Mataram and the VOC.
+
+	date = { day = 1 month = january year = 1675 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1676 }
+
+	action_a = {
+		name = "ACTIONNAME234208A" #Crush the rebels
+		command = { type = stability value = -2 }
+		command = { type = revolt which = -2 }
+		command = { type = revolt which = 704 } #Surabaja
+		command = { type = revoltrisk which = 60 value = 3 }
+	}
+}
+
+#(1705) Four years of warfare
+event = {
+	id = 234209
+	random = no
+	country = MTR
+	name = "EVENTNAME234209" #Four years of warfare
+	desc = "EVENTHIST234209"
+	#-#Army of Paku Buwana I with VOC help took the court of Mataram at Kartasura. (The VOC bribed the commander of the troops at Kartasura, allowing them to take Salatiga and other approaches without significant resistance.) Raden Surya Kusuma is strangled; other officials who remain are allowed to keep their posts. Amangkurat III fled to Surapati with the pusaka (emblems or heirlooms of the house of Mataram) and moveable assets in gold and jewels. Four years of warfare began.
+
+	date = { day = 1 month = june year = 1705 }
+	offset = 10
+	deathdate = { day = 1 month = october year = 1705 }
+
+	action_a = {
+		name = "ACTIONNAME234209A" #Take the court!
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 48 value = 3 }
+	}
+}
+
+#(1705) Mataram becomes VOC's protectorate (Mataram's part)
+event = {
+	id = 234210
+	trigger = {
+		owned = { province = 702 data = HOL } #Jakarta
+		NOT = {	vassal = { country = HOL country = MTR } }
+		event = 3503 #HOL: Vereenigde Oostindische Compagnie
+	}
+	random = no
+	country = MTR
+	name = "EVENTNAME234210" #Mataram becomes VOC's protectorate
+	desc = "EVENTHIST234210"
+	#-#Paku Buwana I made a deal with the VOC: Mataram debts to VOC were wiped out; East Madura went to VOC control; Semarang was officially a VOC city after years of occupation; Cirebon was officially a VOC protectorate; VOC got extensive trade rights; Javanese sailors must stick to their home waters; Mataram must deliver rice on demand to the VOC at a price set by the VOC. In addition, the two sides agreed that no other European nation will be allowed to build factories or fortifications anywhere on Java.
+
+	date = { day = 5 month = october year = 1705 }
+
+	action_a = {
+		name = "ACTIONNAME234210A" #Make a deal with VOC
+		command = { type = relation which = HOL value = 100 }
+		command = { type = trade value = -200 }
+		command = { type = naval value = -200 }
+		command = { type = trigger which = 186404 } #HOL: Mataram becomes VOC's protectorate
+	}
+	action_b = {
+		name = "ACTIONNAME234210B" #Don't make a deal
+		command = { type = relation which = HOL value = -100 }
+		command = { type = treasury value = -200 } #Mataram debts
+	}
+}
+
+#(1717) Jaya Puspita's rebellion
+event = {
+	id = 234211
+	trigger = {
+		owned = { province = 704 data = -1 } #Surabaja
+		vassal = { country = HOL country = MTR }
+	}
+	random = no
+	country = MTR
+	name = "EVENTNAME234211" #Jaya Puspita's rebellion
+	desc = "EVENTHIST234211"
+	#-#The son of the Adipati of Surabaya, Jaya Puspita, led a renewed rebellion against Mataram in the areas around Surabaya, Kediri, Probolinggo, Balambangan, and Madura, with help from Bali. The VOC organized further reinforcements to counter the threat.
+
+	date = { day = 1 month = january year = 1717 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1718 }
+
+	action_a = {
+		name = "ACTIONNAME234211A" #Crush them!
+		command = { type = provincetax which = 704 value = -1 } #Surabaja
+		command = { type = revolt which = 704 } #Surabaja
+		command = { type = revolt which = 704 } #Surabaja
+	}
+}
+
+#(1719) Court Rebellion
+event = {
+	id = 65155
+	random = no
+	country = MTR
+	name = "EVENTNAME65155" #Court Rebellion
+	desc = "EVENTHIST65155"
+	#-#After Amangkurat IV took rule in Mataram, a court rebellion broke out almost immediately and rebel princes fled eastward. A combined VOC and Mataram force drove the rebels back from Kediri to Malang.
+
+	date = { day = 22 month = february year = 1719 }
+	offset = 20
+	deathdate = { day = 1 month = may year = 1719 }
+
+	action_a = {
+		name = "ACTIONNAME65152A" #Rebellion!
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 24 value = 4 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#(1728) Court intrigue by Pangeran Mangkunegara
+event = {
+	id = 234212
+	random = no
+	country = MTR
+	name = "EVENTNAME234212" #Court intrigue by Pangeran Mangkunegara
+	desc = "EVENTHIST234212"
+	#-#Court intrigues in Kartasura result in Pangeran Mangkunegara being sent into exile by Dutch.
+
+	date = { day = 1 month = january year = 1728 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1729 }
+
+	action_a = {
+		name = "ACTIONNAME234212A" #Exile Mangkunegara!
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1742) Sunan Kuning's rebellion
+event = {
+	id = 234213
+	trigger = {
+		owned = { province = 703 data = -1 } #Bandung
+		vassal = { country = HOL country = MTR }
+		event = 3503 #HOL: Vereenigde Oostindische Compagnie
+	}
+	random = no
+	country = MTR
+	name = "EVENTNAME234213" #Sunan Kuning's rebellion
+	desc = "EVENTHIST234213"
+	#-#A popular rebellion under Sunan Kuning, a grandson of Amangkurat III, against the VOC and Mataram took hold in the countryside. Nata Kusuma, Pangeran Mas Said and the rebellious Chinese from Batavia contribute. The rebellion took Kartasura and held it for four months; Paku Buwana II fled with his family.
+
+	date = { day = 1 month = january year = 1742 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1743 }
+
+	action_a = {
+		name = "ACTIONNAME234213A" #Crush them!
+		command = { type = stability value = -3 }
+		command = { type = revolt which = 703 } #Bandung
+		command = { type = revolt which = 703 } #Bandung
+		command = { type = province_revoltrisk which = 703 value = 3 } #Bandung
+	}
+}
+
+#(1743) Paku Buwana II gives VOC East Java
+event = {
+	id = 234214
+	trigger = {
+		owned = { province = 704 data = -1 } #Surabaja
+		vassal = { country = HOL country = MTR }
+		event = 3503 #HOL: Vereenigde Oostindische Compagnie
+		NOT = { countrysize = 1 }
+	}
+	random = no
+	country = MTR
+	name = "EVENTNAME234214" #Paku Buwana II gives VOC East Java
+	desc = "EVENTHIST234214"
+	#-#Paku Buwana II gave VOC Surabaya, Rembang, Jepara and claims to easternmost Java and West Madura. VOC received a say in court appointments.
+
+	date = { day = 11 month = november year = 1743 }
+
+	action_a = {
+		name = "ACTIONNAME234214A" #Give them East Java
+		command = { type = secedeprovince which = HOL value = 704 } #Surabaja
+		command = { type = relation which = HOL value = 100 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = treasury value = 200 }
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 24 value = 3 }
+	}
+	action_b = {
+		name = "ACTIONNAME234214B" #That land is ours!
+		command = { type = relation which = HOL value = -100 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1746) Mangkubumi's rebellion
+event = {
+	id = 234215
+	trigger = {
+		vassal = { country = HOL country = MTR }
+		event = 3503 #HOL: Vereenigde Oostindische Compagnie
+	}
+	random = no
+	country = MTR
+	name = "EVENTNAME234215" #Mangkubumi's rebellion
+	desc = "EVENTHIST234215"
+	#-#Pangeran Mangkubumi, disgusted with capitulations to the VOC (and being the target of court intrigues to take away his lands), announced full-scale rebellion. He was joined by Pangeran Mas Said.
+
+	date = { day = 1 month = january year = 1746 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1747 }
+
+	action_a = {
+		name = "DARN"
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 108 value = 9 }
+	}
+}
+
+#(1748) Mangkubumi attacks Surakarta
+event = {
+	id = 234216
+	trigger = {
+		event = 234215 #MTR: Mangkubumi's rebellion
+		owned = { province = 703 data = -1 } #Bandung
+	}
+	random = no
+	country = MTR
+	name = "EVENTNAME234216" #Mangkubumi attacks Surakarta
+	desc = "EVENTHIST234216"
+	#-#Mangkubumi's rebel forces attacked Surakarta.
+
+	date = { day = 1 month = january year = 1748 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1749 }
+
+	action_a = {
+		name = "DARN"
+		command = { type = revolt which = 703 } #Bandung
+	}
+}
+
+#(1750) Mas Said attacks Surakarta
+event = {
+	id = 234217
+	trigger = {
+		event = 234215 #MTR: Mangkubumi's rebellion
+		owned = { province = 703 data = -1 } #Bandung
+	}
+	random = no
+	country = MTR
+	name = "EVENTNAME234217" #Mas Said attacks Surakarta
+	desc = "EVENTHIST234217"
+	#-#Mas Said attacked Surakarta for Mangkubumi.
+
+	date = { day = 1 month = january year = 1750 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1751 }
+
+	action_a = {
+		name = "DARN"
+		command = { type = revolt which = 703 } #Bandung
+	}
+}
+
+#(1755) Kraton Yogyakarta
+event = {
+	id = 234225
+	trigger = {
+		monarch = 093021 #Hamengku Buwana I °
+		owned = { province = 703 data = -1 } #Bandung
+	}
+	random = no
+	country = MTR
+	name = "EVENTNAME234225" #Kraton Yogyakarta
+	desc = "EVENTHIST234225"
+	#-#In 1755 Hamengku Buwana I built the Kraton at Yogyakarta.
+
+	date = { day = 1 month = january year = 1755 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1756 }
+
+	action_a = {
+		name = "ACTIONNAME234225A" #Build kraton
+		command = { type = treasury value = -500 }
+		command = { type = gainmanufactory which = 703 value = luxury } #Bandung
+	}
+	action_b = {
+		name = "ACTIONNAME234225B" #We don't have money
+		command = { type = vp value = -50 }
+	}
+}
+
+#(1755) Treaty of Gijanti
+event = {
+	id = 234218
+	trigger = {
+		event = 3503 #HOL: Vereenigde Oostindische Compagnie
+		event = 234215 #MTR: Mangkubumi's rebellion
+	}
+	random = no
+	country = MTR
+	name = "EVENTNAME234218" #Treaty of Gijanti
+	desc = "EVENTHIST234218"
+	#-#Sultan Hamengku Buwana got VOC recognition of title and lands. Separation of Yogyakarta and Surakarta into two separate principalities. Treaty required Sultan Hamengku Buwana to ally himself with the VOC against Mas Said.
+
+	date = { day = 13 month = february year = 1755 }
+
+	action_a = {
+		name = "ACTIONNAME234218A" #Run to the Dutch
+		command = { type = stability value = 1 }
+		command = { type = relation which = HOL value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME234218B" #Be strong and independent
+		command = { type = stability value = -1 }
+		command = { type = relation which = HOL value = -100 }
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+	}
+}
+
+#(1758) Mas Said becomes Mangku Negara I (part 1)
+event = {
+	id = 234219
+	trigger = {
+		monarch = 093021 #Hamengku Buwana I °
+		owned = { province = 703 data = -1 } #Bandung
+		NOT = { event = 234220 } #MTR: Mas Said becomes Mangku Negara I
+	}
+	random = no
+	country = MTR
+	name = "EVENTNAME234219" #Mas Said becomes Mangku Negara I
+	desc = "EVENTHIST234219"
+	#-#Hostilities between the VOC, Yogya, Surakarta and Pangeran Mas Said ended. Mas Said became Pangeran Mangku Negara I with his court also at Surakarta. VOC had control of all the north coast provinces.
+
+	date = { day = 1 month = january year = 1758 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1759 }
+
+	action_a = {
+		name = "ACTIONNAME234219A" #Support Hamengku Buwana I
+		command = { type = stability value = 1 }
+		command = { type = relation which = HOL value = 50 }
+		command = { type = province_revoltrisk which = 703 value = -3 } #Bandung
+		command = { type = sleepevent which = 234220 } #MTR: Mas Said becomes Mangku Negara I
+	}
+	action_b = {
+		name = "ACTIONNAME234219B" #Support Paku Buwana III
+		command = { type = stability value = 1 }
+		command = { type = relation which = HOL value = 50 }
+		command = { type = province_revoltrisk which = 703 value = -3 } #Bandung
+		command = { type = sleepmonarch which = 093021 } #Hamengku Buwana I °
+		command = { type = sleepmonarch which = 093022 } #Hamengku Buwana II °
+		command = { type = wakemonarch which = 093019 } #Pakubuwana III
+		command = { type = wakemonarch which = 093020 } #Pakubuwana IV
+		command = { type = sleepevent which = 234220 } #MTR: Mas Said becomes Mangku Negara I
+	}
+	action_c = {
+		name = "ACTIONNAME234219C" #Support Mangku Negara I
+		command = { type = stability value = -1 }
+		command = { type = relation which = HOL value = 50 }
+		command = { type = province_revoltrisk which = 703 value = -3 } #Bandung
+		command = { type = sleepmonarch which = 093021 } #Hamengku Buwana I °
+		command = { type = sleepmonarch which = 093022 } #Hamengku Buwana II °
+		command = { type = wakemonarch which = 093023 } #Mangku Negara I °
+		command = { type = wakemonarch which = 093024 } #Mangku Negara II °
+		command = { type = sleepevent which = 234220 } #MTR: Mas Said becomes Mangku Negara I
+	}
+}
+#(1758) Mas Said becomes Mangku Negara I (part 2)
+event = {
+	id = 234220
+	trigger = {
+		monarch = 093019 #Pakubuwana III
+		owned = { province = 703 data = -1 }
+		event = 3503 #HOL: Vereenigde Oostindische Compagnie
+		NOT = { event = 234219 } #MTR: Mas Said becomes Mangku Negara I
+	}
+	random = no
+	country = MTR
+	name = "EVENTNAME234219" #Mas Said becomes Mangku Negara I
+	desc = "EVENTHIST234219"
+	#-#Hostilities between the VOC, Yogya, Surakarta and Pangeran Mas Said ended. Mas Said became Pangeran Mangku Negara I with his court also at Surakarta. VOC had control of all the north coast provinces.
+
+	date = { day = 1 month = january year = 1758 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1759 }
+
+	action_a = {
+		name = "ACTIONNAME234219B" #Support Paku Buwana III
+		command = { type = stability value = 1 }
+		command = { type = relation which = HOL value = 50 }
+		command = { type = province_revoltrisk which = 703 value = -3 } #Bandung
+		command = { type = sleepevent which = 234219 } #MTR: Mas Said becomes Mangku Negara I
+	}
+	action_b = {
+		name = "ACTIONNAME234219A" #Support Hamengku Buwana I
+		command = { type = stability value = -1 }
+		command = { type = relation which = HOL value = 50 }
+		command = { type = province_revoltrisk which = 703 value = -3 } #Bandung
+		command = { type = sleepmonarch which = 093019 } #Pakubuwana III
+		command = { type = sleepmonarch which = 093020 } #Pakubuwana IV
+		command = { type = wakemonarch which = 093021 } #Hamengku Buwana I °
+		command = { type = wakemonarch which = 093022 } #Hamengku Buwana II °
+		command = { type = sleepevent which = 234219 } #MTR: Mas Said becomes Mangku Negara I
+	}
+	action_c = {
+		name = "ACTIONNAME234219C" #Support Mangku Negara I
+		command = { type = stability value = -1 }
+		command = { type = relation which = HOL value = 50 }
+		command = { type = province_revoltrisk which = 703 value = -3 } #Bandung
+		command = { type = sleepmonarch which = 093019 } #Pakubuwana III
+		command = { type = sleepmonarch which = 093020 } #Pakubuwana IV
+		command = { type = wakemonarch which = 093023 } #Mangku Negara I °
+		command = { type = wakemonarch which = 093024 } #Mangku Negara II °
+		command = { type = sleepevent which = 234219 } #MTR: Mas Said becomes Mangku Negara I
+	}
+}
+
+#(1785) Fortification of Yogyakarta
+event = {
+	id = 234221
+	trigger = {
+		monarch = 093021 #Hamengku Buwana I °
+		owned = { province = 703 data = -1 } #Bandung
+	}
+	random = no
+	country = MTR
+	name = "EVENTNAME234221" #Fortification of Yogyakarta
+	desc = "EVENTHIST234221"
+	#-#Future Hamengku Buwana II of Yogya built fortifications around the Kraton.
+
+	date = { day = 1 month = january year = 1785 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1786 }
+
+	action_a = {
+		name = "ACTIONNAME234221A" #Build fortification
+		command = { type = treasury value = -100 }
+		command = { type = fortress which = 703 value = 1 } #Bandung
+	}
+	action_b = {
+		name = "ACTIONNAME234221B" #We don't have money
+		command = { type = vp value = -20 }
+	}
+}
+
+#(1790) Paku Buwana IV's plan
+event = {
+	id = 234222
+	trigger = {
+		monarch = 093020 #Pakubuwana IV
+		owned = { province = 703 data = -1 }
+		event = 3503 #HOL: Vereenigde Oostindische Compagnie
+	}
+	random = no
+	country = MTR
+	name = "EVENTNAME234222" #Paku Buwana IV's plan
+	desc = "EVENTHIST234222"
+	#-#Rumors spread that Paku Buwana IV was planning a massacre of Dutch in Java, and tookover of the Yogya and Mangkunegara courts. Forces from Yogya and VOC surrounded Surakarta. Paku Buwana IV ordered his advisors to leave court; VOC sent them into exile.
+
+	date = { day = 1 month = january year = 1790 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1791 }
+
+	action_a = {
+		name = "DARN"
+		command = { type = ADM which = -2 value = 60 }
+		command = { type = relation which = HOL value = -50 }
+		command = { type = province_revoltrisk which = 703 value = 3 } #Bandung
+	}
+}
+
+#(1796) Mangku Negara II inherits court
+event = {
+	id = 234223
+	trigger = {
+		monarch = 093024 #Mangku Negara II °
+		event = 3503 #HOL: Vereenigde Oostindische Compagnie
+	}
+	random = no
+	country = MTR
+	name = "EVENTNAME234223" #Mangku Negara II inherits court
+	desc = "EVENTHIST234223"
+	#-#Mangku Negara II inherits court, but much of the treasury was stolen by the VOC resident at Surakarta.
+
+	date = { day = 1 month = january year = 1796 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1796 }
+
+	action_a = {
+		name = "ACTIONNAME234223A" #The treasury was stolen!
+		command = { type = treasury value = -100 }
+		command = { type = relation which = HOL value = -50 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 234001

@@ -1,0 +1,421 @@
+#Oldenburg (OLD)
+
+#See AGCEEP_Alt_Germany.eue for KoG Alternative events
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1429) Friesland still supports the pirates - Ahistorical
+event = {
+	id = 247011 #triggered by FRI_171005 B
+	trigger = {
+		NOT = {
+			war = { country = FRI country = OLD }
+		}
+	}
+	random = no
+	country = OLD
+	name = "EVENTNAME222002" #Friesland still supports the pirates
+	desc = "EVENTHIST222002"
+	#We cannot tolerate such activities...
+
+	action_a = {
+		name = "ACTIONNAME222002A" #Act, but not at once
+		command = { type = casusbelli which = FRI value = 72 }
+	}
+	action_b = {
+		name = "WAR"
+		command = { type = war which = FRI }
+		command = { type = relation which = DAN value = 5 }
+		command = { type = relation which = BRE value = 15 }
+		command = { type = relation which = SHL value = 15 }
+		command = { type = relation which = MEC value = 25 }
+	}
+}
+
+#(1420-1550) Frisians dominate our lands
+event = {
+	id = 247012
+	trigger = {
+		vassal = { country = FRI country = OLD }
+	}
+	random = no
+	country = OLD
+	name = "EVENTNAME247012" #Frisian dominance
+	desc = "EVENTHIST247012"
+	#-#Oldenburg is now governed by an East Frisian...
+
+	date = { day = 4 month = january year = 1420 }
+	offset = 90
+	deathdate = { day = 14 month = november year = 1550 }
+
+	action_a = {
+		name = "ACTIONNAME247012A" #No freedom
+		command = { type = flagname which = "Frisia" }
+		command = { type = stability value = -1 }
+		command = { type = relation which = FRI value = -50 }
+		command = { type = setflag which = [FrisianDominance] }
+	}
+}
+
+#(1420-1550) Free from Frisian control
+event = {
+	id = 247013
+	trigger = {
+		flag = [FrisianDominance]
+		NOT = {
+			vassal = { country = FRI country = OLD }
+		}
+	}
+	random = no
+	country = OLD
+	name = "EVENTNAME247013" #End of Frisian dominance
+	desc = "EVENTHIST247013"
+	#-#Oldenburg will rule on its own.
+
+	date = { day = 4 month = january year = 1420 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1550 }
+
+	action_a = {
+		name = "FREEDOM"
+		command = { type = flagname which = "" }
+		command = { type = stability value = 1 }
+		command = { type = relation which = FRI value = -20 }
+		command = { type = clrflag which = [FrisianDominance] }
+	}
+}
+
+#(1447 or 1463) Burgundian Claims on Oldenburg - Ahistorical
+event = {
+	id = 20315 #triggered by BUR_28006
+	random = no
+	country = OLD
+	name = "EVENTNAME20315" #Burgundian Claims on Oldenburg
+	desc = "EVENTHIST20313"
+	#-#The Emperor has made Philip the Good of Burgundy King of Lotharingia, reviving the ninth century Kingdom of Lothar. The emperor has granted some of our lands to Burgundy!
+
+	action_a = {
+		name = "DAMN"
+		command = { type = casusbelli which = BUR value = 2500 }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = CAV which = -2 value = 6000 }
+	}
+}
+
+#(1448-1481) Christian of Oldenburg is elected King of Denmark -I-
+event = {
+	id = 247000 #triggered by DAN_159032 A
+	random = no
+	country = OLD
+	name = "EVENTNAME247000" #Christian of Oldenburg is elected King of Denmark
+	desc = "EVENTHIST247000"
+	#-#When Christoffer III died without heirs in 1448, the Rigsraad, the Danish convention of nobles, first chose Count Adolf VIII of Holstein. But since he was himself old and childless, he suggested to crown his nephew, Christian of Oldenburg instead, and so did the Rigsraad. Christian ascended the Danish and Norwegian throne and left the County of Oldenburg to his younger brother Gerhard.
+
+	action_a = {
+		name = "ACTIONNAME247000A" #Gerhard accepts Oldenburg as a Danish vassal
+		command = { type = relation which = DAN value = 100 }
+		command = { type = relation which = NOR value = 75 }
+		command = { type = relation which = SWE value = 50 }
+		command = { type = relation which = SHL value = 50 }
+		command = { type = wakemonarch which = 0100502 } #Gerhard
+	}
+	action_b = {
+		name = "ACTIONNAME247000B" #Gerhard chooses to run a independent Oldenburg
+		command = { type = breakvassal which = DAN }
+		command = { type = relation which = DAN value = -100 }
+		command = { type = relation which = NOR value = -75 }
+		command = { type = relation which = SWE value = -50 }
+		command = { type = relation which = SHL value = -50 }
+		command = { type = relation which = MEC value = 25 }
+		command = { type = relation which = POM value = 25 }
+		command = { type = relation which = BRE value = 50 }
+		command = { type = wakemonarch which = 0100502 } #Gerhard
+	}
+}
+#(1448-1481) Christian of Oldenburg is elected King of Denmark -II-
+event = {
+	id = 247001 #triggered by DAN_159032 B
+	random = no
+	country = OLD
+	name = "EVENTNAME247001" #Christian of Oldenburg is elected King of Denmark
+	desc = "EVENTHIST247001"
+	#-#When Christoffer III died without heirs in 1448, the Rigsraad, the Danish convention of nobles, first chose Count Adolf VIII of Holstein. But since he was himself old and childless, he suggested to crown his nephew, Christian of Oldenburg instead, and so did the Rigsraad. Christian ascended the Danish and Norwegian throne and tried to incorperate Oldenburg into Denmark instead of leaving the county to his younger brother Gerhard.
+
+	action_a = {
+		name = "ACTIONNAME247001A" #Accept incorporation into Denmark (End Game)
+		command = { type = trigger which = 159033 } #DAN: Oldenburg is incorporated into Denmark
+	}
+	action_b = {
+		name = "ACTIONNAME247001B" #Demand that Gerhard rules Oldenburg
+		command = { type = stability value = -3 }
+		command = { type = relation which = DAN value = -100 }
+		command = { type = relation which = NOR value = -75 }
+		command = { type = relation which = SWE value = -50 }
+		command = { type = relation which = SHL value = -25 }
+		command = { type = relation which = MEC value = 25 }
+		command = { type = relation which = POM value = 25 }
+		command = { type = relation which = BRE value = 50 }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = wakemonarch which = 0100502 } #Gerhard
+	}
+	action_c = {
+		name = "ACTIONNAME247001C" #Demand that Gerhard rules Oldenburg independent of Denmark
+		command = { type = stability value = -6 }
+		command = { type = breakvassal which = DAN }
+		command = { type = relation which = DAN value = -200 }
+		command = { type = relation which = NOR value = -150 }
+		command = { type = relation which = SWE value = -100 }
+		command = { type = relation which = SHL value = -50 }
+		command = { type = relation which = MEC value = 50 }
+		command = { type = relation which = POM value = 50 }
+		command = { type = relation which = BRE value = 100 }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = wakemonarch which = 0100502 } #Gerhard
+	}
+}
+
+#(1460-1481) Oldenburg inherits Holstein
+event = {
+	id = 247002 #triggered by SHL_279004 A
+	random = no
+	country = OLD
+	name = "EVENTNAME247002" #Oldenburg inherits Holstein
+	desc = "EVENTHIST247002"
+	#-#As expected long before, Adolf VIII Duke of Schleswig and Count of Holstein died childlessly in 1459. His closest male relative was his nephew, Christian of Oldenburg. Christian was proclaimed Duke of Schleswig and Count of Holstein after swearing that both territories would remain 'up ewig, ungedelt' (eternally undivided) and granting privileges to the estates in a charter signed in Riben on March 5th 1460.
+
+	action_a = {
+		name = "ACTIONNAME247002A" #Inherit Schleswig and Holstein and grant the privileges
+		command = { type = inherit which = SHL }
+		command = { type = addcore which = 306 } #Holstein
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = stability value = 1 }
+	}
+}
+#(1460-1481) Christian of Oldenburg is elected Duke of Schleswig and Count of Holstein
+event = {
+	id = 247003 #triggered by SHL_279004 B
+	trigger = {
+		NOT = {
+			vassal = { country = SHL country = OLD }
+		}
+	}
+	random = no
+	country = OLD
+	name = "EVENTNAME247003" #Christian of Oldenburg is elected Duke of Schleswig and Count of Holstein
+	desc = "EVENTHIST247003"
+	#-#As expected long before, Adolf VIII Duke of Schleswig and Count of Holstein died childlessly in 1459. His closest male relative was his nephew, Christian of Oldenburg. Christian was proclaimed Duke of Schleswig and Count of Holstein after swearing that both territories would remain 'up ewig, ungedelt' (eternally undivided) and granting privileges to the estates in a charter signed in Riben on March 5th 1460. He also had to guarantee that both territories would be governed separately from Denmark.
+
+	action_a = {
+		name = "ACTIONNAME247003A" #Grant the privileges of Riben
+		command = { type = vassal which = SHL }
+		command = { type = alliance which = SHL }
+		command = { type = relation which = SHL value = 200 }
+	}
+}
+#(1460-1481) Christian of Oldenburg is elected Duke of Schleswig and Count of Holstein
+event = {
+	id = 247009 #triggered by SHL_279004 B
+	trigger = {
+		vassal = { country = SHL country = OLD }
+	}
+	random = no
+	country = OLD
+	name = "EVENTNAME247003" #Christian of Oldenburg is elected Duke of Schleswig and Count of Holstein
+	desc = "EVENTHIST247003"
+	#-#As expected long before, Adolf VIII Duke of Schleswig and Count of Holstein died childlessly in 1459. His closest male relative was his nephew, Christian of Oldenburg. Christian was proclaimed Duke of Schleswig and Count of Holstein after swearing that both territories would remain 'up ewig, ungedelt' (eternally undivided) and granting privileges to the estates in a charter signed in Riben on March 5th 1460. He also had to guarantee that both territories would be governed separately from Denmark.
+
+	action_a = {
+		name = "ACTIONNAME247003A" #Grant the privileges of Riben
+		command = { type = breakvassal which = SHL }
+		command = { type = stability value = 3 }
+		command = { type = dynastic which = SHL }
+		command = { type = relation which = SHL value = 150 }
+	}
+}
+
+#(1575-1578) Inheritance of Frisia
+event = {
+	id = 247008 #triggered by FRI_171000 A
+	random = no
+	country = OLD
+	name = "EVENTNAME247008" #Inheritance of Frisia
+	desc = "EVENTHIST171000"
+	#-#The last ruler of Friesland was Maria of Jever, who ruled until 1575. After her death, Friesland became a part of Oldenburg, as per her instructions which where initiated by Hero Oomkens von Esens who was a Frisian nobleman of Wittmund. Hero arranged in 1489 by his marriage to Armgard Countess of Oldenburg a set of instructions that upon the lack of heirs within the old Frisian aristocracy, that Frisia lands would become a part of Oldenburg.
+
+	action_a = {
+		name = "GOOD"
+		command = { type = inherit which = FRI }
+	}
+}
+
+#(1579-1582) Frisian freedom
+event = {
+	id = 247010
+	trigger = {
+		owned = { province = 337 data = -1 } #Friesen
+		control = { province = 337 data = -1 }
+	}
+	random = no
+	country = OLD
+	name = "EVENTNAME247010" #Frisian mayhem
+	desc = "EVENTHIST247010"
+	#-#In January 23, 1579 the northern seven provinces of the Low Countries signed the Union of Utrecht. In the declaration, these provinces are Brabant, Guelders, Holland, Flanders, Zeeland, Frisia, Mechelen and Utrecht. Although parts of Frisia where already free, the eastern half was held by Oldenburg. This Frisian speaking area known as Ommelanden, declared its separation from the influence of the Saxon city of Groningen. The province quickly joined the other parts of Frisia and followed the other Low Countries in 1581 in signing the Oath of Abjuration.
+
+	date = { day = 23 month = January year = 1579 }
+	offset = 40
+	deathdate = { day = 29 month = december year = 1582 }
+
+	action_a = {
+		name = "ACTIONNAME247010A" #Let them go
+		command = { type = independence which = FRI }
+		command = { type = badboy value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME247010B" #Try to keep Frisia
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = stability value = -2 }
+	}
+}
+
+#(1605-1609) The Evangelic Union
+event = {
+	id = 247004
+	trigger = {
+		 OR = {
+			religion = protestant
+			religion = reformed
+		}
+	}
+	random = no
+	country = OLD
+	name = "EVENTNAME3634" #The Evangelic Union
+	desc = "EVENTHIST247004"
+	#-#The Holy Roman Empire had a fragile balance, split between 10 major and nearly 400 minor states and principalities, as well as two opposing religions. The power of the Emperor is quite limited beyond his direct domains and the erratic and inconsistent behavior of some of them as Rudolph II increases frictions. In 1608, the Protestant city of Donauwerth refused Catholics the right to practice their cult and is banned from the Empire. As a reaction, most German Protestant states form the Evangelic Union to defend their freedom. The count of Oldenburg, however, stayed neutral.
+
+	date = { day = 1 month = january year = 1605 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1609 }
+
+	action_a = {
+		name = "ACTIONNAME3634B" #Stay Neutral
+		command = { type = relation which = BRA value = -100 }
+		command = { type = relation which = BAD value = -100 }
+		command = { type = relation which = HES value = -100 }
+		command = { type = relation which = PFA value = -100 }
+		command = { type = relation which = SAC value = -100 }
+		#command = { type = relation which = THU value = -100 } #Bayreuth
+		command = { type = relation which = HAB value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME3634A" #Prepare to Join
+		command = { type = relation which = FRA value = 100 }
+		command = { type = relation which = BRA value = 150 }
+		command = { type = relation which = BAD value = 150 }
+		command = { type = relation which = HES value = 150 }
+		command = { type = relation which = PFA value = 150 }
+		command = { type = relation which = SAC value = 150 }
+		#command = { type = relation which = THU value = 150 } #Bayreuth
+		command = { type = relation which = SHL value = 150 }
+		command = { type = relation which = KLE value = 100 }
+		command = { type = relation which = KOL value = 50 }
+		command = { type = relation which = BAY value = 50 }
+		command = { type = relation which = PAP value = -100 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = relation which = HAB value = -150 }
+		command = { type = sleepevent which = 247005 } #OLD: The Weser Toll
+	}
+}
+
+#(1648-1649) The Weser Toll
+event = {
+	id = 247005
+	trigger = { event = 247004 } #Possibly also an End of the Thirty Years War event
+	random = no
+	country = OLD
+	name = "EVENTNAME247005" #The Weser Toll
+	desc = "EVENTHIST247005"
+	#-#AS a reward for their neutrality in the Thirty Years War the emperor granted the Counts of Oldenburg the right to levy tolls on vessels passing along the Weser, which soon became a precious source of income for the Counts.
+
+	date = { day = 24 month = october year = 1648 }
+	offset = 100
+	deathdate = { day = 29 month = december year = 1649 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = provincetax which = 335 value = 4 } #Oldenburg
+		command = { type = domestic which = mercantilism value = 2 }
+		command = { type = trade value = 250 }
+		command = { type = relation which = HAB value = 50 }
+	}
+}
+
+#(1667) Denmark inherits Oldenburg (Holstein exists)
+event = {
+	id = 247006
+	trigger = {
+		exists = DAN
+		exists = SHL
+	}
+	random = no
+	country = OLD
+	name = "EVENTNAME247006" #Count Anton Günther dies without an heir
+	desc = "EVENTHIST247006"
+	#-#In 1667 Count Anton Günther died without a direct successor. The Count's closest relatives and potential heirs, Frederik III., King of Denmark, and Christian Albert of Holstein-Gottorp, had achieved a compact in 1649 giving the biggest part of Oldenburg to Denmark. Oldenburg would be danish for more than hundred years.
+
+	date = { day = 18 month = june year = 1667 }
+
+	action_a = {
+		name = "ACTIONNAME247006A" #Denmark shall inherit Oldenburg (End Game)
+		command = { type = trigger which = 159050 } #DAN: Denmark inherits Oldenburg
+	}
+	action_b = {
+		name = "ACTIONNAME247006B" #Oldenburg to the Duke of Holstein-Gottorp (End Game)
+		command = { type = trigger which = 279010 } #SHL: Holstein inherits Oldenburg
+	}
+	action_c = {
+		name = "ACTIONNAME247006C" #Choose a local noble and remain independent
+		command = { type = trigger which = 159051 } #DAN: Oldenburg ignores our claim
+		command = { type = stability value = -4 }
+		command = { type = relation which = DAN value = -200 }
+		command = { type = breakvassal which = DAN }
+		command = { type = relation which = SHL value = -150 }
+		command = { type = relation which = SWE value = 50 }
+		command = { type = revoltrisk which = 120 value = 10 }
+	}
+}
+#(1667) Denmark inherits Oldenburg (if Holstein doesn't exist)
+event = {
+	id = 247007
+	trigger = {
+		exists = DAN
+		NOT = { exists = SHL }
+	}
+	random = no
+	country = OLD
+	name = "EVENTNAME247006" #Count Anton Günther dies without an heir
+	desc = "EVENTHIST247006"
+	#-#In 1667 Count Anton Günther died without a direct successor. The Count's closest relatives and potential heirs, Frederik III., King of Denmark, and Christian Albert of Holstein-Gottorp, had achieved a compact in 1649 giving the biggest part of Oldenburg to Denmark. Oldenburg would be danish for more than hundred years.
+
+	date = { day = 18 month = june year = 1667 }
+
+	action_a = {
+		name = "ACTIONNAME247006A" #Denmark shall inherit Oldenburg (End Game)
+		command = { type = trigger which = 159050 } #DAN: Denmark inherits Oldenburg
+	}
+	action_b = {
+		name = "ACTIONNAME247006C" #Choose a local noble and remain independent
+		command = { type = trigger which = 159051 } #DAN: Oldenburg ignores our claim
+		command = { type = stability value = -4 }
+		command = { type = relation which = DAN value = -200 }
+		command = { type = breakvassal which = DAN }
+		command = { type = relation which = SWE value = 50 }
+		command = { type = revoltrisk which = 120 value = 10 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 247014

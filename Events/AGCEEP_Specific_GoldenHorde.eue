@@ -1,0 +1,751 @@
+#Golden Horde (STE)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419) The Disintegration of the Golden Horde
+event = {
+	id = 40056
+	random = no
+	country = STE
+	name = "EVENTNAME40056" #Court Intrigues
+	desc = "EVENTHIST40056"
+	#-#Following the invasion of Tamerlane, Golden Horde fell into vast disarray. Court intrigues and a lack of any strong personalities created a situation of perpetual civil war. Ulugh Muhammad's first attempt to grasp the power in Sarai ended with his expulsion after only a few months of rule. However, eight years later he would return with a vengeance.
+
+	date = { day = 29 month = december year = 1419 }
+
+	action_a = {
+		name = "ACTIONNAME40056A" #Support a new Khan
+		command = { type = wakemonarch which = 0128501 } #Dawlat Berdi
+		command = { type = wakemonarch which = 0128502 } #Baraq
+		command = { type = revoltrisk which = 83 value = 4 }
+		command = { type = revolt which = 458 } #only one revolt, in the capital #Volgograd
+		command = { type = stability value = -2 }
+		command = { type = CAV which = -2 value = 6000 }
+		command = { type = setflag which = [STE] }
+	}
+}
+
+#(1425) Muscovy tribute events
+event = {
+	id = 287010 #triggered by MOS_233000 A
+	random = no
+	country = STE
+	name = "EVENTNAME287010" #Tribute from Moscow
+	desc = "EVENTHIST287010"
+	#-#Moscow has sent us tribute in accordance with our overlorship of the region.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = dynastic which = RYA }
+		command = { type = relation which = RYA value = 25 }
+		command = { type = treasury value = 40 }
+	}
+}
+
+#(1426) Return of Ulugh Muhammad
+event = {
+	id = 40057
+	random = no
+	country = STE
+	name = "EVENTNAME40057" #Return of Ulugh Muhammad
+	desc = "EVENTHIST40057"
+	#-#While khans fought in Sarai, Ulugh Muhammad was biding his time and gaining strength. Finally, early in 1427 he decided that the time is ripe, and marched south on Sarai. Learning of his fast approach and lacking any support, khan Berke fled, leaving Sarai to Ulugh Muhammad. His return and long rule finally brought stability to Golden Horde.
+
+	date = { day = 29 month = december year = 1426 }
+
+	action_a = {
+		name = "ACTIONNAME40057A" #Accept his rule
+		command = { type = wakemonarch which = 0128503 } #Ulugh Muhammad
+		command = { type = stability value = -1 }
+		command = { type = MIL which = 2 value = 24 }
+		command = { type = CAV which = -2 value = 5000 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = revolt which = 463 } #Crimea
+		command = { type = revolt which = 466 } #Azow
+		command = { type = province_revoltrisk which = 463 value = 6 } #Crimea
+		command = { type = province_revoltrisk which = 466 value = 6 } #Azow
+		command = { type = sleepevent which = 287021 } #STE: Ulugh drives out the opposition
+		command = { type = sleepevent which = 287022 } #STE: Ulugh is defeated
+	}
+	action_b = {
+		name = "ACTIONNAME40057B" #Oppose Ulugh's return
+		command = { type = revoltrisk which = 18 value = 3 }
+		command = { type = stability value = -2 }
+		command = { type = revolt which = 458 } #Again, only in the capital #Volgograd
+		command = { type = revolt which = 458 } #Volgograd
+		command = { type = revolt which = 458 } #Volgograd
+		command = { type = revolt which = 463 } #Crimea
+		command = { type = revolt which = 466 } #Azow
+		command = { type = province_revoltrisk which = 463 value = 6 } #Crimea
+		command = { type = province_revoltrisk which = 466 value = 6 } #Azow
+		command = { type = domestic which = aristocracy value = 1 }
+	}
+}
+
+#(1427-1429) Ulugh drives out the opposition
+event = {
+	id = 287021
+	trigger = {
+		control = { province = 458 data = REB }
+	}
+	random = no
+	country = STE
+	name = "EVENTNAME287021" #Ulugh drives out the opposition
+	desc = "EVENTHIST287021"
+	#-#Ulugh has succeeded in taking the capital, and has re-established himself as khan.
+
+	date = { day = 1 month = january year = 1427 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1429 }
+
+	action_a = {
+		name = "ACTIONNAME287021A" #Now we must accept his rule
+		command = { type = wakemonarch which = 0128503 } #Ulugh Muhammad
+		command = { type = stability value = 1 }
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = sleepevent which = 287022 } #STE: Ulugh is defeated
+	}
+}
+#(1427-1429) Ulugh is defeated
+event = {
+	id = 287022
+	trigger = {
+		NOT = { event = 287021 }
+	}
+	random = no
+	country = STE
+	name = "EVENTNAME287022" #Ulugh is defeated
+	desc = "EVENTHIST287022"
+	#-#Ulugh's attempt to retake the capital failed. He now is attempting to establish a regime in the north.
+
+	date = { day = 1 month = january year = 1427 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1429 }
+
+	action_a = {
+		name = "ACTIONNAME287022A" #Allow Ulugh his consolation
+		command = { type = stability value = 1 }
+		command = { type = independence which = KAZ }
+		command = { type = trigger which = 40059 } #KAZ: Independence of Kazan
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = sleepevent which = 40058 } #STE: Ulugh Muhammad flees
+		command = { type = sleepevent which = 287023 } #STE: Ulugh Muhamad founds Khanate of Khazan
+	}
+	action_b = {
+		name = "ACTIONNAME287022B" #Fight for control of Kazan
+		command = { type = revolt which = 446 } #Kazan
+		command = { type = revolt which = 446 } #Kazan
+		command = { type = revolt which = 453 } #Ufa
+		command = { type = revolt which = 454 } #Samara
+		command = { type = sleepevent which = 40058 } #STE: Ulugh Muhammad flees
+	}
+}
+
+#(1427-1465) Hajj Giray founds Khanate of Crimea
+event = {
+	id = 287024
+	trigger = {
+		OR = {
+			control = { province = 463 data = REB }
+			control = { province = 466 data = REB }
+		}
+	}
+	random = no
+	country = STE
+	name = "EVENTNAME287024" #Hajj Giray founds Khanate of Crimea
+	desc = "EVENTHIST287024"
+	#-#Hajj Giray succeeded in breaking free of the Golden Horde and establishing his own Khanate. Thanks to Ottoman protection, this Khanate lasted much longer than the other Khanates of the Russian Steppe.
+
+	date = { day = 1 month = january year = 1427 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1465 }
+
+	action_a = {
+		name = "ACTIONNAME287024A" #Traitors
+		command = { type = independence which = CRI }
+		command = { type = trigger which = 40063 } #CRI: Cessation of Crimea
+		command = { type = sleepevent which = 287025 } #STE: Crimea remains part of the Horde
+	}
+}
+
+#(1428) Independence of the Uzbeks
+event = {
+	id = 287000
+	random = no
+	country = STE
+	name = "EVENTNAME287000" #Independence of the Uzbeks
+	desc = "EVENTHIST287000"
+	#-#By the 15th century,the power of the Golden Horde was in full decline. Its power in the former lands of the White Horde was feeble at best, non-existant at worst. In fact, many small Kingdoms had appeared in the east, the most powerful of all, being On's Kingdom, the precusor to the Khanate of Sibir. In 1428, in the city of Sibir, Abul Khayr was named the khan of the Uzbek Horde. The region finally had its own local ruler, but at the cost of the Golden Horde. However, with its principal lands in shambles, those centered around the Volga River, the khan of the Golden Horde could do little better than to accept the existence of Khayr's dominion, lest he wanted to provoke another conflict. And so in 1428, the Uzbek Khanate was free.
+
+	date = { day = 1 month = january year = 1428 }
+
+	action_a = {
+		name = "ACTIONNAME287000A" #Our hands are bound
+		command = { type = breakvassal which = UZB }
+		command = { type = dynastic which = UZB }
+		command = { type = secedeprovince which = UZB value = 1573 } #Tobolsk
+		command = { type = secedeprovince which = UZB value = 1571 } #Jalutorovsk
+		command = { type = secedeprovince which = UZB value = 578 } #Ichim
+		command = { type = secedeprovince which = UZB value = 512 } #Tenghiz
+		command = { type = relation which = UZB value = -100 }
+		command = { type = trigger which = 325004 } #UZB: Independence of the Uzbeks
+	}
+}
+
+#(1428-1433) Succession conflict in Muscovy
+event = {
+	id = 287006
+	trigger = {
+		NOT = {
+			event = 287012 #STE: Moscow throws off the yoke
+			war = { country = MOS country = STE }
+		}
+	}
+	random = no
+	country = STE
+	name = "EVENTNAME287006" #Succession conflict in Muscovy
+	desc = "EVENTHIST287006"
+	#-#Since the princes in Muscovy were unable to decide who would become the next grand duke after Vasily I's death, they asked the Khan as their overlord to appoint one. This was a common practice in the past, and so the Khan gladly accepted. The candidates were Yury Dmitrievich, the late Duke's brother, and the young Vasily Vasilievich, the late Duke's son. The latter had secured the support of the majority of tatar nobles, and thus the Khan decided in his favour.
+
+	date = { day = 1 month = january year = 1428 }
+	offset = 800
+	deathdate = { day = 8 month = february year = 1433 }
+
+	action_a = {
+		name = "ACTIONNAME287006A" #My choice is ...Vasily
+		command = { type = trigger which = 233006 } #MOS: The Khan accepts Vasily as the grand duke
+		command = { type = relation which = MOS value = 50 }
+		command = { type = treasury value = 50 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME287006B" #Let's give Yury a chance
+		command = { type = trigger which = 233005 } #MOS: The Khan puts Yury on the throne
+		command = { type = relation which = MOS value = 15 }
+		command = { type = stability value = -1 }
+		command = { type = sleepevent which = 233007 } #MOS: Grand Duke Vasily's wedding
+	}
+	action_c = {
+		name = "ACTIONNAME287006C" #Don't annoy me with this nonsense!
+		command = { type = stability value = -1 }
+		command = { type = relation which = MOS value = -50 }
+		command = { type = vp value = -5 }
+	}
+}
+
+#(1430-1500) Southern uluses are lost
+event = {
+	id = 287013
+	trigger = { exists = CRI }
+	random = no
+	country = STE
+	name = "EVENTNAME287013" #Southern uluses are lost
+	desc = "EVENTHIST287013"
+	#-#Once the crimean khanate was estabilished, the tatars around the Black Sea were no longer bound by loyality to the khan in Sarai, and the control over the territory was swiftly lost.
+
+	date = { day = 1 month = january year = 1430 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1500 }
+
+	action_a = {
+		name = "ACTIONNAME287013A" #Jackals!
+		command = { type = secedeprovince which = CRI value = 296 } #Jedisan
+		command = { type = secedeprovince which = CRI value = 319 } #Bujak
+		command = { type = secedeprovince which = CRI value = 459 } #Lugansk
+		command = { type = secedeprovince which = CRI value = 460 } #Donetsk
+		command = { type = secedeprovince which = CRI value = 461 } #Poltava
+		command = { type = secedeprovince which = CRI value = 462 } #Krementjug
+		command = { type = secedeprovince which = CRI value = 463 } #Crimea
+		command = { type = secedeprovince which = CRI value = 464 } #Kaffa
+		command = { type = secedeprovince which = CRI value = 465 } #Kerch
+		command = { type = secedeprovince which = CRI value = 469 } #Sochi/Abkhazia #Abkhazia
+		command = { type = secedeprovince which = CRI value = 470 } #Georgia/Kolkhis #Kolkhis
+	}
+}
+
+#(1435-1437) Flight of Ulugh Muhammad
+event = {
+	id = 40058
+	random = no
+	country = STE
+	name = "EVENTNAME40058" #Ulugh Muhammad flees
+	desc = "EVENTHIST40058"
+	#-#A growing discontent in Sarai led to revolt by his brother Ahmad, who forced Ulugh Muhammad to abandon his throne, and settle North along Volga in Bulgaria in a town of Qazan, creating an independent Khanate of Kazan.
+
+	date = { day = 1 month = january year = 1435 }
+	offset = 200
+	deathdate = { day = 1 month = january year = 1437 }
+
+	action_a = {
+		name = "ACTIONNAME40058A" #Let him go
+		command = { type = wakemonarch which = 0128504 } #Sayyid Ahmad I
+		command = { type = sleepmonarch which = 0128505 } #Sayyid Ahmad I
+		command = { type = stability value = -2 }
+		command = { type = revolt which = 463 } #Crimea
+		command = { type = revolt which = 463 } #Crimea
+		command = { type = revolt which = 466 } #Azow
+		command = { type = revolt which = 466 } #Azow
+		command = { type = sleepevent which = 40061 } #KAZ: Death of Ulugh Muhammed
+	}
+}
+
+#(1438-1440) Ulugh Muhamad founds Khanate of Khazan
+event = {
+	id = 287023
+	trigger = {
+		NOT = { exists = KAZ }
+		event = 40058
+	}
+	random = no
+	country = STE
+	name = "EVENTNAME287023" #Ulugh Muhamad founds Khanate of Kazan
+	desc = "EVENTHIST287023"
+	#-#After his failed attempt to rule in Crimea, Ulugh Muhammed founded the Kazan Khanate in 1437.
+
+	date = { day = 1 month = january year = 1438 }
+	offset = 200
+	deathdate = { day = 1 month = january year = 1440 }
+
+	action_a = {
+		name = "ACTIONNAME287023A" #At least he won't be coming back to Sarai
+		command = { type = independence which = KAZ }
+		command = { type = trigger which = 40059 } #KAZ: Independence of Kazan
+	}
+	action_b = {
+		name = "ACTIONNAME287023B" #Will he never give up?
+		command = { type = revoltrisk which = 18 value = 3 }
+		command = { type = stability value = -2 }
+		command = { type = revolt which = 446 } #Kazan
+		command = { type = revolt which = 446 } #Kazan
+		command = { type = revolt which = 453 } #Ufa
+		command = { type = revolt which = 454 } #Samara
+	}
+}
+
+#(1450) Tribute from Moscow
+event = {
+	id = 287011 #triggered by MOS_233001 A
+	random = no
+	country = STE
+	name = "EVENTNAME287011" #Tribute from Moscow
+	desc = "EVENTHIST287011"
+	#-#Moscow has sent us tribute in accordance with our overlorship of the region.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = dynastic which = RYA }
+		command = { type = relation which = RYA value = 25 }
+		command = { type = treasury value = 40 }
+	}
+}
+#(1450) Moscow throws off the yoke
+event = {
+	id = 287012 #triggered by MOS_233001 B
+	random = no
+	country = STE
+	name = "EVENTNAME287012" #Moscow throws off the yoke
+	desc = "EVENTHIST287012"
+	#-#Moscow no longer acknowledges our suzerainity.
+
+	action_a = {
+		name = "ACTIONNAME287012A" #This is not good
+		command = { type = relation which = MOS value = -250 }
+		command = { type = casusbelli which = MOS value = 60 }
+	}
+}
+
+#(1450-1500) The Khanate of Sibir
+event = {
+	id = 287001
+	trigger = {
+		OR = {
+			exists = SIB
+			owned = { province = 1573 data = -1 }
+			owned = { province = 510 data = -1 }
+			owned = { province = 511 data = -1 }
+			owned = { province = 512 data = -1 }
+			owned = { province = 578 data = -1 }
+			owned = { province = 1570 data = -1 }
+			owned = { province = 1571 data = -1 }
+		}
+		OR = {
+			event = 325003 #UZB: Khayr's Summer Residence
+			NOT = { event = 287000 } #STE: Independence of the Uzbeks
+		}
+	}
+	random = no
+	country = STE
+	name = "EVENTNAME287001" #The Khanate of Sibir
+	desc = "EVENTHIST287001"
+	#-#Following the disintegration of the Horde, descendents of On Khan formed the Khanate of Sibir, near the modern day city of Tyumen. They quickly established their domain which existed from Kurgan in the West, to Ichim in the East. This khanate would survive well into the 16th century until it was extinguished by cossacks from Russia.
+
+	date = { day = 1 month = january year = 1450 }
+	offset = 1
+	deathdate = { day = 1 month = january year = 1500 }
+
+	action_a = {
+		name = "ACTIONNAME287001A" #And so we lose all remainders of the White Horde
+		command = { type = independence which = SIB }
+		command = { type = breakvassal which = SIB }
+		command = { type = dynastic which = SIB }
+		command = { type = secedeprovince which = SIB value = 1570 } #Sadrinsk
+		command = { type = secedeprovince which = SIB value = 511 } #Kustanai
+		command = { type = secedeprovince which = SIB value = 510 } #Kurgan
+		command = { type = relation which = SIB value = -100 }
+		command = { type = trigger which = 325008 } #UZB: The Formation of the Sibir Khanate
+	}
+}
+
+#(1462-1465) Crimea remains part of the Horde
+event = {
+	id = 287025
+	trigger = {
+		NOT = {
+			exists = CRI
+			event = 287024 #STE: Hajj Giray founds Khanate of Crimea
+		}
+		OR = {
+			AND = {
+				owned = { province = 463 data = -1 } #Crimea
+				control = { province = 463 data = -1 } #Crimea
+			}
+			AND = {
+				owned = { province = 466 data = -1 } #Azow
+				NOT = { owned = { province = 463 data = -1 } } #Crimea
+			}
+		}
+	}
+	random = no
+	country = STE
+	name = "EVENTNAME287025" #Crimea remains part of the Horde
+	desc = "EVENTHIST287025"
+	#-#Hajj Giray's efforts to separate Crimea from the Golden Horde have failed. Perhaps we should abandon Sarai and move to Crimea to avoid further intrigue?
+
+	date = { day = 1 month = january year = 1462 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1465 }
+
+	action_a = {
+		name = "ACTIONNAME287025A" #Move the Horde to Crimea (eastern provinces will be lost)
+		command = { type = province_revoltrisk which = 463 value = -6 } #Crimea
+		command = { type = province_revoltrisk which = 466 value = -6 } #Azow
+		command = { type = population which = -2 value = -10000 }
+		command = { type = capital which = 463 } #Crimea
+		command = { type = population which = 463 value = 10000 } #Crimea
+		command = { type = population which = 466 value = 10000 } #Azow
+		command = { type = flagname which = "" }
+		command = { type = country which = CRI }
+		command = { type = domestic which = centralization value = 3 }
+		command = { type = addcore which = 463 } #Crimea
+		command = { type = addcore which = 465 } #Kerch
+		command = { type = addcore which = 462 } #Krementjug
+		command = { type = addcore which = 296 } #Jedisan
+		command = { type = addcore which = 459 } #Lugansk
+		command = { type = addcore which = 460 } #Donetsk
+		command = { type = vp value = 300 }
+		command = { type = population which = 446 value = -5000 } #Kazan
+		command = { type = population which = 447 value = -5000 } #Tambow
+		command = { type = population which = 453 value = -5000 } #Ufa
+		command = { type = population which = 454 value = -5000 } #Samara
+		command = { type = independence which = KAZ }
+		command = { type = relation which = KAZ value = -100 }
+		command = { type = trigger which = 40059 } #KAZ: Independence of Kazan
+		command = { type = population which = 513 value = -5000 } #Orsk
+		command = { type = population which = 514 value = -5000 } #Irgiz
+		command = { type = population which = 515 value = -5000 } #Alga
+		command = { type = independence which = AST }
+		command = { type = relation which = AST value = -150 }
+		command = { type = trigger which = 40062 } #AST: Cessation of Astrakhan
+		command = { type = independence which = SIB }
+		command = { type = relation which = SIB value = -50 }
+		command = { type = trigger which = 152006 } #CRI: Crimea loses grip on Eastern posessions
+ 	}
+	action_b = {
+		name = "ACTIONNAME287025B" #Remain in Sarai
+		command = { type = vp value = 100 }
+		command = { type = province_revoltrisk which = 463 value = -6 } #Crimea
+		command = { type = province_revoltrisk which = 466 value = -6 } #Azow
+		command = { type = sleepevent which = 287024 } #STE: Hajj Giray founds Khanate of Crimea
+ 	}
+}
+
+#(1466) The Disintegration of the Golden Horde
+event = {
+	id = 3689
+	trigger = {
+		NOT = {
+			AND = {
+				exists = KAZ
+				exists = CRI
+				exists = AST
+			}
+		}
+	}
+	random = no
+	country = STE
+	name = "EVENTNAME3689" #The Disintegration of the Golden Horde
+	desc = "EVENTHIST3689"
+	#-#Until the disintegration of the Mongol empire (14th cent.) the khans themselves were under the suzerainty of the great khan at Karakorum. In the early 14th century the empire of the Golden Horde adopted Islam as its official religion. Thus, Russia was exposed to both Muslim and Asian civilization. Internecine warfare among the Tatar leaders and attempts by the Russian princes, such as Dmitri Donskoi, to end tributary payments contributed to the decline of the Empire of the Golden Horde in the late 14th cent. The state was conquered by Timur, who in 1395 dealt a final blow by sacking Sarai Berke. After his death the empire broke up into the independent khanates of Astrakhan, Kazan, Crimea, and Sibir.
+
+	date = { day = 1 month = january year = 1466 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1466 }
+
+	action_a = {
+		name = "ACTIONNAME3689A" #Subjugate Non-Mongols Harshly
+		command = { type = population which = 446 value = -5000 } #Kazan
+		command = { type = population which = 447 value = -5000 } #Tambow
+		command = { type = population which = 453 value = -5000 } #Ufa
+		command = { type = population which = 454 value = -5000 } #Samara
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = independence which = KAZ }
+		command = { type = trigger which = 40059 } #KAZ: Independence of Kazan
+		command = { type = population which = 513 value = -5000 } #Orsk
+		command = { type = population which = 514 value = -5000 } #Irgiz
+		command = { type = population which = 515 value = -5000 } #Alga
+		command = { type = independence which = AST }
+		command = { type = trigger which = 40062 } #AST: Cessation of Astrakhan
+		command = { type = setflag which = [Sibir] }
+		command = { type = vp value = 300 }
+		command = { type = trigger which = 287027 } #STE: Splintering of the Horde and Kazan
+		command = { type = trigger which = 287007 } #STE: Splintering of the Horde and Sibir
+	}
+	action_b = {
+		name = "ACTIONNAME3689B" #Buy the Non-Mongols off
+		command = { type = revoltrisk which = 120 value = 10 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = stability value = -6 }
+	}
+}
+#(1466) Splintering of the Horde and Kazan
+event = {
+	id = 287027 #triggered by STE_3689 A
+	trigger = {
+		OR = {
+			owned = { province = 447 data = -1 } #Tambow
+			owned = { province = 452 data = -1 } #Saratow
+			owned = { province = 453 data = -1 } #Ufa
+			owned = { province = 454 data = -1 } #Samara
+		}
+		neighbour = KAZ
+	}
+	random = no
+	country = STE
+	name = "EVENTNAME287027" #Splintering of the Horde and Kazan
+	desc = "EVENTHIST3689"
+	#-#Until the disintegration of the Mongol empire (14th cent.) the khans themselves were under the suzerainty of the great khan at Karakorum. In the early 14th century the empire of the Golden Horde adopted Islam as its official religion. Thus, Russia was exposed to both Muslim and Asian civilization. Internecine warfare among the Tatar leaders and attempts by the Russian princes, such as Dmitri Donskoi, to end tributary payments contributed to the decline of the Empire of the Golden Horde in the late 14th cent. The state was conquered by Timur, who in 1395 dealt a final blow by sacking Sarai Berke. After his death the empire broke up into the independent khanates of Astrakhan, Kazan, Crimea, and Sibir.
+
+	action_a = {
+		name = "ACTIONNAME287027A" #And so our power weakens further
+		command = { type = secedeprovince which = KAZ value = 447 } #Tambow
+		command = { type = secedeprovince which = KAZ value = 452 } #Saratow
+		command = { type = secedeprovince which = KAZ value = 453 } #Ufa
+		command = { type = secedeprovince which = KAZ value = 454 } #Samara
+	}
+}
+#(1466) Splintering of the Horde and Sibir
+event = {
+	id = 287007 #triggered by STE_3689 A
+	trigger = {
+		OR = {
+			owned = { province = 513 data = -1 } #Orsk
+			owned = { province = 514 data = -1 } #Irgiz
+			owned = { province = 515 data = -1 } #Alga
+		}
+		neighbour = SIB
+	}
+	random = no
+	country = STE
+	name = "EVENTNAME287007" #Splintering of the Horde and Sibir
+	desc = "EVENTHIST3689"
+	#-#Until the disintegration of the Mongol empire (14th cent.) the khans themselves were under the suzerainty of the great khan at Karakorum. In the early 14th century the empire of the Golden Horde adopted Islam as its official religion. Thus, Russia was exposed to both Muslim and Asian civilization. Internecine warfare among the Tatar leaders and attempts by the Russian princes, such as Dmitri Donskoi, to end tributary payments contributed to the decline of the Empire of the Golden Horde in the late 14th cent. The state was conquered by Timur, who in 1395 dealt a final blow by sacking Sarai Berke. After his death the empire broke up into the independent khanates of Astrakhan, Kazan, Crimea, and Sibir.
+
+	action_a = {
+		name = "ACTIONNAME287027A" #And so our power weakens further
+		command = { type = secedeprovince which = SIB value = 513 } #Orsk
+		command = { type = secedeprovince which = SIB value = 514 } #Irgiz
+		command = { type = secedeprovince which = SIB value = 515 } #Alga
+	}
+}
+
+#(1476) The lands of Crimea
+event = {
+	id = 287008
+	trigger = {
+		exists = CRI
+		NOT = { war = { country = CRI country = STE } }
+		OR = {
+			event = 152009 #CRI: Mengli and the Ottomans
+			AND = {
+				event = 152007 #CRI: Genoa backs the pretender
+				NOT = { event = 152008 } #CRI: Nur Dawlat returns
+			}
+		}
+	}
+	random = no
+	country = STE
+	name = "EVENTNAME287008" #The lands of Crimea
+	desc = "EVENTHIST287008"
+	#-#In 1475, Mengli Giray wrote a letter to the Ottoman sultan promising to be ''the enemy of the Sultan's enemy, the friend of his friend.'' Such news was troubling to the khan of the Golden Horde as the khanate had never ceased to claim that the Crimean lands were rightuflly theirs. In an attempt to head off Ottoman influence, the khan sent a full scale invasion to place Nur Dawlat as a puppet ruler.
+
+	date = { day = 5 month = january year = 1476 }
+	offset = 10
+	deathdate = { day = 10 month = december year = 1476 }
+
+	action_a = {
+		name = "ACTIONNAME287008A" #Support him!
+		command = { type = relation which = CRI value = 50 }
+		command = { type = treasury value = -15 }
+		command = { type = trigger which = 152010 } #CRI: The Golden Horde revives its claim
+	}
+	action_b = {
+		name = "ACTIONNAME287008B" #We have bigger concerns
+		command = { type = merchants value = -2 }
+		command = { type = trade value = -25 }
+	}
+}
+
+#(1500-1820) The Collapse of the Golden Horde
+event = {
+	id = 287002
+	trigger = {
+		control = { province = 458 data = CRI }
+	}
+	random = no
+	country = STE
+	name = "EVENTNAME287002" #The Collapse of the Golden Horde
+	desc = "EVENTHIST287002"
+	#-#In 1502, Mengli Giray of Crimea captured and destroyed the city of Sarai capital of the Golden Horde. The last piece in its decline, the Golden Horde vanished as a political entity, with this act. Members of the Golden Horde still lived on hoping to rekindle lost glory, but the days of the Golden Horde were over.
+
+	date = { day = 1 month = january year = 1500 }
+	offset = 5
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME287002A" #Our power is broken
+		command = { type = stability value = -2 }
+		command = { type = population which = -2 value = -10000 }
+		command = { type = secedeprovince which = KAZ value = 446 } #Kazan
+		command = { type = secedeprovince which = KAZ value = 447 } #Tambow
+		command = { type = secedeprovince which = KAZ value = 453 } #Ufa
+		command = { type = secedeprovince which = KAZ value = 454 } #Samara
+		command = { type = secedeprovince which = KAZ value = 452 } #Saratow - just in case
+		command = { type = secedeprovince which = RUS value = 452 } #Saratow
+		command = { type = secedeprovince which = AST value = 455 } #Uralsk
+		command = { type = secedeprovince which = AST value = 456 } #Orenburg
+	}
+	action_b = {
+		name = "ACTIONNAME287002B" #We shall never give up!
+		command = { type = stability value = -4 }
+		command = { type = population which = -2 value = -10000 }
+		command = { type = secedeprovince which = KAZ value = 453 } #Ufa
+		command = { type = secedeprovince which = AST value = 455 } #Uralsk
+		command = { type = war which = KAZ }
+		command = { type = war which = AST }
+		command = { type = revoltrisk which = 120 value = 6 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+	}
+}
+
+#(1500-1820) The Collapse of the Golden Horde
+event = {
+	id = 287003
+	trigger = {
+		OR = {
+			exists = KAZ
+			exists = AST
+		}
+		NOT = { control = { province = 458 data = STE } }
+		NOT = { countrysize = 15 }
+	}
+	random = no
+	country = STE
+	name = "EVENTNAME287003" #The Collapse of the Golden Horde
+	desc = "EVENTHIST287003"
+	#-#In 1502, Mengli Giray of Crimea captured and destroyed the city of Sarai capital of the Golden Horde. The last piece in its decline, the Golden Horde vanished as a political entity, with this act. Members of the Golden Horde still lived on hoping to rekindle lost glory, but the days of the Golden Horde were over.
+
+	date = { day = 1 month = january year = 1500 }
+	offset = 5
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME287003A" #Our power is broken (possibly End Game)
+		command = { type = stability value = -2 }
+		command = { type = independence which = KAZ }
+		command = { type = independence which = AST }
+		command = { type = independence which = CRI }
+		command = { type = trigger which = 287004 } #STE: The Demise of the Golden Horde
+		command = { type = trigger which = 152050 } #CRI: The Golden Horde Vanishes
+	}
+	action_b = {
+		name = "ACTIONNAME287003B" #We shall never give up!
+		command = { type = stability value = -4 }
+		command = { type = independence which = KAZ }
+		command = { type = independence which = AST }
+		command = { type = independence which = CRI }
+		command = { type = trigger which = 287005 } #STE: The Demise of the Golden Horde
+		command = { type = revoltrisk which = 120 value = 6 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+	}
+}
+#(1500-1820) The Demise of the Golden Horde
+event = {
+	id = 287004 #triggered by STE_287003 A
+	random = no
+	country = STE
+	name = "EVENTNAME287004" #The Demise of the Golden Horde
+	desc = "EVENTHIST287004"
+	#-#The collapse of the Golden Horde allowed the khanates of Kazan and Astrakhan to expand their borders. They were to be the successors to the legacy of the Golden Horde.
+
+	action_a = {
+		name = "DAMN"
+		command = { type = stability value = -1 }
+		command = { type = secedeprovince which = KAZ value = 446 } #Kazan
+		command = { type = secedeprovince which = KAZ value = 447 } #Tambow
+		command = { type = secedeprovince which = KAZ value = 453 } #Ufa
+		command = { type = secedeprovince which = KAZ value = 454 } #Samara
+		command = { type = secedeprovince which = KAZ value = 452 } #Saratow - just in case
+		command = { type = secedeprovince which = RUS value = 452 } #Saratow
+		command = { type = secedeprovince which = AST value = 455 } #Uralsk
+		command = { type = secedeprovince which = AST value = 456 } #Orenburg
+	}
+}
+#(1500-1820) The Demise of the Golden Horde
+event = {
+	id = 287005 #triggered by STE_287003 B
+	random = no
+	country = STE
+	name = "EVENTNAME287005" #The Demise of the Golden Horde
+	desc = "EVENTHIST287005"
+	#-#By refusing to back down, the remaining people of the disgraced Golden Horde, were basically asking the khanate of Astrakhan and Kazan to attack. The power vacuum was dying to be filled.
+
+	action_a = {
+		name = "ACTIONNAME287005A" #Damn them!
+		command = { type = stability value = -1 }
+		command = { type = war which = KAZ }
+		command = { type = war which = AST }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 287009 - 287014-287020 - 287026 - next: 2870028

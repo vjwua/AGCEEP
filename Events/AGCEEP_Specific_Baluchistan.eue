@@ -1,0 +1,85 @@
+#Baluchistan (BAL)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1820) Independence of Baluchistan
+event = {
+	id = 123000
+	random = no
+	country = BAL
+	name = "EVENTNAME123000" #Independence of Baluchistan
+	desc = "EVENTHIST123000"
+	#-#In the chaos of Central Asia following the disintegration of the Timurid Empire, the nomadic peoples of Baluchistan would become independent of their former rulers.
+
+	date = { day = 1 month = march year = 1419 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = stability value = 1 }
+		command = { type = treasury value = 100 }
+	}
+}
+
+#(1419-1820) Baluchi Tribesmen
+event = {
+	id = 123001
+	trigger = { atwar = yes }
+	random = no
+	country = BAL
+	name = "EVENTNAME123001" #Baluchi Tribesmen
+	desc = "EVENTHIST123001"
+	#-#The nomadic Baluchi tribes were largely independent of central control, but could quickly organize to combat invaders if needed.
+
+	date = { day = 1 month = march year = 1419 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME123001A" #Summon the tribes!
+		command = { type = CAV which = -1 value = 5000 }
+		command = { type = treasury value = 100 }
+	}
+}
+
+#(1419-1820) Raiders
+event = {
+	id = 123002
+	trigger = {
+		atwar = no
+		NOT = { stability = -1 }
+	}
+	random = no
+	country = BAL
+	name = "EVENTNAME123002" #Raiders
+	desc = "EVENTHIST123002"
+	#-#The vast lawless stretches of Central Asia were frequently home to bandits and raiders on the lucrative east-west trade routes.
+
+	date = { day = 1 month = march year = 1419 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME123002A" #Support the raiders
+		command = { type = CAV which = -1 value = 2500 }
+		command = { type = treasury value = 100 }
+		command = { type = stability value = 1 }
+		command = { type = relation which = TIM value = -100 }
+		command = { type = relation which = MOG value = -100 }
+		command = { type = relation which = PER value = -100 }
+		command = { type = relation which = GUJ value = -100 }
+		command = { type = relation which = DLH value = -100 }
+		command = { type = relation which = KHO value = -100 }
+		command = { type = relation which = FAR value = -100 }
+	}
+	action_b = {
+		name = "ACTIONNAME123002B" #Crush the raiders
+		command = { type = revoltrisk which = 60 value = 3 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 123003

@@ -1,0 +1,361 @@
+#Morea (SPR)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1820) Restore Byzantium
+#by Dark Knight
+#Text by Henrik 'Doomdark' Fåhraeus
+event = {
+	id = 286009
+	trigger = {
+		owned = { province = 357 data = -1 } #Thrace
+		control = { province = 357 data = -1 } #Thrace
+		religion = orthodox
+		NOT = { exists = BYZ }
+		atwar = no
+	}
+	random = no
+	country = SPR
+	name = "EVENTNAME3874" #The Restoration of Byzantium
+	desc = "EVENTHIST3874"
+	#-#Constantinople is back in the hands of its rightful heirs! We now have a unique opportunity to restore the glorious Roman Empire under its legitimate Palaeologus dynasty. In my humble opinion we have nothing to lose and everything to gain by moving our capital to Constantinople and declaring the Roman Empire restored!
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME3874A" #Restore the Roman Empire!
+		command = { type = capital which = 357 } #Thrace
+		command = { type = conversion which = 357 } #Thrace
+		command = { type = provinceculture which = 357 value = greek } #Thrace
+		command = { type = conversion which = -1 }
+		command = { type = conversion which = -1 }
+		command = { type = missionaries value = 3 }
+		command = { type = diplomats value = 2 }
+		command = { type = merchants value = 2 }
+		command = { type = flagname which = "" }
+		command = { type = country which = BYZ }
+		#BYZ cores in 1419
+		#command = { type = addcore which = 357 } #Thrace
+		#command = { type = addcore which = 358 } #Macedonia
+		#command = { type = addcore which = 359 } #Hellas
+		#command = { type = addcore which = 360 } #Morea
+		command = { type = addcore which = 321 } #Rumelia
+		command = { type = addcore which = 477 } #Anatolia
+		command = { type = addcore which = 478 } #Smyrna
+		command = { type = addcore which = 479 } #Ionia
+		command = { type = addcore which = 820 } #Corfu
+	}
+	action_b = {
+		name = "ACTIONNAME3874B" #Create a new Empire!
+		command = { type = conversion which = 357 } #Thrace
+		command = { type = provinceculture which = 357 value = greek } #Thrace
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = population which = 475 value = 30000 } #Trabzon
+		command = { type = missionaries value = 3 }
+		command = { type = merchants value = 2 }
+		command = { type = provincetax which = 360 value = 3 } #Morea
+		command = { type = provincetax which = 357 value = -2 } #Thrace
+	}
+}
+
+#(1420-1435) Albanian Settlers
+event = {
+	id = 286007
+	random = no
+	country = SPR
+	name = "EVENTNAME286007" #Albanian Settlers
+	desc = "EVENTHIST286007"
+	#-#Continuing the policy of his predecessor, Theodoros II encouraged the immigration of Albanian shepards and their families and flocks to his lands. Their presence contributed to the Peloponnesan economic growth and as potential soldiers to use against the unruly Arkhons. However future mismanagement by the Despotes would cause these migrants to rise up against them.
+
+	date = { day = 1 month = january year = 1420 }
+	offset = 180
+	deathdate = { day = 1 month = january year = 1435 }
+
+	action_a = {
+		name = "WELCOME"
+		command = { type = provincemanpower which = 360 value = 1 }
+		command = { type = population which = 360 value = 500 }
+		command = { type = trade value = 25 }
+	}
+}
+
+#(1427-1447) Hexamilium
+event = {
+	id = 286001
+	trigger = {
+		owned = { province = 360 data = -1 } #Morea
+		control = { province = 360 data = -1 } #Morea
+		NOT = { event = 23012 } #BYZ: The Hexamilium
+	}
+	random = no
+	country = SPR
+	name = "EVENTNAME286001" #The Hexamilium
+	desc = "EVENTHIST286001"
+	#-#Built by Manouel II in 1414, this 6 mile line of fortifications across the Isthmus of Corinth was meant to protect the Morea like a set of city walls. While it captured the imagination of men, it failed to stop them passing through it. The Turks easily penetrated it in 1423 and again in 1446, after the future Konstantinos XI rebuilt it. Still, it added a great deal of security to the Morea.
+
+	date = { day = 1 month = january year = 1427 }
+	offset = 1825
+	deathdate = { day = 29 month = december year = 1447 }
+
+	action_a = {
+		name = "ACTIONNAME286001A" #Rebuild it
+		command = { type = fortress which = 360 value = -2 } #Morea
+		#Morea fortress +2
+		command = { type = fortress which = 360 value = 1 } #Morea
+		command = { type = fortress which = 360 value = 1 } #Morea
+		command = { type = domestic which = offensive value = -1 }
+		command = { type = treasury value = -175 }
+		command = { type = sleepevent which = 23012 } #BYZ: The Hexamilium
+	}
+	action_b = {
+		name = "ACTIONNAME286001B" #Leave it alone
+		command = { type = domestic which = offensive value = 1 }
+		command = { type = revolt which = 360 }
+	}
+}
+
+#(1430-1432) Achaea
+#by Lambert Simnel
+event = {
+	id = 286002
+	trigger = {
+		owned = { province = 360 data = -1 }
+	}
+	random = no
+	country = SPR
+	name = "EVENTNAME286002" #Conquest of Achaea
+	desc = "EVENTHIST286002"
+	#-#In 1430, the porphyrogenitoi Konstantinos and Thomas defeated the forces of the Frankish Principality of Achaea. Prince Centurione II Zaccaria agreed to marry his daughter Aikaterina Asania-Zaccariaina to Thomas with most of the principality as a dowry. Within two years, the principality was completely absorbed into the Empire.
+
+	date = { day = 1 month = january year = 1430 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1432 }
+
+	action_a = {
+		name = "ACTIONNAME286002A" #The Peloponnese is ours!
+		command = { type = provincetax which = 360 value = 1 }
+		command = { type = provincemanpower which = 360 value = 1 }
+	}
+}
+
+#(1435) Inheritance of Athene - Revised Morean Version
+#by driftwood - revised by Aylo1
+event = {
+	id = 23010 #triggered by ATH_23009 C
+	random = no
+	country = SPR
+	name = "EVENTNAME23010" #Inheritance of Athene
+	desc = "EVENTHIST23010"
+	#-#In 1435 the Doux ton Athene died without an heir. His Greek wife Maria Melissene, after failing to secure it for her Chalkokondylos relatives she offered it to Konstantinos Dragases - Despotes ton Morea in exchange for Morean estates for the Melisennoi. By the time the Greek Captain Phrantzes arrived with an army, the Tuscan nobles had lured Melissene from the Acropolis where they installed Antonio's designated heir Nerio II as Doux and her new husband.
+
+	action_a = {
+		name = "ACTIONNAME23010A" #Invoke Melissene's promise
+		command = { type = casusbelli which = ATH value = 120 }
+		command = { type = relation which = VEN value = -150 }
+		command = { type = relation which = TOS value = -150 }
+		command = { type = relation which = TUR value = -150 }
+		command = { type = stability value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME23010B" #Congratulate the new Doux
+		command = { type = relation which = ATH value = 50 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1441-1442) Helena Palaiologos
+event = {
+	id = 286003
+	trigger = {
+		exists = CYP
+	}
+	random = no
+	country = SPR
+	name = "EVENTNAME286003" #Helena Palaiologos (1428-58)
+	desc = "EVENTHIST286003"
+	#-#Daughter of Theodoros II of Byzantine-Morea and Cleofa Malatesta, she is best known for her marriage to Jean II of Cyprus. Stronger in character than her husband, she took over the administration of the Kingdom and revived the Greek Church and culture from the oblivion that it languished the last few centuries. Her actions naturally disturbed the Catholic Franks, but she was too powerful to attack. The Greek-Cypriots revered Helena as a great heroine for her boldness. The future Queen Charlotte was their daughter.
+
+	date = { day = 1 month = january year = 1441 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1442 }
+
+	action_a = {
+		name = "ACTIONNAME286003A" #That's my girl!
+		command = { type = relation which = CYP value = 50 }
+		command = { type = dynastic which = CYP }
+		command = { type = trigger which = 154004 } #CYP: Marriage of Jean II
+	}
+}
+
+#(1444 or 1441-1451) Campaign of 1444
+event = {
+	id = 286005 #also triggered by ATH_117003 B
+	trigger = {
+		OR = {
+			war = { country = SPR country = ATH }
+			control = { province = 359 data = -1 } #Hellas
+		}
+	}
+	random = no
+	country = SPR
+	name = "EVENTNAME286005" #Campaign of 1444
+	desc = "EVENTHIST286005"
+	#-#Continuing his plans of expanding the Despotate, Konstantinos Dragases attacked the Latin Duchy of Athens - invading Boetia and occupying the citadels of Thebes and Athens. Duke Nerio II Acciajuoli was forced to accept Byzantine suzerainty. Meanwhile the Grand Turk Murâd II raided Boetia and Attika and colluded with Nerio II to drive Greek forces back into the Morea.
+
+	date = { day = 1 month = january year = 1444 }
+	offset = 90
+	deathdate = { day = 29 month = december year = 1444 }
+
+	action_a = {
+		name = "ACTIONNAME286005A" #Accept Acciajouli's vassalage
+		command = { type = relation which = TUR value = 20 }
+		command = { type = treasury value = 75 } #tribute
+		command = { type = vassal which = ATH }
+	}
+}
+
+#(1445-1446 or 1441-1451) Sultan's Ultimatum
+event = {
+	id = 286004 #also triggered by ATH_117003 A
+	trigger = {
+		OR = {
+			vassal = { country = SPR country = ATH }
+			owned = { province = 359 data = -1 }
+		}
+		NOT = { event = 286005 } #SPR: Campaign of 1444
+	}
+	random = no
+	country = SPR
+	name = "EVENTNAME286004" #Sultan's Ultimatum
+	desc = "EVENTHIST286004"
+	#-#Having beaten the Latin Duchy of Athens into submission, its Duke Nerio II Acciajouli sought aid from the Ottoman Sultan. While Konstantinos Dragases was on campaign, Murâd II raided Boetia and Attika - threatening war if the Despot doesn't withdraw from Hellas. Do we risk his wrath?
+
+	date = { day = 1 month = january year = 1445 }
+	offset = 120
+	deathdate = { day = 29 month = december year = 1446 }
+
+	action_a = {
+		name = "ACTIONNAME286004A" #Accede to Murâd's wishes
+		command = { type = independence which = ATH }
+		command = { type = breakvassal which = ATH }
+		command = { type = relation which = TUR value = 20 }
+		command = { type = fortress which = 360 value = -1 } #Morea
+	}
+	action_b = {
+		name = "ACTIONNAME286004B" #Ignore the Grand Turk
+		command = { type = relation which = TUR value = -100 }
+		command = { type = war which = TUR }
+		command = { type = sleepevent which = 286006 } #SPR: Pelo Insurrections
+	}
+}
+
+#(1446-1454) Peloponnesan Insurrections
+event = {
+	id = 286006
+	trigger = {
+		OR = {
+			NOT = { owned = { province = 359 data = -1 } } #Hellas
+			vassal = { country = SPR country = ATH }
+		}
+		OR = {
+			event = 286004 #SPR: Sultan's Ultimatum
+			event = 3353 #TUR: City of Men's Desire
+		}
+	}
+	random = no
+	country = SPR
+	name = "EVENTNAME286006" #Peloponnesan Insurrections (1446-54)
+	desc = "EVENTHIST286006"
+	#-#Constant unrest and tribulation compelled the inhabitants of the Morea to rise up against their rulers on several occasions. Giovanni Aseno-Zaccaria (natural son of Centurione II Zaccaria) self-proclaimed 'Prince of Achaea' rebelled shortly after the Greek withdrawl from Athene. Another was inspired by Albanian migrants who joined disgruntled Greek Arkhons under Manouel 'Ghin' Kantakouzenos (Governor of Mani) shortly after the fall of Constantinople (1453). Ghin Cantacusino was exiled when Co-Despots Demetrios and Thomas Palaiologos sought Turkish intervention from Umar Pasha - only to be harassed by Aseno-Zaccaria who'd recently escaped captivity at Klumutsi and raised another revolt.
+
+	date = { day = 1 month = january year = 1446 }
+	offset = 360
+	deathdate = { day = 29 month = october year = 1454 }
+
+	action_a = {
+		name = "ACTIONNAME286006A" #Anarchy! Argh!
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = province_revoltrisk which = 360 value = 8 }
+		command = { type = DIP which = -1 value = 24 }
+		command = { type = ADM which = -2 value = 24 }
+		command = { type = MIL which = -1 value = 24 }
+		command = { type = stability value = -3 }
+		command = { type = revolt which = 360 }
+		command = { type = revolt which = 360 }
+		command = { type = revolt which = 360 }
+	}
+}
+
+#(1446) Morean future
+event = {
+	id = 286000
+	trigger = {
+		neighbour = TUR
+		NOT = {
+			vassal = { country = TUR country = SPR }
+		}
+	}
+	random = no
+	country = SPR
+	name = "EVENTNAME286000" #The Morean future
+	desc = "EVENTHIST286000"
+	#-#The Peloponnesus was misgoverned by two brothers, Thomas and Constantine, worthless and greedy despots, whose rule of their oppression, were detested throughout the land, further hatred developed between the Greek inhabitants and the migrant Albanian shepherds, who had come down and settled there in the previous century. The invasion of the Turks in early 1446 had desolated the land and given the Albanian herdsmen a wider range, forcing the Greek peasants to overcrowd the many Venetian towns. Albanians received favourable terms, for it was Ottoman policy to preserve them as a make-weight to the Greeks. In Morea 60000 peasants were reduced to slavery. It was thus that the Morea became perhaps the most miserable province in the Balkans, nor can there be any doubt but that Mohammad deliberately intended this to be its fate. He unpeopled and desolated it so that it might present no allurements to a foreign invader and have no spirit to be restless.
+
+	date = { day = 0 month = august year = 1446 }
+	offset = 100
+	deathdate = { day = 0 month = may year = 1460 }
+
+	action_a = {
+		name = "ACTIONNAME286000A" #Disperse our people
+		command = { type = population which = 360 value = -1000 } #Morea
+		command = { type = provincemanpower which = 360 value = -1 } #Morea
+		command = { type = treasury value = -100 }
+	}
+	action_b = {
+		name = "ACTIONNAME286000B" #Let us side with the turk
+		command = { type = DIP which = 2 value = 36 }
+		command = { type = relation which = TUR value = 50 }
+		command = { type = dynastic which = TUR } #to prevent morea entering a byz-oe war
+	}
+}
+
+#(1460-1480) Morean decision
+event = {
+	id = 286008
+	trigger = {
+		exists = TUR
+		NOT = { exists = BYZ }
+	}
+	random = no
+	country = SPR
+	name = "EVENTNAME286008" #Thomas must decide
+	desc = "EVENTHIST286008"
+	#-#Kantakouzenos family's revolt which started in 1453 during the fall of Constantinople by Demetrius I Kantakouzenos' grandchild Manuel, led to instability in the Morea, Constantine XI was not alive to maintain peace in the family, Thomas sought western support against both the Ottomans and his impetitive pro-Ottoman brother Demetrios. He allied with Genoa and the Pope, and defeated Demetrios, who fled seeking help from the Ottomans in 1460. The Ottoman army duly attacked Morea and quickly breached the Hexamilion wall across the Isthmus of Corinth, which was too long to be effectively manned and defended by Thomas' forces. Thomas escaped with his family to Italy, where he had already been recognized as the legitimate heir to the Byzantine Empire at Rome. The commanders of the garrisons of the fortified cities in Morea, deserted by their rulers, chose individually whether to fight or surrender, depending on their own will and circumstances. In the final battle of the Roman Empire in its Byzantine incarnation, Graitzas Palaiologos, the military commander of the city of Salmenikos defeated Mehmed II, who after a month of siege returned home without conquering that 'unimportant city'. In the following year Graitzas received an offer to become a general of the Republic of Venice, which he accepted, thus leaving Salmenikos to the Ottomans.
+
+	date = { day = 0 month = august year = 1460 }
+	offset = 30
+	deathdate = { day = 0 month = may year = 1480 }
+
+	action_a = {
+		name = "ACTIONNAME286008A" #Thomas flees
+		command = { type = relation which = TUR value = -50 }
+		command = { type = relation which = GEN value = 20 }
+		command = { type = relation which = PAP value = 20 }
+		command = { type = population which = 360 value = -500 } #Morea deaths from Demetrios conflict
+		command = { type = provincemanpower which = 360 value = -1 } #Demetrios supporters
+		command = { type = treasury value = -10 }
+	}
+	action_b = {
+		name = "ACTIONNAME286008B" #Thomas fights
+		command = { type = DIP which = 2 value = 36 }
+		command = { type = relation which = TUR value = -400 }
+		command = { type = provincemanpower which = 360 value = 1 }
+		command = { type = INF which = 360 value = 2000 } #Demetrios followers
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 286010

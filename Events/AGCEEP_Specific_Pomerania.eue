@@ -1,0 +1,676 @@
+#Pomerania (POM)
+
+#See AGCEEP_Alt_Germany.eue for KoG Alternative events
+
+#-----------------------------------------------------------------------------------------------
+#Erik VII Sequence
+
+#(1419-1439) Bogislaw IX is the heir to the Danish throne
+event = {
+	id = 259003 #triggered by DAN_159046 B
+	random = no
+	country = POM
+	name = "EVENTNAME259003" #Bogislaw IX is the heir to the Danish throne
+	desc = "EVENTHIST259003"
+	#-#In 1437 King Erik of Denmark managed to get the Danish State Council to accept that Bogislaw IX should be the rightful heir to the Danish throne.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = stability value = 1 }
+	}
+}
+#(1449-1459) The invasion of Gotland
+event = {
+	id = 259008
+	trigger = {
+		owned = { province = 308 data = -1 }
+		event = 291021 #SWE: Erik has lost support from Denmark
+	}
+	random = no
+	country = POM
+	name = "EVENTNAME259008" #The invasion of Gotland
+	desc = "EVENTHIST259008"
+	#-#In 1449 the Swedish forces in Gotland aided Erik in the war against the Danes. While Erik was successful in defending the island, he realised that there was no way he could win the war. Therefore he agreed to leave Gotland to the Danes for safe passage to Pomerania.
+
+	date = { day = 1 month = january year = 1449 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1459 }
+
+	action_a = {
+		name = "ACTIONNAME259008A" #Return control of Gotland to Denmark
+		command = { type = secedeprovince which = DAN value = 308 } #Gotland
+		command = { type = removecore which = 308 } #Gotland
+		command = { type = trigger which = 291024 } #SWE: The invasion of Gotland
+		command = { type = trigger which = 159049 } #DAN: The invasion of Gotland
+		command = { type = sleepevent which = 291025 } #SWE: Gotland is yet again in Danish hands
+	}
+}
+#(1449-1459) Bogislaw dies before Erik
+event = {
+	id = 259007
+	trigger = {
+		exists = DAN
+		owned = { province = 308 data = POM } #Gotland
+	}
+	random = no
+	country = POM
+	name = "EVENTNAME259007" #Bogislaw dies before Erik
+	desc = "EVENTHIST259007"
+	#-#Even though Erik managed to have Bogislaw made his rightful heir Bogislaw died before Erik. After the death of the Danish king, Christopher of Bavaria, the following monarch was Erik's kinsman, Christian I of Denmark, who was the son of Erik's earlier rival, Count Theodoric of Oldenburg. To him Erik handed over Gotland in return for the permission to leave for Pomerania.
+
+	date = { day = 1 month = january year = 1449 }
+	offset = 90
+	deathdate = { day = 1 month = january year = 1459 }
+
+	action_a = {
+		name = "ACTIONNAME259007A" #Leave Gotland to Denmark
+		command = { type = secedeprovince which = DAN value = 308 } #Gotland
+	}
+}
+#End of Erik VII Sequence
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1820) Pomerania becomes Poland
+event = {
+	id = 259002
+	trigger = {
+		owned = { province = 299 data = -1 } #Krakow
+		control = { province = 299 data = -1 } #Krakow
+		owned = { province = 300 data = -1 } #Wielkopolska
+		owned = { province = 303 data = -1 } #Poznan
+		NOT = { exists = POL }
+	}
+	random = no
+	country = POM
+	name = "EVENTNAME259002" #Pomerania becomes Poland
+	desc = "EVENTHIST259002"
+	#-#We have united main polish lands under our rule. Shall we revive that old Kingdom of Poland?
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME259002A" #We shall become Poland
+		command = { type = flagname which = "" }
+		command = { type = country which = POL }
+		command = { type = capital which = 299 } #Krakow
+		command = { type = addcore which = 291 } #Masovia
+		command = { type = addcore which = 292 } #Podlasia
+		command = { type = addcore which = 298 } #Galizien
+		command = { type = addcore which = 299 } #Krakow
+		command = { type = addcore which = 300 } #Wielkopolska
+		command = { type = addcore which = 301 } #Danzig
+		command = { type = addcore which = 303 } #Poznan
+		command = { type = remove_countryculture which = german }
+		command = { type = add_countryculture which = german } #Polish will be primary culture
+		command = { type = vp value = 50 }
+		command = { type = sleepevent which = 20129 } #POL: Recovery of Pomerania
+	}
+	action_b = {
+		name = "ACTIONNAME259002B" #No, we have other things to do
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1464) Inheritance of Stettin
+event = {
+	id = 259000 #triggered by STT_283000 A
+	random = no
+	country = POM
+	name = "EVENTNAME259000" #Inheritance of Pomerania-Stettin
+	desc = "EVENTHIST283000"
+	#-#Otto III of Pomerania-Stettin died of the plague in 1464, without an heir. Both his relatives in Pomerania-Wolgast - the Dukes Erich II and Wartislaw IX - and his feudal overlord, the Elector of Brandenburg, claimed the inheritance. After several years of struggling, Erich of Pomerania-Wolgast secured the inheritance against Brandenburg's claims, however had to accept its feudal suzerainty. After multiple divisions, most of Pomerania was then united again under Erich, and his son Bogislaw obtained the rest, becoming Duke of all of Pomerania.
+
+	action_a = {
+		name = "ACTIONNAME259000A" #Accept the inheritance and Brandenburg's suzerainty
+		command = { type = addcore which = 304 } #Vorpommern
+		command = { type = inherit which = STT }
+		command = { type = relation which = BRA value = -50 }
+		command = { type = stability value = 3 }
+		command = { type = trigger which = 132019 } #BRA: Suzerainty over Pomerania
+	}
+	action_b = {
+		name = "ACTIONNAME259000B" #Let Brandenburg have Stettin
+		command = { type = vp value = -20 }
+		command = { type = trigger which = 132018 } #BRA: Inheritance of Stettin
+	}
+}
+#(1464) Inheritance of Stettin
+event = {
+	id = 259001 #triggered by STT_283002 A
+	random = no
+	country = POM
+	name = "EVENTNAME259000" #Inheritance of Pomerania-Stettin
+	desc = "EVENTHIST283002"
+	#-#Otto III of Pomerania-Stettin died of the plague in 1464, without an heir. His relatives in Pomerania-Wolgast - the Dukes Erich II and Wartislaw IX - managed to secure the inheritance. After multiple divisions, most of Pomerania was then united again under Erich, and his son Bogislaw obtained the rest, becoming Duke of all of Pomerania.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = addcore which = 304 } #Vorpommern
+		command = { type = inherit which = STT }
+	}
+}
+
+#(1465-1478) Loss of Danzig
+event = {
+	id = 259017
+	trigger = {
+		owned = { province = 301 data = -1 } #Danzig
+		control = { province = 301 data = -1 } #Danzig
+		neighbour = POL
+	}
+	random = no
+	country = POM
+	name = "EVENTNAME259017" #Loss of Danzig
+	desc = "EVENTHIST259017"
+	#-#The populace of Danzig being dissatisfied with the aristocracy of the Pomeranian nobles forced the Pomeranian government to transfer the Kumberland, Ermland and Danzig to the Polish Crown.
+
+	date = { day = 1 month = june year = 1465 }
+	offset = 200
+	deathdate = { day = 29 month = december year = 1478 }
+
+	action_a = {
+		name = "ACTIONNAME259017A" #Cede it
+		command = { type = secedeprovince which = POL value = 301 } #Danzig
+		command = { type = relation which = POL value = -30 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME259017B" #Let us keep it
+		command = { type = relation which = POL value = -100 }
+		command = { type = badboy value = -2 }
+	}
+}
+
+#(1478) Inheritance of Rügen - Ahistorical as Pomerania-Stettin
+event = {
+	id = 259022 #triggered by STT_283010 A
+	random = no
+	country = POM
+	name = "EVENTNAME259022" #Inheritance of Rügen
+	desc = "EVENTHIST283010"
+	#-#Wartislaw X died in 1478 without an heir. Bogislaw X of Pomerania-Wolgast claimed the inheritance and became Duke of all of Pomerania.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = addcore which = 304 } #Vorpommern
+		command = { type = inherit which = STT }
+	}
+}
+
+#(1487-1498) The Pomeranian Capital
+event = {
+	id = 259018
+	trigger = {
+		owned = { province = 304 data = -1 } #Vorpommern
+		control = { province = 304 data = -1 }
+		NOT = {
+			exists = STT
+			flag = [Stettin]
+		}
+	}
+	random = no
+	country = POM
+	name = "EVENTNAME259018" #Capital relocation
+	desc = "EVENTHIST259018"
+	#-#Stolp was founded by Germans in the 6th century. In the 9th century the town was fortified and a small Slavic village was built on a hill. In the Middle Ages the area began to be settled in great number by ethnic Germans who built up the town. Any local Slavic culture which had existed disappeared as local people were assimilated and became germanised. In the reign of Bogislaw X a decision was made to move the capital to the more prospers city of Bialogard or to the newly acquired city of Stettin. Stettin was chosen.
+
+	date = { day = 1 month = march year = 1487 }
+	offset = 100
+	deathdate = { day = 29 month = december year = 1498 }
+
+	action_a = {
+		name = "ACTIONNAME259018A" #Move the capital
+		command = { type = capital which = 304 } #Vorpommern
+		command = { type = addcore which = 304 } #Vorpommern
+		command = { type = stability value = 1 }
+		command = { type = flagname which = "Stettin" }
+		command = { type = setflag which = [Stettin] }
+	}
+	action_b = {
+		name = "ACTIONNAME259018B" #Let keep it where it is
+		command = { type = stability value = 1 }
+		command = { type = badboy value = -1 }
+	}
+}
+
+#(1493-1498) The Pyritz Agreement
+event = {
+	id = 259019
+	trigger = {
+		exists = BRA
+		NOT = {
+			vassal = { country = BRA country = POM }
+			war = { country = POM country = BRA }
+		}
+	}
+	random = no
+	country = POM
+	name = "EVENTNAME259019" #Pyritz Agreement
+	desc = "EVENTHIST259019"
+	#-#At the Pyritz Agreement, Duke Bogislaw X, succeeded with lifting the lien and swearing an allegiance to supply Brandenburg with Pomeranian troops, but Bogislaw X did not agree on the inheritance sequence.
+
+	date = { day = 17 month = may year = 1493 }
+	offset = 100
+	deathdate = { day = 29 month = december year = 1498 }
+
+	action_a = {
+		name = "ACTIONNAME259019A" #Agree to it
+		command = { type = relation which = BRA value = 30 }
+		command = { type = relation which = POL value = -25 }
+		command = { type = relation which = DAN value = -25 }
+		command = { type = alliance which = BRA }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME259019B" #No Pomeranian troops for Brandenburg
+		command = { type = relation which = BRA value = -50 }
+		command = { type = relation which = POL value = 25 }
+		command = { type = relation which = DAN value = 25 }
+		command = { type = DIP which = -2 value = 24 }
+	}
+}
+
+#(1529-1538) The Grimnitz Agreement
+event = {
+	id = 259020
+	trigger = {
+		vassal = { country = BRA country = POM }
+	}
+	random = no
+	country = POM
+	name = "EVENTNAME259020" #Grimnitz Agreement
+	desc = "EVENTHIST259020"
+	#-#At the Grimnitz Agreement, the Brandenburg Electors agreed to release the lien over Pomerania, but accepted the inheritance of Pomerania in the case of no male heir.
+
+	date = { day = 27 month = august year = 1529 }
+	offset = 100
+	deathdate = { day = 29 month = december year = 1538 }
+
+	action_a = {
+		name = "ACTIONNAME259019A" #Agree to it
+		command = { type = relation which = BRA value = 30 }
+		command = { type = breakvassal which = BRA }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1572-1578) Loitz house
+event = {
+	id = 259021
+	trigger = {
+		owned = { province = 304 data = -1 } #Vorpommern
+		control = { province = 304 data = -1 }
+		NOT = {
+			countrysize = 3
+			AND = {
+				owned = { province = 301 data = -1 } #Danzig
+				cot = 301 #Danzig
+			}
+		}
+	}
+	random = no
+	country = POM
+	name = "EVENTNAME259021" #Loitz house
+	desc = "EVENTHIST259021"
+	#-#The Great Stettin trading house of the Loitz's family finally went bankrupt after 200 years.
+
+	date = { day = 21 month = november year = 1572 }
+	offset = 100
+	deathdate = { day = 29 month = december year = 1578 }
+
+	action_a = {
+		name = "ACTIONNAME259021A" #Damn, trade loss
+		command = { type = provincetax which = 304 value = -2 } #Vorpommern
+		command = { type = stability value = -3 }
+	}
+}
+
+#(1637) The Pommern Inheritance -I-
+event = {
+	id = 3895
+	trigger = {
+		ai = yes
+		exists = SWE
+		exists = BRA
+		owned = { province = 304 data = -1 } #Vorpommern
+	}
+	random = no
+	country = POM
+	name = "EVENTNAME3895" #The Pomeranian Inheritance
+	desc = "EVENTHIST3895"
+	#-#The ruling family of Pommern has died out! Legally, Brandenburg is the heir, but the powerful Swedes demand a portion of the inheritance. What shall be our decision?
+
+	date = { day = 10 month = march year = 1637 }
+
+	action_a = {
+		name = "ACTIONNAME3895A" #Split Pommern between Sweden and Brandenburg (End Game)
+		command = { type = secedeprovince which = SWE value = 304 } #Vorpommern
+		command = { type = trigger which = 3896 } #BRA: The Pommern Inheritance
+		command = { type = trigger which = 291029 } #SWE: The Acquisition of Vorpommern
+	}
+	action_b = {
+		name = "ACTIONNAME3895B" #Let Brandenburg receive all of Pommern (End Game)
+		command = { type = trigger which = 3896 } #BRA: The Pommern Inheritance
+	}
+}
+#(1637) The Pommern Inheritance -II-
+event = {
+	id = 259009
+	trigger = {
+		ai = yes
+		OR = {
+			NOT = { exists = SWE }
+			NOT = { owned = { province = 304 data = -1 } } #Vorpommern
+		}
+		exists = BRA
+	}
+	random = no
+	country = POM
+	name = "EVENTNAME3895" #The Pomeranian Inheritance
+	desc = "EVENTHIST259009"
+	#-#The ruling family of Pommern has died out! Legally, Brandenburg is the heir...
+
+	date = { day = 10 month = march year = 1637 }
+
+	action_a = {
+		name = "ACTIONNAME3895B" #Let Brandenburg receive all of Pommern (End Game)
+		command = { type = trigger which = 3896 } #BRA: The Pommern Inheritance
+	}
+}
+#(1637) The Pommern Inheritance -III-
+event = {
+	id = 259010
+	trigger = {
+		exists = SWE
+		NOT = { exists = BRA }
+		owned = { province = 304 data = -1 } #Vorpommern
+		OR = {
+			event = 132202 #BRA: The Cleves succession
+			event = 132203 #BRA: The Cleves succession
+			event = 132204 #BRA: Treaty of Xanten
+			event = 132205 #BRA: War over the Cleves succession
+		}
+	}
+	random = no
+	country = POM
+	name = "EVENTNAME3895" #The Pomeranian Inheritance
+	desc = "EVENTHIST259010"
+	#-#The ruling family of Pommern has died out! Legally, the House of Hohenzollern is the rightful heir, but since they have been dispossessed of their dominions in the Mark of Brandenburg by foreign invaders they cannot rightfully claim the imperial investiture of the duchy. Also because of that the powerful Swedes demand the acquisition of Pomerania. What shall be our decision?
+
+	date = { day = 11 month = march year = 1637 }
+
+	action_a = {
+		name = "ACTIONNAME259010A" #Ask the Emperor for the investiture of Brandenburg
+		command = { type = sleepevent which = 132008 } #BRA: The Pomeranian Inheritance
+		command = { type = addcore which = 311 } #Magdeburg
+		command = { type = addcore which = 312 } #Brandenburg
+		command = { type = addcore which = 313 } #Küstrin
+		#Territories of the Cleves succession
+		command = { type = addcore which = 334 } #Münster
+		command = { type = addcore which = 343 } #Kleves
+		command = { type = addcore which = 338 } #Geldre
+		command = { type = relation which = SWE value = -50 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = remove_countryculture which = polish }
+		command = { type = trigger which = 259016 } #POM: The investiture of Brandenburg
+	}
+	action_b = {
+		name = "ACTIONNAME259010B" #Stay as Pomerania and cede Stettin to Sweden
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = sleepevent which = 132009 } #BRA: New Capital
+		command = { type = trigger which = 291029 } #SWE: The Acquisition of Vorpommern
+	}
+	action_c = {
+		name = "ACTIONNAME259010C" #Let Sweden receive all of Pommern (End Game)
+		command = { type = sleepevent which = 132009 } #BRA: New Capital
+		command = { type = trigger which = 291030 } #SWE: The Acquisition of Pomerania
+	}
+	action_d = {
+		name = "ACTIONNAME259010D" #Stay as duchy of Pomerania
+		command = { type = sleepevent which = 132009 } #BRA: New Capital
+		command = { type = relation which = SWE value = -50 }
+	}
+}
+#(1637) The Pommern Inheritance -IV-
+event = {
+	id = 259011
+	trigger = {
+		exists = SWE
+		NOT = { exists = BRA }
+		NOT = { owned = { province = 304 data = -1 } } #Vorpommern
+		OR = {
+			event = 132202 #BRA: The Cleves succession
+			event = 132203 #BRA: The Cleves succession
+			event = 132204 #BRA: Treaty of Xanten
+			event = 132205 #BRA: War over the Cleves succession
+		}
+	}
+	random = no
+	country = POM
+	name = "EVENTNAME3895" #The Pomeranian Inheritance
+	desc = "EVENTHIST259010"
+	#-#The ruling family of Pommern has died out! Legally, the House of Hohenzollern is the rightful heir, but since they have been dispossessed of their dominions in the Mark of Brandenburg by foreign invaders they cannot rightfully claim the imperial investiture of the duchy. Also because of that the powerful Swedes demand the acquisition of Pomerania. What shall be our decision?
+
+	date = { day = 11 month = march year = 1637 }
+
+	action_a = {
+		name = "ACTIONNAME259010A" #Ask the Emperor for the investiture of Brandenburg
+		command = { type = sleepevent which = 132008 } #BRA: The Pomeranian Inheritance
+		command = { type = addcore which = 311 } #Magdeburg
+		command = { type = addcore which = 312 } #Brandenburg
+		command = { type = addcore which = 313 } #Küstrin
+		#Territories of the Cleves succession
+		command = { type = addcore which = 334 } #Münster
+		command = { type = addcore which = 343 } #Kleves
+		command = { type = addcore which = 338 } #Geldre
+		command = { type = relation which = SWE value = -50 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = remove_countryculture which = polish }
+		command = { type = trigger which = 259016 } #POM: The investiture of Brandenburg
+	}
+	action_b = {
+		name = "ACTIONNAME259010C" #Let Sweden receive all of Pommern (End Game)
+		command = { type = sleepevent which = 132009 } #BRA: New Capital
+		command = { type = trigger which = 291030 } #SWE: The Acquisition of Pomerania
+	}
+	action_c = {
+		name = "ACTIONNAME259010D" #Stay as duchy of Pomerania
+		command = { type = sleepevent which = 132009 } #BRA: New Capital
+		command = { type = relation which = SWE value = -50 }
+	}
+}
+#(1637) The Pommern Inheritance -V-
+event = {
+	id = 259012
+	trigger = {
+		exists = SWE
+		NOT = { exists = BRA }
+		NOT = { owned = { province = 304 data = -1 } } #Vorpommern
+		NOT = {
+			event = 132202 #BRA: The Cleves succession
+			event = 132203 #BRA: The Cleves succession
+			event = 132204 #BRA: Treaty of Xanten
+			event = 132205 #BRA: War over the Cleves succession
+		}
+	}
+	random = no
+	country = POM
+	name = "EVENTNAME3895" #The Pomeranian Inheritance
+	desc = "EVENTHIST259010"
+	#-#The ruling family of Pommern has died out! Legally, the House of Hohenzollern is the rightful heir, but since they have been dispossessed of their dominions in the Mark of Brandenburg by foreign invaders they cannot rightfully claim the imperial investiture of the duchy. Also because of that the powerful Swedes demand the acquisition of Pomerania. What shall be our decision?
+
+	date = { day = 11 month = march year = 1637 }
+
+	action_a = {
+		name = "ACTIONNAME259010A" #Ask the Emperor for the investiture of Brandenburg
+		command = { type = sleepevent which = 132008 } #BRA: The Pomeranian Inheritance
+		command = { type = addcore which = 311 } #Magdeburg
+		command = { type = addcore which = 312 } #Brandenburg
+		command = { type = addcore which = 313 } #Küstrin
+		command = { type = relation which = SWE value = -50 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = remove_countryculture which = polish }
+		command = { type = trigger which = 259016 } #POM: The investiture of Brandenburg
+	}
+	action_b = {
+		name = "ACTIONNAME259010C" #Let Sweden receive all of Pommern (End Game)
+		command = { type = sleepevent which = 132009 } #BRA: New Capital
+		command = { type = trigger which = 291030 } #SWE: The Acquisition of Pomerania
+	}
+	action_c = {
+		name = "ACTIONNAME259010D" #Stay as duchy of Pomerania
+		command = { type = sleepevent which = 132009 } #BRA: New Capital
+		command = { type = relation which = SWE value = -50 }
+	}
+}
+#(1637) The Pommern Inheritance - VI -
+event = {
+	id = 259013
+	trigger = {
+		exists = SWE
+		NOT = { exists = BRA }
+		owned = { province = 304 data = -1 } #Vorpommern
+		NOT = {
+			event = 132202 #BRA: The Cleves succession
+			event = 132203 #BRA: The Cleves succession
+			event = 132204 #BRA: Treaty of Xanten
+			event = 132205 #BRA: War over the Cleves succession
+		}
+	}
+	random = no
+	country = POM
+	name = "EVENTNAME3895" #The Pomeranian Inheritance
+	desc = "EVENTHIST259010"
+	#-#The ruling family of Pommern has died out! Legally, the House of Hohenzollern is the rightful heir, but since they have been dispossessed of their dominions in the Mark of Brandenburg by foreign invaders they cannot rightfully claim the imperial investiture of the duchy. Also because of that the powerful Swedes demand the acquisition of Pomerania. What shall be our decision?
+
+	date = { day = 11 month = march year = 1637 }
+
+	action_a = {
+		name = "ACTIONNAME259010A" #Ask the Emperor for the investiture of Brandenburg
+		command = { type = sleepevent which = 132008 } #BRA: The Pomeranian Inheritance
+		command = { type = addcore which = 311 } #Magdeburg
+		command = { type = addcore which = 312 } #Brandenburg
+		command = { type = addcore which = 313 } #Küstrin
+		command = { type = relation which = SWE value = -50 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = remove_countryculture which = polish }
+		command = { type = trigger which = 259016 } #POM: The investiture of Brandenburg
+	}
+	action_b = {
+		name = "ACTIONNAME259010B" #Stay as Pomerania and cede Stettin to Sweden
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = sleepevent which = 132009 } #BRA: New Capital
+		command = { type = trigger which = 291029 } #SWE: The Acquisition of Vorpommern
+	}
+	action_c = {
+		name = "ACTIONNAME259010C" #Let Sweden receive all of Pommern (End Game)
+		command = { type = sleepevent which = 132009 } #BRA: New Capital
+		command = { type = trigger which = 291030 } #SWE: The Acquisition of Pomerania
+	}
+	action_d = {
+		name = "ACTIONNAME259010D" #Stay as duchy of Pomerania
+		command = { type = sleepevent which = 132009 } #BRA: New Capital
+		command = { type = relation which = SWE value = -50 }
+	}
+}
+#(1637) The Pommern Inheritance -VII-
+event = {
+	id = 259014
+	trigger = {
+		NOT = {
+			exists = BRA
+			exists = SWE
+		}
+		OR = {
+			event = 132202 #BRA: The Cleves succession
+			event = 132203 #BRA: The Cleves succession
+			event = 132204 #BRA: Treaty of Xanten
+			event = 132205 #BRA: War over the Cleves succession
+		}
+	}
+	random = no
+	country = POM
+	name = "EVENTNAME3895" #The Pomeranian Inheritance
+	desc = "EVENTHIST259014"
+	#-#The ruling family of Pommern has died out! Legally, the House of Hohenzollern is the rightful heir, but since they have been dispossessed of their dominions in the Mark of Brandenburg by foreign invaders they cannot rightfully claim the imperial investiture of the duchy. What shall be our decision?
+
+	date = { day = 11 month = march year = 1637 }
+
+	action_a = {
+		name = "ACTIONNAME259010A" #Ask the Emperor for the investiture of Brandenburg
+		command = { type = sleepevent which = 132008 } #BRA: The Pomeranian Inheritance
+		command = { type = addcore which = 311 } #Magdeburg
+		command = { type = addcore which = 312 } #Brandenburg
+		command = { type = addcore which = 313 } #Küstrin
+		#Territories of the Cleves succession
+		command = { type = addcore which = 334 } #Münster
+		command = { type = addcore which = 343 } #Kleves
+		command = { type = addcore which = 338 } #Geldre
+		command = { type = relation which = HAB value = 50 }
+		command = { type = remove_countryculture which = polish }
+		command = { type = trigger which = 259016 } #POM: The investiture of Brandenburg
+	}
+	action_b = {
+		name = "ACTIONNAME259010D" #Stay as duchy of Pomerania
+		command = { type = sleepevent which = 132009 } #BRA: New Capital
+		command = { type = vp value = -5 }
+	}
+}
+#(1637) The Pommern Inheritance - VIII -
+event = {
+	id = 259015
+	trigger = {
+		NOT = {
+			exists = BRA
+			exists = SWE
+			event = 132202 #BRA: The Cleves succession
+			event = 132203 #BRA: The Cleves succession
+			event = 132204 #BRA: Treaty of Xanten
+			event = 132205 #BRA: War over the Cleves succession
+		}
+	}
+	random = no
+	country = POM
+	name = "EVENTNAME3895" #The Pomeranian Inheritance
+	desc = "EVENTHIST259014"
+	#-#The ruling family of Pommern has died out! Legally, the House of Hohenzollern is the rightful heir, but since they have been dispossessed of their dominions in the Mark of Brandenburg by foreign invaders they cannot rightfully claim the imperial investiture of the duchy. What shall be our decision?
+
+	date = { day = 11 month = march year = 1637 }
+
+	action_a = {
+		name = "ACTIONNAME259010A" #Ask the Emperor for the investiture of Brandenburg
+		command = { type = sleepevent which = 132008 } #BRA: The Pomeranian Inheritance
+		command = { type = addcore which = 311 } #Magdeburg
+		command = { type = addcore which = 312 } #Brandenburg
+		command = { type = addcore which = 313 } #Küstrin
+		command = { type = relation which = HAB value = 50 }
+		command = { type = remove_countryculture which = polish }
+		command = { type = trigger which = 259016 } #POM: The investiture of Brandenburg
+	}
+	action_b = {
+		name = "ACTIONNAME259010D" #Stay as duchy of Pomerania
+		command = { type = sleepevent which = 132009 } #BRA: New Capital
+		command = { type = vp value = -5 }
+	}
+}
+#(1637) The investiture of Brandenburg
+event = {
+	id = 259016 #triggered by POM_259010 A / POM_259011 A / POM_259012 A / POM_259013 A / POM_259014 A / POM_259015 A
+	random = no
+	country = POM
+	name = "EVENTNAME259016" #The investiture of Brandenburg
+	desc = "EVENTHIST259016"
+	#-#The House of Hohenzollern receives the imperial investiture of the duchy.
+
+	action_a = {
+		name = "GOOD"
+		command = { type = flagname which = "" }
+		command = { type = country which = BRA }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 259004-259006 - next: 259023

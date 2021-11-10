@@ -1,0 +1,1542 @@
+#Songhai Empire (SON)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1464) Mossi Raids
+#by David Harper
+event = {
+	id = 284005 #triggered by MSS_310002
+	random = no
+	country = SON
+	name = "EVENTNAME284005" #Mossi Raids
+	desc = "EVENTHIST284005"
+	#-#With the Mali on the retreat the Mossi were free to launch raids on their neighbors. They often raided the fertile lands of the Songhai.
+
+	action_a = {
+		name = "ACTIONNAME284005A" #We will remember this...
+		command = { type = stability value = -2 }
+		command = { type = relation which = MSS value = -100 }
+		command = { type = casusbelli which = MSS value = 12 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Sonni Ali Ber
+
+#(1464-1492) The Sorceror King
+#by David Harper
+event = {
+	id = 284006
+	random = no
+	country = SON
+	name = "EVENTNAME284006" #The Sorceror King
+	desc = "EVENTHIST284006"
+	#-#The greatest hero of Songhai legend was Sonni Ali Ber. Ali's mother was from the town of Fara, whose people were not strict Muslims. Their religious leaders were the diviners and sorcerors of Songhai's traditional religions but because he was a Songhai prince he was nominally Muslim and gave money to the mosques of Gao. He began his reign by defeating the Dogon and Fulani tribes that were rivals to the Songhai, then drove the Mossi raiders out of the Dendi for good. A brilliant general, in 26 years he fought 32 wars and won them all. Soon, he began to look beyond Gao. The obvious choice was Timbuktu, long the key to control of the valuable gold-salt-ivory trade of West Africa. Sonni Ali sent a message to the governor of Timbuktu asking him to join his empire peacefully.
+
+	date = { day = 1 month = january year = 1464 }
+	offset = 1
+	deathdate = { day = 6 month = november year = 1492 }
+
+	action_a = {
+		name = "ACTIONNAME284006A" #Drive out the invaders!
+		command = { type = stability value = 1 }
+		command = { type = domestic which = quality value = 1 }
+		command = { type = provincetax which = 1496 value = 1 } #Gao - taken from the Dogon and Fulani
+		command = { type = population which = 1496 value = 2000 } #Gao
+		command = { type = provincetax which = 1497 value = 1 } #Say - taken from the Dogon and Fulani
+		command = { type = population which = 1497 value = 2000 } #Say
+		command = { type = relation which = MSS value = -50 }
+		command = { type = breakvassal which = BAN }
+		command = { type = breakvassal which = MSS }
+		#command = { type = AI which = SON_Sonni_Ali.ai }
+	}
+}
+
+#(1464-1492) The Sack of Timbuktu
+#by Garbon
+event = {
+	id = 284012
+	trigger = {
+		owned = { province = 1495 data = -1 }
+		control = { province = 1495 data = -1 }
+		event = 124003 #BAN: The Governor's Reply
+	}
+	random = no
+	country = SON
+	name = "EVENTNAME284012" #The Sack of Timbuktu
+	desc = "EVENTHIST284012"
+	#-#Although he claimed to be a liberator, Sonni Ali had dreams of empire. He was not pleased with Timbuktu, which had first spurned and insulted him, then closed its gates to his armies. He had marked the ulemas (clerics) of Timbuktu as traitors and cowards who deserved no mercy. When he occupied Timbuktu he set his men loose on the city, sacking the city and slaughtering its Muslim leaders, many of whom fled to Walata. It was yet another atrocity in the short history of Timbuktu and it left the once great city in ruins.
+
+	date = { day = 1 month = january year = 1464 }
+	offset = 1
+	deathdate = { day = 6 month = november year = 1492 }
+
+	action_a = {
+		name = "ACTIONNAME284012A" #Revenge is sweet!
+		command = { type = population which = 1495 value = -1000 } #Timbuktu
+		command = { type = provinceculture which = 1495 value = mali } #Timbuktu
+		command = { type = conversion which = 1495 } #Timbuktu
+		command = { type = badboy value = 1 }
+	}
+}
+
+#(1464-1492) Timbuktu's Submission
+#by David Harper
+event = {
+	id = 284009 #triggered by BAN_124003 B
+	random = no
+	country = SON
+	name = "EVENTNAME284009" #Timbuktu's Submission
+	desc = "EVENTHIST284009"
+	#-#With Omar's surrender, Timbuktu fell into the waiting hands of Sonni Ali. Although the leaders of Timbuktu had invited Sonni Ali to save them from the Tuaregs, they had second thoughts when they saw the massive army approaching. Assembled in front of Timbuktu were hundreds of camels and horses mounted by Songhai cavalry and hundreds of infantrymen in full armor. The ulemas of the city knew that Sonni Ali was a Muslim in name only, and this made him suspect. Frightened, the people appealed to the Tuareg to save them, and surprisingly, the Tuareg chief answered them. He sent a caravan of a thousand camels to escort any who wished to flee to the safety of Walata, the Tuareg capital in the Sahara. Omar at first closed the city to the Songhai, but relented and had a fleet of boats assembled to ferry the armies across to the city before he joined the caravan, leaving his brother al-Muhktar in charge. On January 20, 1468, Sonni Ali took control of the city and turned Gao from a Kingdom into an empire.
+
+	action_a = {
+		name = "ACTIONNAME284009A" #It is ours!
+		command = { type = addcore which = 1495 } #Timbuktu
+		command = { type = inherit which = BAN }
+		command = { type = vp value = 10 }
+		command = { type = population which = 1495 value = -1000 } #Timbuktu
+		command = { type = domestic which = centralization value = 1 } #To offset the inheritance
+	}
+}
+
+#(1466-1470) Timbuktu's Riches
+#by Garbon
+event = {
+	id = 284007 #triggered by BAN_124007 A / MAL_218005 A
+	random = no
+	country = SON
+	name = "EVENTNAME284007" #Timbuktu's Riches
+	desc = "EVENTHIST284007"
+	#-#Although the ulemas of Timbuktu had rejected Sonni Ali's offer to absorb Timbuktu into his growing empire, its governor Omar sent Sonni Ali a desperate apology in which he offered the city to him - if he could defeat its Tuareg garrison first. To accomplish this, Omar sent along detailed information about the city and its defenders.
+
+	action_a = {
+		name = "ACTIONNAME284007A" #Prepare an expedition!
+		command = { type = war which = BAN }
+		command = { type = addcore which = 1495 } #Timbuktu
+		command = { type = inf which = -2 value = 10000 }
+	}
+	action_b = {
+		name = "ACTIONNAME284007B" #Bide our time
+		command = { type = addcore which = 1495 } #Timbuktu
+		command = { type = relation which = BAN value = -100 }
+		command = { type = inf which = -2 value = 5000 }
+	}
+	action_c = {
+		name = "ACTIONNAME284007C" #Do not antagonize the Tuareg
+		command = { type = relation which = BAN value = 50 }
+		command = { type = revolt which = -1 }
+		command = { type = treasury value = 100 }
+		command = { type = vp value = -50 }
+	}
+}
+
+#(1466-1492) The Fall of Timbuktu
+#by David Harper
+event = {
+	id = 284008
+	trigger = {
+		event = 284007 #SON: Timbuktu's Riches (Sonni Ali is invited)
+		owned = { province = 1495 data = -1 }
+	}
+	random = no
+	country = SON
+	name = "EVENTNAME284008" #The Fall of Timbuktu
+	desc = "EVENTHIST284008"
+	#-#Although the leaders of Timbuktu had invited Sonni Ali to save them from the Tuaregs, they had second thoughts when they saw the massive army approaching. Assembled in front of Timbuktu were hundreds of camels and horses mounted by Songhai cavalry and hundreds of infantrymen in full armor. The ulemas of the city knew that Sonni Ali was a Muslim in name only, and this made him suspect. Frightened, the people appealed to the Tuareg to save them and surprisingly the Tuareg chief answered them. He sent a caravan of a thousand camels to escort any who wished to flee to the safety of Walata, the Tuareg capital in the Sahara. Omar at first closed the city to the Songhai but relented and had a fleet of boats assembled to ferry the armies across to the city before he joined the caravan, leaving his brother al-Muhktar in charge.
+
+	date = { day = 1 month = january year = 1466 }
+	offset = 1
+	deathdate = { day = 6 month = november year = 1492 }
+
+	action_a = {
+		name = "ACTIONNAME284008A" #The city of learning is now ours
+		command = { type = population which = 1495 value = -1000 } #Timbuktu
+		command = { type = vp value = 10 }
+	}
+}
+
+#(1468-1492) The Tuareg Approach Timbuktu - Ahistorical
+#by David Harper
+ event = {
+	id = 284010
+	trigger = {
+		owned = { province = 1495 data = MAL }
+		NOT = { vassal = { country = SON country = MAL } }
+		NOT = { relation = { country = MAL data = 100 } }
+		NOT = { event = 284007 } #(SON) Timbuktu's Riches
+	}
+	random = no
+	country = SON
+	name = "EVENTNAME284010" #The Tuareg Approach Timbuktu
+	desc = "EVENTHIST284010"
+	#-#The Malinke Kings of Mali had once ruled Songhai, and it was only by cunning and deception that two Songhai princes managed to escape and lead the fight for freedom in the fourteenth century. Although Mali was on the decline, it would remain a threat to Songhai independence while it remained so close to Gao. Timbuktu was the key to control of West Africa, and Sonni Ali meant to have that key. Knowing this, the Tuareg approached him with an offer. They had founded Timbuktu but were unable to hold onto it. They were eager to take revenge on the Malinke and soon a strike force was assembled to take Timbuktu. It was a risky gambit against a powerful empire, but it was Gao's last chance for empire.
+
+	date = { day = 1 month = january year = 1468 }
+	offset = 1000
+	deathdate = { day = 6 month = november year = 1492 }
+
+	action_a = {
+		name = "ACTIONNAME284010A" #Form an alliance against Mali
+		command = { type = addcore which = 1495 } #Timbuktu
+		command = { type = casusbelli which = MAL value = 36 }
+		command = { type = relation which = MAL value = -100 }
+		command = { type = CAV which = 1497 value = 1000 } #Say
+	}
+	action_b = {
+		name = "ACTIONNAME284010B" #Warn the Malinke about the threat
+		command = { type = stability value = -1 }
+		command = { type = treasury value = 50 }
+		command = { type = relation which = MAL value = 50 }
+	}
+}
+
+#(1468-1492) Sonni Ali's Gamble - Ahistorical
+#by David Harper
+event = {
+	id = 284011
+	trigger = {
+		NOT = {
+			owned = { province = 1495 data = -1 }
+			owned = { province = 1495 data = BAN }
+			owned = { province = 1495 data = MAL }
+			event = 284010 #The Tuareg Approach Timbuktu
+			event = 284007 #Timbuktu's Riches
+		}
+	}
+	random = no
+	country = SON
+	name = "EVENTNAME284011" #Sonni Ali's Gamble
+	desc = "EVENTHIST284011"
+	#-#Three cities made up the triangle of trade in the Sahel region. Salt, gold, slaves and ivory flowed between Gao, Timbuktu and Jenne. Ghana and Mali had both controlled the three in their time. Now Mali had lost Gao and Timbuktu, making room for another empire to claim its place. Sonni Ali had Gao and Timbuktu lay close by to the west. Although it was held by others, it was a tempting target indeed. If he could lay claim to it, he could build an empire akin to that of Mali - and bring the Malinke Kings down from their thrones. Sonni Ali decided to gamble for it all.
+
+	date = { day = 1 month = january year = 1468 }
+	offset = 1000
+	deathdate = { day = 6 month = november year = 1492 }
+
+	action_a = {
+		name = "ACTIONNAME284011A" #It must be mine!
+		command = { type = addcore which = 1495 } #Timbuktu
+		command = { type = INF which = 1497 value = 5000 } #Say
+		command = { type = relation which = MSS value = -50 }
+		command = { type = relation which = ASH value = -50 }
+		command = { type = relation which = DAH value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME284011B" #Give up on our dreams of empire
+		command = { type = vp value = -50 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Birth of the Songhai Empire
+
+#(1464-1492) The Birth of the Songhai Empire
+#by David Harper
+event = {
+	id = 284013
+	trigger = {
+		countrysize = 3
+		owned = { province = 1495 data = -1 } #Timbuktu
+	}
+	random = no
+	country = SON
+	name = "EVENTNAME284013" #The Birth of the Songhai Empire
+	desc = "EVENTHIST284013"
+	#-#Sonni Ali was a military genius who quickly reorganized his forces. He built the army into a professional force divided into cavalry and infantry. Most of the cavalry were made up of nobility, but slaves and captives were accepted as well. He also installed a hi-koi (commander-in-chief) for the navy, which grew to over four hundred boats run by the Sorko, the fisherfolk of the Dendi. The Sorko were key to his victories along the Niger, able to transport troops quickly along the more than thousand-mile 'highway'. Using the Sorko, he struck quickly along the river at Walata and Jenne, cities that had recently gained their independence from Mali. If Jenne fell, the empire would be unstoppable.
+
+	date = { day = 1 month = january year = 1464 }
+	offset = 360
+	deathdate = { day = 6 month = november year = 1492 }
+
+	action_a = {
+		name = "ACTIONNAME284013A" #On to Mali!
+		command = { type = breakvassal which = MAL }
+		command = { type = addcore which = 1494 } #Buré
+		command = { type = domestic which = quality value = 1 }
+		command = { type = domestic which = offensive value = 2 }
+		command = { type = land value = 500 }
+		command = { type = naval value = 200 }
+		command = { type = CAV which = -2 value = 5000 }
+		command = { type = addcore which = 1490 } #Bambuk
+		command = { type = casusbelli which = MAL value = 36 }
+		command = { type = relation which = MAL value = -50 }
+	}
+}
+
+#(1464-1492) The Fall of Jenne
+event = {
+	id = 284014
+	trigger = {
+		control = { province = 1490 data = -1 } #Bambuk (Jenne)
+	}
+	random = no
+	country = SON
+	name = "EVENTNAME284014" #The Fall of Jenne
+	desc = "EVENTHIST284014"
+	#-#Jenne was the door to the gold, kola nut and ivory producers of the southern forests. It was also newly independent of Mali and a ripe target for conquest. 250 miles southwest of Timbuktu, it was protected by natural defenses. Taking advantage of the high water season Sonni Ali sent his army to Jenne on 400 boats, but the siege took seven years, seven months and seven days. When Jenne at last fell the Malinke King surrendered with dignity. Out of respect to the defeated leader, Sonni Ali instructed his men not to loot the city or harm the royal family. In fact, Sonni Ali himself married the Queen mother of Jenne, uniting the royal clans of Songhai and Jenne.
+
+	date = { day = 1 month = january year = 1464 }
+	offset = 1
+	deathdate = { day = 6 month = november year = 1492 }
+
+	action_a = {
+		name = "ACTIONNAME284014A" #The royal clans of Songhai and Jenne are united with me!
+		command = { type = vp value = 10 }
+		command = { type = add_countryculture which = mali }
+		command = { type = addcore which = 1489 } #Jenné
+		command = { type = addcore which = 1491 } #Segu
+	}
+}
+
+#(1480-1492) The Mossi Threat
+#by Garbon
+event = {
+	id = 284015
+	trigger = {
+		exists = MSS
+		OR = {
+			owned = { province = 1490 data = -1 }
+			owned = { province = 1489 data = -1 }
+		}
+	}
+	random = no
+	country = SON
+	name = "EVENTNAME284015" #The Mossi Threat
+	desc = "EVENTHIST284015"
+	#-#The Mossi persistantly raided Songhai's new territories gained from Mali. Eventually, Sonni Ali Ber had enough and vowed to rid the Empire of the Mossi threat.
+
+	date = { day = 1 month = january year = 1480 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1492 }
+
+	action_a = {
+		name = "ACTIONNAME284015A" #They shall tremble before our wrath!
+		command = { type = relation which = MSS value = -100 }
+		command = { type = breakdynastic which = MSS }
+		command = { type = breakvassal which = MSS }
+	}
+}
+
+#(1419-1540) The Mossi are Dispersed
+#by Garbon
+event = {
+	id = 284016
+	trigger = {
+		owned = { province = 1494 data = -1 }
+		NOT = { exists = MSS }
+	}
+	random = no
+	country = SON
+	name = "EVENTNAME284016" #The Mossi are Dispersed
+	desc = "EVENTHIST284016"
+	#-#Upon the fall of their state the Mossi were forced to flee to the edges of the countryside. Eventually another Mossi state would emerge.
+
+	date = { day = 11 month = april year = 1419 }
+	offset = 2
+	deathdate = { day = 12 month = april year = 1540 }
+
+	action_a = {
+		name = "ACTIONNAME284016A" #We are the masters of the Mossi
+		command = { type = provinceculture which = 1494 value = mali } #Should be Songhay #Buré
+		command = { type = vp value = 10 }
+	}
+}
+
+#(1483-1492) Sonni Ali's Reforms
+#by David Harper
+event = {
+	id = 284017
+	trigger = { countrysize = 4 } #Songhai must have conquered new territories
+	random = no
+	country = SON
+	name = "EVENTNAME284017" #Sonni Ali's Reforms
+	desc = "EVENTHIST284017"
+	#-#Although he ruled from horseback, Sonni Ali Ber was well aware that a vast empire could not be held together by military force alone. He organized the Songhai government into an effective bureaucracy, turning conquered states into provinces, appointing governors and setting standards. This differed greatly from the previous Sudanese empires which had been based more on alliances and tributary states than on the high degree of centralization characteristic of Songhai. He did, however, make special arrangements for Timbuktu and other Muslim provinces.
+
+	date = { day = 1 month = january year = 1483 }
+	offset = 1000
+	deathdate = { day = 6 month = november year = 1492 }
+
+	action_a = {
+		name = "ACTIONNAME284017A" #Reorganize conquered states but allow Muslims autonomy
+		command = { type = badboy value = -1 }
+		command = { type = stability value = 2 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = trade value = 200 }
+		command = { type = infra value = 200 }
+	}
+	action_b = {
+		name = "ACTIONNAME284017B" #Emphasize traditional religion over Islam
+		command = { type = stability value = 1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = religiousrevolt which = -1 }
+		command = { type = religiousrevolt which = -1 }
+		command = { type = infra value = 300 }
+		command = { type = trade value = 100 }
+	}
+	action_c = {
+		name = "ACTIONNAME284017C" #Keep the old system and focus on the military
+		command = { type = vp value = -25 }
+		command = { type = stability value = 1 }
+		command = { type = independence which = BAN }
+		command = { type = independence which = MSS }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = quality value = 1 }
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = CAV which = -2 value = 5000 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Islamic Influence
+
+#(1492-1493) Fall of the Sonni Dynasty
+#by David Harper
+event = {
+	id = 284018
+	random = no
+	country = SON
+	name = "EVENTNAME284018" #Fall of the Sonni Dynasty
+	desc = "EVENTHIST284018"
+	#-#When Sonni Ali drowned while returning home after a victory, Muslims across the empire thanked Allah for answering their prayers. Although he tried to accomodate the Muslims Sonni Ali had had little respect for Islam. He kept up the outward appearance of a Muslim but he neither relinquished the traditional Songhai religion nor recognized Islam as the state religion. Women were allowed to walk around unveiled and public ceremonies were a mix of traditional and islamic rituals. His harsh treatment of the ulemas (clerics) of Timbuktu only created more friction in the empire. Ali was succeeded by his son Sonni Baru. Like his father, Baru was Muslim in name only. He said his prayers all at once instead of five times a day and on campaign he simply said the names of the prayers to save time. Finally a group of Muslim officers confronted Baru and demanded he change his ways. He refused only to be faced with a coup d'etat. Sonni Baru fled to a village in the far south and lived his life in exile.
+
+	date = { day = 7 month = november year = 1492 }
+	offset = 30
+	deathdate = { day = 3 month = march year = 1493 }
+
+	action_a = {
+		name = "ACTIONNAME284018A" #Flee to the south!
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 4 value = 6 }
+		command = { type = revolt which = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME284018B" #Stay and fight for religious freedom
+		command = { type = stability value = -5 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = revoltrisk which = 12 value = 12 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = sleepmonarch which = 0127008 } #Muhammad I
+		command = { type = sleepmonarch which = 0127010 } #Mûsâ
+		command = { type = sleepmonarch which = 0127011 } #Muhammad II
+		command = { type = sleepleader which = 0127301 } #Muhammad I (SON)
+	}
+}
+
+#(1493-1528) The Askia Dynasty
+#by David Harper
+event = {
+	id = 284020
+	trigger = { monarch = 0127008 } #Muhammad I #Askia Mohammad
+	random = no
+	country = SON
+	name = "EVENTNAME284020" #The Askia Dynasty
+	desc = "EVENTHIST284020"
+	#-#With the last Sonni ('Restored') heir in exile, the Muslim commanders had won and their leader, Askia ('General') Muhammad Abu Bakr Touré became the new King. This was the beginning of the Askiya dynasty, the fourth and last dynasty of Songhai. His first act was to welcome Muslims back to Timbuktu, Gao and Jenne, stimulating trade.
+
+	date = { day = 3 month = march year = 1493 }
+	offset = 1
+	deathdate = { day = 26 month = august year = 1528 }
+
+	action_a = {
+		name = "ACTIONNAME284020A" #Welcome back!
+		command = { type = vp value = 10 }
+		command = { type = stability value = 1 }
+		command = { type = provincereligion which = 1495 value = sunni } #Timbuktu if converted before #Timbuktu
+		command = { type = provincereligion which = 1496 value = sunni } #Gao
+		command = { type = provincereligion which = 1490 value = sunni } #Bambuk
+		command = { type = population which = 1495 value = 500 } #Timbuktu
+		command = { type = trade value = 200 }
+		command = { type = merchants value = 3 }
+	}
+}
+
+#(1493-1528) The Greatest Empire in the Sahel
+#by Garbon
+event = {
+	id = 284027
+	trigger = { countrysize = 10 }
+	random = no
+	country = SON
+	name = "EVENTNAME284027" #The Greatest Empire in the Sahel
+	desc = "EVENTHIST284027"
+	#-#With the fall of Hausaland the emperor had expanded as far south and as far west as the empire could bear. But there were still lands for the taking. To the north were the valuable salt mines of Taghaza in the Sahara desert, while to the east were the Tuareg lands of Air and Agades. The emperor moved northeast, driving the Tuaregs into the desert and setting up administrators to prevent them from reclaiming these lost lands. With these additions the Songhai empire had at last reached its zenith, ultimately stretching from Taghaza in the north to the borders of Yatenga in the south, and from Air in the northeast to Futa Toro in Senegambia. With literally several hundred cultures under its control, Songhai was the largest empire in African history. Unfortuantely, once one has reached the top, there is only one way to go...
+
+	date = { day = 1 month = january year = 1493 }
+	offset = 360
+	deathdate = { day = 26 month = august year = 1528 }
+
+	action_a = {
+		name = "ACTIONNAME284027A" #Conquer the Tuaregs
+		command = { type = addcore which = 1597 } #Azaouad
+		command = { type = colonists value = 3 }
+		command = { type = vp value = 50 }
+		command = { type = desertion which = -1 value = 7000 }
+		command = { type = provincetax which = 1496 value = 2 } #Represents Agades, which is in no-man's land #Gao
+		command = { type = provincetax which = 1497 value = 2 } #Represents Agades #Say
+	}
+}
+
+#(1496-1528) The Hajj
+#by Garbon
+event = {
+	id = 284021
+	trigger = {
+		monarch = 0127008 #Muhammad I #Askia Mohammad
+		atwar = no #He was confident enough to leave for two years
+	}
+	random = no
+	country = SON
+	name = "EVENTNAME284021" #The Hajj
+	desc = "EVENTHIST284021"
+	#-#Askia Mohammad grew up among the Touré, a clan of the Solinke people whose connection with Islam dated back centuries. A devout Muslim and a skilled general, within three years of his coup d'etat he had solidified his position enough to leave Songhai for two years to make a special pilgrimage to Mecca and Medina, or 'Hajj'. This pilgrimage was not only required of the pious, it also gave them a special blessing called 'baraka'. Although not as large as Mansa Musa's hajj a century earlier, Askia Mohammad's pilgrimage was still a spectacle. He took three hundred thousand pieces of gold, a thousand infantrymen and five hundred cavalry with him to Egypt.
+
+	date = { day = 1 month = june year = 1496 }
+	offset = 180
+	deathdate = { day = 26 month = august year = 1528 }
+
+	action_a = {
+		name = "ACTIONNAME284021A" #Make the pilgrimage to Mecca
+		command = { type = treasury value = -50 }
+		command = { type = desertion which = -2 value = 1500 }
+		command = { type = ADM which = -3 value = 24 }
+		command = { type = MIL which = -3 value = 24 }
+		command = { type = DIP which = -3 value = 24 }
+		command = { type = relation which = MAL value = 25 }
+		command = { type = relation which = MAM value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME284021B" #Stay in Gao but make Islam the state religion
+		command = { type = religion which = sunni }
+		command = { type = relation which = MAL value = 25 }
+		command = { type = relation which = ASH value = -10 }
+		command = { type = relation which = MSS value = -10 }
+		command = { type = relation which = HAS value = -10 }
+		command = { type = sleepevent which = 219002 } #MAM: Caliph of the Sahara
+	}
+}
+
+#(1498-1528) The Royal Tomb
+#by David Harper
+event = {
+	id = 284024
+	trigger = {
+		religion = sunni
+		atwar = no
+	}
+	random = no
+	country = SON
+	name = "EVENTNAME284024" #The Royal Tomb
+	desc = "EVENTHIST284024"
+	#-#As the first true Muslim ruler of Songhai the King ordered the building of an immense monument to himself in 1495 in the capital, where it bore testimony to the power and riches of the empire. The building, where his remains were placed after his death, is the largest pre-colonial architectural monument in the region. The complex, including the pyramidal tomb, two flat roofed mosque buildings, a mosque cemetary and an open air assembly ground, was the greatest spectacle of the Niger.
+
+	date = { day = 1 month = january year = 1498 }
+	offset = 1000
+	deathdate = { day = 26 month = august year = 1528 }
+
+	action_a = {
+		name = "ACTIONNAME284024A" #Build a monument to my greatness
+		command = { type = vp value = 20 }
+		command = { type = treasury value = -100 }
+		command = { type = infra value = 200 }
+		command = { type = revoltrisk which = 24 value = -2 }
+		command = { type = conversion which = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME284024B" #Build an unassuming crypt
+		command = { type = treasury value = -25 }
+	}
+	action_c = {
+		name = "ACTIONNAME284024C" #Do not build it
+		command = { type = vp value = -20 }
+	}
+}
+
+#(1499-1528) Caliph of the Sahara
+#by David Harper
+event = {
+	id = 284022
+	trigger = { event = 284021 } #SON: The Hajj
+	random = no
+	country = SON
+	name = "EVENTNAME284022" #Caliph of the Sahara
+	desc = "EVENTHIST284022"
+	#-#Askia Mohammad returned to Songhai in glory. In Egypt, he had met with the Sharif of Egypt, a descendant of the Prophet Mohammed through his daughter Fatima. The Sharif was impressed with the African emperor and made him his lieutenant over all the Songhai lands. In addition, an ambassador to Songhai was appointed. His hajj had strengthened his beliefs and given him spiritual authority over Sahel, all the fertile land south of the Sahara. He immediately imposed Islamic law on Songhai, appointing Muslims as Qadhis (judges) across the land in the hopes that his people would come around to his faith.
+
+	date = { day = 1 month = january year = 1499 }
+	offset = 30
+	deathdate = { day = 26 month = august year = 1528 }
+
+	action_a = {
+		name = "ACTIONNAME284022A" #I have returned!
+		command = { type = religion which = sunni }
+		command = { type = wakeleader which = 0127301 } #Muhammad I (SON)
+		command = { type = stability value = 3 }
+		command = { type = vp value = 10 }
+		command = { type = INF which = -2 value = 1000 }
+		command = { type = domestic which = centralization value = 1 }
+	}
+}
+
+#(1499-1528) The Western Territories
+#by David Harper
+event = {
+	id = 284023
+	trigger = {
+		OR = {
+			countrysize = 5
+			owned = { province = 1490 data = -1 } #Jenne (Bambuk)
+		}
+	}
+	random = no
+	country = SON
+	name = "EVENTNAME284023" #The Western Territories
+	desc = "EVENTHIST284023"
+	#-#The strength of the coup against Sonni Baru had come from the military forces occupying the new territories to the west. These lands were rich but also far away from Gao and threatened to shake off Songhai control without careful oversight. To prevent this the King created a new position: the Kurmina-Fari, or overlord of the west, based in Kabara, a port west of Timbuktu. The Kurmina-Fari became the second most powerful man in the empire after the King himself and the position was a prize given to royal brothers to keep them out of trouble. With the west under his firm control the King continued Sonni Ali's imperial expansion by conquering Mali itself.
+
+	date = { day = 1 month = february year = 1499 }
+	offset = 90
+	deathdate = { day = 26 month = august year = 1528 }
+
+	action_a = {
+		name = "ACTIONNAME284023A" #Appoint the Kurmina-Fari
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = stability value = 1 }
+		command = { type = addcore which = 1487 } #Awdaghost
+		command = { type = addcore which = 1488 } #Walata
+	}
+	action_b = {
+		name = "ACTIONNAME284023B" #Rule these lands from Gao
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = offensive value = -1 }
+		command = { type = stability value = -2 }
+		command = { type = revolt which = 1487 } #Awdaghost
+		command = { type = revolt which = 1488 } #Walata
+		command = { type = revolt which = 1489 } #Jenné
+		command = { type = revolt which = 1490 } #Bambuk
+		command = { type = revolt which = 1491 } #Segu
+	}
+}
+
+#(1500-1528) Jihad
+#by David Harper
+event = {
+	id = 284025
+	trigger = {
+		NOT = { war = { country = SON country = MAL } }
+		event = 284022 #SON: Caliph of the Sahara
+	}
+	random = no
+	country = SON
+	name = "EVENTNAME284025" #Jihad
+	desc = "EVENTHIST284025"
+	#-#As the Commander of the Faithful Askia Mohammad laid claim to all Muslims in Sahel. After consolidating his rule in the west he turned to the east, declaring a Jihad against all infidels. His first target was the Mossi. Songhai armies killed thousands of Mossi, taking their children back with them to Songhai, where they were raised as Muslims. Flush with success, Askia Mohammad sent his armies east against Hausaland.
+
+	date = { day = 1 month = january year = 1500 }
+	offset = 90
+	deathdate = { day = 26 month = august year = 1528 }
+
+	action_a = {
+		name = "ACTIONNAME284025A" #Declare a Jihad!
+		#command = { type = AI which = SON_Askia_Mohammad.ai }
+		command = { type = relation which = HAS value = -100 } #Hausa States
+		command = { type = relation which = ASH value = -100 } #Ashanti (Yatenga Mossi)
+		command = { type = addcore which = 1499 } #Zaria (Hausa)
+		command = { type = addcore which = 1494 } #Buré (Mossi)
+		command = { type = casusbelli which = HAS value = 36 } #Hausa
+		command = { type = casusbelli which = ASH value = 36 } #Ashanti (not conquered)
+		command = { type = INF which = -2 value = 10000 }
+		command = { type = population which = -2 value = 1000 }
+	}
+}
+
+#(1500-1528) The Fall of Kano
+#by David Harper
+event = {
+	id = 284026
+	trigger = {
+		event = 284025 #SON: Jihad
+		owned = { province = 1499 data = -1 }
+		exists = HAS #Hausaland
+		NOT = { war = { country = SON country = HAS } }
+	}
+	random = no
+	country = SON
+	name = "EVENTNAME284026" #The Fall of Kano
+	desc = "EVENTHIST284026"
+	#-#The Jihad against the Hausa states was a success. All the Hausa cities were captured except the walled city of Kano, which resisted for over a year. When it finally surrendered Askia Mohammad allowed the King of Kano to keep his throne and married one of his daughters to him. Hausaland was now part of Songhai.
+
+	date = { day = 1 month = january year = 1500 }
+	offset = 1
+	deathdate = { day = 26 month = august year = 1528 }
+
+	action_a = {
+		name = "ACTIONNAME284026A" #Let the King of Kano keep his throne
+		command = { type = badboy value = -1 }
+		command = { type = independence which = HAS } #Just in case
+		command = { type = vassal which = HAS }
+		command = { type = dynastic which = HAS }
+		command = { type = secedeprovince which = HAS value = 1502 } #Not historically part of Songhai #Nupa
+	}
+	action_b = {
+		name = "ACTIONNAME284026B" #Execute the King of Kano and loot the city
+		command = { type = relation which = HAS value = -100 }
+		command = { type = treasury value = 200 }
+	}
+}
+
+#(1500-1528) Timbuktu's Cultural Revival
+#by idontlikeforms
+event = {
+	id = 284028
+	trigger = {
+		owned = { province = 1495 data = -1 }
+		religion = sunni
+		atwar = no
+	}
+	random = no
+	country = SON
+	name = "EVENTNAME284028" #Timbuktu's Cultural Revival
+	desc = "EVENTHIST284028"
+	#-#The King decidedly courted his Muslim subjects, particularly in Timbuktu, where the clerics and scholars who had fled from Sonni Ali had returned. The Muslims were the literate class of Songhai, and the King encouraged literacy, art and learning. Under the King's patronage Timbuktu experienced a cultural revival and flourished as a center of learning. He gave grants of land and incomes to the ulema, attracting eminent Muslim scholars from as far away as India. The emperor often sought out the ulema for advice and treated them as his equals. The University of Sankore produced distinguished scholars and published significant books, including Tarik al-Fattah and Tarik as-Sudan, two of the few histories of Africa known to exist in the Middle Ages.
+
+	date = { day = 1 month = january year = 1500 }
+	offset = 1000
+	deathdate = { day = 26 month = august year = 1528 }
+
+	action_a = {
+		name = "ACTIONNAME284028A" #Give generously to the Ulema
+		command = { type = treasury value = -200 }
+		command = { type = badboy value = -1 }
+		command = { type = provincereligion which = 1495 value = sunni } #Timbuktu
+		command = { type = population which = 1495 value = 2000 } #Timbuktu
+		command = { type = infra value = 200 }
+		command = { type = gainmanufactory which = 1495 value = luxury } #Timbuktu
+	}
+	action_b = {
+		name = "ACTIONNAME284028B" #Spend the money on our military instead
+		command = { type = vp value = -10 }
+		command = { type = treasury value = -50 }
+		command = { type = land value = 300 }
+		command = { type = domestic which = quality value = 1 }
+		command = { type = domestic which = offensive value = 1 }
+	}
+}
+
+#(1500-1528) The Obligations of Princes
+#by David Harper
+event = {
+	id = 284030
+	trigger = {
+		religion = sunni
+		monarch = 0127008 #Askia Mohammad
+		atwar = no
+	}
+	random = no
+	country = SON
+	name = "EVENTNAME284030" #The Obligations of Princes
+	desc = "EVENTHIST284030"
+	#-#While the urban centers of Songhai were dominated by Islam, the rural areas where the vast majority of the population lived followed traditional African religions. Askia Mohammad was a fervent Muslim, and throughout his life he attempted to convert his people peacefully. He introduced Islamic law and appointed Islamic judges (Qadhis) in the larger districts and replaced native Songhai administrators with Arabs in order to Islamicize the empire but he stopped short of making Islam mandatory. He turned to a famous Islamic scholar, Muhammad Al-Maghili, for advice. In response, Al-Maghili wrote a book entitled 'The Obligations of Princes' in which he advised the King to put to death all those who claimed knowledge of the supernatural, punish men and women who mixed freely on the street and follow the teachings of the Koran regarding hygiene and diet. This strict interpretation of Islamic law was hard for the King to accept. He instituted some changes but never went as far as Al-Maghili wanted him to.
+
+	date = { day = 1 month = january year = 1500 }
+	offset = 1000
+	deathdate = { day = 26 month = august year = 1528 }
+
+	action_a = {
+		name = "ACTIONNAME284030A" #Interpret Islamic law loosely
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME284030B" #Enforce Islamic law with the sword
+		command = { type = stability value = 1 }
+		command = { type = revoltrisk which = 60 value = 15 }
+		command = { type = religiousrevolt which = -1 }
+		command = { type = religiousrevolt which = -1 }
+		command = { type = conversion which = -1 }
+		command = { type = conversion which = -1 }
+	}
+}
+
+#(1510-1528) Askia Mohammad's Reforms
+#by Suleyman and Garbon
+event = {
+	id = 284029
+	trigger = {
+		monarch = 0127008 #Askia Mohammad
+		countrysize = 5
+		atwar = no
+	}
+	random = no
+	country = SON
+	name = "EVENTNAME284029" #Askia Mohammad's Reforms
+	desc = "EVENTHIST284029"
+	#-#In Cairo, Askia Mohammad had consulted with scholars and examined legal and administrative methods and returned with many new ideas. Mohammad fostered trade and commerce, policing the trade routes with the army to maintain its safety. He standardized weights, measures and currency, encouraging the idea of one empire instead of dozens of cultures. He created a large and elaborate bureaucracy to oversee the empire, dividing Songhai into defined provinces, each with its own governor. The King was at the center of it all, assisted by a council of advisors and ministers. Askia was also using the reforms to systematically remove the surviving members of the Sonni, Dia and Za dynasties, replacing them with his own followers. The new government was a giant step away from the style of Mali or Ghana and also from Islamic models used in North Africa. Nothing like it had ever existed in the Sahel before.
+
+	date = { day = 1 month = january year = 1510 }
+	offset = 1000
+	deathdate = { day = 26 month = august year = 1528 }
+
+	action_a = {
+		name = "ACTIONNAME284029A" #Major reforms
+		command = { type = stability value = 1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = mercantilism value = -1 }
+		command = { type = infra value = 500 }
+		command = { type = trade value = 500 }
+		command = { type = provinceculture which = 1495 value = mali } #Timbuktu
+		command = { type = addcore which = 1495 } #In case Timbuktu was conquered early #Timbuktu
+		command = { type = treasury value = -100 }
+	}
+	action_b = {
+		name = "ACTIONNAME284029B" #Foster trade and commerce
+		command = { type = domestic which = mercantilism value = -1 }
+		command = { type = trade value = 500 }
+		command = { type = provinceculture which = 1495 value = mali } #Timbuktu
+		command = { type = treasury value = -50 }
+	}
+	action_c = {
+		name = "ACTIONNAME284029C" #Create the bureaucracy
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = infra value = 500 }
+		command = { type = treasury value = -50 }
+	}
+}
+
+#(1510-1537) Sonni Baru's Conversion - Ahistorical
+#by David Harper
+event = {
+	id = 284019
+	trigger = {
+		OR = {
+			provincereligion = { province = 1495 data = sunni } #Timbuktu
+			provincereligion = { province = 1496 data = sunni } #Gao
+			provincereligion = { province = 1490 data = sunni } #Jenne (Bambuk)
+		}
+		monarch = 0127007 #Bakarî #Sonni Baru
+	}
+	random = no
+	country = SON
+	name = "EVENTNAME284019" #Sonni Baru's Conversion
+	desc = "EVENTHIST284019"
+	#-#Even though he had defeated the most serious challenge to his rule, Sonni Baru still faced opposition to his rule, especially from the ulemas of Timbuktu, Jenne and Gao, the three key cities of the trade route that financed the empire. His support came from the overwhelming numbers of rural farmers, fishers and hunters that still led traditional lifestyles outside the cities, but the new territories in the west were predominantly Muslim and the balance of power continued to shift. Although he continued to resist the idea of forcing religion on any man and never became a devout Muslim himself, Sonni Beru did finally declare Islam to be the state religion of Songhai.
+
+	date = { day = 1 month = january year = 1510 }
+	offset = 3000
+	deathdate = { day = 22 month = april year = 1537 }
+
+	action_a = {
+		name = "ACTIONNAME284019A" #Make Islam the state religion but allow religious freedom
+		command = { type = religion which = sunni }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = provincereligion which = 1495 value = sunni } #Timbuktu if converted before
+		command = { type = provincereligion which = 1496 value = sunni } #Gao
+		command = { type = provincereligion which = 1490 value = sunni } #Bambuk
+	}
+	action_b = {
+		name = "ACTIONNAME284019B" #The faith of our fathers is good enough
+		command = { type = stability value = 1 }
+		command = { type = revoltrisk which = 36 value = 3 }
+		command = { type = conversion which = -1 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#The Civil Wars
+
+#(1519) Askia Mohammad falls ill
+event = {
+	id = 284051
+	trigger = { monarch = 0127008 } #Askia Mohammad
+	random = no
+	country = SON
+	name = "EVENTNAME284051" #Askia Mohammad falls ill
+	desc = "EVENTHIST284051"
+	#-#In the last years of his reign Askia Mohammad became ill. As his illness forced him into retirement from public life his military campaigns came to an end. Although he could no longer lead his armies from horseback, Mohammad continued to be a forceful presence in his government. The aging King and his ministers conspired to keep the extent of his problems away from the court, but as time passed it became more and more obvious that something was wrong.
+
+	date = { day = 25 month = august year = 1519 }
+
+	action_a = {
+		name = "ACTIONNAME284051A" #Keep it a secret
+		#command = { type = AI which = default.ai }
+		command = { type = domestic which = offensive value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME284051B" #Give more power to my sons
+		command = { type = stability value = -2 }
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = ADM which = 1 value = 109 }
+		command = { type = MIL which = 2 value = 109 }
+	}
+}
+
+#(1528) The Abdication
+#by David Harper
+event = {
+	id = 284031
+	trigger = { monarch = 0127008 } #Askia Mohammad
+	random = no
+	country = SON
+	name = "EVENTNAME284031" #The Abdication
+	desc = "EVENTHIST284031"
+	#-#By the time Mohammad was seventy he had weakened considerably and his sight was almost gone. His sons began to demand that he give up power and the royal court became an increasingly dangerous place for the emperor. To prevent others from realizing how weak the old King was the hou-kokorai-koi (master of the royal household) Ali Fulan refused to allow others to see him. This only enraged the sons and one of them, Musa, threatened to kill Ali Fulan. Fearing for his life he left the palace in 1527, and the next year Musa announced at prayers that his father had stepped down in favor of Musa. Old, blind, and without any allies the aged Mohammad was left with no choice but to abdicate. This began a long war of succession where Musa became Askia but had to fight his brothers for the title. He killed some in battle while others fled Songhai to other realms. Those who remained in Gao disappeared one by one until Musa was finally killed in battle by the remaining brothers.
+
+	date = { day = 25 month = august year = 1528 }
+
+	action_a = {
+		name = "ACTIONNAME284031A" #I have no choice
+		#command = { type = AI which = default.ai }
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 32 value = 10 }
+	}
+}
+
+#(1531) The Succession
+#by David Harper
+event = {
+	id = 284032
+	trigger = { monarch = 0127010 } #Askia Musa
+	random = no
+	country = SON
+	name = "EVENTNAME284032" #The Succession
+	desc = "EVENTHIST284032"
+	#-#When Askia Musa was killed the eldest remaining son was the Kurmina-Fari (Governor of the West) and most of the brothers assumed he would inherit the throne. Instead, a cousin named Muhammad Bunkan seized the throne before the eldest brother could arrive. Since there were no clear laws of succession in Songhai, he faced little opposition to his rule, so faced with the fait accompli, the brothers reluctantly agreed that Muhammad would be King. Although Muhammad II introduced elaborate music, costumes and art into the royal court, he is mostly remembered for his unpopular wars.
+
+	date = { day = 11 month = april year = 1531 }
+
+	action_a = {
+		name = "ACTIONNAME284032A" #Muhammad Bunkan seizes the throne
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME284032B" #The eldest shall inherit
+		command = { type = sleepevent which = 284033 } #SON: Ismail and the King
+		command = { type = sleepmonarch which = 0127011 } #Muhammad II
+		command = { type = wakemonarch which = 0127012 } #Ismâ'îl
+		command = { type = revolt which = -2 }
+		command = { type = revolt which = -2 }
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1537) Ismail and the King
+#by David Harper
+event = {
+	id = 284033
+	trigger = { monarch = 0127011 } #Muhammad II
+	random = no
+	country = SON
+	name = "EVENTNAME284033" #Ismail and the King
+	desc = "EVENTHIST284033"
+	#-#Mohammad Bunkan was a powerful man with few friends. When he learned a childhood friend, Ismail, was alive but in hiding, he coaxed him back to Gao by offering his daughter to him. Even so it was hard for the emperor to trust his friend because he was one of Askia Mohammad's sons, so he made Ismail swear he would never betray his new father-in-law. Soon after his arrival Ismail grew to hate his old friend. Ismail's sisters were publicly humiliated by being forced to show their faces at court while the old King had been horribly mistreated, confined to a tiny, insect-filled island in the Niger river. When Ismail met his father, Askia Mohammad convinced his son that Mohammad Bunkan had to be overthrown. Working with powerful friends of his father, Ismail broke his word and deposed Mohammad II in 1437. Mohammad fled to a life of exile in Mali while Ismail took the throne. In gratitude Askia Mohammad gave his son his caliph's robes. He died the following year, old and blind - but proud.
+
+	date = { day = 1 month = january year = 1537 }
+	offset = 30
+	deathdate = { day = 22 month = april year = 1537 }
+
+	action_a = {
+		name = "ACTIONNAME284033A" #Break the promise
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 6 value = 5 }
+		command = { type = wakemonarch which = 0127012 } #Ismâ'îl
+	}
+	action_b = {
+		name = "ACTIONNAME284033B" #Remain faithful to my old friend
+		command = { type = domestic which = aristocracy value = 1 }
+	}
+}
+
+#(1539) The Election of the King
+#by David Harper
+event = {
+	id = 284034
+	trigger = {
+		event = 284020 #SON: The Askia Dynasty
+		monarch = 0127012 #Ismâ'îl
+	}
+	random = no
+	country = SON
+	name = "EVENTNAME284034" #The Election of the King
+	desc = "EVENTHIST284034"
+	#-#Songhai had no clear laws of succession, a fact which had caused problems over the generations. When the King died of natural causes in 1539 the leading men of Songhai peacefully elected the next King. They chose Ishaq, a son of Muhammad I.
+
+	date = { day = 29 month = november year = 1539 }
+
+	action_a = {
+		name = "ACTIONNAME284034A" #Ishaq shall be King
+		command = { type = stability value = 1 }
+		command = { type = domestic which = aristocracy value = 1 }
+		#command = { type = AI which = default.ai }
+	}
+	action_b = {
+		name = "ACTIONNAME284034B" #Refuse to accept their authority
+		command = { type = stability value = -2 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = sleepmonarch which = 0127013 } #Ishâq I
+		command = { type = wakemonarch which = 0127035 } #Musa II °
+		#command = { type = AI which = default.ai }
+	}
+}
+
+#(1544-1549) Ishaq's Folly
+#by David Harper
+event = {
+	id = 284035
+	trigger = { monarch = 0127013 } #Ishâq I
+	random = no
+	country = SON
+	name = "EVENTNAME284035" #Ishaq's Folly
+	desc = "EVENTHIST284035"
+	#-#Ishaq proved to be a poor King. Even though he was a devout Muslim he regularly sent agents to Timbuktu to demand tribute from the merchants there. This hurt the economy and made him many enemies. Eventually he began to see conspiracies around every corner and executed or dismissed anyone he suspected of plotting against him no matter how high their rank. As this reign of terror continued the conspiracies became very much real.
+
+	date = { day = 1 month = december year = 1544 }
+	offset = 1000
+	deathdate = { day = 23 month = march year = 1549 }
+
+	action_a = {
+		name = "ACTIONNAME284035A" #They're all against me!
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 36 value = 3 }
+		command = { type = treasury value = 200 }
+		command = { type = trade value = -400 }
+		command = { type = merchants value = -6 }
+		command = { type = domestic which = quality value = -1 } #Officers are arrested
+	}
+}
+
+#(1549) The Death of the King
+#by David Harper
+event = {
+	id = 284036
+	random = no
+	country = SON
+	name = "EVENTNAME284036" #The Death of the King
+	desc = "EVENTHIST284036"
+	#-#As the King lay near death, friends of the Kurmina-Fari called him to the capital to make sure he became the next King. Daoud was the third Kurmina-Fari of the King's reign, the other two having been executed. As a new election drew near the favorite was Bokar, a handsome prince who traced his lineage through one of Askia Mohammad's daughters. He posed a grave threat to Daoud's chances so the Kurmina-Fari had him killed - according to legend by magic. With his competition gone Daoud became the next monarch.
+
+	date = { day = 22 month = march year = 1549 }
+
+	action_a = {
+		name = "ACTIONNAME284036A" #Murder Bokar to ensure our rule
+		command = { type = stability value = -1 }
+		command = { type = domestic which = aristocracy value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME284036B" #Bokar wins a fair election
+		command = { type = stability value = 1 }
+		command = { type = sleepmonarch which = 0127014 } #Dâ'ûd
+		command = { type = sleepleader which = 0127302 } #Dâ'ûd (SON)
+		command = { type = wakemonarch which = 0127036 } #Bokar *
+	}
+}
+
+#(1586) Treason and Conspiracy
+#by David Harper
+event = {
+	id = 284037
+	random = no
+	country = SON
+	name = "EVENTNAME284037" #Treason and Conspiracy
+	desc = "EVENTHIST284037"
+	#-#When the King died after a long and relatively peaceful reign one of his sons, al-Hajj, took the the throne. He was deposed by his brothers in 1536, replaced by Muhammad Bani, another son of Daoud. Muhammad Bani was not a popular ruler and the other brothers conspired against him until their plot was revealed. Taking advantage of the situation several Songhai vassals declared their independence and stopped paying tribute. First Hausaland, then the Ougadougou, then the Maghreb of the western gold fields. Muhammad Bani was too distracted to deal with them properly, and soon the fringes of the empire began to unravel.
+
+	date = { day = 20 month = december year = 1586 }
+
+	action_a = {
+		name = "ACTIONNAME284037A" #Their treachery shall be repaid in blood!
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = stability value = -3 }
+		command = { type = breakvassal which = MSS }
+		command = { type = breakvassal which = MAL }
+		command = { type = breakvassal which = ASH }
+		command = { type = breakvassal which = HAS }
+		command = { type = revolt which = 1496 } #Gao
+		command = { type = revolt which = 1494 } #Buré
+		command = { type = revolt which = 1499 } #Zaria
+		command = { type = revolt which = 1487 } #Awdaghost
+		command = { type = revolt which = 1488 } #Walata
+		command = { type = revolt which = 1489 } #Jenné
+		command = { type = revolt which = 1501 } #Kano [ahistorical]
+		command = { type = revolt which = 1502 } #Nupa [ahsitorical]
+		command = { type = revolt which = 791 } #Nigeria [ahistorical]
+		command = { type = revolt which = 792 } #Accra [ahistorical]
+		command = { type = revolt which = 793 } #Ivoria [ahistorical]
+		command = { type = revolt which = 1500 } #Oye [ahistorical]
+		command = { type = revolt which = 794 } #Palanas [ahistorical]
+		command = { type = revolt which = 1498 } #Begho [ahistorical]
+		command = { type = revolt which = 1493 } #Mossi [ahistorical]
+	}
+}
+
+#(1588) Civil War in Songhai
+#by David Harper
+event = {
+	id = 284038
+	trigger = {
+		owned = { province = 1495 data = -1 } #Timbuktu
+		control = { province = 1495 data = -1 } #Timbuktu
+	}
+	random = no
+	country = SON
+	name = "EVENTNAME284038" #Civil War in Songhai
+	desc = "EVENTHIST284038"
+	#-#Early in Muhammad Bani's reign tensions between two powerful men led to murder. Kabara was Timbuktu's port, immensely important to trade along the Niger. Its governor, chief Alu, had arrested one of the men of the Kurmina-Fari, Governor of the West. The Kurmina-Fari was Muhammad Sadiq, brother of the emperor. He killed Chief Alu in a fit of rage, then realized it would be seen as treason back home. Deciding to strike first he joined his army with another brother's and marched on Gao. In response Muhammad Bani raised an army against them, dying the day they left the city. Songhai was divided into Western and Eastern camps based in Timbuktu and Gao respectively. Finally, the rebels were defeated, and the new King Ishaq II hunted down and killed Muhammad Sadiq and imprisoned many of the officers of the west. The war was over, but at great cost.
+
+	date = { day = 1 month = january year = 1588 }
+
+	action_a = {
+		name = "ACTIONNAME284038A" #Ishaq II defeats the rebels
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 12 value = 15 }
+		command = { type = desertion which = 1495 value = 15000 } #Timbuktu
+		command = { type = desertion which = -1 value = 10000 }
+		command = { type = revolt which = 1495 } #Timbuktu
+		command = { type = revolt which = 1495 } #Timbuktu
+		command = { type = revolt which = 1495 } #Timbuktu
+		command = { type = revolt which = 1487 } #Awdaghost
+		command = { type = revolt which = 1488 } #Walata
+		command = { type = revolt which = 1489 } #Jenné
+	}
+	action_b = {
+		name = "ACTIONNAME284038B" #Muhammad Sadiq drives out the emperor
+		command = { type = capital which = 1495 } #Timbuktu
+		command = { type = sleepmonarch which = 0127017 } #Ishâq II
+		command = { type = wakemonarch which = 0127037 } #Muhammad Bani °
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = stability value = -5 }
+		command = { type = revoltrisk which = 12 value = 20 }
+		command = { type = desertion which = 1496 value = 15000 } #Gao
+		command = { type = desertion which = -1 value = 10000 }
+		command = { type = revolt which = 1496 } #Gao
+		command = { type = revolt which = 1496 } #Gao
+		command = { type = revolt which = 1496 } #Gao
+		command = { type = revolt which = 1496 } #Gao
+		command = { type = revolt which = 1497 } #Say
+		command = { type = revolt which = 1497 } #Say
+		command = { type = revolt which = 1499 } #Zaria
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#The Fall of Empire
+
+#(1500-1820) Morocco Sacks Gao
+#by idontlikeforms
+event = {
+	id = 284046 #triggered by ProvinceSpec_338164
+	trigger = { owned = { province = 1496 data = -1 } } #Gao
+	random = no
+	country = SON
+	name = "EVENTNAME284046" #Consequence of the sack of Gao
+	desc = "EVENTHIST338164"
+	#-#After defeating the Songhai at the battle of Tondibi Judar Pasha occupied the trade cities of Songhai. He secured control over the salt trade but couldn't find the source of Songhai's gold even though he tortured many citizens. Instead he looted the cities, sending their vast wealth back to Marrakesh to fill the treasury and build palaces. He made his way north with thirty camels loaded with gold, slaves and fifteen of the King's daughters, which he sent to be the Sultan's concubines.
+
+	action_a = {
+		name = "ACTIONNAME338164A" #Gao is burning!
+		command = { type = trigger which = 284041 } #SON: The Battle of Tondibi
+		command = { type = trigger which = 284043 } #SON: The Loss of Air and Agades
+		command = { type = stability value = -1 }
+		command = { type = merchants value = -2 }
+		command = { type = treasury value = -50 }
+	}
+}
+#(1500-1820) The Loss of Air and Agades
+#by David Harper
+event = {
+	id = 284043 #triggered by SON_284046
+	random = no
+	country = SON
+	name = "EVENTNAME284043" #The Loss of Air and Agades
+	desc = "EVENTHIST284043"
+	#-#With the fall of Gao, the Songhai were unable to prevent the Tuaregs from retaking the desert city of Agades and the territory of Air. These trading centers were lost to the Songhai.
+
+	action_a = {
+		name = "ACTIONNAME284043A" #Curse those Tuaregs!
+		command = { type = provincetax which = 1496 value = -2 } #Gao
+		command = { type = provincetax which = 1497 value = -2 } #Say
+		command = { type = merchants value = -3 }
+	}
+}
+
+#(1570-1600) Precusor event
+#by Garbon
+event = {
+	id = 284000
+	trigger = { ai = yes }
+	random = no
+	country = SON
+	name = "EVENTNAME284000" #The North
+	desc = "EVENTHIST284000"
+	#-#Its rumored that a diplomat who travelled to Fez was mistreated while on a mission to deny the possibility of Songhai becoming a vassal state of Morocco. Apparently a group of bandits attacked the diplomat on the outskirts of the city stealing all of his possessions. Coincidence?
+
+	date = { day = 1 month = january year = 1570 }
+	offset = 1
+	deathdate = { day = 1 month = january year = 1600 }
+
+	action_a = {
+		name = "ACTIONNAME284000A" #Could the rumors be true?
+		command = { type = relation which = MOR value = -25 }
+	}
+}
+
+#(1580-1590) The Salt Mines of Taghaza
+#by Garbon
+event = {
+	id = 284001 #triggered by MOR_232019 A
+	random = no
+	country = SON
+	name = "EVENTNAME284001" #The Salt Mines of Taghaza
+	desc = "EVENTHIST284001"
+	#-#Al-Mansur, Sultan of Morocco, came to desire the salt mines of Teghazza from which the emperor of Songhai derived a good portion of his revenue. After securing the oases of Gouara and Touat, he demanded from Ishaq Askia a mithqal of gold in payment for each load of salt taken from Teghazza in order to establish a fighting fund for the armies of Islam. Although its possible that he truly needed the money, it was more likely that he was trying to create a western caliphate to rival that of the Ottomans.
+
+	action_a = {
+		name = "ACTIONNAME284001A" #Answer his letter with spears!
+		command = { type = trigger which = 232021 } #MOR: The Askia's Response
+	}
+	action_b = {
+		name = "ACTIONNAME284001B" #We are loyal to our northern masters
+		command = { type = trigger which = 232022 } #MOR: The Askia's Response
+		command = { type = treasury value = -100 }
+	}
+}
+#(1580-1590) The Salt Mines of Taghaza alternate
+#by Garbon
+event = {
+	id = 284002 #triggered by MOR_232019 B
+	random = no
+	country = SON
+	name = "EVENTNAME284002" #The Salt Mines of Taghaza
+	desc = "EVENTHIST284002"
+	#-#Al-Mansur, Sultan of Morocco, came to desire the salt mines of Teghazza from which the emperor of Songhai derived a good portion of his revenue. After securing the oases of Gouara and Touat, he demanded from Ishaq Askia a mithqal of gold in payment for each load of salt taken from Teghazza in order to establish a fighting fund for the armies of Islam. Although its possible that he truly needed the money, it was more likely that he was trying to create a western caliphate to rival that of the Ottomans.
+
+	action_a = {
+		name = "ACTIONNAME284002A" #Answer his letter with spears!
+		command = { type = trigger which = 232021 } #MOR: The Askia's Response
+	}
+	action_b = {
+		name = "ACTIONNAME284002B" #We are loyal to our northern masters
+		command = { type = trigger which = 232023 } #MOR: The Askia's Response
+		command = { type = treasury value = -200 }
+		command = { type = revoltrisk which = 48 value = 4 }
+		command = { type = DIP which = -2 value = 24 }
+		command = { type = ADM which = -2 value = 48 }
+	}
+}
+#(1580-1590) The Salt Mines of Taghaza alternate
+#by Garbon
+event = {
+	id = 284003 #triggered by MOR_232020
+	random = no
+	country = SON
+	name = "EVENTNAME284003" #The Salt Mines of Taghaza
+	desc = "EVENTHIST284003"
+	#-#Al-Mansur, Sultan of Morocco, came to desire the salt mines of Teghazza from which the emperor of Songhai derived a good portion of his revenue. After securing the oases of Gouara and Touat, he demanded from Ishaq Askia a mithqal of gold in payment for each load of salt taken from Teghazza in order to establish a fighting fund for the armies of Islam. Although its possible that he truly needed the money, it was more likely that he was trying to create a western caliphate to rival that of the Ottomans.
+
+	action_a = {
+		name = "ACTIONNAME284003A" #Answer his letters with spears!
+		command = { type = trigger which = 232021 } #MOR: The Askia's Response
+	}
+	action_b = {
+		name = "ACTIONNAME284003B" #Inform the Tuaregs about possible Moroccan agression!
+		command = { type = trigger which = 232021 } #MOR: The Askia's Response
+		command = { type = trigger which = 124001 } #BAN: Songhai and the Tuaregs
+	}
+	action_c = {
+		name = "ACTIONNAME284003C" #We are loyal to our northern masters
+		command = { type = trigger which = 232023 } #MOR: The Askia's Response
+		command = { type = treasury value = -200 }
+		command = { type = revoltrisk which = 48 value = 4 }
+		command = { type = DIP which = -2 value = 24 }
+		command = { type = ADM which = -2 value = 48 }
+	}
+}
+#(1580-1590) Songhai and the Tuaregs
+#by Garbon
+event = {
+	id = 284004 #triggered by BAN_124001 A
+	random = no
+	country = SON
+	name = "EVENTNAME284004" #Songhai and the Tuaregs
+	desc = "EVENTHIST284004"
+	#-#The undisputable proof of Morocco's inevitable aggression has binded the fate of the Tuaregs to ours.
+
+	action_a = {
+		name = "ACTIONNAME284004A" #The Tuaregs side with us
+		command = { type = alliance which = BAN }
+		command = { type = relation which = BAN value = 100 }
+	}
+}
+
+#(1590) The Pretender's Demands
+#by David Harper
+event = {
+	id = 284039 #triggered by MOR_232033
+	random = no
+	country = SON
+	name = "EVENTNAME284039" #The Pretender's Demands
+	desc = "EVENTHIST284039"
+	#-#In 1590 Ishaq II received a letter from the Sultan of Morocco demanding the Songhai emperor surrender his throne to his brother, who the Sultan was giving protection to. The Songhai emperor ignored the Sultan's demands and began an expedition to the far west of the empire to deal with the rebellious Mahgrebs.
+
+	action_a = {
+		name = "ACTIONNAME284039A" #Ignore this obvious forgery!
+		command = { type = relation which = MOR value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME284039B" #Send assassins to remove the pretender
+		command = { type = relation which = MOR value = -100 }
+		command = { type = treasury value = -50 }
+		command = { type = stability value = -1 }
+	}
+	action_c = {
+		name = "ACTIONNAME284039C" #Give up the throne and send tribute
+		command = { type = vp value = -100 }
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 36 value = 10 }
+		command = { type = treasury value = -200 }
+		command = { type = population which = -1 value = -1000 } #Slaves
+		command = { type = sleepmonarch which = 0127017 } #Ishâq II
+		command = { type = wakemonarch which = 0127018 } #Muhammad Gao
+		command = { type = trigger which = 232034 } #MOR: Songhai's Submission
+	}
+}
+
+#(1588-1640) The Moroccan Invasion
+#by David Harper
+event = {
+	id = 284040
+	trigger = {
+		war = { country = SON country = MOR }
+	}
+	random = no
+	country = SON
+	name = "EVENTNAME284040" #The Moroccan Invasion
+	desc = "EVENTHIST284040"
+	#-#Desiring the riches of the Sudan, Morocco invaded Songhai in 1590. The emperor was in the west fighting the Mahgrebs and refused to believe Morocco was marching against him. When the Moroccans arrived he had to rush home to raise an army. The King ordered the salt mines of Taghaz to be abandoned; when the Sultan's forces arrived there he found them deserted. The Sultan abandoned them as well, ending nine centuries of salt mining in the Sahara. The Kurmina-Fari, Muhammad Gao, advised filling in the desert wells the Moroccans would have to stop at, but the troops sent to do so were ambushed by Tuareg nomads and the Moroccans arrived safe and sound past the Sahara. If the Songhai forces had attacked then they would have easily beaten the exhausted army, but the Songhai force was still disorganized. As wars went this one was starting badly.
+
+	date = { day = 1 month = january year = 1588 }
+	offset = 90
+	deathdate = { day = 1 month = january year = 1640 }
+
+	action_a = {
+		name = "CURSES"
+		command = { type = stability value = -3 }
+		command = { type = removecore which = 1597 } #Azaouad
+		command = { type = revolt which = 1487 } #Awdaghost
+		command = { type = revolt which = 1488 } #Walata
+		command = { type = revolt which = 1489 } #Jenné
+	}
+}
+
+#(1588-1640 or 1500-1820) The Battle of Tondibi
+#by David Harper
+event = {
+	id = 284041 #also triggered by SON_284046
+	trigger = {
+		war = { country = SON country = MOR }
+		OR = {
+			AND = {
+				owned = { province = 1495 data = -1 } #Timbuktu
+				control = { province = 1495 data = MOR }
+			}
+			control = { province = 1496 data = MOR } #Gao
+		}
+	}
+	random = no
+	country = SON
+	name = "EVENTNAME284041" #The Battle of Tondibi
+	desc = "EVENTHIST284041"
+	#-#The decisive battle of the war took place at Tondibi, about 35 miles north of Gao along the Niger. Although the Songhai army outnumbered the invaders they were no match for the guns and cannons of the Moroccans. Among the 4,600 members of the expeditionary force were 500 captured Portuguese arquebusiers and 10 cannons. The twenty to forty thousand Songhai had only spears and arrows and were at a disadvantage. Things took a turn for the worse when an advisor led the King off the field early, sparking a general retreat. As they fled across the river brave Songhai warriors tied themselves together and shot arrows at the advancing Moroccans, but the battle was lost. Now nothing stood between the enemy and the capital so Ishaq II retreated to the countryside with what was left of his army. The empire began to splinter into small states warring with each other as much as the invaders.
+
+	date = { day = 1 month = january year = 1588 }
+	offset = 1
+	deathdate = { day = 1 month = january year = 1640 }
+
+	action_a = {
+		name = "ACTIONNAME284041A" #This is the end!
+		command = { type = capital which = 1497 } #Say
+		command = { type = manpower value = -20 }
+		command = { type = stability value = -1 }
+		command = { type = vp value = -10 }
+		command = { type = secedeprovince which = MOR value = 1495 } #Timbuktu
+		command = { type = revoltrisk which = 48 value = 15 }
+	}
+}
+
+#(1588-1640) Songhai's Surrender
+#by David Harper
+event = {
+	id = 284042
+	trigger = {
+		event = 284041 #SON: Battle of Tondibi
+		NOT = { war = { country = SON country = MOR } }
+		exists = MOR
+	}
+	random = no
+	country = SON
+	name = "EVENTNAME284042" #Songhai's Surrender
+	desc = "EVENTHIST284042"
+	#-#Faced with certain defeat the King offered to pay tribute to Morocco, hoping this would satisfy them. He scraped together 100,000 pieces of gold and one thousand slaves and sent a message to the enemy commander, Judar Pasha, who in turn sent it to the Sultan.
+
+	date = { day = 1 month = january year = 1588 }
+	offset = 1000
+	deathdate = { day = 1 month = january year = 1640 }
+
+	action_a = {
+		name = "ACTIONNAME284042A" #Offer tribute to the Sultan
+		command = { type = treasury value = -100 }
+		command = { type = population which = -1 value = -1000 }
+		command = { type = trigger which = 232035 } #MOR: Songhai's Surrender
+	}
+	action_b = {
+		name = "ACTIONNAME284042B" #Fight to the bitter end
+		command = { type = war which = MOR }
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1588-1600) The Murder of the King
+#by David Harper
+event = {
+	id = 284044
+	trigger = {
+		control = { province = 1495 data = MOR } #Timbuktu
+		control = { province = 1496 data = MOR } #Gao
+		OR = {
+			monarch = 0127017 #Ishâq II
+			monarch = 0127037 #Muhammad Bani °
+		}
+	}
+	random = no
+	country = SON
+	name = "EVENTNAME284044" #The Murder of the King
+	desc = "EVENTHIST284044"
+	#-#With the trade cities gone the Songhai cavalry retreated into the countryside where they deposed the emperor. In his place they named Muhammad Gao, the Kurmina-Fari, as the new Askia.
+
+	date = { day = 1 month = january year = 1588 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1600 }
+
+	action_a = {
+		name = "ACTIONNAME284044A" #Muhammad Gao can lead us!
+		command = { type = sleepmonarch which = 0127017 } #Ishâq II
+		command = { type = sleepmonarch which = 0127037 } #Muhammad Bani °
+		command = { type = wakemonarch which = 0127018 } #Muhammad Gao
+		command = { type = stability value = -1 }
+		command = { type = domestic which = aristocracy value = 1 }
+	}
+}
+
+#(1588-1599) Mansur Pasha's Deception
+#by David Harper
+event = {
+	id = 284045
+	trigger = {
+		monarch = 0127018 #Muhammad Gao
+		war = { country = MOR country = SON }
+	}
+	random = no
+	country = SON
+	name = "EVENTNAME284045" #Mansur Pasha's Deception
+	desc = "EVENTHIST284045"
+	#-#Muhammad Gao was a wily general whose advice had gone unheeded by the previous King. As military ruler of the Songhai he led the fight against the invaders. The enemy commander, Mansur Pasha, set a trap for the Askia. Upon arriving in Songhai Mansur arranged a meeting with his counterpart to discuss peace. Muhammad Gao unwisely accepted and was assassinated. Songhai forces rallied under the leadership of Askia Nuh, who held out against the Moroccan army for years.
+
+	date = { day = 1 month = january year = 1588 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1599 }
+
+	action_a = {
+		name = "ACTIONNAME284045A" #Perhaps he was not so wily after all...
+		command = { type = stability value = -1 }
+		command = { type = sleepmonarch which = 0127018 } #Muhammad Gao
+		command = { type = wakemonarch which = 0127019 } #Nûh
+	}
+}
+
+#(1589-1613) The Fall of the Songhai Empire
+#by Garbon
+event = {
+	id = 284047
+	trigger = {
+		OR = {
+			NOT = {
+				owned = { province = 1495 data = -1 }
+				owned = { province = 1490 data = -1 }
+			}
+			NOT = {
+				owned = { province = 1495 data = -1 }
+				owned = { province = 1496 data = -1 }
+			}
+		}
+	}
+	random = no
+	country = SON
+	name = "EVENTNAME284047" #The Fall of the Songhai Empire
+	desc = "EVENTHIST284047"
+	#-#By 1612 the cities of Songhai fell into anarchy and the greatest empire of Sudanese history came to a sudden close. Although many Songhai would remain free under the rule of the Askias in the Dendi they would never again regain their empire.
+
+	date = { day = 1 month = january year = 1589 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1613 }
+
+	action_a = {
+		name = "ACTIONNAME284047A" #What goes up must come down...
+		command = { type = vp value = -100 }
+		command = { type = manpower value = -20 }
+		command = { type = treasury value = -100 }
+		command = { type = revoltrisk which = 36 value = 10 }
+		command = { type = removecore which = 1494 } #Buré
+		command = { type = removecore which = 1487 } #Awdaghost
+		command = { type = removecore which = 1499 } #Zaria
+		command = { type = removecore which = 1488 } #Walata
+		command = { type = removecore which = 1489 } #Jenné
+		command = { type = removecore which = 1491 } #Segu
+		command = { type = removecore which = 1495 } #Timbuktu
+		command = { type = removecore which = 1490 } #Bambuk
+		command = { type = trigger which = 218004 } #MAL: The Fall of the Empire of Songhai
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Aftermath
+
+#(1589-1820) Songhai Resistance
+#by David Harper
+event = {
+	id = 284048
+	trigger = {
+		event = 284047 #SON: The Fall of the Songhai Empire
+		atwar = no
+	}
+	random = no
+	country = SON
+	name = "EVENTNAME284048" #Songhai Resistance
+	desc = "EVENTHIST284048"
+	#-#With the loss of the empire, the Songhai retreated to their ancestral homeland of Dendi, a mosquito-infested swamp that nobody cared to invade. In Dendi the reign of the Askias continued as they led a resistance against the invaders. Songhai would never become great again, but it would survive.
+
+	date = { day = 1 month = january year = 1589 }
+	offset = 360
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME284048A" #We will never surrender!
+		command = { type = fortress which = 1497 value = 1 } #Represents the swamp #Say
+		command = { type = INF which = 1497 value = 5000 } #Say
+		command = { type = relation which = ASH value = 50 } #Leading the resistance
+		command = { type = relation which = DAH value = 50 }
+		command = { type = relation which = BEN value = 50 }
+		command = { type = relation which = MSS value = 50 }
+		command = { type = relation which = HAS value = 50 }
+		command = { type = relation which = OYO value = 50 }
+		command = { type = relation which = MAL value = 50 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 284049-284050 - next: 284052

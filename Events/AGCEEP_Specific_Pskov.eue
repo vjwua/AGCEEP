@@ -1,0 +1,155 @@
+#Pskov (PSK)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1426-1429) Lithuanian demands
+#Vilkouak
+event = {
+	id = 264000 #triggered by LIT_210004 A
+	random = no
+	country = PSK
+	name = "EVENTNAME264000" #Lithuanian demands
+	desc = "EVENTHIST264000"
+	#-#In 1425 Wassilij I, ruler of Muscovy, fostered his young son Vassilij II with his father-in-law Vytautas, and soon afterwards died. Vytautas was still determined to win a crown, but needed a visible success which could be proof of his strong position in eastern Europe and thus strengthen his claims. His first objective was Pskov. In 1426 he invaded the republic and forced it to pay tribute. In 1427 he made the borderland between Lithuania and Muscovy, known as the Wierchovian princedoms, subordinate to himself. It was composed of many small regions, which maintained their independence by maintaining tensions between Lithuania and Muscovy.
+
+	action_a = {
+		name = "ACTIONNAME264000A" #Better pay
+		command = { type = stability value = 1 }
+		command = { type = treasury value = -50 }
+		command = { type = relation which = LIT value = -50 }
+		command = { type = trigger which = 210008 } #LIT: Response of Pskov
+	}
+	action_b = {
+		name = "ACTIONNAME264000B" #We will defend our independence
+		command = { type = stability value = -1 }
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = relation which = LIT value = -100 }
+		command = { type = casusbelli which = LIT value = 48 }
+		command = { type = trigger which = 210009 } #LIT: Response of Pskov
+	}
+}
+
+#(1450-1475) Pskov
+event = {
+	id = 40011
+	trigger = { event = 40088 }
+	random = no
+	country = PSK
+	name = "EVENTNAME40011" #Pskov switches allegiance
+	desc = "EVENTHIST40011"
+	#-#After the disastrous defeat suffered by Novgorod in their war against Muscovy, Pskov has promptly changed their allegiance, and recognized Muscovy Grand Duke as their suzerain and protector. Pskov still retained certain liberties, but their list was vastly curtailed.
+
+	date = { day = 1 month = january year = 1450 }
+	offset = 40
+	deathdate = { day = 1 month = january year = 1475 }
+
+	action_a = {
+		name = "ACTIONNAME40011A" #Seek protection with Muscovy
+		command = { type = breakvassal which = NVG }
+		command = { type = breakvassal which = LAT }
+		command = { type = breakvassal which = LIV }
+		command = { type = breakvassal which = POL }
+		command = { type = breakvassal which = LIT }
+		command = { type = breakvassal which = SWE }
+		command = { type = stability value = 3 }
+		command = { type = sleepevent which = 40013 } #MOS: Pskov decided to remain independent
+	}
+	action_b = {
+		name = "ACTIONNAME40011B" #Remain free
+		command = { type = stability value = -2 }
+		command = { type = relation which = MOS value = -50 }
+		command = { type = breakvassal which = NVG }
+		command = { type = breakvassal which = LAT }
+		command = { type = breakvassal which = LIV }
+		command = { type = breakvassal which = POL }
+		command = { type = breakvassal which = LIT }
+		command = { type = breakvassal which = SWE }
+		command = { type = sleepevent which = 40015 } #MOS: Pskov asks for protection
+	}
+}
+
+#(1480-1820) The Empire of Russia
+event = {
+	id = 3584
+	trigger = {
+		owned = { province = 279 data = -1 } #Moscow/Tula
+		control = { province = 279 data = -1 } #Moscow/Tula
+		owned = { province = 278 data = -1 } #Tver
+		owned = { province = 277 data = -1 } #Pskov
+		OR = {
+			owned = { province = 274 data = -1 } #Novgorod
+			owned = { province = 271 data = -1 } #Vladimir
+			owned = { province = 448 data = -1 } #Ryazan
+		}
+		NOT = { exists = RUS }
+		atwar = no
+	}
+	random = no
+	country = PSK
+	name = "EVENTNAME40010" #The Empire of Russia
+	desc = "EVENTHIST3582"
+	#-#Historically, in the 16th century the Roman Empire of Constantinople was long gone and its revival viewed as impossible. The Orthodox Faith never had a head figure like the Pope of the Catholic Faith. It however was mostly guided from Constantinople by the Patriarch there. As the Sunni Muslim Ottomans used the Patriarchs hostage-like situation for there own political gains many Orthodox countries felt appalled and started to loosen the chains of tradition. There had not existed a country as mighty as the Byzantines until...Russia was formed. Russia was created from the notion of full control of all those orthodox people that once had been Christianized from Kiev. This together with the fact that there was only one Orthodox country powerful enough to take up the mantle of the fallen Byzantines made the solution perfect and, thus the Greatest of Princedoms changed into the Empire of Russia.
+
+	date = { day = 1 month = january year = 1480 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME40010A" #Become the Third Rome
+		command = { type = vp value = 200 }
+		command = { type = stability value = 2 }
+		command = { type = capital which = 279 } #Tula
+		command = { type = population which = 279 value = 3000 } #Tula
+		command = { type = flagname which = "" }
+		command = { type = country which = RUS }
+		#command = { type = AI which = "russia1.ai" }
+	}
+}
+
+#(1485) Famine of 1485
+event = {
+	id = 40014
+	random = no
+	country = PSK
+	name = "EVENTNAME40014" #Famine has struck us
+	desc = "EVENTHIST40014"
+	#-#Poor weather of the previous year has caused famine of 1485.
+
+	date = { day = 1 month = june year = 1485 }
+	offset = 40
+	deathdate = { day = 1 month = august year = 1485 }
+
+	action_a = {
+		name = "ACTIONNAME3493A" #Arrgh!
+		command = { type = stability value = -1 }
+		command = { type = population which = -2 value = -1000 }
+	}
+}
+
+#(1552) Plague in Pskov
+event = {
+	id = 40102
+	trigger = {
+		owned = { province = 277 data = -1 }
+		NOT = { event = 40100 } #RUS: Plague in Pskov
+	}
+	random = no
+	country = PSK
+	name = "EVENTNAME40100" #Plague in Pskov
+	desc = "EVENTHIST40100"
+	#-#The plague that hit Novgorod during previous fall, spread out to Pskov and claimed the lives of close to a 100,000 people in Pskov in the winter of 1553.
+
+	date = { day = 1 month = october year = 1552 }
+	offset = 30
+	deathdate = { day = 1 month = august year = 1553 }
+
+	action_a = {
+		name = "DARN"
+		command = { type = population which = 277 value = -1000 } #Pskov
+		command = { type = provincetax which = 277 value = -1 } #Pskov
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 264001

@@ -1,0 +1,1802 @@
+#Naples (NAP)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419) The Pope requests troops
+event = {
+	id = 239008
+	trigger = {
+		event = 251034 #PAP: Anarchy in the Legations
+		NOT = { war = { country = PAP country = NAP } }
+	}
+	random = no
+	country = NAP
+	name = "EVENTNAME239008" #The Pope requests troops
+	desc = "EVENTHIST251034"
+	#-#Entering his dominions, the Pope's first task was to restore the State of the Church to the prosperity and order to which it had become a stranger. In doing this he tried to gain external political support which he eventually obtained from Giovanna II of the House of Anjou-Durazzo and Queen of Naples, also known as Giovannetta or the 'Queen-Bee' for her dissolute life. In exchange for the repossession of the Papal territories, which her brother Ladislao formerly occupied when Rome had no ruler, Giovanna was legitimately enthroned Queen of Naples by the Pope in a solemn ceremony held in the city of Naples on 28 October 1419. But the Pope desperately needed troops to bring back the order over the territories of the Papal Legations in Umbria, Marche and Romagna, where the populations rebelled thanks to the abuses perpetrated by Braccio da Montone's mercenaries, and asked Giovanna II for help. Promptly the Queen sent her best condottiero, Muzio Attendolo, 'lo Sforza', commander of Neapolitan troops to help the Pope in his fight for the reacquisition of the Church territories.
+
+	date = { day = 25 month = September year = 1419 }
+	offset = 20
+	deathdate = { day = 25 month = November year = 1419 }
+
+	action_a = {
+		name = "ACTIONNAME239008A" #Help the Pope
+		command = { type = relation which = PAP value = 50 }
+		command = { type = treasury value = -20 }
+		command = { type = trigger which = 251035 } #PAP: The Neapolitan support
+	}
+	action_b = {
+		name = "ACTIONNAME239008B" #Ignore the Papal call
+		command = { type = relation which = PAP value = -50 }
+		command = { 
+			trigger = { 
+				vassal = { country = PAP country = NAP } 
+			} 
+			type = breakvassal which = PAP 
+		}
+		command = { type = trigger which = 251106 } #PAP: The Betrayal of the Queen-Bee
+		command = { type = sleepevent which = 239010 } #NAP: The Pope requests more troops
+	}
+}
+
+#(1419) The Pope requests more troops
+event = {
+	id = 239010
+	trigger = { 
+		event = 251034 #PAP: Anarchy in the Legations
+		owned = { province = 399 data = PAP } #Rome (Umbria or Marche in new map)
+		owned = { province = 392 data = PAP } #Marche ( AND Romagna in new map)
+		NOT = {
+			war = { country = PAP country = NAP }
+		}
+		OR = {
+			control = { province = 399 data = REB } #Rome (Umbria or Marche in new map)
+			control = { province = 392 data = REB } #Marche ( AND Romagna in new map)
+		}
+	}
+	random = no
+	country = NAP
+	name = "EVENTNAME239010" #The Pope requests more troops
+	desc = "EVENTHIST239010"
+	#-#In the fight for the reacquisition of the Church territories, the Queen sent her best condottiero, Muzio Attendolo, 'lo Sforza', commander of Neapolitan troops to help the Pope against Braccio da Montone. Although both Muzio Attendolo Sforza and Braccio da Montone came from the Alberico da Barbiano's Compagnia di Ventura di San Giorgio, they had different approaches to strategic-tactical warfare, the 'Scuola Sforzesca' based mainly upon coordinated field manoeuvres and planned tactics and the 'Scuola Braccesca' based mainly upon energic assaults and the element of surprise. In their first battle against each other Fortebraccio (da Montone's nickname) prevailed. Informed of M. Attendolo Sforza's defeat, having always been hostile to the celebrated condottiero, Gianni Caracciolo, Giovanna's favourite advisor and lover, managed to induce the Queen to refuse the Pope's request of more troops in order to stop da Montone. In spite of her refusal and thanks to the mediation of Florence, Martinus V managed however to come to terms with da Montone promising him a title in exchange for his military services. Finally the Papal troops commanded by Braccio da Montone himself succeeded in retaking the Church territories. As soon as the order in his States was re-established and in order to punish Giovanna for her unexpected refusal to send troops, the Pope offered the crown of Naples to the junior House of the Angevins, always interested in the succession to the throne of Naples, proclaiming Louis III d'Anjou 'King of Naples' on 4 December 1419.
+
+	date = { day = 25 month = November year = 1419 }
+	offset = 10
+	deathdate = { day = 25 month = December year = 1419 }
+
+	action_a = {
+		name = "ACTIONNAME239008B" #Ignore the Papal call
+		command = { 
+			trigger = { 
+				vassal = { country = PAP country = NAP } 
+			} 
+			type = breakvassal which = PAP 
+		}
+		command = { type = stability value = 2}
+		command = { type = trigger which = 251036 } #PAP: The Betrayal of the Queen-Bee
+	}
+	action_b = {
+		name = "ACTIONNAME239008A" #Help the Pope
+		command = { type = relation which = PAP value = 50 }
+		command = { type = stability value = -1}
+		command = { type = treasury value = -20 }
+		command = { type = trigger which = 251105 } #PAP: Neapolitan support
+	}
+}
+
+#(1420-1423) Crisis in Naples
+#(based on the work of Havard: EEP events for Aragon (Anjou sequence) and further modified by Isaac Brock)
+#(revised by Bordic)
+event = {
+	id = 239006
+	random = no
+	country = NAP
+	name = "EVENTNAME239006" #Crisis in Naples
+	desc = "EVENTHIST239006"
+	#-#Giovanna of Anjou-Durazzo was not destined to be Queen, and when she found herself with the crown of Naples on her head after the death of her brother, she refused to give up her previous dissolute life. She soon started to yield the power to whoever happened to be her current paramour. The nobility was restless and conspirative. Pope Martinus V, as his predecessors, wanted to see Naples in the firm hands of a trusted man, but as a previous arranged marriage to Jean of Bourbon had failed, and Giovanna was now 50 years old, he decided to invest Louis III of Anjou, Count of Provence, of the junior branch of the House of Anjou, with claims to Naples. Martinus and Louis recruited the help of Neapolitan condottiero Muzio Attendolo, also known as 'lo Sforza'. When Sforza's army invaded Naples, Giovanna turned to Alfons V of Aragon, who had also distant claims to the crown of Naples, and in exchange for his help, adopted him as heir. Alfons arrived to Naples with his forces, and made Braccio da Montone, Sforza's greatest rival, commander of the Neapolitan armies.
+
+	date = { day = 14 month = June year = 1420 }
+	offset = 15
+	deathdate = { day = 14 month = April year = 1423 }
+
+	action_a = {
+		name = "ACTIONNAME239006A" #Make Alfons our heir
+		ai_chance = 95
+		trigger = {
+			exists = ARG
+		}
+		command = { 
+			trigger = {
+				vassal = { country = PAP country = NAP }
+			}
+			type = breakvassal which = PAP 
+		}
+		command = { type = setflag which = [Aragonese] }
+		command = { type = relation which = PAP value = -50 }
+		command = { type = relation which = PRO value = -50 }
+		command = { type = trigger which = 111012 } #ARG: The gift of Naples
+		command = { type = trigger which = 262004 } #PRO: Naples defies the Angevins
+		command = { type = trigger which = 251020 } #PAP: Naples refuses Papal suzerainity
+		command = { type = INF which = -2 value = 2000 } 
+		command = { type = CAV which = -2 value = 4000 }
+		command = { type = treasury value = -50 } #to pay Montone's condotta
+		command = { type = wakeleader which = 096307 } #Montone (NAP)
+	}
+	action_b = {
+		name = "ACTIONNAME239006B" #Accept Louis' demand to be heir
+		ai_chance = 5
+		trigger = {
+			exists = PRO
+			exists = PAP
+		}
+		command = { type = setflag which = [Angevin] }
+		command = { type = stability value = -1 } #have to dismiss Caracciolo
+		command = { type = relation which = PRO value = 50 }
+		command = { type = relation which = ARG value = -50 }
+		command = { type = trigger which = 111009 } #ARG: Naples defies the Aragonese
+		command = { type = trigger which = 262003 } #PRO: The promise of Naples
+		command = { type = trigger which = 251037 } #PAP: Naples Papal fief
+		command = { type = INF which = -2 value = 2000 }
+		command = { type = CAV which = -2 value = 4000 }
+		command = { type = wakeleader which = 096308 } #M.Attendolo Sforza (NAP)
+		command = { type = sleepevent which = 239011 } #NAP: The Queen's choice
+	}
+}
+
+#(1423) The Queen's choice (it could be slept by NAP_239006 B)
+event = {
+	id = 239011
+	trigger = {
+			event = 239006 #NAP: Crisis in Naples
+	}
+	random = no
+	country = NAP
+	name = "EVENTNAME239011" #The Queen's choice
+	desc = "EVENTHIST239011"
+	#-#Alfons of Aragon, after being adopted by Giovanna of Anjou-Durazzo, arrived at the Kingdom of Naples with the intention of being recognised as its legitimate ruler, due mainly to his descent from the last Hohenstaufen King of Sicily, and not due to the will of a member of an usurping dynasty, the House of Anjou. He wanted to take control of Naples immediately without waiting for the Queen's death. He soon imprisoned Caracciolo, Giovanna's lover, but he failed to capture the Queen. Muzio Attendolo Sforza, the Neapolitan condottiero in the service of the Pope, informed that Giovanna was in great danger, went hastily to Naples and rescued her. It was then easy for the Pope to convince the Queen to adopt Louis III of Anjou, Count of Provence, instead of Alfons of Aragon. Taking advantage of the absence of Alfons due to his problems in Aragon, and with the military help of Visconti, Duke of Milan and Signore of Genoa, the Aragonese were expelled from Naples, and Giovanna appointed Louis as Duke of Calabria, the heir's title. Louis moved his court to Cosenza to arrange his stay in Italy.
+
+	date = { day = 10 month = May year = 1423 }
+	offset = 10
+	deathdate = { day = 10 month = June year = 1423 }
+
+	action_a = {
+		name = "ACTIONNAME239011A" #Louis should be the new heir
+		command = { type = clrflag which = [Aragonese] }
+		command = { type = setflag which = [Angevin] }
+		command = { 
+			trigger = {
+				vassal = { country = ARG country = NAP }
+			}
+			type = breakvassal which = ARG }
+			command = { type = relation which = PAP value = 50 }
+		command = { type = revolt which = 393 } #Napoli->Montone besieging Aquila
+		command = { type = revolt which = 393 }
+		command = { type = galleys which = -1 value = 3 }
+		command = { type = INF which = -1 value = 3000 }
+		command = { type = trigger which = 111003 } #ARG: Naples adopted the Angevin Duke
+		command = { type = trigger which = 262011 } #PRO: Naples to the House of Anjou
+	}
+	action_b = {
+		name = "ACTIONNAME239011B" #Forgive Alfons and keep him as heir
+		command = { type = clrflag which = [Angevin] }
+		command = { type = setflag which = [Aragonese] }
+		command = { type = relation which = PAP value = -50 }
+		command = { type = relation which = PRO value = -50 }
+		command = { type = relation which = ARG value = 50 }
+		command = { type = trigger which = 111004 } #ARG: Naples to the House of Trastamara
+		command = { type = trigger which = 262023 } #PRO: Naples adopted the Aragonese King
+		command = { type = trigger which = 251038 } #PAP: The Queen of Naples is out of control
+	}
+}
+
+#(1435) The Inheritance of Naples
+#(from 'The Aragon Inheritance of Napoli' 3660 for the EEP by Havard)
+event = {
+	id = 239007
+	random = no
+	country = NAP
+	name = "EVENTNAME239007" #The Inheritance of Naples
+	desc = "EVENTHIST239007"
+	#-#Queen Giovanna of Naples is dead. Her last will was that the crown should be given to René of Anjou, brother of Louis III of Anjou, her adopted son who died just three months before she did. Pope Eugenius IV declared that as suzerain he had the right to invest the new King and as for now he would send a bishop as temporary regent. However the Neapolitan people, determined to respect the will of their former Queen, ignored the Papal resolution and sent a delegation to Provence to urge René of Anjou to claim the throne in Naples. Since René of Anjou had been taken captive in Burgundy by Duke Philip the Fair, his wife Isabelle of Lorraine accepted the crown in his place. From his base in Sicily, Alfons of Aragon, who was designated heir by Giovanna between 1420 and 1423, and had a claim to Naples as King of Sicily, gained the support of the Neapolitan nobility hostile to the Anjou dynasty, and started making preparations to invade the Kingdom before the French Angevins could arrive in Naples and take the crown.
+
+	date = { day = 0 month = February year = 1435 }
+
+	action_a = {
+		name = "ACTIONNAME239007A" #Welcome to Renato, our new King!
+		trigger = {
+			NOT = {
+				vassal = { country = ARG country = PRO }
+			}
+			OR = {
+				vassal = { country = PRO country = ARG }
+				vassal = { country = PRO country = NAP }
+				flag = [Angevin]
+			}
+		}
+		command = { 
+			trigger = {
+				vassal = { country = ARG country = NAP }
+			}
+			type = breakvassal which = ARG 
+		}
+		command = { 
+			trigger = {
+				vassal = { country = PAP country = NAP }
+			}
+			type = breakvassal which = PAP 
+		}
+		command = { type = clrflag which = [Aragonese] }
+		command = { type = setflag which = [Angevin] }
+		command = { type = relation which = PRO value = 50 }
+		command = { type = relation which = VEN value = 25 }
+		command = { type = relation which = GEN value = 25 }
+		command = { type = relation which = MLO value = 25 }
+		command = { type = sleepevent which = 3555 } #ARG: The House of Trastamara in Naples NOTE: IN CASE 3555 IS NOT REMOVED!
+		command = { type = trigger which = 251039 } #PAP: The Succession in Naples
+		command = { type = trigger which = 111011 } #ARG: The Angevins established in Naples
+	}
+	action_b = {
+		name = "ACTIONNAME239007B" #Welcome to Alfonso, our new King!
+		trigger = {
+			exists = ARG
+			NOT = {
+				vassal = { country = PRO country = ARG }
+			}
+			OR = {
+				vassal = { country = ARG country = PRO }
+				vassal = { country = ARG country = NAP }
+				flag = [Aragonese]
+			}
+		}
+		command = { 
+			trigger = {
+				vassal = { country = PAP country = NAP }
+			}
+			type = breakvassal which = PAP 
+		}
+		command = { type = clrflag which = [Angevin] }
+		command = { type = setflag which = [Aragonese] }
+		command = { type = wakemonarch which = 096018 } #Alfonso d'Aragona °
+		command = { type = sleepmonarch which = 096001 } #Renato d'Angiò
+		command = { type = relation which = ARG value = 50 }
+		command = { type = relation which = VEN value = -25 }
+		command = { type = relation which = GEN value = -25 }
+		command = { type = relation which = MLO value = -25 }
+		command = { type = trigger which = 251039 } #PAP: The Succession in Naples
+	}
+}
+
+#(1442) The Battle over Naples -I- (historical path)
+event = {
+	id = 239009
+	trigger = {
+		exists = ARG
+		OR = {
+			event = 239007 #NAP: The Inheritance of Naples
+			vassal = { country = ARG country = NAP }
+		}
+		NOT = {
+			vassal = { country = PRO country = ARG }
+		}
+	}
+	random = no
+	country = NAP
+	name = "EVENTNAME239009" #The Battle over Naples
+	desc = "EVENTHIST239009"
+	#-#After his release from Milan, Alfons returned to Naples, where his brother Pedro had conquered Gaeta. Naples was defended by Isabelle of Lorraine with the support of Pope Eugenius IV. For three years Alfonso conducted as much a diplomatic war as a military one, gaining allies to his cause from the Neapolitan nobles. In 1438, René of Anjou paid a huge ransom to Burgundy for his release, and arrived in the Kingdom, but since he had exhausted his funds his allies abandoned him and he had to retreat to Naples. A long siege was then established, during which the Infante Don Pedro was killed by a chance shot to the great grief of his brother. The support of the Genoese fleet allowed René to sustain the besieged capital, but finally on June 1, 1442, 300 well-armed men entered the town through an open drain accesible during the dry season, revealed to Alfons' son Ferrante by some prisoners. After several hours of fighting, Naples was conquered and René escaped to Florence. After conquering the rest of the Kingdom, Alfons entered the capital in triumph on February 23, 1443. Pope Eugenius refused to invest Alfons as King of Naples and threatened to declare him in unlawful possession of Naples, Sicily, Corsica and Sardinia. Alfons threatened back with his support for an anti-Pope, Felix V, chosen at the Council of Basel, and Eugenius accepted to invest him in exchange for his support as the genuine Pope and help against the Turks that never materialized. Ferrante was named Prince of Calabria, and the Neapolitans were pleased that their Kingdom was not going to be incorporated to Aragon. Alfons, who as a Castilian had always felt a foreigner in Barcelona, never returned to Aragon, and his court in Naples was filled with the splendor of the Renaissance. Alfons soon gained the nickname of the Magnanimous.
+
+	date = { day = 1 month = June year = 1442 }
+
+	action_a = {
+		name = "ACTIONNAME239009A" #Alfonso has overcome the Angevins
+		command = { type = clrflag which = [Angevin] }
+		command = { type = setflag which = [Aragonese] }
+		command = { 
+			trigger = { 
+				NOT = { 
+					vassal = { country = ARG country = NAP } 
+				}
+			}
+			type = breakvassal which = -1 #of any liege except Aragon
+		}
+		command = { type = stability value = 2 }
+		command = { type = removecore which = 395 } #Messina
+		command = { type = removecore which = 396 } #Sicily
+		command = { type = removecore which = 819 } #Malta
+		command = { type = trigger which = 262010 } #PRO: The Angevins chased out of Naples
+		command = { type = trigger which = 251040 } #PAP: The House of Anjou lost Naples
+		command = { type = sleepevent which = 262006 } #PRO: The Angevin Kingdom of Naples
+		command = { type = sleepevent which = 239036 } #NAP: The Battle over Naples -II-
+	}
+	action_b = {
+		name = "ACTIONNAME239009B" #Renato has recovered the Angevin throne
+		command = { type = clrflag which = [Aragonese] }
+		command = { type = setflag which = [Angevin] }
+		command = { 
+			trigger = { 
+				NOT = { 
+					vassal = { country = PRO country = NAP } 
+				}
+			}
+			type = breakvassal which = -1 #of any liege except Provence
+		}
+		command = { type = stability value = -2 }
+		command = { type = desertion which = 393 value = 8000 }
+		command = { type = revolt which = 393 } #Napoli
+		command = { type = revolt which = 393 }
+		command = { type = revolt which = 394 } #Apulia
+		command = { type = revolt which = 394 }
+		command = { type = sleepleader which = 096305 } #Alfonso (NAP)
+		#Aragonese Trastamara dynasty
+		command = { type = sleepmonarch which = 096002 } #Alfonso I
+		command = { type = sleepmonarch which = 096003 } #Ferdinando I
+		command = { type = sleepmonarch which = 096004 } #Alfonso II
+		command = { type = sleepmonarch which = 096005 } #Ferdinando II
+		command = { type = sleepmonarch which = 096006 } #Federico I
+		command = { type = sleepmonarch which = 096007 } #Ferdinando III *
+		#Spanish Kings
+		command = { type = sleepmonarch which = 096008 } #Carlo IV
+		command = { type = sleepmonarch which = 096009 } #Filippo I
+		command = { type = sleepmonarch which = 096010 } #Filippo II
+		command = { type = sleepmonarch which = 096011 } #Filippo III
+		command = { type = sleepmonarch which = 096012 } #Carlo V
+		command = { type = sleepmonarch which = 096013 } #Filippo IV
+		#Austrian Kings
+		command = { type = sleepmonarch which = 096014 } #Giuseppe I
+		command = { type = sleepmonarch which = 096015 } #Carlo VI
+		#Naples Bourbon Kings
+		command = { type = sleepmonarch which = 096016 } #Carlo VII
+		command = { type = sleepmonarch which = 096017 } #Ferdinando IV
+		#House of Anjou
+		command = { type = wakemonarch which = 096035 } #Renato I
+		#House of Lorraine-Vaudémont
+		command = { type = wakemonarch which = 096021 } #Renato II °
+		command = { type = wakemonarch which = 096022 } #Antonio I °
+		command = { type = wakemonarch which = 096023 } #Francesco I °
+		command = { type = wakemonarch which = 096024 } #Carlo V °
+		command = { type = wakemonarch which = 096025 } #Enrico I °
+		command = { type = wakemonarch which = 096026 } #Carlo VI °
+		command = { type = wakemonarch which = 096027 } #Nicola Francesco °
+		command = { type = wakemonarch which = 096028 } #Carlo VII °
+		command = { type = wakemonarch which = 096029 } #Carlo VIII Leopoldo °
+		command = { type = wakemonarch which = 096030 } #Leopoldo Giuseppe Carlo °
+		command = { type = wakemonarch which = 096031 } #Francesco II °
+		command = { type = wakemonarch which = 096032 } #Pietro Leopoldo °
+		command = { type = wakemonarch which = 096033 } #Francesco III °
+		command = { type = trigger which = 111015 } #ARG: The Angevins control Naples
+		command = { type = trigger which = 228022 } #MLO: Louis of Anjou took Naples
+		command = { type = trigger which = 251041 } #PAP: The Angevins control Naples
+		command = { type = sleepevent which = 111014 } #ARG: The Aragonese Kingdom of Naples
+		command = { type = sleepevent which = 239036 } #NAP: The Battle over Naples -II-
+	}
+}
+#(1442) The Battle over Naples -II-
+event = {
+	id = 239036
+	trigger = {
+		event = 239007 #NAP: The Inheritance of Naples 
+		OR = {
+			vassal = { country = PRO country = ARG }
+			NOT = {	exists = ARG }
+		}
+	}
+	random = no
+	country = NAP
+	name = "EVENTNAME239009" #The Battle over Naples
+	desc = "EVENTHIST262006"
+	#-#After his release from Milan, Alfons of Aragon returned to Naples, where his brother Pedro had conquered Gaeta. Naples was defended by Isabelle of Lorraine with the support of Pope Eugenius IV. For three years Alfons conducted as much a diplomatic war as a military one, gaining allies to his cause from the Neapolitan nobles. In 1438, René of Anjou paid a huge ransom to Burgundy for his release, and arrived in the Kingdom, but since he had exhausted his funds his allies abandoned him and he had to retreat to Naples. A long siege was then established, during which the Infante Don Pedro was killed by a chance shot to the great grief of his brother. The support of the Genoese fleet allowed René to sustain the besieged capital with success until 1 June 1442, when 300 Aragonese well-armed men entered the town through an open drain accessible during the dry season, revealed to Alfons' son Ferrante by some prisoners. After several hours of fighting and in spite of the stealthy move inside the city walls, Naples withstood the Aragonese and Alfons was forced to retreat to Sicily. After recovering the rest of the Kingdom, René entered the capital in triumph the year after. Pope Eugenius IV, very happy for the Angevin success, invested René as King of Naples and Sicily thus declaring Alfons of Aragon in unlawful possession of the Sicilian island.
+
+	date = { day = 1 month = June year = 1442 }
+
+	action_a = {
+		name = "ACTIONNAME239009B" #Renato has recovered the Angevin throne
+		command = { type = clrflag which = [Aragonese] }
+		command = { type = setflag which = [Angevin] }
+		command = { 
+			trigger = { 
+				NOT = { 
+					vassal = { country = PRO country = NAP } 
+				}
+			}
+			type = breakvassal which = -1 #of any liege except Provence
+		}
+		command = { type = stability value = -2 }
+		command = { type = desertion which = 393 value = 8000 }
+		command = { type = revolt which = 393 } #Napoli
+		command = { type = revolt which = 393 }
+		command = { type = revolt which = 394 } #Apulia
+		command = { type = revolt which = 394 }
+		command = { type = sleepleader which = 096305 } #Alfonso (NAP)
+		#Aragonese Trastamara dynasty
+		command = { type = sleepmonarch which = 096002 } #Alfonso I
+		command = { type = sleepmonarch which = 096003 } #Ferdinando I
+		command = { type = sleepmonarch which = 096004 } #Alfonso II
+		command = { type = sleepmonarch which = 096005 } #Ferdinando II
+		command = { type = sleepmonarch which = 096006 } #Federico I
+		command = { type = sleepmonarch which = 096007 } #Ferdinando III *
+		#Spanish Kings
+		command = { type = sleepmonarch which = 096008 } #Carlo IV
+		command = { type = sleepmonarch which = 096009 } #Filippo I
+		command = { type = sleepmonarch which = 096010 } #Filippo II
+		command = { type = sleepmonarch which = 096011 } #Filippo III
+		command = { type = sleepmonarch which = 096012 } #Carlo V
+		command = { type = sleepmonarch which = 096013 } #Filippo IV
+		#Austrian Kings
+		command = { type = sleepmonarch which = 096014 } #Giuseppe I
+		command = { type = sleepmonarch which = 096015 } #Carlo VI
+		#Naples Bourbon Kings
+		command = { type = sleepmonarch which = 096016 } #Carlo VII
+		command = { type = sleepmonarch which = 096017 } #Ferdinando IV
+		#House of Anjou
+		command = { type = wakemonarch which = 096035 } #Renato I
+		#House of Lorraine-Vaudémont
+		command = { type = wakemonarch which = 096021 } #Renato II °
+		command = { type = wakemonarch which = 096022 } #Antonio I °
+		command = { type = wakemonarch which = 096023 } #Francesco I °
+		command = { type = wakemonarch which = 096024 } #Carlo V °
+		command = { type = wakemonarch which = 096025 } #Enrico I °
+		command = { type = wakemonarch which = 096026 } #Carlo VI °
+		command = { type = wakemonarch which = 096027 } #Nicola Francesco °
+		command = { type = wakemonarch which = 096028 } #Carlo VII °
+		command = { type = wakemonarch which = 096029 } #Carlo VIII Leopoldo °
+		command = { type = wakemonarch which = 096030 } #Leopoldo Giuseppe Carlo °
+		command = { type = wakemonarch which = 096031 } #Francesco II °
+		command = { type = wakemonarch which = 096032 } #Pietro Leopoldo °
+		command = { type = wakemonarch which = 096033 } #Francesco III °
+		command = { type = trigger which = 111015 } #ARG: The Angevins control Naples
+		command = { type = trigger which = 228022 } #MLO: Louis of Anjou took Naples
+		command = { type = trigger which = 251041 } #PAP: The Angevins control Naples
+		command = { type = sleepevent which = 111014 } #ARG: The Aragonese Kingdom of Naples
+		command = { type = sleepevent which = 239009 } #NAP: The Battle over Naples -I-
+	}
+	action_b = {
+		name = "ACTIONNAME239009A" #Alfonso has overcome the Angevins
+		command = { type = clrflag which = [Angevin] }
+		command = { type = setflag which = [Aragonese] }
+		command = { 
+			trigger = { 
+				NOT = { 
+					vassal = { country = ARG country = NAP } 
+				}
+			}
+			type = breakvassal which = -1 #of any liege except Aragon
+		}
+		command = { type = stability value = 2 }
+		command = { type = trigger which = 262010 } #PRO: The Angevins chased out of Naples
+		command = { type = trigger which = 251040 } #PAP: The House of Anjou lost Naples
+		command = { type = sleepevent which = 262006 } #PRO: The Angevin Kingdom of Naples
+		command = { type = sleepevent which = 239009 } #NAP: The Battle over Naples -I-
+	}
+}
+
+#(1447-1454) The Trastamara claim to Milan
+#by Bordic
+event = {
+	id = 239021
+	trigger = {
+		exists = MLO
+		monarch = 096002 #Alfonso I
+		event = 228003 #MLO: The Ambrosian Republic
+		event = 111014 #ARG: The Aragonese Kingdom of Naples
+	}
+	random = no
+	country = NAP
+	name = "EVENTNAME239021" #The Trastamara claim to Milan
+	desc = "EVENTHIST170056"
+	#-#In 1447 Duke Filippo Maria Visconti died without a male heir in his succession to the throne. As a result of this the city of Milan proclaimed the Republic giving the high military command to Francesco Sforza on the purpose to stop Venice from the eastern borders profiting from the Milanese crisis by expanding her dominions beyond Adda River. After 2 years and half of life, isolated and surrounded by the unfaithful Sforza, who in the meanwhile and with the support of Venice turned against the city of Milan aiming at the ducal throne, the Ambrosian Republic eventually ceased to exist. Brought to severe famine the citizenship of Milan was forced to surrender to the condottiero and accept him as their new Duke. As soon as Sforza proclaimed himself successor of Visconti to the throne of Milan and the Holy Roman Emperor didn't acknowledge him the ducal investiture, the war of succession inevitably began. All legitimated or self-proclaimed claimants of the Milanese throne, took arms against him. Charles of Orléans and Louis of Savoy because of their family ties with the House of Visconti, Alfons of Aragon because of an alleged secret agreement with the last Visconti Duke which would have entitled him to the duchy of Milan.
+
+	date = { day = 15 month = august year = 1447 }
+	offset = 30
+	deathdate = { day = 7 month = april year = 1454 }
+
+	action_a = {
+		name = "ACTIONNAME170056A" #Let us press our rightful claims to Milan
+		command = { type = casusbelli which = MLO value = 36 }
+		command = { type = relation which = MLO value = -50 }
+		command = { type = relation which = SAV value = 50 }
+		command = { type = relation which = VEN value = 50 }
+		command = { type = alliance which = VEN }
+	}
+	action_b = {
+		name = "ACTIONNAME170056B" #The throne of Milan is not our business
+		command = { type = DIP which = 2 value = 24 }
+		command = { type = relation which = MLO value = 50 }
+		command = { type = sleepevent which = 239022 } #NAP: The Treaty of Lodi
+	}
+}
+
+#(1458) The Naples Trastamara Dynasty
+#by Havard and modified by Bordic
+event = {
+	id = 7118 #triggered by ARG_7114
+	random = no
+	country = NAP
+	name = "EVENTNAME7118" #The Naples Trastamara Dynasty
+	desc = "EVENTHIST7118"
+	#-#In 1458, in accordance with his father's will, Ferdinando succeeded Alfonso I on the throne of Naples. Ferdinando I, also called Don Ferrante, was the natural son of Alfonso V of Aragon and I of Sicily and Naples. In order to arrange a good future to his bastard son, King Alfonso had him married in 1444 to Isabella of Chiaramonte, a feudal heiress of remarkable feudal possessions in Southern Italy and granddaughter of Maria d'Enghien, Queen consort of Ladislao, the last Angevin King of Naples. But after Alfonso died Pope Calixtus III didn't legitimate Ferdinando as new King of Naples, he declared instead that the line of Aragon was extinct and that the Kingdom was to be considered a fief of the church. Although the Pope died before he could make good his claim and the new Pope Pius II on the contrary recognized Ferdinando, Jean d'Anjou, Duke of Lorraine and René's son, also known as 'Duke of Calabria', profiting by the discontent of the pro-Angevin Neapolitan barons, decided to attempt to regain the throne of his ancestors and invaded Naples. The war started well for the Anjou with the easy occupation of Apulia and the temporary control of Naples after the victorious battle of Sarno in 1460. Ferdinand was so severely defeated that his Kingdom seemed to be completely lost in Angevin hands, but with the military help of Francesco Sforza, Duke of Milan, through his brother Alessandro and of the Albanian leader Gjergj Kastrioti, known as 'Skanderbeg', who came to the aid of the prince whose father had aided him, he triumphed over his enemies in the battle of Troja in 1462. By 1464 Ferdinando could re-establish his authority in the Kingdom, Jean d'Anjou left Southern Italy while the barons agreed to recognize the Aragonese as their King.
+
+	action_a = {
+		name = "ACTIONNAME7118A" #Independence from Aragon
+		command = { type = breakvassal which = ARG }
+		command = { type = stability value = 2 }
+		command = { type = revoltrisk which = 36 value = 6 }
+		command = { type = revolt which = 394 } #Apulia
+		command = { type = relation which = MLO value = 50 }
+		command = { type = relation which = PAP value = -25 }
+		command = { type = relation which = ARG value = -50 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = relation which = PRO value = -50 }
+	}
+}
+
+#(1454-1466) The Treaty of Lodi
+#by Bordic
+event = {
+	id = 239022
+	trigger = {
+		exists = VEN
+		exists = MLO
+		exists = TOS
+		exists = PAP
+		event = 228034 #MLO: The Peace of Lodi
+		monarch = 096002 #Alfonso I
+		event = 111014 #ARG: The Aragonese Kingdom of Naples
+		NOT = {
+			war = { country = NAP country = MLO }
+			war = { country = NAP country = TOS }
+			war = { country = NAP country = VEN }
+			war = { country = NAP country = PAP }
+			vassal = { country = PRO country = NAP }
+		}
+	}
+	random = no
+	country = NAP
+	name = "EVENTNAME326038" #The Treaty of Lodi
+	desc = "EVENTHIST326038"
+	#-#During the war of succession in Milan, all the belligerent nations were brought to exhaustion of money and troops. Francesco Sforza, ruler of Milan and Venice, the chief state of the league confederates, who was more and more threatened by the advancing Ottomans in her eastern Mediterranean territories, convened a cease-fire while a bilateral treaty was hastily signed in Lodi on 7 April 1454. With that treaty Sforza was legitimated Duke of Milan. Without even being called for, Florence and the Pope had no choice then to endorse the treaty. The King of Naples, being a rightful claimant on the ducal throne reluctantly joined the alliance under the condition to keep Genoa out of it. Intended 'infra terminos italicos', that treaty showed the objective impossibility for all the Italian major powers (specifically Milan, Tuscany, Venice, Naples and Papal States) to prevail upon each other in the struggle for the hegemony in Italy and that the better solution was to come to terms with each other. That would have also avoided the practice of very expensive and pointless wars in the next future. Although the treaty actually played a minor part in Italian balance of powers and so won't be able to avoid future wars of aggression from inside as well from outside Italy, the post-Lodi era historically represented a period of relative peace in which the figurative arts definitively flourished in the whole Italian peninsula, as well as economy and trade and, last but not the least, the skills and tricks of the art of diplomacy.
+
+	date = { day = 7 month = April year = 1454 }
+	offset = 30
+	deathdate = { day = 9 month = March year = 1466 }
+
+	action_a = {
+		name = "ACTIONNAME326038A" #Sign the Treaty and legitimate Sforza
+		command = { type = relation which = VEN value = 50 }
+		command = { type = relation which = MLO value = 100 }
+		command = { type = relation which = TOS value = 75 }
+		command = { type = relation which = PAP value = 75 }
+		command = { type = relation which = GEN value = -50 }
+		command = { type = diplomats value = 3 }
+		command = { type = merchants value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME239022B" #Milan is ours
+		command = { type = stability value = -1 }
+		command = { type = casusbelli which = GEN value = 24 }
+		command = { type = casusbelli which = MLO value = 60 }
+		command = { type = relation which = MLO value = -50 }
+		command = { type = relation which = TOS value = -50 }
+		command = { type = relation which = GEN value = -50 }
+		command = { type = relation which = VEN value = -50 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = sleepevent which = 275017 } #SAV: The Peace of Lodi
+		command = { type = sleepevent which = 257000 } #PIS: The Peace of Lodi
+		command = { type = sleepevent which = 220010 } #MAN: The Peace of Lodi
+		command = { type = sleepevent which = 252010 } #PAM: The Peace of Lodi
+	}
+}
+
+#(1485) The Conspiracy of the Barons
+#by Bordic
+event = {
+	id = 239020
+	trigger = { monarch = 096003 } #Ferdinando I Trastamara
+	random = no
+	country = NAP
+	name = "EVENTNAME239020" #The Conspiracy of the Barons
+	desc = "EVENTHIST239020"
+	#-#Because of his distrustfulness of the barons, Ferdinando was pursuing a policy aimed at strengthening royal authority at the expense of them, that attitude brought him to have many enemies amongst the nobles of the Kingdom. In 1485, when his son, Alfonso Duke of Calabria, decided to revoke all the privileges that granted the city of Aquila a certain political autonomy towards the Kingdom, arresting the local nobles and occupying the city with his troops, the city magistrates refused to submit to him chasing the Neapolitan troops away and asking Pope Innocentius VIII for help and protection. The Pope, already put out by the fact that King Ferdinando didn't pay the 'chinea' (the annual tribute a Neapolitan fief has to give to the Pope as suzerain), accepted to help by sending troops to Aquila. In a rally immediately arranged in Melfi to discuss about Alfonso's aggression to Aquila, the nobles led by Antonello Petrucci, Count of Policastro and Francesco Coppola, Count of Sarno, King's ministers and by Antonello Sanseverino, Prince of Salerno, all hostile to the Aragonese rule, agreed to revolt against the King, who in the meanwhile refused to come to terms with them and confirm their feudal privileges. The revolt resulted in a civil war by which both Papal and Neapolitan territories were systematically devastated by the contending armies. On 11 august 1486 a permanent truce was eventually signed between Ferdinando, the Pope and the rebelling nobles, The King of Naples promised to pay the tribute due to the Church, to forgive the unfaithful barons and to assign Aquila under the Papal suzerainty.
+
+	date = { day = 28 month = October year = 1485 }
+	offset = 30
+	deathdate = { day = 11 month = September year = 1486 }
+
+	action_a = {
+		name = "ACTIONNAME239020A" #Suppress the barons
+		command = { type = revolt which = 393 } #Campania
+		command = { type = revolt which = 394 } #Apulia
+		command = { type = revolt which = 393 } #Campania
+		command = { type = revolt which = 394 } #Apulia
+		command = { type = stability value = -2 }
+		command = { type = trigger which = 251042 } #PAP: The baronal allegiance to the Pope
+	}
+	action_b = {
+		name = "ACTIONNAME239020B" #Find a compromise
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = DIP which = -2 value = 120 }
+		command = { type = MIL which = -2 value = 120 }
+		command = { type = ADM which = -2 value = 120 }
+		command = { type = sleepevent which = 239012 } #NAP: The Persecution of the Barons
+	}
+}
+
+#(1487) The Persecution of the Barons
+#by Bordic
+event = {
+	id = 239012
+ 	trigger = {
+		monarch = 096003 #Ferdinando I Trastamara
+		OR = {
+			control = { province = 393 data = -1 } #Napoli
+			control = { province = 394 data = -1 } #Apulia
+		}
+		event = 239020 #NAP: The Conspiracy of the Barons
+	}
+	random = no
+	country = NAP
+	name = "EVENTNAME239012" #The Persecution of the Barons
+	desc = "EVENTHIST239012"
+	#-#In spite of his promises, King Ferdinando didn't respect the truce, he got Coppola and Petrucci arrested and all their properties confiscated. Sanseverino managed to escape and took refuge in France at the royal court. The arrested nobles were horrendously tortured before being executed. In January 1487 during a wedding-feast arranged in Castel Nuovo (aka Maschio Angioino) in Naples, the King completed his fierce personal retaliations. He deceitfully invited the nobles who had taken part in the baronal revolts with the aim to have them all arrested, then after arguable trials all the nobles were sentenced to death. Rumours had that some of them were simply closed in bags and thrown in the sea, leaving no traces. As a last macabre act, Ferdinando ordered that corpses of the conspirators should be mummified and then permanently exposed in the Castel Nuovo as a warning to all the Neapolitan subjects. The break of the truce indeed displeased the Pope who didn't even receive the city of Aquila as previously agreed. Innocentius VIII will proclaim the vacancy of the throne of Naples.
+
+	date = { day = 5 month = January year = 1487 }
+	offset = 60
+	deathdate = { day = 5 month = January year = 1490 }
+
+	action_a = {
+		name = "ACTIONNAME239012A" #Arrange for 'the Feast'
+		command = { type = relation which = PAP value = -50 }
+		command = { type = domestic which = serfdom value = 1 }
+		command = { type = treasury value = 100 } #confiscation of properties
+	}
+	action_b = {
+		name = "ACTIONNAME239012B" #Respect the pacts
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = stability value = 1 }
+		command = { type = relation which = PAP value = 25 }
+	}
+}
+
+#(1488-1494) Isabella's marriage in Milan
+#by Bordic
+event = {
+	id = 239013 #triggered by MLO_228024
+	random = no
+	country = NAP
+	name = "EVENTNAME239013" #Isabella's marriage in Milan
+	desc = "EVENTHIST228024"
+	#-#In 1480, at the end of the war that ensued the Pazzi conspiracy between Florence, Milan and Venice against Papal States and Naples and at an attempt of the Turks to invade southern Italy with the troops' landing at Otranto, peace was soon agreed with. In order to enforce peace, Ludovico Sforza, regent of the duchy followed the traditional Milanese attitude to stipulate political marriages, which his father Francesco begun with the 1454 treaty of Lodi. A political marriage was arranged to strengthen the relations between the ducal court of Milan and the royal court of Naples between the Duke of Milan, Gian Galeazzo and Isabella d'Aragona, granddaughet of Ferrante, King of Naples. The ceremony took place in 1488 in Naples but the wedding was confirmed in Milan only the following year.
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = relation which = MLO value = 25 }
+		command = { type = DIP which = 2 value = 12 }
+	}
+}
+
+#(1492-1494) Isabella's complaints
+#by Bordic
+event = {
+	id = 239016
+	trigger = {
+		exists = MLO
+		event = 239013 #NAP: Isabella's marriage in Milan
+	}
+	random = no
+	country = NAP
+	name = "EVENTNAME239016" #Isabella's complaints
+	desc = "EVENTHIST239016"
+	#-#Isabella, daughter of Alfonso Duke of Calabria and spouse of the Duke of Milan, Gian Galeazzo Sforza, was getting annoyed by the situation she was facing at the ducal court of Milan. Ludovico il Moro acted as regent of Milan in spite of his nephew's come of age and Beatrice d'Este, il Moro's wife, availed herself of her position as mistress of the ducal court surrounding herself with learned men, poets and artists and due to her education and political ability she took part in the ducal policies too. Isabella, member of a royal dynasty, couldn't accept to renounce the right to rule in Milan and nevertheless to play a second role at the ducal court. She then complained to her father Alfonso, Duke of Calabria, about her segregation in the ducal court and asked for an immediate political or military intervention in favour of her husband Gian Galeazzo, who dared not to retake his legitimate power. By this, Alfonso, Ferrante's son and future King of Naples, had the occasion for pressing his claims to the throne of Milan, which Filippo Maria, the last Duke of the Viscontis, seemingly promised to his grandfather, Alfonso I, before death caught him in 1447 and the war for succession in Milan started.
+
+	date = { day = 8 month = April year = 1492 } #Il Magnifico's death
+	offset = 30
+	deathdate = { day = 21 month = December year = 1494 }
+
+	action_a = {
+		name = "ACTIONNAME239016A" #Intervene in Milan
+		command = { type = relation which = MLO value = -50 }
+		command = { type = casusbelli which = MLO value = 24 }
+	}
+	action_b = {
+		name = "ACTIONNAME239016B" #Ignore Isabella's requests
+		command = { type = relation which = MLO value = -10 }
+		command = { type = DIP which = -2 value = 12 }
+		command = { type = sleepevent which = 228025 } #MLO: Il Moro sends for Charles VIII
+	}
+}
+
+#(1494-1498) Charles VIII presses claims on Naples
+#modified by Bordic
+event = {
+	id = 12022 #triggered by FRA_12021 A
+	random = no
+	country = NAP
+	name = "EVENTNAME12022" #Charles VIII presses claims on Naples
+	desc = "EVENTHIST12022"
+	#-#The French claim on the throne of Naples was unpopular with many of the Italian states, nevertheless, they were all cowed at first by the fierce conduct of war of the French army and by the powerful artillery Charles VIII had at disposal. However King Ferdinando I of Naples sought the diplomatic way, asking Charles VIII for the renewal of the treaties he had previously stipulated with Louis XI and to eventually submit the controversy to the Pope's high decision. As a clear answer to that his ambassadors were just ordered to leave France immediately. Then Ferdinando II managed to reconcile with Pope Alexander VI and that made Ludovico Sforza so suspicious as to request an immediate French intervention in the Kingdom of Naples. On 25 January 1494 Ferdinando II died and his son Alfonso succeeded to the throne. Alfonso's first successful diplomatic move was the alliance with Florence and Papal States. Fearing the French himself, Pope Alexander VI preferred to have Alfonso II as new King in Naples. But as soon as the French King, Charles VIII, moved towards Naples, part of the Kingdom defected from Naples and swore allegiance to the new liege. Also Alfonso II didn't want to face the aggression and abdicated in favour of his son Ferdinando (II) who arranged for resistance instead. While the French army did show its fierceness in Italy by slaughtering and pillaging the villages that didn't want to pay homage, no army seemed intentioned to face the invaders: instead of opposing the French, deals were made with them to avoid battle. Facing with a disbanding army and with a turmoil that broke out in the city of Naples, Ferdinando II was forced to leave his Kingdom and flee to Sicily under the protection of his cousin King Ferdinand of Aragon. On 22 february 1495 Charles VIII King of France entered the city of Naples distributing money to the populace. As a French diplomat, Philippe de Commynes, wrote in his Memoires, the French King took 4 months and 19 days only to reach Naples from Asti, an ambassador would take just a little less. Charles VIII didn't face any enemy army, so it was said he conquered Italy with 'wooden spurs' and 'chalk' used to assign lodgings to his troops. But the Italian diplomacy was already at work, looking for military support against the French aggression.
+
+	action_a = {
+		name = "ACTIONNAME12022A" #Seek the protection of Ferdinand of Aragon
+		command = { type = breakvassal which = FRA }
+		command = { type = breakvassal which = MLO }
+		command = { type = breakvassal which = PAP }
+		command = { type = stability value = -2 }
+		command = { type = relation which = FRA value = -100 }
+		command = { type = relation which = MLO value = -50 }
+		command = { type = relation which = MAN value = -25 }
+		command = { type = relation which = PAM value = -25 }
+		command = { type = relation which = TOS value = 25 }
+		command = { type = relation which = PAP value = 25 }
+		command = { type = relation which = GEN value = -50 }
+		command = { type = relation which = ARG value = 50 }
+		command = { type = relation which = SPA value = 50 }
+		command = { type = casusbelli which = MLO value = 36 }
+		command = { type = casusbelli which = GEN value = 36 }
+		command = { type = treasury value = -75 }
+		command = { type = INF which = -2 value = 5000 }
+	}
+	action_b = {
+		name = "ACTIONNAME12022B" #Bow to the French might (End Game)
+		command = { type = revolt which = 393 } #Napoli
+		command = { type = revolt which = 394 } #Apulia
+		command = { type = independence which = MAN }
+		command = { type = independence which = PAM }
+		command = { type = independence which = MLO }
+		command = { type = independence which = PIS }
+		command = { type = independence which = TOS }
+		command = { type = independence which = PAP }
+		command = { type = secedeprovince which = MLO value = 402 } #Emilia
+		command = { type = secedeprovince which = PAP value = 392 } #marche
+		command = { type = trigger which = 12023 } #FRA: The triumphal entrance in Naples
+	}
+}
+
+#(1495-1498) Ferrandino recovers his Kingdom
+#by Bordic
+event = {
+	id = 239033 #triggered by FRA_170040 B
+	random = no
+	country = NAP
+	name = "EVENTNAME239033" #Ferrandino recovers his Kingdom
+	desc = "EVENTHIST170040"
+	#-#The presence of Charles VIII of France in the Kingdom of Naples scared the Italian princes, who had in a certain way permitted the French King to achieve his goal of settling there almost undisturbed. Venice and Florence were worried about a French hegemony in the peninsula. French military presence wasn't limited to Southern Italy but also to villages of Tuscany and the Papal States, which previously surrendered to Charles VIII in his march towards Naples, strategically located to grant the French military supply line. The Pope, who previously granted the French King military access through the Papal territories and consented his stay in Rome, felt in jeopardy as much as to refuse Charles VIII being proclaimed King of Naples. Also King Ferdinand of Aragon couldn't accept the French presence in a Kingdom where he instead, in spite of Alfons V's testament which assigned Naples to the other Trastamara branch, could be the one to have claims there. The position of Naples was also important for the Aragonese trading in the Mediterranean. The Duke of Milan, who decisively affected Charles VIII's decision to settle in Naples, was now alarmed by the presence of French reserve troops deployed in the county of Asti, very close to Milan and at the order of the Duke of Orléans, who had dynastical claims to the Milanese throne. So Venice, Milan, the Pope, Spain and even the Holy Roman Empire (so firmly opposed to the French expansionism in Italy as to join any Anti-French alliance available) consequently formed the Anti-French league in Venice on 31 March 1495. Florence preferred to stay out because of her internal problems caused by Charles VIII's passage and decided to support France instead. Having heard about those arrangements and fearing that the confederates would isolate his army in Italy, Charles VIII decided to return to France for reinforcements leaving his regent in Naples. He had to move his army quickly through the Apennines as to reach the Alps and then safety, but the presence of heavy artilleries and carriages transporting the big loot he accumulated across Italy, slowed his march down. Only at Fornovo on the Taro River, in the Po Valley, Charles VIII finally faced the army of the confederates. Despite having lost all the carriages, he managed to reach the Alps gaining from his expedition to Italy nothing but his army decimated by epidemies.
+
+	action_a = {
+		name = "ACTIONNAME239033A" #Find support against France
+		command = { type = breakvassal which = FRA }
+		command = { type = relation which = FRA value = -100 }
+		command = { type = relation which = ARG value = 50 }
+		command = { type = relation which = SPA value = 50 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = MLO value = 25 }
+		command = { type = relation which = PAP value = 50 }
+		command = { type = relation which = VEN value = 50 }
+		command = { type = relation which = TOS value = -25 }
+	}
+}
+
+#(1496-1500) The short and happy life of King Ferrandino
+#by Bordic
+event = {
+	id = 239027
+	trigger = {
+		OR = {
+			event = 12143 #SPA: The Anti-French League of Venice
+			event = 12144 #ARG: The Anti-French League of Venice
+		}
+		OR = {
+			vassal = { country = SPA country = NAP }
+			vassal = { country = ARG country = NAP }
+		}
+	}
+	random = no
+	country = NAP
+	name = "EVENTNAME239027" #The short and happy life of King Ferrandino
+	desc = "EVENTHIST239027"
+	#-#With the French entering Naples, the young King Ferdinando II, also called Ferrandino, had sailed to Sicily to receive the military support of his cousin, Ferdinand II King of Aragon. Starting from his base in Messina he then tried to reconquer his Kingdom with an Aragonese army led by general Gonzalo Fernández de Córdoba. After an initial defeat against the French in the battle of Seminara, the King organized a fleet and, supported by the local population which was hostile to the presence of French troops, entered Naples retaking the castles which were still in French hands. But it was an epidemy which struck the French troops in Southern Italy that mostly contributed to Ferrandino's success: the syphilis. At those times Naples was both a great port and a very populated city and sailors who had sailed with Columbus a few years earlier had allegedly imported the new disease from the New World. However even if the French would call it 'le mal de Naples' and the Italians simply 'il mal franzese' it is certain that the French Army returning north helped this malady spread across Italy and eventually to all of Europe where it was known as 'the French disease'. Ferradino, now Ferdinando II King of Naples, didn't enjoy his realm for a long time as he died of malaria when he was only 23. Having died heirless, his uncle Federico, Alfonso II's brother, rose to the throne as Federico III. He was a weak monarch whose unhappy diplomatic moves to appease France, even acknowledging his realm as a French fief, and to encourage diplomatic relations with the Turk would let the Kingdom be prey of foreign powers. Ferdinand of Aragon, who didn't deny to disconfess Alfons V's testament to keep the crown of Naples separate from those of Aragon and Sicily, feared that the defense of Naples, crucial to the Aragonese trading in the Mediterranean, could no longer be entrusted to his relative. He had to face the difficult choice of either going to war against France or splitting the Kingdom of Naples with them. When Federico refused a marriage between his son Ferrandino, Duke of Calabria, and Ferdinand's niece, Juana de Aragón, Ferdinand of Aragon definitively resolved to come to terms with the French King signing the treaty of Granada. The fate of Naples was then written.
+
+	date = { day = 6 month = October year = 1496 }
+	offset = 20
+	deathdate = { day = 11 month = November year = 1500 }
+
+	action_a = {
+		name = "ACTIONNAME239027A" #Try to appease the French
+		command = { type = breakvassal which = ARG }
+		command = { type = breakvassal which = SPA }
+		command = { type = stability value = 1 }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = TUR value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME239027B" #Strengthen the ties with Ferdinand of Aragon
+		command = { type = stability value = -1 }
+		command = { type = dynastic which = ARG }
+		command = { type = dynastic which = SPA }
+		command = { type = relation which = FRA value = -50 }
+
+	}
+}
+
+#(1500-1515) Naples encircled - I -
+#by Bordic
+event = {
+	id = 239018
+	trigger = {
+		OR = {
+			event = 12022 #NAP: Charles VIII presses claims on Naples
+			event = 170040 #FRA: The French King in Naples
+		}
+		NOT = { exists = ARG }
+		event = 170043 #FRA: The Treaty of Granada
+		war = { country = NAP country = FRA }
+		owned = { province = 393 data = -1 } #napoli
+		owned = { province = 389 data = FRA } #Lombardia
+	}
+	random = no
+	country = NAP
+	name = "EVENTNAME239018" #Naples encircled
+	desc = "EVENTHIST239018"
+	#-#King Federico III of Naples was unable to oppose much resistance, and the French entered Naples in August 1501. Gonzalo Fernández de Córdoba met more resistance in the siege of Taranto, defended by Federico's son Ferdinando. Ferdinando surrendered Taranto to Spain on March 1502, and Fernando of Aragon did not keep Cordoba's promise of personal freedom to him, asking Cordoba to send him to Spain. His father King Federico III had already ceded the Kingdom to Louis XII King of France, who in exchange for it, appointed him Duke of Anjou. Federico III will die in 1504 in France. In 1550 with the death of his son Ferdinando, who was taken captive in Spain, the line of the House of Trastamara Naples will be definitely extinct. But the Kings had neglected to properly divide the regions of the Kingdom, leaving the Principati, the Basilicata and the Capitanata between both parts unassigned. The French denied that Capitanata (a land on which both Apulia and Abruzzi depended for food and flock wintering) was part of Apulia arguing recent administrative usage, and refused to allow the commissaries of Spain to collect the tolls on migrating flocks as the treaty stipulated. Soon incidents were taking place and open war broke out in July 1502. But the lack of decision by the French to attack when they had the advantage, the skill of Gonzalo Fernández de Córdoba and the delays of Louis in bringing reinforcements will see the French expelled from Naples in one year. Completely defeated in Naples by Gonzalo Fernández de Córdoba, Louis XII of France agreed at Blois in October of 1505 to cede his rights over Naples to his relative Germaine de Foix on her marriage to Fernando of Aragon. After the battle of Cerignola on 28 April 1503 Gonzalo Fernández will be remembered as el Gran Capitán. He introduced many of the reforms that would change the way battles were fought for centuries, and lead to the creation of the Spanish Tercios, and also trained most of the next generation of Spanish commanders.
+
+	date = { day = 11 month = November year = 1500 }
+	offset = 60
+	deathdate = { day = 11 month = November year = 1515 }
+
+	action_a = {
+		name = "ACTIONNAME239018A" #Cede the Kingdom to Louis XII (End Game)
+		command = { type = independence which = MAN }
+		command = { type = independence which = PAM }
+		command = { type = independence which = MLO }
+		command = { type = independence which = PIS }
+		command = { type = independence which = TOS }
+		command = { type = independence which = PAP }
+		command = { type = secedeprovince which = MLO value = 402 } #Emilia
+		command = { type = secedeprovince which = PAP value = 392 } #marche
+		command = { type = secedeprovince which = SPA value = 394 } #apulia
+		command = { type = secedeprovince which = SPA value = 395 } #messina
+		command = { type = secedeprovince which = SPA value = 396 } #sicily
+		command = { type = trigger which = 170044 } #FRA: The conquest of Naples
+		command = { type = sleepevent which = 239019 } #NAP: Naples encircled - II -
+	}
+	action_b = {
+		name = "ACTIONNAME239018B" #Let's fight until the end
+		command = { type = relation which = SPA value = -75 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = sleepevent which = 239019 } #NAP: Naples encircled - II -
+	}
+}
+#(1500-1515) Naples encircled - II -
+#by Bordic
+event = {
+	id = 239019
+	trigger = {
+		OR = {
+			event = 12022 #NAP: Charles VIII presses claims on Naples
+			event = 170040 #FRA: The French King in Naples
+		}
+		exists = ARG
+		event = 170043 #FRA: The Treaty of Granada
+		war = { country = NAP country = FRA }
+		owned = { province = 393 data = -1 } #napoli
+		owned = { province = 389 data = FRA } #Lombardia
+	}
+	random = no
+	country = NAP
+	name = "EVENTNAME239018" #Naples encircled
+	desc = "EVENTHIST239018"
+	#-#King Federico III of Naples was unable to oppose much resistance, and the French entered Naples in August 1501. Gonzalo Fernández de Córdoba met more resistance in the siege of Taranto, defended by Federico's son Ferdinando. Ferdinando surrendered Taranto to Spain on March 1502, and Fernando of Aragon did not keep Cordoba's promise of personal freedom to him, asking Cordoba to send him to Spain. His father King Federico III had already ceded the Kingdom to Louis XII King of France, who in exchange for it, appointed him Duke of Anjou. Federico III will die in 1504 in France. In 1550 with the death of his son Ferdinando, who was taken captive in Spain, the line of the House of Trastamara Naples will be definitely extinct. But the Kings had neglected to properly divide the regions of the Kingdom, leaving the Principati, the Basilicata and the Capitanata between both parts unassigned. The French denied that Capitanata (a land on which both Apulia and Abruzzi depended for food and flock wintering) was part of Apulia arguing recent administrative usage, and refused to allow the commissaries of Spain to collect the tolls on migrating flocks as the treaty stipulated. Soon incidents were taking place and open war broke out in July 1502. But the lack of decision by the French to attack when they had the advantage, the skill of Gonzalo Fernández de Córdoba and the delays of Louis in bringing reinforcements will see the French expelled from Naples in one year. Completely defeated in Naples by Gonzalo Fernández de Córdoba, Louis XII of France agreed at Blois in October of 1505 to cede his rights over Naples to his relative Germaine de Foix on her marriage to Fernando of Aragon. After the battle of Cerignola on 28 April 1503 Gonzalo Fernández will be remembered as el Gran Capitán. He introduced many of the reforms that would change the way battles were fought for centuries, and lead to the creation of the Spanish Tercios, and also trained most of the next generation of Spanish commanders.
+
+	date = { day = 11 month = November year = 1500 }
+	offset = 60
+	deathdate = { day = 11 month = November year = 1515 }
+
+	action_a = {
+		name = "ACTIONNAME239018A" #Cede the Kingdom to Louis XII (End Game)
+		command = { type = independence which = MAN }
+		command = { type = independence which = PAM }
+		command = { type = independence which = MLO }
+		command = { type = independence which = PIS }
+		command = { type = independence which = TOS }
+		command = { type = independence which = PAP }
+		command = { type = secedeprovince which = MLO value = 402 } #Emilia
+		command = { type = secedeprovince which = PAP value = 392 } #marche
+		command = { type = secedeprovince which = ARG value = 394 } #apulia
+		command = { type = secedeprovince which = ARG value = 395 } #messina
+		command = { type = secedeprovince which = ARG value = 396 } #sicily
+		command = { type = trigger which = 170044 } #FRA The conquest of Naples
+		command = { type = sleepevent which = 239018 } #NAP: Naples encircled - I -
+	}
+	action_b = {
+		name = "ACTIONNAME239018B" #Let's fight until the end
+		command = { type = relation which = ARG value = -75 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = sleepevent which = 239018 } #NAP: Naples encircled - I -
+	}
+}
+#(1500-1505) Naples alone against all
+#by Bordic
+event = {
+	id = 239034
+	trigger = {
+		event = 170164 #FRA: A new military expedition to Naples
+		OR = {
+			monarch = 096006 #Federico I
+			monarch = 096007 #Ferdinando III *
+		}
+		OR = {
+			war = { country = FRA country = NAP }
+			war = { country = SPA country = NAP }
+			war = { country = ARG country = NAP }
+		}
+	}
+	random = no
+	country = NAP
+	name = "EVENTNAME239034" #Naples alone against all
+	desc = "EVENTHIST239034"
+	#-#On 11 November 1500, in Granada, Louis XII of France and Ferdinand II of Aragon secretly stipulated a treaty by which they agreed on an equal partition of the Neapolitan territories: the northern part of the Kingdom including Terra del Lavoro and Abruzzi was to be given to France whilst the southern part of the Kingdom including Calabria and Apulia was to be given to Aragon/Spain. King Federico still strongly believed in the help of his cousin Ferdinand of Aragon against any French aggression to his realm as much as to let Gonzalo Fernández de Córdoba take some strongholds in Calabria. Even if he perceived the coming danger through a bull from Pope Alexander VI depriving him of his throne and confirming the partition of his Kingdom, King Federico was unable to oppose much resistance...
+
+	date = { day = 11 month = November year = 1500 }
+	offset = 50
+	deathdate = { day = 11 month = November year = 1505 }
+
+	action_a = {
+		name = "ALAS"
+		command = { type = stability value = -3 }
+		command = { type = relation which = FRA value = -200 }
+		command = { type = relation which = SPA value = -200 }
+		command = { type = relation which = ARG value = -200 }
+		command = { type = desertion which = 394 value = 10000 } #Spain already patrolling Apulean strongholds
+		#command = { type = galleys which = 394 value = -10 } #Apulia - not working
+	}
+}
+
+#(1505-1598) The Crown of Naples (event helper for Spanish historical annexation of Naples)
+#by Bordic
+event = {
+	id = 239037
+	trigger = { 
+		ai = yes
+		exists = SPA                               
+		core = { province = 393 data = SPA } #Napoli      
+		owned = { province = 395 data = SPA } #Messina
+		control = { province = 395 data = SPA } #Messina
+		owned = { province = 396 data = SPA } #Sicily
+		control = { province = 396 data = SPA } #Sicily
+		OR = { 
+			AND = {
+				owned = { province = 393 data = -1 } #Napoli 
+				control = { province = 393 data = -1 } #Napoli
+			}
+			AND = {
+				owned = { province = 394 data = -1 } #Apulia
+				control = { province = 394 data = -1 } #Apulia
+			}
+		} #Spain should hold interests on Naples and own Sicily to cross the strait
+		NOT = { 
+			exists = ARG 
+			war = { country = SPA country = NAP }
+			war = { country = SPA country = FRA }
+			vassal = { country = NAP country = SPA }
+			vassal = { country = PAP country = SPA }
+			vassal = { country = FRA country = SPA }
+		}
+		OR = {  #Strong Spanish influence in Southern Italy...
+			vassal = { country = SPA country = PAP }
+			vassal = { country = SPA country = FRA }
+			vassal = { country = SPA country = NAP }
+			dynastic = { country = SPA country = NAP }
+			dynastic = { country = SPA country = PAP }
+			owned = { province = 399 data = SPA } #Roma
+			owned = { province = 393 data = SPA } #Napoli
+			owned = { province = 394 data = SPA } #Apulia
+			alliance = { country = SPA country = NAP }
+			alliance = { country = SPA country = PAP } 	
+			AND = {	
+				OR = {  #...or at least some Spanish influence in Northern Italy...	
+					owned = { province = 404 data = SPA } #Piemonte
+					owned = { province = 389 data = SPA } #Lombardia
+					owned = { province = 390 data = SPA } #Mantua
+					owned = { province = 370 data = SPA } #Veneto
+					owned = { province = 403 data = SPA } #Liguria
+					owned = { province = 402 data = SPA } #Emilia
+					owned = { province = 391 data = SPA } #Romagna
+					owned = { province = 401 data = SPA } #Firenze
+					owned = { province = 400 data = SPA } #Siena
+					owned = { province = 392 data = SPA } #Marche
+					vassal = { country = SPA country = TOS }
+					vassal = { country = SPA country = GEN }
+					vassal = { country = SPA country = MLO }
+					vassal = { country = SPA country = VEN }
+					vassal = { country = SPA country = SAV }
+					vassal = { country = SPA country = MAN }
+					vassal = { country = SPA country = PIS } #Siena
+					vassal = { country = SPA country = PAM } #Modena
+					vassal = { country = SPA country = PAR } #Parma
+				}
+				NOT = { #...and France shouldn't be engaged in the Italian Wars!	
+					core_claim = { province = 389 data = FRA } #Lombardia
+					core_national = { province = 389 data = FRA } #Lombardia
+					vassal = { country = FRA country = NAP } 
+					neighbour = FRA #France shouldn't border with Naples
+				}
+			}
+		} 
+	}
+	random = no
+	country = NAP
+	name = "EVENTNAME285333" #The Crown of Naples
+	desc = "EVENTHIST285333"
+	#-#In 16th century the Kingdom of Naples was at its most: flourishing economy and Arts, still good trade routes between the Middle East and the rest of Europe. Unfortunately, a powerful economy is not always being represented by a powerful ruler. Expecially the throne of Naples being claimed by two of the most powerful courts in Europe of those times, Spain and France. In his very expensive rush to the leading role of Western Europe still contested by the untamed King of France, the King of Spain eventually made the decision to send troops, officers and insignia to the capital city of the Southern Italian Kingdom in order to press claims on the crown of Naples definitively. Despite Papal firm opposition but in accordance with treaties stipulated with France which stated the definitive Spanish hegemony in the Italian Peninsula, the King of Spain was certain that his move wouldn't have found any local hostility...
+	
+	date = { day = 12 month = October year = 1505 } #2nd Treaty of Blois, France ceded rights to Spain
+	offset = 65
+	deathdate = { day = 13 month = September year = 1598 } #Felipe II's death
+
+	action_a = {
+		name = "OK" 
+		command = { type = sleepevent which = 285105 } #SPA: The Trastamara inheritance of Naples
+		command = { type = trigger which = 285333 } #SPA: The Crown of Naples
+	}
+}
+
+#(1571-1573) The Holy League - modified by IB and YodaMaster
+event = {
+	id = 3661
+	trigger = {
+		exists = TUR
+		OR = {
+			event = 3549 #PAP: The Holy League
+			event = 236000 #MUS: The Holy League (no Papal States)
+		}
+	}
+	random = no
+	country = NAP
+	name = "EVENTNAME3549" #The Holy League
+	desc = "EVENTHIST3549"
+	#-#When in 1570 the Turks sent an ultimatum to Venice asking for the ceding of Cyprus and then invaded the island after the Republic of San Marco failed to respond, a great uproar was created in the Catholic world by the facts and rumors of Ottoman atrocities in the last Christian bastion of the eastern Mediterranean. After a first failure in the summer of 1570, Pope Pius V managed to convince major Catholic nations (except France) to join a Holy League against the heathens Turks, and it was proclaimed in May 1571. The League would lead to the great naval victory of Don Juan on the Turks at Lepanto, but would not outlast this first and final triumph. Selim II is rumored to have said, after the news he had lost 200 galleys at Lepanto: At Lepanto, the Christians have shaved me. At Cyprus, I cut their arm. My beard will grow again….
+
+	date = { day = 7 month = may year = 1571 }
+	offset = 30
+	deathdate = { day = 13 month = april year = 1573 }
+
+	action_a = {
+		name = "ACTIONNAME3161A" #Support the Holy League
+		command = { type = casusbelli which = TUR value = 72 }
+		command = { type = relation which = TUR value = -150 }
+		command = { type = relation which = PAP value = 50 }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = GEN value = 50 }
+		command = { type = relation which = ITA value = 50 }
+		command = { type = relation which = KNI value = 50 }
+		command = { type = relation which = SAV value = 50 }
+		command = { type = relation which = SIC value = 50 }
+		command = { type = relation which = SPA value = 50 }
+		command = { type = relation which = TOS value = 50 }
+		command = { type = relation which = VEN value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME3549B" #Let the matter fall
+		command = { type = relation which = TUR value = 50 }
+		command = { type = relation which = PAP value = -50 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = relation which = GEN value = -50 }
+		command = { type = relation which = ITA value = -50 }
+		command = { type = relation which = KNI value = -50 }
+		command = { type = relation which = NAP value = -50 }
+		command = { type = relation which = SAV value = -50 }
+		command = { type = relation which = SIC value = -50 }
+		command = { type = relation which = SPA value = -50 }
+		command = { type = relation which = TOS value = -50 }
+		command = { type = relation which = VEN value = -50 }
+	}
+}
+
+#(1610-1620) Osuna: Naval for Naples
+#Basically in to shift the sliders a bit
+event = {
+	id = 239000
+	trigger = {
+		monarch = 096010 #Filippo II
+	}
+	random = no
+	country = NAP
+	name = "EVENTNAME239000" #The Duke of Osuna
+	desc = "EVENTHIST239000"
+	#-#The Duke of Osuna served as viceroy of Naples from 1610-1620. He followed an aggressive foreign policy, particularly with regards to naval matters. He built up a private navy seperate from (and larger than) the state navy. This fleet, which was supposedly raised to protect the coast, was in fact composed of privateers, and harassed Venetian and Muslim shipping. He favoured round ships over the traditional Neapolitan galleys. After his departure the fleet passed into the government's hands.
+
+	date = { day = 1 month = january year = 1610 }
+	offset = 500
+	deathdate = { day = 1 month = january year = 1620 }
+
+	action_a = {
+		name = "ACTIONNAME239000A" #Support his ambitions
+		command = { type = stability value = -2 }
+		command = { type = naval value = 500 }#not too much for 1610
+		command = { type = domestic which = land value = -1 }
+		command = { type = warships which = -2 value = 5 }
+		command = { type = treasury value = -100 }
+		command = { type = relation which = VEN value = -150 } #nearly caused a war
+		command = { type = relation which = TUR value = -80 }
+		command = { type = relation which = MAM value = -80 }
+		command = { type = relation which = ALD value = -40 }
+		command = { type = relation which = TRI value = -40 }
+		command = { type = relation which = TUN value = -80 } #modified from CYR
+	}
+	action_b = {
+		name = "ACTIONNAME239000B" #This is foolish!
+		command = { type = stability value = 1 }
+		command = { type = naval value = -200 }
+	}
+}
+
+#(1647) Masaniello event sequence
+#by Archeolooginspe
+event = {
+	id = 239004
+	trigger = {
+		NOT = { event = 285002 } #SPA: Masaniello's Revolt
+	}
+	random = no
+	country = NAP
+	name = "EVENTNAME239004" #Masaniello's Revolt
+	desc = "EVENTHIST239004"
+	#-#Neapolitan revolutionist, whose original name was Tommaso, Aniello. A fisherman, he led a revolt of the lower classes who were, overburdened by high taxes. Tumults broke out in 1647 and soon became so, serious that the viceroy came to terms with Masaniello, promised the, reforms demanded, and recognized him as captain general. Demented by his, sudden success, Masaniello was killed shortly afterward either by agents, of the government or by his own disillusioned supporters. The revolution, was soon repressed.
+
+	date = { day = 1 month = january year = 1647 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1648 }
+
+	action_a = {
+		name = "ACTIONNAME239004A" #Promise reforms and kill their leader!
+		command = { type = stability value = -2 }
+		command = { type = revolt which = -2 }
+		command = { type = domestic which = serfdom value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME239004B" #Promise reforms and make their leader Captain of the people!
+		command = { type = stability value = -1 }
+		command = { type = revolt which = -2 }
+		command = { type = treasury value = -25 }
+		command = { type = domestic which = aristocracy value = 1 }
+	}
+	action_c = {
+		name = "ACTIONNAME239004C" #Start Reforms
+		command = { type = stability value = 1 }
+		command = { type = domestic which = serfdom value = -2 }
+		command = { type = domestic which = aristocracy value = -4 }
+		command = { type = domestic which = innovative value = 2 }
+		command = { type = infra value = 300 }
+		command = { type = provincetax which = -1 value = -2 }
+		command = { type = relation which = SPA value = -400 }
+		command = { type = relation which = PAP value = -400 }
+		command = { type = breakvassal which = SPA }
+	}
+	action_d = {
+		name = "ACTIONNAME239004D" #Don't act
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -2 }
+		command = { type = revoltrisk which = 36 value = 10 }
+		command = { type = domestic which = innovative value = -1 }
+	}
+}
+#(1647) Independence (Spanish event Masaniello's Revolt)
+event = {
+	id = 239005 #triggered by SPA_285002 C
+	random = no
+	country = NAP
+	name = "EVENTNAME239005" #Independence
+	desc = "EVENTHIST239005"
+	#-#Masaniello's revolt has led to the independence from Spain. How shall we organize our state?
+
+	action_a = {
+		name = "ACTIONNAME239005A" #Follow the lead of the revolution
+		command = { type = domestic which = serfdom value = -7 }
+		command = { type = domestic which = aristocracy value = -4 }
+		command = { type = domestic which = innovative value = 2 }
+		command = { type = infra value = 300 }
+		command = { type = provincetax which = -1 value = -2 }
+		command = { type = relation which = SPA value = -400 }
+		command = { type = relation which = PAP value = -400 }
+		command = { type = breakvassal which = SPA }
+		command = { type = treasury value = 150 }
+	}
+	action_b = {
+		name = "ACTIONNAME239005B" #A bourgeois society
+		command = { type = domestic which = centralization value = 4 }
+		command = { type = domestic which = serfdom value = -4 }
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = domestic which = quality value = 2 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = breakvassal which = SPA }
+	}
+	action_c = {
+		name = "ACTIONNAME239005C" #An Anjou state
+		command = { type = breakvassal which = SPA }
+		command = { type = dynastic which = FRA }
+		command = { type = sleepmonarch which = 096011 } #Filippo III (1621-1665)
+		command = { type = sleepmonarch which = 096012 } #Carlo V
+		command = { type = sleepmonarch which = 096013 } #Filippo IV
+		command = { type = sleepmonarch which = 096014 } #Giuseppe I
+		command = { type = sleepmonarch which = 096015 } #Carlo VI
+		command = { type = sleepmonarch which = 096016 } #Carlo VII
+		command = { type = sleepmonarch which = 096017 } #Ferdinando IV
+		#House of Lorraine-Vaudémont
+		command = { type = wakemonarch which = 096028 } #Carlo VII °
+		command = { type = wakemonarch which = 096029 } #Carlo VIII Leopoldo °
+		command = { type = wakemonarch which = 096030 } #Leopoldo Giuseppe Carlo °
+		command = { type = wakemonarch which = 096031 } #Francesco II °
+		command = { type = wakemonarch which = 096032 } #Pietro Leopoldo °
+		command = { type = wakemonarch which = 096033 } #Francesco III °
+		command = { type = relation which = FRA value = 300 }
+	}
+}
+
+#(1675-1715) Neapolitan Decadence - Ahistorical
+#by Isaac Brock, for now this is used to shift the DPs.
+#modified by Bordic
+#Any suggestions for better events in this period are appreciated
+event = {
+	id = 239001
+	trigger = {
+		NOT = {
+			countrysize = 10
+			domestic = { type = innovative value = 9 }
+			domestic = { type = serfdom value = 3 }
+			domestic = { type = aristocracy value = 1 }
+		}
+	}
+	random = no
+	country = NAP
+	name = "EVENTNAME239001" #Neapolitan Decadence
+	desc = "EVENTHIST239001"
+	#-#In the late XVIIth century, the disuse of the Mediterranean sea as the main international trade junction between Europa and the East Indies brought the Italian economic system to collapse. Southern Italy became more removed from the mainstream of European development and the administration of Naples lagged behind that of their European contemporaries. The practice of agriculture as prevailing economic activity meant the coming back to power of the most conservative landowning aristocracy. while the receding of the naval threat from Muslim powers in the Mediterranean Naples also became much less militarized. That economic backwardness associated with the effects of Counterreform deeply affected Italian social life too, now less and less inclined to accept innovation and to develop some entrepreneurial attitude.
+
+	date = { day = 1 month = january year = 1675 }
+	offset = 60
+	deathdate = { day = 0 month = january year = 1715 }
+
+	action_a = {
+		name = "ALAS"
+		command = { type = stability value = -1 }
+		command = { type = provincetax which = -2 value = -2 }
+		command = { type = provincemanpower which = -2 value = -1 }
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = domestic which = MERCANTILISM value = 1 }
+		command = { type = domestic which = SERFDOM value = 1 }
+		command = { type = domestic which = LAND value = 1 }
+		command = { type = desertion which = -1 value = 10000 }
+		command = { type = trade value = -500 }
+		command = { type = infra value = -500 }
+		command = { type = naval value = -500 }
+	}
+}
+
+#(1734-1759) The Bourbon Dynasty in Naples
+#by Bordic
+event = {
+	id = 239025
+	trigger = {
+		OR = {
+			event = 3495 #POL: The Polish Succession of 1733 -I-
+			event = 258086 #POL: The Polish Succession of 1733 -II-
+		}
+		OR = {
+			owned = { province = 395 data = SPA } #Messina
+			owned = { province = 396 data = SPA } #Sicily
+		}
+		NOT = {
+		 	event = 179099 #HAB: The Austracist victory in Spain
+			event = 239015 #NAP: The Kingdom of Naples and Sicily
+			war = { country = NAP country = SPA }
+		}
+		monarch = 096016 #Carlo VII
+	}
+	random = no
+	country = NAP
+	name = "EVENTNAME239025" #The Bourbon Dynasty in Naples
+	desc = "EVENTHIST239025"
+	#-#The diplomatic handlings which followed the war of Polish succession established that Don Carlos, son from the second marriage of King Felipe V with Elisabetta Farnese and current duke of Parma and legitimate successor to the Medici dynasty in the Grand Duchy of Tuscany, would be assigned the Kingdom of Naples and Sicily if he had renounced both his ducal titles. Don Carlos, named Carlo VII King of Naples and Carlo V King of Sicily would establish the cadet line of the Spanish House of Bourbons in the Kingdoms of Naples and Sicily.
+
+	date = { day = 0 month = January year = 1734 }
+	offset = 15
+	deathdate = { day = 6 month = October year = 1759 }
+
+	action_a = {
+		name = "ACTIONNAME239025A" #Up the Bourbons!
+		command = { type = flagname which = "Bourbon" }
+		command = { type = relation which = PAP value = 25 }
+		command = { type = relation which = HAB value = 25 }
+		command = { type = addcore which = 395 } #Messina
+		command = { type = addcore which = 396 } #Sicily
+		command = { type = removecore which = 819 } #Malta
+		command = { type = trigger which = 285206 } #SPA: The independence of Sicily
+	}
+}
+
+#(1734-1790) The Kingdom of Naples and Sicily
+#by Bordic
+#graphics by Birger and deallus
+event = {
+	id = 239015 #triggered by SPA_285096 A
+	random = no
+	country = NAP
+	name = "EVENTNAME285096" #The Kingdom of Naples and Sicily
+	desc = "EVENTHIST285096"
+	#-#In the war of Polish succession Felipe V of Spain supported France in her fight against Austria and Russia in order to make the French candidate to be elected as King of Poland. He hoped in this way to secure Mantua for the elder son, Don Carlos, who, already Duke of Parma as Carlo I, had also the expectation of Tuscany and to give the Kingdoms of Naples and Sicily to the younger son, Don Felipe. Since Austria was fighting on several fronts on the Rhine against France and on Lombardia against Savoy, Spain easily conquered Naples and Sicily which Austria had previously occupied during the war of Spanish succession. In 1735 the peace treaty that followed the war of Polish succession established that Felipe's son Carlos (later Charles III of Spain) should give up the duchy of Parma, which he had inherited in 1731 as descent of the Farnese family through his mother, Elisabetta Farnese, Queen of Spain and any claim to Tuscany, given to the Duke of Lorraine after Gian Gastone, the last of the Medicis, died. In exchange for that, Don Carlos was confirmed the possession of his conquests in Southern Italy. On 3 October 1735 Don Carlos, named Carlo VII King of Naples and Carlo V King of Sicily, established the cadet line of the Spanish House of Bourbons in the Kingdoms of Naples and Sicily (renamed Kingdom of Two Sicilies after 1815).
+
+	action_a = {
+		name = "ACTIONNAME3162A" #One King, One Kingdom
+		command = { type = flagname which = "Bourbon" }
+		command = { type = inherit which = SIC }
+		command = { type = relation which = PAP value = 25 }
+		command = { type = relation which = HAB value = 25 }
+		command = { type = relation which = SAV value = 25 }
+		command = { type = INF which = -2 value = 8000 }
+		command = { type = warships which = -1 value = 5 }
+		command = { type = addcore which = 395 } #Messina
+		command = { type = addcore which = 396 } #Sicily
+	}
+}
+
+#(1740-1760) L'Illuminismo Napoletano
+#From The Bard, scripted by Isaac Brock
+event = {
+	id = 239002
+	trigger = { monarch = 096016 } #Carlo VII
+	random = no
+	country = NAP
+	name = "EVENTNAME239002" #L'Illuminismo Napoletano
+	desc = "EVENTHIST239002"
+	#-#The main centers of Italian Enlightment were Milan and Naples. In Naples, the movement arose from the social and cultural reforms, introduced by the Bourbon Kings, in the newly independent state. The, intellectuals favoured the initiatives of the Kings, expecially intended, to reduce Church's privileges and Pope's political power. Important, scholars in the Neopolitan Enlightenment included Antonio Genovesi, Ferdinando Galiani and Gaetano Filangieri, who established the basis for, modern political, economical and monetarist sciences. In particular, Filangieri brought on a general reform of Jurisprudence, renewing the, civil life of the realm.
+
+	date = { day = 1 month = january year = 1740 }
+	offset = 3000
+	deathdate = { day = 1 month = january year = 1760 }
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = infra value = 300 }
+		command = { type = stability value = -2 }
+		command = { type = domestic which = innovative value = 2 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = mercantilism value = -1 }
+	}
+}
+
+#(1741) The Effects of the Pragmatic Sanction
+event = {
+	id = 239035
+	trigger = {
+		monarch = 096016 #Carlo VII
+		exists = HAB
+		event = 3138 #FRA: The Effects of the Pragmatic Sanction
+		NOT = {
+			war = { country = FRA country = NAP }
+		}
+	}
+	random = no
+	country = NAP
+	name = "EVENTNAME3205" #The Effects of the Pragmatic Sanction
+	desc = "EVENTHIST3205"
+	#-#The Pragmatic Sanction, solemnly rendered by Emperor Charles VI on 19th April 1713, established the indivisibility of the Habsburg patrimony, and ruled the order of succession by order of first born child, even to a woman. This made Maria-Theresa, born in 1717, the heir of the Empire. The Pragmatic Sanction was recognized by Spain in 1725 (confirmed in 1731), Russia in 1726, Prussia in 1728, the United Provinces in 1731, Hanover in 1732, the Holy Roman Empire (except Bavaria) in 1732 and France in 1738 only. Bavarian refusal would lead to the War of the Austrian Succession.
+
+	date = { day = 1 month = january year = 1741 }
+	offset = 10
+	deathdate = { day = 1 month = august year = 1741 }
+
+	action_a = {
+		name = "ACTIONNAME239035A" #Join the Bourbon Family Pact
+		command = { type = casusbelli which = HAB value = 36 }
+		command = { type = stability value = -1 }
+		command = { type = relation which = SPA value = 50 }
+		command = { type = relation which = BAY value = 50 }
+		command = { type = relation which = SAC value = 50 }
+		command = { type = relation which = GEN value = 50 }
+		command = { type = relation which = PRU value = 50 }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = ENG value = -100 }
+		command = { type = relation which = HOL value = -100 }
+		command = { type = relation which = POR value = -100 }
+		command = { type = relation which = RUS value = -50 }
+		command = { type = relation which = HES value = -50 }
+		command = { type = relation which = HAN value = -50 }
+		command = { type = relation which = HAB value = -150 }
+	}
+	action_b = {
+		name = "ACTIONNAME3616B" #Neutral
+		command = { type = stability value = 2 }
+		command = { type = relation which = BAY value = -50 }
+		command = { type = relation which = SAC value = -50 }
+		command = { type = relation which = GEN value = -50 }
+		command = { type = relation which = PRU value = -50 }
+		command = { type = relation which = SPA value = -50 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = relation which = ENG value = 20 }
+		command = { type = relation which = HOL value = 20 }
+		command = { type = relation which = POR value = 20 }
+		command = { type = relation which = RUS value = 20 }
+		command = { type = relation which = HES value = 20 }
+		command = { type = relation which = HAN value = 20 }
+		command = { type = relation which = HAB value = 75 }
+	}
+}
+
+#(1742-1743) Army reforms of Carlo VII
+#by Isaac Brock
+event = {
+	id = 239003
+	trigger = { monarch = 096016 } #Carlo VII
+	random = no
+	country = NAP
+	name = "EVENTNAME239003" #The Army Reform of Carlo VII
+	desc = "EVENTHIST239003"
+	#-#When Charles VII became King of Naples he received a small army, as an outright gift from his father, Philip V of Spain. In 1743, Naples' army was still composed of foreigners and Charles created twelve, 'national' regiments with manpower drawn from provincial militias. This, army was to be officered by the Neopolitan nobility in order to tie them, more closely to the regime, and modeled after the Prussian army. Although the new army was able to fend off an Austrian invasion in 1744, the reforms failed in their ultimate goals.
+
+	date = { day = 1 month = january year = 1742 }
+	offset = 90
+	deathdate = { day = 29 month = december year = 1743 }
+
+	action_a = {
+		name = "ACTIONNAME239003A" #Enact absolutist reforms
+		command = { type = domestic which = Serfdom value = -1 }
+		command = { type = domestic which = Offensive value = -1 }
+		command = { type = domestic which = Land value = 2 }
+		command = { type = domestic which = Quality value = -1 }
+		command = { type = stability value = -2 }
+		command = { type = land value = 2000 }
+		command = { type = provincemanpower which = -2 value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME239003B" #Maintain the present system
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1752) The Commissioning of Reggia di Caserta
+event = {
+	id = 17322
+	trigger = { monarch = 096016 } #Carlo VII
+	random = no
+	country = NAP
+	name = "EVENTNAME17322" #The Commissioning of Reggia di Caserta
+	desc = "EVENTHIST17322"
+	#-#Carlo VII, King of Naples and son of Felipe V of Spain, wanted a palace like Versailles. It was commissioned to Luigi Vanvitelli (1700-1773). His project was grandiose: it comprehended not only the palace itself (247 m x 184 m = 270 yards x 201 yards), but also a place, a vast park (120 hectares = 296.5 acres), a new urbanistic plan for Caserta and an aqueduct. The Reggia (Royal Palace) was very expensive, expecially for a small state like Naples, but when it was completed in 1774 it gave more prestige and cultural importance to the Kingdom of Naples.
+
+	date = { day = 1 month = january year = 1752 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1752 }
+
+	action_a = {
+		name = "ACTIONNAME17322A" #Build the Reggia!
+		command = { type = treasury value = -400 }
+		command = { type = stability value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME17322B" #Don't build it
+		command = { type = stability value = 1 }
+		command = { type = sleepevent which = 17323 } #NAP: The Reggia di Caserta in all it's glory
+	}
+}
+
+#(1753-1772) The family pact
+#by Bordic
+event = {
+	id = 239026
+	trigger = {
+		event = 170120 #FRA: The Diplomatic Revolution
+		NOT = { war = { country = FRA country = NAP }
+			war = { country = HAB country = NAP }
+		}
+		OR = { #Bourbon Kings
+			monarch = 096016 #Carlo VII
+			monarch = 096017 #Ferdinando IV
+		}
+	}
+	random = no
+	country = NAP
+	name = "EVENTNAME285203" #The family pact
+	desc = "EVENTHIST179053"
+	#-#In 1740s the problem of Maria Theresia's succession to the Austrian throne and to the Habsburg inheritance caused a big instability in the European balance of powers which led to the War of Austrian succession. The peace that followed the conflict, provoked by the foreign opposition to the Pragmatic Sanction stated by the former Emperor Charles VI and ended with the Treaty of Aix-la-Chapelle in 1748, resulted in a well defined rivalry between major European powers forming essentially two main political formations: the alliance of the socalled 'Bourbon family pact' (France, Spain, Naples and the latest Parma, all with members of the same House of Bourbons) with Prussia and the alliance between Austria, Russia and England. Disappointed by England's interested approaches to the emerging power of Prussia wich led to the Convention of Westminster, a treaty with which both countries would avoid any foreign military presence or access in the German territories, Austria strengthened her political ties with Saxony, Russia and Sweden and started new diplomatic handlings with France, traditionally an arch-enemy of the Habsburgs since the old dispute over the Burgundian inheritance but for sure the most powerful antagonist to the rising British colonial empire. And an alliance with France would also mean the support of Spain and the Bourbon Italian monarchies. That diplomatic move would lead to a huge world conflict fought in the years between 1756 and 1763: the socalled 'Seven Years War'.
+
+	date = { day = 1 month = January year = 1753 }
+	offset = 20
+	deathdate = { day = 0 month = january year = 1772 }
+
+	action_a = {
+		name = "ACTIONNAME170120A" #Side with the Habsburgs
+		command = { type = casusbelli which = PRU value = 36 }
+		command = { type = casusbelli which = ENG value = 36 }
+		command = { type = relation which = FRA value = 150 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = RUS value = 150 }
+		command = { type = relation which = SWE value = 150 }
+		command = { type = relation which = SAC value = 150 }
+		command = { type = relation which = ENG value = -150 }
+		command = { type = relation which = PRU value = -150 }
+	}
+	action_b = {
+		name = "ACTIONNAME285203B" #Maintain old alliances
+		command = { type = stability value = -1 }
+		command = { type = casusbelli which = HAB value = 36 }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = HAB value = -75 }
+		command = { type = relation which = RUS value = 25 }
+		command = { type = relation which = SWE value = 25 }
+		command = { type = relation which = SAC value = 25 }
+		command = { type = relation which = ENG value = 25 }
+		command = { type = relation which = PRU value = 25 }
+	}
+}
+
+#(1774) Reggia di Caserta stands in Unearthly Glory
+event = {
+	id = 17323
+	trigger = { event = 17322 }
+	random = no
+	country = NAP
+	name = "EVENTNAME17323" #The Reggia di Caserta in all it's glory
+	desc = "EVENTHIST17323"
+	#-#After 22 years of hard work, the Reggia (Royal Palace) is completed! Now we are more important and our court is a beacon of Enlightment!
+
+	date = { day = 1 month = january year = 1774 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1774 }
+
+	action_a = {
+		name = "OK"
+		command = { type = gainmanufactory which = 393 value = luxury } #Napoli
+		command = { type = vp value = 50 }
+	}
+}
+
+#(1790-1820) Move court to Sicily
+#base on the Savoyard event (SAV_17425) 'Move Court Offshore' by Isaac Brock
+#adapted by Bordic for Naples and then (Two) Sicily(-ies)
+event = {
+	id = 239028
+	trigger = {
+		monarch = 096017 #Ferdinando IV
+		owned = { province = 396 data = -1 } #Sicily
+		control = { province = 396 data = -1 }
+		NOT = {
+			control = { province = 393 data = -1 } #Napoli
+		 	control = { province = 394 data = -1 } #Apulia
+		}
+	}
+	random = no
+	country = NAP
+	name = "EVENTNAME17425" #Move Court to Sicily
+	desc = "EVENTHIST17425"
+	#-#Our capital has fallen to our enemies. Should we move the government to Sicily?
+
+	date = { day = 0 month = january year = 1790 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME17425A" #Flee to Sicily!
+		command = { type = capital which = 396 } #Sicily
+		command = { type = fortress which = 396 value = 1 } #Sicily
+		command = { type = population which = 396 value = 2000 } #Sicily
+		command = { type = removecore which = 393 } #Napoli
+		command = { type = removecore which = 394 } #Apulia
+		command = { type = stability value = -2 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = flagname which = "" }
+		command = { type = country which = SIC }
+		command = { type = flagname which = "Bourbon" } #the same Bourbon Neapolitan CoA
+		command = { type = relation which = RUS value = 100 }
+		command = { type = relation which = SAV value = 100 }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = relation which = PRU value = 100 }
+		command = { type = relation which = SPA value = 100 }
+		command = { type = relation which = ENG value = 100 }
+		command = { type = relation which = SWE value = 100 }
+		command = { type = relation which = TUR value = 100 }
+		command = { type = relation which = POR value = 100 }
+		command = { type = diplomats value = 4 }
+	}
+	action_b = {
+		name = "ACTIONNAME17424B" #Stay on the mainland
+		command = { type = stability value = 1 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+	}
+}
+
+#(1803) The Napoleonic Wars
+event = {
+	id = 239014 #triggered by FRA_12125 A
+	random = no
+	country = NAP
+	name = "EVENTNAME12125" #The Napoleonic Wars
+	desc = "EVENTHIST12128"
+	#-#Napoléon argued that he wanted to build a federation of free peoples in a Europe united under a liberal government. But if this was indeed his goal, he intended to achieve it by taking power into his own hands. He supposedly intended to grant constitutions, introduce laws, abolished feudalism, create efficient governments and foster education, science, literature and the arts. The other powers of Europe looked on with alarm at an expansionist France, bringing its revolutionary ideals and fervour abroad in the wake of Napoléon's military might.
+
+	action_a = {
+		name = "WAR"
+		command = { type = casusbelli which = FRA value = 192 }
+		command = { type = relation which = RUS value = 150 }
+		command = { type = relation which = SAV value = 150 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = PRU value = 150 }
+		command = { type = relation which = SPA value = 150 }
+		command = { type = relation which = ENG value = 150 }
+		command = { type = relation which = POR value = 150 }
+		command = { type = relation which = FRA value = -200 }
+	}
+	action_b = {
+		name = "PEACE"
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1806-1820) A Bonaparte King in Naples
+#by Bordic
+#graphics by Prinz Wilhelm and kolmy from GRT
+event = {
+	id = 239029 #triggered by FRA_170144 A
+	random = no
+	country = NAP
+	name = "EVENTNAME239029" #A Bonaparte King in Naples
+	desc = "EVENTHIST170144"
+	#-#In his mind Napoléon had the ambition to form a strong centralized grand Empire in Europe by means of strong relations with peripheral vassal-states ruled by members of his family, the Bonapartes, who had also contributed to defend the Empire from external menaces. That's why he decided to assign the Kingdom of Naples to his brother Giuseppe after the Bourbon Kings hastily escaped to Sicily once the French troops descended Italy.
+
+	action_a = {
+		name = "ACTIONNAME239029A" #The Bourbons are chased away!
+		command = { type = flagname which = "Bonaparte" }
+		command = { type = wakemonarch which = 096019 } #Giuseppe Bonaparte
+		command = { type = relation which = FRA value = 50 }
+		command = { type = domestic which = ARISTOCRACY value = -2 }
+		command = { type = domestic which = innovative value = 2 }
+		command = { type = domestic which = serfdom value = -2 }
+		command = { type = INF which = -2 value = 8000 }
+		command = { type = warships which = -1 value = 5 }
+	}
+}
+
+#(1808-1820) King Gioacchino
+#by Bordic
+event = {
+	id = 239030
+	trigger = {
+		OR = {
+			control = { province = 436 data = FRA } #Castilla
+			vassal = { country = FRA country = SPA }
+		}
+		OR = {
+			event = 235101 #MUN: The creation of the Grand Duchy of Berg
+			event = 200200 #KLE: The creation of the Grand Duchy of Berg and Cleves
+		}
+		event = 239029 #NAP: A Bonaparte King in Naples
+		NOT = { event = 179058 } #HAB: The Restoration in Italy
+	}
+	random = no
+	country = NAP
+	name = "EVENTNAME239030" #King Gioacchino
+	desc = "EVENTHIST239030"
+	#-#After the French troops invaded Spain, Napoléon put his faithful brother Giuseppe to the Spanish throne and assigned to Joachim Murat, already Grand Duke of Berg and Cleves, the Kingdom of Naples. Murat named himself King Gioacchino Napoleone. Although husband to Napoléon's sister Caroline, he proved to be not so faithful as the other members of the Bonaparte family. When Napoléon was exiliated at Elba Island, Murat preferred to make a separate peace with the English-Austrian-Russian-Prussian alliance in the hope to preserve his crown. With the decline of Napoléon he also thought about uniting the Kingdoms of Naples and Italy (which owned the central northern part of the Italian peninsula) under his rule at the expenses of Napoléon's stepson, the viceroy of Italy Eugenio de Beauharnais, who still ruled in Milan.
+
+	date = { day = 0 month = August year = 1808 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME239030A" #Murat King of Naples!
+		command = { type = wakemonarch which = 096020 } #Gioacchino Napoleone
+		command = { type = relation which = FRA value = -75 }
+		command = { type = relation which = ITA value = -75 }
+		command = { type = casusbelli which = ITA value = 60 }
+		command = { type = breakvassal which = FRA }
+		command = { type = stability value = 2 }
+	}
+}
+
+#(1815-1820) The Proclamation of Rimini
+#by Bordic
+event = {
+	id = 239031
+	trigger = {
+		OR = {
+			event = 179058 #HAB: The Restoration in Italy
+			event = 179055 #HAB: Austrian foothold in Italy
+		}
+		event = 3791 #FRA: The Return of Napoleon
+		monarch = 096020 #Gioacchino Napoleone
+	}
+	random = no
+	country = NAP
+	name = "EVENTNAME239031" #The Proclamation of Rimini
+	desc = "EVENTHIST239031"
+	#-#As soon as Napoléon returned to France in his lasts attempts to preserve his Empire in the socalled Hundred Days, Joachim Murat, also called King Gioacchino Napoleone in Naples, decided this time to give his full support to his imperial brother-in-law and started gathering troops, the socalled 'murattiani'. In his proclamation of Rimini, the King of Naples meant to raise voluntary troops in the last attempt to defend his Kingdom and, in the same time, to expand in other Italian territories as to achieve a stronger position in a future peace treaty with the 7th Coalition. But his calls to the national pride of a population, which had never considered herself as one Italian population until then, remained unheard. After he failed to cross the Po River, King Gioacchino reorganized his troops in the Papal Marches and decided to wait for an Austrian army which was descending Italy to restore the Bourbons in Naples. What shall we do? Face the Austrian troops and defend our Kingdom or ignominiously abdicate and leave Italy to her destiny?
+
+	date = { day = 0 month = january year = 1815 }
+	offset = 90
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME239031A" #Lead the Italians against the foreign invaders
+		command = { type = CAV which = -2 value = 5000 }
+		command = { type = INF which = -2 value = 10000 }
+		command = { type = war which = HAB }
+		command = { type = casusbelli which = PAP value = 60 }
+		command = { type = casusbelli which = SIC value = 60 }
+		command = { type = relation which = HAB value = -200 }
+		command = { type = relation which = PAP value = -200 }
+		command = { type = relation which = TOS value = -200 }
+		command = { type = relation which = PAR value = -200 }
+		command = { type = relation which = PAM value = -200 }
+		command = { type = relation which = SAV value = -200 }
+		command = { type = relation which = PRU value = -200 }
+		command = { type = relation which = RUS value = -200 }
+		command = { type = relation which = ENG value = -200 }
+		command = { type = relation which = SPA value = -200 }
+		command = { type = relation which = SIC value = -200 }
+		command = { type = relation which = FRA value = 300 }
+		command = { type = trigger which = 179059 } #HAB: The last Napoleonic battle in Italy
+	}
+	action_b = {
+		name = "ACTIONNAME239031B" #Abandon the Kingdom to its destiny (End Game)
+		command = { type = trigger which = 179060 } #HAB: The Restoration of the Bourbons
+	}
+}
+
+#(1815-1820) The Bourbons restored in Naples
+#by Bordic
+event = {
+	id = 239032
+	trigger = {
+		event = 179061 #HAB: The Restoration in the Two Sicilies
+		atwar = no
+		NOT = { exists = SIC }
+	}
+	random = no
+	country = NAP
+	name = "EVENTNAME239032" #The Bourbons restored in Naples
+	desc = "EVENTHIST179061"
+	#-#In the Congress of Vienna, the Kingdoms of Naples (which Murat believed to maintain) and Sicily, now united in the socalled Kingdom of Two Sicilies, were given back to the former King Ferdinando IV of Bourbon, who was forced to exile in Sicily when the French troops had invaded his realm. Ferdinando changed his numbering from IV to I as to represent that he was the first monarch to rule the United Kingdom of Two Sicilies.
+
+	date = { day = 3 month = may year = 1815 }
+	offset = 18
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME239032A" #King Ferdinando is back
+		command = { type = wakemonarch which = 096034 } #Ferdinando I
+		command = { type = flagname which = "Bourbon" }
+		command = { type = addcore which = 395 } #Messina
+		command = { type = addcore which = 396 } #Sicily
+	}
+}
+
+#(1816-1817) Rossini for NAP - Flavor
+#by Marc Figueras
+#Text from the Grove Concise Dictionary of Music
+event = {
+	id = 239024
+	trigger = {
+		stability = 0
+	}
+	random = no
+	country = NAP
+	name = "EVENTNAME326044" #Gioacchino Rossini
+	desc = "EVENTHIST326044"
+	#-#Rossini studied in Bologna and began his operatic career when, at 18, he wrote a one-act comedy for Venice. Further commissions followed, from Bologna, Ferrara, Venice again and Milan. His first operas to win international acclaim come from 1813: the serious 'Tancredi' and the comic 'L'italiana in Algieri'. In 1815 Rossini went to Naples as musical and artistic director of the Teatro San Carlo, which led to a concentration on serious opera. From this time date two of his supreme comedies: 'Il barbiere di Siviglia' and 'La Cenerentola'. The former, with its elegant melodies, its exhilarating rhythms and its superb ensemble writing, has claims to be considered the greatest of all Italian comic operas, eternally fresh in its wit and its inventiveness. The next year saw 'La Cenerentola', a charmingly sentimental tale in which the heroine moves from a touching folksy ditty to brilliant coloratura apt to a royal maiden.
+
+	date = { day = 2 month = february year = 1816 }
+	offset = 120
+	deathdate = { day = 2 month = january year = 1817 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = vp value = 5 }
+		command = { type = infra value = 15 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 239023 then 239038

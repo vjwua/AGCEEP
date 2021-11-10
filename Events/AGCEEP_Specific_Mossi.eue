@@ -1,0 +1,128 @@
+#Mossi/Ouagadougou (MSS)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1464) Raids on the Dendi - by David Harper
+event = {
+	id = 310002
+	trigger = {
+		exists = SON
+		owned = { province = 1497 data = SON }
+		NOT = { vassal = { country = MSS country = MAL } }
+	}
+	random = no
+	country = MSS
+	name = "EVENTNAME310002" #Raids on the Dendi
+	desc = "EVENTHIST310002"
+	#-#With the Mali on the retreat the Mossi were free to launch raids on their neighbors. They often raided the fertile lands of the Songhai.
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 3000
+	deathdate = { day = 1 month = january year = 1464 }
+
+	action_a = {
+		name = "ACTIONNAME310002A" #To the victor go the spoils!
+		command = { type = treasury value = 25 }
+		command = { type = trigger which = 284005 } #SON: Mossi Raids
+		command = { type = breakdynastic which = SON }
+		command = { type = breakvassal which = SON }
+	}
+}
+
+#(1425-1500) Return to the Old Ways - Determinalism event - by David Harper
+event = {
+	id = 310003
+	trigger = {
+		NOT = { domestic = { type = centralization value = 5 } }
+		countrysize = 3
+		ai = yes
+	}
+	random = no
+	country = MSS
+	name = "EVENTNAME310003" #Return to the Old Ways
+	desc = "EVENTHIST310003"
+	#-#The Mossi were a primitive people compared to their neighbors. Although they were fierce warriors they were only fair administrators. When their empire grew too large to control directly they did as West Africans had done for centuries - let conquered people rule themselves so long as they sent tribute.
+
+	date = { day = 1 month = january year = 1425 }
+	offset = 1000
+	deathdate = { day = 1 month = january year = 1500 }
+
+	action_a = {
+		name = "ACTIONNAME310003A" #Demand tribute from our foes
+		command = { type = treasury value = 50 }
+		command = { type = independence which = BAN }
+		command = { type = independence which = SON }
+		command = { type = independence which = ASH }
+		command = { type = independence which = HAS }
+		command = { type = independence which = DAH }
+	}
+	action_b = {
+		name = "ACTIONNAME310003B" #This is the beginning of a new empire!
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = stability value = -3 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#(1462-1490) Mossi Expansionism - by Garbon
+event = {
+	id = 310000
+	trigger = {
+		event = 218002 #MAL: The Mossi and the Songhai Empire
+	}
+	random = no
+	country = MSS
+	name = "EVENTNAME310000" #Mossi Expansionism
+	desc = "EVENTHIST310000"
+	#-#As Songhai hesitated to destroy Mali the Mossi took advantage of the situation to expand their borders. They looked towards the lands of the Malinke.
+
+	date = { day = 1 month = january year = 1460 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1492 }
+
+	action_a = {
+		name = "ACTIONNAME310000A" #Let us expand!
+		command = { type = addcore which = 1490 } #Bambuk
+		command = { type = inf which = -2 value = 5000 }
+		command = { type = relation which = MAL value = -150 }
+	}
+	action_b = {
+		name = "ACTIONNAME310000B" #We are content as we are!
+		command = { type = treasury value = 75 }
+		command = { type = stability value = 1 }
+
+	}
+}
+
+#(1550-1650) Ouagadougou's Revival - by Garbon
+event = {
+	id = 310001
+	trigger = {
+		event = 284016 #SON: The Mossi are Dispersed
+	}
+	random = no
+	country = MSS
+	name = "EVENTNAME310001" #Ouagadougou's Revival
+	desc = "EVENTHIST310001"
+	#-#The Mossi were never wholly defeated by the Songhai and when Songhai showed signs of weakness they took the opportunity to revive their state. The Kingdom of Ouagadougou broke away from the empire during the inept reign of Ishaq II, hastening the downfall of the Songhai.
+
+	date = { day = 1 month = january year = 1550 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1650 }
+
+	action_a = {
+		name = "ACTIONNAME310001A" #We are free!
+		command = { type = provinceculture which = 1494 value = ashanti } #Should be mossi #Buré
+		command = { type = provincereligion which = 1494 value = pagan } #Buré
+		command = { type = religion which = pagan }
+		command = { type = stability value = 3 }
+		command = { type = breakvassal which = SON }
+		command = { type = population which = 1494 value = 2000 } #Buré
+		command = { type = provincemanpower which = 1494 value = 1 } #Buré
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 310004

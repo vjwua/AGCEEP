@@ -1,0 +1,2532 @@
+#Fantasy Byzantium (BYZ) - Fantasy
+
+#-----------------------------------------------------------------------------------------------
+#Setup
+event = {
+	id = 90963
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "Setup"
+
+	date = { year = 1419 }
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "OK"
+		command = { type = sleepevent which = 337808 } #CoTs*357: The Economic Reforms of Mehmed II
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1600) Control of the Bosporus
+event = {
+	id = 90964
+	trigger = {
+		NOT = { event = 3352 } #TUR: The Economic Reforms of Mehmed II
+		NOT = { #TUR have a specific event until 1491
+			AND = {
+				owned = { province = 357 data = TUR }
+				NOT = { year = 1491 }
+			}
+		}
+		NOT = { #Fantasy BYZ have a specific event until 1495
+			AND = {
+				owned = { province = 357 data = BYZ }
+				NOT = { year = 1495 }
+			}
+		}
+		AND = {
+			owned = { province = 477 data = -1 } #Anatolia
+			owned = { province = 478 data = -1 } #Smyrna
+			owned = { province = 357 data = -1 } #Thrace
+			owned = { province = 358 data = -1 } #Macedonia
+		}
+	}
+	random = no
+	province = 357 #Thrace
+	name = "EVENTNAME337808" #Control of the Bosporus
+	desc = "EVENTHIST337808"
+	#-#By holding the Bosporus we can control trade in the Black Sea.
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1600 }
+
+	action_a = {
+		name = "ACTIONNAME337808A" #A new market
+		command = { type = removecot which = 465 } #Kerch
+		command = { type = cot which = 357 } #Thrace
+		command = { type = relation which = VEN value = -150 }
+		command = { type = relation which = GEN value = -100 }
+		command = { type = domestic which = MERCANTILISM value = 2 }
+		command = { type = merchants value = 6 }
+		command = { type = sleepevent which = 3352 } #TUR: The Economic Reforms of Mehmed II
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#(1453-1820) The Byzantine Renaissance
+event = {
+	id = 90900
+	trigger = {
+		owned = { province = 357 data = -1 }
+		owned = { province = 358 data = -1 }
+		owned = { province = 359 data = -1 }
+		owned = { province = 360 data = -1 }
+		owned = { province = 478 data = -1 }
+		religion = orthodox
+	}
+	random = no
+	country = BYZ
+	name = "EVENTNAME90900" #The Byzantine Renaissance Begins
+	desc = "EVENTHIST90900"
+	#-#Having weathered the Ottoman storm, the Byzantines slowly began to win back ground. They eventually succeeded in retaking the Aegean seaboard, restoring the Empire to the small but stable condition it was in during the days of Michael VIII Paleologus in the mid-13th century. Finally having some breathing room, the Emperors were able to take stock of their situation and make much needed reforms.
+
+	date = { day = 1 month = june year = 1453 }
+	offset = 1
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME90900A" #Begin the Renaissance
+		command = { type = loansize which = 200 }
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = relation which = SER value = 50 }
+		command = { type = relation which = BOS value = 50 }
+		command = { type = relation which = CRO value = 50 }
+		command = { type = relation which = HUN value = 50 }
+		command = { type = relation which = RAG value = 50 }
+		command = { type = relation which = MOL value = 50 }
+		command = { type = relation which = WAL value = 50 }
+		command = { type = relation which = NVG value = 50 }
+		command = { type = relation which = MOS value = 50 }
+		command = { type = provincetax which = 321 value = 1 } #Rumelia
+		command = { type = provincetax which = 356 value = 1 } #Bulgaria
+		command = { type = provincetax which = 357 value = 1 } #Thrace
+		command = { type = provincetax which = 358 value = 1 } #Macedonia
+		command = { type = provincetax which = 359 value = 1 } #Hellas
+		command = { type = provincetax which = 360 value = 1 } #Morea
+		command = { type = provincetax which = 361 value = 1 } #Albania
+		command = { type = provincetax which = 478 value = 1 } #Smyrna
+		command = { type = population which = 357 value = 20000 } #Thrace
+		command = { type = population which = 478 value = -6000 } #Smyrna
+		command = { type = population which = 356 value = -4000 } #Bulgaria
+		command = { type = population which = 358 value = -2000 } #Macedonia
+		command = { type = population which = 359 value = -8000 } #Hellas
+		command = { type = addcore which = 320 } #Dobrudja
+		command = { type = addcore which = 355 } #Serbia
+		command = { type = addcore which = 356 } #Bulgaria
+		command = { type = addcore which = 361 } #Albania
+		command = { type = addcore which = 363 } #Kosovo
+		command = { type = addcore which = 362 } #Ragusa
+		command = { type = addcore which = 484 } #Cyprus
+		command = { type = addcore which = 472 } #Iveria
+		command = { type = addcore which = 473 } #Armenia
+		command = { type = addcore which = 474 } #Sivas
+		command = { type = addcore which = 475 } #Trabzon
+		command = { type = addcore which = 476 } #Angora
+		command = { type = addcore which = 480 } #Crete
+		command = { type = addcore which = 481 } #Rhodes
+		command = { type = addcore which = 482 } #Konya
+		command = { type = addcore which = 483 } #Adana
+		command = { type = addcore which = 1609 } #Kastamonu
+		command = { type = addcore which = 1610 } #Antalya
+		command = { type = addcore which = 1611 } #Taurus
+	}
+}
+
+#(1454-1550) The Naval reforms
+event = {
+	id = 90939
+	random = no
+	country = BYZ
+	trigger = {
+		owned = { province = 479 data = -1 } #Ionia
+		owned = { province = 480 data = -1 } #Crete
+		OR = {
+			owned = { province = 481 data = -1 } #Rhodes
+			owned = { province = 820 data = -1 } #Corfu
+			owned = { province = 484 data = -1 } #Cyprus
+		}
+		NOT = { exists = TUR }
+		event = 90909 #BYZ: Economic Reforms of the Byzantine Revival
+	}
+	name = "EVENTNAME90939" #The Great Naval Reform
+	desc = "EVENTHIST90939"
+	#-#As Byzantium expanded its territory, it was once again obligated to turn its attention to the sea. Though Byzantine merchants had once dominated Mediterranean trade from their island bases throughout the Sea, Venetians, Genoans, and other Italians had long since wrested control of trade from them. Should Byzantium attempt to reclaim its rightful naval and commercial position at the risk of offending the rich Italian city-states?
+
+	date = { day = 1 month = january year = 1454 }
+	offset = 7300
+	deathdate = { day = 1 month = january year = 1550 }
+
+	action_a = {
+		name = "ACTIONNAME90939A" #Initiate Great Naval Reforms!
+		command = { type = stability value = 1 }
+		command = { type = domestic which = LAND value = -3 }
+		command = { type = domestic which = ARISTOCRACY value = -1 }
+		command = { type = domestic which = mercantilism value = 1 }
+		command = { type = relation which = VEN value = -150 }
+		command = { type = relation which = GEN value = -150 }
+		command = { type = naval value = 1000 }
+		command = { type = treasury value = -400 }
+	}
+	action_b = {
+		name = "ACTIONNAME90939B" #We can only afford small investments
+		command = { type = domestic which = LAND value = -1 }
+		command = { type = relation which = VEN value = -50 }
+		command = { type = relation which = GEN value = -50 }
+		command = { type = naval value = 500 }
+		command = { type = sleepevent which = 90907 } #BYZ: The Great Shipyard
+	}
+	action_c = {
+		name = "ACTIONNAME90939C" #No the army needs the resources!
+		command = { type = domestic which = LAND value = 1 }
+		command = { type = relation which = VEN value = 50 }
+		command = { type = relation which = GEN value = 50 }
+		command = { type = sleepevent which = 90907 } #BYZ: The Great Shipyard
+	}
+}
+
+#(1460-1495) Restoration of St. Sophia
+event = {
+	id = 90901
+	trigger = { event = 90909 } #BYZ: The Byzantine Renaissance Begins
+	random = no
+	country = BYZ
+	name = "EVENTNAME90901" #The Restoration of Hagia Sophia
+	desc = "EVENTHIST90901"
+	#-#Hagia Sophia, the Church of Holy Wisdom, was built by the Emperor Justinian I in the mid-6th century and stood as the largest and most impressive church built until it was used as the inspiration for St. Peter's Basilica during the Renaissance. However, the last millenium had not been good to it and the Emperors were more often than not too poor to maintain it properly. However, the newly prosperous nobles, private citizens, and Orthodox Church have pledged donations. Now the time has come to make use of the cultural revival of the 14th century and the Byzantine resurgence of the 15th century and restore the Hagia Sophia.
+
+	date = { day = 1 month = january year = 1460 }
+	offset = 1800
+	deathdate = { day = 1 month = january year = 1495 }
+
+	action_a = {
+		name = "ACTIONNAME90901A" #Restore Hagia Sophia to its former glory
+		command = { type = treasury value = -500 }
+		command = { type = gainmanufactory which = -2 value = luxury }
+		command = { type = domestic which = innovative value = 2 }
+		command = { type = infra value = 500 }
+		command = { type = stability value = -1 }
+		command = { type = relation which = TOS value = 100 }
+		command = { type = relation which = PAP value = 100 }
+		command = { type = relation which = PIS value = 100 }
+		command = { type = relation which = PAM value = 100 }
+		command = { type = relation which = MLO value = 100 }
+	}
+	action_b = {
+		name = "ACTIONNAME90901B" #No need for relics of the past
+		command = { type = treasury value = 250 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = land value = 250 }
+		command = { type = naval value = 250 }
+		#command = { type = sleepevent which = 90903 }
+	}
+}
+
+#(1465-1495) Establishment of the Themata
+event = {
+	id = 90903
+	trigger = { event = 90901 } #BYZ: The Restoration of Hagia Sophia
+	random = no
+	country = BYZ
+	name = "EVENTNAME90903" #The Themata
+	desc = "EVENTHIST90903"
+	#-#To counter the expense of defending a threatened empire in the 7th century, Emperor Constans II replaced the traditional Roman provinces with a new system of themes, whose leaders (strategos) held both civil and military power. Soldiers were enrolled in each theme and given a grant of land from which to maintain themselves in addition to a stipend. The grants were large enough for infantry to support themselves and their families, while cavalry and sailors could afford to hire tenant farmers to work the land. Besides their annual spring training and occasional offensives, they were always on call for defensive duties. Unlike mercenaries, the system presumed they would fight very fiercely to protect their land. It worked very well, increasing the size and effectiveness of the military, raising the prosperity of the countryside by creating a class of small freeholding farmers, and reducing government expenses.
+
+	date = { day = 1 month = january year = 1465 }
+	offset = 1800
+	deathdate = { day = 1 month = january year = 1495 }
+
+	action_a = {
+		name = "ACTIONNAME90903A" #Reestablish the themes!
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = domestic which = serfdom value = -2 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = domestic which = quality value = -1 }
+		command = { type = provincetax which = 321 value = 1 } #Rumelia
+		command = { type = provincemanpower which = 321 value = 1 } #Rumelia
+		command = { type = provincetax which = 478 value = 1 } #Smyrna
+		command = { type = provincemanpower which = 478 value = 1 } #Smyrna
+		command = { type = provincetax which = 356 value = 1 } #Bulgaria
+		command = { type = provincemanpower which = 356 value = 1 } #Bulgaria
+		command = { type = provincetax which = 357 value = 1 } #Thrace
+		command = { type = provincemanpower which = 357 value = 1 } #Thrace
+		command = { type = provincetax which = 358 value = 1 } #Macedonia
+		command = { type = provincemanpower which = 358 value = 1 } #Macedonia
+		command = { type = provincetax which = 359 value = 1 } #Hellas
+		command = { type = provincemanpower which = 359 value = 1 } #Hellas
+		command = { type = provincetax which = 360 value = 1 } #Morea
+		command = { type = provincemanpower which = 360 value = 1 } #Morea
+		command = { type = provincetax which = 361 value = 1 } #Albania
+		command = { type = provincemanpower which = 361 value = 1 } #Albania
+	}
+	action_b = {
+		name = "ACTIONNAME90903B" #No need to dangerously empower the peons
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = treasury value = 200 }
+		command = { type = stability value = -2 }
+		command = { type = sleepevent which = 90904 } #BYZ: Revolt of the themata
+		command = { type = sleepevent which = 90905 } #BYZ: The Tagmata
+	}
+}
+
+#(1475-1495) Economic reforms
+event = {
+	id = 90909
+	trigger = { event = 90900 } #BYZ: The Byzantine Renaissance Begins
+	random = no
+	country = BYZ
+	name = "EVENTNAME90909" #Economic Reforms of the Byzantine Revival
+	desc = "EVENTHIST90909"
+	#-#A key factor in the Byzantine revival was changing the course of the economy, which had suffered greatly in the previous 400 years. One problem was that magnates had established serfs on large, semi-autonomous estates. A different problem was that Venice, Genoa, and Pisa had wrested the lucrative Aegean and Black Sea trade out of the hands of Byzantine merchants. Clearly, many changes were needed, and those changes were going to be very painful.
+
+	date = { day = 1 month = january year = 1475 }
+	offset = 3600
+	deathdate = { day = 1 month = january year = 1495 }
+
+	action_a = {
+		name = "ACTIONNAME90909A" #Reclaim our trade
+		command = { type = removecot which = 465 } #Kerch
+		command = { type = cot which = -2 }
+		command = { type = loansize which = 300 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = land value = -1 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = mercantilism value = 1 }
+		command = { type = relation which = VEN value = -100 }
+		command = { type = relation which = GEN value = -100 }
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 48 value = 3 }
+		command = { type = treasury value = 500 }
+		command = { type = trade value = 700 }
+	}
+	action_b = {
+		name = "ACTIONNAME90909B" #Reform the estates
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = land value = 1 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = treasury value = 250 }
+		command = { type = infra value = 700 }
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 24 value = 6 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = sleepevent which = 90939 } #BYZ: The Great Naval Reform
+	}
+	action_c = {
+		name = "ACTIONNAME90909C" #Reform the estates and reclaim trade
+		command = { type = removecot which = 465 } #Kerch
+		command = { type = cot which = -2 }
+		command = { type = loansize which = 400 }
+		command = { type = domestic which = centralization value = 3 }
+		command = { type = domestic which = serfdom value = -2 }
+		command = { type = domestic which = aristocracy value = -3 }
+		command = { type = domestic which = innovative value = 2 }
+		command = { type = domestic which = mercantilism value = 1 }
+		command = { type = relation which = VEN value = -100 }
+		command = { type = relation which = GEN value = -100 }
+		command = { type = infra value = 250 }
+		command = { type = trade value = 250 }
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 36 value = 5 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+	action_d = {
+		name = "ACTIONNAME90909D" #It's too hard to reform right now
+		command = { type = stability value = 3 }
+		command = { type = domestic which = innovative value = -2 }
+		command = { type = domestic which = aristocracy value = 3 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = sleepevent which = 90939 } #BYZ: The Great Naval Reform
+	}
+}
+
+#(1480-1510) Revolt of the themata
+event = {
+	id = 90904
+	trigger = { event = 90903 } #BYZ: The Themata
+	random = no
+	country = BYZ
+	name = "EVENTNAME90904" #Revolt of the themata
+	desc = "EVENTHIST90904"
+	#-#The strength of the themata system was that they provided a large, cheap, effective military. It was however also a problem, as more than one Emperor found out at the wrong end of a sword. A large army that could appear next to capital on short notice is especially devastating when they are also the ones supposed to put down revolts.
+
+	date = { day = 1 month = january year = 1480 }
+	offset = 7300 #20 years
+	deathdate = { day = 1 month = january year = 1510 }
+
+	action_a = {
+		name = "ACTIONNAME90904A" #The themata are revolting!
+		command = { type = revolt which = 360 } #Morea
+		command = { type = revolt which = 360 } #Morea
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 12 value = 3 }
+	}
+}
+
+#(1500-1520) Formation of the tagmata
+event = {
+	id = 90905
+	trigger = { event = 90904 } #BYZ: Revolt of the themata
+	random = no
+	country = BYZ
+	name = "EVENTNAME90905" #The Tagmata
+	desc = "EVENTHIST90905"
+	#-#Rattled by the danger posed by rebellious themata, Constantine V created the Tagmata, or Regiments. Each tagma was a small, elite armed force that drew income from land in a theme like ordinary soldiers, but was permanently on duty in the Emperor's service. They were heavily geared towards offensive operations, making them a strong core for foreign expeditions. At the same time the themata were also broken into smaller units to reduce the size of potential revolts.
+
+	date = { day = 1 month = january year = 1500 }
+	offset = 3600
+	deathdate = { day = 1 month = january year = 1520 }
+
+	action_a = {
+		name = "ACTIONNAME90905A" #Create the tagmata
+		command = { type = stability value = 1 }
+		command = { type = domestic which = quality value = 2 }
+		command = { type = domestic which = offensive value = 2 }
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = domestic which = serfdom value = 1 }
+		command = { type = treasury value = -100 }
+	}
+	action_b = {
+		name = "ACTIONNAME90905B" #No more armies in the capital!
+		command = { type = stability value = -1 }
+		command = { type = domestic which = serfdom value = -1 }
+	}
+}
+
+#(1500-1550) The Great Shipyard
+event = {
+	id = 90907
+	trigger = { event = 90939 } #BYZ: The Great Naval Reform
+	random = no
+	country = BYZ
+	name = "EVENTNAME90907" #The Great Shipyard
+	desc = "EVENTHIST90907"
+	#-#The next step in Byzantium's naval expansion was to rebuild its great military and commercial fleet. Gone were the days when the ports of Constantinople along the Golden Harbor were without peer so the call went out to the Italian city-states for shipwrights. Many answered, but they did not come cheap and their home cities were unhappy to see them depart.
+
+	date = { day = 1 month = january year = 1500 }
+	offset = 3600 #10 years
+	deathdate = { day = 1 month = january year = 1550 }
+
+	action_a = {
+		name = "ACTIONNAME90907A" #Let's become the ruler of the Mediterranean!
+		command = { type = domestic which = LAND value = -2 }
+		command = { type = relation which = VEN value = -50 }
+		command = { type = relation which = GEN value = -50 }
+		command = { type = domestic which = mercantilism value = 1 }
+		command = { type = gainbuilding which = 357 value = shipyard } #Thrace
+		command = { type = naval value = 1000 }
+		command = { type = treasury value = -500 }
+	}
+	action_b = {
+		name = "ACTIONNAME90907B" #It's a waste of our resources
+		command = { type = relation which = VEN value = 50 }
+		command = { type = relation which = GEN value = 50 }
+		command = { type = sleepevent which = 90908 } #BYZ: The Genoan Land Purchase
+	}
+}
+
+#(1500-1600) The Genoan land purchase
+event = {
+	id = 90908
+	trigger = {
+		owned = { province = 484 data = -1 }
+		owned = { province = 481 data = -1 }
+		owned = { province = 479 data = -1 }
+		owned = { province = 820 data = -1 }
+		owned = { province = 480 data = -1 }
+		OR = {
+			owned = { province = 464 data = GEN }
+			owned = { province = 465 data = GEN }
+			owned = { province = 469 data = GEN }
+			owned = { province = 470 data = GEN }
+		}
+		NOT = { war = { country = BYZ country = GEN } }
+	}
+	random = no
+	country = BYZ
+	name = "EVENTNAME90908" #The Genoan Land Purchase
+	desc = "EVENTHIST90908"
+	#-#A reinvigorated Byzantium has been spreading out of its base in the Aegean, first into the Eastern Mediterranean, now into the Black Sea. But no Black Sea trading empire can be complete without Genoa's colonies in the north, guarding the Sea of Azov. Perhaps this is a matter where the purse shall prove mightier than the sword...
+
+	date = { day = 1 month = january year = 1500 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1600 }
+
+	action_a = {
+		name = "ACTIONNAME90908A" #1000 ducats is a fair price
+		command = { type = trigger which = 90902 } #GEN: The Byzantine Land Purchase
+	}
+	action_b = {
+		name = "ACTIONNAME90908B" #Ha, what shall we do with that worthless land?
+		command = { type = relation which = VEN value = 50 }
+	}
+}
+#(1500-1600) The Byzantine land purchase
+event = {
+	id = 90902 #triggered by BYZ_90908 A
+	random = no
+	country = GEN
+	name = "EVENTNAME90902" #The Byzantine Land Purchase
+	desc = "EVENTHIST90902"
+	#-#A reinvigorated Byzantium has been spreading out of its base in the Aegean, first into the Eastern Mediterranean, now into the Black Sea. Now they want to buy our Black Sea provinces!
+
+	action_a = {
+		name = "ACTIONNAME90902A" #We cannot hold on to them, they are too far away
+		command = { type = treasury value = 1000 }
+		command = { type = secedeprovince which = BYZ value = 464 }
+		command = { type = secedeprovince which = BYZ value = 465 }
+		command = { type = secedeprovince which = BYZ value = 469 }
+		command = { type = secedeprovince which = BYZ value = 470 }
+		command = { type = relation which = BYZ value = 150 }
+		command = { type = trigger which = 90944 } #BYZ: Land sold
+	}
+	action_b = {
+		name = "ACTIONNAME90902B" #We shall die before giving up our land!
+		command = { type = relation which = BYZ value = -150 }
+		command = { type = trigger which = 90945 } #BYZ: Land not sold
+	}
+}
+#(1500-1600) Land sold
+event = {
+	id = 90944 #triggered by GEN_90944 A
+	random = no
+	country = BYZ
+	name = "EVENTNAME90944" #Land sold
+	desc = "EVENTHIST90944"
+	#-#The Genoans have agreed to sell the land.
+
+	action_a = {
+		name = "ACTIONNAME90944A" #Finish the deal
+		command = { type = treasury value = -1000 }
+		command = { type = addcore which = 464 } #Kaffa
+		command = { type = addcore which = 465 } #Kerch
+		command = { type = addcore which = 469 } #Abkhazia
+		command = { type = addcore which = 470 } #Kolkhis
+	}
+}
+#(1500-1600) Land not sold
+event = {
+	id = 90945 #triggered by GEN_90944 B
+	random = no
+	country = BYZ
+	name = "EVENTNAME90945" #Land not sold
+	desc = "EVENTHIST90945"
+	#-#The Genoans did not agree to our proposal.
+
+	action_a = {
+		name = "ACTIONNAME90945A" #If they don't accept payment in gold, they will pay us in blood.
+		command = { type = casusbelli which = GEN value = 240 }
+	}
+}
+
+#(1542) Power struggle
+event = {
+	id = 90958
+	trigger = { monarch = 027509 } #Ioannes X * (BYZ)
+	random = no
+	country = BYZ
+	name = "EVENTNAME90958" #Power struggle
+	desc = "EVENTHIST90958"
+	#-#After the death of Michael X, his son Ioannes assumed the throne. However, he was extremely unpopular among the nobility due to his views and intents on cutting the power of the nobles and centralizing the Empire to a larger degree. His brother Nikolai on the other hand was considered by many nobles an ideal candidate, as he professed an aggressive policy towards the Empire's neighbors. A power struggle ensued, with Nikolai emerging victorious.
+
+	date = { day = 1 month = january year = 1542 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1543 }
+
+	action_a = {
+		name = "ACTIONNAME90958A" #Revolt!
+		command = { type = stability value = -4 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = revoltrisk which = 36 value = 8 }
+	}
+}
+
+#(1542-1546) Nikolai proclaimed Emperor
+event = {
+	id = 90959
+	trigger = {
+		event = 90958 #BYZ: Power struggle
+		control = { province = 357 data = REB }
+	}
+	random = no
+	country = BYZ
+	name = "EVENTNAME90959" #Nikolai proclaimed Emperor
+	desc = "EVENTHIST90959"
+	#-#After the rebels captured the capital Ioannes was captured and imprisoned. Nikolai was crowned as Emperor and immediately began preparing for a campaign against his neighbors.
+
+	date = { day = 1 month = january year = 1542 }
+	offset = 3
+	deathdate = { day = 1 month = january year = 1546 }
+
+	action_a = {
+		name = "ACTIONNAME90959A" #Long live the Emperor!
+		command = { type = sleepmonarch which = 027509 } #Ioannes X *
+		command = { type = wakemonarch which = 027510 } #Nikolai I *
+		command = { type = leader which = 027803 } #Nikolai I (BYZ)
+		command = { type = stability value = 2 }
+		command = { type = revoltrisk value = -8 }
+		command = { type = domestic which = land value = 2 }
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = land value = 500 }
+		command = { type = infra value = -800 }
+		command = { type = inf which = -1 value = 8000 }
+		command = { type = art which = -3 value = 10 }
+		command = { type = casusbelli which = -1 value = 60 }
+		command = { type = casusbelli which = -1 value = 60 }
+		command = { type = casusbelli which = -1 value = 60 }
+	}
+}
+
+#(1550-1565) Reforms of Ioannes X
+event = {
+	id = 90960
+	trigger = {
+		event = 90958 #BYZ: Power struggle
+		NOT = { event = 90959 } #BYZ: Nikolai proclaimed Emperor
+		monarch = 027509 #Ioannes X * (BYZ)
+	}
+	random = no
+	country = BYZ
+	name = "EVENTNAME90960" #Centralization efforts of Ioannes X
+	desc = "EVENTHIST90960"
+	#-#Having survived the onslaught of rebellious nobles led by his brother Nikolai, Ioannes went on with his policy of reducing the power of the nobles and centralizing the Empire.
+
+	date = { day = 1 month = january year = 1550 }
+	offset = 3000
+	deathdate = { day = 1 month = january year = 1565 }
+
+	action_a = {
+		name = "ACTIONNAME90960A" #Centralize
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = infra value = 800 }
+	}
+}
+
+#(1604) Konstantinos XIII vs Zoe II
+event = {
+	id = 90946
+	random = no
+	country = BYZ
+	name = "EVENTNAME90946" #The Sibling Conflict
+	desc = "EVENTHIST90946"
+	#-#When an Emperor died his eldest son usually was the successor but the case of Konstantin XIII was different. He was a dimwit that would probably prove to be a disaster on the throne. His only real competitor was his elder sister Zoe, who was considered to be among the sharpest minds at court. However, for all her qualities she was a woman and an Empress on the throne would not be seen favourably by the old guard. Konstantin on the other hand would probably be in the hands of powerful noble families. Fortunately, Zoe had the support of her husband general Alexandros Makrienos.
+
+	date = { day = 1 month = january year = 1604 }
+
+	action_a = {
+		name = "ACTIONNAME90946A" #Konstantin is the rightful heir!
+		command = { type = stability value = 3 }
+		command = { type = domestic which = centralization value = -3 }
+		command = { type = domestic which = aristocracy value = 3 }
+		command = { type = domestic which = serfdom value = 3 }
+		command = { type = sleepevent which = 90947 } #BYZ: Removal of a threat
+		command = { type = sleepevent which = 90948 } #BYZ: Nobility revolts in favor of Konstantin
+		command = { type = sleepevent which = 90949 } #BYZ: The nobility revolts
+		command = { type = sleepevent which = 90950 } #BYZ: The nobility revolts
+		command = { type = sleepevent which = 90951 } #BYZ: The Great Noble Revolts
+		command = { type = sleepevent which = 90952 } #BYZ: Dealing with the nobility
+		command = { type = sleepevent which = 90953 } #BYZ: Reformation of the army
+		command = { type = sleepevent which = 90954 } #BYZ: Reformation of the economy
+		command = { type = sleepevent which = 90955 } #BYZ: The universal reform
+		command = { type = sleepevent which = 90956 } #BYZ: Age of Enlightenment
+		command = { type = sleepevent which = 90957 } #BYZ: Dealing with the merchants
+	}
+	action_b = {
+		name = "ACTIONNAME90946B" #The Empire needs qualified leadership, long live the Empress!
+		command = { type = sleepmonarch which = 027513 } #Konstantinos XIII *
+		command = { type = wakemonarch which = 027514 } #Zoe II
+		command = { type = stability value = -3 }
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = quality value = 1 }
+		command = { type = domestic which = offensive value = -1 }
+		command = { type = wakeleader which = 027802 } #Alexandros Makrienos (BYZ)
+	}
+}
+
+#(1604) Rebellion of the exiled prince
+event = {
+	id = 90947
+	trigger = { event = 90946 } #BYZ: The Sibling Conflict
+	random = no
+	country = BYZ
+	name = "EVENTNAME90947" #Removal of a threat
+	desc = "EVENTHIST90947"
+	#-#Although invested with the throne, Zoe knew that as long as her brother was alive he would remain a threat to her power.
+
+	date = { day = 29 month = march year = 1604 }
+
+	action_a = {
+		name = "ACTIONNAME90947A" #Kill him in his sleep
+		command = { type = stability value = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revoltrisk which = 12 value = 2 }
+		command = { type = sleepevent which = 90948 } #BYZ: Nobility revolts in favor of Konstantin
+	}
+	action_b = {
+		name = "ACTIONNAME90947B" #Exile him
+		command = { type = stability value = 1 }
+		command = { type = treasury value = -300 }
+	}
+}
+
+#(1606) Rebellion of the exiled prince
+event = {
+	id = 90948
+	trigger = { event = 90947 } #BYZ: Removal of a threat
+	random = no
+	country = BYZ
+	name = "EVENTNAME90948" #Nobility revolts in favor of Konstantin
+	desc = "EVENTHIST90948"
+	#-#Although exiled, Konstantin still had a lot of support and when Zoe's hard hand found the nobility they began open revolt in favor of Konstantin.
+
+	date = { day = 29 month = march year = 1606 }
+
+	action_a = {
+		name = "ACTIONNAME90948A" #Crush the revolters!
+		command = { type = stability value = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revoltrisk which = 12 value = 5 }
+		command = { type = vp value = 200 }
+		command = { type = domestic which = aristocracy value = -2 }
+	}
+	action_b = {
+		name = "ACTIONNAME90948B" #Bribe them off
+		command = { type = stability value = 1 }
+		command = { type = treasury value = -600 }
+		command = { type = domestic which = aristocracy value = 1 }
+		#command = { type = revoltrisk which = 12 value = 2 }
+	}
+}
+
+#(1607) The first nobility revolt of Zoe II's reign
+event = {
+	id = 90949
+	trigger = {
+		event = 90946 #BYZ: The Sibling Conflict
+		domestic = { type = aristocracy value = 3 }
+	}
+	random = no
+	country = BYZ
+	name = "EVENTNAME90949" #The nobility revolts
+	desc = "EVENTHIST90949"
+	#-#The nobility was never really comfortable with an Empress on the throne and when she started to strengthen central power their distrust turned to hatred.
+
+	date = { day = 29 month = march year = 1607 }
+
+	action_a = {
+		name = "ACTIONNAME90949A" #Crush the revolters!
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = revoltrisk which = 12 value = 7 }
+	}
+}
+
+#(1609) The second nobility revolt of Zoe II's reign
+event = {
+	id = 90950
+	trigger = {
+		event = 90946 #BYZ: The Sibling Conflict
+		domestic = { type = aristocracy value = 3 }
+	}
+	random = no
+	country = BYZ
+	name = "EVENTNAME90950" #The nobility revolts
+	desc = "EVENTHIST90950"
+	#-#The nobility was never really comfortable with an Empress on the throne and when she started to strengthen central power their distrust turned to hatred.
+
+	date = { day = 29 month = march year = 1609 }
+
+	action_a = {
+		name = "ACTIONNAME90950A" #Crush the revolters!
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = revoltrisk which = 12 value = 7 }
+	}
+}
+
+#(1611) The Great revolt of Zoe's reign
+event = {
+	id = 90951
+	trigger = {
+		event = 90946 #BYZ: The Sibling Conflict
+		domestic = { type = aristocracy value = 1 }
+	}
+	random = no
+	country = BYZ
+	name = "EVENTNAME90951" #The Great Noble Revolts
+	desc = "EVENTHIST90951"
+	#-#Although the revolts against the Empress's rule had failed, the nobility tried one more time and poured all their resources into it.
+
+	date = { day = 29 month = march year = 1611 }
+
+	action_a = {
+		name = "ACTIONNAME90951A" #Crush the revolters!
+		command = { type = stability value = -2 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = desertion which = -1 value = 10000 }
+		command = { type = desertion which = -1 value = 10000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = revoltrisk which = 12 value = 10 }
+	}
+}
+
+#(1612-1614) Dealing with the nobility
+event = {
+	id = 90952
+	trigger = { event = 90951 } #BYZ: The Great Noble Revolts
+	random = no
+	country = BYZ
+	name = "EVENTNAME90952" #Dealing with the nobility
+	desc = "EVENTHIST90952"
+	#-#After major revolts, Zoe had had enough and the nobility was reigned in with vengeance. With the nobility sufficiently cowed, reconciling with them provided the opportuning for substantial long term benefits.
+
+	date = { day = 1 month = may year = 1612 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1614 }
+
+	action_a = {
+		name = "ACTIONNAME90952A" #Slaughter them all and confiscate their lands!
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = domestic which = serfdom value = -2 }
+		command = { type = domestic which = offensive value = -2 }
+		command = { type = domestic which = innovative value = -6 }
+		command = { type = stability value = 5 }
+		command = { type = treasury value = 1000 }
+		command = { type = sleepevent which = 90953 } #BYZ: Reformation of the army
+		command = { type = sleepevent which = 90954 } #BYZ: Reformation of the economy
+		command = { type = sleepevent which = 90955 } #BYZ: The universal reform
+	}
+	action_b = {
+		name = "ACTIONNAME90952B" #Hold their families hostage
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = domestic which = innovative value = -2 }
+		command = { type = stability value = 2 }
+		command = { type = sleepevent which = 90955 } #BYZ: The universal reform
+	}
+	action_c = {
+		name = "ACTIONNAME90952C" #Take a more forgiving attitude
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = innovative value = 3 }
+		command = { type = domestic which = offensive value = 2 }
+	}
+}
+
+#(1613-1620) Reformation of the army
+event = {
+	id = 90953
+	trigger = { event = 90952 } #BYZ: Dealing with the nobility
+	random = no
+	country = BYZ
+	name = "EVENTNAME90953" #Reformation of the army
+	desc = "EVENTHIST90953"
+	#-#After the major revolts in the early years of Zoe's reign, the Byzantine armies were in a sorry shape and major reforms were needed.
+
+	date = { day = 1 month = may year = 1613 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1620 }
+
+	action_a = {
+		name = "ACTIONNAME90953A" #The Empire is weak and needs to concentrate on defense
+		command = { type = domestic which = offensive value = -3 }
+		command = { type = domestic which = quality value = 2 }
+		command = { type = land value = 1000 }
+		command = { type = treasury value = -200 }
+		command = { type = INF which = 360 value = 10000 } #Morea
+		command = { type = ART which = 360 value = 50 } #Morea
+	}
+	action_b = {
+		name = "ACTIONNAME90953B" #Offense is the best defense
+		command = { type = domestic which = offensive value = 3 }
+		command = { type = domestic which = land value = 2 }
+		command = { type = land value = 1000 }
+		command = { type = treasury value = -200 }
+		command = { type = INF which = 360 value = 10000 } #Morea
+		command = { type = CAV which = 360 value = 7000 } #Morea
+	}
+	action_c = {
+		name = "ACTIONNAME90953C" #Balanced reforms
+		command = { type = domestic which = quality value = 1 }
+		command = { type = land value = 500 }
+		command = { type = naval value = 500 }
+		command = { type = treasury value = -200 }
+		command = { type = INF which = 360 value = 10000 } #Morea
+		command = { type = CAV which = 360 value = 4000 } #Morea
+		command = { type = ART which = 360 value = 30 } #Morea
+	}
+	action_d = {
+		name = "ACTIONNAME90953D" #Save the money to rebuild the state.
+		command = { type = stability value = -1 }
+		command = { type = infra value = 1000 }
+		command = { type = treasury value = 200 }
+	}
+}
+
+#(1613-1630) Reformation of the economy
+event = {
+	id = 90954
+	trigger = { event = 90952 } #BYZ: Dealing with the nobility
+	random = no
+	country = BYZ
+	name = "EVENTNAME90954" #Reformation of the economy
+	desc = "EVENTHIST90954"
+	#-#The turbulence in Byzantium had turned the economy into a shipwreck. The empress didn't even have enough money to pay her army or dignitaries. The situation desperately needed to be rectified.
+
+	date = { day = 1 month = may year = 1613 }
+	offset = 10
+	deathdate = { day =1 month = january year = 1630 }
+
+	action_a = {
+		name = "ACTIONNAME90954A" #Confiscate land from the nobility
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = stability value = -3 }
+		command = { type = treasury value = 1500 }
+	}
+	action_b = {
+		name = "ACTIONNAME90954B" #Expand trade
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = land value = 2 }
+		command = { type = loansize which = 500 }
+		command = { type = treasury value = 200 }
+		command = { type = merchants value = 6 }
+		command = { type = stability value = 1 }
+		command = { type = trade value = 3000 }
+	}
+	action_c = {
+		name = "ACTIONNAME90954C" #Internal tax reform
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+	}
+}
+
+#(1613-1630) Dealing with the merchants
+event = {
+	id = 90957
+	trigger = {
+		event = 90946 #BYZ: The Sibling Conflict
+		NOT = {	domestic = { type = aristocracy value = 3 } }
+	}
+	random = no
+	country = BYZ
+	name = "EVENTNAME90957" #Dealing with the merchants
+	desc = "EVENTHIST90957"
+	#-#Having to bear a large part of the Empress' efforts to reform, the merchants grew unruly. Although merchants didn't control armies, they did control the finances of the government and its subjects, especially the banking system. Upsetting them could prove very dangerous.
+
+	date = { day = 1 month = january year = 1613 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1630 }
+
+	action_a = {
+		name = "ACTIONNAME90957A" #Refuse to give in to their demands
+		command = { type = domestic which = mercantilism value = -3 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = stability value = -3 }
+		command = { type = loansize which = 200 }
+		command = { type = revoltrisk which = 12 value = 5 }
+	}
+	action_b = {
+		name = "ACTIONNAME90957B" #Lower taxes on trade
+		command = { type = domestic which = mercantilism value = 1 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = merchants value = 6 }
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 12 value = 4 }
+	}
+	action_c = {
+		name = "ACTIONNAME90957C" #Lower all taxes
+		command = { type = domestic which = mercantilism value = 3 }
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = treasury value = -200 }
+		command = { type = merchants value = 6 }
+		command = { type = stability value = 3 }
+	}
+}
+
+#(1618-1630) The universal reform
+event = {
+	id = 90955
+	trigger = { event = 90952 } #BYZ: Dealing with the nobility
+	random = no
+	country = BYZ
+	name = "EVENTNAME90955" #The universal reform
+	desc = "EVENTHIST90955"
+	#-#Centuries of warfare had led the Empire, once renowned for it's art and learning, to become a second class society in those regards. Zoe was always a patron of the arts and wished for Byzantium to become the light of the world it had once been. However, if that road was to be followed, it would take a monumental effort and the choice would be an unpopular one among the people.
+
+	date = { day = 1 month = may year = 1618 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1630 }
+
+	action_a = {
+		name = "ACTIONNAME90955A" #The past should be valued
+		command = { type = domestic which = innovative value = -2 }
+		command = { type = stability value = 3 }
+		command = { type = treasury value = -500 }
+		command = { type = land value = 1000 }
+		command = { type = naval value = 1000 }
+	}
+	action_b = {
+		name = "ACTIONNAME90955B" #Industry is the future
+		command = { type = domestic which = innovative value = 2 }
+		command = { type = gainmanufactory which = -1 value = goods }
+		command = { type = gainmanufactory which = -1 value = refinery }
+		command = { type = stability value = -1 }
+		command = { type = treasury value = -500 }
+		command = { type = trade value = 1000 }
+		command = { type = infra value = 1000 }
+	}
+	action_c = {
+		name = "ACTIONNAME90955C" #Learning and the arts shall flourish
+		command = { type = domestic which = innovative value = 5 }
+		command = { type = stability value = -3 }
+		command = { type = treasury value = -500 }
+		command = { type = revoltrisk which = 24 value = 5 }
+	}
+}
+
+#(1642-1700) Age of Enlightenment
+event = {
+	id = 90956
+	trigger = {
+		event = 90955 #BYZ: The universal reform
+		domestic = { type = innovative value = 10 }
+	}
+	random = no
+	country = BYZ
+	name = "EVENTNAME90956" #Age of Enlightenment
+	desc = "EVENTHIST90956"
+	#-#After decades of hard work to rebuild Byzantium into a center of culture and arts, things looked to be on the road to success.
+
+	date = { day = 1 month = may year = 1642 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1700 }
+
+	action_a = {
+		name = "ACTIONNAME90956A" #We don't need art, we need the army
+		command = { type = domestic which = innovative value = -5 }
+		command = { type = stability value = 3 }
+		command = { type = treasury value = 200 }
+		command = { type = land value = 3000 }
+		command = { type = naval value = 3000 }
+		command = { type = gainbuilding which = -1 value = barrack }
+	}
+	action_b = {
+		name = "ACTIONNAME90956B" #Continue on the way forward
+		command = { type = stability value = -4 }
+		command = { type = treasury value = -500 }
+		command = { type = revoltrisk which = 12 value = 10 }
+		command = { type = technology which = latin }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Resettlement Events
+
+#(1524-1564) The Resettlement of Anatolia
+event = {
+	id = 90910
+	trigger = {
+		owned = { province = 474 data = -1 } #Sivas
+		owned = { province = 475 data = -1 } #Trabzon - already Greek
+		owned = { province = 476 data = -1 } #Angora
+		owned = { province = 477 data = -1 } #Anatolia
+		owned = { province = 478 data = -1 } #Smyrna
+		owned = { province = 482 data = -1 } #Konya
+		owned = { province = 483 data = -1 } #Adana
+		owned = { province = 1609 data = -1 } #Kastamonu
+		owned = { province = 1610 data = -1 } #Antalya
+		owned = { province = 1611 data = -1 } #Taurus
+	}
+	random = no
+	country = BYZ
+	name = "EVENTNAME90910" #The Reclamation of Anatolia
+	desc = "EVENTHIST90910"
+	#-#It took the Turks only a few centuries to permanently alter the composition of Asia Minor. Yet now the revitalized Empire had reconquered all of Anatolia, and the questio was what needed to be done regarding the native population of the reconquered regions. They were a hodgepodge of Turk and old Greek, with the latter having become like the former over the course of several centuries. Should reforms be undertaken?
+
+	date = { day = 29 month = december year = 1524 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1564 }
+
+	action_a = {
+		name = "ACTIONNAME90910A" #Yes, let us look at each province in turn
+		command = { type = domestic which = innovative value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME90910B" #Things are fine as they are
+		command = { type = domestic which = innovative value = -2 }
+		command = { type = sleepevent which = 90923 } #BYZ: The Turks in Sivas
+		command = { type = sleepevent which = 90924 } #BYZ: The Turks in Angora
+		command = { type = sleepevent which = 90925 } #BYZ: The Turks in Anatolia
+		command = { type = sleepevent which = 90926 } #BYZ: The Turks in Konya
+		command = { type = sleepevent which = 90927 } #BYZ: The Turks in Adana
+		command = { type = sleepevent which = 90928 } #BYZ: The Turks in Kastamonu
+		command = { type = sleepevent which = 90929 } #BYZ: The Turks in Antalya
+		command = { type = sleepevent which = 90930 } #BYZ: The Turks in Taurus
+		command = { type = sleepevent which = 90961 } #BYZ: The Turks in Smyrna
+		command = { type = sleepevent which = 90931 } #BYZ: Byzantine settlers prosper in Sivas
+		command = { type = sleepevent which = 90932 } #BYZ: Byzantine settlers prosper in Angora
+		command = { type = sleepevent which = 90933 } #BYZ: Byzantine settlers prosper in Anatolia
+		command = { type = sleepevent which = 90934 } #BYZ: Byzantine settlers prosper in Konya
+		command = { type = sleepevent which = 90935 } #BYZ: Byzantine settlers prosper in Adana
+		command = { type = sleepevent which = 90936 } #BYZ: Byzantine settlers prosper in Kastamonu
+		command = { type = sleepevent which = 90937 } #BYZ: Byzantine settlers prosper in Antalya
+		command = { type = sleepevent which = 90938 } #BYZ: Byzantine settlers prosper in Taurus
+		command = { type = sleepevent which = 90962 } #BYZ: Byzantine settlers prosper in Smyrna
+	}
+}
+
+#(1575-1620) Reclamation of Anatolia - Sivas
+event = {
+	id = 90923
+	trigger = {
+		owned = { province = 474 data = -1 }
+	}
+	random = no
+	country = BYZ
+	name = "EVENTNAME90923" #The Turks in Sivas
+	desc = "EVENTHIST90923"
+	#-#As time went on, pressure grew for the Court in Constantinople to take decisive action in Sivas, which remained largely Turkish. The Court was however inclined to do nothing at all even though that would hurt the long term growth of the region. The next most popular option, inspired by the Iberian kingdoms was to simply expel the Turks at great cost to the province. While the bureaucrats liked such a simple solution, the military thought it would be better to resettle the area with true Byzantines drawn from the excess population of Thrace and Constantinople over the course of many decades. Finally, a minority of intellectuals wondered why the Turks couldn't simply be accepted as valued subjects of the Emperor, but to do that would require reconciling the Turks in each province in Anatolia.
+
+	date = { day = 1 month = january year = 1575 }
+	offset = 1100
+	deathdate = { day = 1 month = january year = 1620 }
+
+	action_a = {
+		name = "ACTIONNAME90923A" #As long as the taxes come in, who cares who's doing the paying?
+		command = { type = stability value = 1 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = treasury value = 100 }
+		command = { type = provincemanpower which = 474 value = -1 } #Sivas
+		command = { type = provincetax which = 474 value = -1 } #Sivas
+		command = { type = sleepevent which = 90943 } #BYZ: The Assimilation of the Turks
+		command = { type = sleepevent which = 90931 } #BYZ: Byzantine settlers prosper in Sivas
+	}
+	action_b = {
+		name = "ACTIONNAME90923B" #Expel the foreign infidels!
+		command = { type = stability value = 1 }
+		command = { type = revolt which = 474 } #Sivas
+		command = { type = population which = 474 value = -7500 } #Sivas
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = provinceculture which = 474 value = -1 } #Sivas
+		command = { type = trigger which = 90940 } #AKK: Turkish refugees from Rum
+		command = { type = trigger which = 90941 } #QAR: Turkish refugees from Rum
+		command = { type = trigger which = 90942 } #MAM: Turkish refugees from Rum
+		command = { type = sleepevent which = 90943 } #BYZ: The Assimilation of the Turks
+		command = { type = sleepevent which = 90931 } #BYZ: Byzantine settlers prosper in Sivas
+	}
+	action_c = {
+		name = "ACTIONNAME90923C" #Resettle Constantinopolitans in Sivas
+		command = { type = stability value = -1 }
+		command = { type = revolt which = -2 }
+		command = { type = revoltrisk which = 24 value = 2 }
+		command = { type = missionaries value = 1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = population which = -2 value = -5000 }
+		command = { type = sleepevent which = 90943 } #BYZ: The Assimilation of the Turks
+	}
+	action_d = {
+		name = "ACTIONNAME90923D" #Accept the Turks
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 24 value = 2 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = relation which = FRA value = -20 }
+		command = { type = relation which = SPA value = -20 }
+		command = { type = relation which = HAB value = -20 }
+		command = { type = relation which = PAP value = -20 }
+		command = { type = provincemanpower which = 474 value = 1 } #Sivas
+		command = { type = provincetax which = 474 value = 2 } #Sivas
+		command = { type = sleepevent which = 90931 } #BYZ: Byzantine settlers prosper in Sivas
+	}
+}
+
+#(1675-1710) Byzantine settlers - Sivas
+event = {
+	id = 90931
+	trigger = { event = 90923 } #BYZ: The Turks in Sivas
+	random = no
+	country = BYZ
+	name = "EVENTNAME90931" #Byzantine settlers prosper in Sivas
+	desc = "EVENTHIST90931"
+	#-#After many decades, the settlers placed so long ago have integrated with the local Turks, and won them over to Byzantine culture. As a result the productivity and population of Sivas have risen.
+
+	date = { day = 1 month = january year = 1675 }
+	offset = 3600
+	deathdate = { day = 1 month = january year = 1710 }
+
+	action_a = {
+		name = "ACTIONNAME90931A" #Prosperity in Sivas
+		command = { type = provinceculture which = 474 value = -1 } #Sivas
+		command = { type = population which = 474 value = 5000 } #Sivas
+	}
+}
+
+#(1550-1600) Reclamation of Anatolia - Angora
+event = {
+	id = 90924
+	trigger = {
+		owned = { province = 476 data = -1 }
+	}
+	random = no
+	country = BYZ
+	name = "EVENTNAME90924" #The Turks in Angora
+	desc = "EVENTHIST90924"
+	#-#As time went on, pressure grew for the Court in Constantinople to take decisive action in Angora, which remained largely Turkish. The Court was however inclined to do nothing at all even though that would hurt the long term growth of the region. The next most popular option, inspired by the Iberian kingdoms was to simply expel the Turks at great cost to the province. While the bureaucrats liked such a simple solution, the military thought it would be better to resettle the area with true Byzantines drawn from the excess population of Thrace and Constantinople over the course of many decades. Finally, a minority of intellectuals wondered why the Turks couldn't simply be accepted as valued subjects of the Emperor, but to do that would require reconciling the Turks in each province in Anatolia.
+
+	date = { day = 1 month = january year = 1550 }
+	offset = 1100
+	deathdate = { day = 1 month = january year = 1600 }
+
+	action_a = {
+		name = "ACTIONNAME90924A" #As long as the taxes come in, who cares who's doing the paying?
+		command = { type = stability value = 1 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = treasury value = 100 }
+		command = { type = provincemanpower which = 476 value = -1 } #Angora
+		command = { type = provincetax which = 476 value = -1 } #Angora
+		command = { type = sleepevent which = 90943 } #BYZ: The Assimilation of the Turks
+		command = { type = sleepevent which = 90932 } #BYZ: Byzantine settlers prosper in Angora
+	}
+	action_b = {
+		name = "ACTIONNAME90924B" #Expel the foreign infidels!
+		command = { type = stability value = 1 }
+		command = { type = revolt which = 476 } #Angora
+		command = { type = population which = 476 value = -6750 } #Angora
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = provinceculture which = 476 value = -1 } #Angora
+		command = { type = trigger which = 90940 } #AKK: Turkish refugees from Rum
+		command = { type = trigger which = 90941 } #QAR: Turkish refugees from Rum
+		command = { type = trigger which = 90942 } #MAM: Turkish refugees from Rum
+		command = { type = sleepevent which = 90943 } #BYZ: The Assimilation of the Turks
+		command = { type = sleepevent which = 90932 } #BYZ: Byzantine settlers prosper in Angora
+	}
+	action_c = {
+		name = "ACTIONNAME90924C" #Resettle Constantinopolitans in Angora
+		command = { type = stability value = -1 }
+		command = { type = revolt which = -2 }
+		command = { type = revoltrisk which = 24 value = 2 }
+		command = { type = missionaries value = 1 }
+		command = { type = domestic which = serfdom value = 1 }
+		command = { type = population which = -2 value = -5000 }
+		command = { type = sleepevent which = 90943 } #BYZ: The Assimilation of the Turks
+	}
+	action_d = {
+		name = "ACTIONNAME90924D" #Accept the Turks
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 24 value = 2 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = relation which = FRA value = -20 }
+		command = { type = relation which = SPA value = -20 }
+		command = { type = relation which = HAB value = -20 }
+		command = { type = relation which = PAP value = -20 }
+		command = { type = provincemanpower which = 476 value = 1 } #Angora
+		command = { type = provincetax which = 476 value = 2 } #Angora
+		command = { type = sleepevent which = 90932 } #BYZ: Byzantine settlers prosper in Angora
+	}
+}
+
+#(1650-1690) Byzantine settlers - Angora
+event = {
+	id = 90932
+	trigger = { event = 90924 } #BYZ: The Turks in Angora
+	random = no
+	country = BYZ
+	name = "EVENTNAME90932" #Byzantine settlers prosper in Angora
+	desc = "EVENTHIST90932"
+	#-#After many decades the settlers placed so long ago have integrated with the local Turks and won them over to Byzantine culture. As a result the productivity and population of Angora have risen.
+
+	date = { day = 1 month = january year = 1650 }
+	offset = 3600
+	deathdate = { day = 1 month = january year = 1690 }
+
+	action_a = {
+		name = "ACTIONNAME90932A" #Prosperity in Angora
+		command = { type = provinceculture which = 476 value = -1 } #Angora
+		command = { type = population which = 476 value = 5000 } #Angora
+	}
+}
+
+#(1525-1575) Reclamation of Anatolia - Anatolia
+event = {
+	id = 90925
+	trigger = {
+		owned = { province = 477 data = -1 }
+	}
+	random = no
+	country = BYZ
+	name = "EVENTNAME90925" #The Turks in Anatolia
+	desc = "EVENTHIST90925"
+	#-#As time went on, pressure grew for the Court in Constantinople to take decisive action in Anatolia, which remained largely Turkish. The Court was however inclined to do nothing at all even though that would hurt the long term growth of the region. The next most popular option, inspired by the Iberian kingdoms was to simply expel the Turks at great cost to the province. While the bureaucrats liked such a simple solution, the military thought it would be better to resettle the area with true Byzantines drawn from the excess population of Thrace and Constantinople over the course of many decades. Finally, a minority of intellectuals wondered why the Turks couldn't simply be accepted as valued subjects of the Emperor, but to do that would require reconciling the Turks in each province in Anatolia.
+
+	date = { day = 1 month = january year = 1525 }
+	offset = 1100
+	deathdate = { day = 1 month = january year = 1575 }
+
+	action_a = {
+		name = "ACTIONNAME90925A" #As long as the taxes come in, who cares who's doing the paying?
+		command = { type = stability value = 1 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = treasury value = 100 }
+		command = { type = provincemanpower which = 477 value = -1 } #Anatolia
+		command = { type = provincetax which = 477 value = -1 } #Anatolia
+		command = { type = sleepevent which = 90943 } #BYZ: The Assimilation of the Turks
+		command = { type = sleepevent which = 90933 } #BYZ: Byzantine settlers prosper in Anatolia
+	}
+	action_b = {
+		name = "ACTIONNAME90925B" #Expel the foreign infidels!
+		command = { type = stability value = 1 }
+		command = { type = revolt which = 477 } #Anatolia
+		command = { type = population which = 477 value = -25500 } #Anatolia
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = provinceculture which = 477 value = -1 } #Anatolia
+		command = { type = trigger which = 90940 } #AKK: Turkish refugees from Rum
+		command = { type = trigger which = 90941 } #QAR: Turkish refugees from Rum
+		command = { type = trigger which = 90942 } #MAM: Turkish refugees from Rum
+		command = { type = sleepevent which = 90943 } #BYZ: The Assimilation of the Turks
+		command = { type = sleepevent which = 90933 } #BYZ: Byzantine settlers prosper in Anatolia
+	}
+	action_c = {
+		name = "ACTIONNAME90925C" #Resettle Constantinopolitans in Anatolia
+		command = { type = stability value = -1 }
+		command = { type = revolt which = -2 }
+		command = { type = revoltrisk which = 24 value = 2 }
+		command = { type = missionaries value = 1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = population which = -2 value = -5000 }
+		command = { type = sleepevent which = 90943 } #BYZ: The Assimilation of the Turks
+	}
+	action_d = {
+		name = "ACTIONNAME90925D" #Accept the Turks
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 24 value = 2 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = relation which = FRA value = -20 }
+		command = { type = relation which = SPA value = -20 }
+		command = { type = relation which = HAB value = -20 }
+		command = { type = relation which = PAP value = -20 }
+		command = { type = provincemanpower which = 477 value = 1 } #Anatolia
+		command = { type = provincetax which = 477 value = 2 } #Anatolia
+		command = { type = sleepevent which = 90933 } #BYZ: Byzantine settlers prosper in Anatolia
+	}
+}
+
+#(1625-1675) Byzantine settlers - Anatolia
+event = {
+	id = 90933
+	trigger = { event = 90925 } #BYZ: The Turks in Anatolia
+	random = no
+	country = BYZ
+	name = "EVENTNAME90933" #Byzantine settlers prosper in Anatolia
+	desc = "EVENTHIST90933"
+	#-#After many decades the settlers placed so long ago have integrated with the local Turks and won them over to Byzantine culture. As a result, the productivity and population of Anatolia have gone up.
+
+	date = { day = 1 month = january year = 1625 }
+	offset = 3600
+	deathdate = { day = 1 month = january year = 1675 }
+
+	action_a = {
+		name = "ACTIONNAME90933A" #Prosperity in Anatolia
+		command = { type = provinceculture which = 477 value = -1 } #Anatolia
+		command = { type = population which = 477 value = 5000 } #Anatolia
+	}
+}
+
+#(1550-1600) Reclamation of Anatolia - Konya
+event = {
+	id = 90926
+	trigger = {
+		owned = { province = 482 data = -1 }
+	}
+	random = no
+	country = BYZ
+	name = "EVENTNAME90926" #The Turks in Konya
+	desc = "EVENTHIST90926"
+	#-#As time went on, pressure grew for the Court in Constantinople to take decisive action in Konya, which remained largely Turkish. The Court was however inclined to do nothing at all even though that would hurt the long term growth of the region. The next most popular option, inspired by the Iberian kingdoms was to simply expel the Turks at great cost to the province. While the bureaucrats liked such a simple solution, the military thought it would be better to resettle the area with true Byzantines drawn from the excess population of Thrace and Constantinople over the course of many decades. Finally, a minority of intellectuals wondered why the Turks couldn't simply be accepted as valued subjects of the Emperor, but to do that would require reconciling the Turks in each province in Anatolia.
+
+	date = { day = 1 month = january year = 1550 }
+	offset = 1100
+	deathdate = { day = 1 month = january year = 1600 }
+
+	action_a = {
+		name = "ACTIONNAME90926A" #As long as the taxes come, who cares who's doing the paying?
+		command = { type = stability value = 1 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = treasury value = 100 }
+		command = { type = provincemanpower which = 482 value = -1 } #Konya
+		command = { type = provincetax which = 482 value = -1 } #Konya
+		command = { type = sleepevent which = 90943 } #BYZ: The Assimilation of the Turks
+		command = { type = sleepevent which = 90934 } #BYZ: Byzantine settlers prosper in Konya
+	}
+	action_b = {
+		name = "ACTIONNAME90926B" #Expel the foreign infidels!
+		command = { type = stability value = 1 }
+		command = { type = revolt which = 482 } #Konya
+		command = { type = population which = 482 value = -10500 } #Konya
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = provinceculture which = 482 value = -1 } #Konya
+		command = { type = trigger which = 90940 } #AKK: Turkish refugees from Rum
+		command = { type = trigger which = 90941 } #QAR: Turkish refugees from Rum
+		command = { type = trigger which = 90942 } #MAM: Turkish refugees from Rum
+		command = { type = sleepevent which = 90943 } #BYZ: The Assimilation of the Turks
+		command = { type = sleepevent which = 90934 } #BYZ: Byzantine settlers prosper in Konya
+	}
+	action_c = {
+		name = "ACTIONNAME90926C" #Resettle Constantinopolitans in Konya
+		command = { type = stability value = -1 }
+		command = { type = revolt which = -2 }
+		command = { type = revoltrisk which = 24 value = 2 }
+		command = { type = missionaries value = 1 }
+		command = { type = domestic which = serfdom value = 1 }
+		command = { type = population which = -2 value = -5000 }
+		command = { type = sleepevent which = 90943 } #BYZ: The Assimilation of the Turks
+	}
+	action_d = {
+		name = "ACTIONNAME90926D" #Accept the Turks
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 24 value = 2 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = relation which = FRA value = -20 }
+		command = { type = relation which = SPA value = -20 }
+		command = { type = relation which = HAB value = -20 }
+		command = { type = relation which = PAP value = -20 }
+		command = { type = provincemanpower which = 482 value = 1 } #Konya
+		command = { type = provincetax which = 482 value = 2 } #Konya
+		command = { type = sleepevent which = 90934 } #BYZ: Byzantine settlers prosper in Konya
+	}
+}
+
+#(1650-1700) Byzantine settlers - Konya
+event = {
+	id = 90934
+	trigger = { event = 90926 } #BYZ: The Turks in Konya
+	random = no
+	country = BYZ
+	name = "EVENTNAME90934" #Byzantine settlers prosper in Konya
+	desc = "EVENTHIST90934"
+	#-#After many decades the settlers placed so long ago have integrated with the local Turks and won them over to Byzantine culture. As a result the productivity and population of Konya have risen.
+
+	date = { day = 1 month = january year = 1650 }
+	offset = 3600
+	deathdate = { day = 1 month = january year = 1700 }
+
+	action_a = {
+		name = "ACTIONNAME90934A" #Prosperity in Konya
+		command = { type = provinceculture which = 482 value = -1 } #Konya
+		command = { type = population which = 482 value = 5000 } #Konya
+	}
+}
+
+#(1550-1600) Reclamation of Anatolia - Adana
+event = {
+	id = 90927
+	trigger = {
+		owned = { province = 483 data = -1 }
+	}
+	random = no
+	country = BYZ
+	name = "EVENTNAME90927" #The Turks in Adana
+	desc = "EVENTHIST90927"
+	#-#As time went on, pressure grew for the Court in Constantinople to take decisive action in Adana, which remained largely Turkish. The Court was however inclined to do nothing at all even though that would hurt the long term growth of the region. The next most popular option, inspired by the Iberian kingdoms was to simply expel the Turks at great cost to the province. While the bureaucrats liked such a simple solution, the military thought it would be better to resettle the area with true Byzantines drawn from the excess population of Thrace and Constantinople over the course of many decades. Finally, a minority of intellectuals wondered why the Turks couldn't simply be accepted as valued subjects of the Emperor, but to do that would require reconciling the Turks in each province in Anatolia.
+
+	date = { day = 1 month = january year = 1550 }
+	offset = 1100
+	deathdate = { day = 1 month = january year = 1600 }
+
+	action_a = {
+		name = "ACTIONNAME90927A" #As long as the taxes come, who cares who's doing the paying?
+		command = { type = stability value = 1 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = treasury value = 100 }
+		command = { type = provincemanpower which = 483 value = -1 } #Adana
+		command = { type = provincetax which = 483 value = -1 } #Adana
+		command = { type = sleepevent which = 90943 } #BYZ: The Assimilation of the Turks
+		command = { type = sleepevent which = 90935 } #BYZ: Byzantine settlers prosper in Adana
+	}
+	action_b = {
+		name = "ACTIONNAME90927B" #Expel the foreign infidels!
+		command = { type = stability value = 1 }
+		command = { type = revolt which = 483 } #Adana
+		command = { type = population which = 483 value = -7500 } #Adana
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = provinceculture which = 483 value = -1 } #Adana
+		command = { type = trigger which = 90940 } #AKK: Turkish refugees from Rum
+		command = { type = trigger which = 90941 } #QAR: Turkish refugees from Rum
+		command = { type = trigger which = 90942 } #MAM: Turkish refugees from Rum
+		command = { type = sleepevent which = 90943 } #BYZ: The Assimilation of the Turks
+		command = { type = sleepevent which = 90935 } #BYZ: Byzantine settlers prosper in Adana
+	}
+	action_c = {
+		name = "ACTIONNAME90927C" #Resettle Constantinopolitans in Adana
+		command = { type = stability value = -1 }
+		command = { type = revolt which = -2 }
+		command = { type = revoltrisk which = 24 value = 2 }
+		command = { type = missionaries value = 1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = population which = -2 value = -5000 }
+		command = { type = sleepevent which = 90943 } #BYZ: The Assimilation of the Turks
+	}
+	action_d = {
+		name = "ACTIONNAME90927D" #Accept the Turks
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 24 value = 2 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = relation which = FRA value = -20 }
+		command = { type = relation which = SPA value = -20 }
+		command = { type = relation which = HAB value = -20 }
+		command = { type = relation which = PAP value = -20 }
+		command = { type = provincemanpower which = 483 value = 1 } #Adana
+		command = { type = provincetax which = 483 value = 2 } #Adana
+		command = { type = sleepevent which = 90935 } #BYZ: Byzantine settlers prosper in Adana
+	}
+}
+
+#(1650-1700) Byzantine settlers - Adana
+event = {
+	id = 90935
+	trigger = { event = 90927 } #BYZ: The Turks in Adana
+	random = no
+	country = BYZ
+	name = "EVENTNAME90935" #Byzantine settlers prosper in Adana
+	desc = "EVENTHIST90935"
+	#-#After many decades the settlers placed so long ago have integrated with the local Turks and won them over to Byzantine culture. As a result the productivity and population of Adana have risen.
+
+	date = { day = 1 month = january year = 1650 }
+	offset = 3600
+	deathdate = { day = 1 month = january year = 1700 }
+
+	action_a = {
+		name = "ACTIONNAME90935A" #Prosperity in Adana
+		command = { type = provinceculture which = 483 value = -1 } #Adana
+		command = { type = population which = 483 value = 5000 } #Adana
+	}
+}
+
+#(1525-1575) Reclamation of Anatolia - Kastamonu
+event = {
+	id = 90928
+	trigger = {
+		owned = { province = 1609 data = -1 }
+	}
+	random = no
+	country = BYZ
+	name = "EVENTNAME90928" #The Turks in Kastamonu
+	desc = "EVENTHIST90928"
+	#-#As time went on, pressure grew for the Court in Constantinople to take decisive action in Kastamonu, which remained largely Turkish. The Court was however inclined to do nothing at all even though that would hurt the long term growth of the region. The next most popular option, inspired by the Iberian kingdoms was to simply expel the Turks at great cost to the province. While the bureaucrats liked such a simple solution, the military thought it would be better to resettle the area with true Byzantines drawn from the excess population of Thrace and Constantinople over the course of many decades. Finally, a minority of intellectuals wondered why the Turks couldn't simply be accepted as valued subjects of the Emperor, but to do that would require reconciling the Turks in each province in Anatolia.
+
+	date = { day = 1 month = january year = 1525 }
+	offset = 1100
+	deathdate = { day = 1 month = january year = 1575 }
+
+	action_a = {
+		name = "ACTIONNAME90928A" #As long as the taxes come, who cares who's doing the paying?
+		command = { type = stability value = 1 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = treasury value = 100 }
+		command = { type = provincemanpower which = 1609 value = -1 } #Kastamonu
+		command = { type = provincetax which = 1609 value = -1 } #Kastamonu
+		command = { type = sleepevent which = 90943 } #BYZ: The Assimilation of the Turks
+		command = { type = sleepevent which = 90936 } #BYZ: Byzantine settlers prosper in Kastamonu
+	}
+	action_b = {
+		name = "ACTIONNAME90928B" #Expel the foreign infidels!
+		command = { type = stability value = 1 }
+		command = { type = revolt which = 1609 } #Kastamonu
+		command = { type = population which = 1609 value = -6750 } #Kastamonu
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = provinceculture which = 1609 value = -1 } #Kastamonu
+		command = { type = trigger which = 90940 } #AKK: Turkish refugees from Rum
+		command = { type = trigger which = 90941 } #QAR: Turkish refugees from Rum
+		command = { type = trigger which = 90942 } #MAM: Turkish refugees from Rum
+		command = { type = sleepevent which = 90943 } #BYZ: The Assimilation of the Turks
+		command = { type = sleepevent which = 90936 } #BYZ: Byzantine settlers prosper in Kastamonu
+	}
+	action_c = {
+		name = "ACTIONNAME90928C" #Resettle Constantinopolitans in Kastamonu
+		command = { type = stability value = -1 }
+		command = { type = revolt which = -2 }
+		command = { type = revoltrisk which = 24 value = 2 }
+		command = { type = missionaries value = 1 }
+		command = { type = domestic which = serfdom value = 1 }
+		command = { type = population which = -2 value = -5000 }
+		command = { type = sleepevent which = 90943 } #BYZ: The Assimilation of the Turks
+	}
+	action_d = {
+		name = "ACTIONNAME90928D" #Accept the Turks
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 24 value = 2 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = relation which = FRA value = -20 }
+		command = { type = relation which = SPA value = -20 }
+		command = { type = relation which = HAB value = -20 }
+		command = { type = relation which = PAP value = -20 }
+		command = { type = provincemanpower which = 1609 value = 1 } #Kastamonu
+		command = { type = provincetax which = 1609 value = 2 } #Kastamonu
+		command = { type = sleepevent which = 90936 } #BYZ: Byzantine settlers prosper in Kastamonu
+	}
+}
+
+#(1625-1675) Byzantine settlers - Kastamonu
+event = {
+	id = 90936
+	trigger = { event = 90928 } #BYZ: The Turks in Kastamonu
+	random = no
+	country = BYZ
+	name = "EVENTNAME90936" #Byzantine settlers prosper in Kastamonu
+	desc = "EVENTHIST90936"
+	#-#After many decades the settlers placed so long ago have integrated with the local Turks and won them over to Byzantine culture. As a result the productivity and population of Kastamonu have risen.
+
+	date = { day = 1 month = january year = 1625 }
+	offset = 3600
+	deathdate = { day = 1 month = january year = 1675 }
+
+	action_a = {
+		name = "ACTIONNAME90936A" #Prosperity in Kastamonu
+		command = { type = provinceculture which = 1609 value = -1 } #Kastamonu
+		command = { type = population which = 1609 value = 5000 } #Kastamonu
+	}
+}
+
+#(1525-1575) Reclamation of Anatolia - Antalya
+event = {
+	id = 90929
+	trigger = {
+		owned = { province = 1610 data = -1 }
+	}
+	random = no
+	country = BYZ
+	name = "EVENTNAME90929" #The Turks in Antalya
+	desc = "EVENTHIST90929"
+	#-#As time went on, pressure grew for the Court in Constantinople to take decisive action in Antalya, which remained largely Turkish. The Court was however inclined to do nothing at all even though that would hurt the long term growth of the region. The next most popular option, inspired by the Iberian kingdoms was to simply expel the Turks at great cost to the province. While the bureaucrats liked such a simple solution, the military thought it would be better to resettle the area with true Byzantines drawn from the excess population of Thrace and Constantinople over the course of many decades. Finally, a minority of intellectuals wondered why the Turks couldn't simply be accepted as valued subjects of the Emperor, but to do that would require reconciling the Turks in each province in Anatolia.
+
+	date = { day = 1 month = january year = 1525 }
+	offset = 1100
+	deathdate = { day = 1 month = january year = 1575 }
+
+	action_a = {
+		name = "ACTIONNAME90929A" #As long as the taxes come, who cares who's doing the paying?
+		command = { type = stability value = 1 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = treasury value = 100 }
+		command = { type = provincemanpower which = 1610 value = -1 } #Antalya
+		command = { type = provincetax which = 1610 value = -1 } #Antalya
+		command = { type = sleepevent which = 90943 } #BYZ: The Assimilation of the Turks
+		command = { type = sleepevent which = 90937 } #BYZ: Byzantine settlers prosper in Antalya
+	}
+	action_b = {
+		name = "ACTIONNAME90929B" #Expel the foreign infidels!
+		command = { type = stability value = 1 }
+		command = { type = revolt which = 1610 } #Antalya
+		command = { type = population which = 1610 value = -7500 } #Antalya
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = provinceculture which = 1610 value = -1 } #Antalya
+		command = { type = trigger which = 90940 } #AKK: Turkish refugees from Rum
+		command = { type = trigger which = 90941 } #QAR: Turkish refugees from Rum
+		command = { type = trigger which = 90942 } #MAM: Turkish refugees from Rum
+		command = { type = sleepevent which = 90943 } #BYZ: The Assimilation of the Turks
+		command = { type = sleepevent which = 90937 } #BYZ: Byzantine settlers prosper in Antalya
+	}
+	action_c = {
+		name = "ACTIONNAME90929C" #Resettle Constantinopolitans in Antalya
+		command = { type = stability value = -1 }
+		command = { type = revolt which = -2 }
+		command = { type = revoltrisk which = 24 value = 2 }
+		command = { type = missionaries value = 1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = population which = -2 value = -5000 }
+		command = { type = sleepevent which = 90943 } #BYZ: The Assimilation of the Turks
+	}
+	action_d = {
+		name = "ACTIONNAME90929D" #Accept the Turks
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 24 value = 2 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = relation which = FRA value = -20 }
+		command = { type = relation which = SPA value = -20 }
+		command = { type = relation which = HAB value = -20 }
+		command = { type = relation which = PAP value = -20 }
+		command = { type = provincemanpower which = 1610 value = 1 } #Antalya
+		command = { type = provincetax which = 1610 value = 2 } #Antalya
+		command = { type = sleepevent which = 90937 } #BYZ: Byzantine settlers prosper in Antalya
+	}
+}
+
+#(1625-1675) Byzantine settlers - Antalya
+event = {
+	id = 90937
+	trigger = { event = 90929 } #BYZ: The Turks in Antalya
+	random = no
+	country = BYZ
+	name = "EVENTNAME90937" #Byzantine settlers prosper in Antalya
+	desc = "EVENTHIST90937"
+	#-#After many decades the settlers placed so long ago have integrated with the local Turks and won them over to Byzantine culture. As a result the productivity and population of Antalya have risen.
+
+	date = { day = 1 month = january year = 1625 }
+	offset = 3600
+	deathdate = { day = 1 month = january year = 1675 }
+
+	action_a = {
+		name = "ACTIONNAME90937A" #Prosperity in Antalya
+		command = { type = provinceculture which = 1610 value = -1 } #Antalya
+		command = { type = population which = 1610 value = 5000 } #Antalya
+	}
+}
+
+#(1575-1625) Reclamation of Anatolia - Taurus
+event = {
+	id = 90930
+	trigger = {
+		owned = { province = 1611 data = -1 }
+	}
+	random = no
+	country = BYZ
+	name = "EVENTNAME90930" #The Turks in Taurus
+	desc = "EVENTHIST90930"
+	#-#As time went on, pressure grew for the Court in Constantinople to take decisive action in Taurus, which remained largely Turkish. The Court was however inclined to do nothing at all even though that would hurt the long term growth of the region. The next most popular option, inspired by the Iberian kingdoms was to simply expel the Turks at great cost to the province. While the bureaucrats liked such a simple solution, the military thought it would be better to resettle the area with true Byzantines drawn from the excess population of Thrace and Constantinople over the course of many decades. Finally, a minority of intellectuals wondered why the Turks couldn't simply be accepted as valued subjects of the Emperor, but to do that would require reconciling the Turks in each province in Anatolia.
+
+	date = { day = 1 month = january year = 1575 }
+	offset = 1100
+	deathdate = { day = 1 month = january year = 1625 }
+
+	action_a = {
+		name = "ACTIONNAME90930A" #As long as the taxes come, who cares who's doing the paying?
+		command = { type = stability value = 1 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = treasury value = 100 }
+		command = { type = provincemanpower which = 1611 value = -1 } #Taurus
+		command = { type = provincetax which = 1611 value = -1 } #Taurus
+		command = { type = sleepevent which = 90943 } #BYZ: The Assimilation of the Turks
+		command = { type = sleepevent which = 90938 } #BYZ: Byzantine settlers prosper in Taurus
+	}
+	action_b = {
+		name = "ACTIONNAME90930B" #Expel the foreign infidels!
+		command = { type = stability value = 1 }
+		command = { type = revolt which = 1611 } #Taurus
+		command = { type = population which = 1611 value = -5250 } #Taurus
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = provinceculture which = 1611 value = -1 } #Taurus
+		command = { type = trigger which = 90940 } #AKK: Turkish refugees from Rum
+		command = { type = trigger which = 90941 } #QAR: Turkish refugees from Rum
+		command = { type = trigger which = 90942 } #MAM: Turkish refugees from Rum
+		command = { type = sleepevent which = 90943 } #BYZ: The Assimilation of the Turks
+		command = { type = sleepevent which = 90938 } #BYZ: Byzantine settlers prosper in Taurus
+	}
+	action_c = {
+		name = "ACTIONNAME90930C" #Resettle Constantinopolitans in Taurus
+		command = { type = stability value = -1 }
+		command = { type = revolt which = -2 }
+		command = { type = revoltrisk which = 24 value = 2 }
+		command = { type = missionaries value = 1 }
+		command = { type = domestic which = serfdom value = 1 }
+		command = { type = population which = -2 value = -5000 }
+		command = { type = sleepevent which = 90943 } #BYZ: The Assimilation of the Turks
+	}
+	action_d = {
+		name = "ACTIONNAME90930D" #Accept the Turks
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 24 value = 2 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = relation which = FRA value = -20 }
+		command = { type = relation which = SPA value = -20 }
+		command = { type = relation which = HAB value = -20 }
+		command = { type = relation which = PAP value = -20 }
+		command = { type = provincemanpower which = 1611 value = 1 } #Taurus
+		command = { type = provincetax which = 1611 value = 2 } #Taurus
+		command = { type = sleepevent which = 90938 } #BYZ: Byzantine settlers prosper in Taurus
+	}
+}
+
+#(1675-1725) Byzantine settlers - Taurus
+event = {
+	id = 90938
+	trigger = { event = 90930 } #BYZ: The Turks in Taurus
+	random = no
+	country = BYZ
+	name = "EVENTNAME90938" #Byzantine settlers prosper in Taurus
+	desc = "EVENTHIST90938"
+	#-#After many decades the settlers placed so long ago have integrated with the local Turks and won them over to Byzantine culture. As a result the productivity and population of Taurus have risen.
+
+	date = { day = 1 month = january year = 1675 }
+	offset = 3600
+	deathdate = { day = 1 month = january year = 1725 }
+
+	action_a = {
+		name = "ACTIONNAME90938A" #Prosperity in Taurus
+		command = { type = provinceculture which = 1611 value = -1 } #Taurus
+		command = { type = population which = 1611 value = 5000 } #Taurus
+	}
+}
+
+#(1575-1620) Reclamation of Anatolia - Smyrna
+event = {
+	id = 90961
+	trigger = {
+		owned = { province = 478 data = -1 }
+	}
+	random = no
+	country = BYZ
+	name = "EVENTNAME90961" #The Turks in Smyrna
+	desc = "EVENTHIST90961"
+	#-#As time went on, pressure grew for the Court in Constantinople to take decisive action in Smyrna, which remained largely Turkish. The Court was however inclined to do nothing at all even though that would hurt the long term growth of the region. The next most popular option, inspired by the Iberian kingdoms was to simply expel the Turks at great cost to the province. While the bureaucrats liked such a simple solution, the military thought it would be better to resettle the area with true Byzantines drawn from the excess population of Thrace and Constantinople over the course of many decades. Finally, a minority of intellectuals wondered why the Turks couldn't simply be accepted as valued subjects of the Emperor, but to do that would require reconciling the Turks in each province in Anatolia.
+
+	date = { day = 1 month = january year = 1575 }
+	offset = 1100
+	deathdate = { day = 1 month = january year = 1620 }
+
+	action_a = {
+		name = "ACTIONNAME90961A" #As long as the taxes come in, who cares who's doing the paying?
+		command = { type = stability value = 1 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = treasury value = 100 }
+		command = { type = provincemanpower which = 478 value = -1 } #Smyrna
+		command = { type = provincetax which = 478 value = -1 } #Smyrna
+		command = { type = sleepevent which = 90943 } #BYZ: The Assimilation of the Turks
+		command = { type = sleepevent which = 90962 } #BYZ: Byzantine settlers prosper in Smyrna
+	}
+	action_b = {
+		name = "ACTIONNAME90961B" #Expel the foreign infidels!
+		command = { type = stability value = 1 }
+		command = { type = revolt which = 478 } #Smyrna
+		command = { type = population which = 478 value = -7500 } #Smyrna
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = provinceculture which = 478 value = -1 } #Smyrna
+		command = { type = trigger which = 90940 } #AKK: Turkish refugees from Rum
+		command = { type = trigger which = 90941 } #QAR: Turkish refugees from Rum
+		command = { type = trigger which = 90942 } #MAM: Turkish refugees from Rum
+		command = { type = sleepevent which = 90943 } #BYZ: The Assimilation of the Turks
+		command = { type = sleepevent which = 90962 } #BYZ: Byzantine settlers prosper in Smyrna
+	}
+	action_c = {
+		name = "ACTIONNAME90961C" #Resettle Constantinopolitans in Smyrna
+		command = { type = stability value = -1 }
+		command = { type = revolt which = -2 }
+		command = { type = revoltrisk which = 24 value = 2 }
+		command = { type = missionaries value = 1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = population which = -2 value = -5000 }
+		command = { type = sleepevent which = 90943 } #BYZ: The Assimilation of the Turks
+	}
+	action_d = {
+		name = "ACTIONNAME90961D" #Accept the Turks
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 24 value = 2 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = relation which = FRA value = -20 }
+		command = { type = relation which = SPA value = -20 }
+		command = { type = relation which = HAB value = -20 }
+		command = { type = relation which = PAP value = -20 }
+		command = { type = provincemanpower which = 478 value = 1 } #Smyrna
+		command = { type = provincetax which = 478 value = 2 } #Smyrna
+		command = { type = sleepevent which = 90962 } #BYZ: Byzantine settlers prosper in Smyrna
+	}
+}
+
+#(1675-1710) Byzantine settlers - Smyrna
+event = {
+	id = 90962
+	trigger = { event = 90961 } #BYZ: The Turks in Smyrna
+	random = no
+	country = BYZ
+	name = "EVENTNAME90962" #Byzantine settlers prosper in Smyrna
+	desc = "EVENTHIST90962"
+	#-#After many decades, the settlers placed so long ago have integrated with the local Turks, and won them over to Byzantine culture. As a result the productivity and population of Smyrna have risen.
+
+	date = { day = 1 month = january year = 1675 }
+	offset = 3600
+	deathdate = { day = 1 month = january year = 1710 }
+
+	action_a = {
+		name = "ACTIONNAME90962A" #Prosperity in Smyrna
+		command = { type = provinceculture which = 478 value = -1 } #Smyrna
+		command = { type = population which = 478 value = 5000 } #Smyrna
+	}
+}
+
+#(1575-1650) The Turks become Byzantines
+event = {
+	id = 90943
+	trigger = {
+		event = 90923 #BYZ: The Turks in Sivas
+		event = 90924 #BYZ: The Turks in Angora
+		event = 90925 #BYZ: The Turks in Anatolia
+		event = 90926 #BYZ: The Turks in Konya
+		event = 90927 #BYZ: The Turks in Adana
+		event = 90928 #BYZ: The Turks in Kastamonu
+		event = 90929 #BYZ: The Turks in Antalya
+		event = 90930 #BYZ: The Turks in Taurus
+		event = 90961 #BYZ: The Turks in Smyrna
+		owned = { province = 474 data = -1 } #Sivas
+		owned = { province = 476 data = -1 } #Angora
+		owned = { province = 477 data = -1 } #Anatolia
+		owned = { province = 478 data = -1 } #Smyrna
+		owned = { province = 482 data = -1 } #Konya
+		owned = { province = 483 data = -1 } #Adana
+		owned = { province = 1609 data = -1 } #Kastamonu
+		owned = { province = 1610 data = -1 } #Antalya
+		owned = { province = 1611 data = -1 } #Taurus
+		NOT = { exists = TUR }
+	}
+	random = no
+	country = BYZ
+	name = "EVENTNAME90943" #The Assimilation of the Turks
+	desc = "EVENTHIST90943"
+	#-#A remarkable policy of reconciliation was followed with all the Turks in the Empire. With the old Ottoman Empire gone they were prepared to become loyal subjects of the Emperor. While the future might eventually see a strong marriage of Byzantine and Turkish strengths, at the time there was a strong reaction against 'the Turkish surrender'.
+
+	date = { day = 1 month = january year = 1575 }
+	offset = 1800
+	deathdate = { day = 1 month = january year = 1650 }
+
+	action_a = {
+		name = "ACTIONNAME90943A" #The nobles question the Emperor's policy
+		command = { type = add_countryculture which = Turkish }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = serfdom value = 1 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = revoltrisk which = 60 value = 6 }
+		command = { type = stability value = -3 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#Turkish refugees from Byzantium
+event = {
+	id = 90941
+	random = no
+	country = QAR
+	name = "EVENTNAME90941" #Turkish refugees from Rum
+	desc = "EVENTHIST90941"
+	#-#The cruel Christians of Rum (Byzantium) have expelled some of their Muslim Turks! They will contribute much to our nation.
+
+	action_a = {
+		name = "ACTIONNAME90941A" #Accept them
+		command = { type = population which = -1 value = 2000 }
+		command = { type = population which = -1 value = 2000 }
+		command = { type = relation which = BYZ value = -400 }
+		command = { type = infra value = 200 }
+		command = { type = land value = 200 }
+		command = { type = treasury value = 200 }
+		command = { type = inflation value = -3 }
+		command = { type = casusbelli which = BYZ value = 240 }
+	}
+}
+#Turkish refugees from Byzantium
+event = {
+	id = 90942
+	random = no
+	country = MAM
+	name = "EVENTNAME90942" #Turkish refugees from Rum
+	desc = "EVENTHIST90942"
+	#-#The cruel Christians of Rum (Byzantium) have expelled some of their Sunni Turks! They will contribute much to our nation, but perhaps they should be shown the true faith first.
+
+	action_a = {
+		name = "ACTIONNAME90942A" #Accept them as Sunnis
+		command = { type = population which = -1 value = 2000 }
+		command = { type = population which = -1 value = 2000 }
+		command = { type = relation which = BYZ value = -400 }
+		command = { type = infra value = 200 }
+		command = { type = land value = 200 }
+		command = { type = treasury value = 200 }
+		command = { type = inflation value = -3 }
+		command = { type = casusbelli which = BYZ value = 240 }
+	}
+}
+#Turkish refugees from Byzantium
+event = {
+	id = 90940
+	random = no
+	country = AKK
+	name = "EVENTNAME90940" #Turkish refugees from Rum
+	desc = "EVENTHIST90940"
+	#-#The cruel Christians of Rum (Byzantium) have expelled some of their Muslim Turks! They will contribute much to our nation.
+
+	action_a = {
+		name = "ACTIONNAME90940A" #Accept them
+		command = { type = population which = -1 value = 2000 }
+		command = { type = population which = -1 value = 2000 }
+		command = { type = relation which = BYZ value = -400 }
+		command = { type = infra value = 200 }
+		command = { type = land value = 200 }
+		command = { type = treasury value = 200 }
+		command = { type = inflation value = -3 }
+		command = { type = casusbelli which = BYZ value = 240 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Rise of the Magnates Events
+
+#(1470-1499) Rise of the Magnates I
+event = {
+	id = 90906
+	trigger = {
+		OR = {
+			domestic = { type = aristocracy value = 5 }
+			domestic = { type = serfdom value = 5 }
+		}
+		NOT = { domestic = { type = centralization value = 8 } }
+	}
+	random = no
+	country = BYZ
+	name = "EVENTNAME90906" #Rise of the Magnates
+	desc = "EVENTHIST90906"
+	#-#The system of small freeholding farmers was always open to exploitation by the rich and even a typical officer's position in the army could bring nice profits from taxing tenants. Consequently families began amassing large holdings of land in Anatolia and Thrace, which they then used to buy out soldiers with small plots. These families put their own interests ahead of that of the Empire or the peasantry, but had a strong following and were an effective military force.
+
+	date = { day = 1 month = january year = 1470 }
+	offset = 10000
+	deathdate = { day = 29 month = december year = 1499 }
+
+	action_a = {
+		name = "ACTIONNAME90906A" #Let us leave our friends, the magnates, in peace
+		command = { type = stability value = 1 }
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = domestic which = serfdom value = 2 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = quality value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME90906B" #These magnates will be trouble one day! Break up their holdings
+		command = { type = stability value = -6 }
+		command = { type = revoltrisk which = 24 value = 6 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#(1520-1529) Rise of the Magnates II
+event = {
+	id = 90911
+	trigger = {
+		OR = {
+			domestic = { type = aristocracy value = 5 }
+			domestic = { type = serfdom value = 5 }
+		}
+		NOT = { domestic = { type = centralization value = 8 } }
+	}
+	random = no
+	country = BYZ
+	name = "EVENTNAME90906" #Rise of the Magnates
+	desc = "EVENTHIST90906"
+	#-#The system of small freeholding farmers was always open to exploitation by the rich and even a typical officer's position in the army could bring nice profits from taxing tenants. Consequently families began amassing large holdings of land in Anatolia and Thrace, which they then used to buy out soldiers with small plots. These families put their own interests ahead of that of the Empire or the peasantry, but had a strong following and were an effective military force.
+
+	date = { day = 1 month = january year = 1500 }
+	offset = 10000
+	deathdate = { day = 29 month = december year = 1529 }
+
+	action_a = {
+		name = "ACTIONNAME90906A" #Let us leave our friends, the magnates, in peace
+		command = { type = stability value = 1 }
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = domestic which = serfdom value = 2 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = quality value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME90906B" #These magnates will be trouble one day! Break up their holdings
+		command = { type = stability value = -6 }
+		command = { type = revoltrisk which = 24 value = 6 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#(1530-1559) Rise of the Magnates III
+event = {
+	id = 90912
+	trigger = {
+		OR = {
+			domestic = { type = aristocracy value = 5 }
+			domestic = { type = serfdom value = 5 }
+		}
+		NOT = { domestic = { type = centralization value = 8 } }
+	}
+	random = no
+	country = BYZ
+	name = "EVENTNAME90906" #Rise of the Magnates
+	desc = "EVENTHIST90906"
+	#-#The system of small freeholding farmers was always open to exploitation by the rich and even a typical officer's position in the army could bring nice profits from taxing tenants. Consequently families began amassing large holdings of land in Anatolia and Thrace, which they then used to buy out soldiers with small plots. These families put their own interests ahead of that of the Empire or the peasantry, but had a strong following and were an effective military force.
+
+	date = { day = 1 month = january year = 1530 }
+	offset = 10000
+	deathdate = { day = 29 month = december year = 1559 }
+
+	action_a = {
+		name = "ACTIONNAME90906A" #Let us leave our friends, the magnates, in peace
+		command = { type = stability value = 1 }
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = domestic which = serfdom value = 2 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = quality value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME90906B" #These magnates will be trouble one day! Break up their holdings
+		command = { type = stability value = -6 }
+		command = { type = revoltrisk which = 24 value = 6 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#(1560-1589) Rise of the Magnates IV
+event = {
+	id = 90913
+	trigger = {
+		OR = {
+			domestic = { type = aristocracy value = 5 }
+			domestic = { type = serfdom value = 5 }
+		}
+		NOT = { domestic = { type = centralization value = 8 } }
+	}
+	random = no
+	country = BYZ
+	name = "EVENTNAME90906" #Rise of the Magnates
+	desc = "EVENTHIST90906"
+	#-#The system of small freeholding farmers was always open to exploitation by the rich and even a typical officer's position in the army could bring nice profits from taxing tenants. Consequently families began amassing large holdings of land in Anatolia and Thrace, which they then used to buy out soldiers with small plots. These families put their own interests ahead of that of the Empire or the peasantry, but had a strong following and were an effective military force.
+
+	date = { day = 1 month = january year = 1560 }
+	offset = 10000
+	deathdate = { day = 29 month = december year = 1589 }
+
+	action_a = {
+		name = "ACTIONNAME90906A" #Let us leave our friends, the magnates, in peace
+		command = { type = stability value = 1 }
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = domestic which = serfdom value = 2 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = quality value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME90906B" #These magnates will be trouble one day! Break up their holdings
+		command = { type = stability value = -6 }
+		command = { type = revoltrisk which = 24 value = 6 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#(1590-1619) Rise of the Magnates V
+event = {
+	id = 90914
+	trigger = {
+		OR = {
+			domestic = { type = aristocracy value = 5 }
+			domestic = { type = serfdom value = 5 }
+		}
+		NOT = { domestic = { type = centralization value = 8 } }
+	}
+	random = no
+	country = BYZ
+	name = "EVENTNAME90906" #Rise of the Magnates
+	desc = "EVENTHIST90906"
+	#-#The system of small freeholding farmers was always open to exploitation by the rich and even a typical officer's position in the army could bring nice profits from taxing tenants. Consequently families began amassing large holdings of land in Anatolia and Thrace, which they then used to buy out soldiers with small plots. These families put their own interests ahead of that of the Empire or the peasantry, but had a strong following and were an effective military force.
+
+	date = { day = 1 month = january year = 1590 }
+	offset = 10000
+	deathdate = { day = 29 month = december year = 1619 }
+
+	action_a = {
+		name = "ACTIONNAME90906A" #Let us leave our friends, the magnates, in peace
+		command = { type = stability value = 1 }
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = domestic which = serfdom value = 2 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = quality value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME90906B" #These magnates will be trouble one day! Break up their holdings
+		command = { type = stability value = -6 }
+		command = { type = revoltrisk which = 24 value = 6 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#(1620-1649) Rise of the Magnates VI
+event = {
+	id = 90915
+	trigger = {
+		OR = {
+			domestic = { type = aristocracy value = 5 }
+			domestic = { type = serfdom value = 5 }
+		}
+		NOT = { domestic = { type = centralization value = 8 } }
+	}
+	random = no
+	country = BYZ
+	name = "EVENTNAME90906" #Rise of the Magnates
+	desc = "EVENTHIST90906"
+	#-#The system of small freeholding farmers was always open to exploitation by the rich and even a typical officer's position in the army could bring nice profits from taxing tenants. Consequently families began amassing large holdings of land in Anatolia and Thrace, which they then used to buy out soldiers with small plots. These families put their own interests ahead of that of the Empire or the peasantry, but had a strong following and were an effective military force.
+
+	date = { day = 1 month = january year = 1620 }
+	offset = 10000
+	deathdate = { day = 29 month = december year = 1649 }
+
+	action_a = {
+		name = "ACTIONNAME90906A" #Let us leave our friends, the magnates, in peace
+		command = { type = stability value = 1 }
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = domestic which = serfdom value = 2 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = quality value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME90906B" #These magnates will be trouble one day! Break up their holdings
+		command = { type = stability value = -6 }
+		command = { type = revoltrisk which = 24 value = 6 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#(1650-1679) Rise of the Magnates VII
+event = {
+	id = 90916
+	trigger = {
+		OR = {
+			domestic = { type = aristocracy value = 5 }
+			domestic = { type = serfdom value = 5 }
+		}
+		NOT = { domestic = { type = centralization value = 8 } }
+	}
+	random = no
+	country = BYZ
+	name = "EVENTNAME90906" #Rise of the Magnates
+	desc = "EVENTHIST90906"
+	#-#The system of small freeholding farmers was always open to exploitation by the rich and even a typical officer's position in the army could bring nice profits from taxing tenants. Consequently families began amassing large holdings of land in Anatolia and Thrace, which they then used to buy out soldiers with small plots. These families put their own interests ahead of that of the Empire or the peasantry, but had a strong following and were an effective military force.
+
+	date = { day = 1 month = january year = 1650 }
+	offset = 10000
+	deathdate = { day = 29 month = december year = 1679 }
+
+	action_a = {
+		name = "ACTIONNAME90906A" #Let us leave our friends, the magnates, in peace
+		command = { type = stability value = 1 }
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = domestic which = serfdom value = 2 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = quality value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME90906B" #These magnates will be trouble one day! Break up their holdings
+		command = { type = stability value = -6 }
+		command = { type = revoltrisk which = 24 value = 6 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#(1680-1709) Rise of the Magnates VIII
+event = {
+	id = 90917
+	trigger = {
+		OR = {
+			domestic = { type = aristocracy value = 5 }
+			domestic = { type = serfdom value = 5 }
+		}
+		NOT = { domestic = { type = centralization value = 8 } }
+	}
+	random = no
+	country = BYZ
+	name = "EVENTNAME90906" #Rise of the Magnates
+	desc = "EVENTHIST90906"
+	#-#The system of small freeholding farmers was always open to exploitation by the rich and even a typical officer's position in the army could bring nice profits from taxing tenants. Consequently families began amassing large holdings of land in Anatolia and Thrace, which they then used to buy out soldiers with small plots. These families put their own interests ahead of that of the Empire or the peasantry, but had a strong following and were an effective military force.
+
+	date = { day = 1 month = january year = 1680 }
+	offset = 10000
+	deathdate = { day = 29 month = december year = 1709 }
+
+	action_a = {
+		name = "ACTIONNAME90906A" #Let us leave our friends, the magnates, in peace
+		command = { type = stability value = 1 }
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = domestic which = serfdom value = 2 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = quality value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME90906B" #These magnates will be trouble one day! Break up their holdings
+		command = { type = stability value = -6 }
+		command = { type = revoltrisk which = 24 value = 6 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#(1710-1739) Rise of the Magnates IX
+event = {
+	id = 90918
+	trigger = {
+		OR = {
+			domestic = { type = aristocracy value = 5 }
+			domestic = { type = serfdom value = 5 }
+		}
+		NOT = { domestic = { type = centralization value = 8 } }
+	}
+	random = no
+	country = BYZ
+	name = "EVENTNAME90906" #Rise of the Magnates
+	desc = "EVENTHIST90906"
+	#-#The system of small freeholding farmers was always open to exploitation by the rich and even a typical officer's position in the army could bring nice profits from taxing tenants. Consequently families began amassing large holdings of land in Anatolia and Thrace, which they then used to buy out soldiers with small plots. These families put their own interests ahead of that of the Empire or the peasantry, but had a strong following and were an effective military force.
+
+	date = { day = 1 month = january year = 1710 }
+	offset = 10000
+	deathdate = { day = 29 month = december year = 1739 }
+
+	action_a = {
+		name = "ACTIONNAME90906A" #Let us leave our friends, the magnates, in peace
+		command = { type = stability value = 1 }
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = domestic which = serfdom value = 2 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = quality value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME90906B" #These magnates will be trouble one day! Break up their holdings
+		command = { type = stability value = -6 }
+		command = { type = revoltrisk which = 24 value = 6 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#(1740-1760) Rise of the Magnates X
+event = {
+	id = 90919
+	trigger = {
+		OR = {
+			domestic = { type = aristocracy value = 5 }
+			domestic = { type = serfdom value = 5 }
+		}
+		NOT = { domestic = { type = centralization value = 8 } }
+	}
+	random = no
+	country = BYZ
+	name = "EVENTNAME90906" #Rise of the Magnates
+	desc = "EVENTHIST90906"
+	#-#The system of small freeholding farmers was always open to exploitation by the rich and even a typical officer's position in the army could bring nice profits from taxing tenants. Consequently families began amassing large holdings of land in Anatolia and Thrace, which they then used to buy out soldiers with small plots. These families put their own interests ahead of that of the Empire or the peasantry, but had a strong following and were an effective military force.
+
+	date = { day = 1 month = january year = 1740 }
+	offset = 10000
+	deathdate = { day = 29 month = december year = 1769 }
+
+	action_a = {
+		name = "ACTIONNAME90906A" #Let us leave our friends, the magnates, in peace
+		command = { type = stability value = 1 }
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = domestic which = serfdom value = 2 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = quality value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME90906B" #These magnates will be trouble one day! Break up their holdings
+		command = { type = stability value = -6 }
+		command = { type = revoltrisk which = 24 value = 6 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#(1770-1799) Rise of the Magnates XI
+event = {
+	id = 90920
+	trigger = {
+		OR = {
+			domestic = { type = aristocracy value = 5 }
+			domestic = { type = serfdom value = 5 }
+		}
+		NOT = { domestic = { type = centralization value = 8 } }
+	}
+	random = no
+	country = BYZ
+	name = "EVENTNAME90906" #Rise of the Magnates
+	desc = "EVENTHIST90906"
+	#-#The system of small freeholding farmers was always open to exploitation by the rich and even a typical officer's position in the army could bring nice profits from taxing tenants. Consequently families began amassing large holdings of land in Anatolia and Thrace, which they then used to buy out soldiers with small plots. These families put their own interests ahead of that of the Empire or the peasantry, but had a strong following and were an effective military force.
+
+	date = { day = 1 month = january year = 1770 }
+	offset = 10000
+	deathdate = { day = 29 month = december year = 1799 }
+
+	action_a = {
+		name = "ACTIONNAME90906A" #Let us leave our friends, the magnates, in peace
+		command = { type = stability value = 1 }
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = domestic which = serfdom value = 2 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = quality value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME90906B" #These magnates will be trouble one day! Break up their holdings
+		command = { type = stability value = -6 }
+		command = { type = revoltrisk which = 24 value = 6 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#(1800-1820) Rise of the Magnates XII
+event = {
+	id = 90921
+	trigger = {
+		OR = {
+			domestic = { type = aristocracy value = 5 }
+			domestic = { type = serfdom value = 5 }
+		}
+		NOT = { domestic = { type = centralization value = 8 } }
+	}
+	random = no
+	country = BYZ
+	name = "EVENTNAME90906" #Rise of the Magnates
+	desc = "EVENTHIST90906"
+	#-#The system of small freeholding farmers was always open to exploitation by the rich and even a typical officer's position in the army could bring nice profits from taxing tenants. Consequently families began amassing large holdings of land in Anatolia and Thrace, which they then used to buy out soldiers with small plots. These families put their own interests ahead of that of the Empire or the peasantry, but had a strong following and were an effective military force.
+
+	date = { day = 1 month = january year = 1800 }
+	offset = 7000
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME90906A" #Let us leave our friends, the magnates, in peace
+		command = { type = stability value = 1 }
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = domestic which = serfdom value = 2 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = quality value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME90906B" #These magnates will be trouble one day! Break up their holdings
+		command = { type = stability value = -6 }
+		command = { type = revoltrisk which = 24 value = 6 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 90965

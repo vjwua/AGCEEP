@@ -1,0 +1,904 @@
+#Castile (CAS)
+
+#See AGCEEP_Alt_Iberia.eue for Alternative events
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1478) Conquest of the Canary Islands
+#by Fodoron
+event = {
+	id = 142026
+	trigger = {
+		owned = { province = 817 data = -1 } #Canary Islands
+		NOT = { control = { province = 817 data = -1 } } #Canary Islands
+	}
+	random = no
+	country = CAS
+	name = "EVENTNAME142026" #Conquest of the Canary Islands
+	desc = "EVENTHIST142026"
+	#-#The conquest of the Canary Islands was initiated by a Norman noble, Jean de Bethencourt in 1403. He acknowledged the ownership of the islands by the King of Castile in exchange for their lordship. Lanzarote, Fuerteventura, and Hierro were quickly conquered, and the authority of Bethencourt acknowledged in Gomera, but the three bigger islands were too much for his means. The rights of lordship were sold by his nephew Manciot Bethencourt to the Count of Niebla in 1418, and ended in the hands of the Peraza family in 1445. The hostility of the Guanche natives prevented any attempt of conquest of the other islands wether by Castilians or Portuguese. In 1447 an attempt of conquest by Guillén de Peraza at La Palma, ended in disaster, with Guillén being killed by a stone stroke. During all this time, Castilian and Portuguese slavers, as well as the Pedraza, were capturing children and young Guanches that were sold for a great profit in the Peninsula. This situation continued until 1478.
+
+	date = { day = 0 month = january year = 1419 }
+	offset = 30
+	deathdate = { day = 0 month = january year = 1478 }
+
+	action_a = {
+		name = "ACTIONNAME142026A" #Better wait then
+		command = { type = population which = 817 value = -50 } #Canary Islands
+	}
+}
+
+#(1420) The coup of Enrique of Aragon
+#by Havard modified by Fodoron
+event = {
+	id = 7101
+	random = no
+	country = CAS
+	name = "EVENTNAME7101" #The coup of Enrique of Aragon
+	desc = "EVENTHIST7101"
+	#-#Juan II inherited the throne of Castile when he was just one year old, and he was kept under wraps by his mother, Catherine of Lancaster until her death, and so he became ill-prepared, weak and indolent. His uncle Fernando had been elected King of Aragon at the Caspe arrangement, and his son Alfonso became King of Aragon at his death. However his brothers, the infantes Juan and Enrique wanted to maintain their power in Castile, where all their family castles, villages and lands were located. The weakness of young Juan II invited the rebellious nobles to strive for his control. Two parties were formed, one leaded by the infante Juan, designated heir of Aragon, and married to the heiress of Navarre, and the other one by the infante Enrique, who was more desperate for power. In 1420 Enrique, tired of the predominant influence of his brother, assaulted the royal residence and seized the King. Princess Catalina, sister of the King, accepted to marry him. But the King managed to escape with the help of his friend Alvaro de Luna.
+
+	date = { day = 1 month = january year = 1420 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1420 }
+
+	action_a = {
+		name = "ACTIONNAME7101A" #This is outrageous!
+		command = { type = stability value = -2 }
+	}
+}
+
+#(1422) The King's Constable
+#by Havard modified by Fodoron
+event = {
+	id = 7102
+	random = no
+	country = CAS
+	name = "EVENTNAME7102" #The King's Constable
+	desc = "EVENTHIST7102"
+	#-#In 1423 King Juan II falsely accused the infante Enrique and the Constable Davalos of being in collusion with the Moor King of Granada to create a distraction that would allow them to seize power. He imprisoned Enrique and deprived runaway Davalos of his title. By then Alvaro de Luna was his main advisor, and the King appointed him as Constable. Since Luna had no family states, and owed the King all his power, Juan could rely on his loyalty. Immediately the infantes Juan and Enrique and their supporters joined forces against the rising star of Constable Luna. By 1425 they were able to obtain the release of Enrique and the ousting of Alvaro de Luna, who managed however to come back, more powerful than ever, willing to reduce the power of the infantes and their supporters. That year, the infante Juan became King of Navarre, increasing his already vast resources, and Enrique asked for the help of his older brother Alfonso, King of Aragon. Trouble was looming in the horizon.
+
+	date = { day = 29 month = december year = 1422 }
+
+	action_a = {
+		name = "ACTIONNAME7102A" #Appoint Alvaro de Luna
+		command = { type = ADM which = 2 value = 360 }
+		command = { type = DIP which = -2 value = 360 }
+		command = { type = MIL which = 2 value = 360 }
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 120 value = 4 }
+		}
+	action_b = {
+		name = "ACTIONNAME7102B" #Appoint a less controversial constable
+		command = { type = stability value = 1 }
+		command = { type = ADM which = 1 value = 180 }
+		command = { type = relation which = ARG value = 25 }
+		command = { type = relation which = NAV value = 25 }
+		command = { type = sleepleader which = 029800 } #Álvaro de Luna (CAS)
+		command = { type = sleepevent which = 3557 } #CAS: Civil War in Castile
+		command = { type = sleepevent which = 7103 } #CAS: The fall of Alvaro de Luna
+		command = { type = sleepevent which = 142018 } #CAS: Invasion by Navarre and Aragon
+		command = { type = sleepevent which = 142019 } #CAS: Battle of La Higueruela
+		command = { type = sleepevent which = 142020 } #CAS: The battle of Olmedo
+		}
+}
+
+#(1425-1476) Granada submits to Castile
+#This event is designed to help Granada survive longer due to Castile historic internal problems.
+event = {
+	id = 142006 #triggered by GRA_176007 A
+	random = no
+	country = CAS
+	name = "EVENTNAME142006" #Granada buys peace
+	desc = "EVENTHIST142006"
+	#-#The loss of Gibraltar in their last war had convince the emir of Granada to renew vassalage and pay tribute to the King of Castile. Given the troubles that Castile has with some nobles, perhaps it would be wise to delay the war of Granada.
+
+	action_a = {
+		name = "ACTIONNAME142006A" #We accept their submission. Granada can wait.
+		command = { type = treasury value = 50 }
+		command = { type = vassal which = GRA }
+	}
+	action_b = {
+		name = "ACTIONNAME142006B" #We don't accept their vassalage. Granada must die.
+		command = { type = stability value = 1 }
+		command = { type = relation which = GRA value = -200 }
+	}
+}
+
+#(1426-1465) The morisco royal guard
+#by Fodoron
+event = {
+	id = 142024
+	random = no
+	country = CAS
+	name = "EVENTNAME142024" #The morisco royal guard
+	desc = "EVENTHIST142024"
+	#-#During the ruling of Juan II and his son Enrique IV, the civil war in Granada provoked that many Muslim knights took refuge in Castile. The Castilian Kings, in need of a personal guard due to their troubles with the nobility, decided to create and maintain a morisco royal guard. The Muslims were completely loyal to the King during their service, due to their nature of outsiders. They also introduced an orientalizing fashion in the court, as the Kings sometimes dressed in Muslim style, and their weapons also became fashionable. 300 of them accompanied Enrique IV at his interview with Louis XI of France at Bayonne in 1463. They are just one of the many signs of the inter-relationship between Muslims and Christians during the Reconquista. The morisco guard was disbanded in 1466.
+
+	date = { day = 10 month = june year = 1426 }
+	offset = 600
+	deathdate = { day = 29 month = december year = 1465 }
+
+	action_a = {
+		name = "ACTIONNAME142024A" #Hire the Muslim knights
+		command = { type = cav which = -1 value = 5000 }
+		command = { type = treasury value = -25 }
+	}
+}
+
+#(1430) Invasion
+#by Fodoron
+event = {
+	id = 142018
+	random = no
+	country = CAS
+	name = "EVENTNAME142018" #Invasion by Navarre and Aragon
+	desc = "EVENTHIST142018"
+	#-#In 1429 the Cortes approved funds for a war against Granada, but in May the Kings of Aragon and Navarre, and the infante Enrique invaded Castile to seek restitution for the states confiscated by the King. In July a major battle was avoided by the King's sister Maria, married to Alfonso of Aragon, who planted her camp between both sides. Alfonso was in urgent need to go to Naples and had weak support from his Kingdom to pursue his brothers' personal interest, but Juan II was vindictive and invaded Aragon. Alfonso offered a five-year truce.
+
+	date = { day = 25 month = july year = 1430 }
+
+	action_a = {
+		name = "ACTIONNAME142018A" #Concede the truce
+		command = { type = stability value = 1 }
+		command = { type = relation which = ARG value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME142018B" #Teach them a lesson
+		command = { type = stability value = -1 }
+		command = { type = casusbelli which = ARG value = 24 }
+		command = { type = relation which = ARG value = -50 }
+	}
+}
+
+#(1431) Battle of La Higueruela
+#by Fodoron
+event = {
+	id = 142019
+	trigger = {
+		exists = GRA
+	}
+	random = no
+	country = CAS
+	name = "EVENTNAME142019" #Battle of La Higueruela
+	desc = "EVENTHIST142019"
+	#-#Alvaro de Luna was expending all his energies fending off rivals, but he wanted to gain glory in battle with the moors. Since the war against Aragon was cancelled, Juan II and de Luna turned to Granada. It was a good time to finish the Muslim presence in the peninsula, as there was a civil war in Granada. Muhammad IX had ordered the beheading of young Muhammad VIII in prison, and his party, the Banu Bannigas, chose Yusuf Ibn al Maw (Benalmao) as their new candidate and turned to Juan II for help. The Christian army, with their Muslim allies, reached Granada and started devastating the surroundings. The forces of Muhammad IX presented battle and suffered a crushing defeat. But the Christians did not follow up in the offensive against the Muslims and allowed Yusuf IV to become the new Emir as a vassal. Perhaps Alvaro de Luna feared the rumors that some nobles were raising against him, or the earthquake that took place scared the Christians. His enemies claimed that he was bought by Muslim gold. Whatever the cause, Juan II received some villages from Yusuf, and retreated. Three months later Yusuf was beheaded and Muhammad IX was back in power. Over the next two decades the Muslims will recover the loses, taking advantage of the civil war in Castile.
+
+	date = { day = 1 month = july year = 1431 }
+
+	action_a = {
+		name = "ACTIONNAME142019A" #He is our vassal again
+		command = { type = relation which = GRA value = 50 }
+		command = { type = treasury value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME142019B" #Finish the moors
+		command = { type = relation which = GRA value = -50 }
+		command = { type = treasury value = -50 }
+		command = { type = inf which = -1 value = 5000 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Papal Mediation in the Canaries
+#by Archeolooginspe
+#modified by Isaac Brock - further modified by Fodoron
+
+#(1433) Papal Mediation in the Canaries
+event = {
+	id = 142000 #triggered by PAP_251001 A / MUS_236003 A
+
+	random = no
+	country = CAS
+	name = "EVENTNAME142000" #The Portuguese are trying to rob us with the help of the Pope
+	desc = "EVENTHIST251001"
+	#-#The claim to the Canary Islands was disputed for a very long time. Portugal argued that they were closer to their coasts, while Castile argued that they belonged to the diocese of Tingitania (Morocco) and were therefore part of the Visigothic Kingdom to which they were entitled, and both monarchs contested the decision of Pope Clement VI to give the islands to Luis de la Cerda, a Spanish nobleman, in 1344. But their hostile natives prevented any settlement, and nothing was done until French noblemen Jean de Bethencourt disembarks in Lanzarote in 1402. Being succesful in the conquest of the island, he travelled the next year to Castile, and obtained from Enrique III the concession for the conquest of the islands in his name. He managed to conquer another three islands. But the three bigger islands could not be conquered, as resistance from the natives, of pre-islamic Berber origen, was strong. With the African explorations of Don Henrique, the Canary islands constituted a convenient base, and Henrique sent two expeditions, in 1424 and 1427, that failed due to native resistance and lack of supplies. When Duarte became King in 1433, he activated his diplomacy, and was granted by Pope Eugenius IV, the right to Christianize the islands that remained pagan, given the success of Portugal against the North African Muslims.
+
+	action_a = {
+		name = "ACTIONNAME142000A" #Send the ambassador to Rome and appeal
+		command = { type = relation which = POR value = -25 }
+		command = { type = trigger which = 260000 } #POR: The Pope supports Portuguese expansion
+	}
+	action_b = {
+		name = "ACTIONNAME142000B" #Deal with it ourselves
+		command = { type = relation which = PAP value = -25 }
+		command = { type = relation which = POR value = -25 }
+		command = { type = casusbelli which = POR value = 24 }
+		command = { type = INF which = 817 value = 2000 } #The Canary Islands
+		command = { type = trigger which = 260000 } #POR: The Pope supports Portuguese expansion
+		command = { type = sleepevent which = 251002 } #PAP: The Castilians appeal our Canarian resolution
+		command = { type = sleepevent which = 236004 } #MUS: The Castilians appeal our Canarian resolution
+	}
+}
+#(1433) Papal Mediation in the Canaries
+event = {
+	id = 142001 #triggered by POR_260001 B
+	random = no
+	country = CAS
+	name = "EVENTNAME142001" #The Portuguese press their claim despite papal rejection
+	desc = "EVENTHIST251001"
+	#-#The claim to the Canary Islands was disputed for a very long time. Portugal argued that they were closer to their coasts, while Castile argued that they belonged to the diocese of Tingitania (Morocco) and were therefore part of the Visigothic Kingdom to which they were entitled, and both monarchs contested the decision of Pope Clement VI to give the islands to Luis de la Cerda, a Spanish nobleman, in 1344. But their hostile natives prevented any settlement, and nothing was done until French noblemen Jean de Bethencourt disembarks in Lanzarote in 1402. Being succesful in the conquest of the island, he travelled the next year to Castile, and obtained from Enrique III the concession for the conquest of the islands in his name. He managed to conquer another three islands. But the three bigger islands could not be conquered, as resistance from the natives, of pre-islamic Berber origen, was strong. With the African explorations of Don Henrique, the Canary islands constituted a convenient base, and Henrique sent two expeditions, in 1424 and 1427, that failed due to native resistance and lack of supplies. When Duarte became King in 1433, he activated his diplomacy, and was granted by Pope Eugenius IV, the right to Christianize the islands that remained pagan, given the success of Portugal against the North African Muslims.
+
+	action_a = {
+		name = "ACTIONNAME142001A" #Let's teach them manners
+		command = { type = relation which = POR value = -25 }
+		command = { type = casusbelli which = POR value = 24 }
+		command = { type = INF which = 817 value = 2000 } #The Canary Islands
+	}
+}
+#(1436) Reconsider the Canarian case
+event = {
+	id = 142002 #triggered by POR_260002 *
+	random = no
+	country = CAS
+	name = "EVENTNAME142002" #The Pope has been gained to our cause
+	desc = "EVENTHIST251002"
+	#-#When Juan II of Castile found out that the Pope had given Duarte of Portugal the right to conquer some of the Canary islands, he sent his best ambassador, Alonso de Cartagena, to try to revert the decision. Curiously, the main argument used by Alonso was not that those islands were part of a group already half conquered by Castile, but that the right of Castile to the islands had the same basis that the right the monarchs of Castile had over their Kingdom, that they inherited from the Visigoth Kings, and these from the Roman Emperors. The argument must have been a good one, because Eugenius IV, knee deep in his problems with the Council of Basel, reversed his previous decision and published a bull in 1436 recognizing the rights of Castile to all the islands and exhorting Portugal to not enter a war with Castile over them. There would still be a couple of failed attempts at their conquest by the Portuguese in 1448 and 1455, but with the finding of better islands in the coast of Africa to act as bases, the interest for the Canary islands decayed. Meanwhile the Castilians were advancing all the time in their settlement, and finally between 1477 and 1496 the Catholic King's armies fully conquered the remaining islands.
+
+	action_a = {
+		name = "ACTIONNAME142002A" #The Canary islands are ours
+		command = { type = stability value = 1 }
+		command = { type = DIP which = 2 value = 12 }
+		command = { type = colonists value = 1 }
+	}
+}
+#-----------------------------------------------------------------------------------------------
+
+#(1438) Civil War in Castile I
+#by Paradox modified by Fodoron
+event = {
+	id = 3557
+	random = no
+	country = CAS
+	name = "EVENTNAME3557" #Civil War in Castile
+	desc = "EVENTHIST3557"
+	#-#Juan II decided to be generous with his cousin Alfonso of Aragon, that together with his brothers was undergoing extreme difficulties in Italy, being a prisoner of the Genoese, and decided to sign the peace between Castile, Aragon and Navarre when the truce expired. The condition for the peace was the concertation of a marriage between his son Enrique and the daughter of the King of Navarre, Blanca. However two years later, a large faction of nobles raised against the excesses of Alvaro de Luna, and the infante Enrique and the King of Navarre returned to lead them in rebellion. The King initially supported his Constable, but was overpowered and had to oust him again in 1439. The wedding of Enrique and Blanca calmed the situation, but now Juan II could add to the list of people hostile to him his own son, vicious, weaker and more indolent than himself. Alone and powerless, he decided to give support once more to his able friend Alvaro de Luna even if that meant starting a civil war.
+
+	date = { day = 1 month = june year = 1438 }
+	offset = 150
+	deathdate = { day = 29 month = december year = 1438 }
+
+	action_a = {
+		name = "ACTIONNAME3557A" #Support Álvaro de Luna
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revoltrisk which = 48 value = 5 }
+		command = { type = stability value = -1 }
+		command = { type = DIP which = -2 value = 120 }
+		command = { type = ADM which = 2 value = 120 }
+		command = { type = MIL which = 2 value = 120 }
+		}
+	action_b = {
+		name = "ACTIONNAME3557B" #Support the sons of Ferdinand
+		command = { type = stability value = 1 }
+		command = { type = ADM which = -2 value = 120 }
+		command = { type = MIL which = -2 value = 120 }
+		command = { type = sleepevent which = 142020 } #CAS: The battle of Olmedo
+	}
+}
+
+#(1445) Civil War in Castile II
+#by Fodoron
+event = {
+	id = 142020
+	random = no
+	country = CAS
+	name = "EVENTNAME142020" #The battle of Olmedo
+	desc = "EVENTHIST142020"
+	#-#Although the war was initially favorable to Alvaro de Luna, the capture of Medina by the King of Navarre in 1441 left the King vulnerable, and Alvaro had to escape to save his life. Juan II became a prisoner of the King of Navarre until everybody became tired of him running the show. Even Prince Enrique with his favourite Juan Pacheco took the side of his father and helped him escape in 1444. The King, Prince Enrique and Alvaro de Luna joined forces against the most powerful nobles of Castile leaded by the King of Navarre and the infante Enrique. The battle took place at Olmedo on May 19, 1445 and it was a clear victory for Alvaro de Luna and the King. More importantly, the old infante Enrique died from his wounds a few days later finally bringing peace to Castile. As he was the Great Master of the powerful Order of St. James, the King invested Alvaro de Luna with this title, the most prestigious in Spain. But his rival and rising star Juan Pacheco, favourite of Prince Enrique, was made Marquis of Villena. Confident by his triumph the old Constable started making mistakes. He tried to make his post and honors hereditary to his son, and he arranged the wedding of Juan II, now a widower, with the young Princess Isabel of Portugal against his wishes. Isabel hated the old Constable because the power he had over the King, and Juan, always weak, could not resist his young wife wishes.
+
+	date = { day = 19 month = may year = 1445 }
+
+	action_a = {
+		name = "ACTIONNAME142020A" #The end of the war at last
+		command = { type = stability value = 1 }
+		command = { type = dynastic which = POR }
+		command = { type = relation which = POR value = -25 }
+	}
+}
+
+#(1453) The fall of Alvaro de Luna
+#by Havard modified by Fodoron
+event = {
+	id = 7103
+	random = no
+	country = CAS
+	name = "EVENTNAME7103" #The fall of Alvaro de Luna
+	desc = "EVENTHIST7103"
+	#-#After the King's remarriage, the influence of Alvaro de Luna diminished. The new Queen hated him, prince Enrique, soon to be King Enrique IV, hated him, the nobles hated him, and the King was as weak as always. Finally, after the Constable was involved in the killing of a minister that opposed him, the King gave his consent and de Luna was captured, tried, found guilty of treason, and beheaded. The King was only 48 years old, but not in very good condition, and the remorse for the killing of his only friend, that had accompanied him for his entire life, affected his health. He fell ill and was dead in a year. Alvaro de Luna was declared innocent in 1658. He was a great man when compared with his opponents, but if he is judged by his accomplishments, he did very little for his Kingdom, as he spent all his energies keeping himself in power.
+
+	date = { day = 22 month = june year = 1453 }
+
+	action_a = {
+		name = "ACTIONNAME7103A" #Enough is enough!
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1453) The divorce of prince Enrique
+event = {
+	id = 7104
+	random = no
+	country = CAS
+	name = "EVENTNAME7104" #The divorce of prince Enrique
+	desc = "EVENTHIST7104"
+	#-#Prince Enrique married the infanta Bianca of Navarre, but after years of union she was still a virgin. Enrique claimed that he only had this problem with the Queen and no other woman, while her supporters claimed that he is just impotent. He presents several prostitutes that claim that he is all that a woman can desire, her doctors claim that he is not physically able to..., you know.
+
+	date = { day = 1 month = november year = 1453 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1453 }
+
+	action_a = {
+		name = "ACTIONNAME7104A" #The divorce is a peerless scandal!
+		command = { type = stability value = -2 }
+		command = { type = relation which = NAV value = -100 }
+	}
+}
+
+#(1462) The County of Barcelona
+#by Fodoron
+event = {
+	id = 142021
+	trigger = {
+		owned = { province = 429 data = ARG }
+		event = 7117 #ARG: The civil war
+	}
+	random = no
+	country = CAS
+	name = "EVENTNAME142021" #The County of Barcelona
+	desc = "EVENTHIST142021"
+	#-#The first years of Enrique IV under the rule of Juan Pacheco, Marquis of Villena, were happy ones. The economy was booming. The King of Navarre, that so much destabilized Castile in the past, was immersed in a civil war against his own son Carlos, and now it was the turn of Castile to destabilize Navarre and Aragon, by supporting him. But when Juan of Navarre asked for peace, Enrique agreed to sign it at the treaty of Alfaro-Corella in May 1457. A successful campaign was initiated against the moors of Granada, but it had to be suspended after two years because it was too expensive. The raising of taxes due to the war, and nobility unrest against Pacheco, undermined his position, and the King started to shift his support to Beltrán de la Cueva. The death of the heir of Navarre in 1461, together with the formation of a powerful league of nobles, was heralding troubles in the future, but in 1462 everything seemed in favor of Enrique. An heiress was born from his second marriage, and named Juana. Gibraltar was recovered from the moors. His former wife Blanca, new heiress to the throne of Navarre bequeathed her rights on him once she knew her father was sending her to her death at the hands of Gaston de Foix, and the Beaumonts of Navarre supported him. To add to his gaining of influence in the peninsula, the rebels in Barcelona offered him the County of Barcelona. Enrique decided to accept their offer to improve his chances of gaining Navarre, and quickly dispatched troops to both places.
+
+	date = { day = 13 month = november year = 1462 }
+
+	action_a = {
+		name = "ACTIONNAME142021A" #Accept their offer
+		command = { type = relation which = ARG value = -25 }
+		command = { type = stability value = 1 }
+		command = { type = addcore which = 429 } #Catalonia
+	}
+	action_b = {
+		name = "ACTIONNAME142021B" #Reject their offer
+		command = { type = relation which = ARG value = 25 }
+		command = { type = stability value = 2 }
+		command = { type = sleepevent which = 142022 } #CAS: Fooled by all
+	}
+}
+
+#(1463) Fooled by all
+#by Fodoron
+event = {
+	id = 142022
+	random = no
+	country = CAS
+	name = "EVENTNAME142022" #Fooled by all
+	desc = "EVENTHIST142022"
+	#-#Enrique understood that his right to Navarre as a divorcee of Blanca was a weak one. But there were two candidates to the throne, and one of them was his vassal. Only two grandchildren of Carlos III of Navarre remained alive, Leonor and Jean V of Armagnac. Leonor, with a better right, was married to Gaston de Foix. Thus these two powerful houses of Gascony competed to gain the crown of Navarre, Foix supported by Aragon, as Juan had named Leonor and Gaston his heirs to Navarre, and Armagnac supported by Castile, as Jean of Armagnac was a vassal to Enrique IV. Both were also supported by a powerful party in Navarre, Foix/Aragon by the Gramonts and Armagnac/Castile by the Beaumonts. Militarily, Castile had the upper hand, as Aragon was immersed in a terrible civil war in Catalonia, and the rebels had sided with Castile. Enrique, ill-advised by his pro-Aragonian advisors, the Archbishop Carrillo, and his former favourite Juan Pacheco, decided to accept the proposition of an arbitrage by Louis XI of France. He trusted Louis because of the 100-year-long alliance between France and Castile, and hoped that he would rule that Catalonia had to be returned to Juan, but Navarre would be for his vassal. But Louis was not as impartial as Enrique believed, and had a secret agreement with Juan of Aragon to support him and Foix in exchange for the Roselló, and ruled in April, 1463 that both Navarre and Catalonia should be returned to Juan. Enrique understood that he had been fooled by all, but had to renounce to Barcelona and Navarre in agreement with the ruling. But his fall with Carrillo and Pacheco will have more immediate consequences.
+
+	date = { day = 28 month = april year = 1463 }
+
+	action_a = {
+		name = "ACTIONNAME142022A" #I have lost Navarre and Barcelona
+		command = { type = stability value = -1 }
+		command = { type = relation which = FRA value = -25 }
+		command = { type = DIP which = -2 value = 60 }
+		command = { type = removecore which = 429 } #Catalonia
+	}
+}
+
+#(1464) The troubles of Enrique
+#by Havard modified by Fodoron
+event = {
+	id = 7105
+	random = no
+	country = CAS
+	name = "EVENTNAME7105" #The troubles of Enrique
+	desc = "EVENTHIST7105"
+	#-#Juan Pacheco responded to his fall out of favor and displacement by Beltrán de la Cueva by joining the rebel nobles leaded by Archbishop Carrillo. They excused their opposition under their support for young Alfonso, Enrique's half-brother and previous heir, which had been displaced by the birth of Juana. Although a male heir was preferred, Juana was legally the heiress, unless her birth could be proven illegal. Given the antecedents of Enrique IV the impotent, and the known adulterous behavior of the Queen, it was not very difficult for the rebels to claim that Juana was not Enrique's daughter, but born from the adultery of the Queen with Beltrán de la Cueva. From then on, Juana would be despitefully known as la Beltraneja. Pacheco, Carrillo, and many others raised in open rebellion, asking for the recognition of Alfonso as heir. Instead of going to war against them, the weak, peace-seeking Enrique offered to accept their demands on the condition that Alfonso would marry his daughter Juana. The rebels rejected his proposition, but Enrique accepted to name Alfonso his heir, nevertheless.
+
+	date = { day = 4 month = september year = 1464 }
+	offset = 30
+	deathdate = { day = 29 month = november year = 1464 }
+
+	action_a = {
+		name = "ACTIONNAME7105A" #Designate Alfonso as heir and avoid a civil war
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 30 value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME7105B" #Crush the rebel nobles
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 54 value = 3 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = sleepevent which = 7106 } #CAS: Anarchy in Castile
+	}
+}
+
+#(1465) Anarchy in Castile
+event = {
+	id = 7106
+	random = no
+	country = CAS
+	name = "EVENTNAME7106" #Anarchy in Castile
+	desc = "EVENTHIST7106"
+	#-#After accepting the conditions of the rebels Enrique lost all authority. The nobles demanded more and more, until Enrique finally had no choice but to reject the pact, in the sentence of Medina del Campo in January 1465. The Kingdom fell in a state of chaos. The response of the nobles, leaded by Juan Pacheco and the Archbishop Carrillo was to dethrone Enrique in effigy at the farce of Avila in June 1465, and proclaim 11 year-old Alfonso as the new King, initiating the civil war.
+
+	date = { day = 1 month = january year = 1465 }
+	offset = 120
+	deathdate = { day = 29 month = december year = 1465 }
+
+	action_a = {
+		name = "ACTIONNAME7106A" #We are helpless...
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 44 value = 3 }
+	}
+}
+
+#(1467) Civil War in Castile III
+#by Fodoron
+event = {
+	id = 142023
+	random = no
+	country = CAS
+	name = "EVENTNAME142023" #The second battle of Olmedo
+	desc = "EVENTHIST142023"
+	#-#Paradoxically, the humiliation of the farce of Avila, where the rebel nobles dethroned Enrique in effigy, galvanized the royalists, leaded by the Mendoza family, and the cities. A new Hermandad General (cities militia) was formed, and defeated the Alphonsine party at Olmedo on August 20, 1467. However the King started to make concessions to the rebels again, alienating the Mendoza, and pushing the Kingdom again into chaos. When the King authorised the creation of a Hermandad in Galicia, the peasants, artisans and the low nobility used it as an excuse to rise in rebellion against the oppressive high nobility, destroying their castles. The revolt of the Irmandiños escaped royal control and took two years to be subdued by the nobility.
+
+	date = { day = 20 month = august year = 1467 }
+
+	action_a = {
+		name = "ACTIONNAME142023A" #The King is his own worst enemy
+		command = { type = stability value = -1 }
+		command = { type = revolt which = 433 } #Galicia
+		command = { type = revolt which = 433 } #Galicia
+	}
+}
+
+#(1468) The pact of Guisando
+event = {
+	id = 7107
+	random = no
+	country = CAS
+	name = "EVENTNAME7107" #The pact of Guisando
+	desc = "EVENTHIST7107"
+	#-#In July 1468, the claimant to the crown of Castile, Alfonso, died suddenly from fevers at age 14. The nobles behind him had no choice but support Isabel, Alfonso's older sister and also half-sister of King Enrique, but their party was very much weakened. Isabel, very saddened, saw that she had no chance to push her claim as Queen of Castile, and offered Enrique a pact. She will renounce to her claim in exchange for being named heir to the Kingdom. In other words, she offered to wait until Enrique's death. Enrique, who was a weak King, accepted. In September 1468, in the pact of Guisando, Enrique discarded his daughter as heir and named Isabel the Princess of Asturias, ending the civil war. The acceptance of Isabel as heir to the Kingdom was, to the eyes of many, a recognition of the illegitimacy of Juana. But Enrique had kept a trump card by stating in the pact that the marriage of Isabel was subject to royal approval.
+
+	date = { day = 1 month = september year = 1468 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1468 }
+
+	action_a = {
+		name = "ACTIONNAME7107A" #Proclaim Isabel as heir
+		command = { type = stability value = 3 }
+		command = { type = revoltrisk value = -3 }
+		command = { type = relation which = POR value = -50 }
+	}
+}
+
+#(1476-1480) Santa Hermandad
+#by Crook
+event = {
+	id = 7160
+	random = no
+	country = CAS
+	name = "EVENTNAME7160" #Santa Hermandad
+	desc = "EVENTHIST7160"
+	#-#During the volatile 1460s a number of Castillian towns and villages had revived an earlier tradition of forming a hermandad, a brotherhood, for self-protection against the gangs, and policing the roads. In 1476, the Crown of Castile has authorized the formation of the Santa Hermandad, a state-sponsored well-armed police force, and encouraged the formation of similar units all over Castile. The Hermandad had brought peace and order to the central and northern parts of Castile, which made the country one of the most orderly in the Western Europe.
+
+	date = { day = 1 month = january year = 1476 }
+	offset = 300
+	deathdate = { day = 1 month = january year = 1480 }
+
+	action_a = {
+		name = "ACTIONNAME7160A" #Institute Santa Hermandad
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = stability value = 1 }
+		command = { type = gainbuilding which = -1 value = courthouse }
+		command = { type = gainbuilding which = -1 value = courthouse }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Treaty of Alcacovas for Castile
+#Idea: Baston - Scripting by Annibale
+#Mod by Isaac Brock to include Canaries - Further modified by Fodoron
+
+#(1479) Treaty of Alcacovas
+event = {
+	id = 142004 #triggered by POR_260005 A
+	random = no
+	country = CAS
+	name = "EVENTNAME142004" #Treaty of Alcacovas
+	desc = "EVENTHIST142004"
+	#-#In 1469 Alfonso V of Portugal was presented with the opportunity of becoming the King of Castile when he and his brother-in-law Enrique IV of Castile agreed on his marriage to Isabel, Princess of Asturias (heir title). But the deal failed when Isabel married Fernando of Aragon. When Enrique died and Isabel proclaimed herself Queen, in 1475, he saw his chance disappearing and decided to play hard. In a month he was married to his niece, Juana, and had claimed the crown of Castile for himself, invading the country. The plan was good because Juana had also the support of France and a great part of the Castilian nobility who rebelled in her support. Despite the simultaneous invasion from France and Portugal, and the rebellion of the nobles in the West of Castile, the war did not go well. The French were stopped by the Basques, while Fernando, with troops mostly from Castile and Asturias, inflicted a crushing defeat to the Portuguese in Toro in 1476. Alfonso traveled to France to try to get a stronger involvement from Louis XI, but the French had lost interest. By then Fernando had recovered control of all the Northwest. The war at sea, that extended as far as the coast of Guinea, claimed by Castile, was also favorable to Isabel. Alfonso's marriage to his niece was not recognized by the Pope, and a last invasion at the South ended also in defeat at la Albuera in February, 1479. With the nobility subdued and the Portuguese defeated, Castile had now the upper hand, but Isabel was half Portuguese herself, and Portuguese was her first language. She desired a perpetual peace with Portugal, with long lasting friendship and perhaps a dynastic union in the future, like the one with Aragon, and she was prepared to be generous with the defeated to obtain it. The treaty of Alcacovas, was concluded in September 4, 1479. It had four parts, all of them historically important. In the first part, Isabel and Fernando were recognized as rightful Kings of Castile and Leon, and Alfonso was recognized as rightful King of Portugal. In the second part, Juana renounced to her claim to the crown of Castile and was forced to expend the rest of her life in a convent in Portugal. In the third part, the future marriage between the infant Alfonso, son of Joao and the infant Isabel, daughter of the Catholic Kings was arranged. And in the fourth part, Castile accepted the claim of Portugal over Guinea, and the Atlantic coast of Africa, Madeira, Azores and Cape Verde, and any future discoveries South of the Canary Islands toward Guinea. Portugal accepted the claim of Castile over the Canary Islands. The treaty of Alcacovas is very important because it created a long lasting peace between Portugal and Spain, and set the basis for future diplomatic resolution of conflicts, like the discovery of the New World and the treaty of Tordesillas. Some believe it was crucial to the discovery of the New World by Spain, as Africa was reserved for Portugal, leaving only the unknown West for Spain.
+
+	action_a = {
+		name = "ACTIONNAME142004A" #The Portuguese have accepted our generous offer
+		command = { type = stability value = 1 } #end of the war
+		command = { type = addcore which = 817 } #The Canary Islands
+		command = { type = naval value = 200 }
+		command = { type = secedeprovince which = POR value = 733 } #Fez
+		command = { type = secedeprovince which = POR value = 806 } #Toubkal
+		command = { type = secedeprovince which = POR value = 805 } #Sahara
+		command = { type = secedeprovince which = POR value = 804 } #Tassaret
+		command = { type = secedeprovince which = POR value = 1595 } #Anti Atlas
+		command = { type = secedeprovince which = POR value = 1596 } #Mdennan
+		command = { type = secedeprovince which = POR value = 1597 } #Azaouad
+		command = { type = secedeprovince which = POR value = 803 } #Nouadibuh
+		command = { type = secedeprovince which = POR value = 802 } #Nouakchott
+		command = { type = secedeprovince which = POR value = 801 } #Louga
+		command = { type = secedeprovince which = POR value = 800 } #Senegal
+		command = { type = secedeprovince which = POR value = 799 } #Dakar
+		command = { type = secedeprovince which = POR value = 798 } #Gambia
+		command = { type = secedeprovince which = POR value = 797 } #Casamance
+		command = { type = secedeprovince which = POR value = 796 } #Guinea
+		command = { type = secedeprovince which = POR value = 795 } #Leone
+		command = { type = secedeprovince which = POR value = 794 } #Palanas
+		command = { type = secedeprovince which = POR value = 793 } #Ivoria
+		command = { type = secedeprovince which = POR value = 792 } #Accra
+		command = { type = secedeprovince which = POR value = 791 } #Nigeria
+		command = { type = secedeprovince which = POR value = 790 } #Douala
+		command = { type = secedeprovince which = POR value = 789 } #Kribi
+		command = { type = secedeprovince which = POR value = 818 } #Cape Verde
+		command = { type = secedeprovince which = POR value = 816 } #Fernando Po
+		command = { type = secedeprovince which = POR value = 823 } #The Azores
+		command = { type = secedeprovince which = POR value = 434 } #Oporto
+		command = { type = secedeprovince which = POR value = 442 } #Algarve
+	}
+	action_b = {
+		name = "ACTIONNAME142004B" #On second thought we are being too generous
+		command = { type = stability value = -2 } #war continues
+		command = { type = relation which = POR value = -50 }
+		command = { type = trigger which = 260004 } #POR: Treaty of Alcacovas Rejected
+		command = { type = addcore which = 796 } #Guinea claimed by Juan II and Isabel I for Castile
+		command = { type = breakdynastic which = POR }
+		command = { type = treasury value = 50 } #Portuguese gold and slave routes attacked
+	}
+}
+#(1479) Treaty of Alcacovas Rejected
+event = {
+	id =142025 #triggered by POR_260003 B
+	random = no
+	country = CAS
+	name = "EVENTNAME142025" #Treaty of Alcacovas Rejected
+	desc = "EVENTHIST142025"
+	#-#In 1469 Alfonso V of Portugal was presented with the opportunity of becoming the King of Castile when he and his brother-in-law Enrique IV of Castile agreed on his marriage to Isabel, Princess of Asturias (heir title). But the deal failed when Isabel married Fernando of Aragon. When Enrique died and Isabel proclaimed herself Queen, in 1475, he saw his chance disappearing and decided to play hard. In a month he was married to his niece, Juana, and had claimed the crown of Castile for himself, invading the country. The plan was good because Juana had also the support of France and a great part of the Castilian nobility who rebelled in her support. Despite the simultaneous invasion from France and Portugal, and the rebellion of the nobles in the West of Castile, the war did not go well. The French were stopped by the Basques, while Fernando, with troops mostly from Castile and Asturias, inflicted a crushing defeat to the Portuguese in Toro in 1476. Alfonso traveled to France to try to get a stronger involvement from Louis XI, but the French had lost interest. By then Fernando had recovered control of all the Northwest. The war at sea, that extended as far as the coast of Guinea, claimed by Castile, was also favorable to Isabel. Alfonso's marriage to his niece was not recognized by the Pope, and a last invasion at the South ended also in defeat at la Albuera in February, 1479. With the nobility subdued and the Portuguese defeated, Castile had now the upper hand, but Isabel was half Portuguese herself, and Portuguese was her first language. She desired a perpetual peace with Portugal, with long lasting friendship and perhaps a dynastic union in the future, like the one with Aragon, and she was prepared to be generous with the defeated to obtain it. The treaty of Alcacovas, was concluded in September 4, 1479. It had four parts, all of them historically important. In the first part, Isabel and Fernando were recognized as rightful Kings of Castile and Leon, and Alfonso was recognized as rightful King of Portugal. In the second part, Juana renounced to her claim to the crown of Castile and was forced to expend the rest of her life in a convent in Portugal. In the third part, the future marriage between the infant Alfonso, son of Joao and the infant Isabel, daughter of the Catholic Kings was arranged. And in the fourth part, Castile accepted the claim of Portugal over Guinea, and the Atlantic coast of Africa, Madeira, Azores and Cape Verde, and any future discoveries South of the Canary Islands toward Guinea. Portugal accepted the claim of Castile over the Canary Islands. Alfonso has chosen to reject our generous offer, and has decided to maintain his claim to the crown of Castile. He also reclaims the Canary Islands, despite the Pope's sentence in our favour.
+
+	action_a = {
+		name = "ACTIONNAME142025A" #Damn Portuguese!
+		command = { type = stability value = -1 } #war continues
+		command = { type = relation which = POR value = -50 }
+		command = { type = addcore which = 796 } #Guinea claimed by Juan II and Isabel I for Castile
+		command = { type = treasury value = 50 } #Portuguese gold and slave routes attacked
+		command = { type = casusbelli which = POR value = 24 }
+	}
+}
+#-----------------------------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------------------------
+#The Union of Castile and Aragon Sequence
+#Idea and first design by Twoflower
+#Final layout and descriptions by Fodoron
+#Many thanks to Norrefeldt and the rest of the AGCEEP crew
+
+#The following events belong to a series formed by CAS events 142010-142016 and ARG events 111020-111026 designed to unite Castile and Aragon and form Spain. The series is initiated by ARG 111020 and 111021 events followed by CAS 142010, 142011 and 142012 events. ARG_111022 checks for a human player and is responsible for chosing between simmetrical paths formed by ARG_111023, CAS_142013 and CAS_142014 or alternatively CAS_142015, ARG_111024 and ARG_111025 to form SPA from CAS or ARG respectively. CAS_142016 and ARG_111026 are designed to form SPA in the absence of the other or if the other has decided to keep separate.
+
+#(1469) Isabel's choice of husband
+#by Twoflower and Fodoron
+event = {
+	id = 142010 #triggered by ARG_111020 A
+	random = no
+	country = CAS
+	name = "EVENTNAME142010" #Seek Dynastic Alliance to Aragon
+	desc = "EVENTHIST142010"
+	#-#When 17 years old Isabel agreed to the pacts of Guisando and became the princess of Asturias, she knew she was walking into a well-laid trap by Juan Pacheco, Marquis of Villena, Grand Master of the Order of Santiago, and true power behind weak Enrique. She was to become Queen, but not in Castile, as her marriage to Alfonso V of Portugal had already been arranged by Enrique without her consent. Her rival Juana, doubtful daughter of Enrique, was going to marry Alfonso's son and heir, and they would become King and Queen of Portugal and Castile at the deaths of Alfonso and Enrique, bypassing her dynastic rights recognized at Guisando. After Guisando, Isabel became a prisoner of Villena, waiting to be sent to Lisbon. But young Isabel was not the puppet that Villena expected. In the absence of Villena and with the excuse of arranging for the first anniversary funerals for his brother Alfonso, she managed to escape vigilance, and helped by the warrior Bishop Carrillo and his soldiers, made it to Valladolid, where she was safe from Villena. But it was a temporary solution. There was only one way to escape Villena's trap, and it was getting married with some prince that would support with armies her right to the crown of Castile. That reduced her long list of candidates to two, Charles the Duke of Guyenne, brother of Louis XI of France, and Fernando the King of Sicily and Prince of Aragon. Fernando was her age, spoke her language, and had already fathered two illegitimate children at 17, which labelled him as an expert, not a small thing after the problems originated by the impotence of Enrique. Fernando was also the next candidate to the throne of Castile after herself, so his choice eliminated another possible source of problems. It is probable that she could already envision a reunification of the Kingdoms of Hispania, as all the rest of her actions in her life pursued that goal. This decision was not exempt of problems, as Enrique would denounce the pacts of Guisando, reinstating his daughter Juana as heir, and the country would not be happy to see a renewal of the nobility wars.
+
+	action_a = {
+		name = "ACTIONNAME142010A" #I accept Fernando of Aragon as my husband
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 60 value = 5 } #Continued revolts
+		command = { type = sleepevent which = 142011 } #Wedding at Valladolid #CAS: Let's Consummate the Union
+		command = { type = dynastic which = ARG }
+		command = { type = relation which = POR value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME142010B" #I always wanted to learn French
+		command = { type = stability value = 1 }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = POR value = -50 }
+	}
+}
+#(1469) Wedding at Valladolid
+#by Twoflower and Fodoron
+event = {
+	id = 142011
+	random = no
+	country = CAS
+	name = "EVENTNAME142011" #Let's Consummate the Union
+	desc = "EVENTHIST142011"
+	#-#When Isabel met Fernando at Valladolid it was love at first sight. Fernando had faced many dangers to come to her rescue, crossing in disguise parts of Castile that were hostile to them. The wedding had to proceed quickly to prevent Enrique from interfering, but there remained a problem. Isabel and Fernando were both Trastamara, and being second cousins required a papal dispensation to legally marry. But Juan II of Aragon had not succeeded in obtaining it. Pope Paul II was in good terms with Enrique, and had already granted a papal dispensation for Isabel and Alfonso V of Portugal, also related, and refused to give a second dispensation for the same person. But nothing could stand in the way of love, and a papal dispensation was quickly forged and dated five years before, during the papacy of Pius II. A real dispensation will not be obtained until 1471 with Sixtus IV, and by then the couple already had a daughter. After the wedding night, the sheets were shown to the people to demonstrate that the virgin was no more, in the accepted custom of the time. This demonstration of the consummation of the marriage partially contributed to calm the fears that the unauthorised wedding would precipitate Castile back into the nobility strife that characterized the reign of Enrique IV the impotent. When Enrique denounced the pacts of Guisando, naming his doubtful daughter Juana the heir, Isabel made public a manifest of allegiance to the pacts and to Enrique for as long as he was alive. Enrique, as indecisive as always, did not take any measure, delaying the civil war until his dead. Meanwhile most of the nobility took sides with Juana, even those that had previously challenged her legitimacy to weaken Enrique, as now they opposed the strong monarchy represented by Isabel and Fernando.
+
+	date = { day = 19 month = october year = 1469 }
+
+	action_a = {
+		name = "ACTIONNAME142011A" #Let's unite Castile and Aragon in bed and throne
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 60 value = 3 } #nobility fights in Castile return
+		command = { type = dynastic which = ARG }
+	}
+	action_b = {
+		name = "ACTIONNAME142011B" #I said I preferred the Duke of Guyenne
+		command = { type = stability value = 1 }
+		command = { type = relation which = FRA value = 25 }
+		command = { type = trigger which = 111010 } #ARG: Prince Fernando commands the armies of Aragon
+		command = { type = sleepevent which = 142012 } #CAS: Isabel and Fernando Kings of Castile
+	}
+}
+#(1474) Isabel and Fernando Kings of Castile
+#by Twoflower and Fodoron
+event = {
+	id = 142012
+	random = no
+	country = CAS
+	name = "EVENTNAME142012" #Isabel and Fernando Kings of Castile
+	desc = "EVENTHIST142012"
+	#-#When Enrique dies, Isabel proclaims herself Queen of Castile the next day, basing her right in the pacts of Guisando. Fernando, back in Aragon, is upset, as having himself a right to the throne, he does not want to be a mere consort. A month later they reach an agreement, they will be both Queen and King of Castile, with the same powers but with Isabel taking precedence and keeping the right to the crown in exclusivity. But Isabel proclamation triggers the delayed civil war, as the nobles rally in support of Juana. Isabel has not been idle those five years, and she has the support of the Basques and Asturians, many cities, the powerful Mendoza family and other supporters of a strong monarchy. The conflict becomes international because France and Portugal support Juana, now married to Alfonso V of Portugal, and Aragon supports Isabel and Fernando. While the Basques keep the French at bay, Fernando takes command of Isabel armies and decisively defeats the Portuguese at Toro in 1476 and then proceeds to suppress the rebel nobles. But Isabel, whose first language was Portuguese from her mother, is very generous with the defeated Alfonso of Portugal in the treaty of Alcacovas in 1479. She has in mind the union of all the Kingdoms in Spain and wants to keep good relations. She also forgives the nobles. Only one person will not find any forgiveness from her. Juana, daughter of an adulterous Queen married to an impotent King, is called -la Beltraneja- for being the alleged daughter of Don Beltran de la Cueva. Given that her marriage to her uncle Alfonso has been declared null by the Pope, Isabel will request and obtain from Alfonso her confinement in a convent. Since her remains are lost, we will never know for sure through DNA testing if she was the daughter of Enrique or not.
+
+	date = { day = 13 month = december year = 1474 }
+
+	action_a = {
+		name = "ACTIONNAME142012A" #Isabel and Fernando will rule Castile jointly from now on
+		command = { type = stability value = 2 }
+		command = { type = dynastic which = ARG }
+		command = { type = relation which = ARG value = 150 }
+		command = { type = wakeleader which = 029801 } #Fernando (CAS)
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = aristocracy value = -1 }
+	}
+}
+#(1479-1490) Isabel and Fernando Kings of Aragon
+#by Twoflower and Fodoron
+event = {
+	id = 142013 #triggered by ARG_111023
+	random = no
+	country = CAS
+	name = "EVENTNAME142013" #Isabel and Fernando Kings of Aragon
+	desc = "EVENTHIST142013"
+	#-#After the death of his father Juan, Fernando and his wife Isabel became also Kings of Aragon with the same agreement than for Castile, they will both have the same powers, but Fernando will have precedence and exclusivity over the crown. Europe was fascinated by the Iberian experiment, where more than the marriage of the Kings, it appeared that the countries were marrying in equal terms. The new Kings soon showed the power of a strong monarchy, administering justice everywhere, subjugating the rebellious nobles, reorganizing the military orders, and introducing church reforms. The problems of instability, anarchy and banditry that have plagued Castile and Aragon were solved. The city rights were restored and the high nobility put under control and balanced by the increase in numbers of the lower nobility.
+
+	action_a = {
+		name = "ACTIONNAME142013A" #Isabel and Fernando will rule Aragon jointly from now on
+		command = { type = addcore which = 427 } #Gerona
+		command = { type = addcore which = 429 } #Catalonia
+		command = { type = addcore which = 430 } #Aragon
+		command = { type = addcore which = 437 } #Valencia
+		command = { type = addcore which = 821 } #The Baleares
+		command = { type = addcore which = 395 } #Messina
+		command = { type = addcore which = 396 } #Sicily
+		command = { type = addcore which = 397 } #Sardinia
+		command = { type = addcore which = 426 } #Roussillon
+		command = { type = addcore which = 819 } #Malta
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = add_countryculture which = italian }
+		command = { type = add_countryculture which = amazonian } #Catalan
+		command = { type = add_countryculture which = maltese }
+		command = { type = inherit which = ARG }
+		command = { type = stability value = 2 }
+	}
+}
+#(1479-1490) The formation of Spain by Castile
+#by Twoflower and Fodoron
+event = {
+	id = 142014
+	trigger = {
+		event = 142013 #CAS: Isabel and Fernando Kings of Aragon
+		OR = {
+			atwar = no
+			year = 1490
+		}
+		NOT = { event = 111025 } #ARG forms Spain
+		NOT = { exists = SPA }
+	}
+	random = no
+	country = CAS
+	name = "EVENTNAME142014" #Regnum Hispaniorum
+	desc = "EVENTHIST142014"
+	#-#For centuries the Christians in the Iberian Peninsula have dreamed of restoring the Visigothic Kingdom that was destroyed by the Muslim invasion. Many Kings have tried to achieve this union of Christians by force of arms, and have carried the title of Hispaniorum Imperator. Between them Sancho III of Navarre and Alfonso VII of Castile nearly achieved unity. But it was not by force that unity could be imposed, as a strong sense of freedom had been developed by the Iberians in their long struggle against Islam, manifested in an equally long struggle against their Christian neighbors. But the peaceful union under Isabel and Fernando will finally achieve what force could not. Under the fierce independence there was a common layer that Fernando and Isabel will identify and use to unite the new country. It was religion and the concept of blood purity. Now, with the country at peace it was a question of prioritizing the international policies of the new powerful entity. First Granada, Castile's biggest dream, as a crusade was useful to unite the peasants and nobles of the country under the same banner. It was a tremendous task, as the Moorish resistance had concentrated in Granada's roughest terrain and 400 years of defensive works had made it a bastion that will require ten years of continuous assaults. It was soon clear to Europeans that a new political entity had been born, and both Iberians and foreigners started referring to it not as Castile and Aragon, but as Spain.
+
+	date = { day = 16 month = january year = 1479 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1490 }
+
+	action_a = {
+		name = "ACTIONNAME142014A" #A new country is born
+		command = { type = flagname which = "" }
+		command = { type = country which = SPA }
+		command = { type = domestic which = aristocracy value = -1 }
+		#command = { type = AI which = Spa_time1479.ai } #War of granada
+		#command = { type = sleepevent which = 990100 } #Spanish bpai up to Dec. 1479 #SPA_AI_EVENT
+		#command = { type = sleepevent which = 990101 } #Spanish bpai 1480-1490 #SPA_AI_EVENT
+	}
+}
+#(1479-1490) Castile ready to be inherited
+#by Twoflower and Fodoron
+event = {
+	id = 142015
+	trigger = {
+		event = 111022 #ARG: The end of the Castilian civil war
+		OR = {
+			atwar = no
+			year = 1490
+		}
+	}
+	random = no
+	country = CAS
+	name = "EVENTNAME142015" #Castile and Aragon are One
+	desc = "EVENTHIST142015"
+	#-#Hmm... you are not supposed to be reading this, as Castile is about to disappear in the formation of Spain. If you believe a bug caused the undue inheritance of Castile, report it at the AGCEEP forum at Paradox.
+
+	date = { day = 16 month = january year = 1479 }
+	offset = 60
+	deathdate = { day = 1 month = january year = 1490 }
+
+	action_a = {
+		name = "ACTIONNAME142015A" #So be it
+		command = { type = trigger which = 111024 } #ARG: Fernando and Isabel Kings of Aragon
+	}
+}
+#(1479-1491) Orphan Kingdom of Castile
+#by Twoflower and Fodoron
+event = {
+	id = 142016
+	trigger = {
+		OR = {
+			NOT = { #ARG missing but not by inheritance
+				exists = ARG
+				event = 142013
+			}
+			NOT = { event = 142010 } #CAS: Isabel's choice of husband (ARG refused union)
+		}
+		NOT = { exists = SPA }
+	}
+	random = no
+	country = CAS
+	name = "EVENTNAME111026" #The Forging of the Spanish Identity
+	desc = "EVENTHIST142016"
+	#-#For centuries the Christians in the Iberian peninsula have dreamed of restoring the Visigothic Kingdom that was destroyed by the Muslim invasion. Many Kings have tried to achieve this union of Christians by force of arms, and have carried the title of Hispaniorum Imperator. Between them Sancho III of Navarre and Alfonso VII of Castile were close to achieve unity. But it was not by force that unity could be imposed, as a strong sense of freedom have been developed by the Iberians in their long struggle against Islam, manifested in an equally long struggle against their Christian neighbors. As the Kingdom of Aragon cannot claim the title of Hispaniorum Imperator, Castile has no big opponent to resuscitate the Kingdom of Spain.
+
+	date = { day = 20 month = january year = 1479 }
+	offset = 100
+	deathdate = { day = 29 month = december year = 1491 }
+
+	action_a = {
+		name = "ACTIONNAME142016A" #Yes, Castile shall become Spain
+		command = { type = addcore which = 427 } #Gerona
+		command = { type = addcore which = 429 } #Catalonia
+		command = { type = addcore which = 430 } #Aragon
+		command = { type = addcore which = 437 } #Valencia
+		command = { type = addcore which = 821 } #The Baleares
+		command = { type = addcore which = 428 } #Navarra
+		command = { type = flagname which = "" }
+		command = { type = country which = SPA }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = trigger which = 285278 } #SPA: The Forging of the Spanish Identity
+		#command = { type = AI which = Spa_time1479.ai } #War of granada
+		#command = { type = sleepevent which = 990100 } #Spanish bpai up to Dec. 1479 #SPA_AI_EVENT
+		#command = { type = sleepevent which = 990101 } #Spanish bpai 1480-1490 #SPA_AI_EVENT
+	}
+	action_b = {
+		name = "ACTIONNAME142016B" #No, Castile is good enough
+		command = { type = stability value = 1 }
+	}
+}
+#End of The Union of Castile and Aragon Sequence
+#-----------------------------------------------------------------------------------------------
+
+#(1481-1491) The Spanish Identity - Ahistorical
+event = {
+	id = 142029 #triggered by SPA_285286
+	random = no
+	country = CAS
+	name = "EVENTNAME142029" #The Spanish Identity
+	desc = "EVENTHIST142029"
+	#-#Spain is the Kingdom of Castile...
+
+	action_a = {
+		name = "OK"
+		command = { type = inherit which = SPA }
+	}
+}
+
+#(1485-1488) Wars of Granada II (First in Granada folder)
+#modified by Garbon and further by Fodoron
+#Spanish event also for Castile in case formation of Spain is delayed by war
+event = {
+	id = 142017
+	trigger = {
+		exists = GRA
+		atwar = no
+		NOT = { event = 7124 } #SPA: Second Phase of the War of Granada
+	}
+	random = no
+	country = CAS
+	name = "EVENTNAME7124" #Second Phase of the War of Granada
+	desc = "EVENTHIST7124"
+	#-#The war of Granada started as a frontier war with a Muslim attack on Zahara in December 1481, that was responded by the Marquis of Cadiz in February 1482 with the conquest of Alhama, deep inside Muslim terrritory. The Kings gave orders of holding Alhama at all cost, as the first step in the conquest of the Nasrid emirate. Alhama held thanks to the help of the Duke of Medina-Sidonia, personal enemy of the Marquis of Cadiz, a clear demonstration that the war was going to unite the Kingdoms. At the beginning of the war, the Christians were not prepared for the offensive, and suffered several setbacks, but Granada was in a civil war, divided in two factions fighting each other and against the Christians, and after the battle of Lucena, the leader of one faction, Boabdil, was captured. Fernando decided to realease him on terms to keep the Muslims divided. Fernando reorganized the army, introducing artillery in great amounts, as a new weapon to conquer the Muslim strongholds in days instead of months. Through an extraordinary effort during the campaigns of 1484-86 the first phase of the war was concluded with the conquest of the Western part of the emirate of Granada, capturing Boabdil a second time. The pact made with him for his release included his renounciation to the parts of the emirate in the hands of his rival and uncle, Emir Muhammad XIII al-Zagal, and the surrender of Granada once it became under his control in exchange for a title and land states. The second phase of the war of Granada was then directed against the parts controlled by al-Zagal, the coast and the Eastern part of the emirate. After the fall of Baza and Almeria in 1489, Al-Zagal, defeated, abdicated, and Boabdil became in control of Granada. According to the treaty the war was over. But Boabdil refused to comply, forcing a third phase, the siege of Granada, that was stablished in 1491. The artillery was not used to preserve the city, and Granada will finally surrender in January 1492. 780 years of Muslim presence in the peninsula had come to an end.
+
+	date = { day = 1 month = january year = 1485 }
+	offset = 120
+	deathdate = { day = 1 month = january year = 1488 }
+
+	action_a = {
+		name = "ACTIONNAME7124A" #Expell the Muslims from our motherland
+		command = { type = inf which = -1 value = 5000 } #European crusaders
+		command = { type = cav which = -1 value = 2000 } #European crusaders
+		command = { type = relation which = GRA value = -200 }
+		command = { type = war which = GRA }
+		command = { type = stability value = 5 } #compensates for breaking truce
+		command = { type = sleepevent which = 7124 } #SPA: Second Phase of the War of Granada
+	}
+	action_b = {
+		name = "ACTIONNAME7124B" #Seek a peaceful alliance of civilizations
+		command = { type = relation which = GRA value = 25 }
+		command = { type = stability value = -1 }
+		command = { type = sleepevent which = 7124 } #SPA: Second Phase of the War of Granada
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Ahistorical: if Castile survived
+#-----------------------------------------------------------------------------------------------
+
+#(1596-1603) Plague
+event = {
+	id = 142027
+	random = no
+	country = CAS
+	name = "EVENTNAME285013" #Plague
+	desc = "EVENTHIST285013"
+	#-#The reoccuring epidemics that struck Castile between 1596 and 1602 greatly disrupted civic life as citizens fled to the countryside. While unintentionally helpful the toll was fearful regardless. Over 10 percent of the population died during these epidemics.
+
+	date = { day = 1 month = january year = 1596 }
+	offset = 2500
+	deathdate = { day = 1 month = january year = 1603 }
+
+	action_a = {
+		name = "OH_NO"
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1639-1645) The Iberian Revolts
+event = {
+	id = 142028
+	trigger = {
+		vassal = { country = SPA country = CAS }
+		OR = {
+			event = 260161 #POR: War of Acclamation -I-
+			event = 260162 #POR: War of Acclamation -II-
+			event = 260163 #POR: War of Acclamation -III-
+			event = 285295 #SPA: Unrest in Catalonia
+		}
+	}
+	random = no
+	country = CAS
+	name = "EVENTNAME111061" #The Iberian Revolts
+	desc = "EVENTHIST111061"
+	#-#We have been outraged by Olivares's demand to sacrifice our ancient rights and privileges for a Spanish empire...
+
+	date = { day = 1 month = january year = 1639 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1645 }
+
+	action_a = {
+		name = "OK"
+		command = { type = breakvassal which = SPA }
+		command = { type = relation which = SPA value = -200 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 142030

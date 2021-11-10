@@ -1,0 +1,208 @@
+#Cochin (COI)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1498-1658) Fight for freedom
+event = {
+	id = 355002 #triggered by ProvinceSpec_338445 B / Provincespec_338449 A
+	random = no
+	country = COI
+	name = "EVENTNAME355002" #Fight for freedom
+	desc = "EVENTHIST355002"
+	#-#Aided by the Portuguese the Raja of Cochin mobilized his forces to defend his city.
+
+	action_a = {
+		name = "ACTIONNAME355002A" #We will fight for our freedom!
+		command = { type = relation which = POR value = 100 }
+		command = { type = inf which = 573 value = 5000 } #Cochin
+		command = { type = trigger which = 260102 } #POR: Fight over Cochin
+	}
+}
+#(1498-1658) Freedom
+event = {
+	id = 355004 #triggered by ProvinceSpec_338445 A / Provincespec_338449 B
+	random = no
+	country = COI
+	name = "EVENTNAME355004" #Freedom
+	desc = "EVENTHIST355004"
+	#-#The Raja of Cochin and his citizens exulted in their new-found freedom.
+
+	action_a = {
+		name = "ACTIONNAME355004A" #Free at last!
+		command = { type = relation which = POR value = 100 }
+		command = { type = trigger which = 260101 } #POR: The infidel yield to our demands
+	}
+}
+
+#(1502) Da Gama's Proposition
+event = {
+	id = 355000 #triggered by FAT_364000
+	random = no
+	country = COI
+	name = "EVENTNAME355000" #Da Gama's Proposition
+	desc = "EVENTHIST355000"
+	#-#After bombarding the city of Calicut, Vasco da Gama seeks refuge with the Raja of Cochin. Seeing an opportunity to break away from the onerous grasp of Calicut, the Raja shelters Da Gama and supports his actions.
+
+	action_a = {
+		name = "ACTIONNAME355000A" #Support Da Gama
+		command = { type = breakvassal which = FAT }
+		command = { type = relation which = FAT value = -100 }
+		command = { type = relation which = POR value = 100 }
+		command = { type = trigger which = 260220 } #POR: Quarrel in Malabar
+	}
+	action_b = {
+		name = "ACTIONNAME355000B" #Support the Samorin
+		command = { type = relation which = FAT value = 100 }
+		command = { type = relation which = POR value = -100 }
+	}
+}
+
+#(1503-1523) Samoothiri Invasion
+event = {
+	id = 355001 #triggered by FAT_364001 A
+	random = no
+	country = COI
+	name = "EVENTNAME355001" #Samoothiri Invasion
+	desc = "EVENTHIST355001"
+	#-#Having abandoned Calicut in favor of Portugal, the Samoothiri army invades Cochin to resubjugate the wayward principality.
+
+	action_a = {
+		name = "ACTIONNAME355001A" #We were almost free...
+		command = { type = breakvassal which = POR }
+		command = { type = relation which = POR value = -100 }
+		command = { type = relation which = FAT value = -100 }
+		command = { type = sleepevent which = 355005 } #COI: Invasion
+	}
+}
+#(1503-1523) Invasion
+event = {
+	id = 355005
+	trigger = {
+		OR = {
+			event = 338445 #ProvinceSpec*573: Portuguese aid the rebellious Raja of Cochin (Muslim or Buddhist)
+			event = 338449 #ProvinceSpec*573: Portuguese aid the rebellious Raja of Cochin (Hindu)
+		}
+		NOT = {
+			event = 364001 #FAT: The Treachery of Cochin
+		}
+		AND = {
+			atwar = yes
+			NOT = {
+				war = { country = POR country = COI }
+			}
+		}
+		exists = POR
+	}
+	random = no
+	country = COI
+	name = "EVENTNAME355005" #Invasion
+	desc = "EVENTHIST355005"
+	#-#Having abandoned its proper overlord in favor of Portugal, Cochin is attacked in an attempt to resubjugate the wayward principality.
+
+	date = { day = 1 month = march year = 1503 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1523 } #just before Vasco da Gama's death
+
+	action_a = {
+		name = "ACTIONNAME355001A" #We were almost free...
+		command = { type = stability value = -2 }
+		command = { type = sleepevent which = 364001 } #FAT: The Treachery of Cochin
+	}
+}
+
+#(1504-1662) Appeal to Portugal -I-
+event = {
+	id = 355003
+	trigger = {
+		event = 355001 #COI: Samoothiri Invasion
+		exists = POR
+	}
+	random = no
+	country = COI
+	name = "EVENTNAME355003" #Appeal to Portugal
+	desc = "EVENTHIST355003"
+	#-#Deprived of his office by his irate overlords, Cochin's deposed Raja turns to his erstwhile Portuguese friends for aid.
+
+	date = { day = 1 month = january year = 1504 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1662 }
+
+	action_a = {
+		name = "ACTIONNAME355003A" #Seek help (End Game)
+		command = { type = trigger which = 260221 } #POR: Cochin Asks for Assistance
+		command = { type = sleepevent which = 355006 } #COI: Appeal to Portugal -II-
+		command = { type = sleepevent which = 355007 } #COI: Appeal to Portugal -III-
+	}
+	action_b = {
+		name = "ACTIONNAME355003B" #We will stand on our own
+		command = { type = casusbelli which = FAT value = 60 }
+		command = { type = relation which = POR value = -100 }
+		command = { type = sleepevent which = 355006 } #COI: Appeal to Portugal -II-
+		command = { type = sleepevent which = 355007 } #COI: Appeal to Portugal -III-
+	}
+}
+#(1504-1662) Appeal to Portugal -II-
+event = {
+	id = 355006
+	trigger = {
+		event = 355005 #COI: Invasion
+		exists = POR
+	}
+	random = no
+	country = COI
+	name = "EVENTNAME355003" #Appeal to Portugal
+	desc = "EVENTHIST355006"
+	#-#His city burnt to the ground by his irate overlords, Cochin's Raja turns to his erstwhile Portuguese friends for aid.
+
+	date = { day = 1 month = january year = 1504 }
+	offset = 180
+	deathdate = { day = 1 month = january year = 1662 }
+
+	action_a = {
+		name = "ACTIONNAME355003A" #Seek help (End Game)
+		command = { type = trigger which = 260221 } #POR: Cochin Asks for Assistance
+		command = { type = sleepevent which = 355003 } #COI: Appeal to Portugal -I-
+		command = { type = sleepevent which = 355007 } #COI: Appeal to Portugal -III-
+	}
+	action_b = {
+		name = "ACTIONNAME355003B" #We will stand on our own
+		command = { type = relation which = POR value = -100 }
+		command = { type = sleepevent which = 355003 } #COI: Appeal to Portugal -I-
+		command = { type = sleepevent which = 355007 } #COI: Appeal to Portugal -III-
+	}
+}
+#(1504-1662) Appeal to Portugal -III-
+event = {
+	id = 355007 
+	trigger = {
+		event = 18012 #POR: Commercial Conflict in the Indian Ocean
+		NOT = { event = 364001 } #FAT: The Treachery of Cochin 
+		exists = POR
+	}
+	random = no
+	country = COI
+	name = "EVENTNAME355003" #Appeal to Portugal
+	desc = "EVENTHIST355007"
+	#-#After bombarding the city of Calicut, Vasco da Gama sought refuge with the Raja of Cochin. Seeing an opportunity to gain protection from his enemies, the Raja sheltered Da Gama and supported his actions.
+
+	date = { day = 1 month = january year = 1504 }
+	offset = 180
+	deathdate = { day = 1 month = january year = 1662 }
+
+	action_a = {
+		name = "ACTIONNAME355007A" #Support Da Gama (End Game)
+		command = { type = trigger which = 260221 } #POR: Cochin Asks for Assistance
+		command = { type = sleepevent which = 355003 } #COI: Appeal to Portugal -I-
+		command = { type = sleepevent which = 355006 } #COI: Appeal to Portugal -II-
+	}
+	action_b = {
+		name = "ACTIONNAME355000B" #Support the Samorin
+		command = { type = relation which = POR value = -100 }
+		command = { type = sleepevent which = 355003 } #COI: Appeal to Portugal -I-
+		command = { type = sleepevent which = 355006 } #COI: Appeal to Portugal -II-
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 355008

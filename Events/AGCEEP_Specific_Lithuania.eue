@@ -1,0 +1,2380 @@
+#Lithuania (LIT)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1569) Lithuania forms Russia
+event = {
+	id = 210012
+	trigger = {
+		atwar = no
+		religion = orthodox
+		NOT = {
+			exists = MOS
+			exists = RUS
+		}
+		OR = {
+			NOT = { exists = NVG }
+			vassal = { country = LIT country = NVG }
+		}
+		OR = {
+			NOT = { exists = PSK }
+			vassal = { country = LIT country = PSK }
+		}
+		OR = {
+			NOT = { exists = TVE }
+			vassal = { country = LIT country = TVE }
+		}
+		OR = {
+			NOT = { exists = RYA }
+			vassal = { country = LIT country = RYA }
+		}
+		owned = { province = 279 data = -1 } #Tula
+		control = { province = 279 data = -1 } #Tula
+		owned = { province = 448 data = -1 } #Ryazan
+		owned = { province = 270 data = -1 } #Moscow
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME210012" #Russia is conquered
+	desc = "EVENTHIST210012"
+	#-#Through brilliant military campaigns, the orthodox grand dukes of Lithuania managed to unite or subdue all the princedoms in Russia. They could now legalize their claims by becoming tsars and moving their residence to Moscow, but that would alienate their western subjects strong enough for many of them to shift allegiance and surrender to the King of Poland.
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 180
+	deathdate = { day = 29 month = december year = 1569 }
+
+	action_a = {
+		name = "ACTIONNAME210012A" #We are the Russian Empire
+		command = { type = stability value = -2 }
+		command = { type = capital which = 279 } #Tula
+		command = { type = flagname which = "" }
+		command = { type = country which = RUS }
+		command = { type = addcore which = 268 } #Vologda
+		command = { type = addcore which = 270 } #Moscow
+		command = { type = addcore which = 271 } #Vladimir
+		command = { type = addcore which = 272 } #Nizhgorod
+		command = { type = addcore which = 274 } #Novgorod
+		command = { type = addcore which = 277 } #Pskov
+		command = { type = addcore which = 278 } #Tver
+		command = { type = addcore which = 279 } #Tula
+		command = { type = addcore which = 448 } #Ryazan
+		command = { type = addcore which = 449 } #Vorones
+		command = { type = add_countryculture which = russian }
+		command = { type = remove_countryculture which = baltic }
+		command = { type = remove_countryculture which = ruthenian }
+		command = { type = add_countryculture which = ruthenian }
+		command = { type = independence which = POL } #restoring Poland...
+		command = { type = trigger which = 271008 } #RUS: Revolt in western provinces
+		command = { type = sleepevent which = 40019 } #RUS: Russian claims on Lithuania
+	}
+	action_b = {
+		name = "ACTIONNAME210012B" #Let us remain Lithuanians
+		command = { type = stability value = 2 }
+	}
+}
+
+#(1419-1425) Centralization reforms of Vytautas
+#Vilkouak-AGC
+event = {
+	id = 210003
+	random = no
+	country = LIT
+	name = "EVENTNAME210003" #Centralization reforms of Vytautas
+	desc = "EVENTHIST210003"
+	#-#After a heavy defeat upon Kalka in 1399, Vytautas temporarily gave up his plans for the crown and, as ordered by Jagiello, started to centralize Lithuania. Before that, the Grand Duchy was a conglomerate of several huge semidependent princedoms and an even greater number of small ones. Vytautas united almost all of them, assuring that Lithuania would not be annexed by Poland step by step.
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 300
+	deathdate = { day = 1 month = january year = 1425 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = domestic which = ARISTOCRACY value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME210003B" #I have no time for this
+		command = { type = domestic which = ARISTOCRACY value = 2 }
+		command = { type = domestic which = SERFDOM value = 2 }
+	}
+}
+
+#(1426-1429) Preparations of Vytautas - I
+#Vilkouak-AGC
+event = {
+	id = 210004
+	trigger = {
+		exists = PSK
+		NOT = { relation = { country = PSK data = 75 } }
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME210004" #Preparations of Vytautas
+	desc = "EVENTHIST210004"
+	#-#In 1425 Wassilij I, ruler of Muscovy, fostered his young son Vassilij II with his father-in-law Vytautas, and soon afterwards died. Vytautas was still determined to win a crown, but needed a visible success which could be proof of his strong position in eastern Europe and thus strengthen his claims. His first objective was Pskov. In 1426 he invaded the republic and forced it to pay tribute. In 1427 he made the borderland between Lithuania and Muscovy, known as the Wierchovian princedoms, subordinate to himself. It was composed of many small regions, which maintained their independence by maintaining tensions between Lithuania and Muscovy. An alternative route for Vytautas may have been to pay for Sigismund's help in his bid for the crown.
+
+	date = { day = 1 month = january year = 1426 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1429 }
+
+	action_a = {
+		name = "ACTIONNAME210004A" #Demand tribute
+		command = { type = relation which = PSK value = -50 }
+		command = { type = trigger which = 264000 } #PSK: Lithuanian demands
+	}
+	action_b = {
+		name = "ACTIONNAME210004B" #Maybe I should choose a more diplomatic way
+		command = { type = treasury value = -50 }
+		command = { type = relation which = HUN value = 25 }
+	}
+}
+#(1426-1429) Response of Pskov - I
+#Vilkouak-AGC
+event = {
+	id = 210008 #triggered by PSK_264000 A
+	random = no
+	country = LIT
+	name = "EVENTNAME210008" #Response of Pskov
+	desc = "EVENTHIST210008"
+	#-#Threatened by military force, Pskov recognized the dominant position of Lithuania.
+
+	action_a = {
+		name = "GOOD"
+		command = { type = stability value = 1 }
+		command = { type = treasury value = 50 }
+	}
+}
+#(1426-1429) Response of Pskov - II
+#Vilkouak-AGC
+event = {
+	id = 210009 #triggered by PSK_264000 B
+	random = no
+	country = LIT
+	name = "EVENTNAME210009" #Response of Pskov
+	desc = "EVENTHIST210009"
+	#-#Even threatened by military force, Pskov refused to recognize the dominant position of Lithuania.
+
+	action_a = {
+		name = "ACTIONNAME210009A" #Prepare for war
+		command = { type = stability value = -1 }
+		command = { type = INF which = -1 value = 5000 }
+		command = { type = relation which = PSK value = -50 }
+		command = { type = casusbelli which = PSK value = 48 }
+	}
+	action_b = {
+		name = "ACTIONNAME210009B" #Let the matter fall
+		command = { type = relation which = PSK value = -25 }
+	}
+}
+
+#(1426-1429) Preparations of Vytautas - II
+#Vilkouak-AGC
+event = {
+	id = 210005
+	trigger = {
+		exists = NVG
+		NOT = { relation = { country = NVG data = 75 } }
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME210005" #Preparations of Vytautas
+	desc = "EVENTHIST210005"
+	#-#After subduing Pskov, Vytautas turned his attention to Novgorod. In 1428 he invaded Novgorod and forced it to pay a very high tribute (11,000 rubles). Had Vytautas not fought on in the north, his diplomatic contacts with Sigismund Luxembourg could started earlier.
+
+	date = { day = 1 month = august year = 1426 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1429 }
+
+	action_a = {
+		name = "ACTIONNAME210005A" #Demand tribute
+		command = { type = relation which = NVG value = -50 }
+		command = { type = trigger which = 245000 } #NVG: Lithuanian demands
+	}
+	action_b = {
+		name = "ACTIONNAME210005B" #Maybe I should choose a more diplomatic way
+		command = { type = treasury value = -50 }
+		command = { type = relation which = HUN value = 25 }
+	}
+}
+#(1426-1429) Response of Novgorod I
+#Vilkouak-AGC
+event = {
+	id = 210010 #triggered by NVG_245000 A
+	random = no
+	country = LIT
+	name = "EVENTNAME210010" #Response of Novgorod
+	desc = "EVENTHIST210010"
+	#-#Threatened by military force, Novgorod recognized the dominant position of Lithuania.
+
+	action_a = {
+		name = "GOOD"
+		command = { type = stability value = 1 }
+		command = { type = treasury value = 100 }
+	}
+}
+#(1426-1429) Response of Novgorod II
+#Vilkouak-AGC
+event = {
+	id = 210011 #triggered by NVG_245000 B
+	random = no
+	country = LIT
+	name = "EVENTNAME210011" #Response of Novgorod
+	desc = "EVENTHIST210011"
+	#-#Even threatened by military force, Novgorod refused to recognize the dominant position of Lithuania.
+
+	action_a = {
+		name = "ACTIONNAME210011A" #Prepare for war
+		command = { type = stability value = -1 }
+		command = { type = INF which = -1 value = 5000 }
+		command = { type = CAV which = -1 value = 5000 }
+		command = { type = relation which = NVG value = -50 }
+		command = { type = casusbelli which = NVG value = 48 }
+	}
+	action_b = {
+		name = "ACTIONNAME210011B" #Let the matter fall
+		command = { type = relation which = NVG value = -25 }
+	}
+}
+
+#(1427-1430) Agreement with Tver
+#EEP-Solmyr
+event = {
+	id = 40095
+	trigger = {
+		event = 233003
+		exists = TVE
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME40095" #Agreement with Tver
+	desc = "EVENTHIST40095"
+	#-#In 1427, during the instability following the death of Vasily I and struggle between Yury and Vasily II, Grand Duke Vytautas offered prince Boris of Tver an agreement of friendship and aid. Boris promised to help and stand by Vytautas in all his actions, which he did in 1428 by sending his troops to help Lithuanians in their war against Novgorod. Vytautas, in turn, promised to defend Tver against common enemies, and not to interfere in internal affairs of Tver. The agreement became pretty much useless after the death of Vytautas and an onset of a civil war in Lithuania.
+
+	date = { day = 1 month = january year = 1427 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1430 }
+
+	action_a = {
+		name = "ACTIONNAME40095A" #Offer agreement
+		command = { type = relation which = MOS value = -25 }
+	}
+	action_b = {
+		name = "ACTIONNAME40095B" #Don't offer
+		command = { type = relation which = MOS value = 5 }
+		command = { type = sleepevent which = 40091 } #TVE: Agreement with Lithuania
+		command = { type = sleepevent which = 210025 } #LIT: Tver accepts the agreement
+		command = { type = sleepevent which = 210027 } #LIT: Consequences of the agreement with Tver
+	}
+}
+
+#(1427-1430) Consequences of the agreement with Tver
+event = {
+	id = 210025
+	trigger = {
+		event = 40091 #TVE: #Agreement with Lithuania
+		NOT = { alliance = { country = TVE country = LIT } }
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME210025" #Tver accepts the agreement
+	desc = "EVENTHIST210025"
+	#-#After signing the agreement with Lithuania, Principalitry of Tver was obliged to leave all other alliances and formally join the alliance with its new partner.
+
+	date = { day = 1 month = january year = 1427 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1430 }
+
+	action_a = {
+		name = "OK"
+		command = { type = vassal which = TVE } #break other alliances
+	}
+}
+event = {
+	id = 210027
+	trigger = {
+		event = 210025 #LIT: Tver accepts the agreement
+		NOT = { alliance = { country = TVE country = LIT } }
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME210027" #Consequences of the agreement with Tver
+	desc = "EVENTHIST210025"
+	#-#After signing the agreement with Lithuania, Principalitry of Tver was obliged to leave all other alliances and formally join the alliance with its new partner.
+
+	date = { day = 1 month = january year = 1427 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1430 }
+
+	action_a = {
+		name = "OK"
+		command = { type = alliance which = TVE } #join Lithunia's alliance
+		command = { type = trigger which = 302000 } #TVE: Consequences of the agreement with Lithuania
+	}
+}
+
+#(1427-1430) Agreement with Ryazan
+#EEP-Solmyr
+event = {
+	id = 40096
+	trigger = {
+		event = 233003
+		exists = RYA
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME40096" #Agreement with Ryazan
+	desc = "EVENTHIST40096"
+	#-#In 1427, during the instability following the death of Vasily I and struggle between Yury and Vasily II, Grand Duke Vytautas offered prince Ivan of Ryazan an agreement of friendship and aid. Ivan promised to help and stand by Vytautas in all his actions, remaining loyal at the same time to Vasily II of Muscovy in matters not involving both Vasily and Vytautas. Vytautas, in turn, promised to defend Tver against common enemies, and not to interfere in internal affairs of Ryazan. The agreement became pretty much useless after the death of Vytautas and an onset of a civil war in Lithuania.
+
+	date = { day = 1 month = january year = 1427 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1430 }
+
+	action_a = {
+		name = "ACTIONNAME40096A" #Offer agreement
+		command = { type = relation which = MOS value = -25 }
+	}
+	action_b = {
+		name = "ACTIONNAME40096B" #Don't offer
+		command = { type = relation which = MOS value = 5 }
+		command = { type = sleepevent which = 40097 } #RYA: Agreement with Lithuania
+		command = { type = sleepevent which = 210026 } #LIT: Ryazan accepts the agreement
+		command = { type = sleepevent which = 210028 } #LIT: Consequences of the agreement with Ryazan
+	}
+}
+
+#(1427-1430) Consequences of the agreement with Ryazan
+event = {
+	id = 210026
+	trigger = {
+		event = 40097 #RYA: Agreement with Lithuania
+		NOT = { alliance = { country = RYA country = LIT } }
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME210026" #Ryazan accepts the agreement
+	desc = "EVENTHIST210026"
+	#-#After signing the agreement with Lithuania, Principalitry of Ryazan was obliged to leave all other alliances and formally join the alliance with its new partner.
+
+	date = { day = 1 month = january year = 1427 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1430 }
+
+	action_a = {
+		name = "OK"
+		command = { type = vassal which = RYA } #break other alliances
+	}
+}
+event = {
+	id = 210028
+	trigger = {
+		event = 210026 #LIT: Ryazan accepts the agreement
+		NOT = { alliance = { country = RYA country = LIT } }
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME210028" #Consequences of the agreement with Tver
+	desc = "EVENTHIST210026"
+	#-#After signing the agreement with Lithuania, Principalitry of Ryazan was obliged to leave all other alliances and formally join the alliance with its new partner.
+
+	date = { day = 1 month = january year = 1427 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1430 }
+
+	action_a = {
+		name = "OK"
+		command = { type = alliance which = RYA } #join Lithunia's alliance
+		command = { type = trigger which = 272000 } #TVE: Consequences of the agreement with Lithuania
+	}
+}
+
+#(1428-1430) The Statute of Lithuania
+event = {
+	id = 3445
+	random = no
+	country = LIT
+	name = "EVENTNAME3445" #The Statute of Lithuania
+	desc = "EVENTHIST3445"
+	#-#Lithuania had been a most undeveloped country for many centuries. Her population was regarded as pagan savages, living only under the sky and its gods. But during the 14th and early 15th century Lithuania had been Christianized and in 1429 the Statute of Lithuania, a codifying of the old traditional juristicial praxis, was issued. In this way Lithuania took her first steps toward centralization and modernization.
+
+	date = { day = 1 month = january year = 1428 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1430 }
+
+	action_a = {
+		name = "ACTIONNAME3445A" #Domestic Balance of Power
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = domestic which = SERFDOM value = 1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = stability value = -1 }
+		command = { type = treasury value = 200 }
+	}
+	action_b = {
+		name = "ACTIONNAME3445B" #Royal Prerogative
+		command = { type = domestic which = ARISTOCRACY value = -2 }
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = domestic which = SERFDOM value = -2 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = stability value = -4 }
+		command = { type = revoltrisk which = 12 value = 6 }
+	}
+	action_c = {
+		name = "ACTIONNAME3445C" #Magnate Republicanism
+		command = { type = domestic which = ARISTOCRACY value = 2 }
+		command = { type = domestic which = CENTRALIZATION value = -2 }
+		command = { type = domestic which = SERFDOM value = 2 }
+		command = { type = provincetax which = -1 value = -2 }
+		command = { type = provincetax which = -1 value = -2 }
+		command = { type = provincetax which = -1 value = -2 }
+		command = { type = provincetax which = -1 value = -2 }
+		command = { type = stability value = 3 }
+		command = { type = inflation value = -10 }
+		command = { type = trade value = 800 }
+		command = { type = gainmanufactory which = -1 value = refinery }
+	}
+}
+
+#(1429-1430) The last chance for the Crown of Lithuania
+#No trigger cause Vytautas would try to get a crown against all odds
+#Vilkouak-AGC/descriptions - modified Jester
+event = {
+	id = 20112
+	trigger = {
+		event = 40202 #POL: Meeting in Lutsk
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME20112" #The last chance for the Crown of Lithuania
+	desc = "EVENTHIST20112"
+	#-#Secretly backed by Jagiello, in 1429 Vytautas called a congress to city of Luck. Sigismund was invited too. Officially matters of disscussion were Moldova, Hussites, and a Catholic synod. But in fact, the real issue was the title of King for Vytautas. The Polish embassy, led by chancellor Jan Szafraniec and Zbigniew Olesnicki, the bishop of Krakow, protested harshly. Olesnicki gained an offical statement from Pope Martin V forbidding Vytautas to accept the crown from the hands of Sigismund, on the pretext that the latter hadn't been crowned as Emperor. It was a forceful blow for Sigismund, whose animosity for Poland grew even stronger. The final blow came from Jagiello, who had been threatened by the Poles that the treaty of succession of the crown of Poland signed in 1425 would be revoked if Vytautas was coronated. Vytautas died on October 27, 1430, with no crown on his brow.
+
+	date = { day = 1 month = april year = 1429 }
+	offset = 100
+	deathdate = { day = 27 month = october year = 1430 }
+
+	action_a = {
+		#Jagiello forced to back down and grant privileges-Jester
+		name = "ACTIONNAME20112A" #Jagiello is being forced to back down, Lithuania wil receive no crown
+		command = { type = relation which = POL value = 50 }
+		command = { type = relation which = HUN value = -50 }
+		command = { type = sleepevent which = 210016 } #LIT: Death of Vytautas -II-
+	}
+	action_b = {
+		name = "ACTIONNAME20112B" #Convince Jagiello to support us, Lithuania must be a Kingdom whatever the price
+		command = { type = relation which = HUN value = 50 }
+		command = { type = relation which = POL value = -100 }
+		command = { type = breakvassal which = POL }
+		command = { type = breakdynastic which = POL }
+	}
+	action_c = {
+		#Vytautas retires early
+		name = "ACTIONNAME20112C" #I'm too old for this, Vytautas abdicates the throne early
+		command = { type = relation which = POL value = 50 }
+		command = { type = relation which = HUN value = -50 }
+		command = { type = sleepevent which = 210016 } #LIT: Death of Vytautas -II-
+	}
+}
+
+#(1430) Meeting in Lutsk
+#by Crook
+event = {
+	id = 40203
+	trigger = {
+		event = 40200
+		event = 40202
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME40203" #Jagiello agrees to the Emperor's offer
+	desc = "EVENTHIST40203"
+	#-#In January of 1429 Assembly of East and Central European leaders was held in Lutsk. Emperor Sigismund, as well as the Polish King Jagiello and Lithuanian Grand Duke Vytautas were the major participants. During the meeting the Emperor offered a crown of independent Kingdom of Lithuania to Vytautas. King Jagiello agreed and despite the uproar in the Polish camp, stayed firm by his decision. It's time to celebrate!
+
+	date = { day = 1 month = january year = 1430 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1431 }
+
+	action_a = {
+		name = "ACTIONNAME40203A" #Grand Duchy of Lithuania is proclaimed Kingdom
+		command = { type = stability value = 3 }
+		command = { type = domestic which = centralization value = 1 }
+	}
+}
+
+#(1430) Death of Vytautas -I-
+#by Crook
+event = {
+	id = 40205 #triggered by POL_40204 A
+	random = no
+	country = LIT
+	name = "EVENTNAME40204" #Death of Vytautas
+	desc = "EVENTHIST40204"
+	#-#Vytautas died in October of 1430, and the Lithuanian nobles has elected Jagiello's brother Svitrigaila as the new Grand Duke. However, they failed to get the approval of the Polish Sejm. Svitrigaila was a proponent of independent Lithuanian Kingdom, just like Vytautas was, and enjoyed the support of mainly Ruthenian/Russian nobles. He tried to convince Jagiello again to agree to be crowned as the King of Lithuania, but the Sejm kept an eye on Jagiello, and didn't let him meet with Svitrigaila. On top of that, Poland took over Podolia right after the death of Vytautas, which almost brought 2 countries on the brink of the war.
+
+	action_a = {
+		name = "ACTIONNAME40205A" #Defy the aggressors
+		command = { type = secedeprovince which = POL value = 297 } #Podolia
+		command = { type = cav which = -1 value = 5000 }
+		command = { type = casusbelli which = POL value = 12 }
+		command = { type = stability value = -2 }
+	}
+	action_b = {
+		name = "ACTIONNAME40205B" #Accept the fact
+		command = { type = secedeprovince which = POL value = 297 } #Podolia
+		command = { type = relation which = POL value = 50 }
+		command = { type = stability value = -4 }
+		command = { type = sleepevent which = 40206 } #POL: Zygmantas
+		command = { type = sleepevent which = 210015 } #LIT: End of Regency -II-
+	}
+}
+#(1430) Death of Vytautas - Poland did not demand Podolia -II-
+event = {
+	id = 210017 #triggered by POL_40204 B
+	random = no
+	country = LIT
+	name = "EVENTNAME40204" #Death of Vytautas
+	desc = "EVENTHIST210016"
+	#-#Vytautas died in October of 1430, and the Lithuanian nobles, also according to the will of Jagiello, has elected Jagiello's brother Svitrigaila as the new Grand Duke. However, they failed to get the approval of the Polish Sejm. Svitrigaila was a proponent of independent Lithuanian Kingdom, just like Vytautas was, and enjoyed the support of mainly Ruthenian/Russian nobles. He tried to convince Jagiello again to agree to be crowned as the King of Lithuania, but the Sejm kept an eye on Jagiello.
+
+	action_a = {
+		name = "ACTIONNAME210013A" #Remain loyal to Jagiello
+		command = { type = relation which = POL value = 100 }
+		command = { type = relation which = LAT value = -50 }
+		command = { type = relation which = MOS value = -25 }
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 48 value = 2 }
+		command = { type = wakeleader which = 077812 } #Svitrigaila (LIT)
+		command = { type = wakeleader which = 077827 } #Zygmunt Korybutowicz (LIT)
+		command = { type = sleepleader which = 077816 } #Rumbold (LIT)
+		command = { type = sleepevent which = 210015 } #LIT: End of Regency -II-
+	}
+	action_b = {
+		name = "ACTIONNAME210013C" #Rely on Ruthenian nobles
+		command = { type = relation which = POL value = -50 }
+		command = { type = relation which = MOS value = 25 }
+		command = { type = revoltrisk which = 48 value = 5 }
+		command = { type = religiousrevolt which = -1 }
+		command = { type = religiousrevolt which = -1 }
+		command = { type = relation which = LAT value = 50 }
+		command = { type = religion which = orthodox }
+		command = { type = sleepmonarch which = 077510 } #Kazimieras
+		command = { type = wakeleader which = 077812 } #Svitrigaila (LIT)
+		command = { type = wakeleader which = 077827 } #Zygmunt Korybutowicz (LIT)
+		command = { type = sleepevent which = 210014 } #LIT: End of Regency -I-
+		command = { type = sleepevent which = 210015 } #LIT: End of Regency -II-
+	}
+	action_c = {
+		name = "ACTIONNAME210013B" #Lithuania first but appease catholics
+		command = { type = relation which = POL value = 50 }
+		command = { type = relation which = LAT value = -25 }
+		command = { type = relation which = MOS value = -25 }
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 48 value = 3 }
+		command = { type = sleepmonarch which = 077510 } #Kazimieras
+		command = { type = wakeleader which = 077812 } #Svitrigaila (LIT)
+		command = { type = wakeleader which = 077827 } #Zygmunt Korybutowicz (LIT)
+		command = { type = sleepevent which = 210014 } #LIT: End of Regency -I-
+		command = { type = sleepevent which = 210015 } #LIT: End of Regency -II-
+	}
+}
+#(1430) Death of Vytautas - crowned/wanted crown -III-
+event = {
+	id = 210016
+	trigger = {
+		OR = {
+			event = 40203 #LIT: Jagiello agrees to the Emperor's offer
+			event = 40204 #POL: Death of Vytautas
+			NOT = { exists = POL }
+		}
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME40204" #Death of Vytautas
+	desc = "EVENTHIST210016"
+	#-#Vytautas died in October of 1430, and the Lithuanian nobles, also according to the will of Jagiello, has elected Jagiello's brother Svitrigaila as the new Grand Duke. However, they failed to get the approval of the Polish Sejm. Svitrigaila was a proponent of independent Lithuanian Kingdom, just like Vytautas was, and enjoyed the support of mainly Ruthenian/Russian nobles. He tried to convince Jagiello again to agree to be crowned as the King of Lithuania, but the Sejm kept an eye on Jagiello.
+
+	date = { day = 27 month = october year = 1430 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1431 }
+
+	action_a = {
+		name = "ACTIONNAME210013B" #Lithuania first but appease catholics
+		command = { type = relation which = POL value = 50 }
+		command = { type = relation which = LAT value = -25 }
+		command = { type = relation which = MOS value = -25 }
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 48 value = 3 }
+		command = { type = sleepmonarch which = 077510 } #Kazimieras
+		command = { type = wakeleader which = 077812 } #Svitrigaila (LIT)
+		command = { type = wakeleader which = 077827 } #Zygmunt Korybutowicz (LIT)
+		command = { type = sleepevent which = 210014 } #LIT: End of Regency -I-
+		command = { type = sleepevent which = 210015 } #LIT: End of Regency -II-
+	}
+	action_b = {
+		name = "ACTIONNAME210013C" #Rely on Ruthenian nobles
+		command = { type = relation which = POL value = -50 }
+		command = { type = relation which = MOS value = 25 }
+		command = { type = revoltrisk which = 48 value = 5 }
+		command = { type = religiousrevolt which = -1 }
+		command = { type = religiousrevolt which = -1 }
+		command = { type = relation which = LAT value = 50 }
+		command = { type = religion which = orthodox }
+		command = { type = sleepmonarch which = 077510 } #Kazimieras
+		command = { type = wakeleader which = 077812 } #Svitrigaila (LIT)
+		command = { type = wakeleader which = 077827 } #Zygmunt Korybutowicz (LIT)
+		command = { type = sleepevent which = 210014 } #LIT: End of Regency -I-
+		command = { type = sleepevent which = 210015 } #LIT: End of Regency -II-
+	}
+	action_c = {
+		name = "ACTIONNAME210013A" #Remain loyal to Jagiello
+		command = { type = relation which = POL value = 100 }
+		command = { type = relation which = LAT value = -50 }
+		command = { type = relation which = MOS value = -25 }
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 48 value = 2 }
+		command = { type = wakeleader which = 077812 } #Svitrigaila (LIT)
+		command = { type = wakeleader which = 077827 } #Zygmunt Korybutowicz (LIT)
+		command = { type = sleepleader which = 077816 } #Rumbold (LIT)
+		command = { type = sleepevent which = 210015 } #LIT: End of Regency -II-
+	}
+}
+
+#(1431-1433) Pretender
+#by Crook
+event = {
+	id = 40207
+	trigger = {
+		event = 40206 #POL: Zygmantas
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME40207" #Zygmantas or Svitrigaila
+	desc = "EVENTHIST40206"
+	#-#After an exchange of harsh words, Polish army marched into Lithuania and besieged Lutsk. The siege ended unsuccessfully, and in the aftermath, Polish Sejm decided to create an alternative Duke in the face of Zygmantas, brother of Vytautas. Supported by Polish troops, he caught Svitrigaila off guard and defeated him in 1432. Zygmantas immediately recognized the Polish King as his suzerain, an act which cost him support of many Lithuanian nobles.
+
+	date = { day = 2 month = january year = 1431 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1433 }
+
+	action_a = {
+		name = "ACTIONNAME40207A" #Zygimantas
+		command = { type = sleepmonarch which = 077501 } #Svitrigaila
+		command = { type = wakemonarch which = 077502 } #Zygimantas Kestutaitis
+		command = { type = stability value = -5 }
+		command = { type = relation which = MOS value = 25 }
+		command = { type = revoltrisk which = 60 value = 7 }
+		command = { type = religiousrevolt which = -1 }
+		command = { type = religiousrevolt which = -1 }
+		command = { type = relation which = LAT value = -50 }
+		command = { type = relation which = POL value = 50 }
+		command = { type = sleepleader which = 077816 } #Rumbold (LIT)
+	}
+	action_b = {
+		name = "ACTIONNAME40207B" #Svitrigaila
+		command = { type = relation which = POL value = -100 }
+		command = { type = relation which = MOS value = -25 }
+		command = { type = stability value = -5 }
+		command = { type = revoltrisk which = 60 value = 7 }
+		command = { type = religiousrevolt which = -1 }
+		command = { type = religiousrevolt which = -1 }
+		command = { type = relation which = LAT value = 50 }
+		command = { type = religion which = orthodox }
+		command = { type = sleepmonarch which = 077510 } #Kazimieras
+		command = { type = wakeleader which = 077812 } #Svitrigaila (LIT)
+		command = { type = wakeleader which = 077827 } #Zygmunt Korybutowicz (LIT)
+		command = { type = sleepevent which = 210014 } #LIT: End of Regency -I-
+ 		command = { type = sleepevent which = 210015 } #LIT: End of Regency -II-
+		command = { type = sleepevent which = 40208 } #POL: Submission of Lithuania
+	}
+}
+#(1431-1433) Svitrigaila remains Grand Duke - Ahistorical
+event = {
+	id = 210013
+	trigger = {
+		event = 40206 #POL: Zygmantas
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAMES210013" #Svitrigaila remains Grand Duke
+	desc = "EVENTHIST210013"
+	#-#Lithuanian nobles, also according to the will of Jagiello, has elected Jagiello's brother Svitrigaila as the new Grand Duke. However, they failed to get the approval of the Polish Sejm. Svitrigaila was a proponent of independent Lithuanian Kingdom, just like Vytautas was, and enjoyed the support of mainly Ruthenian/Russian nobles. Svitrigaila tried to convince Jagiello again to agree to be crowned as the King of Lithuania, but the Polish Sejm kept an eye on Jagiello.
+
+	date = { day = 2 month = january year = 1431 }
+	offset = 30
+	deathdate = { day = 1 month = february year = 1433 }
+
+	action_a = {
+		name = "ACTIONNAME210013A" #Remain loyal to Jagiello
+		command = { type = relation which = POL value = 50 }
+		command = { type = relation which = LAT value = -50 }
+		command = { type = relation which = MOS value = -25 }
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 48 value = 2 }
+		command = { type = wakeleader which = 077812 } #Svitrigaila (LIT)
+		command = { type = wakeleader which = 077827 } #Zygmunt Korybutowicz (LIT)
+		command = { type = sleepleader which = 077816 } #Rumbold (LIT)
+		command = { type = sleepevent which = 210015 } #End of Regency -II-
+		}
+	action_b = {
+		name = "ACTIONNAME210013B" #Lithuania first but appease catholics
+		command = { type = relation which = POL value = 50 }
+		command = { type = relation which = LAT value = -25 }
+		command = { type = relation which = MOS value = -25 }
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 48 value = 3 }
+		command = { type = sleepmonarch which = 077510 } #Kazimieras
+		command = { type = wakeleader which = 077812 } #Svitrigaila (LIT)
+		command = { type = wakeleader which = 077827 } #Zygmunt Korybutowicz (LIT)
+		command = { type = sleepevent which = 210014 } #LIT: End of Regency -I-
+		command = { type = sleepevent which = 210015 } #LIT: End of Regency -II-
+	}
+	action_c = {
+		name = "ACTIONNAME210013C" #Rely on Ruthenian nobles
+		command = { type = relation which = POL value = -50 }
+		command = { type = relation which = MOS value = 25 }
+		command = { type = revoltrisk which = 48 value = 5 }
+		command = { type = religiousrevolt which = -1 }
+		command = { type = religiousrevolt which = -1 }
+		command = { type = relation which = LAT value = 50 }
+		command = { type = religion which = orthodox }
+		command = { type = sleepmonarch which = 077510 } #Kazimieras
+		command = { type = wakeleader which = 077812 } #Svitrigaila (LIT)
+		command = { type = wakeleader which = 077827 } #Zygmunt Korybutowicz (LIT)
+		command = { type = sleepevent which = 210014 } #LIT: End of Regency -I-
+		command = { type = sleepevent which = 210015 } #LIT: End of Regency -II-
+	}
+}
+
+#(1432-1437) Nemiem Captivabus extended to Lithuania -I-
+event = {
+	id = 3446
+	trigger = {
+		event = 20113 #POL: Privileges of Jedlnia and Krakow
+		domestic = { type = ARISTOCRACY value = 7 }
+		NOT = { domestic = { type = CENTRALIZATION value = 5 } }
+		NOT = { religion = orthodox } #orthodox means independent Svitrigaila
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME3446" #Neminem Captivabimus extended to Lithuania
+	desc = "EVENTHIST3446"
+	#-#In 1434 Wladyslaw Jagiello extended the act Neminem Captivabimus, giving the nobility legal protection against random arresting by the King, to the Grand Duchy. It was some time before the principle of this was either understood or translated into common practice. While Poland demanded power-sharing and representation, Lithuania continued to be ruled autocratically.
+
+	date = { day = 1 month = january year = 1432 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1437 }
+
+	action_a = {
+		name = "ACTIONNAME3446A" #Accept the Magnates demands
+		command = { type = domestic which = ARISTOCRACY value = 2 }
+		command = { type = domestic which = CENTRALIZATION value = -2 }
+		command = { type = domestic which = SERFDOM value = 2 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3446B" #Limit the Magnates demands
+		command = { type = sleepevent which = 210007 } #LIT: Consequences of privileges
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = revoltrisk which = 12 value = 6 }
+		command = { type = stability value = -1 }
+	}
+}
+#(1432-1437) Neminem Captivabimus extended to Lithuania -II- Ahistorical
+event = {
+	id = 210018
+	trigger = {
+		event = 20113 #POL: Privileges of Jedlnia and Krakow
+		domestic = { type = ARISTOCRACY value = 7 }
+		NOT = { domestic = { type = CENTRALIZATION value = 5 } }
+		NOT = { religion = orthodox } #orthodox means independent Svitrigaila
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME3446" #Neminem Captivabimus extended to Lithuania
+	desc = "EVENTHIST3446"
+	#-#In 1434 Wladyslaw Jagiello extended the act Neminem Captivabimus, giving the nobility legal protection against random arresting by the King, to the Grand Duchy. It was some time before the principle of this was either understood or translated into common practice. While Poland demanded power-sharing and representation, Lithuania continued to be ruled autocratically.
+
+	date = { day = 1 month = january year = 1432 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1437 }
+
+	action_a = {
+		name = "ACTIONNAME3446B" #Limit the Magnates demands
+		command = { type = sleepevent which = 210007 } #LIT: Consequences of privileges
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = revoltrisk which = 12 value = 3 }
+		command = { type = stability value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3446A" #Accept the Magnates demands
+		command = { type = domestic which = ARISTOCRACY value = 2 }
+		command = { type = domestic which = CENTRALIZATION value = -2 }
+		command = { type = domestic which = SERFDOM value = 2 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1440) Pretender
+#by Crook
+event = {
+	id = 40209
+	trigger = {
+		OR = {
+			event = 40208 #POL: Pretender -I-
+			event = 258017 #POL: Pretender -II-
+		}
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME40209" #Murder of Zygmantas
+	desc = "EVENTHIST40209"
+	#-#Due to his decision to become effectively a Polish vassal, Zygmantas had next to nothing support among the nobility. In 1440, two Ruthenian nobles, brothers Chartoryskis killed Zygmantas in his castle in Trakai, and started the second phase of instability in Lithuania. The candidates to take over the Duchy were Mikhail, son of Zygmantas, Svitrigaila, and Wladyslaw. The latter was elected King of Hungary, and was unable to be in Lithuania, so the Sejm decided to send Wladyslaw brother, Casimir, as a Polish governor of Lithuania. Lithuanian nobles could not take such an indignation, and proclaimed Casimir as Grand Duke.
+
+	date = { day = 19 month = march year = 1440 }
+
+	action_a = {
+		name = "ACTIONNAME40209A" #Invite Casimir
+		command = { type = relation which = MOS value = -25 }
+		command = { type = revoltrisk which = 48 value = 3 }
+		command = { type = sleepevent which = 40211 } #LIT: Succession of Grand Duke Svitrigaila
+		command = { type = sleepevent which = 40213 } #LIT: Succession of Grand Duke Michailis
+	}
+	action_b = {
+		name = "ACTIONNAME40209B" #Reinstall Svitrigaila
+		command = { type = sleepmonarch which = 077510 } #Kazimieras
+		command = { type = wakemonarch which = 077504 } #Svitrigaila °
+		command = { type = relation which = POL value = -100 }
+		command = { type = relation which = MOS value = -50 }
+		command = { type = revoltrisk which = 48 value = 5 }
+		command = { type = religion which = orthodox }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = sleepevent which = 40213 } #LIT: Succession of Grand Duke Michailis
+	}
+	action_c = {
+		name = "ACTIONNAME40209C" #Michailis
+		command = { type = relation which = POL value = -50 }
+		command = { type = relation which = MOS value = 50 }
+		command = { type = sleepmonarch which = 077510 } #Kazimieras
+		command = { type = wakemonarch which = 077503 } #Michailis Zygimantasis °
+		command = { type = stability value = -5 }
+		command = { type = revoltrisk which = 48 value = 5 }
+		command = { type = religiousrevolt which = -1 }
+		command = { type = religiousrevolt which = -1 }
+		command = { type = sleepevent which = 40211 } #LIT: Succession of Grand Duke Svitrigaila
+	}
+}
+#(1440) End of Regency -I-
+event = {
+	id = 210014
+	trigger = {
+		monarch = 077501 #Svitrigaila
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME210014" #End of Regency
+	desc = "EVENTHIST210014"
+	#-#In 1440, with the end of Svitrigaila's regency, the second phase of instability in Lithuania has started. The designated candidate to take over the Duchy was Wladyslaw. However Wladyslaw was elected King of Hungary, and was unable to be in Lithuania. Thus the Sejm decided to send Wladyslaw's brother, Casimir, as a Polish governor of Lithuania, but this move was contested by Svitrigailo and Lithuanian nobles. Finally Lithuanian nobles could not take such an indignation, and proclaimed Casimir as Grand Duke.
+
+	date = { day = 19 month = march year = 1440 }
+
+	action_a = {
+		name = "ACTIONNAME40209A" #Invite Casimir
+		command = { type = sleepmonarch which = 077501 } #Svitrigaila
+		#historical Kazimieras starts rule
+		command = { type = relation which = MOS value = -25 }
+		command = { type = revoltrisk which = 24 value = 2 }
+		command = { type = stability value = 1 }
+		command = { type = sleepevent which = 40211 } #LIT: Succession of Grand Duke Svitrigaila
+		command = { type = sleepevent which = 40213 } #LIT: Succession of Grand Duke Michailis
+	}
+	action_b = {
+		name = "ACTIONNAME40209B" #Reinstall Svitrigaila
+		command = { type = sleepmonarch which = 077510 } #Kazimieras
+		command = { type = relation which = POL value = -100 }
+		command = { type = relation which = MOS value = -50 }
+		command = { type = revoltrisk which = 48 value = 5 }
+		command = { type = religion which = orthodox }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = sleepevent which = 40213 } #LIT: Succession of Grand Duke Michailis
+	}
+}
+#(1440) End of Regency -II-
+event = {
+	id = 210015
+	trigger = {
+		monarch = 077501 #Svitrigaila
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME210014" #End of Regency
+	desc = "EVENTHIST210015"
+	#-#In 1440, with the end of Svitrigaila's regency, the second phase of instability in Lithuania has started. The designated candidate to take over the Duchy was Wladyslaw. However Wladyslaw was elected King of Hungary, and was unable to be in Lithuania. Thus the Sejm decided to send Wladyslaw's brother, Casimir, as a Polish governor of Lithuania, but this move was contested by Svitrigailo and Lithuanian nobles. Finally Lithuanian nobles could not take such an indignation, and proclaimed Svitrigaila as Grand Duke.
+
+	date = { day = 19 month = march year = 1440 }
+
+	action_a = {
+		name = "ACTIONNAME40209B" #Reinstall Svitrigaila
+		command = { type = sleepmonarch which = 077510 } #Kazimieras
+		command = { type = relation which = POL value = -100 }
+		command = { type = relation which = MOS value = -50 }
+		command = { type = revoltrisk which = 48 value = 5 }
+		command = { type = religion which = orthodox }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = sleepevent which = 40213 } #LIT: Succession of Grand Duke Michailis
+	}
+	action_b = {
+		name = "ACTIONNAME40209A" #Invite Casimir
+		command = { type = sleepmonarch which = 077501 } #Svitrigaila
+		#historical Kazimieras starts rule
+		command = { type = relation which = MOS value = -25 }
+		command = { type = revoltrisk which = 24 value = 2 }
+		command = { type = stability value = 1 }
+		command = { type = sleepevent which = 40211 } #LIT: Succession of Grand Duke Svitrigaila
+		command = { type = sleepevent which = 40213 } #LIT: Succession of Grand Duke Michailis
+	}
+}
+
+#(1451) Succession of Michailis - Ahistorical
+#by Crook
+event = {
+	id = 40213
+	trigger = {
+		monarch = 077503 #Michailis Zygimantasis °
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME40213" #Succession of Grand Duke Michailis
+	desc = "EVENTHIST40213"
+	#-#Grand Duke Michailis has died. Should we invite Casimir, King of Poland to be our ruler, or go our own way?
+
+	date = { day = 29 month = december year = 1451 }
+
+	action_a = {
+		name = "ACTIONNAME40209A" #Invite Casimir
+		command = { type = wakemonarch which = 077511 } #Kazimieras
+		command = { type = religion which = catholic }
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 60 value = 5 }
+		command = { type = trigger which = 40214 } #POL: Casimir, King of Lithuania
+	}
+	action_b = {
+		name = "ACTIONNAME40211B" #Remain independent, elect a new King
+		command = { type = wakemonarch which = 077505 } #Jonas Gasztold °
+		command = { type = wakemonarch which = 077508 } #Albert Gasztold °
+		command = { type = wakemonarch which = 077509 } #Stanislaw Gasztold °
+		command = { type = wakemonarch which = 077506 } #Marcin Gasztold °
+		command = { type = wakemonarch which = 077507 } #Jan Gasztold °
+		command = { type = sleepmonarch which = 077510 } #Kazimieras
+		command = { type = sleepmonarch which = 077512 } #Aleksandras I
+		command = { type = sleepmonarch which = 077513 } #Zygimantas I Stary
+		command = { type = sleepmonarch which = 077514 } #Zygimantas II August
+		command = { type = stability value = 1 }
+		command = { type = sleepevent which = 3447 } #LIT: The Act of Union with Poland -I-
+		command = { type = sleepevent which = 210000 } #LIT: The Act of Union with Poland -II-
+	}
+}
+
+#(1452) Succession of Svitrigaila - Ahistorical
+#by Crook
+event = {
+	id = 40211
+	trigger = {
+		OR = {
+			monarch = 077501 #Svitrigaila
+			monarch = 077504 #Svitrigaila °
+		}
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME40211" #Succession of Grand Duke Svitrigaila
+	desc = "EVENTHIST40211"
+	#-#Grand Duke Svitrigaila has died. Should we invite Casimir, King of Poland to be our ruler, or go our own way and elect a new King from among our Nobles?
+
+	date = { day = 9 month = february year = 1452 }
+
+	action_a = {
+		name = "ACTIONNAME40209A" #Invite Casimir
+		command = { type = wakemonarch which = 077511 } #Kazimieras
+		command = { type = religion which = catholic }
+		command = { type = conversion which = -1 }
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 60 value = 5 }
+		command = { type = trigger which = 40212 } #POL: Casimir, King of Lithuania
+	}
+	action_b = {
+		name = "ACTIONNAME40211B" #Remain independent, elect a new King
+		command = { type = sleepmonarch which = 077510 } #Kazimieras
+		command = { type = sleepmonarch which = 077512 } #Aleksandras I
+		command = { type = sleepmonarch which = 077513 } #Zygimantas I Stary
+		command = { type = sleepmonarch which = 077514 } #Zygimantas II August
+		command = { type = wakemonarch which = 077505 } #Jonas Gasztold °
+		command = { type = wakemonarch which = 077508 } #Albert Gasztold °
+		command = { type = wakemonarch which = 077509 } #Stanislaw Gasztold °
+		command = { type = wakemonarch which = 077506 } #Marcin Gasztold °
+		command = { type = wakemonarch which = 077507 } #Jan Gasztold °
+		command = { type = wakemonarch which = 077515 } #Mikolaj I °
+		command = { type = stability value = 1 }
+		command = { type = sleepevent which = 3447 } #LIT: The Act of Union with Poland -I-
+		command = { type = sleepevent which = 210000 } #LIT: The Act of Union with Poland -II-
+	}
+}
+
+#(1452-1463) Question of Religion
+#by Crook
+event = {
+	id = 40215
+	trigger = { religion = orthodox }
+	random = no
+	country = LIT
+	name = "EVENTNAME40215" #A question of religion
+	desc = "EVENTHIST40215"
+	#-#After the death of Svitrigaila, and election of new Gasztold dynasty, Lithuania had a choice to make whether the country should remain Orthodox, or convert back to Catholicism. What will be our decision?
+
+	date = { day = 2 month = march year = 1452 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1463 }
+
+	action_a = {
+		name = "ACTIONNAME40215A" #Convert back to Catholicism
+		command = { type = religion which = catholic }
+		command = { type = relation which = PAP value = 100 }
+		command = { type = relation which = MOS value = -50 }
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 24 value = 5 }
+		command = { type = religiousrevolt which = -1 }
+		command = { type = religiousrevolt which = -1 }
+		command = { type = conversion which = -3 }
+	}
+	action_b = {
+		name = "ACTIONNAME40215B" #Remain Orthodox
+		command = { type = relation which = PAP value = -100 }
+		command = { type = relation which = MOS value = 50 }
+		command = { type = stability value = -1 }
+		command = { type = religiousrevolt which = -1 }
+		command = { type = religiousrevolt which = -1 }
+	}
+}
+
+#(1485-1490) Consequences of privileges
+event = {
+	id = 210006
+	trigger = {
+		OR = {
+			event = 3446 #POL: Neminem Captivabimus extended to Lithuania -I-
+			event = 210018 #POL: Neminem Captivabimus extended to Lithuania -II-
+		}
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME210006" #Consequences of privileges
+	desc = "EVENTHIST210006"
+	#-#During the 16th and 17th century the nobility of Poland and Lithuania drastically reduced royal power. Among other things, the King could not pass laws and introduce taxes without permission from the nobility. This made the nobility richer but the royal and national treasury was permanently empty. As a result there was no money for investments and very often not enough for upkeep of troops and fortifications.
+
+	date = { day = 1 month = january year = 1485 }
+	offset = 300
+	deathdate = { day = 1 month = january year = 1490 }
+
+	action_a = {
+		name = "DRATS"
+		command = { type = provincetax which = 295 value = -2 }
+		command = { type = provincetax which = 288 value = -1 }
+		command = { type = provincetax which = 284 value = -1 }
+		command = { type = provincetax which = 461 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+	}
+}
+
+#(1490-1569) Lost claims on Jedisan
+event = {
+	id = 210021
+	trigger = {
+		core = { province = 296 data = -1 } #Jedisan
+		OR = {
+			AND = {
+				owned = { province = 319 data = TUR } #Bujak
+				OR = {
+					owned = { province = 463 data = TUR } #Crimea
+					owned = { province = 463 data = CRI } #Crimea
+				}
+			}
+			NOT = {
+				control = { province = 296 data = -1 } #Jedisan
+			}
+		}
+		NOT = {
+			owned = { province = 319 data = -1 } #Bujak
+			owned = { province = 463 data = -1 } #Crimea
+		}
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME210021" #Lost claims on Jedisan
+	desc = "EVENTHIST210021"
+	#-#With increasing menace of the Ottoman Empire and constant Tatar raids, Lithuania has dropped its claims on Jedisan.
+
+	date = { day = 1 month = january year = 1490 }
+	offset = 1000
+	deathdate = { day = 1 month = january year = 1569 }
+
+	action_a = {
+		name = "DAMN"
+		command = { type = removecore which = 296 } #Jedisan
+	}
+}
+
+#(1500-1820) The Golden Horde Vanishes
+event = {
+	id = 210024 #triggered by CRI_152050
+	trigger = {
+		NOT = {
+			AND = { #no need if all involved provinces are already owned by Lithuania
+				owned = { province = 461 data = -1 } #Poltava
+				owned = { province = 462 data = -1 } #Krementjug
+			}
+		}
+		OR = {
+			owned = { province = 295 data = -1 } #Ukraina
+			owned = { province = 296 data = -1 } #Jedisan
+			owned = { province = 460 data = -1 } #Donetsk
+			owned = { province = 461 data = -1 } #Poltava
+			owned = { province = 462 data = -1 } #Krementjug
+		}
+		OR = {
+			owned = { province = 461 data = CRI } #Poltava
+			owned = { province = 462 data = CRI } #Krementjug
+		}
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME152050" #The Golden Horde Vanishes
+	desc = "EVENTHIST152050"
+	#-#In 1502, Mengli Giray of Crimea captured and destroyed the city of Sarai capital of the Golden Horde. The last piece in its decline, the Golden Horde vanished as a political entity, with this act. Members of the Golden Horde still lived on hoping to rekindle lost glory, but the days of the Golden Horde were over.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = trigger which = 152004 } #CRI: Lithuania and the disintegration of the Golden Horde
+	}
+}
+
+#(1500-1569) Lost claims on Donetsk
+event = {
+	id = 210022
+	trigger = {
+		core = { province = 460 data = -1 } #Donetsk
+		exists = RUS
+		OR = {
+			exists = CRI
+			owned = { province = 463 data = RUS } #Crimea
+			owned = { province = 463 data = TUR } #Crimea
+		}
+		NOT = {
+			control = { province = 460 data = -1 } #Donetsk
+		}
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME210022" #Lost claims on Donetsk
+	desc = "EVENTHIST210022"
+	#-#Internal problems, unability to exploit victories (like battle at Orsza 1514) and to stop expansion of Muscovy under Ivan III, led to loss of control of Chernigov, Starodub, Novgorod-Seversk, Smolensk and other cities to Muscovy in the first half of XVI-th century. Additionally Lithuania was unable to contain Tatar raids which weakened country. Ultimately, in 1569 Lithuania gave the whole Ukraine to Poland and tightened its Union with Poland in order to obtain help and respise in their fights against Muscovy and Tatars.
+
+	date = { day = 1 month = january year = 1500 }
+	offset = 1000
+	deathdate = { day = 1 month = january year = 1569 }
+
+	action_a = {
+		name = "DAMN"
+		command = { type = removecore which = 460 } #Donetsk
+	}
+}
+
+#(1525-1548) Queen Bona Sforza
+event = {
+	id = 210023
+	trigger = {
+		monarch = 077513 #Zygimantas I Stary
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME258043" #Queen Bona Sforza
+	desc = "EVENTHIST258043"
+	#-#Bona Sforza married King Zygmunt I and was crowned as Queen of Poland and Grand Duchess of Lithuania on 18 april 1518. Almost from the beginning, using her influence on King and organizing her own political party Bona was expanding her power base. Grown up and educated in Italy, she believed that financial resorces are required to strenghten royal authority and realize political plans and most of her actions led to the increase of the royal income. From Pope Leon X she obtained right to nominate man into a number of lucrative church positions. Was modernizing royal estates, redeeming previously mortgaged estates and in years 1536-1546 took over lucrative custom agencies in Lithuania. At the same time she was fortifying Jagiellon's estates in the south-eastern Poland and supported aggresive policy against Tatars. Very active on the arena of international politics, pursuited decisively anti-Habsburg policy supporting John Zapolya in 1526, acted to decrease influence of Hohenzollerns in Prussia and Silesia. Bona was also corresponding with Roxelana, favorite wife of Ottoman Sultan Suleyman. In later years Bona with her people were actually ruling country. Lithuania won war against Muscovy recovering Homel and Poland defeated Moldavia. Strenghtening of royal power and rule of the elites was obviously not welcomed by nobles.
+
+	date = { day = 1 month = january year = 1525 }
+	offset = 1000
+	deathdate = { day = 29 month = march year = 1548 }
+
+	action_a = {
+		name = "ACTIONNAME258043A" #She knows best
+		command = { type = stability value = -1 }
+		command = { type = DIP which = 2 value = 280 }
+		command = { type = ADM which = 2 value = 280 }
+		command = { type = MIL which = 4 value = 280 }
+	}
+}
+
+#(1545-1550) Consequences of privileges
+event = {
+	id = 210007
+	trigger = {
+		OR = {
+			event = 3446 #POL: Neminem Captivabimus extended to Lithuania -I-
+			event = 210018 #POL: Neminem Captivabimus extended to Lithuania -II-
+		}
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME210006" #Consequences of privileges
+	desc = "EVENTHIST210007"
+	#-#Between the 15th and 17th century the nobility of Poland and Lithuania drastically reduced royal power. Among other things, the King could not pass laws and introduce taxes without permission from the nobility. This made the nobility richer but the royal and national treasury was permanently empty. As a result there was no money for investments and very often not enough for upkeep of troops and fortifications.
+
+	date = { day = 1 month = january year = 1545 }
+	offset = 300
+	deathdate = { day = 1 month = january year = 1550 }
+
+	action_a = {
+		name = "DRATS"
+		command = { type = provincetax which = 295 value = -1 }
+		command = { type = provincetax which = 461 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+	}
+}
+
+#(1567-1572) The Act of Union with Poland -I-
+#normal (peace version)
+#Isaac Brock-EEP and AGC merged together
+event = {
+	id = 3447
+	trigger = {
+		exists = POL
+		atwar = no
+		monarch = 077514 #Zygimantas II August
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME3447" #The Act of Union with Poland
+	desc = "EVENTHIST3447"
+	#-#On 1st July 1569 the joint force of Lithuanian and Polish Magnates as well as the Sejms of these countries met at Lublin on the border of their realms and unanimously swore a new Act of Union. There would now exist one united Sejm convening in Warszawa and the country would have one King not only de facto but de jure. The Grand Duchy was to keep its old laws, a separate treasury and its own army under its own Grand Hetman and Field-Hetman. Effectively the Union was a marriage of two partners, with only the slightest hint of the dominant position of Poland. The combined Kingdom now formally became, Serenissima Republica Polonie. However there was some Lithuanian opposition before 1st July... Mikolaj the Black, the head of the mighty Radziwill family had long dreamed to of detaching the Grand Duchy from the domination and recreate a Lithuania with him as King. The first steps were taken in the 1540's when Mikolaj approached the Habsburg Emperor who was very interested in seeing a weakened Poland on her borders. This lead to Mikolaj receiving the title Prince of the Holy Roman Empire in 1547. In the end Mikolaj never raised the Banner of Independence. This had many causes, but one important one was the fear of standing alone against the oncoming Russian Hordes. But what if he had tried?
+
+	date = { day = 1 month = january year = 1567 }
+	offset = 90
+	deathdate = { day = 1 month = january year = 1572 }
+
+	action_a = {
+		name = "ACTIONNAME3447A" #Poland inherits Lithuania
+		command = { type = relation which = POL value = 50 }
+		command = { type = sleepevent which = 210000 } #LIT: The Act of Union with Poland -II-
+	}
+	action_b = {
+		name = "ACTIONNAME3447B" #Lithuania break with Poland
+		command = { type = trigger which = 3476 } #POL: The Act of Union-'Rzeczpospolita Polska'
+		command = { type = breakvassal which = POL }
+		command = { type = stability value = 1 }
+		command = { type = INF which = -2 value = 10000 }
+		command = { type = CAV which = -2 value = 10000 }
+		command = { type = ART which = -2 value = 30 }
+		command = { type = domestic which = ARISTOCRACY value = -2 }
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = sleepevent which = 210000 } #LIT: The Act of Union with Poland -II-
+		command = { type = sleepevent which = 20135 } #POL: The Act of Union-'Rzeczpospolita Polska'
+		command = { type = sleepevent which = 20136 } #POL: The Act of Union-'Rzeczpospolita Polska'
+		command = { type = sleepevent which = 20137 } #POL: The Act of Union-'Rzeczpospolita Polska'
+	}
+}
+#(1572) The Act of Union with Poland -II-
+#normal (war or after war version)
+#Isaac Brock-EEP and AGC merged together
+event = {
+	id = 210000
+	trigger = {
+		exists = POL
+		NOT = { war = { country = POL country = LIT } }
+		NOT = {
+			event = 3447 #LIT: The Act of Union with Poland -I-
+		}
+		monarch = 077514 #Zygimantas II August
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME3447" #The Act of Union with Poland
+	desc = "EVENTHIST3447"
+	#-#On 1st July 1569 the joint force of Lithuanian and Polish Magnates as well as the Sejms of these countries met at Lublin on the border of their realms and unanimously swore a new Act of Union. There would now exist one united Sejm convening in Warszawa and the country would have one King not only de facto but de jure. The Grand Duchy was to keep its old laws, a separate treasury and its own army under its own Grand Hetman and Field-Hetman. Effectively the Union was a marriage of two partners, with only the slightest hint of the dominant position of Poland. The combined Kingdom now formally became, Serenissima Republica Polonie. However there was some Lithuanian opposition before 1st July... Mikolaj the Black, the head of the mighty Radziwill family had long dreamed to of detaching the Grand Duchy from the domination and recreate a Lithuania with him as King. The first steps were taken in the 1540's when Mikolaj approached the Habsburg Emperor who was very interested in seeing a weakened Poland on her borders. This lead to Mikolaj receiving the title Prince of the Holy Roman Empire in 1547. In the end Mikolaj never raised the Banner of Independence. This had many causes, but one important one was the fear of standing alone against the oncoming Russian Hordes. But what if he had tried?
+
+	date = { day = 1 month = january year = 1572 }
+	offset = 10
+	deathdate = { day = 6 month = july year = 1572 } #death of Zygimantas II August
+
+	action_a = {
+		name = "ACTIONNAME3447A" #Poland inherits Lithuania
+		command = { type = relation which = POL value = 50 }
+		command = { type = sleepevent which = 3447 } #LIT: The Act of Union with Poland -I-
+	}
+	action_b = {
+		name = "ACTIONNAME3447B" #Lithuania break with Poland
+		command = { type = trigger which = 3476 } #POL: The Act of Union-'Rzeczpospolita Polska'
+		command = { type = breakvassal which = POL }
+		command = { type = stability value = 1 }
+		command = { type = INF which = -2 value = 10000 }
+		command = { type = CAV which = -2 value = 10000 }
+		command = { type = ART which = -2 value = 30 }
+		command = { type = domestic which = ARISTOCRACY value = -2 }
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = sleepevent which = 3447 } #LIT: The Act of Union with Poland -I-
+		command = { type = sleepevent which = 20135 } #POL: The Act of Union-'Rzeczpospolita Polska'
+		command = { type = sleepevent which = 20136 } #POL: The Act of Union-'Rzeczpospolita Polska'
+		command = { type = sleepevent which = 20137 } #POL: The Act of Union-'Rzeczpospolita Polska'
+	}
+}
+#(1572-1602) The Act of Union with Poland
+#normal (final integration)
+#Isaac Brock-EEP and AGC merged together
+event = {
+	id = 210001
+	trigger = {
+		OR = {
+			event = 258000 #POL: The Act of Union-'Rzeczpospolita Polska'
+			event = 258002
+			event = 258003
+		}
+		atwar = no
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME3447" #The Act of Union with Poland
+	desc = "EVENTHIST210001"
+	#-#With the return of peace Lithuania was finally integrated into Poland.
+
+	date = { day = 1 month = january year = 1572 }
+	offset = 1
+	deathdate = { day = 1 month = january year = 1602 }
+
+	action_a = {
+		name = "OK"
+		command = { type = relation which = POL value = 50 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Ahistorical: if Lithuania survived
+#-----------------------------------------------------------------------------------------------
+
+#(1569-1700) Lithuania forms Poland
+event = {
+	id = 210002
+	trigger = {
+		atwar = no
+		NOT = { exists = POL }
+		owned = { province = 291 data = -1 } #Masovia
+		control = { province = 291 data = -1 } #Masovia
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME210002" #Union of Poland and Lithuania
+	desc = "EVENTHIST210002"
+	#-#Being de facto rulers of Poland, the grand dukes of Lithuania decided to unite the two countries permanently. They will bear both titles, while the choice would be only which one is to be mentioned first in documents.
+
+	date = { day = 1 month = january year = 1569 }
+	offset = 180
+	deathdate = { day = 29 month = december year = 1700 }
+
+	action_a = {
+		name = "ACTIONNAME210002A" #Kings of Poland
+		command = { type = stability value = 1 }
+		command = { type = flagname which = "" }
+		command = { type = country which = POL }
+		command = { type = flagname which = "Union" }
+		command = { type = capital which = 291 } #Masovia
+		command = { type = addcore which = 291 } #Masovia
+		command = { type = addcore which = 292 } #Podlasia
+		command = { type = addcore which = 298 } #Galizien
+		command = { type = addcore which = 299 } #Krakow
+		command = { type = addcore which = 300 } #Wielkopolska
+		command = { type = addcore which = 301 } #Danzig
+		command = { type = addcore which = 303 } #Poznan
+		command = { type = religion which = catholic }
+		command = { type = vp value = 250 }
+		command = { type = add_countryculture which = polish }
+		command = { type = remove_countryculture which = baltic }
+		command = { type = remove_countryculture which = ruthenian }
+		command = { type = add_countryculture which = baltic }
+		command = { type = add_countryculture which = ruthenian }
+	}
+	action_b = {
+		name = "ACTIONNAME210002B" #Grand Dukes of Lithuania
+		command = { type = addcore which = 291 } #Masovia
+		command = { type = addcore which = 292 } #Podlasia
+		command = { type = addcore which = 298 } #Galizien
+		command = { type = addcore which = 299 } #Krakow
+		command = { type = addcore which = 300 } #Wielkopolska
+		command = { type = addcore which = 301 } #Danzig
+		command = { type = addcore which = 303 } #Poznan
+		command = { type = add_countryculture which = polish }
+	}
+}
+
+#(1573-1601) Magnates crave 'Polish Rights'
+event = {
+	id = 3457
+	trigger = {
+		NOT = {
+			vassal = { country = POL country = LIT }
+		}
+		exists = POL
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME3457" #Magnates crave 'Polish Rights'
+	desc = "EVENTHIST3457"
+	#-#As a reaction of the introduction of the Henrykian Articles and the Pacta Conventa in Poland in 1573 the Magnates approach the King and urged him to constitutionalize the rights of the Szlachta and to share power with them. If not they said, he not they would have to take the consequences. At this point Mikolaj II Krzysztof had newly been crowned. He was young and not as negative to noble power as his father had been. In an effort to keep societal peace he accepted a compromise. There were no Henrykian articles, but the constitution was modified implying that the Szlachta was the life-nerve of society with certain rights to hold office and legislative power. The Principle of Religious Tolerance was also confirmed.
+
+	date = { day = 1 month = january year = 1573 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1601 }
+
+	action_a = {
+		name = "ACTIONNAME3457A" #More Rights than Duties
+		command = { type = domestic which = ARISTOCRACY value = 2 }
+		command = { type = domestic which = CENTRALIZATION value = -2 }
+		command = { type = domestic which = MERCANTILISM value = 2 }
+		command = { type = domestic which = SERFDOM value = 2 }
+		command = { type = provincetax which = -1 value = -2 }
+		command = { type = provincetax which = -1 value = -2 }
+		command = { type = provincetax which = -1 value = -2 }
+		command = { type = provincetax which = -1 value = -2 }
+		command = { type = stability value = 3 }
+		command = { type = treasury value = 500 }
+	}
+	action_b = {
+		name = "ACTIONNAME3457B" #Balance Rights and Duties
+		command = { type = domestic which = ARISTOCRACY value = 2 }
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = domestic which = MERCANTILISM value = -2 }
+		command = { type = domestic which = SERFDOM value = 2 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = stability value = 1 }
+		command = { type = treasury value = 200 }
+	}
+	action_c = {
+		name = "ACTIONNAME3457C" #More Duties than Rights
+		command = { type = domestic which = ARISTOCRACY value = -2 }
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = domestic which = MERCANTILISM value = -2 }
+		command = { type = domestic which = SERFDOM value = -2 }
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 60 value = 5 }
+	}
+}
+
+#(1573-1576) Strategic Axis with Austria -I-
+event = {
+	id = 3452
+	trigger = {
+		NOT = {
+			vassal = { country = POL country = LIT }
+		}
+		NOT = {
+			religion = protestant
+			religion = reformed
+			religion = orthodox
+		}
+		exists = HAB
+		NOT = {
+			war = { country = HAB country = LIT }
+		}
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME3452" #Strategic Axis with Austria
+	desc = "EVENTHIST3452"
+	#-#Before the Independence in 1569 Mikolaj the Black, named King as Mikolaj I, had become Prince of the Holy Roman Empire and befriended the Habsburg ruler of Austria, the Emperor Maximilian II. Maximilian was as sharp a politician as Mikolaj and profited on weakening Poland. Now Mikolaj's position was very bad in the 1570's he had to fight broad factions of Magnates in what could be described as a Civil War and fend his borders from Polish acts of revenge or even a re-conquest. He had to do what served independence best and that was to strike a deal with Maximilian. A Military Alliance was signed on 3rd February 1570 and Mikolaj's eldest son married Elizabeth of Steirmark. This alliance actually kept Poland from attacking even if local border incursions were regular. With the ascending of Rudolf to the Habsburg Monarchy the relations became wary and the alliance fell, but at that time the relations with Poland was at least acceptable.
+
+	date = { day = 1 month = january year = 1573 }
+	offset = 90
+	deathdate = { day = 1 month = january year = 1576 }
+
+	action_a = {
+		name = "ACTIONNAME3452A" #Create Axis
+		command = { type = relation which = POL value = -100 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = RUS value = -100 }
+		command = { type = relation which = SWE value = -100 }
+		command = { type = dynastic which = HAB }
+		command = { type = alliance which = HAB }
+		command = { type = stability value = 2 }
+		command = { type = sleepevent which = 210019 } #LIT: Strategic Axis with Austria -II-
+	}
+	action_b = {
+		name = "ACTIONNAME3452B" #Offer Friendliness
+		command = { type = relation which = SWE value = -50 }
+		command = { type = relation which = POL value = -50 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = stability value = 1 }
+		command = { type = merchants value = 6 }
+		command = { type = sleepevent which = 210019 } #LIT: Strategic Axis with Austria -II-
+	}
+	action_c = {
+		name = "ACTIONNAME3452C" #Decline Cooperation
+		command = { type = relation which = SWE value = 50 }
+		command = { type = relation which = POL value = 50 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = stability value = -2 }
+		command = { type = sleepevent which = 210019 } #LIT: Strategic Axis with Austria -II-
+	}
+}
+#(1573-1576) Strategic Axis with Austria -II-
+event = {
+	id = 210019
+	trigger = {
+		NOT = {
+			vassal = { country = POL country = LIT }
+		}
+		religion = orthodox
+		exists = HAB
+		NOT = {
+			war = { country = HAB country = LIT }
+		}
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME3452" #Strategic Axis with Austria
+	desc = "EVENTHIST210019"
+	#-#Mikolaj the Black, named King as Mikolaj I, had befriended the Habsburg ruler of Austria, the Emperor Maximilian II. Maximilian was as sharp a politician as Mikolaj and profited on weakening Poland. Now Mikolaj's position was very bad in the 1570's he had to fight broad factions of Magnates in what could be described as a Civil War and fend his borders from Poland. He had to do what served independence best and that was to strike a deal with Maximilian. A Military Alliance was signed on 3rd February 1570 and Mikolaj's eldest son married Elizabeth of Steirmark. This alliance actually kept Poland from attacking even if local border incursions were regular. With the ascending of Rudolf to the Habsburg Monarchy the relations became wary and the alliance fell, but at that time the relations with Poland was at least acceptable.
+
+	date = { day = 1 month = january year = 1573 }
+	offset = 90
+	deathdate = { day = 1 month = january year = 1576 }
+
+	action_a = {
+		name = "ACTIONNAME3452A" #Create Axis
+		command = { type = relation which = POL value = -100 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = RUS value = -100 }
+		command = { type = relation which = SWE value = -100 }
+		command = { type = dynastic which = HAB }
+		command = { type = alliance which = HAB }
+		command = { type = stability value = 2 }
+		command = { type = sleepevent which = 3452 } #LIT: Strategic Axis with Austria -I-
+	}
+	action_b = {
+		name = "ACTIONNAME3452B" #Offer Friendliness
+		command = { type = relation which = SWE value = -50 }
+		command = { type = relation which = POL value = -50 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = stability value = 1 }
+		command = { type = merchants value = 6 }
+		command = { type = sleepevent which = 3452 } #LIT: Strategic Axis with Austria -I-
+	}
+	action_c = {
+		name = "ACTIONNAME3452C" #Decline Cooperation
+		command = { type = relation which = SWE value = 50 }
+		command = { type = relation which = POL value = 50 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = stability value = -2 }
+		command = { type = sleepevent which = 3452 } #LIT: Strategic Axis with Austria -I-
+	}
+}
+
+#(1580-1600) Wave of Protestantism
+event = {
+	id = 3448
+	trigger = {
+		NOT = {
+			vassal = { country = POL country = LIT }
+		}
+		NOT = { religion = orthodox }
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME3448" #Wave of Protestantism
+	desc = "EVENTHIST3448"
+	#-#In Lithuania people was mostly catholic or orthodox during the 15th and 16th century. However in the last two decades of the 16th century a lot of protestant refugees from France, South Germany and Italy arrived. These cultural elite brought fresh idea to the Kingdom of Lithuania whom had been pressed between her catholic and orthodox neighbors. The Radziwilli Kings had strong royal power and had opened the country for influences from abroad. Cities were much more important than in the Aristocracy of Poland, and thus the people of the cities quickly became a cultural and religious melting-pot spreading Protestantism to the rural lands around them. When whole provinces slowly became protestant the King started to support the Protestant Faith. First personally and later as a State-religion looking at Prussia and Sweden as ideals. This also meant that Lithuania could take an independent stance between Russia and Poland. However, the many different religions in Lithuania made the government make a very tolerant religious policy at least until the 1640's.
+
+	date = { day = 1 month = january year = 1580 }
+	offset = 90
+	deathdate = { day = 1 month = january year = 1600 }
+
+	action_a = {
+		name = "ACTIONNAME3448A" #Accept the Movement
+		command = { type = provincereligion which = -1 value = protestant }
+		command = { type = provincereligion which = -1 value = protestant }
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = trade value = 800 }
+		command = { type = relation which = POL value = 50 }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = relation which = PAP value = -50 }
+		command = { type = relation which = DAN value = 50 }
+		command = { type = relation which = SWE value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME3448B" #Support it and change State Religion
+		command = { type = provincereligion which = -1 value = protestant }
+		command = { type = provincereligion which = -1 value = protestant }
+		command = { type = provincereligion which = -1 value = protestant }
+		command = { type = provincereligion which = -1 value = protestant }
+		command = { type = domestic which = INNOVATIVE value = 3 }
+		command = { type = trade value = 500 }
+		command = { type = infra value = 1000 }
+		command = { type = religion which = protestant }
+		command = { type = treasury value = 300 }
+		command = { type = relation which = POL value = -100 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = PAP value = -200 }
+		command = { type = relation which = DAN value = 100 }
+		command = { type = relation which = SWE value = 100 }
+		command = { type = revoltrisk which = 60 value = 6 }
+	}
+	action_c = {
+		name = "ACTIONNAME3448C" #Crush the Movement
+		command = { type = provincereligion which = -1 value = protestant }
+		command = { type = domestic which = INNOVATIVE value = -3 }
+		command = { type = land value = 500 }
+		command = { type = relation which = POL value = 100 }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = relation which = PAP value = 150 }
+		command = { type = relation which = DAN value = -100 }
+		command = { type = relation which = SWE value = -100 }
+		command = { type = revoltrisk which = 60 value = 6 }
+	}
+}
+
+#(1590-1610) Wave of Calvinism
+event = {
+	id = 3449
+	trigger = {
+		NOT = {
+			vassal = { country = POL country = LIT }
+		}
+		NOT = { religion = orthodox }
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME3449" #Wave of Calvinism
+	desc = "EVENTHIST3449"
+	#-#In the 1590's when the Wave of Protestantism had started to change the fabric of Lithuanian society numerous refugees of the Reformed Faith arrived in a second wave. These were Dutch, English, French and Spanish fleeing from the narrow-minded catholic governments of their former countries. These refugees were a mix of farmers and city-dwellers and they influence the Lithuanians in approximately the same way as the earlier Protestants. However, the Lithuanian Magnates in opposition of the King viewed fellow Poland as the perfect societal form. When the King converted to the Lutheran form of Protestantism many of them became reformed. Both to mark their difference with the King and because the Reformed ideals of God before King. The Reformed faith was also a perfect ideology for them to imprint upon the serfs. They were serfs because God wanted them to be and thus they became more manageable. In the 1630's a growing dissent between the Protestant state on one hand and the Reformed and Orthodox magnates on the other could be felt.
+
+	date = { day = 1 month = january year = 1590 }
+	offset = 90
+	deathdate = { day = 1 month = january year = 1610 }
+
+	action_a = {
+		name = "ACTIONNAME3449A" #Accept the Movement
+		command = { type = provincereligion which = -1 value = reformed }
+		command = { type = provincereligion which = -1 value = reformed }
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = trade value = 800 }
+		command = { type = relation which = POL value = 50 }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = relation which = PAP value = -50 }
+		command = { type = relation which = DAN value = 50 }
+		command = { type = relation which = SWE value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME3449B" #Support it and change State Religion
+		command = { type = provincereligion which = -1 value = reformed }
+		command = { type = provincereligion which = -1 value = reformed }
+		command = { type = provincereligion which = -1 value = reformed }
+		command = { type = provincereligion which = -1 value = reformed }
+		command = { type = domestic which = INNOVATIVE value = 3 }
+		command = { type = trade value = 500 }
+		command = { type = infra value = 1000 }
+		command = { type = religion which = reformed }
+		command = { type = treasury value = 300 }
+		command = { type = relation which = POL value = -100 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = PAP value = -200 }
+		command = { type = relation which = HOL value = 100 }
+		command = { type = relation which = SWE value = 100 }
+		command = { type = revoltrisk which = 60 value = 6 }
+	}
+	action_c = {
+		name = "ACTIONNAME3449C" #Crush the Movement
+		command = { type = provincereligion which = -1 value = reformed }
+		command = { type = domestic which = INNOVATIVE value = -3 }
+		command = { type = land value = 500 }
+		command = { type = relation which = POL value = 100 }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = relation which = PAP value = 150 }
+		command = { type = relation which = DAN value = -100 }
+		command = { type = relation which = SWE value = -100 }
+		command = { type = revoltrisk which = 60 value = 6 }
+	}
+}
+
+#(1601-1631) Magnates crave 'Polish Rights'
+event = {
+	id = 3458
+	trigger = {
+		NOT = {
+			vassal = { country = POL country = LIT }
+		}
+		exists = POL
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME3458" #Magnates crave 'Polish Rights'
+	desc = "EVENTHIST3458"
+	#-#After the two waves of refugees had arrived the Szlachta again craved compensation for accepting that religious status quo had broken. His Majesty Mikolaj II Krzysztof, now an elder and more experienced man, refused to comply with their threats. Instead he used his right to push a proposal on to the floor of the Sejm, which was a compromise but one which suited the King. The rights to hold office increased, but was now also made a duty and only the King could appoint. The Szlachta was given a say in the making of Foreign Policy, but only as a second house for non-Szlachta members was instituted in the Sejm which held legislative power of taxation. In many ways these reforms would decrease noble power even further as the fabric of society slowly tilted to the advantage of the bourgeois and free farmers.
+
+	date = { day = 1 month = january year = 1601 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1631 }
+
+	action_a = {
+		name = "ACTIONNAME3458A" #Balance Rights and Duties
+		command = { type = domestic which = ARISTOCRACY value = 2 }
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = domestic which = MERCANTILISM value = -2 }
+		command = { type = domestic which = SERFDOM value = 2 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = stability value = 1 }
+		command = { type = treasury value = 200 }
+	}
+	action_b = {
+		name = "ACTIONNAME3458B" #More Rights than Duties
+		command = { type = domestic which = ARISTOCRACY value = 2 }
+		command = { type = domestic which = CENTRALIZATION value = -2 }
+		command = { type = domestic which = MERCANTILISM value = 2 }
+		command = { type = domestic which = SERFDOM value = 2 }
+		command = { type = provincetax which = -1 value = -2 }
+		command = { type = provincetax which = -1 value = -2 }
+		command = { type = provincetax which = -1 value = -2 }
+		command = { type = provincetax which = -1 value = -2 }
+		command = { type = stability value = 3 }
+		command = { type = treasury value = 500 }
+	}
+	action_c = {
+		name = "ACTIONNAME3458C" #More Duties than Rights
+		command = { type = domestic which = ARISTOCRACY value = -2 }
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = domestic which = MERCANTILISM value = -2 }
+		command = { type = domestic which = SERFDOM value = -2 }
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 60 value = 5 }
+	}
+}
+
+#(1604-1618) Strategic Axis with Sweden
+event = {
+	id = 3450
+	trigger = {
+		NOT = {
+			vassal = { country = POL country = LIT }
+		}
+		NOT = {
+			religion = catholic
+			religion = counterreform
+			religion = orthodox
+		}
+		exists = SWE
+		NOT = {
+			war = { country = SWE country = LIT }
+		}
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME3450" #Strategic Axis with Sweden
+	desc = "EVENTHIST3450"
+	#-#In the first decades of the 17th century Lithuania's King had converted to Protestantism and started to support the two branches of the Reformation. All in all his ideal was an effective and modern monarchy much inspired by the Swedish Kings. Building up a Protestant Church of Lithuania and getting inspiration for governmental and societal reforms the King turned to Sweden. The cooperation was of mutual benefits as Sweden soon got a protestant friend in otherwise heretic Eastern Europe. Slowly the friendship brought a strong alliance about and King Ladislovas I eagerly encourage Gustav II Adolphus to the Protestantism in Germany. He himself would hold the Catholics and orthodox of the East in check.
+
+	date = { day = 1 month = january year = 1604 }
+	offset = 90
+	deathdate = { day = 1 month = january year = 1618 }
+
+	action_a = {
+		name = "ACTIONNAME3450A" #Create Axis
+		command = { type = relation which = POL value = -100 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = RUS value = -100 }
+		command = { type = relation which = DAN value = -50 }
+		command = { type = relation which = SWE value = 150 }
+		command = { type = dynastic which = SWE }
+		command = { type = alliance which = SWE }
+		command = { type = stability value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME3450B" #Offer Friendliness
+		command = { type = relation which = SWE value = 50 }
+		command = { type = relation which = POL value = -50 }
+		command = { type = relation which = RUS value = -50 }
+		command = { type = stability value = 1 }
+		command = { type = merchants value = 6 }
+	}
+	action_c = {
+		name = "ACTIONNAME3450C" #Decline Cooperation
+		command = { type = relation which = SWE value = -100 }
+		command = { type = relation which = POL value = 50 }
+		command = { type = relation which = RUS value = 50 }
+		command = { type = stability value = -2 }
+	}
+}
+
+#(1618-1626) Strategic Axis with Prussia
+event = {
+	id = 3451
+	trigger = {
+		NOT = {
+			vassal = { country = POL country = LIT }
+		}
+		NOT = {
+			religion = catholic
+			religion = counterreform
+			religion = orthodox
+		}
+		exists = PRU
+		NOT = {
+			war = { country = PRU country = LIT }
+		}
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME3451" #Strategic Axis with Prussia
+	desc = "EVENTHIST3451"
+	#-#In the second decade of the 17th century Brandenburg inherited the Duchy of Prussia. Brandenburg-Prussia was a protestant state with high tolerance versus reformed and she approached Jerzy I with an offer. Lithuania and Brandenburg should sign a Holy Protestant Alliance and wage war on Poland. Brandenburg would be freed from her Prussian vassalage by Poland and Lithuania would whatever she wanted and could take from Poland. A faction of young governmental official cherished it, but the King was a very careful man. He and his closest advisors discussed. There conclusion was very plain. First it was an impossibility to support Germans against Poland in a war of aggression. Secondly the worst possible thing was total victory. If Lithuania took a mile of Polish land it would be a mile too much. Any conquests would include more Catholics and orthodox and worse more unruly magnates brought up in the Polish Anarchy of a country. So the King politely declined the honor, but instead he proposed a tract of trade and cultural exchange. However as most political well informed Lithuanian could have guessed it did not come much out of it. The Society of Brandenburg-Prussia had far more in common with Poland than with Lithuania. Lithuanian preferred to visit Stockholm, Copenhagen and Amsterdam too Berlin or Köningsberg.
+
+	date = { day = 1 month = january year = 1618 }
+	offset = 90
+	deathdate = { day = 1 month = january year = 1626 }
+
+	action_a = {
+		name = "ACTIONNAME3451A" #Offer Friendliness
+		command = { type = relation which = POL value = -50 }
+		command = { type = relation which = PRU value = 100 }
+		command = { type = stability value = 1 }
+		command = { type = merchants value = 6 }
+	}
+	action_b = {
+		name = "ACTIONNAME3451B" #Create Axis
+		command = { type = relation which = POL value = -100 }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = relation which = SWE value = 50 }
+		command = { type = relation which = PRU value = 150 }
+		command = { type = dynastic which = PRU }
+		command = { type = alliance which = PRU }
+		command = { type = stability value = 1 }
+	}
+	action_c = {
+		name = "ACTIONNAME3451C" #Decline Cooperation
+		command = { type = relation which = SWE value = -50 }
+		command = { type = relation which = POL value = 50 }
+		command = { type = relation which = PRU value = -100 }
+		command = { type = stability value = -2 }
+	}
+}
+
+#(1618-1631) Strategic Axis with Austria -I-
+event = {
+	id = 3453
+	trigger = {
+		NOT = {
+			vassal = { country = POL country = LIT }
+		}
+		NOT = {
+			religion = protestant
+			religion = reformed
+			religion = orthodox
+		}
+		exists = HAB
+		NOT = {
+			war = { country = HAB country = LIT }
+		}
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME3453" #Strategic Axis with Austria
+	desc = "EVENTHIST3453"
+	#-#The Austro-Lithuanian Pact of 1570 had ended in 1576 when the obscure Rudolf came into power in Austria. King Mikolaj II Krzysztof also called 'the Little Orphan' was a well versed man and a pious catholic whom had visited Jerusalem. When he had married Elizabeth of Steirmark he had met Rudolf whom had brought his favorite crowd of astrologists infuriating the Pious Crown-prince. From that day he could not stand the man. However, with the ascending of Ferdinand II, a distant relative to Elizabeth of Steirmark, the elderly Mikolaj II again found a man of his values. Ferdinand also wanted a strong monarchy and strengthens Catholicism in Europe. He immediately signed an alliance and bought the consent of Poland. During the Thirty Years War Lithuanian Hussaria would fight side by side with Imperial troops giving Lithuania endless amounts of Glory.
+
+	date = { day = 1 month = january year = 1618 }
+	offset = 90
+	deathdate = { day = 1 month = january year = 1631 }
+
+	action_a = {
+		name = "ACTIONNAME3453A" #Create Axis
+		command = { type = relation which = POL value = -100 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = RUS value = -100 }
+		command = { type = relation which = SWE value = -100 }
+		command = { type = dynastic which = HAB }
+		command = { type = alliance which = HAB }
+		command = { type = stability value = 2 }
+		command = { type = sleepevent which = 210020 } #LIT: Strategic Axis with Austria -II-
+	}
+	action_b = {
+		name = "ACTIONNAME3453B" #Offer Friendliness
+		command = { type = relation which = SWE value = -50 }
+		command = { type = relation which = POL value = -50 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = stability value = 1 }
+		command = { type = merchants value = 6 }
+		command = { type = sleepevent which = 210020 } #LIT: Strategic Axis with Austria -II-
+	}
+	action_c = {
+		name = "ACTIONNAME3453C" #Decline Cooperation
+		command = { type = relation which = SWE value = 50 }
+		command = { type = relation which = POL value = 50 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = stability value = -2 }
+		command = { type = sleepevent which = 210020 } #LIT: Strategic Axis with Austria -II-
+	}
+}
+#(1618-1631) Strategic Axis with Austria
+event = {
+	id = 210020
+	trigger = {
+		NOT = {
+			vassal = { country = POL country = LIT }
+		}
+		religion = orthodox
+		exists = HAB
+		NOT = {
+			war = { country = HAB country = LIT }
+		}
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME3453" #Strategic Axis with Austria
+	desc = "EVENTHIST210020"
+	#-#The Austro-Lithuanian Pact of 1570 had ended in 1576 when the obscure Rudolf came into power in Austria. King Mikolaj II Krzysztof also called 'the Little Orphan' was a well versed man and a pious Christian who had visited Jerusalem. When he had married Elizabeth of Steirmark he had met Rudolf who had brought his favorite crowd of astrologists infuriating the Pious Crown-prince. From that day he could not stand the man. However, with the ascending of Ferdinand II, a distant relative to Elizabeth of Steirmark, the elderly Mikolaj II again found a man of his values. Ferdinand also wanted a strong monarchy and strengthening of Christianity in Europe. He immediately signed an alliance and bought the consent of Poland. During the Thirty Years War Lithuanian Hussaria would fight side by side with Imperial troops giving Lithuania endless amounts of Glory.
+
+	date = { day = 1 month = january year = 1618 }
+	offset = 90
+	deathdate = { day = 1 month = january year = 1631 }
+
+	action_a = {
+		name = "ACTIONNAME3453A" #Create Axis
+		command = { type = relation which = POL value = -100 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = RUS value = -100 }
+		command = { type = relation which = SWE value = -100 }
+		command = { type = dynastic which = HAB }
+		command = { type = alliance which = HAB }
+		command = { type = stability value = 2 }
+		command = { type = sleepevent which = 3453 } #LIT: Strategic Axis with Austria -I-
+	}
+	action_b = {
+		name = "ACTIONNAME3453B" #Offer Friendliness
+		command = { type = relation which = SWE value = -50 }
+		command = { type = relation which = POL value = -50 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = stability value = 1 }
+		command = { type = merchants value = 6 }
+		command = { type = sleepevent which = 3453 } #LIT: Strategic Axis with Austria -I-
+	}
+	action_c = {
+		name = "ACTIONNAME3453C" #Decline Cooperation
+		command = { type = relation which = SWE value = 50 }
+		command = { type = relation which = POL value = 50 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = stability value = -2 }
+		command = { type = sleepevent which = 3453 } #LIT: Strategic Axis with Austria -I-
+	}
+}
+
+#(1630-1646) Conflict over Religious Tolerance
+event = {
+	id = 3454
+	trigger = {
+		NOT = { religion = orthodox }
+		NOT = {
+			domestic = { type = INNOVATIVE value = 6 }
+		}
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME3454" #Conflict over Religious Tolerance
+	desc = "EVENTHIST3454"
+	#-#After two waves of refugees of a new faith and years of governmental reform friction in society had come to a cross-road. Lithuania had confessors of four religions and all but one felt anger against the government. Secondly the Magnates incited revolt both on the command of God and to fight their decreasing power. When they looked over the border they saw that their Polish brothers lived like princes while they themselves where merely servants of the state, albeit rich such. They wanted power and more leeway for their religion.
+
+	date = { day = 1 month = january year = 1630 }
+	offset = 90
+	deathdate = { day = 1 month = january year = 1646 }
+
+	action_a = {
+		name = "ACTIONNAME3454A" #Enforce the State Religion
+		command = { type = conversion which = -1 }
+		command = { type = conversion which = -1 }
+		command = { type = missionaries value = 6 }
+		command = { type = stability value = -2 }
+		command = { type = relation which = RUS value = -150 }
+		command = { type = relation which = SWE value = -150 }
+		command = { type = domestic which = INNOVATIVE value = -3 }
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = domestic which = ARISTOCRACY value = -1 }
+		command = { type = revoltrisk which = 24 value = 10 }
+	}
+	action_b = {
+		name = "ACTIONNAME3454B" #Support One-Church Faction
+		command = { type = conversion which = -1 }
+		command = { type = missionaries value = 1 }
+		command = { type = stability value = -1 }
+		command = { type = relation which = RUS value = -100 }
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = revoltrisk which = 24 value = 6 }
+	}
+	action_c = {
+		name = "ACTIONNAME3454C" #Support Tolerant Faction
+		command = { type = heretic which = -1 }
+		command = { type = missionaries value = -6 }
+		command = { type = stability value = 2 }
+		command = { type = relation which = RUS value = 50 }
+		command = { type = relation which = POL value = 100 }
+		command = { type = domestic which = INNOVATIVE value = 3 }
+		command = { type = domestic which = CENTRALIZATION value = -2 }
+		command = { type = domestic which = ARISTOCRACY value = 2 }
+		command = { type = revoltrisk which = 24 value = 5 }
+	}
+}
+
+#(1630-1646) Conflict over Religious Tolerance
+event = {
+	id = 3455
+	trigger = {
+		religion = orthodox
+		NOT = {
+			domestic = { type = INNOVATIVE value = 6 }
+		}
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME3455" #Conflict over Religious Tolerance
+	desc = "EVENTHIST3455"
+	#-#After arrival of many religious refugees, spreading of lutheran and reformed faiths and years of governmental reform friction in society had come to a cross-road. Lithuania had confessors of four religions and all but one felt anger against the government. Secondly the Magnates incited revolt both on the command of God and to fight their decreasing power. When they looked over the border they saw that their Polish brothers lived like princes while they themselves where merely servants of the state, albeit rich such. They wanted power and more leeway for their religion.
+
+	date = { day = 1 month = january year = 1630 }
+	offset = 90
+	deathdate = { day = 1 month = january year = 1646 }
+
+	action_a = {
+		name = "ACTIONNAME3455A" #Enforce the State Religion
+		command = { type = conversion which = -1 }
+		command = { type = conversion which = -1 }
+		command = { type = missionaries value = 6 }
+		command = { type = stability value = -2 }
+		command = { type = relation which = RUS value = -150 }
+		command = { type = relation which = POL value = -150 }
+		command = { type = domestic which = INNOVATIVE value = -3 }
+		command = { type = domestic which = CENTRALIZATION value = 3 }
+		command = { type = domestic which = ARISTOCRACY value = -1 }
+		command = { type = revoltrisk which = 24 value = 10 }
+	}
+	action_b = {
+		name = "ACTIONNAME3455B" #Support One-Church Faction
+		command = { type = conversion which = -1 }
+		command = { type = missionaries value = 1 }
+		command = { type = stability value = -1 }
+		command = { type = relation which = RUS value = -100 }
+		command = { type = relation which = POL value = -100 }
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = revoltrisk which = 24 value = 6 }
+	}
+	action_c = {
+		name = "ACTIONNAME3455C" #Support Tolerant Faction
+		command = { type = heretic which = -1 }
+		command = { type = missionaries value = -6 }
+		command = { type = stability value = 2 }
+		command = { type = relation which = RUS value = 50 }
+		command = { type = relation which = POL value = 100 }
+		command = { type = domestic which = INNOVATIVE value = 3 }
+		command = { type = domestic which = CENTRALIZATION value = -2 }
+		command = { type = domestic which = ARISTOCRACY value = 2 }
+		command = { type = revoltrisk which = 24 value = 5 }
+	}
+}
+
+#(1631-1651) Magnates crave 'Polish Rights'
+event = {
+	id = 3459
+	trigger = {
+		NOT = {
+			vassal = { country = POL country = LIT }
+		}
+		exists = POL
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME3459" #Magnates crave 'Polish Rights'
+	desc = "EVENTHIST3459"
+	#-#During the 1630's and 1640's the Magnates found life in the Kingdom unbearable. To escape the egalitarian powers of the government and the King many of the started to interfere in local Polish business. Many of them owned as much lands on one as the other side of the border. They freely swapped lands with their Polish brother and thus managed to strengthen the Cause in both Poland and Lithuania. During the Deluge the Magnates of the Ukraine and the Wild lands fought all and everyone. Poland was in havoc and the Lithuanian King had to accept the fact that he only could control the Northern part of his lands. At these point King Aleksandras II mounted a huge campaign against the Tartars, Russians and Crimeans swapping up insurrective Magnates at the same time. He though stopped from interfering with the polish government, 'that last sane mind on that side of the border' as he called King Wladyslaw IV of Poland. The subjugated Magnates had two options. They either had to accept a tough reform package or get all there lands confiscated and pushed over the border to Poland. The choice was easy. They stay, but the reform was harsh. Only the state could now own land. The user only owned the right to use it. But to keep that right the user had to pay a user's fee decided by the King. With this vehicle the King started to break the large latifund holdings of the Magnates and again changing the fabric of society. His son continued the reform policy after the King was murdered by a Ukrainian Magnate on 30th March 1654.
+
+	date = { day = 1 month = january year = 1631 }
+	offset = 90
+	deathdate = { day = 1 month = january year = 1651 }
+
+	action_a = {
+		name = "ACTIONNAME3459A" #More Duties than Rights
+		command = { type = domestic which = ARISTOCRACY value = -2 }
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = domestic which = MERCANTILISM value = -2 }
+		command = { type = domestic which = SERFDOM value = -2 }
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 60 value = 5 }
+	}
+	action_b = {
+		name = "ACTIONNAME3459B" #More Rights than Duties
+		command = { type = domestic which = ARISTOCRACY value = 2 }
+		command = { type = domestic which = CENTRALIZATION value = -2 }
+		command = { type = domestic which = MERCANTILISM value = 2 }
+		command = { type = domestic which = SERFDOM value = 2 }
+		command = { type = provincetax which = -1 value = -2 }
+		command = { type = provincetax which = -1 value = -2 }
+		command = { type = provincetax which = -1 value = -2 }
+		command = { type = provincetax which = -1 value = -2 }
+		command = { type = stability value = 3 }
+		command = { type = treasury value = 500 }
+	}
+	action_c = {
+		name = "ACTIONNAME3459C" #Balance Rights and Duties
+		command = { type = domestic which = ARISTOCRACY value = 2 }
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = domestic which = MERCANTILISM value = -2 }
+		command = { type = domestic which = SERFDOM value = 2 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = stability value = 1 }
+		command = { type = treasury value = 200 }
+	}
+}
+
+#(1652) Royal Reaction on the Polish Liberum Veto
+event = {
+	id = 3460
+	trigger = {
+		event = 3482 #POL: Liberum Veto in Poland
+		NOT = {
+			vassal = { country = POL country = LIT }
+		}
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME3460" #Royal Reaction on the Polish Liberum Veto
+	desc = "EVENTHIST3460"
+	#-#In 1652 as King Aleksandras II was clearing up things in the Ukraine He was brought the news of the introduction of the Liberum Veto in Poland. A week later he got the news that 'his' Sejm had voted for the same rights. By carefully reading of reports he found that certain Lithuanian Magnates had nearly doubled the size of the Lithuanian Szlachta by swapping lands with Poles. Frustrated the King declared the law illegitimate. The King had the support of those who were not nobles, but his troubles would live on as long as the Liberum veto existed in Poland. In a famous address he declared himself allied with the Polish people and the at war with the Polish Szlachta.
+
+	date = { day = 1 month = january year = 1652 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1653 }
+
+	action_a = {
+		name = "ACTIONNAME3460A" #Move against the 'Magnate-Republic'
+		command = { type = trigger which = 3461 } #LIT: Civil War in Lithuania
+		command = { type = stability value = -3 }
+		command = { type = casusbelli which = POL value = 48 }
+		command = { type = INF which = -1 value = 20000 }
+		command = { type = CAV which = -3 value = 10000 }
+		command = { type = ART which = -3 value = 30 }
+	}
+	action_b = {
+		name = "ACTIONNAME3460B" #Give Concessions to the Lithuanian Magnates
+		command = { type = domestic which = ARISTOCRACY value = 3 }
+		command = { type = domestic which = CENTRALIZATION value = -3 }
+		command = { type = domestic which = MERCANTILISM value = 3 }
+		command = { type = domestic which = SERFDOM value = 5 }
+		command = { type = provincetax which = -1 value = -2 }
+		command = { type = provincetax which = -1 value = -2 }
+		command = { type = provincetax which = -1 value = -2 }
+		command = { type = provincetax which = -1 value = -2 }
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 60 value = 3 }
+	}
+}
+#(1652) Civil War in Lithuania
+event = {
+	id = 3461 #triggered by LIT_3460 A
+	random = no
+	country = LIT
+	name = "EVENTNAME3461" #Civil War in Lithuania
+	desc = "EVENTHIST3461"
+	#-#In a drive towards Warszawa he was bogged down by excellent Polish Generalcy while his own Szlachta rebelled. Isolated with his army in Czersk he struck a deal with the Polish King to leave Poland immediately if the Polish King would refuse to accept the Lithuanian throne from the rebels up North. It was a not too glorious retreat and he was considering himself defeated. The Szlachta had dethroned Aleksandras, but was compromised by the fact that the Polish King refused to have anything to do with the traitors. Not all the Szlachta was against Aleksandras and upon his return another army joined him. Together they smashed the rebel forces and executed the traitors. These events resulted in a deep-set foreign policy in Lithuania to always support the Polish Kings against their internal foes, but never to meddle without being asked.
+
+	action_a = {
+		name = "ACTIONNAME3461A" #Try to buy the Magnates off
+		command = { type = treasury value = -1200 }
+		command = { type = revoltrisk which = 24 value = 3 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3461B" #Let war come to their homes
+		command = { type = revoltrisk which = 80 value = 6 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = fortress which = -1 value = -1 }
+		command = { type = fortress which = -1 value = -1 }
+	}
+}
+
+#(1698) The Anti-Russian Pact
+event = {
+	id = 3463
+	trigger = {
+		NOT = {
+			vassal = { country = POL country = LIT }
+		}
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME3463" #The Anti-Russian Pact
+	desc = "EVENTHIST3463"
+	#-#In 1698 Russia, Poland and Denmark formed an alliance against the eighteen year old King Charles XII of Sweden. They thought it as a good opportunity for revenge and to cut that major power to pieces. The Lithuanians which always had a good relation towards Sweden since the days of Gustav II Adolphus was approached by the Swedes. The Swedes wanted Lithuania to join in an Anti-Russian alliance for the good of both their countries. The King, Karol I Stanislovas, a fine general and knower of men immediately like Charles XII's character and his habit of getting to the point very fast. The King was though hesitant. Lithuania was a vast country and in-between Poland and Russia. It would be a hard task and the Swedes would most certainly be occupied with the Danes first. But against the advice of his most trustworthy advisors he signed the Pact knowing that Lithuanian would have to fight this fight sooner or later, and as he said 'I rather do it with a noble intention'.
+
+	date = { day = 1 month = january year = 1698 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1699 }
+
+	action_a = {
+		name = "ACTIONNAME3463A" #Support Sweden
+		command = { type = casusbelli which = RUS value = 36 }
+		command = { type = relation which = SWE value = 150 }
+		command = { type = relation which = RUS value = -150 }
+		command = { type = relation which = POL value = -100 }
+		command = { type = relation which = DAN value = -50 }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = TUR value = 50 }
+		command = { type = stability value = 3 }
+		command = { type = land value = 800 }
+	}
+	action_b = {
+		name = "ACTIONNAME3463B" #Support Russia
+		command = { type = casusbelli which = SWE value = 36 }
+		command = { type = relation which = SWE value = -150 }
+		command = { type = relation which = RUS value = 150 }
+		command = { type = relation which = POL value = 100 }
+		command = { type = relation which = DAN value = 50 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = relation which = TUR value = -150 }
+		command = { type = stability value = -2 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = treasury value = 300 }
+	}
+	action_c = {
+		name = "ACTIONNAME3463C" #Support the Poland
+		command = { type = relation which = SWE value = -150 }
+		command = { type = relation which = RUS value = -50 }
+		command = { type = relation which = POL value = 150 }
+		command = { type = relation which = DAN value = 50 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = relation which = TUR value = -150 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1709-1711) The Horrible Plague in Lithuania
+event = {
+	id = 3462 #also triggered by POL_3493
+	trigger = {
+		OR = {
+			owned = { province = 284 data = -1 } #Belarus
+			owned = { province = 287 data = -1 } #Mozyr
+			owned = { province = 288 data = -1 } #Lithuania
+			owned = { province = 293 data = -1 } #Volyn
+			owned = { province = 294 data = -1 } #Chernigov
+		}
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME3462" #The Horrible Plague in Lithuania
+	desc = "EVENTHIST3462"
+	#-#During 1709-10 Lithuania endure the harshest winter of a century. But as that was not enough an epidemic plague spread through the lands killing many thousands. There is talking of the Scourge of God and people prey…prey…prey...
+
+	date = { day = 1 month = january year = 1709 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1711 }
+
+	action_a = {
+		name = "ACTIONNAME3462A" #Arrgh!
+		command = { type = population which = 287 value = -3487 } #Mozyr
+		command = { type = population which = 288 value = -3722 } #Lithuania
+		command = { type = population which = 294 value = -3201 } #Chernigov
+		command = { type = population which = 293 value = -3153 } #Volyn
+		command = { type = population which = 284 value = -3636 } #Belarus
+		command = { type = desertion which = -1 value = 7321 }
+		command = { type = desertion which = -1 value = 5478 }
+		command = { type = desertion which = -1 value = 3934 }
+		command = { type = trigger which = 3493 } #POL: The Horrible Plague in Lithuania
+	}
+}
+
+#(1720-1728) Pietism
+event = {
+	id = 3464
+	trigger = {
+		NOT = {
+			vassal = { country = POL country = LIT }
+		}
+		NOT = { religion = orthodox }
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME3464" #Pietism
+	desc = "EVENTHIST3464"
+	#-#Pietism was a religious movement that started in Germany during the latter part of the 17th century. Traditionally, the Pietist movement has been viewed as a backlash against intellectualism prevalent in and among the Protestant ranks, especially in the Lutheran Church during that period. However, Pietism was regular also within the other Christian forms. It was with the return of prisoners of war that the movement really took off in Lithuania. However, the Lithuanian Church disapproved most strongly of unauthorized preaching, which led to the Conventicle Edict of 1729, forbidding any religious gatherings outside the framework of the Church.
+
+	date = { day = 1 month = january year = 1720 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1728 }
+
+	action_a = {
+		name = "ACTIONNAME3464A" #Encourage it
+		command = { type = domestic which = INNOVATIVE value = 3 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = religiousrevolt which = -1 }
+		command = { type = religiousrevolt which = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3464B" #Stop it
+		command = { type = domestic which = INNOVATIVE value = -3 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = religiousrevolt which = -1 }
+		command = { type = religiousrevolt which = -1 }
+	}
+}
+
+#(1790) The Murder of Karol II Stanislovas
+event = {
+	id = 3465
+	trigger = {
+		NOT = {
+			vassal = { country = POL country = LIT }
+		}
+	}
+	random = no
+	country = LIT
+	name = "EVENTNAME3465" #The Murder of Karol II Stanislovas
+	desc = "EVENTHIST3465"
+	#-#In the Ebb of the Enlightenment Lithuanian government started to change slowly into a more pluralistic and modern society. Royal power was decreased to the fortune of the many and not the few. With the Revolutions in America and France both Poland and Lithuania started egalitarian reforms. Archconservative Russia which had conquered the Ukraine and the Wild lands did not appreciate these developments. She struck a deal with Austria and Prussia to split Poland and Lithuania and bring it under 'civilized' rule. The Revolutionary Wars of the East was triggered by the Murder of the Lithuanian King, Karol II Stanislovas, on 21st November 1790. The King had visited the theater in Vilnius and was shot by three cloaked men point blank when leaving his carriage to enter the Royal Palace. The King traveled lightly so his personal guards and servants all succumbed in the fighting and the murderers disappeared in the night. On 23rd the news hit the streets and thousands of angry people stormed the Russian Embassy lynching everyone in sight. The Russian Government immediately craved an official apology and to let Russian special police help the investigation. At the same time the Police Master of Vilnius, Rafal Kresmanikes, received a messenger from the Swedish Police Master in Dorpat, Gustav Adolf Reuterholm. Reuterholm disclosed a lead that Kresmanikes found leading to St: Petersburg. The young King, Ludwike Mykolas I, was furious. He allied with Poland and mobilized the army. Within three month the country was ready for war, a war of revenge.
+
+	date = { day = 20 month = november year = 1790 }
+
+	action_a = {
+		name = "ACTIONNAME3465A" #This Great Nation craves Revenge!
+		command = { type = casusbelli which = HAB value = 24 }
+		command = { type = casusbelli which = RUS value = 24 }
+		command = { type = casusbelli which = PRU value = 24 }
+		command = { type = relation which = HAB value = -150 }
+		command = { type = relation which = RUS value = -150 }
+		command = { type = relation which = PRU value = -150 }
+		command = { type = relation which = POL value = 150 }
+		command = { type = domestic which = CENTRALIZATION value = 3 }
+		command = { type = treasury value = 500 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 210029

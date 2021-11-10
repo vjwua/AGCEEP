@@ -1,0 +1,173 @@
+#Ukraine (UKR)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1648-1820) The Tatar alliance
+event = {
+	id = 25003
+	trigger = {
+		war = { country = UKR country = POL }
+		exists = CRI
+	}
+	random = no
+	country = UKR
+	name = "EVENTNAME25003" #The Tatar alliance
+	desc = "EVENTHIST25003"
+	#-#Khmelnytsky knew that the Cossacks' great weakness in fighting the Poles was their lack of cavalry. His response was a bold one: he approached the Cossack's traditional rivals, the Khanate of Crimea, for an alliance.
+
+	date = { day = 1 month = january year = 1648 }
+	offset = 10
+	deathdate = { year = 1820 } #is loong to late, in 1820 Crimea did not exist
+
+	action_a = {
+		name = "ACTIONNAME25003A" #Put aside our old rivalries to fight the Poles
+		command = { type = CAV which = -1 value = 4000 }
+		command = { type = relation which = CRI value = 50 }
+		}
+	action_b = {
+		name = "ACTIONNAME25003B" #We can defend ourselves
+		command = { type = INF which = -1 value = 4000 }
+		command = { type = relation which = CRI value = -50 }
+		}
+}
+
+#(1649-1820) New capital
+event = {
+	id = 323000
+	trigger = {
+		atwar = no
+		owned = { province = 295 data = -1 } #Ukraine
+		control = { province = 295 data = -1 } #Ukraine
+	}
+	random = no
+	country = UKR
+	name = "EVENTNAME323000" #New capital
+	desc = "EVENTHIST323000"
+	#-#Capture of central Ukraine with city Kiev, which was capital of Kievan patriarchate, and end of the hostilities allowed Cossacks to move their capital from their Zaporozhian strongholds to Kiev.
+
+	date = { day = 1 month = january year = 1649 }
+	offset = 100
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME323000A" #Move capital
+		command = { type = relation which = POL value = -50 }
+		command = { type = stability value = 1 }
+		command = { type = capital which = 295 } #Kiev
+	}
+	action_b = {
+		name = "ACTIONNAME323000B" #No, in Zaporozhia we are safe
+		command = { type = relation which = POL value = 50 }
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1650-1653) Khmelnytsky's Revolt (UKR existing and vassal of POL)
+event = {
+	id = 323002
+	trigger = {
+		vassal = { country = POL country = UKR }
+	}
+	random = no
+	country = UKR
+	name = "EVENTNAME25001" #Khmelnytsky's Revolt
+	desc = "EVENTHIST25001"
+	#-#In 1647 a Polish nobleman, Daniel Czaplinski, laid claim to the estate of Bohdan Khmelnytsky, a hundredth in a Cossack regiment. Czaplinski took over Khmelnytsky's estate, killed his son, and married the woman that the widowed Cossack intended to marry. Later Czaplinski accused Khmelnytsky of treason. Unable to prevail in court Khmelnytsky resolved to lead the Cossacks in revolt against the Poles.
+
+	date = { day = 2 month = january year = 1650 }
+	offset = 100
+	deathdate = { day = 29 month = december year = 1653 }
+
+	action_a = {
+		name = "GOOD"
+		command = { type = breakvassal which = POL }
+		command = { type = relation which = POL value = -150 }
+	}
+}
+
+#(1654-1820) The Periaslav Agreement
+event = {
+	id = 25004
+	trigger = {
+		OR = {
+			event = 25001 #POL: Khmelnitsky's revolt
+			event = 323002 #UKR: Khmelnitsky's revolt
+		}
+		exists = POL
+		exists = RUS
+		NOT = {
+			vassal = { country = POL country = UKR }
+			vassal = { country = RUS country = UKR }
+			vassal = { country = TUR country = UKR }
+			vassal = { country = UKR country = POL }
+			vassal = { country = UKR country = RUS }
+			vassal = { country = UKR country = TUR }
+		}
+	}
+	random = no
+	country = UKR
+	name = "EVENTNAME25004" #The Periaslav agreement
+	desc = "EVENTHIST25004"
+	#-#Bohdan Khmelnytsky knew the fledgling Ukrainian nation needed two things to survive: the support of a major foreign power, and a legitimate ruler. Khmelnytsky was not of royal blood, and did not feel he could be a monarch. In order to meet both of those needs Khmelnytsky looked for a foreign monarch to become overlord of Ukraine.
+
+	date = { day = 1 month = january year = 1654 }
+	offset = 360
+	deathdate = { day = 0 month = january year = 1667 }
+
+	action_a = {
+		name = "ACTIONNAME25004A" #The Orthodox Tsar of Russia shall be our protector
+		command = { type = trigger which = 25005 } #RUS: The Ukrainians seek our protection
+		command = { type = relation which = RUS value = 50 }
+		command = { type = relation which = POL value = -100 }
+		command = { type = relation which = TUR value = -25 }
+	}
+	action_b = {
+		name = "ACTIONNAME25004B" #Reconcile with the Polish King (End Game)
+		command = { type = trigger which = 25006 } #POL: The Ukrainians seek to return to the fold
+		command = { type = relation which = POL value = 50 }
+		command = { type = relation which = RUS value = -100 }
+		command = { type = relation which = TUR value = -25 }
+	}
+	action_c = {
+		name = "ACTIONNAME25004C" #Seek the aid of the Ottoman Sultan
+		command = { type = trigger which = 25007 } #TUR: The Ukrainians seek our protection
+		command = { type = relation which = TUR value = 50 }
+		command = { type = relation which = RUS value = -100 }
+		command = { type = relation which = POL value = -100 }
+	}
+	action_d = {
+		name = "ACTIONNAME25004D" #We need the help of noone!
+		command = { type = stability value = -2 }
+		command = { type = relation which = TUR value = -25 }
+		command = { type = relation which = RUS value = -100 }
+		command = { type = relation which = POL value = -100 }
+	}
+}
+
+#(1656) Consequence of the treaty of Vilnius
+#by Duc de Guise
+event = {
+	id = 323001
+	trigger = {
+		OR = {
+			NOT = { war = { country = RUS country = UKR } }
+			vassal = { country = RUS country = UKR }
+		}
+	}
+	random = no
+	country = UKR
+	name = "EVENTNAME323001" #Consequence of the treaty of Vilnius
+	desc = "EVENTHIST323001"
+	#-#In order to properly fight the Swedes, Russia settled her feud with Poland for now.
+
+	action_a = {
+		name = "ACTIONNAME323001A" #Russia betrayed us!
+		command = { type = breakvassal which = RUS }
+		command = { type = relation which = SWE value = 200 }
+		command = { type = relation which = RUS value = -200 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 323003

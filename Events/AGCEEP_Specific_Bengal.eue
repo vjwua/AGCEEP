@@ -1,0 +1,613 @@
+#Bengal (BGL)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1420-1431) The Ramayama is translated into Bengla - Flavor
+event = {
+	id = 128501
+	random = no
+	country = BGL
+	name = "EVENTNAME128501" #The Ramayama is translated into Bangla
+	desc = "EVENTHIST128501"
+	#-#A poet by the name of Krittivas Ojha arrived at the court of Sultan Jalaluddin Mahmud Shah, hoping to become a royal pundit. He recited verses of the Ramayama to the King, who was pleased and showered the poet with gifts. He then requested the poet to translate the Ramayama into Bangla, based on the Sanskrit Ramayama of Valmiki. It proved to be very popular in Bengal and helped spread the Ramayama across the region.
+
+	date = { day = 1 month = january year = 1420 }
+	offset = 3600
+	deathdate = { day = 1 month = january year = 1431 }
+
+	action_a = {
+		name = "ACTIONNAME128501A" #A pleasure to behold
+		command = { type = trade value = 10 }
+	}
+}
+
+#(1426-1435) Arakanese Kingdom
+event = {
+	id = 30323
+	trigger = {
+		control = { province = 671 data = MYA }
+		control = { province = 672 data = MYA }
+		owned = { province = 671 data = MYA }
+		owned = { province = 672 data = MYA }
+		NOT = { exists = ARK }
+	}
+	random = no
+	country = BGL
+	name = "EVENTNAME30323" #Kingdom of Arakan
+	desc = "EVENTHIST30323"
+	#-#King Narameikhla of Arakan was driven out of his country by Burmese in 1404, and remained in exile at the Bengali court until 1425-26, when the sympathetic King of Bengal provided him with troops and a general, Wali Khan, to march and liberate his country. Wali Khan turned out to be traitor, and Narameikhla was captured by Burmese. He soon escaped, and supplied with fresh Bengalese troops he managed to liberate his capital and re-establish the Kingdom of Arakan in 1430. Grateful to his Bengalese hosts, he voluntarily made himself a tributary to the King of Bengal. The vassalship was removed by his successor in 1434, without much of a hindrance from the Bengalese court.
+
+	date = { day = 1 month = january year = 1426 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1435 }
+
+	action_a = {
+		name = "ACTIONNAME30323A" #Provide the King of Arakan with troops
+		command = { type = treasury value = -50 }
+		command = { type = relation which = MYA value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME30323B" #Refrain from interfering into Myanmar's internal problems
+		command = { type = stability value = -1 }
+		command = { type = relation which = MYA value = 50 }
+		command = { type = sleepevent which = 30322 } #MYA: Bengal's meddling in Arakan
+	}
+}
+
+#(1430-1433) Arakan Setup Event
+event = {
+	id = 30320
+	trigger = {
+		event = 30321 #ARK: Independence of Arakan
+		exists = ARK
+	}
+	random = no
+	country = BGL
+	name = "EVENTNAME30320" #Grateful King of Arakan
+	desc = "EVENTHIST30320"
+	#-#Grateful King of Arakan decided to recognize our effort in bringing him back to the throne, and made himself our tributary.
+
+	date = { day = 2 month = january year = 1430 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1433 }
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = vassal which = ARK }
+	}
+}
+
+#(1445-1450) The Reforms of Nasir ud-Din Mahmud Shah
+event = {
+	id = 30326
+	trigger = {
+		monarch = 022002 #Nasir ud-Din Mahmud Shah
+		atwar = no
+		stability = 1
+	}
+	random = no
+	country = BGL
+	name = "EVENTNAME30326" #The Reforms of Nasir ud-Din Mahmud Shah
+	desc = "EVENTHIST30326"
+	#-#During the reign of Nasir ud-Din Mahmud Shah a large number of mosques, bridges, and fortifications were erected. He, himself, laid the foundations of the citadel and palace of Gaur.
+
+	date = { day = 1 month = january year = 1445 }
+	offset = 500
+	deathdate = { day = 1 month = january year = 1450 }
+
+	action_a = {
+		name = "ACTIONNAME30326A" #Build testaments to our prosperity!
+		command = { type = fortress which = -2 value = 1 }
+		command = { type = infra value = 200 }
+		command = { type = treasury value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME30326B" #Let us reform our army instead
+		command = { type = treasury value = -50 }
+		command = { type = stability value = -1 }
+		command = { type = domestic which = QUALITY value = 1 }
+	}
+}
+
+#(1457-1480) Chittagong
+event = {
+	id = 30316
+	trigger = {
+		event = 30317 #ARK: Chittagong
+	}
+	random = no
+	country = BGL
+	name = "EVENTNAME30316" #Arakanese troops in Chittagong
+	desc = "EVENTHIST30316"
+	#-#In 1459 Arakanese troops led by Kalima Shah made a daring raid and captured the port city of Chittagong. The ruler of Bengal, weak and inefficient Barbak Shah, decided against a campaign against Arakan. As a token of their respect to the Muslims of Chittagong and King of Bengal, rulers of Arakan used Muslim titles, and put arabic (or persian) inscriptions on their coins. However, Chittagong would remain a bone of contention between Arakan and Bengal for the next 150 years.
+
+	date = { day = 1 month = january year = 1457 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1480 }
+
+	action_a = {
+		name = "ACTIONNAME30316A" #It's not worth the war
+		command = { type = relation which = ARK value = -50 }
+		command = { type = stability value = -1 }
+		command = { type = casusbelli which = ARK value = 1500 }
+		command = { type = addcore which = 556 } #Santal
+	}
+}
+
+#(1521-1526) Bengal introduces its own currency
+event = {
+	id = 30325
+	trigger = {
+		monarch = 022012 #Nasir ud-Din Nusrat Shah
+	}
+	random = no
+	country = BGL
+	name = "EVENTNAME30325" #Bengal introduces its own currency
+	desc = "EVENTHIST30325"
+	#-#Nasir ud-Din Nusrat Shah has issued first coins as part of his reforms.
+
+	date = { day = 1 month = january year = 1521 }
+	offset = 300
+	deathdate = { day = 1 month = january year = 1526 }
+
+	action_a = {
+		name = "OK"
+		command = { type = treasury value = 80 }
+		command = { type = infra value = 200 }
+		command = { type = trade value = 200 }
+		command = { type = inflation value = -5 }
+	}
+}
+
+#(1533) The Alliance against Sher Khan
+event = {
+	id = 128010
+	random = no
+	country = BGL
+	name = "EVENTNAME128010" #The Alliance against Sher Khan
+	desc = "EVENTHIST128010"
+	#-#The rapid rise of Sher Khan at the expense of the Lohani Afghans made many tired of his rule, including the nominal khan of Bihar, Jalal Khan. When conventional means of getting rid of the Afghani dictator failed owing to his unusual circumspection, Jalal Khan turned to the new King of Bengal, Mahmud Shah. Mahmud was eager for an alliance to get rid of Sher, whose rise threatened his own position, and in September 1533 marched against him with the support of the Lohanis.
+
+	date = { day = 1 month = september year = 1533 }
+	offset = 30
+	deathdate = { day = 1 month = november year = 1533 }
+
+	action_a = {
+		name = "ACTIONNAME128010A" #Crush this despot and reclaim Bihar
+		command = { type = losebuilding which = 559 value = cityrights } #Bihar
+		command = { type = desertion which = 559 value = 5000 } #Bihar
+		command = { type = revolt which = 559 } #Bihar
+		command = { type = revolt which = 555 } #Koch
+		command = { type = revolt which = -2 }
+		command = { type = revoltrisk which = 80 value = 10 }
+	}
+	action_b = {
+		name = "ACTIONNAME128010B" #Make a deal with him to keep our throne
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 36 value = 10 } #Lohani reaction
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = sleepevent which = 128011 } #BGL: The Battle of Surajgarh
+		command = { type = sleepevent which = 128012 } #BGL: The Siege of Bihar
+		command = { type = vp value = -10 }
+		command = { type = DIP which = -2 value = 24 }
+		command = { type = ADM which = -2 value = 24 }
+		command = { type = MIL which = -2 value = 24 }
+	}
+}
+
+#(1533-1539) The Battle of Surajgarh
+event = {
+	id = 128011
+	trigger = {
+		OR = {
+			AND = {
+				control = { province = 559 data = REB } #Bihar
+				owned = { province = 559 data = -1 } #Bihar
+			}
+			AND = {
+				control = { province = 558 data = REB } #Howrah
+				owned = { province = 558 data = -1 } #Howrah
+			}
+			AND = {
+				control = { province = 555 data = REB } #Koch
+				owned = { province = 555 data = -1 } #Koch
+			}
+		}
+		event = 128010 #BGL: The Alliance against Sher Khan
+	}
+	random = no
+	country = BGL
+	name = "EVENTNAME128011" #The Battle of Surajgarh
+	desc = "EVENTHIST128011"
+	#-#In 1534 the forces of Sher Khan defeated the larger armies of the Bengali Sultan and the Lohanis at Surajgarh, on the banks of the Kiul river, just east of Bihar. This victory made Sher Khan the undisputed ruler of Bihar in fact as well as in name.
+
+	date = { day = 1 month = september year = 1533 }
+	offset = 1
+	deathdate = { day = 1 month = january year = 1539 }
+
+	action_a = {
+		name = "ACTIONNAME128011A" #Give in to his demands
+		command = { type = vp value = -10 }
+		command = { type = stability value = -3 }
+		command = { type = treasury value = -50 }
+		command = { type = DIP which = -2 value = 48 }
+		command = { type = ADM which = -2 value = 48 }
+		command = { type = MIL which = -2 value = 48 }
+		command = { type = sleepevent which = 128012 } #BGL: The Siege of Bihar
+	}
+}
+
+#(1537) The Siege of Bihar - Ahistorical
+event = {
+	id = 128012
+	trigger = {
+		control = { province = 559 data = BGL } #Bihar
+		event = 128010 #BGL: The Alliance against Sher Khan
+	}
+	random = no
+	country = BGL
+	name = "EVENTNAME128012" #The Siege of Bihar
+	desc = "EVENTHIST128012"
+	#-#In 1534 the forces of Sher Khan were crushed at Surajgarh, on the banks of the Kiul river, just east of Bihar. Sher Khan retreated to Bihar and a lengthly siege began. Eventually, the majority of the province was taken but the perfidious criminal, Sher Khan, managed to escape. With luck, he'll never trouble these lands again.
+
+	date = { day = 1 month = january year = 1537 }
+	offset = 90
+	deathdate = { day = 1 month = october year = 1537 }
+
+	action_a = {
+		name = "ACTIONNAME128012A" #Victory is ours!
+		command = { type = vp value = 10 }
+		command = { type = stability value = 1 }
+		command = { type = sleepevent which = 128011 } #BGL: The Battle of Surajgarh
+		command = { type = sleepevent which = 128013 } #BGL: Sher Khan strikes
+		command = { type = sleepevent which = 230015 } #MOG: Humayun enters Gaur
+		command = { type = sleepevent which = 230016 } #MOG: Sher Khan's Victory
+	}
+}
+
+#(1537) Sher Khan strikes
+event = {
+	id = 128013
+	random = no
+	country = BGL
+	name = "EVENTNAME128013" #Sher Khan strikes
+	desc = "EVENTHIST128013"
+	#-#Noticing the political fragile position of the Bengali Kingdom, Sher Khan took the opportunity to invade Bengal, using a circuitous route to arrive at the capital, Gaur, with an army. The unprepared Shah was forced to buy off Sher Khan with thirteen lacs of gold and by ceding the territory between Kiul and Sakrigali, some 2,700 square miles of land. Although this bought Mahmud Shah some time, it did not save him. Sher Khan invaded again in October 1537 with the aim of conquering all of Bengal.
+
+	date = { day = 1 month = october year = 1537 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1537 }
+
+	action_a = {
+		name = "ACTIONNAME128013A" #Curse our rotten luck!
+		command = { type = casusbelli which = MOG value = 96 }
+		command = { type = trigger which = 230014 } #MOG: Mahmud Shah asks for help
+		command = { type = sleepevent which = 128012 } #BGL: The Siege of Bihar
+	}
+}
+
+#(1537-1540) Sher Khan becomes Sher Shah
+event = {
+	id = 128014
+	trigger = {
+		OR = {
+			AND = {
+				control = { province = 559 data = REB } #Bihar
+				owned = { province = 559 data = -1 } #Bihar
+				control = { province = 555 data = REB } #Koch
+				owned = { province = 555 data = -1 } #Koch
+			}
+			AND = {
+				control = { province = 558 data = REB } #Howrah
+				owned = { province = 558 data = -1 } #Howrah
+			}
+		}
+		event = 128013 #BGL: Sher Khan strikes
+	}
+	random = no
+	country = BGL
+	name = "EVENTNAME128014" #Sher Khan becomes Sher Shah
+	desc = "EVENTHIST128014"
+	#-#By 1538, several military victories had cemented Sher Khan as ruler of Bengal and made him the de facto ruler of the lands from Kanauj in the west to the hills of Assam and Cittagong in the south. To gain legitimacy, Sher Khan assumed the royal title of Sher Shah and ordered the Khutba to be read and coins to be struck in his name.
+
+	date = { day = 1 month = october year = 1537 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1540 }
+
+	action_a = {
+		name = "ACTIONNAME128014A" #I have united the Afghans
+		command = { type = wakemonarch which = 022015 } #Sher Shah Sur
+		command = { type = vp value = 25 }
+		command = { type = stability value = 3 }
+		command = { type = MIL which = 1 value = 120 }
+		command = { type = treasury value = 200 }
+		command = { type = addcore which = 545 } #Bundelkhand
+		command = { type = addcore which = 544 } #Awadh
+		command = { type = addcore which = 553 } #Raipur
+	}
+}
+
+#(1538-1540) Sher Shah's Reforms
+#by Jinnai
+event = {
+	id = 30324
+	trigger = { monarch = 022015 } #Sher Shah Sur
+	random = no
+	country = BGL
+	name = "EVENTNAME30324" #Sher Shah's Reforms
+	desc = "EVENTHIST30324"
+	#-#Our ruler has proposed sweeping reforms in order to modernize and restructure our state. These include economic reforms, a better tax-gathering system, a streamlined beaurocracy, and military restructuring. However, such a plan will be expensive and will cause a fair amount of resentment among the populace, the bureaucracy, and the military. Shall we implement the reforms?
+
+	date = { day = 1 month = january year = 1538 }
+	offset = 200
+	deathdate = { day = 1 month = january year = 1540 }
+
+	action_a = {
+		name = "ACTIONNAME3899A" #Implement the reforms
+		command = { type = stability value = -4 }
+		command = { type = treasury value = -300 }
+		command = { type = domestic which = quality value = 1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = land value = 1 }
+		command = { type = provincetax which = -2 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = infra value = 600 }
+	}
+	action_b = {
+		name = "ACTIONNAME3899B" #No, such restructuring would be too rash!
+		command = { type = stability value = 2 }
+		command = { type = domestic which = quality value = -1 }
+		command = { type = domestic which = centralization value = -1 }
+	}
+}
+
+#(1538-1556) Hindustan returns to Afghan rule
+event = {
+	id = 128015 #triggered by MOG_230017
+	random = no
+	country = BGL
+	name = "EVENTNAME128015" #Hindustan returns to Afghan rule
+	desc = "EVENTHIST128015"
+	#-#The year after his disastrous defeat against Sher Shah, Humayun made another attempt to regain his empire and put down the rebellion. His brothers refused to cooperate with him in this, despite Humayun personally travelling to Lahore to convince them. Nevertheless, he quickly raised an army and faced the Afghans in battle on May 17, 1540 opposite Kanauj. Hopelessly demoralized and badly managed, Humayun's forces were soundly defeated and Humayun only just managed to escape. The great conquests of Babur had been lost and once more Hindustan returned to Afghan rule. Humayun was forced into exile for the next fifteen years while Sher Shah extended his rule all the way to the Punjab, where he marched to subdue the hill tribes of Gakkar without much success.
+
+	action_a = {
+		name = "ACTIONNAME128015A" #We have forced the Mughals out of India
+		command = { type = flagname which = "" }
+		command = { type = country which = DLH }
+		command = { type = capital which = 543 } #Delhi
+		command = { type = stability value = 3 }
+		command = { type = addcore which = 543 } #Delhi
+		command = { type = DIP which = 1 value = 120 }
+		command = { type = treasury value = 200 }
+		command = { type = vp value = 50 }
+	}
+}
+
+#(1539-1541) Local rule is restored to Bengal - Ahistorical
+event = {
+	id = 128017 #triggered by DLH_161006 B
+	random = no
+	country = BGL
+	name = "EVENTNAME128017" #Local rule is restored to Bengal
+	desc = "EVENTHIST128017"
+	#-#With the Shah in Gakkar trying to subdue the warlike hill tribes of the Punjab, the deputy governor of Bengal, Khijr Khan, threw off his authority and declared independence in March 1541. The rebellion had the support of the Afghan nobles of Bengal who resented how unimportant they had become in the empire. With Bengal unimportant to his plans, the Shah legitimized Khijr Khan's coup d'etat and gave him autonomy as long as tribute continued to flow into his capital.
+
+	action_a = {
+		name = "ACTIONNAME128017A" #Khijr Khan now rules Bengal for the emperor
+		command = { type = domestic which = aristocracy value = 1 }
+	}
+}
+
+#(1539-1541) Khijr Khan seizes power
+event = {
+	id = 128018
+	trigger = {
+		event = 161006 #DLH: Khijr Khan's Rebellion
+	}
+	random = no
+	country = BGL
+	name = "EVENTNAME128018" #Khijr Khan seizes power
+	desc = "EVENTHIST128018"
+	#-#With the Shah in Gakkar trying to subdue the warlike hill tribes of the Punjab, the deputy governor of Bengal threw off his authority and declared independence in March 1541. The rebellion had the support of the Afghan nobles of Bengal who resented how unimportant they had become in the empire.
+
+	date = { day = 1 month = november year = 1539 }
+	offset = 5
+	deathdate = { day = 1 month = january year = 1541 }
+
+	action_a = {
+		name = "ACTIONNAME128018A" #Now we must survive the wrath of the Shah
+		command = { type = stability value = -1 }
+		command = { type = relation which = DLH value = -200 }
+	}
+}
+
+#(1560) Ghiasuddin Jalal Shah
+event = {
+	id = 128001
+	trigger = {
+		exists = ORI
+		NOT = { vassal = { country = BGL country = ORI } }
+	}
+	random = no
+	country = BGL
+	name = "EVENTNAME128001" #Ghiasuddin Jalal Shah
+	desc = "EVENTHIST128001"
+	#-#When Khizr died Jalal Din took over as Shah, becoming known as Ghiasuddin Abul Muzaffar Jalal Shah. One of his first acts was to invade Orissa, but he was defeated by the Gajapati.
+
+	date = { day = 1 month = january year = 1560 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1561 }
+
+	action_a = {
+		name = "ACTIONNAME128001A" #Our gaze turns to the south
+		#command = { type = AI which = BGL_Orissa.ai }
+		command = { type = casusbelli which = ORI value = 12 }
+	}
+}
+
+#(1564) Taj Khan seizes power
+event = {
+	id = 128002
+	random = no
+	country = BGL
+	name = "EVENTNAME128002" #Taj Khan seizes power
+	desc = "EVENTHIST128002"
+	#-#After the failures of Jalal Shah, a khan named Taj Karrani seized power and drove out his chief rival Ibrahim, who fled Bengal.
+
+	date = { day = 1 month = january year = 1564 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1565 }
+
+	action_a = {
+		name = "ACTIONNAME128002A" #Thus begins the Karrani dynasty
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 6 value = 10 }
+		command = { type = trigger which = 249030 } #ORI: Ibrahim seeks asylum
+	}
+}
+
+#(1567-1575) The Mughal's Plans
+event = {
+	id = 128003
+	trigger = {
+		NOT = { war = { country = BGL country = MOG } }
+		exists = ORI
+		NOT = { vassal = { country = BGL country = ORI } }
+	}
+	random = no
+	country = BGL
+	name = "EVENTNAME128003" #The Mughal's Plans
+	desc = "EVENTHIST128003"
+	#-#The Shah had heard rumors of the Great Mughal's plans regarding Bengal and he knew Orissa was vital to those plans, so while Akbar was preoccupied by trouble in Chittor, Sulaiman Karrani struck at Orissa.
+
+	date = { day = 1 month = october year = 1567 }
+	offset = 60
+	deathdate = { day = 1 month = april year = 1575 }
+
+	action_a = {
+		name = "ACTIONNAME128003A" #It's now or never
+		#command = { type = AI which = BGL_Sulaiman_Karrani.ai } #A serious attempt to conquer Orissa
+		command = { type = casusbelli which = ORI value = 12 }
+		command = { type = relation which = ORI value = -50 }
+	}
+}
+
+#(1567-1575) Mukundadeva surrenders
+event = {
+	id = 128004 #triggered by ORI_249035 A
+	random = no
+	country = BGL
+	name = "EVENTNAME128004" #Mukundadeva surrenders
+	desc = "EVENTHIST128004"
+	#-#After defeating Mukundadeva's forces, Sulaiman Karrani bottled up the remaining Oriya army in the fort of Kotsima while his son Bayazid led an army to occupy the capital and sack the Hindu temple of Jagannath. Meanwhile, a rebellion against Mukundadeva's rule began in the south. With this total defeat the Oriya King had no option but to surrender to Sulaiman Karrani. The terms were harsh but allowed Mukundadeva to keep his throne. Meanwhile, the rebels represented a threat to the new overlords of Orissa.
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = vassal which = ORI }
+		command = { type = vp value = 10 }
+		command = { type = relation which = MOG value = -50 }
+		command = { type = relation which = DLH value = -50 }
+		command = { type = relation which = ORI value = 50 }
+	}
+}
+
+#(1567-1575) Khan of Orissa
+event = {
+	id = 128005 #triggered by ORI_249036 A
+	trigger = {
+		event = 128003 #The Mughal's Plans
+		control = { province = 560 data = BGL }
+	}
+	random = no
+	country = BGL
+	name = "EVENTNAME128005" #Khan of Orissa
+	desc = "EVENTHIST128005"
+	#-#The exhausted King of Orissa met his end fighting the rebels. With the country in chaos, Bayazid's forces defeated the rebels and killed their leader, Ramachandra Bhanja. With the country in chaos and no clear line of succession, Bayazid claimed the throne of Orissa for his father, making him both Shah of Bengal and King of Orissa. He passed this dual crown down to his successors, who remained Kings of Orissa until 1592.
+
+	action_a = {
+		name = "ACTIONNAME128005A" #Most excellent
+		command = { type = addcore which = 560 } #Odisa
+		command = { type = inherit which = ORI }
+		command = { type = vp value = 10 }
+		command = { type = relation which = MOG value = -50 }
+		command = { type = relation which = DLH value = -50 }
+	}
+}
+
+#(1760-1763) The Accession of Mir Qasim
+event = {
+	id = 128000
+	trigger = {
+		owned = { province = 557 data = ENG } #Ganges
+		owned = { province = 556 data = -1 } #Santal
+		NOT = {
+			countrysize = 15
+			event = 164604 #ENG: Trade in Calcutta
+		}
+	}
+	random = no
+	country = BGL
+	name = "EVENTNAME128000" #The Accession of Mir Qasim
+	desc = "EVENTHIST128000"
+	#-#In July of 1760, the Bengali council chose to support Mir Qasim against Mir Jafar, then Nawab of Bengal. British troops were to support Mir Qasim's accession to power, and in exchange they were to receive the provinces of Burdwan, Midnapore and Chittagong.
+
+	date = { day = 26 month = july year = 1760 }
+	offset = 5
+	deathdate = { day = 7 month = july year = 1763 }
+
+	action_a = {
+		name = "ACTIONNAME128000A" #They always want something
+		command = { type = trigger which = 164102 } #ENG: The Accession of Mir Qasim
+		command = { type = relation which = ENG value = 50 }
+		command = { type = secedeprovince which = ENG value = 556 } #Santal
+	}
+}
+
+#(1765-1820) The Military Defense of Bengal
+event = {
+	id = 128016
+	trigger = {
+		owned = { province = 557 data = ENG } #Ganges
+		OR = {
+			owned = { province = 556 data = ENG } #Santal
+			owned = { province = 571 data = ENG } #Madras
+			owned = { province = 548 data = ENG } #Bombay
+		}
+		NOT = {
+			countrysize = 15
+			vassal = { country = BGL country = ENG }
+			vassal = { country = ENG country = BGL }
+		}
+	}
+	random = no
+	country = BGL
+	name = "EVENTNAME128016" #The Military Defense of Bengal
+	desc = "EVENTHIST128016"
+	#-#By 1765, growing dependence on the armed forces of the British East Indian Company forced the Nawabs of Bengal to recognize the infirmity of their position. In February, the Nawab of Bengal signed a treat which called for the Company to take over the military defense of the council.
+
+	date = { day = 1 month = february year = 1765 }
+	offset = 5
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME128016A" #We are weak, we have no other recourse
+		command = { type = trigger which = 164103 } #ENG: Vassalization of Bengal
+		command = { type = inf which = -2 value = 7500 }
+		command = { type = relation which = ENG value = 200 }
+	}
+	action_b = {
+		name = "ACTIONNAME128016B" #We foolishly march alone!
+		command = { type = relation which = ENG value = -75 }
+		command = { type = revolt which = -2 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = stability value = -5 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 128006-128009 - next: 128019

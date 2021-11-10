@@ -1,0 +1,1422 @@
+#Morocco (MOR)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1464) Muhammad al-Jazuli
+event = {
+	id = 51014
+	random = no
+	country = MOR
+	name = "EVENTNAME51014" #Muhammad al-Jazuli
+	desc = "EVENTHIST51014"
+	#-#Muhammad al-Jazuli, from a Berber tribe in southern Morocco, studied at Fez and spent 40 years in the Middle East. Coming back to Fez, he moved soon to Âsfî where he established a centre of the Shâdhiliyya Sûfic order of which he was a member. Said to have had the gift of miracles (karâma), he travelled around the countryside and attracted as many as 13,000 disciples to his movement, for whom he founded zâwiyas all over Morocco. The governor of Âsfî expelled him from the town because his movement was a threat to the Marînids.
+
+	date = { day = 1 month = december year = 1464 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1464 }
+
+	action_a = {
+		name = "ACTIONNAME51014A" #Silence him
+		command = { type = revoltrisk which = 12 value = 2 }
+		command = { type = stability value = 1 }
+		command = { type = sleepevent which = 51016 } #MOR: Death of Muhammad al-Jazuli
+	}
+	action_b = {
+		name = "ACTIONNAME51014B" #Warn him
+		command = { type = revoltrisk which = 12 value = 1 }
+		command = { type = sleepevent which = 51015 } #MOR: Death of Muhammad al-Jazuli
+	}
+	action_c = {
+		name = "ACTIONNAME51014C" #Let him be
+		command = { type = sleepevent which = 51015 } #MOR: Death of Muhammad al-Jazuli
+		command = { type = stability value = 1 }
+		command = { type = domestic which = centralization value = -1 }
+	}
+}
+
+#(1465) Death of Muhammad al-Jazuli
+event = {
+	id = 51015
+	random = no
+	country = MOR
+	name = "EVENTNAME51015" #Death of Muhammad al-Jazuli
+	desc = "EVENTHIST51015"
+	#-#In 1465 Muhammad al-Jazuli, who founded a centre for the Shadhiliyya Sufic order, died from poison. The people of Fez blamed the Marinid ruler Abd al-Haqq for al-Jazuli's death and he was executed. The death of the last Marinid ruler led to a civil war.
+
+	date = { day = 1 month = january year = 1465 }
+
+	action_a = {
+		name = "ACTIONNAME51015A" #Chaos reigns!
+		command = { type = revoltrisk which = 84 value = 4 }
+		command = { type = stability value = -3 }
+	}
+}
+#(1465) Death of Muhammad al-Jazuli alternate
+event = {
+	id = 51016
+	random = no
+	country = MOR
+	name = "EVENTNAME51015" #Death of Muhammad al-Jazuli
+	desc = "EVENTHIST51015"
+	#-#In 1465 Muhammad al-Jazuli, who founded a centre for the Shadhiliyya Sufic order, died from poison. The people of Fez blamed the Marinid ruler Abd al-Haqq for al-Jazuli's death and he was executed. The death of the last Marinid ruler led to a civil war.
+
+	date = { day = 1 month = january year = 1465 }
+
+	action_a = {
+		name = "ACTIONNAME51016A" #We tried to deny it
+		command = { type = revoltrisk which = 84 value = 6 }
+		command = { type = stability value = -3 }
+	}
+}
+
+#(1472) The Fate of Morocco -I-
+event = {
+	id = 232006
+	random = no
+	trigger = {
+		NOT = {
+			event = 232007 #MOR: The Fate of Morocco -II-
+		}
+		atwar = no
+	}
+	country = MOR
+	name = "EVENTNAME51000" #The Fate of Morocco
+	desc = "EVENTHIST51000"
+	#-#In the 15th century, the Wattasid dynasty was finally able to act on their claim as the rightful rulers of Morocco. The long civil war was over with the Wattasids as the victors. However it proved difficult to rule all of Morocco from their capital in Fez. In the south, local tribesmen and Sufi orders, most notably the Jazuliyyas, harassed Moroccan cities limiting any control the Wattasids may have had.
+
+	date = { day = 1 month = january year = 1472 }
+
+	action_a = {
+		name = "ACTIONNAME51000A" #Support the Wattasid dynasty
+		command = { type = removecore which = 1595 } #Anti Atlas
+		command = { type = removecore which = 805 } #Sahara
+		command = { type = colonialrevolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = stability value = 2 }
+		command = { type = revoltrisk which = 120 value = 10 }
+		#command = { type = AI which = MOR_Wattasid.ai }
+		command = { type = province_revoltrisk which = 805 value = 20 } #Sahara
+		command = { type = province_revoltrisk which = 804 value = 10 } #Tassaret
+		command = { type = province_revoltrisk which = 1595 value = 15  } #Anti Atlas
+		command = { type = sleepevent which = 232007 } #MOR: The Fate of Morocco -II-
+	}
+	action_b = {
+		name = "ACTIONNAME51000B" #Anarchy shall prevail!
+		command = { type = stability value = -4 }
+		command = { type = removecore which = 732 } #Tangiers
+		command = { type = removecore which = 733 } #Fez
+		command = { type = removecore which = 806 } #Toubkal
+		command = { type = revoltrisk which = 100 value = 13 }
+		command = { type = revolt which = -1 }
+		command = { type = sleepmonarch which = 091005 } #Muhammad al-Shaikh
+		command = { type = sleepmonarch which = 091006 } #Muhammad II al-Burtuqûlî
+		command = { type = sleepmonarch which = 091007 } #Abu al-'Abbas Ahmad
+		command = { type = sleepmonarch which = 091008 } #Bu Hassun
+		command = { type = wakemonarch which = 091009 } #Anarchy *
+		command = { type = wakemonarch which = 091010 } #Muhammad I al-Qa'im °
+		command = { type = wakemonarch which = 091011 } #Ahmad al A'raj °
+		command = { type = wakemonarch which = 091012 } #Muhammad II al-Shaikh °
+		command = { type = sleepevent which = 232008 } #MOR: The infirmity of the Wattasid Dynasty
+		command = { type = sleepevent which = 232007 } #MOR: The Fate of Morocco -II-
+	}
+}
+#(1472) The Fate of Morocco -II-
+event = {
+	id = 232007
+	random = no
+	trigger = {
+		atwar = yes
+		NOT = {
+			event = 232006  #MOR: The Fate of Morocco -I-
+		}
+	}
+	country = MOR
+	name = "EVENTNAME51000" #The Fate of Morocco
+	desc = "EVENTHIST51000"
+	#-#In the 15th century, the Wattasid dynasty was finally able to act on their claim as the rightful rulers of Morocco. The long civil war was over with the Wattasids as the victors. However it proved difficult to rule all of Morocco from their capital in Fez. In the south, local tribesmen and Sufi orders, most notably the Jazuliyyas, harassed Moroccan cities limiting any control the Wattasids may have had.
+
+	date = { day = 1 month = january year = 1472 }
+
+	action_a = {
+		name = "ACTIONNAME51000A" #Support the Wattasid dynasty
+		command = { type = removecore which = 1595 } #Anti Atlas
+		command = { type = removecore which = 805 } #Sahara
+		command = { type = colonialrevolt which = -1 }
+		command = { type = colonialrevolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = stability value = 1 }
+		command = { type = revoltrisk which = 120 value = 5 }
+		#command = { type = AI which = MOR_wattasid.ai }
+		command = { type = province_revoltrisk which = 805 value = 20 } #Sahara
+		command = { type = province_revoltrisk which = 804 value = 10 } #Tassaret
+		command = { type = province_revoltrisk which = 1595 value = 15  } #Anti Atlas
+		command = { type = sleepevent which = 232006 } #MOR: The Fate of Morocco -I-
+	}
+	action_b = {
+		name = "ACTIONNAME51000B" #Anarchy shall prevail!
+		command = { type = stability value = -3 }
+		command = { type = removecore which = 732 } #Tangiers
+		command = { type = removecore which = 733 } #Fez
+		command = { type = removecore which = 806 } #Toubkal
+		command = { type = revoltrisk which = 100 value = 10 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = sleepmonarch which = 091005 } #Muhammad al-Shaikh
+		command = { type = sleepmonarch which = 091006 } #Muhammad II al-Burtuqûlî
+		command = { type = sleepmonarch which = 091007 } #Abu al-'Abbas Ahmad
+		command = { type = sleepmonarch which = 091008 } #Bu Hassun
+		command = { type = wakemonarch which = 091009 } #Anarchy *
+		command = { type = wakemonarch which = 091010 } #Muhammad I al-Qa'im °
+		command = { type = wakemonarch which = 091011 } #Ahmad al A'raj °
+		command = { type = wakemonarch which = 091012 } #Muhammad II al-Shaikh °
+		command = { type = sleepevent which = 232008 } #MOR: The infirmity of the Wattasid Dynasty
+		command = { type = sleepevent which = 232006 } #MOR: The Fate of Morocco -I-
+	}
+}
+
+#(1472) The Infirmity of the Wattasid Dynasty
+event = {
+	id = 232008
+	random = no
+	country = MOR
+	name = "EVENTNAME51013" #The infirmity of the Wattasid Dynasty
+	desc = "EVENTHIST51013"
+	#-#The Wattasids were the ruling dynasty of Morocco from the middle of the 15th century to the middle of the 16th century. The Wattasids were an old vizier family of the Merenids and when they gained control of Morocco, it was in shambles. Morocco was in the midst of economic, demographic, domestic, and foreign problems. The inability of the Wattasid sovereigns, to deal with these issues, eventually led to the dynasty's demise.
+
+	date = { day = 1 month = january year = 1472 }
+	offset = 200
+	deathdate = { day = 29 month = december year = 1472 }
+
+	action_a = {
+		name = "ACTIONNAME51013A" #The nation is spiraling out of our control!
+		command = { type = stability value = -3 }
+		command = { type = diplomats value = -3 }
+		command = { type = missionaries value = -3 }
+		command = { type = inflation value = 10 }
+		command = { type = treasury value = -50 }
+		command = { type = infra value = -250 }
+	}
+}
+
+#(1492-1550) Moriscos Request Aid
+event = {
+	id = 232011
+	trigger = {
+		event = 301000
+		exists = SPA
+		NOT = { exists = GRA }
+	}
+	random = no
+	country = MOR
+	name = "EVENTNAME232011" #The Moriscos Request Aid
+	desc = "EVENTHIST232011"
+	#-#Prior to its fall, the Muslim Kingdom of Granada routinely asked its Muslim brothers for support. After its fall, many Moriscos still held out hope that the Ottoman Empire would liberate them. However, surely, the Moriscos would not have become agitated had Morocco came to their aid.
+
+	date = { day = 1 month = january year = 1492 }
+	offset = 1800
+	deathdate = { day = 29 month = december year = 1550 }
+
+	action_a = {
+		name = "ACTIONNAME232011A" #We have other concerns
+		command = { type = merchants value = 1 }
+		command = { type = diplomats value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME232011B" #We must help them!
+		command = { type = cav which = -1 value = 150 }
+		command = { type = warships which = 745 value = 2 }
+		command = { type = stability value = -2 }
+		command = { type = casusbelli which = SPA value = 24 }
+		command = { type = manpower value = 5 }
+	}
+}
+
+#(1500-1545) The Wattasids
+event = {
+	id = 232010
+	trigger = {
+		ai = yes
+		exists = FEZ
+	}
+	random = no
+	country = MOR
+	name = "EVENTNAME232010" #The Wattasids
+	desc = "EVENTHIST232010"
+	#-#The inability of the Wattasid dynasty led to southern Morocco gaining virtual autonomy during this period.
+
+	date = { day = 1 month = january year = 1500 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1545 }
+
+	action_a = {
+		name = "ACTIONNAME51007A" #And so we lose control
+		command = { type = province_revoltrisk which = 805 value = -20 } #Sahara
+		command = { type = province_revoltrisk which = 804 value = -10 } #Tassaret
+		command = { type = province_revoltrisk which = 1595 value = -15  } #Anti Atlas
+		command = { type = secedeprovince which = FEZ value = 1597 } #Azaouad
+		command = { type = secedeprovince which = FEZ value = 804 } #Tassaret
+		command = { type = secedeprovince which = FEZ value = 1596 } #Mdennan
+		command = { type = secedeprovince which = FEZ value = 805 } #Sahara
+		command = { type = secedeprovince which = FEZ value = 803 } #Nouadibuh
+		command = { type = secedeprovince which = FEZ value = 802 } #Nouakchott
+		command = { type = secedeprovince which = FEZ value = 1595 } #Anti Atlas
+		command = { type = relation which = FEZ value = -100 }
+	}
+}
+
+#(1500-1820) The Sack of Djenne - by idontlikeforms
+event = {
+	id = 232038
+	trigger = { control = { province = 1490 data = -1 } }
+	random = no
+	country = MOR
+	name = "EVENTNAME232038" #The Sack of Djenne
+	desc = "EVENTHIST232038"
+	#-#After defeating the Songhai at the battle of Tondibi Judar Pasha occupied the trade cities of Songhai. He secured control over the salt trade but couldn't find the source of Songhai's gold even though he tortured many citizens. Instead he looted the cities, sending their vast wealth back to Marrakesh to fill the treasury and build palaces. He made his way north with thirty camels loaded with gold, slaves and fifteen of the King's daughters, which he sent to be the Sultan's concubines.
+
+	date = { day = 1 month = january year = 1500 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME232038A" #To the victor go the spoils!
+		command = { type = treasury value = 100 }
+		command = { type = population which = -2 value = 100 }
+		command = { type = trigger which = 338166 } #ProvinceSpec*1490: Morocco sacks Jenne
+	}
+}
+
+#(1500-1820) The Sack of Timbuktu - by idontlikeforms
+event = {
+	id = 232036
+	trigger = { control = { province = 1495 data = -1 } }
+	random = no
+	country = MOR
+	name = "EVENTNAME232036" #The Sack of Timbuktu
+	desc = "EVENTHIST232036"
+	#-#After defeating the Songhai at the battle of Tondibi Judar Pasha occupied the trade cities of Songhai. He secured control over the salt trade but couldn't find the source of Songhai's gold even though he tortured many citizens. Instead he looted the cities, sending their vast wealth back to Marrakesh to fill the treasury and build palaces. He made his way north with thirty camels loaded with gold, slaves and fifteen of the King's daughters, which he sent to be the Sultan's concubines. The university of Timbuktu was destroyed and many of the ulema were decimated. Some were killed in struggles, while others were exiled to Morocco. The Moroccan army plundered the wealth of the city and burned the libraries. Huge libraries of books and manuscripts were dispersed. Timbuktu never again recovered its leading position.
+
+	date = { day = 1 month = january year = 1500 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME232036A" #To the victor go the spoils!
+		command = { type = treasury value = 150 }
+		command = { type = population which = -2 value = 100 }
+		command = { type = trigger which = 338165 } #ProvinceSpec*1495: Morocco sacks Timbuktu
+		command = { type = badboy value = 1 }
+	}
+}
+
+#(1500-1820) The Sack of Gao - by idontlikeforms
+event = {
+	id = 232037
+	trigger = { control = { province = 1496 data = -1 } }
+	random = no
+	country = MOR
+	name = "EVENTNAME232037" #The Sack of Gao
+	desc = "EVENTHIST232037"
+	#-#After defeating the Songhai at the battle of Tondibi Judar Pasha occupied the trade cities of Songhai. He secured control over the salt trade but couldn't find the source of Songhai's gold even though he tortured many citizens. Instead he looted the cities, sending their vast wealth back to Marrakesh to fill the treasury and build palaces. He made his way north with thirty camels loaded with gold, slaves and fifteen of the King's daughters, which he sent to be the Sultan's concubines.
+
+	date = { day = 1 month = january year = 1500 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME232037A" #To the victor go the spoils!
+		command = { type = treasury value = 100 }
+		command = { type = population which = -2 value = 100 }
+		command = { type = trigger which = 338164 } #ProvinceSpec*1496: Morocco sacks Gao
+	}
+}
+
+#(1502-1530) Moor Refugees from Al-Andalus
+event = {
+	id = 3657 #triggered by SPA_285219
+	random = no
+	country = MOR
+	name = "EVENTNAME3657" #Moor Refugees from Al-Andalus
+	desc = "EVENTHIST3657"
+	#-#The great Christian victory (1212) of Navas de Tolosa prepared the way for the downfall of the Muslims. Córdoba fell to Ferdinand III of Castile in 1236. The wars went on, and one by one the Moorish strongholds fell, until only Granada remained in their hands. Málaga was taken (1487) after a long siege by the forces of Ferdinand and Isabella, and in 1492 Granada was recovered. Many of the Moors remained in Spain, those who remained faithful to Islam were called Mudejares, while those who accepted Christianity were called Moriscos. They were allowed to stay in Spain but were kept under close surveillance.
+
+	action_a = {
+		name = "ACTIONNAME3657A" #Al-Andalus has fallen
+		command = { type = population which = -1 value = 1000 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = trade value = 200 }
+		command = { type = land value = 200 }
+		command = { type = treasury value = 100 }
+	}
+}
+
+#(1511-1580) #Disturbing reports from the south
+event = {
+	id = 232042
+	trigger = {
+		owned = { province = 1495 data = SON } #Timbuktu
+		OR = {
+			owned = { province = 1494 data = SON } #Bure
+			owned = { province = 1490 data = SON } #Bambuk
+			owned = { province = 1489 data = SON } #Jenne
+		}
+	}
+	random = no
+	country = MOR
+	name = "EVENTNAME232042" #Disturbing reports from the south
+	desc = "EVENTHIST232042"
+	#-#There was much alarm when news reached Morocco that a new empire had taken control of the prosperous city of Timbuktu and was taking steps to conquer the Sudan.
+
+	date = { day = 1 month = january year = 1511 }
+	offset = 250
+	deathdate = { day = 1 month = january year = 1580 }
+
+	action_a = {
+		name = "ACTIONNAME232042A" #Perhaps the rumors are untrue...
+		command = { type = relation which = SON value = -150 }
+	}
+}
+
+#(1545-1555) Civil war in Tlemcen
+#by Fodoron
+event = {
+	id = 232041
+	trigger = {
+		vassal = { country = TUR country = XHO }
+	}
+	random = no
+	country = MOR
+	name = "EVENTNAME232041" #Civil war in Tlemcen
+	desc = "EVENTHIST232041"
+	#-#Taking advantage of the fights between different tribes in Tlemcen, the Spanish supported the Banu Rashid to dethrone Muhammad and install his brother Ahmad in the throne of Tlemcen in 1545. Muhammad sought the help of Hassan Pasha, ruler of Al-Djazaîr and son of Khayr ad-Din Barbarossa, and was restored with the help of the Turks. The growing Ottoman influence in the area reached Morocco, but the Sa'did Muhammad al-Shaykh, known as al-Mahdi, dethroned the pro-Turkish Wattasid sultan Ahmad. The days of the Wattasids were over in Morocco. He then sent his son Muhammad al-Harran with 30,000 men to take over Tlemcen. But the Turks defeated them and al-Harran died of illness. Then the Ottoman beylerbey of Al-Djazaîr (Algiers), Salah Ra'is, conquered Fez in 1554, installing Ali Abu Hassan supported by Janissaries, but Muhammad al-Shaykh reconquered Fez the same year and formed an alliance with Spain. The death of Salah Ra'is when fighting Spain, allowed Muhammad al-Shaykh to retake Tlemcen. However the Ottomans sent spies that assassinated the resisting Muhammad al-Shaykh in 1557, ending the bid of Morocco to take over Tlemcen, that was absorbed into the Ottoman Empire.
+
+	date = { day = 0 month = january year = 1545 }
+	offset = 300
+	deathdate = { day = 0 month = january year = 1555 }
+
+	action_a = {
+		name = "ACTIONNAME232041A" #Tlemcen should not be Ottoman
+		command = { type = stability value = -2 }
+		command = { type = casusbelli which = XHO value = 72 }
+		command = { type = relation which = SPA value = 50 }
+		command = { type = relation which = TUR value = -50 }
+		command = { type = relation which = XHO value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME232041B" #Who cares about Tlemcen
+		command = { type = stability value = -2 }
+		command = { type = revolt which = -1 }
+		command = { type = vp value = -5}
+	}
+}
+
+#(1554-1665) The Sa'di dynasty
+#inspired by Greebo
+event = {
+	id = 232009
+	random = no
+	trigger = {
+		NOT = { exists = FEZ }
+	}
+	country = MOR
+	name = "EVENTNAME51003" #The Sa'di dynasty
+	desc = "EVENTHIST232009"
+	#-#Although the Wattasids managed to regain control of southern Morocco, the struggle to keep the south from declaring its independence once again, arose. The Wattasids decided to strengthen their line through marriage with the Sa'di dynasty. Eventually, the Wattasid idenity was effectively overshadowed by that of the Sa'di.
+
+	date = { day = 1 month = january year = 1554 }
+	offset = 20
+	deathdate = { day = 1 month = january year = 1665 }
+
+	action_a = {
+		name = "ACTIONNAME232009A" #We are the Sa'di!
+		command = { type = addcore which = 732 } #Tangiers
+		command = { type = addcore which = 733 } #Fez
+		command = { type = addcore which = 806 } #Toubkal
+		command = { type = addcore which = 1595 } #Anti Atlas
+		command = { type = addcore which = 805 } #Sahara
+		command = { type = inflation value = -10 }
+		command = { type = province_revoltrisk which = 805 value = -20 } #Sahara
+		command = { type = province_revoltrisk which = 804 value = -10 } #Tassaret
+		command = { type = province_revoltrisk which = 1595 value = -15  } #Anti Atlas
+		command = { type = add_countryculture which = berber }
+	}
+}
+
+#(1554-1590) The Capture of Sus - by Garbon
+event = {
+	id = 232040
+	random = no
+	trigger = {
+		exists = FEZ
+		control = { province = 805 data = MOR }
+	}
+	country = MOR
+	name = "EVENTNAME232040" #The Capture of Sus
+	desc = "EVENTHIST232040"
+	#-#With their capture of Sus, the homeland of the Sa'di, the Wattasids had found the bargaining chip they needed to bring the lost sheep back into the fold.
+
+	date = { day = 1 month = january year = 1554 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1590 }
+
+	action_a = {
+		name = "ACTIONNAME232040A" #Unification!
+		command = { type = inherit which = FEZ }
+	}
+}
+
+#(1557) Muhammad II
+event = {
+	id = 232003
+	random = no
+	country = MOR
+	name = "EVENTNAME51021" #Muhammad II
+	desc = "EVENTHIST51021"
+	#-#In 1557, the great Muhammad II died plunging Morocco once again into chaos. During his reign the desire for expansion of the Ottoman Empire and pressure from European powers threatened the very existence of Morocco. He was a clever politician and he made a sudden unexpected alliance with Spain that ruined the Turk's progress and belayed the pressure from Europe. Without his guidance Morocco becomes embroiled in a bitter civil war.
+
+	date = { day = 23 month = october year = 1557 }
+
+	action_a = {
+		name = "ACTIONNAME51021A" #We plunge into darkness
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 240 value = 1 }
+		command = { type = revoltrisk which = 12 value = 3 }
+		command = { type = diplomats value = -2 }
+	}
+}
+
+#(1560) Interference of the Dila'iyya
+event = {
+	id = 232001
+	random = no
+	country = MOR
+	name = "EVENTNAME51019" #Interference of the Dila'iyya
+	desc = "EVENTHIST51019"
+	#-#Dila'iyya was a Sufi order that was founded in the Middle Atlas Mountains. The order was founded a marabout who would grant divine blessings and perform miracles. The reigning sultan would court the support of this order and other marabouts for they played important roles in the religious and social areas.
+
+	date = { day = 15 month = march year = 1560 }
+	offset = 20
+	deathdate = { day = 29 month = december year = 1560 }
+
+	action_a = {
+		name = "ACTIONNAME51019A" #Court the Dila'iyya
+		command = { type = stability value = 1 }
+		command = { type = diplomats value = 1 }
+		command = { type = missionaries value = 1 }
+		command = { type = treasury value = -50 }
+		command = { type = infra value = 100 }
+	}
+	action_b = {
+		name = "ACTIONNAME51019B" #We need them not!
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 4 value = 2 }
+		command = { type = domestic which = centralization value = 1 }
+	}
+}
+
+#(1570-1590) Abd al-Malik and the Ottomans
+event = {
+	id = 51017 #triggered by TUR_50020 A/B
+	random = no
+	country = MOR
+	name = "EVENTNAME51017" #Abd al-Malik and the Ottomans
+	desc = "EVENTHIST51017"
+	#-#Abd al-Malik took part in the Ottoman conquest of Tunis, in 1574, in an attempt to gain Ottoman support to oust his nephew, Muhammad al-Mutawakkil, from the throne. After the conflict, he was placed on the throne and agreed to recognize the Ottoman Sultan as the caliph.
+
+	action_a = {
+		name = "ACTIONNAME51017A" #We shall crush Tunis!
+		command = { type = relation which = TUR value = 100 }
+		command = { type = casusbelli which = TUN value = 24 }
+		command = { type = trigger which = 50022 } #TUR: Abd al-Malik and the Ottomans
+	}
+	action_b = {
+		name = "ACTIONNAME51017B" #We will provide minimal assistance
+		command = { type = relation which = TUR value = 50 }
+		command = { type = stability value = -1 }
+		command = { type = treasury value = -75 }
+		command = { type = sleepevent which = 51018 } #MOR: Price to Pay
+		command = { type = trigger which = 50023 } #TUR: Abd al-Malik and the Ottomans
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Conquest of the Sudan Sequence
+
+#(1570-1600) The Sudan - Precusor event
+event = {
+	id = 232018
+	trigger = { ai = yes }
+	random = no
+	country = MOR
+	name = "EVENTNAME232018" #The Sudan
+	desc = "EVENTHIST232018"
+	#-#Its rumored that a diplomat who travelled to Gao was mistreated while on a mission to discuss the possibility of Songhai becoming a vassal state of Morocco. Apparently a group of bandits attacked the diplomat on the outskirts of the city stealing all of his possessions. Coincidence?
+
+	date = { day = 1 month = january year = 1570 }
+	offset = 1
+	deathdate = { day = 1 month = january year = 1600 }
+
+	action_a = {
+		name = "ACTIONNAME232018A" #We have no real love for them
+		command = { type = relation which = SON value = -25 }
+	}
+}
+#(1580-1590) The Salt Mines of Teghazza
+event = {
+	id = 232019
+	trigger = {
+		monarch = 091017 #Ahmad al-Mansur
+		OR = {
+			owned = { province = 1596 data = SON }
+			owned = { province = 1597 data = SON }
+			owned = { province = 1596 data = MOR }
+			owned = { province = 1597 data = MOR }
+			neighbour = SON
+		}
+		OR = {
+			event = 232018
+			event = 284000
+		}
+		NOT = {
+			exists = FEZ
+			exists = BAN
+		}
+	}
+	random = no
+	country = MOR
+	name = "EVENTNAME232019" #The Salt Mines of Teghazza
+	desc = "EVENTHIST232019"
+	#-#Al-Mansur came to desire the salt mines of Teghazza from which the emperor of Songhai derived a good portion of his revenue. After securing the oases of Gouara and Touat, he demanded from Ishaq Askia a mithqal of gold in payment for each load of salt taken from Teghazza in order to establish a fighting fund for the armies of Islam.
+
+	date = { day = 1 month = january year = 1580 }
+	offset = 25
+	deathdate = { day = 1 month = january year = 1590 }
+
+	action_a = {
+		name = "ACTIONNAME232019A" #Demand a mithqal of gold for each load!
+		command = { type = trigger which = 284001 } #SON: The Salt Mines of Taghaza
+		command = { type = sleepevent which = 232020 } #MOR: The Salt Mines of Teghazza
+		command = { type = addcore which = 1596 } #Mdennan
+		command = { type = addcore which = 1597 } #Azaouad
+	}
+	action_b = {
+		name = "ACTIONNAME232019B" #Demand two mithqals of gold for each load!
+		command = { type = trigger which = 284002 } #SON: The Salt Mines of Taghaza
+		command = { type = sleepevent which = 232020 } #MOR: The Salt Mines of Teghazza
+		command = { type = addcore which = 1596 } #Mdennan
+		command = { type = addcore which = 1597 } #Azaouad
+	}
+}
+#(1580-1590) The Salt Mines of Teghazza alternate
+event = {
+	id = 232020
+	trigger = {
+		monarch = 091017 #Ahmad al-Mansur
+		exists = BAN
+		exists = SON
+		OR = {
+			neighbour = SON
+			owned = { province = 1597 data = SON }
+		}
+		OR = {
+			event = 232018
+			event = 284000
+		}
+		NOT = {
+			exists = FEZ
+		}
+	}
+	random = no
+	country = MOR
+	name = "EVENTNAME232020" #The Salt Mines of Teghazza
+	desc = "EVENTHIST232020"
+	#-#Al-Mansur came to desire the salt mines of Teghazza from which the emperor of Songhai derived a good portion of his revenue. After securing the oases of Gouara and Touat, he demands from Ishaq Askia a mithqal of gold in payment for each load of salt taken from Teghazza in order to establish a fighting fund for the armies of Islam.
+
+	date = { day = 1 month = january year = 1580 }
+	offset = 25
+	deathdate = { day = 1 month = january year = 1590 }
+
+	action_a = {
+		name = "ACTIONNAME232020A" #Demand a mithqal of gold for each load!
+		command = { type = trigger which = 284003 } #SON: The Salt Mines of Taghaza
+		command = { type = sleepevent which = 232019 } #MOR: The Salt Mines of Teghazza
+	}
+}
+#(1580-1590) The Askia's Repsonse
+event = {
+	id = 232021 #triggered by SON_284001 A / SON_284002 A / SON_284003 A/B
+	random = no
+	country = MOR
+	name = "EVENTNAME232021" #The Askia's Response
+	desc = "EVENTHIST232021"
+	#-#With the refusal by the King of the Sudan, conflict was inevitable. The stage was set for a conflict between Songai and Morocco.
+
+	action_a = {
+		name = "ACTIONNAME232021A" #They will pay for this insult!
+		#command = { type = AI which = MOR_antisudan.ai }
+		command = { type = relation which = SON value = -100 }
+	}
+}
+#(1580-1590) The Askia's Repsonse alternate
+event = {
+	id = 232022 #triggered by SON_284001 B
+	random = no
+	country = MOR
+	name = "EVENTNAME232022" #The Askia's Response
+	desc = "EVENTHIST232022"
+	#-#Fearing for the safety of his empire, the King of the Sudan sent to Morocco that which was demanded. Songhai was now a mere puppet of Morocco.
+	action_a = {
+		name = "ACTIONNAME232022A" #All is as it should be
+		command = { type = vassal which = SON }
+		command = { type = treasury value = 75 }
+		command = { type = sleepevent which = 232024 } #MOR: Expedition to the Sudan
+		command = { type = sleepevent which = 232025 } #MOR: Expedition to the Sudan
+	}
+	action_b = {
+		name = "ACTIONNAME232022B" #We want more!
+		#command = { type = AI which = MOR_antisudan.ai }
+		command = { type = treasury value = 75 }
+		command = { type = relation which = SON value = -50 }
+	}
+}
+#(1580-1590) The Askia's Repsonse alternate
+event = {
+	id = 232023 #triggered by SON_284002 B / SON_284003 C
+	random = no
+	country = MOR
+	name = "EVENTNAME232023" #The Askia's Response
+	desc = "EVENTHIST232023"
+	#-#Fearing for the safety of his empire, the King of the Sudan sent to Morocco that which was demanded. Songhai was now a mere puppet of Morocco.
+
+	action_a = {
+		name = "ACTIONNAME232023A" #All is as it should be
+		command = { type = vassal which = SON }
+		command = { type = treasury value = 175 }
+		command = { type = sleepevent which = 232024 } #MOR: Expedition to the Sudan
+		command = { type = sleepevent which = 232025 } #MOR: Expedition to the Sudan
+	}
+	action_b = {
+		name = "ACTIONNAME232023B" #We want more!
+		#command = { type = AI which = MOR_antisudan.ai }
+		command = { type = treasury value = 175 }
+		command = { type = relation which = SON value = -50 }
+	}
+}
+#(1588-1595) Expedition to the Sudan
+event = {
+	id = 232024
+	trigger = {
+		exists = SON
+		countrysize = 3
+		NOT = { exists = BAN }
+		OR = {
+			event = 232021
+			event = 232022
+			event = 232023
+			event = 284003
+		}
+	}
+	random = no
+	country = MOR
+	name = "EVENTNAME232024" #Expedition to the Sudan
+	desc = "EVENTHIST232024"
+	#-#Faced with the defiance of the King of the Sudan, al-Mansur set out to break his resistance. Al-Mansur was surprised when he encountered very lively opposition. His council deemed the expedition both unjust and dangerous. However, in the end, al-Mansur silenced the objectors and the expedition followed in accordance with his plan.
+
+	date = { day = 1 month = january year = 1588 }
+	offset = 25
+	deathdate = { day = 1 month = january year = 1595 }
+
+	action_a = {
+		name = "ACTIONNAME232024A" #Send a small force
+		command = { type = INF which = 1595 value = 1000 } #Anti Atlas
+		command = { type = CAV which = 1595 value = 3000 } #Anti Atlas
+		command = { type = treasury value = -50 }
+		command = { type = revolt which = -1 }
+		command = { type = casusbelli which = SON value = 24 }
+	}
+	action_b = {
+		name = "ACTIONNAME232024B" #It may be unpopular, but send a large force
+		command = { type = war which = SON }
+		command = { type = treasury value = -100 }
+		command = { type = relation which = SON value = -50 }
+		command = { type = INF which = 1595 value = 5000 } #Anti Atlas
+		command = { type = CAV which = 1595 value = 5000 } #Anti Atlas
+		command = { type = wakeleader which = 091307 } #Judar Pasha (MOR)
+		command = { type = revolt which = -1 }
+		command = { type = stability value = -2 }
+	}
+}
+#(1588-1595) Expedition to the Sudan alternate
+event = {
+	id = 232025
+	trigger = {
+		countrysize = 3
+		exists = SON
+		exists = BAN
+		OR = {
+			event = 232021
+			event = 232022
+			event = 232023
+		}
+	}
+	random = no
+	country = MOR
+	name = "EVENTNAME232025" #Expedition to the Sudan
+	desc = "EVENTHIST232025"
+	#-#Faced with the defiance of the King of the Sudan, al-Mansur set out to break his resistance. Al-Mansur was surprised when he encountered very lively opposition. His council deemed the expedition both unjust and dangerous. However, in the end, al-Mansur silenced the objectors and the expedition followed in accordance with his plan.
+
+	date = { day = 1 month = january year = 1588 }
+	offset = 25
+	deathdate = { day = 1 month = january year = 1595 }
+
+	action_a = {
+		name = "ACTIONNAME232025A" #Send a small force
+		command = { type = INF which = 1595 value = 1000 } #Anti Atlas
+		command = { type = CAV which = 1595 value = 3000 } #Anti Atlas
+		command = { type = treasury value = -50 }
+		command = { type = casusbelli which = SON value = 24 }
+		command = { type = revolt which = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME232025B" #It may be unpopular, but send a large force
+		#command = { type = AI which = MOR_antisudan.ai }
+		command = { type = war which = SON }
+		command = { type = treasury value = -100 }
+		command = { type = relation which = SON value = -50 }
+		command = { type = INF which = 1595 value = 5000 } #Anti Atlas
+		command = { type = CAV which = 1595 value = 5000 } #Anti Atlas
+		command = { type = wakeleader which = 091307 } #Judar Pasha (MOR)
+		command = { type = revolt which = -1 }
+		command = { type = stability value = -2 }
+		command = { type = trigger which = 124002 } #BAN: The Forces of Morocco
+	}
+}
+#(1590-1595) Second Expedition to the Sudan
+event = {
+	id = 232026
+	trigger = {
+		event = 284039 #The Pretender's Demands
+		countrysize = 3
+		exists = SON
+		NOT = {
+			event = 232034 #Songhai's Submission
+			war = { country = SON country = MOR }
+			owned = { province = 1496 data = MOR }
+			owned = { province = 1490 data = MOR }
+		}
+		OR = {
+			event = 232024
+			event = 232025
+		}
+	}
+	random = no
+	country = MOR
+	name = "EVENTNAME232026" #Second Expedition to the Sudan
+	desc = "EVENTHIST232026"
+	#-#Al-Mansur's first expedition to the Sudan was a failure. He rushed to conceal his failure by fabricating the events that transpired. He stated that he authorized a guide to lead a rebellious group of troops in the direction of the Sudan and then abandon them in the middle of the desert. His folly was forgotten and in 1590, Spanish renegade Judar was given 3000 men to attack Sudan by way of the desert.
+
+	date = { day = 1 month = january year = 1590 }
+	offset = 25
+	deathdate = { day = 1 month = january year = 1598 }
+
+	action_a = {
+		name = "ACTIONNAME232026A" #We will prevail!
+		#command = { type = AI which = MOR_antisudan.ai }
+		command = { type = war which = SON }
+		command = { type = INF which = 1595 value = 5000 } #Anti Atlas
+		command = { type = CAV which = 1595 value = 5000 } #Anti Atlas
+		command = { type = ART which = 1595 value = 10 } #Anti Atlas
+		command = { type = wakeleader which = 091307 } #Judar Pasha (MOR)
+	}
+}
+#(1595-1605) Dissidence in the Sudan
+event = {
+	id = 232029
+	trigger = {
+		owned = { province = 1495 data = MOR } #Timbuktu
+		NOT = { war = { country = SON country = MOR } }
+	}
+	random = no
+	country = MOR
+	name = "EVENTNAME232029" #Dissidence in the Sudan
+	desc = "EVENTHIST232029"
+	#-#Newly conquered territory in the Sudan was difficult for Morocco to rule. So far removed from the capital, former lands of the Songhai were extremely difficult to govern. Many of these lands fell prey to attacks of the native peoples.
+
+	date = { day = 1 month = january year = 1595 }
+	offset = 25
+	deathdate = { day = 1 month = january year = 1605 }
+
+	action_a = {
+		name = "CURSES"
+		command = { type = secedeprovince which = MAL value = 1491 } #Segu
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = 1487 } #Awdaghost
+		command = { type = revolt which = 1488 } #Walata
+		command = { type = revolt which = 1489 } #Jenné
+		command = { type = stability value = -2 }
+	}
+}
+#(1600-1605) Rulership of the Sudan
+event = {
+	id = 232030
+	trigger = {
+		event = 232029
+		NOT = {
+			event = 232031
+			war = { country = SON country = MOR }
+			exists = BAN
+		}
+		owned = { province = 1495 data = MOR }
+	}
+	random = no
+	country = MOR
+	name = "EVENTNAME232030" #Rulership of the Sudan
+	desc = "EVENTHIST232030"
+	#-#Ruling such a vast empire proved to be more difficult than al-Mansur had assumed. In an attempt to centralize the government, al-Mansur set up a provisional government ran by pashas, to oversee Morocco's possessions in the Sudan. This allowed al-Mansur to move his attention to international affairs. Only the insane would have attempted to rule all of Morocco directly.
+
+	date = { day = 1 month = january year = 1600 }
+	offset = 25
+	deathdate = { day = 1 month = january year = 1605 }
+
+	action_a = {
+		name = "ACTIONNAME232030A" #Appoint a Pasha to rule Timbuktu
+		#command = { type = AI which = morocco.ai }
+		command = { type = stability value = 2 }
+		command = { type = independence which = BAN }
+		command = { type = trigger which = 232032 } #MOR: The Pashas of Timbuktu
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME232030B" #We shall remain a cohesive empire!
+		#command = { type = AI which = morocco.ai }
+		command = { type = stability value = -5 }
+		command = { type = domestic which = CENTRALIZATION value = -2 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = 1487 } #Awdaghost
+		command = { type = revolt which = 1488 } #Walata
+		command = { type = revolt which = 1489 } #Jenné
+		command = { type = revoltrisk which = 72 value = 9 }
+		command = { type = removecore which = 1490 } #Bambuk
+		command = { type = removecore which = 1495 } #Timbuktu
+		command = { type = removecore which = 1496 } #Gao
+	}
+}
+#(1600-1605) The Pashas of Timbuktu
+event = {
+	id = 232032 #triggered by MOR_232030 A
+	random = no
+	country = MOR
+	name = "EVENTNAME232032" #The Pashas of Timbuktu
+	desc = "EVENTHIST232032"
+	#-#Although beneficial to Morocco, the government in Timbuktu would prove to be detrimental for the Sudan. The Pashas would drain the country by their exactions and destroy a large part of the extant intellectual and religious aristocracy.
+
+	action_a = {
+		name = "ACTIONNAME232032A" #Finally our business in the Sudan is finished
+		command = { type = relation which = BAN value = 50 }
+		command = { type = secedeprovince which = BAN value = 1487 } #Awdaghost
+		command = { type = secedeprovince which = BAN value = 1488 } #Walata
+		command = { type = secedeprovince which = BAN value = 1489 } #Jenné
+		command = { type = secedeprovince which = BAN value = 1490 } #Bambuk
+		command = { type = secedeprovince which = BAN value = 1491 } #Segu
+		command = { type = secedeprovince which = BAN value = 1492 } #Niani
+		command = { type = secedeprovince which = BAN value = 1493 } #Mossi
+		command = { type = secedeprovince which = BAN value = 1494 } #Buré
+		command = { type = secedeprovince which = BAN value = 1496 } #Gao
+		command = { type = secedeprovince which = BAN value = 1497 } #Say
+		command = { type = secedeprovince which = BAN value = 1498 } #Begho
+		command = { type = secedeprovince which = BAN value = 1499 } #Zaria
+		command = { type = removecore which = 1490 } #Bambuk
+		command = { type = removecore which = 1495 } #Timbuktu
+		command = { type = removecore which = 1496 } #Gao
+	}
+}
+#(1591-1605) Rulership of the Sudan alternate
+event = {
+	id = 232031
+	trigger = {
+		event = 232029
+		exists = BAN
+		NOT = {
+			event = 232030
+			war = { country = SON country = MOR }
+		}
+	}
+	random = no
+	country = MOR
+	name = "EVENTNAME232031" #Rulership of the Sudan
+	desc = "EVENTHIST232031"
+	#-#Ruling such a vast empire proved to be more difficult than al-Mansur had assumed. In an attempt to centralize the government, al-Mansur set up a provisional government ran by pashas, to oversee Morocco's possessions in the Sudan. This allowed al-Mansur to move his attention to international affairs. Only the insane would have attempted to rule all of Morocco directly. Of course, a Morocco truly determined to focus on international relations, may have found it beneficial to remove its presence entirely from the Sudan.
+
+	date = { day = 1 month = january year = 1591 }
+	offset = 25
+	deathdate = { day = 1 month = january year = 1605 }
+
+	action_a = {
+		name = "ACTIONNAME232031A" #Accept the present rulers of Timbuktu
+		command = { type = stability value = 2 }
+		command = { type = relation which = BAN value = 150 }
+		command = { type = secedeprovince which = BAN value = 1487 } #Awdaghost
+		command = { type = secedeprovince which = BAN value = 1488 } #Walata
+		command = { type = secedeprovince which = BAN value = 1489 } #Jenné
+		command = { type = secedeprovince which = BAN value = 1490 } #Bambuk
+		command = { type = secedeprovince which = BAN value = 1491 } #Segu
+		command = { type = secedeprovince which = BAN value = 1492 } #Niani
+		command = { type = secedeprovince which = BAN value = 1493 } #Mossi
+		command = { type = secedeprovince which = BAN value = 1494 } #Buré
+		command = { type = secedeprovince which = BAN value = 1496 } #Gao
+		command = { type = secedeprovince which = BAN value = 1497 } #Say
+		command = { type = secedeprovince which = BAN value = 1498 } #Begho
+		command = { type = secedeprovince which = BAN value = 1499 } #Zaria
+		command = { type = vassal which = BAN }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = removecore which = 1490 } #Bambuk
+		command = { type = removecore which = 1495 } #Timbuktu
+		command = { type = removecore which = 1496 } #Gao
+	}
+	action_b = {
+		name = "ACTIONNAME232031B" #We shall remain a cohesive empire!
+		command = { type = stability value = -5 }
+		command = { type = domestic which = CENTRALIZATION value = -2 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = 1487 } #Awdaghost
+		command = { type = revolt which = 1488 } #Walata
+		command = { type = revolt which = 1489 } #Jenné
+		command = { type = revoltrisk which = 72 value = 9 }
+		command = { type = removecore which = 1490 } #Bambuk
+		command = { type = removecore which = 1495 } #Timbuktu
+		command = { type = removecore which = 1496 } #Gao
+	}
+	action_c = {
+		name = "ACTIONNAME232031C" #Abandon the Sudan, its not worth it
+		command = { type = stability value = -2 }
+		command = { type = secedeprovince which = BAN value = 1487 } #Awdaghost
+		command = { type = secedeprovince which = BAN value = 1488 } #Walata
+		command = { type = secedeprovince which = BAN value = 1489 } #Jenné
+		command = { type = secedeprovince which = BAN value = 1490 } #Bambuk
+		command = { type = secedeprovince which = BAN value = 1491 } #Segu
+		command = { type = secedeprovince which = BAN value = 1492 } #Niani
+		command = { type = secedeprovince which = BAN value = 1493 } #Mossi
+		command = { type = secedeprovince which = BAN value = 1494 } #Buré
+		command = { type = secedeprovince which = BAN value = 1496 } #Gao
+		command = { type = secedeprovince which = BAN value = 1497 } #Say
+		command = { type = secedeprovince which = BAN value = 1498 } #Begho
+		command = { type = secedeprovince which = BAN value = 1499 } #Zaria
+		command = { type = removecore which = 1490 } #Bambuk
+		command = { type = removecore which = 1495 } #Timbuktu
+		command = { type = removecore which = 1496 } #Gao
+	}
+}
+#End of Conquest of the Sudan Sequence
+#-----------------------------------------------------------------------------------------------
+
+#(1574) Price to Pay
+event = {
+	id = 51018
+	trigger = { event = 51017 }
+	random = no
+	country = MOR
+	name = "EVENTNAME51018" #Price to Pay
+	desc = "EVENTHIST51018"
+	#-#In return for placing Abd'Allah I upon the throne of Morocco, the Ottoman Empire expected favors in return. The Ottomans suggested that Abd Allâh I lead Morocco to participate in holy war activities against Christian nations in the Mediterranean. A shrewd negotiator in foreign affairs, Abd Allâh I knew that compliance would not be in the best interests of Morocco.
+
+	date = { day = 15 month = december year = 1574 }
+
+	action_a = {
+		name = "ACTIONNAME51018A" #Such actions would be suicidal!
+		command = { type = stability value = 1 }
+		command = { type = relation which = TUR value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME51018B" #As they wish
+		command = { type = stability value = -2 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = casusbelli which = SPA value = 24 }
+		command = { type = revoltrisk which = 12 value = 1 }
+	}
+}
+
+#(1580) The Reforms of al-Mansur
+#text by Philip V
+event = {
+	id = 232000
+	random = no
+	country = MOR
+	name = "EVENTNAME232000" #The Reforms of al-Mansur
+	desc = "EVENTHIST232000"
+	#-#The first effective Sa'di leader was Ahmed al-Mansur, whose soldiers reclaimed Cueta, among other strategic points. Al-Mansur adopted administrative methods from the Ottoman Turks of southwestern Asia to govern his newly captured territory. Pashas, or governors were left to rule each area and were supported by a caid, or tax collector, who had enough military strength to police the area. Al-Mansur also organized the government of Morocco (the makhzan) in accordance with rules that endured until the institution of the French protectorate. Although his reforms made some unhappy, no revolt ever endangered his rule.
+
+	date = { day = 1 month = january year = 1580 }
+
+	action_a = {
+		name = "ACTIONNAME232000A" #Implement them
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = trade value = 100 }
+		command = { type = treasury value = -200 }
+		command = { type = revoltrisk which = 12 value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME232000B" #Implement lesser reforms
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = treasury value = -50 }
+		command = { type = revoltrisk which = 6 value = 1 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Al-Mansur's Heirs Sequence
+
+#(1580-1600) Al-Mansur's Heir
+event = {
+	id = 232012
+	trigger = { monarch = 091017 } #Ahmad al-Mansur
+	random = no
+	country = MOR
+	name = "EVENTNAME232012" #Al-Mansur's Heir
+	desc = "EVENTHIST232012"
+	#-#Under al-Mansur, Morocco become familiar with a prosperity it had not known centuries. Al-Mansur was a great leader and strategist. Prior to his conquest of the Sudan, he had already recognized his son Muhammad al-Shaikh al-Mamun his heir. His choice would prove to be interesting.
+
+	date = { day = 1 month = january year = 1580 }
+	offset = 25
+	deathdate = { day = 1 month = january year = 1600 }
+
+	action_a = {
+		name = "ACTIONNAME232012A" #Appoint Muhammad al-Mamun heir!
+		command = { type = stability value = 1 }
+		command = { type = diplomats value = 1 }
+	}
+}
+#(1602) Muhammad al-Shaikh al-Mamun
+event = {
+	id = 232013
+	trigger = {
+		monarch = 091017 #Ahmad al-Mansur
+		event = 232012
+	}
+	random = no
+	country = MOR
+	name = "EVENTNAME232013" #Muhammad al-Shaikh al-Mamun
+	desc = "EVENTHIST232013"
+	#-#The chosen of his father, his designation of heir served merely to inflate his ego. Quickly, al-Mamun became the center of many scandals as well as instigator of a few rebellions. Al-Mansur's patience for his son finally ran out and he had him imprisoned at Meknès. Al-Mansur had chosen a poor heir.
+
+	date = { day = 1 month = january year = 1602 }
+	offset = 25
+	deathdate = { day = 29 month = december year = 1602 }
+
+	action_a = {
+		name = "ACTIONNAME232013A" #He is unworthy of the designation of heir and so his title is stripped!
+		command = { type = stability value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME232013B" #We shall forget but al-Mansur will no longer have a chosen heir
+		command = { type = stability value = -4 }
+		command = { type = wakemonarch which = 091019 } #al-Mamun °
+		command = { type = sleepmonarch which = 091018 } #Abu Faris
+	}
+}
+#(1603-1605) Brother against Brother -I-
+event = {
+	id = 232014
+	trigger = {
+		NOT = {
+			monarch = 091017 #Ahmad al-Mansur
+			exists = FEZ
+		}
+	}
+	random = no
+	country = MOR
+	name = "EVENTNAME232014" #Brother against Brother
+	desc = "EVENTHIST232014"
+	#-#In dying heirless, al-Mansur dealt Morocco a terrible fate. A power struggle erupted shortly after his death. Three of his sons, including al-Mamun, fought for control of Morocco. One son, Mulay Zidan was proclaimed at Fez. Abu Faris was acknowledged at Marrakesh. The three fought for seven years in changing alliances of two to one.
+
+	date = { day = 1 month = january year = 1603 }
+	offset = 50
+	deathdate = { day = 1 month = january year = 1605 }
+
+	action_a = {
+		name = "ACTIONNAME232014A" #Al-Mansur is dead and chaos reigns!
+		command = { type = independence which = FEZ }
+		command = { type = stability value = -2 }
+		command = { type = trigger which = 166004 } #FEZ: Brother against Brother
+		command = { type = revoltrisk which = 84 value = 10 }
+		command = { type = sleepevent which = 232015 } #MOR: Brother against Brother -II-
+	}
+}
+#(1603-1605) Brother against Brother -II-
+event = {
+	id = 232015
+	trigger = {
+		exists = FEZ
+		NOT = { monarch = 091017 } #Ahmad al-Mansur
+	}
+	random = no
+	country = MOR
+	name = "EVENTNAME232015" #Brother against Brother
+	desc = "EVENTHIST232015"
+	#-#In dying heirless, al-Mansur dealt Morocco a terrible fate. A power struggle erupted shortly after his death. Three of his sons, including al-Mamun, fought for control of Morocco. One son, Mulay Zidan was proclaimed at Fez. Abu Faris was acknowledged at Marrakesh. The three fought for seven years in changing alliances of two to one.
+
+	date = { day = 1 month = january year = 1603 }
+	offset = 50
+	deathdate = { day = 1 month = january year = 1605 }
+
+	action_a = {
+		name = "ACTIONNAME232015A" #Al-Mansur is dead and chaos reigns!
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 84 value = 10 }
+		command = { type = sleepevent which = 232014 } #MOR: Brother against Brother -I-
+		command = { type = trigger which = 232017 } #MOR: Death of al-Mansur
+	}
+}
+#(1603-1605) Death of al-Mansur
+event = {
+	id = 232017 #triggered by MOR_232015
+	random = no
+	country = MOR
+	name = "EVENTNAME232017" #Death of al-Mansur
+	desc = "EVENTHIST232017"
+	#-#Upon the death of al-Mansur, the Sa'di dynasty split into two factions. The Saadians of Marrakech and the Saadians of Fez. The dynasty's control of Morocco began to lessen.
+
+	action_a = {
+		name = "ACTIONNAME232017A" #The Sa'di dynasty is regressing!
+		command = { type = secedeprovince which = FEZ value = 806 } #Toubkal
+		command = { type = breakvassal which = FEZ }
+		command = { type = trigger which = 166004 } #FEZ: Brother against Brother
+	}
+}
+#(1610) Death of Abu Faris
+event = {
+	id = 232016
+	random = no
+	country = MOR
+	name = "EVENTNAME232016" #Death of Abu Faris
+	desc = "EVENTHIST232016"
+	#-#In 1610, after 7 years of fighting, Abu Faris was assassinated by his nephew 'Abd Allah, son of al-Mamun. With the help of the Spanish, al-Mamun secured Fez. Mulay Zidan procured Marrakesh were he would remain until his death. With this division, Morocco was no longer able to exert any control on the pasha government of Timbuktu.
+
+	date = { day = 1 month = january year = 1610 }
+
+	action_a = {
+		name = "ACTIONNAME232016A" #This fratricide is ripping apart the remnants of our great nation!
+		command = { type = stability value = -2 }
+		command = { type = breakvassal which = BAN }
+		command = { type = trigger which = 124014 } #BAN: Death of Abu Faris
+	}
+}
+#End of Al-Mansur's Heirs Sequence
+#-----------------------------------------------------------------------------------------------
+
+#(1588-1640) The Two Pashas - by David Harper
+event = {
+	id = 232039
+	random = no
+	country = MOR
+	trigger = {
+		owned = { province = 1495 data = MOR }
+		event = 232035 #SON: Ishaq's Surrender
+	}
+	name = "EVENTNAME232039" #The Two Pashas
+	desc = "EVENTHIST232039"
+	#-#The Moroccan occupation force had great trouble stabilizing its conquests. The ulemas of Timbuktu were not to be trusted, and Judar Pasha found himself out of favor with the Sultan for even suggesting peace. Judar was forced to govern with one hand tied behind his back when the Sultan sent a new Pasha to ensure a crushing victory against Songhai - a victory that never came, thanks to the miserable swamps of Dendi the Songhai forces hid in. The inevitable rivalry between the two Pashas contributed to a state of paralysis in the regime.
+
+	date = { day = 1 month = january year = 1588 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1640 }
+
+	action_a = {
+		name = "ACTIONNAME232039A" #Incompetents!
+		command = { type = ADM which = -2 value = 36 }
+		command = { type = stability value = -1 }
+		command = { type = revolt which = 1495 } #Timbuktu
+	}
+}
+
+#(1588-1640) Songhai's Surrender - by David Harper
+event = {
+	id = 232035 #triggered by SON_284042 A
+	random = no
+	country = MOR
+	name = "EVENTNAME232035" #Songhai's Surrender
+	desc = "EVENTHIST232035"
+	#-#The defeated Songhai emperor offered tribute to Morocco in exchange for his Kingdom - 100,000 pieces of gold and 1,000 slaves. The commander of the expedition, Judar Pasha, was prepared to accept this and return home. His troops were exhausted, ill and many miles from home. In a rage, the Sultan rejected Askar Ishaq's offer and sent another general, Mansur Pasha, who he instructed to complete the conquest of Songhay.
+
+	action_a = {
+		name = "ACTIONNAME232035A" #Reject the offer and send Mansur to Timbuktu
+		command = { type = sleepleader which = 091307 } #Judar Pasha (MOR)
+		command = { type = casusbelli which = SON value = 36 }
+	}
+	action_b = {
+		name = "ACTIONNAME232035B" #Accept the tribute and give up our claims
+		command = { type = vassal which = SON }
+		command = { type = relation which = SON value = 100 }
+		command = { type = treasury value = 100 }
+		command = { type = population which = -2 value = 1000 }
+		command = { type = secedeprovince which = SON value = 1495 } #Timbuktu
+		command = { type = secedeprovince which = SON value = 1490 } #Bambuk
+		command = { type = secedeprovince which = SON value = 1496 } #Gao
+		command = { type = secedeprovince which = SON value = 1494 } #Buré
+		command = { type = removecore which = 1495 } #Timbuktu
+		command = { type = removecore which = 1490 } #Bambuk
+		command = { type = removecore which = 1496 } #Gao
+		command = { type = sleepevent which = 284045 } #SON: Mansur Pasha's Deception
+		command = { type = sleepevent which = 232039 } #MOR: The Two Pashas
+	}
+}
+
+#(1590) The Sudan Beckons - by Garbon
+event = {
+	id = 232033
+	trigger = {
+		NOT = { war = { country = SON country = MOR } }
+		countrysize = 3
+		event = 284038 #SON: Civil War in Songhai
+		owned = { province = 1595 data = MOR } #Antiatlas
+	}
+	random = no
+	country = MOR
+	name = "EVENTNAME232033" #The Sudan Beckons
+	desc = "EVENTHIST232033"
+	#-#The battle of Ksar Kbir had saved Morocco from the aggressive imperialism of Europe, but the rest of Africa wasn't as lucky. Facing an expanding Ottoman empire to the east and European colonization to the west, Morocco turned south, instead. The Sultan struck an alliance with the central African state of Borno as part of his strategy to prevent Ottoman expansion. The Sultan also targeted Songhai, hiring an Arab named Ibn al-Filali to be his spy in Gao. In 1588, al-Filali reported good news - Songhai had been terribly weakened by a destructive civil war. The Sultan took advantage of the situation by sending a letter from a brother of the Songhai King asking for Moroccan help in reclaiming his throne from Ishaq II. The Sultan sent the letter to Ishaq II, asking him to accept Moroccan authority. Even if the Songhai emperor refused, it would give Morocco a reason for war.
+
+	date = { day = 1 month = january year = 1590 }
+	offset = 90
+	deathdate = { day = 1 month = january year = 1591 }
+
+	action_a = {
+		name = "ACTIONNAME232033A" #Send the letter to Ishaq II
+		command = { type = casusbelli which = SON value = 24 }
+		command = { type = addcore which = 1495 } #Timbuktu
+		command = { type = addcore which = 1496 } #Gao
+		command = { type = addcore which = 1490 } #Bambuk
+		command = { type = trigger which = 284039 } #SON: The Pretender's Demands
+	}
+}
+#(1590) Songhai's Submission - by David Harper
+event = {
+	id = 232034 #triggered by SON_284039 C
+	random = no
+	country = MOR
+	name = "EVENTNAME232034" #Songhai's Submission
+	desc = "EVENTHIST232034"
+	#-#The Askia of Songhai submitted to Moroccan hegemony, sending a tribute of gold and slaves - the first of many such. Morocco had become the most powerful state in the Sahara.
+
+	action_a = {
+		name = "MAGNIFICENT"
+		command = { type = vp value = 50 }
+		command = { type = vassal which = SON }
+		command = { type = treasury value = 200 }
+		command = { type = population which = -2 value = 1000 } #Slaves
+		command = { type = sleepevent which = 232026 } #MOR: Second Expedition to the Sudan
+	}
+}
+
+#(1675-1680) Ismail and Meknes
+event = {
+	id = 232004
+	trigger = {
+		owned = { province = 733 data = -1 }
+		control = { province = 733 data = -1 }
+	}
+	random = no
+	country = MOR
+	name = "EVENTNAME51022" #Ismaill and Meknes
+	desc = "EVENTHIST51022"
+	#-#In 1672, Moulay Ismail came to be the sultan of Morocco. He was a strong and daring leader with prestige equal to that of Louis XIV, with whom he developed diplomatic ties. Ismâ'îl desired to construct the new captial of the Sherifan dynasty in Meknès. From there it would be possible to re-establish law and order through out Morocco.
+
+	date = { day = 3 month = november year = 1675 }
+	offset = 1
+	deathdate = { day = 1 month = january year = 1680 }
+
+	action_a = {
+		name = "ACTIONNAME51022A" #Construct the new capital of our dynasty!
+		command = { type = relation which = FRA value = 100 }
+		command = { type = treasury value = -150 }
+		command = { type = capital which = 733 } #Fez
+		command = { type = domestic which = centralization value = 3 }
+		command = { type = vp value = 50 }
+		command = { type = gainmanufactory which = -2 value = luxury }
+	}
+	action_b = {
+		name = "ACTIONNAME51022B" #Marrakesh suits us fine
+		command = { type = vp value = -10 }
+		command = { type = treasury value = 50 }
+		command = { type = domestic which = aristocracy value = 3 }
+	}
+}
+
+#(1693-1705) Ismail's Foreign Relations
+event = {
+	id = 232005
+	trigger = { owned = { province = 733 data = -1 } }
+	random = no
+	country = MOR
+	name = "EVENTNAME232005" #Ismail's Foreign Relations
+	desc = "EVENTHIST232005"
+	#-#During his reign Moulay Ismail, after subduing and pacifying Morocco, managed to gain control over the privateering, which he eventually dismantled and turned into peaceful trading. A French architect built the city of Essaouira in the 17th century solely for the international trade. Foreign trade in Morocco flourished and he exchanged ambassadors with many leading powers, among which the English, French and the Dutch.
+
+	date = { day = 3 month = november year = 1693 }
+	offset = 1
+	deathdate = { day = 1 month = january year = 1705 }
+
+	action_a = {
+		name = "ACTIONNAME232005A" #We control our own trade
+		command = { type = removecot which = 1495 } #Timbuktu
+		command = { type = sleepevent which = 338110 } #ProvinceSpec*1495: The Gold-Salt Trade dries up
+		command = { type = cot which = 733 } #Fez
+		command = { type = domestic which = MERCANTILISM value = 2 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = inflation value = -3 }
+	}
+	action_b = {
+		name = "ACTIONNAME232005B" #Implement trade restrictions
+		command = { type = removecot which = 1495 } #Timbuktu
+		command = { type = sleepevent which = 338110 } #ProvinceSpec*1495: The Gold-Salt Trade dries up
+		command = { type = cot which = 733 } #Fez
+		command = { type = domestic which = MERCANTILISM value = 3 }
+		command = { type = domestic which = aristocracy value = 3 }
+		command = { type = inflation value = -5 }
+	}
+	action_c = {
+		name = "ACTIONNAME232005C" #We need not encourage further exploitation!
+		command = { type = inflation value = -10 }
+		command = { type = domestic which = centralization value = 2 }
+		#command = { type = relation which = FRA value = -100 }
+		#command = { type = relation which = SPA value = -100 }
+		#command = { type = relation which = ENG value = -100 }
+	}
+}
+
+#(1776-1790) Muhammad III recognizes U.S. independence
+event = {
+	id = 232002
+	trigger = { exists = USA }
+	random = no
+	country = MOR
+
+	date = { day = 1 month = january year = 1776 }
+	offset = 60
+	deathdate = { day = 1 month = january year = 1790 }
+
+	name = "EVENTNAME232002" #Muhammad III recognizes U.S. independence
+	desc = "EVENTHIST51020"
+	#-#During the reign of Sidi Mohammed Ben Abdallah (Muhammad III), Morocco recognized for the first time, the independence of the United States.
+	action_a = {
+		name = "ACTIONNAME51020A" #Congratulations!
+		command = { type = relation which = USA value = 100 }
+		command = { type = diplomats value = 3 }
+	}
+}
+
+#Alawite Dynasty?
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 232043

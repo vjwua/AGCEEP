@@ -1,0 +1,1177 @@
+#Provence (PRO)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1422-1481) The Inheritance of Maine Events (No France)
+#Concept by Fate - Scripted by Johnny Canuck
+event = {
+	id = 20069
+	trigger = {
+		vassal = { country = ENG country = PRO }
+		NOT = { war = { country = FRA country = PRO } }
+		OR = {
+			event = 20008 #ENG: France Rises Again
+			event = 3606 #PRO: The Crown of France
+			event = 20100 #BUR: The Crown of France
+			event = 3601 #BRI: The Crown of France
+		}
+		owned = { province = 385 data = FRA }
+	}
+	random = no
+	country = PRO
+	name = "EVENTNAME20069" #A new King in Paris
+	desc = "EVENTHIST20069"
+	#-#A new King of France has been crowned in Paris. Should we switch our loyalties to him, as our subjects wish, or remain true to the English?
+
+	date = { day = 25 month = october year = 1422 }
+	offset = 60
+	deathdate = { day = 29 month = december year = 1481 }
+
+	action_a = {
+		name = "ACTIONNAME20069A" #Become vassals of France
+		command = { type = relation which = ENG value = -200 }
+		command = { type = breakvassal which = ENG }
+		command = { type = stability value = 3 }
+	}
+	action_b = {
+		name = "ACTIONNAME20069B" #Remain vassals of England
+		command = { type = relation which = ENG value = 50 }
+		command = { type = relation which = FRA value = -100 }
+		command = { type = stability value = -1 }
+		command = { type = sleepevent which = 20070 } #FRA: Provence has become our vassal
+	}
+	action_c = {
+		name = "ACTIONNAME20069C" #We will be free of both of them
+		command = { type = relation which = ENG value = -100 }
+		command = { type = relation which = FRA value = -100 }
+		command = { type = breakvassal which = ENG }
+		command = { type = sleepevent which = 20070 } #FRA: Provence has become our vassal
+	}
+}
+
+#(1422-1515) The Crown of France
+event = {
+	id = 3606
+	trigger = {
+		owned = { province = 385 data = -1 } #Ile de France
+		control = { province = 385 data = -1 } #Ile de France
+		control = { province = 376 data = -1 } #Champagne
+		NOT = {
+			exists = FRA
+			exists = DAU
+		}
+	}
+	random = no
+	country = PRO
+	name = "EVENTNAME3606" #The Crown of France
+	desc = "EVENTHIST3606"
+	#-#Since the Early Medieval times one of the most powerful Frankish Kingdoms had been centered at Paris and around Ile-de-France from which it took its name. Later on one of its Kings managed not only to unite the large area formerly called 'Gallia', but also to conquer most of Germany, Northern Italy and become chosen as Holy Roman Emperor, namely Charlemagne. His heritage was very powerful and important. The Duke of Normandy might be the most powerful man in France, but he was not France, only the French King was never so powerless. The Legacy of Charlemagne lived on and the greatest wish of man powerful monarch was bear the Crown of France...
+
+	date = { day = 22 month = october year = 1422 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1515 }
+
+	action_a = {
+		name = "ACTIONNAME3606A" #France is reborn with me
+		command = { type = vp value = 200 }
+		command = { type = stability value = 3 }
+		command = { type = capital which = 385 } #Ile de France
+		command = { type = flagname which = "" }
+		command = { type = country which = FRA }
+		command = { type = addcore which = 376 } #Champagne
+		command = { type = addcore which = 382 } #Calais
+		command = { type = addcore which = 383 } #Picardie
+		command = { type = addcore which = 384 } #Caux
+		command = { type = addcore which = 385 } #Ile de France
+		command = { type = addcore which = 386 } #Nivernais
+		#command = { type = addcore which = 387 } #Franche-Comté
+		command = { type = addcore which = 407 } #Dauphiné
+		command = { type = addcore which = 408 } #Lyonnais
+		command = { type = addcore which = 409 } #Bourgogne
+		command = { type = addcore which = 410 } #Berri
+		command = { type = addcore which = 411 } #Orleanais
+		command = { type = addcore which = 412 } #Maine
+		command = { type = addcore which = 413 } #Normandie
+		#command = { type = addcore which = 414 } #Armor
+		#command = { type = addcore which = 415 } #Bretagne
+		#command = { type = addcore which = 416 } #Morbihan
+		command = { type = addcore which = 417 } #Vendée
+		command = { type = addcore which = 418 } #Poitou
+		command = { type = addcore which = 419 } #Limousin
+		command = { type = addcore which = 420 } #Auvergne
+		command = { type = addcore which = 421 } #Cévennes
+		command = { type = addcore which = 422 } #Languedoc
+		command = { type = addcore which = 423 } #Guyenne
+		command = { type = addcore which = 424 } #Gascogne
+		command = { type = addcore which = 425 } #Béarn
+		#command = { type = addcore which = 426 } #Roussillon
+		command = { type = INF which = 385 value = 15000 } #Ile de France
+		command = { type = CAV which = 385 value = 10000 } #Ile de France
+		command = { type = ART which = 385 value = 30 } #Ile de France
+		command = { type = remove_countryculture which = german }
+	}
+	action_b = {
+		name = "ACTIONNAME3606B" #Let France rest in peace
+		command = { type = vp value = -100 }
+		command = { type = stability value = -3 }
+		command = { type = relation which = ENG value = 150 }
+		command = { type = relation which = BUR value = 150 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = SPA value = 150 }
+	}
+}
+
+#(1420-1423) Naples defies the Angevins
+#by Bordic
+event = {
+	id = 262004 #triggered by NAP_239006 A
+	random = no
+	country = PRO
+	name = "EVENTNAME262004" #Naples defies the Angevins
+	desc = "EVENTHIST239006"
+	#-#Giovanna of Anjou-Durazzo was not destined to be Queen, and when she found herself with the crown of Naples on her head after the death of her brother, she refused to give up her previous dissolute life. She soon started to yield the power to whoever happened to be her current paramour. The nobility was restless and conspirative. Pope Martinus V, as his predecessors, wanted to see Naples in the firm hands of a trusted man, but as a previous arranged marriage to Jean of Bourbon had failed, and Giovanna was now 50 years old, he decided to invest Louis III of Anjou, Count of Provence, of the junior branch of the House of Anjou, with claims to Naples. Martinus and Louis recruited the help of Neapolitan condottiero Muzio Attendolo, also known as 'lo Sforza'. When Sforza's army invaded Naples, Giovanna turned to Alfons V of Aragon, who had also distant claims to the crown of Naples, and in exchange for his help, adopted him as heir. Alfons arrived to Naples with his forces, and made Braccio da Montone, Sforza's greatest rival, commander of the Neapolitan armies.
+
+	action_a = {
+		name = "ACTIONNAME262004A" #Giovanna adopted Alfons
+		command = { type = stability value = -1 }
+		command = { type = relation which = ARG value = -50 }
+		command = { type = casusbelli which = NAP value = 24 }
+		command = { type = casusbelli which = ARG value = 24 }
+	}
+}
+#(1420-1423) The promise of Naples
+#by Bordic
+event = {
+	id = 262003 #triggered by NAP_239006 B
+	random = no
+	country = PRO
+	name = "EVENTNAME262003" #The promise of Naples
+	desc = "EVENTHIST239006"
+	#-#Giovanna of Anjou-Durazzo was not destined to be Queen, and when she found herself with the crown of Naples on her head after the death of her brother, she refused to give up her previous dissolute life. She soon started to yield the power to whoever happened to be her current paramour. The nobility was restless and conspirative. Pope Martinus V, as his predecessors, wanted to see Naples in the firm hands of a trusted man, but as a previous arranged marriage to Jean of Bourbon had failed, and Giovanna was now 50 years old, he decided to invest Louis III of Anjou, Count of Provence, of the junior branch of the House of Anjou, with claims to Naples. Martinus and Louis recruited the help of Neapolitan condottiero Muzio Attendolo, also known as 'lo Sforza'. When Sforza's army invaded Naples, Giovanna turned to Alfons V of Aragon, who had also distant claims to the crown of Naples, and in exchange for his help, adopted him as heir. Alfons arrived to Naples with his forces, and made Braccio da Montone, Sforza's greatest rival, commander of the Neapolitan armies.
+
+	action_a = {
+		name = "ACTIONNAME111012A" #Giovanna adopted us
+		command = { type = stability value = 1 }
+		command = { type = relation which = PAP value = 50 }
+	}
+}
+
+#(1423) Naples to the House of Anjou
+#by Bordic
+event = {
+	id = 262011 #triggered by NAP_239011 A
+	random = no
+	country = PRO
+	name = "EVENTNAME262011" #Naples to the House of Anjou
+	desc = "EVENTHIST239011"
+	#-#Alfons of Aragon, after being adopted by Giovanna of Anjou-Durazzo, arrived at the Kingdom of Naples with the intention of being recognised as its legitimate ruler, due mainly to his descent from the last Hohenstaufen King of Sicily, and not due to the will of a member of an usurping dynasty, the House of Anjou. He wanted to take control of Naples immediately without waiting for the Queen's death. He soon imprisoned Caracciolo, Giovanna's lover, but he failed to capture the Queen. Muzio Attendolo Sforza, the Neapolitan condottiero in the service of the Pope, informed that Giovanna was in great danger, went hastily to Naples and rescued her. It was then easy for the Pope to convince the Queen to adopt Louis III of Anjou, Count of Provence, instead of Alfons of Aragon. Taking advantage of the absence of Alfons due to his problems in Aragon, and with the military help of Visconti, Duke of Milan and Signore of Genoa, the Aragonese were expelled from Naples, and Giovanna appointed Louis as Duke of Calabria, the heir's title. Louis moved his court to Cosenza to arrange his stay in Italy.
+
+	action_a = {
+		name = "ACTIONNAME262011A" #We are Duke of Calabria
+		command = { type = stability value = 1 }
+		command = { type = relation which = PAP value = 50 }
+		command = { type = relation which = NAP value = 50 }
+		command = { type = casusbelli which = ARG value = 36 }
+	}
+}
+#(1423) Naples adopted the Aragonese King
+#by Bordic
+event = {
+	id = 262023 #triggered by NAP_239011 B
+	random = no
+	country = PRO
+	name = "EVENTNAME262023" #Naples adopted the Aragonese King
+	desc = "EVENTHIST239011"
+	#-#Alfons of Aragon, after being adopted by Giovanna of Anjou-Durazzo, arrived at the Kingdom of Naples with the intention of being recognised as its legitimate ruler, due mainly to his descent from the last Hohenstaufen King of Sicily, and not due to the will of a member of an usurping dynasty, the House of Anjou. He wanted to take control of Naples immediately without waiting for the Queen's death. He soon imprisoned Caracciolo, Giovanna's lover, but he failed to capture the Queen. Muzio Attendolo Sforza, the Neapolitan condottiero in the service of the Pope, informed that Giovanna was in great danger, went hastily to Naples and rescued her. It was then easy for the Pope to convince the Queen to adopt Louis III of Anjou, Count of Provence, instead of Alfons of Aragon. Taking advantage of the absence of Alfons due to his problems in Aragon, and with the military help of Visconti, Duke of Milan and Signore of Genoa, the Aragonese were expelled from Naples, and Giovanna appointed Louis as Duke of Calabria, the heir's title. Louis moved his court to Cosenza to arrange his stay in Italy.
+
+	action_a = {
+		name = "ACTIONNAME262023A" #Alfons appointed Duke of Calabria
+		command = { type = stability value = -1 }
+		command = { type = casusbelli which = NAP value = 120 }
+		command = { type = casusbelli which = ARG value = 120 }
+	}
+}
+
+#(1431) The Succession in Lorraine/Anjou
+event = {
+	id = 262000 #triggered by LOR_211000 A
+	trigger = {
+		NOT = {
+			vassal = { country = LOR country = PRO }
+		}
+	}
+	random = no
+	country = PRO
+	name = "EVENTNAME262000" #The succession in Lorraine
+	desc = "EVENTHIST262000"
+	#-#Upon the death of Duke Charles of Lorraine in 1431, his Duchy became a target of struggle between the French King Charles VII and duke Philippe III of Burgundy. By the will of Duke Charles, Lorraine was to pass to his daughter Isabella, who married René d'Anjou, duke of Bar, in 1420. This was disputed, however, by the male line heir Antoine, count of Vaudémont and nephew of Duke Charles.
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = vassal which = LOR }
+		command = { type = addcore which = 375 } #Lorraine
+		command = { type = trigger which = 262036 } #PRO: René Duke of Lorraine
+	}
+}
+#(1431) The Succession in Lorraine/Anjou (in case of LOR being liege of PRO)
+event = {
+	id = 262035 #triggered by LOR_211000 A
+	trigger = {
+		vassal = { country = LOR country = PRO }
+	}
+	random = no
+	country = PRO
+	name = "EVENTNAME262000" #The succession in Lorraine
+	desc = "EVENTHIST262000"
+	#-#Upon the death of Duke Charles of Lorraine in 1431, his Duchy became a target of struggle between the French King Charles VII and duke Philippe III of Burgundy. By the will of Duke Charles, Lorraine was to pass to his daughter Isabella, who married René d'Anjou, duke of Bar, in 1420. This was disputed, however, by the male line heir Antoine, count of Vaudémont and nephew of Duke Charles.
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = breakvassal which = LOR }
+		command = { type = stability value = 3 }
+		command = { type = dynastic which = LOR }
+		command = { type = relation which = LOR value = 200 }
+		command = { type = relation which = FRA value = 25 }
+		command = { type = addcore which = 375 } #Lorraine
+		command = { type = trigger which = 262036 } #PRO: René Duke of Lorraine
+	}
+}
+#(1431) René Duke of Lorraine
+event = {
+	id = 262036 #triggered by PRO_262000 A or PRO_262035
+	trigger = {
+		exists = FRA
+	}
+	random = no
+	country = PRO
+	name = "EVENTNAME262036" #René Duke of Lorraine
+	desc = "EVENTHIST262036"
+	#-#With the military support of King Charles VII of France, René d'Anjou managed to be acknowledged as the new Duke of Lorraine.
+
+	action_a = {
+		name = "OK"
+		command = { type = alliance which = LOR }
+		command = { type = relation which = FRA value = 25 }
+		command = { type = INF which = -2 value = 3000 }
+	}
+}
+#(1431) The Succession in Lorraine/Vaudémont
+event = {
+	id = 262001 #triggered by LOR_211000 B
+	random = no
+	country = PRO
+	name = "EVENTNAME262001" #The succession in Lorraine
+	desc = "EVENTHIST262001"
+	#-#Charles, the former Duke of Lorraine, and the father-in-law of René d'Anjou is dead. While René is clearly the rightful heir a rival has emerged in Antoine de Vaudémont, a nephew of Duke Charles. Supported by the Burgunidans he has ousted the supporters of René and grabbed power.
+
+	action_a = {
+		name = "ACTIONNAME262001A" #Press our rightful claims!
+		command = { type = diplomats value = -1 }
+		command = { type = stability value = -2 }
+		command = { type = casusbelli which = LOR value = 60 }
+		command = { type = relation which = LOR value = -100 }
+		command = { type = relation which = BUR value = -150 }
+	}
+	action_b = {
+		name = "ACTIONNAME262001B" #Let the matter fall
+		command = { type = stability value = 1 }
+		command = { type = relation which = LOR value = 100 }
+		command = { type = relation which = BUR value = 150 }
+	}
+}
+#(1435-1450) Maine and Anjou are Recovered!
+event = {
+	id = 262031 #triggered by FRA_170032 / FRA_170033
+	random = no
+	country = PRO
+	name = "EVENTNAME262031" #Maine and Anjou are Recovered
+	desc = "EVENTHIST262031"
+	#-#Duke Rene I, landless and poverty stricken, had been rewarded for his years of faithful service to his King, Charles VII. The King recovered the Duke's counties of Maine and Anjou and now granted them to Rene.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = breakvassal which = FRA }
+		command = { type = stability value = 3 }
+	}
+}
+
+#(1435-1442) The Inheritance of Naples 
+#by Bordic
+event = {
+	id = 262005 #testing NAP_239007
+	random = no
+	country = PRO
+	name = "EVENTNAME239007" #The Inheritance of Naples
+	desc = "EVENTHIST239007"
+	#-#Queen Giovanna of Naples is dead. Her last will was that the crown should be given to René of Anjou, brother of Louis III of Anjou, her adopted son who died just three months before she did. Pope Eugenius IV declared that as suzerain he had the right to invest the new King and as for now he would send a bishop as temporary regent. However the Neapolitan people, determined to respect the will of their former Queen, ignored the Papal resolution and sent a delegation to Provence to urge René of Anjou to claim the throne in Naples. Since René of Anjou had been taken captive in Burgundy by Duke Philip the Fair, his wife Isabelle of Lorraine accepted the crown in his place. From his base in Sicily, Alfons of Aragon, who was designated heir by Giovanna between 1420 and 1423, and had a claim to Naples as King of Sicily, gained the support of the Neapolitan nobility hostile to the Anjou dynasty, and started making preparations to invade the Kingdom before the French Angevins could arrive in Naples and take the crown.
+
+	date = { day = 1 month = February year = 1435 }
+	offset = 15
+	deathdate = { day = 1 month = February year = 1442 }
+
+	action_a = {
+		name = "ACTIONNAME262005A" #The House of Anjou back to Naples
+		trigger = {
+			NAP = { flag = [Angevin] }
+		}
+		command = { 
+			trigger = {
+				NOT = { vassal = { country = NAP country = PRO } }
+			}
+			type = vassal which = NAP 
+		}
+		command = { type = relation which = TOS value = 25 }
+		command = { type = relation which = VEN value = 25 }
+		command = { type = relation which = GEN value = 25 }
+		command = { type = relation which = MLO value = 25 }
+	}
+	action_b = {
+		name = "ACTIONNAME262005B" #The Aragonese established in Naples
+		trigger = {
+			NAP = { flag = [Aragonese] }
+		}
+		command = { type = relation which = NAP value = -250 }
+		command = { type = relation which = ARG value = -100 }
+		command = { type = casusbelli which = NAP value = 85 }
+		command = { type = casusbelli which = ARG value = 85 }
+	}
+}
+
+#(1442) The Angevin claim to Naples
+#by Bordic
+event = {
+	id = 262009
+	trigger = {
+		event = 239007 #NAP: The Inheritance of Naples
+		owned = { province = 393 data = -1 } #Napoli
+		exists = ARG
+		NOT = { exists = NAP }
+	}
+	random = no
+	country = PRO
+	name = "EVENTNAME262009" #The Angevin claim to Naples
+	desc = "EVENTHIST239009"
+	#-#After his release from Milan, Alfons returned to Naples, where his brother Pedro had conquered Gaeta. Naples was defended by Isabelle of Lorraine with the support of Pope Eugenius IV. For three years Alfonso conducted as much a diplomatic war as a military one, gaining allies to his cause from the Neapolitan nobles. In 1438, René of Anjou paid a huge ransom to Burgundy for his release, and arrived in the Kingdom, but since he had exhausted his funds his allies abandoned him and he had to retreat to Naples. A long siege was then established, during which the Infante Don Pedro was killed by a chance shot to the great grief of his brother. The support of the Genoese fleet allowed René to sustain the besieged capital, but finally on June 1, 1442, 300 well-armed men entered the town through an open drain accesible during the dry season, revealed to Alfons' son Ferrante by some prisoners. After several hours of fighting, Naples was conquered and René escaped to Florence. After conquering the rest of the Kingdom, Alfons entered the capital in triumph on February 23, 1443. Pope Eugenius refused to invest Alfons as King of Naples and threatened to declare him in unlawful possession of Naples, Sicily, Corsica and Sardinia. Alfons threatened back with his support for an anti-Pope, Felix V, chosen at the Council of Basel, and Eugenius accepted to invest him in exchange for his support as the genuine Pope and help against the Turks that never materialized. Ferrante was named Prince of Calabria, and the Neapolitans were pleased that their Kingdom was not going to be incorporated to Aragon. Alfons, who as a Castilian had always felt a foreigner in Barcelona, never returned to Aragon, and his court in Naples was filled with the splendor of the Renaissance. Alfons soon gained the nickname of the Magnanimous.
+
+	date = { day = 24 month = April year = 1442 }
+	offset = 30
+	deathdate = { day = 24 month = May year = 1442 }
+
+	action_a = {
+		name = "ACTIONNAME262009A" #Let us drop our claims for good!
+		command = { type = stability value = -1 }
+		command = { type = independence which = NAP }
+		command = { type = relation which = ARG value = -50 }
+		command = { type = sleepevent which = 262006 } #PRO: The Angevin Kingdom of Naples
+		command = { type = sleepevent which = 262010 } #PRO: The Angevin chased out of Naples
+	}
+	action_b = {
+		name = "ACTIONNAME3250A" #We will defend our claims
+		command = { type = stability value = -2 }
+		command = { type = addcore_claim which = 393 } #Napoli
+		command = { type = addcore_claim which = 394 } #Apulia
+		command = { type = revolt which = 393 }
+		command = { type = revolt which = 394 }
+		command = { type = desertion which = 393 value = 5000 }
+		command = { type = relation which = PAP value = 25 }
+		command = { type = relation which = GEN value = 25 }
+		command = { type = relation which = ARG value = -50 }
+		command = { type = trigger which = 111015 } #ARG: The Angevins control Naples
+		command = { type = trigger which = 228022 } #MLO: Louis of Anjou took Naples
+		command = { type = trigger which = 251041 } #PAP: The Angevins control Naples
+	}
+}
+
+#(1442) The Angevins chased out of Naples
+#by Bordic
+event = {
+	id = 262010 #triggered by NAP_239009 A / NAP_239036 B
+	random = no
+	country = PRO
+	name = "EVENTNAME262010" #The Angevins chased out of Naples
+	desc = "EVENTHIST239009"
+	#-#After his release from Milan, Alfons returned to Naples, where his brother Pedro had conquered Gaeta. Naples was defended by Isabelle of Lorraine with the support of Pope Eugenius IV. For three years Alfonso conducted as much a diplomatic war as a military one, gaining allies to his cause from the Neapolitan nobles. In 1438, René of Anjou paid a huge ransom to Burgundy for his release, and arrived in the Kingdom, but since he had exhausted his funds his allies abandoned him and he had to retreat to Naples. A long siege was then established, during which the Infante Don Pedro was killed by a chance shot to the great grief of his brother. The support of the Genoese fleet allowed René to sustain the besieged capital, but finally on June 1, 1442, 300 well-armed men entered the town through an open drain accesible during the dry season, revealed to Alfons' son Ferrante by some prisoners. After several hours of fighting, Naples was conquered and René escaped to Florence. After conquering the rest of the Kingdom, Alfons entered the capital in triumph on February 23, 1443. Pope Eugenius refused to invest Alfons as King of Naples and threatened to declare him in unlawful possession of Naples, Sicily, Corsica and Sardinia. Alfons threatened back with his support for an anti-Pope, Felix V, chosen at the Council of Basel, and Eugenius accepted to invest him in exchange for his support as the genuine Pope and help against the Turks that never materialized. Ferrante was named Prince of Calabria, and the Neapolitans were pleased that their Kingdom was not going to be incorporated to Aragon. Alfons, who as a Castilian had always felt a foreigner in Barcelona, never returned to Aragon, and his court in Naples was filled with the splendor of the Renaissance. Alfons soon gained the nickname of the Magnificent.
+
+	action_a = {
+		name = "ACTIONNAME262010A" #We'll never give up
+		command = { type = stability value = -1 }
+		command = { type = relation which = NAP value = -100 }
+		command = { type = relation which = ARG value = -50 }
+		command = { type = relation which = MLO value = -25 }
+		command = { type = relation which = PAP value = 25 }
+		command = { type = relation which = GEN value = 25 }
+		command = { type = casusbelli which = NAP value = 120 }
+	}
+	action_b = {
+		name = "ACTIONNAME262010B" #Accept it!
+		command = { type = relation which = NAP value = 25 }
+		command = { type = relation which = ARG value = 25 }
+		command = { type = relation which = MLO value = 25 }
+	}
+}
+
+#(1442-1457) The Angevin Kingdom of Naples
+#by Bordic
+event = {
+	id = 262006
+	trigger = {
+		OR = {
+			event = 239009 #NAP: The Battle over Naples -I-
+			event = 239036 #NAP: The Battle over Naples -II-
+		}
+		NOT = {
+			vassal = { country = NAP country = PRO }
+			war = { country = NAP country = PRO }
+		}
+		exists = NAP
+	}
+	random = no
+	country = PRO
+	name = "EVENTNAME262006" #The Angevin Kingdom of Naples
+	desc = "EVENTHIST262006"
+	#-#After his release from Milan, Alfons of Aragon returned to Naples, where his brother Pedro had conquered Gaeta. Naples was defended by Isabelle of Lorraine with the support of Pope Eugenius IV. For three years Alfons conducted as much a diplomatic war as a military one, gaining allies to his cause from the Neapolitan nobles. In 1438, René of Anjou paid a huge ransom to Burgundy for his release, and arrived in the Kingdom, but since he had exhausted his funds his allies abandoned him and he had to retreat to Naples. A long siege was then established, during which the Infante Don Pedro was killed by a chance shot to the great grief of his brother. The support of the Genoese fleet allowed René to sustain the besieged capital with success until 1 June 1442, when 300 Aragonese well-armed men entered the town through an open drain accessible during the dry season, revealed to Alfons' son Ferrante by some prisoners. After several hours of fighting and in spite of the stealthy move inside the city walls, Naples withstood the Aragonese and Alfons was forced to retreat to Sicily. After recovering the rest of the Kingdom, René entered the capital in triumph the year after. Pope Eugenius IV, very happy for the Angevin success, invested René as King of Naples and Sicily thus declaring Alfons of Aragon in unlawful possession of the Sicilian island.
+
+	date = { day = 3 month = June year = 1442 }
+	offset = 5
+	deathdate = { day = 29 month = December year = 1457 }
+
+	action_a = {
+		name = "ACTIONNAME262006A" #The Kingdom is ours!
+		command = { type = vassal which = NAP }
+		command = { type = addcore_claim which = 393 } #Napoli
+		command = { type = addcore_claim which = 394 } #Apulia
+		command = { type = relation which = NAP value = 200 }
+		command = { type = relation which = PAP value = 25 }
+		command = { type = relation which = TOS value = 25 }
+		command = { type = relation which = VEN value = 25 }
+		command = { type = relation which = GEN value = 25 }
+		command = { type = sleepevent which = 111014 } #ARG: The Aragonese Kingdom of Naples
+		command = { type = trigger which = 262033 } #PRO: The allegiance of Naples
+	}
+}
+#(1442-1457) The allegiance of Naples
+#by Bordic
+event = {
+	id = 262033 #triggered by PRO_262006
+	random = no
+	country = PRO
+	name = "EVENTNAME262033" #The allegiance of Naples
+	desc = "EVENTHIST262033"
+	#-#Pope Eugenius IV, very happy for the Angevin success, invested René as King of Naples and Sicily thus declaring Alfons of Aragon in unlawful possession of the Sicilian island.
+
+	action_a = {
+		name = "OK"
+		command = { type = stability value = 1 }
+		command = { type = alliance which = NAP }
+		command = { type = vp value = 5 }
+	}
+}
+
+#(1445-1450) Maine and Anjou are Recovered!
+event = {
+	trigger = {
+		event = 164002 #ENG: The Marriage of Henry VI and Margaret of Anjou
+	}
+	id = 262030
+	random = no
+	country = PRO
+	name = "EVENTNAME262030" #Maine and Anjou are Recovered
+	desc = "EVENTHIST262030"
+	#-#Henry VI's marriage to Margaret, the daughter of Rene I Duke of Anjou, had cemented the truce of Tours between England and France. Henry VI had promised Charles VII and Rene I the counties of Maine and Anjou and was now pressured to deliver them. Finally, Henry VI made good with his promise.
+
+	date = { day = 1 month = january year = 1445 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1450 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = stability value = 1 }
+		command = { type = relation which = ENG value = 100 }
+	}
+}
+
+#(1454) The Peace of Lodi
+#by Bordic
+event = {
+	id = 262032
+	trigger = {
+		exists = VEN
+		exists = MLO
+		exists = TOS
+		exists = PAP
+		event = 228034 #MLO: The Peace of Lodi
+		atwar = no
+		OR = {
+			vassal = { country = PRO country = NAP }
+			event = 262006 #PRO: The Angevin Kingdom of Naples
+			AND = {
+				owned = { province = 393 data = -1 } #Napoli
+				NOT = { exists = NAP }
+			}
+		}
+	}
+	random = no
+	country = PRO
+	name = "EVENTNAME228034" #The Peace of Lodi
+	desc = "EVENTHIST326038"
+	#-#During the war of succession in Milan, all the belligerent nations were brought to exhaustion of money and troops. Francesco Sforza, ruler of Milan and Venice, the chief state of the league confederates, who was more and more threatened by the advancing Ottomans in her eastern Mediterranean territories, convened a cease-fire while a bilateral treaty was hastily signed in Lodi on 7 April 1454. With that treaty Sforza was legitimated Duke of Milan. Without even being called for, Florence and the Pope had no choice then to endorse the treaty. The King of Naples, being a rightful claimant on the ducal throne reluctantly joined the alliance under the condition to keep Genoa out of it. Intended 'infra terminos italicos', that treaty showed the objective impossibility for all the Italian major powers (specifically Milan, Tuscany, Venice, Naples and Papal States) to prevail upon each other in the struggle for the hegemony in Italy and that the better solution was to come to terms with each other. That would have also avoided the practice of very expensive and pointless wars in the next future. Although the treaty actually played a minor part in Italian balance of powers and so won't be able to avoid future wars of aggression from inside as well from outside Italy, the post-Lodi era historically represented a period of relative peace in which the figurative arts definitively flourished in the whole Italian peninsula, as well as economy and trade and, last but not the least, the skills and tricks of the art of diplomacy.
+
+	date = { day = 7 month = April year = 1454 }
+	offset = 30
+	deathdate = { day = 9 month = March year = 1466 }
+
+	action_a = {
+		name = "ACTIONNAME111018A" #Yes, peace
+		command = { type = relation which = VEN value = 50 }
+		command = { type = relation which = MLO value = 50 }
+		command = { type = relation which = TOS value = 50 }
+	}
+}
+
+#(1458-1463) The Suzerainty over Genoa
+#by Bordic
+event = {
+	id = 262008 #triggered by GEN_174028
+	random = no
+	country = PRO
+	name = "EVENTNAME262008" #The Suzerainty over Genoa
+	desc = "EVENTHIST174028"
+	#-#Although several peace treaties were stipulated as to guarantee a certain balance of powers in Italy, they couldn't prevent Alfonso I King of Naples from pursuing his old interests on Genoese territories, notably Corsica, and West Mediterranean sea trade routes. Since the confederates of Lega Italica, amongst them Milan, wouldn't risk to break that fragile alliance, and some Genoese families, Adorno and Fieschi amongst them, had clearly in mind to support the Aragonese, King Alfonso represented a real threat for Genoa and the Fregoso family. In 1458, facing a new Aragonese aggression Genoa could only find help in France as it frequently occurred in the past. Charles VII, King of France, accepted the Genoese allegiance and sent Jean d'Anjou, Duke of Calabria and son of René d'Anjou to rule over Genoa. As soon as he established himself in the city as Governor, with the support of the Genoese fleet he arranged a military expedition to be led against Naples with the aim of getting the crown, which his father René failed to succeed in. But this time the political situation in Naples played in his favour: the local barons were opposing Ferdinando, Alfonso's natural son, not recognising him as the new King of Naples. For Jean d'Anjou, it was an invite to become entangled in there...
+
+	action_a = {
+		name = "ACTIONNAME3061A" #Accept Offer
+		command = { type = vassal which = GEN }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = MLO value = -25 }
+		command = { type = trigger which = 262034 } #PRO: The Expedition of Jean d'Anjou
+	}
+}
+#(1458-1463) The Expedition of Jean d'Anjou
+#by Bordic
+event = {
+	id = 262034 #triggered by PRO_262008
+	random = no
+	country = PRO
+	name = "EVENTNAME262034" #The Expedition of Jean d'Anjou
+	desc = "EVENTHIST7118"
+	#-#In 1458, in accordance with his father's will, Ferdinando succeeded Alfonso I on the throne of Naples. Ferdinando I, also called Don Ferrante, was the natural son of Alfonso V of Aragon and I of Sicily and Naples. In order to arrange a good future to his bastard son, King Alfonso had him married in 1444 to Isabella of Chiaramonte, a feudal heiress of remarkable feudal possessions in Southern Italy and granddaughter of Maria d'Enghien, Queen consort of Ladislao, the last Angevin King of Naples. But after Alfonso died Pope Calixtus III didn't legitimate Ferdinando as new King of Naples, he declared instead that the line of Aragon was extinct and that the Kingdom was to be considered a fief of the church. Although the Pope died before he could make good his claim and the new Pope Pius II on the contrary recognized Ferdinando, Jean d'Anjou, Duke of Lorraine and René's son, also known as 'Duke of Calabria', profiting by the discontent of the pro-Angevin Neapolitan barons, decided to attempt to regain the throne of his ancestors and invaded Naples. The war started well for the Anjou with the easy occupation of Apulia and the temporary control of Naples after the victorious battle of Sarno in 1460. Ferdinand was so severely defeated that his Kingdom seemed to be completely lost in Angevin hands, but with the military help of Francesco Sforza, Duke of Milan, through his brother Alessandro and of the Albanian leader Gjergj Kastrioti, known as 'Skanderbeg', who came to the aid of the prince whose father had aided him, he triumphed over his enemies in the battle of Troja in 1462. By 1464 Ferdinando could re-establish his authority in the Kingdom, Jean d'Anjou left Southern Italy while the barons agreed to recognize the Aragonese as their King.
+
+	action_a = {
+		name = "ACTIONNAME262034A" #Let's try to recover Naples
+		command = { type = alliance which = GEN }
+		command = { type = galleys which = -1 value = 5 }
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = relation which = NAP value = -100 }
+		command = { type = casusbelli which = NAP value = 60 }
+	}
+}
+
+#(1472-1480) Naples is secured
+event = {
+	id = 262024
+	trigger = {
+		owned = { province = 393 data = -1 } #Napoli
+		owned = { province = 394 data = -1 } #Apulia
+	}
+	random = no
+	country = PRO
+	name = "EVENTNAME262024" #Naples is secured
+	desc = "EVENTHIST262024"
+	#-#Following years of struggle with local nobles and with Aragon over Naples the resurgence seems to have calmed. Naples is finally ours and now we can attempt to press our claims to Sicily, ruled by usurpers of the House of Trastamara in spite of the treaty of Caltabellotta stipulated in 1302 between the Angevins and the Aragonese in order to put an end to the Sicilian Vespers war started in 1282. Signing that treaty Frederick III was recognized King of Trinacria for his lifetime, and was to marry Eleanor d'Anjou, the daughter of Charles II of Naples, but at his death the Kingdom was to revert to the Angevins and his children would receive compensation elsewhere. In 1337 Frederick died and in spite of the peace of Caltabellotta his son Peter II of Sicily succeeded. Since then Sicily firmly remained in Aragonese hands. Now it is time to get back what was always ours...
+
+	date = { day = 1 month = January year = 1472 }
+	offset = 100
+	deathdate = { day = 10 month = July year = 1480 }
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = addcore which = 393 } #Napoli
+		command = { type = addcore which = 394 } #Apulia
+		command = { type = addcore which = 395 } #Messina
+		command = { type = addcore which = 396 } #Sicily
+		command = { type = relation which = ARG value = -50 }
+		command = { type = relation which = PAP value = 50 }
+	}
+}
+
+#(1473) The Accession of René II in Lorraine
+event = {
+	id = 262002 #triggered by LOR_211001 / LOR_211012
+	random = no
+	country = PRO
+	name = "EVENTNAME262002" #The accession of René II in Lorraine
+	desc = "EVENTHIST262002"
+	#-#After the death of Duke Nicholas of Lorraine the title fell to René, grandson of the two combatants René d'Anjou and Antoine de Vaudémont. René II thus united the two rival lines in Lorraine.
+
+	action_a = {
+		name = "ACTIONNAME262002A" #Let Lorraine go it's own way!
+		command = { type = removecore which = 375 } #Lorraine
+	}
+	action_b = {
+		name = "ACTIONNAME262002B" #No! Lorraine is ours!
+		command = { type = casusbelli which = LOR value = 60 } #Lorraine
+		command = { type = relation which = LOR value = -200 }
+		command = { type = relation which = FRA value = -100 }
+		command = { type = relation which = BUR value = -100 }
+		command = { type = stability value = -3 } #Should hurt
+	}
+}
+
+#(1474) King René's will
+event = {
+	id = 262025
+	trigger = {
+		exists = FRA
+	}
+	random = no
+	country = PRO
+	name = "EVENTNAME262025" #King René's will
+	desc = "EVENTHIST262025"
+	#-#In 1474 King René drew up a will by which he divided his holdings. As his heirs he listed his grandson René II, duke of Lorraine and his nephew Charles II, count of Maine. King Louis XI of France, himself the son of one of King Rene's sisters, noticed that his expectations were not met and seized the duchies of Anjou and Bar. He reconciled with René two years later, and the Duchies were restored - probably on condition that Louis should have them on René's death.
+
+	date = { day = 22 month = july year = 1474 }
+
+	action_a = {
+		name = "ACTIONNAME262025A" #Let his will be
+		command = { type = relation which = FRA value = 100 }
+		command = { type = relation which = LOR value = -50 }
+		#Other effects?
+	}
+}
+
+#(1480) The Duchy of Anjou
+event = {
+	id = 262015
+	trigger = {
+		exists = FRA
+		owned = { province = 412 data = -1 } #Maine
+	}
+	random = no
+	country = PRO
+	name = "EVENTNAME262015" #The Duchy of Anjou
+	desc = "EVENTHIST262015"
+	#-#It seems old King René had promised Anjou to the French Crown in the debacle following his will a few years back. The King now demands what is his...
+
+	date = { day = 1 month = january year = 1480 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1480 }
+
+	action_a = {
+		name = "ACTIONNAME262015A" #Return it to France as promised
+		command = { type = secedeprovince which = FRA value = 412 } #Maine
+		command = { type = secedeprovince which = FRA value = 383 } #Picardie
+		command = { type = secedeprovince which = FRA value = 384 } #Caux
+		command = { type = secedeprovince which = FRA value = 410 } #Berri
+		command = { type = secedeprovince which = FRA value = 411 } #Orleanais
+		command = { type = secedeprovince which = FRA value = 413 } #Normandie
+		command = { type = secedeprovince which = FRA value = 414 } #Armor
+		command = { type = secedeprovince which = FRA value = 415 } #Bretagne
+		command = { type = secedeprovince which = FRA value = 416 } #Morbihan
+		command = { type = secedeprovince which = FRA value = 417 } #Vendée
+		command = { type = secedeprovince which = FRA value = 418 } #Poitou
+		command = { type = secedeprovince which = FRA value = 419 } #Limousin
+		command = { type = relation which = FRA value = 200 }
+		command = { type = trigger which = 170018 } #FRA: The Duchy of Anjou
+	}
+	action_b = {
+		name = "ACTIONNAME262015B" #No! It is mine!
+		command = { type = relation which = FRA value = -200 }
+		command = { type = stability value = -3 } #Defying a powerful France
+		command = { type = trigger which = 170017 } #FRA: The Duchy of Anjou
+	}
+}
+
+#(1480) The Succession in Provence (no LOR)
+event = {
+	id = 3607
+	trigger = {
+		NOT = { exists = LOR }
+	}
+	random = no
+	country = PRO
+	name = "EVENTNAME3607" #The succession in Provence
+	desc = "EVENTHIST3607"
+	#-#René of Anjou was recognized by the Holy Roman emperor Sigismund as duke of Lorraine and René also inherited Anjou and Provence from Louis III. Meanwhile Joan II of Naples, who died in 1435, had made René her heir, but he could not defend the city from his rivals. The Anglo-French negotiations at Tours in 1444 led to the marriage of his daughter Margaret to the English King Henry VI in 1445. Meanwhile Charles VII of France had helped René to pacify Lorraine. As a thank you, René accompanied Charles VII on his victorious campaigns of 1449-50 against the English in Normandy. On his wife's death (1453), her duchy of Lorraine passed to René's son John. With Louis XI of France his relations were generally strained, and Louis forced him to yield Anjou to the French crown. René performed a balancing act through his career and his ties to the English crown could maybe have led to a different course for Provence.
+
+	date = { day = 9 month = july year = 1480 }
+
+	action_a = {
+		name = "ACTIONNAME3607A" #Charles of Maine
+		command = { type = relation which = FRA value = 100 }
+	}
+	action_b = {
+		name = "ACTIONNAME3607B" #René of Lorraine
+		command = { type = relation which = FRA value = -100 }
+		command = { type = stability value = -2 }
+		command = { type = sleepmonarch which = 0111502 } #Charles III of Maine
+		command = { type = wakemonarch which = 0111503 } #René II °
+		command = { type = sleepevent which = 262013 } #PRO: The succession in Provence
+		command = { type = sleepevent which = 262014 } #PRO: The succession in Provence
+	}
+}
+#(1480) The succession in Provence (LOR)
+event = {
+	id = 262012
+	trigger = { exists = LOR }
+	random = no
+	country = PRO
+	name = "EVENTNAME262012" #The succession in Provence
+	desc = "EVENTHIST262012"
+	#-#According to the will of the late René his possessions were to be divided between his two heirs - René II of Lorraine and Charles II of Maine. Charles was to have Provence, while René was to inherit the duchy of Bar on the border of Lorraine. Now that King René is dead his grandson by the same name has disputed Charles' right to Provence...
+
+	date = { day = 9 month = july year = 1480 }
+
+	action_a = {
+		name = "ACTIONNAME262012A" #Charles of Maine
+		command = { type = relation which = FRA value = 100 }
+		command = { type = relation which = LOR value = -150 }
+	}
+	action_b = {
+		name = "ACTIONNAME262012B" #René of Lorraine
+		command = { type = relation which = FRA value = -100 }
+		command = { type = relation which = LOR value = 200 }
+		command = { type = stability value = -2 }
+		command = { type = sleepmonarch which = 0111502 } #Charles III of Maine
+		command = { type = wakemonarch which = 0111503 } #René II
+		command = { type = trigger which = 211002 } #LOR: The succession in Provence
+		command = { type = trigger which = 211013 } #LOR: The succession in Provence (PRO liege of LOR)
+		command = { type = sleepevent which = 262013 } #PRO: The succession in Provence
+		command = { type = sleepevent which = 262014 } #PRO: The succession in Provence
+		command = { type = sleepevent which = 12021 } #FRA: The Inheritance of Anjou
+	}
+}
+
+#(1480-1483) The House of Anjou-Lorraine in Provence
+event = {
+	id = 262016
+	trigger = {
+		event = 211003
+		ai = no
+	}
+	random = no
+	country = PRO
+	name = "EVENTNAME262016" #The House of Anjou-Lorraine in Provence
+	desc = "EVENTHIST262016"
+	#-#Our now Count René II is also Duke of Lorraine. He has expressed a desire to unite his holdings under the administration of Lorraine.
+
+	date = { day = 10 month = july year = 1480 }
+	offset = 30
+	deathdate = { day = 29 month = january year = 1483 }
+
+	action_a = {
+		name = "ACTIONNAME262016A" #No - that is unacceptable!
+		command = { type = stability value = -2 }
+	}
+}
+#(1480-1483) The House of Anjou-Lorraine in Provence
+event = {
+	id = 262017
+	trigger = {
+		event = 211003
+		ai = yes #Not a human player
+	}
+	random = no
+	country = PRO
+	name = "EVENTNAME262017" #The House of Anjou-Lorraine in Provence
+	desc = "EVENTHIST262017"
+	#-#Our now Count René II is also Duke of Lorraine. He has expressed a desire to unite his holdings under the administration of Lorraine.
+
+	date = { day = 10 month = july year = 1480 }
+	offset = 30
+	deathdate = { day = 29 month = january year = 1483 }
+
+	action_a = {
+		name = "ACTIONNAME262017A" #Yes - we accept (End Game)
+		command = { type = trigger which = 211004 } #LOR: The House of Anjou-Lorraine in Provence
+	}
+}
+#(1480-1483) The House of Anjou-Lorraine in Provence
+event = {
+	id = 262018
+	trigger = {
+		event = 211005
+	}
+	random = no
+	country = PRO
+	name = "EVENTNAME262018" #The House of Anjou-Lorraine in Provence
+	desc = "EVENTHIST262018"
+	#-#Our now Count René II is also Duke of Lorraine. He has expressed a desire to unite his holdings under the administration of Provence.
+
+	date = { day = 10 month = july year = 1480 }
+	offset = 30
+	deathdate = { day = 29 month = january year = 1483 }
+
+	action_a = {
+		name = "ACTIONNAME262018A" #Yes, indeed
+		command = { type = inherit which = LOR }
+		command = { type = addcore which = 375 } #Lorraine
+		command = { type = vp value = 25 }
+	}
+}
+
+#(1482) The succession in Provence (no LOR)
+event = {
+	id = 262013
+	trigger = {
+		exists = FRA
+		NOT = { exists = LOR }
+	}
+	random = no
+	country = PRO
+	name = "EVENTNAME262013" #The succession in Provence
+	desc = "EVENTHIST262013"
+	#-#According to the will of the late René his nephew Charles II of Maine inherited Provence. Duke René II of Lorraine disputed the inheritance back then, and has now repeated his claim upon the death of Charles. Unfortunatley for him Charles, childless as he was, has already bequeathed his possessions to the French Crown.
+
+	date = { day = 1 month = january year = 1482 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1483 }
+
+	action_a = {
+		name = "ACTIONNAME262013A" #The King of France inherits (End Game)
+		command = { type = independence which = LOR } #Lorraine
+		command = { type = independence which = SAV } #Savoy
+		command = { type = independence which = GEN } #Genoa
+		command = { type = independence which = MLO } #Milan
+		command = { type = independence which = MAN } #Mantua
+		command = { type = independence which = PAR } #Parma
+		command = { type = independence which = PAM } #Modena
+		command = { type = independence which = TOS } #Tuscany
+		command = { type = independence which = PIS } #Siena
+		command = { type = independence which = PAP } #Papal States
+		command = { type = independence which = HEL } #Helvetia
+		command = { type = independence which = STR } #Strassburg
+		command = { type = independence which = BAD } #Baden
+		command = { type = independence which = PFA } #Palatinate
+		command = { type = independence which = MAI } #Mainz
+		command = { type = trigger which = 3323 } #FRA: The Succession in Provence
+	}
+	action_b = {
+		name = "ACTIONNAME262013B" #The House of Lorraine inherits
+		command = { type = relation which = FRA value = -100 }
+		command = { type = stability value = -2 } #For opposing France
+		command = { type = wakemonarch which = 0111503 } #René II °
+		command = { type = sleepevent which = 12021 } #FRA: The Inheritance of Anjou
+	}
+}
+#(1482) The succession in Provence (LOR)
+event = {
+	id = 262014
+	trigger = {
+		exists = FRA
+		exists = LOR
+	}
+	random = no
+	country = PRO
+	name = "EVENTNAME262014" #The succession in Provence
+	desc = "EVENTHIST262014"
+	#-#According to the will of the late René his nephew Charles II of Maine inherited Provence. Duke René II of Lorraine disputed the inheritance back then, and has now repeated his claim upon the death of Charles. Unfortunatley for him Charles, childless as he was, has already bequeathed his possessions to the French Crown.
+
+	date = { day = 1 month = january year = 1482 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1483 }
+
+	action_a = {
+		name = "ACTIONNAME262014A" #The King of France inherits (End Game)
+		command = { type = independence which = SAV } #Savoy
+		command = { type = independence which = GEN } #Genoa
+		command = { type = independence which = MLO } #Milan
+		command = { type = independence which = MAN } #Mantua
+		command = { type = independence which = PAR } #Parma
+		command = { type = independence which = PAM } #Modena
+		command = { type = independence which = TOS } #Tuscany
+		command = { type = independence which = PIS } #Siena
+		command = { type = independence which = PAP } #Papal States
+		command = { type = independence which = HEL } #Helvetia
+		command = { type = independence which = STR } #Strassburg
+		command = { type = independence which = BAD } #Baden
+		command = { type = independence which = PFA } #Palatinate
+		command = { type = independence which = MAI } #Mainz
+		command = { type = trigger which = 3323 } #FRA: The Succession in Provence
+	}
+	action_b = {
+		name = "ACTIONNAME262014B" #René of Lorraine inherits
+		command = { type = trigger which = 211002 } #LOR: The succession in Provence
+		command = { type = trigger which = 211013 } #LOR: The succession in Provence (PRO liege of LOR)
+		command = { type = relation which = FRA value = -100 }
+		command = { type = stability value = -2 }
+		command = { type = wakemonarch which = 0111503 } #René II
+		command = { type = sleepevent which = 12021 } #FRA: The Angevin inheritance of Naples
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Ahistorical: if Provence survived
+#-----------------------------------------------------------------------------------------------
+
+#(1483-1485) The Ducal residence
+event = {
+	id = 262019
+	trigger = {
+		owned = { province = 375 data = -1 } #Lorraine
+		control = { province = 375 data = -1 } #Lorraine
+		owned = { province = 406 data = -1 } #Provence
+		control = { province = 406 data = -1 } #Provence
+		NOT = { owned = { province = 393 data = -1 } } #Napoli
+		NOT = { owned = { province = 412 data = -1 } } #Maine
+	}
+	random = no
+	country = PRO
+	name = "EVENTNAME262019" #The Ducal residence
+	desc = "EVENTHIST262019"
+	#-#After the unification of the Duchy of Lorraine and the County of Provence there is now a question about where the Ducal residence of the united realm should be. The old Ducal residence in Nancy has seniority, but the thriving port city of Marseilles is a good alternative...
+
+	date = { day = 1 month = january year = 1483 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1485 }
+
+	action_a = {
+		name = "ACTIONNAME262019A" #Reside in Marseilles
+		command = { type = capital which = 406 } #Provence
+		command = { type = provincetax which = 406 value = 1 } #Provence
+		command = { type = provincemanpower which = 406 value = 1 } #Provence
+	}
+	action_b = {
+		name = "ACTIONNAME262019B" #Reside in Nancy
+		command = { type = capital which = 375 } #Lorraine
+		command = { type = provincetax which = 375 value = 1 } #Lorraine
+		command = { type = provincemanpower which = 375 value = 1 } #Lorraine
+	}
+}
+#(1483-1485) The Royal residence
+event = {
+	id = 262020
+	trigger = {
+		owned = { province = 375 data = -1 } #Lorraine
+		control = { province = 375 data = -1 } #Lorraine
+		owned = { province = 406 data = -1 } #Provence
+		control = { province = 406 data = -1 } #Provence
+		owned = { province = 393 data = -1 } #Napoli
+		control = { province = 393 data = -1 } #Napoli
+		NOT = { owned = { province = 412 data = -1 } } #Maine
+	}
+	random = no
+	country = PRO
+	name = "EVENTNAME262020" #The Royal residence
+	desc = "EVENTHIST262020"
+	#-#After the unification of the Duchy of Lorraine and the County of Provence with the Kingdom of Naples there is now a question about where the Royal residence of the united realm should be. The old Royal capital of Naples has seniority, but the thriving port city of Marseilles is a good alternative, as well as the rich Ducal city of Nancy...
+
+	date = { day = 1 month = january year = 1483 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1485 }
+
+	action_a = {
+		name = "ACTIONNAME262020A" #Reside in Naples
+		command = { type = capital which = 393 } #Napoli
+		command = { type = provincetax which = 393 value = 1 } #Napoli
+		command = { type = provincemanpower which = 393 value = 1 } #Napoli
+		command = { type = setflag which = [napiscap] }
+	}
+	action_b = {
+		name = "ACTIONNAME262020B" #Reside in Marseilles
+		command = { type = capital which = 406 } #Provence
+		command = { type = provincetax which = 406 value = 1 } #Provence
+		command = { type = provincemanpower which = 406 value = 1 } #Provence
+	}
+	action_c = {
+		name = "ACTIONNAME262020C" #Reside in Nancy
+		command = { type = capital which = 375 } #Lorraine
+		command = { type = provincetax which = 375 value = 1 } #Lorraine
+		command = { type = provincemanpower which = 375 value = 1 } #Lorraine
+	}
+}
+#(1483-1485) The Ducal residence
+event = {
+	id = 262021
+	trigger = {
+		owned = { province = 375 data = -1 } #Lorraine
+		control = { province = 375 data = -1 } #Lorraine
+		owned = { province = 406 data = -1 } #Provence
+		control = { province = 406 data = -1 } #Provence
+		NOT = { owned = { province = 393 data = -1 } } #Napoli
+		owned = { province = 412 data = -1 } #Maine
+		control = { province = 412 data = -1 } #Maine
+	}
+	random = no
+	country = PRO
+	name = "EVENTNAME262021" #The Ducal residence
+	desc = "EVENTHIST262021"
+	#-#After the unification of the Duchies of Anjou and Lorraine and the County of Provence there is now a question about where the Ducal residence of the united realm should be. The old Ducal capitals of Nancy and Le Mans are good choices, while the thriving port city of Marseilles is a good alternative...
+
+	date = { day = 1 month = january year = 1483 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1485 }
+
+	action_a = {
+		name = "ACTIONNAME262021A" #Reside in Marseilles
+		command = { type = capital which = 406 } #Provence
+		command = { type = provincetax which = 406 value = 1 } #Provence
+		command = { type = provincemanpower which = 406 value = 1 } #Provence
+	}
+	action_b = {
+		name = "ACTIONNAME262021B" #Reside in Nancy
+		command = { type = capital which = 375 } #Lorraine
+		command = { type = provincetax which = 375 value = 1 } #Lorraine
+		command = { type = provincemanpower which = 375 value = 1 } #Lorraine
+	}
+	action_c = {
+		name = "ACTIONNAME262021C" #Reside in Le Mans
+		command = { type = capital which = 412 } #Maine
+		command = { type = provincetax which = 412 value = 1 } #Maine
+		command = { type = provincemanpower which = 412 value = 1 } #Maine
+	}
+}
+#(1483-1485) The Royal residence
+event = {
+	id = 262022
+	trigger = {
+		owned = { province = 375 data = -1 } #Lorraine
+		control = { province = 375 data = -1 } #Lorraine
+		owned = { province = 406 data = -1 } #Provence
+		control = { province = 406 data = -1 } #Provence
+		owned = { province = 393 data = -1 } #Napoli
+		control = { province = 393 data = -1 } #Napoli
+		owned = { province = 412 data = -1 } #Maine
+		control = { province = 412 data = -1 } #Maine
+	}
+	random = no
+	country = PRO
+	name = "EVENTNAME262022" #The Royal residence
+	desc = "EVENTHIST262022"
+	#-#After the unification of the Duchies of Anjou and Lorraine and the County of Provence with the Kingdom of Naples there is now a question about where the Royal residence of the united realm should be. The old Royal capital of Naples has seniority, but the thriving port city of Marseilles is a good alternative, as well as the rich Ducal cities of Nancy and Le Mans...
+
+	date = { day = 1 month = january year = 1483 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1485 }
+
+	action_a = {
+		name = "ACTIONNAME262022A" #Reside in Naples
+		command = { type = capital which = 393 } #Napoli
+		command = { type = provincetax which = 393 value = 1 } #Napoli
+		command = { type = provincemanpower which = 393 value = 1 } #Napoli
+		command = { type = setflag which = [napiscap] }
+	}
+	action_b = {
+		name = "ACTIONNAME262022B" #Reside in Marseilles
+		command = { type = capital which = 406 } #Provence
+		command = { type = provincetax which = 406 value = 1 } #Provence
+		command = { type = provincemanpower which = 406 value = 1 } #Provence
+	}
+	action_c = {
+		name = "ACTIONNAME262022C" #Reside in Nancy
+		command = { type = capital which = 375 } #Lorraine
+		command = { type = provincetax which = 375 value = 1 } #Lorraine
+		command = { type = provincemanpower which = 375 value = 1 } #Lorraine
+	}
+	action_d = {
+		name = "ACTIONNAME262022D" #Reside in Le Mans
+		command = { type = capital which = 412 } #Maine
+		command = { type = provincetax which = 412 value = 1 } #Maine
+		command = { type = provincemanpower which = 412 value = 1 } #Maine
+	}
+}
+#(1483-1485) The Royal residence
+event = {
+	id = 262027
+	trigger = {
+		NOT = { owned = { province = 375 data = -1 } } #Lorraine
+		owned = { province = 406 data = -1 } #Provence
+		control = { province = 406 data = -1 } #Provence
+		owned = { province = 393 data = -1 } #Napoli
+		control = { province = 393 data = -1 } #Napoli
+		owned = { province = 412 data = -1 } #Maine
+		control = { province = 412 data = -1 } #Maine
+	}
+	random = no
+	country = PRO
+	name = "EVENTNAME262027" #The Royal residence
+	desc = "EVENTHIST262027"
+	#-#After the unification the County of Provence with the Kingdom of Naples there is now a question about where the Royal residence of the united realm should be. The old Royal capital of Naples has seniority, but the thriving port city of Marseilles is a good alternative, as well as the rich Ducal cities of Le Mans...
+
+	date = { day = 1 month = january year = 1483 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1485 }
+
+	action_a = {
+		name = "ACTIONNAME262027A" #Reside in Naples
+		command = { type = capital which = 393 } #Napoli
+		command = { type = provincetax which = 393 value = 1 } #Napoli
+		command = { type = provincemanpower which = 393 value = 1 } #Napoli
+		command = { type = setflag which = [napiscap] }
+	}
+	action_b = {
+		name = "ACTIONNAME262027B" #Reside in Marseilles
+		command = { type = capital which = 406 } #Provence
+		command = { type = provincetax which = 406 value = 1 } #Provence
+		command = { type = provincemanpower which = 406 value = 1 } #Provence
+	}
+	action_c = {
+		name = "ACTIONNAME262027C" #Reside in Le Mans
+		command = { type = capital which = 412 } #Maine
+		command = { type = provincetax which = 412 value = 1 } #Maine
+		command = { type = provincemanpower which = 412 value = 1 } #Maine
+	}
+}
+#(1483-1485) The Royal residence
+event = {
+	id = 262028
+	trigger = {
+		owned = { province = 406 data = -1 } #Provence
+		control = { province = 406 data = -1 } #Provence
+		owned = { province = 393 data = -1 } #Napoli
+		control = { province = 393 data = -1 } #Napoli
+		NOT = { owned = { province = 412 data = -1 } } #Maine
+		NOT = { owned = { province = 375 data = -1 } } #Lorraine
+	}
+	random = no
+	country = PRO
+	name = "EVENTNAME262028" #The Royal residence
+	desc = "EVENTHIST262028"
+	#-#After the unification the County of Provence with the Kingdom of Naples there is now a question about where the Royal residence of the united realm should be. The old Royal capital of Naples has seniority, but the thriving port city of Marseilles is a good alternative...
+
+	date = { day = 1 month = january year = 1483 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1485 }
+
+	action_a = {
+		name = "ACTIONNAME262028A" #Reside in Naples
+		command = { type = capital which = 393 } #Napoli
+		command = { type = provincetax which = 393 value = 1 } #Napoli
+		command = { type = provincemanpower which = 393 value = 1 } #Napoli
+		command = { type = setflag which = [napiscap] }
+	}
+	action_b = {
+		name = "ACTIONNAME262028B" #Reside in Marseilles
+		command = { type = capital which = 406 } #Provence
+		command = { type = provincetax which = 406 value = 1 } #Provence
+		command = { type = provincemanpower which = 406 value = 1 } #Provence
+	}
+}
+
+#(1483-1486) Assimilation of Italian culture
+event = {
+	id = 262026
+	trigger = { flag = [napiscap] }
+	random = no
+	country = PRO
+	name = "EVENTNAME262026" #The assimilation of Italian culture
+	desc = "EVENTHIST262026"
+	#-#Following the decicion to rule from Italy it has become a natural consequence to adopt Italian as an official language at the court.
+
+	date = { day = 1 month = january year = 1483 }
+	offset = 30
+	deathdate = { day = 29 month = january year = 1486 }
+
+	action_a = {
+		name = "ACTIONNAME262026A" #Sì!
+		command = { type = add_countryculture which = italian }
+		command = { type = remove_countryculture which = german }
+	}
+	action_b = {
+		name = "ACTIONNAME262026B" #No!
+		command = { type = vp value = -1 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 262037

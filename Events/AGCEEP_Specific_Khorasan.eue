@@ -1,0 +1,183 @@
+#Khorasan (KHO)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1446-1459) The Disintegration of the Timurid Empire
+event = {
+	id = 304003 #triggered by TIM_296607 *
+	random = no
+	country = KHO
+	name = "EVENTNAME304003" #The Disintegration of the Timurid Empire
+	desc = "EVENTHIST304003"
+	#-#Upon the ascendancy of Ûlûgh Beg, the Empire split into many various warring factions. Most notably were the domains of the Princes of Samarkand, in the east, and those of the Kings of Khorasan, in the west. For the first few decades, whilst various Timurid princes competed for its throne, Khorasan would be wrought by conflict.
+
+	action_a = {
+		name = "ACTIONNAME304003A" #We shall be unstoppable!
+		command = { type = setflag which = [timkho] }
+		command = { type = INF which = -2 value = 10000 }
+		command = { type = CAV which = -1 value = 5000 }
+		command = { type = CAV which = -1 value = 5000 }
+		command = { type = war which = TIM }
+		command = { type = war which = FAR }
+		command = { type = relation which = TIM value = -400 }
+		command = { type = relation which = FAR value = -400 }
+		command = { type = relation which = UZB value = -100 }
+		command = { type = stability value = -4 }
+		command = { type = revoltrisk which = 36 value = 5 }
+		command = { type = addcore which = 1592 } #Samarkand
+		command = { type = remove_countryculture which = hawaiian } #check for duplicates
+		command = { type = remove_countryculture which = canary } #check for duplicates
+		command = { type = add_countryculture which = hawaiian }
+		command = { type = add_countryculture which = canary }
+		command = { type = trigger which = 296603 } #TIM: The Disintegration of the Timurid Empire
+	}
+}
+
+#(1447-1500) Kings of Khorasan
+event = {
+	id = 304000
+	trigger = {
+		exists = TIM
+		NOT = {
+			flag = [timkho]
+		}
+	}
+	random = no
+	country = KHO
+	name = "EVENTNAME304000" #Kings of Khorasan
+	desc = "EVENTHIST304000"
+	#-#Founded by the Mongol conquerer Timur, the Timurid Empire after his death was never truly stable due to constant infighting. Eventually, many of the Timurid princes would polarize, developing two distinct power bases; one in Herat and the other in Samarkand.
+
+	date = { day = 1 month = march year = 1447 }
+	offset = 30
+	deathdate = { day = 1 month = march year = 1500 }
+
+	action_a = {
+		name = "ACTIONNAME304000A" #Claim the right to the Timurid throne
+		command = { type = remove_countryculture which = hawaiian } #check for duplicates
+		command = { type = remove_countryculture which = canary } #check for duplicates
+		command = { type = add_countryculture which = hawaiian }
+		command = { type = add_countryculture which = canary }
+		command = { type = INF which = -2 value = 10000 }
+		command = { type = CAV which = -2 value = 5000 }
+		command = { type = breakvassal which = TIM }
+		command = { type = addcore which = 1532 } #Add Timurid Turkoman Cores #Bukhara
+		command = { type = addcore which = 1592 } #Samarkand
+		command = { type = addcore which = 536 } #Add Timurid Baluchi Core #Mekran
+		command = { type = addcore which = 1591 } #Surkhandarya
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = stability value = -3 }
+		command = { type = treasury value = 100 }
+		command = { type = relation which = TIM value = -400 }
+		command = { type = relation which = AFG value = -400 }
+		command = { type = relation which = UZB value = -400 }
+		command = { type = capital which = 1531 } #Herat
+		command = { type = vp value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME304000B" #Rescind all designs on the Timurid throne
+		command = { type = stability value = 1 }
+		command = { type = remove_countryculture which = hawaiian } #check for duplicates
+		command = { type = remove_countryculture which = canary } #check for duplicates
+		command = { type = add_countryculture which = hawaiian }
+		command = { type = add_countryculture which = canary }
+		command = { type = relation which = TIM value = 50 }
+		command = { type = relation which = AFG value = 50 }
+		command = { type = relation which = UZB value = -400 }
+		command = { type = vp value = -50 }
+	}
+}
+
+#(1447-1500) Reclamation of the Timurid Empire
+event = {
+	id = 304001
+	trigger = {
+		NOT = {
+			exists = TIM
+		}
+		atwar = no
+		owned = { province = 1592 data = -1 } #Samarkand
+		control = { province = 1592 data = -1 } #Samarkand
+	}
+	random = no
+	country = KHO
+	name = "EVENTNAME304001" #Reclamation of the Timurid Empire
+	desc = "EVENTHIST304001"
+	#-#Upon reclaiming the capitals of the Timurid Empire, a Timurid prince could declare himself the ruler of the new Timurid Empire. With this declaration, however, came great responsibility.
+
+	date = { day = 1 month = march year = 1447 }
+	offset = 30
+	deathdate = { day = 1 month = march year = 1500 }
+
+	action_a = {
+		name = "ACTIONNAME304001A" #Re-establish the Timurid Empire!
+		command = { type = flagname which = "" }
+		command = { type = country which = TIM }
+		command = { type = INF which = -2 value = 10000 }
+		command = { type = CAV which = -2 value = 5000 }
+		command = { type = revoltrisk which = 420 value = 3 }
+		command = { type = capital which = 1592 } #Samarkand
+	}
+}
+
+#(1450-1500) Abû Sa'id Reunites Transoxiana and Khorasan
+event = {
+	id = 304004 #triggered by TIM_296611
+	random = no
+	country = KHO
+	name = "EVENTNAME304004" #Abû Sa'id Reunites Transoxiana and Khorasan
+	desc = "EVENTHIST304004"
+	#-#With his successful capture of Sultan Mahmud's capital of Herat, Abû Sa'id would reunite the separate Timurid realms of Transoxiana and Khorasan. Despite his achievements, weak rulership after his death would lead to the formation of Khorasan again.
+
+	action_a = {
+		name = "ACTIONNAME304004A" #Weak Mahmud!
+		command = { type = secedeprovince which = TIM value = 521 } #Karabogaz
+		command = { type = secedeprovince which = TIM value = 522 } #Khwarizm
+		command = { type = secedeprovince which = TIM value = 523 } #Kara Kum
+		command = { type = secedeprovince which = TIM value = 524 } #Turkmenistan
+		command = { type = secedeprovince which = TIM value = 525 } #Elbruz
+		command = { type = secedeprovince which = TIM value = 526 } #Meched
+		command = { type = secedeprovince which = TIM value = 1532 } #Bukhara
+		command = { type = secedeprovince which = TIM value = 1525 } #Qandahar
+		command = { type = secedeprovince which = TIM value = 1528 } #Kushka
+		command = { type = secedeprovince which = TIM value = 1529 } #Birjand
+		command = { type = secedeprovince which = TIM value = 1530 } #Khorasan
+		command = { type = trigger which = 296602 } #TIM: Abû Sa'id Reunites Transoxiana and Khorasan
+	}
+}
+
+#(1469-1504) Last Days of the Timurid Empire
+event = {
+	id = 304005 #triggered by TIM_296612
+	random = no
+	country = KHO
+	name = "EVENTNAME304005" #Last Days of the Timurid Empire
+	desc = "EVENTHIST304005"
+	#-#With the death of Abû Sa'id, the Empire literally fell to pieces. The Kings of Khorasan would become independent once more.
+
+	action_a = {
+		name = "ACTIONNAME304005A" #We shall be unstoppable!
+		command = { type = setflag which = [timkho] }
+		command = { type = INF which = -2 value = 10000 }
+		command = { type = CAV which = -1 value = 5000 }
+		command = { type = CAV which = -1 value = 5000 }
+		command = { type = relation which = TIM value = -400 }
+		command = { type = relation which = FAR value = -400 }
+		command = { type = relation which = UZB value = -100 }
+		command = { type = relation which = AKK value = -400 }
+		command = { type = relation which = QAR value = -400 }
+		command = { type = breakvassal which = TIM }
+		command = { type = stability value = -4 }
+		command = { type = revoltrisk which = 36 value = 10 }
+		command = { type = remove_countryculture which = hawaiian } #check for duplicates
+		command = { type = remove_countryculture which = canary } #check for duplicates
+		command = { type = add_countryculture which = hawaiian }
+		command = { type = add_countryculture which = canary }
+		command = { type = trigger which = 296802 } #TIM: Last Days of the Timurid Empire
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 304002 - next: 304006

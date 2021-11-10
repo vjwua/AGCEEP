@@ -1,0 +1,1385 @@
+#Brandenburg (BRA)
+
+#See AGCEEP_Alt_Germany.eue for KoG Alternative events
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1500) Acquisition of Neumark
+event = {
+	id = 132101 #triggered by LAT_209000 A
+	random = no
+	country = BRA
+	name = "EVENTNAME132101" #Acquisition of Neumark
+	desc = "EVENTHIST132101"
+	#-#The Neumark, originally the part of Brandenburg east of the Order, had been mortgaged to the Teutonic Order by Emperor Sigismund in 1402. In the desperate financial, political and military situation caused by the uprising of the Prussian Lizard League and the intervention of Casimir of Poland in favour of the rebels, the Order decided it would be better to sell Neumark back to the Elector of Brandenburg in order to gain some money and his support than to lose the territory to the Polish King who was obviously attracted by the opportunity to restore the Oder as border with Germany. Thus on February 22nd emissaries of the Order offered the territory to Friedrich II for 40000 Gulden. The elector accepted gladly and on April 5th took the oaths of allegiance from the estates of Neumark in Neu-Landsberg. After half a century of division, the unity of the three marches that constitute Brandenburg was restored.
+
+	action_a = {
+		name = "ACTIONNAME132101A" #Purchase Neumark
+		command = { type = treasury value = -80 }
+		command = { type = relation which = LAT value = 50 }
+		command = { type = relation which = POL value = -50 }
+		command = { type = addcore which = 313 } #Küstrin
+		command = { type = trigger which = 209001 } #LAT: Brandenburg accepts
+	}
+	action_b = {
+		name = "ACTIONNAME132101B" #We can't afford it
+		command = { type = relation which = LAT value = -50 }
+		command = { type = vp value = -10 }
+	}
+}
+
+#(1419) The Hussite Wars
+event = {
+	id = 132600 #triggered by SIL_401000 / ROM_398000
+	random = no
+	country = BRA
+	name = "EVENTNAME188600" #The Hussite Wars
+	desc = "EVENTHIST188600"
+	#-#The Czech priest and professor Jan Hus developed radical reformatory demands on the base of the teachings of John Wyclif. Despite a guarantee of safe-conduct by Emperor Sigismund, he was executed at the stake for heresy at the Council of Constance in 1415. This could however not stop the Hussite movement in Bohemia. Hus' followers were rapidly growing, and when King Vaclav IV of Bohemia died and his brother Sigismund, already Emperor and King of Hungary was to succeed him, they, unwilling to forgive him the betrayal of Hus and afraid that he would suppress them, refused to acknowledge him and gained control of most of Bohemia proper - while the lands of the Bohemian crown and the catholic part of Bohemia accepted Sigismund. Due to its radical anti-clerical and anti-feudal tendencies Hussitism posed a big threat to the church and nobility in the countries adjacent to Bohemia. Several German and European princes therefore decided to oppose the Hussites and to support Sigismund in his struggle with them that lasted for almost two decades. Should we decide to fight these heretics, we should be aware that this would be internationally regarded as an intervention in favour of Sigismund as rightful King of Bohemia rather than a war of conquest, and that therefore, if Sigismund prevails and manages to restore royal authority, we would be expected to turn over any conquests in Bohemia to the Kingdom of Bohemia.
+
+	action_a = {
+		name = "ACTIONNAME258600B" #Express hostility
+		command = { type = relation which = SIL value = -200 }
+		command = { type = casusbelli which = SIL value = 120 }
+	}
+	action_b = {
+		name = "ACTIONNAME258600A" #Covertly provide aid
+		command = { type = treasury value = -25 }
+		command = { type = relation which = SIL value = 25 }
+	}
+}
+
+#(1419-1499) Catholicism restored in Bohemia
+event = {
+	id = 132601
+	trigger = {
+		OR = {
+			religion = reformed
+			religion = protestant
+		}
+		NOT = { exists = SIL }
+		NOT = {
+			AND = {
+				exists = BOH
+				OR = {
+					event = 129051 #BOH: Taborite republic
+					event = 129052 #BOH: Utraquist republic
+					event = 129053 #BOH: Podiebrad dynasty
+				}
+			}
+		}
+	}
+	random = no
+	country = BRA
+	name = "EVENTNAME179601" #The Hussite heresy is suppressed
+	desc = "EVENTHIST179601"
+	#-#The Kingdom of Bohemia has finally been won back for catholicism. As a consequence, the German princes who have been forced by the Hussites to adapt their misguided faith can now safely return to the Roman church. By a general indulgence the Pope will make sure they will be forgiven having turned to the heresy under compulsion.
+
+	date = { day = 17 month = august year = 1419 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1499 }
+
+	action_a = {
+		name = "ACTIONNAME179601A" #Restore Catholicism
+		command = { type = religion which = catholic }
+		command = { type = stability value = 3 }
+	}
+}
+
+#(1422) Inheritance of Saxony
+event = {
+	id = 132000 #triggered by SAC_273000 B
+	random = no
+	country = BRA
+	name = "EVENTNAME132000" #Brandenburg inherits Electoral Saxony
+	desc = "EVENTHIST132000"
+	#-#The influence of the Askanians who had once been the most powerful dynasty in Eastern Germany slowly faded in the 14th and 15th century. First in Brandenburg, then in Lauenburg and finally 1423 in electoral Saxony the branches got extinct, and the remaining members of the family lacked unity and determination to secure the territories. Instead, the Hohenzollern and Wettins were given the old Askanian lands and took their former rank. The last step in this process was the extinction of the electoral branch in Saxony-Wittenberg with the heirless death of Albrecht III. This caused a tough contest between the Hohenzoller Elector Friedrich of Brandenburg and the Wettin Margrave Friedrich IV of Meissen for Albrecht's possessions. Emperor Sigismund has decided in our favour and granted the Electorate and Saxony-Wittenberg to us. This gives us a position of hegemony in Eastern Germany and in the electoral college.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = addcore which = 332 } #Anhalt
+		command = { type = inherit which = SAC }
+		command = { type = relation which = MEI value = -100 }
+		command = { type = relation which = HUN value = 50 }
+		command = { type = vp value = 50 }
+		command = { type = diplomats value = 4 }
+	}
+}
+
+#(1440-1455) Unrest in Berlin-Cölln
+event = {
+	id = 132016
+	trigger = {
+		owned = { province = 312 data = -1 } #Brandenburg
+	}
+	random = no
+	country = BRA
+	name = "EVENTNAME132016" #Unrest in Berlin-Cölln
+	desc = "EVENTHIST132016"
+	#-#During the weak rule of the Wittelsbachs and Luxemburgs, several cities, especially the twin cities of Berlin and Cölln, in Brandenburg began to grow and prosper, obtained a huge deal of autonomy and joined the Hanseatic League. After the arrival of the Hohenzollern, the towns were keen on having their privileges confirmed or even extended. They refused any interference in their internal politics, assumed judicative powers within their city walls and even refused the Elector entrance. Obviously, this autononomy was a great hindrance to the consolidation of electoral authority. Therefore Friedrich II gladly took the opportunity when the community of Berlin called for his aid in a conflict with the town council of Berlin-Cölln. Friedrich marched to the city with 6000 men, quickly entered the city and forced the council into submission. The Elector obtained the right to confirm nominations to the council, renounced the town's jurisdictive privileges, forced it to cancel all agreements with other cities, including the Hanseatic League, and began the construction of a strong fortress that would allow him to control the city. In the following years, similar measures were applied in most other cities.
+
+	date = { day = 1 month = january year = 1440 }
+	offset = 2000
+	deathdate = { day = 29 month = december year = 1455 }
+
+	action_a = {
+		name = "ACTIONNAME132016A" #We cannot bear their impertinence
+		command = { type = revolt which = 312 } #Brandenburg
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = domestic which = mercantilism value = 2 }
+		command = { type = domestic which = land value = 1 }
+		command = { type = fortress which = 312 value = 1 } #Brandenburg
+	}
+	action_b = {
+		name = "ACTIONNAME132016B" #Allow for municipal autonomy
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = mercantilism value = -1 }
+		command = { type = domestic which = land value = -1 }
+		command = { type = provincetax which = 312 value = -1 } #Brandenburg
+	}
+}
+
+#(1446) Expulsion of Jews from Brandenburg
+event = {
+	id = 132015
+	trigger = {
+		NOT = {
+			domestic = { type = innovative value = 6 } }
+			owned = { province = 311 data = -1 } #Magdeburg
+			owned = { province = 312 data = -1 } #Brandenburg
+	}
+	random = no
+	country = BRA
+	name = "EVENTNAME132015" #Expulsion of Jews from Brandenburg
+	desc = "EVENTHIST132015"
+	#-#Playing on popular sentiments, Elector Friedrich II decided to expel all jews from Brandenburg between Elbe and Oder. Some of them were resettled by Friedrich the Fat, the Elector's brother and regent of the Altmark, in the cities of the Altmark, however most entirely left the country. This was a significant economic setback for Brandenburg.
+
+	date = { day = 1 month = january year = 1446 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1446 }
+
+	action_a = {
+		name = "ACTIONNAME132015A" #Expel them, but allow them to resettle in the Altmark
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = infra value = -300 }
+		command = { type = trade value = -300 }
+		command = { type = population which = 312 value = -500 } #since this represents only the population of the capital #Brandenburg
+		command = { type = population which = 311 value = 300 } #Magdeburg
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME132015B" #Expel them from all of Brandenburg!
+		command = { type = domestic which = innovative value = -2 }
+		command = { type = infra value = -500 }
+		command = { type = trade value = -500 }
+		command = { type = population which = 312 value = -500 } #since this represents only the population of the capital #Brandenburg
+		command = { type = population which = 311 value = -500 } #Magdeburg
+		command = { type = stability value = 3 }
+	}
+	action_c = {
+		name = "ACTIONNAME132015C" #Leave those people alone
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1447-1449) Concordat of 1447
+event = {
+	id = 132021
+	trigger = {
+		NOT = { war = { country = PAP country = BRA } }
+	}
+	random = no
+	country = BRA
+	name = "EVENTNAME132021" #Concordat of 1447
+	desc = "EVENTHIST132021"
+	#-#By a concordat established between Friedrich II of Brandenburg and the Holy See in 1447 the Elector received the right to nominate the Bishops residing within his domains. Thereby the church in Brandenburg definitely became subject to Electoral authority.
+
+	date = { day = 1 month = january year = 1447 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1449 }
+
+	action_a = {
+		name = "ACTIONNAME132021A" #Thank you, Holy Father
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = relation which = PAP value = 50 }
+	}
+}
+
+#(1451-1500) The capital of Brandenburg (move to Berlin)
+event = {
+	id = 132017
+	trigger = {
+		owned = { province = 312 data = -1 } #Brandenburg
+		control = { province = 312 data = -1 } #Brandenburg
+	}
+	random = no
+	country = BRA
+	name = "EVENTNAME132017" #The capital of Brandenburg
+	desc = "EVENTHIST132017"
+	#-#The twin cities of Berlin and Cölln, united into one municipality in 1307, form a natural center of Brandenburg, and by the 15th century Berlin-Cölln had, with about 6000 inhabitants, already become the biggest and most important city of the Electorate. Still the electoral residence and administrative center remained Tangermünde, situated west of the Elbe. Elector Friedrich II was the first ruler to realise the town's potential and had chosen it as his capital already upon ascending the throne. After suppressing its desire for autonomy and firmly establishing his authority, the Elector in 1451 ordered to move most administrative institutions and his residence to Berlin-Cölln. Berlin-Cölln, after the 1640 fully merged and called Berlin, thereafter was the capital of Brandenburg, the Kingdom of Prussia and the German Empire and today again is the capital and biggest city of Germany.
+
+	date = { day = 1 month = january year = 1451 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1500 }
+
+	action_a = {
+		name = "ACTIONNAME132017A" #Berlin-Cölln shall be the center of Brandenburg
+		command = { type = capital which = 312 } #Brandenburg
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = provincetax which = 312 value = 1 } #Brandenburg
+	}
+	action_b = {
+		name = "ACTIONNAME132017B" #Keep the capital in Tangermünde
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1451) Regency in Pomerania-Stettin
+event = {
+	id = 132020 #triggered by STT_283005 A
+	random = no
+	country = BRA
+	name = "EVENTNAME132020" #Regency in Pomerania-Stettin
+	desc = "EVENTHIST132020"
+	#-#Duke Joachim of Stettin died prematurely of the plague in 1451, with his son and heir Otto still a minor. His mother Elisabeth, a daughter of Margrave Johann of Brandenburg, took the regency while his uncle Friedrich II of Brandenburg became his guardian. Thus Pomerania-Stettin was effectively controlled by the Hohenzollern for a decade.
+
+	action_a = {
+		name = "GOOD"
+		command = { type = vassal which = STT }
+		command = { type = alliance which = STT }
+		command = { type = relation which = STT value = 100 }
+	}
+}
+
+#(1464) Suzerainty over Pomerania
+event = {
+	id = 132019 #triggered by POM_259000 A
+	trigger = {
+		NOT = {
+			vassal = { country = STT country = BRA }
+			war = { country = STT country = BRA }
+		}
+	}
+	random = no
+	country = BRA
+	name = "EVENTNAME132019" #Suzerainty over Pomerania
+	desc = "EVENTHIST132019"
+	#-#Otto III of Pomerania-Stettin died of the plague in 1464, without an heir. Both his relatives in Pomerania-Wolgast - the Dukes Erich II and Wartislaw IX - and his feudal overlord, the Elector of Brandenburg, claimed the inheritance. After several years of struggling, Erich of Pomerania-Wolgast secured the inheritance against Brandenburg's claims, however had to accept its feudal suzerainty.
+
+	action_a = {
+		name = "OK"
+		command = { type = dynastic which = POM }
+		command = { type = vassal which = POM }
+		command = { } #just for display
+	}
+}
+#(1464) Inheritance of Stettin - Ahistorical
+event = {
+	id = 132018 #triggered by STT_283000 B / POM_259000 B
+	random = no
+	country = BRA
+	name = "EVENTNAME132018" #Inheritance of Stettin
+	desc = "EVENTHIST132018"
+	#-#Otto III of Pomerania-Stettin died of the plague in 1464, without an heir. Both his relatives in Pomerania-Wolgast - the Dukes Erich II and Wartislaw IX - and his feudal overlord, the Elector of Brandenburg, claimed the inheritance. Against the resistance, Stettin has been secured for Brandenburg, which means that we now control the rich Hanseatic city of Stettin and have access to the Baltic sea.
+
+	action_a = {
+		name = "GOOD_NEWS"
+		command = { type = addcore which = 304 } #Vorpommern
+		command = { type = inherit which = STT }
+		command = { type = relation which = POM value = -50 }
+	}
+}
+
+#(1466) The Bohemian throne
+event = {
+	id = 132013 #triggered by PAP_251054 A / MUS_236005 A
+	random = no
+	country = BRA
+	name = "EVENTNAME132013" #The Bohemian throne
+	desc = "EVENTHIST132013"
+	#-#Jiriz Podiebrad, King of Bohemia, was an Utraquist, a member of the moderate wing of the heretic Hussite movement. Despite having promised to return to the catholic church and to suppress heresy in Bohemia to the Pope before his election, he openly favoured the Hussites and showed hardly any intention to abandon his faith. Pope Pius II, determined to fight Hussitism, condemned Podiebrad's heretic attitude more and more vocally and encouraged an uprising of the catholic nobility in 1465. In order to back the rebels and depose Podiebrad, Pius' successor Paul II excommunicated the Bohemian King on December 23rd 1466, released all his subjects from their oaths of allegiance and searched for a reliably catholic prince who would drive him away and take the Bohemian throne. The first one to be offered the Bohemian crown was Friedrich II of Brandenburg. Being involved in a conflict for the succession in Pomerania-Stettin at the time and fearing the power of Jiriz Podiebrad, the elector refused.
+
+	action_a = {
+		name = "ACTIONNAME132013A" #Reject the Pope's proposal
+		command = { type = stability value = -2 }
+		command = { type = relation which = BOH value = 50 }
+		command = { type = sleepevent which = 129015 } #BOH: Friedrich of Brandenburg proclaimed King by the Catholics
+	}
+	action_b = {
+		name = "ACTIONNAME132013B" #Accept the offer and claim the Bohemian throne
+		command = { type = addcore which = 328 } #Bohemia
+		command = { type = addcore which = 329 } #Erz
+		command = { type = addcore which = 330 } #Sudeten
+		command = { type = addcore which = 314 } #Silesia
+		command = { type = addcore which = 315 } #Moravia
+		command = { type = war which = BOH }
+		command = { type = sleepevent which = 188119 } #HUN: The Bohemian throne
+	}
+}
+
+#(1488) Introduction of a beer tax
+event = {
+	id = 132026
+	random = no
+	country = BRA
+	name = "EVENTNAME132026" #Bierziese
+	desc = "EVENTHIST132026"
+	#-#In 1488 the estates of Brandenburg accepted the introduction of the Bierziese, a consumptory tax on beer, that had to be collected and paid by the towns. While this was welcome source of income for the Elector, it caused some dissent among the populace and even an open revolt in Berlin-Cölln.
+
+	date = { day = 1 month = january year = 1488 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1488 }
+
+	action_a = {
+		name = "ACTIONNAME132026A" #Introduce the tax
+		command = { type = provincetax which = 311 value = 1 } #Magdeburg
+		command = { type = provincetax which = 312 value = 1 } #Brandenburg
+		command = { type = provincetax which = 313 value = 1 } #Küstrin
+		command = { type = revolt which = 312 } #Brandenburg
+		command = { type = revoltrisk which = 24 value = 3 }
+	}
+}
+
+#Hohenzollern Archbishops in Magdeburg and Mainz
+#event = {
+#	id = 132001
+#	random = no
+#	country = BRA
+#	name = "Hohenzollern Archbishops in Magdeburg"
+#	desc = "The election of the successor of Ernst of Saxony was toughly contested, the nephew of Ernst was opposed by the cousin of the Elector of Brandenburg, Albrecht of Hohenzollern. Eventually Albrecht prevailed by employing heavy bribery. This marked the beginning of an era of six successive Hohenzollern Archbishops and a process of increasing Hohenzollern which ended with the incorporation into Brandenburg in 1680."
+#
+#	action_a = {
+#		name = "OK"
+#		command = { type = relation which = MAG value = 50 }
+#		command = { type = vassal which = MAG }
+#		command = { type = alliance which = MAG }
+#	}
+#}
+
+#(1514) Albrecht of Hohenzollern is elected Archbishop-Elector of Mainz
+event = {
+	id = 132002 #triggered by MAI_217000
+	random = no
+	country = BRA
+	name = "EVENTNAME132002" #Albrecht of Hohenzollern is elected Archbishop-Elector of Mainz
+	desc = "EVENTHIST217000"
+	#-#After becoming Archbishop of Magdeburg and administrator of Halberstadt, Albrecht of Brandenburg began an expensive campaign for the Archbishop-Electorate of Mainz. In order to gain the money needed, he borrowed a large sum from the Fuggers and let the dominican monk Tezel sell indulgences in his domains (which was the actual cause for the protest of Martin Luther). Having obtained an extraordinary permission of the Pope and the Emperor to hold such a multitude of titles and fiefs, he succeeded to the Archbishopric-Electorate on March 9th 1514, which gained the Hohenzollern family a second vote in the electoral college and made them the second dynasty in the Empire.
+
+	action_a = {
+		name = "OK"
+		command = { type = relation which = MAI value = 50 }
+		command = { type = alliance which = MAI }
+		command = { type = vp value = 30 }
+		command = { type = diplomats value = 3 }
+	}
+}
+
+#Inheritance of Magdeburg
+#event = {
+#	id = 132003
+#	random = no
+#	country = BRA
+#	name = "Secularisation of Magdeburg"
+#	desc = "In the peace of Westphalia the Archbishopric of Magdeburg had been converted into a secular Duchy that was to fall to the Elector of Brandenburg on the death of the last administrator, August of Saxony-Weißenfels. August had a surprisingly long reign in which he managed to let Magdeburg recover from the devastating Thirty Years War, but in 1680 he finally died. Following the peace, Magdeburg then was incorporated into Brandenburg and became an important stronghold west of the Electorate's core."
+#
+#	action_a = {
+#		name = "Fine"
+#		command = { type = addcore which = 311 }
+#		command = { type = inherit which = MAG }
+#	}
+#}
+
+#event = {
+#	id = 132004
+#	random = no
+#	country = BRA
+#	name = "Magdeburg violates the Peace of Westphalia"
+#	desc = "In the peace of Westphalia the Archbishopric of Magdeburg had been converted into a secular Duchy that was to fall to the Elector of Brandenburg on the death of the last administrator, August of Saxony-Weißenfels. August had a surprisingly long reign in which he managed to let Magdeburg recover from the devastating Thirty Years War, but in 1680 he finally died. However Magdeburg dares to defy the Peace and claims that we have no right to own the Duchy and the city. We will have to take our rightful possession by force."
+#
+#	action_a = {
+#		name = "Make Magdeburg pay for its defiance"
+#		command = { type = addcore which = 311 }
+#		command = { type = INF which = -2 value = 10000 }
+#	}
+#}
+
+#-----------------------------------------------------------------------------------------------
+#Prussia and TO event Sequence
+#by Neuromancer
+
+#(1524-1540) Poland claims Ducal Prussia
+event = {
+	id = 132080 #triggered by POL_258231 B
+	random = no
+	country = BRA
+	name = "EVENTNAME132080" #Poland claims Hohenzollern Prussia
+	desc = "EVENTHIST132080"
+	#-#In 1525 during the religious turmoil of the Reformation one of the early converters to the new religion was the Teutonic Orders' Grandmaster from Brandenburg, Albrecht of Hohenzollern. Inspired by Luther he also decides to secularize the land areas under his control, Prussia, into a protestant duchy. However, knowing that this would earn him the eternal enmity of his former Order he had to go for help with its greatest enemy, Poland-Lithuania. However Poland-Lithuania decided to claim his lands instead. Shall we help our family member?
+
+	action_a = {
+		name = "ACTIONNAME132080A" #Help Albert!
+		command = { type = vassal which = PRU }
+		command = { type = relation which = PRU value = 300 }
+		command = { type = trigger which = 132011 } #BRA: Hohenzollern Prussia
+	}
+	action_b = {
+		name = "ACTIONNAME132080B" #We can't help them now
+		command = { type = casusbelli which = POL value = 240 }
+		command = { type = relation which = LIV value = 100 }
+		command = { type = relation which = PRU value = -50 }
+		command = { type = relation which = POL value = 100 }
+	}
+}
+#(1524-1540) Hohenzollern Prussia
+event = {
+	id = 132011 #triggered by BRA_132080 A
+	random = no
+	country = BRA
+	name = "EVENTNAME132011" #Hohenzollern Prussia
+	desc = "EVENTHIST132011"
+	#-#As a consequence of the decision of helping Albert, relations between Poland and Brandenburg drop.
+
+	action_a = {
+		name = "OK"
+		command = { type = setflag which = [ClaimOnPrussia] }
+		command = { type = alliance which = PRU }
+		command = { type = relation which = LIV value = -50 }
+		command = { type = relation which = POL value = -200 }
+		command = { type = treasury value = 250 } #Help from other german states
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = CAV which = -2 value = 5000 }
+		command = { type = casusbelli which = POL value = 240 }
+	}
+}
+#(1618) Death of Albrecht Friedrich
+#Poland inherits version - modified by YodaMaster
+event = {
+	id = 132082
+	trigger = {
+		exists = PRU
+	}
+	random = no
+	country = BRA
+	name = "EVENTNAME132082" #Death of Albrecht Friedrich
+	desc = "EVENTHIST132082"
+	#-#After years of illness the last Duke of Prussia from the Hohenzollern-Ansbach line, Albrecht Friedrich, died. According to the Treaty of Cracov from 1525, after the Prussian branch of the Hohenzollern family, the lands of the Duchy of Prussia were to be incorporated into Poland. However this was changed with the decision of the Polish Sejm on the 5th of may 1611.
+
+	date = { day = 1 month = february year = 1618 }
+
+	action_a = {
+		name = "ACTIONNAME132082A" #Finally!
+		command = { type = relation which = POL value = 100 }
+		command = { type = relation which = HAB value = -25 }
+		command = { type = relation which = KUR value = -50 }
+		command = { type = treasury value = -50 }
+		command = { type = stability value = 1 }
+		command = { type = sleepevent which = 263006 } #PRU: The Fate of Prussia (AI)
+		command = { type = dynastic which = POL } #to simulate that Elector as duke of Prussia is Polish vassal
+		command = { type = trigger which = 132012 } #BRA: Hohenzollern-Brandenburg rule in Prussia
+	}
+	action_b = {
+		name = "ACTIONNAME132082B" #Keep separate
+		command = { type = relation which = PRU value = -100 }
+		command = { type = relation which = POL value = 200 }
+		command = { type = relation which = HAB value = 25 }
+		command = { type = relation which = KUR value = 25 }
+	}
+}
+#(1618) Hohenzollern-Brandenburg rule in Prussia
+event = {
+	id = 132012 #triggered by BRA_132082 A
+	random = no
+	country = BRA
+	name = "EVENTNAME132012" #Hohenzollern-Brandenburg rule in Prussia
+	desc = "EVENTHIST132012"
+	#-#The Hohenzollern-Brandenburg branch is allowed to rule the Duchy.
+
+	action_a = {
+		name = "OK"
+		command = { type = setflag which = [ClaimOnPrussia] }
+		command = { type = dynastic which = PRU }
+		command = { type = relation which = PRU value = 200 }
+	}
+}
+#(1618-1660) Inheritance of Prussia
+#Polish event Fate of Prussia means that Poland vassalized Prussia
+event = {
+	id = 132005
+	trigger = {
+		OR = {
+			flag = [ClaimOnPrussia]
+			event = 132011 #BRA: Hohenzollern Prussia
+			event = 132012 #BRA: Hohenzollern-Brandenburg rule in Prussia
+			event = 263004 #PRU: Prussia forms Brandenburg
+		}
+		OR = {
+			year = 1657
+			NOT = { event = 258234 } #POL: The Fate of Prussia
+		}
+		exists = PRU
+	}
+	random = no
+	country = BRA
+	name = "EVENTNAME132005" #Inheritance of Prussia
+	desc = "EVENTHIST132005"
+	#-#After the death of the last Duke of Prussia from the Hohenzollern-Ansbach branch, the Hohenzollern-Brandenburg dynasty was allowed to rule Duchy of Prussia, however still as vassals of the Polish King, who guaranteed liberites of Prussian citizens. Brandenburg Elector could not rise taxes nor station non-Prussian troops on the territory of Prussia without agreement of Prussian Diet. Polish King also had significant inluence on the jurisdiction in Prussia. However during the following years Polish Kings agreed to reduce their privileges. Finally, in exchange for renouncing alliance with Sweden and help against Sweden, Polish King has renounced all his claims on Prussia in Treaty of Welhau in 1657.
+
+	date = { day = 3 month = january year = 1618 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1660 }
+
+	action_a = {
+		name = "ACTIONNAME132005A" #Finally!
+		command = { type = setflag which = [ClaimOnPrussia] }
+		command = { type = inherit which = PRU }
+		command = { type = relation which = POL value = 50 }
+		command = { type = relation which = HAB value = -25 }
+		command = { type = relation which = SWE value = -25 }
+		command = { type = relation which = KUR value = -25 }
+		command = { type = addcore which = 289 } #Memel
+		command = { type = addcore which = 290 } #Prussia
+		command = { type = treasury value = -50 }
+		command = { type = relation which = PRU value = 200 }
+		command = { type = stability value = 1 }
+	}
+}
+#(1618-1700) New Capital - event for Prussia transformed into Brandenburg
+event = {
+	id = 132006
+	trigger = {
+		flag = [Brandenburg_line]
+		owned = { province = 312 data = -1 } #Brandenburg
+		control = { province = 312 data = -1 } #Brandenburg
+	}
+	random = no
+	country = BRA
+	name = "EVENTNAME132006" #New Capital
+	desc = "EVENTHIST132006"
+	#-#When the Hohenzolern-Brandenburg dynasty united Ducal Prussia and Brandenburg they decided to move their capital back to the Berlin.
+
+	date = { day = 1 month = january year = 1618 }
+	offset = 300
+	deathdate = { day = 1 month = june year = 1700 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = stability value = 1 }
+		command = { type = capital which = 312 } #Brandenburg
+		command = { type = population which = 312 value = 2000 }
+	}
+}
+#(1619-1700) Claims on Prussia
+event = {
+	id = 132007
+	trigger = {
+		NOT = {
+			flag = [ClaimOnPrussia]
+		}
+		owned = { province = 290 data = -1 } #Prussia
+		owned = { province = 289 data = -1 } #Memel
+	}
+	random = no
+	country = BRA
+	name = "EVENTNAME132007" #Claims on Prussia
+	desc = "EVENTHIST132007"
+	#-#After death of the last Duke of Prussia from the Hohenzollern-Ansbach branch, the Hohenzollern-Brandenburg wanted to take over Duchy of Prussia. Now, when we control Prussia we can claim it rightfully ours.
+
+	date = { day = 1 month = january year = 1619 }
+	offset = 300
+	deathdate = { day = 1 month = june year = 1700 }
+
+	action_a = {
+		name = "ACTIONNAME132007A" #Claim Prussia
+		command = { type = addcore which = 289 } #Memel
+		command = { type = addcore which = 290 } #Prussia
+		command = { type = provinceculture which = 290 value = german } #Prussia
+		command = { type = treasury value = -50 }
+		command = { type = stability value = 1 }
+		command = { type = sleepevent which = 132005 } #BRA: Inheritance of Prussia
+		command = { type = trigger which = 132027 } #BRA: Consequence of the claims on Prussia
+	}
+	action_b = {
+		name = "ACTIONNAME132007B" #Who cares about Prussia
+		command = { type = relation which = POL value = 50 }
+		command = { type = relation which = HAB value = 25 }
+		command = { type = relation which = KUR value = 25 }
+	}
+}
+#(1619-1700) Consequence of the claims on Prussia
+event = {
+	id = 132027
+	random = no
+	country = BRA
+	name = "EVENTNAME132027" #Consequence of the claims on Prussia
+	desc = "EVENTHIST132027"
+	#-#The Duchy of Prussia is rightfully ours but relations with other countries suffer.
+
+	action_a = {
+		name = "OK"
+		command = { type = relation which = POL value = -100 }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = relation which = KUR value = -50 }
+		command = { type = setflag which = [ClaimOnPrussia] }
+		command = { }
+	}
+}
+#End of Prussia and TO event Sequence
+#-----------------------------------------------------------------------------------------------
+
+#(1527-1529) The League of Schmalkalden
+event = {
+	id = 3633
+	trigger = {
+		exists = HAB
+		OR = {
+			religion = protestant
+			religion = reformed
+		}
+	}
+	random = no
+	country = BRA
+	name = "EVENTNAME3109" #The League of Schmalkalden
+	desc = "EVENTHIST3109"
+	#-#After Emperor Charles V had rejected the Protestants' confessional positions at the Imperial Parliament of Augsburg (1529-1530), the North German Protestant Imperial estates formed the League of Schmalkalden, with a joint army and treasury and seeking ties abroad (France). The League enjoyed early successes in the years 1532-1540 as the Emperor was threaten by Turkish danger and forced to conclude Religious peace settlements in Nuremberg (1532) and Kaaden (1534).
+
+	date = { day = 1 month = january year = 1527 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1529 }
+
+	action_a = {
+		name = "ACTIONNAME3109A" #Give it our support
+		command = { type = relation which = FRA value = 100 }
+		command = { type = relation which = ENG value = 100 }
+		command = { type = relation which = BAD value = 150 }
+		command = { type = relation which = HAN value = 150 }
+		command = { type = relation which = HES value = 150 }
+		command = { type = relation which = PFA value = 150 }
+		command = { type = relation which = SAC value = 150 }
+		#command = { type = relation which = THU value = 150 } #Bayreuth
+		command = { type = relation which = KLE value = 100 }
+		command = { type = relation which = KOL value = 50 }
+		command = { type = relation which = BAY value = 50 }
+		command = { type = relation which = PAP value = -100 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = relation which = HAB value = -150 }
+		command = { type = relation which = STR value = 150 }
+	}
+	action_b = {
+		name = "ACTIONNAME3109B" #Ignore it
+		command = { type = relation which = BAD value = -100 }
+		command = { type = relation which = HAN value = -100 }
+		command = { type = relation which = HES value = -100 }
+		command = { type = relation which = PFA value = -100 }
+		command = { type = relation which = SAC value = -100 }
+		#command = { type = relation which = THU value = -100 } #Bayreuth
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = STR value = -100 }
+	}
+}
+
+#(1605-1609) The Evangelic Union
+event = {
+	id = 3634
+	trigger = {
+		OR = {
+			religion = protestant
+			religion = reformed
+		}
+	}
+	random = no
+	country = BRA
+	name = "EVENTNAME3634" #The Evangelic Union
+	desc = "EVENTHIST3634"
+	#-#The Holy Roman Empire had a fragile balance, split between 10 major and nearly 400 minor states and principalities, as well as two opposing religions. The power of the Emperor was quite limited beyond his direct domains and the erratic and inconsistent behavior of some of them as Rudolph II, such increased frictions. In 1608, the Protestant city of Donauwerth refused Catholics the right to practice their cult and was banned from the Empire. As a reaction, most German Protestant states formed the Evangelic Union to defend their freedom.
+
+	date = { day = 1 month = january year = 1605 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1609 }
+
+	action_a = {
+		name = "ACTIONNAME3634A" #Prepare to Join
+		command = { type = relation which = FRA value = 100 }
+		command = { type = relation which = BAD value = 150 }
+		command = { type = relation which = HAN value = 150 }
+		command = { type = relation which = HES value = 150 }
+		command = { type = relation which = PFA value = 150 }
+		command = { type = relation which = SAC value = 150 }
+		#command = { type = relation which = THU value = 150 } #Bayreuth
+		command = { type = relation which = SHL value = 150 }
+		command = { type = relation which = KLE value = 100 }
+		command = { type = relation which = KOL value = 50 }
+		command = { type = relation which = BAY value = 50 }
+		command = { type = relation which = PAP value = -100 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = relation which = HAB value = -150 }
+	}
+	action_b = {
+		name = "ACTIONNAME3634B" #Stay Neutral
+		command = { type = relation which = BAD value = -100 }
+		command = { type = relation which = HAN value = -100 }
+		command = { type = relation which = HES value = -100 }
+		command = { type = relation which = PFA value = -100 }
+		command = { type = relation which = SAC value = -100 }
+		#command = { type = relation which = THU value = -100 } #Bayreuth
+		command = { type = relation which = HAB value = 50 }
+	}
+}
+
+#(1607-1609) The Catholic League
+event = {
+	id = 3635
+	trigger = {
+		OR = {
+			religion = catholic
+			religion = counterreform
+		}
+	}
+	random = no
+	country = BRA
+	name = "EVENTNAME3192" #The Catholic League
+	desc = "EVENTHIST3192"
+	#-#The German Catholic states felt threatened by the 1608 creation of the Evangelic Union of their northern Protestant neighbors, following the Donauwerth exclusion from the Empire. Feeling the urge to unite, they regrouped into a Catholic League that same year. The stage was set for the Thirty Years War.
+
+	date = { day = 1 month = january year = 1607 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1609 }
+
+	action_a = {
+		name = "ACTIONNAME3192A" #Prepare to Join
+		command = { type = relation which = FRA value = -100 }
+		command = { type = relation which = BAD value = -150 }
+		command = { type = relation which = HAN value = -150 }
+		command = { type = relation which = HES value = -150 }
+		command = { type = relation which = PFA value = -150 }
+		command = { type = relation which = SAC value = -150 }
+		#command = { type = relation which = THU value = -150 } #Bayreuth
+		command = { type = relation which = SHL value = -150 }
+		command = { type = relation which = KLE value = 50 }
+		command = { type = relation which = KOL value = 100 }
+		command = { type = relation which = BAY value = 100 }
+		command = { type = relation which = PAP value = 100 }
+		command = { type = relation which = SPA value = 100 }
+		command = { type = relation which = HAB value = 150 }
+	}
+	action_b = {
+		name = "ACTIONNAME3192B" #Stay Neutral
+		command = { type = relation which = BAD value = 50 }
+		command = { type = relation which = HAN value = 50 }
+		command = { type = relation which = HES value = 50 }
+		command = { type = relation which = PFA value = 50 }
+		command = { type = relation which = SAC value = 50 }
+		#command = { type = relation which = THU value = 50 } #Bayreuth
+		command = { type = relation which = BAY value = -50 }
+		command = { type = relation which = KLE value = -50 }
+		command = { type = relation which = KOL value = -50 }
+		command = { type = relation which = HAB value = -100 }
+	}
+}
+
+#(1609) The Cleves succession
+event = {
+	id = 132201 #triggered by KLE_200101 A / KLE_200102 B
+	random = no
+	country = BRA
+	name = "EVENTNAME132201" #The Cleves succession
+	desc = "EVENTHIST132201"
+	#-#Duke Johann Wilhelm of Jülich, Cleves and Berg died on March 25th 1609, in a state of complete insanity and without a child or brother. While in the United Duchies a woman could not succeed to the throne herself, succession through a female relative was possible, hence the husbands of Johann Wilhelm's sisters claimed the inheritance. Duke Albrecht Friedrich of Prussia, married to the oldest sister Marie-Eleonore, had no male heir himself and ceded his claim to the husband of his daughter Anna, Elector Johann Sigismund of Brandenburg. This claim was questioned by the husband of the second sister Anna, Philipp Ludwig of Palatinate-Neuburg, who wanted the inheritance for his son Wolfgang Wilhelm. The Count of Nevers-Rethel, originally a sidebranch of the Cleves ducal dynasty, and the Elector of Saxony considered themselves legitimate heirs by virtue of several treaties, and the Emperor, desiring to expand the Habsburgs' supply base near the rebellious Netherlands, declared both female succession and the treaties invalid and was about to confiscate the United Duchies as a lapsed fief. The protestant princes of Brandenburg and Palatinate-Neuburg however, encouraged by the Evangelic Union, France and the Netherlands, managed to agree on a common administration in order to fight off all other claimants. They proclaimed complete religious toleration for all Christian confessions in the Duchies and were acknowledged by the Estates in Jule 1609. A more permanent solution was to be agreed on later...
+
+	action_a = {
+		name = "GREAT"
+		command = { type = vassal which = KLE }
+		command = { type = relation which = KLE value = 200 }
+		command = { type = alliance which = KLE }
+	}
+}
+#(1609) The Cleves succession
+event = {
+	id = 132202 #triggered by KLE_200102 B/C / KLE_200105 B/C/D / KLE_200106 B/C/D
+	random = no
+	country = BRA
+	name = "EVENTNAME132202" #The Cleves succession
+	desc = "EVENTHIST132202"
+	#-#Duke Johann Wilhelm of Jülich, Cleves and Berg died on March 25th 1609, in a state of complete insanity and without a child or brother. While in the United Duchies a woman could not succeed to the throne herself, succession through a female relative was possible, hence the husbands of Johann Wilhelm's sisters claimed the inheritance. Duke Albrecht Friedrich of Prussia, married to the oldest sister Marie-Eleonore, had no male heir himself and ceded his claim to the husband of his daughter Anna, Elector Johann Sigismund of Brandenburg. This claim was questioned by the husband of the second sister Anna, Philipp Ludwig of Palatinate-Neuburg, who wanted the inheritance for his son Wolfgang Wilhelm. The Count of Nevers-Rethel, originally a sidebranch of the Cleves ducal dynasty, and the Elector of Saxony considered themselves legitimate heirs by virtue of several treaties, and the Emperor, desiring to expand the Habsburgs' supply base near the rebellious Netherlands, declared both female succession and the treaties invalid and was about to confiscate the United Duchies as a lapsed fief. Our legitimate claim has been ignored by the estates of the Duchies who have chosen another successor.
+
+	action_a = {
+		name = "ACTIONNAME132202A" #Claim what is rightfully ours
+		command = { type = addcore which = 334 } #Münster
+		command = { type = addcore which = 343 } #Kleves
+		command = { type = addcore which = 338 } #Geldre
+	}
+}
+#(1609 or 1614) Inheritance of Cleves
+event = {
+	id = 132203 #triggered by KLE_200105 A / KLE_200106 A or KLE_200109 B / KLE_200110 A
+	random = no
+	country = BRA
+	name = "EVENTNAME132203" #Inheritance of Cleves
+	desc = "EVENTHIST132203"
+	#-#Duke Johann Wilhelm of Jülich, Cleves and Berg died on March 25th 1609, in a state of complete insanity and without a child or brother. While in the United Duchies a woman could not succeed to the throne herself, succession through a female relative was possible, hence the husbands of Johann Wilhelm's sisters claimed the inheritance. Duke Albrecht Friedrich of Prussia, married to the oldest sister Marie-Eleonore, had no male heir himself and ceded his claim to the husband of his daughter Anna, Elector, Johann Sigismund of Brandenburg. Our legitimate claim eventually prevailed and we are now in possession of the whole United Duchies.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = addcore which = 334 } #Münster
+		command = { type = addcore which = 343 } #Kleves
+		command = { type = addcore which = 338 } #Geldre
+		command = { type = inherit which = KLE }
+	}
+}
+
+#(1614) Treaty of Xanten
+event = {
+	id = 132204 #triggered by KLE_200109 A
+	random = no
+	country = BRA
+	name = "EVENTNAME132204" #Treaty of Xanten
+	desc = "EVENTHIST132204"
+	#-#The agreement between Brandenburg and Palatinate-Neuburg did not last long. Both parties still were keen on securing the whole inheritance for themselves, and soon disagreements on fiscal, personal and administrative matters arose. In order to secure support for their cause, they both prepared religious conversions. While Ernst, the brother of the Elector who represented him in the Duchies, became reformed in 1610 and the Elector himself adapted Calvinism at the urge of his Dutch and Palatine allies in 1613, Wolfgang Wilhelm of Palatinate-Neuburg began secret negotiations with the Emperor and his Wittelsbach relatives in Bavaria and Cologne. He was eventually convinced to convert to Catholicism, first secretly in Munich in summer 1613 and openly on May 16th 1614 in Düsseldorf. These two conversions almost immediately caused the Dutch and Spanish, acting in the interest of their respective new coreligionists, to invade the Duchies. The stage was set for a huge religious war, afraid of the consequences of such a conflict, Brandenburg and Palatinate-Neuburg concluded a tentative treaty of partition in the city of Xanten on November 14th 1614. Neuburg received Jülich and Berg, Brandenburg got Cleves, Mark and Ravensberg. Nevertheless, the succession was not finally settled until 1672, and even thereafter both of them continued to claim the whole inheritance.
+
+	action_a = {
+		name = "ACTIONNAME132204A" #Accept this just as a temporary compromise
+		command = { type = addcore which = 334 } #Münster
+		command = { type = addcore which = 343 } #Kleves
+		command = { type = addcore which = 338 } #Geldre
+		command = { type = relation which = MUN value = -100 }
+	}
+	action_b = {
+		name = "ACTIONNAME132204B" #Accept this as a permanent settlement
+		command = { type = addcore which = 334 } #Münster
+		command = { type = addcore which = 338 } #Geldre
+		command = { type = stability value = 1 }
+	}
+	action_c = {
+		name = "ACTIONNAME132204C" #Reject the treaty
+		command = { type = addcore which = 334 } #Münster
+		command = { type = addcore which = 343 } #Kleves
+		command = { type = addcore which = 338 } #Geldre
+		command = { type = war which = MUN }
+		command = { type = stability value = -1 }
+	}
+}
+#(1614) War over Cleves
+event = {
+	id = 132205 #triggered by KLE_200109 C / KLE_200110 B
+	random = no
+	country = BRA
+	name = "EVENTNAME132205" #War over the Cleves succession
+	desc = "EVENTHIST132205"
+	#-#The agreement between Brandenburg and Palatinate-Neuburg did not last long. Both parties still were keen on securing the whole inheritance for themselves, and soon disagreements on fiscal, personal and administrative matters arose. In order to secure support for their cause, they both prepared religious conversions. While Ernst, the brother of the Elector who represented him in the Duchies, became reformed in 1610 and the Elector himself joined Calvinism at the urge of his Dutch and Palatine allies in 1613, Wolfgang Wilhelm of Palatinate-Neuburg began secret negotiations with the Emperor and his Wittelsbach relatives in Bavaria and Cologne. He was eventually convinced to convert to Catholicism, first secretly in Munich in summer 1613 and openly on May 16th 1614 in Düsseldorf. These two conversions almost immediately caused the Dutch and Spanish, acting in the interest of their respective new coreligionists, to invade the Duchies. With the assistance of its new Papist allies, Wolfgang Wilhelm has managed to seize control of the Duchies. We cannot accept this.
+
+	action_a = {
+		name = "ACTIONNAME132205A" #Take our rightful inheritance by force
+		command = { type = addcore which = 334 } #Münster
+		command = { type = addcore which = 343 } #Kleves
+		command = { type = addcore which = 338 } #Geldre
+		command = { type = INF which = 334 value = 7000 } #Münster
+		command = { type = ART which = 334 value = 30 } #Münster
+		command = { type = war which = MUN }
+		command = { type = stability value = 2 }
+	}
+}
+
+#(1622-1629) Matchmaker
+event = {
+	id = 132014 #triggered by SIE_282008 B
+	random = no
+	country = BRA
+	name = "EVENTNAME132014" #Matchmaker
+	desc = "EVENTHIST132014"
+	#-#Gabriel Bethlen de Iktar - Prince of Siebenbürgen seeks the hand of our Lady Catherine Hohenzollern. Do we accept?
+
+	action_a = {
+		name = "ACTIONNAME132014A" #Yes
+		command = { type = relation which = SIE value = 75 }
+		command = { type = dynastic which = SIE }
+	}
+	action_b = {
+		name = "ACTIONNAME132014B" #No
+		command = { type = relation which = SIE value = -25 }
+		command = { type = relation which = HAB value = 25 }
+	}
+}
+
+#(1637) The Pommern Inheritance
+event = {
+	id = 3896 #triggered by POM_3895 A / POM_3895 B / POM_259009 A
+	random = no
+	country = BRA
+	name = "EVENTNAME3896" #The Pommern Inheritance
+	desc = "EVENTHIST3896"
+	#-#We have received Pommern as the legal heirs of their now-extinct ducal family.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = inherit which = POM }
+		command = { type = addcore which = 302 } #Hinterpommern
+		command = { type = addcore which = 304 } #Vorpommern
+		command = { type = relation which = SWE value = -100 }
+	}
+}
+#(1637-1700) The Pomeranian Inheritance - in case POM doesn't exist
+event = {
+	id = 132008
+	trigger = {
+		countrysize = 2
+		NOT = {
+			exists = POM
+			event = 3896 #BRA: The Pommern Inheritance
+		}
+	}
+	random = no
+	country = BRA
+	name = "EVENTNAME3895" #The Pomeranian Inheritance
+	desc = "EVENTHIST132008"
+	#-#The last member of the legitimate rulers of Pommern has died. The Brandeburg House of Hohenzollern has the closest ties with them, thus we can press our rightful claims also on those lands.
+
+	date = { day = 12 month = march year = 1637 }
+	offset = 90
+	deathdate = { day = 0 month = january year = 1700 }
+
+	action_a = {
+		name = "ACTIONNAME132008A" #Let's claim those lands
+		command = { type = addcore which = 302 } #Hinterpommern
+		command = { type = addcore which = 304 } #Vorpommern
+	}
+	action_b = {
+		name = "ACTIONNAME132008B" #Don't press our claims
+		command = { type = stability value = 1 }
+		command = { type = vp value = -5 }
+	}
+}
+#(1637-1700) New Capital - event for Pomerania transformed into Brandenburg
+event = {
+	id = 132009
+	trigger = {
+		NOT = { exists = POM }
+		OR = {
+			event = 259010 #POM: The Pomeranian Inheritance - III -
+			event = 259011 #POM: The Pomeranian Inheritance - IV -
+			event = 259012 #POM: The Pomeranian Inheritance - V -
+			event = 259013 #POM: The Pomeranian Inheritance - VI -
+			event = 259014 #POM: The Pomeranian Inheritance - VII -
+			event = 259015 #POM: The Pomeranian Inheritance - VIII -
+		}
+		owned = { province = 312 data = -1 } #Brandenburg
+		control = { province = 312 data = -1 }
+	}
+	random = no
+	country = BRA
+	name = "EVENTNAME132009" #New Capital
+	desc = "EVENTHIST132009"
+	#-#When the Hohenzollern-Pomerania dynasty united Pomerania and Brandenburg they decided to move their capital back to the Berlin.
+
+	date = { day = 1 month = april year = 1637 }
+	offset = 90
+	deathdate = { day = 1 month = june year = 1700 }
+
+	action_a = {
+		name = "ACTIONNAME132009A" #To Berlin
+		command = { type = stability value = -1 }
+		command = { type = capital which = 312 } #Brandenburg
+		command = { type = population which = 312 value = 2000 }
+		command = { type = provincetax which = 312 value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME132009B" #No need to change it
+		command = { type = stability value = 1 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = vp value = -5 }
+	}
+}
+
+#(1640-1660) Reform of the Brandenburg Army -I-
+event = {
+	id = 3518
+	trigger = {
+		OR = { #Any plausible Baltic port in the neighborhood
+			AND = {
+				owned = { province = 305 data = -1 } #Mecklenburg
+				control = { province = 305 data = -1 } #Mecklenburg
+			}
+			AND = {
+				owned = { province = 304 data = -1 } #Vorpommern
+				control = { province = 304 data = -1 } #Vorpommern
+			}
+			AND = {
+				owned = { province = 301 data = -1 } #Danzig
+				control = { province = 301 data = -1 } #Danzig
+			}
+			AND = {
+				owned = { province = 290 data = -1 } #Prussia
+				control = { province = 290 data = -1 } #Prussia
+			}
+			AND = {
+				owned = { province = 289 data = -1 } #Memel
+				control = { province = 289 data = -1 } #Memel
+			}
+		}
+		NOT = { event = 132010 } #BRA: Reform of the Brandenburg Army -II-
+	}
+	random = no
+	country = BRA
+	name = "EVENTNAME3518" #Reform of the Brandenburg Army
+	desc = "EVENTHIST3518"
+	#-#The Elector Friedrich Wilhelm (1640-1688), known as the Great Elector, had been one of the major winners of the Thirty Years War, increasing the size of Brandenburg's realm by nearly a third. His major achievement was to the administrative unity and the setting up of a small professional army of 24,000 men. He also managed to get his country free of Polish lordship over Prussia, and to welcome French 20,000 French Protestant refugees. On 28th June 1675, his army fought a tactical stalemate with the Swedes at the battle of Fehrbellin. The Swedes were unable to go on the offensive from poor preparations, and thus lost the war. That Sweden was unable to carry the sword of Gustavus Adolphus had a striking resonance all over Europe and Prussia occupied Swedish Pomerania until 1679.
+
+	date = { day = 1 month = january year = 1640 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1660 }
+
+	action_a = {
+		name = "ACTIONNAME3518A" #Offensive Army Reform
+		command = { type = domestic which = LAND value = 2 }
+		command = { type = domestic which = OFFENSIVE value = 2 }
+		command = { type = domestic which = QUALITY value = 3 }
+		command = { type = land value = 800 }
+		command = { type = INF which = -1 value = 8000 }
+		command = { type = CAV which = -3 value = 6000 }
+		command = { type = ART which = -3 value = 20 }
+		command = { type = sleepevent which = 132010 } #BRA: Reform of the Brandenburg Army -II-
+	}
+	action_b = {
+		name = "ACTIONNAME3518B" #Defensive Army Reform
+		command = { type = domestic which = LAND value = 2 }
+		command = { type = domestic which = OFFENSIVE value = -2 }
+		command = { type = domestic which = QUALITY value = 3 }
+		command = { type = land value = 800 }
+		command = { type = fortress which = 312 value = 1 } #Brandenburg
+		command = { type = fortress which = -1 value = 1 }
+		command = { type = sleepevent which = 132010 } #BRA: Reform of the Brandenburg Army -II-
+	}
+	action_c = {
+		name = "ACTIONNAME3518C" #Navy Reform
+		command = { type = domestic which = LAND value = -2 }
+		command = { type = domestic which = QUALITY value = 3 }
+		command = { type = naval value = 800 }
+		command = { type = warships which = -1 value = 10 }
+		command = { type = transports which = -3 value = 3 }
+		command = { type = sleepevent which = 132010 } #BRA: Reform of the Brandenburg Army -II-
+	}
+}
+#(1640-1660) Reform of the Brandenburg Army -II-
+event = {
+	id = 132010
+	trigger = {
+		NOT = { #Any plausible Baltic port in the neighborhood
+			AND = {
+				owned = { province = 305 data = -1 } #Mecklenburg
+				control = { province = 305 data = -1 } #Mecklenburg
+			}
+			AND = {
+				owned = { province = 304 data = -1 } #Vorpommern
+				control = { province = 304 data = -1 } #Vorpommern
+			}
+			AND = {
+				owned = { province = 301 data = -1 } #Danzig
+				control = { province = 301 data = -1 } #Danzig
+			}
+			AND = {
+				owned = { province = 290 data = -1 } #Prussia
+				control = { province = 290 data = -1 } #Prussia
+			}
+			AND = {
+				owned = { province = 289 data = -1 } #Memel
+				control = { province = 289 data = -1 } #Memel
+			}
+		}
+		NOT = { event = 3518 } #BRA: Reform of the Brandenburg Army -I-
+	}
+	random = no
+	country = BRA
+	name = "EVENTNAME3518" #Reform of the Brandenburg Army
+	desc = "EVENTHIST3518"
+	#-#The Elector Friedrich Wilhelm (1640-1688), known as the Great Elector, had been one of the major winners of the Thirty Years War, increasing the size of Brandenburg's realm by nearly a third. His major achievement was to the administrative unity and the setting up of a small professional army of 24,000 men. He also managed to get his country free of Polish lordship over Prussia, and to welcome French 20,000 French Protestant refugees. On 28th June 1675, his army fought a tactical stalemate with the Swedes at the battle of Fehrbellin. The Swedes were unable to go on the offensive from poor preparations, and thus lost the war. That Sweden was unable to carry the sword of Gustavus Adolphus had a striking resonance all over Europe and Prussia occupied Swedish Pomerania until 1679.
+
+	date = { day = 1 month = january year = 1640 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1660 }
+
+	action_a = {
+		name = "ACTIONNAME3518A" #Offensive Army Reform
+		command = { type = domestic which = LAND value = 2 }
+		command = { type = domestic which = OFFENSIVE value = 2 }
+		command = { type = domestic which = QUALITY value = 3 }
+		command = { type = land value = 800 }
+		command = { type = INF which = -1 value = 8000 }
+		command = { type = CAV which = -3 value = 6000 }
+		command = { type = ART which = -3 value = 20 }
+		command = { type = sleepevent which = 3518 } #BRA: Reform of the Brandenburg Army -I-
+	}
+	action_b = {
+		name = "ACTIONNAME3518B" #Defensive Army Reform
+		command = { type = domestic which = LAND value = 2 }
+		command = { type = domestic which = OFFENSIVE value = -2 }
+		command = { type = domestic which = QUALITY value = 3 }
+		command = { type = land value = 800 }
+		command = { type = fortress which = 312 value = 1 } #Brandenburg
+		command = { type = fortress which = -1 value = 1 }
+		command = { type = sleepevent which = 3518 } #BRA: Reform of the Brandenburg Army -I-
+	}
+}
+
+#(1656) Treaty of Marienburg
+#by Duc de Guise
+event = {
+	id = 132029 #triggered by SWE_291035
+	random = no
+	country = BRA
+	name = "EVENTNAME291035" #Treaty of Marienburg
+	desc = "EVENTHIST132029"
+	#-#The Poles, in a shocking return of their King, managed to hold/retake their capital, forcing the Swedesto go back and seek our military help. Should we help them?
+
+	action_a = {
+		name = "ACTIONNAME132029A" #We'll commit for money
+		command = { type = relation which = SWE value = 50 }
+		command = { type = relation which = POL value = -200 }
+		command = { type = alliance which = SWE }
+		command = { type = casusbelli which = POL value = 6 }
+		command = { type = treasury value = 100 }
+	}
+	action_b = {
+		name = "ACTIONNAME132029B" #Down with Karl Gustav!
+		command = { type = relation which = SWE value = -200 }
+		command = { type = relation which = POL value = 200 }
+		command = { type = casusbelli which = SWE value = 6 }
+		command = { type = sleepevent which = 291036 } #SWE: Treaty of Labiau
+	}
+}
+
+#(1656) Treaty of Labiau
+#by Duc de Guise
+event = {
+	id = 132030 #triggered by SWE_291036
+	random = no
+	country = BRA
+	name = "EVENTNAME291036" #Treaty of Labiau
+	desc = "EVENTHIST132030"
+	#-#Karl Gustav seems to worry about our secret talks with Poland and therefore renounce their claim on Danzig in order to keep us as allied.
+
+	action_a = {
+		name = "ACTIONNAME132030A" #Closer to the Swedes
+		command = { type = relation which = SWE value = 200 }
+		command = { type = addcore which = 301 } #Friedrich Wilhelm acknowledged claims on Danzig #Danzig
+		command = { type = war which = POL } #if not already in war, they should be now with all the great concessions
+	}
+}
+
+#(1657) Treaty of Welhau -I-
+#by Duc de Guise
+event = {
+	id = 132031
+	trigger = {
+		war = { country = SWE country = POL }
+		NOT = { vassal = { country = POL country = BRA } }
+	}
+	random = no
+	country = BRA
+	name = "EVENTNAME132031" #Treaty of Welhau
+	desc = "EVENTHIST132031"
+	#-#The Emperor tried to convince Brandenburg and Poland to reconcile in order to pull back the Swedes and Poland agreed to a compromise.
+
+	date = { day = 1 month = september year = 1657 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1657 }
+
+	action_a = {
+		name = "ACTIONNAME132031A" #Brandenburg switch sides
+		command = { type = stability value = 3 }
+		command = { type = relation which = SWE value = -400 }
+		command = { type = relation which = POL value = 400 }
+		command = { type = casusbelli which = SWE value = 12 }
+		command = { type = sleepevent which = 132032 } #BRA: Treaty of Welhau -II-
+	}
+}
+#(1657) Treaty of Welhau -II-
+#by Duc de Guise
+event = {
+	id = 132032
+	trigger = {
+		war = { country = SWE country = POL }
+		vassal = { country = POL country = BRA }
+	}
+	random = no
+	country = BRA
+	name = "EVENTNAME132031" #Treaty of Welhau
+	desc = "EVENTHIST132031"
+	#-#The Emperor tried to convince Brandenburg and Poland to reconcile in order to pull back the Swedes and Poland agreed to a compromise.
+
+	date = { day = 1 month = september year = 1657 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1657 }
+
+	action_a = {
+		name = "ACTIONNAME132031A" #Brandenburg switch sides
+		command = { type = breakvassal which = POL }
+		command = { type = stability value = 3 }
+		command = { type = relation which = SWE value = -400 }
+		command = { type = relation which = POL value = 400 }
+		command = { type = casusbelli which = SWE value = 12 }
+		command = { type = sleepevent which = 132031 } #BRA: Treaty of Welhau -I-
+	}
+}
+
+#(1676-1681) The League of Augsburg
+event = {
+	id = 3522 #triggered by FRA_3127 A
+	random = no
+	country = BRA
+	name = "EVENTNAME3198" #The League of Augsburg
+	desc = "EVENTHIST3198"
+	#-#The reunion policy of Louis XIV had been forced upon by the Empire in the 1684 by the Truce of Regensburg, mostly because the Emperor was preoccupied by the Turkish menace (siege of Vienna in 1683). The continued French claims and expansion to the detriment of the Habsburg possessions and the German states of the Empire led to the creation of the anti-French League of Augsburg (1686).
+
+	action_a = {
+		name = "ACTIONNAME3198A" #Defy French claims
+		command = { type = casusbelli which = FRA value = 72 }
+		command = { type = relation which = FRA value = -150 }
+		command = { type = relation which = ENG value = 150 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = SPA value = 150 }
+		command = { type = relation which = HOL value = 150 }
+		command = { type = relation which = HAN value = 100 }
+		command = { type = relation which = BAD value = 100 }
+		command = { type = relation which = HES value = 100 }
+		command = { type = relation which = KLE value = 100 }
+		command = { type = relation which = KOL value = 100 }
+		command = { type = relation which = PFA value = 100 }
+		#command = { type = relation which = THU value = 100 } #Bayreuth
+	}
+	action_b = {
+		name = "ACTIONNAME3198B" #Ignore it
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = ENG value = -100 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = relation which = HOL value = -100 }
+		command = { type = relation which = HAN value = -50 }
+		command = { type = relation which = BAD value = -50 }
+		command = { type = relation which = HES value = -50 }
+		command = { type = relation which = KLE value = -50 }
+		command = { type = relation which = KOL value = -50 }
+		command = { type = relation which = PFA value = -50 }
+		#command = { type = relation which = THU value = -50 } #Bayreuth
+	}
+}
+
+#(1681-1688) Protestants expelled from France
+event = {
+	id = 3521 #triggered by FRA_3128 A
+	random = no
+	country = BRA
+	name = "EVENTNAME3521" #Protestants expelled from France
+	desc = "EVENTHIST3521"
+	#-#The cancellation of the religious freedom of Protestants in France by Louis the XIVs and the ensuing prosecution and force conversion back to the catholic faith made literally hundreds of thousands of the protestant French Hugenotts to flee into neighboring countries. As a main center piece of the Hugenotts belief were the high praise of hard work and education, most countries where more then happy to welcome these refugees into their society.
+
+	action_a = {
+		name = "ACTIONNAME3521A" #Welcome with open arms
+		command = { type = population which = -1 value = 5000 }
+		command = { type = provincetax which = -3 value = 1 }
+		command = { type = population which = -1 value = 5000 }
+		command = { type = provincetax which = -3 value = 1 }
+		command = { type = population which = -1 value = 5000 }
+		command = { type = provincetax which = -3 value = 1 }
+		command = { type = population which = -1 value = 5000 }
+		command = { type = provincetax which = -3 value = 1 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1682) The Brandenburg African Trade Company
+event = {
+	id = 3523
+	random = no
+	country = BRA
+	name = "EVENTNAME3523" #The Prussian African Trade Company
+	desc = "EVENTHIST3523"
+	#-#As all major nations of this period, Friedrich Wilhelm also tried to duplicate the enormous success of the Dutch Vereenigde Oostindische Compagnie and tap into the richness it brought its investors and the Dutch economy from ''The New World''. However as most other duplication attempts, especially by countries with little tradition of Naval Power, it would ultimately fail to deliver anything but grief to its investors.
+
+	date = { day = 1 month = january year = 1682 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1683 }
+
+	action_a = {
+		name = "ACTIONNAME3523A" #We will exploit this!
+		command = { type = gainmanufactory which = -1 value = goods }
+		command = { type = merchants value = 5 }
+		command = { type = explorer which = -1 }
+		command = { type = trade value = 400 }
+	}
+}
+
+#(1701-1760) Hohenzollern-Brandenburg dominions - Ahistorical
+event = {
+	id = 132028
+	trigger = {
+		exists = PRU
+		NOT = { event = 263009 } #PRU: The Fate of Prussia (player only)
+	}
+	random = no
+	country = BRA
+	name = "EVENTNAME132028" #Hohenzollern-Brandenburg dominions
+	desc = "EVENTHIST132028"
+	#-#Brandenburg and Prussia are both ruled by the Hohenzollern-Brandenburg family. The dream of a royal title becomes a reality.
+
+	date = { day = 1 month = january year = 1701 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1760 }
+
+	action_a = {
+		name = "GOOD"
+		command = { type = addcore which = 289 } #Memel
+		command = { type = addcore which = 290 } #Prussia
+		command = { type = inherit which = PRU }
+	}
+}
+#(1701-1760) A royal title
+#changed by Neuro - modified by YodaMaster and SirCentipede
+event = {
+	id = 3524
+	trigger = {
+		OR = {
+			owned = { province = 290 data = -1 } #Prussia
+			flag = [ClaimOnPrussia]
+			event = 132011 #BRA: Hohenzollern Prussia
+			event = 132012 #BRA: Hohenzollern-Brandenburg rule in Prussia
+			event = 263004 #PRU: Prussia forms Brandenburg
+			event = 132027 #BRA: Consequence of the claims on Prussia
+			event = 132028 #BRA: Hohenzollern-Brandenburg dominions
+		}
+		NOT = { exists = PRU } #Ducal Prussia
+	}
+	random = no
+	country = BRA
+	name = "EVENTNAME3524" #A royal title
+	desc = "EVENTHIST3524"
+	#-#The Brandenburg areas formally belonged to the Holy Roman Empire but the ruling Hohenzollern family of Prussia-Brandenburg had higher aspirations than merely staying electors under the Holy Roman Emperor, a position which by this time had become next to inherited within the powerful Habsburg family. Since Friedrich Wilhelm had managed to get full control of the Prussian areas from Poland in the 1660 Peace in Oliwa, his son, Friedrich III of Brandenburg, had the option to declare himself King of Prussia, since it was physically situated outside of the borders of the Empire.
+
+	date = { day = 1 month = january year = 1701 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1760 }
+
+	action_a = {
+		name = "ACTIONNAME3524A" #The Kingdom of Prussia is born!
+		command = { type = addcore which = 289 } #Memel
+		command = { type = addcore which = 290 } #Prussia
+		command = { type = flagname which = "" }
+		command = { type = country which = PRU }
+		command = { type = flagname which = "Kingdom" }
+		command = { type = setflag which = [PrussiaHRE] }
+		command = { type = provinceculture which = 290 value = german } #Prussia
+		command = { type = trigger which = 263014 } #PRU: The Kingdom of Prussia
+		command = { type = sleepevent which = 132028 } #BRA: Hohenzollern-Brandenburg dominions
+	}
+	action_b = {
+		name = "ACTIONNAME3524B" #Stay Elector-Prince!
+		command = { type = stability value = 2 }
+		command = { type = relation which = HAB value = 40 }
+		command = { type = removecore which = 289 } #Memel
+		command = { type = removecore which = 290 } #Prussia
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 132033-132079 - next: 132081

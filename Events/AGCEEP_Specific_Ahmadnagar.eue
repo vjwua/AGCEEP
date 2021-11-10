@@ -1,0 +1,129 @@
+#Ahmadnagar (AHM)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1489-1520) The Sultanate of Ahmadnagar
+#by Crook
+event = {
+	id = 30333 #triggered by THE_30332
+	random = no
+	country = AHM
+	name = "EVENTNAME30333" #Independence of Ahmadnagar
+	desc = "EVENTHIST30332"
+	#-#After the false accusation and execution of Mahmud Gawan, the Bahmani Sultanate slowly fell into decline. In 1489-90 the governors of Ahmadnagar and Bijapur declared their independence, and Bidar followed up soon after. The ruler of the Bahmani Sultanate became a mere figurehead in the hands of the cunning Qasim Barid. The last sultan disappeared on his way to Mekkah, and with him the Bahmani dynasty came to an end.
+
+	action_a = {
+		name = "ACTIONNAME30333A" #Who can stop us?
+		command = { type = INF which = -2 value = 10000 }
+		command = { type = CAV which = -2 value = 10000 }
+		command = { type = relation which = VIJ value = -200 }
+		command = { type = relation which = THE value = -150 }
+		command = { type = breakvassal which = THE }
+		command = { type = religion which = sunni }
+		command = { type = add_countryculture which = marathi }
+		command = { type = trigger which = 410058 } #THE: The Sultanate of Ahmadnagar
+	}
+}
+
+#(1597-1599) Akbar demands the fealty of Ahmadnagar
+event = {
+	id = 305000
+	trigger = {
+		exists = MOG
+		NOT = { event = 190001 } #HYD: Akbar demands the fealty of Ahmadnagar
+		owned = { province = 551 data = -1 } #Khandesh
+	}
+	random = no
+	country = AHM
+	name = "EVENTNAME305000" #Akbar demands the fealty of Ahmadnagar
+	desc = "EVENTHIST305000"
+	#-#In 1597 the Great Mughal asked the breakaway Kingdom of Ahmadnagar to swear fealty to him. With Ahmadnagar ruled by the infant King Bahadur, the real power lay in the hands of the dowager Queen Chand Bibi. Bibi refused to submit to Mughal rule and Akbar responded by invading, sending one army from Malwa led by Khan Khanan and another from Gujarat led by his son, Murad.
+
+	date = { day = 1 month = january year = 1597 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1599 }
+
+	action_a = {
+		name = "ACTIONNAME305000A" #Refuse to submit
+		command = { type = relation which = MOG value = -50 }
+		command = { type = trigger which = 230008 } #MOG: Ahmadnagar's Defiance
+	}
+	action_b = {
+		name = "ACTIONNAME305000B" #Ahmadnagar shall become part of the Mughal empire (End Game)
+		command = { type = revolt which = 551 } #Khandesh
+		command = { type = trigger which = 230009 } #Ahmadnagar becomes a vassal state #MOG: Ahmadnagar's Submission
+	}
+}
+
+#(1597-1605) Chand Bibi's Betrayal
+event = {
+	id = 305001
+	trigger = {
+		exists = MOG
+		NOT = { event = 190002 } #HYD: Chand Bibi's Betrayal
+		owned = { province = 551 data = -1 } #Khandesh
+		control = { province = 551 data = MOG } #Khandesh
+	}
+	random = no
+	country = AHM
+	name = "EVENTNAME305001" #Chand Bibi's Betrayal
+	desc = "EVENTHIST305001"
+	#-#Imperial troops laid siege to Ahmadnagar. Although the defenders fought fiercely, no help was coming and it could only be a matter of time. Sultan Murad, the enemy commander, sent an offer to raise the siege in return for the cession of Berar. Although the dowager Queen had fought valiantly, she lost heart when faced with the superior imperial forces. Facing famine in the city she agreed to the deal and gave away Berar. Upon hearing the news, her confidant and eunuch Jita Khan rushed from the palace crying that Chand Bibi had turned traitor. Bibi was murdered by a mob and without her rule, Ahmadnagar fell soon after.
+
+	date = { day = 1 month = january year = 1597 }
+	offset = 30
+	deathdate = { day = 25 month = october year = 1605 }
+
+	action_a = {
+		name = "ACTIONNAME305001A" #Cede Berar to gain time (End Game)
+		command = { type = revolt which = 551 } #Khandesh
+		command = { type = revolt which = 551 } #Khandesh
+		command = { type = relation which = MOG value = 50 }
+		command = { type = diplomats value = 1 }
+		command = { type = stability value = -1 }
+		command = { type = trigger which = 230019 } #MOG: Ahmadnagar's Fall
+	}
+	action_b = {
+		name = "ACTIONNAME305001B" #Fight to the bitter end
+		command = { type = population which = 551 value = -5000 } #Khandesh (Famine)
+		command = { type = desertion which = -1 value = 1000 } #Famine
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1628-1630) The Rise of Hamid Khan
+event = {
+	id = 305002
+	trigger = {
+		neighbour = MOG
+		NOT = {
+			vassal = { country = MOG country = GUJ }
+			vassal = { country = GUJ country = MOG }
+			alliance = { country = GUJ country = MOG }
+			war = { country = GUJ country = MOG }
+		}
+	}
+	random = no
+	country = AHM
+	name = "EVENTNAME305002" #The Rise of Hamid Khan
+	desc = "EVENTHIST305002"
+	#-#Hamid Khan rose to prominence as a favorite of Burhan Nizam Shah III. He also was popular among the masses and classes alike. While competent he was also unscrupulous. Married to a woman serving in the royal harem, the couple conspired to gain control of the King by encouraging him to celebrate his vices. Concerned about Mughal influence in the region, they encouraged their puppet King to make a pre-emptive strike.
+
+	date = { day = 1 month = january year = 1628 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1630 }
+
+	action_a = {
+		name = "ACTIONNAME305002A" #We are stronger than the Mughals!
+		command = { type = war which = MOG }
+	}
+	action_b = {
+		name = "ACTIONNAME305002B" #What a fool, Banish him from court!
+		command = { type = revolt which = -2 }
+		command = { type = revoltrisk which = 60 value = 7 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 305003

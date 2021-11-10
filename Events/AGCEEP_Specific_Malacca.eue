@@ -1,0 +1,549 @@
+#Malacca (MLC)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1435-1495) Conquest of Sumatra
+event = {
+	id = 60005
+	trigger = {
+		OR = {
+			owned = { province = 680 data = -1 } #Riau
+			owned = { province = 681 data = -1 } #Jambi
+			owned = { province = 682 data = -1 } #Palembang
+		}
+	}
+	random = no
+	country = MLC
+	name = "EVENTNAME60005" #Conquest of Sumatra
+	desc = "EVENTHIST60005"
+	#-#The Sultanate of Malacca reached the zenith of its power during the 15th century. By conquest, Malacca occupied much of nearby Sumatra, the original home of Parameswara, founder of the sultanate.
+
+	date = { day = 1 month = march year = 1435 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1495 }
+
+	action_a = {
+		name = "ACTIONNAME60005A" #Let us expand our territory
+		command = { type = INF which = -1 value = 5000 }
+		command = { type = addcore which = 680 } #Riau
+		command = { type = addcore which = 681 } #Jambi
+		command = { type = addcore which = 682 } #Palembang
+	}
+}
+
+#(1444) Brother Against Brother
+event = {
+	id = 60007
+	random = no
+	country = MLC
+	name = "EVENTNAME60007" #Brother Against Brother
+	desc = "EVENTHIST60007"
+	#-#When Sri Maharaja died in 1444, he left behind two sons. His youngest son Sri Parameswara Dewa Shah, a Hindu, succeded the throne as he was the sole legitimate heir. His older half-brother became a Muslim and adopted the name Raja Kassim. Raja Kassim's uncle, Tun Ali, supported him as claimant to the throne and encouraged him to fight for his inheritance.
+
+	date = { day = 2 month = january year = 1444 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1445 }
+
+	action_a = {
+		name = "ACTIONNAME65152A" #Rebellion!
+		command = { type = revolt which = -1 }
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 12 value = 2 }
+		command = { type = religion which = hinduism }
+	}
+}
+
+#(1445-1446) The Sultanate of Malacca
+event = {
+	id = 227002
+	random = no
+	country = MLC
+	name = "EVENTNAME227002" #The Sultanate of Malacca
+	desc = "EVENTHIST227002"
+	#-#In 1445, Tun Ali led a coup d'etat that killed the reigning monarch. He placed his nephew, Raja Kassim on the throne. Raja Kassim took the name Sultan Muzaffar Shah and established Islam as the official relgion of Malacca. Although most of Malacca's previous rulers had been Muslims it was only during the reign of Muzaffar Shah that it became the offical religion.
+
+	date = { day = 1 month = january year = 1445 }
+	offset = 300
+	deathdate = { day = 1 month = january year = 1446 }
+
+	action_a = {
+		name = "ACTIONNAME227002A" #We are Sunni
+		command = { type = stability value = 1 }
+		command = { type = religion which = sunni }
+		command = { type = missionaries value = 3 }
+		command = { type = vp value = 10 }
+	}
+	action_b = {
+		name = "ACTIONNAME227002B" #Keep the Old Faith
+		command = { type = revolt which = -1 }
+		command = { type = ADM which = -2 value = 60 }
+		command = { type = stability value = -3 }
+		command = { type = vp value = -25 }
+	}
+}
+
+#(1456) Prime Minister Tun Perak - 1st term - Edited by Crook
+event = {
+	id = 60000
+	random = no
+	country = MLC
+	name = "EVENTNAME60000" #Prime Minister Tun Perak
+	desc = "EVENTHIST60000"
+	#-#Sultan Muzaffar Shah has married a daughter of a previous Bendahara Sriwa Raja, Tun Kudu, to win loyalty of her brother, Tun Perak, who was deeply respected by Malay subjects of the Sultan, and a man who had an ability, courage to build an Empire. To avoid an unrest and civil war, Sultan Muzaffar has offered to his current Tamil Bendahara, Tun Ali, to resign. The latter agreed, but demanded a heavy price: he wanted to marry Tun Kudu, a wife of the Sultan. Tun Kudu made the ultimate sacrifice, divorced the Sultan, and freed her brother to shape the Malcca's future for the next 42 years, and serve as Bendahara (Prime Minister) under four Sultans
+
+	date = { day = 1 month = march year = 1456 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1456 }
+
+	action_a = {
+		name = "ACTIONNAME60000A" #Appoint him
+		command = { type = stability value = 1 }
+		command = { type = domestic which = land value = -1 }
+		command = { type = galleys which = -1 value = 10 }
+		command = { type = naval value = 250 }
+		command = { type = ADM which = 2 value = 34 }
+		command = { type = MIL which = 2 value = 34 }
+	}
+}
+
+#(1458-1462) The Chinese Wedding Planner
+event = {
+	id = 60001
+	trigger = {
+		NOT = { war = { country = MLC country = CHI } }
+	}
+	random = no
+	country = MLC
+	name = "EVENTNAME60001" #The Chinese Wedding Planner
+	desc = "EVENTHIST60001"
+	#-#The Ming emissary Cheng Ho visits us once again. This time our Chinese guest brings us a special gift, the Princess Hang Li Po as the bride! With this marriage perhaps we may cement an eternal friendship with the Ming Empire.
+
+	date = { day = 1 month = april year = 1458 }
+	offset = 10
+	deathdate = { day = 1 month = april year = 1462 }
+
+	action_a = {
+		name = "ACTIONNAME60001A" #My dreams have been answered: a Chinese bride and a dowry too!
+		command = { type = dynastic which = CHI }
+		command = { type = relation which = CHI value = 50 }
+		command = { type = DIP which = 2 value = 36 }
+		command = { type = treasury value = 100 }
+	}
+	action_b = {
+		name = "ACTIONNAME60001B" #I have seen prettier concubines! Let's ask for better gifts!
+		command = { type = relation which = CHI value = -35 }
+		command = { type = treasury value = 250 }
+	}
+}
+
+#(1459) Prime Minister Tun Perak - 2nd term - Added by Crook
+event = {
+	id = 60009
+	random = no
+	country = MLC
+	name = "EVENTNAME60000" #Prime Minister Tun Perak
+	desc = "EVENTHIST60000"
+	#-#Sultan Muzaffar Shah has married a daughter of a previous Bendahara Sriwa Raja, Tun Kudu, to win loyalty of her brother, Tun Perak, who was deeply respected by Malay subjects of the Sultan, and a man who had an ability, courage to build an Empire. To avoid an unrest and civil war, Sultan Muzaffar has offered to his current Tamil Bendahara, Tun Ali, to resign. The latter agreed, but demanded a heavy price: he wanted to marry Tun Kudu, a wife of the Sultan. Tun Kudu made the ultimate sacrifice, divorced the Sultan, and freed her brother to shape the Malcca's future for the next 42 years, and serve as Bendahara (Prime Minister) under four Sultans
+
+	date = { day = 1 month = january year = 1459 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1459 }
+
+	action_a = {
+		name = "ACTIONNAME60000A" #Appoint him
+		command = { type = ADM which = 2 value = 225 }
+		command = { type = MIL which = 1 value = 225 }
+	}
+}
+
+#(1472) The traitor Hang Jebat
+event = {
+	id = 60002
+	trigger = {
+		leader = 088301 #Hang Jebat (MLC)
+	}
+	random = no
+	country = MLC
+	name = "EVENTNAME60002" #The traitor Hang Jebat
+	desc = "EVENTHIST60002"
+	#-#Our once-loyal general Hang Jebat has turned against us! Shall we call upon Hang Tuah to apprehend the traitor?
+
+	date = { day = 20 month = february year = 1472 }
+	offset = 5
+	deathdate = { day = 29 month = february year = 1472 }
+
+	action_a = {
+		name = "ACTIONNAME60002A" #Yes! Send Hang Tuah to apprehend the traitor!
+		command = { type = stability value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME60002B" #What traitor? I see no harm in forgiving this man
+		command = { type = stability value = -3 }
+		command = { type = revolt which = -1 }
+		command = { type = wakeleader which = 088302 } #Hang Jebat (MLC)
+	}
+	action_c = {
+		name = "ACTIONNAME60002C" #Perhaps we can buy back his loyalty?
+		command = { type = treasury value = -150 }
+		command = { type = revoltrisk value = 2 }
+		command = { type = wakeleader which = 088302 } #Hang Jebat (MLC)
+	}
+}
+
+#(1477) Prime Minister Tun Perak - 3rd term - Added by Crook
+event = {
+	id = 60010
+	random = no
+	country = MLC
+	name = "EVENTNAME60000" #Prime Minister Tun Perak
+	desc = "EVENTHIST60000"
+	#-#Sultan Muzaffar Shah has married a daughter of a previous Bendahara Sriwa Raja, Tun Kudu, to win loyalty of her brother, Tun Perak, who was deeply respected by Malay subjects of the Sultan, and a man who had an ability, courage to build an Empire. To avoid an unrest and civil war, Sultan Muzaffar has offered to his current Tamil Bendahara, Tun Ali, to resign. The latter agreed, but demanded a heavy price: he wanted to marry Tun Kudu, a wife of the Sultan. Tun Kudu made the ultimate sacrifice, divorced the Sultan, and freed her brother to shape the Malcca's future for the next 42 years, and serve as Bendahara (Prime Minister) under four Sultans
+
+	date = { day = 1 month = october year = 1477 }
+	offset = 30
+	deathdate = { day = 1 month = october year = 1477 }
+
+	action_a = {
+		name = "ACTIONNAME60000A" #Appoint him
+		command = { type = ADM which = 1 value = 123 }
+		command = { type = DIP which = 1 value = 123 }
+	}
+}
+
+#(1488) Prime Minister Tun Perak - 4th term - Added by Crook
+event = {
+	id = 60011
+	random = no
+	country = MLC
+	name = "EVENTNAME60000" #Prime Minister Tun Perak
+	desc = "EVENTHIST60000"
+	#-#Sultan Muzaffar Shah has married a daughter of a previous Bendahara Sriwa Raja, Tun Kudu, to win loyalty of her brother, Tun Perak, who was deeply respected by Malay subjects of the Sultan, and a man who had an ability, courage to build an Empire. To avoid an unrest and civil war, Sultan Muzaffar has offered to his current Tamil Bendahara, Tun Ali, to resign. The latter agreed, but demanded a heavy price: he wanted to marry Tun Kudu, a wife of the Sultan. Tun Kudu made the ultimate sacrifice, divorced the Sultan, and freed her brother to shape the Malcca's future for the next 42 years, and serve as Bendahara (Prime Minister) under four Sultans
+
+	date = { day = 1 month = january year = 1488 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1488 }
+
+	action_a = {
+		name = "ACTIONNAME60000A" #Appoint him
+		command = { type = ADM which = 1 value = 124 }
+		command = { type = DIP which = 1 value = 124 }
+		command = { type = domestic which = mercantilism value = 1 }
+	}
+}
+
+#(1498-1680) The Portuguese covet Malacca! -I-
+event = {
+	id = 60003
+	trigger = {
+		owned = { province = 677 data = -1 } #Malacca
+		OR = {
+			discovered = 434 #Oporto
+			discovered = 441 #Tago
+			discovered = 442 #Algarve
+		}
+		event = 18012 #POR: Commercial Conflict in the Indian Ocean
+		event = 260051 #POR: Discovery of the Straits of Malacca
+		OR = {
+			AND = {
+				owned = { province = 573 data = POR } #Cochin
+				control = { province = 573 data = POR } #Cochin
+			}
+			AND = {
+				owned = { province = 549 data = POR } #Goa
+				control = { province = 549 data = POR } #Goa
+			}
+		}
+		owned = { province = 678 data = -1 } #Johor
+		control = { province = 678 data = -1 } #Johor
+	}
+	random = no
+	country = MLC
+	name = "EVENTNAME60003" #The Portuguese covet Malacca
+	desc = "EVENTHIST60003"
+	#-#These Portuguese visitors envy the richness of our Kingdom. We cannot trust them.
+
+	date = { day = 1 month = january year = 1498 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1680 }
+
+	action_a = {
+		name = "ACTIONNAME60003A" #All their bases belong to us!
+		command = { type = casusbelli which = POR value = 600 }
+		command = { type = war which = POR }
+		command = { type = sleepevent which = 18104 } #POR: Sultan has bowed to our demands
+		command = { type = sleepevent which = 338274 } #Province_Specific*677: The Portuguese covet Malacca
+		command = { type = sleepevent which = 227003 } #MLC: The Portuguese covet Malacca -II-
+	}
+	action_b = {
+		name = "ACTIONNAME60003B" #Submit without a fight
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 24 value = 4 }
+		command = { type = capital which = 678 } #Johor
+		command = { type = provincetax which = 678 value = 2 } #Johor
+		command = { type = secedeprovince which = POR value = 677 } #Malacca
+		command = { type = independence which = PAK }
+		command = { type = removecore which = 681 } #Jambi
+		command = { type = removecore which = 682 } #Palembang
+		command = { type = sleepevent which = 60008 } #MLC: The Fall of Malacca
+		command = { type = sleepevent which = 18103 } #POR: Sultan has defied our demands
+		command = { type = sleepevent which = 338274 } #Province_Specific*677: The Portuguese covet Malacca
+		command = { type = sleepevent which = 227003 } #MLC: The Portuguese covet Malacca -II-
+	}
+}
+#(1498-1680) The Portuguese covet Malacca! -II-
+event = {
+	id = 227003
+	trigger = {
+		owned = { province = 677 data = -1 } #Malacca
+		OR = {
+			discovered = 434 #Oporto
+			discovered = 441 #Tago
+			discovered = 442 #Algarve
+		}
+		event = 18012 #POR: Commercial Conflict in the Indian Ocean
+		event = 260051 #POR: Discovery of the Straits of Malacca
+		OR = {
+			AND = {
+				owned = { province = 573 data = POR } #Cochin
+				control = { province = 573 data = POR } #Cochin
+			}
+			AND = {
+				owned = { province = 549 data = POR } #Goa
+				control = { province = 549 data = POR } #Goa
+			}
+		}
+		NOT = { countrysize = 2 }
+	}
+	random = no
+	country = MLC
+	name = "EVENTNAME60003" #The Portuguese covet Malacca
+	desc = "EVENTHIST60003"
+	#-#These Portuguese visitors envy the richness of our Kingdom. We cannot trust them.
+
+	date = { day = 1 month = january year = 1498 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1680 }
+
+	action_a = {
+		name = "ACTIONNAME60003A" #All their bases belong to us!
+		command = { type = casusbelli which = POR value = 600 }
+		command = { type = war which = POR }
+		command = { type = sleepevent which = 18104 } #POR: Sultan has bowed to our demands
+		command = { type = sleepevent which = 338274 } #Province_Specific*677: The Portuguese covet Malacca
+		command = { type = sleepevent which = 60003 } #MLC: The Portuguese covet Malacca -I-
+	}
+	action_b = {
+		name = "ACTIONNAME227003B" #Submit without a fight (End Game)
+		command = { type = sleepevent which = 60008 } #MLC: The Fall of Malacca
+		command = { type = sleepevent which = 18103 } #POR: Sultan has defied our demands
+		command = { type = sleepevent which = 338274 } #Province_Specific*677: The Portuguese covet Malacca
+		command = { type = sleepevent which = 60003 } #MLC: The Portuguese covet Malacca -I-
+		command = { type = trigger which = 260096 } #POR: Submission of Malacca
+	}
+}
+
+#(1500) Prime Minister Tun Mutahir
+event = {
+	id = 60012
+	random = no
+	country = MLC
+	name = "EVENTNAME60012" #Prime Minister Tun Mutahir
+	desc = "EVENTHIST60012"
+	#-#Tun Perak passed away in 1498, and was succeeded as Bendahara by his brother Tun Puteh, who died only 2 years later. Tun Mutahir was appointed next, thus achieving his goal of becoming a Bendahara, a position he was seeking since 1488. Malacca continued to flourish under his guidance, but the court was now thronged and dominated by Tamil merchants, ready to buy their way to royal favour. Their monopoly in trade made them despised by other traders, and Malay chiefs and commoners hated the arrogant and greedy 'Jawa PAKan' strutting like rulers. In 1510, Tun Mutahir was accused of plotting against the Sultan, and was executed.
+
+	date = { day = 1 month = january year = 1500 }
+
+	action_a = {
+		name = "ACTIONNAME60000A" #Appoint him
+		command = { type = ADM which = 2 value = 124 }
+		command = { type = DIP which = 1 value = 124 }
+		command = { type = stability value = -2 }
+		command = { type = domestic which = mercantilism value = 1 }
+		command = { type = trade value = -250 }
+		command = { type = infra value = 250 }
+		command = { type = inflation value = 6 }
+	}
+}
+
+#(1500-1820) The Fall of Malacca
+#Idea: Demetrios and Suleyman - Scripting by Havard
+event = {
+	id = 60008
+	trigger = {
+		owned = { province = 677 data = -1 } #Malacca
+		OR = {
+			control = { province = 677 data = POR }
+			control = { province = 677 data = HOL }
+			control = { province = 677 data = ENG }
+		}
+		owned = { province = 678 data = -1 } #Johor
+	}
+	random = no
+	country = MLC
+	name = "EVENTNAME60008" #The Fall of Malacca
+	desc = "EVENTHIST60008"
+	#-#Invading armies from Europe have captured our capital city! They are building fortifications and appear to be settling in for a long-term occupation. It may be more reasonable to set up a new capital in order to centralized the scattered administration that fled Malacca during the attack and to organize them so that we may plan its reconquest. The province of Johor in the south would make an admirable base from which to do this.
+
+	date = { day = 1 month = january year = 1500 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME60008A" #Move to Johor
+		command = { type = capital which = 678 } #Johor
+		command = { type = provincetax which = 678 value = 1 } #Johor
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = treasury value = -50 }
+		command = { type = independence which = PAK }
+		command = { type = removecore which = 681 } #Jambi
+		command = { type = removecore which = 682 } #Palembang
+	}
+	action_b = {
+		name = "ACTIONNAME60008B" #Stay in Malacca
+		command = { type = stability value = -3 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = sleepevent which = 437000 } #PAK: Independence of Perak
+		command = { type = removecore which = 681 } #Jambi
+		command = { type = removecore which = 682 } #Palembang
+	}
+}
+
+#(1545) St. Francis Xavier visits Malacca
+event = {
+	id = 60004
+	trigger = {
+		religion = sunni
+		exists = POR
+	}
+	random = no
+	country = MLC
+	name = "EVENTNAME60004" #St. Francis Xavier visits Malacca
+	desc = "EVENTHIST60004"
+	#-#A Portuguese holy man wishes to educate our people about his religion. Is this heresy?
+
+	date = { day = 1 month = june year = 1545 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1545 }
+
+	action_a = {
+		name = "ACTIONNAME60004A" #There is no other god but Allah! Get rid of the infidels
+		command = { type = relation which = POR value = -40 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = stability value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME60004B" #We remain faithful to Islam, but we shall tolerate their religion
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = relation which = POR value = 40 }
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk value = 3 }
+	}
+}
+
+#(1612) Tun Seri Lanang writes the Malay Annals
+event = {
+	id = 60006
+	random = no
+	country = MLC
+	name = "EVENTNAME60006" #Tun Seri Lanang writes the Malay Annals
+	desc = "EVENTHIST60006"
+	#-#In 1612, the Malay scholar Tun Seri Lanang began writing the classic literary work called the Sejarah Melayu (Malay Annals). The narrative is considered a literary masterpiece as well as an important historical document that chronicles a 600-year history of the region.
+
+	date = { day = 13 month = may year = 1612 }
+	offset = 20
+	deathdate = { day = 29 month = december year = 1612 }
+
+	action_a = {
+		name = "ACTIONNAME60006A" #The Malay Annals
+		command = { type = stability value = 1 }
+		command = { type = gainmanufactory which = -1 value = luxury }
+		command = { type = infra value = 300 }
+	}
+}
+
+#(1723-1820) Siak
+event = {
+	id = 227000
+	trigger = {
+		owned = { province = 680 data = -1 }
+		countrysize = 2
+		NOT = { exists = SIA }
+	}
+	random = no
+	country = MLC
+	name = "EVENTNAME227000" #Siak
+	desc = "EVENTHIST227000"
+	#-#The founder Siak, Sultan 'Abdu'l-Jalil Rahmat Shah alias Raja Kechil, was the putative posthumous child of Sultan Mahmud II of Johor. Although he had managed to seize the throne of Johor in 1718, his hold over the throne remained tenuous. Constant disputes forced him to remove his capital to Riau in 1719. Three years later, the Bugis princes defeated and expelled him from that place. He then moved his court to Siak. Stalemate over the contest for the throne, eventually resulted in Siak developing into a separate sultanate.
+
+	date = { day = 1 month = january year = 1723 }
+	offset = 100
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME227000A" #Let him setup on Riau
+		command = { type = independence which = SIA }
+		command = { type = stability value = 1 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = revoltrisk which = 120 value = -1 }
+		command = { type = sleepevent which = 227001 } #MLC: Siak
+		command = { type = removecore which = 680 } #Riau
+	}
+	action_b = {
+		name = "ACTIONNAME227000B" #Crush him!
+		command = { type = stability value = -3 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = revolt which = -2 }
+		command = { type = revoltrisk which = 60 value = 2 }
+		command = { type = sleepevent which = 227001 } #MLC: Siak
+	}
+	action_c = {
+		name = "ACTIONNAME227000C" #Become Siak
+		command = { type = flagname which = "" }
+		command = { type = country which = SIA }
+		command = { type = capital which = 680 } #Riau
+		command = { type = stability value = 2 }
+		command = { type = revoltrisk which = 120 value = -2 }
+		command = { type = sleepevent which = 227001 } #MLC: Siak
+	}
+}
+#(1723-1820) Siak
+event = {
+	id = 227001
+	trigger = {
+		owned = { province = 680 data = -1 }
+		control = { province = 680 data = -1 }
+		NOT = { countrysize = 2 }
+		NOT = { exists = SIA }
+	}
+	country = MLC
+	random = no
+	name = "EVENTNAME227001" #Siak
+	desc = "EVENTHIST227001"
+	#-#The founder Siak, Sultan 'Abdu'l-Jalil Rahmat Shah alias Raja Kechil, was the putative posthumous child of Sultan Mahmud II of Johor. Although he had managed to seize the throne of Johor in 1718, his hold over the throne remained tenuous. Constant disputes forced him to remove his capital to Riau in 1719. Three years later, the Bugis princes defeated and expelled him from that place. He then moved his court to Siak. Stalemate over the contest for the throne, eventually resulted in Siak developing into a separate sultanate.
+
+	date = { day = 1 month = january year = 1723 }
+	offset = 100
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME227001A" #Become Siak
+		command = { type = flagname which = "" }
+		command = { type = country which = SIA }
+		command = { type = capital which = 680 } #Riau
+		command = { type = stability value = 2 }
+		command = { type = revoltrisk which = 120 value = -2 }
+		command = { type = sleepevent which = 227000 } #MLC: Siak
+	}
+	action_b = {
+		name = "ACTIONNAME227001B" #Crush him!
+		command = { type = stability value = -3 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = revolt which = -2 }
+		command = { type = revoltrisk which = 60 value = 2 }
+		command = { type = sleepevent which = 227000 } #MLC: Siak
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 227004

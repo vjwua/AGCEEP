@@ -1,0 +1,383 @@
+#Livonian Order (LIV)
+
+#See AGCEEP_Alt_Germany.eue for KoG Alternative events
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1560) Livonan Order reacts to Poland owning Prussia
+#Covers both Ducal Prussia and Teutonic Order
+event = {
+	id = 381000
+	trigger = {
+		owned = { province = 290 data = POL } #Prussia
+		NOT = {
+			exists = LAT
+			exists = PRU
+		}
+	}
+	random = no
+	country = LIV
+	name = "EVENTNAME381000" #Poland owns Prussia
+	desc = "EVENTHIST381000"
+	#-#The Teutonic Order was a always the main enemy of Poland. In 1410 at Tannenberg Wladyslaw Jagiello won a tremendous victory over the knights but failed to drive them out of Prussia. However, his successors have managed to accomplish that and Prussia is now in polish hands. What shall we do?
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 60
+	deathdate = { day = 1 month = january year = 1660 }
+
+	action_a = {
+		name = "ACTIONNAME381000A" #We must regain these lands!
+		command = { type = relation which = POL value = -200 }
+		command = { type = relation which = BRA value = 100 }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = addcore which = 289 } #Memel
+		command = { type = addcore which = 290 } #Prussia
+		command = { type = casusbelli which = POL value = 60 }
+		command = { type = INF which = -2 value = 5000 } #Help from Germany
+		command = { type = CAV which = -2 value = 5000 } #Help from Germany
+		command = { type = treasury value = 200 } #Help from Germany
+	}
+	action_b = {
+		name = "ACTIONNAME381000B" #We have no interest in it
+		command = { type = relation which = POL value = 300 }
+		command = { type = relation which = BRA value = -50 }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = casusbelli which = POL value = 60 }
+		command = { type = treasury value = 100 } #Help from Germany
+	}
+}
+
+#(1524-1540) Albert Hohenzollern Secularizes Prussia -I-
+event = {
+	id = 381001
+	trigger = {
+		owned = { province = 290 data = -1 } #Prussia
+		exists = POL
+		NOT = {
+			exists = LAT
+		}
+	}
+	random = no
+	country = LIV
+	name = "EVENTNAME381001" #Secularization of Prussia
+	desc = "EVENTHIST381001"
+	#-#Through the secularization (1525) of the domain of the Teutonic Order by the Grand Master Albert of Brandenburg, the domain became a hereditary duchy under Polish suzerainty, ruled by a branch of the Hohenzollern dynasty of Brandenburg.
+
+	date = { day = 1 month = january year = 1524 }
+	offset = 60
+	deathdate = { day = 1 month = january year = 1540 }
+
+	action_a = {
+		name = "ACTIONNAME381001A" #We can't stop him
+		command = { type = provincereligion which = 290 value = protestant } #Prussia
+		command = { type = provincereligion which = 289 value = protestant } #Memel
+		command = { type = independence which = LAT }
+		command = { type = removecore which = 289 } #Memel
+		command = { type = removecore which = 290 } #Prussia
+		command = { type = trigger which = 381002 } #LIV: Consequences of the secularization of Prussia
+	}
+}
+#(1524-1540) Consequences of the secularization of Prussia
+event = {
+	id = 381002 #triggered by LIV_381001
+	random = no
+	country = LIV
+	name = "EVENTNAME381002" #Consequences of the secularization of Prussia
+	desc = "EVENTHIST381001"
+	#-#Through the secularization (1525) of the domain of the Teutonic Order by the Grand Master Albert of Brandenburg, the domain became a hereditary duchy under Polish suzerainty, ruled by a branch of the Hohenzollern dynasty of Brandenburg.
+
+	action_a = {
+		name = "OK"
+		command = { type = casusbelli which = LAT value = 60 }
+		command = { type = relation which = LAT value = -200 }
+		command = { type = sleepevent which = 209012 } #LAT: The Fate of the Teutonic Order
+		command = { type = trigger which = 209008 } #LAT: Secularization of Prussia
+	}
+}
+#(1524-1540) Albert Hohenzollern Secularizes Prussia -II-
+event = {
+	id = 381003 #triggered by LAT_209012
+	random = no
+	country = LIV
+	name = "EVENTNAME381001" #Secularization of Prussia
+	desc = "EVENTHIST381001"
+	#-#Through the secularization (1525) of the domain of the Teutonic Order by the Grand Master Albert of Brandenburg, the domain became a hereditary duchy under Polish suzerainty, ruled by a branch of the Hohenzollern dynasty of Brandenburg.
+
+	action_a = {
+		name = "ACTIONNAME381001A" #We can't stop him
+		command = { type = provincereligion which = 289 value = protestant } #Memel
+		command = { type = removecore which = 289 } #Memel
+		command = { type = removecore which = 290 } #Prussia
+		command = { type = casusbelli which = PRU value = 60 }
+		command = { type = relation which = PRU value = -200 }
+		command = { type = secedeprovince which = PRU value = 289 } #Memel
+	}
+}
+
+#(1560-1590) The Fate of the Livonian Order
+#Raudex-EEP version
+event = {
+	id = 3620
+	trigger = {
+		exists = POL
+		exists = SWE
+		exists = DAN
+		exists = RUS
+		atwar = no
+		owned = { province = 283 data = -1 } #Kurland
+		control = { province = 283 data = -1 } #Kurland
+		NOT = { exists = KUR }
+		NOT = {
+			AND = {
+				owned = { province = 282 data = -1 } #Livland
+				owned = { province = 283 data = -1 } #Kurland
+				owned = { province = 276 data = -1 } #Estland
+				owned = { province = 275 data = -1 } #Ingermanland
+				religion = catholic
+			}
+		}
+	}
+	random = no
+	country = LIV
+	name = "EVENTNAME3620" #The Fate of the Livonian Order
+	desc = "EVENTHIST3620"
+	#-#Following Russian attacks in the 1550's, and out of collapse of the Livonian Order, Master Gotthard Ketteler salvaged Kurland from the Order's territory as a secular duchy under Polish sovereignty. This vassalage brought Poland into conflict with Russia, allied with Denmark and started the 1563-1570 War of the Three Crowns against Sweden. At the 1582 armistice of Jan Zapolski, Russia was beaten, gave up Livland and Polotsk and Sweden won the Baltic province of Estland while Livland and Kurland remained under Polish control. We may transform into Kurland and give Livland and Estland away in any of the two agreements, or we may revert to Catholicism and again grab the Armed Glove of the True Faith.
+
+	date = { day = 1 month = january year = 1560 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1590 }
+
+	action_a = {
+		name = "ACTIONNAME3620A" #Polish-Swedish Agreement
+		command = { type = removecore which = 276 } #Estland
+		command = { type = removecore which = 282 } #Livland
+		command = { type = removecore which = 275 } #Ingermanland
+		command = { type = secedeprovince which = SWE value = 276 } #Estland
+		command = { type = secedeprovince which = SWE value = 275 } #Ingermanland
+		command = { type = secedeprovince which = SWE value = 252 } #Småland
+		command = { type = secedeprovince which = SWE value = 253 } #Västergötland
+		command = { type = secedeprovince which = SWE value = 257 } #Bergslagen
+		command = { type = secedeprovince which = SWE value = 260 } #Lappland
+		command = { type = secedeprovince which = SWE value = 263 } #Österbotten
+		command = { type = secedeprovince which = SWE value = 264 } #Tavastland
+		command = { type = secedeprovince which = SWE value = 265 } #Nyland
+		command = { type = secedeprovince which = SWE value = 273 } #Savolaks
+		command = { type = secedeprovince which = SWE value = 341 } #Västerbotten
+		command = { type = secedeprovince which = SWE value = 342 } #Finland
+		command = { type = secedeprovince which = SWE value = 1469 } #Gästrikland
+		command = { type = secedeprovince which = SWE value = 262 } #Kola
+		command = { type = secedeprovince which = SWE value = 266 } #Kexholm
+		command = { type = secedeprovince which = SWE value = 267 } #Olonets
+		command = { type = secedeprovince which = SWE value = 269 } #Arkhangelsk
+		command = { type = secedeprovince which = POL value = 274 } #Novgorod
+		command = { type = secedeprovince which = SWE value = 1470 } #Karelia
+		command = { type = secedeprovince which = SWE value = 251 } #Skåne
+		command = { type = secedeprovince which = SWE value = 307 } #Sjælland
+		command = { type = secedeprovince which = SWE value = 308 } #Gotland
+		command = { type = secedeprovince which = SWE value = 309 } #Jylland
+		command = { type = secedeprovince which = SWE value = 255 } #Østlandet
+		command = { type = secedeprovince which = SWE value = 256 } #Bergenshus
+		command = { type = secedeprovince which = SWE value = 258 } #Trøndelag
+		command = { type = secedeprovince which = SWE value = 259 } #Narvik
+		command = { type = secedeprovince which = SWE value = 261 } #Finnmark
+		command = { type = secedeprovince which = SWE value = 381 } #Jämtland
+		command = { type = secedeprovince which = SWE value = 1466 } #Iceland
+		command = { type = secedeprovince which = POL value = 278 } #Tver
+		command = { type = secedeprovince which = POL value = 277 } #Pskov
+		command = { type = secedeprovince which = POL value = 292 } #Podlasia
+		command = { type = secedeprovince which = POL value = 291 } #Masovia
+		command = { type = secedeprovince which = POL value = 297 } #Podolia
+		command = { type = secedeprovince which = POL value = 298 } #Galizien
+		command = { type = secedeprovince which = POL value = 299 } #Krakow
+		command = { type = secedeprovince which = POL value = 300 } #Wielkopolska
+		command = { type = secedeprovince which = POL value = 303 } #Poznan
+		command = { type = secedeprovince which = POL value = 279 } #Tula
+		command = { type = secedeprovince which = POL value = 280 } #Welikia
+		command = { type = secedeprovince which = POL value = 284 } #Belarus
+		command = { type = secedeprovince which = POL value = 286 } #Kursk
+		command = { type = secedeprovince which = POL value = 287 } #Mozyr
+		command = { type = secedeprovince which = POL value = 288 } #Lithuania
+		command = { type = secedeprovince which = POL value = 293 } #Volyn
+		command = { type = secedeprovince which = POL value = 294 } #Chernigov
+		command = { type = secedeprovince which = POL value = 295 } #Ukraina
+		command = { type = secedeprovince which = POL value = 296 } #Jedisan
+		command = { type = secedeprovince which = POL value = 450 } #Belgorod
+		command = { type = secedeprovince which = POL value = 461 } #Poltava
+		command = { type = secedeprovince which = POL value = 462 } #Krementjug
+		command = { type = secedeprovince which = POL value = 268 } #Vologda
+		command = { type = secedeprovince which = POL value = 270 } #Moscow
+		command = { type = secedeprovince which = POL value = 272 } #Nizhgorod
+		command = { type = secedeprovince which = POL value = 282 } #Livland
+		command = { type = secedeprovince which = POL value = 281 } #Polotsk
+		command = { type = flagname which = "" }
+		command = { type = country which = KUR }
+		command = { type = treasury value = 500 }
+		command = { type = stability value = 6 }
+		command = { type = independence which = PRU }
+		command = { type = independence which = POM }
+		command = { type = trigger which = 3470 } #POL: The Fate of the Livonian Order
+		command = { type = trigger which = 3220 } #SWE: The Fate of the Livonian Order
+		command = { type = trigger which = 3290 } #DAN: The Fate of the Livonian Order
+		command = { type = trigger which = 3407 } #RUS: The Fate of the Livonian Order
+		command = { type = sleepevent which = 40132 } #LIV: Victory in the Livonian War
+	}
+	action_b = {
+		name = "ACTIONNAME3620B" #Russo-Danish Agreement
+		command = { type = removecore which = 276 } #Estland
+		command = { type = removecore which = 282 } #Livland
+		command = { type = removecore which = 275 } #Ingermanland
+		command = { type = secedeprovince which = RUS value = 276 } #Estland
+		command = { type = secedeprovince which = RUS value = 275 } #Ingermanland
+		command = { type = secedeprovince which = DAN value = 282 } #Livland
+		command = { type = secedeprovince which = DAN value = 281 } #Polotsk
+		command = { type = secedeprovince which = DAN value = 252 } #Småland
+		command = { type = secedeprovince which = DAN value = 253 } #Västergötland
+		command = { type = secedeprovince which = DAN value = 257 } #Bergslagen
+		command = { type = secedeprovince which = DAN value = 260 } #Lappland
+		command = { type = secedeprovince which = DAN value = 263 } #Österbotten
+		command = { type = secedeprovince which = DAN value = 264 } #Tavastland
+		command = { type = secedeprovince which = DAN value = 265 } #Nyland
+		command = { type = secedeprovince which = DAN value = 273 } #Savolaks
+		command = { type = secedeprovince which = DAN value = 341 } #Västerbotten
+		command = { type = secedeprovince which = DAN value = 342 } #Finland
+		command = { type = secedeprovince which = DAN value = 1469 } #Gästrikland
+		command = { type = secedeprovince which = RUS value = 262 } #Kola
+		command = { type = secedeprovince which = RUS value = 266 } #Kexholm
+		command = { type = secedeprovince which = RUS value = 267 } #Olonets
+		command = { type = secedeprovince which = RUS value = 269 } #Arkhangelsk
+		command = { type = secedeprovince which = RUS value = 274 } #Novgorod
+		command = { type = secedeprovince which = RUS value = 1470 } #Karelia
+		command = { type = secedeprovince which = DAN value = 251 } #Skåne
+		command = { type = secedeprovince which = DAN value = 254 } #Svealand
+		command = { type = secedeprovince which = DAN value = 308 } #Gotland
+		command = { type = secedeprovince which = DAN value = 309 } #Jylland
+		command = { type = secedeprovince which = DAN value = 255 } #Østlandet
+		command = { type = secedeprovince which = DAN value = 256 } #Bergenshus
+		command = { type = secedeprovince which = DAN value = 258 } #Trøndelag
+		command = { type = secedeprovince which = DAN value = 259 } #Narvik
+		command = { type = secedeprovince which = DAN value = 261 } #Finnmark
+		command = { type = secedeprovince which = DAN value = 381 } #Jämtland
+		command = { type = secedeprovince which = DAN value = 1466 } #Iceland
+		command = { type = secedeprovince which = RUS value = 297 } #Podolia
+		command = { type = secedeprovince which = RUS value = 298 } #Galizien
+		command = { type = secedeprovince which = RUS value = 299 } #Krakow
+		command = { type = secedeprovince which = RUS value = 300 } #Wielkopolska
+		command = { type = secedeprovince which = RUS value = 303 } #Poznan
+		command = { type = secedeprovince which = RUS value = 279 } #Tula
+		command = { type = secedeprovince which = RUS value = 280 } #Welikia
+		command = { type = secedeprovince which = RUS value = 284 } #Belarus
+		command = { type = secedeprovince which = RUS value = 286 } #Kursk
+		command = { type = secedeprovince which = RUS value = 287 } #Mozyr
+		command = { type = secedeprovince which = RUS value = 288 } #Lithuania
+		command = { type = secedeprovince which = RUS value = 293 } #Volyn
+		command = { type = secedeprovince which = RUS value = 294 } #Chernigov
+		command = { type = secedeprovince which = RUS value = 295 } #Ukraina
+		command = { type = secedeprovince which = RUS value = 296 } #Jedisan
+		command = { type = secedeprovince which = RUS value = 450 } #Belgorod
+		command = { type = secedeprovince which = RUS value = 461 } #Poltava
+		command = { type = secedeprovince which = RUS value = 462 } #Krementjug
+		command = { type = secedeprovince which = RUS value = 268 } #Vologda
+		command = { type = secedeprovince which = RUS value = 270 } #Moscow
+		command = { type = secedeprovince which = RUS value = 272 } #Nizhgorod
+		command = { type = flagname which = "" }
+		command = { type = country which = KUR }
+		command = { type = treasury value = 500 }
+		command = { type = stability value = 6 }
+		command = { type = independence which = PRU }
+		command = { type = independence which = POM }
+		command = { type = trigger which = 3471 } #POL: The Fate of the Livonian Order
+		command = { type = trigger which = 3221 } #SWE: The Fate of the Livonian Order
+		command = { type = trigger which = 3291 } #DAN: The Fate of the Livonian Order
+		command = { type = trigger which = 3408 } #RUS: The Fate of the Livonian Order
+		command = { type = sleepevent which = 40132 } #LIV: Victory in the Livonian War
+	}
+	action_c = {
+		name = "ACTIONNAME3620C" #Die-Hard Independence
+		command = { type = stability value = -3 }
+		command = { type = treasury value = -500 }
+		command = { type = religion which = catholic }
+		command = { type = domestic which = ARISTOCRACY value = 3 }
+		command = { type = domestic which = INNOVATIVE value = -3 }
+		command = { type = domestic which = SERFDOM value = 3 }
+		command = { type = trigger which = 3472 } #POL: The Fate of the Livonian Order
+		command = { type = trigger which = 3222 } #SWE: The Fate of the Livonian Order
+		command = { type = trigger which = 3292 } #DAN: The Fate of the Livonian Order
+		command = { type = trigger which = 3409 } #RUS: The Fate of the Livonian Order
+	}
+}
+
+#(1560-1570) Victory in Livonian Wars - Ahistorical
+#EEP-Dmitriy-corrected by Crook
+event = {
+	id = 40132
+	trigger = {
+		owned = { province = 282 data = -1 } #Livland
+		owned = { province = 283 data = -1 } #Kurland
+		owned = { province = 276 data = -1 } #Estland
+		owned = { province = 275 data = -1 } #Ingermanland
+		atwar = no
+		religion = catholic
+		NOT = { exists = KUR } #just in case
+	}
+	random = no
+	country = LIV
+	name = "EVENTNAME40132" #Victory in the Livonian War
+	desc = "EVENTHIST40132"
+	#-#Our brave troops have stopped the onslaught of the Russian hordes. Our Kingdom is at peace again, and no longer in jeopardy of being swallowed by our neighbors. Should we direct our resources towards internal improvement, or pursue aggressive foreign policy and try to enlarge our relam at the expense of our neighbors?
+
+	date = { day = 1 month = january year = 1560 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1570 }
+
+	action_a = {
+		name = "ACTIONNAME40132A" #Invest in internal development
+		command = { type = infra value = 1000 }
+		command = { type = trade value = 1000 }
+		command = { type = domestic which = mercantilism value = -1 }
+		command = { type = treasury value = -300 } #Modernization expenditures
+		command = { type = ADM which = 3 value = 60 }
+		command = { type = relation which = POL value = 25 }
+		command = { type = relation which = LIT value = 50 }
+		command = { type = relation which = SWE value = 25 }
+		command = { type = relation which = RUS value = 100 }
+		command = { type = population which = -2 value = 2000 }
+		command = { type = provincetax which = -2 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = gainmanufactory which = -2 value = luxury }
+		command = { type = vp value = 200 }
+	}
+	action_b = {
+		name = "ACTIONNAME40132B" #Pursue aggressive foreign policy
+		command = { type = land value = 1000 }
+		command = { type = naval value = 250 }
+		command = { type = treasury value = -1000 }
+		command = { type = stability value = -2 }
+		command = { type = addcore which = 281 } #Polotsk
+		command = { type = addcore which = 277 } #Pskov
+		command = { type = addcore which = 302 } #Hinterpommern
+		command = { type = add_countryculture which = baltic }
+		command = { type = MIL which = 3 value = 60 }
+		command = { type = domestic which = offensive value = 2 }
+		command = { type = domestic which = land value = 1 }
+		command = { type = relation which = LIT value = -150 }
+		command = { type = relation which = POL value = -50 }
+		command = { type = relation which = PSK value = -200 }
+		command = { type = relation which = RUS value = -50 }
+		command = { type = relation which = SWE value = -50 }
+		command = { type = relation which = POM value = -200 }
+		command = { type = casusbelli which = LIT value = 60 }
+		command = { type = casusbelli which = POL value = 60 }
+		command = { type = casusbelli which = PSK value = 60 }
+		command = { type = casusbelli which = RUS value = 60 }
+		command = { type = casusbelli which = SWE value = 60 }
+		command = { type = casusbelli which = POM value = 60 }
+		command = { type = CAV which = -2 value = 7000 }
+		command = { type = provincemanpower which = -2 value = 1 }
+		command = { type = gainbuilding which = -2 value = barrack }
+		command = { type = vp value = 200 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 381004

@@ -1,0 +1,165 @@
+#Tver (TVE)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1520) Tver contests Moscow
+event = {
+	id = 302015
+	trigger = {
+		countrysize = 4
+		exists = MOS
+		NOT = {
+			exists = RUS
+			event = 3586 #TVE: The Empire of Russia
+		}
+	}
+	random = no
+	country = TVE
+	name = "EVENTNAME302015" #Tver contests Moscow
+	desc = "EVENTHIST302015"
+	#-#For a century, Tver and Moscow were bitter rivals. Muscovy gained the aid of the khans and emerged victorious. Bitter hartred continued, and Tver was always the first to side with Moscow's enemies. As the time went on and Dimitry Donskoy secured Muscovite hereditary rights on the grand ducal title, Tver, small and weak, slowly became dependant from it's former rival, while the dukes were degraded to Moscow's stateholders. If Tver regained her glory, it would take revenge on the Muscovites. Or wouldn't it?
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1520 }
+
+	action_a = {
+		name = "ACTIONNAME302015A" #Tver is the Grand Duchy
+		command = { type = vp value = 20 }
+		command = { type = stability value = 2 }
+		command = { type = breakvassal which = MOS }
+		command = { type = relation which = MOS value = -150 }
+		command = { type = relation which = LIT value = 75 }
+		command = { type = relation which = POL value = 50 }
+		command = { type = relation which = STE value = 50 }
+		command = { type = relation which = KAZ value = 50 }
+		#command = { type = AI which = "Tver_warlike.ai" }
+	}
+	action_b = {
+		name = "ACTIONNAME302015B" #The besieged Christianity can ill-afford our feud
+		command = { type = stability value = 1 }
+		command = { type = relation which = MOS value = 50 }
+		command = { type = badboy value = -1 }
+	}
+}
+
+#(1427-1430) Agreement with Lithuania
+event = {
+	id = 40091
+	trigger = {
+		event = 233003
+		event = 40095
+	}
+	random = no
+	country = TVE
+	name = "EVENTNAME40091" #Agreement with Lithuania
+	desc = "EVENTHIST40091"
+	#-#In 1427, during the instability following the death of Vasily I and struggle between Yury and Vasily II, prince Boris of Tver rightly saw the need to make an agreement of friendship and aid with Lithuania. Boris promised to help and stand by Vytautas in all his actions, which he did in 1428 by sending his troops to help Lithuanians in their war against Novgorod. Vytautas, in turn, promised to defend Tver against common enemies, and not to interfere in internal affairs of Tver. The agreement became pretty much useless after the death of Vytautas and an onset of a civil war in Lithuania.
+
+	date = { day = 1 month = january year = 1427 }
+	offset = 300
+	deathdate = { day = 1 month = january year = 1430 }
+
+	action_a = {
+		name = "ACTIONNAME40091A" #Sign agreement with Lithuania
+		command = { type = relation which = LIT value = 25 }
+		command = { type = relation which = MOS value = -25 }
+		command = { type = stability value = 1 }
+		command = { type = breakvassal which = MOS }
+	}
+	action_b = {
+		name = "ACTIONNAME40091B" #Remain loyal to Muscovy
+		command = { type = relation which = MOS value = 25 }
+		command = { type = relation which = LIT value = -25 }
+		command = { type = sleepevent which = 210025 } #LIT: Tver accepts the agreement
+		command = { type = sleepevent which = 210027 } #LIT: Consequences of the agreement with Tver
+	}
+}
+
+#(1427-1430) Consequences of the agreement with Lithuania
+event = {
+	id = 302000 #triggered by LIT_210027
+	random = no
+	country = TVE
+	name = "EVENTNAME302000" #Consequences of the agreement with Lithuania
+	desc = "EVENTHIST210025"
+	#-#After signing the agreement with Lithuania, Principalitry of Tver was obliged to leave all other alliances and formally join the alliance with its new partner.
+
+	action_a = {
+		name = "OK"
+		command = { type = breakvassal which = LIT } #break vassalage from LIT_210025
+		command = { type = stability value = 3 } #remove the effects of breaking vassalage
+	}
+}
+
+#(1452-1454) Tver
+event = {
+	id = 40080 #triggered by MOS_40079 A
+	random = no
+	country = TVE
+	name = "EVENTNAME40088" #Submission to Muscovy
+	desc = "EVENTHIST40079"
+	#-#After defeating Shemiaka and finally disposing of him in 1453, Vasily II turned his attention to principalities of Ryazan and Tver. Grand Prince of Tver submitted without much urging, by marrying his daugther to future Russian czar Ivan III and recognizing Muscovy Grand Duke as his suzerene. Grand Prince of Ryazan sent his 8 year old son to be brought up at Muscovy court, while Muscovian governors were sent to rule Ryazan in his place in 1456.
+
+	action_a = {
+		name = "ACTIONNAME40080A" #Agree to become vassal
+		command = { type = dynastic which = MOS }
+		command = { type = relation which = LIT value = -30 }
+		command = { type = breakvassal which = KAZ }
+		command = { type = breakvassal which = STE }
+		command = { type = breakvassal which = POL }
+		command = { type = breakvassal which = LIT }
+		command = { type = breakvassal which = SWE }
+		command = { type = breakvassal which = LAT }
+		command = { type = stability value = 3 }
+		command = { type = trigger which = 40081 } #MOS: Tver agrees to become Muscovy's vassal
+	}
+	action_b = {
+		name = "ACTIONNAME40080B" #Refuse the demands
+		command = { type = stability value = -2 }
+		command = { type = relation which = MOS value = -50 }
+		command = { type = trigger which = 40082 } #MOS: Tver refuses to become Muscovy's vassal
+	}
+}
+
+#(1480-1820) The Empire of Russia
+event = {
+	id = 3586
+	trigger = {
+		owned = { province = 279 data = -1 } #Moscow/Tula
+		control = { province = 279 data = -1 } #Moscow/Tula
+		owned = { province = 271 data = -1 } #Vladimir
+		owned = { province = 278 data = -1 } #Tver
+		OR = {
+			owned = { province = 274 data = -1 } #Novgorod
+			owned = { province = 277 data = -1 } #Pskov
+			owned = { province = 448 data = -1 } #Ryazan
+		}
+		NOT = { exists = RUS }
+		atwar = no
+	}
+	random = no
+	country = TVE
+	name = "EVENTNAME40010" #The Empire of Russia
+	desc = "EVENTHIST3582"
+	#-#Historically, in the 16th century the Roman Empire of Constantinople was long gone and its revival viewed as impossible. The Orthodox Faith never had a head figure like the Pope of the Catholic Faith. It however was mostly guided from Constantinople by the Patriarch there. As the Sunni Muslim Ottomans used the Patriarchs hostage-like situation for there own political gains many Orthodox countries felt appalled and started to loosen the chains of tradition. There had not existed a country as mighty as the Byzantines until...Russia was formed. Russia was created from the notion of full control of all those orthodox people that once had been Christianized from Kiev. This together with the fact that there was only one Orthodox country powerful enough to take up the mantle of the fallen Byzantines made the solution perfect and, thus the Greatest of Princedoms changed into the Empire of Russia.
+
+	date = { day = 1 month = january year = 1480 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME40010A" #Become the Third Rome
+		command = { type = vp value = 200 }
+		command = { type = stability value = 2 }
+		command = { type = capital which = 279 } #Tula
+		command = { type = population which = 279 value = 3000 } #Tula
+		command = { type = flagname which = "" }
+		command = { type = country which = RUS }
+		#command = { type = AI which = "russia1.ai" }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 302001-302014 - next: 302016

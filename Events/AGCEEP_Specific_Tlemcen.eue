@@ -1,0 +1,709 @@
+#Tlemcen (XHO)
+
+#See AGCEEP_Alt_Iberia.eue for Alternative events involving Portugal
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1439) Tribal unrest
+#by Fodoron
+event = {
+	id = 332009
+	trigger = {
+		atwar = no
+	}
+	random = no
+	country = XHO
+	name = "EVENTNAME332009" #Tribal unrest
+	desc = "EVENTHIST332009"
+	#-#Tlemcen was plagued with tribal unrest. It was composed of a very mixed population. The majority was Berber from the Zanata group, whether agricultural or stockbreeding, but the Arab tribes, mostly nomadic, held a disproportionate military power, specially the powerful Banu Hilal Bedouins. The Berber emir had only real power over the cities, and given the lack of hereditary legitimacy in Muslim countries, dynastic feuds soon turned into inter-tribal civil wars. The result of all this infighting was a lack of manpower to resist her neighbour's aggressions.
+
+	date = { day = 0 month = december year = 1419 }
+	offset = 1500
+	deathdate = { day = 0 month = december year = 1439 }
+
+	action_a = {
+		name = "ACTIONNAME332009A" #Rebellion! Close the gates
+		command = { type = stability value = -3 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -3 }
+		command = { type = manpower value = -5 }
+	}
+}
+
+#(1420-1550) Refugees from Granada
+#by Fodoron
+event = {
+	id = 332013
+	trigger = {
+		NOT = { exists = GRA }
+	}
+	random = no
+	country = XHO
+	name = "EVENTNAME332013" #Refugees from Granada
+	desc = "EVENTHIST332013"
+	#-#When Granada fell, Muslims were allowed to stay and keep their religion. However, many between the nobles and rich decided that they did not want to live under Christian masters and left. Tlemcen was the destination of the Muslim nobility from Almeria. After the edict of Jewish expulsion, some Jews also chose to come to Oran and Tlemcen, establishing communities there and increasing the prosperity of the area.
+
+	date = { day = 0 month = january year = 1420 }
+	offset = 100
+	deathdate = { day = 0 month = january year = 1550 }
+
+	action_a = {
+		name = "WELCOME"
+		command = { type = population which = 735 value = 100 } #Atlas (represents Tlemcen)
+		command = { type = trade value = 200 }
+		command = { type = treasury value = 50 }
+	}
+}
+
+#(1424) Hafsid invasion
+#by Fodoron
+event = {
+	id = 332006
+	trigger = {
+		NOT = {
+			vassal = { country = TUN country = XHO }
+			vassal = { country = XHO country = TUN }
+		}
+	}
+	random = no
+	country = XHO
+	name = "EVENTNAME332006" #Hafsid invasion
+	desc = "EVENTHIST332006"
+	#-#The Zayyanid or Abdalwadid Berber dynasty in Tlemcen had managed to inherit the central part of the Maghreb from the Almohads. They were neither rich nor powerful, but managed to prosper with the trade routes from the interior to the coast, where Aragon took the slaves and gold to the Italian ports. However they were constantly attacked by the Banu Marinids of Morocco. When the Marinids were substituted by the weaker Wattasids, Tlemcen was no longer at risk of being annexed by Morocco, but they were left in a state of extreme weakness, and ridden with problems with the nomadic Arab tribes inside the Kingdom, that were never under control. Taking advantage of their weakness, the Hafsids of Tunis took their turn at beating them. In 1424, Abu Faris Abd al-Aziz invaded Tlemcen, and after dethroning Abu Malik Abd al-Wahid, substituted him with Abu Abd Allah Muhammad, as his vassal.
+
+	date = { day = 0 month = january year = 1424 }
+	offset = 150
+	deathdate = { day = 0 month = december year = 1424 }
+
+	action_a = {
+		name = "ACTIONNAME332006A" #Accept Tunis suzerainty
+		command = { type = stability value = -1 }
+		command = { type = relation which = MOR value = -50 }
+		command = { type = relation which = TUN value = 400 }
+		command = { type = trigger which = 300002 } #TUN: Tlemcen submits
+	}
+	action_b = {
+		name = "ACTIONNAME332006B" #Reject Tunis suzerainty
+		command = { type = stability value = -3 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = relation which = TUN value = -50 }
+		command = { type = trigger which = 300003 } #TUN: Tlemcen resists
+		command = { type = sleepevent which = 332007 } #XHO: Civil war
+	}
+}
+
+#(1426-1428) Civil war
+#by Fodoron
+event = {
+	id = 332007
+	random = no
+	country = XHO
+	name = "EVENTNAME332007" #Civil war
+	desc = "EVENTHIST332007"
+	#-#Abu Malik Abd al-Wahid did not accept the situation, and gained the support of the most powerful Arab tribe, the Banu Rashid to recover his throne in 1427. It was only for a short time. Two years later with a usual shifting of alliances due to more promises, Abu Abd Allah Muhammad was back in the throne and Abu Malik Abd al-Wahid was dead. But his brother Abu l'Abbas Ahmad managed finally to win the Kingdom and restored peace in 1430.
+
+	date = { day = 0 month = january year = 1426 }
+	offset = 300
+	deathdate = { day = 0 month = december year = 1428 }
+
+	action_a = {
+		name = "ACTIONNAME332007A" #Death to the usurper
+		command = { type = stability value = -3 }
+		command = { type = relation which = TUN value = -50 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -3 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -3 }
+	}
+}
+
+#(1435-1505) Embassy to the Catholic Kings
+#by Fodoron
+event = {
+	id = 332011
+	trigger = {
+		OR = {
+			war = { country = SPA country = GRA }
+			war = { country = CAS country = GRA }
+		}
+		NOT = {
+			war = { country = XHO country = SPA }
+			war = { country = XHO country = CAS }
+		}
+		NOT = {
+			owned = { province = 445 data = GRA } #GRA about to be killed
+		}
+	}
+	random = no
+	country = XHO
+	name = "EVENTNAME332011" #Embassy to the Catholic Kings
+	desc = "EVENTHIST332011"
+	#-#In the Autumn of 1487, with the war of Granada at its height, the sultan of Tlemcen sent an embassy to the Catholic Kings in the siege of Malaga. He petitioned the Christians to instruct their captains to not attack his subjects at sea, offering his friendship. The North African Berbers were too weak, due to their lose control of their subjects, to offer any help to Granada, but volunteers were crossing the strait to help their coreligionists. The Catholic Kings agreed but asked the sultan in return to stop any help from their subjects to Granada.
+
+	date = { day = 0 month = december year = 1435 }
+	offset = 100
+	deathdate = { day = 0 month = december year = 1505 }
+
+	action_a = {
+		name = "ACTIONNAME332011A" #We are not enemies
+		command = { type = DIP which = 1 value = 24 }
+		command = { type = relation which = SPA value = 100 }
+		command = { type = relation which = CAS value = 100 }
+	}
+}
+
+#(1437) Wahran
+#by Fodoron
+event = {
+	id = 332012
+	random = no
+	country = XHO
+	name = "EVENTNAME332012" #Wahran
+	desc = "EVENTHIST332012"
+	#-#The city of Wahran (Oran) was founded by Andalusians in the year 903 to increase trade with the caravan route of Sijilmasa, gateway of the gold and slave trade with Western Sudan. Its port, Mers-el-Kebir, is one of the best in the Barbary Coast. The commerce with Spain was always important, given its closeness, but Genoa, Marseille and Venice also established commercial outposts or funduqs there. Wahran remained independent from the end of the Merinid period in Tlemcen to 1437, when it finally fell to repeated attacks by the Banu Zayyan rulers of Tlemcen.
+
+	date = { day = 0 month = january year = 1437 }
+	offset = 100
+	deathdate = { day = 0 month = january year = 1438 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = stability value = 1 }
+		command = { type = merchants value = 6 }
+		command = { type = trade value = 200 }
+		command = { type = treasury value = 50 }
+	}
+}
+
+#(1449-1479) Tribal unrest
+#by Fodoron
+event = {
+	id = 332010
+	trigger = {
+		atwar = no
+	}
+	random = no
+	country = XHO
+	name = "EVENTNAME332009" #Tribal unrest
+	desc = "EVENTHIST332009"
+	#-#Tlemcen was plagued with tribal unrest. It was composed of a very mixed population. The majority was Berber from the Zanata group, whether agricultural or stockbreeding, but the Arab tribes, mostly nomadic, held a disproportionate military power, specially the powerful Banu Hilal Bedouins. The Berber emir had only real power over the cities, and given the lack of hereditary legitimacy in Muslim countries, dynastic feuds soon turned into inter-tribal civil wars. The result of all this infighting was a lack of manpower to resist her neighbour's aggressions.
+
+	date = { day = 0 month = december year = 1449 }
+	offset = 1500
+	deathdate = { day = 0 month = december year = 1479 }
+
+	action_a = {
+		name = "ACTIONNAME332009A" #Rebellion! Close the gates
+		command = { type = stability value = -3 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -3 }
+		command = { type = manpower value = -5 }
+	}
+}
+
+#(1466-1475) Another Hafsid invasion
+#by Fodoron
+event = {
+	id = 332008
+	trigger = {
+		NOT = {
+			vassal = { country = TUN country = XHO }
+			vassal = { country = XHO country = TUN }
+		}
+	}
+	random = no
+	country = XHO
+	name = "EVENTNAME332008" #Another Hafsid invasion
+	desc = "EVENTHIST332008"
+	#-#The time to assert the independence of Tlemcen from Tunis was poorly chosen. Tunis was united under the most powerful Hafsid ruler, Abu Amr Uthman. He led again an expedition in 1466, and once more reduced Tlemcen to the status of a vassal.
+
+	date = { day = 0 month = january year = 1466 }
+	offset = 150
+	deathdate = { day = 0 month = december year = 1475 }
+
+	action_a = {
+		name = "ACTIONNAME332008A" #Accept Tunis suzerainty
+		command = { type = stability value = -1 }
+		command = { type = relation which = MOR value = -50 }
+		command = { type = relation which = TUN value = 100 }
+		command = { type = trigger which = 300004 } #TUN: Tlemcen submits
+	}
+	action_b = {
+		name = "ACTIONNAME332008B" #Reject Tunis suzerainty
+		command = { type = stability value = -3 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = relation which = TUN value = -50 }
+		command = { type = trigger which = 300005 } #TUN: Tlemcen resists
+	}
+}
+
+#(1502-1530) Muslims flee Spain
+#by Fodoron and modified by Sturmvogel
+event = {
+	id = 332014 #triggered by SPA_285219
+	random = no
+	country = XHO
+	name = "EVENTNAME332014" #Muslims flee Spain
+	desc = "EVENTHIST332014"
+	#-#After the Mudejar revolt of 1499, the Kings of Spain made an edict by which all Muslims in their Kingdoms had to convert or leave. Most Mudejars allowed to be baptised, becoming Moriscos, even if many secretly kept their religion. However those that did not want to become Christians, were facilitated transportation to the North of Africa. Once again Tlemcen opened her doors to them. This time they were not the nobility, but farmers and skilled artisans who contributed to the prosperity of the Kingdom.
+
+	action_a = {
+		name = "ACTIONNAME332014A" #Welcome to our brothers
+		command = { type = population which = 735 value = 1000 } #Atlas (represents Tlemcen)
+		command = { type = trade value = 100 }
+		command = { type = infra value = 100 }
+		command = { type = treasury value = 50 }
+		command = { type = relation which = SPA value = -100 }
+	}
+}
+
+#(1509-1551) The Spaniards are too strong
+#by Fodoron
+event = {
+	id = 332001 #triggered by SPA_285120 A / SPA_285121 A
+	random = no
+	country = XHO
+	name = "EVENTNAME332001" #The Spaniards are too strong
+	desc = "EVENTHIST332001"
+	#-#In a few years the Spaniards had taken the reconquest to North Africa, conquering Melilla, Peñón de Vélez, Mazalquivir (Mers-el-Kebir), Oran (Wahran), Bugia (Béjaïa) and finally Tripoli. The Zayyanid sultan of Tlemcen, Abu Abdallah Muhammad VIII, worried by the continuous defeats decided to become a vassal of Spain. This was not well taken by his subjects.
+
+	action_a = {
+		name = "ACTIONNAME332001A" #Submit and survive
+		command = { type = stability value = -1 }
+		command = { type = relation which = SPA value = 400 }
+		command = { type = vp value = -50 }
+	}
+}
+#(1509-1551) The Aragonese are too strong
+#by Fodoron
+event = {
+	id = 332015 #triggered by ARG111030 A / ARG111031 A
+	random = no
+	country = XHO
+	name = "EVENTNAME332015" #The Aragonese are too strong
+	desc = "EVENTHIST332015"
+	#-#In a few years the Aragonese had taken the Reconquista to North Africa, conquering Melilla, Peñón de Vélez, Mazalquivir (Mers-el-Kebir), Oran (Wahran), Bugia (Béjaïa) and finally Tripoli. The Zayyanid sultan of Tlemcen, Abu Abdallah Muhammad VIII, worried by the continuous defeats decided to become a vassal of Aragon. This was not well taken by his subjects.
+
+	action_a = {
+		name = "ACTIONNAME332001A" #Submit and survive
+		command = { type = stability value = -1 }
+		command = { type = relation which = POR value = 400 }
+		command = { type = vp value = -50 }
+	}
+}
+
+#(1511-1523) Arudj and Khayr al-Din Barbarossa
+event = {
+	id = 51024
+	trigger = {
+		NOT = {
+			event = 51025
+			exists = ALD
+		}
+		OR = {
+			event = 50024
+			event = 50025
+		}
+	}
+	random = no
+	country = XHO
+	name = "EVENTNAME51024" #Arudj and Khayr al-Din Barbarossa
+	desc = "EVENTHIST51024"
+	#-#In the 16th century, Spain occupied various ports in North Africa. Algiers was blockaded and forced to pay tribute. Other ports were captured outright. The desperate Muslims called for help from the Ottoman sultan, then the caliph of all Islam. Two corsair brothers, the Barbarossas petitioned the sultan to send them with a fleet to North Africa. Using the city of Tunis of a launching point, they ran piracy operations and began attacks on Algiers. At the same time, ruler of rivaling cities took the chance to launch attacks on Tlemcen.
+
+	date = { day = 1 month = november year = 1511 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1523 }
+
+	action_a = {
+		name = "ACTIONNAME51024A" #Curse them!
+		command = { type = revolt which = 737 } #Al Djazair
+		command = { type = revolt which = 737 } #Al Djazair
+		command = { type = revolt which = 738 } #Kabylia
+		command = { type = revolt which = 738 } #Kabylia
+		command = { type = revolt which = -1 }
+		command = { type = province_revoltrisk which = 738 value = 8 } #Kabylia
+		command = { type = province_revoltrisk which = 737 value = 8 } #Al Djazair
+		command = { type = revoltrisk which = 100 value = 10 }
+	}
+	action_b = {
+		name = "ACTIONNAME51024B" #We shall ready our last defenses
+		command = { type = revolt which = 737 } #Al Djazair
+		command = { type = revolt which = 737 } #Al Djazair
+		command = { type = revolt which = 738 } #Kabylia
+		command = { type = revolt which = 738 } #Kabylia
+		command = { type = province_revoltrisk which = 738 value = 8 } #Kabylia
+		command = { type = province_revoltrisk which = 737 value = 8 } #Al Djazair
+		command = { type = inf which = -2 value = 5000 }
+		command = { type = inf which = -1 value = 5000 }
+		command = { type = treasury value = -300 }
+		command = { type = revoltrisk which = 100 value = 15 }
+	}
+	action_c = {
+		name = "ACTIONNAME51024C" #We submit to their power
+		command = { type = flagname which = "" }
+		command = { type = country which = ALD }
+		command = { type = capital which = 737 } #Al Djazair
+		command = { type = revoltrisk which = 120 value = 5 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+}
+#(1511-1523) Arudj and Khayr al-Din Barbarossa
+event = {
+	id = 51025
+	trigger = {
+		NOT = {
+			event = 51024
+			exists = ALD
+		}
+		OR = {
+			event = 50024
+			event = 50025
+		}
+	}
+	random = no
+	country = XHO
+	name = "EVENTNAME51024" #Arudj and Khayr al-Din Barbarossa
+	desc = "EVENTHIST51025"
+	#-#In the 16th century, Spain occupied various ports in North Africa. Algiers was blockaded and forced to pay tribute. Other ports were captured outright. The desperate Muslims called for help from the Ottoman sultan, then the caliph of all Islam. Two corsair brothers, the Barbarossas petitioned the sultan to send them with a fleet to North Africa. They had planned to use the port of Tunis as a gathering point. However, their gifts did not impress the ruler of Tunis who barred them from the city. Despite this inconvenience, they still continued piracy operations and began attacks on Algiers. At the same time, rulers of rivaling cities took the chance to launch attacks on Tlemcen.
+
+	date = { day = 2 month = november year = 1511 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1523 }
+
+	action_a = {
+		name = "ACTIONNAME51024A" #Curse them!
+		command = { type = revolt which = 737 } #Al Djazair
+		command = { type = revolt which = 738 } #Kabylia
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = province_revoltrisk which = 738 value = 8 } #Kabylia
+		command = { type = province_revoltrisk which = 737 value = 8 } #Al Djazair
+	}
+	action_b = {
+		name = "ACTIONNAME51024B" #We shall ready our last defenses
+		command = { type = revolt which = 737 } #Al Djazair
+		command = { type = revolt which = 738 } #Kabylia
+		command = { type = province_revoltrisk which = 738 value = 8 } #Kabylia
+		command = { type = province_revoltrisk which = 737 value = 8 } #Al Djazair
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = inf which = -2 value = 5000 }
+		command = { type = inf which = -1 value = 5000 }
+		command = { type = treasury value = -150 }
+	}
+	action_c = {
+		name = "ACTIONNAME51024C" #We submit to their power
+		command = { type = flagname which = "" }
+		command = { type = country which = ALD }
+		command = { type = capital which = 737 } #Al Djazair
+		command = { type = revoltrisk which = 120 value = 5 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#(1511-1530) The Barbarossas take Algiers
+event = {
+	id = 332000
+	trigger = {
+		control = { province = 737 data = REB }
+		control = { province = 738 data = REB }
+		OR = {
+			event = 51024
+			event = 50025
+		}
+	}
+	random = no
+	country = XHO
+	name = "EVENTNAME332000" #The Barbarossas take Algiers
+	desc = "EVENTHIST51025"
+	#-#In the 16th century, Spain occupied various ports in North Africa. Algiers was blockaded and forced to pay tribute. Other ports were captured outright. The desperate Muslims called for help from the Ottoman sultan, then the caliph of all Islam. Two corsair brothers, the Barbarossas petitioned the sultan to send them with a fleet to North Africa. They had planned to use the port of Tunis as a gathering point. However, their gifts did not impress the ruler of Tunis who barred them from the city. Despite this inconvenience, they still continued piracy operations and began attacks on Algiers. At the same time, rulers of rivaling cities took the chance to launch attacks on Tlemcen.
+
+	date = { day = 1 month = november year = 1511 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1530 }
+
+	action_a = {
+		name = "ACTIONNAME332000A" #How horrid!
+		command = { type = independence which = ALD }
+		command = { type = trigger which = 105000 } #ALD: Emergence of Algiers
+		command = { type = removecore which = 736 } #Aures
+		command = { type = removecore which = 737 } #Al Djazair
+	}
+}
+
+#(1535-1557) Between Spanish and Ottomans (not vassal of Spain)
+#by Fodoron
+event = {
+	id = 332002
+	trigger = {
+		event = 285132 #SPA: Spanish hegemony in North Africa
+		exists = TUR
+		NOT = {
+			event = 332003 #XHO: Between Spanish and Ottomans
+		}
+		NOT = {
+			vassal = { country = SPA country = XHO }
+			vassal = { country = TUR country = XHO }
+		}
+	}
+	random = no
+	country = XHO
+	name = "EVENTNAME332002" #Between Spanish and Ottomans
+	desc = "EVENTHIST332002"
+	#-#The confrontation between the Holy Roman Emperor and the Sultan of the Ottomans was reaching Tlemcen at a delicate point, when dynastic fights were shaking the Zayyanids. Spanish count of Alcaudete, military governor of Oran, joined in 1535 with tribal chief Ibn Radwan to help Zayyanid prince Abdallah overthrow his older brother Muhammad V. The expedition, including 600 Spanish soldiers, was almost completely wiped out by the Banu Rashid tribe. However, probably because the Spaniards had taken Tunis, Sultan Muhammad agreed to pay tribute to Oran in exchange for Spanish protection. The Zayyanid dynasty, weakened by the emergence of Al-Djazaîr, and the loss of Oran, and neighbour to a strong Morocco, was too weak to survive alone.
+
+	date = { day = 0 month = january year = 1535 }
+	offset = 100
+	deathdate = { day = 0 month = january year = 1557 }
+
+	action_a = {
+		name = "ACTIONNAME332002A" #The Spaniards are the strongest
+		command = { type = stability value = -1 }
+		command = { type = relation which = SPA value = 400 }
+		command = { type = trigger which = 285133 } #SPA: The first expedition of Alcaudete and the failure at Algiers
+		command = { type = sleepevent which = 332003 } #XHO: Between Spanish and Ottomans
+	}
+	action_b = {
+		name = "ACTIONNAME332002B" #The Ottomans are the strongest
+		command = { type = stability value = -1 }
+		command = { type = relation which = TUR value = 400 }
+		command = { type = trigger which = 301042 } #TUR: Tlemcen submits to the Ottoman Empire
+		command = { type = sleepevent which = 332003 } #XHO: Between Spanish and Ottomans
+	}
+}
+#(1535-1557) Between Spanish and Ottomans (vassal of Spain)
+#by Fodoron
+event = {
+	id = 332003
+	trigger = {
+		event = 285132 #SPA: Spanish hegemony in North Africa
+		exists = TUR
+		vassal = { country = SPA country = XHO }
+		NOT = {
+			event = 332002 #XHO: Between Spanish and Ottomans
+		}
+	}
+	random = no
+	country = XHO
+	name = "EVENTNAME332002" #Between Spanish and Ottomans
+	desc = "EVENTHIST332002"
+	#-#The confrontation between the Holy Roman Emperor and the Sultan of the Ottomans was reaching Tlemcen at a delicate point, when dynastic fights were shaking the Zayyanids. Spanish count of Alcaudete, military governor of Oran, joined in 1535 with tribal chief Ibn Radwan to help Zayyanid prince Abdallah overthrow his older brother Muhammad V. The expedition, including 600 Spanish soldiers, was almost completely wiped out by the Banu Rashid tribe. However, probably because the Spaniards had taken Tunis, Sultan Muhammad agreed to pay tribute to Oran in exchange for Spanish protection. The Zayyanid dynasty, weakened by the emergence of Al-Djazaîr, and the loss of Oran, and neighbour to a strong Morocco, was too weak to survive alone.
+
+	date = { day = 0 month = january year = 1535 }
+	offset = 100
+	deathdate = { day = 0 month = january year = 1557 }
+
+	action_a = {
+		name = "ACTIONNAME332002A" #The Spaniards are the strongest
+		command = { type = stability value = -1 }
+		command = { type = relation which = SPA value = 400 }
+		command = { type = trigger which = 285134 } #SPA: The first expedition of Alcaudete and the failure at Algiers
+		command = { type = sleepevent which = 332002 } #XHO: Between Spanish and Ottomans
+	}
+	action_b = {
+		name = "ACTIONNAME332002B" #The Ottomans are the strongest
+		command = { type = breakvassal which = SPA }
+		command = { type = relation which = TUR value = 400 }
+		command = { type = trigger which = 301042 } #TUR: Tlemcen submits to the Ottoman Empire
+		command = { type = sleepevent which = 332002 } #XHO: Between Spanish and Ottomans
+	}
+}
+#(1535-1557) Between Aragon and the Ottomans (not vassal of Aragon) - Ahistorical
+#by Fodoron
+event = {
+	id = 332016
+	trigger = {
+		event = 111049 #ARG: Aragonese Hegemony in North Africa
+		exists = TUR
+		NOT = {
+			event = 332017 #XHO: Between Aragon and the Ottomans
+		}
+		NOT = {
+			vassal = { country = ARG country = XHO }
+			vassal = { country = TUR country = XHO }
+		}
+	}
+	random = no
+	country = XHO
+	name = "EVENTNAME332016" #Between Aragon and the Ottomans
+	desc = "EVENTHIST332016"
+	#-#The confrontation between Aragon and the Sultan of the Ottomans reached Tlemcen at a delicate point, when dynastic fights were shaking the Zayyanids. The Conde de Alcaudete, military governor of Oran, joined in 1535 with tribal chief Ibn Radwan to help Zayyanid prince Abdallah overthrow his older brother Muhammad V. The expedition, including 600 Aragonese soldiers, was almost completely wiped out by the Banu Rashid tribe. However, probably because the Aragonese had taken Tunis, Sultan Muhammad agreed to pay tribute to Oran in exchange for Aragonese protection. The Zayyanid dynasty, weakened by the emergence of Al-Djazaúr, and the loss of Oran, and neighbour to a strong Morocco, was too weak to survive alone.
+
+	date = { day = 0 month = january year = 1535 }
+	offset = 100
+	deathdate = { day = 0 month = january year = 1557 }
+
+	action_a = {
+		name = "ACTIONNAME332016A" #The Aragonese are the strongest
+		command = { type = stability value = -1 }
+		command = { type = relation which = ARG value = 400 }
+		command = { type = trigger which = 111050 } #ARG: The first expedition of Alcaudete and the failure at Algiers
+		command = { type = sleepevent which = 332017 } #XHO: Between Aragon and the Ottomans
+	}
+	action_b = {
+		name = "ACTIONNAME332002B" #The Ottomans are the strongest
+		command = { type = stability value = -1 }
+		command = { type = relation which = TUR value = 400 }
+		command = { type = trigger which = 301042 } #TUR: Tlemcen submits to the Ottoman Empire
+		command = { type = sleepevent which = 332003 } #XHO: Between Aragon and the Ottomans
+	}
+}
+#(1535-1557) Between Aragon and the Ottomans (vassal of Aragon) - Ahistorical
+#by Fodoron
+event = {
+	id = 332017
+	trigger = {
+		event = 111049 #ARG: Aragonese Hegemony in North Africa
+		exists = TUR
+		vassal = { country = ARG country = XHO }
+		NOT = {
+			event = 332016 #XHO: Between Aragon and the Ottomans
+		}
+	}
+	random = no
+	country = XHO
+	name = "EVENTNAME332016" #Between Aragon and the Ottomans
+	desc = "EVENTHIST332016"
+	#-#The confrontation between Aragon and the Sultan of the Ottomans reached Tlemcen at a delicate point, when dynastic fights were shaking the Zayyanids. The Conde de Alcaudete, military governor of Oran, joined in 1535 with tribal chief Ibn Radwan to help Zayyanid prince Abdallah overthrow his older brother Muhammad V. The expedition, including 600 Aragonese soldiers, was almost completely wiped out by the Banu Rashid tribe. However, probably because the Aragonese had taken Tunis, Sultan Muhammad agreed to pay tribute to Oran in exchange for Aragonese protection. The Zayyanid dynasty, weakened by the emergence of Al-Djazaúr, and the loss of Oran, and neighbour to a strong Morocco, was too weak to survive alone.
+
+	date = { day = 0 month = january year = 1535 }
+	offset = 100
+	deathdate = { day = 0 month = january year = 1557 }
+
+	action_a = {
+		name = "ACTIONNAME332016A" #The Aragonese are the strongest
+		command = { type = stability value = -1 }
+		command = { type = relation which = ARG value = 400 }
+		command = { type = trigger which = 111051 } #ARG: The first expedition of Alcaudete and the failure at Algiers
+		command = { type = sleepevent which = 332016 } #XHO: Between Aragon and the Ottomans
+	}
+	action_b = {
+		name = "ACTIONNAME332002B" #The Ottomans are the strongest
+		command = { type = breakvassal which = ARG }
+		command = { type = relation which = TUR value = 400 }
+		command = { type = trigger which = 301042 } #TUR: Tlemcen submits to the Ottoman Empire
+		command = { type = sleepevent which = 332016 } #XHO: Between Aragon and the Ottomans
+	}
+}
+
+#(1545-1555) Civil war in Tlemcen
+#by Fodoron
+event = {
+	id = 332004
+	trigger = {
+		NOT = { countrysize = 6 }
+		exists = TUR
+	}
+	random = no
+	country = XHO
+	name = "EVENTNAME332004" #Civil war in Tlemcen
+	desc = "EVENTHIST332004"
+	#-#Taking advantage of the fights between different tribes in Tlemcen, the count of Alcaudete, military governor of Spanish Oran, supported the Banu Rashid to dethrone Muhammad and install his brother Ahmad in 1545. Muhammad sought the help of Hassan Pasha, ruler of Al-Djazaîr and son of Khayr ad-Din Barbarossa, and was restored with the help of the Turks. Alcaudete attacked in 1547, but was driven back by the Turks. Meanwhile, in Morocco, the pro-Turkish Wattasid sultan Ahmad, was defeated by the Sa'did Muhammad al-Shaykh (al-Mahdi), who then invaded Tlemcen putting and end to 300 years of Zayyanid rule there. The Turkish reaction under agha Hasan Quru however drove them out. Tlemcen was under Turkish control, but disputed by Moroccans and Spanish.
+
+	date = { day = 0 month = january year = 1545 }
+	offset = 300
+	deathdate = { day = 0 month = january year = 1555 }
+
+	action_a = {
+		name = "ACTIONNAME332004A" #We are under Ottoman control
+		command = { type = stability value = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = relation which = SPA value = -200 }
+		command = { type = relation which = MOR value = -50 }
+		command = { type = breakvassal which = SPA }
+		command = { type = relation which = TUR value = 400 }
+		command = { type = trigger which = 301042 } #TUR: Tlemcen submits to the Ottoman Empire
+	}
+}
+
+#(1555-1820) Tlemcen becomes part of the Ottoman Empire -I-
+#by Fodoron
+event = {
+	id = 332005 #also triggered by SPA_285137 B
+	trigger = {
+		vassal = { country = TUR country = XHO }
+		OR = {
+			neighbour = TUR
+			AND = {
+				NOT = {
+					exists = ALD
+					vassal = { country = TUR country = ALD }
+				}
+				OR = {
+					owned = { province = 734 data = -1 } #Orania
+					owned = { province = 737 data = -1 } #Al Djazair
+				}
+				atwar = no
+			}
+		}
+	}
+	random = no
+	country = XHO
+	name = "EVENTNAME332005" #Tlemcen becomes part of the Ottoman Empire
+	desc = "EVENTHIST332005"
+	#-#With the disappearance of the Zayyanid dynasty in Tlemcen, and with the country under Ottoman control, the sultan decided that the Pasha of Al-Djazaîr, then Salah Raïs, should rule also over Tlemcen. This effectively put an end to the existence of this country that became part of what would eventually be Algeria.
+
+	date = { day = 0 month = january year = 1555 }
+	offset = 300
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME332005A" #Let the sultan name our ruler (End Game)
+		command = { type = relation which = TUR value = 50 }
+		command = { type = trigger which = 301043 } #TUR: Tlemcen incorporated
+		command = { type = sleepevent which = 332018 } #XHO: Tlemcen becomes part of the Ottoman Empire -II-
+	}
+	action_b = {
+		name = "ACTIONNAME332005B" #We shall decide who rules us
+		command = { type = relation which = TUR value = -50 }
+		command = { type = sleepevent which = 332018 } #XHO: Tlemcen becomes part of the Ottoman Empire -II-
+	}
+}
+#(1555-1820) Tlemcen becomes part of the Ottoman Empire -II-
+event = {
+	id = 332018 #also triggered by SPA_285137 B
+	trigger = {
+		vassal = { country = TUR country = XHO }
+		NOT = {
+			neighbour = TUR
+		}
+		AND = {
+			exists = ALD
+			vassal = { country = TUR country = ALD }
+		}
+	}
+	random = no
+	country = XHO
+	name = "EVENTNAME332005" #Tlemcen becomes part of the Ottoman Empire
+	desc = "EVENTHIST332005"
+	#-#With the disappearance of the Zayyanid dynasty in Tlemcen, and with the country under Ottoman control, the sultan decided that the Pasha of Al-Djazaîr, then Salah Raïs, should rule also over Tlemcen. This effectively put an end to the existence of this country that became part of what would eventually be Algeria.
+
+	date = { day = 0 month = january year = 1555 }
+	offset = 300
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME332005A" #Let the sultan name our ruler (End Game)
+		command = { type = relation which = TUR value = 50 }
+		command = { type = trigger which = 105004 } #ALD: Tlemcen incorporated
+		command = { type = sleepevent which = 332005 } #XHO: Tlemcen becomes part of the Ottoman Empire -I-
+	}
+	action_b = {
+		name = "ACTIONNAME332005B" #We shall decide who rules us
+		command = { type = relation which = TUR value = -50 }
+		command = { type = sleepevent which = 332005 } #XHO: Tlemcen becomes part of the Ottoman Empire -I-
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 332019

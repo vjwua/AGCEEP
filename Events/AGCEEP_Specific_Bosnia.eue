@@ -1,0 +1,691 @@
+#Bosnia (BOS)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1420) The Bogomil Heresy
+event = {
+	id = 3873
+	random = no
+	country = BOS
+	name = "EVENTNAME3873" #The Bogumil Heresy
+	desc = "EVENTHIST3873"
+	#-#The Bogumils were a Christian sect that believed in Dualism. Their teachings had their origin in teachings of early Paulician churches in Asia Minor and in Manicheanism. While Manicheanists believed in two Gods, one evil and one good (violating the Christian view of monotheism), Bogumils believed in one God with two sides, one evil and one good. Satan was the older brother of Jesus and thus as much God as Jesus is. God's evil side (Satanael) was ruling the material world while God's good side was ruling the spiritual world. Thus they believed that all churches were the work of Satanel, so they rejected them. They also rejected the Old Testament, priests' ownership of material things and church sacraments. Because of this they were usually supported by the Bans and Kings of Bosnia. With the Ottoman conquest of Bosnia, most of the Bogumils converted to Islam.
+
+	date = { day = 1 month = january year = 1420 }
+	offset = 200
+	deathdate = { day = 29 month = december year = 1420 }
+
+	action_a = {
+		name = "ACTIONNAME3873A" #Stop these Heretics!
+		command = { type = revoltrisk which = 364 value = 3 }
+		command = { type = stability value = -2 }
+		command = { type = treasury value = -50 }
+		command = { type = relation which = PAP value = 100 }
+		command = { type = relation which = HUN value = 100 }
+		command = { type = relation which = CRO value = 50 }
+		command = { type = relation which = SER value = 50 }
+		command = { type = relation which = HAB value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME3873B" #Let them be
+		command = { type = relation which = PAP value = -100 }
+		command = { type = relation which = HUN value = -100 }
+		command = { type = relation which = CRO value = -50 }
+		command = { type = relation which = SER value = -50 }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = treasury value = 50 }
+		command = { type = provincetax which = 364 value = 1 } #Bosnia
+	}
+}
+
+#(1421) Feuding lords of Bosnia
+event = {
+	id = 130000
+	random = no
+	country = BOS
+	name = "EVENTNAME130000" #Feuding lords of Bosnia
+	desc = "EVENTHIST130000"
+	#-#After the death of King Tvrko I Bosnia entered a period of feudal anarchy. Local landlords, acting as sovereign Kings, struggled constantly for the crown. Bloody showdowns were common among the great families, and the King's power were fading away. Such landlords were Sandalj Hranic Kosaca in Hum (Hercegovina) and Petar Pavlovic in Podrinje. They didn't hesitate to call for foreign intervention. Some of them sought the help of the Ottoman Empire, others still believed that the Hungarians are strong enough to save them from the Turkish menace. Meanwhile Turkish raids began, devastating the country, ruining the economy.
+
+	date = { day = 1 month = january year = 1421 }
+	offset = 300
+	deathdate = { day = 1 month = january year = 1422 }
+
+	action_a = {
+		name = "ACTIONNAME130000A" #Let them kill each other!
+		command = { type = domestic which = CENTRALIZATION value = -2 } #The King had no power
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = stability value = -2 }
+		command = { type = province_revoltrisk which = 364 value = 2 } #Bosnia
+	}
+	action_b = {
+		name = "ACTIONNAME130000B" #Give support to the Turkish fraction
+		command = { type = domestic which = CENTRALIZATION value = -2 } #The King had no power
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = stability value = -2 }
+		command = { type = province_revoltrisk which = 364 value = 4 } #Bosnia
+		command = { type = relation which = TUR value = 75 }
+		command = { type = relation which = HUN value = -75 }
+		command = { type = breakvassal which = HUN } #just in case
+	}
+	action_c = {
+		name = "ACTIONNAME130000C" #Give support to the Hungarian fraction
+		command = { type = domestic which = CENTRALIZATION value = -2 } #The King had no power
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = stability value = -2 }
+		command = { type = province_revoltrisk which = 364 value = 2 } #Bosnia
+		command = { type = relation which = HUN value = 75 }
+		command = { type = relation which = TUR value = -75 }
+		command = { type = breakvassal which = TUR }
+	}
+}
+
+#(1427-1428) Heir to the throne
+event = {
+	id = 130006
+	trigger = {
+		NOT = {
+			war = { country = BOS country = HUN }
+			war = { country = TUR country = HUN }
+		}
+		exists = HUN
+	}
+	random = no
+	country = BOS
+	name = "EVENTNAME130006" #Heir to the throne
+	desc = "EVENTHIST130006"
+	#-#An opportunist by nature, Tvrtko II, Ottoman vassal, sought to break free from his master. In 1423, two years after his coronation, Tvrtko tried to form closer relationship with Republic of Venice. In 1424, a small Ottoman army raided Bosnia as a warning, but this didn't change Tvrtko's mind much. In 1425, Tvrtko II started negotiations with Emperor Sigismund to join the league against Ottomans. He agreed to Sigismund's demand to name Count Hermann of Cilli, one of most powerful Hungarian nobles, as his heir. The alliance with Hungary was delayed, however, because of Hungarian failures against Hussites in Bohemia. After punishing Serbia for dealing with Hungarians, Ottomans sent another raiding expedition into Bosnia in 1426. Determined to ally with Hungary, Tvrtko II named Hermann of Cilli heir to the Bosnian throne if Tvrtko dies without a heir or his heir dies without one. In 1428, Tvrtko II got even closer to his goals by marrying daughter of a Hungarian noble.
+
+	date = { day = 2 month = september year = 1427 }
+	offset = 10
+	deathdate = { day = 20 month = july year = 1428 }
+
+	action_a = {
+		name = "ACTIONNAME130006A" #Ally with Hungary
+		command = { type = breakvassal which = TUR }
+		command = { type = relation which = TUR value = -100 }
+		command = { type = relation which = HUN value = 100 }
+		command = { type = dynastic which = HUN }
+		command = { type = stability value = -1 } #Bosnian nobles are not happy with the possibility of strong foreign King
+	}
+	action_b = {
+		name = "ACTIONNAME130006B" #Remain loyal to the Sultan
+		command = { type = sleepevent which = 188029 } #HUN: Bosnia submits
+		command = { }
+	}
+}
+
+#(1428-1444) Consequences of Golubac conflict
+event = {
+	id = 130007 #triggered by SER_277012 A
+	random = no
+	country = BOS
+	name = "EVENTNAME130007" #Consequences of Golubac conflict
+	desc = "EVENTHIST130007"
+	#-#Emperor Sigismund's crushing defeat in battle for fortress of Golubac on Danube had its consequences in Bosnia as well. After defeat of Hungary and submission of Serbia, Bosnia was suddenly left without protection from the Ottomans. King Tvrtko II followed Serbian Despot's example and swore vassalage to Ottoman Sultan, but he could not afford the tribute when the time came to pay. Ottomans invaded Bosnia and seized several forts in the most fertile parts of the Kingdom.
+
+	action_a = {
+		name = "ACTIONNAME130007A" #Become the Sultan's vassal
+		command = { type = breakvassal which = HUN }
+		command = { type = relation which = TUR value = 100 }
+		command = { type = relation which = HUN value = -100 }
+		command = { type = stability value = -1 } #Ottoman invasion destabilizes the realm
+		command = { type = provincetax which = 364 value = -1 } #Loss of forts to Ottomans #Bosnia
+		command = { type = provincemanpower which = 364 value = -1 } #Loss of forts to Ottomans #Bosnia
+	}
+}
+
+#(1430-1438) Internal conflicts
+event = {
+	id = 130008
+	random = no
+	country = BOS
+	name = "EVENTNAME130008" #Internal conflicts
+	desc = "EVENTHIST130008"
+	#-#Kingdom of Bosnia was a chaotic realms where dukes constantly battle each other for territories. The most famous rivalry of that age was between Pavlovic and Kosaca families. After a quiet period, the rivalry revived when Duke Radoslav Pavlovic attacked and defeated the Republic of Ragusa because they tried to turn Cavtat, a town they bought from him, into a fortress. Duke Sandalj Hranic Kosaca immediately intervened on Ragusan side and attacked his archrival. King Tvrtko II was mostly helpless to solve the dispute. Since Duke Sandalj had the support of the Ottomans, Duke Radoslav asked Despot Djuradj of Serbia to broker peace. At almost the same time, King Tvrtko II went to war with Zlatonosovic family in eastern Bosnia. Since they were friends of Duke Sandalj and Serbian Despot, King Tvrtko II decided to throw his lot with Duke Radoslav. A real civil war started in Bosnia. As Kings faction began to loose the war, treacherous Duke Radoslav switched sides and joined the Serbian Despot's camp in 1433. This coalition of Serbian Despot and Bosnian Dukes put forth their own candidate for Tvrtko's replacement: Radivoj. The hostilities temporarily ceased when Emperor Sigismund announced his support for King Tvrtko II and Despot Djuradj withdrew from the conflict. Hungarian army arrived as promised in 1434 and changed the tide of the battle. Coalition of rebellious Dukes was defeated and forts held by Ottomans liberated. Duke Sandalj was crushed by Duke Djuradj Vojsalic, who joined forces with King Tvrtko II when Hugarian army arrived, and died from illness in March 1435. King Tvrtko traveled to Hungarty to swear vassalage to Emperor Sigismund. Upon his return to Bosnia, he started a campaign together with Duke Radoslav Pavlovic to destroy Stepan Vukcic, the new Duke Kosaca. King Tvtrko II was also aided by Croatian Prinecs Ivan and Stepan Frankopan who acted on the orders of Emperor Sigismund. Ottomans intervened on the behalf of Stepan Vukcic and reconquered one of the forts in Bosnia holding it against Hungarian troops until the end of the conflict. In 1436, Ivan Frankopan is denied the succession of the estates that belonged to his late father-in-law and switches sides to join Duke Stepan Vukcic. Hungarian army defeated and probably killed Ivan Frankopan. King Tvrtko II realized that he will not be able to expel the Turks from Bosnia and crush Stepan Vukcic, so he renewed his oath to Ottoman Sultan and reconciled with his enemy. Together with Stepan Vukcic and the Ottoman forces, the King turned on Duke Radoslav and utterly defeated him in 1438. It is said that around 16 monasteries and churches were burned during this civil war, and this is only a part of the devastation that was caused.
+
+	date = { day = 1 month = january year = 1430 }
+	offset = 100
+	deathdate = { day = 15 month = march year = 1438 }
+
+	action_a = {
+		name = "ACTIONNAME130008A" #Ally with Duke Radislav Pavlovic and Hungary
+		command = { type = breakvassal which = TUR }
+		command = { type = relation which = TUR value = -100 }
+		command = { type = relation which = SER value = -100 }
+		command = { type = relation which = VEN value = -50 } #not directly but through Republic of Ragusa
+		command = { type = relation which = HUN value = 100 }
+		command = { type = stability value = -2 } #civil war
+		command = { type = domestic which = centralization value = -1 } #nobles manipulate the King
+		command = { type = provincetax which = 364 value = -1 } #devastation of Bosnia, reduced by liberation of forst
+		command = { type = provincemanpower which = 364 value = 1 } #liberation of forts
+	}
+	action_b = {
+		name = "ACTIONNAME130008B" #Join the Kosaca family and Ottoman side
+		command = { type = relation which = TUR value = 100 }
+		command = { type = relation which = SER value = 100 }
+		command = { type = relation which = VEN value = 50 } #not directly but through Republic of Ragusa
+		command = { type = stability value = -1 } #Duke Radislav is crushed so there is not as much destabilization as in choice A
+		command = { type = domestic which = centralization value = -2 } #King gives in to the more powerful camp
+		command = { type = provincetax which = 364 value = -2 } #devastation of Bosnia
+		command = { type = sleepevent which = 188030 } #HUN: Civil war in Bosnia
+	}
+}
+
+#(1433) Radivoj the Pretender
+event = {
+	id = 130001
+	random = no
+	country = BOS
+	name = "EVENTNAME130001" #Radivoj the Pretender
+	desc = "EVENTHIST130001"
+	#-#King Tvrko I had two illegitimate sons, Stjepan Tvrko II, our current lord, and Stjepan Ostoja who succeeded his father after his death but was overthrown by Tvrko II. Now Ostoja's spawn, Radivoj, also seeks to claim his grandfather's throne with the support of Hungary. Historically he managed to overthrow his uncle, who fled to the court of the Ottoman Sultan.
+
+	date = { day = 1 month = january year = 1433 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1433 }
+
+	action_a = {
+		name = "ACTIONNAME130001A" #Radivoj defeats Tvrko
+		command = { type = sleepmonarch which = 023001 } #Stjepan Tvrko II
+		command = { type = wakemonarch which = 023002 }	#Radivoj of Komothyn
+		command = { type = breakvassal which = TUR }
+		command = { type = revolt which = -1 }
+		command = { type = stability value = -1 }
+		command = { type = relation which = HUN value = 75 }
+		command = { type = relation which = VEN value = 25 }
+		command = { type = relation which = PAP value = 25 }
+		command = { type = CAV which = -2 value = 3000 } #supporters of Radivoj
+		command = { type = setflag which = [Radivoj] }
+	}
+	action_b = {
+		name = "ACTIONNAME130001B" #Tvrko II wins
+		command = { type = revolt which = -1 }
+		command = { type = stability value = 1 }
+		command = { type = relation which = TUR value = 75 }
+	}
+}
+
+#(1435) Return of Tvrko II
+event = {
+	id = 130002
+	trigger = {
+		flag = [Radivoj]
+	}
+	random = no
+	country = BOS
+	name = "EVENTNAME130002" #Return of Tvrko II
+	desc = "EVENTHIST130002"
+	#-#In 1435 the former King, Tvrko II returned. His enemy aided by the Turks, Radivoj couldn't withstand the pretender's attack and fled. He was unable to accept this outcome and kept his title, signing his letters as the King of Bosnia until his execution by the Turks in 1463. The rule of Tvrko was once more restored, and this time he managed to stabilize his throne. Murad II appointed Turkish military leaders to 'defend and ensure peace' in Bosnia, tightening his grip on the country.
+
+	date = { day = 5 month = december year = 1435 }
+
+	action_a = {
+		name = "ACTIONNAME130002A" #Welcome back, my King!
+		command = { type = sleepmonarch which = 023002 } #Radivoj of Komothyn
+		command = { type = wakemonarch which = 023003 }	#Stjepan Tvrko II - restored
+		command = { type = revoltrisk which = 18 value = 1 } #pro-Radivoj lords still grudging
+		command = { type = stability value = 1 }
+		command = { type = relation which = HUN value = -75 }
+		command = { type = breakvassal which = HUN } #just in case
+	}
+}
+#(1435) Aid received
+event = {
+	id = 130003 #triggered by TUR_301027 A
+	random = no
+	country = BOS
+	name = "EVENTNAME130003" #Aid received
+	desc = "EVENTHIST130003"
+	#-#My King, Sultan Murad II sent a formidable sum of money, along with turkish troops to 'ensure peace' and to 'defend' us.
+
+	action_a = {
+		name = "ACTIONNAME130003A" #Thank you, Great Sultan!
+		command = { type = treasury value = 100 }
+		command = { type = CAV which = -2 value = 2000 }
+		command = { type = INF which = -2 value = 2000 }
+	}
+}
+
+#(1440-1442) End of the feud
+event = {
+	id = 130004
+	trigger = {
+		NOT = { control = { province = 364 data = REB } }
+	}
+	random = no
+	country = BOS
+	name = "EVENTNAME130004" #End of the feud
+	desc = "EVENTHIST130004"
+	#-#By the second half of the 15th century, the great lords of Bosnia, whose feuds destroyed the country and caused a lot of suffering, died out. Some of them lost their lives in one of those bloody showdowns, some of them died peacefully, allowing only one familiy to rise into prominent heights. In 1440 the son of Sandalj Hranic Kosaca, Stjepan Vukcic controlled Bosnia's southern territories, called the 'Hum and the Coast', and his power equalled the King's.
+
+	date = { day = 1 month = january year = 1440 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1442 }
+
+	action_a = {
+		name = "ACTIONNAME130004A" #Finally!
+		command = { type = domestic which = CENTRALIZATION value = 1 } #The King regained some of his former power#
+		command = { type = stability value = 2 }
+		command = { type = province_revoltrisk which = 364 value = -4 } #Bosnia
+	}
+}
+
+#(1440-1448) Stepan Vukcic in Zeta
+event = {
+	id = 130009
+	trigger = {
+		vassal = { country = TUR country = BOS } #must be vassal of Ottomans for Stepan Vukcic to have sufficient power
+		war = { country = SER country = TUR } #Serbia must be in crisis
+		owned = { province = 362 data = SER } #He wouldn't dare to claim Zeta if it were held by Venice or Ottomans
+	}
+	random = no
+	country = BOS
+	name = "EVENTNAME130009" #Stepan Vukcic in Zeta
+	desc = "EVENTHIST130009"
+	#-#Now that Bosnia is a vassal of the Ottoman Empire, Duke Stepan Vukcic Kosaca is the most powerful noble in the realm. Stepan Vukcic had claims on Zeta as husband of Jelena, daughter of late Balsa III, the last ruler of independent Zeta. He attacked Zeta while Serbia was being conquered by his Ottoman allies, gaining support of rebellious local Crnojevic family. The last Serbian stronghold in Zeta fell to Stepan Vukcic in 1441, just after the mining town of Novo Brdo fell to Ottomans. Stepan was stopped by Venetian towns in lower Zeta. Agitated by Serbian Despot Djuradj, most Montenegrins joined with Venetian defenders. Only citizens of Bar supported the Bosnian Duke. Stepan was temporarily force to halt his attack on Zeta in 1442 because of rebellion of his closes cousin, Ivan Vukovic, but resumed his operations later in the year. His army was immediately defeated near Bar but Venetians refused to negotiate peace treaty while he still held the town. In December 1442, however, Stepan Vukcic was more successful and made progress all the way to Scutari in the east of Zeta. Duke Stepan was joined by Ottoman troops from Albania in 1443 and also by Montenegrin tribes of Paštrovici and Zacani, but he lost the town of Bar in June that year. In need of naval support, Stepan Vukcic sought help from King Alfons V of Aragon of from Republic of Genoa, archrivals of Venice. He failed to procure aid, however, and lost more towns to Venice in the process. In 1444, Stevan Crnojevic, leader of the rebellious Crnojevic family, betrayed Stepan Vukcic and joned the Venetians. Stepan renewed his efforts with Aragonese King and managed to secure an alliance.
+
+	date = { day = 1 month = january year = 1440 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1448 }
+
+	action_a = {
+		name = "ACTIONNAME130009A" #Support Duke's claims
+		command = { type = relation which = SER value = -100 }
+		command = { type = relation which = VEN value = -50 }
+		command = { type = relation which = ARG value = 50 }
+		command = { type = relation which = GEN value = 50 }
+		command = { type = domestic which = centralization value = -1 } #King supports noble's independent attack
+		command = { type = stability value = 1 } #harmony between the King and the most powerful noble in the realm
+		command = { type = addcore which = 362 } #Ragusa
+		command = { type = INF which = -1 value = 2000 } #aid from Crnojevics
+		command = { type = sleepevent which = 130012 } #BOS: Stepan Vukcic in Zeta
+	}
+	action_b = {
+		name = "ACTIONNAME130009B" #Try to stop the Duke
+		command = { type = relation which = TUR value = -50 }
+		command = { type = relation which = SER value = 100 }
+		command = { type = relation which = VEN value = 50 }
+		command = { type = stability value = -1 } #new conflict between the King and Duke Kosaca
+	}
+}
+
+#(1443) Death of Tvrtko II
+event = {
+	id = 130010
+	random = no
+	country = BOS
+	name = "EVENTNAME130010" #Death of Tvrtko II
+	desc = "EVENTHIST130010"
+	#-#Close to the end of his life, Tvrtko II was scared of Ottoman progress in the Balkans and feld to Venice. He died in November 1443 without a male heir, but he outlived Hermann of Cilli who was supposed to inherit Bosnia in such case. With Hungary loosing a war against Ottoman Empire, Emperor Albrecht I was not in a position to press the claims of Hermann's successors. The only two remaining choices were the two sons of Stefan Ostoja, Tvrtko's predecessor, Radivoj and Tomas. Radivoj was an ally of Ottoman Turks and already showed his incapability by failing to gain influence in Bosnia despite Ottoman support. Before his death, King Tvrtko II named Tomas Ostojic, the more promising of the two brothers, his heir.
+
+	date = { day = 1 month = november year = 1443 }
+
+	action_a = {
+		name = "ACTIONNAME130010A" #Choose Tomas, ally of Catholics
+		command = { type = relation which = VEN value = 20 } #smallest modifiers because Tomas' attitude was not known yet
+		command = { type = relation which = HUN value = 50 }
+		command = { type = relation which = SER value = 50 }
+		command = { type = relation which = PAP value = 50 }
+		command = { type = relation which = TUR value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME130010B" #Choose Radivoj, the Ottoman puppet
+		command = { type = relation which = TUR value = 100 }
+		command = { type = relation which = VEN value = -100 }
+		command = { type = relation which = HUN value = -100 }
+		command = { type = relation which = SER value = -100 }
+		command = { type = sleepmonarch which = 023004 } #Stjepan Tomas Ostojic
+		command = { type = wakemonarch which = 023010 } #Radivoj Ostojic *
+		command = { type = trigger which = 301122 } #TUR: Radivoj inherits Bosnia
+	}
+	action_c = {
+		name = "ACTIONNAME130010C" #Insist that Count of Cilli inherits the throne
+		command = { type = relation which = HUN value = 200 } #von Cilli is Albrecht's vassal
+		command = { type = relation which = SER value = 200 } #von Cilli is Despot's son-in-law
+		command = { type = relation which = HAB value = 200 } #Calli is part of HRE
+		command = { type = relation which = VEN value = -50 } #Venetians don't like Hungarian influence in Bosnia
+		command = { type = relation which = TUR value = -100 }
+		command = { type = sleepmonarch which = 023004 } #Stjepan Tomas Ostojic
+		command = { type = wakemonarch which = 023011 } #Ulrik Celjski *
+		command = { type = trigger which = 188031 } #HUN: Count of Cilli inherits Bosnia
+	}
+}
+
+#(1443-1461) Campaign against Stepan Vukcic
+event = {
+	id = 130013
+	trigger = {
+		OR = {
+			monarch = 023004 #Stjepan Tomas Ostojic
+			monarch = 023011 #Ulrik Celjski *
+		}
+	}
+	random = no
+	country = BOS
+	name = "EVENTNAME130013" #Campaign against Stepan Vukcic
+	desc = "EVENTHIST130013"
+	#-#Immediately upon assuming the Kingship of Bosnia, anti-Ottoman King Tomas started a campaign against disloyal Duke Stepan Vukcic Kosaca. We can only assumed that the same would have happened under Ulrich of Cilli.
+
+	date = { day = 29 month = november year = 1443 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1461 }
+
+	action_a = {
+		name = "ACTIONNAME130013A" #Subdue the troublesome Duke
+		command = { type = relation which = TUR value = -100 } #Stepan Vukcic is loyal Ottoman ally
+		command = { type = relation which = VEN value = 50 } #King Tomas allied with Venice to defeat Duke Stepan
+		command = { type = relation which = ARG value = -50 } #Aragonese fleet was just coming to Stepan's aid
+		command = { type = relation which = HUN value = 50 } #War against Ottoman ally is appreciated
+		command = { type = domestic which = centralization value = 1 } #King asserts his influence and other nobles rally behind him
+		command = { type = stability value = -1 } #another civil war
+		command = { type = removecore which = 362 } #Duke Stepan is no longer vassal of Bosnian King
+	}
+	action_b = {
+		name = "ACTIONNAME130013B" #Leave him alone for now
+		command = { type = relation which = TUR value = 100 } #Stepan Vukcic is loyal Ottoman ally
+		command = { type = domestic which = centralization value = -1 } #Duke is left to wage his own war
+		command = { type = removecore which = 362 } #Duke Stepan is no longer vassal of Bosnian King anyway
+	}
+}
+
+#(1443-1466) Stepan Vukcic in Zeta (under Radivoj) - Ahistorical
+event = {
+	id = 130012
+	trigger = {
+		monarch = 023010 #Radivoj Ostojic *
+		owned = { province = 362 data = SER } #He wouldn't dare to claim Zeta if it were held by Venice or Ottomans
+	}
+	random = no
+	country = BOS
+	name = "EVENTNAME130012" #Stepan Vukcic in Zeta
+	desc = "EVENTHIST130012"
+	#-#With Ottoman puppet on the throne of Bosnia, Stepan Vukcic can now assert his claims in Zeta without opposition from his own King.
+
+	date = { day = 29 month = november year = 1443 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1466 }
+
+	action_a = {
+		name = "ACTIONNAME130012A" #Let him wage his war
+		command = { type = relation which = SER value = -100 }
+		command = { type = relation which = VEN value = -50 }
+		command = { type = relation which = ARG value = 50 }
+		command = { type = relation which = GEN value = 50 }
+		command = { type = domestic which = centralization value = -1 } #King supports noble's independent attack
+		command = { type = stability value = 1 } #harmony between the King and the most powerful noble in the realm
+		command = { type = addcore which = 362 } #Ragusa
+		command = { type = INF which = -1 value = 2000 } #aid from Crnojevics
+	}
+}
+
+#(1444-1461) Opportunity in Srebrenica
+event = {
+	id = 130014
+	trigger = {
+		NOT = { vassal = { country = TUR country = BOS } } #cannot attack Ottomas if King is their vassal
+		owned = { province = 355 data = SER } #Serbia must be free
+	}
+	random = no
+	country = BOS
+	name = "EVENTNAME130014" #Opportunity in Srebrenica
+	desc = "EVENTHIST130014"
+	#-#After Serbia was liberated from the Ottoman Empire, rich mining town of Srebrenica, still held by Turks, was cut off from the rest of the Ottoman forces. Before Despot Djuradj of Serbia could consolidate his Despotate and liberate Srebrenica, King Tomas attacked the town claiming to be fighting on the side of Christians and added it to his realm.
+
+	date = { day = 29 month = may year = 1444 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1461 }
+
+	action_a = {
+		name = "ACTIONNAME130014A" #Take the town
+		command = { type = relation which = SER value = -150 } #Despot is furious
+		command = { type = relation which = TUR value = -100 } #Ottomans are not pleased
+		command = { type = provincetax which = 364 value = 1 } #addition of rich mining town to Bosnia
+		command = { type = trigger which = 277035 } #SER: Loss of Srebrenica
+	}
+	action_b = {
+		name = "ACTIONNAME130014B" #Return the town to Serbia
+		command = { type = relation which = SER value = 150 } #Despot is grateful
+		command = { type = relation which = HUN value = 50 } #Hungarians are pleased that their vassals are getting along
+		command = { type = relation which = TUR value = -100 } #Ottomans are not pleased
+	}
+}
+
+#(1444-1461) Duke Stepan returns Zeta
+event = {
+	id = 130015 #triggered by SER_277036 A
+	random = no
+	country = BOS
+	name = "EVENTNAME130015" #Duke Stepan returns Zeta
+	desc = "EVENTHIST130015"
+	#-#Djuradj's first goal after liberation of Serbia was to reclaim Zeta from Bosnian Duke Stepan Vukcic. Because of their common enemy in Bosnian King, Despot Djuradj and Duke Stepan made peace in 1444. Stepan returned the parts of Zeta he still held in 1445.
+
+	action_a = {
+		name = "ACTIONNAME130015A" #Give up Zeta
+		command = { type = removecore which = 362 } #Stepan gave up his claims
+		command = { type = secedeprovince which = SER value = 362 } #Ragusa
+	}
+}
+
+#(1445) Divorce of King Tomas
+event = {
+	id = 130016
+	trigger = {
+		monarch = 023004 #Stjepan Tomas Ostojic
+		exists = TUR #Ottoman threat is still there
+		NOT = { vassal = { country = TUR country = BOS } } #not already under Ottoman protection
+	}
+	random = no
+	country = BOS
+	name = "EVENTNAME130016" #Divorce of King Tomas
+	desc = "EVENTHIST130016"
+	#-#With demise of Hungarian army at Varna, King Tomas found himself alone and surrounded by enemies. He searched for help across the Adriatic, asking Venice and the Pope for support. Pope Eugenius IV sent a bull making Tomas' father's marriage to Tomas' mother legitimate, which cleared Tomas of the status of bastard. Soon after, the Pope allowed Tomas to divorce his peasant wife. This gave no military support to Tomas, however, only repaired his reputation with the nobels and alienated him from the people of Bosnia.
+
+	date = { day = 1 month = may year = 1445 }
+	offset = 5
+	deathdate = { day = 1 month = june year = 1445 }
+
+	action_a = {
+		name = "ACTIONNAME130016A" #Our reputation is restored
+		command = { type = badboy value = -1 }
+		command = { type = vp value = 20 }
+		command = { type = stability value = -1 } #people are revolted
+		command = { type = domestic which = centralization value = 1 } #King gains respect of nobility
+		command = { type = domestic which = serfdom value = 1 } #confirmation of class differences
+	}
+}
+
+#(1446) Peace with Duke Stepan Vukcic
+event = {
+	id = 130017
+	trigger = {
+		OR = {
+			monarch = 023004 #Stjepan Tomas Ostojic
+			monarch = 023011 #Ulrik Celjski *
+			#not necessary for Radivoj
+		}
+	}
+	random = no
+	country = BOS
+	name = "EVENTNAME130017" #Peace with Duke Stepan Vukcic
+	desc = "EVENTHIST130017"
+	#-#Duke Stepan Vukcic was facing defeats both against Venice and against King Tomas. King Tomas might have crushed Duke Stepan at the moment, but faced with the prospect of Aragonese inheritance and the idea that Alfons V might want to connect Hungary to Naples through Bonsia and Dalmatia, he sought peace with his most powerful Duke. It was made in May 1446 and crowned with Duke Stepan's marriage to Tomas' daughter Katarina.
+
+	date = { day = 1 month = may year = 1446 }
+	offset = 5
+	deathdate = { day = 1 month = june year = 1446 }
+
+	action_a = {
+		name = "ACTIONNAME130017A" #Make peace
+		command = { type = stability value = 1 } #finally the end of internal conflicts
+		command = { type = domestic which = centralization value = 1 } #nobility is finally united behind the King
+		command = { type = relation which = SER value = -100 } #stole Despot's possible ally
+	}
+	action_b = {
+		name = "ACTIONNAME130017B" #Crush him
+		command = { type = stability value = -1 } #more battles
+		command = { type = revolt which = -2 } #final resistance of Duke Stepan Vukcic
+		command = { type = domestic which = centralization value = 2 } #nobility is finally united behind the King, with the most powerful noble gone
+		command = { type = treasury value = 20 } #Duke's treasury is taken by the King
+		command = { type = relation which = SER value = -100 } #destroyed Despot's possible ally
+		command = { type = relation which = ARG value = -100 } #Alfons' first ally in the region is destroyed
+		command = { type = relation which = VEN value = 50 } #destroyed the enemy of Venice, but they don't care much
+		command = { type = sleepevent which = 130018 } #BOS: Betrayal of Duke Stepan Vukcic
+		command = { type = sleepevent which = 130020 } #BOS: Alliance with Ragusa
+	}
+}
+
+#(1448-1461) Betrayal of Duke Stepan Vukcic
+event = {
+	id = 130018
+	trigger = {
+		war = { country = BOS country = TUR }
+	}
+	random = no
+	country = BOS
+	name = "EVENTNAME130018" #Betrayal of Duke Stepan Vukcic
+	desc = "EVENTHIST130018"
+	#-#Ottoman Empire attacked Bosnia in March 1448. Having no hope of victory against the more powerful foe, Duke Stepan Vukcic betrayed King Tomas and joined forces with Despot of Serbia to defeat him near Srebrenica in September. To crown this victory, Stepan Vukcic declared himself Herceg of Saint Sava. Herceg is a title of Hungarian origin which he saw as higher than Duke, but he also adopted it to connect himself with the Orthodox cult of Saint Sava which was very popular among the lower class population. His lands are even today called Hercegovina after this title. King Tomas attempted to outmaneuver Herceg Stepan by asking the Pope to excommunicate him, even at the cost of giving all Stepan's lands to the church, but Rome was well aware that Stepan Vukcic was the greater supporter of Catholicism in Bosnia.
+
+	date = { day = 1 month = may year = 1448 }
+	offset = 5
+	deathdate = { day = 1 month = january year = 1461 }
+
+	action_a = {
+		name = "ACTIONNAME130018A" #There is nothing we can do
+		command = { type = stability value = -1 } #the King looses control
+		command = { type = domestic which = centralization value = -1 } #the King looses control
+		command = { type = provincetax which = 364 value = -1 } #Stepan Vukcic independent
+		command = { type = provincemanpower which = 364 value = -1 } #Stepan Vukcic independent
+		command = { type = relation which = PAP value = -50 } #failed negotiations
+		command = { type = relation which = ARG value = -50 } #failed negotiations
+		command = { type = relation which = SER value = -50 } #failed negotiations
+		command = { type = relation which = VEN value = -50 } #Republic of Ragusa supports Stepan Vukcic
+		command = { type = trigger which = 277037 } #SER: Liberation of Srebrenica
+		#no revolt or revoltrisk because revolters are more likely to end up fighting Ottomans in the game
+	}
+}
+
+#(1450-1461) Papal Support
+event = {
+	id = 130019
+	trigger = {
+		monarch = 023004 #Stjepan Tomas Ostojic
+		alliance = { country = TUR country = BOS } #no support if Tomas is allied with Ottomans
+		religion = catholic
+	}
+	random = no
+	country = BOS
+	name = "EVENTNAME130019" #Papal Support
+	desc = "EVENTHIST130019"
+	#-#The new Pope, Nicolaus V, supported King Tomas in hope of securing a stronger loyalty to Catholicism. In 1450, Pope Nicolaus V declared that anyone who fights in Tomas' army in defense and against his enemies will be absolved of all sins. As the enemies of King Tomas, he defined not only muslims but also schismatics and heretics (Orthodox and Bogumil Christians). King Tomas, however, made a mistake and tried to use his new soldiers against his internal enemies, forcing many would-be conscripts to flee into lands of Herceg Stepan Vukcic.
+
+	date = { day = 1 month = june year = 1450 }
+	offset = 5
+	deathdate = { day = 1 month = january year = 1461 }
+
+	action_a = {
+		name = "ACTIONNAME130019A" #Deal with internal enemies
+		command = { type = stability value = -1 } #internal conflicts
+		command = { type = relation which = PAP value = 100 } #support
+		command = { type = revolt which = -2 } #fighting Orthodox and Bogumil population
+		command = { type = conversion which = -2 } #non-Catholics flee (just in case province somehow got converted)
+		command = { type = treasury value = -10 }
+		command = { type = INF which = -2 value = 5000 } #volounteers
+	}
+	action_b = {
+		name = "ACTIONNAME130019B" #Save the armies to fight Turks and Serbians
+		command = { type = relation which = PAP value = 100 } #support
+		command = { type = relation which = TUR value = -100 }
+		command = { type = relation which = SER value = -100 }
+		command = { type = treasury value = -10 }
+		command = { type = INF which = -2 value = 5000 } #volounteers
+	}
+	action_c = {
+		name = "ACTIONNAME130019C" #We can't afford more troops right now
+		command = { type = relation which = PAP value = 100 } #support
+	}
+}
+
+#(1451) Alliance with Ragusa
+event = {
+	id = 130020
+	trigger = {
+		OR = {
+			monarch = 023004 #Stjepan Tomas Ostojic
+			monarch = 023011 #Ulrik Celjski *
+		}
+	}
+	random = no
+	country = BOS
+	name = "EVENTNAME130020" #Alliance with Ragusa
+	desc = "EVENTHIST130020"
+	#-#In December 1451, King Tomas signed a pact with Republic of Ragusa in Bobovac. In exchange for financial aid, King Tomas agreed to cede small parts of Herceg's lands to the Republic when he is defeated. The timing for an invasion was great as Herceg Stepan was greatly weakened by a conflict with his son Vladislav. However, it was delayed first by Ottoman arbiter sent by the Sultan, then by Venetian attack on Ragusa. King Tomas beat back the Venetian invaders and rescued Ragusa, but didn't take any actions against Herceg, fearful of Ottoman or Serbian invasion. General tension and loosing conflict with his own son forced Herceg Stepan to surrender in July 1453, dividing his lands between his sons, Princes Vladislav and Vlatko. In April 1454, Herceg Stepan also signed a white peace with Republic of Ragusa.
+
+	date = { day = 1 month = december year = 1451 }
+	offset = 5
+	deathdate = { day = 1 month = january year = 1452 }
+
+	action_a = {
+		name = "GOOD"
+		command = { type = relation which = HUN value = 100 } #Ragusa were vassals of Hungary
+		command = { type = relation which = TUR value = -50 } #Herceg was vassal of Ottoman Empire
+		command = { type = relation which = VEN value = -100 } #Battle for Ragusa
+		command = { type = treasury value = 6 } #6000 ducats
+	}
+}
+
+#(1456) Death of Ulrich von Cilli - Ahistorical
+event = {
+	id = 130011
+	trigger = {
+		monarch = 023011 #Ulrik Celjski *
+	}
+	random = no
+	country = BOS
+	name = "EVENTNAME130011" #Death of Ulrich von Cilli
+	desc = "EVENTHIST130011"
+	#-#Ulrich von Cilli, also King of Bosnia, was the leader of the Hungarian faction that supported the rightful King Ladislaus in Hungarian civil war. He was killed in Belgrade by Laszlo Hunyadi in November 1456. After his death without a heir, lordship of Bosnia was assumed by Tomas Ostojic, stronger of the two brothers that were candidates for succession after death of Tvrtko II.
+
+	date = { day = 8 month = november year = 1456 }
+
+	action_a = {
+		name = "ACTIONNAME130011A" #There is no other choice
+		command = { type = wakemonarch which = 023012 } #Stjepan Tomas Ostojic
+	}
+}
+
+#(1459-1700) The Ottoman Storm
+event = {
+	id = 130005
+	trigger = {
+		owned = { province = 355 data = TUR } #Serbia
+		event = 3353 #TUR: City of Man's Desire
+	}
+	random = no
+	country = BOS
+	name = "EVENTNAME130005" #The Ottoman Storm
+	desc = "EVENTHIST130005"
+	#-#After the fall of Serbia, in 1459, everybody knew that the Turks' next step on their long way into the heart of Europe will be Bosnia. Both Stjepan Tomas and Stjepan Tomasevic' hoped for the help of the Western powers, sending complaining letters to the Pope and to the rulers of Europe, telling them what will happen if Bosnia falls. 'After us he (Mehmed II) will conquer Hungary and Dalmatia, he'll quickly penetrate himself through Krain and Istria, then comes Italy.'( Stjepan Tomasevic's letter to Pope Pius II ).
+
+	date = { day = 1 month = january year = 1459 }
+	offset = 120
+	deathdate = { day = 1 month = january year = 1700 }
+
+	action_a = {
+		name = "ACTIONNAME130005A" #'The storm is upon us'
+		command = { type = relation which = PAP value = 100 }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = relation which = HUN value = 100 }
+		command = { type = relation which = TUR value = -200 }
+		command = { type = breakvassal which = TUR }
+		command = { type = manpower value = 10 }
+		command = { type = land value = 300 }
+		command = { type = infra value = -200 }
+		command = { type = trade value = -200 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 130021

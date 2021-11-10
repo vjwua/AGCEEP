@@ -1,0 +1,2078 @@
+#Bohemia (BOH)
+
+#See AGCEEP_Alt_Germany.eue for KoG Alternative events
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419) First defenestration of Prague
+event = {
+	id = 129000
+	random = no
+	country = BOH
+	name = "EVENTNAME129000" #The first defenestration of Prague
+	desc = "EVENTHIST129000"
+	#-#Religious dissent in Bohemia, caused by the low moral state of the clergy and the great schism, had grown slowly in the 14th century. It found a leading figure in Jan Hus, a priest and professor of theology at the university of Prague. Influenced by the teachings of John Wyclif, he developed several reformatory demands, including the administration of the communion in both kinds to all church members, a much stricter adhesion to the bible and the Commandments, a radical reformation of the clergy and the abolition of Papal infallibility. These views were attacked as heretic by the University of Prague in 1403, however since he enjoyed the protection of the King he could continue to spread them and even became rector of the university. In 1410, when his influence had grown significantly and he had gathered already a large amount of followers, the Archbishop of Prague excommunicated him, which did not stop him from teaching his ideas and increasing what had soon become a popular movement, though. In 1414 he was summoned to the Council of Constance to justify his views, having been guaranteed safe-conduct by Emperor Sigismund. Ignoring this safe-conduct, the Council condemned him as a heretic and had him burned at the stake. Thereby he became a martyr for the Bohemians and his views became even more popular.
+
+	date = { day = 29 month = july year = 1419 }
+
+	action_a = {
+		name = "ACTIONNAME129000A" #What can we do?
+		command = { type = stability value = -2 }
+		command = { type = province_revoltrisk which = 315 value = 4 } #Moravia
+		command = { type = province_revoltrisk which = 327 value = 4 } #Ostmarch
+		command = { type = province_revoltrisk which = 328 value = 4 } #Bohemia
+		command = { type = province_revoltrisk which = 330 value = 4 } #Sudeten
+		command = { type = domestic which = serfdom value = -1 }
+	}
+}
+
+#(1419) The Death of King Vaclav IV
+event = {
+	id = 129001
+	random = no
+	country = BOH
+	name = "EVENTNAME129001" #Death of Vaclav IV
+	desc = "EVENTHIST129001"
+	#-#A broken man, Vaclav IV died of a second stroke on August 16th 1419. His brother, Emperor Sigismund, immediately claimed the throne and was acknowledged as rightful heir by the crown lands and by the remaining catholics in Bohemia, mostly in the crown lands Moravia, Silesia and Lusatia where there still was a catholic majority, however the Hussites who at that time already dominated most of Bohemia proper refused to accept him, fearing suppression of their faith and despising him for his betrayal of Jan Hus that led to his execution at the stake in 1415. Armed resistance against royal authority and violence against Romanists, especially Germans, began almost immediately. Queen Sophia, widow of Vaclav, first acted as regent in Bohemia and tried to maintain at least a bit of central authority in Prague and to secure the throne for her brother-in-law, however she was opposed by the Hussites in Prague and had few effective control over Bohemia. On November 13th, she had to conclude a truce with thecitizens of Prague, having failed to suppress them with hired mercenaries, basically acknowledging that the Hussite movement had become impossible to control, let alone suppress it. For almost two decades large parts of Bohemia would be in Hussite hands.
+
+	date = { day = 16 month = august year = 1419 }
+
+	action_a = {
+		name = "ACTIONNAME129001A" #Destroy this heretic movement!
+		command = { type = flagname which = "" }
+		command = { type = country which = ROM }
+		command = { type = independence which = SIL } #Hussites
+		command = { type = capital which = 314 } #Silesia
+		command = { type = relation which = HUN value = 200 }
+		command = { type = relation which = PAP value = 100 }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = relation which = LAT value = 100 }
+		command = { type = relation which = BRA value = 100 }
+		command = { type = relation which = MEI value = 100 }
+		command = { type = relation which = LUX value = 100 }
+		command = { type = relation which = BAY value = 100 }
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = domestic which = serfdom value = 1 }
+		command = { type = trigger which = 401000 } #SIL: The Hussite Wars
+		command = { type = ai which = ROM_1419_Romanist.ai }
+	}
+	action_b = {
+		name = "ACTIONNAME129001B" #Reject the traitor and fight for the Hussite faith
+		command = { type = flagname which = "" }
+		command = { type = country which = SIL }
+		command = { type = independence which = ROM }
+		command = { type = breakdynastic which = HUN }
+		command = { type = relation which = HUN value = -300 }
+		command = { type = relation which = HAB value = -200 }
+		command = { type = relation which = LAT value = -200 }
+		command = { type = relation which = LIV value = -200 }
+		command = { type = relation which = PAP value = -200 }
+		command = { type = relation which = BRA value = -200 }
+		command = { type = relation which = MEI value = -200 }
+		command = { type = relation which = LUX value = -200 }
+		command = { type = relation which = BAY value = -200 }
+		command = { type = desertion which = -1 value = 10000 }
+		command = { type = loansize which = 100 }
+		command = { type = religion which = hussite }
+		command = { type = domestic which = aristocracy value = -4 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = domestic which = serfdom value = -2 }
+		command = { type = remove_countryculture which = german }
+		command = { type = trigger which = 398000 } #ROM: The Hussite Wars
+		command = { type = ai which = SIL_1419_Hussites.ai }
+	}
+}
+
+#(1419-1499) The fate of the Bohemian Hussites
+event = {
+	id = 129002
+	trigger = {
+		OR = {
+			event = 398011 #ROM: Victory against the Hussites
+			event = 398012 #ROM: Catholicism prevails
+		}
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129002" #The fate of the Bohemian Hussites
+	desc = "EVENTHIST129002"
+	#-#The Hussite rebels are defeated, and royal authority in Bohemia has been restored. What remains is the question how to deal with the remaining Hussites. It is evident that the radicals among them need to be persecuted harshly, but there are also, especially among the nobility, lots of moderates, the so-called Utraquists. If we decide to suppress them as well, we would cleanse Bohemia completely from heresy and strengthen the authority of the catholic King, on the other hand, this might make many Hussites leave the country which would weaken the country's military and economic strength substantially. Therefore some of the King's advisors advocate giving certain concessions to the Romanists.
+
+	date = { day = 18 month = august year = 1419 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1499 }
+
+	action_a = {
+		name = "ACTIONNAME129002A" #Suppress radicals and compromise with the Utraquists
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = stability value = -1 }
+		command = { type = population which = 327 value = -10000 } #Ostmarch
+		command = { type = population which = 328 value = -5000 } #Bohemia
+		command = { type = provincetax which = 328 value = -1 } #Bohemia
+		command = { type = provincemanpower which = 328 value = -1 } #Bohemia
+		command = { type = relation which = PAP value = -100 }
+		command = { type = sleepevent which = 129040 } #BOH: Death of Ladislaus Postumus
+		command = { type = trigger which = 129048 } #BOH: Ostmarch and Habsburgs Hereditary Lands
+	}
+	action_b = {
+		name = "ACTIONNAME129002B" #Be intransigent towards all these heretics
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = innovative value = -2 }
+		command = { type = sleepmonarch which = 022503 } #Anarchy
+		command = { type = sleepmonarch which = 022504 } #Bohemian Diet
+		command = { type = wakemonarch which = 022527 } #Oldrich z Rozmberka (Regent) *
+		command = { type = wakeleader which = 022805 } #O. z Rozmberka (BOH)
+		command = { type = relation which = HUN value = -150 }
+		command = { type = population which = 315 value = -3000 } #Moravia
+		command = { type = population which = 327 value = -15000 } #Ostmarch
+		command = { type = population which = 328 value = -10000 } #Bohemia
+		command = { type = population which = 330 value = -3000 } #Sudeten
+		command = { type = provincetax which = 315 value = -1 } #Moravia
+		command = { type = provincetax which = 327 value = -2 } #Ostmarch
+		command = { type = provincetax which = 328 value = -2 } #Bohemia
+		command = { type = provincetax which = 330 value = -1 } #Sudeten
+		command = { type = provincemanpower which = 315 value = -1 } #Moravia
+		command = { type = provincemanpower which = 327 value = -2 } #Ostmarch
+		command = { type = provincemanpower which = 328 value = -2 } #Bohemia
+		command = { type = provincemanpower which = 330 value = -1 } #Sudeten
+		command = { type = provinceculture which = 330 value = german } #Sudeten
+		command = { type = provincereligion which = 315 value = catholic } #Moravia
+		command = { type = provincereligion which = 327 value = catholic } #Ostmarch
+		command = { type = provincereligion which = 328 value = catholic } #Bohemia
+		command = { type = relation which = PAP value = 100 }
+		command = { type = sleepevent which = 129003 } #BOH: Coronation of Albrecht of Habsburg -I-
+		command = { type = sleepevent which = 129043 } #BOH: Coronation of Albrecht of Habsburg -II-
+	}
+}
+#(1419-1450 or 1419-1499 or 1457) Ostmarch and Habsburgs Hereditary Lands
+event = {
+	id = 129048 #triggered by ROM_398014 / ProvinceSpec_338058 A or BOH_129002 A or BOH_129040 A
+	trigger = {
+		owned = { province = 327 data = -1 } #Ostmarch
+		OR = {
+			owned = { province = 350 data = HAB } #Salzburg
+			owned = { province = 351 data = HAB } #Austria
+		}
+		NOT = { event = 179141 } #HAB: Ostmarch and Habsburgs Hereditary Lands
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129048" #Ostmarch and Habsburgs Hereditary Lands
+	desc = "EVENTHIST129048"
+	#-#In 976, the march ruled by the Babenberg family was described as regione vulgari vocabulo Ostarrîchi, that is, the region called 'Ostarrîchi' (the Eastern Realm) in the vernacular. The term Ostarrîchi is linguistic ancestor of the German name for Austria, Österreich. Under Ernest the Brave (1055–1075), the colonisation of the Waldviertel was begun and the Bohemian and Hungarian marches were united to Austria.
+
+	action_a = {
+		name = "ACTIONNAME129048A" #Ostmarch belongs to Austria
+		command = { type = provincemanpower which = 327 value = -1 } #Ostmarch
+		command = { type = provinceculture which = 327 value = german } #Ostmarch
+		command = { type = removecore which = 327 } #Ostmarch
+		command = { type = secedeprovince which = HAB value = 327 } #Ostmarch
+		command = { type = relation which = HAB value = 50 }
+		command = { type = sleepevent which = 179141 } #HAB: Ostmarch and Habsburgs Hereditary Lands
+	}
+}
+#(1419-1820) Ostmarch and Habsburgs Hereditary Lands
+event = {
+	id = 129049 #triggered by HAB_179141
+	trigger = {
+		NOT = { #Hussite Bohemia
+			flag = [Taborites]
+			flag = [Utraquist_republic]
+			flag = [Utraquist_Podiebrad]
+		}
+		core = { province = 327 data = SPA } #Ostmarch
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129048" #Ostmarch and Habsburgs Hereditary Lands
+	desc = "EVENTHIST129048"
+	#-#In 976, the march ruled by the Babenberg family was described as regione vulgari vocabulo Ostarrîchi, that is, the region called 'Ostarrîchi' (the Eastern Realm) in the vernacular. The term Ostarrîchi is linguistic ancestor of the German name for Austria, Österreich. Under Ernest the Brave (1055–1075), the colonisation of the Waldviertel was begun and the Bohemian and Hungarian marches were united to Austria.
+
+	action_a = {
+		name = "ACTIONNAME129048A" #Ostmarch belongs to Austria
+		command = { type = removecore which = 327 } #Ostmarch
+	}
+}
+
+#(1437-1439) Albrecht of Habsburg becomes King of Bohemia -I-
+event = {
+	id = 129003
+	trigger = {
+		vassal = { country = HUN country = BOH }
+		OR = {
+			event = 129002 #BOH: The fate of the Bohemian Hussites
+			flag = [settlement] #Bohemia reformed by Romanists
+		}
+		NOT = { event = 129043 } #BOH: Albrecht of Habsburg becomes King of Bohemia -II-
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129003" #Coronation of Albrecht of Habsburg
+	desc = "EVENTHIST129003"
+	#-#Sigismund, King of Germany, Hungary and Bohemia, died without male issue. Having faced this for some time, Sigismund had chosen his longtime ally and friend Albrecht of Austria, who had proven to be a capable soldier during the Hussite Wars, as his successor in all three Kingdoms and married him to his sole daughter Elizabeth. The last years of his reign were almost exclusively dedicated to ensuring the succession. He eventually got Bohemia to accept Albrecht, however when Albrecht rose to the Bohemian throne after Sigismund's death, a part of the Utraquist nobility and the remaining Taborites stood up in revolt against him, dissatisfied with Sigismund's reign, afraid of the Compactata being ignored and leery of German influence. Therefore Albrecht's short reign was unstable and he entered his Kingdom only once to be coronated.
+
+	date = { day = 9 month = december year = 1437 }
+	offset = 1
+	deathdate = { day = 27 month = october year = 1439 }
+
+	action_a = {
+		name = "ACTIONNAME129003A" #Respect Sigismund's wish and elect Albrecht
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = breakvassal which = HUN }
+		command = { type = relation which = HUN value = -100 }
+		command = { type = stability value = -3 }
+		command = { type = revolt which = -2 }
+		command = { type = province_revoltrisk which = 328 value = 3 } #Bohemia
+		command = { type = province_revoltrisk which = 330 value = 3 } #Sudeten
+		command = { type = sleepevent which = 129043 } #BOH: Coronation of Albrecht of Habsburg -II-
+	}
+}
+#(1437-1439) Albrecht of Habsburg becomes King of Bohemia -II-
+event = {
+	id = 129043
+	trigger = {
+		NOT = { vassal = { country = HUN country = BOH } }
+		OR = {
+			event = 129002 #BOH: The fate of the Bohemian Hussites
+			flag = [settlement] #Bohemia reformed by Romanists
+		}
+		NOT = { event = 129003 } #BOH: Albrecht of Habsburg becomes King of Bohemia -I-
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129003" #Coronation of Albrecht of Habsburg
+	desc = "EVENTHIST129003"
+	#-#Sigismund, King of Germany, Hungary and Bohemia, died without male issue. Having faced this for some time, Sigismund had chosen his longtime ally and friend Albrecht of Austria, who had proven to be a capable soldier during the Hussite Wars, as his successor in all three Kingdoms and married him to his sole daughter Elizabeth. The last years of his reign were almost exclusively dedicated to ensuring the succession. He eventually got Bohemia to accept Albrecht, however when Albrecht rose to the Bohemian throne after Sigismund's death, a part of the Utraquist nobility and the remaining Taborites stood up in revolt against him, dissatisfied with Sigismund's reign, afraid of the Compactata being ignored and leery of German influence. Therefore Albrecht's short reign was unstable and he entered his Kingdom only once to be coronated.
+
+	date = { day = 9 month = december year = 1437 }
+	offset = 1
+	deathdate = { day = 27 month = october year = 1439 }
+
+	action_a = {
+		name = "ACTIONNAME129003A" #Respect Sigismund's wish and elect Albrecht
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = relation which = HUN value = -150 }
+		command = { type = stability value = -3 }
+		command = { type = revolt which = -2 }
+		command = { type = province_revoltrisk which = 328 value = 3 } #Bohemia
+		command = { type = province_revoltrisk which = 330 value = 3 } #Sudeten
+		command = { type = sleepevent which = 129003 } #BOH: Coronation of Albrecht of Habsburg -I-
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#(1440-1460) The Letter of Peace
+event = {
+	id = 129004
+	trigger = {
+		OR = {
+			event = 129003 #BOH: Coronation of Albrecht of Habsburg -I-
+			event = 129043 #BOH: Coronation of Albrecht of Habsburg -II-
+		}
+		exists = BAY
+		NOT = { event = 129025 } #BOH: The Letter of Peace
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129004" #The Letter of Peace
+	desc = "EVENTHIST129004"
+	#-#In 1439 Albrecht of Habsburg, King of Hungary, fell ill, probably of cholera, while campaigning against the Ottomans. Within one month he died, leaving two minor daughters and his pregnant wife Elizabeth. For the case of the unborn child being male, Albrecht declared that his son would be his successor in all his fiefs just before his death. Upon his death, the Bohemian nobility formed two conflicting parties. The 'national' one, led by George of Podiebrad and consistingmainly of Utraquist Hussites,insisted on Bohemia's right to elect its King and a strict adherence to the Compactates thatguaranteed religious freedom to the moderate Hussite. Remembering the Jagiellons' support for the Hussite rebels and preferring a Slavic monarch to a German one, they wanted to offer the Bohemian throne to the Polish prince Casimir. Opposedto them was the 'Romanist' or 'Austrian' party under Oldrich of Rozmberk that acknowledged the hereditary rights of Albrecht's unborn child and advocated a return to the Roman church. The two parties finally came to an agreement calledthe 'Letter of Peace'. In this treaty both parties recognized the validity of the compacts, confirmed the appointment of Jan of Rokycan, a moderate Utraquist, as Bishop of Prague against the will of the Pope, and agreed on a compromise regarding the succession of Albrecht. The Nationalists abandoned the candidature of Casimir, but pressed their demand for an adult King -which was in the interest of most Romanists who did not want to be ruled by a baby as well. Thus the throne was offered to Duke Albrecht of Bavaria-Munich.
+
+	date = { day = 1 month = january year = 1440 }
+	offset = 200
+	deathdate = { day = 29 month = february year = 1460 }
+
+	action_a = {
+		name = "ACTIONNAME129004A" #Sign the Letter and offer the throne to Albrecht of Bavaria
+		command = { type = relation which = PAP value = -50 }
+		command = { type = relation which = HAB value = -200 }
+		command = { type = breakvassal which = HAB }
+		command = { type = stability value = 3 }
+		command = { type = province_revoltrisk which = 328 value = -3 } #Bohemia
+		command = { type = province_revoltrisk which = 330 value = -3 } #Sudeten
+		command = { type = sleepevent which = 129025 } #BOH: The Letter of Peace
+		command = { type = sleepevent which = 179106 } #HAB: Ladislas Postumus
+		command = { type = sleepevent which = 179137 } #HAB: Ladislas Postumus (HAB vassal of BOH)
+		command = { type = sleepevent which = 258101 } #POL: The Bohemian throne
+	}
+	action_b = {
+		name = "ACTIONNAME129004B" #Acknowledge the hereditary right of Albrecht's heir (possibly End Game)
+		command = { type = relation which = PAP value = 50 } #Romanists have prevailed
+		command = { type = relation which = HAB value = 100 }
+		command = { type = stability value = -2 }
+		command = { type = province_revoltrisk which = 328 value = -3 } #Bohemia
+		command = { type = province_revoltrisk which = 330 value = -3 } #Sudeten
+		command = { type = revoltrisk which = 160 value = 3 }
+		command = { type = domestic which = centralization value = -3 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = sleepevent which = 129025 } #BOH: The Letter of Peace
+		command = { type = sleepevent which = 125040 } #BAY: The Bohemian throne
+		command = { type = sleepevent which = 258101 } #POL: The Bohemian throne
+	}
+	action_c = {
+		name = "ACTIONNAME129004C" #Offer the throne to Casimir of Poland
+		command = { type = relation which = PAP value = -150 } #Hussites have prevailed
+		command = { type = breakvassal which = HAB }
+		command = { type = province_revoltrisk which = 328 value = -3 } #Bohemia
+		command = { type = province_revoltrisk which = 330 value = -3 } #Sudeten
+		command = { type = revoltrisk which = 200 value = 4 }
+		command = { type = sleepevent which = 129025 } #BOH: The Letter of Peace
+		command = { type = sleepevent which = 125040 } #BAY: The Bohemian throne
+		command = { type = sleepevent which = 179106 } #HAB: Ladislas Postumus
+		command = { type = sleepevent which = 179137 } #HAB: Ladislas Postumus (HAB vassal of BOH)
+	}
+}
+#(1440-1460) The Letter of Peace (BAY doesn't exist)
+event = {
+	id = 129025
+	trigger = {
+		OR = {
+			event = 129003 #BOH: Coronation of Albrecht of Habsburg -I-
+			event = 129043 #BOH: Coronation of Albrecht of Habsburg -II-
+		}
+		NOT = { exists = BAY }
+		NOT = { event = 129004 } #BOH: The Letter of Peace
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129025" #The Letter of Peace
+	desc = "EVENTHIST129025"
+	#-#In 1439 Albrecht of Habsburg, King of Hungary, fell ill, probably of cholera, while campaigning against the Ottomans. Within one month he died, leaving two minor daughters and his pregnant wife Elizabeth. For the case of the unborn child being male, Albrecht declared that his son would be his successor in all his fiefs just before his death. Upon his death, the Bohemian nobility formed two conflicting parties. The 'national' one, led by George of Podiebrad and consistingmainly of Utraquist Hussites,insisted on Bohemia's right to elect its King and a strict adherence to the Compactates thatguaranteed religious freedom to the moderate Hussite. Remembering the Jagiellons' support for the Hussite rebels and preferring a Slavic monarch to a German one, they wanted to offer the Bohemian throne to the Polish prince Casimir. Opposedto them was the 'Romanist' or 'Austrian' party under Ulrich of Rozmberk that acknowledged the hereditary rights of Albrecht's unborn child and advocated a return to the Roman church. The two parties finally came to an agreement calledthe 'Letter of Peace'. In this treaty both parties recognized the validity of the compacts, confirmed the appointment of Jan of Rokycan, a moderate Utraquist, as Bishop of Prague against the will of the Pope, and agreed on a compromise regarding the succession of Albrecht. The Nationalists abandoned the candidature of Casimir, but pressed their demand for an adult King -which was in the interest of most Romanists who did not want to be ruled by a baby as well. Thus the throne was offered to Albrecht of Wittelsbach who eagerly accepted, having lost his hereditary possession of Bavaria-Munich.
+
+	date = { day = 1 month = january year = 1440 }
+	offset = 200
+	deathdate = { day = 29 month = february year = 1460 }
+
+	action_a = {
+		name = "ACTIONNAME129025A" #Sign the Letter and elect Albrecht of Wittelsbach
+		command = { type = relation which = PAP value = -50 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = breakvassal which = HAB }
+		command = { type = stability value = 4 }
+		command = { type = province_revoltrisk which = 328 value = -3 } #Bohemia
+		command = { type = province_revoltrisk which = 330 value = -3 } #Sudeten
+		command = { type = wakemonarch which = 022522 } #Albrecht II Bavorský °
+		command = { type = sleepmonarch which = 022503 } #Anarchy
+		command = { type = sleepmonarch which = 022504 } #Bohemian Diet
+		command = { type = sleepmonarch which = 022505 } #Ladislav Pohrobek
+		command = { type = sleepmonarch which = 022506 } #Jiri z Podiebrad
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = sleepevent which = 129004 } #BOH: The Letter of Peace
+		command = { type = sleepevent which = 179106 } #HAB: Ladislas Postumus
+		command = { type = sleepevent which = 179137 } #HAB: Ladislas Postumus (HAB vassal of BOH)
+		command = { type = sleepevent which = 258101 } #POL: The Bohemian throne
+	}
+	action_b = {
+		name = "ACTIONNAME129025B" #Acknowledge the hereditary right of Albrecht's heir (possibly End Game)
+		command = { type = relation which = PAP value = 50 } #Romanists have prevailed
+		command = { type = relation which = HAB value = 100 }
+		command = { type = stability value = -2 }
+		command = { type = province_revoltrisk which = 328 value = -3 } #Bohemia
+		command = { type = province_revoltrisk which = 330 value = -3 } #Sudeten
+		command = { type = revoltrisk which = 160 value = 3 }
+		command = { type = domestic which = centralization value = -3 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = sleepevent which = 129004 } #BOH: The Letter of Peace
+		command = { type = sleepevent which = 258101 } #POL: The Bohemian throne
+	}
+	action_c = {
+		name = "ACTIONNAME129025C" #Offer the throne to Casimir of Poland
+		command = { type = relation which = PAP value = -150 } #Hussites have prevailed
+		command = { type = breakvassal which = HAB }
+		command = { type = province_revoltrisk which = 328 value = -3 } #Bohemia
+		command = { type = province_revoltrisk which = 330 value = -3 } #Sudeten
+		command = { type = revoltrisk which = 200 value = 4 }
+		command = { type = sleepevent which = 129004 } #BOH: The Letter of Peace
+		command = { type = sleepevent which = 179106 } #HAB: Ladislas Postumus
+		command = { type = sleepevent which = 179137 } #HAB: Ladislas Postumus (HAB vassal of BOH)
+	}
+}
+#(1440-1460) Bavaria refuses
+event = {
+	id = 129007 #triggered by BAY_125040 A / BAY_125039 A
+	random = no
+	country = BOH
+	name = "EVENTNAME129007" #Bavaria refuses
+	desc = "EVENTHIST129007"
+	#-#Busy fighting his hostile relatives and willing neither to risk a conflict with the Habsburgs nor to deal with the rebellious and heretic Bohemians Albrecht of Bavaria refused the proferred Bohemian throne. This left the Bohemian nobility with no choice but to accept the still unborn child of Albrecht of Habsburg as his successor. On February 22nd 1440, Queen Elizabeth gave birth to a son who received the name of Ladislaus and eventually rose to the thrones of Bohemia and Hungary. The new Bohemian King stayed in Austria under the guardianship of Friedrich III and Bohemia was left in virtual anarchy.
+
+	action_a = {
+		name = "ACTIONNAME129007A" #Accept Ladislaus
+		command = { type = relation which = HAB value = 100 }
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 160 value = 3 }
+		command = { type = domestic which = centralization value = -3 }
+	}
+}
+#(1440-1460) Bavaria accepts
+event = {
+	id = 129005 #triggered by BAY_125040 B / BAY_125039 B
+	random = no
+	country = BOH
+	name = "EVENTNAME129005" #Bavaria accepts
+	desc = "EVENTHIST129005"
+	#-#Duke Albrecht of Bavaria has accepted our offer of the Bohemian throne. He will be crowned King in Prague now.
+
+	action_a = {
+		name = "ACTIONNAME129005A" #Fine
+		command = { type = wakemonarch which = 022522 } #Albrecht II Bavorský °
+		command = { type = sleepmonarch which = 022503 } #Anarchy
+		command = { type = sleepmonarch which = 022504 } #Bohemian Diet
+		command = { type = sleepmonarch which = 022505 } #Ladislav Pohrobek
+		command = { type = sleepmonarch which = 022506 } #Jiri z Podiebrad
+		command = { type = stability value = 2 }
+		command = { type = alliance which = BAY }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = aristocracy value = 1 }
+	}
+}
+#(1440-1460) Poland accepts
+event = {
+	id = 129006 #triggered by POL_258101 A / POL_258057 A
+	random = no
+	country = BOH
+	name = "EVENTNAME129006" #Poland accepts
+	desc = "EVENTHIST129006"
+	#-#Prince Casimir of Poland has accepted our offer of the Bohemian throne. He will be crowned King in Prague now.
+
+	action_a = {
+		name = "ACTIONNAME129006A" #Fine
+		command = { type = wakemonarch which = 022523 } #Kazimir I °
+		command = { type = wakemonarch which = 022524 } #(Vladislav II Jagellonský 2nd version) #Vladislav I °
+		command = { type = sleepmonarch which = 022503 } #Anarchy
+		command = { type = sleepmonarch which = 022504 } #Bohemian Diet
+		command = { type = sleepmonarch which = 022505 } #Ladislav Pohrobek
+		command = { type = sleepmonarch which = 022506 } #Jiri z Podiebrad
+		command = { type = sleepmonarch which = 022507 } #Vladislav II Jagellonský
+		command = { type = stability value = 2 }
+		command = { type = alliance which = POL }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = aristocracy value = 1 }
+	}
+}
+#(1440-1460) Poland refuses
+event = {
+	id = 129008 #triggered by POL_258101 B / POL_258057 B
+	random = no
+	country = BOH
+	name = "EVENTNAME129008" #Poland refuses
+	desc = "EVENTHIST129008"
+	#-#Casimir of Poland has rejected the Bohemian crown. This leaves the Bohemian diet with no choice but to accept the still unborn child of Albrecht of Habsburg as his successor. On February 22nd 1440 Queen Elizabeth gave birth to a son who received the name of Ladislaus and eventually rose to the thrones of Bohemia and Hungary. The new Bohemian King stayed in Austria under the guardianship of Friedrich III and Bohemia was left in virtual anarchy.
+
+	action_a = {
+		name = "ACTIONNAME129008A" #Accept Ladislaus
+		command = { type = relation which = HAB value = 100 }
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 160 value = 3 }
+		command = { type = domestic which = centralization value = -3 }
+	}
+}
+#-----------------------------------------------------------------------------------------------
+
+#(1446) The diet of 1446
+event = {
+	id = 129009
+	trigger = {
+		monarch = 022504 #Bohemian Diet
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129009" #The Diet of 1446
+	desc = "EVENTHIST129009"
+	#-#Albeit nominally King of Bohemia, Ladislaus remained in Austria under the control of his uncle, Emperor Friedrich III. Meanwhile Bohemia still lacked a regular government, the struggle between Nationalists and Romanists broke out again and threatened to turn into civil war. In order to save the country from falling into anarchy, the estates of Bohemia, Moravia, Silesia and Lusatia were summoned for a general meeting in 1446. This diet attempted to establish an effective administration of the Kingdom for as long as its King was a child. It was decreed that the members of the estates were to be divided into three bodies, the 'curiae', representing the nobles, the knights and the towns - who were granted such a big deal of influence for the first time - that deliberated separately and only met for a final decision in which each of the three had one vote. The efforts to appoint a regent however failed as well as the negotiations with the Pope, regarding the religious status of Bohemia.
+
+	date = { day = 1 month = january year = 1446 }
+	offset = 60
+	deathdate = { day = 1 month = january year = 1447 }
+
+	action_a = {
+		name = "ACTIONNAME129009A" #What a pity
+		command = { type = stability value = 1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = aristocracy value = -1 }
+	}
+}
+
+#(1448-1453) Podiebrad seizes Prague
+event = {
+	id = 129010
+	trigger = {
+		event = 129009 #BOH: The diet of 1446
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129010" #Civil War
+	desc = "EVENTHIST129010"
+	#-#After the diet of 1446's failure to restore order by appointing a regent that was mainly due to the Romanists' unwillingness to cooperate and their secret efforts to sabotage the negotiations with the Pope, the Nationalist leader George of Podiebrad decided to appeal to the fortune of war. He assembled a considerable army in Kutna Hora, marched to Prague and seized the town almost without resistance. Having put himself in control of most of the country and enjoying popular support, he assumed the regency over the Kingdom. While both the Diet and the young King's guardian Friedrich III sanctioned his title in 1451, the Romanists and the few remaining fanatic Taborites violently opposed him.
+
+	date = { day = 1 month = january year = 1448 }
+	offset = 300
+	deathdate = { day = 26 month = october year = 1453 }
+
+	action_a = {
+		name = "ACTIONNAME129010A" #Support Jiri Podiebrad and the Nationalists
+		command = { type = stability value = 2 }
+		command = { type = relation which = PAP value = -100 }
+		command = { type = revoltrisk which = 108 value = 4 }
+		command = { type = wakeleader which = 022804 } #Jiriz Podiebrad (BOH)
+		command = { type = wakeleader which = 022806 } #Victorin Podiebrad (BOH)
+		command = { type = wakemonarch which = 022534 } #Jiri z Podiebrad (Regent)
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = sleepevent which = 129012 } #BOH: Election of Oldrich of Rozmberk
+	}
+	action_b = {
+		name = "ACTIONNAME129010B" #Support Oldrich of Rozmberk and the Romanists
+		command = { type = stability value = -1 }
+		command = { type = relation which = PAP value = 200 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = revolt which = -2 }
+		command = { type = revolt which = 330 } #Sudeten
+		command = { type = revoltrisk which = 108 value = 5 }
+		command = { type = wakemonarch which = 022527 } #Oldrich z Rozmberka (Regent) *
+		command = { type = wakeleader which = 022805 } #O. z Rozmberka (BOH)
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = sleepevent which = 129011 } #BOH: Election of Jiri Podiebrad -I-
+		command = { type = sleepevent which = 129044 } #BOH: Election of Jiri Podiebrad -II-
+	}
+}
+
+#(1457) Death of Ladislaus Postumus - Ahistorical
+event = {
+	id = 129040
+	trigger = {
+		OR = {
+			event = 129002 #BOH: The fate of the Bohemian Hussites
+			flag = [Hussites_suppressed] #Bohemia reformed by Romanists
+		}
+		exists = HAB
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129040" #Death of Ladislaus Postumus
+	desc = "EVENTHIST129040"
+	#-#After the premature death of the youthful King Ladislaus Postumus, son of Albrecht of Habsburg, conflict over his succession in the Kingdom of Bohemia arises. Ladislaus' closest relative, Emperor Frederick III, insists on the dynastic principle and claims to be rightful heir. While such a union with Austria is indeed rather popular among those who have already supported Albrecht of Habsburg and before the Luxemburg Kings, the idea is opposed by the powerful former regent Oldrich z Rozmberka who now sees his own chance on the throne.
+
+	date = { day = 22 month = november year = 1457 }
+
+	action_a = {
+		name = "ACTIONNAME129040A" #Oldrich z Rozmberka shall be King
+		command = { type = wakemonarch which = 022528 } #Oldrich I *
+		command = { type = sleepmonarch which = 022506 } #Jiri z Podiebrad
+		command = { type = stability value = -2 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = PRM value = -100 }
+		command = { type = trigger which = 129048 } #BOH: Ostmarch and Habsburgs Hereditary Lands
+	}
+	action_b = {
+		name = "ACTIONNAME129040B" #Jiri z Podiebrad shall be King
+		command = { type = stability value = -1 }
+		command = { type = relation which = BAY value = -100 }
+		command = { type = relation which = SAC value = -100 }
+		command = { type = relation which = BRA value = -100 }
+		command = { type = trigger which = 129048 } #BOH: Ostmarch and Habsburgs Hereditary Lands
+	}
+	action_c = {
+		name = "ACTIONNAME129040C" #Emperor Frederick shall be King (End Game)
+		command = { type = trigger which = 179603 } #HAB: Inheritance of Bohemia
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Jiri Podiebrad Sequence
+#(1457) Election of Jiri Podiebrad -I-
+event = {
+	id = 129011
+	trigger = {
+		monarch = 022505 #Ladislav Pohrobek
+		vassal = { country = HAB country = BOH }
+		NOT = { event = 129044 } #BOH: Election of Jiri Podiebrad -II-
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129011" #Election of Jiri Podiebrad
+	desc = "EVENTHIST129011"
+	#-#After Ladislaus Postumus' death in 1457 there was no question about his succession. Although there was a number of foreign candidates, it was obvious that the only possible choice was the most powerful and most popular man in Bohemia: George of Podiebrad. On February 27th 1458 the estates unanimously elected him, with even his Romanist enemies, voting for Podiebrad. The election was enthusiastically welcomed by the populace. Podiebrad soon began to restore order, to consolidate his authority and to revive the economy. Thus the first years of his reign seemed quite prosperous and Bohemia, likely to return to the power within the Empire it had enjoyed during the reign of Charles IV. The Romanists however, continued to oppose him and secretly conspired against Podiebrad with the Pope.
+
+	date = { day = 22 month = november year = 1457 }
+
+	action_a = {
+		name = "ACTIONNAME129011A" #Elect Podiebrad
+		command = { type = stability value = 2 }
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = revoltrisk which = 140 value = 3 }
+		command = { type = relation which = PAP value = -100 }
+		command = { type = provinceculture which = 314 value = polish } #Silesia
+		command = { type = breakvassal which = HAB }
+		command = { type = sleepevent which = 129044 } #BOH: Election of Jiri Podiebrad -II-
+	}
+}
+#(1457) Election of Jiri Podiebrad -II-
+event = {
+	id = 129044
+	trigger = {
+		monarch = 022505 #Ladislav Pohrobek
+		NOT = { vassal = { country = HAB country = BOH } }
+		NOT = { event = 129011 } #BOH: Election of Jiri Podiebrad -I-
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129011" #Election of Jiri Podiebrad
+	desc = "EVENTHIST129011"
+	#-#After Ladislaus Postumus' death in 1457 there was no question about his succession. Although there was a number of foreign candidates, it was obvious that the only possible choice was the most powerful and most popular man in Bohemia: George of Podiebrad. On February 27th 1458 the estates unanimously elected him, with even his Romanist enemies, voting for Podiebrad. The election was enthusiastically welcomed by the populace. Podiebrad soon began to restore order, to consolidate his authority and to revive the economy. Thus the first years of his reign seemed quite prosperous and Bohemia, likely to return to the power within the Empire it had enjoyed during the reign of Charles IV. The Romanists however, continued to oppose him and secretly conspired against Podiebrad with the Pope.
+
+	date = { day = 22 month = november year = 1457 }
+
+	action_a = {
+		name = "ACTIONNAME129011A" #Elect Podiebrad
+		command = { type = stability value = 2 }
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = revoltrisk which = 140 value = 3 }
+		command = { type = relation which = PAP value = -100 }
+		command = { type = provinceculture which = 314 value = polish } #Silesia
+		command = { type = sleepevent which = 129011 } #BOH: Election of Jiri Podiebrad -I-
+	}
+}
+#(1462) Pius II and George Podiebrad
+event = {
+	id = 129013
+	trigger = {
+		monarch = 022506 #Jiri z Podiebrad
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129013" #Conflict with the Church
+	desc = "EVENTHIST129013"
+	#-#The more moderate wing of the Hussites of Bohemia had been granted limited religious freedom in 1436 by the Compactates and since then practiced its faith openly in Bohemia, tolerated by the Catholic church. When Pius II rose to the holy see, he was determined to end this situation. He got George of Podiebrad who was a Hussite himself to promise converting to catholicism and suppressing all heresy in Bohemia just before his election in 1458. Podiebrad however, while indeed planning to return to the Roman Church himself, had no intention to persecute his former coreligionists and insisted on the Compactates. As a reaction, on March 31st 1462 Pius declared that the Compactates had been valid only for the generation that lived back then and were now invalid and demanded Bohemia's full return to catholicism. At an assembly of the estates in Prague, George refused and said he would to his death remain true to the communion of both kinds, and that he was ready to risk his life and his crown in defense of his faith.
+
+	date = { day = 29 month = march year = 1462 }
+
+	action_a = {
+		name = "ACTIONNAME129013A" #Reject the Bishop of Rome's preposterous demands
+		command = { type = relation which = PAP value = -300 }
+		command = { type = stability value = 2 }
+		command = { type = revoltrisk value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME129013B" #Obey His Holyness and suppress heresy
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk value = 3 }
+		command = { type = relation which = PAP value = 250 }
+		command = { type = sleepevent which = 129014 } #BOH: The Romanist confederady of Zelena Hora
+		command = { type = sleepevent which = 251054 } #PAP: Excommunication of Jiriz Podiebrad
+		command = { type = sleepevent which = 236005 } #MUS: Excommunication of Jiriz Podiebrad
+	}
+}
+#(1465) Confederacy of Zelena Hora
+event = {
+	id = 129014
+	trigger = {
+		event = 129013 #BOH: Conflict with the Church
+		OR = {
+			owned = { province = 314 data = -1 }
+			owned = { province = 315 data = -1 }
+			owned = { province = 329 data = -1 }
+		}
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129014" #The Romanist confederacy of Zelena Hora
+	desc = "EVENTHIST129014"
+	#-#After George's refusal of the church's demands to suppress the Hussite faith in 1462 the Romanist party in Bohemia became even more embittered against the King whom they regarded both as a heretic and as a political enemy who was about to curtail the nobility's privileges. At a meeting in Zelena Hora on November 28th 1465 most of them formed a confederacy championed by Zdenek of Sternberg against him and began open revolt. The lands of the crown, Silesia, Moravia and Lusatia, that were almost entirely catholic opposed George most strongly. He completely lost control of these lands to the Catholics after the formation of the confederacy. While the Royalists obtained some successes in Bohemia and quickly seized all castles held by the rebels there, they failed in Silesia, Moravia and Lusatia. George's rule and the survival of the Hussite faith were seriously endangered.
+
+	date = { day = 28 month = november year = 1465 }
+
+	action_a = {
+		name = "OUCH"
+		command = { type = revolt which = 314 } #Silesia
+		command = { type = revolt which = 315 } #Moravia
+		command = { type = revolt which = 329 } #Erz
+		command = { type = revolt which = 328 } #Bohemia
+		command = { type = province_revoltrisk which = 314 value = 4 } #Silesia
+		command = { type = province_revoltrisk which = 315 value = 4 } #Moravia
+		command = { type = province_revoltrisk which = 329 value = 4 } #Erz
+	}
+}
+#(1471) Death of Jiri Podiebrad
+event = {
+	id = 129017
+	trigger = {
+		OR = {
+			monarch = 022506 #Jiri z Podiebrad
+			monarch = 022557 #Jiri z Podiebrad
+		}
+		countrysize = 5 #the Podiebrad choice is only possible if Bohemia didn't loose territory; getting Bohemia is too crucial for Austria to make it a likely thing for the AI to avoid
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129017" #Death of Jiri Podiebrad
+	desc = "EVENTHIST129017"
+	#-#Jiriz Podiebrad died in 1471, in the middle of his struggle with Mathias Corvinus of Hungary who headed a 'crusade' against Bohemia and claimed its throne. Since his supporters were in a precarious military situation, having lost all lands of the Bohemian crown to the King of Hungary, Podiebrad had shortly before his death, despite being father of several adult sons himself, asked prince Vladislav of Poland to succeed him in order to save Hussitism and Bohemian independence. Vladislav indeed succeeded him and initiated a half century of Jagiellon rule in Bohemia which proved to be backwards, intolerant in religious matters, devastating for Bohemia's economy and eventually resulted in the disaster of 1526. However had Podiebrad been in a better situation, he might very well have used the opportunity to establish his dynasty as hereditary national Kings of Bohemia.
+
+	date = { day = 22 month = march year = 1471 }
+
+	action_a = {
+		name = "ACTIONNAME129017A" #Elect Vladislav Jagiello
+		command = { type = trigger which = 258103 } #POL: The Bohemian throne
+		command = { type = stability value = 2 }
+		command = { type = province_revoltrisk which = 314 value = -4 } #Silesia
+		command = { type = province_revoltrisk which = 315 value = -4 } #Moravia
+		command = { type = province_revoltrisk which = 329 value = -4 } #Erz
+		command = { type = relation which = PAP value = 100 }
+		command = { type = technology which = orthodox }
+	}
+	action_b = {
+		name = "ACTIONNAME129017B" #Establish a national czech dynasty
+		command = { type = wakemonarch which = 022535 } #Viktorin I *
+		command = { type = wakemonarch which = 022536 } #Vavrinec I *
+		command = { type = wakemonarch which = 022537 } #Bartolomej *
+		command = { type = wakemonarch which = 022538 } #Karel II Vojtech *
+		command = { type = wakemonarch which = 022539 } #Jindrich II *
+		command = { type = wakemonarch which = 022540 } #Jindrich III *
+		command = { type = wakemonarch which = 022541 } #Karel III *
+		command = { type = wakemonarch which = 022542 } #Jindrich IV Václav *
+		command = { type = wakemonarch which = 022543 } #Karel IV Bedrich *
+		command = { type = wakeleader which = 022807 } #Victorin 2nd coming #Victorin I (BOH)
+		command = { type = sleepmonarch which = 022507 } #Vladislav II Jagellonský
+		command = { type = sleepmonarch which = 022508 } #Lev z Rozmitálu (Regent)
+		#Habsburg dynasty
+		command = { type = sleepmonarch which = 022509 } #Ferdinand I
+		command = { type = sleepmonarch which = 022510 } #Maxmilián II *
+		command = { type = sleepmonarch which = 022511 } #Rudolf II *
+		command = { type = sleepmonarch which = 022512 } #Matyáš *
+		command = { type = sleepmonarch which = 022513 } #Ferdinand II *
+		command = { type = sleepmonarch which = 022514 } #Ferdinand III *
+		command = { type = sleepmonarch which = 022515 } #Leopold I *
+		command = { type = sleepmonarch which = 022516 } #Josef I *
+		command = { type = sleepmonarch which = 022517 } #Karel V *
+		command = { type = sleepmonarch which = 022518 } #Marie Terezie *
+		command = { type = sleepmonarch which = 022519 } #Josef II *
+		command = { type = sleepmonarch which = 022520 } #Leopold II *
+		command = { type = sleepmonarch which = 022521 } #František II *
+		command = { type = province_revoltrisk which = 315 value = -4 } #Moravia
+		command = { type = province_revoltrisk which = 329 value = -4 } #Erz
+		command = { type = stability value = -3 }
+		command = { type = domestic which = innovative value = 2 }
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = revoltrisk which = 240 value = 5 }
+	}
+}
+#(1471) Death of Jiri Podiebrad
+event = {
+	id = 129023
+	trigger = {
+		OR = {
+			monarch = 022506 #Jiri z Podiebrad
+			monarch = 022557 #Jiri z Podiebrad
+		}
+		NOT = { countrysize = 5 }
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129023" #Death of Jiri Podiebrad
+	desc = "EVENTHIST129023"
+	#-#Jiri Podiebrad died in 1471, in the middle of his struggle with Mathias Corvinus of Hungary who headed a 'crusade' against Bohemia and claimed its throne. Since his supporters were in a precarious military situation, having lost all lands of the Bohemian crown to the King of Hungary, Podiebrad had shortly before his death, despite being father of several adult sons himself, asked prince Vladislav of Poland to succeed him in order to save Hussitism and Bohemian independence. Vladislav indeed succeeded him and initiated a half century of Jagiellon rule in Bohemia which proved to be backwards, intolerant in religious matters, devastating for Bohemia's economy and eventually resulted in the disaster of 1526.
+
+	date = { day = 22 month = march year = 1471 }
+
+	action_a = {
+		name = "ACTIONNAME129023A" #Elect Vladislav Jagiello
+		command = { type = trigger which = 258103 } #POL: The Bohemian throne
+		command = { type = stability value = 2 }
+		command = { type = province_revoltrisk which = 314 value = -4 } #Silesia
+		command = { type = province_revoltrisk which = 315 value = -4 } #Moravia
+		command = { type = province_revoltrisk which = 329 value = -4 } #Erz
+		command = { type = relation which = PAP value = 100 }
+		command = { type = technology which = orthodox }
+	}
+}
+#(1471) Restitution of Polish lands - Ahistorical
+event = {
+	id = 129042 #triggered by POL_258103
+	trigger = {
+		OR = {
+			owned = { province = 291 data = -1 } #Masovia
+			owned = { province = 292 data = -1 } #Podlasia
+			owned = { province = 293 data = -1 } #Volyn
+			owned = { province = 297 data = -1 } #Podolia
+			owned = { province = 298 data = -1 } #Galizien
+			owned = { province = 299 data = -1 } #Krakow
+			owned = { province = 300 data = -1 } #Wielkopolska
+			owned = { province = 301 data = -1 } #Danzig
+			owned = { province = 303 data = -1 } #Poznan
+		}
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129042" #Restitution of Polish lands
+	desc = "EVENTHIST129042"
+	#-#With the election of Vladislav Jagiello as King of Bohemia, Polish lands could be restituted to the Crown of Poland.
+
+	action_a = {
+		name = "ACTIONNAME129042A" #Restitute them
+		command = { type = secedeprovince which = POL value = 291 } #Masovia
+		command = { type = secedeprovince which = POL value = 292 } #Podlasia
+		command = { type = secedeprovince which = POL value = 293 } #Volyn
+		command = { type = secedeprovince which = POL value = 297 } #Podolia
+		command = { type = secedeprovince which = POL value = 298 } #Galizien
+		command = { type = secedeprovince which = POL value = 299 } #Krakow
+		command = { type = secedeprovince which = POL value = 300 } #Wielkopolska
+		command = { type = secedeprovince which = POL value = 301 } #Danzig
+		command = { type = secedeprovince which = POL value = 303 } #Poznan
+	}
+	action_b = {
+		name = "ACTIONNAME129042B" #Keep them under Bohemian rule
+		command = { type = revoltrisk which = 120 value = 5 }
+		command = { type = vp value = -50 }
+	}
+}
+#End of Jiri Podiebrad Sequence
+#-----------------------------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------------------------
+#Oldrich von Rozmberk Sequence
+
+#(1457) Election of Oldrich von Rozmberk
+event = {
+	id = 129012
+	trigger = {
+		monarch = 022505 #Ladislav Pohrobek
+		event = 129010 #BOH: Civil War
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129012" #Election of Oldrich of Rozmberk
+	desc = "EVENTHIST129012"
+	#-#King Ladislaus has died in 1457, probably poisoned by the despicable George of Podiebrad. Oldrich of Rozmberk, the leader of the Romanist faction that won the civil war has been elected as new King and will restore order and catholicism in Bohemia. There is still violent resistance from the heretic Hussites, but with the support of the Holy Father we will hopefully succeed in returning the country to the one true faith.
+
+	date = { day = 22 month = november year = 1457 }
+
+	action_a = {
+		name = "ACTIONNAME129012A" #Elect Rozmberk
+		command = { type = stability value = 1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = innovative value = -2 }
+		command = { type = domestic which = serfdom value = 2 }
+		command = { type = revoltrisk which = 50 value = 6 }
+		command = { type = relation which = PAP value = 200 }
+		command = { type = breakvassal which = HAB }
+		command = { type = wakemonarch which = 022528 } #Oldrich I *
+		command = { type = sleepmonarch which = 022506 } #Jiri z Podiebrad
+	}
+}
+#(1462) Death of Oldrich Rozmberk
+event = {
+	id = 129022
+	trigger = {
+		monarch = 022528 #Oldrich I *
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129022" #Death of Oldrich Rozmberk
+	desc = "EVENTHIST129022"
+	#-#King Oldrich of Rozmberk has died. Although he has male issue, the majority of the Romanist party, unwilling to raise the Rozmberks to a higher rank, the estates of Bohemia unanimously decided to choose George of Podiebrady as king, an utraquist ally in the Hussite wars. Such a union would support the independence of Bohemia, ensure that all religions aim were to adhere to the ancient privileges of Bohemia.
+
+	date = { day = 28 month = april year = 1462 }
+
+	action_a = {
+		name = "ACTIONNAME129022A" #Elect Podiebrad
+		command = { type = wakemonarch which = 022557 } #Jiri z Podiebrad
+	}
+	action_b = {
+		name = "ACTIONNAME129022B" #The Rozmberks will become hereditary Kings
+		command = { type = wakemonarch which = 022529 } #Jan II *
+		command = { type = wakemonarch which = 022530 } #Vok I *
+		command = { type = wakemonarch which = 022531 } #Petr I Kulhavý *
+		command = { type = wakemonarch which = 022532 } #Vilém I *
+		command = { type = wakemonarch which = 022533 } #Petr II Vok *
+		command = { type = sleepmonarch which = 022507 } #Vladislav II Jagellonský
+		command = { type = sleepmonarch which = 022508 } #Lev z Rozmitálu (Regent)
+		#Habsburg dynasty
+		command = { type = sleepmonarch which = 022509 } #Ferdinand I
+		command = { type = sleepmonarch which = 022510 } #Maxmilián II *
+		command = { type = sleepmonarch which = 022511 } #Rudolf II *
+		command = { type = sleepmonarch which = 022512 } #Matyáš *
+		command = { type = sleepmonarch which = 022513 } #Ferdinand II *
+		command = { type = sleepmonarch which = 022514 } #Ferdinand III *
+		command = { type = sleepmonarch which = 022515 } #Leopold I *
+		command = { type = sleepmonarch which = 022516 } #Josef I *
+		command = { type = sleepmonarch which = 022517 } #Karel V *
+		command = { type = sleepmonarch which = 022518 } #Marie Terezie *
+		command = { type = sleepmonarch which = 022519 } #Josef II *
+		command = { type = sleepmonarch which = 022520 } #Leopold II *
+		command = { type = sleepmonarch which = 022521 } #František II *
+		command = { type = stability value = -3 }
+		command = { type = domestic which = centralization value = 3 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = revoltrisk which = 240 value = 5 }
+	}
+	action_c = {
+		name = "ACTIONNAME129022C" #The Habsburgs will become hereditary Kings (End Game)
+		command = { type = trigger which = 179108 } #HAB: Inheritance of Bohemia
+	}
+}
+#End of Oldrich von Rozmberk Sequence
+#-----------------------------------------------------------------------------------------------
+
+#(1460) Death of Albrecht of Wittelsbach
+event = {
+	id = 129024
+	trigger = {
+		monarch = 022522 #Albrecht II Bavorský °
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129024" #The succession of Albrecht of Wittelsbach
+	desc = "EVENTHIST129024"
+	#-#Albrecht of Wittelsbach, King of Bohemia, has died. Since he was often busy in his homeland Bavaria, seemed too much in favour of catholicism and relied mostly on German officials, opposition to Wittelsbach rule has grown throughout his reign. Two parties among the Bohemian nobility have formed: a 'national' one with the Hussite Jiri Podiebrad its leader and the 'Romanists', headed by the catholic Oldrich of Rozmberk. Popular opinion in Bohemia demands the election of Podiebrad, the nobility and especially the church prefer Rozmberk.
+
+	date = { day = 29 month = february year = 1460 }
+
+	action_a = {
+		name = "ACTIONNAME129024A" #Elect Jiri Podiebrad King
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = revoltrisk which = 140 value = 3 }
+		command = { type = relation which = PAP value = -100 }
+		command = { type = breakvassal which = BAY }
+		command = { type = stability value = 4 }
+		command = { type = relation which = BAY value = -200 }
+		command = { type = wakemonarch which = 022506 } #Jiri z Podiebrad
+		command = { type = wakeleader which = 022804 } #Jiriz Podiebrad (BOH)
+		command = { type = wakeleader which = 022806 } #Victorin Podiebrad (BOH)
+	}
+	action_b = {
+		name = "ACTIONNAME129024B" #Elect Oldrich Rozmberk
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = innovative value = -2 }
+		command = { type = domestic which = serfdom value = 2 }
+		command = { type = revoltrisk which = 50 value = 6 }
+		command = { type = relation which = PAP value = 100 }
+		command = { type = breakvassal which = BAY }
+		command = { type = stability value = 4 }
+		command = { type = relation which = BAY value = -100 }
+		command = { type = wakemonarch which = 022528 } #Oldrich I *
+		command = { type = sleepmonarch which = 022507 } #Vladislav II Jagellonský
+		command = { type = sleepmonarch which = 022508 } #Lev z Rozmitálu (Regent)
+		#Habsburg dynasty
+		command = { type = sleepmonarch which = 022509 } #Ferdinand I
+		command = { type = sleepmonarch which = 022510 } #Maxmilián II *
+		command = { type = sleepmonarch which = 022511 } #Rudolf II *
+		command = { type = sleepmonarch which = 022512 } #Matyáš *
+		command = { type = sleepmonarch which = 022513 } #Ferdinand II *
+		command = { type = sleepmonarch which = 022514 } #Ferdinand III *
+		command = { type = sleepmonarch which = 022515 } #Leopold I *
+		command = { type = sleepmonarch which = 022516 } #Josef I *
+		command = { type = sleepmonarch which = 022517 } #Karel V *
+		command = { type = sleepmonarch which = 022518 } #Marie Terezie *
+		command = { type = sleepmonarch which = 022519 } #Josef II *
+		command = { type = sleepmonarch which = 022520 } #Leopold II *
+		command = { type = sleepmonarch which = 022521 } #František II *
+		command = { type = wakeleader which = 022805 } #O. z Rozmberka (BOH)
+	}
+	action_c = {
+		name = "ACTIONNAME129024C" #Accept the Wittelsbachs as hereditary Kings (End Game)
+		command = { type = trigger which = 125042 } #BAY: Wittelsbachs become hereditary Kings of Bohemia
+	}
+}
+
+#(1467-1471) Friedrich of Brandenburg proclaimed King by the Catholics
+event = {
+	id = 129015
+	trigger = {
+		event = 132013 #BRA: The Bohemian throne
+		NOT = {
+			control = { province = 314 data = -1 }
+			control = { province = 315 data = -1 }
+			control = { province = 329 data = -1 }
+		}
+		OR = {
+			owned = { province = 314 data = -1 }
+			owned = { province = 315 data = -1 }
+			owned = { province = 329 data = -1 }
+		}
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129015" #Friedrich of Brandenburg proclaimed King by the Catholics
+	desc = "EVENTHIST129015"
+	#-#Friedrich of Brandenburg, usurper to the Bohemian throne, has invaded the Bohemian crown lands. The catholic rebels of the Zelena Hora confederacy welcome him as a liberator and have proclaimed him King in Breslau. All of Silesia, Moravia and Lusatia acknowledges him and is under his control. Only Bohemia itself remains loyal to Jiriz Podiebrad.
+
+	date = { day = 1 month = january year = 1467 }
+	offset = 30
+	deathdate = { day = 1 month = march year = 1471 }
+
+	action_a = {
+		name = "ACTIONNAME129015A" #They will regret this
+		command = { type = stability value = -2 }
+		command = { type = secedeprovince which = BRA value = 314 } #Silesia
+		command = { type = secedeprovince which = BRA value = 315 } #Moravia
+		command = { type = secedeprovince which = BRA value = 329 } #Erz
+	}
+}
+#(1467-1471) Matthias Corvinus proclaimed King by the Catholics
+event = {
+	id = 129016
+	trigger = {
+		event = 188119 #HUN: The Bohemian throne
+		NOT = {
+			control = { province = 314 data = -1 }
+			control = { province = 315 data = -1 }
+			control = { province = 329 data = -1 }
+		}
+		OR = {
+			owned = { province = 314 data = -1 }
+			owned = { province = 315 data = -1 }
+			owned = { province = 329 data = -1 }
+		}
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129016" #Matthias Corvinus proclaimed King by the Catholics
+	desc = "EVENTHIST129016"
+	#-#In order to back the rebels of Zelena Hora and depose Podiebrad, Pope Paul II excommunicated Jiriz Podiebrad on December 23rd 1466, released all his subjects from their oaths of allegiance and searched for a reliably catholic prince who would drive him away and take the Bohemian throne. After Friedrich II of Brandenburg's refusal to champion the campaign, Pius turned to Matthias Corvinus of Hungary. Betraying his former ally Podiebrad, Matthias accepted and invaded Moravia. The supporters of Podiebrad successfully prevented him from entering Hungary, but the lands of the Bohemian crown all fell to the King of Hungary. At a meeting in the Moravian town of Olmütz on May 3rd 1469, the catholic nobility proclaimed him King of Bohemia.
+
+	date = { day = 1 month = january year = 1467 }
+	offset = 30
+	deathdate = { day = 1 month = march year = 1471 }
+
+	action_a = {
+		name = "ACTIONNAME129016A" #They will regret this
+		command = { type = stability value = -2 }
+		command = { type = secedeprovince which = HUN value = 314 } #Silesia
+		command = { type = secedeprovince which = HUN value = 315 } #Moravia
+		command = { type = secedeprovince which = HUN value = 329 } #Erz
+	}
+}
+
+#(1471-1485) Peace of Olmütz
+event = {
+	id = 129026
+	trigger = {
+		event = 129016 #Matthias Corvinus proclaimed King by the catholics
+		monarch = 022507 #Vladislav II Jagellonský
+		OR = {
+			owned = { province = 315 data = HUN }
+			owned = { province = 314 data = HUN }
+			owned = { province = 329 data = HUN }
+		}
+		NOT = { war = { country = BOH country = HUN } }
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129026" #Peace of Olmütz
+	desc = "EVENTHIST129026"
+	#-#Even after the death of Jiri Podiebrad and the election of Vladislav Jagiello, warfare between Bohemia and Matthias Corvinus of Hungary who maintained his claim to the Bohemian throne continued. Despite Polish support for Bohemia, no side eventually managed to gain the upper hand: while Matthias failed in all his attempts to invade Bohemia proper and was threatened by Hungarian rebels and Friedrich III, the lands of the Bohemian crown, Silesia, Moravia and Lusatia, were almost completely occupied by him and could, despite several determined attacks, never be recovered. Realizing this, and desiring to secure their positions, both parties agreed on a peace in Olmütz which came into effect in 1478. By the treaty, Corvinus was to retain the lands of the Bohemian crown until his death when Bohemia could buy them back for 400.000 Florins and was allowed to style himself King of Bohemia in these lands, but gave up his claim on the rest of Bohemia.
+
+	date = { day = 1 month = january year = 1471 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1485 }
+
+	action_a = {
+		name = "ACTIONNAME129026A" #Offer a permanent peace
+		command = { type = trigger which = 188120 } #HUN: Peace of Olmütz
+	}
+	action_b = {
+		name = "ACTIONNAME129026B" #Chase the usurper away from Bohemian lands
+		command = { type = stability value = -2 }
+		command = { type = relation which = HUN value = -100 }
+	}
+}
+#(1471-1485) Peace concluded
+event = {
+	id = 129027 #triggered by HUN_188120 A
+	random = no
+	country = BOH
+	name = "EVENTNAME129027" #Peace concluded
+	desc = "EVENTHIST129027"
+	#-#Matthias Corvinus of Hungary has agreed to peace. Vladislav's rule in Bohemia is thus finally secured.
+
+	action_a = {
+		name = "GOOD"
+		command = { type = secedeprovince which = HUN value = 314 } #Silesia
+		command = { type = secedeprovince which = HUN value = 315 } #Moravia
+		command = { type = secedeprovince which = HUN value = 329 } #Erz
+		command = { type = stability value = 2 }
+		command = { type = relation which = HUN value = 100 }
+	}
+}
+
+#(1475-1480) Reactionary policies
+event = {
+	id = 129028
+	trigger = {
+		monarch = 022507 #Vladislav II
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129028" #Reactionary policies
+	desc = "EVENTHIST129028"
+	#-#When getting elected King as a 15-year-old in 1471, Vladislav II had several promises to the Bohemian emissaries, including the absolute maintenance of the Compactata and supporting the Utraquist Archbishop of Prague Jan Rokycan. Therefore his election had been regarded as a victory of the Nationalists and Hussites who trusted in him to protect their religious freedom and national autonomy. Their hopes were soon disappointed: while indeed remaining officially faithful to the Compactata, he secretly promoted catholicism. His government officials were only part of the section of the Hussites closest to Rome and always willing to accept compromises with the Church while all Hussite extremists, especially the recently emerged Bohemian Brethren, were persecuted harshly. Among the Hussites, these policies caused massive dissent and unrest. In Prague, several riots took place and the city hall was stormed by radical Hussites. In order to protect their interest they considered endangered by the King, Hussite nobles began to organize themselves in a league again, openly acting against the King.
+
+	date = { day = 1 month = january year = 1475 }
+	offset = 1500
+	deathdate = { day = 1 month = january year = 1480 }
+
+	action_a = {
+		name = "ACTIONNAME129028A" #Secretly promote Catholicism and persecute extremists
+		command = { type = domestic which = innovative value = -2 }
+		command = { type = domestic which = centralization value = -2 } #Hussite league questions royal authority
+		command = { type = revolt which = 328 } #Bohemia
+		command = { type = revoltrisk which = 130 value = 3 }
+	}
+	action_b = {
+		name = "ACTIONNAME129028B" #Don't provoke Hussite resistance
+		command = { type = stability value = -3 }
+		command = { type = relation which = PAP value = -100 }
+		command = { type = ADM which = -2 value = 240 } #Vladislav doesn't manage to impose his policies
+		command = { type = sleepevent which = 129029 } #BOH: Meeting at Kutna Hora
+	}
+}
+
+#(1485) Meeting at Kutna Hora
+event = {
+	id = 129029
+	trigger = {
+		event = 129028 #BOH: Reactionary policies
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129029" #Meeting at Kutna Hora
+	desc = "EVENTHIST129029"
+	#-#After a decade of unrest and decay of central authority, a meeting of all Bohemian estates at Kutna Hora in 1485 managed to restore peace and stability. Catholics and Hussites agreed to tolerate each other's faith, promised to refrain from violence and formally confirmed the Compactata. While the imminent threat of a civil war had been prevented, the decision - in which King Vladislav had not participated - meant a further reduction of royal authority.
+
+	date = { day = 1 month = january year = 1485 }
+	offset = 150
+	deathdate = { day = 1 month = january year = 1486 }
+
+	action_a = {
+		name = "ACTIONNAME129029A" #Restore peace
+		command = { type = revoltrisk value = -3 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = domestic which = centralization value = -1 }
+	}
+}
+
+#(1487) Establishment of serfdom
+event = {
+	id = 129030
+	trigger = {
+		monarch = 022507 #Vladislav II
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129030" #Establishment of serfdom
+	desc = "EVENTHIST129030"
+	#-#A decree issued by Vladislav II in 1487 under the pressure of the high nobility established serfdom in Bohemia. This dealt a devastating blow to the military and economic strength of the country, and its free peasantry had been the backbone of both its prosperous economy and especially the superior armies of the Hussite leaders and Jiri Podiebrad. The King became dependent completely on support from the nobility through feudal levy, loosing the greatest advantage he had enjoyed over his neighbours.
+
+	date = { day = 1 month = january year = 1487 }
+	offset = 300
+	deathdate = { day = 1 month = january year = 1488 }
+
+	action_a = {
+		name = "ACTIONNAME129030A" #Introduce serfdom
+		command = { type = domestic which = serfdom value = 4 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = provincemanpower which = -2 value = -5 }
+		command = { type = provincemanpower which = 330 value = -3 } #Sudeten
+		command = { type = stability value = 1 }
+		command = { type = provincetax which = -2 value = -2 }
+		command = { type = provincetax which = 330 value = -2 } #Sudeten
+	}
+	action_b = {
+		name = "ACTIONNAME129030B" #The Bohemian peasantry will stay free!
+		command = { type = stability value = -3 }
+		command = { type = revolt which = -2 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revoltrisk which = 60 value = 4 }
+		command = { type = sleepevent which = 129031 } #BOH: Peasant rebellion in Moravia
+	}
+}
+
+#(1494) Revolt in Moravia
+event = {
+	id = 129031
+	trigger = {
+		event = 129030 #Establishment of serfdom
+		owned = { province = 315 data = -1 }
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129031" #Peasant rebellion in Moravia
+	desc = "EVENTHIST129031"
+	#-#After the death of Matthias Corvinus and the return of Moravia to the Bohemian crown, serfdom was imposed there like it had been in Bohemia before. In a desperate attempt to keep its freedom, the peasantry of Moravia rebelled against feudal subjugation and seized the city of Mährisch-Neustadt in 1494.
+
+	date = { day = 1 month = january year = 1494 }
+	offset = 300
+	deathdate = { day = 1 month = january year = 1495 }
+
+	action_a = {
+		name = "ACTIONNAME129031A" #They will pay!
+		command = { type = stability value = -1 }
+		command = { type = revolt which = 315 } #Moravia
+		command = { type = provincemanpower which = 315 value = -2 } #Moravia
+		command = { type = provincetax which = 315 value = -1 } #Moravia
+	}
+}
+
+#(1500-1513) Regulations of King Vladislav
+event = {
+	id = 129032
+	trigger = {
+		OR = {
+			monarch = 022507 #Vladislav II Jagellonský
+			monarch = 022524 #Vladislav I (Vladislav II Jagellonský 2nd version)
+		}
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129032" #Regulations of King Vladislav
+	desc = "EVENTHIST129032"
+	#-#During his reign, the incompetent and weak King Vladislav allowed the nobility to gradually recover the privileges they had lost during the Hussite wars and under Jiri Podiebrad and more, negating the social and political development of the last century. The King could only obtain funds with the consent of the high nobility, and the rights granted to the townsmen before were entirely abolished. Those changes were definitely codified in a decree called the 'Regulations of King Vladislav' issued in 1500. While it confirmed and increased the rights and influence of the nobles and the knights, it ignored those of the burghers. The towns were no longer represented in diets and virtually helpless against encroachments from the nobility. Great discord among the towns was the logical consequence.
+
+	date = { day = 1 month = january year = 1500 }
+	offset = 300
+	deathdate = { day = 1 month = january year = 1513 }
+
+	action_a = {
+		name = "ACTIONNAME129032A" #Issue the Regulations
+		command = { type = stability value = 1 }
+		command = { type = domestic which = aristocracy value = 3 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = serfdom value = 1 }
+		command = { type = revoltrisk which = 240 value = 4 }
+	}
+	action_b = {
+		name = "ACTIONNAME129032B" #Defy the nobility and confirm the towns' rights
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 240 value = 6 }
+		command = { type = sleepevent which = 129033 } #BOH: Confederacy of the towns
+	}
+}
+
+#(1513-1517) Towns form a confederacy
+event = {
+	id = 129033
+	trigger = {
+		event = 129032 #Regulations of King Vladislav
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129033" #Confederacy of the towns
+	desc = "EVENTHIST129033"
+	#-#As a reaction to the revocation of their rights by the Regulations the towns of Bohemia and Moravia in 1513 formed a confederacy to defend their status. As their head they chose Prince Bartolomej of Münsterberg, grandson and legitimate successor of Jiri Podiebrad. They recruited an army and put themselves in charge of the surroundings of their city areas, resisting the nobility and royal authority.
+
+	date = { day = 1 month = january year = 1513 }
+	offset = 300
+	deathdate = { day = 27 month = september year = 1517 }
+
+	action_a = {
+		name = "ACTIONNAME129033A" #How dare they!
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk value = 3 }
+		command = { type = revolt which = -2 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#(1517) Diet of St. Wenceslas
+event = {
+	id = 129034
+	trigger = {
+		event = 129033 #Towns form a confederacy
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129034" #Diet of St. Wenceslas
+	desc = "EVENTHIST129034"
+	#-#After several years of severe instability and unrest due to the towns' resistance against the abolition of their rights and constant feuding between rival parties among the nobility, the estates, including the towns, convened on the anniversary of Wenceslas, national saint of Bohemia, September 28th 1517. At that meeting, soon known as the 'Diet of St. Wenceslas', they finally managed to achieve a settlement regarding the issues that had been dividing Bohemia. In exchange for renouncing several old privileges, the towns had their most important rights, municipal autonomy and a place in the diet, confirmed again by the nobility. The three estates agreed to 'live together in friendly intercourse, as men belonging to the same country and race'. The compromise achieved at the diet was of outstanding significance for Bohemia's further constitutional history. Besides, the diet also confirmed the regency of the supreme burgrave Zdenek Leo of Rozmital and limited the influence of the minor King Ludvik and his guardians to a minimum.
+
+	date = { day = 27 month = september year = 1517 }
+
+	action_a = {
+		name = "ACTIONNAME129034A" #The estates reach an compromise
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = stability value = 2 }
+		command = { type = revoltrisk value = -7 }
+	}
+	action_b = {
+		name = "ACTIONNAME129034B" #The nobility prevails
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = serfdom value = 1 }
+	}
+	action_c = {
+		name = "ACTIONNAME129034C" #The towns prevail
+		command = { type = stability value = -5 }
+		command = { type = revoltrisk value = -7 }
+		command = { type = domestic which = aristocracy value = -4 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = serfdom value = -3 }
+	}
+}
+
+#(1522-1525) Arrival of Ludvik
+event = {
+	id = 129035
+	trigger = {
+		monarch = 022508 #Lev z Rozmitálu (Regent)
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129035" #Arrival of King Ludvik
+	desc = "EVENTHIST129035"
+	#-#When his father Vladislav II died, Ludvik II was only 10 years old and received Maximilian of Austria and Sigismund of Poland as guardians. Bohemia was left to the control of its great nobles, with the supreme burgrave Zdenek Leo of Rozmital having put himself effectively in charge of the country. When in 1522 Ludvik visited Bohemia for the first time, he immediately dismissed all Bohemian state officials, including Rozmital, intending to increase his authority in the country. He appointed Karel of Münsterberg as royal regent during his absence and Jan of Wartenberg as supreme burgrave.
+
+	date = { day = 1 month = january year = 1522 }
+	offset = 300
+	deathdate = { day = 1 month = january year = 1525 }
+
+	action_a = {
+		name = "ACTIONNAME129035A" #Dismiss the officials and try to increase royal control
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = stability value = -2 }
+		command = { type = sleepmonarch which = 022508 } #Lev z Rozmitálu (Regent)
+		command = { type = wakemonarch which = 022525 } #Karel z Minsterberka (Regent)
+	}
+	action_b = {
+		name = "ACTIONNAME129035B" #Keep the officials
+		command = { type = stability value = 1 }
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = sleepevent which = 129036 } #BOH: Restoration of Leo of Rozmital
+	}
+}
+
+#(1525-1526) Restoration of Leo of Rozmital
+event = {
+	id = 129036
+	trigger = {
+		event = 129035 #Arrival of King Ludvik
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129036" #Restoration of Leo of Rozmital
+	desc = "EVENTHIST129036"
+	#-#The new officials appointed by King Ludvik in 1522, Karel of Münsterberg and Jan of Wartenberg, were supporters of the advanced Hussites who also seemed to show some sympathy for the teachings of Luther. There were even rumours of them planning to seize power, convert the country officially to Lutheranism and make Karel, who was a grandson of Jiri Podiebrad and his successor to the Duchy of Münsterberg, national King. Although these were unconfirmed and probably created by their enemies, their sympathy for heresy was enough for Ludvik, who at that time was hoping for support from the Pope against the Ottomans, to dismiss them and restore Zdenek Leo of Rozmital in his offices as regent and supreme burgrave.
+
+	date = { day = 1 month = january year = 1525 }
+	offset = 100
+	deathdate = { day = 28 month = august year = 1526 }
+
+	action_a = {
+		name = "ACTIONNAME129036A" #Restore Leo of Rozmital as regent and burgrave
+		command = { type = stability value = 1 }
+		command = { type = sleepmonarch which = 022525 } #Karel z Minsterberka (Regent)
+		command = { type = wakemonarch which = 022526 } #Lev z Rozmitálu (Regent)
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = innovative value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME129036B" #Keep the officials
+		command = { type = stability value = -2 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = relation which = PAP value = -50 }
+	}
+	action_c = {
+		name = "ACTIONNAME129036C" #Münsterberg and Wartenberg seize power
+		command = { type = religion which = protestant }
+		command = { type = stability value = -4 }
+		command = { type = revoltrisk which = 240 value = 8 }
+		command = { type = war which = HUN }
+		command = { type = wakemonarch which = 022538 } #Karel II Vojtech *
+		command = { type = wakemonarch which = 022539 } #Jindrich II *
+		command = { type = wakemonarch which = 022540 } #Jindrich III *
+		command = { type = wakemonarch which = 022541 } #Karel III *
+		command = { type = wakemonarch which = 022542 } #Jindrich IV Václav *
+		command = { type = wakemonarch which = 022543 } #Karel IV Bedrich *
+		#Habsburg dynasty
+		command = { type = sleepmonarch which = 022509 } #Ferdinand I
+		command = { type = sleepmonarch which = 022510 } #Maxmilián II *
+		command = { type = sleepmonarch which = 022511 } #Rudolf II *
+		command = { type = sleepmonarch which = 022512 } #Matyáš *
+		command = { type = sleepmonarch which = 022513 } #Ferdinand II *
+		command = { type = sleepmonarch which = 022514 } #Ferdinand III *
+		command = { type = sleepmonarch which = 022515 } #Leopold I *
+		command = { type = sleepmonarch which = 022516 } #Josef I *
+		command = { type = sleepmonarch which = 022517 } #Karel V *
+		command = { type = sleepmonarch which = 022518 } #Marie Terezie *
+		command = { type = sleepmonarch which = 022519 } #Josef II *
+		command = { type = sleepmonarch which = 022520 } #Leopold II *
+		command = { type = sleepmonarch which = 022521 } #František II *
+		command = { type = domestic which = innovative value = 2 }
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = domestic which = centralization value = 1 }
+	}
+}
+
+#(1525-1526) Civil War
+event = {
+	id = 129037
+	trigger = {
+		monarch = 022508 #Lev z Rozmitálu (Regent)
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129037" #Conflict between Rozmitals and Rozmberks
+	desc = "EVENTHIST129037"
+	#-#Shortly after being restored to his offices, Zdenek Leo of Rozmital renewed his family's old feud with the Rozmberks, trying to take advantage of his new powers. The feud between the country's two most powerful dynasties made the already unstable situation turn suddenly into civil war. Most of the nobles and cities of Bohemia took sides, often hoping to settle their private conflicts in the process. Meanwhile, Hungary which was also ruled by King Ludvik was being invaded by the Ottomans and he sent a desperate plea for help to his Bohemian subjects. While the Rozmberks and their supporters granted the help, intending to gain the King's support, the members of the Rozmital faction purposefully delayed sending their forces.
+
+	date = { day = 1 month = june year = 1525 }
+	offset = 100
+	deathdate = { day = 28 month = august year = 1526 }
+
+	action_a = {
+		name = "CURSES"
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = stability value = -4 }
+		command = { type = revolt which = -2 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#(1526) The Death of King Lajos of Bohemia
+#by McLeod
+event = {
+	id = 3642 #also triggered by HUN_19014
+	trigger = {
+		OR = {
+			monarch = 022508 #Lev z Rozmitálu (Regent)
+			monarch = 022526 #Lev z Rozmitálu (Regent) 2nd version
+			monarch = 022525 #Karel z Minsterberka (Regent)
+		}
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME3642" #The Death of King Lajos of Bohemia
+	desc = "EVENTHIST3642"
+	#-#In the year 1526 King Lajos II died childless, Emperor Maximilian of Habsburg, also King-elect of Bohemia and thus Elector of the Empire managed to have the Kingship become hereditary in his family.
+
+	date = { day = 28 month = august year = 1526 }
+
+	action_a = {
+		name = "ACTIONNAME3642A" #Accept the Habsburgs as Elected Kings
+		command = { type = stability value = 1 }
+		command = { type = treasury value = 200 }
+		command = { type = dynastic which = HAB }
+		command = { type = alliance which = HAB }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = secedeprovince which = HAB value = 314 } #Silesia
+		command = { type = secedeprovince which = HAB value = 315 } #Moravia
+		command = { type = secedeprovince which = HAB value = 327 } #Ostmarch
+		command = { type = secedeprovince which = BRA value = 329 } #Erz
+		command = { type = trigger which = 3187 } #HAB: The Habsburg Inheritance of Bohemia
+	}
+	action_b = {
+		name = "ACTIONNAME3642B" #Accept the Habsburgs as Hereditary Kings
+		command = { type = secedeprovince which = BRA value = 329 } #Erz
+		command = { type = secedeprovince which = HAB value = 314 } #Silesia
+		command = { type = secedeprovince which = HAB value = 327 } #Ostmarch
+		command = { type = trigger which = 3733 } #HAB: The Habsburg Inheritance of Bohemia
+	}
+}
+
+#(1526-1820) Bohemia becomes Austria - Ahistorical
+event = {
+	id = 129047
+	trigger = {
+		NOT = { exists = HAB }
+		owned = { province = 351 data = -1 } #Austria
+		control = { province = 351 data = -1 } #Austria
+		atwar = no
+		OR = {
+			monarch = 022509 #Ferdinand I
+			monarch = 022510 #Maxmilián II *
+			monarch = 022511 #Rudolf II *
+			monarch = 022512 #Matyáš *
+			monarch = 022513 #Ferdinand II *
+			monarch = 022556 #Ferdinand II *
+			monarch = 022514 #Ferdinand III *
+			monarch = 022515 #Leopold I *
+			monarch = 022516 #Josef I *
+			monarch = 022517 #Karel V *
+			monarch = 022518 #Marie Terezie *
+			monarch = 022519 #Josef II *
+			monarch = 022520 #Leopold II *
+			monarch = 022521 #František II *
+		}
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129047" #Bohemia becomes Austria
+	desc = "EVENTHIST129047"
+	#-#With Vienna under control, Habsburg dynasty could rule from the historical heart of its possessions.
+
+	date = { day = 29 month = august year = 1526 }
+	offset = 10
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME129047A" #Return to Vienna
+		command = { type = capital which = 351 } #Austria
+		command = { type = flagname which = "" }
+		command = { type = country which = HAB }
+		command = { type = addcore which = 350 } #Salzburg
+		command = { type = addcore which = 351 } #Austria
+		command = { type = addcore which = 367 } #Krain
+		command = { type = addcore which = 369 } #Steiermark
+		command = { type = addcore which = 371 } #Tirol
+		command = { type = addcore which = 373 } #Baden (Breisgau)
+		#command = { type = addcore which = 374 } #Alsace to be changed to new Sundgau province as soon as new map appears
+	}
+	action_b = {
+		name = "ACTIONNAME129047B" #Forget Vienna
+		command = { type = stability value = 1 }
+		command = { }
+	}
+}
+
+#(1541) The Death of King Lajos of Bohemia, part II - by McLeod
+event = {
+	id = 19007
+	trigger = {
+		monarch = 022509 #Ferdinand I
+		event = 3642 #BOH: The Death of King Lajos of Bohemia
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME19007" #Fire In Prague Castle
+	desc = "EVENTHIST19007"
+	#-#Ferdinand kept pressuring the Bohemian Diet for hereditary rights. Finally, he found the opportunity he was looking for. On June 2, 1541, all of Bohemia's state records were burned in a major fire at Prag Castle. Ferdinand convened the Bohemian Diet and ordered them to make his royal title hereditary unless they could find recorded evidence to the contrary. Since the contrary evidence had just gone up in smoke, the Diet acceded to Ferdinand's demands.
+
+	date = { day = 2 month = june year = 1541 }
+	offset = 28
+	deathdate = { day = 2 month = july year = 1541 }
+
+	action_a = {
+		name = "ACTIONNAME19007A" #We will acceed to the will of Ferdinand
+		command = { type = trigger which = 3733 } #HAB: The Habsburg Inheritance of Bohemia
+	}
+}
+
+#(1599) Tycho Brahe goes to Praha
+event = {
+	id = 5081
+	random = no
+	country = BOH
+	name = "EVENTNAME5081" #Tycho Brahe offers his services
+	desc = "EVENTHIST5081"
+	#-#The danish astronomer Tycho Brahe came from the nobility, and was intended by his family for a career as a lawyer and diplomat, but he became an astronomer. With financial help from the King of Denmark, he went on to set up an observatory on the island of Hveen in Copenhagen Sund. The observatory, called Uraniborg, was equipped with exceptionally large and accurate instruments. At Uraniborg Tycho made twenty years' worth of astronomical observations. After quarrelling with the King of Denmark, Tycho closed down his observatory and sought a place for himself and his instruments at various courts. In 1599 he was appointed Imperial Mathematician to the Holy Roman Emperor, Rudolph II, in Prague.
+
+	date = { day = 1 month = march year = 1599 }
+
+	action_a = {
+		name = "ACTIONNAME5081A" #Aye, let's appoint him as our Imperial Mathematician
+		command = { type = treasury value = -30 }
+		command = { type = infra value = 50 }
+		command = { type = ADM which = 1 value = 12 }
+	}
+	action_b = {
+		name = "ACTIONNAME5081B" #We have other priorities
+		command = { type = sleepevent which = 5082 } #BOH_Johannes Kepler meets Tycho Brahe
+	}
+}
+
+#(1601) Johannes Kepler meets Tycho Brahe
+event = {
+	id = 5082
+	random = no
+	country = BOH
+	name = "EVENTNAME5082" #Johannes Kepler meets Tycho Brahe
+	desc = "EVENTHIST5082"
+	#-#The astronomer Johannes Kepler joined Tycho Brahe as an assistant in Praga, to help with mathematical calculations. When Tycho died, Kepler succeeded him as Imperial Mathematician. Tycho's observations of planetary positions, which were made using instruments with open sights (a telescope was not used for astronomy until about 1609), were much more accurate than any made by his predecessors. They allowed Kepler, who was a convinced follower of Copernicus, to deduce his three laws of planetary motion and to construct astronomical tables, the Rudolphine Tables, whose enduring accuracy did much to persuade astronomers of the correctness of the Copernican theory.
+
+	date = { day = 24 month = october year = 1601 }
+
+	action_a = {
+		name = "ACTIONNAME5082A" #A great piece of work!
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = infra value = 50 }
+	}
+}
+
+#(1609) The Royal Letter (independent Bohemia)
+#by Bordic
+event = {
+	id = 129041
+	trigger = {
+		NOT = {
+			event = 3193 #BOH: The Royal Letter of Bohemia
+			vassal = { country = HAB country = BOH }
+		}
+		owned = { province = 328 data = -1 } #Bohemia
+		monarch = 022511 #Rudolf II
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129041" #The Royal Letter
+	desc = "EVENTHIST3193"
+	#-#Pressed by the Estates of Bohemia and fearing the increasing power of his brother Ferdinand, Emperor Rudolf issued the Royal Letter of Bohemia. The letter gave religious freedom for all Protestants in Bohemia and the later recall of the letter would be one of the causes for the thirty years war.
+
+	date = { day = 1 month = january year = 1609 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1609 }
+
+	action_a = {
+		name = "ACTIONNAME3193A" #Issue it
+		command = { type = revoltrisk which = 96 value = -2 }
+		command = { type = provincetax which = 328 value = 1 } #Bohemia
+		command = { type = provincetax which = 330 value = 1 } #Sudeten
+		command = { type = sleepevent which = 3193 } #HAB: The Royal Letter of Bohemia
+	}
+}
+
+#(1619-1624) The Winter King in Prague
+event = {
+	id = 3643
+	trigger = {
+		exists = HAB
+		exists = PFA
+		event = 3194 #HAB: The second defenestration of Prague
+		event = 3668 #PFA: The Evangelic Union (Palatinate should be protestant/reformed)
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME3643" #The Winter King in Prague
+	desc = "EVENTHIST3643"
+	#-#In 1608 the tension increased between the catholic parts and the protestant parts of the empire. The Protestants entered a union under the prince Fredrik of Pfalz that was supported by Brandenburg and Hessen-Kassel. The Catholics answered by forming a union of their own, the catholic league. It was led by Maximilian of Bavaria. In 1618 the Protestants of Bohemia rebelled. They continued to choose a protestant King of Bohemia, prince Fredrik of Pfalz. The emperor couldn't accept this, as he also was King of Bohemia. He sent his experienced commander Jean Tcerclaes Tilly with his troops to Bohemia and in the battle of the White Mountain (8 November 1620), Fredrik of Pfalz reign ended and all protestant resistance in Austria and southern Germany was crushed. Fredrik escaped from Bohemia and was named winter King due to his short reign.
+
+	date = { day = 20 month = march year = 1619 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1624 }
+
+	action_a = {
+		name = "ACTIONNAME3643A" #Elect Friedrich V of Pfalz
+		command = { type = breakvassal which = HAB } #just in case
+		command = { type = dynastic which = PFA }
+		command = { type = alliance which = PFA }
+		command = { type = religion which = protestant }
+		command = { type = stability value = 2 }
+		command = { type = relation which = PFA value = 150 }
+		command = { type = relation which = HAB value = -200 }
+		command = { type = domestic which = ARISTOCRACY value = -3 }
+		command = { type = domestic which = SERFDOM value = -3 }
+		#Pfalz dynasty
+		command = { type = wakemonarch which = 022548 } #Fridrich Falcký °
+		command = { type = wakemonarch which = 022549 } #Karel Ludvík °
+		command = { type = wakemonarch which = 022550 } #Karel Falcký °
+		command = { type = wakemonarch which = 022551 } #Filip I Vilém °
+		command = { type = wakemonarch which = 022552 } #Jan Vilém °
+		command = { type = wakemonarch which = 022553 } #Karel Filip °
+		command = { type = wakemonarch which = 022554 } #Karel Theodor °
+		command = { type = wakemonarch which = 022555 } #Maxmilián Josef °
+		#Habsburg dynasty
+		command = { type = sleepmonarch which = 022513 } #Ferdinand II
+		command = { type = sleepmonarch which = 022514 } #Ferdinand III
+		command = { type = sleepmonarch which = 022515 } #Leopold I
+		command = { type = sleepmonarch which = 022516 } #Josef I
+		command = { type = sleepmonarch which = 022517 } #Karel V
+		command = { type = sleepmonarch which = 022518 } #Marie Terezie
+		command = { type = sleepmonarch which = 022519 } #Josef II
+		command = { type = sleepmonarch which = 022520 } #Leopold II
+		command = { type = sleepmonarch which = 022521 } #František II
+		command = { type = trigger which = 3097 } #HAB: The Winter King of Prague
+	}
+	action_b = {
+		name = "ACTIONNAME3643B" #Stay Loyal to the Habsburgs
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 60 value = 12 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = sleepevent which = 3665 } #PFA: The Winter King of Prague
+		command = { type = sleepevent which = 159040 } #DAN: The Threat to Protestantism in Germany
+	}
+}
+
+#(1619-1620) Dutch aid by Alkar
+event = {
+	id = 129100 #triggered by HOL_186020 A
+	random = no
+	country = BOH
+	name = "EVENTNAME129100" #Assistance from the Netherlands
+	desc = "EVENTHIST129100"
+	#-#The Netherlands have send us assistance to aid us against the habsburgs
+
+	action_a = {
+		name = "GREAT"
+		command = { type = INF which = -2 value = 4000 }
+		command = { type = CAV which = -2 value = 1000 }
+		command = { type = treasury value = 50 }
+	}
+}
+
+#(1629) The White Mountain Aftermath (BOH still vassal to PFA)
+event = {
+	id = 129045 #triggered by HAB_3196 A
+	trigger = {
+		vassal = { country = PFA country = BOH }
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129045" #The White Mountain Aftermath
+	desc = "EVENTHIST129045"
+	#-#The Bohemian-Palatine phase of the Thirty Years War saw the defeat of the rebellious protestant nobles of Bohemia who were punished severely and their lands expropriated because of their decision to depose Ferdinand of Austria in favor of the Protestant Palatine elector as Bohemian King. Consequently religious persecutions began in Bohemia to eradicate Protestantism from that land.
+
+	action_a = {
+		name = "ALAS"
+		command = { type = breakvassal which = PFA }
+		command = { type = dynastic which = HAB }
+		command = { type = religion which = catholic }
+		command = { type = stability value = 1 }
+		command = { type = relation which = HAB value = 350 }
+		command = { type = provincereligion which = 328 value = catholic } #Bohemia
+		command = { type = provincereligion which = 329 value = catholic } #Erz
+		command = { type = provincereligion which = 330 value = catholic } #Sudeten
+		command = { type = provincereligion which = 314 value = catholic } #Silesia
+		command = { type = provincereligion which = 315 value = catholic } #Moravia
+		command = { type = provinceculture which = 330 value = german } #Sudeten
+		#Pfalz dynasty
+		command = { type = sleepmonarch which = 022548 } #Fridrich Falcký °
+		command = { type = sleepmonarch which = 022549 } #Karel Ludvík °
+		command = { type = sleepmonarch which = 022550 } #Karel Falcký °
+		command = { type = sleepmonarch which = 022551 } #Filip I Vilém °
+		command = { type = sleepmonarch which = 022552 } #Jan Vilém °
+		command = { type = sleepmonarch which = 022553 } #Karel Filip °
+		command = { type = sleepmonarch which = 022554 } #Karel Theodor °
+		command = { type = sleepmonarch which = 022555 } #Maxmilián Josef °
+		#Habsburg dynasty
+		command = { type = wakemonarch which = 022556 } #Ferdinand II
+		command = { type = wakemonarch which = 022514 } #Ferdinand III
+		command = { type = wakemonarch which = 022515 } #Leopold I
+		command = { type = wakemonarch which = 022516 } #Josef I
+		command = { type = wakemonarch which = 022517 } #Karel V
+		command = { type = wakemonarch which = 022518 } #Marie Terezie
+		command = { type = wakemonarch which = 022519 } #Josef II
+		command = { type = wakemonarch which = 022520 } #Leopold II
+		command = { type = wakemonarch which = 022521 } #František II
+	}
+}
+#(1629) The White Mountain Aftermath (BOH not vassal to PFA)
+event = {
+	id = 129046 #triggered by HAB_3196 A
+	trigger = {
+		NOT = {
+			vassal = { country = PFA country = BOH }
+		}
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129045" #The White Mountain Aftermath
+	desc = "EVENTHIST129045"
+	#-#The Bohemian-Palatine phase of the Thirty Years War saw the defeat of the rebellious protestant nobles of Bohemia who were punished severely and their lands expropriated because of their decision to depose Ferdinand of Austria in favor of the Protestant Palatine elector as Bohemian King. Consequently religious persecutions began in Bohemia to eradicate Protestantism from that land.
+
+	action_a = {
+		name = "ALAS"
+		command = { type = dynastic which = HAB }
+		command = { type = religion which = catholic }
+		command = { type = stability value = -3 }
+		command = { type = relation which = HAB value = 350 }
+		command = { type = provincereligion which = 328 value = catholic } #Bohemia
+		command = { type = provincereligion which = 329 value = catholic } #Erz
+		command = { type = provincereligion which = 330 value = catholic } #Sudeten
+		command = { type = provincereligion which = 314 value = catholic } #Silesia
+		command = { type = provincereligion which = 315 value = catholic } #Moravia
+		command = { type = provinceculture which = 330 value = german } #Sudeten
+		#Pfalz dynasty
+		command = { type = sleepmonarch which = 022548 } #Fridrich Falcký °
+		command = { type = sleepmonarch which = 022549 } #Karel Ludvík °
+		command = { type = sleepmonarch which = 022550 } #Karel Falcký °
+		command = { type = sleepmonarch which = 022551 } #Filip I Vilém °
+		command = { type = sleepmonarch which = 022552 } #Jan Vilém °
+		command = { type = sleepmonarch which = 022553 } #Karel Filip °
+		command = { type = sleepmonarch which = 022554 } #Karel Theodor °
+		command = { type = sleepmonarch which = 022555 } #Maxmilián Josef °
+		#Habsburg dynasty
+		command = { type = wakemonarch which = 022556 } #Ferdinand II
+		command = { type = wakemonarch which = 022514 } #Ferdinand III
+		command = { type = wakemonarch which = 022515 } #Leopold I
+		command = { type = wakemonarch which = 022516 } #Josef I
+		command = { type = wakemonarch which = 022517 } #Karel V
+		command = { type = wakemonarch which = 022518 } #Marie Terezie
+		command = { type = wakemonarch which = 022519 } #Josef II
+		command = { type = wakemonarch which = 022520 } #Leopold II
+		command = { type = wakemonarch which = 022521 } #František II
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#(1647) Extinction of the Podiebrad and Rozmberk dynasties
+event = {
+	id = 129018
+	trigger = {
+		monarch = 022543 #Karel IV Bedrich
+		NOT = { flag = [Utraquist_Podiebrad] } #Bohemia reformed by Hussites with Podiebrad dynasty
+		exists = HAB
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129018" #Extinction of the Podiebrad dynasty
+	desc = "EVENTHIST129018"
+	#-#After the childless death of the last male Podiebrad, King Karel IV Bedrich, there is no male successor among our royal dynasty. Habsburg Emperor Ferdinand is putting pressure on us to elect him. Since no other viable candidate applies, the only alternative would be the proclamation of a republic with the Bohemian Diet as supreme authority.
+
+	date = { day = 29 month = may year = 1647 }
+
+	action_a = {
+		name = "ACTIONNAME129018A" #Accept Ferdinand of Habsburg (End Game)
+		command = { type = trigger which = 179107 } #HAB: Inheritance of Bohemia
+	}
+	action_b = {
+		name = "ACTIONNAME129018B" #The Diet will rule the country
+		command = { type = wakemonarch which = 022545 } #Bohemian Diet *
+		command = { type = stability value = -2 }
+		command = { type = domestic which = centralization value = -3 }
+	}
+}
+event = {
+	id = 129019
+	trigger = {
+		monarch = 022543 #Karel IV Bedrich
+		NOT = { exists = HAB }
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129019" #Extinction of the Podiebrad dynasty
+	desc = "EVENTHIST129019"
+	#-#After the childless death of the last male Podiebrad, King Karel IV Bedrich, there is no male successor among our royal dynasty. Since there seems to be no viable candidate for the succession, popular opinion is in favour of the proclamation of a republic with the Bohemian Diet as supreme authority.
+
+	date = { day = 29 month = may year = 1647 }
+
+	action_a = {
+		name = "ACTIONNAME129019A" #The Diet will rule the country
+		command = { type = wakemonarch which = 022545 } #Bohemian Diet *
+		command = { type = stability value = -2 }
+		command = { type = domestic which = centralization value = -3 }
+	}
+}
+event = {
+	id = 129020
+	trigger = {
+		monarch = 022533 #Petr II Vok
+		exists = HAB
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129020" #Extinction of the Rozmberk dynasty
+	desc = "EVENTHIST129020"
+	#-#After the childless death of the last male Rozmberk, King Petr II Vok, there is no male successor among our royal dynasty. Habsburg Emperor Ferdinand is putting pressure on us to elect him. Since no other viable candidate applies, the only alternative would be the proclamation of a republic with the Bohemian Diet as supreme authority.
+
+	date = { day = 6 month = november year = 1611 }
+
+	action_a = {
+		name = "ACTIONNAME129020A" #Accept Ferdinand of Habsburg (End Game)
+		command = { type = trigger which = 179107 } #HAB: Inheritance of Bohemia
+	}
+	action_b = {
+		name = "ACTIONNAME129020B" #The Diet will rule the country
+		command = { type = wakemonarch which = 022544 } #Bohemian Diet *
+		command = { type = stability value = -2 }
+		command = { type = domestic which = centralization value = -3 }
+	}
+}
+event = {
+	id = 129021
+	trigger = {
+		monarch = 022533 #Petr II Vok
+		NOT = { exists = HAB }
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129021" #Extinction of the Rozmberk dynasty
+	desc = "EVENTHIST129021"
+	#-#After the childless death of the last male Rozmberk, King Petr II Vok, there is no male successor among our royal dynasty. Since there seems to be no viable candidate for the succession, popular opinion is in favour of the proclamation of a republic with the Bohemian Diet as supreme authority.
+
+	date = { day = 6 month = november year = 1611 }
+
+	action_a = {
+		name = "ACTIONNAME129021A" #The Diet will rule the country
+		command = { type = wakemonarch which = 022544 } #Bohemian Diet *
+		command = { type = stability value = -2 }
+		command = { type = domestic which = centralization value = -3 }
+	}
+}
+#-----------------------------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------------------------
+#Events to set up the monarchs for a Hussite Bohemia
+
+#(1457-1480) Taborite republic
+event = {
+	id = 129051 #triggered by SIL_401016
+	random = no
+	country = BOH
+	name = "EVENTNAME129051" #Taborite republic
+	desc = "EVENTHIST129051"
+	#-#Since there still is no possible monarch that would be accepted by all Hussite factions, Bohemia will remain a Kingdom without a King, ruled by the government council.
+
+	action_a = {
+		name = "OK"
+		command = { type = wakemonarch which = 022546 } #Taborite regency *
+		command = { type = sleepmonarch which = 022506 } #Jiri z Podiebrad
+		command = { type = sleepmonarch which = 022507 } #Vladislav II Jagellonský
+		command = { type = sleepmonarch which = 022508 } #Lev z Rozmitálu (Regent)
+		#Habsburg dynasty
+		command = { type = sleepmonarch which = 022509 } #Ferdinand I
+		command = { type = sleepmonarch which = 022510 } #Maxmilián II *
+		command = { type = sleepmonarch which = 022511 } #Rudolf II *
+		command = { type = sleepmonarch which = 022512 } #Matyáš *
+		command = { type = sleepmonarch which = 022513 } #Ferdinand II *
+		command = { type = sleepmonarch which = 022514 } #Ferdinand III *
+		command = { type = sleepmonarch which = 022515 } #Leopold I *
+		command = { type = sleepmonarch which = 022516 } #Josef I *
+		command = { type = sleepmonarch which = 022517 } #Karel V *
+		command = { type = sleepmonarch which = 022518 } #Marie Terezie *
+		command = { type = sleepmonarch which = 022519 } #Josef II *
+		command = { type = sleepmonarch which = 022520 } #Leopold II *
+		command = { type = sleepmonarch which = 022521 } #František II *
+		command = { type = flagname which = "Hussite" }
+	}
+}
+#(1457-1480) Utraquist republic
+event = {
+	id = 129052 #triggered by SIL_401017
+	random = no
+	country = BOH
+	name = "EVENTNAME129052" #Utraquist republic
+	desc = "EVENTHIST129052"
+	#-#Since there still is no possible monarch that would be accepted by all Hussite factions, Bohemia will remain a Kingdom without a King, ruled by the government council.
+
+	action_a = {
+		name = "OK"
+		command = { type = wakemonarch which = 022547 } #Utraquist regency *
+		command = { type = sleepmonarch which = 022506 } #Jiri z Podiebrad
+		command = { type = sleepmonarch which = 022507 } #Vladislav II Jagellonský
+		command = { type = sleepmonarch which = 022508 } #Lev z Rozmitálu (Regent)
+		#Habsburg dynasty
+		command = { type = sleepmonarch which = 022509 } #Ferdinand I
+		command = { type = sleepmonarch which = 022510 } #Maxmilián II *
+		command = { type = sleepmonarch which = 022511 } #Rudolf II *
+		command = { type = sleepmonarch which = 022512 } #Matyáš *
+		command = { type = sleepmonarch which = 022513 } #Ferdinand II *
+		command = { type = sleepmonarch which = 022514 } #Ferdinand III *
+		command = { type = sleepmonarch which = 022515 } #Leopold I *
+		command = { type = sleepmonarch which = 022516 } #Josef I *
+		command = { type = sleepmonarch which = 022517 } #Karel V *
+		command = { type = sleepmonarch which = 022518 } #Marie Terezie *
+		command = { type = sleepmonarch which = 022519 } #Josef II *
+		command = { type = sleepmonarch which = 022520 } #Leopold II *
+		command = { type = sleepmonarch which = 022521 } #František II *
+		command = { type = flagname which = "Hussite" }
+	}
+}
+#(1457-1480) Podiebrad dynasty
+event = {
+	id = 129053 #triggered by SIL_401018
+	random = no
+	country = BOH
+	name = "EVENTNAME129053" #Podiebrad dynasty
+	desc = "EVENTHIST129053"
+	#-#With their legitimacy finally secured, the Podiebrad dynasty will bear the crown of St. Wenceslas for the centuries to come.
+
+	action_a = {
+		name = "OK"
+		command = { type = wakemonarch which = 022535 } #Viktorin I *
+		command = { type = wakemonarch which = 022536 } #Vavrinec I *
+		command = { type = wakemonarch which = 022537 } #Bartolomej *
+		command = { type = wakemonarch which = 022538 } #Karel II Vojtech *
+		command = { type = wakemonarch which = 022539 } #Jindrich II *
+		command = { type = wakemonarch which = 022540 } #Jindrich III *
+		command = { type = wakemonarch which = 022541 } #Karel III *
+		command = { type = wakemonarch which = 022542 } #Jindrich IV Václav *
+		command = { type = wakemonarch which = 022543 } #Karel IV Bedrich *
+		command = { type = wakemonarch which = 022545 } #Bohemian Diet *
+		command = { type = wakeleader which = 022804 } #Jiriz Podiebrad (BOH)
+		command = { type = wakeleader which = 022806 } #Victorin Podiebrad (BOH)
+		command = { type = wakeleader which = 022807 } #Victorin I (BOH)
+		command = { type = sleepmonarch which = 022507 } #Vladislav II Jagellonský
+		command = { type = sleepmonarch which = 022508 } #Lev z Rozmitálu (Regent)
+		#Habsburg dynasty
+		command = { type = sleepmonarch which = 022509 } #Ferdinand I
+		command = { type = sleepmonarch which = 022510 } #Maxmilián II *
+		command = { type = sleepmonarch which = 022511 } #Rudolf II *
+		command = { type = sleepmonarch which = 022512 } #Matyáš *
+		command = { type = sleepmonarch which = 022513 } #Ferdinand II *
+		command = { type = sleepmonarch which = 022514 } #Ferdinand III *
+		command = { type = sleepmonarch which = 022515 } #Leopold I *
+		command = { type = sleepmonarch which = 022516 } #Josef I *
+		command = { type = sleepmonarch which = 022517 } #Karel V *
+		command = { type = sleepmonarch which = 022518 } #Marie Terezie *
+		command = { type = sleepmonarch which = 022519 } #Josef II *
+		command = { type = sleepmonarch which = 022520 } #Leopold II *
+		command = { type = sleepmonarch which = 022521 } #František II *
+		command = { type = flagname which = "Hussite" }
+	}
+}
+#(1430-1480) Loss of Slovakia
+event = {
+	id = 129054
+	trigger = {
+		flag = [Hussite_Slovakia]
+		NOT = { owned = { province = 316 data = -1 } } #Carpathia
+		NOT = { owned = { province = 326 data = -1 } } #Presburg
+		NOT = { event = 129055 } #BOH: Addition of Slovakia to the Kingdom of Bohemia
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129054" #Loss of Slovakia
+	desc = "EVENTHIST129054"
+	#-#We have lost the Slovak territories again. All hope of forming a united Hussite nation of Czechs and Slovaks is gone, and our Hussite brethren in Slovakia will be exposed to harsh persecution.
+
+	date = { day = 1 month = january year = 1430 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1480 }
+
+	action_a = {
+		name = "ACTIONNAME129054A" #Arrrgh
+		command = { type = clrflag which = [Hussite_Slovakia] }
+		command = { type = remove_countryculture which = slovak }
+		command = { type = vp value = -20 }
+	}
+}
+#(1460-1480) Addition of Slovakia to the Kingdom of Bohemia
+event = {
+	id = 129055
+	trigger = {
+		flag = [Hussite_Slovakia]
+		owned = { province = 316 data = -1 } #Carpathia
+		owned = { province = 326 data = -1 } #Presburg
+		control = { province = 316 data = -1 }
+		control = { province = 326 data = -1 }
+	}
+	random = no
+	country = BOH
+	name = "EVENTNAME129055" #Addition of Slovakia to the Kingdom of Bohemia
+	desc = "EVENTHIST129055"
+	#-#Having been under Hussite control for quite a long time now, the Slovak territories by now have a Hussite majority and their ties to the Kingdom of Hungary are weakened substantially, replaced by growingly close ties to Bohemia. The resistance of catholics and of the German and Hungarian part of the population did not result in a loss of control of the land, and by now it has fainted. The Slovak territories no longer have to be considered conquered lands, but more and more integral parts of the Kingdom of Bohemia.
+
+	date = { day = 1 month = january year = 1460 }
+	offset = 3000
+	deathdate = { day = 29 month = december year= 1480 }
+
+	action_a = {
+		name = "ACTIONNAME129055A" #The crown of St. Wenceslas shall happily embrace them
+		command = { type = province_revoltrisk which = 316 value = -6 } #Carpathia
+		command = { type = province_revoltrisk which = 326 value = -6 } #Presburg
+		command = { type = addcore which = 316 } #Carpathia
+		command = { type = addcore which = 326 } #Presburg
+		command = { type = provincereligion which = 316 value = hussite } #Carpathia
+		command = { type = provincereligion which = 326 value = hussite } #Presburg
+		command = { type = vp value = 30 }
+	}
+}
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 129050 - next: 129056

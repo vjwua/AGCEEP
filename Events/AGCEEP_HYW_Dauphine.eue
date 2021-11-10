@@ -1,0 +1,1091 @@
+#Hundred Years War - Dauphiné (DAU)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1420) The Scots assist the Dauphin
+event = {
+	id = 12001
+	trigger = { event = 20410 } #SCO: The Earls of Buchan and Wigtown Assist the Dauphin
+	random = no
+	country = DAU
+	name = "EVENTNAME12001" #The Scots Assist the Dauphin
+	desc = "EVENTHIST12001"
+	#-#The detention of the Scottish King in England had thus far been advantageous to Henry for it preserved during the whole course of the French war the tranquility of his northern frontier. But when word arrived in Scotland of the progress made by Henry they foresaw their own ruin if France was defeated. The Regent of Scotland declined to openly war against England so he permitted a body of seven thousand Scottish soldiers under the command of the Earl of Buchan to be transported into France for the service of the Dauphin.
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1420 }
+
+	action_a = {
+		name = "ACTIONNAME12001A" #New Allies!
+		command = { type = wakeleader which = 042803 } #Earl of Buchan (DAU)
+		command = { type = INF which = 410 value = 5000 } #Berri
+	}
+}
+
+#(1419) On the bridge of Montereau
+event = {
+	id = 361002
+	trigger = { exists = BUR }
+	random = no
+	country = DAU
+	name = "EVENTNAME361002" #On the bridge of Montereau
+	desc = "EVENTHIST361002"
+	#-#Under John the Fearless, Burgundy had become the most powerful vassal of France, and acted increasingly more independent with respect to the Crown. Charles VI's madness had faciliated a civil war within the ranks of the nobility in France. The Burgundians and the Armagnacs had jockeyed for control of Charles VI and both had periodically exchanged positions of strength. John had murdered Louis Duke of Orleans, in the streets of Paris and years later, had massacred many Armagnacs in Paris when he had entered the city in 1418. Those who survived had fled to the side of the Dauphin, Charles. Hesitating between a final alliance with Henry V and a reconciliation with the Dauphin Charles, the Duke agreed to meet Charles in Montereau. Tempers flared during the meeting, and John and his retainers were cut to pieces. The alternative was to face humiliating concessions...
+
+	date = { day = 10 month = september year = 1419 }
+
+	action_a = {
+		name = "ACTIONNAME361002A" #Commit the Murder!
+		command = { type = stability value = 2 }
+		command = { type = trigger which = 137015 } #BUR: The Assassination of John the Fearless
+		command = { type = relation which = BUR value = -200 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = badboy value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME361002B" #Let us make concessions to ensure us the throne
+		command = { type = stability value = -6 }
+		command = { type = secedeprovince which = BUR value = 376 } #Champagne
+		command = { type = secedeprovince which = BUR value = 383 } #Picardie
+		command = { type = secedeprovince which = BUR value = 386 } #Nivernais
+		command = { type = alliance which = BUR }
+		command = { type = revolt which = 410 } #Berri
+		command = { type = revolt which = 423 } #Guyenne
+		command = { type = revoltrisk which = 240 value = 5 }
+		command = { type = domestic which = centralization value = -3 }
+		command = { type = domestic which = aristocracy value = 3 }
+		command = { type = relation which = BUR value = 200 }
+		command = { type = relation which = PRO value = -100 }
+		command = { type = sleepevent which = 170306 } #FRA: Negotiations at Arras
+		command = { type = trigger which = 137051 } #BUR: The Alliance of Montereau
+	}
+}
+
+#(1419-1422) The Demands of the Duke of Burgundy
+event = {
+	id = 361003 #triggered by BUR_137053 A
+	random = no
+	country = DAU
+	name = "EVENTNAME361003" #The Demands of the Duke of Burgundy
+	desc = "EVENTHIST361003"
+	#-#In the Agreement of Montereau John the Fearless accepted the recognition of Charles as the true Dauphin of France, he pushed the Valois into the pocket of the Burgundian Party, the only guarantee to the Crown. The Duke was in position to ask anything and everything. Burgundy, which was at war, wished for as many men as possible in the line. Those of the Dauphin might be placed at her disposition.
+
+	action_a = {
+		name = "ACTIONNAME361003A" #The Dauphin Is Subjected
+		command = { type = stability value = -1 }
+		command = { type = desertion which = -1 value = 3000 }
+		command = { type = desertion which = -1 value = 3000 }
+		command = { type = desertion which = -1 value = 4000 }
+	}
+}
+#(1419-1422) The Demands of the Duke of Burgundy
+event = {
+	id = 361004 #triggered by BUR_137054 A
+	random = no
+	country = DAU
+	name = "EVENTNAME361004" #The Demands of the Duke of Burgundy
+	desc = "EVENTHIST361004"
+	#-#In the Agreement of Montereau John the Fearless accepted the recognition of Charles as the true Dauphin of France, he pushed the Valois into the pocket of the Burgundian Party, the only guarantee to the Crown. The Duke was in position to ask anything and everything. The Duke suffered from money problems and thought his good friend the Dauphin was in a position to compensate him for his support.
+
+	action_a = {
+		name = "ACTIONNAME361004A" #The Dauphin is Subjected
+		command = { type = stability value = -1 }
+		command = { type = treasury value = -100 }
+	}
+}
+
+#(1419-1422) The Armagnac Party Roars
+event = {
+	id = 361005
+	trigger = {
+		exists = DAU
+		atwar = yes
+		event = 137051 #BUR: The Alliance of Montereau
+		OR = {
+			alliance = { country = BUR country = DAU }
+			vassal = { country = BUR country = DAU }
+		}
+		NOT = {
+			war = { country = BUR country = DAU }
+			stability = 1
+		}
+	}
+	random = no
+	country = DAU
+	name = "EVENTNAME361005" #The Armagnac Party Roars
+	desc = "EVENTHIST361005"
+	#-#The Armagnac party had been the Dauphin's only support since his escape from Paris. Charles, seeing a certain means to secure the crown, diverted from the Armagnac Party's wishes and made the Agreement of Montereau. This was too much for the Ultras frequenting the court at Bourges.
+
+	date = { day = 10 month = september year = 1419 }
+	offset = 350
+	deathdate = { day = 21 month = october year = 1422 }
+
+	action_a = {
+		name = "DAMN"
+		command = { type = stability value = -1 }
+		command = { type = relation which = PRO value = -10 }
+		command = { type = desertion which = -1 value = 3000 }
+		command = { type = desertion which = -1 value = 3000 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#(1420-1422) The Treaty of Troyes
+event = {
+	id = 361006 #triggered by FRA_170288
+	random = no
+	country = DAU
+	name = "EVENTNAME361006" #The Treaty of Troyes
+	desc = "EVENTHIST170296"
+	#-#Duke Philip of Burgundy's father, John 'the Fearless' had slaughtered the Armagnacs, including their leader, Bernard VI, and in turn had been cut down at Montereau in vengeance. In the aftermath of Montereau, Philip threw his lot in with the English. King Henry V had demanded the Crown of France, and to this effect a treaty recognizing Henry as regent and legitimate successor to Charles VI was drafted and signed at Troyes. Duke John's murder at Montereau had demonstrated to Charles VI that his son was unfit for the throne, a decision that was soon ratified by the Parlement in Paris. Those who refused to swear an oath of allegiance to the new order were now traitors and rebels. The Dauphinists, including the remnants of the Armagnac's, were now rebels in the eyes of the Burgundians and the English usurper, and had retreated south of the Loire shortly before Paris was captured. The Treaty commits England to conquer the lands held by the so-called rebels. Charles VI's remaining forces split along their partisan leanings. Many surrendered, some entered active service for Henry V, while others openly declared themselves for Charles, the 'rebel King of Bourges'. Dauphinist sympathies would stall the English campaign for some time as many strongholds to the south and east of Paris continued to resist the English advance. Nevertheless, the Burgundians commanded the city of Troyes which would facilitate Henry's push to link the Burgundian heartland with his newly acquired French posessions. Despite the early opportunity, the treaty was a serious blow to the sole surviving son of Charles VI and legitimate heir of France. Charles's hesitatation would cost him and his supporters dearly in the early phases of Henry V's renewed conflict...
+
+	action_a = {
+		name = "ACTIONNAME361006A" #Champagne and Nivernais will be hard pressed...
+		command = { type = stability value = -1 }
+		command = { type = INF which = -2 value = 3000 }
+	}
+}
+
+#(1420-1425) Nivernais is Lost
+event = {
+	id = 361007
+	trigger = {
+		event = 170288 #FRA: The Treaty of Troyes
+		owned = { province = 386 data = DAU } #Nivernais
+		NOT = { control = { province = 386 data = DAU } } #Nivernais
+	}
+	random = no
+	country = DAU
+	name = "EVENTNAME361007" #Nivernais is Lost
+	desc = "EVENTHIST361007"
+	#-#The Dauphinist forces in Nivernais have surrendered.
+
+	date = { day = 10 month = january year = 1420 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1425 }
+
+	action_a = {
+		name = "ACTIONNAME361007A" #We've lost the province...
+		command = { type = stability value = -1 }
+		command = { type = secedeprovince which = ENG value = 386 } #Nivernais
+	}
+}
+
+#(1420-1425) Champagne is Lost
+event = {
+	id = 361008
+	trigger = {
+		event = 170288 #FRA: The Treaty of Troyes
+		owned = { province = 376 data = DAU } #Champagne
+		NOT = { control = { province = 376 data = DAU } } #Champagne
+	}
+	random = no
+	country = DAU
+	name = "EVENTNAME361008" #Champagne is Lost
+	desc = "EVENTHIST361008"
+	#-#The Dauphinist forces in Champagne have surrendered.
+
+	date = { day = 10 month = january year = 1420 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1425 }
+
+	action_a = {
+		name = "ACTIONNAME361007A" #We've lost the province...
+		command = { type = stability value = -1 }
+		command = { type = secedeprovince which = ENG value = 376 } #Champagne
+	}
+}
+
+#(1420-1423) Bourbon Remains Faithful to Our Cause
+event = {
+	id = 361009
+	random = no
+	country = DAU
+	name = "EVENTNAME361009" #Bourbon Remains Faithful to our Cause
+	desc = "EVENTHIST361009"
+	#-#Charles of Bourbon, son of the captive Jean I Duke of Bourbon, remains firmly on our side.
+
+	date = { day = 1 month = january year = 1420 }
+	offset = 1
+	deathdate = { day = 1 month = january year = 1423 }
+
+	action_a = {
+		name = "GOOD"
+		command = { type = treasury value = 25 }
+		command = { type = INF which = -2 value = 4000 }
+		command = { type = CAV which = -2 value = 1000 }
+		command = { type = diplomats value = 3 }
+	}
+}
+
+#(1420-1422) Treaty of Orleans
+event = {
+	id = 361010
+	trigger = {
+		event = 170290 #FRA: The Treaty of Orleans
+		NOT = { war = { country = ENG country = DAU } }
+	}
+	random = no
+	country = DAU
+	name = "EVENTNAME361010" #The Dauphin and the Treaty of Orleans
+	desc = "EVENTHIST361010"
+	#-#Charles Dauphin of France had not attended the negotiations between Henry V and Charles VI at Troyes because he had not been invited. His father had been furious with the news of the Dauphin's actions at Montereau. Nevertheless, the negotiations had proceeded smoothly and had led to the Treaty of Orleans. This peace agreement secured for the King of England a daughter of Charles VI and the Duchies of Normandy and Guyenne in full sovereignty. Charles VI gained Henry V's renunciation of his claim to the Crown of France, and the Duke of Orleans and the Duke of Bourbon now had their freedom. Some within the Armagnac ranks were furious at Charles VI's territorial concessions, as their lands were now feifdoms of the Kingdom of England, and would deeply resent the treaty for years to come. However, the release of the Duke of Orleans and Duke of Bourbon soothed many tempers, and their adjutants were quick to return to the service of their lords. The Dauphin came to realize that England's renunciation of her claim of France was well worth the temporary loss of Guyenne. With Burgundy in disgrace, and Orleans and Bourbon in the ascendant at Charles VI's court, it only made sense to reconcile with his father...
+
+	date = { day = 1 month = january year = 1420 }
+	offset = 1
+	deathdate = { day = 21 month = october year = 1422 }
+
+	action_a = {
+		name = "ACTIONNAME361010A" #Adhere to the Treaty Stipulations
+		command = { type = stability value = 1 }
+		command = { type = secedeprovince which = ENG value = 418 } #Poitou
+		command = { type = secedeprovince which = ENG value = 423 } #Guyenne
+		command = { type = secedeprovince which = ENG value = 424 } #Gascogne
+		command = { type = removecore which = 418 } #Poitou
+		command = { type = removecore which = 423 } #Guyenne
+		command = { type = removecore which = 424 } #Gascogne
+		command = { type = revoltrisk which = 24 value = 2 }
+		command = { type = relation which = ENG value = 50 }
+		command = { type = relation which = FRA value = 25 }
+		command = { type = relation which = BUR value = 25 }
+		command = { type = relation which = PRO value = 25 }
+		command = { type = trigger which = 164167 } #ENG: The Dauphin Ratifies the Treaty of Orleans
+	}
+	action_b = {
+		name = "ACTIONNAME361010B" #Refuse to acknowledge such a vile treaty!
+		command = { type = stability value = -1 }
+		command = { type = casusbelli which = ENG value = 60 }
+		command = { type = INF which = -2 value = 4000 }
+		command = { type = CAV which = -2 value = 1000 }
+		command = { type = relation which = ENG value = -100 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = trigger which = 164168 } #ENG: The Dauphin's Refusal
+	}
+}
+
+#(1420-1423) Orleans Remains in Our Court
+event = {
+	id = 361011
+	random = no
+	country = DAU
+	name = "EVENTNAME361011" #Orleans Remains in Our Court
+	desc = "EVENTHIST361011"
+	#-#Louis of Orleans, son of the captive Charles I Duke of Orleans, remains firmly on our side.
+
+	date = { day = 1 month = january year = 1420 }
+	offset = 1
+	deathdate = { day = 1 month = january year = 1423 }
+
+	action_a = {
+		name = "GOOD"
+		command = { type = treasury value = 25 }
+		command = { type = INF which = -2 value = 4000 }
+		command = { type = CAV which = -2 value = 1000 }
+		command = { type = diplomats value = 3 }
+	}
+}
+
+#(1420-1422) The Generous Peace of Henry V
+event = {
+	id = 361012 #triggered by FRA_170291
+	random = no
+	country = DAU
+	name = "EVENTNAME361012" #The Generous Peace of Henry V
+	desc = "EVENTHIST361012"
+	#-#After the triumphal campaign of 1419-1420, nothing more could prevent Henry V from making his rights to France recognised. However, he chose to negotiate a generous peace, contrary with his former declarations. Henry V was prepared to release the Dukes of Orleans and Bourbon. Both of whom, had been held captive in London since Agincourt. Furthermore, Henry V was to wed Katherine Valois, daughter of Charles VI. Lastly, the English would accept a large payment to cover Henry V's costs, his renunciation of the Crown of France, KAtherine's dowry, and the ransom for the two Dukes. In the meantime, Burgundy, abandoned by Henry V, could not maintain a hold on either PAris, or Charles VI. The Dauphin, and the principle Armagnac leaders, regained control of Charles VI.
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = vassal which = FRA }
+		command = { type = relation which = BUR value = -100 }
+		command = { type = relation which = ENG value = 200 }
+		command = { type = relation which = FRA value = 100 }
+	}
+}
+
+#(1422) The Legacy of Charles VI
+event = {
+	id = 361013 #triggered by FRA_170292
+	random = no
+	country = DAU
+	name = "EVENTNAME361013" #The Legacy of Charles VI
+	desc = "EVENTHIST361013"
+	#-#On October 21, 1422, King Charles VI of France died in complete isolation. In accordance with the agreements made between the Dauphin and the Duke of Burgundy, the latter agreed to recognise Charles VII as successor to the throne, but at a price. Burgundy would no longer pay homage for Flandern and was granted the Somme towns. Burgundy recognized Charles VII's sovereign right to the throne of France, but the Duke of Burgundy was to pay merely lip service to Charles for his Burgundian estates.
+
+	action_a = {
+		name = "ACTIONNAME361013A" #Long Live King Charles VII!
+		command = { type = stability value = 3 }
+		command = { type = inherit which = FRA }
+	}
+}
+
+#(1422) King Charles VI is dead (with Treaty of Orleans)
+event = {
+	id = 361014
+	trigger = { event = 164167 } #ENG: The Dauphin Ratifies the Treaty of Orleans
+	random = no
+	country = DAU
+	name = "EVENTNAME361014" #King Charles VI is Dead
+	desc = "EVENTHIST361014"
+	#-#Charles VI, Valois King of France has died. As his only remaining son, Charles, Dauphin of France, must claim the inheritance that is rightfully his.
+
+	date = { day = 21 month = october year = 1422 }
+
+	action_a = {
+		name = "ACTIONNAME361014A" #It is mine through right!
+		command = { type = treasury value = 50 }
+		command = { type = INF which = -1 value = 5000 }
+		command = { type = CAV which = -3 value = 2500 }
+		command = { type = addcore which = 376 } #Champagne
+		command = { type = addcore_claim which = 379 } #Artois
+		command = { type = addcore_claim which = 380 } #Flandern
+		command = { type = addcore_claim which = 382 } #Calais
+		command = { type = addcore_claim which = 383 } #Picardie
+		command = { type = addcore which = 385 } #Ile de France
+		command = { type = addcore which = 386 } #Nivernais
+		command = { type = addcore_claim which = 409 } #Bourgogne
+		command = { type = addcore which = 411 } #Orleanais
+		command = { type = addcore_claim which = 412 } #Maine
+		command = { type = addcore which = 420 } #Auvergne
+		command = { type = addcore which = 421 } #Cévennes
+		command = { type = addcore_claim which = 425 } #Béarn
+	}
+}
+#(1422) King Charles VI is dead (without Treaty of Orleans)
+event = {
+	id = 361015
+	trigger = {
+		NOT = { event = 164167 } #ENG: The Dauphin Ratifies the Treaty of Orleans
+	}
+	random = no
+	country = DAU
+	name = "EVENTNAME361015" #King Charles VI is Dead
+	desc = "EVENTHIST361015"
+	#-#Charles VI, Valois King of France has died. As his only remaining son, Charles, Dauphin of France, must claim the inheritance that is rightfully his!
+
+	date = { day = 21 month = october year = 1422 }
+
+	action_a = {
+		name = "ACTIONNAME361015A" #It is mine through right!
+		command = { type = treasury value = 50 }
+		command = { type = INF which = -1 value = 5000 }
+		command = { type = CAV which = -3 value = 2500 }
+		command = { type = addcore which = 376 } #Champagne
+		command = { type = addcore_claim which = 379 } #Artois
+		command = { type = addcore_claim which = 380 } #Flandern
+		command = { type = addcore_claim which = 382 } #Calais
+		command = { type = addcore_claim which = 383 } #Picardie
+		command = { type = addcore_claim which = 384 } #Caux
+		command = { type = addcore which = 385 } #Ile de France
+		command = { type = addcore which = 386 } #Nivernais
+		command = { type = addcore_claim which = 409 } #Bourgogne
+		command = { type = addcore which = 411 } #Orleanais
+		command = { type = addcore_claim which = 412 } #Maine
+		command = { type = addcore_claim which = 413 } #Normandie
+		command = { type = addcore which = 420 } #Auvergne
+		command = { type = addcore which = 421 } #Cévennes
+		command = { type = addcore_claim which = 424 } #Gascogne
+		command = { type = addcore_claim which = 425 } #Béarn
+	}
+}
+
+#(1422) The Consecration of Charles VII
+event = {
+	id = 361016
+	trigger = { event = 361013 } #DAU: The Legacy of Charles VI
+	random = no
+	country = DAU
+	name = "EVENTNAME361016" #The Consecration of Charles VII
+	desc = "EVENTHIST361016"
+	#-#On October 21, 1422, King Charles VI of France died in complete isolation. In accordance with the agreements made between the Dauphin and the Duke of Burgundy, the latter agreed to recognise Charles VII as successor to the throne, but at the price of great concessions regarding the government of the Kingdom. The Burgundians remained the puppetmaster, a neccessity in order to break the ambitions of the House of Lancaster.
+
+	date = { day = 21 month = october year = 1422 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1422 }
+
+	action_a = {
+		name = "ACTIONNAME361016A" #Long Live King Charles VII!
+		command = { type = flagname which = "" }
+		command = { type = country which = FRA }
+		command = { type = loansize which = 200 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = vp value = 50 }
+	}
+}
+
+#(1422) The Consecration of Charles VII
+event = {
+	id = 361017 #triggered by FRA_170294
+	random = no
+	country = DAU
+	name = "EVENTNAME361017" #The Consecration of Charles VII
+	desc = "EVENTHIST361017"
+	#-#On October 21, 1422, King Charles VI of France died. Without the English, Burgundy was unable to gain sufficient control of Paris to advance his own aims. Upon hearing the news of his father's death, and after consulting his council, Charles decided to make his way to Rheims to be consecrated as Charles VII King of France. Having the firm support of the Archbishop of Rheims, along with the remnants of the Armagnac alliance, Charles met little resistance.
+
+	action_a = {
+		name = "ACTIONNAME361017A" #Long Live King Charles VII!
+		command = { type = inherit which = FRA }
+		command = { type = loansize which = 200 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = vp value = 50 }
+		command = { type = trigger which = 137059 } #BUR: Charles is now King of France
+	}
+}
+#(1422) King Charles VII
+event = {
+	id = 361018 #triggered by BUR_137060 A
+	random = no
+	country = DAU
+	name = "EVENTNAME361018" #King Charles VII
+	desc = "EVENTHIST361018"
+	#-#With the death of King Charles VI, the Dauphin and Philip Duke of Burgundy had entered into a series of negotiations aimed to find a peaceful and rightful settlement for the feud between the two. The Dauphin was prepared to make amends for the assassination of Philip's father, grant the Duke of Burgundy the disputed territories which included the Somme towns, and free the Dukes of Burgundy from liege homage to the Crown of France. In return, Philip would fully back Charles's claim to the throne of France, and make war on those who would oppose the new King of France. Thus, Charles VII could finally return to the capital, and the Duke of Burgundy was confirmed in his possessions and could expect no interference from Paris.
+
+	action_a = {
+		name = "ACTIONNAME361018A" #The Kingdom is with us!
+		command = { type = inherit which = FRA }
+		command = { type = loansize which = 200 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = vp value = 50 }
+		command = { type = secedeprovince which = BUR value = 383 } #Picardie
+		command = { type = removecore which = 379 } #Artois
+		command = { type = removecore which = 380 } #Flandern
+		command = { type = removecore which = 383 } #Picardie
+		command = { type = removecore which = 409 } #Bourgogne
+	}
+}
+#(1422) Burgundy Refuses the Rights of Charles
+event = {
+	id = 361019 #triggered by BUR_137060 B
+	random = no
+	country = DAU
+	name = "EVENTNAME361019" #Burgundy Refuses the Rights of Charles
+	desc = "EVENTHIST361019"
+	#-#The Duke of Burgundy, the master of Paris, has gained the assistance of the Parliament in passing an order to deny the rights of the Dauphin to the Crown of France. This affront could only be corrected in one way, and that was to confront the traitorous Duke of Burgundy!
+
+	action_a = {
+		name = "ACTIONNAME361019A" #This means war!
+		command = { type = stability value = -1 }
+		command = { type = INF which = -2 value = 10000 }
+		command = { type = CAV which = -2 value = 3000 }
+		command = { type = war which = BUR }
+	}
+}
+
+#(1422) Charles VII King of France
+event = {
+	id = 361020
+	trigger = {
+		OR = {
+			event = 361018 #DAU: King Charles VII
+			event = 361017 #DAU: The Consecration of Charles VII
+		}
+	}
+	random = no
+	country = DAU
+	name = "EVENTNAME361020" #Charles VII King of France
+	desc = "EVENTHIST361020"
+	#-#France is now firmly in our hands...
+
+	date = { day = 23 month = october year = 1422 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1422 }
+
+	action_a = {
+		name = "ACTIONNAME361020A" #France is united!
+		command = { type = flagname which = "" }
+		command = { type = country which = FRA }
+		command = { type = stability value = 3 }
+	}
+}
+
+#(1422-1423) Jean of Orleans Swears Allegiance to Charles VII
+event = {
+	id = 361021
+	random = no
+	country = DAU
+	name = "EVENTNAME361021" #Jean of Orleans Swears Allegiance to Charles VII
+	desc = "EVENTHIST361021"
+	#-#Jean 'the bastard' of Orleans, brother and Lieutenant of the captive Charles Duke of Orleans held in London, reaffirms his commitment to us. He recognizes our rightful claim to the Kingdom of France.
+
+	date = { day = 24 month = october year = 1422 }
+	offset = 1
+	deathdate = { day = 1 month = january year = 1423 }
+
+	action_a = {
+		name = "GOOD"
+		command = { type = treasury value = 25 }
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = CAV which = -2 value = 1000 }
+	}
+}
+
+#(1422-1423) Charles of Bourbon Swears Allegiance to Charles VII
+event = {
+	id = 361022
+	random = no
+	country = DAU
+	name = "EVENTNAME361022" #Charles of Bourbon Swears Allegiance to Charles VII
+	desc = "EVENTHIST361022"
+	#-#Charles of Bourbon, son of the captive Jean I Duke of Bourbon held in London, reaffirms his commitment to us. He recognizes our rightful claim to the Kingdom of France.
+
+	date = { day = 24 month = october year = 1422 }
+	offset = 1
+	deathdate = { day = 1 month = january year = 1423 }
+
+	action_a = {
+		name = "GOOD"
+		command = { type = treasury value = 25 }
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = CAV which = -2 value = 1000 }
+	}
+}
+
+#(1424) Buchan, Douglas, and Scottish Reinforcement
+event = {
+	id = 361023
+	trigger = {
+		OR = {
+			event = 20436 #SCO: Buchan's French Embassy
+			event = 20437 #SCO: Buchan's French Embassy (Albany Stewarts are united)
+		}
+	}
+	random = no
+	country = DAU
+	name = "EVENTNAME361023" #Buchan, Douglas, and Scottish Reinforcement
+	desc = "EVENTHIST361023"
+	#-#The Scottish Earls of Buchan and Douglas had led a French embassy to Scotland in order to raise more troops for Charles VII's efforts against the English. The Earls and their affinities supported Charles VII, and Charles himself was eager to enlist their active support. Buchan had already been named Charles's Constable of France for his loyalty and for his efforts against the English. Charles VII had been so pleased with the Earl that he was rumoured to raise the Earl to the Duchy of Touraine.
+
+	date = { day = 1 month = january year = 1424 }
+	offset = 20
+	deathdate = { day = 29 month = july year = 1424 }
+
+	action_a = {
+		name = "ACTIONNAME361023A" #Oh good more Scots
+		command = { type = INF which = -2 value = 6500 }
+		command = { type = relation which = SCO value = 25 }
+	}
+}
+
+#(1425-1461) The Collapse of the Kingdom of Bourges
+event = {
+	id = 361024
+	trigger = {
+		OR = {
+			AND = {
+				event = 164171 #ENG: The Legacy of Charles VI
+				NOT = {
+					control = { province = 408 data = -1 } #Lyonnais
+					control = { province = 410 data = -1 } #Berri
+					control = { province = 417 data = -1 } #Vendée
+					control = { province = 418 data = -1 } #Poitou
+					control = { province = 419 data = -1 } #Limousin
+					control = { province = 422 data = -1 } #Languedoc
+					control = { province = 423 data = -1 } #Guyenne
+				}
+				NOT = {
+					event = 361018 #DAU: The Consecration of Charles VII
+					event = 361028 #DAU: The Consecration of Charles VII
+					event = 361020 #DAU: Charles VII King of France
+				}
+			}
+			AND = {
+				event = 361019 #DAU: Burgundy Refuses the Rights of Charles
+				NOT = {
+					control = { province = 408 data = -1 } #Lyonnais
+					control = { province = 410 data = -1 } #Berri
+					control = { province = 417 data = -1 } #Vendée
+					control = { province = 418 data = -1 } #Poitou
+					control = { province = 419 data = -1 } #Limousin
+					control = { province = 422 data = -1 } #Languedoc
+					control = { province = 423 data = -1 } #Guyenne
+					exists = FRA
+				}
+				NOT = {
+					event = 361028 #DAU: The Consecration of Charles VII
+				}
+			}
+		}
+		OR = {
+			war = { country = DAU country = ENG }
+			war = { country = DAU country = BUR }
+		}
+	}
+	random = no
+	country = DAU
+	name = "EVENTNAME361024" #The Collapse of the Kingdom of Bourges
+	desc = "EVENTHIST361024"
+	#-#After the military defeats that followed one after another, it became obvious that Charles's cause was lost for the foreseable future. Charles was confined to estates in southeastern France.
+
+	date = { day = 0 month = january year = 1425 }
+	offset = 30
+	deathdate = { day = 22 month = july year = 1461 }
+
+	action_a = {
+		name = "ACTIONNAME361024A" #All is lost... (End Game)
+		command = { type = secedeprovince which = BUR value = 379 } #Artois
+		command = { type = secedeprovince which = ENG value = 382 } #Calais
+		command = { type = secedeprovince which = BUR value = 383 } #Picardie
+		command = { type = secedeprovince which = ENG value = 384 } #Caux
+		command = { type = secedeprovince which = BUR value = 386 } #Nivernais
+		command = { type = secedeprovince which = ENG value = 411 } #Orleanais
+		command = { type = secedeprovince which = ENG value = 412 } #Maine
+		command = { type = secedeprovince which = ENG value = 413 } #Normandie
+		command = { type = secedeprovince which = ENG value = 417 } #Vendée
+		command = { type = secedeprovince which = ENG value = 418 } #Poitou
+		command = { type = secedeprovince which = ENG value = 419 } #Limousin
+		command = { type = secedeprovince which = ENG value = 420 } #Auvergne
+		command = { type = secedeprovince which = ENG value = 421 } #Cévennes
+		command = { type = secedeprovince which = ENG value = 423 } #Guyenne
+		command = { type = secedeprovince which = ENG value = 424 } #Gascogne
+		command = { type = trigger which = 164180 } #ENG: English Final Victory
+		command = { type = trigger which = 137066 } #BUR: The Collapse of the Kingdom of Bourges
+		command = { type = sleepevent which = 137068 } #BUR: Joan's Advance
+	}
+}
+
+#(1427-1428) Jean of Orleans Count of Dunois
+event = {
+	id = 361025
+	trigger = {
+		OR = {
+			event = 361021 #DAU: Jean of Orleans Swears Allegiance to Charles VII
+			NOT = {
+				exists = FRA
+				NOT = { owned = { province = 411 data = -1 } } #Orléanais
+			}
+		}
+	}
+	random = no
+	country = DAU
+	name = "EVENTNAME361025" #Jean of Orleans Count of Dunois
+	desc = "EVENTHIST361025"
+	#-#Jean 'the bastard' of Orleans was Lieutenant of Orleans while his brother Charles I was a captive in London. Jean's sympathies had always remained with Charles VII and so he had now decided that his services would be put to better use if he were to place them at the Dauphin's disposal. Charles VII had welcomed Jean and was eager to enlist the support of his highly capable vassal.
+
+	date = { day = 1 month = january year = 1427 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1428 }
+
+	action_a = {
+		name = "ACTIONNAME361025A" #An able commander!
+		command = { type = stability value = 1 }
+		command = { type = wakeleader which = 042801 } #Jean de Dunois (DAU)
+		command = { type = INF which = -2 value = 4000 }
+		command = { type = CAV which = -2 value = 1000 }
+	}
+}
+
+#(1429) The Meeting at Chinon
+event = {
+	id = 361026
+	trigger = {
+		event = 164171 #ENG: The Legacy of Charles VI
+		OR = {
+			control = { province = 413 data = ENG }
+			control = { province = 384 data = ENG }
+			control = { province = 385 data = ENG }
+			control = { province = 383 data = ENG }
+			control = { province = 412 data = ENG }
+			control = { province = 411 data = ENG }
+			control = { province = 376 data = ENG }
+			control = { province = 386 data = ENG }
+			control = { province = 410 data = ENG }
+			control = { province = 417 data = ENG }
+			control = { province = 418 data = ENG }
+			control = { province = 423 data = ENG }
+			control = { province = 419 data = ENG }
+			control = { province = 420 data = ENG }
+			control = { province = 421 data = ENG }
+			control = { province = 407 data = ENG }
+			control = { province = 408 data = ENG }
+			control = { province = 422 data = ENG }
+		}
+	}
+	random = no
+	country = DAU
+	name = "EVENTNAME361026" #The Meeting at Chinon
+	desc = "EVENTHIST361026"
+	#-#In April 1429, the situation of Charles VII was hardly secure. The Treaty of Troyes, the English occupation and Burgundian hostility seemed to be in a position to take away all his legitimacy sooner or later, if he did not soon manage to gain a spectacular success capable of impressing itself on the mind of the Kingdom. At this point Charles met a young country woman from Donrémy, she claimed to be sent by God, and to be ready to risk all to make the 'gentle Dauphin' the indisputable King. For some time before predictions had spoken of such help. Shall we accept the services of this maid?
+
+	date = { day = 1 month = april year = 1429 }
+	offset = 5
+	deathdate = { day = 1 month = may year = 1429 }
+
+	action_a = {
+		name = "ACTIONNAME361026A" #A sending from God!
+		command = { type = trigger which = 361027 } #DAU: The Epic of Joan
+	}
+	action_b = {
+		name = "ACTIONNAME361026B" #Return this Country Woman to her Sheep
+		command = { type = stability value = -1 }
+	}
+}
+#(1429) The Epic of Joan
+event = {
+	id = 361027 #triggered by DAU_361026 A
+	random = no
+	country = DAU
+	name = "EVENTNAME361027" #The Epic of Joan
+	desc = "EVENTHIST361027"
+	#-#After much hesitation, Charles agreed to support Joan, urged on by his mother-in-law Yolanda of Aragon who never ceased in her support of the young country woman. Throughout the Kingdom, rumours spread of a Maid, who by her purity would cure the evils caused by Isabella of Bavaria. It was however, not as leader in war that Joan would achieve her feats, but as a symbol, proof of the divine support to the claims of Charles. The moral repercussions which resulted from her successes at Orleans, then at Rheims greatly enhanced the recognition of the legitimacy of Charles throughout France.
+
+	action_a = {
+		name = "ACTIONNAME361027A" #Drive the English out of France!
+		command = { type = war which = ENG }
+		command = { type = domestic which = offensive value = 3 }
+		command = { type = domestic which = quality value = 1 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = land value = 500 }
+		command = { type = wakeleader which = 042804 } #Jeanne d'Arc (DAU)
+		command = { type = CAV which = -2 value = 5000 }
+		command = { type = MIL which = 3 value = 24 }
+		command = { type = stability value = 2 }
+	}
+}
+
+#(1429-1461) The Consecration of Charles VII (with or without Jeanne)
+event = {
+	id = 361028
+	trigger = {
+		OR = {
+			control = { province = 376 data = -1 } #Champagne
+			control = { province = 385 data = -1 } #Ile de France
+		}
+		NOT = { event = 170292 } #FRA: The Death of Charles VI
+		NOT = { exists = FRA }
+		monarch = 042500 #Charles
+	}
+	random = no
+	country = DAU
+	name = "EVENTNAME361028" #The Consecration of Charles VII
+	desc = "EVENTHIST361028"
+	#-#Having won a great moral victory in Orleans in 1429, Charles, always urged on by Joan the Maid, pushed on towards Rheims, where the Consecration would ensure a decisive psychological advantage over his young English rival. With Joan as a figurehead, the royal party walked through Champagne, which was under Burgundian control, and managed to reach the Cathedral without incident.
+
+	date = { day = 0 month = january year = 1429 }
+	offset = 30
+	deathdate = { day = 22 month = july year = 1461 }
+
+	action_a = {
+		name = "ACTIONNAME361028A" #Gloria in excelsis deo !
+		command = { type = stability value = 3 }
+		command = { type = treasury value = 200 }
+		command = { type = revoltrisk which = 60 value = -5 }
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = DIP which = 2 value = 60 }
+		command = { type = flagname which = "" }
+		command = { type = country which = FRA }
+		command = { type = loansize which = 200 }
+		command = { type = relation which = BUR value = 50 }
+		command = { type = relation which = PRO value = 100 }
+		command = { type = vp value = 50 }
+	}
+}
+
+#(1435) The Failure of the Maid
+event = {
+	id = 361029
+	trigger = {
+		event = 361027 #DAU: The Epic of Joan
+		NOT = {
+			event = 361028 #FRA: The Consecration of Charles VII
+			event = 137070 #BUR: The Capture of the Maid
+		}
+	}
+	random = no
+	country = DAU
+	name = "EVENTNAME361029" #The Failure of the Maid
+	desc = "EVENTHIST361029"
+	#-#After six years of useless combat, it appeared that the Maid, on whom so much hope had rested, was not able to achieve her great work. From now on useless and abandoned by all, little Joan had to withdraw to a convent, far from the world, to prevent the revenge of the Dauphin or her enemies from falling upon her.
+
+	date = { day = 0 month = january year = 1435 }
+	offset = 200
+	deathdate = { day = 0 month = january year = 1436 }
+
+	action_a = {
+		name = "ACTIONNAME361029A" #So it Goes
+		command = { type = stability value = -2 }
+		command = { type = domestic which = offensive value = -3 }
+		command = { type = domestic which = innovative value = -2 }
+	}
+}
+
+#(1461) Death of the Dauphin Charles
+event = {
+	id = 361030
+	trigger = {
+		event = 164171 #ENG: The Legacy of Charles VI
+		NOT = {
+			event = 361018 #DAU: The Consecration of Charles VII
+			event = 361028 #DAU: The Consecration of Charles VII
+			event = 361024 #DAU: The Collapse of the Kingdom of Bourges
+			event = 361020 #DAU: Charles VII King of France
+		}
+	}
+	random = no
+	country = DAU
+	name = "EVENTNAME361030" #Death of the Dauphin Charles
+	desc = "EVENTHIST361030"
+	#-#The Death of Charles, Dauphin of France heralded the arrival of his son, Louis, to take his place. Louis was a strong and gifted leader, despite his appearance. He was fully prepared to further his father's claim. The war for the Throne of France was just beginning, in Louis' eyes.
+
+	date = { day = 22 month = july year = 1461 }
+
+	action_a = {
+		name = "ACTIONNAME361030A" #We must advance the claim!
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1461-1477) The Consecration of Louis XI
+event = {
+	id = 361000
+	trigger = {
+		OR = {
+			control = { province = 376 data = -1 } #Champagne
+			control = { province = 385 data = -1 } #Ile de France
+		}
+		NOT = { event = 170292 } #FRA: The Death of Charles VI
+		NOT = { exists = FRA }
+		monarch = 042501 #Louis *
+	}
+	random = no
+	country = DAU
+	name = "EVENTNAME361000" #The Consecration of Louis XI
+	desc = "EVENTHIST361000"
+	#-#Louis pushed on towards Rheims, where the Consecration would ensure a decisive psychological advantage over his enemies. The royal party walked through Champagne and managed to reach the Cathedral without incident.
+
+	date = { day = 23 month = july year = 1461 }
+	offset = 0
+	deathdate = { day = 4 month = january year = 1477 }
+
+	action_a = {
+		name = "ACTIONNAME361028A" #Gloria in excelsis deo!
+		command = { type = stability value = 3 }
+		command = { type = treasury value = 200 }
+		command = { type = revoltrisk which = 60 value = -5 }
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = DIP which = 2 value = 60 }
+		command = { type = flagname which = "" }
+		command = { type = country which = FRA }
+		command = { type = loansize which = 200 }
+		command = { type = vp value = 50 }
+	}
+}
+
+#(1477) Louis Inherits the Crown of France
+event = {
+	id = 361031 #triggered by FRA_170316
+	random = no
+	country = DAU
+	name = "EVENTNAME361031" #Louis Inherits the Crown of France
+	desc = "EVENTHIST361031"
+	#-#Charles VII 'The Bold' of France died unexpectedly on January 5th, 1477, leaving a daughter as his sole issue. Salic law forbid the inheritance of the Crown by and through the female line. Louis's father, Charles, had been barred from the throne decades ago by then Duke Philippe of Burgundy, but no mention was made of Charles's future heirs. Thus, Louis stood to inherit the Crown of France.
+
+	action_a = {
+		name = "ACTIONNAME361031A" #Louis Rises to the Throne of France!
+		command = { type = inherit which = FRA }
+	}
+}
+
+#(1477) Louis Is Annointed King of France
+event = {
+	id = 361032
+	trigger = { event = 361031 } #DAU: Louis Inherits the Crown of France
+	random = no
+	country = DAU
+	name = "EVENTNAME361032" #Louis Is Annointed King of France
+	desc = "EVENTHIST361032"
+	#-#Louis of Valois is now Louis XI King of France.
+
+	date = { day = 5 month = january year = 1477 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1477 }
+
+	action_a = {
+		name = "ACTIONNAME361032A" #Louis XI Is Annointed
+		command = { type = flagname which = "" }
+		command = { type = country which = FRA }
+	}
+}
+
+#(1485) The Estate of Charles the Bold
+event = {
+	id = 361033
+	trigger = {
+		ai = no
+		event = 170313 #FRA: The Throne of France
+	}
+	random = no
+	country = DAU
+	name = "EVENTNAME361033" #The Estate of Charles the Bold
+	desc = "EVENTHIST361033"
+	#-#If the succession of Philip the Good, in spite of his lack of legitimacy to the throne, had not posed a problem, it did at a time when the line of Valois-Burgundy seemed firmly established. A major crisis began when King Charles left a girl, Mary, as his only heir. If her rights on the Duchy of Burgundy and the other patrimonial lands could not be disputed, it was not so with the Crown of France, which could not fall to a woman. Who would finally claim the throne was far from obvious.
+
+	date = { day = 29 month = december year = 1485 }
+
+	action_a = {
+		name = "ACTIONNAME361033A" #Charles is Consecrated King of France
+		command = { type = stability value = 1 }
+		command = { type = trigger which = 170318 } #FRA: The Estate of Charles the Bold
+	}
+}
+#(1485) The Estate of Charles the Bold -I-
+event = {
+	id = 361034 #triggered by FRA_170318 A
+	random = no
+	country = DAU
+	name = "EVENTNAME361034" #The Estate of Charles the Bold
+	desc = "EVENTHIST361034"
+	#-#Charles of Valois was only sixteen years old upon the death of Charles VII the Bold, but his descent through the line of his grandfather Charles VI, made him the most legitimate candidate. This young man, rather disgraceful in physique, had a difficult puberty and is especially delayed in his intellectual development. This is why his elder sister, Anne of France, stands as regent of France with her husband, Pierre de Beaujeu. If Burgundy had lost the Kingdom of France for lack of a male heir, it was by the regency of a woman that the Valois recovery of the throne would be directed.
+
+	action_a = {
+		name = "ACTIONNAME361034A" #Charles is Consecrated King of France
+		command = { type = addcore which = 382 } #Calais
+		command = { type = addcore which = 384 } #Caux
+		command = { type = addcore which = 385 } #Ile de France
+		command = { type = addcore which = 413 } #Normandie
+		command = { type = addcore which = 411 } #Orleanais
+		command = { type = addcore which = 412 } #Maine
+		command = { type = addcore which = 410 } #Berri
+		command = { type = addcore which = 417 } #Vendée
+		command = { type = addcore which = 418 } #Poitou
+		command = { type = addcore which = 419 } #Limousin
+		command = { type = addcore which = 420 } #Auvergne
+		command = { type = addcore which = 421 } #Cévennes
+		command = { type = addcore which = 422 } #Languedoc
+		command = { type = addcore which = 423 } #Guyenne
+		command = { type = addcore which = 424 } #Gascogne
+		command = { type = addcore which = 408 } #Lyonnais
+		command = { type = inherit which = FRA }
+		command = { type = revoltrisk which = 60 value = 4 }
+	}
+}
+#(1485) The Estate of Charles the Bold -II-
+event = {
+	id = 361035 #triggered by FRA_170318 B
+	random = no
+	country = DAU
+	name = "EVENTNAME361035" #Estate of Charles the Bold
+	desc = "EVENTHIST361035"
+	#-#Charles of Valois was only sixteen years old upon the death of Charles VII the Bold, but his descent through the line of his grandfather Charles VI, made him the most legitimate candidate. This young man, rather disgraceful in physique, had a difficult puberty and is especially delayed in his intellectual development. This is why his elder sister, Anne of France, stands as regent of France with her husband, Pierre de Beaujeu. With Burgundy having imposed a marriage with Mary, the unity of the Kingdom is not called into question.
+
+	action_a = {
+		name = "ACTIONNAME361035A" #Charles is Consecrated King of France and Duke of Burgundy
+		command = { type = addcore which = 338 } #Geldre
+		command = { type = addcore which = 339 } #Holland
+		command = { type = addcore which = 340 } #Zeeland
+		command = { type = addcore which = 344 } #Köln
+		command = { type = addcore which = 374 } #Alsace
+		command = { type = addcore which = 375 } #Lorraine
+		command = { type = addcore which = 376 } #Champagne
+		command = { type = addcore which = 377 } #Luxembourg
+		command = { type = addcore which = 378 } #Brabant
+		command = { type = addcore which = 379 } #Artois
+		command = { type = addcore which = 380 } #Flandern
+		command = { type = addcore which = 382 } #Calais
+		command = { type = addcore which = 384 } #Caux
+		command = { type = addcore which = 385 } #Ile de France
+		command = { type = addcore which = 386 } #Nivernais
+		command = { type = addcore which = 387 } #Franche-Comté
+		command = { type = addcore which = 408 } #Lyonnais
+		command = { type = addcore which = 409 } #Bourgogne
+		command = { type = addcore which = 410 } #Berri
+		command = { type = addcore which = 411 } #Orleanais
+		command = { type = addcore which = 412 } #Maine
+		command = { type = addcore which = 413 } #Normandie
+		command = { type = addcore which = 417 } #Vendée
+		command = { type = addcore which = 418 } #Poitou
+		command = { type = addcore which = 419 } #Limousin
+		command = { type = addcore which = 420 } #Auvergne
+		command = { type = addcore which = 421 } #Cévennes
+		command = { type = addcore which = 422 } #Languedoc
+		command = { type = addcore which = 423 } #Guyenne
+		command = { type = addcore which = 424 } #Gascogne
+		command = { type = revoltrisk which = 60 value = 6 }
+		command = { type = add_countryculture which = dutch }
+		command = { type = inherit which = BUR }
+		command = { type = inherit which = FRA }
+	}
+}
+#(1486) The End of the Hundred Years War
+#move capital to Paris
+event = {
+	id = 361036
+	trigger = {
+		OR = {
+			event = 361034 #DAU: The Estate of Charles the Bold -I-
+			event = 361035 #DAU: The Estate of Charles the Bold -II-
+		}
+		NOT = { exists = FRA }
+	}
+	random = no
+	country = DAU
+	name = "EVENTNAME361036" #The Estate of Charles the Bold
+	desc = "EVENTHIST361036"
+	#-#Charles of Valois was only sixteen years old upon the death of Charles VII the Bold, but his descent through the line of his grandfather Charles VI, made him the most legitimate candidate. This young man, rather disgraceful in physique, had a difficult puberty and is especially delayed in his intellectual development. This is why his elder sister, Anne of France, stands as regent of France with her husband, Pierre de Beaujeu. If Burgundy had lost the Kingdom of France for lack of a male heir, it was by the regency of a woman that the Valois recovery of the throne would be directed.
+
+	date = { day = 0 month = january year = 1486 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1486 }
+
+	action_a = {
+		name = "ACTIONNAME361036A" #Charles is Consecrated King of France
+		command = { type = flagname which = "" }
+		command = { type = country which = FRA }
+		command = { type = capital which = 385 } #Ile de France
+		command = { type = loansize which = 200 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = vp value = 50 }
+	}
+}
+
+#(1498) The Dauphine Succession
+event = {
+	id = 361037
+	random = no
+	country = DAU
+	name = "EVENTNAME361037" #The Dauphine Succession
+	desc = "EVENTHIST361037"
+	#-#With the unexpected death of the Charles, the direct senior line of the Valois lineage came to an end. The line of succession was traced back to Charles VI's younger brother, Louis I, Duke of Orleans, and through his direct heir Charles I, father of Louis II, of Orleans. With Louis II's ascension, the House of Orleans now ruled Dauphine.
+
+	date = { day = 8 month = april year = 1498 }
+
+	action_a = {
+		name = "ACTIONNAME361037A" #The House of Orleans now rules Dauphine!
+		command = { type = addcore which = 411 } #Orleanais
+		command = { }
+	}
+}
+
+#(1498-1589) The Crown of France
+event = {
+	id = 361001
+	trigger = {
+		NOT = { exists = FRA }
+		countrysize = 12
+	}
+	random = no
+	country = DAU
+	name = "EVENTNAME361001" #The Crown of France
+	desc = "EVENTHIST361001"
+	#-#It does not matter if Paris or Rheims is controlled, the powerful Dauphin now claims the Crown of France. Will someone oppose?
+
+	date = { day = 9 month = april year = 1498 }
+	offset = 30
+	deathdate = { day = 2 month = august year = 1589 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = flagname which = "" }
+		command = { type = country which = FRA }
+		command = { type = capital which = 385 } #Ile de France
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 361038

@@ -1,0 +1,128 @@
+#Kabul (KUS)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1504-1530) Babur in Kabul
+event = {
+	id = 375001
+	trigger = { monarch = 073506 } #Bâbur
+	random = no
+	country = KUS
+	name = "EVENTNAME375001" #Babur in Kabul
+	desc = "EVENTHIST375001"
+	#-#In October of 1504, Babur sent messages to Muqim Beg Arghun, telling him to give up Kabul which the latter had usurped from Babur's nephew. Upon approaching the city, Babur ordered his troops to stage manouvers to frighten the town's garrison. His tactics were successful and several days later he peacefully took over the Kingdom of Kabul. Shortly after, Babur would find it ideal to subdue the Afghani tribes on the outskirts of his Kingdom.
+
+	date = { day = 1 month = october year = 1504 }
+	offset = 1
+	deathdate = { day = 1 month = november year = 1530 }
+
+	action_a = {
+		name = "ACTIONNAME375001A" #Our destiny lies in the south
+		command = { type = INF which = -2 value = 10000 }
+		command = { type = CAV which = -1 value = 5000 }
+		command = { type = CAV which = -1 value = 5000 }
+		command = { type = addcore which = 1524 } #Quetta
+		command = { type = revolt which = 1524 } #Quetta
+		command = { type = relation which = AFG value = -400 }
+		command = { type = stability value = 1 }
+		command = { type = remove_countryculture which = hawaiian } #check for duplicates
+		command = { type = remove_countryculture which = canary } #check for duplicates
+		command = { type = add_countryculture which = hawaiian }
+		command = { type = add_countryculture which = canary }
+	}
+}
+
+#-#(1505-1514) Timurid-Persian Alliance
+event = {
+	id = 375003 #triggered by PER_254023 A
+	random = no
+	country = KUS
+	name = "EVENTNAME375003" #Timurid-Persian Alliance
+	desc = "EVENTHIST254023"
+	#-#In 1510 Babur and Shah Ismail I formed an alliance in an attempt to stem the expansion of the Uzbeks. In return for Ismail's assistance, Babur permitted Ismail to act as a suzerain over him and his followers. Shah Ismail also reunited Babur with his sister Khanzada, who had been imprisoned by and forced to marry the recently deceased Shaybani. Ismail provided Babur with a large wealth of luxury goods and military assistance, for which Babur reciprocated by adopting the dress and outward customs of the Shias. Coins were to be struck in Ismail's name, and the Khutba at the Mosque was also to be read in his name. In effect, Babur was to hold Samarkand as a vassal territority for the Persian Shah, though in Kabul, coins and the Khutba would remain in Babur's name.
+
+	action_a = {
+		name = "ACTIONNAME375003A" #Accept the Persian proposal
+		command = { type = relation which = PER value = 100 }
+		command = { type = relation which = UZB value = -50 }
+		command = { type = land value = 1000 }
+		command = { type = stability value = -1 }
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = CAV which = -2 value = 5000 }
+		command = { type = treasury value = -100 }
+	}
+	action_b = {
+		name = "ACTIONNAME375003B" #We don't need their assistance
+		command = { type = relation which = PER value = -50 }
+		command = { type = relation which = UZB value = -25 }
+	}
+}
+
+#(1514-1540) Babur's Ambition
+event = {
+	id = 375000
+	trigger = {
+		NOT = { exists = MOG }
+	}
+	random = no
+	country = KUS
+	name = "EVENTNAME3804" #Babur's Ambition
+	desc = "EVENTHIST3804"
+	#-#Zahir-ud-din Muhammad, better known as Babur, was a Timurid Prince with the blood of Genghis Khan and Tamerlane flowing through his veins, who became the founder of the mighty Mughal dynasty. His early years were spent in bitter struggle with the Uzbeks, who under their brilliant Khan Muhammad Shaybani had occupied the old Timurid capital of Samarkand. Weary of this useless quest, Babur eventually turned his ambitious gaze east towards India - a much more fruitful ambition, as it would turn out...
+
+	date = { day = 1 month = march year = 1514 }
+	offset = 1
+	deathdate = { day = 1 month = march year = 1540 }
+
+	action_a = {
+		name = "ACTIONNAME3804A" #Unleash the Tiger!
+		command = { type = flagname which = "" }
+		command = { type = country which = MOG }
+		command = { type = add_countryculture which = afghani }
+		command = { type = domestic which = QUALITY value = 3 }
+		command = { type = INF which = -2 value = 10000 }
+		command = { type = INF which = -1 value = 10000 }
+		command = { type = INF which = -1 value = 10000 }
+		command = { type = CAV which = -2 value = 20000 }
+		command = { type = ART which = -2 value = 10 }
+		command = { type = treasury value = 300 }
+		command = { type = relation which = DLH value = -400 }
+		command = { type = addcore which = 543 } #Delhi
+		command = { type = addcore which = 1523 } #Thar
+		command = { type = land value = 3000 }
+		#command = { type = AI which = Mughal.ai }
+	}
+}
+
+#(1469-1504) Princes of Kabul
+event = {
+	id = 375002 #triggered by TIM_296612
+	random = no
+	country = KUS
+	name = "EVENTNAME375002" #Princes of Kabul
+	desc = "EVENTHIST375002"
+	#-#Upon the death of Abû Sa'id, the Empire literally fell to pieces. Husain Baiqara, great-grandson of Timur's son, Umar Shaikh, succeeded in occupying Eastern Persia and Khwarizm. The rest of Sa'id's Kingdom was divided between his four sons. The eldest, Ahmad, was established in Samarkand and Bukhara. His second son, Sultan Mahmud was given Badaskhan, Khultan, Tirmiz, Qunduz, and Hisar. Ulugh Beg, his third, was given Kabul and Ghazni with the fourth, Umar Shaikh as ruler of Ferghana. The glory days of the Timurid Empire were at an end.
+
+	action_a = {
+		name = "ACTIONNAME375002A" #We shall be unstoppable!
+		command = { type = CAV which = -1 value = 5000 }
+		command = { type = CAV which = -1 value = 5000 }
+		command = { type = relation which = TIM value = -300 }
+		command = { type = relation which = KHO value = -300 }
+		command = { type = relation which = NOG value = -200 }
+		command = { type = relation which = TOX value = -200 }
+		command = { type = relation which = FAR value = -400 }
+		command = { type = relation which = UZB value = -100 }
+		command = { type = relation which = AKK value = -400 }
+		command = { type = relation which = QAR value = -400 }
+		command = { type = breakvassal which = TIM }
+		command = { type = remove_countryculture which = hawaiian } #check for duplicates
+		command = { type = remove_countryculture which = canary } #check for duplicates
+		command = { type = add_countryculture which = hawaiian }
+		command = { type = add_countryculture which = canary }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 375004

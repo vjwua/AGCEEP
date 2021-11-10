@@ -1,0 +1,258 @@
+#Arakan (ARK)
+
+#Direct Citations
+# "Arakan: The Mrohaung Era" by Charles Kimball:
+# http://www.guidetothailand.com/thailand-history/arakan.htm
+
+#-----------------------------------------------------------------------------------------------
+
+#(1430-1433) Arakan Setup Event
+event = {
+	id = 30321
+	random = no
+	country = ARK
+	name = "EVENTNAME30321" #Independence of Arakan
+	desc = "EVENTHIST30321"
+	#-#Arakanese Kingdom was restored in 1430 with the help of the King of Bengal. The grateful King of Arakan recognized this by voluntary becoming a Bengalese vassal.
+
+	date = { day = 1 month = january year = 1430 }
+	offset = 3
+	deathdate = { day = 25 month = december year = 1433 }
+
+	action_a = {
+		name = "ACTIONNAME30321A" #Gather troops for our defence
+		command = { type = INF which = -2 value = 10000 }
+		command = { type = CAV which = -2 value = 5000 }
+		command = { type = relation which = MYA value = -300 }
+		command = { type = relation which = BGL value = 50 }
+		command = { type = breakvassal which = MYA }
+		command = { type = infra value = 500 }
+	}
+}
+
+#(1434) Vassalship is over
+event = {
+	id = 112006
+	trigger = {
+		monarch = 011001 #Ali Khan
+		event = 30320 #BGL: Grateful King of Arakan
+		vassal = { country = BGL country = ARK }
+	}
+	random = no
+	country = ARK
+	name = "EVENTNAME30318" #End of vassalship
+	desc = "EVENTHIST112006"
+	#-#In 1434, upon his ascension to power, Ali Khan has proclaimed he was no longer a Bengali vassal. The news went pretty much unnoticed at the Bengali court.
+
+	date = { day = 1 month = january year = 1434 }
+	offset = 10
+	deathdate = { day = 1 month = february year = 1434 }
+
+	action_a = {
+		name = "ACTIONNAME30318A" #We are no longer vassals
+		command = { type = breakvassal which = BGL }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1457-1477) Chittagong
+event = {
+	id = 30317
+	trigger = {
+		owned = { province = 556 data = BGL } #Santal
+	}
+	random = no
+	country = ARK
+	name = "EVENTNAME30317" #Chittagong
+	desc = "EVENTHIST30317"
+	#-#In 1459 Kalima Shah made a daring raid against the Bengali-held city of Chittagong and captured it. The ruler of Bengal was weak and inefficient, and no retribution followed, though the city remained a bone of contention between Arakan and Bengal for the next 150 years.
+
+	date = { day = 1 month = january year = 1457 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1477 }
+
+	action_a = {
+		name = "ACTIONNAME30317A" #Make a daring raid
+		command = { type = stability value = -1 }
+		command = { type = addcore which = 556 } #Santal
+	}
+	action_b = {
+		name = "ACTIONNAME30317B" #No need to upset our neighbors
+		command = { type = sleepevent which = 30316 } #BGL: Arakanese troops in Chittagong
+	}
+}
+
+#(1531) Vassalship is over
+event = {
+	id = 30318
+	trigger = {
+		monarch = 011011 #Zabuk Shah
+		vassal = { country = BGL country = ARK }
+	}
+	random = no
+	country = ARK
+	name = "EVENTNAME30318" #End of vassalship
+	desc = "EVENTHIST30318"
+	#-#At last in 1531, a capable young King named Min Bin as Zabuk Shah (1531-1553) ascended the throne of Arakan and declared himself as a full independent monarch. During his rule stability came back in Arakan. Even after becoming independent of the Bengal Sultans, the Arakan Kings continued the custom of using the Muslim titles in addition to the Arakanese or Pali title.
+
+	date = { day = 1 month = january year = 1531 }
+	offset = 10
+	deathdate = { day = 1 month = february year = 1531 }
+
+	action_a = {
+		name = "ACTIONNAME30318A" #We are no longer vassals
+		command = { type = breakvassal which = BGL }
+		command = { type = stability value = 2 }
+	}
+}
+
+#(1533) King Min Bin
+event = {
+	id = 112000
+	trigger = {
+		monarch = 011011 #Zabuk Shah
+	}
+	random = no
+	country = ARK
+	name = "EVENTNAME112000" #King Min Bin
+	desc = "EVENTHIST112000"
+	#-#An important King was Min Bin (Zabuk Shah), who fortified Mrohaung with massive earthworks and a deep moat, just in time to ward off an attack by the Burmese King Tabinshweti.
+
+	date = { day = 1 month = january year = 1533 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1533 }
+
+	action_a = {
+		name = "ACTIONNAME112000A" #We can't trust those Burmese
+		#Tarakan fortress +2
+		command = { type = fortress which = 672 value = 1 } #Tarakan
+		command = { type = fortress which = 672 value = 1 } #Tarakan
+		command = { type = relation which = MYA value = -150 }
+		command = { type = treasury value = -100 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME112000B" #Let optimism rule
+		command = { type = relation which = MYA value = 50 }
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1534-1553) Feringhi Pirates
+event = {
+	id = 112001
+	random = no
+	country = ARK
+	name = "EVENTNAME112001" #Feringhi Pirates
+	desc = "EVENTHIST112001"
+	#-#During his reign a number of Portuguese sailors, called Feringhi by the Arakanese, became pirates and started terrorizing the Bay of Bengal. Minbin persuaded them to join his navy as mercenaries, and together they became an important regional power. The Feringhi raiders plundered far and wide, especially in the Ganges delta, and brought back thousands of slaves to their market in the port of Dianga every year. In 1625 they even captured Dacca, the Bengali capital. By this time the raids of the Feringhi armada had been so thorough that there was not a house left inhabited between Dacca and Chittagong.
+
+	date = { day = 1 month = january year = 1534 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1553 }
+
+	action_a = {
+		name = "ACTIONNAME112001A" #Make a deal
+		command = { type = warships which = 672 value = 5 }
+		command = { type = naval value = 1000 }
+		command = { type = trade value = 250 }
+		command = { type = domestic which = LAND value = -2 }
+		command = { type = relation which = POR value = 50 }
+		command = { type = merchants value = 3 }
+		command = { type = stability value = 1 }
+		command = { type = treasury value = -300 }
+	}
+	action_b = {
+		name = "ACTIONNAME112001B" #No negotiating with pirates
+		command = { type = trade value = -1000 }
+		command = { type = relation which = POR value = -50 }
+		command = { type = stability value = -2 }
+	}
+}
+
+#(1662) Shah Shuja
+event = {
+	id = 112002
+	trigger = {
+		exists = MOG
+	}
+	random = no
+	country = ARK
+	name = "EVENTNAME112002" #Shah Shuja
+	desc = "EVENTHIST112002"
+	#-#In 1660 a Mughal prince, Shah Shuja, fled to Mrohaung when he failed to keep his brother, Aurangzeb, from usurping the Mughal throne. Shah Shuja asked for ships to convey his family and retinue to Mecca, but none were supplied. Then the Arakanese King, Sandathudamma, asked for one of Shah Shuja's daughters in marriage and was indignantly refused. Fearing he would be handed over to the Mughals, Shah Shuja tried to escape and on the second attempt he was killed in a riot and his treasures were confiscated.
+
+	date = { day = 1 month = january year = 1662 }
+	offset = 90
+	deathdate = { day = 29 month = december year = 1662 }
+
+	action_a = {
+		name = "SPLENDID"
+		command = { type = treasury value = 200 }
+		command = { type = trigger which = 230100 } #MOG: Shah Shuja
+	}
+}
+#(1662) Mughal Demands
+event = {
+	id = 112003 #triggered by MOG_230100 A
+	random = no
+	country = ARK
+	name = "EVENTNAME112003" #Mughal Demands
+	desc = "EVENTHIST112003"
+	#-#When the Mughal emperor Aurangzeb heard the news, he demanded the surrender of Shah Shuja's children but Sandathudamma refused and war broke out.
+
+	action_a = {
+		name = "ACTIONNAME112003A" #Hmmpphhh, the thought
+		command = { type = relation which = MOG value = -100 }
+		command = { type = trigger which = 230101 } #MOG: Arakanese Challenge
+	}
+	action_b = {
+		name = "ACTIONNAME112003B" #Bow down
+		command = { type = relation which = MOG value = 50 }
+		command = { type = treasury value = -200 }
+		command = { type = stability value = -1 }
+		command = { type = vp value = -20 }
+		command = { type = trigger which = 230102 } #MOG: Sandathudamma Bows to Demands
+	}
+}
+
+#(1665-1675) A Crucial Moment
+event = {
+	id = 112004 #triggered by MOG_230103 A
+	random = no
+	country = ARK
+	name = "EVENTNAME112004" #A Crucial Moment
+	desc = "EVENTHIST112004"
+	#-#At first the war went well for Arakan, with the Feringhi making two devastating raids on the Bengal coast. But at a crucial moment they quarreled with the Arakanese, and when the Mughals offered employment most of the Feringhi switched sides. The result was an overwhelming Mughal victory at the battle of Dianga (1666), where the Arakanese fleet was destroyed and Chittagong (held by Arakan since 1459) was taken back.
+
+	action_a = {
+		name = "ACTIONNAME112004A" #That's what we get
+		command = { type = naval value = -500 }
+		command = { type = trade value = -500 }
+		command = { type = desertion which = -1 value = 5000 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Random Events
+#-----------------------------------------------------------------------------------------------
+
+#White Elephants
+event = {
+	id = 112005
+	random = yes
+	country = ARK
+	name = "EVENTNAME112005" #White Elephants
+	desc = "EVENTHIST112005"
+	#-#The Buddhist Kings of Southeast Asia have always treasured the possession of white elephants, enhancing royal prestige and ensuring the country's prosperity.
+
+	action_a = {
+		name = "SPLENDID"
+		command = { type = stability value = 1 }
+		command = { type = revoltrisk which = 12 value = -3 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 112007

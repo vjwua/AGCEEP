@@ -1,0 +1,2156 @@
+#Switzerland (HEL)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1424-1439) County of Kyburg
+event = {
+	id = 184027
+	trigger = {
+		owned = { province = 1612 data = -1 } #Schwyz
+		exists = TYR
+		control = { province = 1612 data = HEL } #Schwyz
+	}
+	random = no
+	country = HEL
+	name = "EVENTNAME184027" #County of Kyburg
+	desc = "EVENTHIST184027"
+	#-#Sigismund of Tyrol also ruled areas in the midst of Switzerland, the Habsburg possessions such as the County of Kyburg (north of Zurich) which later became the seat of a bailiff from Zurich and in which Zurich was very interested in obtaining. Since he was always in financial trouble, he soon searched for someone to grant him a credit - this is an opportunity to consolidate our rule and give the Habsburgs the chance to expand, preferably far from us in the east in Austria... \n \nShould we lend Sigismund gold with Kyburg as pawn?
+
+	date = { day = 1 month = january year = 1424 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1439 } #must be before event 184055 which could start 1440
+
+	action_a = {
+		name = "ACTIONNAME184027A" #Accept and add the county to the city of Zürich
+		command = { type = treasury value = -25 }
+		command = { type = population which = 1612 value = 500 } #Schwyz
+		command = { type = provincetax which = 1612 value = 1 } #Schwyz
+		command = { type = provincemanpower which = 1612 value = 1 } #Schwyz
+		command = { type = trigger which = 322026 } #TYR: Zurich lends us money for the County of Kyburg
+	}
+	action_b = {
+		name = "ACTIONNAME184027B" #Refuse to negotiate with a Habsburg
+		command = { type = relation which = TYR value = -20 }
+		command = { type = relation which = HAB value = -10 }
+		command = { type = relation which = PRM value = -10 }
+		command = { type = sleepevent which = 184028 } #HEL: Zurich War with Habsburg intervention
+	}
+}
+
+#(1440-1446) Zurich war: zurich allies w/HAB and fights against schwyz and glarus over extinct count of toggenburg
+event = {
+	id = 184028
+	random = no
+	country = HEL
+	name = "EVENTNAME184028" #Zurich war with Habsburg intervention
+	desc = "EVENTHIST184028"
+	#-#In 1440, the Swiss town of Zürich allied with the Habsburgs against the Cantons of Schwyz and Glarus over the title of the extinct count of Toggenburg - the town of Zurich gave the County of Kyburg back to the Habsburgs as payment for their aid.
+
+	date = { day = 1 month = january year = 1440 }
+	offset = 120
+	deathdate = { day = 1 month = january year = 1446 }
+
+	action_a = {
+		name = "ACTIONNAME184028A" #Zurich must be subdued
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revoltrisk which = 60 value = 4 }
+		command = { type = stability value = -3 }
+		#Kyburg is given back to Tyrol as reward for aid to Zürich
+		command = { type = population which = 1612 value = -500 } #Schwyz
+		command = { type = provincetax which = 1612 value = -1 } #Schwyz
+		command = { type = provincemanpower which = 1612 value = -1 } #Schwyz
+		command = { type = trigger which = 322027 } #TYR: We are rewarded
+	}
+}
+#(1440-1446) Zurich war: zurich allies w/HAB and fights against schwyz and glarus over extinct count of toggenburg
+event = {
+	id = 184055
+	random = no
+	country = HEL
+	name = "EVENTNAME184055" #Zurich War
+	desc = "EVENTHIST184055"
+	#-#In 1440 Zurich allied with the Habsburgs against the Cantons of Schwyz and Glarus over the title of the extinct count of Toggenburg.
+
+	date = { day = 1 month = january year = 1440 }
+	offset = 120
+	deathdate = { day = 1 month = january year = 1446 }
+
+	action_a = {
+		name = "OH_WELL"
+		command = { type = revolt which = -1 }
+		command = { type = revoltrisk which = 60 value = 2 }
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1460) Pope excoms zsigismund, HEL takes thurgau
+event = {
+	id = 184056
+	trigger = {
+		owned = { province = 1612 data = HEL }
+		exists = TYR
+	}
+	random = no
+	country = HEL
+	name = "EVENTNAME184056" #Thurgau Gained
+	desc = "EVENTHIST184056"
+	#-#When the Pope excommunicated Duke Sigismund of Tyrol, the Swiss Confederation used the excommunication to conquer and annex Thurgau.
+
+	date = { day = 1 month = january year = 1460 }
+	offset = 120
+	deathdate = { day = 1 month = january year = 1461 }
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = provincemanpower which = 1612 value = 1 } #Schwyz
+		command = { type = provincetax which = 1612 value = 1 } #Schwyz
+		command = { type = trigger which = 322025 } #TYR: The Swiss dare to steal our lands
+	}
+}
+
+#(1473-1476) Grandson and Morat
+event = {
+	id = 20301 #triggered by BUR_20300
+	random = no
+	country = HEL
+	name = "EVENTNAME20301" #Grandson and Morat
+	desc = "EVENTHIST20301"
+	#-#Charles the Bold's greatest dream was to establish a grand duchy which would link the North Sea to the Mediterranean. To expand in Italy, he needed to secure the Alps passes. In 1474, encouraged by Louis XI, the Swiss seized the opportunity of a rebellion in Alsace to anticipate this expansion and declared war on Burgundy.
+
+	action_a = {
+		name = "ACTIONNAME20301A" #Charge!
+		command = { type = relation which = BUR value = -100 }
+		command = { type = relation which = FRA value = 25 }
+		command = { type = INF which = -2 value = 10000 }
+		command = { type = CAV which = -2 value = 1000 }
+		command = { type = casusbelli which = BUR value = 12 }
+		command = { type = wakeleader which = 058800 } #Hans von Hallwil (HEL)
+	}
+	action_b = {
+		name = "ACTIONNAME20301B" #We will find a diplomatic solution to this threat
+		command = { type = relation which = BUR value = 50 }
+		command = { type = relation which = FRA value = -20 }
+		command = { type = relation which = SAV value = 20 }
+		command = { type = diplomats value = 1 }
+	}
+}
+
+#(1474-1476) burgundian wars. burgundy defeated by HEL
+event = {
+	id = 184057
+	trigger = {
+		neighbour = BUR
+		exists = FRA
+		exists = HAB
+		NOT = {
+			war = { country = HEL country = HAB }
+			war = { country = HEL country = FRA }
+			vassal = { country = HEL country = BUR }
+		}
+	}
+	random = no
+	country = HEL
+	name = "EVENTNAME184057" #The Burgundian Wars
+	desc = "EVENTHIST184057"
+	#-#The Swiss were allied with the South German cities and the Habsburgs (who were fearful of Charles' ambitions of conquest in Alsace), and were supported by subsidies from Louis XI of France, bitter enemy of Charles the Bold. Shall we wage war on Burgundy?
+
+	date = { day = 1 month = january year = 1474 }
+	offset = 120
+	deathdate = { day = 1 month = january year = 1476 }
+
+	action_a = {
+		name = "ACTIONNAME184057A" #Curb Burgundy's Ambition
+		command = { type = casusbelli which = BUR value = 24 }
+		command = { type = INF which = -2 value = 2000 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = BUR value = -100 }
+		command = { type = trigger which = 170081 } #FRA: French Response - Burgundy Wars
+		command = { type = trigger which = 179030 } #HAB: Austrian Response - Burgundy Wars
+	}
+	action_b = {
+		name = "ACTIONNAME184057B" #This is none of our Affair
+		command = { type = relation which = BUR value = 100 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = trigger which = 137017 } #BUR: Burgundy Claim Alsace
+	}
+}
+#(1474-1476) French give gold
+event = {
+	id = 184061 #triggered by FRA_170081 A
+	random = no
+	country = HEL
+	name = "EVENTNAME184061" #French Send Aid
+	desc = "EVENTHIST184061"
+	#-#The French have subsidised our struggle against the Burgundians.
+
+	action_a = {
+		name = "ACTIONNAME184061A" #Huzzah!
+		command = { type = treasury value = 200 }
+	}
+}
+#(1474-1476) Austria give gold
+event = {
+	id = 184062 #triggered by HAB_179030 A
+	random = no
+	country = HEL
+	name = "EVENTNAME184062" #Austrians Send Aid
+	desc = "EVENTHIST184062"
+	#-#The Austrians have subsidised our struggle against the Burgundians.
+
+	action_a = {
+		name = "ACTIONNAME184062A" #Huzzah!
+		command = { type = treasury value = 200 }
+	}
+}
+
+#(1481) fribourg and solothurn become members (cities). the hermit st nikolaus of flue mediates
+event = {
+	id = 184063
+	random = no
+	country = HEL
+	name = "EVENTNAME184063" #Additional Members - 1481
+	desc = "EVENTHIST184063"
+	#-#In 1481 Two new members were added to the Swiss confederation - that of Fribourg and Solothurn. However these were two cities and the Rural Cantons did not want to see more power going to the cities and tried to block their entry. The hermit Saint Nikolaus of Flue mediated between the two groups and the two new members were accepted.
+
+	date = { day = 1 month = january year = 1481 }
+	offset = 120
+	deathdate = { day = 1 month = january year = 1482 }
+
+	action_a = {
+		name = "ACTIONNAME184063A" #Welcome Brothers
+		command = { type = provincetax which = 388 value = 1 } #Bern
+	}
+}
+
+#(1490-1600) Witch-hunting in Switzerland I
+#by Ígneo
+event = {
+	id = 184031
+	trigger = {
+		owned = { province = 388 data = -1 } #Bern
+		control = { province = 388 data = -1 } #Bern
+	}
+	random = no
+	country = HEL
+	name = "EVENTNAME184031" #Witch-hunting in Switzerland
+	desc = "EVENTHIST184031"
+	#-#The medieval Inquisition tried a large number of witches, but collective witch-hunting was exclusively a modern phenomena. Individual maleficium (Latin for witchcraft) was not uncommon in many rural areas, but it wasn't until scholastic demonology related witches and Sabbaths (night meetings with strong conspiracy elements, including cannibalism, orgies and a sacred oath of loyalty to Satan himself) that societies started to get obsessed with the matter. This conspiracy paranoia can track its roots as far as to the first massacres of Jews and Lepers in the High Middle Ages, when thousands were slaughtered by defeated Crusaders and angry countrymen. But it's in the early 15th century when demonological theories will become fully accepted by the upper classes. The Councils of Constance and Basel are considered to be the first public space in which these concepts, maleficium and Sabbath were publicly related. The work of Johannes Nider (1380-1438), The Formicarius (The Anthill), was a masterpiece of scholastic demonology and marked a new era in witch-hunting. The work of Heinrich Kramer (1430-1505), Malleus Maleficarum (Hammer of the Wicked) was the first work that reaches widespread attention, and works as a inquisitorial manual for witch-hunters. But it's not the Church that tries the most in Modern Ages. On the contrary, civil courts are responsible for 85-90 percent of executions. \n \nSwitzerland is home to the first witch-hunting process and an estimate of 5,000-10,000 burned witches makes it one of the most affected regions in Europe. Only by the early 18th century, with Illustration at the doors of Geneva, will the horrible massacre stop producing victims on the western side of the Alps.
+
+	date = { day = 1 month = january year = 1490 }
+	offset = 5000
+	deathdate = { day = 1 month = january year = 1600 }
+
+	action_a = {
+		name = "ACTIONNAME184031A" #Burn the heretics!
+		command = { type = population which = 388 value = -150 } #Bern
+		command = { type = population which = -1 value = -100 }
+		command = { type = stability value = 1 }
+		command = { type = revoltrisk which = 4 value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME184031B" #Be lenient with the misguided sheep
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 4 value = 1 }
+	}
+}
+
+#(1497-1514) Unhappiness against Louis XII
+event = {
+	id = 20302
+	trigger = {
+		OR = {
+			control = { province = 389 data = FRA } #Lombardia
+			control = { province = 390 data = FRA } #Mantua
+			control = { province = 402 data = FRA } #Emilia
+			control = { province = 403 data = FRA } #Liguria
+		}
+	}
+	random = no
+	country = HEL
+	name = "EVENTNAME20302" #Unhappiness against Louis XII
+	desc = "EVENTHIST20302"
+	#-#The Italian wars of Louis XII caused some trouble in Switzerland. The losses among Swiss mercenaries in the French armies were too high. Local corruption became a serious problem. Furthermore, Louis XII refused to pay the mercenaries as agreed!
+
+	date = { day = 1 month = december year = 1497 }
+	offset = 200
+	deathdate = { day = 29 month = december year = 1514 }
+
+	action_a = {
+		name = "ACTIONNAME20302A" #We can't trust this bastard! He will pay for this treachery!
+		command = { type = relation which = FRA value = -50 }
+		command = { type = relation which = PAP value = 25 }
+		command = { type = casusbelli which = FRA value = 12 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME20302B" #We will take charge this time, but we forbid any bribe in the future
+		command = { type = relation which = FRA value = 20 }
+		command = { type = treasury value = -15 }
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1497-1514) The Swiss, too, must have a master
+event = {
+	id = 20303
+	trigger = {
+		exists = HAB
+		atwar = no
+		NOT = {
+			vassal = { country = HEL country = HAB }
+		}
+	}
+	random = no
+	country = HEL
+	name = "EVENTNAME20303" #The Empire strikes back
+	desc = "EVENTHIST20303"
+	#-#Maximilian I of Austria set out to reestablish by force the Habsburgs' ancestral domination of Switzerland, in alliance with the Swabian League, under the slogan 'The Swiss, too, must have a master'.
+
+	date = { day = 1 month = may year = 1497 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1514 }
+
+	action_a = {
+		name = "ACTIONNAME20303A" #We will never give in to this pressure
+		command = { type = relation which = HAB value = -50 }
+		command = { type = relation which = -6 value = -25 }
+		command = { type = relation which = -7 value = -25 }
+		command = { type = relation which = FRA value = 25 }
+		command = { type = domestic which = quality value = 1 }
+		command = { type = INF which = -2 value = 6000 }
+		command = { type = ART which = -2 value = 10 }
+		command = { type = stability value = -1 }
+		command = { type = trigger which = 20305 } #HAB: The Swiss must have a master
+	}
+	action_b = {
+		name = "ACTIONNAME20303B" #Let the mighty Habsburgs become our rulers again
+		command = { type = relation which = FRA value = -50 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = -6 value = 50 }
+		command = { type = relation which = -7 value = 25 }
+		command = { type = relation which = TYR value = 25 }
+		command = { type = relation which = PRM value = 25 }
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 60 value = 2 }
+		command = { type = gainbuilding which = -1 value = bailiff }
+		command = { type = domestic which = serfdom value = 2 }
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = trigger which = 20304 } #HAB: The Swiss must have a master
+		command = { type = sleepevent which = 184033 } #HEL: Switzerland breaks free from the Empire
+	}
+}
+
+#(1499-1820) Switzerland breaks free from the Empire
+event = {
+	id = 184033
+	trigger = {
+		isvassal = no
+		atwar = no
+		emperor = no #can´t leave the Empire if you´re Emperor can´t you? ;-)
+		stability = 3 # easy for a small state with only right-cultured provinces
+		AND = {
+			owned = { province = 1612 data = -1 } #Schwyz
+			control = { province = 1612 data = -1 } #Schwyz
+			controlchange = { province = 1612 years = 10 }
+			ownerchange = { province = 1612 years = 50 }
+		}
+		AND = {
+			owned = { province = 388 data = -1 } #Bern
+			control = { province = 388 data = -1 } #Bern
+			controlchange = { province = 388 years = 10 }
+			ownerchange = { province = 388 years = 50 }
+		}
+		OR = { 
+			isoverlord = yes #historical expansion as protectors of Milan or capture of the Vaud from Savoy
+			countrysize = 3 
+		}
+	}
+	random = no
+	country = HEL
+	name = "EVENTNAME184033" #Switzerland breaks free from the Empire
+	desc = "EVENTHIST184033"
+	#-#In 1648, the Thirty Years War ended with the Treaty of Westphalia. Although the independence of Switzerland from the Empire was only now formally recognized, these territories had enjoyed de facto independence for decades.
+
+	date = { year = 1499 }
+	offset = 90
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME184033A" #We are free!
+		command = { type = relation which = PAP value = -25 }
+		command = { type = relation which = HAB value = -25 }
+		command = { type = relation which = FRA value = 25 }
+		command = { type = relation which = -6 value = -50 }
+		command = { type = relation which = -7 value = -25 } 
+		command = { type = relation which = -7 value = -25 } 
+		command = { type = relation which = -7 value = -25 } 
+		command = { type = relation which = -7 value = -25 } 
+		command = { type = relation which = -7 value = -25 } 
+		command = { type = relation which = -7 value = -25 } 
+		command = { type = relation which = -7 value = -25 } 
+		command = { type = hre which = 388 value = no }	
+		command = { type = hre which = 1612 value = no }	
+		command = { type = vp value = 100 }
+		command = { type = merchants value = -2 } # no longer part of the Empire
+		command = { type = trade value = -25 } #even more tolls to pay because of new border
+  }
+	action_b = {
+		name = "ACTIONNAME184033B" #Let's not
+		command = { type = relation which = PAP value = 25 }
+		command = { type = relation which = HAB value = 25 }
+		command = { type = relation which = -6 value = 50 }
+		command = { type = relation which = -7 value = 25 } 
+		command = { type = vp value = -20 }
+		command = { type = badboy value = -1 }
+	}
+}
+
+#(1499-1501) Swabian war - HEL becomes defacto independent
+event = {
+	id = 184064
+	trigger = {
+		NOT = { war = { country = HEL country = HAB } }
+	}
+	random = no
+	country = HEL
+	name = "EVENTNAME184064" #The Swabian War
+	desc = "EVENTHIST184064"
+	#-#This was the result of a boundary dispute on the Austrian border. The Emperor was supported by the German cities, while the Swiss were allied with the French. For a few months fighting raged all along the northern and eastern frontier, the principle battles being fought at Bruderholz, Hard, Schwaderloh, Frastenz and Calven. The decisive battle was fought at Dornach, when the Swiss defeated Maximillian himself, who was forced by the treaty of Basel to grant to Switzerland virtual independence from the Empire.
+
+	date = { day = 1 month = january year = 1499 }
+	offset = 120
+	deathdate = { day = 1 month = january year = 1501 }
+
+	action_a = {
+		name = "ACTIONNAME184064A" #So be it
+		command = { type = relation which = HAB value = -50 }
+		command = { type = casusbelli which = HAB value = 12 }
+	}
+}
+
+#(1500-1507) The Betrayal at Novara
+#by Bordic
+event = {
+	id = 184066 #triggered by FRA_170042 A
+	random = no
+	country = HEL
+	name = "EVENTNAME184066" #The Betrayal at Novara
+	desc = "EVENTHIST228028"
+	#-#When in 1499 the French troops invaded Milan, Ludovico il Moro escaped to Innsbruck in Austria at the court of Maximilian I to ask his protection. Louis XII remained in Milan only a couple of months, then he made return to France and left Trivulzio there as his viceroy. But Trivulzio's way to administrate provoked deep Milanese resentments as much as to long for a Sforza's return and in January 1500, hearing that Sforza was assemblying troops to conquer Milan, an Anti-French revolt broke out in the city, the french troops were forced to abandon Milan except the garrison in Castello Sforzesco. In facts, with the gold he brought with, il Moro could hire mercenary troops and by February 1500 he made his entrance in Milan. After Milan, Sforza retook all the cities in the duchy and beyond Ticino River, where in Novara he had to face a French counterattack led by La Trémouille, also hiring Swiss mercenaries. The Swiss troops hired by il Moro, probably lured by the French gold and incited by their fellow-countrymen in the opposite camp refused to fight. 'The Duke's forces were composed of different races: German 'landsknechte', Burgundians who were commanded by the same Claude de Vauldray who had fought with the Good Knight in his first tournament, and Swiss mercenaries. There were bands of Swiss fighting on the side of the French, and those within the city declared that they would not fight against their fellow-countrymen in the other camp. They laid down their arms, and neither threat nor promise availed. Soon it was discovered that one of the gates of Novara had been opened by treachery, and that the French were entering the city. Then, as a last hope, Ludovico and his companions put on the dress of common soldiers and mixed with them in the ranks. But the unfortunate Duke was betrayed by one of the Swiss captains, who was put to death later by his own countrymen as a traitor.'(Bayard: The Good Knight Without Fear And Without Reproach, e-book by Christopher Hare) Ludovico Sforza was recognised and captured, then sent as prisoner to France where he miserably died, some years later, in the Castle of Loches, in Turenne. On 15 April 1500 The French troops made their second entrance in Milan.
+
+	action_a = {
+		name = "ACTIONNAME184066A" #We can't fight against our brothers!
+		command = { type = stability value = -1}
+		command = { type = treasury value = 75 } #money for the betrayal
+		command = { type = MIL which = -2 value = 12 }
+	}
+}
+
+#(1501) basel and schaffenhausen become members - they were allies of HEL in swabian war
+event = {
+	id = 184065
+	random = no
+	country = HEL
+	name = "EVENTNAME184065" #Additional Members - 1501
+	desc = "EVENTHIST184065"
+	#-#The Swabian War was the result of a boundary dispute on the Austrian border. The Emperor was supported by the German cities, while the Swiss were allied with the French. For a few months fighting raged all along the northern and eastern frontier, by the end however two new members would join the Confederation, these were Basel and Schaffenhausen both of whom were allies of the Swiss during the Swabian War.
+
+	date = { day = 1 month = january year = 1501 }
+	offset = 120
+	deathdate = { day = 1 month = january year = 1502 }
+
+	action_a = {
+		name = "ACTIONNAME184065A" #Welcome Brothers
+		command = { type = provincemanpower which = 388 value = 1 } #Bern
+		command = { type = provincemanpower which = 1612 value = 1 } #Schwyz
+	}
+}
+
+#(1505-1512) The Swiss Guard in Rome (Swiss Version)
+event = {
+	id = 20306 #triggered by PAP_251021 A
+	random = no
+	country = HEL
+	name = "EVENTNAME20306" #The Swiss Guard in Rome
+	desc = "EVENTHIST20306"
+	#-#When, at the end of the 15th century, with Charles VIII the Italian Wars began, the Swiss were described by the Italian historian Guicciardini, as 'the nerve and the hope of an army'. In 1495 the life of the King of France was saved thanks to the immovable firmness of his Swiss foot-soldiers. At the beginning of the 16th century the Vatican began to employ Swiss mercenaries, who had a reputation of courage, noble sentiments and loyalty. Because of their faithful and disinterested service Pope Julius II in 1505 asked the Swiss Federal Tagesatzung to provide him with a constant core of 200 Swiss mercenaries for the protection of the Apostolic palace in Rome. In September 1505, a first contingent of 150 soldiers started their march towards Rome, they entered for the first time the Vatican in the evening of the 22nd of January 1506, where they were blessed by Pope Julius II. The prelate Johann Burchard of Strasbourg, Master of Pontifical Ceremonies at that time, and author of a famous chronicle, noted that event in his diary. Their first, and most significant, hostile engagement was on May 6, 1527 when 147 Guards, including their commander, died fighting the lansquenets lead by Charles de Bourbon, Constable of France, in the Sack of Rome.
+
+	action_a = {
+		name = "ACTIONNAME20306A" #Yes forever #We swear to faithfully, honestly and honorably serve the Pope
+		command = { type = treasury value = 100 }
+		command = { type = relation which = PAP value = 20 }
+		command = { type = manpower value = -1 }
+	}
+}
+
+#(1510-1512) Holy League of 1510 Swiss Version
+event = {
+	id = 17030
+	trigger = {
+		OR = {
+			event = 17024 #PAP: The Holy League against France
+			event = 236006 #MUS: The Holy League against France
+		}
+	}
+	random = no
+	country = HEL
+	name = "EVENTNAME17024" #The Holy League against France
+	desc = "EVENTHIST17024"
+	#-#In 1510 Venice submitted to the Pope, thus lessening the league of Cambrai. Conditions were hard for Venice, the Republic had to renounce her traditional power to appoint bishops as well as all jurisdiction over Papal subjects in Venetian territory and was to compensate Pope Julius II for his war expenses needed to recapture the Papal holdings in Romagna, while the Pope accepted the humble request of the Republic for pardon, cancelling the interdict. But the reconciliation between Venice and the Pope did not stop the French to continue the war against Venice with attacks to her cities in Terraferma. Julius II, in the meanwhile, had become increasingly concerned by the growing French presence in Italy and formulated plans, both to chase the French out of the Po Valley and to seize the Duchy of Ferrara, a French ally, with the intention to add the territories of Modena, Reggio and Ferrara to the Papal States. In realizing his plan the Pope immediately excommunicated Alfonso d'Este, Duke of Ferrara, declaring his fief forfeited for his remaining loyal to France, then he gained the military support of Venice, eager to recover her territories lost to the French a armies and hired an army of Swiss mercenaries to attack Milan as to isolate the French armies in Italy. However his plans failed as the French army managed to invade Romagna and occupy the cities of Bologna and Ravenna, supported by the powerful and celebrated artillery of Duke Alfonso d'Este. In addition, in response to Pope's switching sides, Louis XII of France convoked a Schismatic Council at Pisa as to have the 'Warrior Pope' deposed. Pope Julius II, having unsuccessfully pressed the Republic of Florence to refuse hosting the schismatic cardinals, proclaimed the Holy League against France and convoked a Council of his own to meet at the Lateran in Rome. The promise of territorial gains at French expense caused Ferdinand II of Aragon and Emperor Maximilian I to abandon their alliance with the French, and in October 1511, they joined the newly-formed Holy League together with Julius II and the Republic of Venice. In November, Henry VIII of England and the Swiss confederation joined as well.
+
+	date = { day = 10 month = October year = 1510 }
+	offset = 500
+	deathdate = { day = 1 month = april year = 1512 }
+
+	action_a = {
+		name = "ACTIONNAME17024A" #Express Support
+		command = { type = casusbelli which = FRA value = 36 }
+		command = { type = relation which = FRA value = -150 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = VEN value = 150 }
+		command = { type = relation which = ARG value = 150 }
+		command = { type = relation which = PAP value = 150 }
+		command = { type = relation which = ENG value = 150 }
+	}
+	action_b = {
+		name = "ACTIONNAME17024B" #Stay neutral
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = VEN value = -50 }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = relation which = ARG value = -50 }
+		command = { type = relation which = PAP value = -50 }
+		command = { type = relation which = ENG value = 150 }
+	}
+	action_c = {
+		name = "ACTIONNAME17024C" #Express Hostility
+		command = { type = relation which = FRA value = 150 }
+		command = { type = relation which = VEN value = -150 }
+		command = { type = relation which = HAB value = -150 }
+		command = { type = relation which = ARG value = -150 }
+		command = { type = relation which = PAP value = -150 }
+		command = { type = relation which = ENG value = 150 }
+	}
+}
+
+#(1513-1539) 13 Cantons
+event = {
+	id = 20307
+	trigger = {
+		owned = { province = 1612 data = -1 } #Schwyz
+	}
+	random = no
+	country = HEL
+	name = "EVENTNAME20307" #Five new cantons
+	desc = "EVENTHIST20307"
+	#-#Between 1513 and 1536, Switzerland took the shape she still has today. Five new cantons (Fribourg, Solothurn, Basel and Schaffhausen and Appenzell) had joined the Confederation already in the past three decades, and the takeover of Vaud and Valais from Savoy brought even more land and more wealth to the country. This also brought some stability to the balance of denominations, preventing the collapse of the Confederation for religious reasons.
+
+	date = { day = 1 month = january year = 1513 }
+	offset = 2000
+	deathdate = { day = 29 month = december year = 1539 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = population which = 1612 value = 5000 } #Schwyz
+		command = { type = provincemanpower which = 1612 value = 1 } #Schwyz
+		command = { type = provincetax which = 1612 value = 1 } #Schwyz
+		command = { type = stability value = 2 }
+		command = { type = trigger which = 338496 } #ProvinceSpec: Swiss expansion
+	}
+}
+
+#(1513) Milan under Swiss protectorate
+#by Bordic
+event = {
+	id = 184068
+	trigger = {
+		event = 228029 #MLO: Sforza restored in Milan
+	}
+	random = no
+	country = HEL
+	name = "EVENTNAME184068" #Milan under Swiss protectorate
+	desc = "EVENTHIST12025"
+	#-#In spite of their victories in Northern Italy, the French troops were forced to abandon the battlefield both because of financial reasons and because after the successful battle of Ravenna the Emperor was withdrawing troops and would have joined the holy league formed by Papal States, Spain, England and Venice with the help of Swiss troops hired by Pope Julius II himself and led into war by the Bishop of Sion, Mathias Schiner. Thence the decision to withdraw from Milan. Julius II recovered Ravenna, Bologna and the rest of the Romagna, while his commander, the Duke of Urbino, easily occupied Reggio and Modena, though Alfonso d'Este refused any settlement that would deprive him of Ferrara. After having chased out the French from Italy, the congress of allies which met at Mantua in August made over to the Pope Parma and Piacenza, to which he had at best a shadowy claim. The Emperor and Fernando would have been glad to give Milan to their grandson Charles but the Swiss were in possession and, supported by the Pope, made their will good. The duchy was given to Ercole Massimiliano Sforza, the elder son of Ludovico. The Venetian claims were left unsettled with Brescia still held out and the Swiss claiming Cremona and the Ghiara d'Adda for the duchy. And more, the Emperor demanded Vicenza and Verona. Florence, who in 1509 had ended her long war by the recovery of Pisa, was punished for her support of France by the restoration of the Medici. Entering Milan, Ercole Massimiliano Sforza received the keys to the city from the Swiss soldiers, who promised to protect the duchy of Milan and to help the Duke in sending to him all the troops he would need. The Duke granted them the acquisition of the ducal territories Ticino and Valtellina, the most important accesses to the Alpine passes. Genoa drew back its allegiance to the French King, who in 1506 harshly repressed a local rebellion that broke out owing to the decision taken by the French governor to grant privileges to the nobilty. But Julius II made also a treaty with his late ally, Maximilian, against Venice. The emperor was to support the Lateran council to oppose that one proclaimed by Louis XII in Pisa and to hand over Modena to the Pope, while Julius II was to join in compelling Venice to give up the fiefs which the Emperor claimed since Cambrai and to use on behalf of his new ally also the always convincing 'spiritual weapons'. When this treaty was made public, it had only the effect to drive Venice to side with France.
+
+	date = { day = 1 month = January year = 1513 }
+	offset = 20
+	deathdate = { day = 1 month = January year = 1514 }
+
+	action_a = {
+		name = "ACTIONNAME184068A" #Let's protect the Duke of Milan
+		command = { type = vassal which = MLO } #Milan was under strong Swiss and Papal influence
+		command = { type = treasury value = 100 } #for hiring troops
+		command = { type = population which = -2 value = 2000 } #Ticino and Valtellina
+		command = { type = provincetax which = -2 value = 1 } #Ticino and Valtellina
+		command = { type = provincemanpower which = -2 value = 1 } #Ticino and Valtellina
+		command = { type = relation which = MLO value = 25 }
+		command = { type = relation which = HAB value = 25 }
+		command = { type = relation which = FRA value = -25 }
+		command = { type = relation which = PAP value = 25 }
+	}
+}
+
+#(1515-1520) battle of Marignano. troops of berne and cntrl HEl take diff sides - leads to neutral stance
+event = {
+	id = 184067
+	trigger = {
+		OR = {
+			war = { country = HEL country = FRA }
+			war = { country = MLO country = FRA }
+		}
+		event = 170045 #FRA: François Ier in Italy
+	}
+	random = no
+	country = HEL
+	name = "EVENTNAME184067" #Battle of Marignano
+	desc = "EVENTHIST184067"
+	#-#This was fought 10 miles outside Milan and saw the Swiss troops of Bern and Central Switzerland fighting on both sides. The majority of the Swiss were fighting against the French forces of François Ier and resulted in several inconclusive engagements. The French took position at Marignano (today's Melegnano) to face the attacking Swiss and there, in the evening of 13 and in the morning of 14 September 1515, a fierce battle, also known as the Battle of the Giants, was fought. In that battle, paused only at late night of the first day (during which the two armies stood facing each other awaiting the coming day, even François Ier and his gendarmes, forming the advanced line of the French army, remained all night mounted with lance in hand and helmet on head) and then resumed at sunrise of the day after, the French army managed to defeat the most celebrated Swiss pikemen, who until then were always victorious on the battlefield, when the Venetian re-inforcements arrived to François Ier. Only 3000 Swiss escaped out of some 22,000 who fought whilst the French losses were about 8000 of about 33,000.
+
+	date = { day = 10 month = September year = 1515 }
+	offset = 5
+	deathdate = { day = 1 month = January year = 1520 }
+
+	action_a = {
+		name = "CURSES"
+		command = { type = stability value = -1 }
+		command = { type = vp value = -10 }
+		command = { type = land value = -100 }
+		command = { type = provincemanpower which = 388 value = -2 } #Bern
+		command = { type = provincemanpower which = 1612 value = -1 } #Schwyz
+		command = { type = provincetax which = 388 value = -2 } #Bern
+		command = { type = provincetax which = 1612 value = -1 } #Schwyz
+	}
+}
+
+#(1520-1648) The perpetual neutrality
+event = {
+	id = 184029	#triggered by FRA_170163 A
+	random = no
+	country = HEL
+	name = "EVENTNAME184029" #The perpetual neutrality
+	desc = "EVENTHIST170163"
+	#-#The fightings between the French and the Swiss troops during the Italian Wars meant the end of the Swiss military tecnique based on the use of pikemen only, the most efficent up until those times, and the beginning of a new way of fighting with the coordination of infantry, cavalry and artillery forces. Until the battle of Marignano in 1515, Switzerland had always provided mercenaries to the best hirer: her soldiers were the most requested troops of those times because of their reputation of courage and loyalty. However Switzerland decided to negotiate a perpetual peace with the French Kings, a peace that would endure until the French Revolution, and promised she wouldn't any longer provide mercenary troops in military campaigns against France. Switzerland's day was over, its neutral status would begin.
+
+	action_a = {
+		name = "OK"
+		command = { type = breakvassal which = FRA }
+		command = { type = stability value = 4 }
+		command = { type = domestic which = OFFENSIVE value = -1 }
+		command = { type = relation which = FRA value = 20 }
+		command = { type = relation which = HAB value = 20 }
+		command = { type = relation which = SPA value = 20 }
+		command = { type = relation which = -1 value = 20 }
+		command = { type = relation which = -1 value = 20 }
+		command = { type = relation which = -1 value = 20 }
+	}
+}
+
+#(1535-1537) expansion of Bern into Savoie
+event = {
+	id = 184020
+	trigger = {
+		NOT = { owned = { province = 405 data = -1 } } #Savoie
+	}
+	random = no
+	country = HEL
+	name = "EVENTNAME184020" #Increase Catholic Influence
+	desc = "EVENTHIST184020"
+	#-#With the Protestant cantons gaining more and more influence. Berne (a Catholic city canton) decided to try and gain more influence for the catholic cause. A way of acheiving this would be to increase its sphere of influence south-west into Savoyard lands towards Lake Geneve, at the expense of Savoy.
+
+	date = { day = 1 month = january year = 1535 }
+	offset = 120
+	deathdate = { day = 1 month = january year = 1537 }
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = casusbelli which = SAV value = 24 }
+		command = { type = relation which = SAV value = -50 }
+	}
+}
+
+#(1536-1538) Expansion of Bern into Savoie
+event = {
+	id = 184069
+	trigger = {
+		owned = { province = 405 data = -1 } #Savoie
+	}
+	random = no
+	country = HEL
+	name = "EVENTNAME184069" #Expansion of Bern into Savoie
+	desc = "EVENTHIST184069"
+	#-#Vaud, Chablis, Lausanne and other territories of savoie were subdued and annexed.
+
+	date = { day = 1 month = january year = 1536 }
+	offset = 120
+	deathdate = { day = 1 month = january year = 1538 }
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = addcore which = 405 } #Savoie
+	}
+}
+
+#(1538-1560) Jean Calvin settles in Geneva
+event = {
+	id = 20308
+	trigger = {
+		OR = {
+			owned = { province = 405 data = -1 } #Savoie
+			event = 20307 #HEL: 5 new cantons
+		}
+		owned = { province = 388 data = -1 } #Bern
+		control = { province = 388 data = -1 } #Bern
+	}
+	random = no
+	country = HEL
+	name = "EVENTNAME20308" #Jean Calvin settles in Geneva
+	desc = "EVENTHIST20308"
+	#-#Jean Chauvin or Calvin was a Picard bourgeois favoured by the bishop of Noyon. His father worked in the city government before losing the favour of the local Church. After spending some years in Paris, Calvin became interested in Lutheran teachings, and subsequently converted to Protestantism. The Affair of the Placards, which involved a direct attack to the King of France, forced him to escape from Paris as no Protestant was safe there after that event occurred. He went to Geneva, but the population expelled him. He returned in 1541 and settled there until his death, working in the Consistory. Calvin, unlike Luther, was a one-book-man. His three editions of the monumental Institutio Christianae Religionis are a masterpiece of theological Protestantism, and one of the most important books of the century, highly influential for Dutch, Scottish and English reformed Protestants. Calvin also planned a severe reform of customs and ancient practices, and in his war with local nobility, he prosecuted and expelled many of his opponents. Geneva was to be a model city, a city ''fearful of God'', tidy, clean, and with no vagabonds or idle people. Consequences for both Geneva and Switzerland were extremely important, because a ferocious moral regime was started to supervise any practices that looked dangerous to both Church and Government. Also, many foreigners were attracted by the opportunity to freely practice Protestant Eucharist and Baptism (the basis of Lutheran and reformed rituals), therefore adding more than 5,000 inhabitants to city as Geneva, Bern and Zurich.
+
+	date = { day = 1 month = july year = 1538 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1560 }
+
+	action_a = {
+		name = "ACTIONNAME20308A" #Yes, let him preach in our city. We need more discipline
+		command = { type = relation which = FRA value = -50 }
+		command = { type = relation which = PAP value = -25 }
+		command = { type = relation which = HAB value = -25 }
+		command = { type = infra value = 750 }
+		command = { type = provincereligion which = 405 value = reformed } #Savoie
+		command = { type = population which = 388 value = 1000 } #Bern
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 48 value = 3 }
+		command = { type = domestic which = innovative value = -2 }
+	}
+	action_b = {
+		name = "ACTIONNAME20308B" #Expell this French scum
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = PAP value = 25 }
+		command = { type = relation which = HAB value = 25 }
+		command = { type = vp value = -20 }
+	}
+}
+
+#(1553-1555) Miguel Servet flees for Geneva - Flavor
+#by mfigueras
+event = {
+	id = 5008
+	trigger = {
+		event = 5007 #FRA: Miguel Servet
+		religion = reformed
+		NOT = { domestic = { type = innovative value = 8 } }
+	}
+	random = no
+	country = HEL
+	name = "EVENTNAME5007" #Miguel Servet
+	desc = "EVENTHIST5008"
+	#-#Miguel Servet (or Servetus) was an aragonese physician who was trained in Lyon and Paris and whose theological ideas became very polemic. He believed that God is unitary and that the Trinity is not founded in scripture. He anonymously published 'Restitution of Christianity', a book outlining his theological views, but was persecuted when his authorship was discovered. His old friend John Calvin was especially angered by these ideas. Servet also proposed that the blood traveled from the heart through the pulmonary artery and back through the pulmonary vein, without actually passing through the septum. After being persecuted by the french church, Servet fled for Italy, traveling through Geneva, where Jean Calvin had the power and Servet hoped to find some support from him. But Calvin was very angered by the philosophical and theological ideas of Servet, so Calvin had Servet arrested, and condemned him to burning at the stake, which took place 27th october 1553.
+
+	date = { day = 27 month = october year = 1553 }
+	offset = 120
+	deathdate = { day = 29 month = march year = 1555 }
+
+	action_a = {
+		name = "ACTIONNAME5008A" #To the flames with him!
+		command = { type = stability value = 1 }
+		command = { type = revoltrisk value = -5 }
+	}
+	action_b = {
+		name = "ACTIONNAME5008B" #No, Servet must be protected
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = relation which = FRA value = -25 }
+		command = { type = revoltrisk value = 7 }
+	}
+}
+
+#(1600-1700) Witch-hunting in Switzerland II
+#by Ígneo
+event = {
+	id = 184032
+	trigger = {
+		owned = { province = 388 data = -1 } #Bern
+		control = { province = 388 data = -1 } #Bern
+	}
+	random = no
+	country = HEL
+	name = "EVENTNAME184031" #Witch-hunting in Switzerland
+	desc = "EVENTHIST184031"
+	#-#The medieval Inquisition tried a large number of witches, but collective witch-hunting was exclusively a modern phenomena. Individual maleficium (Latin for witchcraft) was not uncommon in many rural areas, but it wasn't until scholastic demonology related witches and Sabbaths (night meetings with strong conspiracy elements, including cannibalism, orgies and a sacred oath of loyalty to Satan himself) that societies started to get obsessed with the matter. This conspiracy paranoia can track its roots as far as to the first massacres of Jews and Lepers in the High Middle Ages, when thousands were slaughtered by defeated Crusaders and angry countrymen. But it's in the early 15th century when demonological theories will become fully accepted by the upper classes. The Councils of Constance and Basel are considered to be the first public space in which these concepts, maleficium and Sabbath were publicly related. The work of Johannes Nider (1380-1438), The Formicarius (The Anthill), was a masterpiece of scholastic demonology and marked a new era in witch-hunting. The work of Heinrich Kramer (1430-1505), Malleus Maleficarum (Hammer of the Wicked) was the first work that reaches widespread attention, and works as a inquisitorial manual for witch-hunters. But it's not the Church that tries the most in Modern Ages. On the contrary, civil courts are responsible for 85-90 percent of executions. \n \nSwitzerland is home to the first witch-hunting process and an estimate of 5,000-10,000 burned witches makes it one of the most affected regions in Europe. Only by the early 18th century, with Illustration at the doors of Geneva, will the horrible massacre stop producing victims on the western side of the Alps.
+
+	date = { day = 1 month = january year = 1600 }
+	offset = 5000
+	deathdate = { day = 1 month = january year = 1700 }
+
+	action_a = {
+		name = "ACTIONNAME184031A" #Burn the heretics!
+		command = { type = population which = 388 value = -150 } #Bern
+		command = { type = population which = -1 value = -100 }
+		command = { type = stability value = 1 }
+		command = { type = revoltrisk which = 4 value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME184031B" #Be lenient with the misguided sheep
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 4 value = 1 }
+	}
+}
+
+#(1600-1798) ancien regime -a few families control state affairs, rebellions put down (cities dominant?)
+#effects simulated in the diet monarch choices
+
+#(1648) treaty of westphalia HEL recognized as independent
+
+#(1650-1792) The independence from the Empire
+event = {
+	id = 184030 #triggered by HAB_179072 A
+	random = no
+	country = HEL
+	name = "EVENTNAME184030" #The independence from the Empire
+	desc = "EVENTHIST179072"
+	#-#Over the years the House of Habsburg was losing its influence on the policies of the Swiss cantons, mostly becasue of the Calvinist doctrines professed early in Geneva and then in the neighbouring cities which were against the Roman Catholicism to which the Austrian and Spanish royals were highly devoted. That would cause strong religious conflicts between peripheries and central authority. Only after the promulgation of the Edict of Tolerance, which stated that all religions had equal dignity, Switzerland was formally acknowledged her independence from the Holy Roman Empire.
+
+	action_a = {
+		name = "OK"
+		command = { type = breakvassal which = HAB }
+		command = { type = stability value = 4 }
+		command = { type = domestic which = OFFENSIVE value = -1 }
+		command = { type = relation which = FRA value = 20 }
+		command = { type = relation which = HAB value = 20 }
+		command = { type = relation which = SPA value = 20 }
+		command = { type = relation which = -1 value = 20 }
+		command = { type = relation which = -1 value = 20 }
+		command = { type = relation which = -1 value = 20 }
+	}
+}
+
+#(1653-1655) Peasants war - revolt of rural pop between lucerne and bern against undemocrat cities. peasants lose
+event = {
+	id = 184071
+	trigger = {
+		atwar = no
+		domestic = { type = serfdom value = 6 }
+		NOT = { domestic = { type = serfdom value = 8 } }
+	}
+	random = no
+	country = HEL
+	name = "EVENTNAME184071" #Peasant Unrest
+	desc = "EVENTHIST184071"
+	#-#The Rural cantons were always weary of the dominance of the great Urban regions, especially Zurich, Lucerne and Berne. In such times that the oligarchs of these cities exerted continual dominance, the members of the rural areas would voice their anger. In 1653 the peasants of the rural population between Lucerne and Bern revolted against the undemocratic rule of the cities. The peasants are becoming restless.
+
+	date = { day = 1 month = january year = 1653 }
+	offset = 120
+	deathdate = { day = 1 month = january year = 1655 }
+
+	action_a = {
+		name = "ACTIONNAME184071A" #They will have to wait until the next Diet
+		command = { type = revoltrisk which = 12 value = 4 }
+		command = { type = stability value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME184071B" #Placate the Rural Cantons
+		command = { type = revoltrisk which = 6 value = 2 }
+		command = { type = treasury value = -100 }
+		command = { type = domestic which = serfdom value = -1 }
+	}
+}
+event = {
+	id = 184072
+	trigger = {
+		atwar = no
+		domestic = { type = serfdom value = 8 }
+	}
+	random = no
+	country = HEL
+	name = "EVENTNAME184072" #Peasant Revolts
+	desc = "EVENTHIST184072"
+	#-#The Rural cantons were always weary of the dominance of the great Urban regions, especially Zurich, Lucerne and Berne. In such times that the oligarchs of these cities exerted continual dominance, the members of the rural areas would voice their anger. In 1653 the peasants of the rural population between Lucerne and Bern revolted against the undemocratic rule of the cities. The peasants are revolting.
+
+	date = { day = 1 month = january year = 1653 }
+	offset = 120
+	deathdate = { day = 1 month = january year = 1655 }
+
+	action_a = {
+		name = "ACTIONNAME184072A" #Put down the revolts
+		command = { type = revoltrisk which = 24 value = 6 }
+		command = { type = stability value = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME184072B" #Try to Placate the peasants
+		command = { type = revolt which = -1 }
+		command = { type = revoltrisk which = 12 value = 3 }
+		command = { type = treasury value = -200 }
+		command = { type = domestic which = serfdom value = -2 }
+		command = { type = sleepevent which = 184071 } #HEL: Peasant Unrest
+	}
+}
+
+#(1681-1688) Protestants expelled from France
+event = {
+	id = 20309 #triggered by FRA_3128 A
+	random = no
+	country = HEL
+	name = "EVENTNAME20309" #Protestants expelled from France
+	desc = "EVENTHIST20309"
+	#-#Louis XIV embarked on a policy of persecuting the Protestants. Finally, in 1685, he declared that the majority of Protestants had been converted to Catholicism and that the Edict of Nantes of 1598, having thus become superfluous, was revoked. Thousands of French Protestants fled abroad to escape the violent persecutions which followed immediately. Switzerland, like England, the Netherlands and other Protestant states, appealed to many highly skilled and industrious people, who strenghtened her economy.
+
+	action_a = {
+		name = "ACTIONNAME3509A" #We welcome them with open arms
+		command = { type = population which = -2 value = 5000 }
+		command = { type = provincetax which = -2 value = 1 }
+		command = { type = population which = -1 value = 5000 }
+		command = { type = provincetax which = -3 value = 1 }
+		command = { type = infra value = 1000 }
+		command = { type = trade value = 1000 }
+	}
+}
+
+#(1717-1729) peasant revolt wilchingen
+event = {
+	id = 184075
+	trigger = {
+		atwar = no
+		domestic = { type = serfdom value = 6 }
+		NOT = { domestic = { type = serfdom value = 8 } }
+	}
+	random = no
+	country = HEL
+	name = "EVENTNAME184075" #Peasant Unrest
+	desc = "EVENTHIST184075"
+	#-#The Rural cantons were always weary of the dominance of the great Urban regions, especially Zurich, Lucerne and Berne. In such times that the oligarchs of these cities exerted continual dominance, the members of the rural areas would voice their anger. In 1717 the peasants of the rural population of Wilchingen revolted against the undemocratic rule of the cities. The peasants are becoming restless.
+
+	date = { day = 1 month = january year = 1717 }
+	offset = 120
+	deathdate = { day = 1 month = january year = 1729 }
+
+	action_a = {
+		name = "ACTIONNAME184075A" #They will have to wait until the next Diet
+		command = { type = revoltrisk which = 120 value = 4 }
+		command = { type = stability value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME184075B" #Placate the Rural Cantons
+		command = { type = revoltrisk which = 60 value = 2 }
+		command = { type = treasury value = -100 }
+		command = { type = domestic which = serfdom value = -1 }
+	}
+}
+event = {
+	id = 184076
+	trigger = {
+		atwar = no
+		domestic = { type = serfdom value = 8 }
+	}
+	random = no
+	country = HEL
+	name = "EVENTNAME184076" #Peasant Revolts
+	desc = "EVENTHIST184076"
+	#-#The Rural cantons were always weary of the dominance of the great Urban regions, especially Zurich, Lucerne and Berne. In such times that the oligarchs of these cities exerted continual dominance, the members of the rural areas would voice their anger. In 1717 the peasants of the rural population of Wilchingen revolted against the undemocratic rule of the cities. The peasants are revolting.
+
+	date = { day = 1 month = january year = 1717 }
+	offset = 120
+	deathdate = { day = 1 month = january year = 1729 }
+
+	action_a = {
+		name = "ACTIONNAME184076A" #Put down the revolts
+		command = { type = revoltrisk which = 240 value = 6 }
+		command = { type = stability value = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME184076B" #Try to Placate the peasants
+		command = { type = revolt which = -1 }
+		command = { type = revoltrisk which = 120 value = 3 }
+		command = { type = treasury value = -200 }
+		command = { type = domestic which = serfdom value = -2 }
+		command = { type = sleepevent which = 184075 } #HEL: Peasant Unrest
+	}
+}
+
+#(1719-1722) peasant revolt werdenberg
+event = {
+	id = 184077
+	trigger = {
+		atwar = no
+		domestic = { type = serfdom value = 6 }
+		NOT = { domestic = { type = serfdom value = 8 } }
+	}
+	random = no
+	country = HEL
+	name = "EVENTNAME184077" #Peasant Unrest
+	desc = "EVENTHIST184077"
+	#-#The Rural cantons were always weary of the dominance of the great Urban regions, especially Zurich, Lucerne and Berne. In such times that the oligarchs of these cities exerted continual dominance, the members of the rural areas would voice their anger. In 1717 the peasants of the rural population of Werdenberg revolted against the undemocratic rule of the cities. The peasants are becoming restless.
+
+	date = { day = 1 month = january year = 1717 }
+	offset = 120
+	deathdate = { day = 1 month = january year = 1722 }
+
+	action_a = {
+		name = "ACTIONNAME184077A" #They will have to wait until the next Diet
+		command = { type = revoltrisk which = 24 value = 4 }
+		command = { type = stability value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME184077B" #Placate the Rural Cantons
+		command = { type = revoltrisk which = 12 value = 2 }
+		command = { type = treasury value = -100 }
+		command = { type = domestic which = serfdom value = -1 }
+	}
+}
+event = {
+	id = 184078
+	trigger = {
+		atwar = no
+		domestic = { type = serfdom value = 8 }
+	}
+	random = no
+	country = HEL
+	name = "EVENTNAME184078" #Peasant Revolts
+	desc = "EVENTHIST184078"
+	#-#The Rural cantons were always weary of the dominance of the great Urban regions, especially Zurich, Lucerne and Berne. In such times that the oligarchs of these cities exerted continual dominance, the members of the rural areas would voice their anger. In 1717 the peasants of the rural population of Werdenberg revolted against the undemocratic rule of the cities. The peasants are revolting.
+
+	date = { day = 1 month = january year = 1717 }
+	offset = 120
+	deathdate = { day = 1 month = january year = 1722 }
+
+	action_a = {
+		name = "ACTIONNAME184078A" #Put down the revolts
+		command = { type = revoltrisk which = 48 value = 6 }
+		command = { type = stability value = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME184078B" #Try to Placate the peasants
+		command = { type = revolt which = -1 }
+		command = { type = revoltrisk which = 24 value = 3 }
+		command = { type = treasury value = -200 }
+		command = { type = domestic which = serfdom value = -2 }
+		command = { type = sleepevent which = 184077 } #HEL: Peasant Unrest
+	}
+}
+
+#(1726-1752) Euler remains in Switzerland - Flavor
+#by mfigueras
+event = {
+	id = 5901
+	trigger = { event = 5900 }
+	random = no
+	country = HEL
+	name = "EVENTNAME5901" #Leonhard Euler remains in our country
+	desc = "EVENTHIST5901"
+	#-#The Swiss Leonhard Euler was, perhaps, the best mathematician of the 18th century. His work included: number theory, infinitesimal analysis including its emerging branches, differential equations and the calculus of variations and rational mechanics. He viewed these three fields as intimately interconnected. Studies of number theory were vital to the foundations of calculus, and special functions and differential equations were essential to rational mechanics, which supplied concrete problems.
+
+	date = { day = 1 month = april year = 1726 }
+	offset = 720
+	deathdate = { day = 1 month = december year = 1752 }
+
+	action_a = {
+		name = "ACTIONNAME5901A" #We have the best mathematician in the world!
+		command = { type = infra value = 100 }
+		command = { type = land value = 50 }
+	}
+}
+
+#(1792-1795) The Massacre of August 10, 1792
+event = {
+	id = 20310
+	trigger = {
+		event = 170095 #FRA: The Commune of Paris
+	}
+	random = no
+	country = HEL
+	name = "EVENTNAME20310" #The Massacre of the Swiss guards
+	desc = "EVENTHIST20310"
+	#-#The Paris mob, inflamed by the heinous writings of Marat, stormed the Tuileries Palace. The King escaped but most Swiss guards were killed. The other Swiss Regiments in the French Army were later disbanded. This was felt like an affront in all Switzerland.
+
+	date = { day = 10 month = august year = 1792 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1795 }
+
+	action_a = {
+		name = "ACTIONNAME20310A" #We are deeply shocked! France adds insult to injury!
+		command = { type = relation which = FRA value = -75 }
+		command = { type = casusbelli which = FRA value = 24 }
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = ART which = -2 value = 20 }
+	}
+	action_b = {
+		name = "ACTIONNAME20310B" #We are very sorry but this is not our problem
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 12 value = 3 }
+		command = { type = desertion which = -1 value = 1000 }
+	}
+}
+
+#(1799-1820) The Helvetic Republic
+#graphics by Prinz Wilhelm from GRT
+event = {
+	id = 20311 #triggered by FRA_170106 A
+	random = no
+	country = HEL
+	name = "EVENTNAME20311" #A troubled period begins
+	desc = "EVENTHIST20311"
+	#-#Following its mission to 'liberate' all the European populations from the grasp of the Ancien Régime, the French post-revolutionary governments abolished the Confederation and established the Helvetic Republic, with a single constitution, giving little consideration for the history and traditions of the Swiss country. Internal disorder would arise and steadily worsen. The pro-French puppet state would be unable to cope with the new 'innovative' situation. Anarchy prevailed then for years until the Restoration of Vienna re-established the Confederate government and confirm Switzerland perpetual neutrality.
+
+	action_a = {
+		name = "ACTIONNAME20311A" #We are in deep trouble
+		command = { type = stability value = -6 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = losebuilding which = -1 value = courthouse }
+		command = { type = revoltrisk which = 36 value = 5 }
+		command = { type = wakemonarch which = 058541 } #Helvetic Republic
+		command = { type = flagname which = "Republic" }
+		command = { type = hre which = 1612 value = no }
+		command = { type = hre which = 388 value = no }
+	}
+}
+
+#(1803-1820) The Mediation Act
+event = {
+	id = 20312
+	trigger = {
+		event = 20311 #HEL: A troubled period begins
+		event = 12124 #FRA: General Bonaparte First Consul
+	}
+	random = no
+	country = HEL
+	name = "EVENTNAME20312" #A new constitution
+	desc = "EVENTHIST20312"
+	#-#With his Mediation Act of 1803, Napoléon eventually restored order and stability. This new constitution reestablished a political structure similar to that of the old Confederation of 13 cantons. Some new cantons were even added. In return for this more suitable regime, however, the Swiss had to maintain not less than 16,000 men in the French army on a permanent basis.
+
+	date = { day = 1 month = march year = 1803 }
+	offset = 2000
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "OK"
+		command = { type = flagname which = "" }
+		command = { type = wakemonarch which = 058542 } #Tagsatzung
+		command = { type = stability value = 3 }
+		command = { type = infra value = 500 }
+		command = { type = trade value = 500 }
+		command = { type = population which = -1 value = 5000 }
+		command = { type = provincetax which = -3 value = 1 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#New Helvetian monarch events - Meeting of the Tagsatzung diet
+
+#(1419-1438) Meeting of the Tagsatzung diet
+event = {
+	id = 184000
+	random = no
+	country = HEL
+	name = "EVENTNAME184000" #Meeting of the Tagsatzung diet
+	desc = "EVENTHIST184000"
+	#-#The Swiss Confederation was made up of around 10-20 seperate entities during the EU2 timeframe. These entities were made up of rural cantons and Urban city-states and each governed themselves to a large degree. However effects affecting the confederation as a whole would be put to a diet where each canton and city would contribute, these diets would be held regularly, one of which is now being held. We now have a choice by choosing whether the Urban or Rural Cantons will be dominant and which we think would best benefit the Confederation at this time.
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1438 }
+
+	action_a = {
+		name = "ACTIONNAME184000A" #Rural Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058501 } #I Tagsatzung - Rural
+	}
+	action_b = {
+		name = "ACTIONNAME184000B" #Urban Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058502 } #I Tagsatzung - Urban
+	}
+}
+#(1439-1458) Meeting of the Tagsatzung diet
+event = {
+	id = 184001
+	random = no
+	country = HEL
+	name = "EVENTNAME184000" #Meeting of the Tagsatzung diet
+	desc = "EVENTHIST184000"
+	#-#The Swiss Confederation was made up of around 10-20 seperate entities during the EU2 timeframe. These entities were made up of rural cantons and Urban city-states and each governed themselves to a large degree. However effects affecting the confederation as a whole would be put to a diet where each canton and city would contribute, these diets would be held regularly, one of which is now being held. We now have a choice by choosing whether the Urban or Rural Cantons will be dominant and which we think would best benefit the Confederation at this time.
+
+	date = { day = 1 month = january year = 1439 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1458 }
+
+	action_a = {
+		name = "ACTIONNAME184000B" #Urban Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058504 } #II Tagsatzung - Urban
+	}
+	action_b = {
+		name = "ACTIONNAME184000A" #Rural Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058503 } #II Tagsatzung - Rural
+	}
+}
+#(1459-1478) Meeting of the Tagsatzung diet
+event = {
+	id = 184002
+	random = no
+	country = HEL
+	name = "EVENTNAME184000" #Meeting of the Tagsatzung diet
+	desc = "EVENTHIST184000"
+	#-#The Swiss Confederation was made up of around 10-20 seperate entities during the EU2 timeframe. These entities were made up of rural cantons and Urban city-states and each governed themselves to a large degree. However effects affecting the confederation as a whole would be put to a diet where each canton and city would contribute, these diets would be held regularly, one of which is now being held. We now have a choice by choosing whether the Urban or Rural Cantons will be dominant and which we think would best benefit the Confederation at this time.
+
+	date = { day = 1 month = january year = 1459 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1478 }
+
+	action_a = {
+		name = "ACTIONNAME184000B" #Urban Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058506 } #III Tagsatzung - Urban
+	}
+	action_b = {
+		name = "ACTIONNAME184000A" #Rural Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058505 } #III Tagsatzung - Rural
+	}
+}
+#(1479-1498) Meeting of the Tagsatzung diet
+event = {
+	id = 184003
+	random = no
+	country = HEL
+	name = "EVENTNAME184000" #Meeting of the Tagsatzung diet
+	desc = "EVENTHIST184000"
+	#-#The Swiss Confederation was made up of around 10-20 seperate entities during the EU2 timeframe. These entities were made up of rural cantons and Urban city-states and each governed themselves to a large degree. However effects affecting the confederation as a whole would be put to a diet where each canton and city would contribute, these diets would be held regularly, one of which is now being held. We now have a choice by choosing whether the Urban or Rural Cantons will be dominant and which we think would best benefit the Confederation at this time.
+
+	date = { day = 1 month = january year = 1479 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1498 }
+
+	action_a = {
+		name = "ACTIONNAME184000B" #Urban Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058508 } #IV Tagsatzung - Urban
+	}
+	action_b = {
+		name = "ACTIONNAME184000A" #Rural Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058507 } #IV Tagsatzung - Rural
+	}
+}
+#(1499-1518) Meeting of the Tagsatzung diet
+event = {
+	id = 184004
+	random = no
+	country = HEL
+	name = "EVENTNAME184000" #Meeting of the Tagsatzung diet
+	desc = "EVENTHIST184000"
+	#-#The Swiss Confederation was made up of around 10-20 seperate entities during the EU2 timeframe. These entities were made up of rural cantons and Urban city-states and each governed themselves to a large degree. However effects affecting the confederation as a whole would be put to a diet where each canton and city would contribute, these diets would be held regularly, one of which is now being held. We now have a choice by choosing whether the Urban or Rural Cantons will be dominant and which we think would best benefit the Confederation at this time.
+
+	date = { day = 1 month = january year = 1499 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1518 }
+
+	action_a = {
+		name = "ACTIONNAME184000A" #Rural Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058509 } #V Tagsatzung - Rural
+	}
+	action_b = {
+		name = "ACTIONNAME184000B" #Urban Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058510 } #V Tagsatzung - Urban
+	}
+}
+#(1519-1538) Meeting of the Tagsatzung diet
+event = {
+	id = 184005
+	random = no
+	country = HEL
+	name = "EVENTNAME184000" #Meeting of the Tagsatzung diet
+	desc = "EVENTHIST184000"
+	#-#The Swiss Confederation was made up of around 10-20 seperate entities during the EU2 timeframe. These entities were made up of rural cantons and Urban city-states and each governed themselves to a large degree. However effects affecting the confederation as a whole would be put to a diet where each canton and city would contribute, these diets would be held regularly, one of which is now being held. We now have a choice by choosing whether the Urban or Rural Cantons will be dominant and which we think would best benefit the Confederation at this time.
+
+	date = { day = 1 month = january year = 1519 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1538 }
+
+	action_a = {
+		name = "ACTIONNAME184000B" #Urban Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058512 } #VI Tagsatzung - Urban
+	}
+	action_b = {
+		name = "ACTIONNAME184000A" #Rural Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058511 } #VI Tagsatzung - Rural
+	}
+}
+#(1539-1558) Meeting of the Tagsatzung diet
+event = {
+	id = 184006
+	random = no
+	country = HEL
+	name = "EVENTNAME184000" #Meeting of the Tagsatzung diet
+	desc = "EVENTHIST184000"
+	#-#The Swiss Confederation was made up of around 10-20 seperate entities during the EU2 timeframe. These entities were made up of rural cantons and Urban city-states and each governed themselves to a large degree. However effects affecting the confederation as a whole would be put to a diet where each canton and city would contribute, these diets would be held regularly, one of which is now being held. We now have a choice by choosing whether the Urban or Rural Cantons will be dominant and which we think would best benefit the Confederation at this time.
+
+	date = { day = 1 month = january year = 1539 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1558 }
+
+	action_a = {
+		name = "ACTIONNAME184000A" #Rural Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058513 } #VII Tagsatzung - Rural
+	}
+	action_b = {
+		name = "ACTIONNAME184000B" #Urban Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058514 } #VII Tagsatzung - Urban
+	}
+}
+#(1559-1578) Meeting of the Tagsatzung diet
+event = {
+	id = 184007
+	random = no
+	country = HEL
+	name = "EVENTNAME184000" #Meeting of the Tagsatzung diet
+	desc = "EVENTHIST184000"
+	#-#The Swiss Confederation was made up of around 10-20 seperate entities during the EU2 timeframe. These entities were made up of rural cantons and Urban city-states and each governed themselves to a large degree. However effects affecting the confederation as a whole would be put to a diet where each canton and city would contribute, these diets would be held regularly, one of which is now being held. We now have a choice by choosing whether the Urban or Rural Cantons will be dominant and which we think would best benefit the Confederation at this time.
+
+	date = { day = 1 month = january year = 1559 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1578 }
+
+	action_a = {
+		name = "ACTIONNAME184000A" #Rural Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058515 } #VIII Tagsatzung - Rural
+	}
+	action_b = {
+		name = "ACTIONNAME184000B" #Urban Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058516 } #VIII Tagsatzung - Urban
+	}
+}
+#(1579-1598) Meeting of the Tagsatzung diet
+event = {
+	id = 184008
+	random = no
+	country = HEL
+	name = "EVENTNAME184000" #Meeting of the Tagsatzung diet
+	desc = "EVENTHIST184000"
+	#-#The Swiss Confederation was made up of around 10-20 seperate entities during the EU2 timeframe. These entities were made up of rural cantons and Urban city-states and each governed themselves to a large degree. However effects affecting the confederation as a whole would be put to a diet where each canton and city would contribute, these diets would be held regularly, one of which is now being held. We now have a choice by choosing whether the Urban or Rural Cantons will be dominant and which we think would best benefit the Confederation at this time.
+
+	date = { day = 1 month = january year = 1579 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1598 }
+
+	action_a = {
+		name = "ACTIONNAME184000A" #Rural Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058517 } #IX Tagsatzung - Rural
+	}
+	action_b = {
+		name = "ACTIONNAME184000B" #Urban Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058518 } #IX Tagsatzung - Urban
+	}
+}
+#(1599-1618) Meeting of the Tagsatzung diet
+event = {
+	id = 184009
+	random = no
+	country = HEL
+	name = "EVENTNAME184000" #Meeting of the Tagsatzung diet
+	desc = "EVENTHIST184000"
+	#-#The Swiss Confederation was made up of around 10-20 seperate entities during the EU2 timeframe. These entities were made up of rural cantons and Urban city-states and each governed themselves to a large degree. However effects affecting the confederation as a whole would be put to a diet where each canton and city would contribute, these diets would be held regularly, one of which is now being held. We now have a choice by choosing whether the Urban or Rural Cantons will be dominant and which we think would best benefit the Confederation at this time.
+
+	date = { day = 1 month = january year = 1599 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1618 }
+
+	action_a = {
+		name = "ACTIONNAME184000B" #Urban Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058520 } #X Tagsatzung - Urban
+	}
+	action_b = {
+		name = "ACTIONNAME184000A" #Rural Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058519 } #X Tagsatzung - Rural
+	}
+}
+#(1619-1638) Meeting of the Tagsatzung diet
+event = {
+	id = 184010
+	random = no
+	country = HEL
+	name = "EVENTNAME184000" #Meeting of the Tagsatzung diet
+	desc = "EVENTHIST184000"
+	#-#The Swiss Confederation was made up of around 10-20 seperate entities during the EU2 timeframe. These entities were made up of rural cantons and Urban city-states and each governed themselves to a large degree. However effects affecting the confederation as a whole would be put to a diet where each canton and city would contribute, these diets would be held regularly, one of which is now being held. We now have a choice by choosing whether the Urban or Rural Cantons will be dominant and which we think would best benefit the Confederation at this time.
+
+	date = { day = 1 month = january year = 1619 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1638 }
+
+	action_a = {
+		name = "ACTIONNAME184000B" #Urban Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058522 } #XI Tagsatzung - Urban
+	}
+	action_b = {
+		name = "ACTIONNAME184000A" #Rural Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058521 } #XI Tagsatzung - Rural
+	}
+}
+#(1639-1658) Meeting of the Tagsatzung diet
+event = {
+	id = 184011
+	random = no
+	country = HEL
+	name = "EVENTNAME184000" #Meeting of the Tagsatzung diet
+	desc = "EVENTHIST184000"
+	#-#The Swiss Confederation was made up of around 10-20 seperate entities during the EU2 timeframe. These entities were made up of rural cantons and Urban city-states and each governed themselves to a large degree. However effects affecting the confederation as a whole would be put to a diet where each canton and city would contribute, these diets would be held regularly, one of which is now being held. We now have a choice by choosing whether the Urban or Rural Cantons will be dominant and which we think would best benefit the Confederation at this time.
+
+	date = { day = 1 month = january year = 1639 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1658 }
+
+	action_a = {
+		name = "ACTIONNAME184000B" #Urban Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058524 } #XII Tagsatzung - Urban
+	}
+	action_b = {
+		name = "ACTIONNAME184000A" #Rural Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058523 } #XII Tagsatzung - Rural
+	}
+}
+#(1659-1678) Meeting of the Tagsatzung diet
+event = {
+	id = 184012
+	random = no
+	country = HEL
+	name = "EVENTNAME184000" #Meeting of the Tagsatzung diet
+	desc = "EVENTHIST184000"
+	#-#The Swiss Confederation was made up of around 10-20 seperate entities during the EU2 timeframe. These entities were made up of rural cantons and Urban city-states and each governed themselves to a large degree. However effects affecting the confederation as a whole would be put to a diet where each canton and city would contribute, these diets would be held regularly, one of which is now being held. We now have a choice by choosing whether the Urban or Rural Cantons will be dominant and which we think would best benefit the Confederation at this time.
+
+	date = { day = 1 month = january year = 1659 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1678 }
+
+	action_a = {
+		name = "ACTIONNAME184000B" #Urban Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058526 } #XIII Tagsatzung - Urban
+	}
+	action_b = {
+		name = "ACTIONNAME184000A" #Rural Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058525 } #XIII Tagsatzung - Rural
+	}
+}
+#(1679-1698) Meeting of the Tagsatzung diet
+event = {
+	id = 184013
+	random = no
+	country = HEL
+	name = "EVENTNAME184000" #Meeting of the Tagsatzung diet
+	desc = "EVENTHIST184000"
+	#-#The Swiss Confederation was made up of around 10-20 seperate entities during the EU2 timeframe. These entities were made up of rural cantons and Urban city-states and each governed themselves to a large degree. However effects affecting the confederation as a whole would be put to a diet where each canton and city would contribute, these diets would be held regularly, one of which is now being held. We now have a choice by choosing whether the Urban or Rural Cantons will be dominant and which we think would best benefit the Confederation at this time.
+
+	date = { day = 1 month = january year = 1679 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1698 }
+
+	action_a = {
+		name = "ACTIONNAME184000A" #Rural Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058527 } #XIV Tagsatzung - Rural
+	}
+	action_b = {
+		name = "ACTIONNAME184000B" #Urban Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058528 } #XIV Tagsatzung - Urban
+	}
+}
+#(1699-1718) Meeting of the Tagsatzung diet
+event = {
+	id = 184014
+	random = no
+	country = HEL
+	name = "EVENTNAME184000" #Meeting of the Tagsatzung diet
+	desc = "EVENTHIST184000"
+	#-#The Swiss Confederation was made up of around 10-20 seperate entities during the EU2 timeframe. These entities were made up of rural cantons and Urban city-states and each governed themselves to a large degree. However effects affecting the confederation as a whole would be put to a diet where each canton and city would contribute, these diets would be held regularly, one of which is now being held. We now have a choice by choosing whether the Urban or Rural Cantons will be dominant and which we think would best benefit the Confederation at this time.
+
+	date = { day = 1 month = january year = 1699 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1718 }
+
+	action_a = {
+		name = "ACTIONNAME184000B" #Urban Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058530 } #XV Tagsatzung - Urban
+	}
+	action_b = {
+		name = "ACTIONNAME184000A" #Rural Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058529 } #XV Tagsatzung - Rural
+	}
+}
+#(1719-1738) Meeting of the Tagsatzung diet
+event = {
+	id = 184015
+	random = no
+	country = HEL
+	name = "EVENTNAME184000" #Meeting of the Tagsatzung diet
+	desc = "EVENTHIST184000"
+	#-#The Swiss Confederation was made up of around 10-20 seperate entities during the EU2 timeframe. These entities were made up of rural cantons and Urban city-states and each governed themselves to a large degree. However effects affecting the confederation as a whole would be put to a diet where each canton and city would contribute, these diets would be held regularly, one of which is now being held. We now have a choice by choosing whether the Urban or Rural Cantons will be dominant and which we think would best benefit the Confederation at this time.
+
+	date = { day = 1 month = january year = 1719 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1738 }
+
+	action_a = {
+		name = "ACTIONNAME184000B" #Urban Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058532 } #XVI Tagsatzung - Urban
+	}
+	action_b = {
+		name = "ACTIONNAME184000A" #Rural Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058531 } #XVI Tagsatzung - Rural
+	}
+}
+#(1739-1758) Meeting of the Tagsatzung diet
+event = {
+	id = 184016
+	random = no
+	country = HEL
+	name = "EVENTNAME184000" #Meeting of the Tagsatzung diet
+	desc = "EVENTHIST184000"
+	#-#The Swiss Confederation was made up of around 10-20 seperate entities during the EU2 timeframe. These entities were made up of rural cantons and Urban city-states and each governed themselves to a large degree. However effects affecting the confederation as a whole would be put to a diet where each canton and city would contribute, these diets would be held regularly, one of which is now being held. We now have a choice by choosing whether the Urban or Rural Cantons will be dominant and which we think would best benefit the Confederation at this time.
+
+	date = { day = 1 month = january year = 1739 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1758 }
+
+	action_a = {
+		name = "ACTIONNAME184000B" #Urban Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058534 } #XVII Tagsatzung - Urban
+	}
+	action_b = {
+		name = "ACTIONNAME184000A" #Rural Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058533 } #XVII Tagsatzung - Rural
+	}
+}
+#(1759-1778) Meeting of the Tagsatzung diet
+event = {
+	id = 184017
+	random = no
+	country = HEL
+	name = "EVENTNAME184000" #Meeting of the Tagsatzung diet
+	desc = "EVENTHIST184000"
+	#-#The Swiss Confederation was made up of around 10-20 seperate entities during the EU2 timeframe. These entities were made up of rural cantons and Urban city-states and each governed themselves to a large degree. However effects affecting the confederation as a whole would be put to a diet where each canton and city would contribute, these diets would be held regularly, one of which is now being held. We now have a choice by choosing whether the Urban or Rural Cantons will be dominant and which we think would best benefit the Confederation at this time.
+
+	date = { day = 1 month = january year = 1759 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1778 }
+
+	action_a = {
+		name = "ACTIONNAME184000B" #Urban Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058536 } #XVIII Tagsatzung - Urban
+	}
+	action_b = {
+		name = "ACTIONNAME184000A" #Rural Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058535 } #XVIII Tagsatzung - Rural
+	}
+}
+#(1779-1798) Meeting of the Tagsatzung diet
+event = {
+	id = 184018
+	random = no
+	country = HEL
+	name = "EVENTNAME184000" #Meeting of the Tagsatzung diet
+	desc = "EVENTHIST184000"
+	#-#The Swiss Confederation was made up of around 10-20 seperate entities during the EU2 timeframe. These entities were made up of rural cantons and Urban city-states and each governed themselves to a large degree. However effects affecting the confederation as a whole would be put to a diet where each canton and city would contribute, these diets would be held regularly, one of which is now being held. We now have a choice by choosing whether the Urban or Rural Cantons will be dominant and which we think would best benefit the Confederation at this time.
+
+	date = { day = 1 month = january year = 1779 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1798 }
+
+	action_a = {
+		name = "ACTIONNAME184000B" #Urban Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058538 } #XIX Tagsatzung - Urban
+	}
+	action_b = {
+		name = "ACTIONNAME184000A" #Rural Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058537 } #XIX Tagsatzung - Rural
+	}
+}
+#(1799-1820) Meeting of the Tagsatzung diet
+event = {
+	id = 184019
+	random = no
+	country = HEL
+	name = "EVENTNAME184000" #Meeting of the Tagsatzung diet
+	desc = "EVENTHIST184000"
+	#-#The Swiss Confederation was made up of around 10-20 seperate entities during the EU2 timeframe. These entities were made up of rural cantons and Urban city-states and each governed themselves to a large degree. However effects affecting the confederation as a whole would be put to a diet where each canton and city would contribute, these diets would be held regularly, one of which is now being held. We now have a choice by choosing whether the Urban or Rural Cantons will be dominant and which we think would best benefit the Confederation at this time.
+
+	date = { day = 1 month = january year = 1799 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME184000A" #Rural Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058539 } #XX Tagsatzung - Rural
+	}
+	action_b = {
+		name = "ACTIONNAME184000B" #Urban Cantons Dominant
+		command = { type = sleepmonarch which = 058500 } #Tagsatzung
+		command = { type = wakemonarch which = 058540 } #XX Tagsatzung - Urban
+	}
+}
+#End of New Helvetian monarch events - Meeting of the Tagsatzung diet
+#-----------------------------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------------------------
+#Random Events
+#-----------------------------------------------------------------------------------------------
+
+#Emergency Council
+event = {
+	id = 184041
+	trigger = { atwar = yes }
+	random = yes
+	country = HEL
+	name = "EVENTNAME184041" #Emergency Council
+	desc = "EVENTHIST184041"
+	#-#The Swiss Confederation was made up of around 10-20 seperate entities during the EU2 timeframe. These entities were made up of rural cantons and Urban city-states and each governed themselves to a large degree. However effects affecting the confederation as a whole would be put to a diet where each canton and city would contribute, these diets would be held regularly, including times of extreme danger, an emergency meeting has been called.
+
+	action_a = {
+		name = "ACTIONNAME184041A" #Mobilise the Cantons!
+		command = { type = treasury value = -50 }
+		command = { type = INF which = -1 value = 5000 }
+	}
+	action_b = {
+		name = "ACTIONNAME184041B" #Seek diplomatic solutions
+		command = { type = treasury value = 100 }
+		command = { type = diplomats value = 3 }
+	}
+}
+event = {
+	id = 184042
+	trigger = { atwar = yes }
+	random = yes
+	country = HEL
+	name = "EVENTNAME184041" #Emergency Council
+	desc = "EVENTHIST184041"
+	#-#The Swiss Confederation was made up of around 10-20 seperate entities during the EU2 timeframe. These entities were made up of rural cantons and Urban city-states and each governed themselves to a large degree. However effects affecting the confederation as a whole would be put to a diet where each canton and city would contribute, these diets would be held regularly, including times of extreme danger, an emergency meeting has been called.
+
+	action_a = {
+		name = "ACTIONNAME184041A" #Mobilise the Cantons!
+		command = { type = treasury value = -50 }
+		command = { type = INF which = -1 value = 5000 }
+	}
+	action_b = {
+		name = "ACTIONNAME184041B" #Seek diplomatic solutions
+		command = { type = treasury value = 100 }
+		command = { type = diplomats value = 3 }
+	}
+}
+event = {
+	id = 184043
+	trigger = { atwar = yes }
+	random = yes
+	country = HEL
+	name = "EVENTNAME184041" #Emergency Council
+	desc = "EVENTHIST184041"
+	#-#The Swiss Confederation was made up of around 10-20 seperate entities during the EU2 timeframe. These entities were made up of rural cantons and Urban city-states and each governed themselves to a large degree. However effects affecting the confederation as a whole would be put to a diet where each canton and city would contribute, these diets would be held regularly, including times of extreme danger, an emergency meeting has been called.
+
+	action_a = {
+		name = "ACTIONNAME184041A" #Mobilise the Cantons!
+		command = { type = treasury value = -50 }
+		command = { type = INF which = -1 value = 5000 }
+	}
+	action_b = {
+		name = "ACTIONNAME184041B" #Seek diplomatic solutions
+		command = { type = treasury value = 100 }
+		command = { type = diplomats value = 3 }
+	}
+}
+
+#Swiss mercenaries
+event = {
+	id = 184044
+	trigger = { atwar = no }
+	random = yes
+	country = HEL
+	name = "EVENTNAME184044" #Swiss mercenaries
+	desc = "EVENTHIST184044"
+	#-#The Pikemen of the Swiss Confederation gained a deserved reputation in Renaissance Europe as some of the finest. Any noble with the necessary means to do so would attempt to try and hire the Swiss mercenaries for any adventure they were undertaking and would consider it well worth the money. This would continue until 1515AD when the Swiss found themselves involved in problematic ventures in North Italy and from this date would begin to become more neutral in European ventures. A foreign power wishes to hire our troops.
+
+	action_a = {
+		name = "ACTIONNAME184044A" #Agree to the Transaction
+		command = { type = manpower value = -2 }
+		command = { type = treasury value = 200 }
+	}
+	action_b = {
+		name = "ACTIONNAME184044B" #Our men are not for sale
+		command = { type = relation which = -1 value = -25 }
+		command = { type = relation which = -1 value = 25 }
+		command = { type = relation which = -1 value = 25 }
+		command = { type = relation which = -1 value = 25 }
+		command = { type = relation which = -1 value = 25 }
+		command = { type = relation which = -1 value = 25 }
+		command = { type = land value = -10 }
+		command = { type = DIP which = 1 value = 12 }
+	}
+}
+event = {
+	id = 184045
+	trigger = { atwar = no }
+	random = yes
+	country = HEL
+	name = "EVENTNAME184044" #Swiss mercenaries
+	desc = "EVENTHIST184044"
+	#-#The Pikemen of the Swiss Confederation gained a deserved reputation in Renaissance Europe as some of the finest. Any noble with the necessary means to do so would attempt to try and hire the Swiss mercenaries for any adventure they were undertaking and would consider it well worth the money. This would continue until 1515AD when the Swiss found themselves involved in problematic ventures in North Italy and from this date would begin to become more neutral in European ventures. A foreign power wishes to hire our troops.
+
+	action_a = {
+		name = "ACTIONNAME184044A" #Agree to the Transaction
+		command = { type = manpower value = -2 }
+		command = { type = treasury value = 200 }
+	}
+	action_b = {
+		name = "ACTIONNAME184044B" #Our men are not for sale
+		command = { type = relation which = -1 value = -25 }
+		command = { type = relation which = -1 value = 25 }
+		command = { type = relation which = -1 value = 25 }
+		command = { type = relation which = -1 value = 25 }
+		command = { type = relation which = -1 value = 25 }
+		command = { type = relation which = -1 value = 25 }
+		command = { type = land value = -10 }
+		command = { type = DIP which = 1 value = 12 }
+	}
+}
+event = {
+	id = 184046
+	trigger = { atwar = no }
+	random = yes
+	country = HEL
+	name = "EVENTNAME184044" #Swiss mercenaries
+	desc = "EVENTHIST184044"
+	#-#The Pikemen of the Swiss Confederation gained a deserved reputation in Renaissance Europe as some of the finest. Any noble with the necessary means to do so would attempt to try and hire the Swiss mercenaries for any adventure they were undertaking and would consider it well worth the money. This would continue until 1515AD when the Swiss found themselves involved in problematic ventures in North Italy and from this date would begin to become more neutral in European ventures. A foreign power wishes to hire our troops.
+
+	action_a = {
+		name = "ACTIONNAME184044A" #Agree to the Transaction
+		command = { type = manpower value = -2 }
+		command = { type = treasury value = 200 }
+	}
+	action_b = {
+		name = "ACTIONNAME184044B" #Our men are not for sale
+		command = { type = relation which = -1 value = -25 }
+		command = { type = relation which = -1 value = 25 }
+		command = { type = relation which = -1 value = 25 }
+		command = { type = relation which = -1 value = 25 }
+		command = { type = relation which = -1 value = 25 }
+		command = { type = relation which = -1 value = 25 }
+		command = { type = land value = -10 }
+		command = { type = DIP which = 1 value = 12 }
+	}
+}
+event = {
+	id = 184047
+	trigger = { atwar = no }
+	random = yes
+	country = HEL
+	name = "EVENTNAME184044" #Swiss mercenaries
+	desc = "EVENTHIST184044"
+	#-#The Pikemen of the Swiss Confederation gained a deserved reputation in Renaissance Europe as some of the finest. Any noble with the necessary means to do so would attempt to try and hire the Swiss mercenaries for any adventure they were undertaking and would consider it well worth the money. This would continue until 1515AD when the Swiss found themselves involved in problematic ventures in North Italy and from this date would begin to become more neutral in European ventures. A foreign power wishes to hire our troops.
+
+	action_a = {
+		name = "ACTIONNAME184044A" #Agree to the Transaction
+		command = { type = manpower value = -2 }
+		command = { type = treasury value = 200 }
+	}
+	action_b = {
+		name = "ACTIONNAME184044B" #Our men are not for sale
+		command = { type = relation which = -1 value = -25 }
+		command = { type = relation which = -1 value = 25 }
+		command = { type = relation which = -1 value = 25 }
+		command = { type = relation which = -1 value = 25 }
+		command = { type = relation which = -1 value = 25 }
+		command = { type = relation which = -1 value = 25 }
+		command = { type = land value = -10 }
+		command = { type = DIP which = 1 value = 12 }
+	}
+}
+event = {
+	id = 184048
+	trigger = { atwar = no }
+	random = yes
+	country = HEL
+	name = "EVENTNAME184044" #Swiss mercenaries
+	desc = "EVENTHIST184044"
+	#-#The Pikemen of the Swiss Confederation gained a deserved reputation in Renaissance Europe as some of the finest. Any noble with the necessary means to do so would attempt to try and hire the Swiss mercenaries for any adventure they were undertaking and would consider it well worth the money. This would continue until 1515AD when the Swiss found themselves involved in problematic ventures in North Italy and from this date would begin to become more neutral in European ventures. A foreign power wishes to hire our troops.
+
+	action_a = {
+		name = "ACTIONNAME184044A" #Agree to the Transaction
+		command = { type = manpower value = -2 }
+		command = { type = treasury value = 200 }
+	}
+	action_b = {
+		name = "ACTIONNAME184044B" #Our men are not for sale
+		command = { type = relation which = -1 value = -25 }
+		command = { type = relation which = -1 value = 25 }
+		command = { type = relation which = -1 value = 25 }
+		command = { type = relation which = -1 value = 25 }
+		command = { type = relation which = -1 value = 25 }
+		command = { type = relation which = -1 value = 25 }
+		command = { type = land value = -10 }
+		command = { type = DIP which = 1 value = 12 }
+	}
+}
+
+#Peasant Unrest
+event = {
+	id = 184049
+	trigger = {
+		atwar = no
+		domestic = { type = serfdom value = 6 }
+		NOT = { domestic = { type = serfdom value = 8 } }
+	}
+	random = yes
+	country = HEL
+	name = "EVENTNAME184049" #Peasant Unrest
+	desc = "EVENTHIST184049"
+	#-#The Rural cantons were always weary of the dominance of the great Urban regions, especially Zurich, Lucerne and Berne. In such times that the oligarchs of these cities exerted continual dominance, the members of the rural areas would voice their anger. As we can see the peasants are upset at the present conditions.
+
+	action_a = {
+		name = "ACTIONNAME184049A" #Placate the Rural Cantons
+		command = { type = revoltrisk which = 6 value = 2 }
+		command = { type = treasury value = -100 }
+		command = { type = domestic which = serfdom value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME184049B" #They will have to wait until the next Diet
+		command = { type = revoltrisk which = 12 value = 4 }
+		command = { type = stability value = -1 }
+	}
+}
+event = {
+	id = 184050
+	trigger = {
+		atwar = no
+		domestic = { type = serfdom value = 6 }
+		NOT = { domestic = { type = serfdom value = 8 } }
+	}
+	random = yes
+	country = HEL
+	name = "EVENTNAME184049" #Peasant Unrest
+	desc = "EVENTHIST184049"
+	#-#The Rural cantons were always weary of the dominance of the great Urban regions, especially Zurich, Lucerne and Berne. In such times that the oligarchs of these cities exerted continual dominance, the members of the rural areas would voice their anger. As we can see the peasants are upset at the present conditions.
+
+	action_a = {
+		name = "ACTIONNAME184049A" #Placate the Rural Cantons
+		command = { type = revoltrisk which = 6 value = 2 }
+		command = { type = treasury value = -100 }
+		command = { type = domestic which = serfdom value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME184049B" #They will have to wait until the next Diet
+		command = { type = revoltrisk which = 12 value = 4 }
+		command = { type = stability value = -1 }
+	}
+}
+event = {
+	id = 184051
+	trigger = {
+		atwar = no
+		domestic = { type = serfdom value = 6 }
+		NOT = { domestic = { type = serfdom value = 8 } }
+	}
+	random = yes
+	country = HEL
+	name = "EVENTNAME184049" #Peasant Unrest
+	desc = "EVENTHIST184049"
+	#-#The Rural cantons were always weary of the dominance of the great Urban regions, especially Zurich, Lucerne and Berne. In such times that the oligarchs of these cities exerted continual dominance, the members of the rural areas would voice their anger. As we can see the peasants are upset at the present conditions.
+
+	action_a = {
+		name = "ACTIONNAME184049A" #Placate the Rural Cantons
+		command = { type = revoltrisk which = 6 value = 2 }
+		command = { type = treasury value = -100 }
+		command = { type = domestic which = serfdom value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME184049B" #They will have to wait until the next Diet
+		command = { type = revoltrisk which = 12 value = 4 }
+		command = { type = stability value = -1 }
+	}
+}
+event = {
+	id = 184052
+	trigger = {
+		atwar = no
+		domestic = { type = serfdom value = 8 }
+	}
+	random = yes
+	country = HEL
+	name = "EVENTNAME184052" #Peasant Revolts
+	desc = "EVENTHIST184052"
+	#-#The Rural cantons were always weary of the dominance of the great Urban regions, especially Zurich, Lucerne and Berne. In such times that the oligarchs of these cities exerted continual dominance, the members of the rural areas would voice their anger. As we can see the peasants are furious at the present conditions.
+
+	action_a = {
+		name = "ACTIONNAME184052A" #Try to Placate the peasants
+		command = { type = revolt which = -1 }
+		command = { type = revoltrisk which = 12 value = 3 }
+		command = { type = treasury value = -200 }
+		command = { type = domestic which = serfdom value = -2 }
+	}
+	action_b = {
+		name = "ACTIONNAME184052B" #Put down the revolts
+		command = { type = revoltrisk which = 24 value = 6 }
+		command = { type = stability value = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+}
+event = {
+	id = 184053
+	trigger = {
+		atwar = no
+		domestic = { type = serfdom value = 8 }
+	}
+	random = yes
+	country = HEL
+	name = "EVENTNAME184052" #Peasant Revolts
+	desc = "EVENTHIST184052"
+	#-#The Rural cantons were always weary of the dominance of the great Urban regions, especially Zurich, Lucerne and Berne. In such times that the oligarchs of these cities exerted continual dominance, the members of the rural areas would voice their anger. As we can see the peasants are furious at the present conditions.
+
+	action_a = {
+		name = "ACTIONNAME184052A" #Try to Placate the peasants
+		command = { type = revolt which = -1 }
+		command = { type = revoltrisk which = 12 value = 3 }
+		command = { type = treasury value = -200 }
+		command = { type = domestic which = serfdom value = -2 }
+	}
+	action_b = {
+		name = "ACTIONNAME184052B" #Put down the revolts
+		command = { type = revoltrisk which = 24 value = 6 }
+		command = { type = stability value = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+}
+event = {
+	id = 184054
+	trigger = {
+		atwar = no
+		domestic = { type = serfdom value = 8 }
+	}
+	random = yes
+	country = HEL
+	name = "EVENTNAME184052" #Peasant Revolts
+	desc = "EVENTHIST184052"
+	#-#The Rural cantons were always weary of the dominance of the great Urban regions, especially Zurich, Lucerne and Berne. In such times that the oligarchs of these cities exerted continual dominance, the members of the rural areas would voice their anger. As we can see the peasants are furious at the present conditions.
+
+	action_a = {
+		name = "ACTIONNAME184052A" #Try to Placate the peasants
+		command = { type = revolt which = -1 }
+		command = { type = revoltrisk which = 12 value = 3 }
+		command = { type = treasury value = -200 }
+		command = { type = domestic which = serfdom value = -2 }
+	}
+	action_b = {
+		name = "ACTIONNAME184052B" #Put down the revolts
+		command = { type = revoltrisk which = 24 value = 6 }
+		command = { type = stability value = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#Rural dominance events
+#the counter-balance to peasant revolts...
+event = {
+	id = 184021
+	trigger = {
+		atwar = no
+		domestic = { type = serfdom value = 1 }
+		NOT = { domestic = { type = serfdom value = 3 } }
+	}
+	random = yes
+	country = HEL
+	name = "EVENTNAME184021" #Urban Indignation
+	desc = "EVENTHIST184021"
+	#-#The Urban cantons would often find themselves playing second fiddle to the will of the Rural cantons. As continued Rural dominance prevaled, the Urban cantons would tend to prevaricate and provide as much difficulty as they could to the workings of the Rural councils. As we can see the oligarchs are upset at the present conditions.
+
+	action_a = {
+		name = "ACTIONNAME184021A" #Placate the Urban Cantons
+		command = { type = MIL which = -2 value = 120 }
+		command = { type = ADM which = -2 value = 120 }
+		command = { type = domestic which = serfdom value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME184021B" #They will have to wait until the next Diet
+		command = { type = revoltrisk which = 12 value = 4 }
+		command = { type = stability value = -1 }
+	}
+}
+event = {
+	id = 184022
+	trigger = {
+		atwar = no
+		domestic = { type = serfdom value = 1 }
+		NOT = { domestic = { type = serfdom value = 3 } }
+	}
+	random = yes
+	country = HEL
+	name = "EVENTNAME184021" #Urban Indignation
+	desc = "EVENTHIST184021"
+	#-#The Urban cantons would often find themselves playing second fiddle to the will of the Rural cantons. As continued Rural dominance prevaled, the Urban cantons would tend to prevaricate and provide as much difficulty as they could to the workings of the Rural councils. As we can see the oligarchs are upset at the present conditions.
+
+	action_a = {
+		name = "ACTIONNAME184021A" #Placate the Urban Cantons
+		command = { type = MIL which = -2 value = 120 }
+		command = { type = ADM which = -2 value = 120 }
+		command = { type = domestic which = serfdom value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME184021B" #They will have to wait until the next Diet
+		command = { type = revoltrisk which = 12 value = 4 }
+		command = { type = stability value = -1 }
+	}
+}
+event = {
+	id = 184023
+	trigger = {
+		atwar = no
+		domestic = { type = serfdom value = 1 }
+		NOT = { domestic = { type = serfdom value = 3 } }
+	}
+	random = yes
+	country = HEL
+	name = "EVENTNAME184021" #Urban Indignation
+	desc = "EVENTHIST184021"
+	#-#The Urban cantons would often find themselves playing second fiddle to the will of the Rural cantons. As continued Rural dominance prevaled, the Urban cantons would tend to prevaricate and provide as much difficulty as they could to the workings of the Rural councils. As we can see the oligarchs are upset at the present conditions.
+
+	action_a = {
+		name = "ACTIONNAME184021A" #Placate the Urban Cantons
+		command = { type = MIL which = -2 value = 120 }
+		command = { type = ADM which = -2 value = 120 }
+		command = { type = domestic which = serfdom value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME184021B" #They will have to wait until the next Diet
+		command = { type = revoltrisk which = 12 value = 4 }
+		command = { type = stability value = -1 }
+	}
+}
+event = {
+	id = 184024
+	trigger = {
+		atwar = no
+		NOT = { domestic = { type = serfdom value = 1 } }
+	}
+	random = yes
+	country = HEL
+	name = "EVENTNAME184024" #Urban Intransigence
+	desc = "EVENTHIST184024"
+	#-#The Urban cantons would often find themselves playing second fiddle to the will of the Rural cantons. As continued Rural dominance prevaled, the Urban cantons would tend to prevaricate and provide as much difficulty as they could to the workings of the Rural councils. As we can see the oligarchs are furious at the present conditions.
+
+	action_a = {
+		name = "ACTIONNAME184024A" #Try to Placate the Oligarchs
+		command = { type = DIP which = 1 value = 240 }
+		command = { type = MIL which = -2 value = 240 }
+		command = { type = ADM which = -2 value = 240 }
+		command = { type = domestic which = serfdom value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME184024B" #Prepare for the Repurcussions
+		command = { type = revoltrisk which = 24 value = 6 }
+		command = { type = stability value = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+}
+event = {
+	id = 184025
+	trigger = {
+		atwar = no
+		NOT = { domestic = { type = serfdom value = 1 } }
+	}
+	random = yes
+	country = HEL
+	name = "EVENTNAME184024" #Urban Intransigence
+	desc = "EVENTHIST184024"
+	#-#The Urban cantons would often find themselves playing second fiddle to the will of the Rural cantons. As continued Rural dominance prevaled, the Urban cantons would tend to prevaricate and provide as much difficulty as they could to the workings of the Rural councils. As we can see the oligarchs are furious at the present conditions.
+
+	action_a = {
+		name = "ACTIONNAME184024A" #Try to Placate the Oligarchs
+		command = { type = DIP which = 1 value = 240 }
+		command = { type = MIL which = -2 value = 240 }
+		command = { type = ADM which = -2 value = 240 }
+		command = { type = domestic which = serfdom value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME184024B" #Prepare for the Repurcussions
+		command = { type = revoltrisk which = 24 value = 6 }
+		command = { type = stability value = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+}
+event = {
+	id = 184026
+	trigger = {
+		atwar = no
+		NOT = { domestic = { type = serfdom value = 1 } }
+	}
+	random = yes
+	country = HEL
+	name = "EVENTNAME184024" #Urban Intransigence
+	desc = "EVENTHIST184024"
+	#-#The Urban cantons would often find themselves playing second fiddle to the will of the Rural cantons. As continued Rural dominance prevaled, the Urban cantons would tend to prevaricate and provide as much difficulty as they could to the workings of the Rural councils. As we can see the oligarchs are furious at the present conditions.
+
+	action_a = {
+		name = "ACTIONNAME184024A" #Try to Placate the Oligarchs
+		command = { type = DIP which = 1 value = 240 }
+		command = { type = MIL which = -2 value = 240 }
+		command = { type = ADM which = -2 value = 240 }
+		command = { type = domestic which = serfdom value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME184024B" #Prepare for the Repurcussions
+		command = { type = revoltrisk which = 24 value = 6 }
+		command = { type = stability value = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 184034-184040 - 184058-184060 - next: 184070

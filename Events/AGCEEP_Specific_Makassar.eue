@@ -1,0 +1,120 @@
+#Makassar (MKS)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1511-1546) Unification of Makassar
+event = {
+	id = 30103
+	random = no
+	country = MKS
+	name = "EVENTNAME30103" #Unification of Makassar
+	desc = "EVENTHIST30103"
+	#-#In the first half of the 16th century the Kingdom of Makassar underwent a major reorganisation under its ninth ruler, Tumapa'risi' Kallonna. He arranged the union between the two Makasar Kingdoms of Gowa and Tallo, instituted a new code of laws, and systematised the collection of taxes under a new office, the syahbandar.
+
+	date = { day = 1 month = january year = 1511 }
+	offset = 700
+	deathdate = { day = 1 month = january year = 1546 }
+
+	action_a = {
+		name = "ACTIONNAME30103A" #Unify the Kingdom
+		command = { type = provincetax which = -2 value = 3 }
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = domestic which = mercantilism value = 2 }
+		command = { type = infra value = 700 }
+		command = { type = gainbuilding which = -1 value = courthouse }
+		command = { type = stability value = 2 }
+		command = { type = treasury value = 70 }
+		command = { type = inflation value = -5 }
+	}
+}
+
+#(1547-1565) Reforms of Tunipallanga
+event = {
+	id = 30104
+	random = no
+	country = MKS
+	name = "EVENTNAME30104" #Reforms of Tunipallanga
+	desc = "EVENTHIST30104"
+	#-#The measures introduced by Tuma'pari'si Kallona were further reinforced by his successor Tunipalangga (1546-1565), who not only continued the reorganisation of the government but also revolutionised traditional warfare. He was the first to introduce cannon to local forts, the production of bullets, and the use of smaller shields and shorter spear staffs for greater manoeuvrability in battle. These innovations, coupled with his brilliance as a war strategist, resulted in Gowa's successful conquests on Sulawesi, Banggai, Butung, Sula and Sumbawa.
+
+	date = { day = 1 month = january year = 1547 }
+	offset = 700
+	deathdate = { day = 1 month = january year = 1565 }
+
+	action_a = {
+		name = "ACTIONNAME30104A" #Reform
+		command = { type = provincetax which = -2 value = 1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = mercantilism value = 2 }
+		command = { type = infra value = 700 }
+		command = { type = land value = 1000 }
+		command = { type = domestic which = offensive value = 2 }
+		command = { type = domestic which = quality value = 2 }
+		command = { type = casusbelli which = -1 value = 220 }
+	}
+}
+
+#(1605-1610) Adoption of Islam
+event = {
+	id = 30105
+	random = no
+	country = MKS
+	name = "EVENTNAME30105" #Adoption of Islam
+	desc = "EVENTHIST30105"
+	#-#In 1605 the King of Gowa adopted Islam. Aparently his invitation to the Bugis and other states to adopt the new faith was rejected. Gowa responded with a series of campaigns in 1608-11, as a result of which islam was imposed throughout the Bugis-Makasarese area.
+
+	date = { day = 1 month = january year = 1605 }
+	offset = 200
+	deathdate = { day = 1 month = january year = 1610 }
+
+	action_a = {
+		name = "ACTIONNAME30105A" #Convert to one true faith
+		command = { type = provincetax which = 708 value = 2 } #Makassar
+		command = { type = religion which = sunni }
+		command = { type = stability value = -3 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = revoltrisk value = 3 }
+		command = { type = domestic which = offensive value = 1 }
+		command = { type = missionaries value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME30105B" #Retain the faith of grandfathers
+		command = { type = provincetax which = 708 value = -1 } #Makassar
+		command = { type = stability value = 1 }
+		command = { type = domestic which = centralization value = 1 }
+	}
+}
+
+#(1668-1670) Treaty of Bungaya (Makassar's part)
+event = {
+	id = 226000
+	trigger = {
+		war = { country = MKS country = HOL }
+		control = { province = 708 data = HOL }
+		event = 3503 #HOL: Vereenigde Oostindische Compagnie
+	}
+	random = no
+	country = MKS
+	name = "EVENTNAME226000" #Treaty of Bungaya
+	desc = "EVENTHIST226000"
+	#-#Gowa submit to VOC control, and Sultan Hasanuddin had no influence outside the general area of the city of Makassar.
+
+	date = { day = 18 month = november year = 1668 }
+	offset = 40
+	deathdate = { day = 1 month = january year = 1670 }
+
+	action_a = {
+		name = "ACTIONNAME226000A" #Submit to VOC (End Game)
+		command = { type = trigger which = 186422 } #HOL: Treaty of Bungaya
+	}
+	action_b = {
+		name = "ACTIONNAME226000B" #Continue fighting!
+		command = { type = stability value = -2 }
+		command = { type = relation which = HOL value = -50 }
+		command = { type = desertion which = 708 value = 2000 } #Makassar
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 226001

@@ -1,0 +1,322 @@
+#Da Xi (DAX)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1633-1644) Da Xi is independent
+event = {
+	id = 315000
+	trigger = {
+		NOT = {
+			event = 147124
+			event = 317001
+		}
+		OR = {
+			exists = CHI
+			exists = SMI
+		}
+	}
+	random = no
+	country = DAX
+	name = "EVENTNAME315000" #Da Xi is independent
+	desc = "EVENTHIST315000"
+	#-#Zhang Xian Zhong declares his independent state of Da Xi and declares himself the true emperor of China claiming the Ming dynasty no longer has its divine mandate having abused their power.
+
+	date = { day = 1 month = february year = 1633 }
+	offset = 10
+	deathdate = { day = 1 month = july year = 1644 }
+
+	action_a = {
+		name = "OK"
+		command = { type = breakvassal which = CHI } #no problem
+		command = { type = breakvassal which = SMI } #no problem
+		command = { type = sleepevent which = 147124 } #CHI: Resistant leader declares an independant state
+		command = { type = sleepevent which = 317001 } #SMI: Resistant leader declares an independant state
+		command = { type = trigger which = 315001 } #DAX: We openly declare war
+	}
+}
+
+#(1633-1644) We openly declare war
+event = {
+	id = 315001 #triggered by CHI_147124 / SMI_317001 / DAX_315000
+	random = no
+	country = DAX
+	name = "EVENTNAME315001" #We openly declare war
+	desc = "EVENTHIST315001"
+	#-#Zhang Xian Zhong declares his independent state of Da Xi and declares himself the true emperor of China claiming the Ming dynasty no longer has its divine mandate having abused their power.
+
+	action_a = {
+		name = "OK"
+		command = { type = war which = CHI }
+		command = { type = war which = SMI }
+		command = { type = INF which = -2 value = 25000 }
+		command = { type = CAV which = -2 value = 3000 }
+		command = { type = ART which = -2 value = 10 }
+		command = { type = treasury value = 300 }
+		#command = { type = AI which = china_conquest.ai }
+	}
+}
+
+#(1633-1820) Claiming the Imperial Throne
+event = {
+	id = 315002
+	trigger = {
+		OR = {
+			AND = {
+				control = { province = 649 data = -1 } #Hebei
+				control = { province = 650 data = -1 } #Shandong
+				control = { province = 651 data = -1 } #Jinan
+				control = { province = 652 data = -1 } #Jiangsu
+				control = { province = 653 data = -1 } #Shanghai
+				control = { province = 654 data = -1 } #Anhui
+				control = { province = 655 data = -1 } #Zhejiang
+				control = { province = 1562 data = -1 } #Shanxi
+				control = { province = 1563 data = -1 } #Shaanxi
+				control = { province = 1564 data = -1 } #Henan
+				control = { province = 1565 data = -1 } #Hubei
+				control = { province = 1567 data = -1 } #Nanchang
+				countrysize = 16
+			}
+			AND = {
+				owned = { province = 649 data = -1 } #Hebei
+				control = { province = 649 data = -1 } #Hebei
+				countrysize = 20
+			}
+		}
+		exists = CHI
+	}
+	random = no
+	country = DAX
+	name = "EVENTNAME315002" #Claiming the Imperial Throne
+	desc = "EVENTHIST315002"
+	#-#With the sucessful capture and control of the core provinces of mainland China, the monarchy of rebel Da Xi nation declares himself the new legitimate Emperor of China.
+
+	date = { day = 1 month = february year = 1633 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME315002A" #A new Emperor?
+		command = { type = vp value = 200 }
+	}
+}
+#(1633-1820) The Imperial Throne
+event = {
+	id = 315003 #triggered by CHI_147129
+	random = no
+	country = DAX
+	name = "EVENTNAME315003" #The Imperial Throne
+	desc = "EVENTHIST315003"
+	#-#With the sucessful capture and control of the core provinces of mainland China, the monarchy of rebel Da Xi becomes the new legitimate Emperor of China.
+
+	action_a = {
+		name = "ACTIONNAME315003A" #Long live the Emperor!
+		command = { type = stability value = 1 }
+		command = { type = capital which = 649 } #Hebei
+		command = { type = addcore which = 646 } #Liaotung
+		command = { type = addcore which = 647 } #Liaoning
+		command = { type = addcore which = 648 } #Hepei
+		command = { type = addcore which = 649 } #Hebei
+		command = { type = addcore which = 650 } #Shandong
+		command = { type = addcore which = 651 } #Jinan
+		command = { type = addcore which = 652 } #Jiangsu
+		command = { type = addcore which = 653 } #Shanghai
+		command = { type = addcore which = 654 } #Anhui
+		command = { type = addcore which = 655 } #Zhejiang
+		command = { type = addcore which = 656 } #Fujian
+		command = { type = addcore which = 657 } #Kowloon
+		command = { type = addcore which = 658 } #Guangzhou
+		command = { type = addcore which = 659 } #Guangdong
+		command = { type = addcore which = 660 } #Hainan
+		command = { type = addcore which = 661 } #Guangxi
+		command = { type = addcore which = 1553 } #Yunnan
+		command = { type = addcore which = 1555 } #Wenshan
+		command = { type = addcore which = 1556 } #Guizhou
+		command = { type = addcore which = 1557 } #Sichuan Pendi
+		command = { type = addcore which = 1558 } #Lanzhou
+		command = { type = addcore which = 1559 } #Xining
+		command = { type = addcore which = 1560 } #Ningxia
+		command = { type = addcore which = 1561 } #Hohhot
+		command = { type = addcore which = 1562 } #Shanxi
+		command = { type = addcore which = 1563 } #Shaanxi
+		command = { type = addcore which = 1564 } #Henan
+		command = { type = addcore which = 1565 } #Hubei
+		command = { type = addcore which = 1566 } #Hunan
+		command = { type = addcore which = 1567 } #Nanchang
+		command = { type = addcore which = 1608 } #Qilian Pendi
+		command = { type = flagname which = "" }
+		command = { type = country which = CHI }
+		command = { type = add_countryculture which = cantonese }
+		command = { type = sleepevent which = 315004 } #DAX: Claiming the Imperial Throne
+	}
+}
+#(1633-1820) The Imperial Throne
+event = {
+	id = 315007 #triggered by SMI_317014
+	random = no
+	country = DAX
+	name = "EVENTNAME315003" #The Imperial Throne
+	desc = "EVENTHIST315003"
+	#-#With the sucessful capture and control of the core provinces of mainland China, the monarchy of rebel Da Xi becomes the new legitimate Emperor of China.
+
+	action_a = {
+		name = "ACTIONNAME315003A" #Long live the Emperor!
+		command = { type = inherit which = SMI }
+		command = { type = stability value = 1 }
+		command = { type = capital which = 649 } #Hebei
+		command = { type = addcore which = 646 } #Liaotung
+		command = { type = addcore which = 647 } #Liaoning
+		command = { type = addcore which = 648 } #Hepei
+		command = { type = addcore which = 649 } #Hebei
+		command = { type = addcore which = 650 } #Shandong
+		command = { type = addcore which = 651 } #Jinan
+		command = { type = addcore which = 652 } #Jiangsu
+		command = { type = addcore which = 653 } #Shanghai
+		command = { type = addcore which = 654 } #Anhui
+		command = { type = addcore which = 655 } #Zhejiang
+		command = { type = addcore which = 656 } #Fujian
+		command = { type = addcore which = 657 } #Kowloon
+		command = { type = addcore which = 658 } #Guangzhou
+		command = { type = addcore which = 659 } #Guangdong
+		command = { type = addcore which = 660 } #Hainan
+		command = { type = addcore which = 661 } #Guangxi
+		command = { type = addcore which = 1553 } #Yunnan
+		command = { type = addcore which = 1555 } #Wenshan
+		command = { type = addcore which = 1556 } #Guizhou
+		command = { type = addcore which = 1557 } #Sichuan Pendi
+		command = { type = addcore which = 1558 } #Lanzhou
+		command = { type = addcore which = 1559 } #Xining
+		command = { type = addcore which = 1560 } #Ningxia
+		command = { type = addcore which = 1561 } #Hohhot
+		command = { type = addcore which = 1562 } #Shanxi
+		command = { type = addcore which = 1563 } #Shaanxi
+		command = { type = addcore which = 1564 } #Henan
+		command = { type = addcore which = 1565 } #Hubei
+		command = { type = addcore which = 1566 } #Hunan
+		command = { type = addcore which = 1567 } #Nanchang
+		command = { type = addcore which = 1608 } #Qilian Pendi
+		command = { type = add_countryculture which = cantonese }
+		command = { type = sleepevent which = 315004 } #DAX: Claiming the Imperial Throne
+		command = { type = trigger which = 315005 } #DAX: A new dynasty for China
+	}
+}
+#(1633-1820) A new dynasty for China
+event = {
+	id = 315005 #triggered by DAX_315007
+	random = no
+	country = DAX
+	name = "EVENTNAME221010" #A new dynasty for China
+	desc = "EVENTHIST315003"
+	#-#With the sucessful capture and control of the core provinces of mainland China, the monarchy of rebel Da Xi becomes the new legitimate Emperor of China.
+
+	action_a = {
+		name = "ACTIONNAME315003A" #Long live the Emperor!
+		command = { type = flagname which = "" }
+		command = { type = country which = CHI }
+	}
+}
+
+#(1633-1820) Claiming the Imperial Throne
+event = {
+	id = 315004
+	trigger = {
+		owned = { province = 649 data = -1 } #Hebei
+		owned = { province = 650 data = -1 } #Shandong
+		owned = { province = 651 data = -1 } #Jinan
+		owned = { province = 652 data = -1 } #Jiangsu
+		owned = { province = 653 data = -1 } #Shanghai
+		owned = { province = 654 data = -1 } #Anhui
+		owned = { province = 655 data = -1 } #Zhejiang
+		owned = { province = 1562 data = -1 } #Shanxi
+		owned = { province = 1563 data = -1 } #Shaanxi
+		owned = { province = 1564 data = -1 } #Henan
+		owned = { province = 1565 data = -1 } #Hubei
+		owned = { province = 1567 data = -1 } #Nanchang
+		control = { province = 649 data = -1 } #Hebei
+		NOT = { exists = CHI }
+	}
+	random = no
+	country = DAX
+	name = "EVENTNAME315004" #Claiming the Imperial Throne
+	desc = "EVENTHIST315004"
+	#-#With the sucessful capture and control of the core provinces of mainland China, the monarchy of rebel Da Xi nation declares himself the new legitimate Emperor of China.
+
+	date = { day = 1 month = february year = 1633 }
+	offset = 1
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME315004A" #Long live the Emperor!
+		command = { type = stability value = 1 }
+		command = { type = capital which = 649 } #Hebei
+		command = { type = addcore which = 646 } #Liaotung
+		command = { type = addcore which = 647 } #Liaoning
+		command = { type = addcore which = 648 } #Hepei
+		command = { type = addcore which = 649 } #Hebei
+		command = { type = addcore which = 650 } #Shandong
+		command = { type = addcore which = 651 } #Jinan
+		command = { type = addcore which = 652 } #Jiangsu
+		command = { type = addcore which = 653 } #Shanghai
+		command = { type = addcore which = 654 } #Anhui
+		command = { type = addcore which = 655 } #Zhejiang
+		command = { type = addcore which = 656 } #Fujian
+		command = { type = addcore which = 657 } #Kowloon
+		command = { type = addcore which = 658 } #Guangzhou
+		command = { type = addcore which = 659 } #Guangdong
+		command = { type = addcore which = 660 } #Hainan
+		command = { type = addcore which = 661 } #Guangxi
+		command = { type = addcore which = 1553 } #Yunnan
+		command = { type = addcore which = 1555 } #Wenshan
+		command = { type = addcore which = 1556 } #Guizhou
+		command = { type = addcore which = 1557 } #Sichuan Pendi
+		command = { type = addcore which = 1558 } #Lanzhou
+		command = { type = addcore which = 1559 } #Xining
+		command = { type = addcore which = 1560 } #Ningxia
+		command = { type = addcore which = 1561 } #Hohhot
+		command = { type = addcore which = 1562 } #Shanxi
+		command = { type = addcore which = 1563 } #Shaanxi
+		command = { type = addcore which = 1564 } #Henan
+		command = { type = addcore which = 1565 } #Hubei
+		command = { type = addcore which = 1566 } #Hunan
+		command = { type = addcore which = 1567 } #Nanchang
+		command = { type = addcore which = 1608 } #Qilian Pendi
+		command = { type = flagname which = "" }
+		command = { type = country which = CHI }
+		command = { type = add_countryculture which = cantonese }
+	}
+}
+
+#(1633-1820) switching back the AI for Da Xi (temporary)
+event = {
+	id = 315006
+	trigger = {
+		NOT = {
+			exists = CHI
+			exists = MCH
+			exists = DAS
+			exists = ZHO
+			exists = SMI
+		}
+	}
+	random = no
+	country = DAX
+	name = "EVENTNAME315006" #Peace returns to China
+	desc = "EVENTHIST315006"
+	#-#Xi dynasty reunified and brought peace back to China.
+
+	date = { day = 1 month = february year = 1633 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "GOOD"
+		command = { type = stability value = 2 }
+		command = { type = capital which = 649 } #Hebei
+		command = { type = flagname which = "" }
+		command = { type = country which = CHI }
+		command = { type = add_countryculture which = cantonese }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 315008

@@ -1,0 +1,613 @@
+#Corsica (COR)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419) Tax raising
+#by Third Angel
+event = {
+	id = 150000
+	random = no
+	country = COR
+	name = "EVENTNAME150000" #Major tax raising
+	desc = "EVENTHIST150000"
+	#-#Since the middle of the fourteenth century, Corsica had been divided into three political entities. In the South, Dilà dei Monti (Beyond the Mountains) was the Terra di'Signori, the Land of the Lords held by feudal dynasties. The five most important were all issued from the same ancestor: Arrigu di Cinarca. The di Leca, the della Rocca, the d'Istria, the d'Ornanu and the di Bozzi kept fighting each other all the time, and alliances and truces between them were broken as easily as they were made. Having their support was essential for a foreign power trying to control this part of the island so they often found themselves supported in their petty strives by Pisa, Genoa or Aragon. Two of the Cinarchesi only managed to unite the whole Dilà under their rule. The first one had been Sinucellu Ghjudice di Cinarca (1219-1307) before dying in a Genoese cell. The second one was Vincentellu d'Istria appointed as a Viceroy by Alfons V of Aragon in 1416. In the North, Diquà dei Monti (Beneath the Mountains) was the Terra di U Cumunu, the Land of the Communes held by villagers' communities led by magistrates and making their own laws though they most often paid taxes to some higher authority. The original organization was kind of democratic but the powerful local families soon took the habit to manipulate the electoral system to keep the important positions between themselves. Some of them had been, or later would be, ennoblished by Genoa and frequent marriages occured between the d'Omessa, the della Casabianca, the di Matra, the di Casta and many others, and the Cinarchese or the Capicorsi lords. They were also merchant families who asked for peace and order before anything else and were ready to submit to whomever was insuring those, be they Pisan or Genoese Republics, or Aragonese Viceroy. In the Capicorsu, the Corsican Cape being the northernmost tip of the island, Genoese noble families had settled during the tweltfh and thirteenth centuries. Although they might be considered as Corsican more than a century later, the da Mare and the de Gentile still had strong ties with their branches which had remained in Genoa. They always provided the best support for the Genoese in their wars on the island. Only on a few occasions, when they deemed themselves tricked or robbed by the Republic, would they attempt to rebel or join ongoing revolts.\nBetween 1419 and 1421, Vincentellu d'Istria and his allies came to control the whole of Corsica except for the Genoese cities of Calvi and Bonifacio. The Republic of Genoa was weakened at the time and would soon come under Milanese domination, but still they wouldn't forget their claims. There are troops to pay for, fortresses to build and reinforce, and neutral lords to bribe to our cause...
+
+	date = { day = 1 month = january year = 1419 }
+
+	action_a = {
+		name = "ACTIONNAME150000A" #We do need the money
+		command = { type = revolt which = 398 } #Corsica
+		command = { type = provincetax which = 398 value = 2 }
+		command = { type = gainbuilding which = 398 value = bailiff }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = revoltrisk which = 24 value = 5 }
+		command = { type = stability value = -3 }
+	}
+}
+
+#(1430) First revolts under Aragon
+#by Third Angel
+event = {
+	id = 150001
+	trigger = {
+		OR = {
+			atwar = no
+			war = { country = GEN country = COR }
+		}
+	}
+	random = no
+	country = COR
+	name = "EVENTNAME150001" #Revolts in Capicorsu and Diquà
+	desc = "EVENTHIST150001"
+	#-#In february 1430, the Northern feudal lords, tired with Vincentellu's tyranny and iniquity, made an alliance with the free communes, overburdened with the new taxes, in order to oust him from power. An assembly was called and Simone da Mare was elected as Count of Corsica.
+
+	date = { day = 0 month = february year = 1430 }
+	offset = 30
+	deathdate = { day = 29 month = february year = 1430 }
+
+	action_a = {
+		name = "ACTIONNAME150001A" #We'll crush them
+		command = { type = revolt which = 398 }
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1433) Second revolts under Aragon
+#by Third Angel
+event = {
+	id = 150002
+	trigger = {
+		event = 150001 #COR: Revolts in Capicorsu and Diquà
+		OR = {
+			atwar = no
+			war = { country = GEN country = COR }
+		}
+	}
+	random = no
+	country = COR
+	name = "EVENTNAME150002" #Revolters get stronger
+	desc = "EVENTHIST150002"
+	#-#Defeated three years ago, Simone da Mare was forgiven and sent back to his estates. In 1433, he tried again to seize power and this time, feeling depised and unrewarded for their support, the Southern feudal lords sided with him. For Vincentellu and his last partisans, this was the beginning of the end.
+
+	date = { day = 0 month = january year = 1433 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1433 }
+
+	action_a = {
+		name = "ACTIONNAME150002A" #We'll try to crush them
+		command = { type = revolt which = 398 }
+		command = { type = revolt which = 398 }
+		command = { type = revoltrisk which = 18 value = 10 }
+		command = { type = stability value = -2 }
+	}
+}
+
+#(1434) Death of Vincentellu
+#by Third Angel
+event = {
+	id = 150003
+	trigger = {
+		exists = GEN
+	}
+	random = no
+	country = COR
+	name = "EVENTNAME150003" #Vincentellu d'Istria has been executed
+	desc = "EVENTHIST150003"
+	#-#Threatened in his own island, the Corsican viceroy had to leave it. He tried desperately to find new allies who would help him to keep his throne. It was probably between Tuscany and Aragon that he was captured at sea by the Genoese navy. Taken to Genoa, he was tried, found guilty and then beheaded on 27th April 1434. The proper successor should certainly be the leader of the rebels but that would mean returning under Genoese domination.
+
+	date = { day = 26 month = april year = 1434 }
+
+	action_a = {
+		name = "ACTIONNAME150003A" #Let Simone da Mare be our new ruler under Genoa (End Game in 1437)
+		command = { type = flagname which = "Mare" }
+		command = { type = wakemonarch which = 035502 } #Simone da Mare
+		command = { type = sleepmonarch which = 035501 } #Anarchy
+		command = { type = breakvassal which = ARG }
+		command = { type = provincetax which = 398 value = -1 }
+		command = { type = revoltrisk which = 36 value = 5 }
+		command = { type = relation which = GEN value = 200 }
+		command = { type = relation which = ARG value = -200 }
+		command = { type = trigger which = 111027 } #ARG: Corsicans won't recognize us as their liege anymore
+	}
+	action_b = {
+		name = "ACTIONNAME150003B" #Surely we can find someone else and stay free from Genoa
+		command = { type = revoltrisk which = 12 value = 10 }
+		command = { type = relation which = GEN value = -100 }
+		command = { type = domestic which = centralization value = -1 }
+	}
+}
+
+#(1435) Ghjudice d'Istria I
+#by Third Angel
+event = {
+	id = 150004
+	trigger = {
+		exists = GEN
+		exists = ARG
+		monarch = 035501 #Anarchy
+	}
+	random = no
+	country = COR
+	name = "EVENTNAME150004" #Another pretender
+	desc = "EVENTHIST150004"
+	#-#This situation can hardly last much longer. The Genoese count, Simone da Mare, is still the most powerful man over here, but with renewed support from his liege, Ghjudice d'Istria has become a serious canditate to supreme overlordship of Corsica.
+
+	date = { day = 0 month = january year = 1435 }
+	offset = 180
+	deathdate = { day = 29 month = june year = 1435 }
+
+	action_a = {
+		name = "ACTIONNAME150004A" #Let Simone da Mare be our new ruler under Genoa (End Game in 1437)
+		command = { type = flagname which = "Mare" }
+		command = { type = wakemonarch which = 035502 } #Simone da Mare
+		command = { type = breakvassal which = ARG }
+		command = { type = provincetax which = 398 value = -1 }
+		command = { type = revoltrisk which = 24 value = 5 }
+		command = { type = relation which = GEN value = 200 }
+		command = { type = relation which = ARG value = -200 }
+		command = { type = trigger which = 111027 } #ARG: Corsicans won't recognize us as their liege anymore
+	}
+	action_b = {
+		name = "ACTIONNAME150004B" #Follow Ghjudice d'Istria and remain faithful to Aragon
+		command = { type = wakemonarch which = 035503 } #Ghjudice d'Istria
+		command = { type = wakemonarch which = 035504 } #Ghjucante di Leca *
+		command = { type = add_countryculture which = amazonian } #catalan
+		command = { type = domestic which = land value = -1 }
+		command = { type = provincetax which = 398 value = -1 }
+		command = { type = revoltrisk which = 12 value = 10 }
+		command = { type = relation which = GEN value = -200 }
+		command = { type = relation which = ARG value = 100 }
+		command = { type = galleys which = 398 value = 5 }
+		command = { type = trigger which = 174034 } #GEN: Corsicans won't submit
+	}
+	action_c = {
+		name = "ACTIONNAME150004C" #We don't want foreigners around here anymore
+		command = { type = breakvassal which = ARG }
+		command = { type = relation which = ARG value = -100 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = revoltrisk which = 12 value = 15 }
+	}
+}
+#(1435) Ghjudice d'Istria II
+#by Third Angel
+event = {
+	id = 150005
+	trigger = {
+		exists = ARG
+		NOT = { monarch = 035503 } #Ghjudice d'Istria
+	}
+	random = no
+	country = COR
+	name = "EVENTNAME150005" #Ghjudice d'Istria
+	desc = "EVENTHIST150005"
+	#-#Vincentellu's nephew was appointed as count of Corsica by Alfons V of Aragon instead of his uncle. Just recently landed, he is rallying partisans.
+
+	date = { day = 0 month = july year = 1435 }
+	offset = 180
+	deathdate = { day = 29 month = december year = 1435 }
+
+	action_a = {
+		name = "ACTIONNAME150005A" #He seems pretty harmless
+		command = { type = revolt which = 398 } #Corsica
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1435-1436) Genoa gets rid of Corsica
+#by Third Angel
+event = {
+	id = 150009 #triggered by GEN_174034 B
+	random = no
+	country = COR
+	name = "EVENTNAME150009" #Freedom
+	desc = "EVENTHIST150009"
+	#-#Genoa got tired of us, at last.
+
+	action_a = {
+		name = "ACTIONNAME150009A" #Let's rejoice
+		command = { type = relation which = GEN value = 50 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1436) Paulu della Rocca I
+#by Third Angel
+event = {
+	id = 150006
+	trigger = {
+		exists = GEN
+		monarch = 035501 #Anarchy
+	}
+	random = no
+	country = COR
+	name = "EVENTNAME150006" #A new pretender
+	desc = "EVENTHIST150006"
+	#-#This situation cannot last any longer. The Genoese count, Simone da Mare, is still the most powerful man over here, but a new leader has arisen. In control of most of the Dilà dei Monti, Paulu della Rocca has become a serious canditate to supreme overlordship of Corsica.
+
+	date = { day = 0 month = january year = 1436 }
+	offset = 180
+	deathdate = { day = 29 month = june year = 1436 }
+
+	action_a = {
+		name = "ACTIONNAME150006A" #Let Simone da Mare be our new ruler under Genoa (End Game in 1437)
+		command = { type = flagname which = "Mare" }
+		command = { type = wakemonarch which = 035502 } #Simone da Mare
+		command = { type = provincetax which = 398 value = -1 }
+		command = { type = revoltrisk which = 12 value = 5 }
+		command = { type = relation which = GEN value = 200 }
+		command = { type = relation which = ARG value = -200 }
+		command = { type = trigger which = 111027 } #ARG: Corsicans won't recognize us as their liege anymore
+	}
+	action_b = {
+		name = "ACTIONNAME150006B" #Choose Paulu della Rocca and continue the fight
+		command = { type = flagname which = "Rocca" }
+		command = { type = wakemonarch which = 035505 } #Paulu della Rocca
+		command = { type = revoltrisk which = 12 value = 10 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = land value = 1 }
+		command = { type = relation which = GEN value = -100 }
+		command = { type = relation which = ARG value = -100 }
+		command = { type = trigger which = 174034 } #GEN: Corsicans won't submit
+		command = { type = trigger which = 111027 } #ARG: Corsicans won't recognize us as their liege anymore
+		command = { type = sleepevent which = 174033 } #GEN: Corsicans will pledge to us
+	}
+}
+#(1436) Paulu della Rocca II
+#by Third Angel
+event = {
+	id = 150007
+	trigger = {
+		NOT = {
+			monarch = 035505 #Paulu della Rocca
+			war = { country = GEN country = COR }
+		}
+	}
+	random = no
+	country = COR
+	name = "EVENTNAME150007" #Paulu della Rocca
+	desc = "EVENTHIST150007"
+	#-#This powerful feudal lord of ancient descent was elected count of Corsica by those among his peers who would stay under neither Aragonese nor Genoese rule.
+
+	date = { day = 0 month = july year = 1436 }
+	offset = 180
+	deathdate = { day = 29 month = december year = 1436 }
+
+	action_a = {
+		name = "ACTIONNAME150007A" #He seems pretty harmless
+		command = { type = revolt which = 398 } #Corsica
+		command = { type = revolt which = 398 } #Corsica
+		command = { type = stability value = -2 }
+	}
+}
+
+#(1437) Simone da Mare is losing control
+#by Third Angel
+event = {
+	id = 150010
+	trigger = {
+		monarch = 035502 #Simone da Mare
+	}
+	random = no
+	country = COR
+
+	name = "EVENTNAME150010" #Simone da Mare is losing control
+	desc = "EVENTHIST150010"
+	#-#Simone da Mare had to deal with various revolters.
+
+	date = { day = 0 month = january year = 1437 }
+	offset = 180
+	deathdate = { day = 29 month = june year = 1437 }
+
+	action_a = {
+		name = "DAMN"
+		command = { type = revolt which = 398 } #Corsica
+		command = { type = revolt which = 398 } #Corsica
+	}
+}
+
+#(1437) Annexation of Corsica
+#by Third Angel
+event = {
+	id = 150008
+	trigger = {
+		event = 150010 #COR: Simone da Mare is losing control
+		exists = GEN
+	}
+	random = no
+	country = COR
+
+	name = "EVENTNAME150008" #We do need the Genoese back here
+	desc = "EVENTHIST150008"
+	#-#Unable to deal with the various revolters, Simone da Mare had to call for help from his liege.
+
+	date = { day = 0 month = july year = 1437 }
+	offset = 180
+	deathdate = { day = 29 month = december year = 1437 }
+
+	action_a = {
+		name = "ACTIONNAME150008A" #We have no choice (End Game)
+		command = { type = trigger which = 174035 } #GEN: The three Counts of Corsica
+	}
+}
+
+#(1736) A King in Corsica
+event = {
+	id = 150011 #triggered by GEN_174077
+	random = no
+	country = COR
+	name = "EVENTNAME150011" #King Teodoru I
+	desc = "EVENTHIST174077"
+	#-#Quite discouraged by their lack of diplomatic success, and demoralized by the Genoese blocus, the rebels were on the brink to ask for surrendering terms when a strange adventurer landed in Corsica. He was not unknown from the Corsican leaders whom he had met in Livorno during their exile. Somehow he persuaded them to crown him King of Corsica. He was only bringing a few thousands rifles and some cannons, but he was also promising to rid Corsica from Genoese domination thanks to his diplomatic relations throughout the courts of Europe, most importantly in Spain, and France... Under his direction, the rebels took hope again and renewed assaults were launched upon the remaining Genoese citadels.
+
+	action_a = {
+		name = "AWESOME"
+		command = { type = inf which = -2 value = 4000 }
+		command = { type = art which = -2 value = 10 }
+		command = { type = stability value = 3 }
+		command = { type = treasury value = 50 }
+	}
+}
+
+#(1736) Theodor is successful - Ahistorical
+event = {
+	id = 150012
+	trigger = {
+		event = 174077 #GEN: Theodor von Neuhoff, King of Corsica
+		atwar = no
+	}
+	random = no
+	country = COR
+	name = "EVENTNAME150012" #Long live King Teodoru I
+	desc = "EVENTHIST150012"
+	#-#The Geneose have finally acknowledged our King and so, our independence.
+
+	date = { day = 14 month = april year = 1736 }
+	offset = 10
+	deathdate = { day = 8 month = november year = 1736 }
+
+	action_a = {
+		name = "VIVAT"
+		command = { type = stability value = 1 }
+		command = { type = DIP which = 2 value = 240 }
+		command = { type = ADM which = 2 value = 240 }
+		command = { type = MIL which = 2 value = 240 }
+		command = { type = wakemonarch which = 035511 } #Federicu °
+		command = { type = wakemonarch which = 035512 } #Teodoru II *
+		command = { type = sleepmonarch which = 035513 } #Guvernu di Regenza
+		command = { type = sleepmonarch which = 035514 } #I Prutettori
+		command = { type = sleepmonarch which = 035515 } #Ghjuvan Petru Gaffori
+		command = { type = sleepmonarch which = 035516 } #Magistratu Supremu
+		command = { type = sleepmonarch which = 035517 } #Pasquale Paoli
+		command = { type = sleepmonarch which = 035519 } #Republica
+	}
+}
+
+#(1745-1748) Sardinian attempt to seize Corsica
+event = {
+	id = 150013 #triggered by SAV_275031 A
+	random = no
+	country = COR
+	name = "EVENTNAME150013" #Sardinian intervention
+	desc = "EVENTHIST275031"
+	#-#On 2th october 1745, King Carlo-Emmanuel III of Sardinia made a proclamation promising assistance and protection to the Corsican people against Genoese oppression. One month later, Dumenicu Rivarola, a Corsican officer serving in the Sardinian army landed with a few hundred men in early november and Bastia was taken on the 22th with the joined forces of the Corsican local leaders: Ghjuvan Petru Gaffori and Aleriu Francescu Matra. Dissenssions soon arose between the three men and despite the reinforcements landing in the Spring of 1748, the conquest of the island could not be achieved. Once more the Corsicans were the victims of international treaties signed above their heads at Aix-la-Chapelle, and the Sardinian forces had to leave the island before the end of the year.
+
+	action_a = {
+		name = "AT_LAST"
+		command = { type = wakeleader which = 035802 } #Dumenicu Rivarola
+		command = { type = inf which = -2 value = 3000 }
+		command = { type = stability value = 2 }
+		command = { type = relation which = SAV value = 100 }
+	}
+}
+
+#(1748-1752) French attempt to seize Corsica
+event = {
+	id = 150014 #triggered by FRA_170241 A
+	random = no
+	country = COR
+	name = "EVENTNAME150014" #French intervention
+	desc = "EVENTHIST170241"
+	#-#Seeing that the Genoese would soon be overwhelmed by the joined forces of the Sardinian expeditionary corps and the Corsican rebels, the French government soon decided a new intervention in the island. The Marquis de Cursay landed in Bastia with a few hundred men on 22th may 1748 to help the defenders of the city, mostly pro-Genoese Corsicans. More troops arrived in 1749, and the French were soon masters of most of the strong places in Corsica: Bastia, Corti, San Fiurenzu, Aiacciu, Sarté, without any official mandate from Genoa.
+
+	action_a = {
+		name = "ACTIONNAME150014A" #Agree to the French terms
+		command = { type = desertion which = -2 value = 10000 }
+		command = { type = trigger which = 170242 } #FRA: Corsicans submit
+	}
+	action_b = {
+		name = "ACTIONNAME150014B" #They will surrender us to Genoa
+		command = { type = relation which = FRA value = -200 }
+		command = { type = casusbelli which = FRA value = 12 }
+		command = { type = war which = FRA }
+	}
+}
+
+#(1755-1764) A new leader
+event = {
+	id = 150015
+	trigger = {
+		war = { country = COR country = GEN }
+	}
+	random = no
+	country = COR
+	name = "EVENTNAME174088" #Pasquale Paoli
+	desc = "EVENTHIST174088"
+	#-#In 1755, the situation was back to a stalemate in Corsica. Dissenssions were rising amongst the Supreme Council established by the rebels after the assassination of Gaffori two years earlier and some of its members were now advocating to open negotiations with Genoa. This is when Clemente Paoli called unto his brother Pasquale who was living in mainland Italy. He was a soldier, having served as an officer, first in the Real Corsica and then in the Real Farnese in Sicily. And he was also an intellectual mostly influenced by Montesquieu and having studied at the University of Naples. During his sixteen years exile with his father Ghjacintu, he had had much time to devise great projects for his island, so with him ended the Corsican Revolt and the Corsican Revolution began.
+
+	date = { day = 14 month = july year = 1755 }
+	offset = 10
+	deathdate = { day = 13 month = july year = 1764 }
+
+	action_a = {
+		name = "GOOD_NEWS"
+		command = { type = flagname which = "Paoli" }
+		command = { type = stability value = 2 }
+		command = { type = inf which = -2 value = 6000 }
+		command = { type = art which = -2 value = 10 }
+		command = { type = galleys which = -2 value = 10 }
+		command = { type = gainbuilding which = -2 value = courthouse }
+		command = { type = provincemanpower which = -2 value = 2 }
+		command = { type = provincetax which = -2 value = 1 }
+		command = { type = domestic which = aristocracy value = -5 } #from 8
+		command = { type = domestic which = centralization value = 4 } #from 3
+		command = { type = domestic which = innovative value = 5 } #from 2
+		command = { type = domestic which = mercantilism value = -4 } #from 9
+		command = { type = domestic which = land value = 4 } #from 3
+		command = { type = domestic which = offensive value = 1 } #from 7
+		command = { type = domestic which = quality value = 2 } #from 5
+		command = { type = domestic which = serfdom value = -5 } #from 7
+	}
+}
+
+#(1755-1763) Opposition to Paoli
+event = {
+	id = 150016
+	trigger = {
+		monarch = 035517 #Pasquale Paoli
+		war = { country = COR country = GEN }
+	}
+	random = no
+	country = COR
+
+	name = "EVENTNAME150016" #The Matra Family
+	desc = "EVENTHIST150016"
+	#-#One of the major reasons why the Corsican revolution failed was because of the divisions between various factions amongst the rebels. Besides the Nationalists led by Paoli, a strong party arose around the Matra, a powerful family based in the Eastern Plain, that was ready to negotiate with Genoa. They elected their leader, Mariu Emmanuellu, General of the Nation less than a month after Paoli had been by his own partisans. Mariu was defeated and killed by the Paolists on 28 March 1768, but his first cousin, Antone, and later his brother, former Prutettore Aleriu Francescu, kept trying to destabilize the new Republic until Genoese support came to lack.
+
+	date = { day = 9 month = august year = 1755 }
+	offset = 360
+	deathdate = { day = 3 month = may year = 1763 }
+
+	action_a = {
+		name = "WAR"
+		command = { type = revolt which = -2 }
+		command = { type = revolt which = -2 }
+		command = { type = revoltrisk which = 60 value = 20 }
+		command = { type = stability value = -2 }
+	}
+}
+
+#(1766-1768) Negotiations with the French
+event = {
+	id = 150018 #triggered by FRA_170247 A
+	random = no
+	country = COR
+	name = "EVENTNAME150018" #Matteu Buttafuoco
+	desc = "EVENTHIST170247"
+	#-#Ever since the occupation of major strongholds in Corsica by the French, secret negotiations had been going on between Paoli and the Duke of Choiseul. Those were achieved mostly by letters but also through a Corsican officer in the Royal-Corse: Matteu Buttafuoco, an eminent member of the French party in Corsica. The two parties could never find an agreement since the French found that the Corsicans were far too demanding in regards of their effective military and diplomatic strength, while the Corsicans were always worried that the French would handle them back to Genoa, like they had in the past, if they surrendered too much of their independence. The negotiations were finally broken when it appeared clearly that the French had already reached an agreement with Genoa over the head of the Paolist regime.
+
+	action_a = {
+		name = "ACTIONNAME150014B" #They will surrender us to Genoa
+		command = { type = relation which = FRA value = -100 }
+		command = { type = stability value = -2 }
+		command = { type = trigger which = 170248 } #FRA: Corsicans refused
+	}
+	action_b = {
+		name = "ACTIONNAME150014A" #Agree to the French terms
+		command = { type = stability value = -1 }
+		command = { type = provincetax which = -2 value = -1 }
+		command = { type = relation which = FRA value = 200 }
+		command = { type = relation which = GEN value = -200 }
+		command = { type = trigger which = 170249 } #FRA: Corsican submit
+	}
+}
+
+#(1768-1769) French invasion
+event = {
+	id = 150019 #triggered by GEN_174093 A
+	random = no
+	country = COR
+
+	name = "EVENTNAME174092" #The Treaty of Versailles
+	desc = "EVENTHIST174092"
+	#-#In 1767, the Republic, heavily indebted towards France after the various French interventions in Corsica, and the pro-Genoese cities in the island, finally acknowledged that the rebels could not be overcome by force. On 4 July, the Genoese ambassador in Paris, Agostino Sorba, was mandated to offer France full sovereignty over Corsica. The French, who had been waiting thirty years for this opportunity, did not miss the occasion and the Treaty of Versailles, signed on 15 May 1768, officialized the mortgaging of Corsica by Genoa to France. Of course, the island was to be ceded back if the Republic was ever able to pay back but everyone, Genoese, French and Corsicans, was well aware that this would almost surely never happen.
+
+	action_a = {
+		name = "ACTIONNAME150019A" #To arms!
+		command = { type = breakvassal which = GEN }
+		command = { type = casusbelli which = FRA value = 12 }
+		command = { type = relation which = GEN value = -400 }
+		command = { type = relation which = FRA value = -400 }
+		command = { type = war which = FRA }
+		command = { type = inf which = -2 value = 5000 }
+		command = { type = art which = -2 value = 20 }
+		command = { type = galleys which = -2 value = 10 }
+	}
+}
+
+#(1755-1769) Paolist victory - Ahistorical
+event = {
+	id = 150017
+	trigger = {
+		monarch = 035517 #Pasquale Paoli
+		NOT = {
+			war = { country = GEN country = COR }
+			war = { country = FRA country = COR }
+		}
+	}
+	random = no
+	country = COR
+	name = "EVENTNAME150017" #Pasquale Paoli is victorious
+	desc = "EVENTHIST150017"
+	#-#The General of the Nation has managed to have both Genoa and France recognize our independence.
+
+	date = { day = 15 month = july year = 1755 }
+	offset = 360
+	deathdate = { day = 11 month = june year = 1769 }
+
+	action_a = {
+		name = "HURRAH"
+		command = { type = wakemonarch which = 035518 } #Republica *
+		command = { type = sleepmonarch which = 035519 } #Republica *
+		command = { type = stability value = 3 }
+	}
+}
+
+#(1793) Secession from France
+event = {
+	id = 150020 #triggered by FRA_170263
+	random = no
+	country = COR
+	name = "EVENTNAME150020" #La Libertà o la Morte
+	desc = "EVENTHIST170263"
+	#-#Between 26 and 29 May 1793, an assembly was held in Corti during which Pasquale Paoli was elected, once more, as General of the Nation. His followers assured the government in Paris of their loyalty, but meanwhile they ignored the representants of the Convention in Corsica and placed all military and administrative powers into the hands of Paoli and his close partisans. When news came to Paris of the Corsican open rebellion on 17 july, the Convention immediately destituted Paoli and issued orders to have him arrested. By this decision, they left Paoli, who was still willing to negotiate, without any alternative.
+
+	action_a = {
+		name = "ACTIONNAME170197A" #So be it
+		command = { type = breakvassal which = FRA }
+		command = { type = relation which = FRA value = -400 }
+		command = { type = inf which = -2 value = 5000 }
+		command = { type = art which = -2 value = 10 }
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 36 value = 30 }
+		command = { type = wakemonarch which = 035520 } #Pasquale Paoli
+		command = { type = wakemonarch which = 035518 } #Republica *
+	}
+}
+
+#(1793-1796) English attempt to seize Corsica
+event = {
+	id = 150021 #triggered by ENG_164010
+	random = no
+	country = COR
+	name = "EVENTNAME164010" #The Anglo-Corsican Kingdom
+	desc = "EVENTHIST164010"
+	#-#In open revolt against the new radical policy decided in Paris, Pasquale Paoli turned naturally towards England for two reasons at least. Firstly, he had been welcome in London during his twenty years exile (1769-1789) and had established good relations with many political men over there. Secondly, England was at war with France since 1 February 1793 and would be very much interested in gaining strategical ports and strongholds in the Mediterranean Sea. On 3 September 1793, the first English ships were sighted before Bastia, under Admiral Horatio Nelson. The negotiations then begun and on 16 January 1794, an agreement was found which contented both parties. English troops first landed on 17 February and the last two pro-French cities Bastia and Calvi surrendered on 21 May and 11 August. In-between, the Constitution was officially adopted on 19 June. After many hesitations, King George III finally appointed his leading negotiator with Paoli, Sir Gilbert Elliot, instead of Paoli himself as a Viceroy on 4 October. The Anglo-Corsican Kingdom was born.
+
+	action_a = {
+		name = "GOOD_NEWS"
+		command = { type = relation which = ENG value = 200 }
+		command = { type = inf which = -2 value = 6000 }
+		command = { type = art which = -2 value = 20 }
+		command = { type = warships which = -2 value = 5 }
+		command = { type = stability value = 2 }
+		command = { type = wakemonarch which = 035521 } #Gilbert Elliot
+		command = { type = wakemonarch which = 035522 } #Gilbert II Elliot *
+		command = { type = sleepmonarch which = 035518 } #Republica *
+		command = { type = trigger which = 164029 } #ENG: The Corsican alliance
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 150022

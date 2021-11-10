@@ -1,0 +1,61 @@
+#Mogadishu (DEL)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1498-1560) Attack on the Harbor
+event = {
+	id = 160000 #triggered by POR_260068
+	random = no
+	country = DEL
+	name = "EVENTNAME160000" #Attack on the Harbor
+	desc = "EVENTHIST260068"
+	#-#On January 2nd of 1499, Vasco da Gama of Portugal's expedition caught sight of land that they believed to be somewhere near Mozambique. However, dawn showed them that they were actually off the coast of the large muslim city of Mogadishu. Da Gama chose not to make contact with the town, and simply because it was inhabited by Muslims, he bombarded the harbor at close range with his ship's cannon and inflicted a considerable amount of damage.
+
+	action_a = {
+		name = "ACTIONNAME260065A" #They will pay!
+		command = { type = stability value = -1 }
+		command = { type = relation which = POR value = -50 }
+		command = { type = infra value = -25 }
+	}
+}
+
+#(1660-1690) The Omani Empire in Africa
+#by zacharym87 - modified by sturmvogel
+event = {
+	id = 160001
+	trigger = {
+		event = 248003 #OMA: Swahilis seek aid
+		relation = { country = OMA data = 50 }
+		NOT = {
+			countrysize = 3
+			war = { country = OMA country = DEL }
+		}
+	}
+	random = no
+	country = DEL
+	name = "EVENTNAME160001" #The Omani Empire in Africa
+	desc = "EVENTHIST160001"
+	#-#Fearful of possible European takeover, the rulers of Mogadishu offer the throne to the Sultans of Oman.
+
+	date = { day = 1 month = january year = 1660 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1690 }
+
+	action_a = {
+		name = "ACTIONNAME160001A" #Submit to Oman
+		command = { type = trigger which = 248010 } #OMA: The submission of Mogadishu
+		command = { type = trade value = 500 }
+		command = { type = merchants value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME160001B" #Accept aid, but not union
+		command = { type = relation which = OMA value = 200 }
+		command = { type = dynastic which = OMA }
+		command = { type = stability value = -2 }
+		command = { type = trade value = 250 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 160002

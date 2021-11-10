@@ -1,0 +1,1063 @@
+#Russian advance into Mongolia
+
+#discussion in thread 139995
+
+#-----------------------------------------------------------------------------------------------
+
+#(1550-1660) Borders of Mongolia
+event = {
+	id = 115043
+	trigger = {
+		exists = ASS
+		continent = europe
+		NOT = { event = 115001 } #ASS: The Manchu alliance and the Buriat Defection
+		NOT = { event = 115010 } #ASS: The Manchu alliance and the Buriat Defection
+		NOT = { event = 115044 } #ProvinceSpec*589: Borders of Mongolia
+	}
+	random = no
+	province = 588 #Ob
+	name = "EVENTNAME115043" #Borders of Mongolia
+	desc = "EVENTHIST115043"
+	#-#We have reached the borders of Mongolia.
+
+	date = { day = 1 month = january year = 1550 }
+	offset = 30
+	deathdate = { day = 25 month = april year = 1660 }
+
+	action_a = {
+		name = "OK"
+		command = { type = trigger which = 115045 } #ASS: Foreign Colonizers
+		command = { type = sleepevent which = 115044 } #ProvinceSpec*589: Borders of Mongolia
+	}
+}
+#(1550-1660) Borders of Mongolia
+event = {
+	id = 115044
+	trigger = {
+		exists = ASS
+		continent = europe
+		NOT = { event = 115001 } #ASS: The Manchu alliance and the Buriat Defection
+		NOT = { event = 115010 } #ASS: The Manchu alliance and the Buriat Defection
+		NOT = { event = 115043 } #ProvinceSpec*588: Borders of Mongolia
+	}
+	random = no
+	province = 589 #Tomsk
+	name = "EVENTNAME115043" #Borders of Mongolia
+	desc = "EVENTHIST115043"
+	#-#We have reached the borders of Mongolia.
+
+	date = { day = 1 month = january year = 1550 }
+	offset = 30
+	deathdate = { day = 25 month = april year = 1660 }
+
+	action_a = {
+		name = "OK"
+		command = { type = trigger which = 115045 } #ASS: Foreign Colonizers
+		command = { type = sleepevent which = 115043 } #ProvinceSpec*588: Borders of Mongolia
+	}
+}
+#(1550-1660) Foreign Colonizers
+event = {
+	id = 115045 #triggered by ProvinceSpec_115043 / ProvinceSpec_115044
+	trigger = {
+		NOT = { domestic = { type = centralization value = 8 } }
+		NOT = { countrysize = 25 }
+	}
+	random = no
+	country = ASS
+	name = "EVENTNAME115045" #Foreign Colonizers
+	desc = "EVENTHIST115045"
+	#-#Foreign colonizers have reached our borders. They covet our lands but we are defenseless against them...
+
+	action_a = {
+		name = "DAMN"
+		command = { type = fortress which = 590 value = -3 } #Angara
+		command = { type = fortress which = 591 value = -3 } #Krasnoyarsk
+		command = { type = fortress which = 592 value = -3 } #Balakhta
+		command = { type = fortress which = 593 value = -3 } #Tchuma
+		command = { type = fortress which = 594 value = -3 } #Bratsk
+		command = { type = fortress which = 595 value = -3 } #Oka
+		command = { type = fortress which = 596 value = -3 } #Touva
+		command = { type = fortress which = 597 value = -3 } #Saian
+		command = { type = fortress which = 598 value = -3 } #Zima
+		command = { type = fortress which = 599 value = -3 } #Tannu Ola
+		command = { type = fortress which = 600 value = -3 } #Irkutsk
+		command = { type = fortress which = 601 value = -3 } #Chatga
+		command = { type = fortress which = 602 value = -3 } #Selenga
+		command = { type = fortress which = 603 value = -3 } #Ulan Ude
+		command = { type = fortress which = 604 value = -3 } #Buriat
+		command = { type = fortress which = 605 value = -3 } #Tchita
+		command = { type = fortress which = 606 value = -3 } #Kalakan
+		command = { type = fortress which = 607 value = -3 } #Sretensk
+		command = { type = fortress which = 608 value = -3 } #Kalar
+		command = { type = fortress which = 609 value = -3 } #Mogotcha
+	}
+}
+
+#(1582-1660) The Manchu alliance and the Buriat Defection
+event = {
+	id = 115001
+	trigger = {
+		NOT = { domestic = { type = centralization value = 8 } }
+		atwar = no
+		NOT = { countrysize = 25 }
+		neighbour = RUS
+		exists = MCH
+	}
+	random = no
+	country = ASS
+	name = "EVENTNAME115001" #The Manchu alliance and the Buriat Defection
+	desc = "EVENTHIST115001"
+	#-#The Mongols and Manchus cooperated substantially in their fight against the Ming Empire, and their close relationship is shown by the incorporation of Mongol nobles and tribes into Manchu government and military ranks. After the unification of the Manchu tribes, the Mongols sought the aid of the Manchu in their long struggle against China. In return for acknowledging the Manchu leader as the 'Great Khan', the Mongols of the steppe gained their alliance and were able to turn the tide against China. The more northern Buriat Mongols did not accept this change, however, and they broke with their southern bretheren. Lacking the power to oppose the Mongol-Manchu alliance on their own, they joined the Russian Empire in stead and crushed local resistance with the help of Russian forces.
+
+	date = { day = 1 month = january year = 1582 }
+	offset = 400
+	deathdate = { day = 25 month = april year = 1660 }
+
+	action_a = {
+		name = "ACTIONNAME115001A" #Force the northern tribes to acknowledge Manchu overlordship
+		command = { type = breakvassal which = CHI }
+		command = { type = fortress which = 590 value = -3 } #Angara
+		command = { type = fortress which = 591 value = -3 } #Krasnoyarsk
+		command = { type = fortress which = 592 value = -3 } #Balakhta
+		command = { type = fortress which = 593 value = -3 } #Tchuma
+		command = { type = fortress which = 594 value = -3 } #Bratsk
+		command = { type = fortress which = 595 value = -3 } #Oka
+		command = { type = fortress which = 596 value = -3 } #Touva
+		command = { type = fortress which = 597 value = -3 } #Saian
+		command = { type = fortress which = 598 value = -3 } #Zima
+		command = { type = fortress which = 599 value = -3 } #Tannu Ola
+		command = { type = fortress which = 600 value = -3 } #Irkutsk
+		command = { type = fortress which = 601 value = -3 } #Chatga
+		command = { type = fortress which = 602 value = -3 } #Selenga
+		command = { type = fortress which = 603 value = -3 } #Ulan Ude
+		command = { type = fortress which = 604 value = -3 } #Buriat
+		command = { type = fortress which = 605 value = -3 } #Tchita
+		command = { type = fortress which = 606 value = -3 } #Kalakan
+		command = { type = fortress which = 607 value = -3 } #Sretensk
+		command = { type = fortress which = 608 value = -3 } #Kalar
+		command = { type = fortress which = 609 value = -3 } #Mogotcha
+		command = { type = independence which = BTH }
+		command = { type = trigger which = 115003 } #BTH: The Buriat tribes seek Russian support
+		command = { type = sleepevent which = 115010 } #ASS: The Manchu alliance and the Buriat Defection
+		command = { type = sleepevent which = 115009 } #ASS: Buriat resistance subdued
+	}
+	action_b = {
+		name = "ACTIONNAME115001B" #Acknowledge Buriat tribes and stand alone against all foes
+		command = { type = breakvassal which = CHI }
+		command = { type = breakvassal which = MCH }
+		command = { type = revoltrisk which = 60 value = 3 }
+		command = { type = relation which = CHI value = -200 }
+		command = { type = relation which = MCH value = -200 }
+		command = { type = relation which = RUS value = -100 }
+		command = { type = fortress which = 590 value = -3 } #Angara
+		command = { type = fortress which = 591 value = -3 } #Krasnoyarsk
+		command = { type = fortress which = 592 value = -3 } #Balakhta
+		command = { type = fortress which = 593 value = -3 } #Tchuma
+		command = { type = fortress which = 594 value = -3 } #Bratsk
+		command = { type = fortress which = 595 value = -3 } #Oka
+		command = { type = fortress which = 596 value = -3 } #Touva
+		command = { type = fortress which = 597 value = -3 } #Saian
+		command = { type = fortress which = 598 value = -3 } #Zima
+		command = { type = fortress which = 599 value = -3 } #Tannu Ola
+		command = { type = fortress which = 600 value = -3 } #Irkutsk
+		command = { type = fortress which = 601 value = -3 } #Chatga
+		command = { type = fortress which = 602 value = -3 } #Selenga
+		command = { type = fortress which = 603 value = -3 } #Ulan Ude
+		command = { type = fortress which = 604 value = -3 } #Buriat
+		command = { type = fortress which = 605 value = -3 } #Tchita
+		command = { type = fortress which = 606 value = -3 } #Kalakan
+		command = { type = fortress which = 607 value = -3 } #Sretensk
+		command = { type = fortress which = 608 value = -3 } #Kalar
+		command = { type = fortress which = 609 value = -3 } #Mogotcha
+		command = { type = sleepevent which = 115010 } #ASS: The Manchu alliance and the Buriat Defection
+		command = { type = sleepevent which = 115009 } #ASS: Buriat resistance subdued
+		command = { type = sleepevent which = 115002 } #MCH: The incorporation of Mongol tribes
+		command = { type = trigger which = 115007 } #MCH: Mongol Refused to join
+	}
+}
+#(1582-1660) The Manchu alliance and the Buriat Defection
+event = {
+	id = 115010
+	trigger = {
+		domestic = { type = centralization value = 8 }
+		atwar = no
+		NOT = { countrysize = 25 }
+		neighbour = RUS
+		exists = MCH
+	}
+	random = no
+	country = ASS
+	name = "EVENTNAME115010" #The Manchu alliance and the Buriat Defection
+	desc = "EVENTHIST115010"
+	#-#The Mongols and Manchus cooperated substantially in their fight against the Ming Empire, and their close relationship is shown by the incorporation of Mongol nobles and tribes into Manchu government and military ranks. After the unification of the Manchu tribes, the Mongols sought the aid of the Manchu in their long struggle against China. In return for acknowledging the Manchu leader as the 'Great Khan', the Mongols of the steppe gained their alliance and were able to turn the tide against China. The more northern Buriat Mongols did not accept this change, however, and they broke with their southern bretheren. Lacking the power to oppose the Mongol-Manchu alliance on their own, they joined the Russian Empire in stead and crushed local resistance with the help of Russian forces.
+
+	date = { day = 1 month = january year = 1582 }
+	offset = 400
+	deathdate = { day = 25 month = april year = 1660 }
+
+	action_a = {
+		name = "ACTIONNAME115010A" #Force the northern tribes to acknowledge Manchu overlordship
+		command = { type = breakvassal which = CHI }
+		command = { type = stability value = -2 }
+		command = { type = province_revoltrisk which = 590 value = 7 } #Angara
+		command = { type = province_revoltrisk which = 593 value = 7 } #Tchuma
+		command = { type = province_revoltrisk which = 595 value = 7 } #Oka
+		command = { type = province_revoltrisk which = 597 value = 7 } #Saian
+		command = { type = province_revoltrisk which = 598 value = 7 } #Zima
+		command = { type = province_revoltrisk which = 600 value = 7 } #Irkutsk
+		command = { type = province_revoltrisk which = 602 value = 7 } #Selenga
+		command = { type = province_revoltrisk which = 604 value = 4 } #Buriat
+		command = { type = province_revoltrisk which = 606 value = 4 } #Kalakan
+		command = { type = revoltrisk which = 60 value = 2 }
+		command = { type = fortress which = 590 value = -3 } #Angara
+		command = { type = fortress which = 591 value = -3 } #Krasnoyarsk
+		command = { type = fortress which = 592 value = -3 } #Balakhta
+		command = { type = fortress which = 593 value = -3 } #Tchuma
+		command = { type = fortress which = 594 value = -3 } #Bratsk
+		command = { type = fortress which = 595 value = -3 } #Oka
+		command = { type = fortress which = 596 value = -3 } #Touva
+		command = { type = fortress which = 597 value = -3 } #Saian
+		command = { type = fortress which = 598 value = -3 } #Zima
+		command = { type = fortress which = 599 value = -3 } #Tannu Ola
+		command = { type = fortress which = 600 value = -3 } #Irkutsk
+		command = { type = fortress which = 601 value = -3 } #Chatga
+		command = { type = fortress which = 602 value = -3 } #Selenga
+		command = { type = fortress which = 603 value = -3 } #Ulan Ude
+		command = { type = fortress which = 604 value = -3 } #Buriat
+		command = { type = fortress which = 605 value = -3 } #Tchita
+		command = { type = fortress which = 606 value = -3 } #Kalakan
+		command = { type = fortress which = 607 value = -3 } #Sretensk
+		command = { type = fortress which = 608 value = -3 } #Kalar
+		command = { type = fortress which = 609 value = -3 } #Mogotcha
+		command = { type = sleepevent which = 115001 } #ASS: The Manchu alliance and the Buriat Defection
+	}
+	action_b = {
+		name = "ACTIONNAME115010B" #Acknowledge Buriat tribes and stand alone against all foes
+		command = { type = breakvassal which = CHI }
+		command = { type = breakvassal which = MCH }
+		command = { type = revoltrisk which = 60 value = 3 }
+		command = { type = relation which = CHI value = -200 }
+		command = { type = relation which = MCH value = -200 }
+		command = { type = relation which = RUS value = -100 }
+		command = { type = fortress which = 591 value = -3 } #Krasnoyarsk
+		command = { type = fortress which = 592 value = -3 } #Balakhta
+		command = { type = fortress which = 593 value = -3 } #Tchuma
+		command = { type = fortress which = 594 value = -3 } #Bratsk
+		command = { type = fortress which = 595 value = -3 } #Oka
+		command = { type = fortress which = 596 value = -3 } #Touva
+		command = { type = fortress which = 597 value = -3 } #Saian
+		command = { type = fortress which = 598 value = -3 } #Zima
+		command = { type = fortress which = 599 value = -3 } #Tannu Ola
+		command = { type = fortress which = 600 value = -3 } #Irkutsk
+		command = { type = fortress which = 601 value = -3 } #Chatga
+		command = { type = fortress which = 602 value = -3 } #Selenga
+		command = { type = fortress which = 603 value = -3 } #Ulan Ude
+		command = { type = fortress which = 604 value = -3 } #Buriat
+		command = { type = fortress which = 605 value = -3 } #Tchita
+		command = { type = fortress which = 606 value = -3 } #Kalakan
+		command = { type = fortress which = 607 value = -3 } #Sretensk
+		command = { type = fortress which = 608 value = -3 } #Kalar
+		command = { type = fortress which = 609 value = -3 } #Mogotcha
+		command = { type = sleepevent which = 115001 } #ASS: The Manchu alliance and the Buriat Defection
+		command = { type = sleepevent which = 115009 } #ASS: Buriat resistance subdued
+		command = { type = sleepevent which = 115002 } #MCH: Alliance with Mongol tribes
+		command = { type = sleepevent which = 115005 } #RUS: Incorporation of the Buriat in the Steppe
+		command = { type = trigger which = 115007 } #MCH: Mongol Refused to join
+	}
+}
+#(1582-1660) The incorporation of Mongol tribes
+event = {
+	id = 115002
+	trigger = {
+		exists = ASS
+		OR = {
+			event = 115001 #ASS: The Manchu alliance and the Buriat Defection
+			event = 115010 #ASS: The Manchu alliance and the Buriat Defection
+		}
+		NOT = {
+			vassal = { country = ASS country = MCH }
+			war = { country = ASS country = MCH }
+		}
+	}
+	random = no
+	country = MCH
+	name = "EVENTNAME115002" #The incorporation of Mongol tribes
+	desc = "EVENTHIST115002"
+	#-#The Mongols and Manchus cooperated substantially in their fight against the Ming Empire, and their close relationship is shown by the incorporation of Mongol nobles and tribes into Manchu government and military ranks. After the unification of the Manchu tribes, the Mongols sought the aid of the Manchu in their long struggle against China.
+
+	date = { day = 1 month = january year = 1582 }
+	offset = 90
+	deathdate = { day = 25 month = april year = 1660 }
+
+	action_a = {
+		name = "ACTIONNAME115002A" #We are the Great Khans of the Mongols!
+		command = { type = add_countryculture which = mongol }
+		command = { type = vassal which = ASS }
+		command = { type = relation which = ASS value = 250 }
+		command = { type = trigger which = 115046 } #MCH: Alliance with Mongol tribes
+	}
+}
+#(1582-1660) Alliance with Mongol tribes
+event = {
+	id = 115046 #triggered by MCH_115002
+	random = no
+	country = MCH
+	name = "EVENTNAME115046" #Alliance with Mongol tribes
+	desc = "EVENTHIST115046"
+	#-#In return for acknowledging the Manchu leader as the 'Great Khan', the Mongols of the steppe gained their alliance and were able to turn the tide against China.
+
+	action_a = {
+		name = "GOOD"
+		command = { type = alliance which = ASS }
+		command = { }
+	}
+}
+#(1582-1660) The Buriat tribes seek Russian support
+event = {
+	id = 115003 #triggered by ASS_115001 A
+	random = no
+	country = BTH
+	name = "EVENTNAME115003" #The Buriat tribes seek Russian support
+	desc = "EVENTHIST115003"
+	#-#When the southern and eastern Mongol tribes threw their lot in with the Manchu, then northern Buriyat Mongols broke with their southern brethrens. Lacking the power to oppose the Mongol-Manchu alliance on their own, they joined the Russian Empire instead. All Buriat princes were taken in Russian military as officers, and Buriat cavalry crushed local resistance with the help of Russian forces.
+
+	action_a = {
+		name = "ACTIONNAME115003A" #Join the Russian empire and crush the local opposition
+		command = { type = breakvassal which = ASS }
+		command = { type = religion which = orthodox }
+		command = { type = relation which = RUS value = 400 }
+		command = { type = land value = 5000 }
+		command = { type = trade value = 1000 }
+		command = { type = infra value = 1000 }
+		command = { type = relation which = ASS value = -200 }
+		command = { type = war which = ASS }
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 60 value = 4 }
+		command = { type = capital which = 593 } #Tchuma
+		command = { type = secedeprovince which = RUS value = 600 } #Irkutsk
+		command = { type = removecore which = 600 } #Irkutsk
+		command = { type = manpower value = -20 }
+		command = { type = INF which = 590 value = 4000 } #Angara
+		command = { type = CAV which = 590 value = 1000 } #Angara
+		command = { type = INF which = 593 value = 4000 } #Tchuma
+		command = { type = CAV which = 593 value = 1000 } #Tchuma
+		command = { type = INF which = 595 value = 4000 } #Oka
+		command = { type = CAV which = 595 value = 1000 } #Oka
+		command = { type = INF which = 597 value = 4000 } #Saian
+		command = { type = CAV which = 597 value = 1000 } #Saian
+	}
+	action_b = {
+		name = "ACTIONNAME115003B" #Stand alone against all threats
+		command = { type = breakvassal which = ASS }
+		command = { type = stability value = -2 }
+		command = { type = relation which = RUS value = -100 }
+		command = { type = relation which = ASS value = -200 }
+		command = { type = manpower value = -10 }
+		command = { type = CAV which = 600 value = 10000 } #Irkutsk
+		command = { type = INF which = 600 value = 1500 } #Irkutsk
+		command = { type = war which = ASS }
+		command = { type = fortress which = 590 value = -3 } #Angara
+		command = { type = fortress which = 593 value = -3 } #Tchuma
+		command = { type = fortress which = 595 value = -3 } #Oka
+		command = { type = fortress which = 597 value = -3 } #Saian
+		command = { type = fortress which = 598 value = -3 } #Zima
+		command = { type = fortress which = 600 value = -3 } #Irkutsk
+		command = { type = fortress which = 602 value = -3 } #Selenga
+		command = { type = sleepevent which = 115005 } #RUS: Incorporation of the Buriat in the Steppe
+	}
+}
+#(1582-1660) Incorporation of the Buriat in the Steppe
+event = {
+	id = 115005
+	trigger = {
+		exists = BTH
+		OR = {
+			event = 115003 #BTH: The Buriat tribes seek Russian support
+			event = 115010 #ASS: The Manchu alliance and the Buriat Defection
+		}
+		NOT = {
+			vassal = { country = BTH country = RUS }
+			war = { country = BTH country = RUS }
+		}
+	}
+	random = no
+	country = RUS
+	name = "EVENTNAME115005" #Incorporation of the Buriat in the Steppe
+	desc = "EVENTHIST115005"
+	#-#When the southern and eastern Mongol tribes threw their lot in with the Manchu, then northern Buriyat Mongols broke with their southern brethrens.
+
+	date = { day = 1 month = january year = 1582 }
+	offset = 90
+	deathdate = { day = 25 month = april year = 1660 }
+
+	action_a = {
+		name = "ACTIONNAME115005A" #Help Buriyat Mongols crush the local tribes
+		command = { type = vassal which = BTH }
+		command = { type = addcore which = 600 } #Irkutsk
+		command = { type = relation which = BTH value = 400 }
+		command = { type = relation which = ASS value = -250 }
+		command = { type = casusbelli which = ASS value = 96 }
+		command = { type = conversion which = 600 } #Irkutsk
+		command = { type = treasury value = -200 }
+		command = { type = manpower value = -20 }
+		command = { type = INF which = 584 value = 4000 } #Novosibirsk
+		command = { type = CAV which = 584 value = 1000 } #Novosibirsk
+		command = { type = INF which = 586 value = 4000 } #Demianka
+		command = { type = CAV which = 586 value = 1000 } #Demianka
+		command = { type = INF which = 587 value = 4000 } #Barabinsk
+		command = { type = CAV which = 587 value = 1000 } #Barabinsk
+		command = { type = INF which = 588 value = 4000 } #Ob
+		command = { type = CAV which = 588 value = 1000 } #Ob
+		command = { type = INF which = 589 value = 4000 } #Tomsk
+		command = { type = CAV which = 589 value = 1000 } #Tomsk
+		command = { type = INF which = 590 value = 4000 } #Angara
+		command = { type = CAV which = 590 value = 1000 } #Angara
+		command = { type = INF which = 591 value = 4000 } #Krasnoyarsk
+		command = { type = CAV which = 591 value = 1000 } #Krasnoyarsk
+		command = { type = INF which = 600 value = 8000 } #Irkutsk
+		command = { type = CAV which = 600 value = 2000 } #Irkutsk
+		command = { type = trigger which = 115047 } #RUS: Alliance with Buriat tribes
+	}
+	action_b = {
+		name = "ACTIONNAME115005B" #No. The Mongols are too strong. We will only give minimal help
+		command = { type = vp value = -75 }
+		command = { type = relation which = BTH value = -50 }
+		command = { type = badboy value = 1 }
+		command = { type = vassal which = BTH }
+		command = { type = alliance which = BTH } #just in case
+		command = { type = conversion which = 600 } #Irkutsk
+	}
+}
+#(1582-1660) Alliance with Buriat tribes
+event = {
+	id = 115047 #triggered by RUS_115005 A
+	random = no
+	country = RUS
+	name = "EVENTNAME115047" #Alliance with Buriat tribes
+	desc = "EVENTHIST115047"
+	#-#Lacking the power to oppose the Mongol-Manchu alliance on their own, the northern Buriyat Mongols joined the Russian Empire. All Buriat princes were taken in Russian military as officers, and Buriat cavalry crushed local resistance with the help of Russian forces.
+
+	action_a = {
+		name = "GOOD"
+		command = { type = alliance which = BTH }
+		command = { type = war which = ASS }
+		command = { }
+	}
+}
+#(1582-1660) Mongol Refused to join - Ahistorical
+event = {
+	id = 115007 #triggered by ASS_115001 B / ASS_115010 B
+	random = no
+	country = MCH
+	name = "EVENTNAME115007" #Mongol Refused to join
+	desc = "EVENTHIST115007"
+	#-#The Mongols and Manchus cooperated substantially in their fight against the Ming Empire, and their close relationship is shown by the incorporation of Mongol nobles and tribes into Manchu government and military ranks. After the unification of the Manchu tribes, the Mongols sought the aid of the Manchu in their long struggle against China. In return for acknowledging the Manchu leader as the 'Great Khan', the Mongols of the steppe gained their alliance and were able to turn the tide against China.
+
+	action_a = {
+		name = "ACTIONNAME115007A" #They betrayed our previous cooperation
+		command = { type = casusbelli which = ASS value = 72 }
+		command = { type = relation which = ASS value = -200 }
+	}
+}
+
+#(1670-1820) Buriat resistance subdued
+event = {
+	id = 115009
+	trigger = {
+		atwar = no
+		OR = {
+			owned = { province = 590 data = -1 }
+			owned = { province = 593 data = -1 }
+			owned = { province = 595 data = -1 }
+			owned = { province = 597 data = -1 }
+			owned = { province = 598 data = -1 }
+			owned = { province = 600 data = -1 }
+			owned = { province = 602 data = -1 }
+			owned = { province = 606 data = -1 }
+		}
+	}
+	random = no
+	country = ASS
+	name = "EVENTNAME115009" #Buriat resistance subdued
+	desc = "EVENTHIST115009"
+	#-#Buriat resistance against Manchu overlordship is finally subdued.
+
+	date = { day = 1 month = january year = 1670 }
+	offset = 200
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = province_revoltrisk which = 590 value = -7 } #Angara
+		command = { type = province_revoltrisk which = 593 value = -7 } #Tchuma
+		command = { type = province_revoltrisk which = 595 value = -7 } #Oka
+		command = { type = province_revoltrisk which = 597 value = -7 } #Saian
+		command = { type = province_revoltrisk which = 598 value = -7 } #Zima
+		command = { type = province_revoltrisk which = 600 value = -7 } #Irkutsk
+		command = { type = province_revoltrisk which = 602 value = -7 } #Selenga
+		command = { type = province_revoltrisk which = 604 value = -4 } #Buriat
+		command = { type = province_revoltrisk which = 606 value = -4 } #Kalakan
+	}
+}
+
+#(1675-1820) Effect of Russian Occupation in Eastern Siberia
+event = {
+	id = 115008
+	trigger = {
+		event = 115005 #RUS: Incorporation of the Buriat in the Steppe
+		OR = {
+			vassal = { country = RUS country = BTH }
+			alliance = { country = RUS country = BTH }
+		}
+		relation = { country = BTH data = -100 }
+	}
+	random = no
+	country = RUS
+	name = "EVENTNAME115008" #Effect of Russian Occupation in Eastern Siberia
+	desc = "EVENTHIST115008"
+	#-#After Russia took control of Buriat and other Mongol lands in Eastern Siberia, major demograhphic changes took place. All Buriat princes were taken in Russian military as officers, and Buriat cavalry crushed local resistance with the help of Russian forces. Many Mongols fled south for fear of ethnic cleansing and others were rigorously assimilated.
+
+	date = { day = 1 month = january year = 1675 }
+	offset = 200
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME115008A" #Most lands are Russified
+		command = { type = inherit which = BTH }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#(1582-1820) Russian advance in Eastern Siberia
+event = {
+	id = 115021
+	trigger = {
+		owned = { province = 590 data = RUS } #Angara
+ 		control = { province = 596 data = RUS } #Touva
+		war = { country = RUS country = ASS }
+	}
+	random = no
+	country = ASS
+	name = "EVENTNAME115021" #Russian advance in Eastern Siberia
+	desc = "EVENTHIST115021"
+	#-#What can we do?
+
+	date = { day = 1 month = january year = 1582 }
+	offset = 10
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "OH_NO"
+		command = { type = secedeprovince which = RUS value = 593 } #Tchuma
+		command = { type = secedeprovince which = RUS value = 595 } #Oka
+		command = { type = secedeprovince which = RUS value = 597 } #Saian
+		command = { type = secedeprovince which = RUS value = 598 } #Zima
+		command = { type = secedeprovince which = RUS value = 600 } #Irkutsk
+		command = { type = fortress which = 591 value = -3 } #Krasnoyarsk
+		command = { type = fortress which = 592 value = -3 } #Balakhta
+		command = { type = fortress which = 593 value = -3 } #Tchuma
+		command = { type = fortress which = 594 value = -3 } #Bratsk
+		command = { type = fortress which = 595 value = -3 } #Oka
+		command = { type = fortress which = 596 value = -3 } #Touva
+		command = { type = fortress which = 597 value = -3 } #Saian
+		command = { type = fortress which = 598 value = -3 } #Zima
+		command = { type = fortress which = 599 value = -3 } #Tannu Ola
+		command = { type = fortress which = 600 value = -3 } #Irkutsk
+		command = { type = fortress which = 601 value = -3 } #Chatga
+		command = { type = fortress which = 602 value = -3 } #Selenga
+		command = { type = fortress which = 603 value = -3 } #Ulan Ude
+		command = { type = fortress which = 604 value = -3 } #Buriat
+		command = { type = fortress which = 605 value = -3 } #Tchita
+		command = { type = fortress which = 606 value = -3 } #Kalakan
+		command = { type = fortress which = 607 value = -3 } #Sretensk
+		command = { type = fortress which = 608 value = -3 } #Kalar
+		command = { type = fortress which = 609 value = -3 } #Mogotcha
+		command = { type = setflag which = [RussianAdvance1] }
+	}
+}
+
+#(1582-1820) More foreign Colonizers
+event = {
+	id = 115022
+	trigger = {
+		NOT = { war = { country = RUS country = ASS } }
+		flag = [RussianAdvance1]
+	}
+	random = no
+	country = ASS
+	name = "EVENTNAME115022" #More foreign Colonizers
+	desc = "EVENTHIST115022"
+	#-#More and more foreign colonizers have reached our borders. We are defenseless against them...
+
+	date = { day = 1 month = january year = 1582 }
+	offset = 10
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "OH_NO"
+		command = { type = fortress which = 591 value = -3 } #Krasnoyarsk
+		command = { type = fortress which = 592 value = -3 } #Balakhta
+		command = { type = fortress which = 593 value = -3 } #Tchuma
+		command = { type = fortress which = 594 value = -3 } #Bratsk
+		command = { type = fortress which = 595 value = -3 } #Oka
+		command = { type = fortress which = 596 value = -3 } #Touva
+		command = { type = fortress which = 597 value = -3 } #Saian
+		command = { type = fortress which = 598 value = -3 } #Zima
+		command = { type = fortress which = 599 value = -3 } #Tannu Ola
+		command = { type = fortress which = 600 value = -3 } #Irkutsk
+		command = { type = fortress which = 601 value = -3 } #Chatga
+		command = { type = fortress which = 602 value = -3 } #Selenga
+		command = { type = fortress which = 603 value = -3 } #Ulan Ude
+		command = { type = fortress which = 604 value = -3 } #Buriat
+		command = { type = fortress which = 605 value = -3 } #Tchita
+		command = { type = fortress which = 606 value = -3 } #Kalakan
+		command = { type = fortress which = 607 value = -3 } #Sretensk
+		command = { type = fortress which = 608 value = -3 } #Kalar
+		command = { type = fortress which = 609 value = -3 } #Mogotcha
+		command = { type = setflag which = [RussianAdvance2] }
+	}
+}
+
+#(1582-1820) Russian advance in Eastern Siberia
+event = {
+	id = 115023
+	trigger = {
+		owned = { province = 600 data = RUS } #Irkutsk
+ 		control = { province = 596 data = RUS } #Touva
+		war = { country = RUS country = ASS }
+		flag = [RussianAdvance2]
+	}
+	random = no
+	country = ASS
+	name = "EVENTNAME115021" #Russian advance in Eastern Siberia
+	desc = "EVENTHIST115021"
+	#-#What can we do?
+
+	date = { day = 1 month = january year = 1582 }
+	offset = 10
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "OH_NO"
+		command = { type = secedeprovince which = RUS value = 602 } #Selenga
+		command = { type = secedeprovince which = RUS value = 604 } #Buriat
+		command = { type = secedeprovince which = RUS value = 606 } #Kalakan
+		command = { type = secedeprovince which = RUS value = 608 } #Kalar
+		command = { type = fortress which = 591 value = -3 } #Krasnoyarsk
+		command = { type = fortress which = 592 value = -3 } #Balakhta
+		command = { type = fortress which = 593 value = -3 } #Tchuma
+		command = { type = fortress which = 594 value = -3 } #Bratsk
+		command = { type = fortress which = 595 value = -3 } #Oka
+		command = { type = fortress which = 596 value = -3 } #Touva
+		command = { type = fortress which = 597 value = -3 } #Saian
+		command = { type = fortress which = 598 value = -3 } #Zima
+		command = { type = fortress which = 599 value = -3 } #Tannu Ola
+		command = { type = fortress which = 600 value = -3 } #Irkutsk
+		command = { type = fortress which = 601 value = -3 } #Chatga
+		command = { type = fortress which = 602 value = -3 } #Selenga
+		command = { type = fortress which = 603 value = -3 } #Ulan Ude
+		command = { type = fortress which = 604 value = -3 } #Buriat
+		command = { type = fortress which = 605 value = -3 } #Tchita
+		command = { type = fortress which = 606 value = -3 } #Kalakan
+		command = { type = fortress which = 607 value = -3 } #Sretensk
+		command = { type = fortress which = 608 value = -3 } #Kalar
+		command = { type = fortress which = 609 value = -3 } #Mogotcha
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#(1675-1820) Effect of Russian Occupation in Eastern Siberia
+
+event = {
+	id = 115030
+	trigger = {
+		owned = { province = 600 data = RUS } #Irkustk
+		OR = {
+			ai = yes
+			AND = {
+				ai = no
+				provincereligion = { province = 600 data = orthodox } #Irkustk
+			}
+		}
+	}
+	random = no
+	country = RUS
+	name = "EVENTNAME115030" #Mongols Assimilation in Irkustk
+	desc = "EVENTHIST115030"
+	#-#After Russia took control of the Buriat and other Mongol lands in Eastern Siberia, all of the Buriat princes were taken into the Russian military as officers, the Buriat cavalry crushed local resistance with the help of Russian forces and the Mongols were rigorously assimilated.
+
+	date = { day = 1 month = january year = 1675 }
+	offset = 200
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "OK"
+		command = { type = provinceculture which = 600 value = russian } #Irkutsk
+		command = { type = conversion which = 600 } #Irkutsk
+		command = { }
+	}
+}
+event = {
+	id = 115031
+	trigger = {
+		event = 338900
+		owned = { province = 590 data = RUS } #Angara
+		OR = {
+			ai = yes
+			AND = {
+				ai = no
+				provincereligion = { province = 590 data = orthodox } #Angara
+			}
+		}
+	}
+	random = no
+	country = RUS
+	name = "EVENTNAME115031" #Mongols Assimilation in Angara
+	desc = "EVENTHIST115030"
+	#-#After Russia took control of the Buriat and other Mongol lands in Eastern Siberia, all of the Buriat princes were taken into the Russian military as officers, the Buriat cavalry crushed local resistance with the help of Russian forces and the Mongols were rigorously assimilated.
+
+	date = { day = 1 month = january year = 1675 }
+	offset = 200
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "OK"
+		command = { type = provinceculture which = 590 value = russian } #Angara
+		command = { type = conversion which = 590 } #Angara
+		command = { }
+	}
+}
+event = {
+	id = 115032
+	trigger = {
+		event = 338901
+		owned = { province = 593 data = RUS } #Tchuma
+		OR = {
+			ai = yes
+			AND = {
+				ai = no
+				provincereligion = { province = 593 data = orthodox } #Tchuma
+			}
+		}
+	}
+	random = no
+	country = RUS
+	name = "EVENTNAME115032" #Mongols Assimilation in Tchuma
+	desc = "EVENTHIST115030"
+	#-#After Russia took control of the Buriat and other Mongol lands in Eastern Siberia, all of the Buriat princes were taken into the Russian military as officers, the Buriat cavalry crushed local resistance with the help of Russian forces and the Mongols were rigorously assimilated.
+
+	date = { day = 1 month = january year = 1675 }
+	offset = 200
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "OK"
+		command = { type = provinceculture which = 593 value = russian } #Tchuma
+		command = { type = conversion which = 593 } #Tchuma
+		command = { }
+	}
+}
+event = {
+	id = 115033
+	trigger = {
+		event = 338902
+		owned = { province = 595 data = RUS } #Oka
+		OR = {
+			ai = yes
+			AND = {
+				ai = no
+				provincereligion = { province = 595 data = orthodox } #Oka
+			}
+		}
+	}
+	random = no
+	country = RUS
+	name = "EVENTNAME115033" #Mongols Assimilation in Oka
+	desc = "EVENTHIST115030"
+	#-#After Russia took control of the Buriat and other Mongol lands in Eastern Siberia, all of the Buriat princes were taken into the Russian military as officers, the Buriat cavalry crushed local resistance with the help of Russian forces and the Mongols were rigorously assimilated.
+
+	date = { day = 1 month = january year = 1675 }
+	offset = 200
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "OK"
+		command = { type = provinceculture which = 595 value = russian } #Oka
+		command = { type = conversion which = 595 } #Oka
+		command = { }
+	}
+}
+event = {
+	id = 115034
+	trigger = {
+		event = 338903
+		owned = { province = 597 data = RUS } #Saian
+		OR = {
+			ai = yes
+			AND = {
+				ai = no
+				provincereligion = { province = 597 data = orthodox } #Saian
+			}
+		}
+	}
+	random = no
+	country = RUS
+	name = "EVENTNAME115034" #Mongols Assimilation in Saian
+	desc = "EVENTHIST115030"
+	#-#After Russia took control of the Buriat and other Mongol lands in Eastern Siberia, all of the Buriat princes were taken into the Russian military as officers, the Buriat cavalry crushed local resistance with the help of Russian forces and the Mongols were rigorously assimilated.
+
+	date = { day = 1 month = january year = 1675 }
+	offset = 200
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "OK"
+		command = { type = provinceculture which = 597 value = russian } #Saian
+		command = { type = conversion which = 597 } #Saian
+		command = { }
+	}
+}
+event = {
+	id = 115035
+	trigger = {
+		event = 338904
+		owned = { province = 598 data = RUS } #Zima
+		OR = {
+			ai = yes
+			AND = {
+				ai = no
+				provincereligion = { province = 598 data = orthodox } #Zima
+			}
+		}
+	}
+	random = no
+	country = RUS
+	name = "EVENTNAME115035" #Mongols Assimilation in Zima
+	desc = "EVENTHIST115030"
+	#-#After Russia took control of the Buriat and other Mongol lands in Eastern Siberia, all of the Buriat princes were taken into the Russian military as officers, the Buriat cavalry crushed local resistance with the help of Russian forces and the Mongols were rigorously assimilated.
+
+	date = { day = 1 month = january year = 1675 }
+	offset = 200
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "OK"
+		command = { type = provinceculture which = 598 value = russian } #Zima
+		command = { type = conversion which = 598 } #Zima
+		command = { }
+	}
+}
+event = {
+	id = 115036
+	trigger = {
+		event = 338905
+		owned = { province = 602 data = RUS } #Selenga
+		OR = {
+			ai = yes
+			AND = {
+				ai = no
+				provincereligion = { province = 602 data = orthodox } #Selenga
+			}
+		}
+	}
+	random = no
+	country = RUS
+	name = "EVENTNAME115036" #Mongols Assimilation in Selenga
+	desc = "EVENTHIST115030"
+	#-#After Russia took control of the Buriat and other Mongol lands in Eastern Siberia, all of the Buriat princes were taken into the Russian military as officers, the Buriat cavalry crushed local resistance with the help of Russian forces and the Mongols were rigorously assimilated.
+
+	date = { day = 1 month = january year = 1675 }
+	offset = 200
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "OK"
+		command = { type = provinceculture which = 602 value = russian } #Selenga
+		command = { type = conversion which = 602 } #Selenga
+		command = { }
+	}
+}
+event = {
+	id = 115037
+	trigger = {
+		event = 338906
+		owned = { province = 603 data = RUS } #Ulan Ude
+		OR = {
+			ai = yes
+			AND = {
+				ai = no
+				provincereligion = { province = 603 data = orthodox } #Ulan Ude
+			}
+		}
+	}
+	random = no
+	country = RUS
+	name = "EVENTNAME115037" #Mongols Assimilation in Ulan Ude
+	desc = "EVENTHIST115030"
+	#-#After Russia took control of the Buriat and other Mongol lands in Eastern Siberia, all of the Buriat princes were taken into the Russian military as officers, the Buriat cavalry crushed local resistance with the help of Russian forces and the Mongols were rigorously assimilated.
+
+	date = { day = 1 month = january year = 1675 }
+	offset = 200
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "OK"
+		command = { type = provinceculture which = 603 value = russian } #Ulan Ude
+		command = { type = conversion which = 603 } #Ulan Ude
+		command = { }
+	}
+}
+event = {
+	id = 115038
+	trigger = {
+		event = 338907
+		owned = { province = 604 data = RUS } #Buriat
+		OR = {
+			ai = yes
+			AND = {
+				ai = no
+				provincereligion = { province = 604 data = orthodox } #Buriat
+			}
+		}
+	}
+	random = no
+	country = RUS
+	name = "EVENTNAME115038" #Mongols Assimilation in Buriat
+	desc = "EVENTHIST115030"
+	#-#After Russia took control of the Buriat and other Mongol lands in Eastern Siberia, all of the Buriat princes were taken into the Russian military as officers, the Buriat cavalry crushed local resistance with the help of Russian forces and the Mongols were rigorously assimilated.
+
+	date = { day = 1 month = january year = 1675 }
+	offset = 200
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "OK"
+		command = { type = provinceculture which = 604 value = russian } #Buriat
+		command = { type = conversion which = 604 } #Buriat
+		command = { }
+	}
+}
+event = {
+	id = 115039
+	trigger = {
+		event = 338908
+		owned = { province = 605 data = RUS } #Tchita
+		OR = {
+			ai = yes
+			AND = {
+				ai = no
+				provincereligion = { province = 605 data = orthodox } #Tchita
+			}
+		}
+	}
+	random = no
+	country = RUS
+	name = "EVENTNAME115039" #Mongols Assimilation in Tchita
+	desc = "EVENTHIST115030"
+	#-#After Russia took control of the Buriat and other Mongol lands in Eastern Siberia, all of the Buriat princes were taken into the Russian military as officers, the Buriat cavalry crushed local resistance with the help of Russian forces and the Mongols were rigorously assimilated.
+
+	date = { day = 1 month = january year = 1675 }
+	offset = 200
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "OK"
+		command = { type = provinceculture which = 605 value = russian } #Tchita
+		command = { type = conversion which = 605 } #Tchita
+		command = { }
+	}
+}
+event = {
+	id = 115040
+	trigger = {
+		event = 338909
+		owned = { province = 606 data = RUS } #Kalan
+		OR = {
+			ai = yes
+			AND = {
+				ai = no
+				provincereligion = { province = 606 data = orthodox } #Kalan
+			}
+		}
+	}
+	random = no
+	country = RUS
+	name = "EVENTNAME115040" #Mongols Assimilation in Kalan
+	desc = "EVENTHIST115030"
+	#-#After Russia took control of the Buriat and other Mongol lands in Eastern Siberia, all of the Buriat princes were taken into the Russian military as officers, the Buriat cavalry crushed local resistance with the help of Russian forces and the Mongols were rigorously assimilated.
+
+	date = { day = 1 month = january year = 1675 }
+	offset = 200
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "OK"
+		command = { type = provinceculture which = 606 value = russian } #Kalakan
+		command = { type = conversion which = 606 } #Kalakan
+		command = { }
+	}
+}
+event = {
+	id = 115041
+	trigger = {
+		event = 338910
+		owned = { province = 607 data = RUS } #Sretensk
+		OR = {
+			ai = yes
+			AND = {
+				ai = no
+				provincereligion = { province = 607 data = orthodox } #Sretensk
+			}
+		}
+	}
+	random = no
+	country = RUS
+	name = "EVENTNAME115041" #Mongols Assimilation in Sretensk
+	desc = "EVENTHIST115030"
+	#-#After Russia took control of the Buriat and other Mongol lands in Eastern Siberia, all of the Buriat princes were taken into the Russian military as officers, the Buriat cavalry crushed local resistance with the help of Russian forces and the Mongols were rigorously assimilated.
+
+	date = { day = 1 month = january year = 1675 }
+	offset = 200
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "OK"
+		command = { type = provinceculture which = 607 value = russian } #Sretensk
+		command = { type = conversion which = 607 } #Sretensk
+		command = { }
+	}
+}
+event = {
+	id = 115042
+	trigger = {
+		event = 338911
+		owned = { province = 608 data = RUS } #Kalar
+		OR = {
+			ai = yes
+			AND = {
+				ai = no
+				provincereligion = { province = 608 data = orthodox } #Kalar
+			}
+		}
+	}
+	random = no
+	country = RUS
+	name = "EVENTNAME115042" #Mongols Assimilation in Kalar
+	desc = "EVENTHIST115030"
+	#-#After Russia took control of the Buriat and other Mongol lands in Eastern Siberia, all of the Buriat princes were taken into the Russian military as officers, the Buriat cavalry crushed local resistance with the help of Russian forces and the Mongols were rigorously assimilated.
+
+	date = { day = 1 month = january year = 1675 }
+	offset = 200
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "OK"
+		command = { type = provinceculture which = 608 value = russian } #Kalar
+		command = { type = conversion which = 608 } #Kalar
+		command = { }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------

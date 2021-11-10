@@ -1,0 +1,1599 @@
+#Savoy (SAV)
+
+#See AGCEEP_Alt_Germany.eue for KoG Alternative events
+#See AGCEEP_Alt_Italy.eue for KoI Alternative events
+
+#-----------------------------------------------------------------------------------------------
+
+#(1425-1441 or 1426-1441) The League against Milan
+#by Bordic
+event = {
+	id = 275023 #triggered by VEN_326054 A or VEN_326062 A
+	random = no
+	country = SAV
+	name = "EVENTNAME297034" #The League against Milan
+	desc = "EVENTHIST297034"
+	#-#Because of having established control over Lombardy and submitted Genoa, Filippo Maria Visconti clearly showed his intention to continue with the ambitious plan which his father Giangaleazzo once pursued: the unification of the whole Northern Italy under the Visconti's blazon. Romagna should have been Visconti's next step in his threatening hegemonic plan. But Invading Romagna, the duke of Milan would break the 1420 peace treaty stipulated with the Florentine Republic as to guarantee 10 years of non-belligerence. That treaty notably forbade Visconti from intervening in the lands beyond Panaro-Magra Rivers and so in Romagna and Tuscany, territories in which Florence directly exercised her influence. Florentine army alone was not enough powerful to face the Milanese well paid Mercenari. A League against Visconti urged immediately.
+
+	action_a = {
+		name = "ACTIONNAME326054A" #Visconti threatens the balance
+		command = { type = relation which = MLO value = -50 }
+		command = { type = relation which = VEN value = 25 }
+		command = { type = relation which = TOS value = 25 }
+		command = { type = casusbelli which = MLO value = 36 }
+	}
+	action_b = {
+		name = "ACTIONNAME326054B" #Grant neutrality and avoid expensive wars
+		command = { type = relation which = VEN value = -25 }
+		command = { type = relation which = TOS value = -25 }
+		command = { type = DIP which = -2 value = 24 }
+		command = { type = sleepevent which = 228050 } #MLO: A pact with Savoy
+	}
+}
+
+#(1427-1435) The bargain with Milan
+#by Bordic
+event = {
+	id = 275024 #triggered by MLO_228050 A
+	random = no
+	country = SAV
+	name = "EVENTNAME275024" #The bargain with Milan
+	desc = "EVENTHIST228050"
+	#-#During the fights between Milan and the League, Visconti managed to sign a separate peace treaty with Savoy. With that treaty the Savoyard neutrality was granted in exchange for the cession of Vercelli. A marriage was also celebrated between the duke of Milan, Filippo Maria Visconti and Marie of Savoy, duke Amédée VIII's daughter.
+
+	action_a = {
+		name = "ACTIONNAME275024A" #Grant neutrality in exchange for Vercelli
+		command = { type = relation which = MLO value = 25 }
+		command = { type = population which = 404 value = 2000 } #Piemonte
+		command = { type = provincetax which = 404 value = 1 }
+		command = { type = infra value = 75 }
+		command = { type = DIP which = 2 value = 12 }
+	}
+}
+
+#(1430) A General Statute of Laws
+event = {
+	id = 17410
+	random = no
+	country = SAV
+	name = "EVENTNAME17410" #A General Statute of Laws
+	desc = "EVENTHIST17410"
+	#-#In 1430 Amadeus VIII promulgated a general statute of laws for the entire duchy of Savoy that enforced a uniform code over the stenuous opposition of the towns and nobles.
+
+	date = { day = 1 month = january year = 1430 }
+	offset = 180
+	deathdate = { day = 1 month = january year = 1431 }
+
+	action_a = {
+		name = "ACTIONNAME17410A" #Establish the Code of Laws
+		command = { type = relation which = FRA value = -60 } #no French influence in imperial lands
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = domestic which = ARISTOCRACY value = -1 }
+		command = { type = domestic which = MERCANTILISM value = 1 }
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = gainbuilding which = -2 value = bailiff }
+		command = { type = provincetax which = -2 value = 1 }
+		command = { type = treasury value = -20 }
+		command = { type = stability value = -3 }
+		command = { type = infra value = 100 } #strengthens government
+	}
+	action_b = {
+		name = "ACTIONNAME17410B" #Rely on local Custom
+		command = { type = relation which = FRA value = -30 }
+		command = { type = domestic which = SERFDOM value = 1 }
+		command = { type = domestic which = MERCANTILISM value = -1 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = stability value = 1 }
+		command = { type = trade value = 50 } #helps cities
+	}
+}
+
+#(1439) The Last Anti-Pope
+event = {
+	id = 17411
+	random = no
+	country = SAV
+	name = "EVENTNAME17411" #The Last Anti-Pope
+	desc = "EVENTHIST17411"
+	#-#In 1438 Pope Eugenius IV broke with the Council of Basel over negotiations with the Orthodox Church. The Pope called a new Council in Florence, while the council of Basel elected Duke Amadeus VIII of Savoy Pope even though he had never been ordained. He was recognized by very few states and his reign represented the last councilar challenge to papal supremacy in the Catholic church.
+
+	date = { day = 4 month = november year = 1439 }
+
+	action_a = {
+		name = "ACTIONNAME17411A" #A pleasant surprise
+		command = { type = breakvassal which = FRA } #France recognized Eugenius IV (and to avoid early DA!)
+		command = { type = relation which = FRA value = -50 }
+		command = { type = relation which = ARG value = 25 } #favour to Alfons
+		command = { type = DIP which = 1 value = 120 }
+		command = { type = ADM which = -2 value = 120 }
+		command = { type = relation which = PAP value = -100 }
+		command = { type = casusbelli which = PAP value = 120 }
+		command = { type = treasury value = -50 }
+		command = { type = stability value = 2 }
+		command = { type = diplomats value = 3 }
+		command = { type = missionaries value = 2 }
+	}
+}
+
+#(1447-1454) The Savoyard claim to Milan
+#by Bordic
+event = {
+	id = 275016
+	trigger = {
+		exists = MLO
+		event = 228003 #MLO: The Ambrosian Republic
+	}
+	random = no
+	country = SAV
+	name = "EVENTNAME275016" #The Savoyard claim to Milan
+	desc = "EVENTHIST170056"
+	#-#In 1447 Duke Filippo Maria Visconti died without a male heir in his succession to the throne. As a result of this the city of Milan proclaimed the Republic giving the high military command to Francesco Sforza on the purpose to stop Venice from the eastern borders profiting from the Milanese crisis by expanding her dominions beyond Adda River. After 2 years and half of life, isolated and surrounded by the unfaithful Sforza, who in the meanwhile and with the support of Venice turned against the city of Milan aiming at the ducal throne, the Ambrosian Republic eventually ceased to exist. Brought to severe famine the citizenship of Milan was forced to surrender to the condottiero and accept him as their new Duke. As soon as Sforza proclaimed himself successor of Visconti to the throne of Milan and the Holy Roman Emperor didn't acknowledge him the ducal investiture, the war of succession inevitably began. All legitimated or self-proclaimed claimants of the Milanese throne, took arms against him. Charles of Orléans and Louis of Savoy because of their family ties with the House of Visconti, Alfons of Aragon because of an alleged secret agreement with the last Visconti Duke which would have entitled him to the duchy of Milan.
+
+	date = { day = 15 month = august year = 1447 }
+	offset = 35
+	deathdate = { day = 7 month = april year = 1454 }
+
+	action_a = {
+		name = "ACTIONNAME170056A" #Let us press our rightful claims to Milan
+		command = { type = casusbelli which = MLO value = 24 }
+		command = { type = relation which = MLO value = -50 }
+		command = { type = relation which = NAP value = 50 }
+		command = { type = relation which = VEN value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME170056B" #The throne of Milan is not our business
+		command = { type = DIP which = 2 value = 24 }
+		command = { type = relation which = MLO value = 50 }
+	}
+}
+
+#(1450-1520) Witch-hunting in Savoy I
+#by Ígneo
+event = {
+	id = 275033
+	trigger = {
+		owned = { province = 405 data = -1 } #Savoie
+		control = { province = 405 data = -1 } #Savoie
+	}
+	random = no
+	country = SAV
+	name = "EVENTNAME275033" #Witch-hunting in Savoy
+	desc = "EVENTHIST275033"
+	#-#The medieval Inquisition tried a large number of witches, but collective witch-hunting was exclusively a modern phenomena. Individual maleficium (Latin for witchcraft) was not uncommon in many rural areas, but it wasn't until scholastic demonology related witches and Sabbaths (night meetings with strong conspiracy elements, including cannibalism, orgies and a sacred oath of loyalty to Satan himself) that societies started to get obsessed with the matter. This conspiracy paranoia can track its roots as far as to the first massacres of Jews and Lepers in the High Middle Ages, when thousands were slaughtered by defeated Crusaders and angry countrymen. But it's in the early 15th century when demonological theories will become fully accepted by the upper classes. The Councils of Constance and Basel are considered to be the first public space in which these concepts, maleficium and Sabbath were publicly related. The work of Johannes Nider (1380-1438), The Formicarius (The Anthill), was a masterpiece of scholastic demonology and marked a new era in witch-hunting. The work of Heinrich Kramer (1430-1505), Malleus Maleficarum (Hammer of the Wicked) was the first work that reaches widespread attention, and works as a inquisitorial manual for witch-hunters. But it's not the Church that tries the most in Modern Ages. On the contrary, civil courts are responsible for 85-90 percent of executions. \n \nNorthern Savoyard valleys were highly affected by witch-hunting, as their proximity to Switzerland (and consequently to both Councils) made the region highly influenced by Inquisitorial practices.
+
+	date = { day = 1 month = January year = 1450 }
+	offset = 5000
+	deathdate = { day = 1 month = January year = 1520 }
+
+	action_a = {
+		name = "ACTIONNAME184031A" #Burn the heretics!
+		command = { type = population which = 405 value = -100 } #Savoie
+		command = { type = population which = -1 value = -75 }
+		command = { type = stability value = 1 }
+		command = { type = revoltrisk which = 4 value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME184031B" #Be lenient with the misguided sheep
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 4 value = 1 }
+	}
+}
+
+#(1453-1464) The Holy Shroud - 1st event by Bordic
+event = {
+	id = 275011
+	trigger = { atwar = no }
+	random = no
+	country = SAV
+	name = "EVENTNAME275011" #The Holy Shroud
+	desc = "EVENTHIST275011"
+	#-#It is believed to be the Jesus' burial shroud. The known provenance of this cloth dates to 1357, when the widow of the French knight Geoffroy de Charny had it displayed in a church at Lirey, France. During the fourteenth century, the Shroud was often publicly exposed, though not continuously, and also denounced as a fraud but indulgences for pilgrimages to see the Shroud were however prescribed by the Antipope Clement VII. In 1418, in order to provide protection against criminal bands the Lirey canons handed the Shroud over to Humbert of Villersexel, Marguerite of Charny's husband, who moved it to his castle at Montfort and later to Saint-Hippolyte-sur-Doubs, in his estates. After Humbert's death, his widow kept the Shroud in spite of claims of ownership by the canons of Lirey and travelled with it to various expositions, notably in Liège and Geneva. In 1453 in Geneva, she sold the image to Louis I of Savoy in exchange for a castle in Varambon. Louis of Savoy, the new owner, stored the Shroud in Chambéry in the newly-built Sainte Chapelle, which Pope Paul II shortly thereafter raised to the dignity of a collegiate church. In 1464, by an accord drawn up in Paris Louis I agreed to pay an annual fee to the Lirey canons in exchange for their dropping claims of ownership of the cloth. The accord specifically noted that the Shroud had been given to the church of Lirey by Geoffrey de Charny, lord of Savoisy and Lirey, and that it had then been transferred to Louis of Savoy by Marguerite de Charny. That agreement finally legitimated the House of Savoy to own the sacred 'Sindon'.
+
+	date = { day = 22 month = march year = 1453 }
+	offset = 30
+	deathdate = { day = 6 month = february year = 1464 }
+
+	action_a = {
+		name = "ACTIONNAME275011A" #the Shroud is authentic #That's a deal!
+		command = { type = treasury value = -50 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = relation which = PAP value = 100 }
+	}
+	action_b = {
+		name = "ACTIONNAME275011B" #the Shroud is a medieval forgery #Refuse the transaction!
+		command = { type = relation which = FRA value = 25 }
+		command = { type = vp value = -5 }
+		command = { type = sleepevent which = 275012 } #2nd #SAV: The Holy Shroud
+	}
+}
+
+#(1454-1466) The Treaty of Lodi
+#by Bordic
+event = {
+	id = 275017
+	trigger = {
+		exists = VEN
+		exists = MLO
+		exists = TOS
+		exists = PAP
+		OR = {
+			event = 239022 #NAP: The Peace of Lodi
+			event = 111018 #ARG: The Peace of Lodi
+		}
+		atwar = no
+	}
+	random = no
+	country = SAV
+	name = "EVENTNAME326038" #The Treaty of Lodi
+	desc = "EVENTHIST326038"
+	#-#During the war of succession in Milan, all the belligerent nations were brought to exhaustion of money and troops. Francesco Sforza, ruler of Milan and Venice, the chief state of the league confederates, who was more and more threatened by the advancing Ottomans in her eastern Mediterranean territories, convened a cease-fire while a bilateral treaty was hastily signed in Lodi on 7 April 1454. With that treaty Sforza was legitimated Duke of Milan. Without even being called for, Florence and the Pope had no choice then to endorse the treaty. The King of Naples, being a rightful claimant on the ducal throne reluctantly joined the alliance under the condition to keep Genoa out of it. Intended 'infra terminos italicos', that treaty showed the objective impossibility for all the Italian major powers (specifically Milan, Tuscany, Venice, Naples and Papal States) to prevail upon each other in the struggle for the hegemony in Italy and that the better solution was to come to terms with each other. That would have also avoided the practice of very expensive and pointless wars in the next future. Although the treaty actually played a minor part in Italian balance of powers and so won't be able to avoid future wars of aggression from inside as well from outside Italy, the post-Lodi era historically represented a period of relative peace in which the figurative arts definitively flourished in the whole Italian peninsula, as well as economy and trade and, last but not the least, the skills and tricks of the art of diplomacy.
+
+	date = { day = 7 month = April year = 1454 }
+	offset = 30
+	deathdate = { day = 9 month = March year = 1466 }
+
+	action_a = {
+		name = "ACTIONNAME111018A" #Yes, peace
+		command = { type = relation which = VEN value = 50 }
+		command = { type = relation which = MLO value = 30 }
+		command = { type = relation which = TOS value = 75 }
+		command = { type = relation which = PAP value = 75 }
+		command = { type = diplomats value = 3 }
+		command = { type = merchants value = 2 }
+	}
+}
+
+#(1472-1473) Civil War in Savoy
+#by Isaac Brock
+event = {
+	id = 17412
+	trigger = {
+		exists = BUR
+		exists = FRA
+	}
+	random = no
+	country = SAV
+	name = "EVENTNAME17412" #Civil War in Savoy
+	desc = "EVENTHIST17412"
+	#-#When Duke Amédée IX died in 1472 the successor to the throne, his son Philibert, was still a minor. Thus his wife Yolande de France, Charles VII's daughter, took the regency until Philibert's majority. Since Yolande dind't want to confirm the traditional alliance with the Swiss confederates, she decided to side with Charles le Téméraire, Duke of Burgundy. Her decision so displeased his brother Louis XI of France, Charles's archenemy, that, in order to overthrow her regency, he supported Amédée IX's brother, Philippe de Bresse. The war that followed between the Burgundians and the Swiss, the latter with the support of French and Milanese troops brought to the loss of Valais territories in favour of the Swiss confederation. The internal struggle between local nobles that broke out following the war was eventually ended by Philippe de Bresse who proclaimed himself protector of Duke Philibert 'the Hunter' until the Duke's death, which occurred in 1482.
+
+	date = { day = 1 month = june year = 1472 }
+	offset = 150
+	deathdate = { day = 1 month = june year = 1473 }
+
+	action_a = {
+		name = "OH_NO"
+		command = { type = breakvassal which = FRA }
+		command = { type = relation which = BUR value = 25 } #Yolande sides with Charles le Téméraire
+		command = { type = relation which = FRA value = -75 } #Louis XI supports Bresse against Yolande
+		command = { type = relation which = HEL value = -25 } #refused traditional alliance with the Swiss
+		command = { type = relation which = MLO value = -25 } #Galeazzo Sforza Philibert's father-in-law
+		command = { type = revolt which = -1 }
+		command = { type = revoltrisk which = 48 value = 5 }
+		command = { type = stability value = -1 }
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+	}
+}
+
+#(1494-1498) Civil War under Charles II
+#by Isaac Brock, modified by Bordic
+event = {
+	id = 17409 #triggered by FRA_12021 A
+	random = no
+	country = SAV
+	name = "EVENTNAME17409" #Civil chaos in Savoy
+	desc = "EVENTHIST17409"
+	#-#After the death of Duke Charles Ier who had made in his whole life all possible efforts to free Savoy of the strong French political interference, the duchy was thrown again into chaos since the successor to the throne of Chambéry, Duke Charles II, was still a minor (he became Duke when he was only 8 months old!) and a planned Charles VIII's military campaign in Italy was rumoured. The Duke's mother, Bianca of Montferrat, had temporarily assumed the regency of the duchy due to her son's under age, but the presence of different factions that sought and received some support from the French King, contributed to the political instability of Savoy as to establish de facto a sort of French protectorate. Being Savoy still an imperial fief, Maximilian I King of the Romans and future Holy Roman Emperor tried to get the Savoyard allegiance in order to drive the French out of Italy. The strategic position of Savoy would put the ducal independence at risk, leaving the country in anarchy until the end of the Italian wars in which Savoy, historically drifted into the French orbit, gained complete independence only in 1559 when the treaty of Cateau-Cambrésis was signed between France and Spain.
+
+	action_a = {
+		name = "ACTIONNAME17409A" #What can we do?
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 24 value = 6 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = domestic which = centralization value = -2 }
+	}
+}
+
+#(1533-1534) Mantuan Inheritance of Montferrat
+event = {
+	id = 17311 #triggered by MAN_220023
+	random = no
+	country = SAV
+	name = "EVENTNAME17311" #Mantuan Inheritance of Montferrat
+	desc = "EVENTHIST17311"
+	#-#The Marquis of Montferrat, a nation on the very borders of our homeland has died. Despite our legitimate claims, Mantua has inherited that nation?
+
+	action_a = {
+		name = "OK"
+		command = { type = casusbelli which = MAN value = 3100 }
+		command = { type = relation which = MAN value = -100 }
+	}
+}
+#(1533-1820) The recovery of Montferrat
+event = {
+	id = 17312
+	trigger = {
+		event = 220023 #MAN: Inheritance of Montferrat
+		NOT = { exists = MAN }
+		owned = { province = 390 data = SAV } #Mantua
+	}
+	random = no
+	country = SAV
+	name = "EVENTNAME17312" #The recovery of Montferrat
+	desc = "EVENTHIST17312"
+	#-#With the end of Mantua as an independent state we can seperate our administration of Montferrat from our administration of Mantua. Should we add Montferrat to Piemonte, or continue to control it through Mantua?
+
+	date = { day = 11 month = august year = 1533 }
+	offset = 360
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME17312A" #Add to Piemonte
+		command = { type = stability value = 2 }
+		command = { type = provincetax which = 404 value = 4 } #Piemonte
+		command = { type = provincemanpower which = 404 value = 2 } #Piemonte
+		command = { type = provincetax which = 390 value = -5 } #Mantua
+		command = { type = provincemanpower which = 390 value = -1 } #Mantua
+		command = { type = domestic which = centralization value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME17312B" #Administer through Mantua
+		command = { type = domestic which = centralization value = -2 }
+	}
+}
+
+#(1534-1540) Genevan Independence
+event = {
+	id = 17414
+	trigger = {
+		event = 17406 #PAP: Sack of Rome
+		event = 338496 #ProvinceSpec*405: Swiss expansion
+		owned = { province = 405 data = -1 } #Savoie
+	}
+	random = no
+	country = SAV
+	name = "EVENTNAME17414" #Genevan Independence
+	desc = "EVENTHIST17414"
+	#-#With the turmoil in Italy Savoy was powerless to prevent Geneva from declaring its independence and making it effective.
+
+	date = { day = 1 month = january year = 1534 }
+	offset = 600
+	deathdate = { day = 29 month = december year = 1540 }
+
+	action_a = {
+		name = "ALAS"
+		command = { type = population which = 405 value = -5000 } #Savoie
+		command = { type = provincemanpower which = 405 value = -1 } #Savoie
+		command = { type = provincetax which = 405 value = -1 } #Savoie
+		command = { type = stability value = -2 }
+	}
+}
+
+#(1559-1560) The senate of Savoy - Flavor
+event = {
+	id = 275019
+	trigger = {
+		owned = { province = 405 data = -1 } #Savoie
+		control = { province = 405 data = -1 }
+	}
+	random = no
+	country = SAV
+	name = "EVENTNAME275019" #The senate of Savoy
+	desc = "EVENTHIST275019"
+	#-#The Senate of Savoy, successor of the Assembly of Counts founded in 1329, becomes a true constitutional and legislative assembly with expertise on all ducal domains on french side of the Alps. The Senate of Savoy is sovereign: the first president (chosen by the Prince from amongst the senators) governed the duchy in the absence of the Prince's representative.
+
+	date = { day = 12 month = august year = 1559 }
+	offset = 20
+	deathdate = { day = 10 month = february year = 1560 }
+
+	action_a = {
+		name = "ACTIONNAME275019A" #Support the Senate
+		command = { type = infra value = 200 }
+		command = { type = treasury value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME275019B" #I prefer a nobleman
+		command = { type = infra value = -200 }
+		command = { type = CAV which = -1 value = 3000 }
+	}
+}
+
+#(1560-1575) Foreign troops abandon Savoy (SAV event) by Bordic
+event = {
+	id = 275013
+	trigger = {
+		NOT = {	war = { country = FRA country = SAV } }
+		OR = {
+			event = 285112 #SPA: The Treaty of Cateau-Cambrésis
+			event = 170021 #FRA: Independence of Savoy
+			event = 285098 #SPA: Independence of Savoy
+		}
+	}
+	random = no
+	country = SAV
+	name = "EVENTNAME275013" #Foreign troops abandon Savoy
+	desc = "EVENTHIST275013"
+	#-#Emmanuel-Philibert of the House of Savoy, also known as Tête de Fer, served in Charles's army during the war against François Ier of France, distinguishing himself by capturing Hesdin in July 1553. A month later, he became duke of Savoy on the death of his father, but this was a nearly empty honor, as the vast majority of his hereditary lands had been occupied and administered by the French since 1536. Instead, he continued to serve the Habsburgs in hopes of recovering his lands, and served Philip II as lieutenant general in Flanders. In this capacity he personally led the Spanish invasion of northern France and won a brilliant victory at Saint-Quentin on 10 August 1557. With the Peace of Cateau-Cambrésis between France and Spain, the duchy was restored to Emmanuel-Philibert, who then married Margaret of Valois, sister of Henry II of France.
+
+	date = { day = 20 month = october year = 1560 }
+	offset = 90
+	deathdate = { day = 20 month = october year = 1575 }
+
+	action_a = {
+		name = "AT_LAST"
+		command = { type = breakvassal which = FRA }
+		command = { type = breakvassal which = SPA }
+		command = { type = stability value = 3 }
+		command = { type = dynastic which = FRA }
+		command = { type = relation which = FRA value = -50 } #as to avoid short timed DA
+	}
+}
+
+#(1562-1580) Reforms of Emmanuel-Philibert
+event = {
+	id = 17417
+	trigger = { atwar = no }
+	random = no
+	country = SAV
+	name = "EVENTNAME17417" #Reforms of Emmanuel-Philibert
+	desc = "EVENTHIST17417"
+	#-#Emmanuel-Philibert succeeded to the ducal throne while all his territories were under French occupation. He served as a general in the Emperor's army with great success and his territories were returned to him at the peace closing the Italian wars. He consolidated his power and swept away many of the traditional governing structures of the state, he organized a national army based on conscripts and a new innovative tax system which permitted to take the census in the duchy. In 1562 he introduced Italian as the official language to be adopted in ducal administration and legislation and in the judicial system, so replacing Latin with a more comprehensible language to the population.
+
+	date = { day = 1 month = january year = 1562 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1580 }
+
+	action_a = {
+		name = "ACTIONNAME17417A" #Reform the government
+		command = { type = gainbuilding which = -1 value = bailiff }
+		command = { type = domestic which = centralization value = 3 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = domestic which = mercantilism value = 1 }
+		command = { type = land value = 600 }
+		command = { type = infra value = 250 }
+	}
+}
+
+#(1562-1580) Savoy focuses on Italy
+event = {
+	id = 17321
+	trigger = {
+		owned = { province = 404 data = -1 } #Piemonte
+		control = { province = 404 data = -1 } #Piemonte
+	}
+	random = no
+	country = SAV
+	name = "EVENTNAME17321" #A new capital
+	desc = "EVENTHIST17321"
+	#-#In 1562 Duke Emmanuel-Philibert decided to move capital from Chambéry to Torino because he wanted to expand his Duchy in Italy and also gain more independence from France. Torino was fortified and became a larger and richer city.
+
+	date = { day = 8 month = august year = 1562 }
+	offset = 180
+	deathdate = { day = 8 month = August year = 1580 }
+
+	action_a = {
+		name = "ACTIONNAME17321A" #Yes! Move to Torino
+		command = { type = capital which = 404 } #Piemonte
+		command = { type = population which = 404 value = 3000 } #Piemonte
+		command = { type = fortress which = 404 value = 1 } #Piemonte
+		command = { type = provincetax which = 404 value = 1 } #Piemonte
+		command = { type = provincetax which = 405 value = -1 } #Savoie
+		command = { type = relation which = FRA value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME17321B" #No. No need to move our court
+		command = { type = vp value = -5 }
+		command = { type = infra value = -50 }
+	}
+}
+
+#(1570-1650) Witch-hunting in Savoy II
+#by Ígneo
+event = {
+	id = 275034
+	trigger = {
+		owned = { province = 405 data = -1 } #Savoie
+		control = { province = 405 data = -1 } #Savoie
+	}
+	random = no
+	country = SAV
+	name = "EVENTNAME275033" #Witch-hunting in Savoy
+	desc = "EVENTHIST275033"
+	#-#The medieval Inquisition tried a large number of witches, but collective witch-hunting was exclusively a modern phenomena. Individual maleficium (Latin for witchcraft) was not uncommon in many rural areas, but it wasn't until scholastic demonology related witches and Sabbaths (night meetings with strong conspiracy elements, including cannibalism, orgies and a sacred oath of loyalty to Satan himself) that societies started to get obsessed with the matter. This conspiracy paranoia can track its roots as far as to the first massacres of Jews and Lepers in the High Middle Ages, when thousands were slaughtered by defeated Crusaders and angry countrymen. But it's in the early 15th century when demonological theories will become fully accepted by the upper classes. The Councils of Constance and Basel are considered to be the first public space in which these concepts, maleficium and Sabbath were publicly related. The work of Johannes Nider (1380-1438), The Formicarius (The Anthill), was a masterpiece of scholastic demonology and marked a new era in witch-hunting. The work of Heinrich Kramer (1430-1505), Malleus Maleficarum (Hammer of the Wicked) was the first work that reaches widespread attention, and works as a inquisitorial manual for witch-hunters. But it's not the Church that tries the most in Modern Ages. On the contrary, civil courts are responsible for 85-90 percent of executions. \n \nNorthern Savoyard valleys were highly affected by witch-hunting, as their proximity to Switzerland (and consequently to both Councils) made the region highly influenced by Inquisitorial practices.
+
+	date = { day = 1 month = January year = 1570 }
+	offset = 5000
+	deathdate = { day = 1 month = January year = 1650 }
+
+	action_a = {
+		name = "ACTIONNAME184031A" #Burn the heretics!
+		command = { type = population which = 405 value = -100 } #Savoie
+		command = { type = population which = -1 value = -75 }
+		command = { type = stability value = 1 }
+		command = { type = revoltrisk which = 4 value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME184031B" #Be lenient with the misguided sheep
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 4 value = 1 }
+	}
+}
+
+#(1571-1573) The Holy League - modified by YodaMaster
+event = {
+	id = 3647
+	trigger = {
+		exists = TUR
+		OR = {
+			event = 3549 #PAP: The Holy League
+			event = 236000 #MUS: The Holy League (no Papal States)
+		}
+	}
+	random = no
+	country = SAV
+	name = "EVENTNAME3549" #The Holy League
+	desc = "EVENTHIST3549"
+	#-#When in 1570 the Turks sent an ultimatum to Venice asking for the ceding of Cyprus and then invaded the island after the Republic of San Marco failed to respond, a great uproar was created in the Catholic world by the facts and rumors of Ottoman atrocities in the last Christian bastion of the eastern Mediterranean. After a first failure in the summer of 1570, Pope Pie V managed to convince major Catholic nations (except France) to join a Holy League against the heathens Turks, and it was proclaimed in May 1571. The League would lead to the great naval victory of Don Juan on the Turks at Lepanto, but would not outlast this first and final triumph. Selim II is rumored to have said, after the news he had lost 200 galleys at Lepanto: At Lepanto, the Christians have shaved me. At Cyprus, I cut their arm. My beard will grow again….
+
+	date = { day = 7 month = may year = 1571 }
+	offset = 30
+	deathdate = { day = 13 month = april year = 1573 }
+
+	action_a = {
+		name = "ACTIONNAME3161A" #Support the Holy League
+		command = { type = casusbelli which = TUR value = 72 }
+		command = { type = relation which = TUR value = -150 }
+		command = { type = relation which = PAP value = 50 }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = GEN value = 50 }
+		command = { type = relation which = ITA value = 50 }
+		command = { type = relation which = KNI value = 50 }
+		command = { type = relation which = NAP value = 50 }
+		command = { type = relation which = SIC value = 50 }
+		command = { type = relation which = SPA value = 50 }
+		command = { type = relation which = TOS value = 50 }
+		command = { type = relation which = VEN value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME3549B" #Let the matter fall
+		command = { type = relation which = TUR value = 50 }
+		command = { type = relation which = PAP value = -50 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = relation which = GEN value = -50 }
+		command = { type = relation which = ITA value = -50 }
+		command = { type = relation which = KNI value = -50 }
+		command = { type = relation which = NAP value = -50 }
+		command = { type = relation which = SIC value = -50 }
+		command = { type = relation which = SPA value = -50 }
+		command = { type = relation which = TOS value = -50 }
+		command = { type = relation which = VEN value = -50 }
+	}
+}
+
+#(1573) The Order of Santi Maurizio e Lazzaro
+event = {
+	id = 17427
+	random = no
+	country = SAV
+	name = "EVENTNAME17427" #The Order of Santi Maurizio e Lazzaro
+	desc = "EVENTHIST17427"
+	#-#In 1573 Savoy established the Order of the Knights of Santi Maurizio e Lazzaro, in emulation of the success of the Knights of St. John in Malta. The knights maintained a handful of galleys, in principle to protect the Savoyard coast from Turkish raiders. As the Savoyard coast was very small, in practice they rented their services to Spain and engaged in piracy against both Muslim merchants and the occasional Venetian merchants.
+
+	date = { day = 1 month = january year = 1573 }
+	action_a = {
+		name = "ACTIONNAME17427A" #Alright
+		command = { type = relation which = SPA value = 20 }
+		command = { type = relation which = TUR value = -20 }
+		command = { type = naval value = 50 }
+	}
+}
+
+#(1596-1621) Saint-François de Salle
+event = {
+	id = 275018
+	trigger = {
+		NOT = {
+			domestic = { type = innovative value = 4 }
+		}
+	}
+	random = no
+	country = SAV
+	name = "EVENTNAME275018" #Saint-François de Salle
+	desc = "EVENTHIST275018"
+	#-#Francis Bonaventure was born on August 21st, 1567, at the castle of Sales in Savoy. His father was lord of Nouvelles and (by his marriage) of Boisy, as the eldest son of a prominent nobleman, he was destined, by a father proud of his nobility, for a career in the world and a seat in the senate of Savoy. From 1586 to 1591 he attended the University of Padua to study law and left after taking the Doctor's degree. But his vocation was now clear, though only to himself. He surmounted with quiet, firm dignity the inevitable clash with his father. He was ordained priest on May 13th, 1593, becoming a senior canon of the chapter of Geneva. Francis's great work was to show how ordinary life can be sanctified - every type of ordinary life, but especially that of busy, well-to-do people. Constantly journeying and preaching, without pomp or fuss he gradually drew the entire diocese into the intimate habitude of his own holiness.
+
+	date = { day = 24 month = december year = 1596 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1621 }
+
+	action_a = {
+		name = "ACTIONNAME275018A" #He is a holy man
+		command = { type = vp value = 5 }
+		command = { type = missionaries value = 1 }
+		command = { type = relation which = PAP value = 50 }
+	}
+}
+
+#(1602) The Escalade
+event = {
+	id = 17415
+	trigger = { event = 17414 } #Genevan Independence
+	random = no
+	country = SAV
+	name = "EVENTNAME17415" #The Escalade
+	desc = "EVENTHIST17415"
+	#-#In 1602 Charles Emmanuel I attempted to recover the city of Genva for Savoy by guile. Secretly, overnight, in the depth of winter, he tried to infiltrate an army into the city. The Genvan citizens woke after the main gate had already been seized, but managed to fight off the attackers. The attack is re-enacted annually by the citizens of Geneva to this day. The attack on one of the centers of Calvinism aroused suspicions in the protestant world, but all evidence suggests that it was made for dynastic rather then ecumenical reasons.
+
+	date = { day = 11 month = december year = 1602 }
+
+	action_a = {
+		name = "ACTIONNAME17415A" #Curses, Foiled Again!
+		command = { type = relation which = HEL value = -50 }
+		command = { type = relation which = PFA value = -50 }
+		command = { type = relation which = SCO value = -50 }
+		command = { type = relation which = HOL value = -50 }
+		command = { type = relation which = HES value = -50 } #The usual Calvinist suspects
+		command = { type = DIP which = -3 value = 18 }
+		command = { type = infra value = -200 } #there is a university there
+		command = { type = revolt which = 405 } #Savoie
+	}
+}
+
+#(1612) The succession of Francesco of Mantua
+event = {
+	id = 17325 #triggered by MAN_17324 A
+	random = no
+	country = SAV
+	name = "EVENTNAME17324" #First Mantuan Succession Crisis
+	desc = "EVENTHIST17325"
+	#-#Duke Francesco has died leaving only an infant daughter, Maria. This girl is the Duke of Savoy's grandaughter. Mantuan law does not allow female succession, so Francesco's brother Fernando has succeeded to the Mantuan throne. However, female succession is allowed by the laws of Montferrat, so Maria is the legal heir to that territory. Her rights have been ignored by Mantua.
+
+	action_a = {
+		name = "ACTIONNAME17325A" #We must press our claims!
+		command = { type = relation which = MAN value = -200 }
+		command = { type = relation which = SPA value = -20 }
+		command = { type = relation which = FRA value = 40 }
+		command = { type = stability value = 2 }
+		command = { type = casusbelli which = MAN value = 5400 }
+		command = { type = diplomats value = 3 }
+	}
+}
+#(1612) The succession of Francesco of Mantua
+event = {
+	id = 17326 #triggered by MAN_17324 B
+	random = no
+	country = SAV
+	name = "EVENTNAME17326" #Montferrat Inheritance
+	desc = "EVENTHIST17326"
+	#-#Duke Francesco has died leaving only an infant daughter, Maria. This girl is the Duke of Savoy's grandaughter. Mantuan law does not allow female succession, so Francesco's brother Fernando has succeeded to the Mantuan throne. However, female succession is allowed by the laws of Montferrat, so Maria is the legal heir to that territory. Mantua has agreed that the son of the Savoyard heir will wed Maria and inherit Montferrat. We can incorporate this territory into our state!
+
+	action_a = {
+		name = "ACTIONNAME17326A" #Add it to Piemonte!
+		command = { type = relation which = MAN value = 200 }
+		command = { type = relation which = SPA value = 40 }
+		command = { type = relation which = FRA value = -80 }
+		command = { type = stability value = 1 }
+		command = { type = diplomats value = 3 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = provincetax which = 404 value = 4 } #Piemonte
+		command = { type = provincemanpower which = 404 value = 2 } #Piemonte
+		command = { type = fortress which = 404 value = 1 } #Piemonte
+	}
+}
+
+#(1627) Nevers succeeds to Mantua
+#by Aylo1
+event = {
+	id = 275027 #triggered by MAN_220031 A
+	random = no
+	country = SAV
+	name = "EVENTNAME275027" #Savoja's Montferrato Ambition
+	desc = "EVENTHIST275027"
+	#-#Following the demise of Duca Vincenzo II, Mantova was contested between rival Gonzaga branches Nevers and Guastalla. Carlo Emanuele I di Savoja claimed Montferrato through his daughter Dowager Duchess Margherita and granddaughter Maria. Austrian Imperatore Ferdinando II ratified the claim - ordering Milanese Viceroy Don Gonzalo Fernandez de Cordoba to help Carlo Emanuele partition Montferrato and besiege Nevers at Casale. But Duca Savoja's ambition combined with the rescue of Nevers by France forced him to sign the Peace of Susa (1630) and join France against his former allies. Carlo Emanuele died soon after and his son Vittorio Amadeo I continued the struggle - ultimately winning Trino and Albi in Montferrato by the Treaty of Cherasco (1631).
+
+	action_a = {
+		name = "ACTIONNAME275027A" #Defend our Rights
+		command = { type = casusbelli which = FRA value = 36 }
+		command = { type = casusbelli which = MAN value = 36 }
+		command = { type = casusbelli which = PAP value = 36 }
+		command = { type = relation which = MAN value = -150 }
+		command = { type = relation which = FRA value = -150 }
+		command = { type = relation which = VEN value = -100 }
+		command = { type = relation which = PAP value = -100 }
+		command = { type = relation which = SPA value = 100 }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = alliance which = HAB }
+		command = { type = alliance which = SPA }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1631) Treaty of Cherasco
+event = {
+	id = 275030 #triggered by FRA_170226
+	random = no
+	country = SAV
+	name = "EVENTNAME179120" #Treaty of Cherasco (1631)
+	desc = "EVENTHIST179120"
+	#-#After Habsburg troops sacked Mantua (1629) and Savoyard troops occupied Montferrato, French intervention neutralized Savoy at Susa (Apr 1630). Unfavourable terms for France in the Peace of Regensburg (Oct 1630) prolonged the war, but developments in Germany helped restore peace at Cherasco (6 April 1631). Gonzagas's testimony was revised whereby Mayenne's father, Herzog von Nevers received Mantua. Guastalla gained lands Luzzara and Reggiolo whilst Savoy got parts of Montferrat. France renounced all Italian conquests for territories in the Piedmont. The Habsburgs retained their Italian hegemony but at a reduced military presence.
+
+	action_a = {
+		name = "OK"
+		command = { type = provincetax which = 405 value = -1 } #Savoie #loss of Pinerolo
+		command = { type = provincetax which = 404 value = 1 } #Piemonte #Alba and Casale acquisitions
+		command = { type = population which = 404 value = 2000 } #Piemonte
+		command = { type = breakvassal which = FRA }
+		command = { type = relation which = FRA value = 25 }
+		command = { type = relation which = VEN value = -25 }
+		command = { type = relation which = PAP value = -25 }
+		command = { type = relation which = SPA value = 25 }
+		command = { type = relation which = HAB value = 25 }
+		command = { type = relation which = MAN value = -25 }
+		command = { type = stability value = 2 }
+	}
+}
+
+#(1632-1670) The Economic Crisis
+#by Bordic
+event = {
+	id = 275021
+	trigger = {
+		owned = { province = 404 data = -1 } #Piemonte
+		event = 338232 #ProvinceSpec*389: The plague in Milan
+	}
+	random = no
+	country = SAV
+	name = "EVENTNAME220013" #The Economic Crisis
+	desc = "EVENTHIST220013"
+	#-#The Spanish hegemony in the Italian peninsula was exercised by means of heavy bureaucracy and harsh taxation directly in the Habsburg dominions of Milan and Naples and indirectly in the rest of the peninsula by forcing the other minor Italian states to respect Spanish economic and diplomatic directives. The vassalage to Spain, which granted to some extent an enduring peace in Italy afer the Italian Wars, which the historians would call 'the pax hispanica', together with the disuse of the Mediterranean sea as international trade route towards the East Indies brought the Italian economic system to eventually collapse. As a result of this agriculture will become the prevailing economic activity in Italy until the end of XIXth century. That meant the coming back to power of the landowning aristocracy.
+
+	date = { day = 10 month = june year = 1632 }
+	offset = 120
+	deathdate = { day = 10 month = june year = 1670 }
+
+	action_a = {
+		name = "ACTIONNAME220013A" #We hope for better times!
+		command = { type = stability value = -2 }
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = domestic which = MERCANTILISM value = 1 }
+		command = { type = domestic which = SERFDOM value = 1 }
+		command = { type = domestic which = LAND value = 1 }
+		command = { type = population which = 404 value = -2000 } #the plague
+		command = { type = provincetax which = 404 value = -1 }
+		command = { type = provincemanpower which = 404 value = -1 }
+		command = { type = trade value = -500 }
+		command = { type = infra value = -500 }
+		command = { type = naval value = -500 }
+	}
+}
+
+#(1638-1642) civil wars under Charles Emmanuel II
+event = {
+	id = 17416
+	random = no
+	country = SAV
+	name = "EVENTNAME17416" #Civil Wars in Savoy
+	desc = "EVENTHIST17416"
+	#-#The regency of Charles Emmanuel II was in the hands of his mother. Despite her French origins she resisted French attempts to determine policy for Savoy. However, her brothers-in-law sought the help of Spain to oust her from the regency and she was forced to accept French aid in the civil wars that followed.
+
+	date = { day = 4 month = october year = 1638 }
+	offset = 60
+	deathdate = { day = 14 month = june year = 1642 }
+
+	action_a = {
+		name = "ACTIONNAME17416A" #What can we do?
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 60 value = 4 }
+		command = { type = ADM which = -2 value = 60 }
+		command = { type = DIP which = -2 value = 60 }
+		command = { type = MIL which = -2 value = 60 }
+		command = { type = relation which = FRA value = 50 }
+	}
+}
+
+#(1675-1715) Economic and Social Decadence
+#by Bordic
+event = {
+	id = 275022
+	trigger = {
+		NOT = {
+			countrysize = 10
+			domestic = { type = innovative value = 9 }
+			domestic = { type = serfdom value = 3 }
+			domestic = { type = aristocracy value = 1 }
+			event = 338232 #ProvinceSpec*389: The plague in Milan
+		}
+	}
+	random = no
+	country = SAV
+	name = "EVENTNAME251066" #Economic and Social Decadence
+	desc = "EVENTHIST251066"
+	#-#In the late XVIIth century, the disuse of the Mediterranean sea as the main international trade junction between Europa and the East Indies brought the Italian economic system to collapse. Italy became more removed from the mainstream of European development and each local administration along the peninsula lagged behind that of any other European contemporary. The practice of agriculture as prevailing economic activity meant the coming back to power of the most conservative landowning aristocracy. That economic backwardness associated with the effects of Counterreform deeply affected Italian social life too, now less and less inclined to accept innovation and to develop some entrepreneurial attitude.
+
+	date = { day = 20 month = january year = 1675 }
+	offset = 60
+	deathdate = { day = 0 month = january year = 1715 }
+
+	action_a = {
+		name = "ALAS"
+		command = { type = stability value = -1 }
+		command = { type = provincetax which = -2 value = -2 }
+		command = { type = provincemanpower which = -2 value = -1 }
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = domestic which = MERCANTILISM value = 1 }
+		command = { type = domestic which = SERFDOM value = 1 }
+		command = { type = domestic which = LAND value = 1 }
+		command = { type = trade value = -500 }
+		command = { type = infra value = -500 }
+		command = { type = naval value = -500 }
+	}
+}
+
+#(1680-1820) The Kingdom of Sardinia
+event = {
+	id = 17422
+	trigger = {
+		owned = { province = 397 data = -1 }
+		NOT = { event = 17423 } #SAV: Kingdom of Sicily
+	}
+	random = no
+	country = SAV
+	name = "EVENTNAME17422" #The Kingdom of Sardinia
+	desc = "EVENTHIST17422"
+	#-#With the acquisition of the island of Sardinia the Dukes of Savoy achieved a longstanding goal: the right to be called 'King'. This dramatically enhanced the diplomatic standing of their state.
+
+	date = { day = 1 month = january year = 1680 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = DIP which = 1 value = 60 }
+		command = { type = population which = -2 value = 1000 }
+		command = { type = provincemanpower which = -2 value = 1 }
+		command = { type = diplomats value = 6 }
+		command = { type = addcore which = 397 } #Sardinia
+		command = { type = add_countryculture which = italian }
+	}
+}
+
+#(1680-1820) The Kingdom of Sicily
+event = {
+	id = 17423
+	trigger = {
+		owned = { province = 396 data = -1 }
+		owned = { province = 397 data = -1 }
+		NOT = { event = 17422 } #SAV: Kingdom of Sardinia
+	}
+	random = no
+	country = SAV
+	name = "EVENTNAME17423" #The Kingdom of Sicily
+	desc = "EVENTHIST17423"
+	#-#With the acquisition of the island of Sicily the Dukes of Savoy achieved a longstanding goal: the right to be called 'King'. This dramatically enhanced the diplomatic standing of their state.
+
+	date = { day = 1 month = january year = 1680 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = DIP which = 1 value = 60 }
+		command = { type = population which = -2 value = 1000 }
+		command = { type = provincemanpower which = -2 value = 1 }
+		command = { type = diplomats value = 6 }
+		command = { type = add_countryculture which = italian }
+	}
+}
+
+#(1681-1688) The Expulsion of the Vaudois
+event = {
+	id = 17420
+	trigger = {
+		owned = { province = 404 data = -1 } #Piemonte
+		OR = { #expulsion of French Protestants chosen
+			event = 3509 #BRA
+			event = 3521 #HOL
+			event = 20309 #HEL
+		}
+		NOT = { war = { country = SAV country = FRA } }
+		NOT = { war = { country = SAV country = ENG } }
+		OR = {
+			religion = catholic
+			religion = counterreform
+		}
+	}
+	random = no
+	country = SAV
+	name = "EVENTNAME17420" #The Expulsion of the Vaudois
+	desc = "EVENTHIST17420"
+	#-#The Vaudois were an small religious group whose origins stretch back to the teachings of a Peter Waldo in the late 12th century. They were declared heretical in 1184. Most were killed or converted in the persecution that followed, but strong communities persisted in the valleys between the Dauphine and Piemonte. In 1532 their leaders met with representatives of Jean Calvin from Geneva and their faith was reconciled with Calvinism. In France they participated in the Huguenot 'state within a state', and contacts with their co-religionists in Piemonte were strong. When Louis XIV expelled the Protestants from France, many sought refuge with the Piedmontese Vaudois just across the French border. Louis demanded that Savoy expel the Vaudois, and Vittorio Amedeo II reluctantly complied. The Vaudois under Henri Arnaud went to Switzerland, but never forgot the valleys that they had inhabited for 500 years. Many of their children were distributed among Catholic households and institutions to be brought up as Catholics.
+
+	date = { day = 1 month = february year = 1681 }
+	offset = 30
+	deathdate = { day = 1 month = february year = 1688 }
+
+	action_a = {
+		name = "ACTIONNAME17420A" #Expel the Vaudois
+		command = { type = relation which = FRA value = 30 }
+		command = { type = relation which = HOL value = -25 }
+		command = { type = relation which = ENG value = -10 }
+		command = { type = relation which = HEL value = -10 }
+		command = { type = relation which = PAP value = 20 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = stability value = 1 }
+		command = { type = revoltrisk which = 6 value = 3 }
+		command = { type = population which = 404 value = -1000 } #Piemonte
+		command = { type = provincemanpower which = 404 value = -1 } #Piemonte
+		command = { type = trigger which = 17428 } #FRA: Savoy allies with us
+		command = { type = sleepevent which = 17429 } #FRA: Savoy defies us
+	}
+	action_b = {
+		name = "ACTIONNAME17420B" #Defy the French
+		command = { type = relation which = FRA value = -25 }
+		command = { type = relation which = HOL value = 25 }
+		command = { type = relation which = ENG value = 10 }
+	}
+}
+
+#(1688-1690) The Glorieuse Rentree
+event = {
+	id = 17421
+	trigger = {
+		owned = { province = 404 data = -1 } #own Piemonte
+		event = 17428 #Savoy allies with France
+		event = 3033 #Personal Union between Netherlands and England
+		NOT = { event = 17429 } #Vaudois not expelled
+		NOT = { war = { country = SAV country = ENG } }
+		OR = {
+			religion = catholic
+			religion = counterreform
+		}
+	}
+	random = no
+	country = SAV
+	name = "EVENTNAME17421" #La Glorieuse Rentree
+	desc = "EVENTHIST17421"
+	#-#In the summer of 1689, taking advantage of the crisis in Britain and with the support of Dutch and English protestants Henri Arnaud led a group of Vaudois exiles from Switzerland into Savoy. They fought their way back to their valleys. Vittorio Amedeo II called for support from the French and mobilized his forces to expel the Vaudois, while the protestant powers prepared an expedition to support them, and raise the Huguenots in France. Faced with this threat to his state, and the French demand that he hand over several important fortresses, Vittorio Amedeo II abandoned his alliance with France and went to war as an ally of England and Holland. In return for their support Savoy agreed to give full toleration to the Vaudois, and and to allow them to accept protestant refugees. The Vaudois returned from Switzerland, and made up an important part of Savoy's armies in the wars that followed.
+
+	date = { day = 1 month = january year = 1688 }
+	offset = 5
+	deathdate = { day = 1 month = january year = 1690 }
+
+	action_a = {
+		name = "ACTIONNAME17421A" #They can return
+		command = { type = relation which = PAP value = -20 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = relation which = HOL value = 100 }
+		command = { type = relation which = HEL value = 100 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = stability value = -1 }
+		command = { type = population which = 404 value = 1000 } #Piemonte
+		command = { type = provincemanpower which = 404 value = 2 } #Piemonte
+		command = { type = treasury value = 50 }
+		command = { type = manpower value = 4 }
+		command = { type = INF which = 404 value = 6000 } #Piemonte
+		command = { type = trigger which = 17433 } #ENG: Savoy joins our alliance
+		command = { type = trigger which = 17430 } #FRA: Savoy betrays our alliance
+	}
+	action_b = {
+		name = "ACTIONNAME17421B" #We will fight them
+		command = { type = relation which = FRA value = 25 }
+		command = { type = relation which = HOL value = -100 }
+		command = { type = relation which = ENG value = -100 }
+		command = { type = casusbelli which = ENG value = 6 }
+		command = { type = revolt which = 404 } #Piemonte
+		command = { type = revolt which = 404 } #Piemonte
+		command = { type = trigger which = 17431 } #France Vassalizes Savoy #FRA: Savoy seeks our protection
+	}
+}
+
+#(1694) The Holy Shroud 2nd event by Bordic
+event = {
+	id = 275012
+	trigger = {
+		atwar = no
+		event = 275011 #if SAV doesn't exist in 1453
+		owned = { province = 404 data = -1 } #Piemonte
+	}
+	random = no
+	country = SAV
+	name = "EVENTNAME275011" #The Holy Shroud
+	desc = "EVENTHIST275012"
+	#-#Louis I of Savoy acquired the cloth, believed to be the Jesus' burial shroud, from Geoffroy de Charny's grand-daughter Marguerite in 1453 in Geneva in exchange for a castle in Varambon, France. He then stored the Shroud in Chambery in the newly-built Sainte Chapelle which the Pope Paul II shortly thereafter raised to the dignity of a collegiate church. Beginning in 1471, the Shroud was moved between many cities of Savoy and Piedmont and also housed there briefly. In 1532 the Shroud suffered damage from a fire in the chapel where it was stored in Chambéry. A drop of molten silver from the reliquary produced a symmetrically-placed mark through the layers of the folded cloth. Chambéry's poor Clare Nuns attempted to repair this damage with patches. In 1578, after having been continuously transferred from one place to another for protection against war devastations, the Shroud arrived at last to its final destination, the Cathedral of Turin. Since then the Shroud was frequently carried out in religious processions and also brought in public exhibitions as well as in private showings only for the most notable people. Turin became an important centre of Christian pilgrimage.
+
+	date = { day = 1 month = june year = 1694 }
+	offset = 300
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME275012A" #Turin City of modern Christianity #Pilgrims are welcome!
+		command = { type = treasury value = 250 }
+		command = { type = infra value = 250 }
+		command = { type = relation which = PAP value = 100 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#"War of Spanish succession" Sequence
+
+#(1703) Savoy joins Grand alliance (Spanish war of succession Savoyard version)
+#by Fodoron
+event = {
+	id = 275020
+	trigger = {
+		OR = {
+			AND = {
+				event = 186050 #HOL: Grand alliance
+				OR = {
+					event = 164015 #ENG: Grand alliance (the Orange King)
+					event = 164099 #ENG: Grand alliance (the Stuart King)
+				}
+			}
+			AND = {
+				NOT = {
+					exists = HOL
+					event = 186050 #HOL: Grand alliance
+				}
+				OR = {
+					event = 164015 #ENG: Grand alliance (the Orange King)
+					event = 164099 #ENG: Grand alliance (the Stuart King)
+				}
+			}
+		}
+	}
+	random = no
+	country = SAV
+	name = "EVENTNAME275020" #Savoy joins Grand Alliance
+	desc = "EVENTHIST275020"
+	#-#When Carlos II of Spain died childless, he bequeathed the crown of Spain in favour of Philip of Anjou, grandson of Louis XIV of France. Emperor Leopold I of Austria contested this will, but found little support. However, two years later, Louis expansionism had convinced England and the Netherlands to enter an alliance against France and Spain. Savoy had initial agreements with France, but in 1703 the Grand Duke of Savoy decided to join the Grand Alliance, and have a go at the Spanish possessions in Italy in hopes of securing a slice of Milan.
+
+	date = { day = 1 month = february year = 1703 }
+
+	action_a = {
+		name = "ACTIONNAME275020A" #Support Habsburg succession to the Spanish throne
+		command = { type = addcore which = 397 } #Sardinia
+		command = { type = casusbelli which = FRA value = 120 }
+		command = { type = casusbelli which = SPA value = 120 }
+		command = { type = relation which = SPA value = -75 }
+		command = { type = relation which = FRA value = -75 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = HOL value = 75 }
+		command = { type = relation which = ENG value = 75 }
+	}
+	action_b = {
+		name = "ACTIONNAME275020B" #We don't care who inherits Spain
+		command = { type = relation which = SPA value = 25 }
+		command = { type = relation which = FRA value = 25 }
+		command = { type = relation which = HAB value = -75 }
+		command = { type = relation which = HOL value = -25 }
+		command = { type = relation which = ENG value = -25 }
+	}
+}
+#End of "War of Spanish succession" Sequence
+#-----------------------------------------------------------------------------------------------
+
+#(1717) The Absolutist reforms of Vittorio Amedeo II
+event = {
+	id = 17418
+	random = no
+	country = SAV
+	name = "EVENTNAME17418" #The Absolutist Reforms of Vittorio Amedeo II
+	desc = "EVENTHIST17418"
+	#-#After the War of Spanish Succession Vittorio Amedeo II overhauled the administration of the Savoyard state along absolutist lines. He centralized power in Turin, reduced the independence of the judiciary, established a diplomatic network of embassies in major capitals, created a navy and a militia and placed the states finances on a more solid basis. These reforms laid the foundation from which the further expansion of Savoy in the eighteenth century.
+
+	date = { day = 1 month = january year = 1717 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1718 }
+
+	action_a = {
+		name = "ACTIONNAME17418A" #Enact absolutist reforms
+		command = { type = domestic which = Aristocracy value = -2 }
+		command = { type = domestic which = Centralization value = 2 }
+		command = { type = domestic which = Innovative value = 1 }
+		command = { type = domestic which = Quality value = -1 }
+		command = { type = stability value = -1 }
+		command = { type = naval value = 300 }
+		command = { type = provincemanpower which = -2 value = 1 }
+		command = { type = diplomats value = 3 }
+
+	}
+	action_b = {
+		name = "ACTIONNAME17418B" #Maintain the present system
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = sleepevent which = 17419 } #SAV: The Reforms of Carlo Emanuele III
+	}
+}
+
+#(1731) The Absolutist reforms of Carlo Emanuele III
+event = {
+	id = 17419
+	random = no
+	country = SAV
+	name = "EVENTNAME17419" #The Reforms of Carlo Emanuele III
+	desc = "EVENTHIST17419"
+	#-#Upon his ascension Carlo Emanuele III oversaw the finalization of a land register enumerating all the property in the state. This survey was the first of its kind in Europe. It ended manorial and clerical privileges, and allowed Charles Emmanuel to build a very effective bureaucracy to administer his father's reforms. Savoy was the model of the 'well-administered state', and tax revenues soared. During his reign Savoy had the most effective army it would have until the mid-19th century, winning notable successes in the Polish War of Succession and the Austrian War of Succession.
+
+	date = { day = 1 month = january year = 1731 }
+	offset = 90
+	deathdate = { day = 1 month = january year = 1732 }
+
+	action_a = {
+		name = "ACTIONNAME17419A" #More reforms
+		command = { type = domestic which = Aristocracy value = -1 } #privileges further reduced
+		command = { type = domestic which = Centralization value = 1 } #effective taxation
+		command = { type = domestic which = Innovative value = 1 }
+		command = { type = domestic which = Quality value = -1 } #better manpower
+		command = { type = domestic which = Offensive value = -2 } #better military doctrine
+		command = { type = domestic which = Land value = 2 } #better army
+		command = { type = provincetax which = -2 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = ADM which = 1 value = 120 }
+		command = { type = infra value = 500 }
+		command = { type = land value = 500 }
+	}
+	action_b = {
+		name = "ACTIONNAME17418B" #Maintain the present system
+		command = { type = fortress which = -1 value = 1 }
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = stability value = 2 }
+	}
+}
+
+#(1733) The Polish Succession of 1733
+event = {
+	id = 275025
+	trigger = {
+		event = 3136 #FRA: The Polish Succession of 1733
+	}
+	random = no
+	country = SAV
+	name = "EVENTNAME3495" #The Polish Succession of 1733
+	desc = "EVENTHIST275025"
+	#-#In 1733, the death of August II prompted a new election for the Polish monarch. Due to the permanent practice of Liberum Veto and the ensuing constant bribery, the Polish Sejm was unable to agree between the French Candidate, Stanislaw Leszczynski and his opponent, August III of Saxony, supported by Austria and Russia. The Sejm finally agreed on Stanislas, but this was rejected by Austria and Russia starting the war of Polish Succession. The war ended with August III on the Polish throne. Following her traditional policy of expansionism in the Po Valley, Savoy tried to benefit from the disputes between France and Austria.
+
+	date = { day = 13 month = september year = 1733 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1733 }
+
+	action_a = {
+		name = "ACTIONNAME275025A" #Support the candidate of the Bourbons
+		command = { type = casusbelli which = HAB value = 24 }
+		command = { type = relation which = POL value = 75 }
+		command = { type = relation which = RUS value = -100 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = SAC value = -100 }
+		command = { type = relation which = PRU value = 75 }
+		command = { type = relation which = SWE value = 75 }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = SPA value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME275025B" #Support the candidate of the Habsburgs
+		command = { type = casusbelli which = FRA value = 24 }
+		command = { type = casusbelli which = SPA value = 24 }
+		command = { type = relation which = POL value = 50 }
+		command = { type = relation which = RUS value = 75 }
+		command = { type = relation which = SAC value = 75 }
+		command = { type = relation which = HAB value = 75 }
+		command = { type = relation which = FRA value = -150 }
+		command = { type = relation which = PRU value = -150 }
+		command = { type = relation which = SWE value = -150 }
+		command = { type = relation which = SPA value = -150 }
+	}
+	action_c = {
+		name = "ACTIONNAME275025C" #Stay out of it
+		command = { type = relation which = POL value = 25 }
+		command = { type = relation which = RUS value = 25 }
+		command = { type = relation which = SAC value = 25 }
+		command = { type = relation which = HAB value = 25 }
+		command = { type = relation which = FRA value = 25 }
+		command = { type = relation which = PRU value = 25 }
+		command = { type = relation which = SWE value = 25 }
+		command = { type = relation which = SPA value = 25 }
+	}
+}
+
+#(1742-1746) The Effects of the Pragmatic Sanction
+event = {
+	id = 275026
+	trigger = {
+		exists = HAB
+		event = 3138 #FRA: The Effects of the Pragmatic Sanction
+	}
+	random = no
+	country = SAV
+	name = "EVENTNAME3205" #The Effects of the Pragmatic Sanction
+	desc = "EVENTHIST275026"
+	#-#The Pragmatic Sanction, solemnly rendered by Emperor Charles VI on 19th April 1713, established the indivisibility of the Habsburg patrimony, and ruled the order of succession by order of first born child, even to a woman. This made Maria-Theresa, born in 1717, the heir of the Empire. The Pragmatic Sanction was recognized by Spain in 1725 (confirmed in 1731), Russia in 1726, Prussia in 1728, the United Provinces in 1731, Hanover in 1732, the Holy Roman Empire (except Bavaria) in 1732 and France in 1738 only. Bavarian refusal would lead to the War of the Austrian Succession. Following her traditional policy of expansionism in the Po Valley, Savoy tried to benefit from the disputes between France and Austria.
+
+	date = { day = 1 month = september year = 1742 }
+	offset = 10
+	deathdate = { day = 1 month = april year = 1746 }
+
+	action_a = {
+		name = "ACTIONNAME3616C" #Pro-Habsburg
+		command = { type = casusbelli which = FRA value = 36 }
+		command = { type = casusbelli which = SPA value = 36 }
+		command = { type = relation which = BAY value = -150 }
+		command = { type = relation which = SAC value = -150 }
+		command = { type = relation which = PRU value = -150 }
+		command = { type = relation which = FRA value = -150 }
+		command = { type = relation which = SPA value = -150 }
+		command = { type = relation which = HOL value = 50 }
+		command = { type = relation which = ENG value = 50 }
+		command = { type = relation which = HES value = 50 }
+		command = { type = relation which = HAN value = 50 }
+		command = { type = relation which = HAB value = 75 }
+		command = { type = stability value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3616B" #Neutral
+		command = { type = relation which = BAY value = 20 }
+		command = { type = relation which = SAC value = 20 }
+		command = { type = relation which = PRU value = 20 }
+		command = { type = relation which = FRA value = 20 }
+		command = { type = relation which = SPA value = 20 }
+		command = { type = relation which = ENG value = 20 }
+		command = { type = relation which = HOL value = 20 }
+		command = { type = relation which = RUS value = 20 }
+		command = { type = relation which = HES value = 20 }
+		command = { type = relation which = HAN value = 20 }
+		command = { type = relation which = HAB value = 20 }
+		command = { type = relation which = SWE value = 20 }
+		command = { type = stability value = 1 }
+		command = { type = sleepevent which = 275031 } #SAV: Sardinian intervention in Corsica
+	}
+	action_c = {
+		name = "ACTIONNAME3616A" #Anti-Habsburg
+		command = { type = casusbelli which = HAB value = 12 }
+		command = { type = casusbelli which = ENG value = 12 }
+		command = { type = relation which = BAY value = 75 }
+		command = { type = relation which = SAC value = 75 }
+		command = { type = relation which = PRU value = 75 }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = SPA value = 50 }
+		command = { type = relation which = HOL value = -100 }
+		command = { type = relation which = ENG value = -100 }
+		command = { type = relation which = HES value = -100 }
+		command = { type = relation which = HAN value = -100 }
+		command = { type = relation which = HAB value = -150 }
+		command = { type = stability value = -1 }
+		command = { type = sleepevent which = 275031 } #SAV: Sardinian intervention in Corsica
+	}
+}
+
+#(1745-1748) Attempt on Corsica
+event = {
+	id = 275031
+	trigger = {
+		event = 275026 #SAV: The Effects of the Pragmatic Sanction
+		owned = { province = 397 data = -1 } #Sardinia
+		OR = {
+			OR = {
+				event = 174076 #GEN: Ghjacintu Paoli
+				event = 174077 #GEN: Theodor von Neuhoff, King of Corsica
+			}
+			AND = {
+				event = 174070 #The revolt spreads like a wildfire
+				NOT = {
+					event = 174074 #GEN: The Concessioni Graziose
+					event = 174075 #GEN: Granting concessions in Corsica
+				}
+			}
+		}
+		OR = {
+			war = { country = COR country = GEN }
+			owned = { province = 398 data = GEN } #Corsica
+		}
+		NOT = {
+			alliance = { country = SAV country = GEN }
+			vassal = { country = SAV country = GEN }
+			vassal = { country = GEN country = SAV }
+			war = { country = COR country = SAV }
+		}
+	}
+	random = no
+	country = SAV
+	name = "EVENTNAME275031" #Sardinian intervention in Corsica
+	desc = "EVENTHIST275031"
+	#-#On 2th october 1745, King Carlo-Emmanuel III of Sardinia made a proclamation promising assistance and protection to the Corsican people against Genoese oppression. One month later, Dumenicu Rivarola, a Corsican officer serving in the Sardinian army landed with a few hundred men in early november and Bastia was taken on the 22th with the joined forces of the Corsican local leaders: Ghjuvan Petru Gaffori and Aleriu Francescu Matra. Dissenssions soon arose between the three men and despite the reinforcements landing in the Spring of 1748, the conquest of the island could not be achieved. Once more the Corsicans were the victims of international treaties signed above their heads at Aix-la-Chapelle, and the Sardinian forces had to leave the island before the end of the year.
+
+	date = { day = 1 month = october year = 1745 }
+	offset = 10
+	deathdate = { day = 10 month = april year = 1748 }
+
+	action_a = {
+		name = "ACTIONNAME275031A" #Send Dumenicu Rivarola
+		command = { type = casusbelli which = GEN value = 36 }
+		command = { type = desertion which = -1 value = 3000 }
+		command = { type = treasury value = -50 }
+		command = { type = trigger which = 174084 } #GEN: Sardinian intervention in Corsica
+		command = { type = trigger which = 150013 } #COR: Sardinian intervention
+	}
+	action_b = {
+		name = "ACTIONNAME275031B" #We cannot afford that
+		command = { type = relation which = GEN value = 25 }
+		command = { type = sleepevent which = 170241 } #FRA: French intervention in Corsica
+		command = { type = sleepevent which = 275032 } #SAV: Taking hold of Corsica
+	}
+}
+
+#(1745-1748) Sardinia takes control of Corsica - Ahistorical
+event = {
+	id = 275032
+	trigger = {
+		event = 275031 #SAV: Sardinian intervention in Corsica
+		NOT = { war = { country = GEN country = SAV } }
+		OR = {
+			AND = {
+				exists = COR
+				NOT = {
+					war = { country = COR country = GEN }
+					war = { country = COR country = SAV }
+				}
+			}
+			AND = {
+				owned = { province = 398 data = -1 } #Corsica
+				control = { province = 398 data = -1 }
+			}
+		}
+	}
+	random = no
+	country = SAV
+	name = "EVENTNAME275032" #Taking hold of Corsica
+	desc = "EVENTHIST275032"
+	#-#Our troops in the island have managed to expel the Genoese and Corsica is all ours. Shall we hold our promise to the rebel leaders and let them organize their own institutions under our protection, or should we take direct control?
+
+	date = { day = 21 month = november year = 1745 }
+	offset = 10
+	deathdate = { day = 16 month = november year = 1748 }
+
+	action_a = {
+		name = "ACTIONNAME275032A" #Grant them some autonomy
+		command = { type = independence which = COR }
+		command = { type = vassal which = COR }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = relation which = GEN value = -100 }
+		command = { type = relation which = FRA value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME275032B" #Seize the opportunity
+		command = { type = inherit which = COR }
+		command = { type = treasury value = -200 }
+		command = { type = domestic which = land value = -1 }
+		command = { type = addcore which = 398 } #Corsica
+		command = { type = provincetax which = 398 value = 1 }
+		command = { type = gainbuilding which = 398 value = bailiff }
+		command = { type = relation which = GEN value = -200 }
+		command = { type = relation which = FRA value = -100 }
+		command = { type = badboy value = 5 }
+	}
+}
+
+#(1753-1755) Mandrin
+event = {
+	id = 275029 #triggered by FRA_170229 A
+	random = no
+	country = SAV
+	name = "EVENTNAME170229" #Mandrin
+	desc = "EVENTHIST170229"
+	#-#Mandrin was a French bandit who fought the tax inspector by smuggling with Savoy and Geneva. After one year of activity, he was pursued by royal troops which arrested him in Savoy's territory causing a diplomatic unrest.
+
+	action_a = {
+		name = "ACTIONNAME275029A" #We want him
+		command = { type = relation which = FRA value = -20 }
+	}
+	action_b = {
+		name = "ACTIONNAME275029B" #If we were them we would make similar
+		command = { type = relation which = FRA value = 40 }
+	}
+}
+
+#(1786-1820) Beginnings of alpinism - Flavor
+#by De-Villars
+event = {
+	id = 275028
+	trigger = {
+		owned = {province = 405 data = -1 }
+	}
+	random = no
+	country = SAV
+	name = "EVENTNAME275028" #Beginnings of alpinism
+	desc = "EVENTHIST275028"
+	#-#In 1786, two Savoyards, Jacques Balmat and Michel Paccard, were the first to reach Mont Blanc's top.
+
+	date = { day = 8 month = august year = 1786 }
+	offset = 100
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME275028A" #Mont Blanc is overcome!
+		command = { type = infra value = 10 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Move Court Offshore events by Isaac Brock
+#Stolen from idea by King of Brazil, Annibale
+
+#(1790-1820) move court to Sardinia
+event = {
+	id = 17424
+	trigger = {
+		owned = { province = 397 data = -1 }
+		control = { province = 397 data = -1 } #own and control Sardinia
+		NOT = {
+			control = { province = 405 data = -1 } #Savoie
+			control = { province = 404 data = -1 } #Piemonte
+		}
+		#event = 17422 #Kingdom of Sardinia
+		NOT = { event = 17423 } #Kingdom of Sicily
+	}
+	random = no
+	country = SAV
+	name = "EVENTNAME17424" #Move Court to Sardinia
+	desc = "EVENTHIST17424"
+	#-#Our capital has fallen to our enemies. Should we move the government to Sardinia?
+
+	date = { day = 1 month = january year = 1790 }
+	offset = 100
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME17424A" #Flee to Sardinia!
+		command = { type = capital which = 397 } #Sardinia
+		command = { type = addcore which = 397 } #Sardinia
+		command = { type = fortress which = 397 value = 1 } #Sardinia
+		command = { type = population which = 397 value = 2000 } #Sardinia
+		command = { type = stability value = -2 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = domestic which = MERCANTILISM value = -2 }
+	}
+	action_b = {
+		name = "ACTIONNAME17424B" #Stay on the mainland
+		command = { type = stability value = 1 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = sleepevent which = 17426 } #SAV: Return to Italy
+	}
+}
+#(1790-1820) move court to Sicily
+event = {
+	id = 17425
+	trigger = {
+		owned = { province = 396 data = -1 } #Palermo
+		control = { province = 396 data = -1 }
+		NOT = {
+			control = { province = 405 data = -1 } #Savoie
+			control = { province = 404 data = -1 } #Piemonte
+		}
+		event = 17423 #Kingdom of Sicily
+		NOT = { event = 17422 } #Kingdom of Sardinia
+	}
+	random = no
+	country = SAV
+	name = "EVENTNAME17425" #Move Court to Sicily
+	desc = "EVENTHIST17425"
+	#-#Our capital has fallen to our enemies. Should we move the government to Sicily?
+
+	date = { day = 1 month = january year = 1790 }
+	offset = 100
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME17425A" #Flee to Sicily!
+		command = { type = capital which = 396 } #Sicily
+		command = { type = addcore which = 396 } #Sicily
+		command = { type = fortress which = 396 value = 1 } #Sicily
+		command = { type = population which = 396 value = 2000 } #Sicily
+		command = { type = stability value = -2 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = domestic which = MERCANTILISM value = -2 }
+	}
+	action_b = {
+		name = "ACTIONNAME17424B" #Stay on the mainland
+		command = { type = stability value = 1 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = sleepevent which = 17426 } #SAV: Return to Italy
+	}
+}
+#(1790-1820) Return to Torino
+event = {
+	id = 17426
+	trigger = {
+		OR = {
+			event = 17424 #move court to Sardinia
+			event = 17425 #move court to Sicily
+		}
+		owned = { province = 404 data = -1 }
+		control = { province = 404 data = -1 }
+		atwar = no
+	}
+	random = no
+	country = SAV
+	name = "EVENTNAME17426" #Return to Italy
+	desc = "EVENTHIST17426"
+	#-#The mainland has been freed from foreign domination and belongs to us once again. Shall we move the government to Torino?
+
+	date = { day = 2 month = january year = 1790 }
+	offset = 360
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME17426A" #Return to Torino
+		command = { type = capital which = 404 } #Piemonte
+		command = { type = stability value = 2 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME17426B" #Stay where it is permanently
+		command = { type = stability value = -2 }
+		command = { type = domestic which = CENTRALIZATION value = -2 }
+		command = { type = revolt which = 404 } #Piemonte
+	}
+}
+#End of Move Court Offshore events by Isaac Brock
+#-----------------------------------------------------------------------------------------------
+
+#(1792) The French Revolutionary Wars
+event = {
+	id = 275014 #triggered by FRA_12114 A
+	random = no
+	country = SAV
+	name = "EVENTNAME12114" #The French Revolutionary Wars
+	desc = "EVENTHIST12114"
+	#-#With the creation of a Legislative Assembly to limit the monarchic power, several reasons pushed France towards war in 1792. Internally, the republican party of the Girondins were calling for a war to rid Europe of monarchy and despotism but also to rid France of any internal reactions. Externally, the nobility, the socalled emigrés, fleeing to Austria and Prussia requested that those powers intervene to restore the French monarchy. Louis XVI, King of the French, saw in a war failure the possibility to restore absolutism. But the dissolution of the Ancien Régime in France alarmed all the European royal courts fearing that the French Jacobinism would have spread in the whole continent and provoked deep destabilization inside their own absolutist government systems.
+
+	action_a = {
+		name = "ACTIONNAME12114A" #Rattle Our Sabres
+		command = { type = casusbelli which = FRA value = 80 }
+		command = { type = relation which = FRA value = -200 }
+		command = { type = relation which = SWE value = 150 }
+		command = { type = relation which = ENG value = 150 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = SPA value = 150 }
+		command = { type = relation which = PRU value = 150 }
+		command = { type = relation which = RUS value = 150 }
+	}
+	action_b = {
+		name = "ACTIONNAME12114B" #Temporize
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1803) The Napoleonic Wars
+event = {
+	id = 275015 #triggered by FRA_12125 A
+	random = no
+	country = SAV
+	name = "EVENTNAME12125" #The Napoleonic Wars
+	desc = "EVENTHIST12128"
+	#-#Napoléon argued that he wanted to build a federation of free peoples in a Europe united under a liberal government. But if this was indeed his goal, he intended to achieve it by taking power into his own hands. He supposedly intended to grant constitutions, introduce laws, abolished feudalism, create efficient governments and foster education, science, literature and the arts. The other powers of Europe looked on with alarm at an expansionist France, bringing its revolutionary ideals and fervour abroad in the wake of Napoléon's military might.
+
+	action_a = {
+		name = "WAR"
+		command = { type = casusbelli which = FRA value = 192 }
+		command = { type = relation which = RUS value = 150 }
+		command = { type = relation which = ENG value = 150 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = PRU value = 150 }
+		command = { type = relation which = SPA value = 150 }
+		command = { type = relation which = NAP value = 150 }
+		command = { type = relation which = POR value = 150 }
+		command = { type = relation which = FRA value = -200 }
+	}
+	action_b = {
+		name = "PEACE"
+		command = { type = stability value = -1 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 275035

@@ -1,0 +1,578 @@
+#Guelders (GEL)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1423) Death of the last Duke of Jülich-Guelders -I-
+event = {
+	id = 75000
+	trigger = {
+		exists = MUN
+		NOT = { event = 75021 }
+	}
+	random = no
+	country = GEL
+	name = "EVENTNAME75000" #Death of the last Duke of Jülich-Guelders
+	desc = "EVENTHIST75000"
+	#-#In 1423 Reinald, the last Duke of Jülich-Guelders, died. The estates elected Arnold, the Count of Egmont as new Duke, defying the claims of the duke of Berg, and Guelders was again independent of german rule. In order to get the estates' support the new Duke had to make large concessions to them limiting the ducal prerogatives, and granting large powers to a council consisting of representatives of the nobles and the four most important cities.
+
+	date = { day = 1 month = january year = 1423 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1424 }
+
+	action_a = {
+		name = "ACTIONNAME75000A" #Arnold of Egmont shall become Duke
+		command = { type = breakdynastic which = MUN }
+		command = { type = provinceculture which = -2 value = dutch }
+		command = { type = add_countryculture which = dutch }
+		command = { type = remove_countryculture which = german }
+		command = { type = stability value = -2 }
+		command = { type = relation which = MUN value = -150 }
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = domestic which = centralization value = -4 }
+		command = { type = provincetax which = -2 value = -5 }
+		command = { type = provincemanpower which = -2 value = -2 }
+		command = { type = trigger which = 235000 } #MUN: Inheritance of Jülich
+	}
+	action_b = {
+		name = "ACTIONNAME75000B" #Berg shall inherit Guelders (End Game)
+		command = { type = trigger which = 235001 } #MUN: Inheritance of Jülich and Guelders
+		command = { type = sleepevent which = 173004 } #GEL: End of the succession crisis
+	}
+}
+#(1423) Berg renounces our rightfull Duke
+#by Pietercornelis
+event = {
+	id = 173003 #triggered by MUN_235000 A
+	random = no
+	country = GEL
+	name = "EVENTNAME173003" #Berg renounces our rightfull Duke
+	desc = "EVENTHIST173003"
+	#-#The choice of Arnold of Egmont as the new Duke of Guelders was contested both by the Duchy of Berg and by Sigismund, the Emperor of the Holy Roman Empire. Arnold of Egmont, however, was supported by both the local nobility, and the Duke of Burgundy. The ensuing conflict lasted several years, but none of the parties engaged in open warfare.
+
+	action_a = {
+		name = "ACTIONNAME173003A" #Our Duke is the only Duke!
+		command = { type = addcore which = 343 } #Berg
+		command = { type = casusbelli which = MUN value = 120 }
+	}
+}
+#(1423) Death of the last Duke of Jülich-Guelders -II-
+event = {
+	id = 75021
+	trigger = {
+		NOT = { exists = MUN }
+		NOT = { event = 75000 }
+	}
+	random = no
+	country = GEL
+	name = "EVENTNAME75000" #Death of the last Duke of Jülich-Guelders
+	desc = "EVENTHIST75021"
+	#-#In 1423 Reinald, the last Duke of Jülich-Guelders, died. The estates elected Arnold, the Count of Egmont as new Duke, and Guelders was again independent of german rule. In order to get the estates' support the new Duke had to make large concessions to them limiting the ducal prerogatives, and granting large powers to a council consisting of representatives of the nobles and the four most important cities.
+
+	date = { day = 1 month = january year = 1423 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1424 }
+
+	action_a = {
+		name = "ACTIONNAME75000A" #Arnold of Egmont shall become Duke
+		command = { type = provinceculture which = -2 value = dutch }
+		command = { type = add_countryculture which = dutch }
+		command = { type = remove_countryculture which = german }
+		command = { type = stability value = -2 }
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = domestic which = centralization value = -4 }
+		command = { type = provincetax which = -2 value = -5 }
+		command = { type = provincemanpower which = -2 value = -2 }
+	}
+}
+
+#(1437) End of the succession crisis
+#by Pietercornelis
+event = {
+	id = 173004
+	trigger = {
+		event = 75000 #GEL: Death of the last Duke of Jülich-Guelders -I-
+	}
+	random = no
+	country = GEL
+	name = "EVENTNAME173004" #End of the succession crisis
+	desc = "EVENTHIST173004"
+	#-#With the death of Adolf of Gulik-Berg, Duke of Jülich-Berg, the Duchies of Guelders and Jülich-Berg grew further apart, and the succession crisis ended.
+
+	date = { day = 1 month = january year = 1437 }
+
+	action_a = {
+		name = "ACTIONNAME173004A" #Peace at last!
+		command = { type = removecore which = 343 } #Berg
+		command = { type = trigger which = 235010 } #MUN: End of the succession crisis
+		command = { }
+	}
+}
+
+#(1447 or 1463) Burgundian Claims on Guelders - Ahistorical
+event = {
+	id = 173005 #triggered by BUR_28006
+	random = no
+	country = GEL
+	name = "EVENTNAME173005" #Burgundian Claims on Guelders
+	desc = "EVENTHIST20313"
+	#-#The Emperor has made Philip the Good of Burgundy King of Lotharingia, reviving the ninth century Kingdom of Lothar. The emperor has granted some of our lands to Burgundy!
+
+	action_a = {
+		name = "DAMN"
+		command = { type = casusbelli which = BUR value = 2500 }
+		command = { type = CAV which = -2 value = 6000 }
+		command = { type = relation which = HAB value = -50 }
+	}
+}
+
+#(1459) Civil war
+event = {
+	id = 75002
+	random = no
+	country = GEL
+	name = "EVENTNAME75002" #Civil war in Guelders
+	desc = "EVENTHIST75002"
+	#-#In 1459 the Duke's son Adolf demanded his father's abdication. However Duke Arnold refused and Adolf tried to claim the throne by force. He imprisoned his father and took control of the Duchy which caused the Duke of Kleve, Arnolds brother in law, to intervene.
+
+	date = { day = 1 month = january year = 1459 }
+	offset = 300
+	deathdate = { day = 1 month = january year = 1460 }
+
+	action_a = {
+		name = "ACTIONNAME75002A" #Adolf claims the throne
+		command = { type = stability value = -4 }
+		command = { type = sleepmonarch which = 051501 } #Arnold I
+		command = { type = wakemonarch which = 051502 } #Adolf I
+		command = { type = wakemonarch which = 051503 } #Duke Arnold restored #Arnold I
+		command = { type = relation which = KLE value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME75002B" #Adolf is suppressed
+		command = { type = stability value = -5 }
+		command = { type = revoltrisk which = 120 value = 10 }
+		command = { type = sleepevent which = 75003 } #GEL: The sale of Guelders
+		command = { type = revolt which = -2 }
+	}
+}
+
+#(1472) Sale of Guelders to Burgundy
+event = {
+	id = 75003
+	trigger = {
+		event = 75002
+		exists = BUR
+	}
+	random = no
+	country = GEL
+	name = "EVENTNAME75003" #The sale of Guelders
+	desc = "EVENTHIST75003"
+	#-#After several years of conflict between father and son, Charles the Bold, the Duke of Burgundy, was asked to be arbitrarian. Charles decided that Adolf would become stateholder of Guelders and that Arnold would officially remain the Duke and receive a pension of 3000 Gulden. But Adolf did not accept this judgement and continued to fight until he was arrested by Charles. The old Duke was restored to the throne, yet could not consolidate his rule. Therefore he offered the Duchy to Charles the Bold for 300,000 Gulden.
+
+	date = { day = 7 month = december year = 1472 }
+
+	action_a = {
+		name = "ACTIONNAME75003A" #Offer the duchy to Charles the Bold
+		command = { type = trigger which = 75004 } #BUR: Charles the Bold is offered Guelders
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 60 value = 7 }
+	}
+	action_b = {
+		name = "ACTIONNAME75003B" #Try to restore Arnold's rule
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 60 value = 7 }
+		command = { type = relation which = BUR value = -100 }
+	}
+}
+#(1472) Sale of Guelders to Burgundy (if Burgundy became France - HYW)
+event = {
+	id = 173002
+	trigger = {
+		event = 75002
+		event = 170313 #FRA: The Throne of France
+		exists = FRA
+		NOT = { event = 75003 } #GEL: The sale of Guelders
+	}
+	random = no
+	country = GEL
+	name = "EVENTNAME75003" #The sale of Guelders
+	desc = "EVENTHIST75003"
+	#-#After several years of conflict between father and son, Charles the Bold, the Duke of Burgundy, was asked to be arbitrarian. Charles decided that Adolf would become stateholder of Guelders and that Arnold would officially remain the Duke and receive a pension of 3000 Gulden. But Adolf did not accept this judgement and continued to fight until he was arrested by Charles. The old Duke was restored to the throne, yet could not consolidate his rule. Therefore he offered the Duchy to Charles the Bold for 300,000 Gulden.
+
+	date = { day = 7 month = december year = 1472 }
+
+	action_a = {
+		name = "ACTIONNAME75003A" #Offer the duchy to Charles the Bold
+		command = { type = trigger which = 170314 } #FRA: Charles the Bold is offered Guelders
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 60 value = 7 }
+	}
+	action_b = {
+		name = "ACTIONNAME75003B" #Try to restore Arnold's rule
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 60 value = 7 }
+		command = { type = relation which = BUR value = -100 }
+	}
+}
+
+#(1484-1500) Karel of Egmont
+event = {
+	id = 173000
+	trigger = {
+		OR = {
+			event = 75004 #BUR: Purchase of Guelders
+			event = 170014 #FRA: Karel of Egmont, dethroned Duke of Guelders
+		}
+		OR = {
+			event = 3178 #HAB: The Habsburg inheritance of Burgundy (1477)
+			event = 137012 #BUR: Settlement at Arras (1482-1492)
+			event = 137021 #BUR: The new Archduke of Burgundy (1494)
+		}
+	}
+	random = no
+	country = GEL
+	name = "EVENTNAME173000" #Karel of Egmont
+	desc = "EVENTHIST173000"
+	#-#Despite resistance from the dethroned heir to the Duchy of Guelders, Adolf, and his sister Catherine, Charles the Bold's son in law and successor Maximilian of Habsburg managed to secure Guelders for himself and his wife in 1483. However, Adolf's son Karel did not surrender his claims and turned to Maximilian's archenemy the King of France for aid. With an army funded by Charles VIII Karel succeeded in reconquering his hereditary lands in the course of 1492 and 1493 and was a constant annoyance for the Habsburgs until his death in 1538.
+
+	date = { day = 1 month = january year = 1484 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1500 }
+
+	action_a = {
+		name = "OK"
+		command = { type = breakvassal which = BUR }
+		command = { type = stability value = 6 } #to make it less harsh
+		command = { type = addcore which = 339 } #Karel invaded it and was regarded as a liberator #Holland
+		command = { type = INF which = -2 value = 10000 }
+		command = { type = CAV which = -2 value = 5000 }
+		command = { type = ART which = -2 value = 10 }
+		command = { type = treasury value = 50 }
+		command = { type = relation which = FRA value = 200 }
+		command = { type = relation which = BUR value = -200 }
+		command = { type = relation which = HAB value = -200 }
+	}
+}
+
+#(1511) Inheritance of Jülich-Berg
+event = {
+	id = 173001 #triggered by MUN_235002 B / MUN_235004 B / MUN_235005 A / MUN_235006 A
+	random = no
+	country = GEL
+	name = "EVENTNAME173001" #Inheritance of Jülich-Berg
+	desc = "EVENTHIST173001"
+	#-#Wilhelm IV of Jülich-Berg died in 1511 without a male heir. His only daughter had been betrothed to Johann, the son of Duke Johann of Kleve-Mark, and by a hereditary union in 1496 Kleve-Mark and Jülich-Berg had guaranteed each other right of succession in case of one of them lacked a direct heir. Nevertheless, Karel of Guelders and the elector also made claims to Jülich-Berg. Karel's claim prevailed and he added Jülich-Berg to his possessions.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = addcore which = 343 } #Kleves
+		command = { type = inherit which = MUN }
+		command = { type = relation which = KLE value = -50 }
+	}
+}
+
+#(1514-1516) The Frisians call upon us to assist them
+event = {
+	id = 22023 #triggered by FRI_22022 A
+	random = no
+	country = GEL
+	name = "EVENTNAME22023" #The Frisians call upon us to assist them
+	desc = "EVENTHIST22023"
+	#-#Due to Albert's sons Heindrich and Georg of Saxony as well as their competitor, Edzard Cirksena, count of East Friesland failing to erect lordship over Friesland. Friesland agreed to be subjugated by Charles of Egmond, Duke of Guelders in October 1514. Heindrich sold his portion of West Friesland to his brother Georg, who sold it in May 1515, to Charles II of Burgundy. This led to another war between Charles II of Burgundy and Charles of Egmond. Fortunes of war fluctuated until 1517, when a Friesian fleet under Greate Pier landed 4000 troops in Zuider Zee and ravaged southern Holland as well as capturing the bulk of the Burgundian fleet.
+
+	action_a = {
+		name = "ACTIONNAME22023A" #Let's teach them a lesson
+		command = { type = inherit which = FRI }
+		command = { type = war which = BUR }
+		command = { type = relation which = BUR value = -200 }
+		command = { type = wakeleader which = 051802 } #Greate Pier (GEL)
+		command = { type = wakeleader which = 051803 } #Greate Pier (GEL)
+	}
+	action_b = {
+		name = "ACTIONNAME22023B" #Who cares?
+		command = { type = trigger which = 22024 } #BUR: The vassalation of Friesland
+		command = { type = relation which = BUR value = -100 }
+	}
+}
+
+#(1517-1522) Frisia gains its freedom
+event = {
+	id = 173006
+	trigger = {
+		owned = { province = 337 data = -1 } #Friesen
+		control = { province = 337 data = -1 }
+	}
+	random = no
+	country = GEL
+	name = "EVENTNAME173006" #Recognizing Douwama
+	desc = "EVENTHIST173006"
+	#-#In 1514 Douwama was leader of Karel's Gelder army that invaded Friesland. In 1517 disagreements between the Duke of Guelders and Jancko concerning the planning of the governing board of Friesland, and Guelders refusing to recognize Douwama as hereditary-lord eventually led to Jancko changing allegiances. In 1521 Jancko swore an oath of allegiance to the Holy Roman Emperor Charles V, the arch-enemy of the Duke of Guelders. The Frisians chose Jancko Douwama as their imperial stadtholder in 1522.
+
+	date = { day = 2 month = november year = 1517 }
+	offset = 20
+	deathdate = { day = 29 month = december year = 1522 }
+
+	action_a = {
+		name = "ACTIONNAME173006A" #Douwama's treason
+		command = { type = independence which = FRI }
+		command = { type = stability value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME173006B" #keep Frisia, it's ours
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = stability value = -2 }
+	}
+}
+
+#(1538) Geldrian succession crisis sequence
+event = {
+	id = 75005
+	trigger = {
+		exists = KLE
+		exists = SPA
+		OR = {
+			event = 3178 #HAB: The Habsburg inheritance of Burgundy (1477)
+			event = 137012 #BUR: Settlement at Arras (1482-1492)
+			event = 137021 #BUR: The new Archduke of Burgundy (1494)
+		}
+	}
+	random = no
+	country = GEL
+	name = "EVENTNAME75005" #Death of Charles of Egmont
+	desc = "EVENTHIST75005"
+	#-#In 1538 Duke Charles died without an heir. Once again the estates of Guelders had to choose a successor. They elected the protestant Duke Wilhelm of Kleve who had just unified Kleve and Berg. However, the Habsburgs who had inherited the claim from Burgundy interfered, and after defeating Kleve annexed Guelders.
+
+	date = { day = 1 month = january year = 1538 }
+	offset = 200
+	deathdate = { day = 1 month = january year = 1539 }
+
+	action_a = {
+		name = "ACTIONNAME75005A" #Elect Wilhelm of Kleve (End Game)
+		command = { type = trigger which = 75006 } #KLE: Wilhelm was elected Duke of Guelders
+	}
+	action_b = {
+		name = "ACTIONNAME75005B" #Elect Karl of Habsburg (End Game)
+		command = { type = trigger which = 75008 } #SPA: Habsburg inherits Guelders
+	}
+	action_c = {
+		name = "ACTIONNAME75005C" #Elect a local noble instead
+		command = { type = stability value = -3 }
+		command = { type = relation which = KLE value = -50 }
+		command = { type = trigger which = 75009 } #SPA: Habsburg claim on Guelders ignored
+	}
+}
+#(1538) Charles the Bold didn't buy Guelders and the Habsburgs don't have a claim
+event = {
+	id = 75010
+	trigger = {
+		exists = KLE
+		NOT = {
+			event = 3178 #HAB: The Habsburg inheritance of Burgundy
+			event = 137012 #BUR: Settlement at Arras (1482-1492)
+			event = 137021 #BUR: The new Archduke of Burgundy (1494)
+			event = 3319 #FRA: The Valois inheritance of Burgundy
+		}	#ie, BUR_3597 C was previously chosen!
+	}
+	random = no
+	country = GEL
+	name = "EVENTNAME75005" #Death of Charles of Egmont
+	desc = "EVENTHIST75010"
+	#-#In 1538 Duke Charles died without an heir. Once again the estates of Guelders had to choose a successor. They elected the protestant Duke of Kleve who had just unified Kleve and Berg.
+
+	date = { day = 1 month = january year = 1538 }
+	offset = 200
+	deathdate = { day = 1 month = january year = 1539 }
+
+	action_a = {
+		name = "ACTIONNAME75005A" #Elect Wilhelm of Kleve (End Game)
+		command = { type = trigger which = 75011 } #KLE: Wilhelm was elected Duke of Guelders
+	}
+	action_b = {
+		name = "ACTIONNAME75005C" #Elect a local noble instead
+		command = { type = stability value = -3 }
+		command = { type = relation which = KLE value = -50 }
+	}
+}
+#(1538) France inherited Burgundy and the claim on Guelders
+event = {
+	id = 75012
+	trigger = {
+		exists = KLE
+		exists = FRA
+		event = 3319 #FRA: The Valois inheritance of Burgundy
+	}
+	random = no
+	country = GEL
+	name = "EVENTNAME75005" #Death of Charles of Egmont
+	desc = "EVENTHIST75012"
+	#-#In 1538 Duke Charles died without an heir. Once again the estates of Guelders had to choose a successor. They elected the protestant Duke Wilhelm of Kleve who had just unified Kleve and Berg. However, the King of France who had inherited the claim from Burgundy interfered, and after defeating Kleve annexed Guelders.
+
+	date = { day = 1 month = january year = 1538 }
+	offset = 200
+	deathdate = { day = 1 month = january year = 1539 }
+
+	action_a = {
+		name = "ACTIONNAME75005A" #Elect Wilhelm of Kleve (End Game)
+		command = { type = trigger which = 75013 } #KLE: Wilhelm was elected Duke of Guelders
+	}
+	action_b = {
+		name = "ACTIONNAME75012B" #Elect the King of France (End Game)
+		command = { type = trigger which = 75015 } #FRA: France inherits Guelders
+	}
+	action_c = {
+		name = "ACTIONNAME75005C" #Elect a local noble instead
+		command = { type = stability value = -3 }
+		command = { type = relation which = KLE value = -50 }
+		command = { type = trigger which = 75016 } #FRA: French claim on Guelders ignored
+	}
+}
+#(1538) Geldrian succession crisis sequence, no Cleves
+event = {
+	id = 75017
+	trigger = {
+		NOT = { exists = KLE }
+		exists = SPA
+		OR = {
+			event = 3178 #HAB: The Habsburg inheritance of Burgundy (1477)
+			event = 137012 #BUR: Settlement at Arras (1482-1492)
+			event = 137021 #BUR: The new Archduke of Burgundy (1494)
+		}
+	}
+	random = no
+	country = GEL
+	name = "EVENTNAME75005" #Death of Charles of Egmont
+	desc = "EVENTHIST75017"
+	#-#In 1538 Duke Charles died without an heir. Once again the estates of Guelders had to choose a successor. They elected Karl of Habsburg who had inherited the claim from Burgundy.
+
+	date = { day = 1 month = january year = 1538 }
+	offset = 200
+	deathdate = { day = 1 month = january year = 1539 }
+
+	action_a = {
+		name = "ACTIONNAME75005B" #Elect Karl of Habsburg (End Game)
+		command = { type = trigger which = 75008 } #SPA: Habsburg inherits Guelders
+	}
+	action_b = {
+		name = "ACTIONNAME75005C" #Elect a local noble instead
+		command = { type = stability value = -3 }
+		command = { type = trigger which = 75009 } #SPA: Habsburg claim on Guelders ignored
+	}
+}
+#(1538) France inherited Burgundy and the claim on Guelders, no Cleves
+event = {
+	id = 75018
+	trigger = {
+		NOT = { exists = KLE }
+		exists = FRA
+		event = 3319 #FRA: The Valois inheritance of Burgundy
+	}
+	random = no
+	country = GEL
+	name = "EVENTNAME75005" #Death of Charles of Egmont
+	desc = "EVENTHIST75018"
+	#-#In 1538 Duke Charles died without an heir. Once again the estates of Guelders had to choose a successor. They elected the King of France who had inherited the claim from Burgundy.
+
+	date = { day = 1 month = january year = 1538 }
+	offset = 200
+	deathdate = { day = 1 month = january year = 1539 }
+
+	action_a = {
+		name = "ACTIONNAME75012B" #Elect the King of France (End Game)
+		command = { type = trigger which = 75015 } #FRA: France inherits Guelders
+	}
+	action_b = {
+		name = "ACTIONNAME75005C" #Elect a local noble instead
+		command = { type = stability value = -3 }
+		command = { type = trigger which = 75016 } #FRA: French claim on Guelders ignored
+	}
+}
+
+#(1559-1648) Creation of the Dutch Republic
+event = {
+	id = 28002
+	trigger = {
+		owned = { province = 337 data = -1 }
+		owned = { province = 338 data = -1 }
+		owned = { province = 339 data = -1 }
+		control = { province = 339 data = -1 }
+		owned = { province = 340 data = -1 }
+		NOT = { exists = HOL }
+	}
+	random = no
+	country = GEL
+	name = "EVENTNAME3900" #Creation of the Dutch Republic
+	desc = "EVENTHIST28002"
+	#-#The monopoly on positions of authority by those born in Geldern, many of whom abused their positions for personal profit, has become a source of resentment in the remainder of the low countries. Demands for power to be devolved to the cities were presented by the burghers of Amsterdam, Haarlem and Delft. Most of the remaining cities outside Geldern and some of the rural nobility soon signed up to this League of Holland. We have two courses of action to choose between. Firstly, we could replace some of our officials with wavering individuals from within the League, thus dividing the League, removing one of their key grievances and cleansing our bureaucracy of graft. Alternatively, we might have to accede to the League's demand to share power.
+
+	date = { day = 1 month = january year = 1559 }
+	offset = 3600
+	deathdate = { day = 1 month = january year = 1648 }
+
+	action_a = {
+		name = "ACTIONNAME28002A" #Become Holland
+		command = { type = inflation value = 10 }
+		command = { type = stability value = -1 }
+		command = { type = flagname which = "" }
+		command = { type = country which = HOL }
+		command = { type = flagname which = "Princevlag" }
+		command = { type = setflag which = [Princevlag] }
+		command = { type = capital which = 339 } #Holland
+		command = { type = sleepevent which = 3900 } #HOL: Creation of the Dutch Republic
+		command = { type = domestic which = CENTRALIZATION value = -5 }
+		command = { type = domestic which = ARISTOCRACY value = -3 }
+		command = { type = domestic which = SERFDOM value = -2 }
+		command = { type = domestic which = MERCANTILISM value = -2 }
+		command = { type = domestic which = INNOVATIVE value = 2 }
+		command = { type = domestic which = QUALITY value = -3 }
+		command = { type = addcore which = 337 } #Friesen
+		command = { type = addcore which = 338 } #Geldre
+		command = { type = addcore which = 339 } #Holland
+		command = { type = addcore which = 340 } #Zeeland
+		command = { type = addcore which = 378 } #Brabant
+		command = { type = addcore which = 380 } #Flandern
+		command = { type = remove_countryculture which = dutch }
+		command = { type = remove_countryculture which = german }
+		command = { type = add_countryculture which = dutch }
+	}
+	action_b = {
+		name = "ACTIONNAME28002B" #Remain as Geldern
+		command = { type = vp value = 200 }
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 48 value = 8 }
+		command = { type = domestic which = CENTRALIZATION value = 3 }
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = domestic which = SERFDOM value = 1 }
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = gainbuilding which = -1 value = bailiff }
+		command = { type = gainbuilding which = -1 value = bailiff }
+		command = { type = gainbuilding which = -1 value = bailiff }
+		command = { type = gainbuilding which = -1 value = bailiff }
+		command = { type = gainbuilding which = -1 value = courthouse }
+		command = { type = gainbuilding which = -1 value = courthouse }
+	}
+}
+
+#(1559-1648) The Dutch Republic
+event = {
+	id = 3806 #triggered by HOL_3900
+	random = no
+	country = GEL
+	name = "EVENTNAME3806" #The Dutch Republic
+	desc = "EVENTHIST3806"
+	#-#A united Dutch Republic has broken free from the oppressors. This is a chance to unite the Netherlands at last... Shall we join our brothers and sisters in the republic?
+
+	action_a = {
+		name = "ACTIONNAME3806A" #Join the new Republic (End Game)
+		command = { type = trigger which = 3807 } #HOL: Guelders joins the Republic
+	}
+	action_b = {
+		name = "ACTIONNAME3806B" #Walk our own path
+		command = { type = relation which = HOL value = -100 }
+		command = { type = stability value = -2 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 173007

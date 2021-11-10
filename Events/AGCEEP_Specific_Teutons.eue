@@ -1,0 +1,386 @@
+#Teutonic Order (LAT)
+
+#See AGCEEP_Alt_Germany.eue for KoG Alternative events
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1500) Sale of Neumark
+event = {
+	id = 209000
+	trigger = {
+		owned = { province = 313 data = LAT } #Küstrin
+		NOT = { war = { country = BRA country = LAT } }
+		war = { country = POL country = LAT }
+		OR = {
+			NOT = { control = { province = 289 data = LAT } } #Memel
+			NOT = { control = { province = 290 data = LAT } } #Prussia
+			NOT = { control = { province = 301 data = LAT } } #Danzig
+			NOT = { control = { province = 313 data = LAT } } #Küstrin
+		}
+		NOT = { countrysize = 8 } #Should obviously not happen to a very powerful Order
+	}
+	random = no
+	country = LAT
+	name = "EVENTNAME209000" #Sale of Neumark
+	desc = "EVENTHIST209000"
+	#-#The Neumark, originally the part of Brandenburg east of the Oder river, had been mortgaged to the Teutonic Order by Emperor Sigismund in 1402. In the desperate financial, political and military situation caused by the uprising of the Prussian Lizard League and the intervention of Casimir of Poland in favour of the rebels, the Order decided it would be better to sell Neumark back to the Elector of Brandenburg in order to gain some money and his support than to loose the territory to the Polish King who was obviously attracted by the opportunity to restore the Oder as border with Germany. Thus on February 22nd emissaries of the Order offered the territory to Friedrich II for 40000 Gulden. The elector accepted gladly and on April 5th took the oaths of allegiance from the estates of Neumark in Neu-Landsberg.
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1500 }
+
+	action_a = {
+		name = "ACTIONNAME209000A" #Offer Neumark to Brandenburg
+		command = { type = trigger which = 132101 } #BRA: Acquisition of Neumark
+	}
+	action_b = {
+		name = "ACTIONNAME209000B" #Keep Neumark
+		command = { type = revolt which = 313 } #Küstrin
+		command = { type = relation which = BRA value = -50 }
+	}
+}
+#(1419-1500) Brandenburg accepts
+event = {
+	id = 209001 #triggered by BRA_132101 A
+	random = no
+	country = LAT
+	name = "EVENTNAME209001" #Brandenburg accepts
+	desc = "EVENTHIST209001"
+	#-#The Elector of Brandenburg has accepted to buy Neumark. Now we won't have to take care of this isolated poor piece of soil anymore and have gained much-needed financial resources for our war against Poland.
+
+	action_a = {
+		name = "GOOD"
+		command = { type = removecore which = 313 } #Küstrin
+		command = { type = secedeprovince which = BRA value = 313 } #Küstrin
+		command = { type = treasury value = 80 }
+	}
+}
+
+#(1419-1600) Teutonic Order and Danzig
+#Vilkouak-AGC
+event = {
+	id = 20123
+	trigger = {
+		owned = { province = 301 data = -1 } #Danzig
+	}
+	random = no
+	country = LAT
+	name = "EVENTNAME20123" #The Teutonic Order and Danzig
+	desc = "EVENTHIST20123"
+	#-#The Medieval province of Danzig belonged to Poland on similar terms as the Marches belonged to HRE. In 1309, the Teutonic Order, feigning that it wanted to help against Brandenburgians who sieged the city, grabbed the land. Poland never recognized this fact. Both countries found themselves in continuous warfare which culminated in the Battle of Grunwald. The defeated Teutonic Order never regained its position. The population of Danzig was about 90 percent Polish. About 5 percent were Dutch who started to migrate to the delta of Vistula in the 16th century. The cities of Danzig, Thorn, and others were mainly settled by Germans who were definitely more interested in trade than in politics. The Teutonic Order had problems with Danzig, since the political aims of the Order were in contradiction to the policy of the city and province. Had the Teutonic Order encouraged more rustic people from Germany to settle in Danzig, then it may have been easier to rule.
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 5000
+	deathdate = { day = 1 month = january year = 1600 }
+
+	action_a = {
+		name = "ACTIONNAME20123A" #Leave it as it is
+		command = { type = relation which = POL value = 50 }
+		command = { type = treasury value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME20123B" #Let the German population be dominant
+		command = { type = provinceculture which = 301 value = german } # Middle German #Danzig
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = provincetax which = 301 value = 1 } #Danzig
+		command = { type = population which = 301 value = 1000 } #Danzig
+		command = { type = treasury value = -200 }
+		command = { type = relation which = POL value = -50 }
+		command = { type = sleepevent which = 20124 } #LAT: Danzig has a chance to become a trade center
+		command = { type = sleepevent which = 209002 } #LAT: The Prussian Federation
+	}
+}
+
+#(1419) The Hussite Wars
+event = {
+	id = 209600 #triggered by SIL_401000 / ROM_398000
+	random = no
+	country = LAT
+	name = "EVENTNAME188600" #The Hussite Wars
+	desc = "EVENTHIST188600"
+	#-#The Czech priest and professor Jan Hus developed radical reformatory demands on the base of the teachings of John Wyclif. Despite a guarantee of safe-conduct by Emperor Sigismund, he was executed at the stake for heresy at the Council of Constance in 1415. This could however not stop the Hussite movement in Bohemia. Hus' followers were rapidly growing, and when King Vaclav IV of Bohemia died and his brother Sigismund, already Emperor and King of Hungary was to succeed him, they, unwilling to forgive him the betrayal of Hus and afraid that he would suppress them, refused to acknowledge him and gained control of most of Bohemia proper - while the lands of the Bohemian crown and the catholic part of Bohemia accepted Sigismund. Due to its radical anti-clerical and anti-feudal tendencies Hussitism posed a big threat to the church and nobility in the countries adjacent to Bohemia. Several German and European princes therefore decided to oppose the Hussites and to support Sigismund in his struggle with them that lasted for almost two decades. Should we decide to fight these heretics, we should be aware that this would be internationally regarded as an intervention in favour of Sigismund as rightful King of Bohemia rather than a war of conquest, and that therefore, if Sigismund prevails and manages to restore royal authority, we would be expected to turn over any conquests in Bohemia to the Kingdom of Bohemia.
+
+	action_a = {
+		name = "ACTIONNAME258600B" #Express hostility
+		command = { type = relation which = SIL value = -200 }
+		command = { type = casusbelli which = SIL value = 120 }
+	}
+}
+
+#(1435-1455) Danzig has a chance to become a trade center
+#Vilkouak-AGC
+event = {
+	id = 20124
+	trigger = {
+		owned = { province = 301 data = LAT } #Danzig
+		atwar = no
+	}
+	random = no
+	province = 301 #Danzig
+	name = "EVENTNAME20124" #Danzig has a chance to become a trade center
+	desc = "EVENTHIST20124"
+	#-#Western Europe was in growing need of grain in the 15th century. It couldn't be gained by any other means than by trade. Poland produced much more grain than it needed. 'Homo Oeconomicus' got his chance and used it very well. Danzig, a city always based on trade, reshaped into the most important center in the Baltic region, excepting only perhaps Lubeck.
+
+	date = { day = 1 month = january year = 1435 }
+	offset = 300
+	deathdate = { day = 1 month = january year = 1455 }
+
+	action_a = {
+		name = "ACTIONNAME20124A" #Yes, we can make money on it
+		command = { type = provinceculture which = 301 value = german } #Middle German #Danzig
+		command = { type = population which = 301 value = 5000 } #Danzig
+		command = { type = provincetax which = 301 value = 3 } #Danzig
+		command = { type = removecot which = 282 } #Livland
+		command = { type = cot which = 301 } #Danzig
+		command = { type = stability value = 1 }
+		command = { type = treasury value = -50 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Prussian Confederation Sequence
+
+#(1440) Prussian Confederation
+event = {
+	id = 209002
+	trigger = {
+		owned = { province = 301 data = LAT } #Danzig
+		domestic = { type = centralization value = 2 } #they rebelled against high taxes
+	}
+	random = no
+	country = LAT
+	name = "EVENTNAME209002" #The Prussian Confederation
+	desc = "EVENTHIST209002"
+	#-#On the 21st of frebuary 1440 the Prussian Federation was formed by 19 prussian cities, Danzig and Thorn amongst others, and a part of the gentry and clergy of Kulmland. It was a protest against the high taxes levied by the Teutonic Order to pay their reparations to Poland under the peace of Thorn, against the restrictions and taxes on trade, and against a lack of power compared to their wealth. The foundation of the confederation was met with indifference by the grand master.
+
+	date = { day = 1 month = february year = 1440 }
+	offset = 10
+	deathdate = { day = 29 month = february year = 1440 }
+
+	action_a = {
+		name = "ACTIONNAME209002A" #Ignore them
+		command = { type = province_revoltrisk which = 301 value = 1 } #Danzig
+	}
+	action_b = {
+		name = "ACTIONNAME209002B" #Agree to their demands
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = provincetax which = 301 value = -4 } #Danzig
+		command = { type = treasury value = -100 }
+		command = { type = sleepevent which = 209004 } #LAT: the prussian federation revolts
+	}
+	action_c = {
+		name = "ACTIONNAME209002C" #Crush them
+		command = { type = desertion which = 301 value = 10000 } #Danzig
+		command = { type = revolt which = 301 } #Danzig
+		command = { type = revolt which = 301 } #Danzig
+		command = { type = stability value = -1 }
+		command = { type = trigger which = 258014 } #POL Prussian Federation Attacked by Teutonic Order
+		command = { type = sleepevent which = 209004 } #LAT: the prussian federation revolts
+	}
+}
+#(1454) Prussian Confederation revolts
+event = {
+	id = 209004
+	trigger = {
+		owned = { province = 301 data = -1 } #Danzig
+		event = 209002 #LAT: Prussian Confederation
+	}
+	random = no
+	country = LAT
+	name = "EVENTNAME209004" #The Prussian Confederation revolts
+	desc = "EVENTHIST209004"
+	#-#When requests for mediation with the emperor resulted in the banning of the prussian federation, they sent requestss to the King of Poland for help. After getting a demand for a more official petition, the Prussian Federation sent a formal act of disobedience to the grandmaster and went into open revolt.
+
+	date = { day = 1 month = february year = 1454 }
+	offset = 10
+	deathdate = { day = 29 month = february year = 1454 }
+
+	action_a = {
+		name = "DAMN"
+		command = { type = province_revoltrisk which = 301 value = 5 } #Danzig
+		command = { type = desertion which = 301 value = 5000 } #Danzig
+		command = { type = revolt which = 301 } #Danzig
+	}
+}
+#(1454) Poland accepts the petition (large order)
+event = {
+	id = 209005 #triggered by POL_258012 A / POL_258013 B
+	trigger = {
+		not = { vassal = { country = POL country = LAT } }
+		countrysize = 3
+	}
+	random = no
+	country = LAT
+	name = "EVENTNAME209005" #Poland accepts the Prussian Petition
+	desc = "EVENTHIST209005"
+	#-#The King of Poland has accepted the petition of the Prussian Federation, and accepted them into his realm. What shall we do?
+
+	action_a = {
+		name = "ACTIONNAME209005A" #He'll have to come and take it by force.
+		command = { type = relation which = POL value = -200 }
+		command = { type = casusbelli which = POL value = 156 } #thirteen years
+		command = { type = desertion which = 301 value = 5000 } #Danzig
+		command = { type = revolt which = 301 } #Danzig
+	}
+	action_b = {
+		name = "ACTIONNAME209005B" #He can have those troublemakers
+		command = { type = secedeprovince which = POL value = 301 } #Danzig
+		command = { type = removecore which = 301 } #Danzig
+		command = { type = relation which = POL value = 250 } #to make up for -200 in polish event
+	}
+}
+#(1454) Poland accepts the petition (small order)
+event = {
+	id = 209006 #triggered by POL_258012 A / POL_258013 B
+	trigger = {
+		or = {
+			vassal = { country = POL country = LAT }
+			not = { countrysize = 3 }
+		}
+	}
+	random = no
+	country = LAT
+	name = "EVENTNAME209005" #Poland accepts the prussian petition
+	desc = "EVENTHIST209005"
+	#-#The King of Poland has accepted the petition of the Prussian Federation, and accepted them into his realm. What shall we do?
+
+	action_a = {
+		name = "ACTIONNAME209005B" #He can have those troublemakers
+		command = { type = secedeprovince which = POL value = 301 } #Danzig
+		command = { type = removecore which = 301 } #Danzig
+		command = { type = relation which = POL value = 250 } #to make up for -200 in polish event
+	}
+	action_b = {
+		name = "ACTIONNAME209005A" #He'll have to come and take it by force
+		command = { type = relation which = POL value = -200 }
+		command = { type = casusbelli which = POL value = 156 } #thirteen years
+		command = { type = desertion which = 301 value = 5000 } #Danzig
+		command = { type = revolt which = 301 } #Danzig
+	}
+}
+#(1454) End of the prussian federation
+event = {
+	id = 209003 #triggered by POL_258012 B / POL_258013 A
+	random = no
+	country = LAT
+	name = "EVENTNAME209007" #The End of the Prussian Federation
+	desc = "EVENTHIST209007"
+	#-#Poland has abandoned the Prussian federation we shall crush them now.
+
+	action_a = {
+		name = "GOOD"
+		command = { type = province_revoltrisk which = 301 value = -5 } #Danzig
+		command = { type = revolt which = 301 } #Danzig
+		command = { type = revolt which = 301 } #Danzig
+	}
+}
+#(1466-1820) End of the prussian federation
+event = {
+	id = 209007
+	trigger = {
+		owned = { province = 301 data = LAT } #Danzig
+		atwar = no
+	}
+	random = no
+	country = LAT
+	name = "EVENTNAME209007" #The End of the Prussian Federation
+	desc = "EVENTHIST209007"
+	#-#Poland has abandoned the Prussian federation we shall crush them now.
+
+	date = { day = 10 month = october year = 1466 } #historical date of the treaty of Torun
+	offset = 720
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "GOOD"
+		command = { type = province_revoltrisk which = 301 value = -10 }
+		command = { type = revolt which = 301 } #Danzig
+		command = { type = revolt which = 301 } #Danzig
+	}
+}
+#End of Prussian Confederation Sequence
+#-----------------------------------------------------------------------------------------------
+
+#(1524-1540) The Fate of the Teutonic Order
+#by Raudex-EEP - modified by YodaMaster
+event = {
+	id = 209012
+	trigger = {
+		NOT = {
+			exists = PRU
+		}
+		exists = POL
+	}
+	random = no
+	country = LAT
+	name = "EVENTNAME209012" #The Fate of the Teutonic Order
+	desc = "EVENTHIST209012"
+	#-#The last Grandmaster of the Teutonic Order, Albrecht von Brandenburg, decided to secularize the Order in 1525 and created Duchy of Prussia as a Polish vassal. The Brandenburg branch of Hohenzollerns became the rulers of the Duchy.
+
+	date = { day = 1 month = january year = 1524 }
+	offset = 60
+	deathdate = { day = 1 month = january year = 1540 }
+
+	action_a = {
+		name = "ACTIONNAME209012A" #Become the Duchy of Prussia
+		command = { type = independence which = BRA } #Brandenburg
+		command = { type = independence which = MIN } #Masovia
+		command = { type = independence which = LIV } #Livonian Order
+		command = { type = religion which = protestant }
+		command = { type = secedeprovince which = POL value = 301 } #Danzig
+		command = { type = secedeprovince which = POL value = 303 } #Poznan
+		command = { type = secedeprovince which = POL value = 300 } #Wielkopolska
+		command = { type = secedeprovince which = POL value = 292 } #Podlasia
+		#In 1.08 changing religion doesn't break vassalage
+		command = { type = breakvassal which = DAN }
+		command = { type = breakvassal which = SWE }
+		command = { type = breakvassal which = LIT }
+		command = { type = breakvassal which = MIN }
+		command = { type = breakvassal which = LIV }
+		command = { type = breakvassal which = BRA }
+		command = { type = treasury value = 500 }
+		command = { type = stability value = 6 }
+		command = { type = flagname which = "" }
+		command = { type = country which = PRU }
+		command = { type = sleepevent which = 338109 } #ProvinceSpec*290: The Lands of Teutonic Order
+		command = { type = sleepevent which = 258230 } #POL: The Lands of Teutonic Order
+		command = { type = sleepevent which = 381001 } #LIV: Secularization of Prussia -I-
+		command = { type = trigger which = 381003 } #LIV: Secularization of Prussia -II-
+	}
+	action_b = {
+		name = "ACTIONNAME209012B" #Continue as the Order
+		command = { type = stability value = -3 }
+		command = { type = treasury value = -100 }
+		command = { type = religion which = catholic }
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = domestic which = SERFDOM value = 1 }
+		command = { type = domestic which = LAND value = 2 }
+		command = { type = domestic which = QUALITY value = 2 } #To balance things a bit
+		command = { type = sleepevent which = 381001 } #LIV: Secularization of Prussia -I-
+	}
+}
+#(1524-1540) Albert Hohenzollern Secularizes Prussia
+event = {
+	id = 209008 #triggered by LIV_381002
+	random = no
+	country = LAT
+	name = "EVENTNAME381001" #Secularization of Prussia
+	desc = "EVENTHIST381001"
+	#-#Through the secularization (1525) of the domain of the Teutonic Order by the Grand Master Albert of Brandenburg, the domain became a hereditary duchy under Polish suzerainty, ruled by a branch of the Hohenzollern dynasty of Brandenburg.
+
+	action_a = {
+		name = "ACTIONNAME209012A" #Become the Duchy of Prussia
+		command = { type = breakvassal which = LIV }
+		command = { type = treasury value = 500 }
+		command = { type = stability value = 6 }
+		command = { type = flagname which = "" }
+		command = { type = country which = PRU }
+		command = { type = sleepevent which = 338109 } #ProvinceSpec*290: The Lands of Teutonic Order
+		command = { type = sleepevent which = 258230 } #POL: The Lands of Teutonic Order
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 209009-209011 - next: 209013

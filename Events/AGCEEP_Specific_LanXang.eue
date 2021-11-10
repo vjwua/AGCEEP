@@ -1,0 +1,489 @@
+#Lan Xang (AMI)
+
+#Direct Citations
+# "Laos: a Country Study" by Barth, Heimann, Martindale, and Shinn
+# "Lan Xang" by Charles Kimball: http://www.guidetothailand.com/thailand-history/lan_xang.htm
+
+#-----------------------------------------------------------------------------------------------
+
+#(1428-1438) Queen Nang Keo Phimpha
+event = {
+	id = 65114
+	random = no
+	country = AMI
+	name = "EVENTNAME65114" #Queen the Kingmaker
+	desc = "EVENTHIST65114"
+	#-#When King Sam Saen Thai died in 1417, Lan Xang was a power to be reckoned with. His successors, however, were young, inexperienced and mediocre. Around 1427, the eldest daughter of the King Sam Saen Thai, Keava Kumari, started the intrigues behind the throne. Within a short period of 10 years, 8 Kings has risen to the throne, only to be promptly killed on the orders of their aunt (or sister). When she finally mounted the throne herself in 1438, her reign only lasted a few months, as she was deposed on the orders of Council of Ministers, and then tortured to death together with her husband, the Prime-Minister (who was incidentally her grandnephew). During this time span, confusion and instability has reigned in the country.
+
+	date = { day = 1 month = january year = 1428 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1438 }
+
+	action_a = {
+		name = "ACTIONNAME65114A" #Intrigues!
+		command = { type = stability value = -4 }
+		command = { type = domestic which = centralization value = -3 }
+		command = { type = domestic which = offensive value = -2 }
+		command = { type = revoltrisk which = 96 value = 5 }
+		command = { type = infra value = -500 }
+		command = { type = trade value = -500 }
+	}
+}
+
+#(1480-1495) Economic Recovery
+event = {
+	id = 65113
+	random = no
+	country = AMI
+	name = "EVENTNAME65113" #Economic Recovery
+	desc = "EVENTHIST65113"
+	#-#Following Vietnamese invasion of mid-1470s, Lan Xang's economy experienced significant re-building during the last years of King Souvanna Ban Lang's reign. The recovery continued during the reign of his successor, King La Sen Thai Puvanart, as Lan Xang became wealthy again. That caught the eye of the Burmese, and their envy has caused worries at Lan Xang court, which, in turn, led tightening the ties between the courts of Lan Xang and Ayuthaya.
+
+	date = { day = 1 month = january year = 1480 }
+	offset = 3000
+	deathdate = { day = 1 month = january year = 1495 }
+
+	action_a = {
+		name = "OK"
+		command = { type = stability value = 2 }
+		command = { type = domestic which = mercantilism value = -1 }
+		command = { type = relation which = AYU value = 100 }
+		command = { type = relation which = TAU value = -100 }
+		command = { type = relation which = MYA value = -100 }
+		command = { type = infra value = 500 }
+		command = { type = trade value = 500 }
+		command = { type = provincetax which = -1 value = 1 }
+	}
+}
+
+#(1520-1546) King Phothisarath
+event = {
+	id = 106000
+	trigger = {
+		owned = { province = 1551 data = -1 } #Sarakham
+		control = { province = 1551 data = -1 } #Sarakham
+	}
+	random = no
+	country = AMI
+	name = "EVENTNAME106000" #King Phothisarath
+	desc = "EVENTHIST106000"
+	#-#In 1520, King Phothisarath succeeded to the throne of Lan Xang and moved his capital to Vientiane (Vien Chang). He was notable for his devotion to Buddhism, the construction of Buddhist 'wat', and his attempt at suppression of the cult of [i]phi[/i]. He strengthened the official position of the established religion, but the people were as much spirit worshipers as they were Buddhists.
+
+	date = { day = 2 month = january year = 1520 }
+	offset = 90
+	deathdate = { day = 29 month = december year = 1546 }
+
+	action_a = {
+		name = "ACTIONNAME106000A" #Moral man he is!
+		command = { type = capital which = 1551 } #Sarakham
+		command = { type = setflag which = [Vientiane] }
+		command = { type = domestic which = INNOVATIVE value = -2 }
+	}
+}
+
+#(1536-1538) Prince Ekaracha
+event = {
+	id = 65115
+	random = no
+	country = AMI
+	name = "EVENTNAME65115" #Prince Ekaracha
+	desc = "EVENTHIST65115"
+	#-#In 1536 Lan Xang King Phothisarath I gave refuge to an exiled prince Ekaracha of Ayuthaya. Ayuthaya declared war, however, army of Lan xang defeated the invaders at Moung Khouk, and peace was quickly concluded.
+
+	date = { day = 1 month = january year = 1536 }
+	offset = 120
+	deathdate = { day = 1 month = january year = 1538 }
+
+	action_a = {
+		name = "ACTIONNAME65115A" #Give him refuge
+		command = { type = stability value = -1 }
+		command = { type = relation which = AYU value = -100 }
+		command = { type = domestic which = offensive value = 1 }
+		command = { type = trigger which = 65116 } #AYU: Prince Ekaracha
+	}
+	action_b = {
+		name = "ACTIONNAME65115B" #Send him back
+		command = { type = stability value = 1 }
+		command = { type = relation which = AYU value = 50 }
+	}
+}
+
+#(1545) Throne of Lan Na
+event = {
+	id = 106001
+	trigger = { exists = KHM }
+	random = no
+	country = AMI
+	name = "EVENTNAME106001" #Throne of Lan Na
+	desc = "EVENTHIST106001"
+	#-#The last King of Chiangmai died childless in 1543, and Phothisarat, whose mother was a Chiangmai princess, promptly claimed the empty throne. So did Siam and a Shan prince named Mekut'i. Laos won the first round, and Phothisarat placed his son, prince Setthathirat, on the Chiangmai throne.
+
+	date = { day = 1 month = january year = 1545 }
+	offset = 20
+	deathdate = { day = 1 month = february year = 1545 }
+
+	action_a = {
+		name = "SPLENDID"
+		command = { type = vassal which = KHM }
+		command = { type = relation which = KHM value = 200 }
+		command = { type = alliance which = KHM }
+	}
+}
+
+#(1547) Return to Muong Swa
+event = {
+	id = 106003
+	trigger = {
+		event = 106000 #AMI: King Phothisarath
+		owned = { province = 1552 data = -1 } #Mekong
+		control = { province = 1552 data = -1 } #Mekong
+	}
+	random = no
+	country = AMI
+	name = "EVENTNAME106003" #Return to Muong Swa
+	desc = "EVENTHIST106003"
+	#-#King Setthathirath returned to Muong Swa (Luang Prabang), taking with him an important religious object and symbol of soveriegnty known as the Emerald Buddha, to safeguard it from Burmese attack.
+
+	date = { day = 1 month = january year = 1547 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1547 }
+
+	action_a = {
+		name = "ACTIONNAME106003A" #Safeguard our Buddha!
+		command = { type = capital which = 1552 } #Mekong
+		command = { type = setflag which = [Luang_Prabang] }
+		command = { type = clrflag which = [Vientiane] }
+	}
+}
+
+#(1547) Inheritance of Lan Na
+event = {
+	id = 106002 #triggered by KHM_199000 A
+	random = no
+	country = AMI
+	name = "EVENTNAME106002" #Inheritance of Lan Na
+	desc = "EVENTHIST106002"
+	#-#The last King of Chiangmai died childless in 1543, and Phothisarat, whose mother was a Chiangmai princess, promptly claimed the empty throne. So did Siam and a Shan prince named Mekut'i. Laos won the first round, and Phothisarat placed his son, prince Setthathirat, on the Chiangmai throne. However, the Laotian King died only thirteen months later, and Setthathirat had to hurry to Luang Prabang to claim his father's throne before somebody else did. That gave Siam and the Shans a second chance. All three Kingdoms were fighting over Chiangmai when a revitalized Burma appeared on the scene.
+
+	action_a = {
+		name = "ACTIONNAME106002A" #This pleases me!
+		command = { type = inherit which = KHM }
+		command = { type = relation which = TAU value = -100 }
+		command = { type = relation which = AYU value = -100 }
+		command = { type = trigger which = 120005 } #AYU: Inheritance of Lan Na
+		command = { type = trigger which = 292000 } #TAU: Inheritance of Lan Na
+	}
+}
+
+#(1560-1565) Burmese Aggression
+event = {
+	id = 65117
+	random = no
+	country = AMI
+	trigger = {
+		OR = {
+			exists = MYA
+			exists = DAI
+			exists = AYU
+		}
+	}
+	name = "EVENTNAME65117" #Burmese Aggression
+	desc = "EVENTHIST65117"
+	#-#In 1560, fearing a Burmese invasion, King Phothisarath I concluded a military alliance with Ayuthaya.
+
+	date = { day = 1 month = january year = 1560 }
+	offset = 60
+	deathdate = { day = 1 month = january year = 1565 }
+
+	action_a = {
+		name = "ACTIONNAME65117A" #Ally with Ayutthaya
+		command = { type = stability value = 1 }
+		command = { type = alliance which = AYU }
+		command = { type = relation which = AYU value = 50 }
+		command = { type = relation which = MYA value = -100 }
+	}
+	action_b = {
+		name = "ACTIONNAME65117B" #Seek help with Dai Viet
+		command = { type = stability value = -1 }
+		command = { type = alliance which = DAI }
+		command = { type = relation which = DAI value = 50 }
+		command = { type = relation which = MYA value = -100 }
+	}
+}
+
+#(1563-1570) The Move to Vientiane
+event = {
+	id = 3902
+	trigger = {
+		owned = { province = 1551 data = -1 } #Sarakham
+		control = { province = 1551 data = -1 } #Sarakham
+		event = 106003 #AMI: Return to Muong Swa
+	}
+	random = no
+	country = AMI
+	name = "EVENTNAME3902" #The Move to Vientiane
+	desc = "EVENTHIST3902"
+	#-#Our monarch believes that the current capital of Luangphrebang has outlived its usefulness and wishes to make a fresh start in the city of Vientiane. Shall we move the capital?
+
+	date = { day = 0 month = january year = 1563 }
+	offset = 90
+	deathdate = { day = 29 month = december year = 1570 }
+
+
+	action_a = {
+		name = "ACTIONNAME3902A" #Move to Vientiane
+		command = { type = capital which = 1551 } #Sarakham
+		command = { type = setflag which = [Vientiane] }
+		command = { type = clrflag which = [Luang_Prabang] }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = stability value = -2 }
+		command = { type = provincetax which = 1551 value = 1 } #Sarakham
+		command = { type = population which = 1551 value = 2000 } #Sarakham
+	}
+	action_b = {
+		name = "ACTIONNAME3902B" #Stay in Luangphrebang
+		command = { type = stability value = 1 }
+		command = { type = domestic which = centralization value = -1 }
+	}
+}
+
+#(1571) Disappearance of a King
+event = {
+	id = 106004
+	random = no
+	country = AMI
+	name = "EVENTNAME106004" #Disappearance of a King
+	desc = "EVENTHIST106004"
+	#-#Setthathirath mysteriously disappeared in 1571 on his way home from a punitive expedition against Cambodia, perhaps in battle with the unconquered tribes in the highlands. Lan Xang then entered a period of twenty years of anarchy and Burmese domination.
+
+	date = { day = 1 month = january year = 1571 }
+	offset = 20
+	deathdate = { day = 1 month = february year = 1571 }
+
+	action_a = {
+		name = "ACTIONNAME106004A" #Oh where has my little King gone!
+		command = { type = revoltrisk which = 240 value = 5 }
+		command = { type = stability value = -5 }
+		command = { type = trigger which = 136000 } #Declaration of war by Burma #MYA: Disappearance of a King
+	}
+}
+
+#(1643-1690) The rule of Souligna Vongsa
+event = {
+	id = 65112
+	random = no
+	country = AMI
+	name = "EVENTNAME65112" #The rule of Suriyawongsa
+	desc = "EVENTHIST65112"
+	#-#King Suriyawongsa was raised to the throne by the most powerful nobles in the Kingdom, in preference to his elder brothers and the sons of his uncle. He is generally described as a just and enlightened ruler, and a great patron of religion and the arts. He resolved long-time conflicts with Siam, by concluding peace with them, and fixing the boundaries between the two realms and built the pagoda of Songrak together with King Narai to mark the occasion.
+
+	date = { day = 1 month = january year = 1643 }
+	offset = 4000
+	deathdate = { day = 1 month = january year = 1690 }
+
+	action_a = {
+		name = "OK"
+		command = { type = stability value = 2 }
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = relation which = AYU value = 100 }
+		command = { type = infra value = 600 }
+		command = { type = gainbuilding which = -1 value = courthouse }
+		command = { type = trade value = 200 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+	}
+}
+
+#(1695) Lao Disunity
+event = {
+	id = 106005
+	random = no
+	country = AMI
+	name = "EVENTNAME106005" #Lao Disunity
+	desc = "EVENTHIST106005"
+	#-#Souligna Vongsa contributed to the fall of Lan Xang by refusing to stay the execution of his only son. Upon the King's death in 1694, there was a struggle for succession that destroyed the unity of the Kingdom.
+
+	date = { day = 0 month = january year = 1695 }
+	offset = 25
+	deathdate = { day = 29 month = december year = 1695 }
+
+	action_a = {
+		name = "OH_NO"
+		command = { type = revoltrisk which = 1551 value = 5 } #Sarakham
+		command = { type = stability value = -6 }
+		command = { type = trigger which = 65111 } #DAI: Civil war in Lan Xang
+	}
+}
+
+#(1707-1820) The Fall of Lan Xang -I-
+event = {
+	id = 106006
+	trigger = {
+		atwar = no
+		flag = [Vientiane]
+		owned = { province = 1551 data = -1 } #Sarakham
+		control = { province = 1551 data = -1 } #Sarakham
+	}
+	random = no
+	country = AMI
+	name = "EVENTNAME106006" #The Fall of Lan Xang
+	desc = "EVENTHIST106006"
+	#-#Three Lao states emerged from competition for the throne. Souligna Vongsa's nephew controlled from Vientiane a considerable area on both sides of the middle Mekong, under the suzerainty of Annam, which had helped him get the throne. A separate Kingdom was established at Luang Prabang in 1707 by Souligna Vongsa's grandsons; this area remained independent of the Vietnamese. A third Kingdom, Champassak, which controlled the southernmost provinces on both sides of the Mekong, was established in 1713 by another prince. This Kingdom was increasingly influenced by Siam.
+
+	date = { day = 0 month = january year = 1707 }
+	offset = 180
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME106006A" #Farewell
+		command = { type = revoltrisk which = 1551 value = -5 } #Sarakham
+		command = { type = flagname which = "" }
+		command = { type = country which = VIE }
+		command = { type = independence which = DAK }
+		command = { type = independence which = LUA }
+		command = { type = sleepevent which = 106008 } #AMI: The Fall of Lan Xang -II-
+		command = { type = sleepevent which = 106009 } #AMI: The Fall of Lan Xang -III-
+	}
+	action_b = {
+		name = "ACTIONNAME106006B" #Goodbye my ass!
+		command = { type = revolt which = 669 } #Laos
+		command = { type = revolt which = 1551 } #Sarakham
+		command = { type = revolt which = 1552 } #Mekong
+		command = { type = revolt which = 669 } #Laos
+		command = { type = revolt which = 1551 } #Sarakham
+		command = { type = revolt which = 1552 } #Mekong
+		command = { type = revolt which = 669 } #Laos
+		command = { type = revolt which = 1551 } #Sarakham
+		command = { type = revolt which = 1552 } #Mekong
+		command = { type = revolt which = 669 } #Laos
+		command = { type = revolt which = 1551 } #Sarakham
+		command = { type = revolt which = 1552 } #Mekong
+		command = { type = stability value = -6 }
+		command = { type = sleepevent which = 106008 } #AMI: The Fall of Lan Xang -II-
+		command = { type = sleepevent which = 106009 } #AMI: The Fall of Lan Xang -III-
+	}
+}
+#(1707-1820) The Fall of Lan Xang -II-
+event = {
+	id = 106008
+	trigger = {
+		atwar = no
+		flag = [Luang_Prabang]
+		owned = { province = 1552 data = -1 } #Mekong
+		control = { province = 1552 data = -1 } #Mekong
+	}
+	random = no
+	country = AMI
+	name = "EVENTNAME106006" #The Fall of Lan Xang
+	desc = "EVENTHIST106006"
+	#-#Three Lao states emerged from competition for the throne. Souligna Vongsa's nephew controlled from Vientiane a considerable area on both sides of the middle Mekong, under the suzerainty of Annam, which had helped him get the throne. A separate Kingdom was established at Luang Prabang in 1707 by Souligna Vongsa's grandsons; this area remained independent of the Vietnamese. A third Kingdom, Champassak, which controlled the southernmost provinces on both sides of the Mekong, was established in 1713 by another prince. This Kingdom was increasingly influenced by Siam.
+
+	date = { day = 0 month = january year = 1707 }
+	offset = 180
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME106006A" #Farewell
+		command = { type = revoltrisk which = 1551 value = -5 } #Sarakham
+		command = { type = flagname which = "" }
+		command = { type = country which = LUA }
+		command = { type = independence which = DAK }
+		command = { type = independence which = VIE }
+		command = { type = sleepevent which = 106006 } #AMI: The Fall of Lan Xang -I-
+		command = { type = sleepevent which = 106009 } #AMI: The Fall of Lan Xang -III-
+	}
+	action_b = {
+		name = "ACTIONNAME106006B" #Goodbye my ass!
+		command = { type = revolt which = 669 } #Laos
+		command = { type = revolt which = 1551 } #Sarakham
+		command = { type = revolt which = 1552 } #Mekong
+		command = { type = revolt which = 669 } #Laos
+		command = { type = revolt which = 1551 } #Sarakham
+		command = { type = revolt which = 1552 } #Mekong
+		command = { type = revolt which = 669 } #Laos
+		command = { type = revolt which = 1551 } #Sarakham
+		command = { type = revolt which = 1552 } #Mekong
+		command = { type = revolt which = 669 } #Laos
+		command = { type = revolt which = 1551 } #Sarakham
+		command = { type = revolt which = 1552 } #Mekong
+		command = { type = stability value = -6 }
+		command = { type = sleepevent which = 106006 } #AMI: The Fall of Lan Xang -I-
+		command = { type = sleepevent which = 106009 } #AMI: The Fall of Lan Xang -III-
+	}
+}
+#(1707-1820) The Fall of Lan Xang - III -
+event = {
+	id = 106009
+	trigger = {
+		atwar = no
+		NOT = {
+			flag = [Luang_Prabang]
+			flag = [Vientiane]
+		}
+		owned = { province = 1551 data = -1 } #Sarakham
+		control = { province = 1551 data = -1 } #Sarakham
+	}
+	random = no
+	country = AMI
+	name = "EVENTNAME106006" #The Fall of Lan Xang
+	desc = "EVENTHIST106006"
+	#-#Three Lao states emerged from competition for the throne. Souligna Vongsa's nephew controlled from Vientiane a considerable area on both sides of the middle Mekong, under the suzerainty of Annam, which had helped him get the throne. A separate Kingdom was established at Luang Prabang in 1707 by Souligna Vongsa's grandsons; this area remained independent of the Vietnamese. A third Kingdom, Champassak, which controlled the southernmost provinces on both sides of the Mekong, was established in 1713 by another prince. This Kingdom was increasingly influenced by Siam.
+
+	date = { day = 0 month = january year = 1707 }
+	offset = 180
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME106006A" #Farewell
+		command = { type = capital which = 1551 } #Sarakham
+		command = { type = revoltrisk which = 1551 value = -5 } #Sarakham
+		command = { type = flagname which = "" }
+		command = { type = country which = VIE }
+		command = { type = independence which = LUA }
+		command = { type = independence which = DAK }
+		command = { type = sleepevent which = 106006 } #AMI: The Fall of Lan Xang -I-
+		command = { type = sleepevent which = 106008 } #AMI: The Fall of Lan Xang -II-
+	}
+	action_b = {
+		name = "ACTIONNAME106006B" #Goodbye my ass!
+		command = { type = revolt which = 669 } #Laos
+		command = { type = revolt which = 1551 } #Sarakham
+		command = { type = revolt which = 1552 } #Mekong
+		command = { type = revolt which = 669 } #Laos
+		command = { type = revolt which = 1551 } #Sarakham
+		command = { type = revolt which = 1552 } #Mekong
+		command = { type = revolt which = 669 } #Laos
+		command = { type = revolt which = 1551 } #Sarakham
+		command = { type = revolt which = 1552 } #Mekong
+		command = { type = revolt which = 669 } #Laos
+		command = { type = revolt which = 1551 } #Sarakham
+		command = { type = revolt which = 1552 } #Mekong
+		command = { type = stability value = -6 }
+		command = { type = sleepevent which = 106006 } #AMI: The Fall of Lan Xang -I-
+		command = { type = sleepevent which = 106008 } #AMI: The Fall of Lan Xang -II-
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Random Events
+#-----------------------------------------------------------------------------------------------
+
+#White Elephants
+event = {
+	id = 106007
+	random = yes
+	country = AMI
+	name = "EVENTNAME106007" #White Elephants
+	desc = "EVENTHIST106007"
+	#-#The Buddhist Kings of Southeast Asia have always treasured the possession of white elephants, enhancing royal prestige and ensuring the country's prosperity.
+
+	action_a = {
+		name = "SPLENDID"
+		command = { type = stability value = 1 }
+		command = { type = revoltrisk which = 12 value = -3 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 106010

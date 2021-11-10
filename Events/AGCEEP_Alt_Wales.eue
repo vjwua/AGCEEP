@@ -1,0 +1,358 @@
+#Independent Wales - Alternative
+
+#Other involved countries:
+#England (ENG): see AGCEEP_HYWvictory_England.eue for other ENG events in same range
+
+#-----------------------------------------------------------------------------------------------
+#England (ENG)
+#-----------------------------------------------------------------------------------------------
+
+#(1420-1820) Cornwall has been taken
+#by Andrelious
+event = {
+	id = 164999 #triggered by WLS_330001
+	country = ENG
+	name = "EVENTNAME164999" #Cornwall has been taken
+	desc = "EVENTHIST164999"
+	#-#In our recent war, the Welsh were able to gain control over Cornwall. Many people have relocated, but want their homes back. What should we do?
+
+	action_a = {
+		name = "ACTIONNAME164999A" #We must retake it!
+		command = { type = population which = 249 value = 4000 } #Wessex
+	}
+	action_b = {
+		name = "ACTIONNAME164999B" #Best just let them have it
+		command = { type = population which = 249 value = 4000 } #Wessex
+		command = { type = stability value = -1 } #This won't be popular
+		command = { type = removecore which = 250 }
+		command = { type = relation which = WLS value = 50 } #Wales will be slightly pleased
+	}
+}
+
+#(1485-1500) Reconciliation with the Welsh
+event = {
+	id = 20806
+	trigger = {
+		event = 20801 #WLS: The Red Dragon
+		event = 21112 #ENG: Bosworth Field
+		exists = WLS
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME20806" #Reconciliation with the Welsh
+	desc = "EVENTHIST20806"
+	#-#Henry rewarded his companions, including much of the nobility of Wales, with land in England and positions in his court. The independent authority of the Prince of Wales was inevitably weakened and, in return for promises of equal treatment for Welshmen and Englishmen, he accepted the situation and swore fealty to his new lord.
+
+	date = { day = 1 month = august year = 1485 }
+	offset = 1
+	deathdate = { day = 1 month = january year = 1500 }
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = relation which = WLS value = 200 }
+		command = { type = vassal which = WLS }
+		command = { type = dynastic which = WLS }
+		command = { type = alliance which = WLS } #Does this work?
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------------------------
+#Wales (WLS)
+#-----------------------------------------------------------------------------------------------
+
+#(1420-1820) The taking of Cornwall
+#by Andrelious
+event = {
+	id = 330001
+	trigger = {
+		owned = { province = 250 data = -1 } #Cornwall
+	}
+	random = no
+	country = WLS
+	name = "EVENTNAME330001" #The taking of Cornwall
+	desc = "EVENTHIST330001"
+	#-#We have managed to free Cornwall from their oppression at the hands of the English! Our Cornish brethren are free once more!
+
+	date = { day = 1 month = january year = 1420 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = provinceculture which = 250 value = gaelic }
+		command = { type = addcore which = 250 } #Cornwall
+		command = { type = population which = 250 value = -3500 } #The English population vacate
+		command = { type = population which = 243 value = -500 } #Some Welsh move to Cornwall
+		command = { type = trigger which = 164999 } #ENG: Cornwall has been taken
+	}
+}
+
+#(1420-1700) The Crown of England
+#by Andrelious
+event = {
+	id = 330000
+	trigger = {
+		owned = { province = 247 data = -1 }
+		control = { province = 247 data = -1 }
+		NOT = { exists = ENG }
+	}
+	random = no
+	country = WLS
+	name = "EVENTNAME330000" #The Crown of England
+	desc = "EVENTHIST330000"
+	#-#Having defeated all remnants of the English state, and seizing London, there are many demands in our English holdings to restore the nation of England and restore it to greatness on the world stage. Already thousands of men have come forward, offering to be part of a new English army, should we decide to carry out the wishes of the masses. The choice is ours...
+
+	date = { day = 1 month = january year = 1420 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1700 }
+
+	action_a = {
+		name = "ACTIONNAME330000A" #England is reborn with me
+		command = { type = vp value = 200 }
+		command = { type = stability value = 3 }
+		command = { type = flagname which = "" }
+		command = { type = country which = ENG }
+		command = { type = INF which = 247 value = 5000 } #Anglia
+		command = { type = CAV which = 247 value = 2000 } #Anglia
+		command = { type = addcore which = 247 } #Anglia
+		command = { type = addcore which = 240 } #Northumberland
+		command = { type = addcore which = 241 } #Yorkshire
+		command = { type = addcore which = 242 } #Lancashire
+		command = { type = addcore which = 244 } #Midlands
+		command = { type = addcore which = 245 } #Lincoln
+		command = { type = addcore which = 246 } #Bristol
+		command = { type = addcore which = 248 } #Kent
+		command = { type = addcore which = 249 } #Wessex
+		command = { type = addcore which = 250 } #Cornwall
+		command = { type = addcore which = 243 } #Wales
+		command = { type = add_countryculture which = anglosaxon }
+		command = { type = remove_countryculture which = gaelic } #To order them properly
+		command = { type = add_countryculture which = gaelic }
+		command = { type = capital which = 247 } #Anglia
+		command = { type = sleepevent which = 3876 } #ENG: Welsh Act of Union
+	}
+	action_b = {
+		name = "ACTIONNAME330000B" #Let England rest in peace
+		command = { type = vp value = -100 }
+		command = { type = stability value = -3 }
+		command = { type = relation which = FRA value = 150 }
+		command = { type = relation which = BUR value = 150 }
+		command = { type = relation which = SCO value = 150 }
+		command = { type = relation which = SPA value = 150 }
+	}
+}
+
+#(1473-1543) The Marcher Lords
+event = {
+	id = 20800
+	trigger = { atwar = no }
+	random = no
+	country = WLS
+	name = "EVENTNAME20800" #The Marcher Lords
+	desc = "EVENTHIST20800"
+	#-#Since the time of the Normans, our country has been divided between the Principality of the north and west and the Marches of the south and east. The Marches were granted to English families who have spent their time fighting each other, bringing in English and Flemish settlers and oppressing the native Welsh. Now the Marcher Lords have been weakened by generations of fighting in France and England. We should take this opportunity to reduce their power and to begin to unify our realm.
+
+	date = { day = 1 month = january year = 1473 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1543 }
+
+	action_a = {
+		name = "ACTIONNAME20800A" #No. The great families are the backbone of Wales
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = relation which = ENG value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME20800B" #We have spent long enough in the pockets of the Saxons!
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = provincetax which = 243 value = 1 } #Wales
+		command = { type = revolt which = 243 } #Wales
+		command = { type = revoltrisk which = 120 value = 6 } #Ten years
+		command = { type = stability value = -5 }
+		command = { type = relation which = ENG value = -100 }
+		command = { type = treasury value = -50 }
+	}
+}
+
+#(1485) The Red Dragon
+event = {
+	id = 20801
+	trigger = { exists = ENG }
+	random = no
+	country = WLS
+	name = "EVENTNAME20801" #The Red Dragon
+	desc = "EVENTHIST20801"
+	#-#Henry Tudor, the grandson of the adventurer Owain ap Maredudd ap Tudur ap Goronwy, has landed in Wales and seeks our support in his bid for the throne of England. He has been spreading stories among our people, reminding them of the old prophecies about a hero, an Arthur or an Owain Glyn Dwr come again, who will deliver them from oppression. Now he has come here with an army and unfurled the red dragon battle-flag of Cadwaladr, the last King of all Britannia. If we ignore his presumption and support him he has a good chance of success. King Richard's hold on the throne is weak. But I fear that our nobles will follow him to England, hoping for places in his court as their reward. Our independent Wales could soon become a memory.
+
+	date = { day = 7 month = august year = 1485 }
+
+	action_a = {
+		name = "ACTIONNAME20801A" #Support Henry Tudor
+		command = { type = treasury value = 100 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = stability value = 1 }
+		command = { type = sleepevent which = 20802 } #WLS: The Boar of Cornwall
+	}
+	action_b = {
+		name = "ACTIONNAME20801B" #Let Henry Tudor pass
+		command = { type = relation which = ENG value = -100 }
+		command = { type = stability value = -3 }
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = desertion which = 243 value = 2000 } #Wales
+		command = { type = desertion which = -1 value = 2000 } #random
+		command = { type = sleepevent which = 20802 } #WLS: The Boar of Cornwall
+		command = { type = sleepevent which = 20806 } #ENG: Reconciliation with the Welsh
+	}
+	action_c = {
+		name = "ACTIONNAME20801C" #I am the heir of Arthur and Cadwaladr. I will test these prophecies myself
+		command = { type = relation which = ENG value = -300 }
+		command = { type = stability value = -5 }
+		command = { type = treasury value = -200 }
+		command = { type = domestic which = serfdom value = 1 }
+		command = { type = domestic which = innovative value = -2 }
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = domestic which = quality value = 1 }
+		command = { type = domestic which = land value = 2 }
+		command = { type = wakeleader which = 0166302 } #WLS: Maredudd I
+		command = { type = casusbelli which = ENG value = 284 } #until April 1509, accession of Henry VIII#
+		command = { type = sleepevent which = 20806 } #ENG: Reconciliation with the Welsh
+	}
+}
+
+#(1531-1599) The Fall of the Dinefwrs
+event = {
+	id = 20803
+	trigger = {
+		domestic = { type = aristocracy value = 2 }
+	}
+	random = no
+	country = WLS
+	name = "EVENTNAME20803" #The Fall of the Dinefwrs
+	desc = "EVENTHIST20803"
+	#-#We have sad news to report concerning Rhys ap Gruffydd of Dinefwr, the grandson of the late Rhys ap Thomas, may God rest his soul. We did not give him his grandfather's office of chamberlain of South Wales, the family had already grown far too powerful. Now we believe that he plans to seek more power by other means, and has been looking for support from abroad. With the chaotic state of the world at the moment, we cannot tolerate even the possibility of treachery. We must make this clear to our nobles.
+
+	date = { day = 1 month = november year = 1531 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1599 }
+
+	action_a = {
+		name = "ACTIONNAME20803A" #Very well - arrest and execute him
+		command = { type = stability value = -4 }
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = infra value = -1000 }
+	}
+	action_b = {
+		name = "ACTIONNAME20803B" #Young Rhys? Never!
+		command = { type = stability value = -2 }
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = revolt which = -2 } #A random province? (Havard says -1)
+		command = { type = relation which = -1 value = -100 } #A random neighbour?#
+		command = { type = relation which = -1 value = -100 }
+	}
+}
+
+#(1549-1551) The Boar of Cornwall
+event = {
+	id = 20802
+	trigger = {
+		event = 20801 #WLS: The Red Dragon
+		event = 21036 #ENG: The Prayer Book Rebellion
+	}
+	random = no
+	country = WLS
+	name = "EVENTNAME20802" #The Boar of Cornwall
+	desc = "EVENTHIST20802"
+	#-#We have interesting news from the West Country. The English are preparing an army to impose the English-language prayer book on our cousins there. The Cornish are afraid of losing what remains of their independence in this drive towards centralization and uniformity. We must go to their aid, just as Arthur, the Boar of Cornwall, came to ours when he trampled the necks of the Saxon invaders so long ago.
+
+	date = { day = 1 month = june year = 1549 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1551 }
+
+	action_a = {
+		name = "ACTIONNAME20802A" #We are not interested in ancient history and fairy-tales
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME20802B" #Let us reforge a Welsh nation from the fragments of Britannia!
+		command = { type = addcore which = 250 } #Cornwall
+		command = { type = treasury value = -100 }
+		command = { type = domestic which = innovative value = -2 }
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = relation which = ENG value = -300 }
+		command = { type = relation which = SCO value = -100 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = stability value = -5 }
+		command = { type = population which = 246 value = -5000 } #Bristol
+		command = { type = population which = 244 value = -5000 } #Midlands
+		command = { type = population which = 242 value = -5000 } #Lancashire
+		command = { type = revoltrisk which = 60 value = 5 } #5 years revoltrisk
+	}
+}
+
+#(1582) The Voyage of Prince Madog
+event = {
+	id = 20804
+	random = no
+	country = WLS
+	name = "EVENTNAME20804" #The Voyage of Prince Madog
+	desc = "EVENTHIST20804"
+	#-#Other princes are making fortunes and building empires in the new world across the ocean. Our scholars have discovered records showing that some of this wealth rightfully belongs to us. They relate to the legend of Madog ab Owain Gwynedd, a distant ancestor, who is said to have founded a colony in the 12th century near what the Spaniards call Florida. We could exploit this to justify a claim to the new world older than those of France, England or Spain.
+
+	date = { day = 1 month = january year = 1582 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1582 }
+
+	action_a = {
+		name = "ACTIONNAME20804A" #I don't believe a word. Our ambitions are on this island
+		command = { type = domestic which = land value = 1 }
+		command = { type = infra value = 400 }
+		command = { type = land value = 400 }
+	}
+	action_b = {
+		name = "ACTIONNAME20804B" #We will make our fortune across the sea
+		command = { type = treasury value = -100 }
+		command = { type = domestic which = land value = -4 }
+		command = { type = domestic which = mercantilism value = 2 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = naval value = 600 }
+		command = { type = trade value = 600 }
+		command = { type = explorer which = -2 }
+		command = { type = colonists value = 3 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = relation which = ENG value = -100 }
+		command = { type = relation which = FRA value = -100 }
+	}
+}
+
+#(1745-1750) The Bread of Heaven
+event = {
+	id = 20805
+	random = no
+	country = WLS
+	name = "EVENTNAME20805" #The Bread of Heaven
+	desc = "EVENTHIST20805"
+	#-#Our people have grown tired of the empty formality of the established church. Evangelical preachers are converting them in their thousands to a new religion, Methodism, that emphasizes simplicity of worship and a personal relationship with God. Our culture is being re-shaped and the valleys of Wales echo with the new hymns.
+
+	date = { day = 1 month = january year = 1745 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1750 }
+
+	action_a = {
+		name = "ACTIONNAME20805A" #Feed me till I want no more
+		command = { type = stability value = -1 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = missionaries value = 2 }
+		command = { type = provincereligion which = 243 value = reformed } #Wales
+		command = { type = provincereligion which = 250 value = reformed } #Cornwall
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 330001

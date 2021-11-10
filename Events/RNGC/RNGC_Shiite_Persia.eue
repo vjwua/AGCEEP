@@ -1,0 +1,1814 @@
+# Helper events to change provinces to shiite after Ismail's declaration of a Shiite state
+#
+# Chances to convert to shiite
+#                                                             PER    NOT PER
+# Tabriz, Hamadan, Awhaz, Basrah, Nuyssaybin, Tabaristan      95%      85%
+# Khorasan, Meched, Herat                                     95%      85%
+# Kirkuk, Iraq                                                15%      10%
+# Isfahan, Hormuz, Lut, Kerman, Fars                          90%      15%
+# Elbruz, Birjand                                             90%      15%
+
+#-----------------------------------------------------------------------------------------------
+#(1494-1598) Shiite Persia
+event = {
+	id = 236100
+	trigger = {
+		event = 254021 #PER: A new capital
+	}
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "Shiite Persia"
+
+	date = { day = 1 month = january year = 1494 }
+	offset = 5
+	deathdate = { day = 1 month = january year = 1598 }
+
+	action_a = {
+		name = "OK"
+		#Shiite Persia
+		command = { type = setflag which = [shiite] }
+	}
+}
+
+#Tabriz
+event = {
+	id = 236101
+	trigger = {
+		NOT = {
+			provincereligion = { province = 530 data = shiite }
+		}
+		exists = PER
+		control = { province = 530 data = PER }
+		owned = { province = 530 data = PER }
+		flag = [shiite]
+	}
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "Shiite?"
+
+	date = { day = 0 month = january year = 1500 }
+	offset = 100
+	deathdate = { day = 0 month = january year = 1580 }
+
+	action_a = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236102 } #PER succesful conversion
+		command = { type = sleepevent which = 236103 }
+	}
+	action_b = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236102 } #PER succesful conversion
+		command = { type = sleepevent which = 236103 }
+	}
+	action_c = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236102 } #PER succesful conversion
+		command = { type = sleepevent which = 236103 } #non-Persia owned event
+	}
+	action_d = {
+		name = "OK"
+		command = { }
+		command = { type = sleepevent which = 236103 } #non-Persia owned event
+	}
+}
+#Tabriz
+event = {
+	id = 236103
+	trigger = {
+		NOT = {
+			control = { province = 530 data = PER }
+			owned = { province = 530 data = PER }
+			provincereligion = { province = 530 data = shiite }
+		}
+		flag = [shiite]
+	}
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "?"
+
+	date = { day = 0 month = january year = 1515 }
+	offset = 100
+	deathdate = { day = 0 month = january year = 1580 }
+
+	action_a = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236102 } #non-PER succesful conversion
+	}
+	action_b = {
+		name = "OK"
+		command = { }
+	}
+	action_c = {
+		name = "OK"
+		command = { }
+	}
+	action_d = {
+		name = "OK"
+		command = { }
+	}
+}
+#Shiites in Tabriz
+event = {
+	id = 236102
+	random = no
+	province = 530
+	name = "EVENTNAME236102" #Shiites in Tabriz
+	desc = "EVENTHIST_SHIITEPROV"
+	#-#Due to the religious policies of Ismail of the Safavids and his fanatical followers, the people of this province have adopted the Shiite faith!
+
+	action_a = {
+		name = "OK"
+		command = { type = provincereligion which = 530 value = shiite } #Tabriz
+	}
+}
+
+#Hamadan
+event = {
+	id = 236104
+	trigger = {
+		NOT = {
+			provincereligion = { province = 531 data = shiite }
+		}
+		exists = PER
+		control = { province = 531 data = PER }
+		owned = { province = 531 data = PER }
+		flag = [shiite]
+	}
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "Shiite?"
+
+	date = { day = 0 month = january year = 1500 }
+	offset = 100
+	deathdate = { day = 0 month = january year = 1580 }
+
+	action_a = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236106 } #PER succesful conversion
+		command = { type = sleepevent which = 236105 }
+	}
+	action_b = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236106 } #PER succesful conversion
+		command = { type = sleepevent which = 236105 }
+	}
+	action_c = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236106 } #PER succesful conversion
+		command = { type = sleepevent which = 236105 } #non-Persia owned event
+	}
+	action_d = {
+		name = "OK"
+		command = { }
+		command = { type = sleepevent which = 236105 } #non-Persia owned event
+	}
+}
+#Hamadan
+event = {
+	id = 236105
+	trigger = {
+		NOT = {
+			control = { province = 531 data = PER }
+			owned = { province = 531 data = PER }
+			provincereligion = { province = 531 data = shiite }
+		}
+		flag = [shiite]
+	}
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "?"
+
+	date = { day = 0 month = january year = 1515 }
+	offset = 100
+	deathdate = { day = 0 month = january year = 1580 }
+
+	action_a = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236106 } #non-PER succesful conversion
+	}
+	action_b = {
+		name = "OK"
+		command = { }
+	}
+	action_c = {
+		name = "OK"
+		command = { }
+	}
+	action_d = {
+		name = "OK"
+		command = { }
+	}
+}
+#Shiites in Hamadan
+event = {
+	id = 236106
+	random = no
+	province = 531
+	name = "EVENTNAME236106" #Shiites in Hamadan
+	desc = "EVENTHIST_SHIITEPROV"
+	#-#Due to the religious policies of Ismail of the Safavids and his fanatical followers, the people of this province have adopted the Shiite faith!
+
+	action_a = {
+		name = "OK"
+		command = { type = provincereligion which = 531 value = shiite } #Hamadan
+	}
+}
+
+#Awhaz
+event = {
+	id = 236107
+	trigger = {
+		NOT = {
+			provincereligion = { province = 532 data = shiite }
+		}
+		exists = PER
+		control = { province = 532 data = PER }
+		owned = { province = 532 data = PER }
+		flag = [shiite]
+	}
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "Shiite?"
+
+	date = { day = 0 month = january year = 1500 }
+	offset = 100
+	deathdate = { day = 0 month = january year = 1580 }
+
+	action_a = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236109 } #PER succesful conversion
+		command = { type = sleepevent which = 236108 }
+	}
+	action_b = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236109 } #PER succesful conversion
+		command = { type = sleepevent which = 236108 }
+	}
+	action_c = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236109 } #PER succesful conversion
+		command = { type = sleepevent which = 236108 } #non-Persia owned event
+	}
+	action_d = {
+		name = "OK"
+		command = { }
+		command = { type = sleepevent which = 236108 } #non-Persia owned event
+	}
+}
+#Awhaz
+event = {
+	id = 236108
+	trigger = {
+		NOT = {
+			control = { province = 532 data = PER }
+			owned = { province = 532 data = PER }
+			provincereligion = { province = 532 data = shiite }
+		}
+		flag = [shiite]
+	}
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "?"
+
+	date = { day = 0 month = january year = 1515 }
+	offset = 100
+	deathdate = { day = 0 month = january year = 1580 }
+
+	action_a = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236109 } #non-PER succesful conversion
+	}
+	action_b = {
+		name = "OK"
+		command = { }
+	}
+	action_c = {
+		name = "OK"
+		command = { }
+	}
+	action_d = {
+		name = "OK"
+		command = { }
+	}
+}
+#Shiites in Awhaz
+event = {
+	id = 236109
+	random = no
+	province = 532
+	name = "EVENTNAME236109" #Shiites in Awhaz
+	desc = "EVENTHIST_SHIITEPROV"
+	#-#Due to the religious policies of Ismail of the Safavids and his fanatical followers, the people of this province have adopted the Shiite faith!
+
+	action_a = {
+		name = "OK"
+		command = { type = provincereligion which = 532 value = shiite }
+	}
+}
+
+#Basrah
+event = {
+	id = 236110
+	trigger = {
+		NOT = {
+			provincereligion = { province = 508 data = shiite }
+		}
+		exists = PER
+		control = { province = 508 data = PER }
+		owned = { province = 508 data = PER }
+		flag = [shiite]
+	}
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "Shiite?"
+
+	date = { day = 0 month = january year = 1500 }
+	offset = 100
+	deathdate = { day = 0 month = january year = 1580 }
+
+	action_a = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236112 } #PER succesful conversion
+		command = { type = sleepevent which = 236111 }
+	}
+	action_b = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236112 } #PER succesful conversion
+		command = { type = sleepevent which = 236111 }
+	}
+	action_c = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236112 } #PER succesful conversion
+		command = { type = sleepevent which = 236111 } #non-Persia owned event
+	}
+	action_d = {
+		name = "OK"
+		command = { }
+		command = { type = sleepevent which = 236111 } #non-Persia owned event
+	}
+}
+#Basrah
+event = {
+	id = 236111
+	trigger = {
+		NOT = {
+			control = { province = 508 data = PER }
+			owned = { province = 508 data = PER }
+			provincereligion = { province = 508 data = shiite }
+		}
+		flag = [shiite]
+	}
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "?"
+
+	date = { day = 0 month = january year = 1515 }
+	offset = 100
+	deathdate = { day = 0 month = january year = 1580 }
+
+	action_a = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236112 } #non-PER succesful conversion
+	}
+	action_b = {
+		name = "OK"
+		command = { }
+	}
+	action_c = {
+		name = "OK"
+		command = { }
+	}
+	action_d = {
+		name = "OK"
+		command = { }
+	}
+}
+#Shiites in Basrah
+event = {
+	id = 236112
+	random = no
+	province = 508
+	name = "EVENTNAME236112" #Shiites in Basrah
+	desc = "EVENTHIST_SHIITEPROV"
+	#-#Due to the religious policies of Ismail of the Safavids and his fanatical followers, the people of this province have adopted the Shiite faith!
+
+	action_a = {
+		name = "OK"
+		command = { type = provincereligion which = 508 value = shiite }
+	}
+}
+
+#Nuyssaybin
+event = {
+	id = 236113
+	trigger = {
+		NOT = {
+			provincereligion = { province = 486 data = shiite }
+		}
+		exists = PER
+		control = { province = 486 data = PER }
+		owned = { province = 486 data = PER }
+		flag = [shiite]
+	}
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "Shiite?"
+
+	date = { day = 0 month = january year = 1500 }
+	offset = 100
+	deathdate = { day = 0 month = january year = 1580 }
+
+	action_a = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236115 } #PER succesful conversion
+		command = { type = sleepevent which = 236114 }
+	}
+	action_b = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236115 } #PER succesful conversion
+		command = { type = sleepevent which = 236114 }
+	}
+	action_c = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236115 } #PER succesful conversion
+		command = { type = sleepevent which = 236114 } #non-Persia owned event
+	}
+	action_d = {
+		name = "OK"
+		command = { }
+		command = { type = sleepevent which = 236114 } #non-Persia owned event
+	}
+}
+#Nuyssaybin
+event = {
+	id = 236114
+	trigger = {
+		NOT = {
+			control = { province = 486 data = PER }
+			owned = { province = 486 data = PER }
+			provincereligion = { province = 486 data = shiite }
+		}
+		flag = [shiite]
+	}
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "?"
+
+	date = { day = 0 month = january year = 1515 }
+	offset = 100
+	deathdate = { day = 0 month = january year = 1580 }
+
+	action_a = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236115 } #non-PER succesful conversion
+	}
+	action_b = {
+		name = "OK"
+		command = { }
+	}
+	action_c = {
+		name = "OK"
+		command = { }
+	}
+	action_d = {
+		name = "OK"
+		command = { }
+	}
+}
+#Shiites in Nuyssaybin
+event = {
+	id = 236115
+	random = no
+	province = 486
+	name = "EVENTNAME236115" #Shiites in Nuyssaybin
+	desc = "EVENTHIST_SHIITEPROV"
+	#-#Due to the religious policies of Ismail of the Safavids and his fanatical followers, the people of this province have adopted the Shiite faith!
+
+	action_a = {
+		name = "OK"
+		command = { type = provincereligion which = 486 value = shiite }
+	}
+}
+
+#Tabaristan
+event = {
+	id = 236116
+	trigger = {
+		NOT = {
+			provincereligion = { province = 529 data = shiite }
+		}
+		exists = PER
+		control = { province = 529 data = PER }
+		owned = { province = 529 data = PER }
+		flag = [shiite]
+	}
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "Shiite?"
+
+	date = { day = 0 month = january year = 1500 }
+	offset = 100
+	deathdate = { day = 0 month = january year = 1580 }
+
+	action_a = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236118 } #PER succesful conversion
+		command = { type = sleepevent which = 236117 }
+	}
+	action_b = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236118 } #PER succesful conversion
+		command = { type = sleepevent which = 236117 }
+	}
+	action_c = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236118 } #PER succesful conversion
+		command = { type = sleepevent which = 236117 } #non-Persia owned event
+	}
+	action_d = {
+		name = "OK"
+		command = { }
+		command = { type = sleepevent which = 236117 } #non-Persia owned event
+	}
+}
+#Tabaristan
+event = {
+	id = 236117
+	trigger = {
+		NOT = {
+			control = { province = 529 data = PER }
+			owned = { province = 529 data = PER }
+			provincereligion = { province = 529 data = shiite }
+		}
+		flag = [shiite]
+	}
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "?"
+
+	date = { day = 0 month = january year = 1515 }
+	offset = 100
+	deathdate = { day = 0 month = january year = 1580 }
+
+	action_a = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236118 } #non-PER succesful conversion
+	}
+	action_b = {
+		name = "OK"
+		command = { }
+	}
+	action_c = {
+		name = "OK"
+		command = { }
+	}
+	action_d = {
+		name = "OK"
+		command = { }
+	}
+}
+#Shiites in Tabaristan
+event = {
+	id = 236118
+	random = no
+	province = 529
+	name = "EVENTNAME236118" #Shiites in Tabaristan
+	desc = "EVENTHIST_SHIITEPROV"
+	#-#Due to the religious policies of Ismail of the Safavids and his fanatical followers, the people of this province have adopted the Shiite faith!
+
+	action_a = {
+		name = "OK"
+		command = { type = provincereligion which = 529 value = shiite }
+	}
+}
+
+#Khorasan
+event = {
+	id = 236119
+	trigger = {
+		NOT = {
+			provincereligion = { province = 1530 data = shiite }
+		}
+		exists = PER
+		control = { province = 1530 data = PER }
+		owned = { province = 1530 data = PER }
+		flag = [shiite]
+	}
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "Shiite?"
+
+	date = { day = 0 month = january year = 1500 }
+	offset = 100
+	deathdate = { day = 0 month = january year = 1580 }
+
+	action_a = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236121 } #PER succesful conversion
+		command = { type = sleepevent which = 236120 }
+	}
+	action_b = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236121 } #PER succesful conversion
+		command = { type = sleepevent which = 236120 }
+	}
+	action_c = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236121 } #PER succesful conversion
+		command = { type = sleepevent which = 236120 } #non-Persia owned event
+	}
+	action_d = {
+		name = "OK"
+		command = { }
+		command = { type = sleepevent which = 236120 } #non-Persia owned event
+	}
+}
+#Khorasan
+event = {
+	id = 236120
+	trigger = {
+		NOT = {
+			control = { province = 1530 data = PER }
+			owned = { province = 1530 data = PER }
+			provincereligion = { province = 1530 data = shiite }
+		}
+		flag = [shiite]
+	}
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "?"
+
+	date = { day = 0 month = january year = 1515 }
+	offset = 100
+	deathdate = { day = 0 month = january year = 1580 }
+
+	action_a = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236121 } #non-PER succesful conversion
+	}
+	action_b = {
+		name = "OK"
+		command = { }
+	}
+	action_c = {
+		name = "OK"
+		command = { }
+	}
+	action_d = {
+		name = "OK"
+		command = { }
+	}
+}
+#Shiites in Khorasan
+event = {
+	id = 236121
+	random = no
+	province = 1530
+	name = "EVENTNAME236121" #Shiites in Khorasan
+	desc = "EVENTHIST_SHIITEPROV"
+	#-#Due to the religious policies of Ismail of the Safavids and his fanatical followers, the people of this province have adopted the Shiite faith!
+
+	action_a = {
+		name = "OK"
+		command = { type = provincereligion which = 1530 value = shiite }
+	}
+}
+
+#Meched
+event = {
+	id = 236122
+	trigger = {
+		NOT = {
+			provincereligion = { province = 526 data = shiite }
+		}
+		exists = PER
+		control = { province = 526 data = PER }
+		owned = { province = 526 data = PER }
+		flag = [shiite]
+	}
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "Shiite?"
+
+	date = { day = 0 month = january year = 1500 }
+	offset = 100
+	deathdate = { day = 0 month = january year = 1580 }
+
+	action_a = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236124 } #PER succesful conversion
+		command = { type = sleepevent which = 236123 }
+	}
+	action_b = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236124 } #PER succesful conversion
+		command = { type = sleepevent which = 236123 }
+	}
+	action_c = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236124 } #PER succesful conversion
+		command = { type = sleepevent which = 236123 } #non-Persia owned event
+	}
+	action_d = {
+		name = "OK"
+		command = { }
+		command = { type = sleepevent which = 236123 } #non-Persia owned event
+	}
+}
+#Meched
+event = {
+	id = 236123
+	trigger = {
+		NOT = {
+			control = { province = 526 data = PER }
+			owned = { province = 526 data = PER }
+			provincereligion = { province = 526 data = shiite }
+		}
+		flag = [shiite]
+	}
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "?"
+
+	date = { day = 0 month = january year = 1515 }
+	offset = 100
+	deathdate = { day = 0 month = january year = 1580 }
+
+	action_a = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236124 } #non-PER succesful conversion
+	}
+	action_b = {
+		name = "OK"
+		command = { }
+	}
+	action_c = {
+		name = "OK"
+		command = { }
+	}
+	action_d = {
+		name = "OK"
+		command = { }
+	}
+}
+#Shiites in Meched
+event = {
+	id = 236124
+	random = no
+	province = 526
+	name = "EVENTNAME236124" #Shiites in Meched
+	desc = "EVENTHIST_SHIITEPROV"
+	#-#Due to the religious policies of Ismail of the Safavids and his fanatical followers, the people of this province have adopted the Shiite faith!
+
+	action_a = {
+		name = "OK"
+		command = { type = provincereligion which = 526 value = shiite }
+	}
+}
+
+#Herat
+event = {
+	id = 236125
+	trigger = {
+		NOT = {
+			provincereligion = { province = 1531 data = shiite }
+		}
+		exists = PER
+		control = { province = 1531 data = PER }
+		owned = { province = 1531 data = PER }
+		flag = [shiite]
+	}
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "Shiite?"
+
+	date = { day = 0 month = january year = 1500 }
+	offset = 100
+	deathdate = { day = 0 month = january year = 1580 }
+
+	action_a = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236127 } #PER succesful conversion
+		command = { type = sleepevent which = 236126 }
+	}
+	action_b = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236127 } #PER succesful conversion
+		command = { type = sleepevent which = 236126 }
+	}
+	action_c = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236127 } #PER succesful conversion
+		command = { type = sleepevent which = 236126 } #non-Persia owned event
+	}
+	action_d = {
+		name = "OK"
+		command = { }
+		command = { type = sleepevent which = 236126 } #non-Persia owned event
+	}
+}
+#Herat
+event = {
+	id = 236126
+	trigger = {
+		NOT = {
+			control = { province = 1531 data = PER }
+			owned = { province = 1531 data = PER }
+			provincereligion = { province = 1531 data = shiite }
+		}
+		flag = [shiite]
+	}
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "?"
+
+	date = { day = 0 month = january year = 1515 }
+	offset = 100
+	deathdate = { day = 0 month = january year = 1580 }
+
+	action_a = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236127 } #non-PER succesful conversion
+	}
+	action_b = {
+		name = "OK"
+		command = { }
+	}
+	action_c = {
+		name = "OK"
+		command = { }
+	}
+	action_d = {
+		name = "OK"
+		command = { }
+	}
+}
+#Shiites in Herat
+event = {
+	id = 236127
+	random = no
+	province = 1531
+	name = "EVENTNAME236127" #Shiites in Herat
+	desc = "EVENTHIST_SHIITEPROV"
+	#-#Due to the religious policies of Ismail of the Safavids and his fanatical followers, the people of this province have adopted the Shiite faith!
+
+	action_a = {
+		name = "OK"
+		command = { type = provincereligion which = 1531 value = shiite }
+	}
+}
+
+#Elbruz
+event = {
+	id = 236128
+	trigger = {
+		NOT = {
+			provincereligion = { province = 525 data = shiite }
+		}
+		exists = PER
+		control = { province = 525 data = PER }
+		owned = { province = 525 data = PER }
+		flag = [shiite]
+	}
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "Shiite?"
+
+	date = { day = 0 month = january year = 1500 }
+	offset = 120
+	deathdate = { day = 0 month = january year = 1580 }
+
+	action_a = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236130 } #PER succesful conversion
+		command = { type = sleepevent which = 236129 }
+	}
+	action_b = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236130 } #PER succesful conversion
+		command = { type = sleepevent which = 236129 }
+	}
+	action_c = {
+		name = "OK"
+		#Convert
+		command = { }
+		command = { type = sleepevent which = 236129 } #non-Persia owned event
+	}
+	action_d = {
+		name = "OK"
+		command = { }
+		command = { type = sleepevent which = 236129 } #non-Persia owned event
+	}
+}
+#Elbruz
+event = {
+	id = 236129
+	trigger = {
+		NOT = {
+			control = { province = 525 data = PER }
+			owned = { province = 525 data = PER }
+			provincereligion = { province = 525 data = shiite }
+		}
+		flag = [shiite]
+	}
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "?"
+
+	date = { day = 0 month = january year = 1515 }
+	offset = 120
+	deathdate = { day = 0 month = january year = 1580 }
+
+	action_a = {
+		name = "OK"
+		command = { }
+	}
+	action_b = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236130 } #non-PER succesful conversion
+	}
+	action_c = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236130 } #non-PER succesful conversion
+	}
+	action_d = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236130 } #non-PER succesful conversion
+	}
+}
+#Shiites in Elbruz
+event = {
+	id = 236130
+	random = no
+	province = 525
+	name = "EVENTNAME236130" #Shiites in Elbruz
+	desc = "EVENTHIST_SHIITEPROV"
+	#-#Due to the religious policies of Ismail of the Safavids and his fanatical followers, the people of this province have adopted the Shiite faith!
+
+	action_a = {
+		name = "OK"
+		command = { type = provincereligion which = 525 value = shiite }
+	}
+}
+
+#Birjand
+event = {
+	id = 236131
+	trigger = {
+		NOT = {
+			provincereligion = { province = 1529 data = shiite }
+		}
+		exists = PER
+		control = { province = 1529 data = PER }
+		owned = { province = 1529 data = PER }
+		flag = [shiite]
+	}
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "Shiite?"
+
+	date = { day = 0 month = january year = 1500 }
+	offset = 120
+	deathdate = { day = 0 month = january year = 1580 }
+
+	action_a = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236133 } #PER succesful conversion
+		command = { type = sleepevent which = 236132 }
+	}
+	action_b = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236133 } #PER succesful conversion
+		command = { type = sleepevent which = 236132 }
+	}
+	action_c = {
+		name = "OK"
+		#Convert
+		command = { }
+		command = { type = sleepevent which = 236132 } #non-Persia owned event
+	}
+	action_d = {
+		name = "OK"
+		command = { }
+		command = { type = sleepevent which = 236132 } #non-Persia owned event
+	}
+}
+#Birjand
+event = {
+	id = 236132
+	trigger = {
+		NOT = {
+			control = { province = 1529 data = PER }
+			owned = { province = 1529 data = PER }
+			provincereligion = { province = 1529 data = shiite }
+		}
+		flag = [shiite]
+	}
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "?"
+
+	date = { day = 0 month = january year = 1515 }
+	offset = 120
+	deathdate = { day = 0 month = january year = 1580 }
+
+	action_a = {
+		name = "OK"
+		command = { }
+	}
+	action_b = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236133 } #non-PER succesful conversion
+	}
+	action_c = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236133 } #non-PER succesful conversion
+	}
+	action_d = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236133 } #non-PER succesful conversion
+	}
+}
+#Shiites in Birjand
+event = {
+	id = 236133
+	random = no
+	province = 1529
+	name = "EVENTNAME236133" #Shiites in Birjand
+	desc = "EVENTHIST_SHIITEPROV"
+	#-#Due to the religious policies of Ismail of the Safavids and his fanatical followers, the people of this province have adopted the Shiite faith!
+
+	action_a = {
+		name = "OK"
+		command = { type = provincereligion which = 1529 value = shiite }
+	}
+}
+
+#Lut
+event = {
+	id = 236134
+	trigger = {
+		NOT = {
+			provincereligion = { province = 528 data = shiite }
+		}
+		exists = PER
+		control = { province = 528 data = PER }
+		owned = { province = 528 data = PER }
+		flag = [shiite]
+	}
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "Shiite?"
+
+	date = { day = 0 month = january year = 1500 }
+	offset = 120
+	deathdate = { day = 0 month = january year = 1580 }
+
+	action_a = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236136 } #PER succesful conversion
+		command = { type = sleepevent which = 236135 }
+	}
+	action_b = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236136 } #PER succesful conversion
+		command = { type = sleepevent which = 236135 }
+	}
+	action_c = {
+		name = "OK"
+		#Convert
+		command = { }
+		command = { type = sleepevent which = 236135 } #non-Persia owned event
+	}
+	action_d = {
+		name = "OK"
+		command = { }
+		command = { type = sleepevent which = 236135 } #non-Persia owned event
+	}
+}
+#Lut
+event = {
+	id = 236135
+	trigger = {
+		NOT = {
+			control = { province = 528 data = PER }
+			owned = { province = 528 data = PER }
+			provincereligion = { province = 528 data = shiite }
+		}
+		flag = [shiite]
+	}
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "?"
+
+	date = { day = 0 month = january year = 1515 }
+	offset = 120
+	deathdate = { day = 0 month = january year = 1580 }
+
+	action_a = {
+		name = "OK"
+		command = { }
+	}
+	action_b = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236136 } #non-PER succesful conversion
+	}
+	action_c = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236136 } #non-PER succesful conversion
+	}
+	action_d = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236136 } #non-PER succesful conversion
+	}
+}
+#Shiites in Lut
+event = {
+	id = 236136
+	random = no
+	province = 528
+	name = "EVENTNAME236136" #Shiites in Lut
+	desc = "EVENTHIST_SHIITEPROV"
+	#-#Due to the religious policies of Ismail of the Safavids and his fanatical followers, the people of this province have adopted the Shiite faith!
+
+	action_a = {
+		name = "OK"
+		command = { type = provincereligion which = 528 value = shiite }
+	}
+}
+
+#Isfahan
+event = {
+	id = 236137
+	trigger = {
+		NOT = {
+			provincereligion = { province = 533 data = shiite }
+		}
+		exists = PER
+		control = { province = 533 data = PER }
+		owned = { province = 533 data = PER }
+		flag = [shiite]
+	}
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "Shiite?"
+
+	date = { day = 0 month = january year = 1500 }
+	offset = 120
+	deathdate = { day = 0 month = january year = 1580 }
+
+	action_a = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236139 } #PER succesful conversion
+		command = { type = sleepevent which = 236138 }
+	}
+	action_b = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236139 } #PER succesful conversion
+		command = { type = sleepevent which = 236138 }
+	}
+	action_c = {
+		name = "OK"
+		#Convert
+		command = { }
+		command = { type = sleepevent which = 236138 } #non-Persia owned event
+	}
+	action_d = {
+		name = "OK"
+		command = { }
+		command = { type = sleepevent which = 236138 } #non-Persia owned event
+	}
+}
+#Isfahan
+event = {
+	id = 236138
+	trigger = {
+		NOT = {
+			control = { province = 533 data = PER }
+			owned = { province = 533 data = PER }
+			provincereligion = { province = 533 data = shiite }
+		}
+		flag = [shiite]
+	}
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "?"
+
+	date = { day = 0 month = january year = 1515 }
+	offset = 120
+	deathdate = { day = 0 month = january year = 1580 }
+
+	action_a = {
+		name = "OK"
+		command = { }
+	}
+	action_b = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236139 } #non-PER succesful conversion
+	}
+	action_c = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236139 } #non-PER succesful conversion
+	}
+	action_d = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236139 } #non-PER succesful conversion
+	}
+}
+#Shiites in Isfahan
+event = {
+	id = 236139
+	random = no
+	province = 533
+	name = "EVENTNAME236139" #Shiites in Isfahan
+	desc = "EVENTHIST_SHIITEPROV"
+	#-#Due to the religious policies of Ismail of the Safavids and his fanatical followers, the people of this province have adopted the Shiite faith!
+
+	action_a = {
+		name = "OK"
+		command = { type = provincereligion which = 533 value = shiite }
+	}
+}
+
+#Hormuz
+event = {
+	id = 236140
+	trigger = {
+		NOT = {
+			provincereligion = { province = 535 data = shiite }
+		}
+		exists = PER
+		control = { province = 535 data = PER }
+		owned = { province = 535 data = PER }
+		flag = [shiite]
+	}
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "Shiite?"
+
+	date = { day = 0 month = january year = 1500 }
+	offset = 120
+	deathdate = { day = 0 month = january year = 1580 }
+
+	action_a = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236142 } #PER succesful conversion
+		command = { type = sleepevent which = 236141 }
+	}
+	action_b = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236142 } #PER succesful conversion
+		command = { type = sleepevent which = 236141 }
+	}
+	action_c = {
+		name = "OK"
+		#Convert
+		command = { }
+		command = { type = sleepevent which = 236141 } #non-Persia owned event
+	}
+	action_d = {
+		name = "OK"
+		command = { }
+		command = { type = sleepevent which = 236141 } #non-Persia owned event
+	}
+}
+#Hormuz
+event = {
+	id = 236141
+	trigger = {
+		NOT = {
+			control = { province = 535 data = PER }
+			owned = { province = 535 data = PER }
+			provincereligion = { province = 535 data = shiite }
+		}
+		flag = [shiite]
+	}
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "?"
+
+	date = { day = 0 month = january year = 1515 }
+	offset = 120
+	deathdate = { day = 0 month = january year = 1580 }
+
+	action_a = {
+		name = "OK"
+		command = { }
+	}
+	action_b = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236142 } #non-PER succesful conversion
+	}
+	action_c = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236142 } #non-PER succesful conversion
+	}
+	action_d = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236142 } #non-PER succesful conversion
+	}
+}
+#Shiites in Hormuz
+event = {
+	id = 236142
+	random = no
+	province = 535
+	name = "EVENTNAME236142" #Shiites in Hormuz
+	desc = "EVENTHIST_SHIITEPROV"
+	#-#Due to the religious policies of Ismail of the Safavids and his fanatical followers, the people of this province have adopted the Shiite faith!
+
+	action_a = {
+		name = "OK"
+		command = { type = provincereligion which = 535 value = shiite }
+	}
+}
+
+#Fars
+event = {
+	id = 236143
+	trigger = {
+		NOT = {
+			provincereligion = { province = 534 data = shiite }
+		}
+		exists = PER
+		control = { province = 534 data = PER }
+		owned = { province = 534 data = PER }
+		flag = [shiite]
+	}
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "Shiite?"
+
+	date = { day = 0 month = january year = 1500 }
+	offset = 120
+	deathdate = { day = 0 month = january year = 1580 }
+
+	action_a = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236145 } #PER succesful conversion
+		command = { type = sleepevent which = 236144 }
+	}
+	action_b = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236145 } #PER succesful conversion
+		command = { type = sleepevent which = 236144 }
+	}
+	action_c = {
+		name = "OK"
+		#Convert
+		command = { }
+		command = { type = sleepevent which = 236144 } #non-Persia owned event
+	}
+	action_d = {
+		name = "OK"
+		command = { }
+		command = { type = sleepevent which = 236144 } #non-Persia owned event
+	}
+}
+#Fars
+event = {
+	id = 236144
+	trigger = {
+		NOT = {
+			control = { province = 534 data = PER }
+			owned = { province = 534 data = PER }
+			provincereligion = { province = 534 data = shiite }
+		}
+		flag = [shiite]
+	}
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "?"
+
+	date = { day = 0 month = january year = 1515 }
+	offset = 120
+	deathdate = { day = 0 month = january year = 1580 }
+
+	action_a = {
+		name = "OK"
+		command = { }
+	}
+	action_b = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236145 } #non-PER succesful conversion
+	}
+	action_c = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236145 } #non-PER succesful conversion
+	}
+	action_d = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236145 } #non-PER succesful conversion
+	}
+}
+#Shiites in Fars
+event = {
+	id = 236145
+	random = no
+	province = 534
+	name = "EVENTNAME236145" #Shiites in Fars
+	desc = "EVENTHIST_SHIITEPROV"
+	#-#Due to the religious policies of Ismail of the Safavids and his fanatical followers, the people of this province have adopted the Shiite faith!
+
+	action_a = {
+		name = "OK"
+		command = { type = provincereligion which = 534 value = shiite }
+	}
+}
+
+#Kerman
+event = {
+	id = 236146
+	trigger = {
+		NOT = {
+			provincereligion = { province = 527 data = shiite }
+		}
+		exists = PER
+		control = { province = 527 data = PER }
+		owned = { province = 527 data = PER }
+		flag = [shiite]
+	}
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "Shiite?"
+
+	date = { day = 0 month = january year = 1500 }
+	offset = 120
+	deathdate = { day = 0 month = january year = 1580 }
+
+	action_a = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236148 } #PER succesful conversion
+		command = { type = sleepevent which = 236147 }
+	}
+	action_b = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236148 } #PER succesful conversion
+		command = { type = sleepevent which = 236147 }
+	}
+	action_c = {
+		name = "OK"
+		#Convert
+		command = { }
+		command = { type = sleepevent which = 236147 } #non-Persia owned event
+	}
+	action_d = {
+		name = "OK"
+		command = { }
+		command = { type = sleepevent which = 236147 } #non-Persia owned event
+	}
+}
+#Kerman
+event = {
+	id = 236147
+	trigger = {
+		NOT = {
+			control = { province = 527 data = PER }
+			owned = { province = 527 data = PER }
+			provincereligion = { province = 527 data = shiite }
+		}
+		flag = [shiite]
+	}
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "?"
+
+	date = { day = 0 month = january year = 1515 }
+	offset = 120
+	deathdate = { day = 0 month = january year = 1580 }
+
+	action_a = {
+		name = "OK"
+		command = { }
+	}
+	action_b = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236148 } #non-PER succesful conversion
+	}
+	action_c = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236148 } #non-PER succesful conversion
+	}
+	action_d = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236148 } #non-PER succesful conversion
+	}
+}
+#Shiites in Kerman
+event = {
+	id = 236148
+	random = no
+	province = 527
+	name = "EVENTNAME236148" #Shiites in Kerman
+	desc = "EVENTHIST_SHIITEPROV"
+	#-#Due to the religious policies of Ismail of the Safavids and his fanatical followers, the people of this province have adopted the Shiite faith!
+
+	action_a = {
+		name = "OK"
+		command = { type = provincereligion which = 527 value = shiite }
+	}
+}
+
+#Kirkuk
+event = {
+	id = 236149
+	trigger = {
+		NOT = {
+			provincereligion = { province = 488 data = shiite }
+		}
+		exists = PER
+		control = { province = 488 data = PER }
+		owned = { province = 488 data = PER }
+		flag = [shiite]
+	}
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "Shiite?"
+
+	date = { day = 0 month = january year = 1500 }
+	offset = 150
+	deathdate = { day = 0 month = january year = 1580 }
+
+	action_a = {
+		name = "OK"
+		command = { }
+		command = { type = sleepevent which = 236150 } #non-Persia owned event
+	}
+	action_b = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236151 } #PER succesful conversion
+		command = { type = sleepevent which = 236150 }
+	}
+	action_c = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236151 } #PER succesful conversion
+		command = { type = sleepevent which = 236150 }
+	}
+	action_d = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236151 } #PER succesful conversion
+		command = { type = sleepevent which = 236150 }
+	}
+}
+#Kirkuk
+event = {
+	id = 236150
+	trigger = {
+		NOT = {
+			control = { province = 488 data = PER }
+			owned = { province = 488 data = PER }
+			provincereligion = { province = 488 data = shiite }
+		}
+		flag = [shiite]
+	}
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "?"
+
+	date = { day = 0 month = january year = 1515 }
+	offset = 150
+	deathdate = { day = 0 month = january year = 1580 }
+
+	action_a = {
+		name = "OK"
+		command = { }
+	}
+	action_b = {
+		name = "OK"
+		command = { }
+	}
+	action_c = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236151 } #non-PER succesful conversion
+	}
+	action_d = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236151 } #non-PER succesful conversion
+	}
+}
+#Shiites in Kirkuk
+event = {
+	id = 236151
+	random = no
+	province = 488
+	name = "EVENTNAME236151" #Shiites in Kirkuk
+	desc = "EVENTHIST_SHIITEPROV"
+	#-#Due to the religious policies of Ismail of the Safavids and his fanatical followers, the people of this province have adopted the Shiite faith!
+
+	action_a = {
+		name = "OK"
+		command = { type = provincereligion which = 488 value = shiite }
+	}
+}
+
+#Iraq
+event = {
+	id = 236152
+	trigger = {
+		NOT = {
+			provincereligion = { province = 489 data = shiite }
+		}
+		exists = PER
+		control = { province = 489 data = PER }
+		owned = { province = 489 data = PER }
+		flag = [shiite]
+	}
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "Shiite?"
+
+	date = { day = 0 month = january year = 1500 }
+	offset = 150
+	deathdate = { day = 0 month = january year = 1580 }
+
+	action_a = {
+		name = "OK"
+		command = { }
+		command = { type = sleepevent which = 236153 } #non-Persia owned event
+	}
+	action_b = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236154 } #PER succesful conversion
+		command = { type = sleepevent which = 236153 }
+	}
+	action_c = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236154 } #PER succesful conversion
+		command = { type = sleepevent which = 236153 }
+	}
+	action_d = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236154 } #PER succesful conversion
+		command = { type = sleepevent which = 236153 }
+	}
+}
+#Iraq
+event = {
+	id = 236153
+	trigger = {
+		NOT = {
+			control = { province = 489 data = PER }
+			owned = { province = 489 data = PER }
+			provincereligion = { province = 489 data = shiite }
+		}
+		flag = [shiite]
+	}
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "?"
+
+	date = { day = 0 month = january year = 1515 }
+	offset = 150
+	deathdate = { day = 0 month = january year = 1580 }
+
+	action_a = {
+		name = "OK"
+		command = { }
+	}
+	action_b = {
+		name = "OK"
+		command = { }
+	}
+	action_c = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236154 } #non-PER succesful conversion
+	}
+	action_d = {
+		name = "OK"
+		#Convert
+		command = { type = trigger which = 236154 } #non-PER succesful conversion
+	}
+}
+#Shiites in Iraq
+event = {
+	id = 236154
+	random = no
+	province = 489
+	name = "EVENTNAME236154" #Shiites in Iraq
+	desc = "EVENTHIST_SHIITEPROV"
+	#-#Due to the religious policies of Ismail of the Safavids and his fanatical followers, the people of this province have adopted the Shiite faith!
+
+	action_a = {
+		name = "OK"
+		command = { type = provincereligion which = 489 value = shiite }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------

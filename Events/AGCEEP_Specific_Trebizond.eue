@@ -1,0 +1,391 @@
+#Trebizond (TRE)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1820) Restore Byzantium
+#by Dark Knight
+#Text by Henrik 'Doomdark' Fåhraeus
+event = {
+	id = 3874
+	trigger = {
+		owned = { province = 357 data = -1 } #Thrace
+		control = { province = 357 data = -1 } #Thrace
+		religion = orthodox
+		NOT = { exists = BYZ }
+		atwar = no
+	}
+	random = no
+	country = TRE
+	name = "EVENTNAME3874" #The Restoration of Byzantium
+	desc = "EVENTHIST3874"
+	#-#Constantinople is back in the hands of its rightful heirs! We now have a unique opportunity to restore the glorious Roman Empire under its legitimate Palaeologus dynasty. In my humble opinion we have nothing to lose and everything to gain by moving our capital to Constantinople and declaring the Roman Empire restored!
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME3874A" #Restore the Roman Empire!
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = capital which = 357 } #Thrace
+		command = { type = conversion which = 357 } #Thrace
+		command = { type = provinceculture which = 357 value = greek } #Thrace
+		command = { type = conversion which = -1 }
+		command = { type = conversion which = -1 }
+		command = { type = missionaries value = 3 }
+		command = { type = diplomats value = 2 }
+		command = { type = merchants value = 2 }
+		command = { type = flagname which = "" }
+		command = { type = country which = BYZ }
+		#BYZ cores in 1419
+		#command = { type = addcore which = 357 } #Thrace
+		command = { type = addcore which = 358 } #Macedonia
+		command = { type = addcore which = 359 } #Hellas
+		#command = { type = addcore which = 360 } #Morea
+		command = { type = addcore which = 321 } #Rumelia
+		command = { type = addcore which = 477 } #Anatolia
+		command = { type = addcore which = 478 } #Smyrna
+		command = { type = addcore which = 479 } #Ionia
+		command = { type = addcore which = 820 } #Corfu
+	}
+	action_b = {
+		name = "ACTIONNAME3874B" #Create a new Empire!
+		command = { type = conversion which = 357 } #Thrace
+		command = { type = provinceculture which = 357 value = greek } #Thrace
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = population which = 475 value = 30000 } #Trabzon
+		command = { type = missionaries value = 3 }
+		command = { type = merchants value = 2 }
+		command = { type = provincetax which = 475 value = 3 } #Trabzon
+		command = { type = provincetax which = 357 value = -2 } #Thrace
+	}
+}
+
+#(1419-1820) Fall of Byzantium
+event = {
+	id = 298000
+	trigger = {
+		OR = {
+			NOT = { exists = BYZ }
+			event = 3353 #TUR: City of Men's Desire
+		}
+		NOT = {
+			owned = { province = 357 data = -1 } #Thrace
+			owned = { province = 357 data = SPR } #Thrace
+		}
+	}
+	random = no
+	country = TRE
+	name = "EVENTNAME298000" #Byzantine refugees
+	desc = "EVENTHIST298000"
+	#-#When Constantinople fell, many of its inhabitants were killed or enslaved. The more fortunate fled to the Italian city-states, the Despotates at Serbia and Morea or Trapezountas on the Black Sea Coast.
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME298000A" #Welcome them!
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = population which = 475 value = 672 } #Trabzon
+		command = { type = stability value = -1 }
+		command = { type = treasury value = 35 }
+	}
+}
+
+#(1426-1428) Komnenoi Affair - False Impressions
+#by Aylo1
+event = {
+	id = 298012
+	trigger = {
+		neighbour = GEO
+		owned = { province = 465 data = GEN } #Kerch
+		control = { province = 465 data = GEN } #Kerch
+	}
+	random = no
+	country = TRE
+	name = "EVENTNAME298012" #Komnenoi Affair
+	desc = "EVENTHIST298012"
+	#-#In 1426, Despotes Kaloioannes murdered a courtier for an alleged affair with his mother (Empress Theodora Kantakouzena). In a heated argument he lost his position to his brother Skantarios, attacked his parents then fled to Georgia. There he wed Aleksandri I's daughter but couldn't secure support to depose his father Alexios IV. Kaloioannes then sailed to Genoan-Kaffa (1427) and returned with a large galley who helped by some Trapuzentine nobles murdered the Megas Komnenos (1429). It was Skantarios's turn to flee to the Byzantine Court.
+
+	date = { day = 0 month = january year = 1426 }
+	offset = 90
+	deathdate = { day = 29 month = december year = 1428 }
+
+	action_a = {
+		name = "ACTIONNAME298012A" #Crown Skantarios Despotes
+		command = { type = relation which = GEN value = -35 }
+		command = { type = DIP which = -2 value = 12 } #injuries
+		command = { type = ADM which = -2 value = 12 }
+		command = { type = MIL which = -2 value = 12 }
+		command = { type = dynastic which = GEO }
+		command = { type = stability value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME298012B" #Leave Kaloioannes Despotes
+		command = { type = revoltrisk which = 12 value = 2 } #may still strike
+		command = { type = DIP which = -2 value = 12 } #injuries
+		command = { type = ADM which = -2 value = 12 }
+		command = { type = MIL which = -2 value = 12 }
+		command = { type = sleepevent which = 298001 } #TRE: Assassination of Alexios IV
+		command = { type = sleepevent which = 298015 } #TRE: Genoan Arrears
+	}
+}
+
+#(1429) Assassination of Alexios IV
+event = {
+	id = 298001
+	trigger = {
+		event = 298012 #TRE: Komnenoi Affair
+	}
+	random = no
+	country = TRE
+	name = "EVENTNAME298001" #Assassination of Alexios IV
+	desc = "EVENTHIST298001"
+	#-#Stemming from the alleged adultery of Empress Theodora Kantakouzena, Kaloioannes (Ioannes IV) through his agents overthrew Alexios IV. With rumours of his part in the conspiracy, the new Megas Komnenos punished the murderers and buried his father in state at the Metropolitan Church. Remembering the role Alexios IV played in hastening the death of his father Manouel III for showing favouritism to a common page, the people remained unconvinced.
+
+	date = { day = 27 month = october year = 1429 }
+
+	action_a = {
+		name = "ACTIONNAME298001A" #Kakou korakos kakon oön (Like father, like son)
+		command = { type = revoltrisk which = 24 value = 2 }
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1431-1446) Genoan Arrears
+#by Aylo1
+event = {
+	id = 298013
+	trigger = {
+		event = 298012 #TRE: Komnenoi Affair
+		owned = { province = 465 data = GEN } #Kerch
+		control = { province = 465 data = GEN } #Kerch
+	}
+	random = no
+	country = TRE
+	name = "EVENTNAME298013" #Genoan Arrears
+	desc = "EVENTHIST298013"
+	#-#Despite owing his rise to Genoa, Ioannes IV failed to reimburse them (1431). Relations were further strained when he ordered the seizure and pillage of a Genoan ship without compensation (1435). When diplomatic channels failed, the Genoan Fleet at Kaffa advanced on Trapezountas - threatening to blockade the city (1447). Although he was friendlier with Genoa's rival Venice, the whole dispute seriously injured commerce in the Black Sea.
+
+	date = { day = 0 month = january year = 1431 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1446 }
+
+	action_a = {
+		name = "ACTIONNAME298013A" #Refuse to pay
+		command = { type = relation which = GEN value = -100 }
+		command = { type = DIP which = -2 value = 96 } #loss credibility
+		command = { type = stability value = -1 }
+		command = { type = treasury value = 30 }
+		command = { type = trade value = -100 }
+	}
+	action_b = {
+		name = "ACTIONNAME298013B" #Settle outstanding debts
+		command = { type = relation which = GEN value = 30 }
+		command = { type = treasury value = -45 }
+		command = { type = trade value = 25 }
+	}
+}
+
+#(1440-1449) Turkoman Raids
+#by Aylo1
+#event = {
+#	id = 298014
+#	trigger = {
+#		OR = {
+#			neighbour = QAR
+#			neighbour = AKK
+#			neighbour = TUR
+#			neighbour = CAN
+#		}
+#	}
+#	random = no
+#	country = TRE
+#	name = "EVENTNAME298014" #Turkoman Raids
+#	desc = "EVENTHIST298014"
+#	#-#Throughout Ioannes IV's reign, the neighbouring Turkomans grew increasingly hostile towards Trapezountas. In 1442 Sultan Murad II attacked the Empire's dependancies in the Crimea but it was saved by a sudden storm. Meanwhile various Turkish Emirs besieged the capitol before being bought off, or simply tired of a lengthy siege.
+#
+#	date = { day = 0 month = january year = 1440 }
+#	offset = 360
+#	deathdate = { day = 29 month = december year = 1449 }
+#
+#	action_a = {
+#		name = "ACTIONNAME298014A" #Close the gates!
+#		command = { type = domestic which = OFFENSIVE value = -1 }
+#		command = { type = infra value = -50 }
+#		command = { type = trade value = -100 }
+#		command = { type = relation which = QAR value = -100 }
+#		command = { type = relation which = AKK value = -100 }
+#		command = { type = relation which = TUR value = -100 }
+#		command = { type = relation which = CAN value = -100 }
+#		command = { type = INF which = 475 value = 2000 } #Trabzon
+#		command = { type = revolt which = 475 } #Trabzon
+#		command = { type = revolt which = 475 } #Trabzon
+#		command = { type = revolt which = 475 } #Trabzon
+#		command = { type = revolt which = 475 } #Trabzon
+#	}
+#	action_b = {
+#		name = "ACTIONNAME298014B" #Buy them off
+#		command = { type = relation which = QAR value = 20 }
+#		command = { type = relation which = AKK value = 20 }
+#		command = { type = relation which = TUR value = 20 }
+#		command = { type = relation which = CAN value = 20 }
+#		command = { type = treasury value = -80 }
+#		command = { type = stability value = 1 }
+#	}
+#}
+
+#(1451-1452) Art of Diplomacy
+#by Aylo1
+event = {
+	id = 298015
+	trigger = {
+		exists = BYZ
+		NOT = {
+			war = { country = TRE country = BYZ }
+		}
+	}
+	random = no
+	country = TRE
+	name = "EVENTNAME298015" #Art of Diplomacy
+	desc = "EVENTHIST298015"
+	#-#Upon the ascension of Konstantinos XI to Byzantium, he sent Georgios Phrantzes to negotiate a marital alliance with either the Komnenoi or the Bagrationi of Georgia. While neither project bore fruit, relations between the states were restored with Ioannes IV's exiled brother Skantarios allowed to return home.
+
+	date = { day = 0 month = january year = 1451 }
+	offset = 60
+	deathdate = { day = 29 month = december year = 1452 }
+
+	action_a = {
+		name = "OK"
+		command = { type = relation which = BYZ value = 50 }
+		command = { type = DIP which = 1 value = 6 }
+	}
+}
+
+#(1456-1459) Finding an Ally
+event = {
+	id = 298003
+	trigger = {
+		monarch = 0137501 #Ioannes IV Komnenos
+		neighbour = TUR
+		neighbour = AKK
+		NOT = {
+			alliance = { country = TUR country = TRE }
+			vassal = { country = TRE country = TUR }
+			war = { country = AKK country = TRE }
+		}
+	}
+	random = no
+	country = TRE
+	name = "EVENTNAME298003" #Keeping the Peace
+	desc = "EVENTHIST298003"
+	#-#Refusing to pay tribute to Sultan Mehmed II, Trapezountas was invested by the Ottoman governor of Amaseia by land and sea (1456). Knowing he couldn't sustain another siege, Ioannes IV submitted whilst taking measures to prepare for the inevitable reprisal. He married his daughter Theodora (aka Despina Hatun) to Uzun Hasan of the Ak-Koyunlu and his sister Eudokia-Valenza to Niccolo Crispo (son of Latin Duke of the Archipelago) in return for promises of protection. He also secured promises of help from the Turkish emirs of Sinope and Karamania. Further cementing of ties occurred was when David, brother of Ioannes, married the daughter of the Georgian dynastic family of Vardanisdze, Mamia Vardanisdze-Gurieli.
+
+	date = { day = 0 month = january year = 1456 }
+	offset = 15
+	deathdate = { day = 21 month = april year = 1459 } #death of Ioannes IV Komnenos
+
+	action_a = {
+		name = "ACTIONNAME298003A" #Bolster our position
+		command = { type = relation which = TUR value = -75 }
+		command = { type = relation which = AKK value = 25 }
+		command = { type = relation which = CAN value = 25 }
+		command = { type = relation which = GEN value = 25 }
+		command = { type = dynastic which = AKK } #Theodora-Uzun Hasan
+		command = { type = dynastic which = VEN } #Valenza-Nicolo Crispo
+		command = { type = dynastic which = KAL } #Maria of Gothia
+		command = { type = dynastic which = GEO } #Mamia Vardanisdze-Gurieli
+		command = { type = treasury value = -20 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME298003B" #Acquiesce to the Sultan's will
+		command = { type = relation which = TUR value = 25 }
+		command = { type = treasury value = -30 }
+	}
+}
+
+#(1459-1463) The Last Desperate Plea
+event = {
+	id = 298005
+	trigger = {
+		monarch = 0137502 #Dauid II Komnenos
+		NOT = {
+			alliance = { country = TUR country = TRE }
+			vassal = { country = TUR country = TRE }
+			vassal = { country = TRE country = TUR }
+			countrysize = 5
+		}
+		neighbour = TUR
+	}
+	random = no
+	country = TRE
+	name = "EVENTNAME298005" #Tempting Fate
+	desc = "EVENTHIST298005"
+	#-#Capitalising on his brother's treaties, Dauid II intrigued with the European powers to rid himself of the Turk. Sending ambassadors to Philippe III of Burgundy and Pope Pius II, Komnenos made wild promises about the reconquest of Jerusalem and downfall of Islam. Meanwhile he secured Uzun Hasan's promise to enlist the Emirs of Sinope and Karaman against the Ottomans. Komnenos's premature demands to Mehmed II led to Trapezountas being isolated from its allies and forced to capitulate through the treacherous Georgios Amiroutzes.
+
+	date = { day = 22 month = april year = 1459 }
+	offset = 15
+	deathdate = { day = 1 month = november year = 1463 }
+
+	action_a = {
+		name = "ACTIONNAME298005A" #Appeal to the West
+		command = { type = relation which = TUR value = -100 }
+		command = { type = relation which = BUR value = 30 }
+		command = { type = relation which = PAP value = 30 }
+		command = { type = treasury value = -60 }
+		command = { type = trigger which = 301040 } #TUR: Komnenos provokes the Sultan
+	}
+	action_b = {
+		name = "ACTIONNAME298005B" #Rely on local alliances
+		command = { type = relation which = TUR value = -75 }
+		command = { type = relation which = AKK value = 60 }
+		command = { type = relation which = KAR value = 30 }
+		command = { type = treasury value = -30 }
+	}
+	action_c = {
+		name = "ACTIONNAME298005C" #Don't antagonize the Turk
+		command = { type = relation which = TUR value = 25 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1459-1463) The end of the Komnenos
+event = {
+	id = 298009
+	trigger = {
+		event = 301040 #TUR: Komnenos provokes the Sultan
+		war = { country = TRE country = TUR }
+		NOT = { countrysize = 3 }
+	}
+	random = no
+	country = TRE
+	name = "EVENTNAME298009" #End of Trebizond
+	desc = "EVENTHIST298009"
+	#-#Facing the Ottomans alone, Trapezountas was besieged by Mehmed II. With his army defeated and suburbs plundered, Dauid II Komnenos listened to his logothetes Georgios Amiroutzes and surrendered to the Sultan in exchange for a honourable retirement.
+
+	date = { day = 0 month = may year = 1459 }
+	offset = 30
+	deathdate = { day = 0 month = november year = 1463 }
+
+	action_a = {
+		name = "ACTIONNAME298009A" #Heed Amiroutzes's advice (End Game)
+		command = { type = desertion which = -1 value = 10000 }
+		command = { type = desertion which = -1 value = 10000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = trigger which = 301041 } #TUR: Conquest of Trebizond
+	}
+	action_b = {
+		name = "ACTIONNAME298009B" #Continue to hold out
+		command = { type = population which = 475 value = -561 }
+		command = { type = infra value = -100 }
+		command = { type = trade value = -200 }
+		command = { type = manpower value = 5 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 298002 - 298004 - 298006-298008 - 298010-298011 - next: 298016

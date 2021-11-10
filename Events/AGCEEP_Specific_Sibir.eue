@@ -1,0 +1,74 @@
+#Sibir (SIB)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1450-1500) The Formation of the Sibir Khanate
+#by Garbon
+event = {
+	id = 280000 #triggered by UZB_325008
+	random = no
+	country = SIB
+	name = "EVENTNAME280000" #The Formation of the Sibir Khanate
+	desc = "EVENTHIST280000"
+	#-#Following the disintegration of the Horde, descendents of One Khan formed the Khanate of Sibir, near the modern day city of Tyumen. They quickly established their domain which existed from Kurgan in the West, to Ichim in the East. This khanate would survive well into the 16th century until it was extinguished by cossacks from Russia.
+
+	action_a = {
+		name = "ACTIONNAME280000A" #Go Sibir!
+		command = { type = add_countryculture which = naskapi }
+		command = { type = remove_countryculture which = altai }
+		command = { type = provinceculture which = 1575 value = naskapi } #Sergino
+		command = { type = stability value = 2 }
+		command = { type = capital which = 1571 } #Jalutorovsk
+		command = { type = addcore which = 1573 } #Tobolsk
+		command = { type = addcore which = 1571 } #Jalutorovsk
+		command = { type = addcore which = 1570 } #Sadrinsk
+		command = { type = addcore which = 578 } #Ichim
+		command = { type = addcore which = 512 } #Tenghiz
+		command = { type = addcore which = 511 } #Kustanai
+		command = { type = addcore which = 510 } #Kurgan
+		command = { type = relation which = UZB value = -100 }
+		command = { type = relation which = STE value = -100 }
+	}
+}
+
+#(1500-1510) Tyumen or Sibir?
+#by Garbon
+event = {
+	id = 280001
+	trigger = {
+		owned = { province = 1573 data = -1 }
+		owned = { province = 1571 data = -1 }
+		control = { province = 1571 data = -1 }
+	}
+	random = no
+	country = SIB
+	name = "EVENTNAME280001" #Tyumen or Sibir
+	desc = "EVENTHIST280001"
+	#-#When Tayguba founded the Khanate of Sibir, he created his capital in the vicinity of modern-day Tyumen. This was good as it was along the banks of the Tobol River, but was a poor defensive location. Anguis Khan and his brother, Muhammed, moved the capital to Sibir, during their reigns, as it was a much safer location and was closer to the meeting place of the Tobol and Irtysh rivers. Of course, such a location also served to isolate khanate which was a blessing and a hinderance.
+
+	date = { day = 1 month = january year = 1500 }
+	offset = 5
+	deathdate = { day = 1 month = january year = 1510 }
+
+	action_a = {
+		name = "ACTIONNAME280001A" #Sibir it shall be!
+		command = { type = capital which = 1571 } #Jalutorovsk
+		command = { type = CAV which = -2 value = 5000 }
+		command = { type = relation which = STE value = -25 }
+		command = { type = relation which = UZB value = -10 }
+		command = { type = relation which = MOS value = -50 }
+		command = { type = relation which = -1 value = -10 }
+		command = { type = relation which = -1 value = -10 }
+		command = { type = stability value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME280001B" #Tyumen suits us fine!
+		command = { type = revoltrisk which = 12 value = 2 }
+		command = { type = stability value = -1 }
+		command = { type = treasury value = 50 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 280002

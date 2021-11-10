@@ -1,0 +1,133 @@
+#Zhou (ZHO)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1673-1719) Zhou is independent
+event = {
+	id = 316000
+	trigger = {
+		NOT = { event = 147125 }
+		exists = CHI
+	}
+	random = no
+	country = ZHO
+	name = "EVENTNAME316000" #Zhou is independent
+	desc = "EVENTHIST316000"
+	#-#Wu San Gui, a general of the collapsing Ming dynasty, chose to side with the Manchus when he heard the news of the fall of Beijing to Li Zi Cheng and helped the Manchus defeat opposing forces. In recognition of the importance of his contribution, the Qing Emperor Shunzi appointed him Lord of the Pacified West, residing in Yunan province in the west, the most powerful out of the 3 tributories created to reward important former Ming generals. By the time Qing emperor Kangxi was firmly in power, the central dynastic administration decided to curb the increasing power of the 3 tributories. Ironically, this caused Wu San Gui, to switch his allegiance and revolt in the name of overthrowing the Qing and restoring the Ming Dynasty.
+
+	date = { day = 1 month = january year = 1673 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1719 }
+
+	action_a = {
+		name = "OK"
+		command = { type = breakvassal which = CHI } #no problem
+		command = { type = trigger which = 316001 } #ZHO: We openly declare war
+	}
+}
+
+#(1673-1719) Wu San Gui declares war against the Qing
+event = {
+	id = 316001 #triggered by CHI_147125 / ZHO_316000
+	random = no
+	country = ZHO
+	name = "EVENTNAME316001" #We openly declare war
+	desc = "EVENTHIST316001"
+	#-#Wu San Gui, lord of the most powerful tributory to the Manchus and a former Ming general, revolted against the Manchus under the name of overthrowing Qing (Manchu) and restoring Ming Dynasty (Han).
+
+	action_a = {
+		name = "OK"
+		command = { type = war which = CHI }
+		command = { type = INF which = -2 value = 20000 }
+		command = { type = CAV which = -2 value = 7500 }
+		command = { type = ART which = -2 value = 20 }
+		command = { type = treasury value = 300 }
+	}
+}
+
+#(1673-1719) Claiming the Imperial Throne
+event = {
+	id = 316002
+	trigger = {
+		control = { province = 649 data = -1 } #Hebei
+		control = { province = 650 data = -1 } #Shandong
+		control = { province = 651 data = -1 } #Jinan
+		control = { province = 652 data = -1 } #Jiangsu
+		control = { province = 653 data = -1 } #Shanghai
+		control = { province = 654 data = -1 } #Anhui
+		control = { province = 655 data = -1 } #Zhejiang
+		control = { province = 1562 data = -1 } #Shanxi
+		control = { province = 1563 data = -1 } #Shaanxi
+		control = { province = 1564 data = -1 } #Henan
+		control = { province = 1565 data = -1 } #Hubei
+		control = { province = 1567 data = -1 } #Nanchang
+		countrysize = 16
+		NOT = { exists = CHI }
+	}
+	random = no
+	country = ZHO
+	name = "EVENTNAME316002" #Claiming the Imperial Throne
+	desc = "EVENTHIST316002"
+	#-#With the successful capture and control of the core provinces of mainland China, the monarchy of the rebel Zhou nation declares itself the new legitimate Emperor of China.
+
+	date = { day = 1 month = january year = 1673 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME316002A" #Long live the Emperor!
+		command = { type = stability value = 1 }
+		command = { type = capital which = 649 } #Hebei
+		command = { type = addcore which = 649 } #Hebei
+		command = { type = addcore which = 650 } #Shandong
+		command = { type = addcore which = 651 } #Jinan
+		command = { type = addcore which = 652 } #Jiangsu
+		command = { type = addcore which = 653 } #Shanghai
+		command = { type = addcore which = 654 } #Anhui
+		command = { type = addcore which = 655 } #Zhejiang
+		command = { type = addcore which = 1562 } #Shanxi
+		command = { type = addcore which = 1563 } #Shaanxi
+		command = { type = addcore which = 1564 } #Henan
+		command = { type = addcore which = 1565 } #Hubei
+		command = { type = addcore which = 1567 } #Nanchang
+		command = { type = flagname which = "" }
+		command = { type = country which = CHI }
+		command = { type = add_countryculture which = cantonese }
+	}
+}
+
+#(1673-1719) switching back the AI for Zhou (temporary)
+event = {
+	id = 316004
+	trigger = {
+		NOT = {
+			exists = CHI
+			exists = MCH
+			exists = DAS
+			exists = DAX
+			exists = SMI
+		}
+	}
+	random = no
+	country = ZHO
+	name = "EVENTNAME316004" #Peace returns to China
+	desc = "EVENTHIST316004"
+	#-#With the fall of the last claimant to the throne of China, the Zhou reunified China, ushering in a long-awaited era of peace.
+
+	date = { day = 1 month = january year = 1673 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1719 }
+
+	action_a = {
+		name = "GOOD"
+		command = { type = stability value = 2 }
+		command = { type = capital which = 649 } #Hebei
+		command = { type = flagname which = "" }
+		command = { type = country which = CHI }
+		command = { type = add_countryculture which = cantonese }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 316003 - next: 316005

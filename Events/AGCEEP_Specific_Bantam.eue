@@ -1,0 +1,58 @@
+#Bantam (BTM)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1478-1820) The End of the Majapahit Empire
+#MKJ(?)
+event = {
+	id = 439001 #triggered by MTR_234000 A
+	trigger = {
+		vassal = { country = MTR country = BTM }
+	}
+	country = BTM
+	random = no
+	name = "EVENTNAME80707" #The End of the Majapahit Empire
+	desc = "EVENTHIST80707"
+	#-#The Majapahit Empire is dead. We owe their successors nothing.
+
+	action_a = {
+		name = "ACTIONNAME80707A" #We shall rule ourselves
+		command = { type = breakvassal which = MTR }
+	}
+}
+
+#(1524-1820) Founding of the Sultanate
+event = {
+	id = 439000
+	trigger = {
+		NOT = { religion = sunni }
+	}
+	country = BTM
+	random = no
+	name = "EVENTNAME439000" #Founding of the Sultanate
+	desc = "EVENTHIST439000"
+	#-#With the founding of the Sultanate of Bantam, the area became a Muslim Kingdom. Bantam was converted by the King of Demak.
+
+	date = { day = 1 month = january year = 1524 }
+	offset = 2000
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME439000A" #Found a great Muslim dynasty and join Demak
+		command = { type = religion which = sunni }
+		command = { type = provincereligion which = -2 value = sunni }
+		command = { type = addcore which = 682 } #Palembang
+		command = { type = breakvassal which = MTR }
+		command = { type = breakdynastic which = MTR }
+		command = { type = relation which = MTR value = -200 }
+		command = { type = fortress which = -2 value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME439000B" #Do not found the sultanate
+		command = { type = stability value = -2 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 439001

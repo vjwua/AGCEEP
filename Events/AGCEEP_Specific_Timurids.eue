@@ -1,0 +1,924 @@
+#Timurid Empire (TIM)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1420-1425) Shâh Rûkh and Kara Yülük
+event = {
+	id = 296700
+	trigger = {
+		war = { country = QAR country = AKK }
+	}
+	random = no
+	country = TIM
+	name = "EVENTNAME296700" #Shâh Rûkh and Kara Yülük
+	desc = "EVENTHIST296700"
+	#-#The Ak Koyunlu state was established as a permanent state when Timur granted Kara Yülük the captured cities of Malatya and Diyarbakir. Because of this, Kara Yülük owed a great debt of gratitude to the Empire. During the reign of Shâh Rûkh, the two leaders often fought alongside one another in their efforts to annihilate the Kara Koyunlu.
+
+	date = { day = 1 month = january year = 1420 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1425 }
+
+	action_a = {
+		name = "ACTIONNAME296700A" #We shall dispatch a small army
+		command = { type = trigger which = 103001 } #AKK: Timurid Assistance
+		command = { type = treasury value = -25 }
+	}
+	action_b = {
+		name = "ACTIONNAME296700B" #We shan't get involved in every small skirmish!
+		command = { type = relation which = AKK value = -75 }
+	}
+}
+
+#(1428-1500) The Uzbek Offensive
+event = {
+	id = 296601
+	trigger = {
+		event = 65006 #UZB: Uzbeks on Offensive
+		OR = {
+			control = { province = 521 data = UZB } #Karabogaz
+			control = { province = 521 data = REB }
+		}
+		OR = {
+			control = { province = 522 data = UZB } #Khwarizm
+			control = { province = 522 data = REB }
+		}
+		OR = {
+			control = { province = 1533 data = UZB } #Khiva
+			control = { province = 1533 data = REB }
+		}
+		OR = {
+			control = { province = 524 data = UZB } #Turkmenistan
+			control = { province = 524 data = REB }
+			control = { province = 523 data = UZB } #Kara Kum
+			control = { province = 523 data = REB }
+			control = { province = 1532 data = UZB } #Bukhara
+			control = { province = 1532 data = REB }
+		}
+		OR = {
+			owned = { province = 521 data = -1 } #Karabogaz
+			owned = { province = 522 data = -1 } #Khwarizm
+			owned = { province = 1533 data = -1 } #Khiva
+		}
+	}
+	random = no
+	country = TIM
+	name = "EVENTNAME296601" #The Uzbek Offensive
+	desc = "EVENTHIST296601"
+	#-#When Abul Khayr of the Uzbeks led an attack on the Khwarizm, no one expected his offensive to be successful. Unfortunately for the Timurids, it resulted in the loss of the entire region. This was an ominous portend for further Uzbek-Timurid conflicts . . .
+
+	date = { day = 1 month = march year = 1428 }
+	offset = 1
+	deathdate = { day = 1 month = march year = 1500 }
+
+	action_a = {
+		name = "ACTIONNAME296601A" #Abandon the northern border to the Uzbeks
+		command = { type = secedeprovince which = UZB value = 521 } #Karabogaz
+		command = { type = secedeprovince which = UZB value = 522 } #Khwarizm
+		command = { type = secedeprovince which = UZB value = 1533 } #Khiva
+		command = { type = removecore which = 1594 } #Uzbek
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1428-1449) Ûlûgh Beg's Observatory
+event = {
+	id = 296606
+	trigger = {
+		domestic = { type = innovative value = 2 }
+		owned = { province = 1592 data = -1 } #Samarkand
+	}
+	random = no
+	country = TIM
+	name = "EVENTNAME3920" #Ulugh Beg's Observatory
+	desc = "EVENTHIST296606"
+	#-#Ûlûgh Beg was the son of Shâh Rûkh and served as a governor for his father in Samarkand. At heart however, he was primarily a scientist, in particular a mathematician and an astronomer. In 1417, to push forward the study of astronomy, Ulugh Beg began building a madrasah (a centre for higher education). The madrasah was completed in 1420 and Ulugh Beg then began to appoint the best scientists he could find to positions there as lecturers. In addition to the madrasah, Ulugh Beg built an observatory, the construction of this beginning in 1428. The achievements of the scientists at the Observatory, working there under Ulugh Beg's direction and in collaboration with him, include the following: methods for giving accurate approximate solutions of cubic equations, work with the binomial theorem, Ulugh Beg's accurate tables of sines and tangents correct to eight decimal places, and of particular importance, Ulugh Beg's Catalogue of the stars, the first comprehensive stellar catalogue since that of Ptolemy.
+
+	date = { day = 1 month = march year = 1428 }
+	offset = 30
+	deathdate = { day = 1 month = october year = 1449 }
+
+	action_a = {
+		name = "ACTIONNAME3920A" #Build it!
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = treasury value = -200 }
+		command = { type = gainmanufactory which = 1592 value = luxury } #Samarkand
+		command = { type = provincetax which = 1592 value = 1 } #Samarkand
+		command = { type = infra value = 3000 }
+	}
+	action_b = {
+		name = "ACTIONNAME3920B" #We have neither the time nor the money for such foolishness!
+		command = { type = domestic which = innovative value = -1 }
+	}
+}
+
+#(1436-1440) New Leadership of the Kara Koyunlu
+event = {
+	id = 296755 #triggered by QAR_266003
+	random = no
+	country = TIM
+	name = "EVENTNAME296755" #New Leadership of the Kara Koyunlu
+	desc = "EVENTHIST296755"
+	#-#When his brother Iskandar assumed rulership of the Kara Koyunlu, upon the death of their father, Kara Yusuf, Jahan Shah took up residence in Baghdad. In the Spring of 1437, with the hopes of fragmenting the Kara Koyunlu, Shah Rukh appointed Jahan Shah as the sovereign of Azerbaijan. On April 21st of 1438, Jahan became ruler of the Kara Koyunlu with the death of Iskandar.
+
+	action_a = {
+		name = "ACTIONNAME296755A" #Reward the efforts of our puppets
+		command = { type = secedeprovince which = QAR value = 530 } #Tabriz
+		command = { type = secedeprovince which = QAR value = 488 } #Kirkuk
+		command = { type = secedeprovince which = AKK value = 473 } #Armenia
+		command = { type = vassal which = QAR }
+		command = { type = relation which = QAR value = 300 }
+		command = { type = relation which = AKK value = 25 }
+		#command = { type = AI which = timurid.ai }
+	}
+	action_b = {
+		name = "ACTIONNAME296755B" #We must keep him on a short leash!
+		command = { type = vassal which = QAR }
+		command = { type = secedeprovince which = QAR value = 488 } #Kirkuk
+		command = { type = revolt which = 530 } #Tabriz
+		command = { type = revolt which = 530 } #Tabriz
+		#command = { type = AI which = timurid.ai }
+	}
+}
+
+#(1440-1490) The Conquest of Persia
+event = {
+	id = 296803
+	trigger = {
+		NOT = { exists = FAR }
+		OR = {
+			owned = { province = 533 data = QAR } #Isfahan
+			owned = { province = 534 data = QAR } #Fars
+			AND = {
+				control = { province = 533 data = QAR } #Isfahan
+				owned = { province = 533 data = -1 } #Isfahan
+			}
+			AND = {
+				control = { province = 534 data = QAR } #Fars
+				owned = { province = 534 data = -1 } #Fars
+			}
+		}
+		OR = {
+			owned = { province = 487 data = -1 }
+			owned = { province = 488 data = -1 }
+			owned = { province = 507 data = -1 }
+			owned = { province = 508 data = -1 }
+			owned = { province = 527 data = -1 }
+			owned = { province = 528 data = -1 }
+			owned = { province = 529 data = -1 }
+			owned = { province = 530 data = -1 }
+			owned = { province = 531 data = -1 }
+			owned = { province = 532 data = -1 }
+			owned = { province = 533 data = -1 } #Isfahan
+			owned = { province = 534 data = -1 } #Fars
+			owned = { province = 535 data = -1 }
+			owned = { province = 536 data = -1 }
+		}
+	}
+	random = no
+	country = TIM
+	name = "EVENTNAME296803" #The Conquest of Persia
+	desc = "EVENTHIST296803"
+	#-#With the sucessful conquest of the Isfahan-Fars region, the Kara Koyunlu effectively ended the reign of the Timurid Empire in Western Iran. The Kara Koyunlu had proven themselves a force to be recokened with.
+
+	date = { day = 1 month = january year = 1440 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1490 }
+
+	action_a = {
+		name = "ACTIONNAME296803A" #We shrink!
+		command = { type = stability value = -1 }
+		command = { type = secedeprovince which = QAR value = 487 } #Azerbaijan
+		command = { type = secedeprovince which = QAR value = 488 } #Kirkuk
+		command = { type = secedeprovince which = QAR value = 489 } #Iraq
+		command = { type = secedeprovince which = QAR value = 508 } #Basrah
+		command = { type = secedeprovince which = QAR value = 507 } #Damman
+		command = { type = secedeprovince which = QAR value = 530 } #Tabriz
+		command = { type = secedeprovince which = QAR value = 531 } #Hamadan
+		command = { type = secedeprovince which = QAR value = 532 } #Awhaz
+		command = { type = secedeprovince which = QAR value = 529 } #Tabaristan
+		command = { type = secedeprovince which = QAR value = 533 } #Isfahan
+		command = { type = secedeprovince which = QAR value = 528 } #Lut
+		command = { type = secedeprovince which = QAR value = 527 } #Kerman
+		command = { type = secedeprovince which = QAR value = 535 } #Hormouz
+		command = { type = secedeprovince which = QAR value = 536 } #Mekran
+	}
+}
+
+#(1446-1459) Ascendancy of Ûlûgh Beg -I-
+event = {
+	id = 296607
+	trigger = {
+		monarch = 0135501 #Ûlûgh Beg
+		owned = { province = 1592 data = -1 } #Samarkand
+		control = { province = 1592 data = -1 } #Samarkand
+	}
+	random = no
+	country = TIM
+	name = "EVENTNAME296607" #Ascendancy of Ûlûgh Beg
+	desc = "EVENTHIST296607"
+	#-#With the ascendancy of Ûlûgh Beg, the Timurid Empire began its decline. More intrigued by the fields of science and mathematics than the reigns of government, Ûlûgh Beg was undeniably weak and his opponents took full advantage. Ûlûgh Beg never controlled the full extent of his father's realm, as numerous pretenders declared their independence upon the death of Shâh Rûkh.
+
+	date = { day = 1 month = january year = 1446 }
+	offset = 5
+	deathdate = { day = 1 month = march year = 1459 }
+
+	action_a = {
+		name = "ACTIONNAME296607A" #How we crumble!
+		command = { type = capital which = 1592 } #Samarkand
+		command = { type = removecore which = 487 } #Azerbaijan
+		command = { type = removecore which = 530 } #Tabriz
+		command = { type = removecore which = 536 } #Mekran
+		command = { type = removecore which = 526 } #Meched
+		command = { type = removecore which = 527 } #Kerman
+		command = { type = removecore which = 528 } #Lut
+		command = { type = removecore which = 530 } #Tabriz
+		command = { type = removecore which = 534 } #Fars
+		command = { type = removecore which = 535 } #Hormouz
+		command = { type = removecore which = 1529 } #Birjand
+		command = { type = revolt which = 1524 } #Quetta
+		command = { type = revolt which = 1524 } #Quetta
+		command = { type = revolt which = 536 } #Mekran
+		command = { type = revolt which = 536 } #Mekran
+		command = { type = revolt which = 537 } #Baluchistan
+		command = { type = revolt which = 537 } #Baluchistan
+		command = { type = revolt which = 538 } #Kalat
+		command = { type = revolt which = 538 } #Kalat
+		command = { type = revolt which = 1526 } #Zahedan
+		command = { type = revolt which = 1526 } #Zahedan
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revoltrisk which = 24 value = 10 }
+		command = { type = independence which = KHO } #Khorasan
+		command = { type = independence which = FAR } #Fars
+		command = { type = stability value = -6 }
+		command = { type = sleepevent which = 296004 } #TIM: Ascendancy of Ûlûgh Beg -II-
+		command = { type = trigger which = 304003 } #KHO: The Disintegration of the Timurid Empire
+		command = { type = trigger which = 306000 } #FAR: The Disintegration of the Timurid Empire
+	}
+	action_b = {
+		name = "ACTIONNAME296607B" #We shall never give up hope!
+		command = { type = independence which = FAR } #Fars
+		command = { type = removecore which = 487 } #Azerbaijan
+		command = { type = removecore which = 530 } #Tabriz
+		command = { type = removecore which = 536 } #Mekran
+		command = { type = removecore which = 526 } #Meched
+		command = { type = removecore which = 527 } #Kerman
+		command = { type = removecore which = 528 } #Lut
+		command = { type = removecore which = 530 } #Tabriz
+		command = { type = removecore which = 534 } #Fars
+		command = { type = removecore which = 535 } #Hormouz
+		command = { type = removecore which = 1529 } #Birjand
+		command = { type = revolt which = 1524 } #Quetta
+		command = { type = revolt which = 536 } #Mekran
+		command = { type = revolt which = 537 } #Baluchistan
+		command = { type = revolt which = 538 } #Kalat
+		command = { type = revolt which = 1526 } #Zahedan
+		command = { type = revolt which = 1592 } #Samarkand
+		command = { type = revolt which = 1592 } #Samarkand
+		command = { type = revolt which = -2 }
+		command = { type = revolt which = -2 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revoltrisk which = 96 value = 25 }
+		command = { type = stability value = -6 }
+		command = { type = sleepevent which = 296004 } #TIM: Ascendancy of Ûlûgh Beg -II-
+		command = { type = trigger which = 306000 } #FAR: The Disintegration of the Timurid Empire
+	}
+}
+#(1446-1459) Ascendancy of Ûlûgh Beg -II-
+event = {
+	id = 296004
+	trigger = {
+		monarch = 0135501 #Ûlûgh Beg
+		OR = {
+			NOT = { owned = { province = 1592 data = -1 } } #Samarkand
+			NOT = { control = { province = 1592 data = -1 } } #Samarkand
+		}
+		NOT = { event = 296607 } #TIM: Ascendancy of Ûlûgh Beg -I-
+	}
+	random = no
+	country = TIM
+	name = "EVENTNAME296607" #Ascendancy of Ûlûgh Beg -II-
+	desc = "EVENTHIST296607"
+	#-#With the ascendancy of Ûlûgh Beg, the Timurid Empire began its decline. More intrigued by the fields of science and mathematics than the reigns of government, Ûlûgh Beg was undeniably weak and his opponents took full advantage. Ûlûgh Beg never controlled the full extent of his father's realm, as numerous pretenders declared their independence upon the death of Shâh Rûkh.
+
+	date = { day = 1 month = january year = 1446 }
+	offset = 20
+	deathdate = { day = 1 month = march year = 1459 }
+
+	action_a = {
+		name = "ACTIONNAME296607B" #We shall never give up hope!
+		command = { type = removecore which = 487 } #Azerbaijan
+		command = { type = removecore which = 530 } #Tabriz
+		command = { type = removecore which = 536 } #Mekran
+		command = { type = removecore which = 527 } #Kerman
+		command = { type = removecore which = 528 } #Lut
+		command = { type = removecore which = 530 } #Tabriz
+		command = { type = removecore which = 534 } #Fars
+		command = { type = removecore which = 535 } #Hormouz
+		command = { type = revolt which = 1524 } #Quetta
+		command = { type = revolt which = 536 } #Mekran
+		command = { type = revolt which = 537 } #Baluchistan
+		command = { type = revolt which = 538 } #Kalat
+		command = { type = revolt which = 1526 } #Zahedan
+		command = { type = revolt which = -2 }
+		command = { type = revolt which = -2 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revoltrisk which = 96 value = 25 }
+		command = { type = stability value = -6 }
+		command = { type = independence which = KUS } #Kabul
+		command = { type = independence which = NOG } #Ferghana
+		command = { type = independence which = TOX } #Balkh
+		command = { type = trigger which = 296005 } #TIM: Ruler of Herat
+		command = { type = sleepevent which = 296607 } #TIM: Ascendancy of Ûlûgh Beg -I-
+	}
+}
+#(1446-1459) The Disintegration of the Timurid Empire
+event = {
+	id = 296603 #triggered by KHO_304003
+	random = no
+	country = TIM
+	name = "EVENTNAME296603" #The Disintegration of the Timurid Empire
+	desc = "EVENTHIST296603"
+	#-#Upon the ascendancy of Ûlûgh Beg, the Empire split into many various warring factions. Most notably were the domains of the Princes of Samarkand, in the east, and those of the Kings of Khorasan, in the west. An upstart on the outskirts of Samarkand would go on to found the Mughal Empire. The Kings of Khorasan would continue to rule into the early 16th century when their Kingdom would be annexed by the Uzbeks.
+
+	action_a = {
+		name = "ACTIONNAME296603A" #Grr...
+		command = { type = secedeprovince which = KHO value = 521 } #Karabogaz
+		command = { type = secedeprovince which = KHO value = 522 } #Khwarizm
+		command = { type = secedeprovince which = KHO value = 523 } #Kara Kum
+		command = { type = secedeprovince which = KHO value = 524 } #Turkmenistan
+		command = { type = secedeprovince which = KHO value = 525 } #Elbruz
+		command = { type = secedeprovince which = KHO value = 526 } #Meched
+		command = { type = secedeprovince which = KHO value = 1528 } #Kushka
+		command = { type = secedeprovince which = KHO value = 1529 } #Birjand
+		command = { type = secedeprovince which = KHO value = 1531 } #Herat
+		command = { type = desertion which = 1531 value = 10000 } #Herat
+		command = { type = desertion which = 1530 value = 10000 } #Khorasan
+		command = { type = desertion which = -1 value = 10000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+	}
+}
+#(1446-1459) The Disintegration of the Timurid Empire
+event = {
+	id = 296605 #triggered by FAR_306000
+	random = no
+	country = TIM
+	name = "EVENTNAME296605" #The Disintegration of the Timurid Empire
+	desc = "EVENTHIST296605"
+	#-#Upon the ascendancy of Ûlûgh Beg, the Empire split into many various warring factions. Most notably were the domains of the Princes of Samarkand, in the east, and those of the Kings of Khorasan, in the west. An upstart on the outskirts of Samarkand would go on to found the Mughal Empire. The Kings of Khorasan would continue to rule into the early 16th century when their Kingdom would be annexed by the Uzbeks.
+
+	action_a = {
+		name = "ACTIONNAME296605A" #Grr...
+		command = { type = secedeprovince which = FAR value = 489 } #Iraq
+		command = { type = secedeprovince which = FAR value = 508 } #Basrah
+		command = { type = secedeprovince which = FAR value = 530 } #Tabriz
+		command = { type = secedeprovince which = FAR value = 531 } #Hamadan
+		command = { type = secedeprovince which = FAR value = 527 } #Kerman
+		command = { type = secedeprovince which = FAR value = 528 } #Lut
+		command = { type = secedeprovince which = FAR value = 529 } #Tabaristan
+		command = { type = secedeprovince which = FAR value = 532 } #Awhaz
+		command = { type = secedeprovince which = FAR value = 533 } #Isfahan
+		command = { type = secedeprovince which = FAR value = 535 } #Hormouz
+		command = { type = desertion which = 533 value = 10000 } #Isfahan
+		command = { type = desertion which = 534 value = 10000 } #Fars
+		command = { type = desertion which = -1 value = 10000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+	}
+}
+#(1446-1459) Ruler of Herat
+event = {
+	id = 296005 #triggered by TIM_296004
+	random = no
+	country = TIM
+	name = "EVENTNAME296005" #Ruler of Herat
+	desc = "EVENTHIST296005"
+	#-#Never popular with the citizenry of Herat, Ûlûgh Beg quickly found himself bereft of allies. Although he attempted to appease his relatives by delegating some control, he was no match for his ambitious son and nephews. Only a handful of days after his ascension, Ûlûgh Beg was dead.
+
+	action_a = {
+		name = "ACTIONNAME296005A" #Our empire has collapsed...
+		command = { type = stability value = -5 }
+		command = { type = relation which = NOG value = -300 }
+		command = { type = relation which = KUS value = -300 }
+		command = { type = relation which = TOX value = -300 }
+		command = { type = flagname which = "" }
+		command = { type = country which = KHO }
+	}
+}
+
+#(1446-1459) Governership of Irak - Ahistorical
+event = {
+	id = 296000
+	trigger = {
+		event = 296607 #TIM: Ascendancy of Ûlûgh Beg
+		owned = { province = 489 data = -1 } #Iraq
+	}
+	random = no
+	country = TIM
+	name = "EVENTNAME296000" #Governership of Irak
+	desc = "EVENTHIST296000"
+	#-#Unable to control large parts of what had once been the Timurid Empire, Ûlûgh Beg supported a puppet government of Kara Koyunlu princes in Iraq, as a desperate attempt to hold onto that far flung territory.
+
+	date = { day = 1 month = january year = 1446 }
+	offset = 50
+	deathdate = { day = 1 month = march year = 1459 }
+
+	action_a = {
+		name = "ACTIONNAME296000" #How long will they be loyal?
+		command = { type = independence which = IRA }
+		command = { type = vassal which = IRA }
+		command = { type = trigger which = 350011 } #IRA: The Disintegration of the Timurid Empire
+		command = { }
+	}
+}
+#(1446-1459) Ambitions in Irak - Ahistorical
+event = {
+	id = 296001 #triggered by IRA_350011
+	random = no
+	country = TIM
+	name = "EVENTNAME296001" #Ambitions in Irak
+	desc = "EVENTHIST296001"
+	#-#The ambitious Kara Koyunlu princes that we installed in Iraq are already proving difficult to govern over. Reports say that our troops in the area have already deserted to the new regime.
+
+	action_a = {
+		name = "ACTIONNAME296605A" #Grr...
+		command = { type = secedeprovince which = IRA value = 508 } #Basrah
+		command = { type = secedeprovince which = IRA value = 530 } #Tabriz
+		command = { type = secedeprovince which = IRA value = 531 } #Hamadan
+		command = { type = secedeprovince which = IRA value = 488 } #Kirkuk
+		command = { type = secedeprovince which = IRA value = 487 } #Azerbaijan
+		command = { type = secedeprovince which = IRA value = 490 } #Syria
+		command = { type = secedeprovince which = IRA value = 507 } #Damman
+		command = { type = secedeprovince which = IRA value = 532 } #Awhaz
+		command = { type = secedeprovince which = IRA value = 533 } #Isfahan
+		command = { type = secedeprovince which = IRA value = 529 } #Tabaristan
+		command = { type = desertion which = 489 value = 10000 }
+		command = { type = desertion which = 488 value = 5000 }
+		command = { type = desertion which = 530 value = 5000 }
+		command = { type = desertion which = 531 value = 5000 }
+		command = { type = desertion which = 508 value = 5000 }
+	}
+}
+
+#(1446-1447) An Ambitious Prince in the West
+event = {
+	id = 296600
+	trigger = {
+		OR = {
+			owned = { province = 533 data = -1 }
+			owned = { province = 534 data = -1 }
+		}
+	}
+	random = no
+	country = TIM
+	name = "EVENTNAME296600" #An Ambitious Prince in the West
+	desc = "EVENTHIST296600"
+	#-#In November of 1446, Rûkh's grandson, Muhammed Sultan, would take his first steps towards securing Fars for his dominion. Although, he would fail in his conquest during the reign Rûkh, revolts by him and other Timurid princes would plague Rûkh's successor.
+
+	date = { day = 1 month = november year = 1446 }
+	offset = 30
+	deathdate = { day = 1 month = march year = 1447 }
+
+	action_a = {
+		name = "ACTIONNAME296600A" #Nice try poppet
+		command = { type = revolt which = 534 } #Fars
+		command = { type = revolt which = 534 } #Fars
+		command = { type = revolt which = 533 } #Isfahan
+		command = { type = desertion which = 533 value = 5000 } #Isfahan
+		command = { type = desertion which = 534 value = 5000 } #Fars
+	}
+}
+
+#(1447-1820) Independence of Baluchistan
+event = {
+	id = 296614
+	trigger = {
+		event = 296607 #TIM: Ascendancy of Ûlûgh Beg
+		exists = BAL
+		OR = {
+			owned = { province = 537 data = -1 } #Baluchistan
+			owned = { province = 538 data = -1 } #Kalat
+			owned = { province = 1526 data = -1 } #Zahedan
+		}
+	}
+	random = no
+	country = TIM
+	name = "EVENTNAME296614" #Independence of Baluchistan
+	desc = "EVENTHIST296614"
+	#-#In the chaos of Central Asia following the death of Shâh Rûkh, the nomadic peoples of Baluchistan would become independent of their former rulers.
+
+	date = { day = 1 month = march year = 1447 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = secedeprovince which = BAL value = 537 } #Baluchistan
+		command = { type = secedeprovince which = BAL value = 538 } #Kalat
+		command = { type = secedeprovince which = BAL value = 1526 } #Zahedan
+	}
+}
+
+#(1459-1469) Abul Khayr and Abû Sa'id
+event = {
+	id = 296616
+	trigger = {
+		monarch = 0135504 #Abu'Said
+		exists = UZB
+		NOT = { war = { country = TIM country = UZB } }
+	}
+	random = no
+	country = TIM
+	name = "EVENTNAME296616" #Abul Khayr and Abû Sa'id
+	desc = "EVENTHIST296616"
+	#-#Abû Sa'id had been living in the court of Ulugh Beg and in 1449 attempted to seize the throne. Failing, he later tried to seize Bukhara, another failure which ended in his imprisonment. However, upon the assassination of 'Abd al-Latîf, he was released and proclaimed ruler by the nobles and clergy of Samarkand. In June of 1451, with the help of Abul Khayr, he defeated the forces of 'Abd Allâh Mîrzâ. Sa'id lavished Khayr with gifts, including Ûlûgh Beg's daughter in marriage.
+
+	date = { day = 1 month = march year = 1459 }
+	offset = 10
+	deathdate = { day = 1 month = march year = 1469 }
+
+	action_a = {
+		name = "ACTIONNAME296616A" #Improved relations
+		command = { type = relation which = UZB value = 200 }
+		command = { type = trigger which = 325015 } #UZB: Abul Khayr and Abû Sa'id
+	}
+}
+
+#(1459-1469) Might of Abû Sa'id
+event = {
+	id = 296610
+	random = no
+	country = TIM
+	name = "EVENTNAME296610" #Might of Abû Sa'id
+	desc = "EVENTHIST296610"
+	#-#Only through military might was Abû Sa'id was able to hold the Empire together, as widespread dissent and outright revolts wracked the Empire.
+
+	date = { day = 1 month = march year = 1459 }
+	offset = 30
+	deathdate = { day = 1 month = march year = 1469 }
+
+	action_a = {
+		name = "ACTIONNAME296610A" #Attack all traitors!
+		command = { type = revoltrisk which = 96 value = 3 }
+		command = { type = revolt which = -1 }
+		command = { type = INF which = -2 value = 10000 }
+	}
+}
+
+#(1450-1500) Abû Sa'id Reunites Transoxiana and Khorasan
+event = {
+	id = 296611
+	trigger = {
+		exists = KHO
+		monarch = 0135504 #Abu'Said
+		owned = { province = 1531 data = KHO } #Herat
+		OR = {
+			control = { province = 1531 data = -1 } #Herat
+			control = { province = 1531 data = REB } #Herat
+		}
+	}
+	random = no
+	country = TIM
+	name = "EVENTNAME296611" #Abû Sa'id Reunites Transoxiana and Khorasan
+	desc = "EVENTHIST296611"
+	#-#With his successful capture of Sultan Mahmud's capital of Herat, Abû Sa'id would reunite the separate Timurid realms of Transoxiana and Khorasan. Despite his achievements, weak rulership after his death would lead to the formation of Khorasan again.
+
+	date = { day = 1 month = march year = 1450 }
+	offset = 10
+	deathdate = { day = 1 month = march year = 1500 }
+
+	action_a = {
+		name = "ACTIONNAME296611A" #We are one again
+		command = { type = trigger which = 304004 } #KHO: Abû Sa'id Reunites Transoxiana and Khorasan
+		command = { type = stability value = 1 }
+	}
+}
+#(1450-1500) Abû Sa'id Reunites Transoxiana and Khorasan
+event = {
+	id = 296602 #triggered by KHO_304004
+	random = no
+	country = TIM
+	name = "EVENTNAME296602" #Abû Sa'id Reunites Transoxiana and Khorasan
+	desc = "EVENTHIST296602"
+	#-#With his successful capture of Sultan Mahmud's capital of Herat, Abû Sa'id would reunite the separate Timurid realms of Transoxiana and Khorasan. Despite his achievements, weak rulership after his death would lead to the formation of Khorasan again.*
+
+	action_a = {
+		name = "ACTIONNAME296602A" #Weak Mahmud!
+		command = { type = inherit which = KHO }
+	}
+}
+
+#(1469-1504) The Dissolution of Abû Sa'id's Kingdom
+event = {
+	id = 296612
+	trigger = {
+		NOT = { monarch = 0135504 } #Abu'Said
+		owned = { province = 1592 data = -1 } #Samarkand
+		control = { province = 1592 data = -1 } #Samarkand
+	}
+	random = no
+	country = TIM
+	name = "EVENTNAME296612" #The Dissolution of Abû Sa'id's Kingdom
+	desc = "EVENTHIST296612"
+	#-#Upon the death of Abû Sa'id, the Empire literally fell to pieces. Husain Baiqara, great-grandson of Timur's son, Umar Shaikh, succeeded in occupying Eastern Persia and Khwarizm. The rest of Sa'id's Kingdom was divided between his four sons. The eldest, Ahmad, was established in Samarkand and Bukhara. His second son, Sultan Mahmud was given Badaskhan, Khultan, Tirmiz, Qunduz, and Hisar. Ulugh Beg, his third, was given Kabul and Ghazni with the fourth, Umar Shaikh as ruler of Ferghana. The glory days of the Timurid Empire were at an end.
+
+	date = { day = 1 month = january year = 1469 }
+	offset = 10
+	deathdate = { day = 1 month = march year = 1504 }
+
+	action_a = {
+		name = "ACTIONNAME296612A" #Without a strong hand things fall apart
+		command = { type = capital which = 1592 } #Samarkand
+		command = { type = desertion which = -1 value = 10000 }
+		command = { type = desertion which = -1 value = 10000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = independence which = KHO } #Khorasan
+		command = { type = independence which = TOX } #Balkh
+		command = { type = independence which = KUS } #Kabul
+		command = { type = independence which = NOG } #Ferghana
+		command = { type = revoltrisk which = 12 value = 25 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = stability value = -6 }
+		command = { type = relation which = KHO value = -400 }
+		command = { type = relation which = AFG value = -400 }
+		command = { type = relation which = UZB value = -400 }
+		command = { type = relation which = FAR value = -400 }
+		command = { type = relation which = NOG value = -400 }
+		command = { type = relation which = TOX value = -400 }
+		command = { type = remove_countryculture which = persian }
+		command = { type = trigger which = 304005 } #KHO: Last Days of the Timurid Empire
+		command = { type = trigger which = 375002 } #KUS: Princes of Kabul
+		command = { type = trigger which = 243001 } #NOG: Princes of Ferghana
+		command = { type = trigger which = 412000 } #TOX: Princes of Badaskhan
+	}
+}
+#(1469-1504) Last Days of the Timurid Empire
+event = {
+	id = 296802 #triggered by KHO_304005
+	random = no
+	country = TIM
+	name = "EVENTNAME296802" #Last Days of the Timurid Empire
+	desc = "EVENTHIST296802"
+	#-#All that Sa'id laboured for, was undone with his death.
+
+	action_a = {
+		name = "ACTIONNAME296802A" #Grr...
+		command = { type = secedeprovince which = KHO value = 521 } #Karabogaz
+		command = { type = secedeprovince which = KHO value = 522 } #Khwarizm
+		command = { type = secedeprovince which = KHO value = 523 } #Kara Kum
+		command = { type = secedeprovince which = KHO value = 524 } #Turkmenistan
+		command = { type = secedeprovince which = KHO value = 525 } #Elbruz
+		command = { type = secedeprovince which = KHO value = 526 } #Meched
+		command = { type = secedeprovince which = KHO value = 1525 } #Qandahar
+		command = { type = secedeprovince which = KHO value = 1528 } #Kushka
+		command = { type = secedeprovince which = KHO value = 1529 } #Birjand
+		command = { type = secedeprovince which = KHO value = 1530 } #Khorasan
+		command = { type = secedeprovince which = KHO value = 1531 } #Herat
+		command = { type = secedeprovince which = KUS value = 1524 } #in case AFG doesn't exist #Quetta
+		command = { type = secedeprovince which = CHG value = 1599 } #Kirgisistan
+		command = { type = secedeprovince which = FAR value = 489 } #Iraq
+		command = { type = secedeprovince which = FAR value = 508 } #Basrah
+		command = { type = secedeprovince which = FAR value = 530 } #Tabriz
+		command = { type = secedeprovince which = FAR value = 531 } #Hamadan
+		command = { type = secedeprovince which = FAR value = 527 } #Kerman
+		command = { type = secedeprovince which = FAR value = 528 } #Lut
+		command = { type = secedeprovince which = FAR value = 529 } #Tabaristan
+		command = { type = secedeprovince which = FAR value = 532 } #Awhaz
+		command = { type = secedeprovince which = FAR value = 533 } #Isfahan
+		command = { type = secedeprovince which = FAR value = 535 } #Hormouz
+	}
+}
+
+#(1490-1530) Uzbeks in Samarkand
+event = {
+	id = 296770
+	trigger = {
+		exists = UZB
+		event = 325013
+		owned = { province = 1592 data = -1 } #Samarkand
+		owned = { province = 1591 data = -1 } #Surkhandarya
+		OR = {
+			control = { province = 1592 data = UZB } #Samarkand
+			control = { province = 1592 data = REB } #Samarkand
+		}
+		NOT = {
+			owned = { province = 1524 data = -1 } #Quetta
+			owned = { province = 1525 data = -1 } #Qandahar
+			owned = { province = 1527 data = -1 } #Kabul
+		}
+	}
+	random = no
+	country = TIM
+	name = "EVENTNAME296770" #Uzbeks in Samarkand
+	desc = "EVENTHIST296770"
+	#-#After marching through Bukhara, it was only a matter of time before Shaibani of the Uzbeks came to collect Samarkand. Although the city would swap back and forth between the Uzbeks and Timurid princes for brief period of times, the reign of the Timurids from Samarkand was pretty much at an end. The future of the Timurids lay in the southern lands.
+
+	date = { day = 1 month = november year = 1490 }
+	offset = 1
+	deathdate = { day = 1 month = november year = 1530 }
+
+	action_a = {
+		name = "ACTIONNAME296770A" #Our destiny lies in the south
+		command = { type = capital which = 1591 } #Surkhandarya
+		command = { type = stability value = -2 }
+		command = { type = vp value = -50 }
+		command = { type = addcore which = 1524 } #Quetta
+		command = { type = addcore which = 1525 } #Qandahar
+		command = { type = addcore which = 1527 } #Kabul
+		command = { type = secedeprovince which = UZB value = 1592 } #Samarkand
+		command = { type = secedeprovince which = UZB value = 1594 } #Uzbek
+		command = { type = secedeprovince which = UZB value = 1532 } #Bukhara
+		command = { type = sleepevent which = 296771 } #TIM: Uzbeks in Samarkand
+		command = { type = sleepevent which = 296772 } #TIM: Uzbeks in Samarkand
+	}
+}
+#(1490-1530) Uzbeks in Samarkand
+event = {
+	id = 296771
+	trigger = {
+		exists = UZB
+		event = 325013
+		owned = { province = 1592 data = -1 } #Samarkand
+		OR = {
+			control = { province = 1592 data = UZB } #Samarkand
+			control = { province = 1592 data = REB } #Samarkand
+		}
+		OR = {
+			owned = { province = 1524 data = -1 } #Quetta
+			owned = { province = 1525 data = -1 } #Qandahar
+			owned = { province = 1527 data = -1 } #Kabul
+		}
+		NOT = { exists = KUS }
+	}
+	random = no
+	country = TIM
+	name = "EVENTNAME296771" #Uzbeks in Samarkand
+	desc = "EVENTHIST296771"
+	#-#After marching through Bukhara, it was only a matter of time before Shaibani of the Uzbeks came to collect Samarkand. Although the city would swap back and forth between the Uzbeks and Timurid princes for brief period of times, the reign of the Timurids from Samarkand was pretty much at an end. The future of the Timurids lay in the southern lands.
+
+	date = { day = 1 month = november year = 1490 }
+	offset = 1
+	deathdate = { day = 1 month = november year = 1530 }
+
+	action_a = {
+		name = "ACTIONNAME296771A" #Our destiny lies in the south
+		#Afghani Lands
+		command = { type = capital which = 1524 } #Quetta
+		command = { type = capital which = 1525 } #Qandahar
+		command = { type = capital which = 1527 } #Kabul
+		command = { type = flagname which = "" }
+		command = { type = country which = KUS }
+		command = { type = stability value = -2 }
+		command = { type = vp value = -50 }
+		command = { type = addcore which = 1524 } #Quetta
+		command = { type = addcore which = 1525 } #Qandahar
+		command = { type = addcore which = 1527 } #Kabul
+		command = { type = secedeprovince which = UZB value = 1594 } #Uzbek
+		command = { type = secedeprovince which = UZB value = 1532 } #Bukhara
+		command = { type = secedeprovince which = UZB value = 1592 } #Samarkand
+		command = { type = secedeprovince which = UZB value = 1591 } #Surkhandarya
+		command = { type = sleepevent which = 296770 } #TIM: Uzbeks in Samarkand
+		command = { type = sleepevent which = 296772 } #TIM: Uzbeks in Samarkand
+	}
+}
+#(1490-1530) Uzbeks in Samarkand
+event = {
+	id = 296772
+	trigger = {
+		exists = UZB
+		event = 325013
+		owned = { province = 1592 data = -1 } #Samarkand
+		OR = {
+			control = { province = 1592 data = UZB } #Samarkand
+			control = { province = 1592 data = REB } #Samarkand
+		}
+		NOT = {
+			owned = { province = 1524 data = -1 } #Quetta
+			owned = { province = 1525 data = -1 } #Qandahar
+			owned = { province = 1527 data = -1 } #Kabul
+			owned = { province = 1591 data = -1 } #Surkhandarya
+		}
+	}
+	random = no
+	country = TIM
+	name = "EVENTNAME296772" #Uzbeks in Samarkand
+	desc = "EVENTHIST296772"
+	#-#After marching through Bukhara, it was only a matter of time before Shaibani of the Uzbeks came to collect Samarkand. Although the city would swap back and forth between the Uzbeks and Timurid princes for brief period of times, the reign of the Timurids from Samarkand was pretty much at an end. The future of the Timurids lay in the southern lands.
+
+	date = { day = 1 month = november year = 1490 }
+	offset = 1
+	deathdate = { day = 1 month = november year = 1530 }
+
+	action_a = {
+		name = "ACTIONNAME296772A" #This is the end (End Game)
+		command = { type = vp value = -50 }
+		command = { type = losemanufactory which = 1592 } #Samarkand
+		command = { type = trigger which = 325016 } #UZB: Shaibani in Samarkand
+	}
+}
+
+#(1506-1600) The End of the Timurid Empire
+event = {
+	id = 296615
+	trigger = {
+		exists = MOG
+		NOT = {
+			countrysize = 6
+			exists = KHO
+		}
+		OR = {
+			owned = { province = 1531 data = -1 } #Herat
+			owned = { province = 1530 data = -1 } #Khorasan
+		}
+	}
+	country = TIM
+	random = no
+	name = "EVENTNAME296615" #The End of the Timurid Empire
+	desc = "EVENTHIST296615"
+	#-#With their power so diminished, the Princes of Herat could no longer pretend that they ruled an empire. The only title that they could realistically claim would be the Kings of Khorasan. From this point on, the Timurid dynasty's days would be numbered.
+
+	date = { day = 1 month = march year = 1506 }
+	offset = 360
+	deathdate = { day = 1 month = march year = 1600 }
+
+	action_a = {
+		name = "ACTIONNAME296615A" #We are the Kings of Khorasan
+		command = { type = flagname which = "" }
+		command = { type = country which = KHO }
+		command = { type = removecore which = 1528 } #Remove Timurid Afghani Core #Kushka
+		command = { type = removecore which = 536 } #Remove Timurid Baluchi Core #Mekran
+		command = { type = capital which = 1530 } #Khorasan
+		command = { type = capital which = 1531 } #Herat
+		#command = { type = AI which = peaceful.ai }
+	}
+}
+
+#(1514-1520) Babur's Ambition
+event = {
+	id = 296613
+	trigger = {
+		owned = { province = 1527 data = -1 } #Kabul
+		NOT = {
+			exists = MOG
+			exists = KUS
+		}
+		OR = {
+			event = 296770 #TIM: Uzbeks in Samarkand
+			event = 296771 #TIM: Uzbeks in Samarkand
+		}
+	}
+	random = no
+	country = TIM
+	name = "EVENTNAME3804" #Babur's Ambition
+	desc = "EVENTHIST3804"
+	#-#Zahir-ud-din Muhammad, better known as Babur, was a Timurid Prince with the blood of Genghis Khan and Tamerlane flowing through his veins, who became the founder of the mighty Mughal dynasty. His early years were spent in bitter struggle with the Uzbeks, who under their brilliant Khan Muhammad Shaybani had occupied the old Timurid capital of Samarkand. Weary of this useless quest, Babur eventually turned his ambitious gaze east towards India - a much more fruitful ambition, as it would turn out...
+
+	date = { day = 1 month = march year = 1514 }
+	offset = 1
+	deathdate = { day = 1 month = march year = 1520 }
+
+	action_a = {
+		name = "ACTIONNAME3804A" #Unleash the Tiger!
+		command = { type = flagname which = "" }
+		command = { type = country which = MOG }
+		command = { type = add_countryculture which = afghani }
+		command = { type = domestic which = QUALITY value = 3 }
+		command = { type = INF which = -2 value = 10000 }
+		command = { type = INF which = -1 value = 10000 }
+		command = { type = INF which = -1 value = 10000 }
+		command = { type = CAV which = -2 value = 20000 }
+		command = { type = ART which = -2 value = 10 }
+		command = { type = treasury value = 300 }
+		command = { type = relation which = DLH value = -400 }
+		command = { type = addcore which = 543 } #Delhi
+		command = { type = addcore which = 1523 } #Thar
+		command = { type = land value = 3000 }
+		#command = { type = AI which = Mughal.ai }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#Reserved: 296002-296003 (Uighuristan and Moghulistan)
+
+#First free id: 296006

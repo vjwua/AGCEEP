@@ -1,0 +1,203 @@
+#Al-Haasa (HAA)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1638-1723) Ottomans Offer Protection
+event = {
+	id = 424000
+	trigger = {
+		OR = {
+			neighbour = TUR
+			owned = { province = 508 data = TUR } #Basrah
+			AND = {
+				owned = { province = 488 data = TUR } #Kirkuk
+				owned = { province = 489 data = TUR } #Iraq
+				event = 301030 #TUR: The Sultan becomes 'Khalifa'
+			}
+		}
+		NOT = {
+			vassal = { country = HAA country = TUR }
+			war = { country = HAA country = TUR }
+		}
+	}
+	random = no
+	country = HAA
+	name = "EVENTNAME424000" #Ottomans Offer Protection
+	desc = "EVENTHIST424000"
+	#-#Fearing Christian incursions, the states of the Arabian peninsula turn to the Ottoman Turks for military aid.
+
+	date = { day = 1 month = january year = 1638 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1723 }
+
+	action_a = {
+		name = "ACTIONNAME424000A" #Save us from the Infidels!
+		command = { type = trigger which = 301099 } #TUR: Protectorate in Al-Haasa
+		command = { type = relation which = TUR value = 100 }
+	}
+	action_b = {
+		name = "ACTIONNAME424000B" #We Will Protect Ourselves
+		command = { type = relation which = TUR value = -100 }
+	}
+}
+
+#(1723) Ottoman Influence Wanes
+event = {
+	id = 424001
+	trigger = {
+		vassal = { country = TUR country = HAA }
+	}
+	random = no
+	country = HAA
+	name = "EVENTNAME424001" #Ottoman Influence Wanes
+	desc = "EVENTHIST424001"
+	#-#As Ottoman power recedes, frontier provinces and vassal states begin to break away.
+
+	date = { day = 1 month = january year = 1723 }
+	offset = 200
+	deathdate = { day = 29 month = december year = 1723 }
+
+	action_a = {
+		name = "ACTIONNAME424001A" #Good Riddance to Bad Rubbish
+		command = { type = breakvassal which = TUR }
+		command = { type = relation which = TUR value = -150 }
+	}
+	action_b = {
+		name = "ACTIONNAME424001B" #We Will Remain Loyal to the Sultan-Caliph
+		command = { type = relation which = TUR value = 150 }
+	}
+}
+
+#(1723) Disputed Throne
+event = {
+	id = 424002
+	random = no
+	country = HAA
+	name = "EVENTNAME424002" #Disputed Throne
+	desc = "EVENTHIST424002"
+	#-#Sulayman rebels against 'Ali and sets up a rival court.
+
+	date = { day = 1 month = january year = 1723 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1723 }
+
+	action_a = {
+		name = "ACTIONNAME424002A" #Kill the Rebels!
+		command = { type = revoltrisk which = 48 value = 6 }
+	}
+	action_b = {
+		name = "ACTIONNAME424002B" #Seek a Truce
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = domestic which = aristocracy value = 2 }
+	}
+	action_c = {
+		name = "ACTIONNAME424002C" #Flush the Traitor Out
+		command = { type = revolt which = 506 } #Quatar
+	}
+}
+
+#(1752) Rival Claimant to the Throne
+event = {
+	id = 424003
+	random = no
+	country = HAA
+	name = "EVENTNAME424003" #Rival Claimant to the Throne
+	desc = "EVENTHIST424003"
+	#-#Hamada wishes to be Sheikh as well.
+
+	date = { day = 1 month = january year = 1752 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1752 }
+
+	action_a = {
+		name = "ACTIONNAME424003A" #Death to Traitors!
+		command = { type = revoltrisk which = 24 value = 6 }
+	}
+	action_b = {
+		name = "ACTIONNAME424003B" #Let us Make Peace
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = aristocracy value = 1 }
+	}
+}
+
+#(1793) Princely Rivalry
+event = {
+	id = 424004
+	random = no
+	country = HAA
+	name = "EVENTNAME424004" #Princely Rivalry
+	desc = "EVENTHIST424004"
+	#-#Zayid and Barrak both seek the throne.
+
+	date = { day = 1 month = january year = 1793 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1793 }
+
+	action_a = {
+		name = "ACTIONNAME424004A" #Not Again!
+		command = { type = revolt which = -2 }
+		command = { type = revoltrisk which = 12 value = 6 }
+	}
+}
+
+#(1795-1820) Wahhabi Influence
+event = {
+	id = 424005
+	trigger = {
+		religion = shiite
+	}
+	random = no
+	country = HAA
+	name = "EVENTNAME424005" #Wahhabi Influence
+	desc = "EVENTHIST424005"
+	#-#Bedouins from the interior swept into the coasts carrying a new brand of Islam with them. They attempted to spread the word to the tribesmen of Oman as well.
+
+	date = { day = 1 month = january year = 1795 }
+	offset = 360
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME424005A" #Accept the New Creed
+		command = { type = religion which = sunni }
+		command = { type = provincereligion which = 506 value = sunni } #Quatar
+		command = { type = provincereligion which = 507 value = sunni } #Damman
+		command = { type = domestic which = innovative value = -2 }
+		command = { type = addcore which = 505 } #Al-Kharam
+	}
+	action_b = {
+		name = "ACTIONNAME424005B" #Keep the Old Faith
+		command = { type = revoltrisk which = 60 value = 8 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#(1812-1817) Turkish Governors
+event = {
+	id = 424006
+	trigger = {
+		vassal = { country = TUR country = HAA }
+		NOT = {
+			monarch = 0152516 #Muhammad III
+		}
+	}
+	random = no
+	country = HAA
+	name = "EVENTNAME424006" #Turkish Governors
+	desc = "EVENTHIST424006"
+	#-#During Ottoman occupation after 1812, the Porte appointed Turkish governors.
+
+	date = { day = 0 month = january year = 1812 }
+	offset = 5
+	deathdate = { day = 29 month = january year = 1817 }
+
+	action_a = {
+		name = "ACTIONNAME424006" #We have no choice
+		command = { type = sleepmonarch which = 0152517 } #Local Sheikhs *
+		command = { type = wakemonarch which = 0152515 } #Turkish Governors
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 424007

@@ -1,0 +1,898 @@
+#Ayutthaya (AYU)
+
+#Direct Citations
+# "Insight Guides: Thailand" by Hans Hofer
+
+#-----------------------------------------------------------------------------------------------
+
+#(1430) Invasion of Cambodia
+event = {
+	id = 120000
+	trigger = {
+		exists = CAM
+	}
+	random = no
+	country = AYU
+	name = "EVENTNAME65140" #Invasion of Cambodia
+	desc = "EVENTHIST65140"
+	#-#There is a long hatred between the Thai and the Khmer Empire. During the 12th century, the Thai peoples had been reduced to vassalage by Suryavarman II, one of the greatest Angkorian monarchs. In 1431, the Thai decided to strike back.
+
+	date = { day = 1 month = june year = 1430 }
+	offset = 90
+	deathdate = { day = 29 month = december year = 1430 }
+
+	action_a = {
+		name = "ACTIONNAME65140A" #Let us destroy the hated Khmer!
+		command = { type = casusbelli which = CAM value = 240 }
+		command = { type = war which = CAM }
+		command = { type = CAV which = -2 value = 5000 }
+		command = { type = INF which = -2 value = 10000 }
+		command = { type = trigger which = 140000 } #CAM: Sack of Angkor
+	}
+	action_b = {
+		name = "ACTIONNAME120000B" #We are cowards
+		command = { type = stability value = 1 }
+		command = { type = relation which = CAM value = -50 }
+	}
+}
+
+#(1430-1461) Angkor is Sacked
+event = {
+	id = 120001 #triggered by CAM_140001
+	random = no
+	country = AYU
+	name = "EVENTNAME65141" #Angkor is Sacked
+	desc = "EVENTHIST65141"
+	#-#The Thai have sacked Angkor. Loot, plunder, and prisoners have been brought back to the Thai capital.
+
+	action_a = {
+		name = "ACTIONNAME65141A" #The defeated Khmer flee before us!
+		command = { type = population which = -2 value = 1000 }
+		command = { type = treasury value = 200 }
+	}
+}
+
+#(1454-1460) Boromo Trailokanat's Reforms
+event = {
+	id = 6910
+	random = no
+	country = AYU
+	name = "EVENTNAME6910" #Boromo Trailokanat's Reforms
+	desc = "EVENTHIST6910"
+	#-#King Boromo Trailokanat has proposed various reforms in order to streamline the government of the state. While many of these proposals make great sense, they will also be expensive and may cause unrest. What shall we do?
+
+	date = { day = 1 month = january year = 1454 }
+	offset = 200
+	deathdate = { day = 1 month = january year = 1460 }
+
+	action_a = {
+		name = "ACTIONNAME6910A" #Go with the reforms
+		command = { type = stability value = -1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = serfdom value = 1 }
+		command = { type = ADM which = 3 value = 36 }
+		command = { type = MIL which = 3 value = 36 }
+		command = { type = manpower value = 5 }
+		command = { type = provincemanpower which = -1 value = 1 }
+		command = { type = provincemanpower which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME6910B" #Ignore the reform ideas
+		command = { type = stability value = 3 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = infra value = -200 }
+		command = { type = provincetax which = -1 value = -1 }
+	}
+}
+
+#(1491-1500) Rama T'ibodi's Army Reforms
+event = {
+	id = 65118
+	random = no
+	country = AYU
+	name = "EVENTNAME65118" #Rama T'ibodi III reorganizes the Army
+	desc = "EVENTHIST65118"
+	#-#After ascending the throne in 1491, King Rama T'ibodi III took measures in improving the military system, mainly in introducing a universal compulsory military service.
+
+	date = { day = 1 month = january year = 1491 }
+	offset = 1000
+	deathdate = { day = 1 month = january year = 1500 }
+
+	action_a = {
+		name = "ACTIONNAME65118A" #Introduce a new system
+		command = { type = stability value = -1 }
+		command = { type = domestic which = land value = 1 }
+		command = { type = domestic which = offensive value = 1 }
+		command = { type = domestic which = quality value = -1 }
+		command = { type = provincemanpower which = -1 value = 1 }
+		command = { type = provincemanpower which = -1 value = 1 }
+		command = { type = land value = 300 }
+	}
+	action_b = {
+		name = "ACTIONNAME65118B" #Leave the old system
+		command = { type = stability value = 3 }
+		command = { type = domestic which = offensive value = -1 }
+	}
+}
+
+#(1514) First Arrival of Europeans
+event = {
+	id = 120006
+	random = no
+	country = AYU
+	name = "EVENTNAME120006" #First Arrival of Europeans
+	desc = "EVENTHIST120006"
+	#-#The 16th century was marked by the first arrival of Europeans, and by continual conflict with the Burmese. Alfonso de Albuquerque, of Portugal, conquered Malacca in 1511, and soon thereafter his ships sailed to Siam. King Ramathibodi II (ruled 1491-1529) granted the Portuguese permission to reside and trade within the Kingdom, in return for arms and ammunition. Portuguese mercenaries fought alongside the King in campaigns against Chiang Mai and taught the Thais the arts of cannon foundry and musketry.
+
+	date = { day = 1 month = january year = 1514 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1514 }
+
+	action_a = {
+		name = "WELCOME"
+		command = { type = relation which = POR value = 50 }
+		command = { type = land value = 500 }
+		command = { type = domestic which = MERCANTILISM value = -2 }
+		command = { type = domestic which = QUALITY value = 1 }
+		command = { type = provincetax which = -2 value = -1 }
+		command = { type = stability value = -2 }
+	}
+	action_b = {
+		name = "ACTIONNAME120006B" #Go away
+		command = { type = relation which = POR value = -90 }
+		command = { type = domestic which = MERCANTILISM value = 1 }
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1536-1538) Prince Ekaracha
+event = {
+	id = 65116 #triggered by AMI_65115 A
+	random = no
+	country = AYU
+	name = "EVENTNAME65116" #Prince Ekaracha
+	desc = "EVENTHIST65116"
+	#-#In 1536 Lan Xang King Phothisarath I gave refuge to an exiled prince Ekaracha of Ayuthaya. Ayuthaya declared war, however, army of Lan xang defeated the invaders at Moung Khouk, and peace was quickly concluded.
+
+	action_a = {
+		name = "ACTIONNAME65116A" #Press the issue
+		command = { type = stability value = 1 }
+		command = { type = casusbelli which = AMI value = 24 }
+	}
+	action_b = {
+		name = "ACTIONNAME65116B" #Let the matter slip
+		command = { type = stability value = -1 }
+		command = { type = relation which = AMI value = 50 }
+	}
+}
+
+#(1547) Inheritance of Lan Na
+event = {
+	id = 120005 #triggered by AMI_106002
+	random = no
+	country = AYU
+	name = "EVENTNAME120005" #Inheritance of Lan Na
+	desc = "EVENTHIST120005"
+	#-#The last King of Chiangmai died childless in 1543, and Phothisarat, whose mother was a Chiangmai princess, promptly claimed the empty throne. So did Siam and a Shan prince named Mekut'i. Laos won the first round, and Phothisarat placed his son, prince Setthathirat, on the Chiangmai throne. However, the Laotian King died only thirteen months later, and Setthathirat had to hurry to Luang Prabang to claim his father's throne before somebody else did. That gave Siam and the Shans a second chance. All three Kingdoms were fighting over Chiangmai when a revitalized Burma appeared on the scene.
+
+	action_a = {
+		name = "ACTIONNAME120005A" #This displeases me
+		command = { type = relation which = AMI value = -100 }
+		command = { type = casusbelli which = AMI value = 360 }
+	}
+}
+
+#(1549) Maha Chakkrap'at's Army Reforms
+event = {
+	id = 6911
+	random = no
+	country = AYU
+	name = "EVENTNAME6911" #Maha Chakkrap'at's Army Reforms
+	desc = "EVENTHIST6911"
+	#-#King Maha Chakkrap'at has proposed various reforms for our military forces, including the training of a full-time professional elephant brigade. While many of these proposals make great sense, they will also be expensive and may cause unrest. What shall we do?
+
+	date = { day = 1 month = january year = 1549 }
+
+	action_a = {
+		name = "ACTIONNAME6911A" #Go with the reforms
+		command = { type = stability value = -2 }
+		command = { type = domestic which = land value = 1 }
+		command = { type = domestic which = offensive value = -2 }
+		command = { type = land value = 250 }
+		command = { type = CAV which = -2 value = 5000 }
+		command = { type = treasury value = -100 }
+	}
+	action_b = {
+		name = "ACTIONNAME6911B" #Ignore the reform ideas
+		command = { type = stability value = 1 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = land value = -500 }
+	}
+}
+
+#(1568-1605) Capture of Ayutthaya
+event = {
+	id = 65122
+	trigger = {
+		control = { province = 670 data = MYA }
+		owned = { province = 670 data = -1 }
+		event = 65119 #MYA: Expansionism policies
+	}
+	random = no
+	country = AYU
+	name = "EVENTNAME65122" #Capture of Ayutthaya
+	desc = "EVENTHIST65122"
+	#-#In 1569, Burmese troops under the command of King Bayinnaung overran the Thai troops and captured the capital of Ayutthaya. The occupation lasted only for 15 years, when the future King Naresuan rebelled and expelled Burmese forces from Ayutthaya.
+
+	date = { day = 1 month = january year = 1568 }
+	offset = 1
+	deathdate = { day = 1 month = january year = 1605 }
+
+	action_a = {
+		name = "ACTIONNAME65122A" #Become vassal of Burma
+		command = { type = relation which = MYA value = -70 }
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = trade value = -250 }
+		command = { type = infra value = -250 }
+		command = { type = population which = -2 value = -2000 }
+		command = { type = population which = -1 value = -500 }
+		command = { type = stability value = -4 }
+		command = { type = trigger which = 65121 } #MYA: Capture of Ayutthaya
+	}
+	action_b = {
+		name = "ACTIONNAME65122B" #Fight on
+		command = { type = relation which = MYA value = -100 }
+		command = { type = trade value = -400 }
+		command = { type = infra value = -400 }
+		command = { type = stability value = -5 }
+		command = { type = inf which = -1 value = 5000 }
+		command = { type = cav which = -3 value = 5000 }
+	}
+}
+
+#(1584) Restoration of Thai Independence
+event = {
+	id = 120008
+	trigger = {
+		event = 65121 #MYA: Capture of Ayutthaya
+		vassal = { country = MYA country = AYU }
+	}
+	random = no
+	country = AYU
+	name = "EVENTNAME120008" #Restoration of Thai Independence
+	desc = "EVENTHIST120008"
+	#-#Together with his younger brother, Ekatotsarot, Naresuen began to gather armed followers. He had gained an insight into Burmese armed strength and strategies during his formative years. He trained his troops in the art of guerilla warfare and their hit-and-run tactics earned them the nicknames Wild Tigers and Peeping Cats. Naresuen's opportunity to restore Siamese independence came following the death of Bayinnaung, in 1581. Revolts in the Shan states and at Ava were tying young King Nandabayin down at home when Naresuen declared Ayutthaya's freedom, in 1584. During the following nine years, the Burmese made several attempts to resubjugate Siam, but Naresuen had taken thorough defensive measures and repulsed all invasions. On one of these occasions, he killed the Burmese crown prince in single combat, both of them mounted on elephants.
+
+	date = { day = 1 month = january year = 1584 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1584 }
+
+	action_a = {
+		name = "ACTIONNAME120008A" #Kick out the Burmese
+		command = { type = breakvassal which = MYA }
+		command = { type = domestic which = land value = 2 }
+		command = { type = domestic which = offensive value = -2 }
+		command = { type = domestic which = quality value = 2 }
+		command = { type = land value = 300 }
+		command = { type = CAV which = -2 value = 6000 }
+		command = { type = trigger which = 136007 } #MYA: Thai Impudence
+	}
+	action_b = {
+		name = "ACTIONNAME120008B" #Let us still bow down
+		command = { type = relation which = MYA value = 50 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1590) Naresuen the Great
+event = {
+	id = 120009
+	random = no
+	country = AYU
+	name = "EVENTNAME120009" #Naresuen the Great
+	desc = "EVENTHIST120009"
+	#-#Naresuen assumed full Kingship upon his father's death in 1590. He reconsolidated the Siamese Kingdom, then turned the tables on Burma with repeated attacks that contributed to the disintegration of the Burmese empire. The Khmers, who had been whittling away at Siam's eastern boundary during Ayutthaya's period of weakness, were also subdued. Under Naresuen 'the Great,' Ayutthaya prospered and became the thriving metropolis described by 17th century European visitors.
+
+	date = { day = 1 month = january year = 1590 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1590 }
+
+	action_a = {
+		name = "ACTIONNAME120009A" #Great he is
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = domestic which = offensive value = 2 }
+		command = { type = trade value = 250 }
+		command = { type = infra value = 250 }
+		command = { type = provincetax which = -2 value = 1 }
+		command = { type = stability value = 2 }
+	}
+}
+
+#(1593-1599) Attack on Lovek
+event = {
+	id = 120002
+	trigger = {
+		event = 140007 #CAM: Lovek
+		owned = { province = 667 data = CAM } #Khmer
+		NOT = {
+			war = { country = AYU country = CAM }
+		}
+	}
+	random = no
+	country = AYU
+	name = "EVENTNAME65142" #Attack on Lovek
+	desc = "EVENTHIST65142"
+	#-#The Thai watched with apprehension as the Khmer began to become rich and powerful at Lovek. In 1593, they decided to strike and captured the city in 1594.
+
+	date = { day = 1 month = january year = 1593 }
+	offset = 60
+	deathdate = { day = 1 month = january year = 1599 }
+
+	action_a = {
+		name = "ACTIONNAME65142A" #Let us attack the hated Khmers!
+		command = { type = treasury value = 50 }
+		command = { type = casusbelli which = CAM value = 240 }
+		command = { type = war which = CAM }
+	}
+	action_b = {
+		name = "ACTIONNAME120002B" #We are cowards
+		command = { type = stability value = 1 }
+		command = { type = relation which = CAM value = -50 }
+		command = { type = sleepevent which = 140008 } #CAM: Thai Threat
+		command = { type = sleepevent which = 140011 } #CAM: Lovek is Captured
+	}
+}
+
+#(1593-1613) Lovek Is Captured
+event = {
+	id = 120003
+	trigger = {
+		exists = CAM
+		event = 140011 #CAM: Lovek is Captured
+		NOT = { vassal = { country = CAM country = AYU } }
+	}
+	random = no
+	country = AYU
+	name = "EVENTNAME65143" #Lovek is Captured
+	desc = "EVENTHIST65143"
+	#-#The Thai have captured Lovek. Loot, plunder, and prisoners have been brought back to the Thai capital.
+
+	date = { day = 1 month = april year = 1593 }
+	offset = 5
+	deathdate = { day = 18 month = june year = 1613 }
+
+	action_a = {
+		name = "ACTIONNAME65143A" #The defeated Khmer bow before us!
+		command = { type = vassal which = CAM }
+		command = { type = stability value = 1 }
+		command = { type = treasury value = 200 }
+		command = { type = relation which = SPA value = -30 }
+		command = { type = relation which = POR value = -30 }
+	}
+}
+
+#(1609-1620) Peaceful reign of King Ekat'otsarat
+event = {
+	id = 65123
+	random = no
+	country = AYU
+	name = "EVENTNAME65123" #Peaceful reign of King Ekat'otsarat
+	desc = "EVENTHIST65123"
+	#-#During the reign of King Ekat'otsarat trade flourished, and there were many contacts with neighboring countries.
+
+	date = { day = 1 month = january year = 1609 }
+	offset = 300
+	deathdate = { day = 1 month = january year = 1620 }
+
+	action_a = {
+		name = "ACTIONNAME65123A" #Rule peacefully
+		command = { type = trade value = 300 }
+		command = { type = stability value = 2 }
+		command = { type = relation which = -1 value = 30 }
+		command = { type = relation which = -1 value = 30 }
+		command = { type = relation which = -1 value = 30 }
+	}
+}
+
+#(1610) Ekatotsarot
+event = {
+	id = 120010
+	random = no
+	country = AYU
+	name = "EVENTNAME120010" #Ekatotsarot
+	desc = "EVENTHIST120010"
+	#-#The reign of Naresuen's brother, Ekatotsarot, between 1605 and 1610, coincided with the arrival of the Dutch in Siam. Ekatotsarot was not interested in pursuing Naresuen's militaristic policies. Instead, he sought to develop Ayutthaya's economy. To these ends, he decreed several measures to increase state revenue, among them the introduction of taxes on commerce. This gave him a reputation as a 'covetous man' among Europeans.
+
+	date = { day = 1 month = january year = 1610 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1610 }
+
+	action_a = {
+		name = "ACTIONNAME120010A" #Impose the system
+		command = { type = stability value = -2 }
+		command = { type = domestic which = mercantilism value = 1 }
+		command = { type = domestic which = land value = -3 }
+		command = { type = merchants value = -3 }
+		command = { type = trade value = -250 }
+		command = { type = provincetax which = 670 value = 1 } #Bangkok
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = relation which = -1 value = 50 }
+		command = { type = relation which = NIP value = -400 }
+	}
+	action_b = {
+		name = "ACTIONNAME120010B" #No, thanks
+		command = { type = stability value = 1 }
+		command = { type = domestic which = mercantilism value = -1 }
+		command = { type = trade value = 50 }
+	}
+}
+
+#(1620-1630) Cambodia Has Switched Allegiances
+event = {
+	id = 120004 #triggered by CAM_140013
+	random = no
+	country = AYU
+	name = "EVENTNAME65144" #Cambodia Has Switched Allegiances
+	desc = "EVENTHIST65144"
+	#-#With the marriage in 1620 of King Chey Chettha II (1618-28) of Cambodia and the daughter of Sai Vuong, one of the Nguyen lords (1558-1778), who ruled southern Vietnam for most of the period of the restored Le dynasty (1428-1788), Cambodia orbited into the Vietnamese sphere of influence.
+
+	action_a = {
+		name = "ACTIONNAME65144A" #We will reassert our domination
+		command = { type = casusbelli which = ANN value = 12 }
+		command = { }
+	}
+}
+
+#(1630) Japanese Mercenaries
+event = {
+	id = 120011
+	random = no
+	country = AYU
+	name = "EVENTNAME120011" #Japanese Mercenaries
+	desc = "EVENTHIST120011"
+	#-#Under the Japanese adventurer Yamada Nagamasa, who earned himself an official court rank, many Japanese gained employment as the King's guards. These mercenaries played an important role in Thai history, when in 1628 they helped the future King Prasat Thong establish himself as regent to a boy-king, and subsequently to depose the rightful leader. Unfortunately, the shogun in Edo (now called Tokyo) refused to recognize him as a Thai monarch, prompting Prasat Thong to take revenge on the Japanese settlement in Ayutthaya. Several Japanese were killed and the rest fled to Cambodia.
+
+	date = { day = 1 month = january year = 1630 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1630 }
+
+	action_a = {
+		name = "ACTIONNAME120011A" #Kick the Japanese out
+		command = { type = stability value = -2 }
+		command = { type = relation which = NIP value = -400 }
+	}
+	action_b = {
+		name = "ACTIONNAME120011B" #Keep them
+		command = { type = stability value = -4 }
+		command = { type = INF which = -2 value = 4000 }
+		command = { type = relation which = NIP value = -250 }
+	}
+}
+
+#(1637) Royal Monopolies
+event = {
+	id = 120012
+	random = no
+	country = AYU
+	name = "EVENTNAME120012" #Royal Monopolies
+	desc = "EVENTHIST120012"
+	#-#Prasat Thong ruled until 1655. He imposed a system of royal monopolies whereby all foriegn trade was directly controlled by the King, represented by the minister of finance. The importance of Ayutthaya as a trade center increased markedly during this period. Because rare commodities were under state control, they could be procured only from royal warehouses in the capital.
+
+	date = { day = 1 month = january year = 1637 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1637 }
+
+	action_a = {
+		name = "ACTIONNAME120012A" #Impose the system
+		command = { type = stability value = -1 }
+		command = { type = domestic which = mercantilism value = 2 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = merchants value = 5 }
+		command = { type = trade value = 400 }
+		command = { type = provincetax which = 670 value = 2 } #Bangkok
+		command = { type = provincetax which = -1 value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME120012B" #No, thanks
+		command = { type = stability value = 1 }
+		command = { type = domestic which = mercantilism value = -1 }
+	}
+}
+
+#(1680-1684) The Siamese Embassy
+event = {
+	id = 120020
+	trigger = {
+		exists = HOL
+		event = 3503 #HOL: Vereenigde Oostindische Compagnie
+		event = 12075 #FRA: Jean-Baptiste Colbert
+		event = 3125 #FRA: The Commissioning of Versailles
+		exists = FRA
+		NOT = {
+			war = { country = FRA country = AYU }
+		}
+	}
+	random = no
+	country = AYU
+	name = "EVENTNAME120020" #The Siamese Embassy
+	desc = "EVENTHIST120020"
+	#-#With his advisor Constance Phaulkon, The King of Siam, Phra Naraï, hoped that the vicinity of the French would hold in respect the Dutchmen who had already the quasi-monopoly of the traffic in the Far East. Consolidated in his hopes by the Nimègue peace of 1678, relatively openminded man, he treated well the French monks and the tradesmen of the 'Compagnie Française des Indes Orientales' present in his Kingdom. As of the end of 1680, he sent an embassy in Europe which carried present and letters to the Pope and Louis XIV. But it sank towards the island of Madagascar with the ship which transported it. In the beginning of 1684, Phra Naraï then sent a new mission in France which reached the court of the Sun King.
+
+	date = { day = 1 month = january year = 1680 }
+	offset = 20
+	deathdate = { day = 29 month = january year = 1684 }
+
+	action_a = {
+		name = "ACTIONNAME120020A" #Send the Embassy
+		command = { type = relation which = FRA value = 25 }
+		command = { type = relation which = HOL value = -25 }
+		command = { type = treasury value = -25 }
+		command = { type = trigger which = 170236 } #FRA: The Siamese Embassy
+	}
+	action_b = {
+		name = "ACTIONNAME120020B" #Neglect France
+		command = { type = relation which = FRA value = -25 }
+		command = { type = DIP which = -2 value = 12 }
+		command = { type = treasury value = 25 }
+	}
+}
+#(1680-1684) France allies with Siam
+event = {
+ 	id = 120021 #triggered by FRA_170236 A
+	random = no
+	country = AYU
+	name = "EVENTNAME120021" #France allies with Siam
+	desc = "EVENTHIST120021"
+	#-#On March 3, 1685, a French embassy left Brest for Siam, having to its head the knight of Chaumont, accompanied in particular by the abbot of Choisy, the count of Forbin and the Jesuit father Tachard. Arrived in October, Chaumont vainly tried to convert Phra Naraï to Catholicism and refused to sign the political treaty that Siam awaited. Two months later, Chaumont left the country for France, accompanied by a Siamese mission, and leaving Forbin as High Admiral and chief of the Siamese armies. In March 1687, a French embassy, with Simon de la Loubère and Céberet de Boullay as leaders, left on the vessels named 'le Gaillard' et 'l'Oiseau'. 630 infantry men, under the command of Desfarges, embarked on four other ships. The things however did not go for the best, and Forbin knew disgrace because of the loss of several ships. Bangkok and Mergui were nevertheless garrisoned.
+
+	action_a = {
+		name = "ACTIONNAME120021A" #Fight the Dutch!
+		command = { type = fortress which = -1 value = 1 }
+		command = { type = INF which = -1 value = 3000 }
+		command = { type = stability value = -1 }
+	}
+}
+#(1680-1684) France refuses to ally with Siam
+event = {
+	id = 120022 #triggered by FRA_170236 B
+	random = no
+	country = AYU
+	name = "EVENTNAME120022" #France refuses to ally with Siam
+	desc = "EVENTHIST120022"
+	#-#France is not in a hurry to give the pressure on such a resistant country as Netherlands.
+
+	action_a = {
+		name = "ACTIONNAME120022A" #Let the matter fall...
+		command = { type = relation which = FRA value = -50 }
+		command = { type = treasury value = 25 }
+		command = { type = DIP which = -2 value = 12 }
+	}
+}
+
+#(1684-1688) The Siamese Revolution
+event = {
+	id = 120023
+	trigger = {
+		event = 120021 #AYU: France allies with Siam
+	}
+	random = no
+	country = AYU
+	name = "EVENTNAME120023" #The Siamese Revolution
+	desc = "EVENTHIST120023"
+	#-#The relations between France and Siam seemed promised to a beautiful future, but in 1689, a revolution burst in Siam. Phaulkon was assassinated in June and Phra Naraï died mysteriously. Pitracha, the instigator of this revolution, became King, whereas French did not move. Bangkok, besieged, had to be evacuated, like Mergui. Desfarges and his troops were folded up on the French tradepost of Pondicherry in India.
+
+	date = { day = 1 month = january year = 1684 }
+	offset = 20
+	deathdate = { day = 29 month = january year = 1688 }
+
+	action_a = {
+		name = "ACTIONNAME120023A" #Chase the French!
+		command = { type = desertion which = -1 value = 3000 }
+		command = { type = relation which = FRA value = -100 }
+		command = { type = MIL which = 2 value = 12 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME120023B" #They are useful
+		command = { type = relation which = FRA value = 50 }
+		command = { type = DIP which = 2 value = 24 }
+		command = { type = sleepevent which = 170237 } #FRA: The Siamese Revolution
+		command = { type = sleepevent which = 120024 } #AYU: The King settles down
+	}
+}
+
+#(1703-1705) The King settles down
+event = {
+	id = 120024
+	trigger = {
+		event = 120023 #AYU: The Siamese Revolution
+	}
+	random = no
+	country = AYU
+	name = "EVENTNAME120024" #The King settles down
+	desc = "EVENTHIST120024"
+	#-#The new King of Siam tried to join again with France only in 1703. But Louis XIV was at war against Europe and did not seize the occasion. France had, consequently, no more influence in Siam and the relations were very reduced.
+
+	date = { day = 1 month = january year = 1703 }
+	offset = 20
+	deathdate = { day = 29 month = january year = 1705 }
+
+	action_a = {
+		name = "ACTIONNAME120024A" #Our error should be repaired
+		command = { type = relation which = FRA value = 100 }
+		command = { type = DIP which = 2 value = 24 }
+		command = { type = treasury value = -25 }
+		command = { type = trigger which = 170238 } #FRA: Siam renews its request
+	}
+	action_b = {
+		name = "ACTIONNAME120022A" #Let the matter fall...
+		command = { type = relation which = FRA value = -50 }
+		command = { type = DIP which = -2 value = 24 }
+	}
+}
+
+#(1733) Golden Age
+event = {
+	id = 120015
+	random = no
+	country = AYU
+	name = "EVENTNAME120015" #Golden Age
+	desc = "EVENTHIST120015"
+	#-#The reign of King Boromakot (1733-1758) began with a particularly violent struggle for power, but Baromakot's twenty-five-year term was an unusually peaceful one and became known as Ayutthaya's Golden Age. Poets and artists abounded at hius court, enabling literature and the arts to flourish as never before. During this period, Sri Lanka (then Ceylon) invited a delegation of Siamese monks to purify the Sinhalese Sangha (monkhood), reversing the religious roles of the previous two countries.
+
+	date = { day = 1 month = january year = 1733 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1733 }
+
+	action_a = {
+		name = "ACTIONNAME120015A" #Tranquility!
+		command = { type = revolt which = -2 }
+		command = { type = relation which = -1 value = 30 }
+		command = { type = relation which = -1 value = 30 }
+		command = { type = relation which = -1 value = 30 }
+		command = { type = relation which = -1 value = 30 }
+		command = { type = stability value = 2 }
+	}
+}
+
+#(1760) King Ekit'at's Incompetence
+event = {
+	id = 6913
+	random = no
+	country = AYU
+	name = "EVENTNAME6913" #King Ekit'at's Incompetence
+	desc = "EVENTHIST6913"
+	#-#King Ekit'at is an utter fool who is a disaster as King of this land. He ignores the duties of government, prefering to spend his days in endless parties and bouts of drinking and debauchery. Meanwhile, the Kingdom is falling to part, and our neighbors eagerly circle like vultures moving in on their prey. Unfortunately, the King refuses all advice to take a more active role in the government, thus causing the nation to slide further into chaos.
+
+	date = { day = 1 month = january year = 1760 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1760 }
+
+	action_a = {
+		name = "ACTIONNAME6913A" #Why are we stuck with such an incompetent fool?
+		command = { type = stability value = -6 }
+		command = { type = revoltrisk which = 120 value = 5 }
+		command = { type = inflation value = 10 }
+		command = { type = relation which = MYA value = -300 }
+		command = { type = desertion which = -1 value = 10000 }
+		command = { type = infra value = -200 }
+	}
+}
+
+#(1763-1779) Destruction of Ayutthaya
+event = {
+	id = 120013
+	trigger = {
+		event = 136014 #MYA: Destruction of Ayutthaya
+		owned = { province = 670 data = -1 } #Bangkok
+		control = { province = 670 data = MYA }
+	}
+	random = no
+	country = AYU
+	name = "EVENTNAME120013" #Destruction of Ayutthaya
+	desc = "EVENTHIST120013"
+	#-#The tranquil days proved to be the calm before the storm. Boromakot's son Ekatat ascended to the throne in 1758, after a bitter succession struggle with his brother, and surrounded himself with a female company to ensure his pleasure. Meanwehile, a village headman united the Third Burmese Empire and assumed the royal title Alaungpaya. His invading Burmese armies were repelled in 1760 after Alaungpaya was wounded by his own cannon. But in 1767, a second Burmese invasion, led by Alaungpaya's son Hsinbyushin, succeeded in capturing Ayutthaya after a siege of fourteen months. In their hurry to withdraw from the conquered capital, the Burmese killed, looted and set fire to the whole city, thereby expunging four centuries of Thai civilization. Showing complete disregard for their common religion, the Buddhist Burmese plundered Ayutthaya's rich temples, melting down all the available gold from Buddha's images. Members of the royal family, along with 90,000 captives and the accumulated booty, were removed to Burma.
+
+	date = { day = 1 month = november year = 1763 }
+	offset = 1
+	deathdate = { day = 1 month = january year = 1779 }
+
+	action_a = {
+		name = "ACTIONNAME120013A" #This is a dark day
+		command = { type = relation which = MYA value = -70 }
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = trade value = -750 }
+		command = { type = infra value = -750 }
+		command = { type = population which = -2 value = -5000 }
+		command = { type = population which = -1 value = -2000 }
+		command = { type = stability value = -4 }
+		command = { type = trigger which = 120014 } #AYU: Taksin: a Thai Hero
+	}
+}
+#(1763-1779) Taksin: a Thai Hero
+event = {
+	id = 120014 #triggered by AYU_120013
+	random = no
+	country = AYU
+	name = "EVENTNAME120014" #Taksin: a Thai Hero
+	desc = "EVENTHIST120014"
+	#-#Despite their overwhelming victory, the Burmese didn't retain control of Siam for long. Attacks on Burma's northern borders compelled the Burmese to withdraw most of their forces, and Thai tenacity in rebounding from setback combined to shorten the period of Burmese domination. Giving meaning to an ancient proverb that 'Ayutthaya never lacks good men', a young general named Phya Tak Sin gathered a small band of followers during the final Burmese siege of the Thai capital. He recognized the hoplessness of the Siamese situation under the effete King and his decadent entourage. So instead of waiting for the holocaust to envelop the city, he and his comrades broke through the Burmese encirclement and escaped to Chanthaburi, on the southeast coast of the Gulf of Thailand. There, Phya Tak Sin assembled an army and navy. Seven months after the fall of Ayutthaya, the general and his forces sailed back to the capital and expelled the Burmese occupiers.
+
+	action_a = {
+		name = "ACTIONNAME120014A" #Kick out the Burmese
+		command = { type = breakvassal which = MYA } #just in case
+		command = { type = wakeleader which = 016305 } #Taksin (AYU)
+		command = { type = domestic which = land value = 2 }
+		command = { type = domestic which = offensive value = -2 }
+		command = { type = domestic which = quality value = 2 }
+		command = { type = land value = 1000 }
+		command = { type = CAV which = -1 value = 9000 }
+		command = { type = INF which = -3 value = 25000 }
+		command = { type = transports which = -1 value = 10 }
+		command = { type = warships which = -3 value = 5 }
+		command = { type = trigger which = 120016 } #AYU: Move to Bangkok
+		command = { type = trigger which = 136016 } #MYA: Expelled from Ayutthaya
+	}
+	action_b = {
+		name = "ACTIONNAME120014B" #Let us still bow down
+		command = { type = relation which = MYA value = 50 }
+		command = { type = stability value = 1 }
+		command = { type = trigger which = 136015 } #MYA: Sack of Ayutthaya
+	}
+}
+#(1763-1779) Move to Bangkok
+event = {
+	id = 120016 #triggered by AYU_120014 A
+	random = no
+	country = AYU
+	name = "EVENTNAME120016" #Move to Bangkok
+	desc = "EVENTHIST120016"
+	#-#Taksin, as Phya Tak Sin is popularly known, had barely spent a night at Ayutthaya when he decided to transfer the capital. He revealed to his troops that the old Kings had appeared to him in a dream and told him to move. In fact, strategic considerations were probably more important than supernatural ones in Taksin's decision. A site nearer to the sea would facilitate foriegn trade, ensure the procurement of arms, and make defense and withdrawal easier. During the seventeenth century, a small fishing village downstream had become an important trade and defense outpost for Ayutthaya. Known as Bangkok, 'village of wild olive groves,' it contained fortifications built by the French. The settlement straddled both sides of the Chao Phrya River, at a place where a short-cut canal had widened into the main stream. on the west bank, at Thonburi, Taksin officially established his new capital and was proclaimed King.
+
+	action_a = {
+		name = "ACTIONNAME120016A" #Make the move
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = domestic which = land value = -1 }
+		command = { type = domestic which = mercantilism value = -1 }
+		command = { type = domestic which = offensive value = -1 }
+		command = { type = infra value = 250 }
+		command = { type = land value = 250 }
+		command = { type = trade value = 250 }
+		command = { type = stability value = -4 }
+	}
+	action_b = {
+		name = "ACTIONNAME120016B" #Stay in the old capital
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1770) The Foundation of the Modern Thai State
+event = {
+	id = 3901
+	random = no
+	country = AYU
+	name = "EVENTNAME3901" #The Foundation of the Modern Thai State
+	desc = "EVENTHIST3901"
+	#-#The chaos of King Ekit'at's reign is now behind us, and the new King, Phya Taksin, has placed the nation on a new course. He wishes to refound the state by moving its capital a few miles to Bangkok and undertaking a thorough administrative reform. Should we follow his wishes?
+
+	date = { day = 1 month = january year = 1770 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1770 }
+
+	action_a = {
+		name = "ACTIONNAME3901A" #It is the beginning of a new era!
+		command = { type = stability value = 2 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = provincetax which = 670 value = 1 } #Bangkok
+		command = { type = treasury value = -300 }
+	}
+	action_b = {
+		name = "ACTIONNAME3901B" #No the old ways are the best
+		command = { type = stability value = 1 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = infra value = -200 }
+	}
+}
+
+#(1775) Thai Expansion
+event = {
+	id = 120017
+	random = no
+	country = AYU
+	name = "EVENTNAME120017" #Thai Expansion
+	desc = "EVENTHIST120017"
+	#-#Taksin ruled until 1782. In the last seven years of his reign, he relied heavily on two trusted generals, the brothers Chao Phya Chakri and Chao Phya Sarasih, who were given absolute command in military campaigns. They liberated Chiang Mai and the rest of northern Thailand from Burmese rule, and brought Cambodia and most of present-day Laos under Thai suzerainty.
+
+	date = { day = 1 month = january year = 1775 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1775 }
+
+	action_a = {
+		name = "ACTIONNAME120017A" #They shall submit
+		command = { type = relation which = CAM value = -100 }
+		command = { type = casusbelli which = CAM value = 84 }
+		command = { type = relation which = MYA value = -100 }
+		command = { type = casusbelli which = MYA value = 84 }
+		command = { type = relation which = VIE value = -100 }
+		command = { type = casusbelli which = VIE value = 84 }
+		command = { type = treasury value = 150 }
+		command = { type = addcore which = 674 } #Kwai
+		command = { type = addcore which = 1550 } #Lampang
+		command = { type = addcore which = 1551 } #Sarakham
+	}
+	action_b = {
+		name = "ACTIONNAME120017B" #We are cowards
+		command = { type = relation which = CAM value = 50 }
+		command = { type = relation which = MYA value = 50 }
+		command = { type = relation which = VIE value = 50 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1775-1783) Capture of the Emerald Buddha
+event = {
+	id = 120018
+	trigger = {
+		control = { province = 1551 data = AYU } #Sarakham
+	}
+	random = no
+	country = AYU
+	name = "EVENTNAME120018" #Capture of the Emerald Buddha
+	desc = "EVENTHIST120018"
+	#-#It was from the victorious Laotian campaign that Thailand obtained the famed Emerald Buddha. Chao Phya Chakri carried the Buddha from Vientiane to Thonburi in 1779. Carved of solid jadeite, the image was allegedly discovered at Chiang Rai, in 1436, inside a pagoda struck asunder by lightning. The Emerald Buddha is regarded by Thais as the most sacred of all Buddha images, and is believed to guarantee the independence and prosperity of the nation.
+
+	date = { day = 1 month = january year = 1775 }
+	offset = 1
+	deathdate = { day = 1 month = january year = 1783 }
+
+	action_a = {
+		name = "SPLENDID"
+		command = { type = stability value = 2 }
+		command = { type = treasury value = 200 }
+	}
+}
+
+#(1782) Chakri Day
+event = {
+	id = 120019
+	random = no
+	country = AYU
+	name = "EVENTNAME120019" #Chakri Day
+	desc = "EVENTHIST120019"
+	#-#Convinced he was the future Buddha, King Taksin attempted to force the Buddhist monkhood and his subjects to accept his religious pretensions. This led to a rebellion and Taksin was deposed on the grounds of insanity. Following his deposition in 1782, Chao Phya Chakri, born as Thong Duang, was chosen as the new King. He came to the throne on the 6th of April 1782, becoming the founder and first ruler of the present Chakri Dynasty.
+
+	date = { day = 5 month = april year = 1782 }
+
+	action_a = {
+		name = "ACTIONNAME120019A" #A new dynasty, a new era!
+		command = { type = stability value = 2 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Random Events
+#-----------------------------------------------------------------------------------------------
+
+#White Elephants
+event = {
+	id = 120007
+	random = yes
+	country = AYU
+	name = "EVENTNAME120007" #White Elephants
+	desc = "EVENTHIST120007"
+	#-#The Buddhist Kings of Southeast Asia have always treasured the possession of white elephants, enhancing royal prestige and ensuring the country's prosperity.
+
+	action_a = {
+		name = "SPLENDID"
+		command = { type = stability value = 1 }
+		command = { type = revoltrisk which = 12 value = -3 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 120025

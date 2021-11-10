@@ -1,0 +1,218 @@
+#Sus (FEZ)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1492-1550) The Moriscos Request Aid
+event = {
+	id = 166003
+	trigger = {
+		event = 301000 #TUR: Recognition of the Moriscos
+		exists = SPA
+		NOT = { exists = GRA }
+	}
+	random = no
+	country = FEZ
+	name = "EVENTNAME166003" #The Moriscos Request Aid
+	desc = "EVENTHIST166003"
+	#-#Prior to its fall, the Muslim Kingdom of Granada routinely asked its Muslim brothers for support. After its fall, many Moriscos still held out hope that the Ottoman Empire would liberate them. However, surely, the Moriscos would not have become agitated had the Wattasids come to their aid.
+
+	date = { day = 1 month = january year = 1492 }
+	offset = 1800
+	deathdate = { day = 29 month = december year = 1550 }
+
+	action_a = {
+		name = "ACTIONNAME166003A" #We have other concerns
+		command = { type = merchants value = 1 }
+		command = { type = diplomats value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME166003B" #We must help them!
+		command = { type = cav which = -1 value = 150 }
+		command = { type = warships which = 745 value = 2 }
+		command = { type = stability value = -2 }
+		command = { type = casusbelli which = SPA value = 24 }
+		command = { type = manpower value = 5 }
+	}
+}
+
+#(1502-1530) Moor Refugees from Al-Andalus
+event = {
+	id = 3654 #triggered by SPA_285219
+	trigger = {
+		NOT = { exists = MOR }
+		NOT = { exists = ALD }
+	}
+	random = no
+	country = FEZ
+	name = "EVENTNAME3654" #Moor Refugees from Al-Andalus
+	desc = "EVENTHIST3654"
+	#-#The great Christian victory (1212) of Navas de Tolosa prepared the way for the downfall of the Muslims. Córdoba fell to Ferdinand III of Castile in 1236. The wars went on, and one by one the Moorish strongholds fell, until only Granada remained in their hands. Málaga was taken (1487) after a long siege by the forces of Ferdinand and Isabella, and in 1492 Granada was recovered. Many of the Moors remained in Spain, those who remained faithful to Islam were called Mudejares, while those who accepted Christianity were called Moriscos. They were allowed to stay in Spain but were kept under close surveillance.
+
+	action_a = {
+		name = "ACTIONNAME3654A" #Al-Andalus has fallen
+		command = { type = population which = -1 value = 1000 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = trade value = 200 }
+		command = { type = land value = 200 }
+		command = { type = treasury value = 100 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Wattasids
+#by Garbon
+
+#(1530-1545) The Sa'di dynasty
+event = {
+	id = 166002
+	trigger = { exists = MOR }
+	random = no
+	country = FEZ
+	name = "EVENTNAME51003" #The Sa'di dynasty
+	desc = "EVENTHIST51005"
+	#-#The Sa'di dynasty was founded in Sus by Muhammad al-Qa'im. The family took a strong position in support of a jihad against the Portuguese. This policy was ran counter to the Wattasid policy of appeasement and collaboration. Al-Qa'im began to unify southern Morocco and by 1530 controlled the southern half of Morocco.
+
+	date = { day = 1 month = january year = 1530 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1545 }
+
+	action_a = {
+		name = "ACTIONNAME51005A" #We shall destroy the Wattasids!
+		command = { type = addcore which = 732 } #Tangiers
+		command = { type = addcore which = 806 } #Toubkal
+		command = { type = addcore which = 733 } #Fez
+		command = { type = INF which = -2 value = 10000 }
+		command = { type = casusbelli which = MOR value = 936 }
+		command = { type = casusbelli which = POR value = 12 }
+		command = { type = relation which = MOR value = -200 }
+		command = { type = relation which = POR value = -100 }
+	}
+}
+
+#(1554-1665) The Sa'di dynasty
+event = {
+	id = 166000
+	trigger = {
+		NOT = { exists = MOR }
+		owned = { province = 733 data = -1 } #Fez
+		control = { province = 733 data = -1 } #Fez
+	}
+	random = no
+	country = FEZ
+	name = "EVENTNAME51003" #The Sa'di dynasty
+	desc = "EVENTHIST51012"
+	#-#Despite the best efforts of the Wattasids to unify the country, they just couldn't establish order. Neither did they have the lasting power of their rivals, the Sa'di dynasty. In 1545, Muhammad al-Sheik was proclaimed sultan in Marrakesh after he captured the Portuguese fortress of Agadir in 1541. The Sa'di dynasty was supported by the masses of Morocco and eclipsed the Wattasids.
+
+	date = { day = 1 month = january year = 1554 }
+	offset = 40
+	deathdate = { day = 1 month = january year = 1665 }
+
+	action_a = {
+		name = "ACTIONNAME51012A" #Goodbye Wattasids!
+		command = { type = flagname which = "" }
+		command = { type = country which = MOR }
+		command = { type = capital which = 733 } #Fez
+		command = { type = add_countryculture which = delaware }
+		command = { type = sleepevent which = 166001 } #FEZ: The Sa'di dynasty
+	}
+}
+#(1554-1665) The Sa'di dynasty
+event = {
+	id = 166001
+	trigger = {
+		NOT = {
+			exists = MOR
+			event = 166002 #FEZ: The Sa'di dynasty
+		}
+		owned = { province = 733 data = -1 } #Fez
+		control = { province = 733 data = -1 } #Fez
+	}
+	random = no
+	country = FEZ
+	name = "EVENTNAME51003" #The Sa'di dynasty
+	desc = "EVENTHIST51012"
+	#-#Despite the best efforts of the Wattasids to unify the country, they just couldn't establish order. Neither did they have the lasting power of their rivals, the Sa'di dynasty. In 1545, Muhammad al-Sheik was proclaimed sultan in Marrakesh after he captured the Portuguese fortress of Agadir in 1541. The Sa'di dynasty was supported by the masses of Morocco and eclipsed the Wattasids.
+
+	date = { day = 1 month = january year = 1554 }
+	offset = 40
+	deathdate = { day = 1 month = january year = 1665 }
+
+	action_a = {
+		name = "ACTIONNAME51012A" #Goodbye Wattasids!
+		command = { type = flagname which = "" }
+		command = { type = country which = MOR }
+		command = { type = addcore which = 732 } #Tangiers
+		command = { type = addcore which = 806 } #Toubkal
+		command = { type = addcore which = 733 } #Fez
+		command = { type = capital which = 733 } #Fez
+		command = { type = add_countryculture which = delaware }
+		command = { type = sleepevent which = 166000 } #FEZ: The Sa'di dynasty
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Al-Mansur's Heirs
+#by Garbon
+
+#(1554-1590) The Capture of Fez
+event = {
+	id = 166006
+	trigger = {
+		exists = MOR
+		control = { province = 733 data = FEZ }
+	}
+	random = no
+	country = FEZ
+	name = "EVENTNAME166006" #The Capture of Fez
+	desc = "EVENTHIST166006"
+	#-#With their capture of Fez, the capital of the Wattasid dynasty, the Sa'dis had found the bargaining chip they needed to take control of Morocco.
+
+	date = { day = 1 month = january year = 1554 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1590 }
+
+	action_a = {
+		name = "ACTIONNAME166006A" #Unification!
+		command = { type = inherit which = MOR }
+	}
+}
+
+#(1603-1605) Brother against Brother
+event = {
+	id = 166004 #triggered by MOR_232014 / MOR_232017
+	random = no
+	country = FEZ
+	name = "EVENTNAME166004" #Brother against Brother
+	desc = "EVENTHIST166004"
+	#-#In dying heirless, al-Mansur dealt Morocco a terrible fate. A power struggle erupted shortly after his death. Three of his sons, including al-Mamun, fought for control of Morocco. One son, Mulay Zidan was proclaimed at Fez. Abu Faris was acknowledged at Marrakesh. The three fought for seven years in changing alliances of two to one.
+
+	action_a = {
+		name = "ACTIONNAME166004A" #Al-Mansur is dead and chaos reigns!
+		command = { type = breakvassal which = MOR }
+		command = { type = relation which = MOR value = -350 }
+		command = { type = revoltrisk which = 84 value = 10 }
+		#command = { type = capital which = 806 } #Toubkal
+		command = { type = stability value = -3 }
+	}
+}
+
+#(1610) Death of Abu Faris
+event = {
+	id = 166005
+	random = no
+	country = FEZ
+	name = "EVENTNAME166005" #Death of Abu Faris
+	desc = "EVENTHIST166005"
+	#-#In 1610, after 7 years of fighting, Abu Faris was assassinated by his nephew 'Abd Allah, son of al-Mamun. With the help of the Spanish, al-Mamun secured Fez. Mulay Zidan fled to Marrakesh were he would remain until his death.
+
+	date = { day = 1 month = january year = 1610 }
+
+	action_a = {
+		name = "ACTIONNAME166005A" #This fratricide is ripping apart the remnants of our great nation!
+		command = { type = stability value = -2 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 166007

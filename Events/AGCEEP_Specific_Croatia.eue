@@ -1,0 +1,141 @@
+#Croatia
+
+#-----------------------------------------------------------------------------------------------
+
+#(1453-1700) Duo Plorantes Saecula Croatiae
+event = {
+	id = 153000
+	trigger = {
+		owned = { province = 364 data = TUR } #Bosnia
+		event = 3353 #TUR: City of Man's Desire #added IB
+	}
+	random = no
+	country = CRO
+	name = "EVENTNAME153000" #Duo Plorantes Saecula Croatiae
+	desc = "EVENTHIST153000"
+	#-#The fall of Byzantium opened the way for Ottoman expansion into Balkans, and when the Ottomans conquered Bosnia Croatia become the first line of defence of Christian Europe. The fall of Bosnia marked the beginning of almost 400 years of constant clashes with the Ottomans, and the first 200 years were later named The 2 Crying Centuries of Croatia, describing all the suffering Croatia endured in that long conflict.
+
+	date = { day = 1 month = january year = 1453 }
+	offset = 120
+	deathdate = { day = 1 month = january year = 1700 }
+
+	action_a = {
+		name = "ACTIONNAME153000A" #Help us, oh Lord!
+		command = { type = relation which = PAP value = 150 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = SPA value = 150 }
+		command = { type = relation which = TUR value = -200 }
+		command = { type = manpower value = 10 } #IB lowered from 30
+		command = { type = land value = 300 }
+		command = { type = infra value = -200 }
+		command = { type = trade value = -200 }
+	}
+}
+
+#(1519) Antemurale Christianitatis
+event = {
+	id = 153001
+	trigger = {
+		event = 153000
+		neighbour = TUR
+		OR = {	#added IB, Pope wouldn't help if not catholic
+			religion = catholic
+			religion = counterreform
+		}
+		relation = { country = PAP data = -50 }#added IB Pope won't help if relations are awful
+	}
+	random = no
+	country = CRO
+	name = "EVENTNAME153001" #Antemurale Christianitatis
+	desc = "EVENTHIST153001"
+	#-#During Ottoman inroads in Europe, Pope Leo X honoured the Croats by calling them 'the strongest shield and the outer walls of Christianity' (Scutum saldissimum et antemurale Christianitatis). He also sent large sums of money and lot of war material to Croatia.
+
+	date = { day = 1 month = january year = 1519 }
+
+	action_a = {
+		name = "ACTIONNAME153001A" #Our thanks go to Rome
+		command = { type = manpower value = 20 }#IB lowered from 30
+		command = { type = treasury value = 100 }#IB lowered from 400
+		command = { type = relation which = PAP value = 200 }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = relation which = SPA value = 100 }
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = CAV which = -2 value = 1000 }
+		command = { type = ART which = -2 value = 10 }
+	}
+}
+
+#(1572-1574) The Peasants' Uprising of 1573
+event = {
+	id = 153002
+	random = no
+	country = CRO
+	name = "EVENTNAME153002" #The Peasants' Uprising of 1573
+	desc = "EVENTHIST153002"
+	#-#During 1572 the peasants, disgruntled by the mistreatment by Hungarian nobles, complained to Ban and Emperor, but to no avail. In protest, the peasants stopped paying their dues, to which the nobles responded by fielding a mercenary army. However, the rebels defeated the mercenaries and Croatian Parliament pronounced them traitors. That sparked a general rebellion with an agenda of overthrowing feudal order, and instating peasant government that will take care of taxes and the defense gainst Ottomans. Even though the rebellion was planned for almost a year, it was crushed with the help of Uskoks in three battles in February 1573, and their sole surviving leader, Ambroz Matija Gubec, cruelly executed as an example.
+
+	date = { day = 1 month = january year = 1572 }
+	offset = 60
+	deathdate = { day = 1 month = january year = 1574 }
+
+	action_a = {
+		name = "ACTIONNAME153002A" #Crush the rebellion
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = revoltrisk which = 18 value = 6 }
+		command = { type = land value = 500 }
+		command = { type = stability value = -3 }
+	}
+	action_b = {
+		name = "ACTIONNAME153002B" #Compromise
+		command = { type = stability value = -1 }
+		command = { type = domestic which = SERFDOM value = -1 }
+	}
+	action_c = {
+		name = "ACTIONNAME153002C" #Give into the peasants' demands
+		command = { type = domestic which = CENTRALIZATION value = -2 }
+		command = { type = domestic which = SERFDOM value = -2 }
+		command = { type = stability value = 1 }
+		command = { type = INF which = -2 value = 7000 }
+		command = { type = CAV which = -2 value = 3000 }
+		command = { type = provincetax which = 366 value = -1 } #Croatia
+		command = { type = provincetax which = 367 value = -1 } #Krain
+	}
+}
+
+#(1614-1622) uskok event, by Isaac Brock
+event = {
+	id = 153003
+	trigger = {
+		event = 326002 #CRO target of uskok event
+		event = 326004 #VEN declared war
+		NOT = { war = { country = VEN country = CRO } }
+		OR = {
+			owned = { province = 368 data = VEN } #Istria
+			owned = { province = 365 data = VEN } #Dalmatia
+		}
+	}
+	random = no
+	country = CRO
+	name = "EVENTNAME153003" #The Uskok resettlement
+	desc = "EVENTHIST153003"
+	#-#The Uskoks were refugees from the Balkans who settled in the town of Senj on the Dalmatian coast, from where they could protect the frontier. Their piracy led to war between Croatia and Venice. As part of the peace, the Uskoks were forcibly relocated away from the coast.
+
+	date = { day = 1 month = january year = 1614 }
+	offset = 1
+	deathdate = { day = 1 month = january year = 1622 }
+
+	action_a = {
+		name = "ACTIONNAME153003A" #Resettle the Uskoks
+		command = { type = provincemanpower which = 366 value = 2 } #Croatia
+		command = { type = relation which = VEN value = 50 }
+		command = { type = relation which = TUR value = 30 }
+		command = { type = manpower value = -5 }
+		command = { type = desertion which = -1 value = 3000 }
+		command = { type = naval value = -500 }
+		command = { type = provincemanpower which = 368 value = -1 } #Istria
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 153004

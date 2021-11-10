@@ -1,0 +1,1807 @@
+#Cleves (KLE)
+
+#See AGCEEP_Alt_Germany.eue for KoG Alternative events
+
+#-----------------------------------------------------------------------------------------------
+
+#(1435) Marriage of Maria of Kleve with Charles d'Orléans
+event = {
+	id = 200000
+	trigger = {
+		event = 170307 #FRA: Treaty of Arras
+		dynastic = { country = KLE country = BUR }
+		relation = { country = BUR data = 100 }
+	}
+	random = no
+	country = KLE
+	name = "EVENTNAME200000" #Maria of Kleve is married to Charles d'Orléans
+	desc = "EVENTHIST200000"
+	#-#In 1435 Philip the Good of Burgundy switched sides in the Hundred Years War when he declared his support for Charles VII in the Treaty of Arras. To strengthen the ties between Burgundy and France and to seal the peace symbolically he arranged a marriage between Charles d'Orléans, who had been Burgundy's arch-enemy for a long time as the leader of the Armagnac party, and his niece Maria of Kleve, the daughter of Duke Adolf, his close ally and relative. Thereby, Kleve was a key factor in the settlement of the Hundred Years War.
+
+	date = { day = 1 month = september year = 1435 }
+	offset = 50
+	deathdate = { day = 1 month = january year = 1436 }
+
+	action_a = {
+		name = "ACTIONNAME200000A" #Fine
+		command = { type = dynastic which = FRA }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = ENG value = -50 }
+		command = { type = relation which = BUR value = 20 }
+	}
+}
+
+#(1444) Feud of Soest
+event = {
+	id = 200001 #triggered by KOL_202000 A
+	random = no
+	country = KLE
+	name = "EVENTNAME200001" #The Feud of Soest
+	desc = "EVENTHIST200001"
+	#-#In the Feud of Soest that lasted from 1444 to 1449 the westphalian town of Soest, which was then among the biggest and richest cities of Germany, backed by Cologne's old enemy, the Duke of Kleve, managed to maintain its liberty against the claims of Archbishop Dietrich of Cologne. Like many other territorial princes of his time, the archbishop tried to consolidate his rule and to extend it according to the principles of roman law against the resistance of the Westphalian cities. A great part of former episcopal authority had been granted to the westphalian towns by incompetent archbishops, or outright assumed by the town councils. Thereby, so argumented the council of Soest, it became part of the town's liberty charter. The archbishop's desire to recover his old rights therefore seemed to be an attack on Soest's very existance. The town opposed these policies by accepting the Duke of Kleve and Mark as its new overlord on June 5th 1444. Kleve had been struggling for hegemony in the region with the colonian archbishops for a long time, and they took this chance to win a useful ally. The Duke confirmed Soest's privileges and granted new ones to them. This sparked a feud between the Archbishop and the Duke, which soon turned into major war with Burgundy, Münster, Osnabrück, Paderborn, Lippstadt, Hohenstein, Hoya and Lippe supporting Kleve and Bavaria, Saxony, Nassau and Brandenburg on Cologne's side. At the peak of the conflict, both factions fielded over 100000 soldiers. The possessions of Kleve and Cologne were severely devastated and depopulated. The turning point was when a bohemian mercenary army recruited by the Archbishop failed to take Soest and Lippstadt in 1447. Johann of Kleve, the son of the Duke who led the klevian army, then managed to convince the Bohemians to stop fighting. The feud ended with the decision of Pope Nicolas in favour of Kleve in 1449 that both sides had agreed to accept at a congress in Maastricht.
+
+	action_a = {
+		name = "ACTIONNAME200001A" #Defend Soest against those preposterous claims
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = population which = -2 value = 1000 }
+		command = { type = provincemanpower which = -2 value = 1 }
+		command = { type = casusbelli which = KOL value = 60 }
+		command = { type = relation which = BUR value = 50 }
+		command = { type = relation which = MUN value = 50 }
+		command = { type = relation which = BAY value = -50 }
+		command = { type = relation which = BRA value = -50 }
+		command = { type = relation which = SAC value = -50 }
+		command = { type = trigger which = 200002 } #KLE: Johann, the Lion of Lippstadt and Soest
+	}
+}
+#(1444) Johann, the Lion of Lippstadt and Soest
+event = {
+	id = 200002 #triggered by KLE_200001
+	random = no
+	country = KLE
+	name = "EVENTNAME200002" #Johann, the Lion of Lippstadt and Soest
+	desc = "EVENTHIST200002"
+	#-#Johann, the oldest son of Duke Adolf of Kleve and Mark, was educated at the burgundian court, with his uncle Philip the Good his mentor and advisor. Besides a sense for culture and sciences, he received an excellent military education that should prove very useful in the Feud of Soest. When the conflict started, his father appointed him commander of the clevian troops and sent him to Soest with 2400 foot and 800 mounted soldiers. On the way, Johann occupied the city of Xanten and still arrived in Soest much faster than the archbishop of Cologne had expected. There he took Soest's oath of allegiance and started to prepare the defense of the Westphalian towns. In the feud, he used fire arms very efficiently, as the first military leader. Vauban and Clausewitz consider the Feud of Soest as the birth of artillery as an effective weapon. After the victories against Cologne's bohemian mercenaries at Soest and Lippstadt that were achieved with a great amount of artillery he was called the Lion of Lippstadt and Soest.
+
+	action_a = {
+		name = "ACTIONNAME200002A" #Send Johann to Soest
+		command = { type = land value = 200 }
+		command = { type = INF which = -2 value = 2400 }
+		command = { type = CAV which = -2 value = 800 }
+		command = { type = ART which = -2 value = 10 }
+	}
+}
+
+#(1447 or 1463) Burgundian Claims on Munster - Ahistorical
+event = {
+	id = 20317 #triggered by BUR_28006
+	random = no
+	country = KLE
+	name = "EVENTNAME20317" #Burgundian Claims on Munster
+	desc = "EVENTHIST20313"
+	#-#The Emperor has made Philip the Good of Burgundy King of Lotharingia, reviving the ninth century Kingdom of Lothar. The emperor has granted some of our lands to Burgundy!
+
+	action_a = {
+		name = "DAMN"
+		command = { type = casusbelli which = BUR value = 2500 }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = CAV which = -2 value = 6000 }
+	}
+}
+
+#(1477-1482) The marriage with Mary of Burgundy - Ahistorical
+#by Bordic
+event = {
+	id = 200020 #triggered by BUR_137038 A
+	random = no
+	country = KLE
+	name = "EVENTNAME200020" #The marriage with Mary of Burgundy
+	desc = "EVENTHIST200020"
+	#-#Mary of Valois was the only daughter of Charles le Téméraire (Charles the Bold) and so heiress of all the rich Burgundian domains from the Saone River up to the Low Countries. After her father prematurely died, Mary was only nineteen and Louis XI of France seized the opportunity to take possession of the duchy of Burgundy and also of Franche-Comté, Picardie and Artois. He justified his military intervention with the fact that these lands had always been fiefs to the French crown and that with Charles' death, the last member of the French Valois dynasty they had 'de facto', according to the salic law, reverted to France. But the choice of which prince should marry the duchess would be of particular importance for the future political and economical stability of Western Europe, so he urged Mary to accept his son, the Dauphin Charles, as husband, in order to secure the inheritance of the Low Countries for his descendants too, even by force of arms if necessary. Mary, however, distrusted Louis and declined any French support and offer of marriage but, in order to be recognized as legitimate ruler over the Low Countries and to get financial and military help of Flemish cities against the French aggression, she made so great concessions as to reduce the Burgundian states effectively to a sort of federation of provinces. Satisfied that the country was sufficiently weakened and disorganized, Louis XI ordered his army into Artois and Hainault, but the imminence of danger seemed to revive in the Burgundian provinces a spirit of loyalty towards the Valois heiress and arrangements were made for the marriage of Mary with Johann von Kleve-Mark, son of Duke Johann I der Kriegerische who would provide substantial diplomatic and military resources to withstand any French aggression.
+
+	action_a = {
+		name = "ACTIONNAME200020A" #The destiny of Low Countries is in our hands
+		command = { type = DIP which = 2 value = 60 }
+		command = { type = MIL which = 2 value = 24 }
+		command = { type = relation which = BUR value = 300 }
+	}
+}
+
+#(1482) The Duke of Cleves and Mark inherits Burgundy - Ahistorical
+event = {
+	id = 200018 #triggered by BUR_137041 / BUR_137042 A
+	random = no
+	country = KLE
+	name = "EVENTNAME200018" #The Duke of Cleves and Mark inherits Burgundy
+	desc = "EVENTHIST200018"
+	#-#On 27 March 1482 Archuchess Marie incidentally fell from her horse while at hunting with a falcon in the surroundings of Bruges and died from injuries sustained. Although before dying she managed to have her husband Johann be recognized from the cities in the Low Countries as legitimate successor to the throne of Burgundy, opposition was strong in the Valois ancestral lands of Bourgogne. The new driven ducal policy, also conducted by the successors to the throne, was more focused to encourage the development of the thriving merchant cities in the Low Countries and the Rhineland.
+
+	action_a = {
+		name = "ACTIONNAME200018A" #We will rule over Burgundy
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = add_countryculture which = dutch }
+		command = { type = addcore_national which = 339 } #Holland
+		command = { type = addcore_national which = 340 } #Zeeland
+		command = { type = addcore_national which = 378 } #Brabant
+		command = { type = addcore_national which = 379 } #Artois (if imperial fief)
+		command = { type = addcore_national which = 380 } #Flandern
+		command = { type = addcore_national which = 377 } #Luxemburg
+		command = { type = inherit which = BUR } #(no cores on French and Burgundian fiefs)
+		command = { type = setflag which = [DutchClaim] }
+	}
+}
+#(1482) The fate of Cleves and Mark - Ahistorical
+event = {
+	id = 200019 #triggered by BUR_137042 B
+	random = no
+	country = KLE
+	name = "EVENTNAME200019" #The fate of Cleves and Mark
+	desc = "EVENTHIST200019"
+	#-#On 27 March 1482 Archuchess Marie incidentally fell from her horse while at hunting with a falcon in the surroundings of Bruges and died from injuries sustained. Although before dying she managed to have her husband Johann be recognized from the cities in the Low Countries as legitimate successor to the throne of Burgundy, opposition was strong in the Valois ancestral lands of Bourgogne. But in order to keep his right to the Burgundian succession as new Archduke of Burgundy Johann of Kleve-Mark decided to annex Cleves.
+
+	action_a = {
+		name = "ACTIONNAME200019A" #Accept Mary's will (End Game)
+		command = { type = trigger which = 137045 } #BUR: Cleves unified with Burgundy
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = desertion which = -1 value = 5000 }
+	}
+	action_b = {
+		name = "ACTIONNAME200019B" #Cleves cannot accept this
+		command = { type = stability value = -2 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#(1489) Johann II is awarded the Golden Rose
+event = {
+	id = 200005
+	trigger = {
+		relation = { country = PAP data = 50 }
+	}
+	random = no
+	country = KLE
+	name = "EVENTNAME200005" #Johann II is awarded the Golden Rose
+	desc = "EVENTHIST200005"
+	#-#Although he did not think too highly of chastity, Duke Johann II received the surname the Pious, certainly not because of his character, but due to his favourable politic regarding the church, granting them a lot of privileges and advantages. As a reward, he was awarded the Golden Rose by Pope Innocentius VIII in 1489.
+
+	date = { day = 1 month = january year = 1489 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1489 }
+
+	action_a = {
+		name = "ACTIONNAME200005A" #Thank you, your holiness
+		command = { type = relation which = PAP value = 50 }
+		command = { type = relation which = MAI value = 30 }
+		#command = { type = relation which = THU value = 30 } #Bayreuth
+		command = { type = relation which = MUN value = 30 }
+		command = { type = relation which = BRE value = 30 }
+		#command = { type = relation which = MAG value = 30 } #Magdeburg
+		#command = { type = relation which = SLZ value = 30 } #Salzburg
+		command = { type = vp value = 5 }
+	}
+}
+
+#(1490-1501) Duke Johann II
+event = {
+	id = 200003
+	random = no
+	country = KLE
+	name = "EVENTNAME200003" #Johann II's bastards
+	desc = "EVENTHIST200003"
+	#-#Duke Johann II had a very extravagant way of life. He permanently waged war and loved luxury, but his biggest problem was due to his extraordinary potency. Beside three legitimate children he produced 62 bastards. In order to be able to support all of them, he had to mortgage a part of his possessions, and he still was in financial troubles.
+
+	date = { day = 1 month = january year = 1490 }
+	offset = 1500
+	deathdate = { day = 1 month = january year = 1501 }
+
+	action_a = {
+		name = "ACTIONNAME200003A" #Support all illegitimate children
+		command = { type = treasury value = -150 }
+		command = { type = provincetax which = -2 value = -1 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = population which = -2 value = 65 }
+	}
+	action_b = {
+		name = "ACTIONNAME200003B" #Refuse to pay for the Duke's bastards
+		command = { type = stability value = -3 }
+		command = { type = sleepevent which = 200004 } #KLE: Control is imposed on the Duke
+	}
+}
+
+#(1501) Control is imposed on the Duke
+event = {
+	id = 200004
+	trigger = { event = 200003 }
+	random = no
+	country = KLE
+	name = "EVENTNAME200004" #Control is imposed on the Duke
+	desc = "EVENTHIST200004"
+	#-#Johann II's incompetent rule hurted Kleve pretty much. While his two predecessors had improved the economy, were successful militarily and expanded the Duchy's possessions, Johann's policies failed almost completely. In 1501, the estates had seen enough and forced the Duke to allow the establishment of a council that controlled the administration and the appointment of a financial advisor.
+
+	date = { day = 1 month = january year = 1501 }
+	offset = 200
+	deathdate = { day = 29 month = december year = 1501 }
+
+	action_a = {
+		name = "ACTIONNAME200004A" #Fulfil the estates' demands
+		command = { type = stability value = 1 }
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = ADM which = 2 value = 240 }
+	}
+	action_b = {
+		name = "ACTIONNAME200004B" #Don't give in to the estates
+		command = { type = stability value = -2 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = aristocracy value = -1 }
+	}
+}
+
+#(1521) The united Duchies
+event = {
+	id = 200006
+	trigger = {
+		OR = {
+			ai = no
+			AND = {
+				ai = yes
+				OR = {
+					event = 235002
+					event = 235003
+					event = 235004
+				}
+			}
+		}
+		exists = MUN
+	}
+	random = no
+	country = KLE
+	name = "EVENTNAME200006" #The united Duchies
+	desc = "EVENTHIST200006"
+	#-#It had always been a primary goal of the Dukes of Kleve and Mark to unite their possessions with the duchies of Berg and Jülich, thereby creating a coherent territorial state in the low rhine area. This union was realised in the early 16th century. It was prepared on November 25th 1496 when the estates of both countries and Duke Wilhelm IV of Jüülich-Berg agreed to a marriage between the future Duke of Kleve, Johann, and Wilhelm's only child Maria. In 1510 the couple was finally married and succeeded in Jülich-Berg in 1511. The union was complete when Duke Johann of Kleve died in 1521 and Kleve, Mark, Berg, Jülich and Ravensberg had the same ruler in Johann.
+
+	date = { day = 15 month = january year = 1521 }
+
+	action_a = {
+		name = "ACTIONNAME200006A" #Unite the low rhine duchies
+		command = { type = addcore which = 343 } #Kleves
+		command = { type = inherit which = MUN }
+	}
+}
+#(1521) The united Duchies
+event = {
+	id = 200022
+	trigger = {
+		ai = yes
+		event = 235008
+		exists = MUN
+	}
+	random = no
+	country = KLE
+	name = "EVENTNAME200022" #The united Duchies
+	desc = "EVENTHIST200022"
+	#-#It had always been a primary goal of the Dukes of Kleve and Mark to unite their possessions with the duchies of Berg and Jülich, thereby creating a coherent territorial state in the low rhine area. This union was realised in the early 16th century. It was prepared on November 25th 1496 when the estates of both countries and Duke Wilhelm IV of Jüülich-Berg agreed to a marriage between the future Duke of Kleve, Johann, and Wilhelm's only child Maria. In 1510 the couple was finally married and succeeded in Jülich-Berg in 1511. The union was complete when Duke Johann of Kleve died in 1521 and Kleve, Mark, Berg, Jülich and Ravensberg had the same ruler in Johann.
+
+	date = { day = 15 month = january year = 1521 }
+
+	action_a = {
+		name = "ACTIONNAME200022A" #Unite with Jülich-Berg (End Game)
+		command = { type = trigger which = 235009 } #MUN: Union with Kleve-Mark
+	}
+}
+
+#(1523) Konrad Heresbach
+event = {
+	id = 200009
+	random = no
+	country = KLE
+	name = "EVENTNAME200009" #Konrad Heresbach
+	desc = "EVENTHIST200009"
+	#-#In 1523 Duke Johann III of Kleve appointed the famous humanist Konrad Heresbach teacher of his son and successor Wilhelm. Heresbach had become professor for Greek at the University of Freiburg at the age of 26, and was a renowned supporter of tolerance and innovativeness, in contact with Erasmus of Rotterdam and Philipp Melanchton. He educated Wilhelm according to humanist ideals, making him a well-educated, philanthropic prince.
+
+	date = { day = 1 month = september year = 1523 }
+	offset = 60
+	deathdate = { day = 29 month = december year = 1523 }
+
+	action_a = {
+		name = "ACTIONNAME200009A" #Let Heresbach educate Wilhelm
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = relation which = PAP value = -25 }
+	}
+	action_b = {
+		name = "ACTIONNAME200009B" #Don't allow him to teach his dangerous thoughts to the future Duke
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = sleepevent which = 200007 } #KLE: The church constitution of 1532
+		command = { type = sleepevent which = 200010 } #KLE: Konrad Heresbach becomes ducal adviser
+	}
+}
+
+#(1527-1529) The League of Schmalkalden
+event = {
+	id = 3677
+	trigger = {
+		exists = HAB
+		OR = {
+			religion = protestant
+			religion = reformed
+		}
+	}
+	random = no
+	country = KLE
+	name = "EVENTNAME3109" #The League of Schmalkalden
+	desc = "EVENTHIST3109"
+	#-#After Emperor Charles V had rejected the Protestants' confessional positions at the Imperial Parliament of Augsburg (1529-1530), the North German Protestant Imperial estates formed the League of Schmalkalden, with a joint army and treasury and seeking ties abroad (France). The League enjoyed early successes in the years 1532-1540 as the Emperor was threaten by Turkish danger and forced to conclude Religious peace settlements in Nuremberg (1532) and Kaaden (1534).
+
+	date = { day = 1 month = january year = 1527 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1529 }
+
+	action_a = {
+		name = "ACTIONNAME3109A" #Give it our support
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = ENG value = 50 }
+		command = { type = relation which = BRA value = 100 }
+		command = { type = relation which = HAN value = 100 }
+		command = { type = relation which = HES value = 100 }
+		command = { type = relation which = PFA value = 100 }
+		command = { type = relation which = SAC value = 100 }
+		#command = { type = relation which = THU value = 100 } #Bayreuth
+		command = { type = relation which = BAD value = 100 }
+		command = { type = relation which = PAP value = -100 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = relation which = HAB value = -150 }
+		command = { type = relation which = STR value = 100 }
+	}
+	action_b = {
+		name = "ACTIONNAME3109B" #Ignore it
+		command = { type = relation which = BRA value = -150 }
+		command = { type = relation which = HAN value = -150 }
+		command = { type = relation which = HES value = -150 }
+		command = { type = relation which = PFA value = -150 }
+		command = { type = relation which = SAC value = -150 }
+		#command = { type = relation which = THU value = -150 } #Bayreuth
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = STR value = -150 }
+	}
+}
+
+#(1532) The ecclesiastical constitution of 1532
+event = {
+	id = 200007
+	trigger = {
+		domestic = { type = innovative value = 5 }
+	}
+	random = no
+	country = KLE
+	name = "EVENTNAME200007" #The church constitution of 1532
+	desc = "EVENTHIST200007"
+	#-#Inspired by humanist teachings, Duke Johann III of Kleve, Mark, Jülich, Berg and Ravensberg tried to find a third way between catholicism and protestantism, reconciling the confessions. In cooperation with the humanists Johann Weyer and Konrad Heresbach (and probably as well Erasmus) he worked out a church constitution in which he ordered tolerance for all Christian confessions and even prohibited arguments between catholics and protestants. Neither catholics nor protestants outside the United Duchies approved this, and Kleve was not able to maintain this policy for a long time since it was isolated.
+
+	date = { day = 1 month = january year = 1532 }
+	offset = 200
+	deathdate = { day = 29 month = december year = 1532 }
+
+	action_a = {
+		name = "ACTIONNAME200007A" #Try to find a third way
+		command = { type = domestic which = innovative value = 2 }
+		command = { type = stability value = 1 }
+		command = { type = relation which = PAP value = -50 }
+		command = { type = relation which = SAC value = -50 }
+		command = { type = relation which = PFA value = -50 }
+		command = { type = relation which = HES value = -50 }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = relation which = SPA value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME200007B" #Embrace protestant teachings
+		command = { type = stability value = -2 }
+		command = { type = provincereligion which = -2 value = protestant }
+		command = { type = religion which = protestant }
+		command = { type = relation which = PAP value = -100 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = SAC value = 50 }
+		command = { type = relation which = PFA value = 50 }
+		command = { type = relation which = HES value = 50 }
+	}
+	action_c = {
+		name = "ACTIONNAME200007C" #Stick with a conservative catholicism
+		command = { type = stability value = -1 }
+		command = { type = provincereligion which = -2 value = catholic }
+		command = { type = religion which = catholic }
+		command = { type = relation which = PAP value = 100 }
+		command = { type = relation which = SPA value = 100 }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = relation which = SAC value = -50 }
+		command = { type = relation which = PFA value = -50 }
+		command = { type = relation which = HES value = -50 }
+		command = { type = domestic which = innovative value = -1 }
+	}
+}
+
+#(1534-1535) Münster Anabaptist Revolt
+#by Ígneo
+event = {
+	id = 200021
+	trigger = {
+		owned = { province = 334 data = -1 }
+	}
+	random = no
+	country = KLE
+	name = "EVENTNAME200021" #Münster Anabaptist Revolt
+	desc = "EVENTHIST200021"
+	#-#Anabaptism is considered to be an extreme form of radical Protestantism. The Zwickau Prophets and Thomas Müntzer were the very first Anabaptists of all time, though some scholars believe that similar doctrines can be found on John Wycliffe and Jan Hus. Anabaptists were distinguishable because of their belief that child baptism was a sin. Consequently they only baptized adults, believing that being a Christian had to be a mature thorough decision. Rejecting salvation only by faith such as Luther claimed (Romans 1.17), Anabaptists also believed a model life in Christ imitation was necessary to enter the Kingdom of Heaven. The first Anabaptist movements, such as that of Müntzer, were characterized by millenarist violence. Millenarism theologists claimed to have come to Earth to reform all customs and to prepare it for the imminent arrival of the Messiah. Münster was by 1530's was a multi-confessional city, and as such, many Anabaptists from all over Rhineland flocked to it. Among their leaders were Jan van Leyden, Bernard Knipperdolling, Bernard Rothmann and Jan Matthys. After installing communism and polygamy, Jan van Leyden was crowned King of Münster and invited Dutch and German Anabaptists to join the city. Unfortunately the Bishop had already started the siege which lasted more than a year. Many foreigners were arrested in the proximity ad savagely tortured by catholic and protestant troops. After a large starve and desperation, two soldiers finally opened the city doors and let the Bishop's troops start the horrible massacre.
+
+	date = { day = 1 month = February year = 1534 }
+	offset = 360
+	deathdate = { day = 1 month = June year = 1535 }
+
+	action_a = {
+		name = "ACTIONNAME200021A" #Let the Kingdom of Heaven come to our city!
+		command = { type = revolt which = 334 } #Münster
+		command = { type = revolt which = 334 } #Münster
+		command = { type = revolt which = 334 } #Münster
+		command = { type = revoltrisk which = 18 value = 10 }
+		command = { type = domestic which = INNOVATIVE value = -3 }
+		command = { type = trigger which = 200023 } #KLE: Münster's siege
+	}
+	action_b = {
+		name = "ACTIONNAME200021B" #Drown the heretics
+		command = { type = revoltrisk which = 6 value = -1 }
+		command = { type = treasury value = 25 }
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = population which = 334 value = -250 }
+	}
+}
+#(1534-1535) Münster's siege
+#by Ígneo
+event = {
+	id = 200023 #triggered by KLE_200021 A
+	random = no
+	country = KLE
+	name = "EVENTNAME200023" #Münster's siege
+	desc = "EVENTHIST200023"
+	#-#When more than a year of continuous siege had passed and food started to scarce in the city, women, children and elder people were driven off the city and to the hand of Bishop's troops. This proved to be a wrong decision, as the mercenaries mercilessly killed them. It wasn't too long before desertions started to weaken Anabaptist troops, and in June 1535, two men opened one of the city walls to enemy troops. All defenders were slaughtered and the city taken back by his old Master, abruptly finishing more than one and a half year of Anabaptist rule.
+
+	action_a = {
+		name = "ACTIONNAME200023A" #Assault city walls!
+		command = { type = INF which = 334 value = 10000 } #Münster
+		command = { type = CAV which = 334 value = 5000 } #Münster
+		command = { type = ART which = 334 value = 20 } #Münster
+		command = { type = population which = 334 value = -300 } #Münster
+		command = { type = revoltrisk which = 48 value = -2 }
+		command = { type = treasury value = 100 }
+		command = { type = stability value = -1 }
+		command = { type = domestic which = INNOVATIVE value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME200023B" #Let this people be
+		command = { type = provincereligion which = 334 value = reformed } #Münster
+		command = { type = domestic which = INNOVATIVE value = 4 }
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 48 value = 7 }
+		command = { type = relation which = HAB value = -150 }
+		command = { type = relation which = PAP value = -200 }
+		command = { type = relation which = GEL value = 25 }
+		command = { type = relation which = SPA value = -150 }
+	}
+}
+
+#(1538) Inheritance of Guelders
+event = {
+	id = 75006 #triggered by GEL_75005 A
+	random = no
+	country = KLE
+	name = "EVENTNAME75006" #Wilhelm was elected Duke of Guelders
+	desc = "EVENTHIST75006"
+	#-#Our Duke Wilhelm was elected Duke by the estates of Guelders. If we accept the election, we can increase our territory significantly, but it will probably infuriate the Habsburgs who claim the Duchy, too.
+
+	action_a = {
+		name = "ACTIONNAME75006A" #Ignore the Habsburgs and accept the election
+		command = { type = inherit which = GEL }
+		command = { type = addcore which = 338 } #Geldre
+		command = { type = trigger which = 75007 } #SPA: Cleves inherited Guelders
+	}
+	action_b = {
+		name = "ACTIONNAME75006B" #Let the Habsburgs have it (and avoid a conflict)
+		command = { type = trigger which = 75008 } #SPA: Habsburg inherits Guelders
+		command = { type = relation which = SPA value = 100 }
+		command = { type = stability value = -1 }
+	}
+}
+#(1538) Wilhelm was elected Duke of Guelders
+event = {
+	id = 75011 #triggered by GEL_75010 A
+	random = no
+	country = KLE
+	name = "EVENTNAME75006" #Wilhelm was elected Duke of Guelders
+	desc = "EVENTHIST75011"
+	#-#Our Duke Wilhelm was elected Duke by the estates of Guelders. This is a great opportunity to increase our territory and to connect Kleve with Jülich.
+
+	action_a = {
+		name = "ACTIONNAME75011A" #Accept the election
+		command = { type = inherit which = GEL }
+		command = { type = addcore which = 338 } #Geldre
+	}
+}
+#(1538) Wilhelm was elected Duke of Guelders
+event = {
+	id = 75013 #triggered by GEL_75012 A
+	random = no
+	country = KLE
+	name = "EVENTNAME75006" #Wilhelm was elected Duke of Guelders
+	desc = "EVENTHIST75013"
+	#-#Our Duke Wilhelm was elected Duke by the estates of Guelders. If we accept the election, we can increase our territory significantly, but it will probably infuriate the King of France who claims the Duchy, too.
+
+	action_a = {
+		name = "ACTIONNAME75013A" #Ignore France and accept the election
+		command = { type = inherit which = GEL }
+		command = { type = addcore which = 338 } #Geldre
+		command = { type = trigger which = 75014 } #FRA: Cleves inherited Guelders
+	}
+	action_b = {
+		name = "ACTIONNAME75013B" #Let France have it (and avoid a conflict)
+		command = { type = trigger which = 75015 } #FRA: France inherits Guelders
+		command = { type = relation which = FRA value = 100 }
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1539-1560) Loss of Guelders in 1543
+event = {
+	id = 200011
+	trigger = {
+		OR = {
+			event = 75006 #KLE: Inheritance of Guelders
+			event = 75011 #KLE: Wilhelm was elected Duke of Guelders
+		}
+		neighbour = SPA
+	}
+	random = no
+	country = KLE
+	name = "EVENTNAME200011" #Treaty of Venlo
+	desc = "EVENTHIST200011"
+	#-#Despite some initial successes and support from France, Kleve could not hold the Duchy of Guelders for long in their war against Habsburg. Spanish elite troops that had just completed a campaign in North Africa decided the war and committed terrible massacres among the populace. Wilhelm V eventually resigned and accepted the Treaty of Venlo, forcing him to revoke his claim on Guelders forever, to cancel all the religious reforms he and his father had enacted and to end his alliance with France, on September 7th 1543.
+
+	date = { day = 1 month = january year = 1539 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1560 }
+
+	action_a = {
+		name = "ACTIONNAME200011A" #Sign the treaty
+		command = { type = removecore which = 338 } #Geldre
+		command = { type = relation which = SPA value = 100 }
+		command = { type = relation which = FRA value = -100 }
+		command = { type = relation which = SAC value = -50 }
+		command = { type = relation which = HES value = -50 }
+		command = { type = relation which = PFA value = -50 }
+		command = { type = domestic which = innovative value = -2 }
+		command = { type = religion which = catholic }
+	}
+	action_b = {
+		name = "ACTIONNAME200011B" #Reject the treaty
+		command = { type = relation which = SPA value = -200 }
+		command = { type = war which = SPA }
+		command = { type = relation which = FRA value = 100 }
+		command = { type = relation which = SAC value = 50 }
+		command = { type = relation which = HES value = 50 }
+		command = { type = relation which = PFA value = 50 }
+	}
+}
+#(1539-1560) Loss of Guelders (France inherited Burgundy)
+event = {
+	id = 200012
+	trigger = {
+		event = 75013 #Inheritance of Guelders (anti-French version)
+		owned = { province = 338 data = FRA }
+	}
+	random = no
+	country = KLE
+	name = "EVENTNAME200012" #Treaty of Venlo
+	desc = "EVENTHIST200012"
+	#-#Despite some initial successes, Kleve could not hold the Duchy of Guelders for long in their war against France. Wilhelm V eventually resigned and accepted the Treaty of Venlo, forcing him to revoke his claim on Guelders forever and to cancel all the religious reforms he and his father had enacted, on September 7th 1543.
+
+	date = { day = 1 month = january year = 1539 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1560 }
+
+	action_a = {
+		name = "ACTIONNAME200012A" #Sign the treaty
+		command = { type = removecore which = 338 } #Geldre
+		command = { type = relation which = FRA value = 100 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = SAC value = -50 }
+		command = { type = relation which = HES value = -50 }
+		command = { type = relation which = PFA value = -50 }
+		command = { type = domestic which = innovative value = -2 }
+		command = { type = religion which = catholic }
+	}
+	action_b = {
+		name = "ACTIONNAME200012B" #Reject the treaty
+		command = { type = relation which = FRA value = -200 }
+		command = { type = war which = FRA }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = relation which = SAC value = 50 }
+		command = { type = relation which = HES value = 50 }
+		command = { type = relation which = PFA value = 50 }
+	}
+}
+
+#(1539) Heresbach becomes adviser of the Duke
+event = {
+	id = 200010
+	random = no
+	country = KLE
+	name = "EVENTNAME200010" #Konrad Heresbach becomes ducal adviser
+	desc = "EVENTHIST200010"
+	#-#When Wilhelm V ascended the throne in 1539, he did not want to loose the services of his valuable teacher and friend Konrad Heresbach. Therefore he appointed him ducal adviser. Heresbach was particularly skilled as a diplomat, travelling to several european courts for his Duke, but he also engaged in the improvement of agricultural productivity, the securing of religious tolerance, the reform of the law system and especially the promotion of education in Kleve.
+
+	date = { day = 6 month = february year = 1539 }
+
+	action_a = {
+		name = "ACTIONNAME200010A" #Appoint Heresbach adviser
+		command = { type = DIP which = 2 value = 444 }
+		command = { type = ADM which = 1 value = 444 }
+		command = { type = infra value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME200010B" #Get rid of Heresbach
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1548) Alessandro Pasqualini
+event = {
+	id = 200008
+	random = no
+	country = KLE
+	name = "EVENTNAME200008" #Alessandro Pasqualini
+	desc = "EVENTHIST200008"
+	#-#Alessandro Pasqualini was born in Bologna on May 5th 1493. He grew up and studied in Bologna and Rome, getting in touch with the architecture of Raffael, Peruzzi and Bramante there. After completing his studies and becoming an architect, he worked for several different noble clients, constructing civil, sacral and military buildings, and gained a reputation as an progressive humanist architect, until he was attracted to the court of Wilhelm of Kleve. In the United Duchies, he oversaw several projects, but the most notable one was the reconstruction of the city of Jülich from scratch after it had burned down in 1547, making it exemplary for renaissance architecture. After his death in 1559, his sons Massimiliano and Giovanni continued his work and the Pasqualini dynasty served the Dukes of Kleve until the 17th century.
+
+	date = { day = 1 month = january year = 1548 }
+	offset = 200
+	deathdate = { day = 29 month = december year = 1548 }
+
+	action_a = {
+		name = "ACTIONNAME200008A" #Pay Pasqualini
+		command = { type = treasury value = -40 }
+		command = { type = infra value = 60 }
+		command = { type = vp value = 5 }
+	}
+	action_b = {
+		name = "ACTIONNAME200008B" #We don't need him
+		command = { type = vp value = -5 }
+	}
+}
+
+#(1552-1553) Mercator (for KLE) - Flavor
+#by Twoflower
+event = {
+	id = 200017
+	trigger = {
+		domestic = { type = innovative value = 4 }
+		OR = {
+			religion = reformed
+			religion = protestant
+		}
+	}
+	random = no
+	country = KLE
+	name = "EVENTNAME200017" #Mercator and his cartographic projection
+	desc = "EVENTHIST200017"
+	#-#Gerardus Mercator (1512-1594), Latin name of Gerhard Kremer, was a Flemish cartographer, geographer and, mathematician best known for his mapping work, especially the Mercator projection, which used straight lines to indicate, latitude and longitude. Mercator studied in Leuven, Belgium, under Gemma Frisius, and in 1552 he became a mapmaker and lecturer at the University of Duisburg, in the dominion of the Duke of Kleve, where he gladly moved since as a calvinist he had to fear religious persecution in the Netherlands. His map of Europe (published in 1554) was the best of its kind for many decades. He produced a map of the British Isles in 1564 and in the same year was made court cosmographer of Duke Wilhelm of Kleve.
+
+	date = { day = 1 month = march year = 1552 }
+	offset = 200
+	deathdate = { day = 1 month = march year = 1553 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = naval value = 150 }
+	}
+}
+
+#(1565-1580) Kleve grants asylum to Dutch calvinist refugees
+event = {
+	id = 200013
+	trigger = {
+		OR = {
+			event = 337028 #one of the Edicts of Blood
+			event = 337029
+			event = 337030
+			event = 337031
+			event = 337032
+			event = 337033
+			event = 337034
+			event = 337035
+		}
+		domestic = { type = innovative value = 5 }
+	}
+	random = no
+	country = KLE
+	name = "EVENTNAME200013" #Refugees from the Netherlands
+	desc = "EVENTHIST200013"
+	#-#Many Dutch calvinists fleed from repression and persecution in their homecountry. The neighbouring United Duchies of Kleve, Berg, Jülich, Mark and Ravensberg were one of the most common direction for them, since its Dukes always practiced tolerance towards their confession. Kleve greatly profited from these refugees, among which were skilled craftsmen and wealthy merchants who provided Kleve with their precious knowledge and abilities, and the country's economy was greatly strengthened.
+
+	date = { day = 1 month = january year = 1565 }
+	offset = 600
+	deathdate = { day = 29 month = december year = 1580 }
+
+	action_a = {
+		name = "ACTIONNAME200013A" #Grant asylum to the Dutch calvinists
+		command = { type = population which = 343 value = 4000 } #Kleves
+		command = { type = provincetax which = 343 value = 1 } #Kleves
+		command = { type = trade value = 200 }
+		command = { type = naval value = 100 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = relation which = BUR value = -100 }
+		command = { type = relation which = HAB value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME200013B" #Don't accept the Dutch calvinists
+		command = { type = stability value = 1 }
+		command = { type = relation which = SPA value = 100 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = BUR value = 100 }
+		command = { type = domestic which = innovative value = -1 }
+	}
+}
+
+#(1566) Wilhelm suffers several strokes
+event = {
+	id = 200014
+	random = no
+	country = KLE
+	name = "EVENTNAME200014" #Wilhelm V suffers several strokes
+	desc = "EVENTHIST200014"
+	#-#In 1566, Duke Wilhelm V of Kleve suffered several strokes, leaving him with a paralysed tongue and right hand and a broken spinal columm. He was thus unable to rule his Duchies and he just pined away for the last two decades of his life. When his exceptionally talented son Karl Friedrich who was educated at the court in Vienna died prematurely of smallpox on February 9th 1575 and the younger son Johann Wilhelm showed corporal weakness and mental retardedness, the country was in a desolate situation. The United Duchies were effectively ruled by the estates from 1566 to 1592.
+
+	date = { day = 1 month = january year = 1566 }
+	offset = 200
+	deathdate = { day = 29 month = december year = 1566 }
+
+	action_a = {
+		name = "DAMN"
+		command = { type = ADM which = -4 value = 320 }
+		command = { type = DIP which = -2 value = 320 }
+		command = { type = MIL which = -2 value = 320 }
+		command = { type = stability value = -3 }
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = serfdom value = 1 }
+	}
+}
+
+#(1589) Johann Wilhelm shows signs of insanity
+event = {
+	id = 200015
+	random = no
+	country = KLE
+	name = "EVENTNAME200015" #Anarchy in the United Duchies
+	desc = "EVENTHIST200015"
+	#-#While Duke Wilhelm V was still alive in 1589, nobody really cared for him. The estates ruled the United Duchies arbitrarily and without much interest in the country's fate. The only person who seemed capable of saving Kleve was Wilhelm's son Johann Wilhelm, born in 1562. However, the young man never seemed to be able to live up to the expectation, and things got even worse when he started to show signs of insanity in 1589: he was paranoid, very irascible and completely unpredictable in his behaviour.
+
+	date = { day = 1 month = january year = 1589 }
+	offset = 100
+	deathdate = { day = 29 month = december year = 1589 }
+
+	action_a = {
+		name = "OUCH"
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 120 value = 5 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = serfdom value = 1 }
+	}
+}
+
+#(1595) The estates arrest and murder the duchess
+event = {
+	id = 200016
+	random = no
+	country = KLE
+	name = "EVENTNAME200016" #The estates arrest and murder Duchess Jakoba
+	desc = "EVENTHIST200016"
+	#-#With her husband a madman and his lands sinking into anarchy, Duchess Jakoba, who was a princess from Baden, tried to take control of Kleve to save it. However, she had unscrupulous enemies in the nobility controlling the Duchies and especially in the Duke's sister, Sybille, who envied her for her beauty and suspected her of protestantism. Sybille sent a letter to the emperor in which she accused Jakoba of heresy, fornication and depravity, and got her arrested on May 8th 1595. On September 3rd 1597, When the emperor did not seem likely to condemn Jakoba, Sybille entered her chamber and strangled. This outrageous crime was never punished.
+
+	date = { day = 3 month = september year = 1595 }
+
+	action_a = {
+		name = "ACTIONNAME200016A" #Jakoba is murdered
+		command = { type = stability value = 1 }
+		command = { type = domestic which = aristocracy value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME200016B" #Jakoba escapes and takes control of Kleve
+		command = { type = revolt which = -2 }
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 60 value = 3 }
+		command = { type = wakemonarch which = 069011 } #Jakoba von Baden °
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = domestic which = serfdom value = -1 }
+	}
+}
+
+#(1605-1609) The Evangelic Union
+event = {
+	id = 3678
+	trigger = {
+		OR = {
+			religion = protestant
+			religion = reformed
+		}
+	}
+	random = no
+	country = KLE
+	name = "EVENTNAME3634" #The Evangelic Union
+	desc = "EVENTHIST3634"
+	#-#The Holy Roman Empire had a fragile balance, split between 10 major and nearly 400 minor states and principalities, as well as two opposing religions. The power of the Emperor was quite limited beyond his direct domains and the erratic and inconsistent behavior of some of them as Rudolph II, such increased frictions. In 1608, the Protestant city of Donauwerth refused Catholics the right to practice their cult and was banned from the Empire. As a reaction, most German Protestant states formed the Evangelic Union to defend their freedom.
+
+	date = { day = 1 month = january year = 1605 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1609 }
+
+	action_a = {
+		name = "ACTIONNAME3634A" #Prepare to Join
+		command = { type = relation which = BRA value = 50 }
+		command = { type = relation which = HAN value = 50 }
+		command = { type = relation which = HES value = 50 }
+		command = { type = relation which = PFA value = 50 }
+		command = { type = relation which = SAC value = 50 }
+		#command = { type = relation which = THU value = 50 } #Bayreuth
+		command = { type = relation which = BAD value = 50 }
+		command = { type = relation which = PAP value = -50 }
+		command = { type = relation which = SPA value = -50 }
+		command = { type = relation which = HAB value = -100 }
+	}
+	action_b = {
+		name = "ACTIONNAME3634B" #Stay Neutral
+		command = { type = relation which = BRA value = -150 }
+		command = { type = relation which = HAN value = -150 }
+		command = { type = relation which = HES value = -150 }
+		command = { type = relation which = PFA value = -150 }
+		command = { type = relation which = SAC value = -150 }
+		#command = { type = relation which = THU value = -150 } #Bayreuth
+		command = { type = relation which = BAD value = -150 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = KOL value = 50 }
+	}
+}
+
+#(1607-1609) The Catholic League
+event = {
+	id = 3679
+	trigger = {
+		OR = {
+			religion = catholic
+			religion = counterreform
+		}
+	}
+	random = no
+	country = KLE
+	name = "EVENTNAME3192" #The Catholic League
+	desc = "EVENTHIST3192"
+	#-#The German Catholic states felt threatened by the 1608 creation of the Evangelic Union of their northern Protestant neighbors, following the Donauwerth exclusion from the Empire. Feeling the urge to unite, they regrouped into a Catholic League that same year. The stage was set for the Thirty Years War.
+
+	date = { day = 1 month = january year = 1607 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1609 }
+
+	action_a = {
+		name = "ACTIONNAME3192A" #Prepare to Join
+		command = { type = relation which = BRA value = -100 }
+		command = { type = relation which = HAN value = -100 }
+		command = { type = relation which = HES value = -100 }
+		command = { type = relation which = PFA value = -100 }
+		command = { type = relation which = SAC value = -100 }
+		#command = { type = relation which = THU value = -100 } #Bayreuth
+		command = { type = relation which = BAD value = -100 }
+		command = { type = relation which = KOL value = 100 }
+		command = { type = relation which = BAY value = 100 }
+		command = { type = relation which = PAP value = 150 }
+		command = { type = relation which = SPA value = 150 }
+		command = { type = relation which = HAB value = 150 }
+	}
+	action_b = {
+		name = "ACTIONNAME3192B" #Stay Neutral
+		command = { type = relation which = BRA value = 50 }
+		command = { type = relation which = HAN value = 50 }
+		command = { type = relation which = HES value = 50 }
+		command = { type = relation which = PFA value = 50 }
+		command = { type = relation which = SAC value = 50 }
+		#command = { type = relation which = THU value = 50 } #Bayreuth
+		command = { type = relation which = BAD value = 50 }
+		command = { type = relation which = PAP value = -50 }
+		command = { type = relation which = SPA value = -50 }
+		command = { type = relation which = HAB value = -100 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#(1609) The Cleves succession
+event = {
+	id = 200101
+	trigger = {
+		countrysize = 2
+		exists = BRA
+		exists = SAC
+	}
+	random = no
+	country = KLE
+	name = "EVENTNAME200101" #The Cleves succession
+	desc = "EVENTHIST200101"
+	#-#Duke Johann Wilhelm of Jülich, Cleves and Berg died on March 25th 1609, in a state of complete insanity and without a child or brother. While in the United Duchies a woman could not succeed to the throne herself, succession through a female relative was possible. Hence the husbands of Johann Wilhelm's sisters claimed the inheritance. Duke Albrecht Friedrich of Prussia, married to the oldest sister Marie-Eleonore, had no male heir himself and ceded his claim to the husband of his daughter Anna, Elector Johann Sigismund of Brandenburg. This claim was questioned by the husband of the second sister Anna, Philipp Ludwig of Palatinate-Neuburg, who wanted the inheritance for his son Wolfgang Wilhelm. The Count of Nevers-Rethel, originally a sidebranch of the Cleves ducal dynasty, and the Elector of Saxony considered themselves legitimate heirs by virtue of several treaties, and the Emperor, desiring to expand the Habsburgs' supply base near the rebellious Netherlands, declared both female succession and the treaties invalid and was about to confiscate the United Duchies as a lapsed fief. The protestant princes of Brandenburg and Palatinate-Neuburg however, encouraged by the Evangelic Union, France and the Netherlands, managed to agree on a common administration in order to fight off all other claimants. They proclaimed complete religious toleration for all Christian confessions in the Duchies and were acknowledged by the Estates in Jule 1609. A more permanent solution was to be agreed on later...
+
+	date = { day = 24 month = march year = 1609 }
+
+	action_a = {
+		name = "ACTIONNAME200101A" #Brandenburg and Palatinate-Neuburg seize the Duchies
+		command = { type = trigger which = 132201 } #BRA: The Cleves succession
+		command = { type = trigger which = 273032 } #SAC: The Cleves succession
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = domestic which = innovative value = 2 }
+		command = { type = setflag which = [historical_succession] }
+		command = { type = religion which = protestant }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = stability value = 3 }
+	}
+	action_b = {
+		name = "ACTIONNAME200101B" #The Elector of Saxony inherits (End Game)
+		command = { type = secedeprovince which = HOL value = 337 } #Friesen
+		command = { type = secedeprovince which = HOL value = 339 } #Holland
+		command = { type = secedeprovince which = HOL value = 340 } #Zeeland
+		command = { type = secedeprovince which = HOL value = 377 } #Luxembourg
+		command = { type = secedeprovince which = HOL value = 378 } #Brabant
+		command = { type = secedeprovince which = HOL value = 379 } #Artois
+		command = { type = secedeprovince which = HOL value = 380 } #Flandern
+		command = { type = independence which = KOL }
+		command = { type = independence which = HES }
+		command = { type = independence which = OLD }
+		command = { type = independence which = PFA }
+		command = { type = independence which = HAN }
+		command = { type = trigger which = 273031 } #SAC: Inheritance of Cleves
+		command = { type = trigger which = 132202 } #BRA: The Cleves succession
+	}
+	action_c = {
+		name = "ACTIONNAME200101C" #Cleves-Nevers inherits
+		command = { type = addcore which = 386 } #Nivernais
+		command = { type = setflag which = [Nevers] }
+		command = { type = trigger which = 170031 } #FRA: Nevers-Rethel inherits Cleves
+		command = { type = trigger which = 132202 } #BRA: The Cleves succession
+		command = { type = trigger which = 273032 } #SAC: The Cleves succession
+		command = { type = religion which = catholic }
+		command = { type = stability value = -3 }
+	}
+	action_d = {
+		name = "ACTIONNAME200101D" #The Emperor seizes the Duchies (End Game)
+		command = { type = secedeprovince which = HOL value = 337 } #Friesen
+		command = { type = secedeprovince which = HOL value = 339 } #Holland
+		command = { type = secedeprovince which = HOL value = 340 } #Zeeland
+		command = { type = secedeprovince which = HOL value = 377 } #Luxembourg
+		command = { type = secedeprovince which = HOL value = 378 } #Brabant
+		command = { type = secedeprovince which = HOL value = 379 } #Artois
+		command = { type = secedeprovince which = HOL value = 380 } #Flandern
+		command = { type = independence which = KOL }
+		command = { type = independence which = HES }
+		command = { type = independence which = OLD }
+		command = { type = independence which = PFA }
+		command = { type = independence which = HAN }
+		command = { type = trigger which = 179202 } #HAB: Confiscation of Cleves
+		command = { type = trigger which = 132202 } #BRA: The Cleves succession
+		command = { type = trigger which = 273032 } #SAC: The Cleves succession
+	}
+}
+event = {
+	id = 200102
+	trigger = {
+		countrysize = 2
+		exists = BRA
+		NOT = { exists = SAC }
+	}
+	random = no
+	country = KLE
+	name = "EVENTNAME200102" #The Cleves succession
+	desc = "EVENTHIST200101"
+	#-#Duke Johann Wilhelm of Jülich, Cleves and Berg died on March 25th 1609, in a state of complete insanity and without a child or brother. While in the United Duchies a woman could not succeed to the throne herself, succession through a female relative was possible. Hence the husbands of Johann Wilhelm's sisters claimed the inheritance. Duke Albrecht Friedrich of Prussia, married to the oldest sister Marie-Eleonore, had no male heir himself and ceded his claim to the husband of his daughter Anna, Elector Johann Sigismund of Brandenburg. This claim was questioned by the husband of the second sister Anna, Philipp Ludwig of Palatinate-Neuburg, who wanted the inheritance for his son Wolfgang Wilhelm. The Count of Nevers-Rethel, originally a sidebranch of the Cleves ducal dynasty, and the Elector of Saxony considered themselves legitimate heirs by virtue of several treaties, and the Emperor, desiring to expand the Habsburgs' supply base near the rebellious Netherlands, declared both female succession and the treaties invalid and was about to confiscate the United Duchies as a lapsed fief. The protestant princes of Brandenburg and Palatinate-Neuburg however, encouraged by the Evangelic Union, France and the Netherlands, managed to agree on a common administration in order to fight off all other claimants. They proclaimed complete religious toleration for all Christian confessions in the Duchies and were acknowledged by the Estates in Jule 1609. A more permanent solution was to be agreed on later...
+
+	date = { day = 24 month = march year = 1609 }
+
+	action_a = {
+		name = "ACTIONNAME200102A" #Brandenburg and Palatinate-Neuburg seize the Duchies
+		command = { type = trigger which = 132201 } #BRA: The Cleves succession
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = domestic which = innovative value = 2 }
+		command = { type = religion which = protestant }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = stability value = 3 }
+		command = { type = setflag which = [historical_succession] }
+	}
+	action_b = {
+		name = "ACTIONNAME200102B" #Cleves-Nevers inherits
+		command = { type = addcore which = 386 } #Nivernais
+		command = { type = setflag which = [Nevers] }
+		command = { type = trigger which = 170031 } #FRA: Nevers-Rethel inherits Cleves
+		command = { type = trigger which = 132202 } #BRA: The Cleves succession
+		command = { type = religion which = catholic }
+		command = { type = stability value = -3 }
+	}
+	action_c = {
+		name = "ACTIONNAME200102C" #The Emperor seizes the Duchies (End Game)
+		command = { type = secedeprovince which = HOL value = 337 } #Friesen
+		command = { type = secedeprovince which = HOL value = 339 } #Holland
+		command = { type = secedeprovince which = HOL value = 340 } #Zeeland
+		command = { type = secedeprovince which = HOL value = 377 } #Luxembourg
+		command = { type = secedeprovince which = HOL value = 378 } #Brabant
+		command = { type = secedeprovince which = HOL value = 379 } #Artois
+		command = { type = secedeprovince which = HOL value = 380 } #Flandern
+		command = { type = independence which = KOL }
+		command = { type = independence which = HES }
+		command = { type = independence which = OLD }
+		command = { type = independence which = PFA }
+		command = { type = independence which = HAN }
+		command = { type = trigger which = 179202 } #HAB: Confiscation of Cleves
+		command = { type = trigger which = 132202 } #BRA: The Cleves succession
+	}
+}
+event = {
+	id = 200103
+	trigger = {
+		countrysize = 2
+		NOT = { exists = BRA }
+		exists = SAC
+	}
+	random = no
+	country = KLE
+	name = "EVENTNAME200103" #The Cleves succession
+	desc = "EVENTHIST200103"
+	#-#Duke Johann Wilhelm of Jülich, Cleves and Berg died on March 25th 1609, in a state of complete insanity and without a child or brother. While in the United Duchies a woman could not succeed to the throne herself, succession through a female relative was possible. Hence the husbands of Johann Wilhelm's sisters claimed the inheritance. The protestant husband of the second sister Anna, Philipp Ludwig of Palatinate-Neuburg, who wanted the inheritance for his son Wolfgang Wilhelm, has managed to seize the Duchies with support from the Netherlands, France and the Evangelic Union. His claim is disputed by the Count of Nevers-Rethel, originally a sidebranch of the Cleves ducal dynasty, and the Elector of Saxony who consider themselves legitimate heirs by virtue of several ancient treaties, and the Emperor, desiring to expand the Habsburgs' supply base near the rebellious Netherlands, who declares both female succession and the treaties invalid and intends to confiscate the United Duchies as a lapsed fief.
+
+	date = { day = 24 month = march year = 1609 }
+
+	action_a = {
+		name = "ACTIONNAME200103A" #Palatinate-Neuburg inherits
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = domestic which = innovative value = 2 }
+		command = { type = religion which = protestant }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = stability value = 3 }
+		command = { type = flagname which = "" }
+		command = { type = country which = MUN }
+		command = { type = dynastic which = BAY }
+		command = { type = dynastic which = PFA }
+		command = { type = dynastic which = KOL }
+		command = { type = trigger which = 273032 } #SAC: The Cleves succession
+	}
+	action_b = {
+		name = "ACTIONNAME200103B" #The Elector of Saxony inherits (End Game)
+		command = { type = secedeprovince which = HOL value = 337 } #Friesen
+		command = { type = secedeprovince which = HOL value = 339 } #Holland
+		command = { type = secedeprovince which = HOL value = 340 } #Zeeland
+		command = { type = secedeprovince which = HOL value = 377 } #Luxembourg
+		command = { type = secedeprovince which = HOL value = 378 } #Brabant
+		command = { type = secedeprovince which = HOL value = 379 } #Artois
+		command = { type = secedeprovince which = HOL value = 380 } #Flandern
+		command = { type = independence which = KOL }
+		command = { type = independence which = HES }
+		command = { type = independence which = OLD }
+		command = { type = independence which = PFA }
+		command = { type = independence which = HAN }
+		command = { type = trigger which = 273031 } #SAC_Inheritance of Cleves
+	}
+	action_c = {
+		name = "ACTIONNAME200103C" #Cleves-Nevers inherits
+		command = { type = addcore which = 386 } #Nivernais
+		command = { type = setflag which = [Nevers] }
+		command = { type = trigger which = 170031 } #FRA: Nevers-Rethel inherits Cleves
+		command = { type = trigger which = 273032 } #SAC: The Cleves succession
+		command = { type = religion which = catholic }
+		command = { type = stability value = -3 }
+	}
+	action_d = {
+		name = "ACTIONNAME200103D" #The Emperor seizes the Duchies (End Game)
+		command = { type = secedeprovince which = HOL value = 337 } #Friesen
+		command = { type = secedeprovince which = HOL value = 339 } #Holland
+		command = { type = secedeprovince which = HOL value = 340 } #Zeeland
+		command = { type = secedeprovince which = HOL value = 377 } #Luxembourg
+		command = { type = secedeprovince which = HOL value = 378 } #Brabant
+		command = { type = secedeprovince which = HOL value = 379 } #Artois
+		command = { type = secedeprovince which = HOL value = 380 } #Flandern
+		command = { type = independence which = KOL }
+		command = { type = independence which = HES }
+		command = { type = independence which = OLD }
+		command = { type = independence which = PFA }
+		command = { type = independence which = HAN }
+		command = { type = trigger which = 179202 } #HAB: Confiscation of Cleves
+		command = { type = trigger which = 273032 } #SAC: The Cleves succession
+	}
+}
+event = {
+	id = 200104
+	trigger = {
+		countrysize = 2
+		NOT = { exists = BRA }
+		NOT = { exists = SAC }
+	}
+	random = no
+	country = KLE
+	name = "EVENTNAME200104" #The Cleves succession
+	desc = "EVENTHIST200103"
+	#-#Duke Johann Wilhelm of Jülich, Cleves and Berg died on March 25th 1609, in a state of complete insanity and without a child or brother. While in the United Duchies a woman could not succeed to the throne herself, succession through a female relative was possible. Hence the husbands of Johann Wilhelm's sisters claimed the inheritance. The protestant husband of the second sister Anna, Philipp Ludwig of Palatinate-Neuburg, who wanted the inheritance for his son Wolfgang Wilhelm, has managed to seize the Duchies with support from the Netherlands, France and the Evangelic Union. His claim is disputed by the Count of Nevers-Rethel, originally a sidebranch of the Cleves ducal dynasty, and the Elector of Saxony who consider themselves legitimate heirs by virtue of several ancient treaties, and the Emperor, desiring to expand the Habsburgs' supply base near the rebellious Netherlands, who declares both female succession and the treaties invalid and intends to confiscate the United Duchies as a lapsed fief.
+
+	date = { day = 24 month = march year = 1609 }
+
+	action_a = {
+		name = "ACTIONNAME200104A" #Palatinate-Neuburg inherits
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = domestic which = innovative value = 2 }
+		command = { type = religion which = protestant }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = stability value = 3 }
+		command = { type = flagname which = "" }
+		command = { type = country which = MUN }
+		command = { type = dynastic which = BAY }
+		command = { type = dynastic which = PFA }
+		command = { type = dynastic which = KOL }
+	}
+	action_b = {
+		name = "ACTIONNAME200104B" #Cleves-Nevers inherits
+		command = { type = addcore which = 386 } #Nivernais
+		command = { type = setflag which = [Nevers] }
+		command = { type = trigger which = 170031 } #FRA: Nevers-Rethel inherits Cleves
+		command = { type = religion which = catholic }
+		command = { type = stability value = -3 }
+	}
+	action_c = {
+		name = "ACTIONNAME200104C" #The Emperor seizes the Duchies (End Game)
+		command = { type = secedeprovince which = HOL value = 337 } #Friesen
+		command = { type = secedeprovince which = HOL value = 339 } #Holland
+		command = { type = secedeprovince which = HOL value = 340 } #Zeeland
+		command = { type = secedeprovince which = HOL value = 377 } #Luxembourg
+		command = { type = secedeprovince which = HOL value = 378 } #Brabant
+		command = { type = secedeprovince which = HOL value = 379 } #Artois
+		command = { type = secedeprovince which = HOL value = 380 } #Flandern
+		command = { type = independence which = KOL }
+		command = { type = independence which = HES }
+		command = { type = independence which = OLD }
+		command = { type = independence which = PFA }
+		command = { type = independence which = HAN }
+		command = { type = trigger which = 179202 } #HAB: Confiscation of Cleves
+	}
+}
+event = {
+	id = 200105
+	trigger = {
+		NOT = { countrysize = 2 } #Cleves has only one province
+		exists = BRA
+		exists = SAC
+	}
+	random = no
+	country = KLE
+	name = "EVENTNAME200105" #The Cleves succession
+	desc = "EVENTHIST200105"
+	#-#Duke Johann Wilhelm of Jülich, Cleves and Berg died on March 25th 1609, in a state of complete insanity and without a child or brother. While in the United Duchies a woman could not succeed to the throne herself, succession through a female relative was possible. Hence the husbands of Johann Wilhelm's sisters claimed the inheritance. Duke Albrecht Friedrich of Prussia, married to the oldest sister Marie-Eleonore, had no male heir himself and ceded his claim to the husband of his daughter Anna, Elector Johann Sigismund of Brandenburg. This claim was questioned by the husband of the second sister Anna, Philipp Ludwig of Palatinate-Neuburg, who wanted the inheritance for his son Wolfgang Wilhelm. The Count of Nevers-Rethel, originally a sidebranch of the Cleves ducal dynasty, and the Elector of Saxony considered themselves legitimate heirs by virtue of several treaties, and the Emperor, desiring to expand the Habsburgs' supply base near the rebellious Netherlands, declared both female succession and the treaties invalid and was about to confiscate the United Duchies as a lapsed fief.
+
+	date = { day = 24 month = march year = 1609 }
+
+	action_a = {
+		name = "ACTIONNAME200105A" #The Elector of Brandenburg inherits (End Game)
+		command = { type = secedeprovince which = HOL value = 337 } #Friesen
+		command = { type = secedeprovince which = HOL value = 339 } #Holland
+		command = { type = secedeprovince which = HOL value = 340 } #Zeeland
+		command = { type = secedeprovince which = HOL value = 377 } #Luxembourg
+		command = { type = secedeprovince which = HOL value = 378 } #Brabant
+		command = { type = secedeprovince which = HOL value = 379 } #Artois
+		command = { type = secedeprovince which = HOL value = 380 } #Flandern
+		command = { type = independence which = KOL }
+		command = { type = independence which = HES }
+		command = { type = independence which = OLD }
+		command = { type = independence which = PFA }
+		command = { type = independence which = HAN }
+		command = { type = trigger which = 132203 } #BRA: Inheritance of Cleves
+		command = { type = trigger which = 273032 } #SAC: The Cleves succession
+	}
+	action_b = {
+		name = "ACTIONNAME200105B" #Palatinate-Neuburg inherits
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = domestic which = innovative value = 2 }
+		command = { type = religion which = protestant }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = stability value = 3 }
+		command = { type = flagname which = "" }
+		command = { type = country which = MUN }
+		command = { type = dynastic which = BAY }
+		command = { type = dynastic which = PFA }
+		command = { type = dynastic which = KOL }
+		command = { type = trigger which = 132202 } #BRA: The Cleves succession
+		command = { type = trigger which = 273032 } #SAC: The Cleves succession
+	}
+	action_c = {
+		name = "ACTIONNAME200105C" #The Elector of Saxony inherits (End Game)
+		command = { type = secedeprovince which = HOL value = 337 } #Friesen
+		command = { type = secedeprovince which = HOL value = 339 } #Holland
+		command = { type = secedeprovince which = HOL value = 340 } #Zeeland
+		command = { type = secedeprovince which = HOL value = 377 } #Luxembourg
+		command = { type = secedeprovince which = HOL value = 378 } #Brabant
+		command = { type = secedeprovince which = HOL value = 379 } #Artois
+		command = { type = secedeprovince which = HOL value = 380 } #Flandern
+		command = { type = independence which = KOL }
+		command = { type = independence which = HES }
+		command = { type = independence which = OLD }
+		command = { type = independence which = PFA }
+		command = { type = independence which = HAN }
+		command = { type = trigger which = 273031 } #SAC: Inheritance of Cleves
+		command = { type = trigger which = 132202 } #BRA: The Cleves succession
+	}
+	action_d = {
+		name = "ACTIONNAME200105D" #Cleves-Nevers inherits
+		command = { type = addcore which = 386 } #Nivernais
+		command = { type = setflag which = [Nevers] }
+		command = { type = trigger which = 170031 } #FRA: Nevers-Rethel inherits Cleves
+		command = { type = trigger which = 132202 } #BRA: The Cleves succession
+		command = { type = trigger which = 273032 } #SAC: The Cleves succession
+		command = { type = religion which = catholic }
+		command = { type = stability value = -3 }
+	}
+}
+event = {
+	id = 200106
+	trigger = {
+		NOT = { countrysize = 2 } #Cleves has only one province
+		exists = BRA
+		NOT = { exists = SAC }
+	}
+	random = no
+	country = KLE
+	name = "EVENTNAME200106" #The Cleves succession
+	desc = "EVENTHIST200105"
+	#-#Duke Johann Wilhelm of Jülich, Cleves and Berg died on March 25th 1609, in a state of complete insanity and without a child or brother. While in the United Duchies a woman could not succeed to the throne herself, succession through a female relative was possible. Hence the husbands of Johann Wilhelm's sisters claimed the inheritance. Duke Albrecht Friedrich of Prussia, married to the oldest sister Marie-Eleonore, had no male heir himself and ceded his claim to the husband of his daughter Anna, Elector Johann Sigismund of Brandenburg. This claim was questioned by the husband of the second sister Anna, Philipp Ludwig of Palatinate-Neuburg, who wanted the inheritance for his son Wolfgang Wilhelm. The Count of Nevers-Rethel, originally a sidebranch of the Cleves ducal dynasty, and the Elector of Saxony considered themselves legitimate heirs by virtue of several treaties, and the Emperor, desiring to expand the Habsburgs' supply base near the rebellious Netherlands, declared both female succession and the treaties invalid and was about to confiscate the United Duchies as a lapsed fief.
+
+	date = { day = 24 month = march year = 1609 }
+
+	action_a = {
+		name = "ACTIONNAME200106A" #The Elector of Brandenburg inherits (End Game)
+		command = { type = secedeprovince which = HOL value = 337 } #Friesen
+		command = { type = secedeprovince which = HOL value = 339 } #Holland
+		command = { type = secedeprovince which = HOL value = 340 } #Zeeland
+		command = { type = secedeprovince which = HOL value = 377 } #Luxembourg
+		command = { type = secedeprovince which = HOL value = 378 } #Brabant
+		command = { type = secedeprovince which = HOL value = 379 } #Artois
+		command = { type = secedeprovince which = HOL value = 380 } #Flandern
+		command = { type = independence which = KOL }
+		command = { type = independence which = HES }
+		command = { type = independence which = OLD }
+		command = { type = independence which = PFA }
+		command = { type = independence which = HAN }
+		command = { type = trigger which = 132203 } #BRA: Inheritance of Cleves
+	}
+	action_b = {
+		name = "ACTIONNAME200106B" #Palatinate-Neuburg inherits
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = domestic which = innovative value = 2 }
+		command = { type = religion which = protestant }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = stability value = 3 }
+		command = { type = flagname which = "" }
+		command = { type = country which = MUN }
+		command = { type = dynastic which = BAY }
+		command = { type = dynastic which = PFA }
+		command = { type = dynastic which = KOL }
+		command = { type = trigger which = 132202 } #BRA: The Cleves succession
+	}
+	action_c = {
+		name = "ACTIONNAME200106C" #Cleves-Nevers inherits
+		command = { type = addcore which = 386 } #Nivernais
+		command = { type = setflag which = [Nevers] }
+		command = { type = trigger which = 170031 } #FRA: Nevers-Rethel inherits Cleves
+		command = { type = trigger which = 132202 } #BRA: The Cleves succession
+		command = { type = religion which = catholic }
+		command = { type = stability value = -3 }
+	}
+	action_d = {
+		name = "ACTIONNAME200106D" #The Emperor seizes the Duchies (End Game)
+		command = { type = secedeprovince which = HOL value = 337 } #Friesen
+		command = { type = secedeprovince which = HOL value = 339 } #Holland
+		command = { type = secedeprovince which = HOL value = 340 } #Zeeland
+		command = { type = secedeprovince which = HOL value = 377 } #Luxembourg
+		command = { type = secedeprovince which = HOL value = 378 } #Brabant
+		command = { type = secedeprovince which = HOL value = 379 } #Artois
+		command = { type = secedeprovince which = HOL value = 380 } #Flandern
+		command = { type = independence which = KOL }
+		command = { type = independence which = HES }
+		command = { type = independence which = OLD }
+		command = { type = independence which = PFA }
+		command = { type = independence which = HAN }
+		command = { type = trigger which = 179202 } #HAB: Confiscation of Cleves
+		command = { type = trigger which = 132202 } #BRA: The Cleves succession
+	}
+}
+event = {
+	id = 200107
+	trigger = {
+		NOT = { countrysize = 2 } #Cleves has only one province
+		NOT = { exists = BRA }
+		exists = SAC
+	}
+	random = no
+	country = KLE
+	name = "EVENTNAME200107" #The Cleves succession
+	desc = "EVENTHIST200107"
+	#-#Duke Johann Wilhelm of Jülich, Cleves and Berg died on March 25th 1609, in a state of complete insanity and without a child or brother. While in the United Duchies a woman could not succeed to the throne herself, succession through a female relative was possible. Hence the husbands of Johann Wilhelm's sisters claimed the inheritance. The protestant husband of the second sister Anna, Philipp Ludwig of Palatinate-Neuburg, who wanted the inheritance for his son Wolfgang Wilhelm, has managed to seize the Duchies with support from the Netherlands, France and the Evangelic Union. His claim is disputed by the Count of Nevers-Rethel, originally a sidebranch of the Cleves ducal dynasty, and the Elector of Saxony who consider themselves legitimate heirs by virtue of several ancient treaties, and the Emperor, desiring to expand the Habsburgs' supply base near the rebellious Netherlands, who declares both female succession and the treaties invalid and intends to confiscate the United Duchies as a lapsed fief.
+
+	date = { day = 24 month = march year = 1609 }
+
+	action_a = {
+		name = "ACTIONNAME200107A" #Palatinate-Neuburg inherits
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = domestic which = innovative value = 2 }
+		command = { type = religion which = protestant }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = stability value = 3 }
+		command = { type = flagname which = "" }
+		command = { type = country which = MUN }
+		command = { type = dynastic which = BAY }
+		command = { type = dynastic which = PFA }
+		command = { type = dynastic which = KOL }
+		command = { type = trigger which = 273032 } #SAC: The Cleves succession
+	}
+	action_b = {
+		name = "ACTIONNAME200107B" #The Elector of Saxony inherits (End Game)
+		command = { type = secedeprovince which = HOL value = 337 } #Friesen
+		command = { type = secedeprovince which = HOL value = 339 } #Holland
+		command = { type = secedeprovince which = HOL value = 340 } #Zeeland
+		command = { type = secedeprovince which = HOL value = 377 } #Luxembourg
+		command = { type = secedeprovince which = HOL value = 378 } #Brabant
+		command = { type = secedeprovince which = HOL value = 379 } #Artois
+		command = { type = secedeprovince which = HOL value = 380 } #Flandern
+		command = { type = independence which = KOL }
+		command = { type = independence which = HES }
+		command = { type = independence which = OLD }
+		command = { type = independence which = PFA }
+		command = { type = independence which = HAN }
+		command = { type = trigger which = 273031 } #SAC: Inheritance of Cleves
+	}
+	action_c = {
+		name = "ACTIONNAME200107C" #Cleves-Nevers inherits
+		command = { type = addcore which = 386 } #Nivernais
+		command = { type = setflag which = [Nevers] }
+		command = { type = trigger which = 170031 } #FRA: Nevers-Rethel inherits Cleves
+		command = { type = trigger which = 273032 } #SAC: The Cleves succession
+		command = { type = religion which = catholic }
+		command = { type = stability value = -3 }
+	}
+	action_d = {
+		name = "ACTIONNAME200107D" #The Emperor seizes the Duchies (End Game)
+		command = { type = secedeprovince which = HOL value = 337 } #Friesen
+		command = { type = secedeprovince which = HOL value = 339 } #Holland
+		command = { type = secedeprovince which = HOL value = 340 } #Zeeland
+		command = { type = secedeprovince which = HOL value = 377 } #Luxembourg
+		command = { type = secedeprovince which = HOL value = 378 } #Brabant
+		command = { type = secedeprovince which = HOL value = 379 } #Artois
+		command = { type = secedeprovince which = HOL value = 380 } #Flandern
+		command = { type = independence which = KOL }
+		command = { type = independence which = HES }
+		command = { type = independence which = OLD }
+		command = { type = independence which = PFA }
+		command = { type = independence which = HAN }
+		command = { type = trigger which = 179202 } #HAB: Confiscation of Cleves
+		command = { type = trigger which = 273032 } #SAC: The Cleves succession
+	}
+}
+event = {
+	id = 200108
+	trigger = {
+		NOT = { countrysize = 2 } #Cleves has only one province
+		NOT = { exists = BRA }
+		NOT = { exists = SAC }
+	}
+	random = no
+	country = KLE
+	name = "EVENTNAME200108" #The Cleves succession
+	desc = "EVENTHIST200107"
+	#-#Duke Johann Wilhelm of Jülich, Cleves and Berg died on March 25th 1609, in a state of complete insanity and without a child or brother. While in the United Duchies a woman could not succeed to the throne herself, succession through a female relative was possible. Hence the husbands of Johann Wilhelm's sisters claimed the inheritance. The protestant husband of the second sister Anna, Philipp Ludwig of Palatinate-Neuburg, who wanted the inheritance for his son Wolfgang Wilhelm, has managed to seize the Duchies with support from the Netherlands, France and the Evangelic Union. His claim is disputed by the Count of Nevers-Rethel, originally a sidebranch of the Cleves ducal dynasty, and the Elector of Saxony who consider themselves legitimate heirs by virtue of several ancient treaties, and the Emperor, desiring to expand the Habsburgs' supply base near the rebellious Netherlands, who declares both female succession and the treaties invalid and intends to confiscate the United Duchies as a lapsed fief.
+
+	date = { day = 24 month = march year = 1609 }
+
+	action_a = {
+		name = "ACTIONNAME200108A" #Palatinate-Neuburg inherits
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = domestic which = innovative value = 2 }
+		command = { type = religion which = protestant }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = stability value = 3 }
+		command = { type = flagname which = "" }
+		command = { type = country which = MUN }
+		command = { type = dynastic which = BAY }
+		command = { type = dynastic which = PFA }
+		command = { type = dynastic which = KOL }
+	}
+	action_b = {
+		name = "ACTIONNAME200108B" #Cleves-Nevers inherits
+		command = { type = addcore which = 386 } #Nivernais
+		command = { type = setflag which = [Nevers] }
+		command = { type = trigger which = 170031 } #FRA: Nevers-Rethel inherits Cleves
+		command = { type = religion which = catholic }
+		command = { type = stability value = -3 }
+	}
+	action_c = {
+		name = "ACTIONNAME200108C" #The Emperor seizes the Duchies (End Game)
+		command = { type = secedeprovince which = HOL value = 337 } #Friesen
+		command = { type = secedeprovince which = HOL value = 339 } #Holland
+		command = { type = secedeprovince which = HOL value = 340 } #Zeeland
+		command = { type = secedeprovince which = HOL value = 377 } #Luxembourg
+		command = { type = secedeprovince which = HOL value = 378 } #Brabant
+		command = { type = secedeprovince which = HOL value = 379 } #Artois
+		command = { type = secedeprovince which = HOL value = 380 } #Flandern
+		command = { type = independence which = KOL }
+		command = { type = independence which = HES }
+		command = { type = independence which = OLD }
+		command = { type = independence which = PFA }
+		command = { type = independence which = HAN }
+		command = { type = trigger which = 179202 } #HAB: Confiscation of Cleves
+	}
+}
+#-----------------------------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------------------------
+#(1614) Partition of Xanten
+event = {
+	id = 200109
+	trigger = {
+		flag = [historical_succession]
+		countrysize = 2
+		exists = BRA
+	}
+	random = no
+	country = KLE
+	name = "EVENTNAME200109" #Partition of Xanten
+	desc = "EVENTHIST200109"
+	#-#The agreement between Brandenburg and Palatinate-Neuburg did not last long. Both parties still were keen on securing the whole inheritance for themselves, and soon disagreements on fiscal, personal and administrative matters arose. In order to secure support for their cause, they both prepared religious conversions. While Ernst, the brother of the Elector who represented him in the Duchies, became reformed in 1610 and the Elector himself adapted Calvinism at the urge of his Dutch and Palatine allies in 1613, Wolfgang Wilhelm of Palatinate-Neuburg began secret negotiations with the Emperor and his Wittelsbach relatives in Bavaria and Cologne. He was eventually convinced to convert to Catholicism, first secretly in Munich in summer 1613 and openly on May 16th 1614 in Düsseldorf. These two conversions almost immediately caused the Dutch and Spanish, acting in the interest of their respective new coreligionists, to invade the Duchies. The stage was set for a huge religious war. Afraid of the consequences of such a conflict, Brandenburg and Palatinate-Neuburg concluded a tentative treaty of partition in the city of Xanten on November 14th 1614. Neuburg received Jülich and Berg, Brandenburg got Cleves, Mark and Ravensberg. Nevertheless, the succession was not finally settled until 1672, and even thereafter both of them continued to claim the whole inheritance.
+
+	date = { day = 14 month = november year = 1614 }
+
+	action_a = {
+		name = "ACTIONNAME200109A" #Partition the Duchies
+		command = { type = religion which = counterreform }
+		command = { type = flagname which = "" }
+		command = { type = country which = MUN }
+		command = { type = breakvassal which = BRA }
+		command = { type = stability value = 4 }
+		command = { type = dynastic which = BAY }
+		command = { type = dynastic which = KOL }
+		command = { type = relation which = BAY value = 100 }
+		command = { type = relation which = SPA value = 100 }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = relation which = KOL value = 100 }
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = trigger which = 132204 } #BRA_Treaty of Xanten
+		#command = { type = secedeprovince which = BRA value = 334 } #capital shouldn't be seceded
+		command = { type = secedeprovince which = BRA value = 338 } #Geldre
+		command = { type = secedeprovince which = BRA value = 310 } #Hannover
+		command = { type = secedeprovince which = BRA value = 311 } #Magdeburg
+		command = { type = secedeprovince which = BRA value = 331 } #Sachsen
+		command = { type = secedeprovince which = BRA value = 332 } #Anhalt
+		command = { type = secedeprovince which = BRA value = 333 } #Hessen
+		command = { type = secedeprovince which = BRA value = 335 } #Oldenburg
+		command = { type = secedeprovince which = BRA value = 336 } #Bremen
+		command = { type = secedeprovince which = HOL value = 337 } #Friesen
+		command = { type = secedeprovince which = HOL value = 339 } #Holland
+		command = { type = secedeprovince which = HOL value = 340 } #Zeeland
+		command = { type = independence which = KOL }
+	}
+	action_b = {
+		name = "ACTIONNAME200109B" #Brandenburg gets everything (End Game)
+		command = { type = secedeprovince which = HOL value = 337 } #Friesen
+		command = { type = secedeprovince which = HOL value = 339 } #Holland
+		command = { type = secedeprovince which = HOL value = 340 } #Zeeland
+		command = { type = secedeprovince which = HOL value = 377 } #Luxembourg
+		command = { type = secedeprovince which = HOL value = 378 } #Brabant
+		command = { type = secedeprovince which = HOL value = 379 } #Artois
+		command = { type = secedeprovince which = HOL value = 380 } #Flandern
+		command = { type = independence which = KOL }
+		command = { type = independence which = HES }
+		command = { type = independence which = OLD }
+		command = { type = independence which = PFA }
+		command = { type = independence which = HAN }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = trigger which = 132203 } #BRA: Inheritance of Cleves
+	}
+	action_c = {
+		name = "ACTIONNAME200109C" #Palatinate-Neuburg gets everything
+		command = { type = religion which = counterreform }
+		command = { type = flagname which = "" }
+		command = { type = country which = MUN }
+		command = { type = breakvassal which = BRA }
+		command = { type = war which = BRA }
+		command = { type = stability value = -3 }
+		command = { type = revolt which = -1 }
+		command = { type = desertion which = -1 value = 8000 }
+		command = { type = dynastic which = BAY }
+		command = { type = dynastic which = KOL }
+		command = { type = relation which = BAY value = 100 }
+		command = { type = relation which = SPA value = 100 }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = relation which = KOL value = 100 }
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = independence which = KOL }
+		command = { type = trigger which = 132205 } #BRA: War over the Cleves succession
+	}
+}
+event = {
+	id = 200110
+	trigger = {
+		flag = [historical_succession]
+		NOT = { countrysize = 2 }
+		exists = BRA
+	}
+	random = no
+	country = KLE
+	name = "EVENTNAME200110" #Partition of Xanten
+	desc = "EVENTHIST200110"
+	#-#The agreement between Brandenburg and Palatinate-Neuburg did not last long. Both parties still were keen on securing the whole inheritance for themselves, and soon disagreements on fiscal, personal and administrative matters arose. In order to secure support for their cause, they both prepared religious conversions. While Ernst, the brother of the Elector who represented him in the Duchies, became reformed in 1610 and the Elector himself adapted Calvinism at the urge of his Dutch and Palatine allies in 1613, Wolfgang Wilhelm of Palatinate-Neuburg began secret negotiations with the Emperor and his Wittelsbach relatives in Bavaria and Cologne. He was eventually convinced to convert to Catholicism, first secretly in Munich in summer 1613 and openly on May 16th 1614 in Düsseldorf. These two conversions almost immediately caused the Dutch and Spanish, acting in the interest of their respective new coreligionists, to invade the Duchies. It's upon us to decide who will prevail and get the inheritance, so how do we choose?
+
+	date = { day = 14 month = november year = 1614 }
+
+	action_a = {
+		name = "ACTIONNAME200110A" #Brandenburg gets everything (End Game)
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = trigger which = 132203 } #BRA: Inheritance of Cleves
+	}
+	action_b = {
+		name = "ACTIONNAME200110B" #Palatinate-Neuburg gets everything
+		command = { type = religion which = counterreform }
+		command = { type = flagname which = "" }
+		command = { type = country which = MUN }
+		command = { type = breakvassal which = BRA }
+		command = { type = war which = BRA }
+		command = { type = stability value = -3 }
+		command = { type = revolt which = -1 }
+		command = { type = desertion which = -1 value = 8000 }
+		command = { type = dynastic which = BAY }
+		command = { type = dynastic which = KOL }
+		command = { type = relation which = BAY value = 100 }
+		command = { type = relation which = SPA value = 100 }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = relation which = KOL value = 100 }
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = independence which = KOL }
+		command = { type = trigger which = 132205 } #BRA: War over the Cleves succession
+	}
+}
+event = {
+	id = 200111
+	trigger = {
+		flag = [historical_succession]
+		NOT = { exists = BRA }
+	}
+	random = no
+	country = KLE
+	name = "EVENTNAME200111" #Partition of Xanten
+	desc = "EVENTHIST200111"
+	#-#Since the Elector of Brandenburg has lost his hereditary lands, he is in no more position, to oppose succession of Wolfgang Wilhelm of Palatinate-Neuburg to the Duchies of Jülich, Cleves and Berg.
+
+	date = { day = 14 month = november year = 1614 }
+
+	action_a = {
+		name = "ACTIONNAME200111A" #Palatinate-Neuburg gets everything
+		command = { type = religion which = counterreform }
+		command = { type = flagname which = "" }
+		command = { type = country which = MUN }
+		command = { type = stability value = -3 }
+		command = { type = revolt which = -1 }
+		command = { type = desertion which = -1 value = 10000 }
+		command = { type = dynastic which = BAY }
+		command = { type = dynastic which = KOL }
+		command = { type = relation which = BAY value = 100 }
+		command = { type = relation which = SPA value = 100 }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = relation which = KOL value = 100 }
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = independence which = KOL }
+	}
+}
+#-----------------------------------------------------------------------------------------------
+
+#(1676-1681) The League of Augsburg
+event = {
+	id = 3676 #triggered by FRA_3127 A
+	random = no
+	country = KLE
+	name = "EVENTNAME3198" #The League of Augsburg
+	desc = "EVENTHIST3198"
+	#-#The reunion policy of Louis XIV had been forced upon by the Empire in the 1684 by the Truce of Regensburg, mostly because the Emperor was preoccupied by the Turkish menace (siege of Vienna in 1683). The continued French claims and expansion to the detriment of the Habsburg possessions and the German states of the Empire led to the creation of the anti-French League of Augsburg (1686).
+
+	action_a = {
+		name = "ACTIONNAME3198A" #Defy French claims
+		command = { type = relation which = FRA value = -150 }
+		command = { type = relation which = ENG value = 150 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = PRU value = 150 }
+		command = { type = relation which = HOL value = 150 }
+		command = { type = relation which = HAN value = 100 }
+		command = { type = relation which = SPA value = 100 }
+		command = { type = relation which = HES value = 100 }
+		command = { type = relation which = BAD value = 100 }
+		command = { type = relation which = KOL value = 100 }
+		command = { type = relation which = PFA value = 100 }
+		#command = { type = relation which = THU value = 100 } #Bayreuth
+	}
+	action_b = {
+		name = "ACTIONNAME3198B" #Ignore it
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = ENG value = -100 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = PRU value = -100 }
+		command = { type = relation which = HOL value = -100 }
+		command = { type = relation which = HAN value = -50 }
+		command = { type = relation which = SPA value = -50 }
+		command = { type = relation which = HES value = -50 }
+		command = { type = relation which = BAD value = -50 }
+		command = { type = relation which = KOL value = -50 }
+		command = { type = relation which = PFA value = -50 }
+		#command = { type = relation which = THU value = -50 } #Bayreuth
+	}
+}
+
+#(1806-1810) The creation of the Grand Duchy of Berg and Cleves
+event = {
+	id = 200200 #triggered by FRA_170222 A
+	random = no
+	country = KLE
+	name = "EVENTNAME170222" #The creation of the Grand Duchy of Berg and Cleves
+	desc = "EVENTHIST200200"
+	#-#Although Napoléon had originally only claimed the left bank of the Rhine for France, which he had achieved by the peace of Campoformio in 1797, he forced Bavaria to cede Berg and Jülich in 1806 and took Kleve from Prussia in 1805. To maintain at least the impression of legitimacy, he did not directly annex these territories to France, but chose to bestow them upon his loyal general Joachim Murat as independent 'Grand Duchy of Berg and Cleves' with its capital in Kleve instead.
+
+	action_a = {
+		name = "ACTIONNAME235101A" #Vive l'Empereur !
+		command = { type = flagname which = "Murat" }
+		command = { type = sleepmonarch which = 069010 } #Adolf IV *
+		command = { type = wakemonarch which = 069012 } #Joachim Murat
+		command = { type = wakemonarch which = 069013 } #Comte de Beugnot
+		command = { type = wakemonarch which = 069014 } #Louis-Napoléon
+		command = { type = remove_countryculture which = german }
+		command = { type = add_countryculture which = french }
+		command = { type = relation which = FRA value = 300 }
+		command = { type = relation which = HOL value = 100 }
+		command = { type = relation which = SPA value = 100 }
+		command = { type = relation which = TOS value = 100 }
+		command = { type = relation which = NAP value = 100 }
+		command = { type = relation which = ITA value = 100 }
+		command = { type = addcore which = 343 } #Kleves
+	}
+}
+
+#(1806-1820) The vassal-state of Berg-Cleves
+event = {
+	id = 200024
+	trigger = {
+		OR = {
+			monarch = 069012 #Joachim Murat
+			monarch = 069013 #Comte de Beugnot
+			monarch = 069014 #Louis-Napoléon
+		}
+		OR = {
+			AND = {
+				owned = { province = 343 data = FRA } #Kleves
+				control = { province = 343 data = FRA } #Kleves
+			}
+			vassal = { country = FRA country = MUN }
+			owned = { province = 343 data = -1 } #Kleves
+		}
+		NOT = { war = { country = KLE country = FRA } }
+	}
+	random = no
+	country = KLE
+	name = "EVENTNAME170223" #The vassal-state of Berg-Cleves
+	desc = "EVENTHIST170223"
+	#-#Emperor Napoléon wanted to reward his most loyal general and brother-in-law, Joachim Murat, giving him the territories of Berg-Jülich and Cleves to administer with the title of Grand Duke of Berg-Cleves according to the French imperial directives.
+
+	date = { day = 1 month = january year = 1806 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "GOOD"
+		command = { type = inherit which = MUN }
+		command = { type = trigger which = 170224 } #FRA: The vassal-state of Berg-Cleves
+	}
+}
+
+#(1806-1808) Joachim Murat's administration
+event = {
+	id = 200025
+	trigger = {
+		monarch = 069012 #Joachim Murat
+	}
+	random = no
+	country = MUN
+	name = "EVENTNAME235102" #Joachim Murat's administration
+	desc = "EVENTHIST200025"
+	#-#After he had become Grand Duke of Berg and Cleves, Joachim Murat soon introduced an administration similar to the French. In a decree from April 24th 1806 he created a centralised administration and completely merged Kleve and Berg, on April 30th all tolls and limitations on trade with France were abolished and replaced by a system favouring France and hurting Berg's economy and on August 8th the Grand Duchy was divided into eight arrondissements.
+
+	date = { day = 24 month = april year = 1806 }
+	offset = 1
+	deathdate = { day = 29 month = july year = 1808 }
+
+	action_a = {
+		name = "ACTIONNAME235102A" #Reform the administration
+		command = { type = domestic which = centralization value = 3 }
+		command = { type = domestic which = mercantilism value = 3 }
+	}
+}
+
+#(1810-1813) Introduction of the Code Napoléon
+event = {
+	id = 200026
+	trigger = {
+		monarch = 069014 #Louis-Napoléon
+	}
+	random = no
+	country = MUN
+	name = "EVENTNAME235103" #Introduction of the Code Napoléon
+	desc = "EVENTHIST200026"
+	#-#On January 1st 1810 the Code Napoléon was enacted in the Grand Duchy of Berg and Cleves. Thus, in the country of Louis-Napoléon the last remaints of feudalism were crushed and the ideals of freedom, equality and fraternity fixed.
+
+	date = { day = 1 month = january year = 1810 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1813 }
+
+	action_a = {
+		name = "ACTIONNAME235103A" #Enact the Code civil
+		command = { type = domestic which = serfdom value = -3 }
+		command = { type = domestic which = aristocracy value = -4 }
+		command = { type = domestic which = innovative value = 3 }
+	}
+}
+
+#(1810-1820) The restoration of the Duchy of Cleves - Ahistorical
+event = {
+	id = 200027 #triggered by FRA_170128
+	trigger = {
+		monarch = 069014 #Louis-Napoléon
+	}
+	random = no
+	country = MUN
+	name = "EVENTNAME200027" #The restoration of the Duchy of Cleves
+	desc = "EVENTHIST170128"
+	#-#The Congress of Vienna brought Europe back to its boundaries before the French Revolution. Only the former Republics of Genoa and Venice weren't granted the restoration of their pre-revolutionary governments. Since any sort of socalled Republic was now the most hated by all the monarchies of the restoration, they were respectively given to Savoy as to form a medium buffer state against France and to Austria as to strengthen her position in Southern Europe.
+
+	action_a = {
+		name = "OK"
+		command = { type = flagname which = "" }
+		command = { type = sleepmonarch which = 069014 } #Louis-Napoléon
+		command = { type = wakemonarch which = 069015 } #Maximilian Josef *
+		command = { type = add_countryculture which = german }
+		command = { type = remove_countryculture which = french }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 200028

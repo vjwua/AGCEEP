@@ -1,0 +1,821 @@
+#Hanover (HAN)
+
+#See AGCEEP_Alt_Germany.eue for KoG Alternative events
+
+#-----------------------------------------------------------------------------------------------
+
+#(1500-1510) The Battle of Regensburg
+event = {
+	id = 48000
+	trigger = {
+		NOT = {
+			war = { country = HAB country = HAN } }
+			leader = 057300 #Herzog Erich I (HAN)
+		}
+	random = no
+	country = HAN
+	name = "EVENTNAME48000" #Erich I and the battle of Regensburg
+	desc = "EVENTHIST48000"
+	#-#Erich I of Calenberg (1470-1540) was regarded as one of the 'last knights'. In his 18th year he made the pilgrimage to Jerusalem and entered the service of his godfather Emperor Maximilian. Spending his best years fighting in the battles of Maximilian, he rarely visited his lands. Erich's presence is reported in 1497 against the Ottoman Turks, in 1499 against the Swiss, in 1503/04 in Bavaria, 1507/08 against Venice, 1512 in Nothern Germany, 1513 in France and Italy and 1514 in Frisia. At the Battle of Regensburg in the Bavarian Campaign of 1503/04 he saved the Emperor's life and became one of his closest friends, supporters and favorites.
+
+	date = { day = 1 month = january year = 1500 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1510 }
+
+	action_a = {
+		name = "ACTIONNAME48000A" #For God and Emperor Maximilian
+		command = { type = dynastic which = HAB }
+		command = { type = relation which = HAB value = 100 }
+	}
+}
+
+#(1511-1558) Christoph of Brunswick-Lüneburg, Archbishop of Bremen
+event = {
+	id = 181002 #triggered by BRE_133002
+	trigger = {
+		NOT = {
+			vassal = { country = BRE country = HAN }
+		}
+	}
+	random = no
+	country = HAN
+	name = "EVENTNAME181002" #Christoph of Brunswick-Lüneburg is elected Archbishop of Bremen
+	desc = "EVENTHIST181002"
+	#-#In 1511 Christoph of Brunswick-Lüneburg, a brother of the Duke, was elected Archbishop of Bremen. Thereby, Bremen came under the influence of the Welfs.
+
+	action_a = {
+		name = "OK"
+		command = { type = relation which = BRE value = 50 }
+		command = { type = vassal which = BRE }
+		command = { type = alliance which = BRE }
+	}
+}
+
+#(1515-1517) Constant troubles with the Bishop of Hildesheim
+event = {
+	id = 48001
+	trigger = {
+		owned = { province = 310 data = -1 }
+	}
+	random = no
+	country = HAN
+	name = "EVENTNAME48001" #The Hildesheimer Stiftsfeud
+	desc = "EVENTHIST48001"
+	#-#Between 1515 and 1523 the Welfendukes were in constant warfare with the Bishop of Hildesheim and war parties of both sides ravaged the countryside. The feud started as the Bishop of Hildesheim tried to reform the financial situation of the diocese and bought off the land his predecessors mortgaged to independent knights. The Knights thus got a fixed amount of payment but lost the income of their estates and had to give up their independence. They refused to accept the repayment and cancellation of the mortgage contract and called the Dukes of Wolfenbüttel and Calenberg for help, who in turn took the leadership of the uprising.
+
+	date = { day = 1 month = april year = 1515 }
+	offset = 100
+	deathdate = { day = 29 month = december year = 1517 }
+
+	action_a = {
+		name = "ACTIONNAME48001A" #Give in to the bishop and leave the knights alone
+		command = { type = provincetax which = 310 value = -1 } #Hannover
+		command = { type = relation which = PAP value = 25 }
+		command = { type = sleepevent which = 48002 } #HAN: The Feud is won
+		command = { type = vp value = -5 }
+	}
+	action_b = {
+		name = "ACTIONNAME48001B" #Fight it out
+		command = { type = stability value = -2 }
+		command = { type = province_revoltrisk which = 310 value = 7 } #Hannover
+		command = { type = CAV which = 310 value = 1000 } #Hannover
+	}
+}
+
+#(1523-1525) The Feud is won
+event = {
+	id = 48002
+	trigger = { event = 48001 }
+	random = no
+	country = HAN
+	name = "EVENTNAME48002" #The Feud is won
+	desc = "EVENTHIST48002"
+	#-#Although the Bishop of Hildesheim won with the aid of Duke Heinrich of Luneburg the only real battle of the Feud against Erich in 1519, the Dukes of Calenberg and Wolfenbüttel achieved the support of Emperor Charles V and the Electorat assembly. Heinrich of Luneburg was forced to cease his support for Hildesheim in 1521 and the isolated Bishop had to give up after two more years of fighting. The peace solution brought some territorial gain for Calenberg and Wolfenbüttel.
+
+	date = { day = 7 month = may year = 1523 }
+	offset = 50
+	deathdate = { day = 1 month = january year = 1525 }
+
+	action_a = {
+		name = "ACTIONNAME48002A" #Duke Erich is allowed to keep conquered territory
+		command = { type = province_revoltrisk which = 310 value = -7 } #Hannover
+		command = { type = stability value = 1 }
+		command = { type = provincetax which = 310 value = 1 } #Hannover
+	}
+}
+
+#(1527-1529) The League of Schmalkalden
+event = {
+	id = 3608
+	trigger = {
+		exists = HAB
+		OR = {
+			religion = protestant
+			religion = reformed
+		}
+	}
+	random = no
+	country = HAN
+	name = "EVENTNAME3109" #The League of Schmalkalden
+	desc = "EVENTHIST3109"
+	#-#After Emperor Charles V had rejected the Protestants' confessional positions at the Imperial Parliament of Augsburg (1529-1530), the North German Protestant Imperial estates formed the League of Schmalkalden, with a joint army and treasury and seeking ties abroad (France). The League enjoyed early successes in the years 1532-1540 as the Emperor was threaten by Turkish danger and forced to conclude Religious peace settlements in Nuremberg (1532) and Kaaden (1534).
+
+	date = { day = 1 month = january year = 1527 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1529 }
+
+	action_a = {
+		name = "ACTIONNAME3109A" #Give it our support
+		command = { type = relation which = FRA value = 100 }
+		command = { type = relation which = ENG value = 100 }
+		command = { type = relation which = BRA value = 150 }
+		command = { type = relation which = BAD value = 150 }
+		command = { type = relation which = HES value = 150 }
+		command = { type = relation which = PFA value = 150 }
+		command = { type = relation which = SAC value = 150 }
+		#command = { type = relation which = THU value = 150 } #Bayreuth
+		command = { type = relation which = KLE value = 100 }
+		command = { type = relation which = KOL value = 50 }
+		command = { type = relation which = BAY value = 50 }
+		command = { type = relation which = PAP value = -100 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = relation which = HAB value = -150 }
+		command = { type = relation which = STR value = 150 }
+	}
+	action_b = {
+		name = "ACTIONNAME3109B" #Ignore it
+		command = { type = relation which = BRA value = -100 }
+		command = { type = relation which = BAD value = -100 }
+		command = { type = relation which = HES value = -100 }
+		command = { type = relation which = PFA value = -100 }
+		command = { type = relation which = SAC value = -100 }
+		#command = { type = relation which = THU value = -100 } #Bayreuth
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = STR value = -100 }
+	}
+}
+
+#(1586-1590) Julius starts economic reforms
+event = {
+	id = 48003
+	trigger = { stability = 2 }
+	random = no
+	country = HAN
+	name = "EVENTNAME48003" #Economic Reforms of Julius
+	desc = "EVENTHIST48003"
+	#-#After years of mismanagement the early Mercantilist Julius of Wolfenbüttel rebuilds the economy and administration.
+
+	date = { day = 1 month = january year = 1586 }
+	offset = 400
+	deathdate = { day = 1 month = january year = 1590 }
+
+	action_a = {
+		name = "ACTIONNAME48003A" #Economic Reforms
+		command = { type = domestic which = mercantilism value = 1 }
+		command = { type = inflation value = -5 }
+		command = { type = infra value = 100 }
+		command = { type = trade value = 100 }
+	}
+	action_b = {
+		name = "ACTIONNAME48003B" #Reform the Army
+		command = { type = land value = 100 }
+	}
+}
+
+#(1605-1609) The Evangelic Union
+event = {
+	id = 3609
+	trigger = {
+		 OR = {
+			religion = protestant
+			religion = reformed
+		}
+	}
+	random = no
+	country = HAN
+	name = "EVENTNAME3634" #The Evangelic Union
+	desc = "EVENTHIST3634"
+	#-#The Holy Roman Empire had a fragile balance, split between 10 major and nearly 400 minor states and principalities, as well as two opposing religions. The power of the Emperor was quite limited beyond his direct domains and the erratic and inconsistent behavior of some of them as Rudolph II, such increased frictions. In 1608, the Protestant city of Donauwerth refused Catholics the right to practice their cult and was banned from the Empire. As a reaction, most German Protestant states formed the Evangelic Union to defend their freedom.
+
+	date = { day = 1 month = january year = 1605 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1609 }
+
+	action_a = {
+		name = "ACTIONNAME3634A" #Prepare to Join
+		command = { type = relation which = FRA value = 100 }
+		command = { type = relation which = BRA value = 150 }
+		command = { type = relation which = BAD value = 150 }
+		command = { type = relation which = HES value = 150 }
+		command = { type = relation which = PFA value = 150 }
+		command = { type = relation which = SAC value = 150 }
+		#command = { type = relation which = THU value = 150 } #Bayreuth
+		command = { type = relation which = SHL value = 150 }
+		command = { type = relation which = KLE value = 100 }
+		command = { type = relation which = KOL value = 50 }
+		command = { type = relation which = BAY value = 50 }
+		command = { type = relation which = PAP value = -100 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = relation which = HAB value = -150 }
+	}
+	action_b = {
+		name = "ACTIONNAME3634B" #Stay Neutral
+		command = { type = relation which = BRA value = -100 }
+		command = { type = relation which = BAD value = -100 }
+		command = { type = relation which = HES value = -100 }
+		command = { type = relation which = PFA value = -100 }
+		command = { type = relation which = SAC value = -100 }
+		#command = { type = relation which = THU value = -100 } #Bayreuth
+		command = { type = relation which = HAB value = 50 }
+	}
+}
+
+#(1607-1609) The Catholic League
+event = {
+	id = 3610
+	trigger = {
+		 OR = {
+			religion = catholic
+			religion = counterreform
+		}
+	}
+	random = no
+	country = HAN
+	name = "EVENTNAME3192" #The Catholic League
+	desc = "EVENTHIST3192"
+	#-#The German Catholic states felt threatened by the 1608 creation of the Evangelic Union of their northern Protestant neighbors, following the Donauwerth exclusion from the Empire. Feeling the urge to unite, they regrouped into a Catholic League that same year. The stage was set for the Thirty Years War.
+
+	date = { day = 1 month = january year = 1607 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1609 }
+
+	action_a = {
+		name = "ACTIONNAME3192A" #Prepare to Join
+		command = { type = relation which = FRA value = -100 }
+		command = { type = relation which = BRA value = -150 }
+		command = { type = relation which = BAD value = -150 }
+		command = { type = relation which = HES value = -150 }
+		command = { type = relation which = PFA value = -150 }
+		command = { type = relation which = SAC value = -150 }
+		#command = { type = relation which = THU value = -150 } #Bayreuth
+		command = { type = relation which = SHL value = -150 }
+		command = { type = relation which = KLE value = 50 }
+		command = { type = relation which = KOL value = 100 }
+		command = { type = relation which = BAY value = 100 }
+		command = { type = relation which = PAP value = 100 }
+		command = { type = relation which = SPA value = 100 }
+		command = { type = relation which = HAB value = 150 }
+	}
+	action_b = {
+		name = "ACTIONNAME3192B" #Stay Neutral
+		command = { type = relation which = BRA value = 50 }
+		command = { type = relation which = BAD value = 50 }
+		command = { type = relation which = HES value = 50 }
+		command = { type = relation which = PFA value = 50 }
+		command = { type = relation which = SAC value = 50 }
+		#command = { type = relation which = THU value = 50 } #Bayreuth
+		command = { type = relation which = BAY value = -50 }
+		command = { type = relation which = KLE value = -50 }
+		command = { type = relation which = KOL value = -50 }
+		command = { type = relation which = HAB value = -100 }
+	}
+}
+
+#(1631-1639) Army Reforms of Duke Georg I
+event = {
+	id = 48004
+	trigger = { leader = 057301 } #Herzog Georg (HAN)
+	random = no
+	country = HAN
+	name = "EVENTNAME48004" #Georg reforms the Army
+	desc = "EVENTHIST48004"
+	#-#Between 1635 and 1637 Georg established a private permanent army and managed with Swedish aid to liberate the Welfenterritory from the Emperor's troops under Tilly. Later he took a neutral position between the Emperor and the Swedes and used his army to keep the heavy fighting off the country. His strategies were based upon defensive warfare supported by modern artillery. The army was the first permanent force in Luneburg, Calenberg and Wolfenbüttel and was kept in service to become the predecessor of the Hanoveranian army.
+
+	date = { day = 1 month = january year = 1631 }
+	offset = 700
+	deathdate = { day = 29 month = december year = 1639 }
+
+	action_a = {
+		name = "ACTIONNAME48004A" #Yes, we need a permanent force!
+		command = { type = domestic which = quality value = 2 }
+		command = { type = domestic which = offensive value = -2 }
+		command = { type = land value = 200 }
+		command = { type = stability value = 1 }
+		command = { type = INF which = 310 value = 5000 } #Hannover
+		command = { type = ART which = 310 value = 10 } #Hannover
+		command = { type = treasury value = -100 }
+	}
+	action_b = {
+		name = "ACTIONNAME48004B" #No, it is too expensive
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1641) The Death of Duke Georg
+event = {
+	id = 48005
+	random = no
+	country = HAN
+	name = "EVENTNAME48005" #The banquet of Hildesheim
+	desc = "EVENTHIST48005"
+	#-#Meeting with French and Swedish officers at the banquet of Hildesheim, Duke Georg and many of the Swedes die. Administration suffers greatly after Georg's death and his inexperienced successors were unable to balance between the powers. They eventually made a seperate peace with the emperor and thus missed the opportunity to expand their territory in the Westfalian peace.
+
+	date = { day = 8 month = november year = 1641 }
+
+	action_a = {
+		name = "DAMN"
+		command = { type = stability value = -3 }
+	}
+}
+
+#(1676-1681) The League of Augsburg
+event = {
+	id = 3611 #triggered by FRA_3127 A
+	random = no
+	country = HAN
+	name = "EVENTNAME3198" #The League of Augsburg
+	desc = "EVENTHIST3198"
+	#-#The reunion policy of Louis XIV had been forced upon by the Empire in the 1684 by the Truce of Regensburg, mostly because the Emperor was preoccupied by the Turkish menace (siege of Vienna in 1683). The continued French claims and expansion to the detriment of the Habsburg possessions and the German states of the Empire led to the creation of the anti-French League of Augsburg (1686).
+
+	action_a = {
+		name = "ACTIONNAME3198A" #Defy French claims
+		command = { type = relation which = FRA value = -150 }
+		command = { type = relation which = ENG value = 150 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = PRU value = 150 }
+		command = { type = relation which = HOL value = 150 }
+		command = { type = relation which = BAD value = 100 }
+		command = { type = relation which = SPA value = 100 }
+		command = { type = relation which = HES value = 100 }
+		command = { type = relation which = KLE value = 100 }
+		command = { type = relation which = KOL value = 100 }
+		command = { type = relation which = PFA value = 100 }
+		#command = { type = relation which = THU value = 100 } #Bayreuth
+	}
+	action_b = {
+		name = "ACTIONNAME3198B" #Ignore it
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = ENG value = -100 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = PRU value = -100 }
+		command = { type = relation which = HOL value = -100 }
+		command = { type = relation which = BAD value = -50 }
+		command = { type = relation which = SPA value = -50 }
+		command = { type = relation which = HES value = -50 }
+		command = { type = relation which = KLE value = -50 }
+		command = { type = relation which = KOL value = -50 }
+		command = { type = relation which = PFA value = -50 }
+		#command = { type = relation which = THU value = -50 } #Bayreuth
+		command = { type = sleepevent which = 48006 } #HAN: The Claim for the Electorat
+	}
+}
+
+#(1676) Leibniz goes to Hannover - Flavor
+#(text from Weisstein's World of Scientific Biography)
+#(http://scienceworld.wolfram.com/biography/)
+#by mfigueras
+event = {
+	id = 5160 #triggered by FRA_5010 A
+	random = no
+	country = HAN
+	name = "EVENTNAME5160" #Leibniz
+	desc = "EVENTHIST5160"
+	#-#Gottfried Wilhelm Leibniz was a German philosopher mathematician and political adviser important both as a metaphysician and as a logician and distinguished also for his independent invention of the differential and integral calculus. Born in Leipzig in 1646 he eventually ended up in the service of John Frederick the duke of Braunschweig-Lüneburg.
+
+	action_a = {
+		name = "OK"
+		command = { type = infra value = 100 }
+	}
+}
+
+#(1689-1692) The Claim for the Electorat
+event = {
+	id = 48006
+	trigger = {
+		event = 3611 #HAN: The League of Augsburg
+		NOT = { war = { country = HAB country = HAN } }
+		owned = { province = 310 data = -1 }
+	}
+	random = no
+	country = HAN
+	name = "EVENTNAME48006" #The Claim for the Electorat
+	desc = "EVENTHIST48006"
+	#-#During the second half of the 17th century the lands of Calenberg and Luneburg were successively ruled by able leaders who managed to regain much of the former strength of the Welfen in the middle ages. As Duke Georg Wilhelm of Luneburg was childless and Ernst August of Hanover his only heir, the opportunity arised to reunite a great part of the Welfen realm. Against resistance within the family Duke Ernst August of Hanover introduced a new law of succession to the eldest son that should prevent further divisions. Yet he was outlived by Georg Wilhelm and the inheritance of Luneburg was to be achieved by his son Georg Ludwig in 1705. However the Emperor acknowledged the reestablished power of the Welfen in Northern Germany and offered to make them Electors on December 9th 1692. Yet the opposition of the older line of Brunswick-Wolfenbüttel and the Elector of Saxony had to be dealt with. The Saxons could be convinced, but the Brunswickers managed to gain French support against Hanover.
+
+	date = { day = 9 month = january year = 1689 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1692 }
+
+	action_a = {
+		name = "ACTIONNAME48006A" #Bribe the Saxons and fight against Brunswick!
+		command = { type = treasury value = -50 }
+		command = { type = relation which = SAC value = 50 }
+		command = { type = province_revoltrisk which = 310 value = 5 } #Hannover
+		command = { type = revolt which = 310 } #Hannover
+		command = { type = stability value = -1 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = trigger which = 48007 } #SAC: Hanover needs our support to become Elector
+	}
+	action_b = {
+		name = "ACTIONNAME48006B" #Do not become elector
+		command = { type = sleepevent which = 48008 } #HAN: At last the opposition is overthrown
+		command = { type = sleepevent which = 181000 } #HAN: The Electorate of Hanover
+		command = { type = sleepevent which = 181001 } #HAN: The Electorate of Hanover 
+		command = { type = vp value = -50 }
+	}
+}
+
+#(1692) The Electorate of Hanover
+event = {
+	id = 181000
+	trigger = { 
+		event = 48006 #HAN: The Claim for the Electorat
+		NOT = { exists = BRE } 
+	}
+	random = no
+	country = HAN
+	name = "EVENTNAME181000" #The Electorate of Hanover
+	desc = "EVENTHIST181000"
+	#-#During his reign in the Calenberg part of Braunschweig-Lüneburg, Ernst August conducted an ambitious and determined policy, intending to rise to the ranks of the most powerful imperial princes. Since 1662 he was Prince Bishop of osnabrück and eventually he managed to inherit all possessions of the Lüneburg branch of Braunschweig, which secured a solid territorial base for his country that was further expanded by his successor's acquisition of the old archbishopric of Bremen. He maintained a strong standing army, conducted centralistic reforms and managed to introduce primogeniture, finally securing the country's unity. By successfully supporting him against the Ottomans and promising to always vote for the Habsburg candidate in imperial elections, he convinced Emperor Leopold to grant the electoral dignity to the house of Brunswick-Lüneburg that became thereafter known as the Electorate of Hanover.
+
+	date = { day = 3 month = january year = 1692 }
+	offset = 100
+	deathdate = { day = 29 month = december year = 1692 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = vp value = 50 }
+		command = { type = population which = -2 value = 10000 }
+		command = { type = provincetax which = -2 value = 3 }
+		command = { type = provincemanpower which = -2 value = 2 }
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = relation which = HAB value = 200 }
+		command = { type = addcore_claim which = 336 } #Bremen
+		command = { type = sleepevent which = 181001 } #HAN: The Electorate of Hanover
+	}
+}
+#(1692) The Electorate of Hanover
+event = {
+	id = 181001
+	trigger = { 
+event = 48006 #HAN: The Claim for the Electorat  
+		exists = BRE 
+	}
+	random = no
+	country = HAN
+	name = "EVENTNAME181000" #The Electorate of Hanover
+	desc = "EVENTHIST181001"
+	#-#During his reign in the Calenberg part of Braunschweig-Lüneburg, Ernst August conducted an ambitious and determined policy, intending to rise to the ranks of the most powerful imperial princes. Since 1662 he was Prince Bishop of osnabrück and eventually he managed to inherit all possessions of the Lüneburg branch of Braunschweig, which secured a solid territorial base for his country. He maintained a strong standing army, conducted centralistic reforms and managed to introduce primogeniture, finally securing the country's unity. By successfully supporting him against the Ottomans and promising to always vote for the Habsburg candidate in imperial elections, he convinced Emperor Leopold to grant the electoral dignity to the house of Brunswick-Lüneburg that became thereafter known as the Electorate of Hanover.
+
+	date = { day = 4 month = january year = 1692 }
+	offset = 100
+	deathdate = { day = 29 month = december year = 1692 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = vp value = 50 }
+		command = { type = population which = -2 value = 10000 }
+		command = { type = provincetax which = -2 value = 3 }
+		command = { type = provincemanpower which = -2 value = 2 }
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = relation which = HAB value = 200 }
+		command = { type = sleepevent which = 181000 } #HAN: The Electorate of Hanover
+	}
+}
+
+#(1700-1710) At last the opposition is overthrown
+event = {
+	id = 48008
+	trigger = {
+		event = 48006 #HAN: The Claim for the Electorat
+		owned = { province = 310 data = -1 }
+	}
+	random = no
+	country = HAN
+	name = "EVENTNAME48008" #At last the opposition is overthrown
+	desc = "EVENTHIST48008"
+	#-#After fighting and arresting the Army of Brunswick, the opposition ceased and the Duke of Hanover was finally introduced to the assembly of Electors in 1708.
+
+	date = { day = 11 month = january year = 1700 }
+	offset = 500
+	deathdate = { day = 10 month = october year = 1710 }
+
+	action_a = {
+		name = "ACTIONNAME48008A" #I am an Elector!
+		command = { type = vp value = 50 }
+	command = { type = elector which = HAN value = 2 } # A new Kurfürst with 2 votes 
+		command = { type = stability value = 1 }
+		command = { type = province_revoltrisk which = 310 value = -5 } #Hannover
+		command = { type = domestic which = centralization value = 1 }
+	}
+}
+
+#(1705) The Inheritance of Luneburg
+event = {
+	id = 48009
+	trigger = {
+		owned = { province = 310 data = -1 }
+	}
+	random = no
+	country = HAN
+	name = "EVENTNAME48009" #The Inheritance of Luneburg
+	desc = "EVENTHIST48009"
+	#-#As the last Duke of Luneburg, Georg Wilhelm, dies childless, Elector Georg Ludwig inherits Luneburg.
+
+	date = { day = 12 month = august year = 1705 }
+	offset = 50
+	deathdate = { day = 1 month = january year = 1706 }
+
+	action_a = {
+		name = "ACTIONNAME48009A" #It's all mine!
+		command = { type = provincetax which = 310 value = 2 } #Hannover
+		command = { type = domestic which = centralization value = 1 }
+	}
+}
+
+#(1714) Claim the English Throne
+event = {
+	id = 48011
+	trigger = {
+		OR = {
+			religion = protestant
+			religion = reformed
+		}
+		exists = ENG
+		event = 48010 #ENG: The Act of Settlement
+	}
+	random = no
+	country = HAN
+	name = "EVENTNAME48011" #Claim the English Throne
+	desc = "EVENTHIST48011"
+	#-#The act of Settlement makes us the heir to the English Throne! In order to become King our monarch must leave Germany and live in England. What should he do?
+
+	date = { day = 0 month = august year = 1714 } #one day before ENG_48012 fires
+
+	action_a = {
+		name = "ACTIONNAME48011A" #Rule Hanover from England
+		command = { type = trigger which = 3612 } #HAN: The Hanover Dynasty in England
+		command = { type = trigger which = 48030 } #ENG: The Hanover Dynasty in England
+		command = { type = sleepevent which = 48012 } #ENG: No Protestant Heir
+	}
+	action_b = {
+		name = "ACTIONNAME48011B" #Let my cousins of Brunswick rule Hanover
+		command = { type = sleepmonarch which = 057015 } #Georg I Ludwig
+		command = { type = sleepmonarch which = 057016 } #Georg II
+		command = { type = sleepmonarch which = 057017 } #George III
+		command = { type = wakemonarch which = 057018 } #Ferdinand Albrecht °
+		command = { type = wakemonarch which = 057019 } #Ludwig Rudolf °
+		command = { type = wakemonarch which = 057020 } #Ferdinand Albrecht °
+		command = { type = wakemonarch which = 057021 } #Karl I °
+		command = { type = wakemonarch which = 057022 } #Karl Wilhelm Ferdinand °
+		command = { type = wakemonarch which = 057023 } #Friedrich Wilhelm °
+		command = { type = wakemonarch which = 057024 } #Regency (Karl II) °
+		command = { type = wakeleader which = 057304 } #Ferdinand (HAN)
+		command = { type = wakeleader which = 057308 } #The black duke (HAN)
+		command = { type = provincetax which = 310 value = 1 } #Hannover
+		command = { type = trigger which = 3612 } #HAN: The Hanover Dynasty in England
+		command = { type = trigger which = 48032 } #ENG: George Will Be Our New King
+		command = { type = sleepevent which = 48012 } #ENG: No Protestant Heir
+	}
+	action_c = {
+		name = "ACTIONNAME48011C" #Refuse to accept these conditions
+		command = { type = trigger which = 48031 } #ENG: The Return of the Stuarts
+		command = { type = sleepevent which = 48012 } #ENG: No Protestant Heir
+	}
+}
+
+#(1714) The Hanover Dynasty in England
+event = {
+	id = 3612 #triggered by HAN_48011 A/B / HAN_48033 A/B
+	random = no
+	country = HAN
+	name = "EVENTNAME3612" #The Hanover Dynasty in England
+	desc = "EVENTHIST3612"
+	#-#The 1701 Act of Establishment had been voted to regulate the succession to the throne, ensuring no Catholic dynasty would ever rule England. When the personal union with Holland had ended in 1702 (death of William of Orange), his daughter Queen Ann (1702-1714) reigned but failed to provide a legitimate heir. The English crown went to George I of Hanover (1714-1727), her most direct parent. He and his son George II (1727-1760) were German born and would always follow closely the fate of their Electorate, making it in fact if not in law a vassal of England.
+
+	action_a = {
+		name = "ACTIONNAME3612A" #I will be King of England
+		command = { type = relation which = ENG value = 100 }
+	}
+}
+
+#(1714) Claim the English Throne
+event = {
+	id = 48033 #triggered by ENG_48012 A
+	random = no
+	country = HAN
+	name = "EVENTNAME48033" #Claim the English Throne
+	desc = "EVENTHIST48033"
+	#-#The English beg us to turn protestant and take the English throne. Should our monarch accept this offer he must move to England and rule Hanover from there
+
+	action_a = {
+		name = "ACTIONNAME48033A" #The English crown is worth no more masses
+		command = { type = trigger which = 3612 } #HAN: The Hanover Dynasty in England
+		command = { type = trigger which = 48030 } #ENG: The Hanover Dynasty in England
+	}
+	action_b = {
+		name = "ACTIONNAME48033B" #Let my cousins of Brunswick rule Hanover
+		command = { type = sleepmonarch which = 057015 } #Georg I Ludwig
+		command = { type = sleepmonarch which = 057016 } #Georg II
+		command = { type = sleepmonarch which = 057017 } #George III
+		command = { type = wakemonarch which = 057018 } #Ferdinand Albrecht °
+		command = { type = wakemonarch which = 057019 } #Ludwig Rudolf °
+		command = { type = wakemonarch which = 057020 } #Ferdinand Albrecht °
+		command = { type = wakemonarch which = 057021 } #Karl I °
+		command = { type = wakemonarch which = 057022 } #Karl Wilhelm Ferdinand °
+		command = { type = wakemonarch which = 057023 } #Friedrich Wilhelm °
+		command = { type = wakemonarch which = 057024 } #Regency (Karl II) °
+		command = { type = wakeleader which = 057304 } #Ferdinand (HAN)
+		command = { type = wakeleader which = 057308 } #The black duke (HAN)
+		command = { type = provincetax which = 310 value = 1 } #Hannover
+		command = { type = trigger which = 3612 } #HAN: The Hanover Dynasty in England
+		command = { type = trigger which = 48032 } #ENG: George Will Be Our New King
+	}
+	action_c = {
+		name = "ACTIONNAME48033C" #Refuse to accept these conditions
+		command = { type = trigger which = 48031 } #ENG: The Return of the Stuarts
+	}
+}
+
+#(1714-1760) Our King sends financial aid
+event = {
+	id = 48015 #triggered bu ENG_21098 A
+	random = no
+	country = HAN
+	name = "EVENTNAME48015" #Our King sends financial aid
+	desc = "EVENTHIST48015"
+	#-#In the personal Union of Hanover and England, it was agreed to keep separate budgets for both countries and the King was not allowed to shift Hanoveranian expenses to the English tax and vice versa. Yet King Georg I and King Georg II felt strong ties to Hanover and tried secretly to transfer some funds to the German administration and to pension of Hanoveranian officials with English money. As the Taxes collected in England were watched closely by the parliament, the King relied on the Irish Tax, which was not watched very closely.
+
+	action_a = {
+		name = "ACTIONNAME48015A" #God bless King Georg
+		command = { type = treasury value = 75 }
+	}
+}
+#(1714-1760) Our King sends financial aid
+event = {
+	id = 48017 #triggered bu ENG_21099 A
+	random = no
+	country = HAN
+	name = "EVENTNAME48015" #Our King sends financial aid
+	desc = "EVENTHIST48015"
+	#-#In the personal Union of Hanover and England, it was agreed to keep separate budgets for both countries and the King was not allowed to shift Hanoveranian expenses to the English tax and vice versa. Yet King Georg I and King Georg II felt strong ties to Hanover and tried secretly to transfer some funds to the German administration and to pension of Hanoveranian officials with English money. As the Taxes collected in England were watched closely by the parliament, the King relied on the Irish Tax, which was not watched very closely.
+
+	action_a = {
+		name = "ACTIONNAME48015A" #God bless King Georg
+		command = { type = treasury value = 75 }
+	}
+}
+#(1714-1760) Our King sends financial aid
+event = {
+	id = 48019 #triggered bu ENG_21100 A
+	random = no
+	country = HAN
+	name = "EVENTNAME48015" #Our King sends financial aid
+	desc = "EVENTHIST48015"
+	#-#In the personal Union of Hanover and England, it was agreed to keep separate budgets for both countries and the King was not allowed to shift Hanoveranian expenses to the English tax and vice versa. Yet King Georg I and King Georg II felt strong ties to Hanover and tried secretly to transfer some funds to the German administration and to pension of Hanoveranian officials with English money. As the Taxes collected in England were watched closely by the parliament, the King relied on the Irish Tax, which was not watched very closely.
+
+	action_a = {
+		name = "ACTIONNAME48015A" #God bless King Georg
+		command = { type = treasury value = 75 }
+	}
+}
+#(1714-1760) Our King sends financial aid
+event = {
+	id = 48021 #triggered bu ENG_21101 A
+	random = no
+	country = HAN
+	name = "EVENTNAME48015" #Our King sends financial aid
+	desc = "EVENTHIST48015"
+	#-#In the personal Union of Hanover and England, it was agreed to keep separate budgets for both countries and the King was not allowed to shift Hanoveranian expenses to the English tax and vice versa. Yet King Georg I and King Georg II felt strong ties to Hanover and tried secretly to transfer some funds to the German administration and to pension of Hanoveranian officials with English money. As the Taxes collected in England were watched closely by the parliament, the King relied on the Irish Tax, which was not watched very closely.
+
+	action_a = {
+		name = "ACTIONNAME48015A" #God bless King Georg
+		command = { type = treasury value = 75 }
+	}
+}
+#(1714-1760) Our King sends financial aid
+event = {
+	id = 48023 #triggered bu ENG_21102 A
+	random = no
+	country = HAN
+	name = "EVENTNAME48015" #Our King sends financial aid
+	desc = "EVENTHIST48015"
+	#-#In the personal Union of Hanover and England, it was agreed to keep separate budgets for both countries and the King was not allowed to shift Hanoveranian expenses to the English tax and vice versa. Yet King Georg I and King Georg II felt strong ties to Hanover and tried secretly to transfer some funds to the German administration and to pension of Hanoveranian officials with English money. As the Taxes collected in England were watched closely by the parliament, the King relied on the Irish Tax, which was not watched very closely.
+
+	action_a = {
+		name = "ACTIONNAME48015A" #God bless King Georg
+		command = { type = treasury value = 75 }
+	}
+}
+
+#(1728-1730) An excellent minister
+event = {
+	id = 48024
+	random = no
+	country = HAN
+	name = "EVENTNAME48024" #An excellent minister
+	desc = "EVENTHIST48024"
+	#-#Gerlach Adolph, Freiherr von Münchhausen was appointed to the Hanoveranian secret council in 1728 and dominated the Hanoveranian government for almost 50 years. He tried to keep an independent Hanoveranian diplomacy alive, but had to accept that most monarchs would rather communicate with the English ambassador. The most feared scenario was that a major European power could attack Hanover as revenge against an England that was out of reach. Against English plans, Münchhausen managed to avoid an alliance with the isolated Prussians and keep a neutral position in Germany up to the start of the seven years war.
+
+	date = { day = 1 month = january year = 1728 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1730 }
+
+	action_a = {
+		name = "ACTIONNAME48024A" #Appoint him
+		command = { type = DIP which = 3 value = 420 }
+		command = { type = ADM which = 1 value = 420 }
+		command = { type = MIL which = 2 value = 420 }
+	}
+}
+
+#(1734) A school for our children
+event = {
+	id = 48026
+	trigger = { event = 48024 }
+	random = no
+	country = HAN
+	name = "EVENTNAME48026" #A school for our children
+	desc = "EVENTHIST48026"
+	#-#Muenchhausen's greatest achievement was the foundation of the university of Goettingen.
+
+	date = { day = 1 month = january year = 1734 }
+	offset = 70
+	deathdate = { day = 29 month = december year = 1734 }
+
+	action_a = {
+		name = "ACTIONNAME48026A" #Let us build the university
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = infra value = 500 }
+		command = { type = treasury value = -200 }
+	}
+	action_b = {
+		name = "ACTIONNAME48026B" #Let us build a new church instead
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = conversion which = -1 }
+		command = { type = missionaries value = 1 }
+		command = { type = treasury value = -200 }
+	}
+	action_c = {
+		name = "ACTIONNAME48026C" #We are a poor country and cannot afford great investments
+		command = { type = vp value = -5 }
+	}
+}
+
+#(1757) William Pitt the Elder
+event = {
+	id = 48025
+	trigger = {
+		event = 3044
+		vassal = { country = ENG country = HAN }
+	}
+	random = no
+	country = HAN
+	name = "EVENTNAME48025" #William Pitt the Elder
+	desc = "EVENTHIST48025"
+	#-#As William Pitt kept a strong contempt for Hanover, England began to dominate Hanoveranian foreign relations to a point that threatend the mere existence of Hanover. He drove Hanover into an unhappy alliance with Prussia, but refused to send English reinforcements as the Hanoveranian army was left alone by the Prussians after Friedrich lost the battle of Kolin. Heavily outnumbered by a French invasion force, they had to withdraw and left most parts of Hanover under French occupation. When Pitt finally decided to send English troops after Friedrichs victory at Roßbach, the northern German army was under English control with a Prussian general and fought for English and Prussian aims, not for Hanover. The end of the war brought poverty and almost destruction to Hanover, but immense wealth and colonial power to England. In these days Hanoveranian sympathy for England was at low tide and King Georg II asked the Hanoveranian secret council if it was time to break the personal union.
+
+	date = { day = 1 month = january year = 1757 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1758 }
+
+	action_a = {
+		name = "ACTIONNAME48025A" #Keep the Union
+		command = { type = relation which = ENG value = -50 }
+		command = { type = dynastic which = ENG }
+		command = { type = wakeleader which = 057304 } ##Prince Ferdinand of Brunswick served the Prussian army and was later transfered to command the English army of northern Germany in the seven years war. There is no reason to have him as a Hanoveranian general, when Hanover is not in Union with England or chooses to break the union. I made him dormant in the leaderfile.## #Ferdinand (HAN)
+	}
+	action_b = {
+		name = "ACTIONNAME48025B" #It is time to go separate ways
+		command = { type = breakvassal which = ENG }
+		command = { type = relation which = ENG value = -100 }
+		command = { type = relation which = PRU value = -50 }
+		command = { type = relation which = BRA value = -50 }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = HAB value = 50 }
+	}
+}
+
+#(1779) Lessing publishes Nathan der Weise
+#by Twoflower
+event = {
+	id = 181003
+	random = no
+	country = HAN
+	name = "EVENTNAME181003" #Gotthold Ephraim Lessing
+	desc = "EVENTHIST331048"
+	#-#Gotthold Ephraim Lessing was one of the most influential figures of the Enlightenment in Germany and can be considered the father of the modern German theater and literary criticism. Born in Upper Lusatia in 1729, he came in contact with literature and philosophy at the university of Meissen. After working quite unsuccessfully as a playwright and literary critic in Leipzig, Berlin, Breslau and Hamburg, he finally got an office as librarian in Wolfenbüttel, paid by his patron, the Elector of Hanover. He was strongly influenced by classic poetry and dramaturgy and, especially, by Shakespeare and wanted German theater to follow these ideals instead of the French classical theater. While he tried to contribute to the establishment of a German national theater in Hamburg between 1766-1769 (which eventually failed), he wrote down his ideas of a drama true to the spirit of Aristotelian dramatic unities and devoted to spread the ideas of the Enlightenment in the Hamburgische Dramaturgie. According to him, the audience should be made to identify with the actors through pity and fear, and, witnessing the catastrophic outcome, be freed from unnatural desires and emotions. He opposed simple, unrealistic black-and-white characters and introduced more ambivalent personalities in his plays. Most of them were set in a middle-class environment and advocate the ideals of the burghers, thus following Lessing's idea of the Bürgerliches Trauerspiel. His most famous plays are Miss Sara Sampson (1755), Minna von Barnhelm (1763), Emilia Galotti (1772) and Nathan der Weise (1779), the last being the most prominent one due to its controversial plea for tolerance and religous freedom. Lessing was also important as a merciless and aggressive literary critic, the first who in a brillant way honestly expressed his opinion of contemporary literature.
+
+	date = { day = 1 month = january year = 1779 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1779 }
+
+	action_a = {
+		name = "ACTIONNAME181003A" #What a great writer
+		command = { type = infra value = 50 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 181004

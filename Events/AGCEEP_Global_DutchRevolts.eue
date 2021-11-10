@@ -1,0 +1,3803 @@
+#Dutch revolt Events
+
+#-----------------------------------------------------------------------------------------------
+#(1560-1571) Dutch Nobility demands General Estates
+
+#Friesen version
+event = {
+	id = 337020
+	trigger = {
+		NOT = {
+			AND = {
+				NOT = {
+					core = { province = 385 data = -1 } #Ile de France - not exempt FRA
+					AND = {
+						core = { province = 387 data = -1 } #Franche Comte - not exempt SPA, BUR and HAB
+						NOT = { #BUR exempted under conditions
+							AND = {
+								flag = [Lowlands]
+								exists = HOL
+							}
+						}
+					}
+					core = { province = 371 data = -1 } #Tirol, plugs a hole for HAB
+				}
+				AND = {
+					OR = {
+						core = { province = 337 data = -1 } #exempt FRI
+						core = { province = 338 data = -1 } #exempt GEL
+						core = { province = 378 data = -1 } #exempt HAU
+						core = { province = 377 data = -1 } #exempt LUX
+					}
+					NOT = { flag = [DutchClaim] } #not exempt PFA, MUN and KLE
+				}
+			}
+		}
+		NOT = {
+			AND = {
+				OR = {
+					religion = catholic
+					religion = counterreform
+				}
+				domestic = { type = innovative value = 8 } #exempt catholics if innovative
+			}
+		}
+		NOT = { flag = [DutGenEst] } #So it doesn't happen twice for the same country
+		NOT = {
+			AND = {
+				OR = {
+					religion = protestant
+					religion = reformed
+				}
+				NOT = {
+					domestic = { type = centralization value = 4 } #exempt protestants if decentralized
+				}
+			}
+		}
+	}
+	random = no
+	province = 337 #Friesen
+	name = "EVENTNAME_DUTCHNOBILITY" #Dutch Nobility demands General Estates
+	desc = "EVENTHIST_DUTCHNOBILITY"
+	#-#In 1566 Dutch Nobles came to the King in an effort to stop the persecution of the Inquisition and to let the General Estates convene. The only answer they got was from the Count de Barlaymont who said 'Ces Gueux' (These Beggars!) in a spiteful voice. The Dutch took to that name with pride, calling themselves 'The Geuses'. One of the effects of the insulting denial was that in several cities churches were stormed, destroying relics and paintings. Knowing the effect on the King, William of Oranien tried to stop these acts of violence, but it was futile. The grass had caught fire...
+
+	date = { day = 1 month = january year = 1560 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1576 } #extended for possible inheritance of Friesland by Oldenburg
+
+	action_a = {
+		name = "ACTIONNAME_DUTCHNOBILITYA" #No Concessions
+		command = { type = province_revoltrisk which = 337 value = 10 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 10 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 10 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 10 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = 7 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = 7 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = 7 } #Artois
+		command = { type = province_revoltrisk which = 380 value = 7 } #Flandern
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = treasury value = 300 }
+		command = { type = stability value = 1 }
+		command = { type = setflag which = [DutGenEst] }
+	}
+	action_b = {
+		name = "ACTIONNAME_DUTCHNOBILITYB" #Grant Concessions
+		command = { type = province_revoltrisk which = 337 value = 5 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 5 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 5 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 5 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = 2 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = 2 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = 2 } #Artois
+		command = { type = province_revoltrisk which = 380 value = 2 } #Flandern
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = treasury value = -800 }
+		command = { type = stability value = -2 }
+		command = { type = setflag which = [DutGenEst] }
+		command = { type = setflag which = [DutGenEstCvd] }
+	}
+}
+
+#Geldre version
+event = {
+	id = 337021
+	trigger = {
+		NOT = {
+			AND = {
+				NOT = {
+					core = { province = 385 data = -1 } #Ile de France - not exempt FRA
+					AND = {
+						core = { province = 387 data = -1 } #Franche Comte - not exempt SPA, BUR and HAB
+						NOT = { #BUR exempted under conditions
+							AND = {
+								flag = [Lowlands]
+								exists = HOL
+							}
+						}
+					}
+					core = { province = 371 data = -1 } #Tirol, plugs a hole for HAB
+				}
+				AND = {
+					OR = {
+						core = { province = 337 data = -1 } #exempt FRI
+						core = { province = 338 data = -1 } #exempt GEL
+						core = { province = 378 data = -1 } #exempt HAU
+						core = { province = 377 data = -1 } #exempt LUX
+					}
+					NOT = { flag = [DutchClaim] } #not exempt PFA, MUN and KLE
+				}
+			}
+		}
+		NOT = {
+			AND = {
+				OR = {
+					religion = catholic
+					religion = counterreform
+				}
+				domestic = { type = innovative value = 8 } #exempt catholics if innovative
+			}
+		}
+		NOT = { flag = [DutGenEst] } #So it doesn't happen twice for the same country
+		NOT = {
+			AND = {
+				OR = {
+					religion = protestant
+					religion = reformed
+				}
+				NOT = {
+					domestic = { type = centralization value = 4 } #exempt protestants if decentralized
+				}
+			}
+		}
+	}
+	random = no
+	province = 338 #Gelre
+	name = "EVENTNAME_DUTCHNOBILITY" #Dutch Nobility demands General Estates
+	desc = "EVENTHIST_DUTCHNOBILITY"
+	#-#In 1566 Dutch Nobles came to the King in an effort to stop the persecution of the Inquisition and to let the General Estates convene. The only answer they got was from the Count de Barlaymont who said 'Ces Gueux' (These Beggars!) in a spiteful voice. The Dutch took to that name with pride, calling themselves 'The Geuses'. One of the effects of the insulting denial was that in several cities churches were stormed, destroying relics and paintings. Knowing the effect on the King, William of Oranien tried to stop these acts of violence, but it was futile. The grass had caught fire...
+
+	date = { day = 1 month = february year = 1560 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1571 }
+
+	action_a = {
+		name = "ACTIONNAME_DUTCHNOBILITYA" #No Concessions
+		command = { type = province_revoltrisk which = 337 value = 10 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 10 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 10 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 10 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = 7 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = 7 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = 7 } #Artois
+		command = { type = province_revoltrisk which = 380 value = 7 } #Flandern
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = treasury value = 300 }
+		command = { type = stability value = 1 }
+		command = { type = setflag which = [DutGenEst] }
+	}
+	action_b = {
+		name = "ACTIONNAME_DUTCHNOBILITYB" #Grant Concessions
+		command = { type = province_revoltrisk which = 337 value = 5 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 5 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 5 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 5 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = 2 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = 2 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = 2 } #Artois
+		command = { type = province_revoltrisk which = 380 value = 2 } #Flandern
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = treasury value = -800 }
+		command = { type = stability value = -2 }
+		command = { type = setflag which = [DutGenEst] }
+		command = { type = setflag which = [DutGenEstCvd] }
+	}
+}
+
+#Holland version
+event = {
+	id = 337022
+	trigger = {
+		NOT = {
+			AND = {
+				NOT = {
+					core = { province = 385 data = -1 } #Ile de France - not exempt FRA
+					AND = {
+						core = { province = 387 data = -1 } #Franche Comte - not exempt SPA, BUR and HAB
+						NOT = { #BUR exempted under conditions
+							AND = {
+								flag = [Lowlands]
+								exists = HOL
+							}
+						}
+					}
+					core = { province = 371 data = -1 } #Tirol, plugs a hole for HAB
+				}
+				AND = {
+					OR = {
+						core = { province = 337 data = -1 } #exempt FRI
+						core = { province = 338 data = -1 } #exempt GEL
+						core = { province = 378 data = -1 } #exempt HAU
+						core = { province = 377 data = -1 } #exempt LUX
+					}
+					NOT = { flag = [DutchClaim] } #not exempt PFA, MUN and KLE
+				}
+			}
+		}
+		NOT = {
+			AND = {
+				OR = {
+					religion = catholic
+					religion = counterreform
+				}
+				domestic = { type = innovative value = 8 } #exempt catholics if innovative
+			}
+		}
+		NOT = { flag = [DutGenEst] } #So it doesn't happen twice for the same country
+		NOT = {
+			AND = {
+				OR = {
+					religion = protestant
+					religion = reformed
+				}
+				NOT = {
+					domestic = { type = centralization value = 4 } #exempt protestants if decentralized
+				}
+			}
+		}
+	}
+	random = no
+	province = 339 #Holland
+	name = "EVENTNAME_DUTCHNOBILITY" #Dutch Nobility demands General Estates
+	desc = "EVENTHIST_DUTCHNOBILITY"
+	#-#In 1566 Dutch Nobles came to the King in an effort to stop the persecution of the Inquisition and to let the General Estates convene. The only answer they got was from the Count de Barlaymont who said 'Ces Gueux' (These Beggars!) in a spiteful voice. The Dutch took to that name with pride, calling themselves 'The Geuses'. One of the effects of the insulting denial was that in several cities churches were stormed, destroying relics and paintings. Knowing the effect on the King, William of Oranien tried to stop these acts of violence, but it was futile. The grass had caught fire...
+
+	date = { day = 1 month = march year = 1560 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1571 }
+
+	action_a = {
+		name = "ACTIONNAME_DUTCHNOBILITYA" #No Concessions
+		command = { type = province_revoltrisk which = 337 value = 10 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 10 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 10 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 10 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = 7 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = 7 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = 7 } #Artois
+		command = { type = province_revoltrisk which = 380 value = 7 } #Flandern
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = treasury value = 300 }
+		command = { type = stability value = 1 }
+		command = { type = setflag which = [DutGenEst] }
+	}
+	action_b = {
+		name = "ACTIONNAME_DUTCHNOBILITYB" #Grant Concessions
+		command = { type = province_revoltrisk which = 337 value = 5 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 5 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 5 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 5 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = 2 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = 2 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = 2 } #Artois
+		command = { type = province_revoltrisk which = 380 value = 2 } #Flandern
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = treasury value = -800 }
+		command = { type = stability value = -2 }
+		command = { type = setflag which = [DutGenEst] }
+		command = { type = setflag which = [DutGenEstCvd] }
+	}
+}
+
+#Zeeland version
+event = {
+	id = 337023
+	trigger = {
+		NOT = {
+			AND = {
+				NOT = {
+					core = { province = 385 data = -1 } #Ile de France - not exempt FRA
+					AND = {
+						core = { province = 387 data = -1 } #Franche Comte - not exempt SPA, BUR and HAB
+						NOT = { #BUR exempted under conditions
+							AND = {
+								flag = [Lowlands]
+								exists = HOL
+							}
+						}
+					}
+					core = { province = 371 data = -1 } #Tirol, plugs a hole for HAB
+				}
+				AND = {
+					OR = {
+						core = { province = 337 data = -1 } #exempt FRI
+						core = { province = 338 data = -1 } #exempt GEL
+						core = { province = 378 data = -1 } #exempt HAU
+						core = { province = 377 data = -1 } #exempt LUX
+					}
+					NOT = { flag = [DutchClaim] } #not exempt PFA, MUN and KLE
+				}
+			}
+		}
+		NOT = {
+			AND = {
+				OR = {
+					religion = catholic
+					religion = counterreform
+				}
+				domestic = { type = innovative value = 8 } #exempt catholics if innovative
+			}
+		}
+		NOT = { flag = [DutGenEst] } #So it doesn't happen twice for the same country
+		NOT = {
+			AND = {
+				OR = {
+					religion = protestant
+					religion = reformed
+				}
+				NOT = {
+					domestic = { type = centralization value = 4 } #exempt protestants if decentralized
+				}
+			}
+		}
+	}
+	random = no
+	province = 340 #Zeeland
+	name = "EVENTNAME_DUTCHNOBILITY" #Dutch Nobility demands General Estates
+	desc = "EVENTHIST_DUTCHNOBILITY"
+	#-#In 1566 Dutch Nobles came to the King in an effort to stop the persecution of the Inquisition and to let the General Estates convene. The only answer they got was from the Count de Barlaymont who said 'Ces Gueux' (These Beggars!) in a spiteful voice. The Dutch took to that name with pride, calling themselves 'The Geuses'. One of the effects of the insulting denial was that in several cities churches were stormed, destroying relics and paintings. Knowing the effect on the King, William of Oranien tried to stop these acts of violence, but it was futile. The grass had caught fire...
+
+	date = { day = 1 month = april year = 1560 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1571 }
+
+	action_a = {
+		name = "ACTIONNAME_DUTCHNOBILITYA" #No Concessions
+		command = { type = province_revoltrisk which = 337 value = 10 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 10 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 10 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 10 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = 7 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = 7 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = 7 } #Artois
+		command = { type = province_revoltrisk which = 380 value = 7 } #Flandern
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = treasury value = 300 }
+		command = { type = stability value = 1 }
+		command = { type = setflag which = [DutGenEst] }
+	}
+	action_b = {
+		name = "ACTIONNAME_DUTCHNOBILITYB" #Grant Concessions
+		command = { type = province_revoltrisk which = 337 value = 5 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 5 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 5 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 5 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = 2 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = 2 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = 2 } #Artois
+		command = { type = province_revoltrisk which = 380 value = 2 } #Flandern
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = treasury value = -800 }
+		command = { type = stability value = -2 }
+		command = { type = setflag which = [DutGenEst] }
+		command = { type = setflag which = [DutGenEstCvd] }
+	}
+}
+
+#Luxembourg version
+event = {
+	id = 337024
+	trigger = {
+		NOT = {
+			AND = {
+				NOT = {
+					core = { province = 385 data = -1 } #Ile de France - not exempt FRA
+					AND = {
+						core = { province = 387 data = -1 } #Franche Comte - not exempt SPA, BUR and HAB
+						NOT = { #BUR exempted under conditions
+							AND = {
+								flag = [Lowlands]
+								exists = HOL
+							}
+						}
+					}
+					core = { province = 371 data = -1 } #Tirol, plugs a hole for HAB
+				}
+				AND = {
+					OR = {
+						core = { province = 337 data = -1 } #exempt FRI
+						core = { province = 338 data = -1 } #exempt GEL
+						core = { province = 378 data = -1 } #exempt HAU
+						core = { province = 377 data = -1 } #exempt LUX
+					}
+					NOT = { flag = [DutchClaim] } #not exempt PFA, MUN and KLE
+				}
+			}
+		}
+		NOT = {
+			AND = {
+				OR = {
+					religion = catholic
+					religion = counterreform
+				}
+				domestic = { type = innovative value = 8 } #exempt catholics if innovative
+			}
+		}
+		NOT = { flag = [DutGenEst] } #So it doesn't happen twice for the same country
+		NOT = {
+			AND = {
+				OR = {
+					religion = protestant
+					religion = reformed
+				}
+				NOT = {
+					domestic = { type = centralization value = 4 } #exempt protestants if decentralized
+				}
+			}
+		}
+	}
+	random = no
+	province = 377 #Luxembourg
+	name = "EVENTNAME_DUTCHNOBILITY" #Dutch Nobility demands General Estates
+	desc = "EVENTHIST_DUTCHNOBILITY"
+	#-#In 1566 Dutch Nobles came to the King in an effort to stop the persecution of the Inquisition and to let the General Estates convene. The only answer they got was from the Count de Barlaymont who said 'Ces Gueux' (These Beggars!) in a spiteful voice. The Dutch took to that name with pride, calling themselves 'The Geuses'. One of the effects of the insulting denial was that in several cities churches were stormed, destroying relics and paintings. Knowing the effect on the King, William of Oranien tried to stop these acts of violence, but it was futile. The grass had caught fire...
+
+	date = { day = 1 month = may year = 1560 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1571 }
+
+	action_a = {
+		name = "ACTIONNAME_DUTCHNOBILITYA" #No Concessions
+		command = { type = province_revoltrisk which = 337 value = 10 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 10 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 10 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 10 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = 7 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = 7 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = 7 } #Artois
+		command = { type = province_revoltrisk which = 380 value = 7 } #Flandern
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = treasury value = 300 }
+		command = { type = stability value = 1 }
+		command = { type = setflag which = [DutGenEst] }
+	}
+	action_b = {
+		name = "ACTIONNAME_DUTCHNOBILITYB" #Grant Concessions
+		command = { type = province_revoltrisk which = 337 value = 5 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 5 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 5 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 5 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = 2 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = 2 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = 2 } #Artois
+		command = { type = province_revoltrisk which = 380 value = 2 } #Flandern
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = treasury value = -800 }
+		command = { type = stability value = -2 }
+		command = { type = setflag which = [DutGenEst] }
+		command = { type = setflag which = [DutGenEstCvd] }
+	}
+}
+
+#Brabant version
+event = {
+	id = 337025
+	trigger = {
+		NOT = {
+			AND = {
+				NOT = {
+					core = { province = 385 data = -1 } #Ile de France - not exempt FRA
+					AND = {
+						core = { province = 387 data = -1 } #Franche Comte - not exempt SPA, BUR and HAB
+						NOT = { #BUR exempted under conditions
+							AND = {
+								flag = [Lowlands]
+								exists = HOL
+							}
+						}
+					}
+					core = { province = 371 data = -1 } #Tirol, plugs a hole for HAB
+				}
+				AND = {
+					OR = {
+						core = { province = 337 data = -1 } #exempt FRI
+						core = { province = 338 data = -1 } #exempt GEL
+						core = { province = 378 data = -1 } #exempt HAU
+						core = { province = 377 data = -1 } #exempt LUX
+					}
+					NOT = { flag = [DutchClaim] } #not exempt PFA, MUN and KLE
+				}
+			}
+		}
+		NOT = {
+			AND = {
+				OR = {
+					religion = catholic
+					religion = counterreform
+				}
+				domestic = { type = innovative value = 8 } #exempt catholics if innovative
+			}
+		}
+		NOT = { flag = [DutGenEst] } #So it doesn't happen twice for the same country
+		NOT = {
+			AND = {
+				OR = {
+					religion = protestant
+					religion = reformed
+				}
+				NOT = {
+					domestic = { type = centralization value = 4 } #exempt protestants if decentralized
+				}
+			}
+		}
+	}
+	random = no
+	province = 378 #Brabant
+	name = "EVENTNAME_DUTCHNOBILITY" #Dutch Nobility demands General Estates
+	desc = "EVENTHIST_DUTCHNOBILITY"
+	#-#In 1566 Dutch Nobles came to the King in an effort to stop the persecution of the Inquisition and to let the General Estates convene. The only answer they got was from the Count de Barlaymont who said 'Ces Gueux' (These Beggars!) in a spiteful voice. The Dutch took to that name with pride, calling themselves 'The Geuses'. One of the effects of the insulting denial was that in several cities churches were stormed, destroying relics and paintings. Knowing the effect on the King, William of Oranien tried to stop these acts of violence, but it was futile. The grass had caught fire...
+
+	date = { day = 1 month = june year = 1560 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1571 }
+
+	action_a = {
+		name = "ACTIONNAME_DUTCHNOBILITYA" #No Concessions
+		command = { type = province_revoltrisk which = 337 value = 10 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 10 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 10 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 10 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = 7 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = 7 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = 7 } #Artois
+		command = { type = province_revoltrisk which = 380 value = 7 } #Flandern
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = treasury value = 300 }
+		command = { type = stability value = 1 }
+		command = { type = setflag which = [DutGenEst] }
+	}
+	action_b = {
+		name = "ACTIONNAME_DUTCHNOBILITYB" #Grant Concessions
+		command = { type = province_revoltrisk which = 337 value = 5 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 5 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 5 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 5 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = 2 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = 2 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = 2 } #Artois
+		command = { type = province_revoltrisk which = 380 value = 2 } #Flandern
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = treasury value = -800 }
+		command = { type = stability value = -2 }
+		command = { type = setflag which = [DutGenEst] }
+		command = { type = setflag which = [DutGenEstCvd] }
+	}
+}
+
+#Artois version
+event = {
+	id = 337026
+	trigger = {
+		NOT = {
+			AND = {
+				NOT = {
+					core = { province = 385 data = -1 } #Ile de France - not exempt FRA
+					AND = {
+						core = { province = 387 data = -1 } #Franche Comte - not exempt SPA, BUR and HAB
+						NOT = { #BUR exempted under conditions
+							AND = {
+								flag = [Lowlands]
+								exists = HOL
+							}
+						}
+					}
+					core = { province = 371 data = -1 } #Tirol, plugs a hole for HAB
+					AND = { #not exempt ENG if Jacqueline
+						core = { province = 379 data = -1 }
+						flag = [HollandClaim]
+					}
+				}
+				AND = {
+					OR = {
+						core = { province = 337 data = -1 } #exempt FRI
+						core = { province = 338 data = -1 } #exempt GEL
+						core = { province = 378 data = -1 } #exempt HAU
+						core = { province = 377 data = -1 } #exempt LUX
+					}
+					NOT = { flag = [DutchClaim] } #not exempt PFA, MUN and KLE
+				}
+			}
+		}
+		NOT = {
+			AND = {
+				OR = {
+					religion = catholic
+					religion = counterreform
+				}
+				domestic = { type = innovative value = 8 } #exempt catholics if innovative
+			}
+		}
+		NOT = { flag = [DutGenEst] } #So it doesn't happen twice for the same country
+		NOT = {
+			AND = {
+				OR = {
+					religion = protestant
+					religion = reformed
+				}
+				NOT = {
+					domestic = { type = centralization value = 4 } #exempt protestants if decentralized
+				}
+			}
+		}
+	}
+	random = no
+	province = 379 #Artois
+	name = "EVENTNAME_DUTCHNOBILITY" #Dutch Nobility demands General Estates
+	desc = "EVENTHIST_DUTCHNOBILITY"
+	#-#In 1566 Dutch Nobles came to the King in an effort to stop the persecution of the Inquisition and to let the General Estates convene. The only answer they got was from the Count de Barlaymont who said 'Ces Gueux' (These Beggars!) in a spiteful voice. The Dutch took to that name with pride, calling themselves 'The Geuses'. One of the effects of the insulting denial was that in several cities churches were stormed, destroying relics and paintings. Knowing the effect on the King, William of Oranien tried to stop these acts of violence, but it was futile. The grass had caught fire...
+
+	date = { day = 1 month = july year = 1560 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1571 }
+
+	action_a = {
+		name = "ACTIONNAME_DUTCHNOBILITYA" #No Concessions
+		command = { type = province_revoltrisk which = 337 value = 10 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 10 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 10 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 10 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = 7 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = 7 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = 7 } #Artois
+		command = { type = province_revoltrisk which = 380 value = 7 } #Flandern
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = treasury value = 300 }
+		command = { type = stability value = 1 }
+		command = { type = setflag which = [DutGenEst] }
+	}
+	action_b = {
+		name = "ACTIONNAME_DUTCHNOBILITYB" #Grant Concessions
+		command = { type = province_revoltrisk which = 337 value = 5 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 5 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 5 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 5 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = 2 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = 2 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = 2 } #Artois
+		command = { type = province_revoltrisk which = 380 value = 2 } #Flandern
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = treasury value = -800 }
+		command = { type = stability value = -2 }
+		command = { type = setflag which = [DutGenEst] }
+		command = { type = setflag which = [DutGenEstCvd] }
+	}
+}
+
+#Flandern version
+event = {
+	id = 337027
+	trigger = {
+		NOT = {
+			AND = {
+				NOT = {
+					core = { province = 385 data = -1 } #Ile de France - not exempt FRA
+					AND = {
+						core = { province = 387 data = -1 } #Franche Comte - not exempt SPA, BUR and HAB
+						NOT = { #BUR exempted under conditions
+							AND = {
+								flag = [Lowlands]
+								exists = HOL
+							}
+						}
+					}
+					core = { province = 371 data = -1 } #Tirol, plugs a hole for HAB
+				}
+				AND = {
+					OR = {
+						core = { province = 337 data = -1 } #exempt FRI
+						core = { province = 338 data = -1 } #exempt GEL
+						core = { province = 378 data = -1 } #exempt HAU
+						core = { province = 377 data = -1 } #exempt LUX
+					}
+					NOT = { flag = [DutchClaim] } #not exempt PFA, MUN and KLE
+				}
+			}
+		}
+		NOT = {
+			AND = {
+				OR = {
+					religion = catholic
+					religion = counterreform
+				}
+				domestic = { type = innovative value = 8 } #exempt catholics if innovative
+			}
+		}
+		NOT = { flag = [DutGenEst] } #So it doesn't happen twice for the same country
+		NOT = {
+			AND = {
+				OR = {
+					religion = protestant
+					religion = reformed
+				}
+				NOT = {
+					domestic = { type = centralization value = 4 } #exempt protestants if decentralized
+				}
+			}
+		}
+	}
+	random = no
+	province = 380 #Flandern
+	name = "EVENTNAME_DUTCHNOBILITY" #Dutch Nobility demands General Estates
+	desc = "EVENTHIST_DUTCHNOBILITY"
+	#-#In 1566 Dutch Nobles came to the King in an effort to stop the persecution of the Inquisition and to let the General Estates convene. The only answer they got was from the Count de Barlaymont who said 'Ces Gueux' (These Beggars!) in a spiteful voice. The Dutch took to that name with pride, calling themselves 'The Geuses'. One of the effects of the insulting denial was that in several cities churches were stormed, destroying relics and paintings. Knowing the effect on the King, William of Oranien tried to stop these acts of violence, but it was futile. The grass had caught fire...
+
+	date = { day = 1 month = august year = 1560 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1571 }
+
+	action_a = {
+		name = "ACTIONNAME_DUTCHNOBILITYA" #No Concessions
+		command = { type = province_revoltrisk which = 337 value = 10 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 10 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 10 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 10 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = 7 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = 7 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = 7 } #Artois
+		command = { type = province_revoltrisk which = 380 value = 7 } #Flandern
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = treasury value = 300 }
+		command = { type = stability value = 1 }
+		command = { type = setflag which = [DutGenEst] }
+	}
+	action_b = {
+		name = "ACTIONNAME_DUTCHNOBILITYB" #Grant Concessions
+		command = { type = province_revoltrisk which = 337 value = 5 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 5 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 5 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 5 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = 2 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = 2 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = 2 } #Artois
+		command = { type = province_revoltrisk which = 380 value = 2 } #Flandern
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = treasury value = -800 }
+		command = { type = stability value = -2 }
+		command = { type = setflag which = [DutGenEst] }
+		command = { type = setflag which = [DutGenEstCvd] }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#(1560-1600) Nobles Demand Rights
+
+#Friesen version
+event = {
+	id = 337064
+	trigger = {
+		countrysize = 15
+		flag = [DutGenEstCvd]
+		NOT = { flag = [NblDmdRht] } #So it doesn't happen twice for the same country
+	}
+	random = no
+	province = 337 #Friesen
+	name = "EVENTNAME_DUTCHNOBLES" #Nobles Demand Rights
+	desc = "EVENTHIST_DUTCHNOBLES"
+	#-#By caving into the Dutch demands for lower taxes at more local rule, a dangerous precedent was set. Throughout the empire, various states would step forth demanding that they be allowed the privileges that had been granted to the Dutch. Granting them the same benefits would severely limit the powers of the Crown.
+
+	date = { day = 1 month = january year = 1560 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1600 }
+
+	action_a = {
+		name = "ACTIONNAME_DUTCHNOBILITYA" #No Concessions
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 60 value = 7 }
+		command = { type = setflag which = [NblDmdRht] }
+	}
+	action_b = {
+		name = "ACTIONNAME_DUTCHNOBILITYB" #Grant Concessions
+		command = { type = domestic which = CENTRALIZATION value = -3 }
+		command = { type = treasury value = -400 }
+		command = { type = stability value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = setflag which = [NblDmdRht] }
+	}
+}
+
+#Gelre version
+event = {
+	id = 337065
+	trigger = {
+		countrysize = 15
+		flag = [DutGenEstCvd]
+		NOT = { flag = [NblDmdRht] } #So it doesn't happen twice for the same country
+	}
+	random = no
+	province = 338 #Gelre
+	name = "EVENTNAME_DUTCHNOBLES" #Nobles Demand Rights
+	desc = "EVENTHIST_DUTCHNOBLES"
+	#-#By caving into the Dutch demands for lower taxes at more local rule, a dangerous precedent was set. Throughout the empire, various states would step forth demanding that they be allowed the privileges that had been granted to the Dutch. Granting them the same benefits would severely limit the powers of the Crown.
+
+	date = { day = 1 month = january year = 1560 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1600 }
+
+	action_a = {
+		name = "ACTIONNAME_DUTCHNOBILITYA" #No Concessions
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 60 value = 7 }
+		command = { type = setflag which = [NblDmdRht] }
+	}
+	action_b = {
+		name = "ACTIONNAME_DUTCHNOBILITYB" #Grant Concessions
+		command = { type = domestic which = CENTRALIZATION value = -3 }
+		command = { type = treasury value = -400 }
+		command = { type = stability value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = setflag which = [NblDmdRht] }
+	}
+}
+
+#Holland version
+event = {
+	id = 337066
+	trigger = {
+		countrysize = 15
+		flag = [DutGenEstCvd]
+		NOT = { flag = [NblDmdRht] } #So it doesn't happen twice for the same country
+	}
+	random = no
+	province = 339 #Holland
+	name = "EVENTNAME_DUTCHNOBLES" #Nobles Demand Rights
+	desc = "EVENTHIST_DUTCHNOBLES"
+	#-#By caving into the Dutch demands for lower taxes at more local rule, a dangerous precedent was set. Throughout the empire, various states would step forth demanding that they be allowed the privileges that had been granted to the Dutch. Granting them the same benefits would severely limit the powers of the Crown.
+
+	date = { day = 1 month = january year = 1560 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1600 }
+
+	action_a = {
+		name = "ACTIONNAME_DUTCHNOBILITYA" #No Concessions
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 60 value = 7 }
+		command = { type = setflag which = [NblDmdRht] }
+	}
+	action_b = {
+		name = "ACTIONNAME_DUTCHNOBILITYB" #Grant Concessions
+		command = { type = domestic which = CENTRALIZATION value = -3 }
+		command = { type = treasury value = -400 }
+		command = { type = stability value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = setflag which = [NblDmdRht] }
+	}
+}
+
+#Zeeland version
+event = {
+	id = 337067
+	trigger = {
+		countrysize = 15
+		flag = [DutGenEstCvd]
+		NOT = { flag = [NblDmdRht] } #So it doesn't happen twice for the same country
+	}
+	random = no
+	province = 340 #Zeeland
+	name = "EVENTNAME_DUTCHNOBLES" #Nobles Demand Rights
+	desc = "EVENTHIST_DUTCHNOBLES"
+	#-#By caving into the Dutch demands for lower taxes at more local rule, a dangerous precedent was set. Throughout the empire, various states would step forth demanding that they be allowed the privileges that had been granted to the Dutch. Granting them the same benefits would severely limit the powers of the Crown.
+
+	date = { day = 1 month = january year = 1560 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1600 }
+
+	action_a = {
+		name = "ACTIONNAME_DUTCHNOBILITYA" #No Concessions
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 60 value = 7 }
+		command = { type = setflag which = [NblDmdRht] }
+	}
+	action_b = {
+		name = "ACTIONNAME_DUTCHNOBILITYB" #Grant Concessions
+		command = { type = domestic which = CENTRALIZATION value = -3 }
+		command = { type = treasury value = -400 }
+		command = { type = stability value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = setflag which = [NblDmdRht] }
+	}
+}
+
+#Luxembourg version
+event = {
+	id = 337068
+	trigger = {
+		countrysize = 15
+		flag = [DutGenEstCvd]
+		NOT = { flag = [NblDmdRht] } #So it doesn't happen twice for the same country
+	}
+	random = no
+	province = 377 #Luxembourg
+	name = "EVENTNAME_DUTCHNOBLES" #Nobles Demand Rights
+	desc = "EVENTHIST_DUTCHNOBLES"
+	#-#By caving into the Dutch demands for lower taxes at more local rule, a dangerous precedent was set. Throughout the empire, various states would step forth demanding that they be allowed the privileges that had been granted to the Dutch. Granting them the same benefits would severely limit the powers of the Crown.
+
+	date = { day = 1 month = january year = 1560 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1600 }
+
+	action_a = {
+		name = "ACTIONNAME_DUTCHNOBILITYA" #No Concessions
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 60 value = 7 }
+		command = { type = setflag which = [NblDmdRht] }
+	}
+	action_b = {
+		name = "ACTIONNAME_DUTCHNOBILITYB" #Grant Concessions
+		command = { type = domestic which = CENTRALIZATION value = -3 }
+		command = { type = treasury value = -400 }
+		command = { type = stability value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = setflag which = [NblDmdRht] }
+	}
+}
+
+#Brabant version
+event = {
+	id = 337069
+	trigger = {
+		countrysize = 15
+		flag = [DutGenEstCvd]
+		NOT = { flag = [NblDmdRht] } #So it doesn't happen twice for the same country
+	}
+	random = no
+	province = 378 #Brabant
+	name = "EVENTNAME_DUTCHNOBLES" #Nobles Demand Rights
+	desc = "EVENTHIST_DUTCHNOBLES"
+	#-#By caving into the Dutch demands for lower taxes at more local rule, a dangerous precedent was set. Throughout the empire, various states would step forth demanding that they be allowed the privileges that had been granted to the Dutch. Granting them the same benefits would severely limit the powers of the Crown.
+
+	date = { day = 1 month = january year = 1560 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1600 }
+
+	action_a = {
+		name = "ACTIONNAME_DUTCHNOBILITYA" #No Concessions
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 60 value = 7 }
+		command = { type = setflag which = [NblDmdRht] }
+	}
+	action_b = {
+		name = "ACTIONNAME_DUTCHNOBILITYB" #Grant Concessions
+		command = { type = domestic which = CENTRALIZATION value = -3 }
+		command = { type = treasury value = -400 }
+		command = { type = stability value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = setflag which = [NblDmdRht] }
+	}
+}
+
+#Artois version
+event = {
+	id = 337070
+	trigger = {
+		countrysize = 15
+		flag = [DutGenEstCvd]
+		NOT = { flag = [NblDmdRht] } #So it doesn't happen twice for the same country
+	}
+	random = no
+	province = 379 #Artois
+	name = "EVENTNAME_DUTCHNOBLES" #Nobles Demand Rights
+	desc = "EVENTHIST_DUTCHNOBLES"
+	#-#By caving into the Dutch demands for lower taxes at more local rule, a dangerous precedent was set. Throughout the empire, various states would step forth demanding that they be allowed the privileges that had been granted to the Dutch. Granting them the same benefits would severely limit the powers of the Crown.
+
+	date = { day = 1 month = january year = 1560 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1600 }
+
+	action_a = {
+		name = "ACTIONNAME_DUTCHNOBILITYA" #No Concessions
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 60 value = 7 }
+		command = { type = setflag which = [NblDmdRht] }
+	}
+	action_b = {
+		name = "ACTIONNAME_DUTCHNOBILITYB" #Grant Concessions
+		command = { type = domestic which = CENTRALIZATION value = -3 }
+		command = { type = treasury value = -400 }
+		command = { type = stability value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = setflag which = [NblDmdRht] }
+	}
+}
+
+#Flandern version
+event = {
+	id = 337071
+	trigger = {
+		countrysize = 15
+		flag = [DutGenEstCvd]
+		NOT = { flag = [NblDmdRht] } #So it doesn't happen twice for the same country
+	}
+	random = no
+	province = 380 #Flandern
+	name = "EVENTNAME_DUTCHNOBLES" #Nobles Demand Rights
+	desc = "EVENTHIST_DUTCHNOBLES"
+	#-#By caving into the Dutch demands for lower taxes at more local rule, a dangerous precedent was set. Throughout the empire, various states would step forth demanding that they be allowed the privileges that had been granted to the Dutch. Granting them the same benefits would severely limit the powers of the Crown.
+
+	date = { day = 1 month = january year = 1560 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1600 }
+
+	action_a = {
+		name = "ACTIONNAME_DUTCHNOBILITYA" #No Concessions
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 60 value = 7 }
+		command = { type = setflag which = [NblDmdRht] }
+	}
+	action_b = {
+		name = "ACTIONNAME_DUTCHNOBILITYB" #Grant Concessions
+		command = { type = domestic which = CENTRALIZATION value = -3 }
+		command = { type = treasury value = -400 }
+		command = { type = stability value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = setflag which = [NblDmdRht] }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#(1566-1576) The Edict of Blood
+
+#Friesen version
+event = {
+	id = 337028
+	trigger = {
+		NOT = {
+			AND = {
+				NOT = {
+					core = { province = 385 data = -1 } #Ile de France - not exempt FRA
+					AND = {
+						core = { province = 387 data = -1 } #Franche Comte - not exempt SPA, BUR and HAB
+						NOT = { #BUR exempted under conditions
+							AND = {
+								flag = [Lowlands]
+								exists = HOL
+							}
+						}
+					}
+					core = { province = 371 data = -1 } #Tirol, plugs a hole for HAB
+				}
+				AND = {
+					OR = {
+						core = { province = 337 data = -1 } #exempt FRI
+						core = { province = 338 data = -1 } #exempt GEL
+						core = { province = 378 data = -1 } #exempt HAU
+						core = { province = 377 data = -1 } #exempt LUX
+					}
+					NOT = { flag = [DutchClaim] } #not exempt PFA, MUN and KLE
+				}
+			}
+		}
+		OR = { #have to be catholic for this one
+			religion = catholic
+			religion = counterreform
+		}
+		NOT = { domestic = { type = innovative value = 8 } }
+		flag = [DutGenEst] #Only get this one if you had Dutch Nobles Demand general Estates
+		NOT = { flag = [EdictBlood] } #can't get it twice
+	}
+	random = no
+	province = 337 #Friesen
+	name = "EVENTNAME_EDICTBLOOD" #Edict of Blood
+	desc = "EVENTHIST_EDICTBLOOD"
+	#-#In 1567 elite troops were brought in determined to break the Dutch Insurrection. The Edict of Blood was issued, which allowed the army to create a harsh military dictatorship with mass-arrests and courts of honour as a daily routine. The Terror of the Inquisition was intensified and hundreds of people were executed. In 1568 the counts of Hoorn and Egmont were arrested and executed making William of Oranien the only leader left to take up the flag. In 1570 the army introduced a 10 percent tax even as the Dutch had paid a two-year tax that the General estates had agreed upon on the promise of no more extra taxes. A General Strike spread in the Netherlands...In 1573 it was clear that the elite army had failed to subjugate the Dutch.
+
+	date = { day = 1 month = january year = 1565 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1576 }
+
+	action_a = {
+		name = "ACTIONNAME_EDICTBLOODA" #No Concessions
+		command = { type = province_revoltrisk which = 337 value = 10 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 10 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 10 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 10 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = 5 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = 5 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = 5 } #Artois
+		command = { type = province_revoltrisk which = 380 value = 5 } #Flandern
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = treasury value = 300 }
+		command = { type = stability value = 1 }
+		command = { type = setflag which = [EdictBlood] }
+	}
+	action_b = {
+		name = "ACTIONNAME_EDICTBLOODB" #Don't introduce that Consumption Tax
+		command = { type = province_revoltrisk which = 337 value = 5 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 5 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 5 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 5 } #Zeeland
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = treasury value = -500 }
+		command = { type = stability value = -2 }
+		command = { type = setflag which = [EdictBlood] }
+	}
+}
+
+#Geldre version
+event = {
+	id = 337029
+	trigger = {
+		NOT = {
+			AND = {
+				NOT = {
+					core = { province = 385 data = -1 } #Ile de France - not exempt FRA
+					AND = {
+						core = { province = 387 data = -1 } #Franche Comte - not exempt SPA, BUR and HAB
+						NOT = { #BUR exempted under conditions
+							AND = {
+								flag = [Lowlands]
+								exists = HOL
+							}
+						}
+					}
+					core = { province = 371 data = -1 } #Tirol, plugs a hole for HAB
+				}
+				AND = {
+					OR = {
+						core = { province = 337 data = -1 } #exempt FRI
+						core = { province = 338 data = -1 } #exempt GEL
+						core = { province = 378 data = -1 } #exempt HAU
+						core = { province = 377 data = -1 } #exempt LUX
+					}
+					NOT = { flag = [DutchClaim] } #not exempt PFA, MUN and KLE
+				}
+			}
+		}
+		OR = { #have to be catholic for this one
+			religion = catholic
+			religion = counterreform
+		}
+		NOT = { domestic = { type = innovative value = 8 } }
+		flag = [DutGenEst] #Only get this one if you had Dutch Nobles Demand general Estates
+		NOT = { flag = [EdictBlood] } #can't get it twice
+	}
+	random = no
+	province = 338 #Gelre
+	name = "EVENTNAME_EDICTBLOOD" #Edict of Blood
+	desc = "EVENTHIST_EDICTBLOOD"
+	#-#In 1567 elite troops were brought in determined to break the Dutch Insurrection. The Edict of Blood was issued, which allowed the army to create a harsh military dictatorship with mass-arrests and courts of honour as a daily routine. The Terror of the Inquisition was intensified and hundreds of people were executed. In 1568 the counts of Hoorn and Egmont were arrested and executed making William of Oranien the only leader left to take up the flag. In 1570 the army introduced a 10 percent tax even as the Dutch had paid a two-year tax that the General estates had agreed upon on the promise of no more extra taxes. A General Strike spread in the Netherlands...In 1573 it was clear that the elite army had failed to subjugate the Dutch.
+
+	date = { day = 1 month = february year = 1565 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1576 }
+
+	action_a = {
+		name = "ACTIONNAME_EDICTBLOODA" #No Concessions
+		command = { type = province_revoltrisk which = 337 value = 10 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 10 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 10 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 10 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = 5 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = 5 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = 5 } #Artois
+		command = { type = province_revoltrisk which = 380 value = 5 } #Flandern
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = treasury value = 300 }
+		command = { type = stability value = 1 }
+		command = { type = setflag which = [EdictBlood] }
+	}
+	action_b = {
+		name = "ACTIONNAME_EDICTBLOODB" #Don't introduce that Consumption Tax
+		command = { type = province_revoltrisk which = 337 value = 5 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 5 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 5 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 5 } #Zeeland
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = treasury value = -500 }
+		command = { type = stability value = -2 }
+		command = { type = setflag which = [EdictBlood] }
+	}
+}
+
+#Holland version
+event = {
+	id = 337030
+	trigger = {
+		NOT = {
+			AND = {
+				NOT = {
+					core = { province = 385 data = -1 } #Ile de France - not exempt FRA
+					AND = {
+						core = { province = 387 data = -1 } #Franche Comte - not exempt SPA, BUR and HAB
+						NOT = { #BUR exempted under conditions
+							AND = {
+								flag = [Lowlands]
+								exists = HOL
+							}
+						}
+					}
+					core = { province = 371 data = -1 } #Tirol, plugs a hole for HAB
+				}
+				AND = {
+					OR = {
+						core = { province = 337 data = -1 } #exempt FRI
+						core = { province = 338 data = -1 } #exempt GEL
+						core = { province = 378 data = -1 } #exempt HAU
+						core = { province = 377 data = -1 } #exempt LUX
+					}
+					NOT = { flag = [DutchClaim] } #not exempt PFA, MUN and KLE
+				}
+			}
+		}
+		OR = { #have to be catholic for this one
+			religion = catholic
+			religion = counterreform
+		}
+		NOT = { domestic = { type = innovative value = 8 } }
+		flag = [DutGenEst] #Only get this one if you had Dutch Nobles Demand general Estates
+		NOT = { flag = [EdictBlood] } #can't get it twice
+	}
+	random = no
+	province = 339 #Holland
+	name = "EVENTNAME_EDICTBLOOD" #Edict of Blood
+	desc = "EVENTHIST_EDICTBLOOD"
+	#-#In 1567 elite troops were brought in determined to break the Dutch Insurrection. The Edict of Blood was issued, which allowed the army to create a harsh military dictatorship with mass-arrests and courts of honour as a daily routine. The Terror of the Inquisition was intensified and hundreds of people were executed. In 1568 the counts of Hoorn and Egmont were arrested and executed making William of Oranien the only leader left to take up the flag. In 1570 the army introduced a 10 percent tax even as the Dutch had paid a two-year tax that the General estates had agreed upon on the promise of no more extra taxes. A General Strike spread in the Netherlands...In 1573 it was clear that the elite army had failed to subjugate the Dutch.
+
+	date = { day = 1 month = march year = 1565 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1576 }
+
+	action_a = {
+		name = "ACTIONNAME_EDICTBLOODA" #No Concessions
+		command = { type = province_revoltrisk which = 337 value = 10 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 10 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 10 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 10 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = 5 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = 5 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = 5 } #Artois
+		command = { type = province_revoltrisk which = 380 value = 5 } #Flandern
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = treasury value = 300 }
+		command = { type = stability value = 1 }
+		command = { type = setflag which = [EdictBlood] }
+	}
+	action_b = {
+		name = "ACTIONNAME_EDICTBLOODB" #Don't introduce that Consumption Tax
+		command = { type = province_revoltrisk which = 337 value = 5 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 5 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 5 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 5 } #Zeeland
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = treasury value = -500 }
+		command = { type = stability value = -2 }
+		command = { type = setflag which = [EdictBlood] }
+	}
+}
+
+#Zeeland version
+event = {
+	id = 337031
+	trigger = {
+		NOT = {
+			AND = {
+				NOT = {
+					core = { province = 385 data = -1 } #Ile de France - not exempt FRA
+					AND = {
+						core = { province = 387 data = -1 } #Franche Comte - not exempt SPA, BUR and HAB
+						NOT = { #BUR exempted under conditions
+							AND = {
+								flag = [Lowlands]
+								exists = HOL
+							}
+						}
+					}
+					core = { province = 371 data = -1 } #Tirol, plugs a hole for HAB
+				}
+				AND = {
+					OR = {
+						core = { province = 337 data = -1 } #exempt FRI
+						core = { province = 338 data = -1 } #exempt GEL
+						core = { province = 378 data = -1 } #exempt HAU
+						core = { province = 377 data = -1 } #exempt LUX
+					}
+					NOT = { flag = [DutchClaim] } #not exempt PFA, MUN and KLE
+				}
+			}
+		}
+		OR = { #have to be catholic for this one
+			religion = catholic
+			religion = counterreform
+		}
+		NOT = { domestic = { type = innovative value = 8 } }
+		flag = [DutGenEst] #Only get this one if you had Dutch Nobles Demand general Estates
+		NOT = { flag = [EdictBlood] } #can't get it twice
+	}
+	random = no
+	province = 340 #Zeeland
+	name = "EVENTNAME_EDICTBLOOD" #Edict of Blood
+	desc = "EVENTHIST_EDICTBLOOD"
+	#-#In 1567 elite troops were brought in determined to break the Dutch Insurrection. The Edict of Blood was issued, which allowed the army to create a harsh military dictatorship with mass-arrests and courts of honour as a daily routine. The Terror of the Inquisition was intensified and hundreds of people were executed. In 1568 the counts of Hoorn and Egmont were arrested and executed making William of Oranien the only leader left to take up the flag. In 1570 the army introduced a 10 percent tax even as the Dutch had paid a two-year tax that the General estates had agreed upon on the promise of no more extra taxes. A General Strike spread in the Netherlands...In 1573 it was clear that the elite army had failed to subjugate the Dutch.
+
+	date = { day = 1 month = april year = 1565 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1576 }
+
+	action_a = {
+		name = "ACTIONNAME_EDICTBLOODA" #No Concessions
+		command = { type = province_revoltrisk which = 337 value = 10 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 10 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 10 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 10 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = 5 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = 5 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = 5 } #Artois
+		command = { type = province_revoltrisk which = 380 value = 5 } #Flandern
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = treasury value = 300 }
+		command = { type = stability value = 1 }
+		command = { type = setflag which = [EdictBlood] }
+	}
+	action_b = {
+		name = "ACTIONNAME_EDICTBLOODB" #Don't introduce that Consumption Tax
+		command = { type = province_revoltrisk which = 337 value = 5 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 5 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 5 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 5 } #Zeeland
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = treasury value = -500 }
+		command = { type = stability value = -2 }
+		command = { type = setflag which = [EdictBlood] }
+	}
+}
+
+#Luxembourg version
+event = {
+	id = 337032
+	trigger = {
+		NOT = {
+			AND = {
+				NOT = {
+					core = { province = 385 data = -1 } #Ile de France - not exempt FRA
+					AND = {
+						core = { province = 387 data = -1 } #Franche Comte - not exempt SPA, BUR and HAB
+						NOT = { #BUR exempted under conditions
+							AND = {
+								flag = [Lowlands]
+								exists = HOL
+							}
+						}
+					}
+					core = { province = 371 data = -1 } #Tirol, plugs a hole for HAB
+				}
+				AND = {
+					OR = {
+						core = { province = 337 data = -1 } #exempt FRI
+						core = { province = 338 data = -1 } #exempt GEL
+						core = { province = 378 data = -1 } #exempt HAU
+						core = { province = 377 data = -1 } #exempt LUX
+					}
+					NOT = { flag = [DutchClaim] } #not exempt PFA, MUN and KLE
+				}
+			}
+		}
+		OR = { #have to be catholic for this one
+			religion = catholic
+			religion = counterreform
+		}
+		NOT = { domestic = { type = innovative value = 8 } }
+		flag = [DutGenEst] #Only get this one if you had Dutch Nobles Demand general Estates
+		NOT = { flag = [EdictBlood] } #can't get it twice
+	}
+	random = no
+	province = 377 #Luxembourg
+	name = "EVENTNAME_EDICTBLOOD" #Edict of Blood
+	desc = "EVENTHIST_EDICTBLOOD"
+	#-#In 1567 elite troops were brought in determined to break the Dutch Insurrection. The Edict of Blood was issued, which allowed the army to create a harsh military dictatorship with mass-arrests and courts of honour as a daily routine. The Terror of the Inquisition was intensified and hundreds of people were executed. In 1568 the counts of Hoorn and Egmont were arrested and executed making William of Oranien the only leader left to take up the flag. In 1570 the army introduced a 10 percent tax even as the Dutch had paid a two-year tax that the General estates had agreed upon on the promise of no more extra taxes. A General Strike spread in the Netherlands...In 1573 it was clear that the elite army had failed to subjugate the Dutch.
+
+	date = { day = 1 month = may year = 1565 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1576 }
+
+	action_a = {
+		name = "ACTIONNAME_EDICTBLOODA" #No Concessions
+		command = { type = province_revoltrisk which = 337 value = 10 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 10 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 10 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 10 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = 5 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = 5 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = 5 } #Artois
+		command = { type = province_revoltrisk which = 380 value = 5 } #Flandern
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = treasury value = 300 }
+		command = { type = stability value = 1 }
+		command = { type = setflag which = [EdictBlood] }
+	}
+	action_b = {
+		name = "ACTIONNAME_EDICTBLOODB" #Don't introduce that Consumption Tax
+		command = { type = province_revoltrisk which = 337 value = 5 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 5 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 5 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 5 } #Zeeland
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = treasury value = -500 }
+		command = { type = stability value = -2 }
+		command = { type = setflag which = [EdictBlood] }
+	}
+}
+
+#Brabant version
+event = {
+	id = 337033
+	trigger = {
+		NOT = {
+			AND = {
+				NOT = {
+					core = { province = 385 data = -1 } #Ile de France - not exempt FRA
+					AND = {
+						core = { province = 387 data = -1 } #Franche Comte - not exempt SPA, BUR and HAB
+						NOT = { #BUR exempted under conditions
+							AND = {
+								flag = [Lowlands]
+								exists = HOL
+							}
+						}
+					}
+					core = { province = 371 data = -1 } #Tirol, plugs a hole for HAB
+				}
+				AND = {
+					OR = {
+						core = { province = 337 data = -1 } #exempt FRI
+						core = { province = 338 data = -1 } #exempt GEL
+						core = { province = 378 data = -1 } #exempt HAU
+						core = { province = 377 data = -1 } #exempt LUX
+					}
+					NOT = { flag = [DutchClaim] } #not exempt PFA, MUN and KLE
+				}
+			}
+		}
+		OR = { #have to be catholic for this one
+			religion = catholic
+			religion = counterreform
+		}
+		NOT = { domestic = { type = innovative value = 8 } }
+		flag = [DutGenEst] #Only get this one if you had Dutch Nobles Demand general Estates
+		NOT = { flag = [EdictBlood] } #can't get it twice
+	}
+	random = no
+	province = 378 #Brabant
+	name = "EVENTNAME_EDICTBLOOD" #Edict of Blood
+	desc = "EVENTHIST_EDICTBLOOD"
+	#-#In 1567 elite troops were brought in determined to break the Dutch Insurrection. The Edict of Blood was issued, which allowed the army to create a harsh military dictatorship with mass-arrests and courts of honour as a daily routine. The Terror of the Inquisition was intensified and hundreds of people were executed. In 1568 the counts of Hoorn and Egmont were arrested and executed making William of Oranien the only leader left to take up the flag. In 1570 the army introduced a 10 percent tax even as the Dutch had paid a two-year tax that the General estates had agreed upon on the promise of no more extra taxes. A General Strike spread in the Netherlands...In 1573 it was clear that the elite army had failed to subjugate the Dutch.
+
+	date = { day = 1 month = june year = 1565 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1576 }
+
+	action_a = {
+		name = "ACTIONNAME_EDICTBLOODA" #No Concessions
+		command = { type = province_revoltrisk which = 337 value = 10 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 10 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 10 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 10 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = 5 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = 5 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = 5 } #Artois
+		command = { type = province_revoltrisk which = 380 value = 5 } #Flandern
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = treasury value = 300 }
+		command = { type = stability value = 1 }
+		command = { type = setflag which = [EdictBlood] }
+	}
+	action_b = {
+		name = "ACTIONNAME_EDICTBLOODB" #Don't introduce that Consumption Tax
+		command = { type = province_revoltrisk which = 337 value = 5 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 5 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 5 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 5 } #Zeeland
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = treasury value = -500 }
+		command = { type = stability value = -2 }
+		command = { type = setflag which = [EdictBlood] }
+	}
+}
+
+#Artois version
+event = {
+	id = 337034
+	trigger = {
+		NOT = {
+			AND = {
+				NOT = {
+					core = { province = 385 data = -1 } #Ile de France - not exempt FRA
+					AND = {
+						core = { province = 387 data = -1 } #Franche Comte - not exempt SPA, BUR and HAB
+						NOT = { #BUR exempted under conditions
+							AND = {
+								flag = [Lowlands]
+								exists = HOL
+							}
+						}
+					}
+					core = { province = 371 data = -1 } #Tirol, plugs a hole for HAB
+					AND = { #not exempt ENG if Jacqueline
+						core = { province = 379 data = -1 }
+						flag = [HollandClaim]
+					}
+				}
+				AND = {
+					OR = {
+						core = { province = 337 data = -1 } #exempt FRI
+						core = { province = 338 data = -1 } #exempt GEL
+						core = { province = 378 data = -1 } #exempt HAU
+						core = { province = 377 data = -1 } #exempt LUX
+					}
+					NOT = { flag = [DutchClaim] } #not exempt PFA, MUN and KLE
+				}
+			}
+		}
+		OR = { #have to be catholic for this one
+			religion = catholic
+			religion = counterreform
+		}
+		NOT = { domestic = { type = innovative value = 8 } }
+		flag = [DutGenEst] #Only get this one if you had Dutch Nobles Demand general Estates
+		NOT = { flag = [EdictBlood] } #can't get it twice
+	}
+	random = no
+	province = 379 #Artois
+	name = "EVENTNAME_EDICTBLOOD" #Edict of Blood
+	desc = "EVENTHIST_EDICTBLOOD"
+	#-#In 1567 elite troops were brought in determined to break the Dutch Insurrection. The Edict of Blood was issued, which allowed the army to create a harsh military dictatorship with mass-arrests and courts of honour as a daily routine. The Terror of the Inquisition was intensified and hundreds of people were executed. In 1568 the counts of Hoorn and Egmont were arrested and executed making William of Oranien the only leader left to take up the flag. In 1570 the army introduced a 10 percent tax even as the Dutch had paid a two-year tax that the General estates had agreed upon on the promise of no more extra taxes. A General Strike spread in the Netherlands...In 1573 it was clear that the elite army had failed to subjugate the Dutch.
+
+	date = { day = 1 month = july year = 1565 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1576 }
+
+	action_a = {
+		name = "ACTIONNAME_EDICTBLOODA" #No Concessions
+		command = { type = province_revoltrisk which = 337 value = 10 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 10 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 10 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 10 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = 5 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = 5 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = 5 } #Artois
+		command = { type = province_revoltrisk which = 380 value = 5 } #Flandern
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = treasury value = 300 }
+		command = { type = stability value = 1 }
+		command = { type = setflag which = [EdictBlood] }
+	}
+	action_b = {
+		name = "ACTIONNAME_EDICTBLOODB" #Don't introduce that Consumption Tax
+		command = { type = province_revoltrisk which = 337 value = 5 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 5 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 5 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 5 } #Zeeland
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = treasury value = -500 }
+		command = { type = stability value = -2 }
+		command = { type = setflag which = [EdictBlood] }
+	}
+}
+
+#Flandern version
+event = {
+	id = 337035
+	trigger = {
+		NOT = {
+			AND = {
+				NOT = {
+					core = { province = 385 data = -1 } #Ile de France - not exempt FRA
+					AND = {
+						core = { province = 387 data = -1 } #Franche Comte - not exempt SPA, BUR and HAB
+						NOT = { #BUR exempted under conditions
+							AND = {
+								flag = [Lowlands]
+								exists = HOL
+							}
+						}
+					}
+					core = { province = 371 data = -1 } #Tirol, plugs a hole for HAB
+				}
+				AND = {
+					OR = {
+						core = { province = 337 data = -1 } #exempt FRI
+						core = { province = 338 data = -1 } #exempt GEL
+						core = { province = 378 data = -1 } #exempt HAU
+						core = { province = 377 data = -1 } #exempt LUX
+					}
+					NOT = { flag = [DutchClaim] } #not exempt PFA, MUN and KLE
+				}
+			}
+		}
+		OR = { #have to be catholic for this one
+			religion = catholic
+			religion = counterreform
+		}
+		NOT = { domestic = { type = innovative value = 8 } }
+		flag = [DutGenEst] #Only get this one if you had Dutch Nobles Demand general Estates
+		NOT = { flag = [EdictBlood] } #can't get it twice
+	}
+	random = no
+	province = 380 #Flandern
+	name = "EVENTNAME_EDICTBLOOD" #Edict of Blood
+	desc = "EVENTHIST_EDICTBLOOD"
+	#-#In 1567 elite troops were brought in determined to break the Dutch Insurrection. The Edict of Blood was issued, which allowed the army to create a harsh military dictatorship with mass-arrests and courts of honour as a daily routine. The Terror of the Inquisition was intensified and hundreds of people were executed. In 1568 the counts of Hoorn and Egmont were arrested and executed making William of Oranien the only leader left to take up the flag. In 1570 the army introduced a 10 percent tax even as the Dutch had paid a two-year tax that the General estates had agreed upon on the promise of no more extra taxes. A General Strike spread in the Netherlands...In 1573 it was clear that the elite army had failed to subjugate the Dutch.
+
+	date = { day = 1 month = august year = 1565 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1576 }
+
+	action_a = {
+		name = "ACTIONNAME_EDICTBLOODA" #No Concessions
+		command = { type = province_revoltrisk which = 337 value = 10 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 10 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 10 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 10 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = 5 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = 5 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = 5 } #Artois
+		command = { type = province_revoltrisk which = 380 value = 5 } #Flandern
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = treasury value = 300 }
+		command = { type = stability value = 1 }
+		command = { type = setflag which = [EdictBlood] }
+	}
+	action_b = {
+		name = "ACTIONNAME_EDICTBLOODB" #Don't introduce that Consumption Tax
+		command = { type = province_revoltrisk which = 337 value = 5 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 5 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 5 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 5 } #Zeeland
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = treasury value = -500 }
+		command = { type = stability value = -2 }
+		command = { type = setflag which = [EdictBlood] }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#(1579-1586) The Union of Arras
+
+#Friesen version
+event = {
+	id = 337036
+	trigger = {
+		NOT = {
+			AND = {
+				NOT = {
+					core = { province = 385 data = -1 } #Ile de France - not exempt FRA
+					AND = {
+						core = { province = 387 data = -1 } #Franche Comte - not exempt SPA, BUR and HAB
+						NOT = { #BUR exempted under conditions
+							AND = {
+								flag = [Lowlands]
+								exists = HOL
+							}
+						}
+					}
+					core = { province = 371 data = -1 } #Tirol, plugs a hole for HAB
+				}
+				AND = {
+					OR = {
+						core = { province = 337 data = -1 } #exempt FRI
+						core = { province = 338 data = -1 } #exempt GEL
+						core = { province = 378 data = -1 } #exempt HAU
+						core = { province = 377 data = -1 } #exempt LUX
+					}
+					NOT = { flag = [DutchClaim] } #not exempt PFA, MUN and KLE
+				}
+			}
+		}
+		NOT = { #have to be catholic for this one
+			religion = protestant
+			religion = reformed
+		}
+		NOT = { domestic = { type = innovative value = 8 } }
+		flag = [DutGenEst] #Only get this one if you had Dutch Nobles Demand general Estates
+		flag = [EdictBlood] #Only happens if you had the Edict of Blood
+		NOT = { flag = [Arras] }
+		NOT = { flag = [BraCouncil] }
+	}
+	random = no
+	province = 337 #Friesen
+	name = "EVENTNAME_UNIONARRAS" #Union of Arras
+	desc = "EVENTHIST_UNIONARRAS"
+	#-#After the failure of the Edict of Blood a more humane policy was adopted. It was understood that the Netherlands could only be kept if the wishes of the catholic provinces were agreed upon. In 1579 the Union of Arras was signed with the Catholic provinces of Artois and Hainault. In response, some of the Northern provinces then created the Union of Utrecht, the first sign of a new country. In addition to the northern provinces, all of the key southern cities, Bruges, Ghent, Antwerp, Brussels, and Brabant, joined the union despite apathy from their surrounding territories.
+
+	date = { day = 1 month = january year = 1579 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1586 }
+
+	action_a = {
+		name = "ACTIONNAME_UNIONARRASA" #Sign the Union of Arras
+		command = { type = province_revoltrisk which = 337 value = 10 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 10 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 10 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 10 } #Zeeland
+		command = { type = province_revoltrisk which = 380 value = 5 } #Flandern
+		command = { type = province_revoltrisk which = 378 value = 5 } #Brabant
+		command = { type = province_revoltrisk which = 377 value = -15 } #Luxembourg
+		command = { type = province_revoltrisk which = 379 value = -15 } #Artois
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = revolt which = 378 } #Brabant
+		command = { type = treasury value = -200 }
+		command = { type = stability value = 1 }
+		command = { type = setflag which = [Arras] }
+	}
+	action_b = {
+		name = "ACTIONNAME_UNIONARRASB" #No Concessions
+		command = { type = province_revoltrisk which = 337 value = 10 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 10 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 10 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 10 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = 7 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = 7 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = 7 } #Artois
+		command = { type = province_revoltrisk which = 380 value = 7 } #Flandern
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = revolt which = 378 } #Brabant
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = treasury value = 300 }
+		command = { type = stability value = 3 }
+		command = { type = setflag which = [Arras] }
+	}
+	action_c = {
+		name = "ACTIONNAME_UNIONARRASC" #Sign the Union of Arras and lower taxes
+		command = { type = province_revoltrisk which = 337 value = 5 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 5 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 5 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 5 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = -15 } #Luxembourg
+		command = { type = province_revoltrisk which = 379 value = -15 } #Artois
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = treasury value = -800 }
+		command = { type = stability value = -1 }
+		command = { type = setflag which = [Arras] }
+	}
+}
+
+#Geldre version
+event = {
+	id = 337037
+	trigger = {
+		NOT = {
+			AND = {
+				NOT = {
+					core = { province = 385 data = -1 } #Ile de France - not exempt FRA
+					AND = {
+						core = { province = 387 data = -1 } #Franche Comte - not exempt SPA, BUR and HAB
+						NOT = { #BUR exempted under conditions
+							AND = {
+								flag = [Lowlands]
+								exists = HOL
+							}
+						}
+					}
+					core = { province = 371 data = -1 } #Tirol, plugs a hole for HAB
+				}
+				AND = {
+					OR = {
+						core = { province = 337 data = -1 } #exempt FRI
+						core = { province = 338 data = -1 } #exempt GEL
+						core = { province = 378 data = -1 } #exempt HAU
+						core = { province = 377 data = -1 } #exempt LUX
+					}
+					NOT = { flag = [DutchClaim] } #not exempt PFA, MUN and KLE
+				}
+			}
+		}
+		NOT = { #have to be catholic for this one
+			religion = protestant
+			religion = reformed
+		}
+		NOT = {	domestic = { type = innovative value = 8 } }
+		flag = [DutGenEst] #Only get this one if you had Dutch Nobles Demand general Estates
+		flag = [EdictBlood] #Only happens if you had the Edict of Blood
+		NOT = { flag = [Arras] }
+		NOT = { flag = [BraCouncil] }
+	}
+	random = no
+	province = 338 #Gelre
+	name = "EVENTNAME_UNIONARRAS" #Union of Arras
+	desc = "EVENTHIST_UNIONARRAS"
+	#-#After the failure of the Edict of Blood a more humane policy was adopted. It was understood that the Netherlands could only be kept if the wishes of the catholic provinces were agreed upon. In 1579 the Union of Arras was signed with the Catholic provinces of Artois and Hainault. In response, some of the Northern provinces then created the Union of Utrecht, the first sign of a new country. In addition to the northern provinces, all of the key southern cities, Bruges, Ghent, Antwerp, Brussels, and Brabant, joined the union despite apathy from their surrounding territories.
+
+	date = { day = 1 month = january year = 1579 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1586 }
+
+	action_a = {
+		name = "ACTIONNAME_UNIONARRASA" #Sign the Union of Arras
+		command = { type = province_revoltrisk which = 337 value = 10 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 10 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 10 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 10 } #Zeeland
+		command = { type = province_revoltrisk which = 380 value = 5 } #Flandern
+		command = { type = province_revoltrisk which = 378 value = 5 } #Brabant
+		command = { type = province_revoltrisk which = 377 value = -15 } #Luxembourg
+		command = { type = province_revoltrisk which = 379 value = -15 } #Artois
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = revolt which = 378 } #Brabant
+		command = { type = treasury value = -200 }
+		command = { type = stability value = 1 }
+		command = { type = setflag which = [Arras] }
+	}
+	action_b = {
+		name = "ACTIONNAME_UNIONARRASB" #No Concessions
+		command = { type = province_revoltrisk which = 337 value = 10 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 10 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 10 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 10 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = 7 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = 7 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = 7 } #Artois
+		command = { type = province_revoltrisk which = 380 value = 7 } #Flandern
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = revolt which = 378 } #Brabant
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = treasury value = 300 }
+		command = { type = stability value = 3 }
+		command = { type = setflag which = [Arras] }
+	}
+	action_c = {
+		name = "ACTIONNAME_UNIONARRASC" #Sign the Union of Arras and lower taxes
+		command = { type = province_revoltrisk which = 337 value = 5 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 5 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 5 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 5 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = -15 } #Luxembourg
+		command = { type = province_revoltrisk which = 379 value = -15 } #Artois
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = treasury value = -800 }
+		command = { type = stability value = -1 }
+		command = { type = setflag which = [Arras] }
+	}
+}
+
+#Holland version
+event = {
+	id = 337038
+	trigger = {
+		NOT = {
+			AND = {
+				NOT = {
+					core = { province = 385 data = -1 } #Ile de France - not exempt FRA
+					AND = {
+						core = { province = 387 data = -1 } #Franche Comte - not exempt SPA, BUR and HAB
+						NOT = { #BUR exempted under conditions
+							AND = {
+								flag = [Lowlands]
+								exists = HOL
+							}
+						}
+					}
+					core = { province = 371 data = -1 } #Tirol, plugs a hole for HAB
+				}
+				AND = {
+					OR = {
+						core = { province = 337 data = -1 } #exempt FRI
+						core = { province = 338 data = -1 } #exempt GEL
+						core = { province = 378 data = -1 } #exempt HAU
+						core = { province = 377 data = -1 } #exempt LUX
+					}
+					NOT = { flag = [DutchClaim] } #not exempt PFA, MUN and KLE
+				}
+			}
+		}
+		NOT = { #have to be catholic for this one
+			religion = protestant
+			religion = reformed
+		}
+		NOT = { domestic = { type = innovative value = 8 } }
+		flag = [DutGenEst] #Only get this one if you had Dutch Nobles Demand general Estates
+		flag = [EdictBlood] #Only happens if you had the Edict of Blood
+		NOT = { flag = [Arras] }
+		NOT = { flag = [BraCouncil] }
+	}
+	random = no
+	province = 339 #Holland
+	name = "EVENTNAME_UNIONARRAS" #Union of Arras
+	desc = "EVENTHIST_UNIONARRAS"
+	#-#After the failure of the Edict of Blood a more humane policy was adopted. It was understood that the Netherlands could only be kept if the wishes of the catholic provinces were agreed upon. In 1579 the Union of Arras was signed with the Catholic provinces of Artois and Hainault. In response, some of the Northern provinces then created the Union of Utrecht, the first sign of a new country. In addition to the northern provinces, all of the key southern cities, Bruges, Ghent, Antwerp, Brussels, and Brabant, joined the union despite apathy from their surrounding territories.
+
+	date = { day = 1 month = january year = 1579 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1586 }
+
+	action_a = {
+		name = "ACTIONNAME_UNIONARRASA" #Sign the Union of Arras
+		command = { type = province_revoltrisk which = 337 value = 10 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 10 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 10 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 10 } #Zeeland
+		command = { type = province_revoltrisk which = 380 value = 5 } #Flandern
+		command = { type = province_revoltrisk which = 378 value = 5 } #Brabant
+		command = { type = province_revoltrisk which = 377 value = -15 } #Luxembourg
+		command = { type = province_revoltrisk which = 379 value = -15 } #Artois
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = revolt which = 378 } #Brabant
+		command = { type = treasury value = -200 }
+		command = { type = stability value = 1 }
+		command = { type = setflag which = [Arras] }
+	}
+	action_b = {
+		name = "ACTIONNAME_UNIONARRASB" #No Concessions
+		command = { type = province_revoltrisk which = 337 value = 10 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 10 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 10 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 10 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = 7 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = 7 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = 7 } #Artois
+		command = { type = province_revoltrisk which = 380 value = 7 } #Flandern
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = revolt which = 378 } #Brabant
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = treasury value = 300 }
+		command = { type = stability value = 3 }
+		command = { type = setflag which = [Arras] }
+	}
+	action_c = {
+		name = "ACTIONNAME_UNIONARRASC" #Sign the Union of Arras and lower taxes
+		command = { type = province_revoltrisk which = 337 value = 5 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 5 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 5 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 5 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = -15 } #Luxembourg
+		command = { type = province_revoltrisk which = 379 value = -15 } #Artois
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = treasury value = -800 }
+		command = { type = stability value = -1 }
+		command = { type = setflag which = [Arras] }
+	}
+}
+
+#Zeeland version
+event = {
+	id = 337039
+	trigger = {
+		NOT = {
+			AND = {
+				NOT = {
+					core = { province = 385 data = -1 } #Ile de France - not exempt FRA
+					AND = {
+						core = { province = 387 data = -1 } #Franche Comte - not exempt SPA, BUR and HAB
+						NOT = { #BUR exempted under conditions
+							AND = {
+								flag = [Lowlands]
+								exists = HOL
+							}
+						}
+					}
+					core = { province = 371 data = -1 } #Tirol, plugs a hole for HAB
+				}
+				AND = {
+					OR = {
+						core = { province = 337 data = -1 } #exempt FRI
+						core = { province = 338 data = -1 } #exempt GEL
+						core = { province = 378 data = -1 } #exempt HAU
+						core = { province = 377 data = -1 } #exempt LUX
+					}
+					NOT = { flag = [DutchClaim] } #not exempt PFA, MUN and KLE
+				}
+			}
+		}
+		NOT = { #have to be catholic for this one
+			religion = protestant
+			religion = reformed
+		}
+		NOT = { domestic = { type = innovative value = 8 } }
+		flag = [DutGenEst] #Only get this one if you had Dutch Nobles Demand general Estates
+		flag = [EdictBlood] #Only happens if you had the Edict of Blood
+		NOT = { flag = [Arras] }
+		NOT = { flag = [BraCouncil] }
+	}
+	random = no
+	province = 340 #Zeeland
+	name = "EVENTNAME_UNIONARRAS" #Union of Arras
+	desc = "EVENTHIST_UNIONARRAS"
+	#-#After the failure of the Edict of Blood a more humane policy was adopted. It was understood that the Netherlands could only be kept if the wishes of the catholic provinces were agreed upon. In 1579 the Union of Arras was signed with the Catholic provinces of Artois and Hainault. In response, some of the Northern provinces then created the Union of Utrecht, the first sign of a new country. In addition to the northern provinces, all of the key southern cities, Bruges, Ghent, Antwerp, Brussels, and Brabant, joined the union despite apathy from their surrounding territories.
+
+	date = { day = 1 month = january year = 1579 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1586 }
+
+	action_a = {
+		name = "ACTIONNAME_UNIONARRASA" #Sign the Union of Arras
+		command = { type = province_revoltrisk which = 337 value = 10 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 10 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 10 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 10 } #Zeeland
+		command = { type = province_revoltrisk which = 380 value = 5 } #Flandern
+		command = { type = province_revoltrisk which = 378 value = 5 } #Brabant
+		command = { type = province_revoltrisk which = 377 value = -15 } #Luxembourg
+		command = { type = province_revoltrisk which = 379 value = -15 } #Artois
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = revolt which = 378 } #Brabant
+		command = { type = treasury value = -200 }
+		command = { type = stability value = 1 }
+		command = { type = setflag which = [Arras] }
+	}
+	action_b = {
+		name = "ACTIONNAME_UNIONARRASB" #No Concessions
+		command = { type = province_revoltrisk which = 337 value = 10 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 10 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 10 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 10 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = 7 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = 7 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = 7 } #Artois
+		command = { type = province_revoltrisk which = 380 value = 7 } #Flandern
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = revolt which = 378 } #Brabant
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = treasury value = 300 }
+		command = { type = stability value = 3 }
+		command = { type = setflag which = [Arras] }
+	}
+	action_c = {
+		name = "ACTIONNAME_UNIONARRASC" #Sign the Union of Arras and lower taxes
+		command = { type = province_revoltrisk which = 337 value = 5 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 5 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 5 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 5 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = -15 } #Luxembourg
+		command = { type = province_revoltrisk which = 379 value = -15 } #Artois
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = treasury value = -800 }
+		command = { type = stability value = -1 }
+		command = { type = setflag which = [Arras] }
+	}
+}
+
+#Luxembourg version
+event = {
+	id = 337040
+	trigger = {
+		NOT = {
+			AND = {
+				NOT = {
+					core = { province = 385 data = -1 } #Ile de France - not exempt FRA
+					AND = {
+						core = { province = 387 data = -1 } #Franche Comte - not exempt SPA, BUR and HAB
+						NOT = { #BUR exempted under conditions
+							AND = {
+								flag = [Lowlands]
+								exists = HOL
+							}
+						}
+					}
+					core = { province = 371 data = -1 } #Tirol, plugs a hole for HAB
+				}
+				AND = {
+					OR = {
+						core = { province = 337 data = -1 } #exempt FRI
+						core = { province = 338 data = -1 } #exempt GEL
+						core = { province = 378 data = -1 } #exempt HAU
+						core = { province = 377 data = -1 } #exempt LUX
+					}
+					NOT = { flag = [DutchClaim] } #not exempt PFA, MUN and KLE
+				}
+			}
+		}
+		NOT = { #have to be catholic for this one
+			religion = protestant
+			religion = reformed
+		}
+		NOT = { domestic = { type = innovative value = 8 } }
+		flag = [DutGenEst] #Only get this one if you had Dutch Nobles Demand general Estates
+		flag = [EdictBlood] #Only happens if you had the Edict of Blood
+		NOT = { flag = [Arras] }
+		NOT = { flag = [BraCouncil] }
+	}
+	random = no
+	province = 377 #Luxembourg
+	name = "EVENTNAME_UNIONARRAS" #Union of Arras
+	desc = "EVENTHIST_UNIONARRAS"
+	#-#After the failure of the Edict of Blood a more humane policy was adopted. It was understood that the Netherlands could only be kept if the wishes of the catholic provinces were agreed upon. In 1579 the Union of Arras was signed with the Catholic provinces of Artois and Hainault. In response, some of the Northern provinces then created the Union of Utrecht, the first sign of a new country. In addition to the northern provinces, all of the key southern cities, Bruges, Ghent, Antwerp, Brussels, and Brabant, joined the union despite apathy from their surrounding territories.
+
+	date = { day = 1 month = january year = 1579 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1586 }
+
+	action_a = {
+		name = "ACTIONNAME_UNIONARRASA" #Sign the Union of Arras
+		command = { type = province_revoltrisk which = 337 value = 10 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 10 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 10 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 10 } #Zeeland
+		command = { type = province_revoltrisk which = 380 value = 5 } #Flandern
+		command = { type = province_revoltrisk which = 378 value = 5 } #Brabant
+		command = { type = province_revoltrisk which = 377 value = -15 } #Luxembourg
+		command = { type = province_revoltrisk which = 379 value = -15 } #Artois
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = revolt which = 378 } #Brabant
+		command = { type = treasury value = -200 }
+		command = { type = stability value = 1 }
+		command = { type = setflag which = [Arras] }
+	}
+	action_b = {
+		name = "ACTIONNAME_UNIONARRASB" #No Concessions
+		command = { type = province_revoltrisk which = 337 value = 10 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 10 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 10 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 10 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = 7 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = 7 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = 7 } #Artois
+		command = { type = province_revoltrisk which = 380 value = 7 } #Flandern
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = revolt which = 378 } #Brabant
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = treasury value = 300 }
+		command = { type = stability value = 3 }
+		command = { type = setflag which = [Arras] }
+	}
+	action_c = {
+		name = "ACTIONNAME_UNIONARRASC" #Sign the Union of Arras and lower taxes
+		command = { type = province_revoltrisk which = 337 value = 5 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 5 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 5 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 5 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = -15 } #Luxembourg
+		command = { type = province_revoltrisk which = 379 value = -15 } #Artois
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = treasury value = -800 }
+		command = { type = stability value = -1 }
+		command = { type = setflag which = [Arras] }
+	}
+}
+
+#Brabant version
+event = {
+	id = 337041
+	trigger = {
+		NOT = {
+			AND = {
+				NOT = {
+					core = { province = 385 data = -1 } #Ile de France - not exempt FRA
+					AND = {
+						core = { province = 387 data = -1 } #Franche Comte - not exempt SPA, BUR and HAB
+						NOT = { #BUR exempted under conditions
+							AND = {
+								flag = [Lowlands]
+								exists = HOL
+							}
+						}
+					}
+					core = { province = 371 data = -1 } #Tirol, plugs a hole for HAB
+				}
+				AND = {
+					OR = {
+						core = { province = 337 data = -1 } #exempt FRI
+						core = { province = 338 data = -1 } #exempt GEL
+						core = { province = 378 data = -1 } #exempt HAU
+						core = { province = 377 data = -1 } #exempt LUX
+					}
+					NOT = { flag = [DutchClaim] } #not exempt PFA, MUN and KLE
+				}
+			}
+		}
+		NOT = { #have to be catholic for this one
+			religion = protestant
+			religion = reformed
+		}
+		NOT = { domestic = { type = innovative value = 8 } }
+		flag = [DutGenEst] #Only get this one if you had Dutch Nobles Demand general Estates
+		flag = [EdictBlood] #Only happens if you had the Edict of Blood
+		NOT = { flag = [Arras] }
+		NOT = { flag = [BraCouncil] }
+	}
+	random = no
+	province = 378 #Brabant
+	name = "EVENTNAME_UNIONARRAS" #Union of Arras
+	desc = "EVENTHIST_UNIONARRAS"
+	#-#After the failure of the Edict of Blood a more humane policy was adopted. It was understood that the Netherlands could only be kept if the wishes of the catholic provinces were agreed upon. In 1579 the Union of Arras was signed with the Catholic provinces of Artois and Hainault. In response, some of the Northern provinces then created the Union of Utrecht, the first sign of a new country. In addition to the northern provinces, all of the key southern cities, Bruges, Ghent, Antwerp, Brussels, and Brabant, joined the union despite apathy from their surrounding territories.
+
+	date = { day = 1 month = january year = 1579 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1586 }
+
+	action_a = {
+		name = "ACTIONNAME_UNIONARRASA" #Sign the Union of Arras
+		command = { type = province_revoltrisk which = 337 value = 10 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 10 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 10 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 10 } #Zeeland
+		command = { type = province_revoltrisk which = 380 value = 5 } #Flandern
+		command = { type = province_revoltrisk which = 378 value = 5 } #Brabant
+		command = { type = province_revoltrisk which = 377 value = -15 } #Luxembourg
+		command = { type = province_revoltrisk which = 379 value = -15 } #Artois
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = revolt which = 378 } #Brabant
+		command = { type = treasury value = -200 }
+		command = { type = stability value = 1 }
+		command = { type = setflag which = [Arras] }
+	}
+	action_b = {
+		name = "ACTIONNAME_UNIONARRASB" #No Concessions
+		command = { type = province_revoltrisk which = 337 value = 10 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 10 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 10 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 10 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = 7 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = 7 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = 7 } #Artois
+		command = { type = province_revoltrisk which = 380 value = 7 } #Flandern
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = revolt which = 378 } #Brabant
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = treasury value = 300 }
+		command = { type = stability value = 3 }
+		command = { type = setflag which = [Arras] }
+	}
+	action_c = {
+		name = "ACTIONNAME_UNIONARRASC" #Sign the Union of Arras and lower taxes
+		command = { type = province_revoltrisk which = 337 value = 5 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 5 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 5 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 5 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = -15 } #Luxembourg
+		command = { type = province_revoltrisk which = 379 value = -15 } #Artois
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = treasury value = -800 }
+		command = { type = stability value = -1 }
+		command = { type = setflag which = [Arras] }
+	}
+}
+
+#Artois version
+event = {
+	id = 337042
+	trigger = {
+		NOT = {
+			AND = {
+				NOT = {
+					core = { province = 385 data = -1 } #Ile de France - not exempt FRA
+					AND = {
+						core = { province = 387 data = -1 } #Franche Comte - not exempt SPA, BUR and HAB
+						NOT = { #BUR exempted under conditions
+							AND = {
+								flag = [Lowlands]
+								exists = HOL
+							}
+						}
+					}
+					core = { province = 371 data = -1 } #Tirol, plugs a hole for HAB
+					AND = { #not exempt ENG if Jacqueline
+						core = { province = 379 data = -1 }
+						flag = [HollandClaim]
+					}
+				}
+				AND = {
+					OR = {
+						core = { province = 337 data = -1 } #exempt FRI
+						core = { province = 338 data = -1 } #exempt GEL
+						core = { province = 378 data = -1 } #exempt HAU
+						core = { province = 377 data = -1 } #exempt LUX
+					}
+					NOT = { flag = [DutchClaim] } #not exempt PFA, MUN and KLE
+				}
+			}
+		}
+		NOT = { #have to be catholic for this one
+			religion = protestant
+			religion = reformed
+		}
+		NOT = { domestic = { type = innovative value = 8 } }
+		flag = [DutGenEst] #Only get this one if you had Dutch Nobles Demand general Estates
+		flag = [EdictBlood] #Only happens if you had the Edict of Blood
+		NOT = { flag = [Arras] }
+		NOT = { flag = [BraCouncil] }
+	}
+	random = no
+	province = 379 #Artois
+	name = "EVENTNAME_UNIONARRAS" #Union of Arras
+	desc = "EVENTHIST_UNIONARRAS"
+	#-#After the failure of the Edict of Blood a more humane policy was adopted. It was understood that the Netherlands could only be kept if the wishes of the catholic provinces were agreed upon. In 1579 the Union of Arras was signed with the Catholic provinces of Artois and Hainault. In response, some of the Northern provinces then created the Union of Utrecht, the first sign of a new country. In addition to the northern provinces, all of the key southern cities, Bruges, Ghent, Antwerp, Brussels, and Brabant, joined the union despite apathy from their surrounding territories.
+
+	date = { day = 1 month = january year = 1579 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1586 }
+
+	action_a = {
+		name = "ACTIONNAME_UNIONARRASA" #Sign the Union of Arras
+		command = { type = province_revoltrisk which = 337 value = 10 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 10 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 10 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 10 } #Zeeland
+		command = { type = province_revoltrisk which = 380 value = 5 } #Flandern
+		command = { type = province_revoltrisk which = 378 value = 5 } #Brabant
+		command = { type = province_revoltrisk which = 377 value = -15 } #Luxembourg
+		command = { type = province_revoltrisk which = 379 value = -15 } #Artois
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = revolt which = 378 } #Brabant
+		command = { type = treasury value = -200 }
+		command = { type = stability value = 1 }
+		command = { type = setflag which = [Arras] }
+	}
+	action_b = {
+		name = "ACTIONNAME_UNIONARRASB" #No Concessions
+		command = { type = province_revoltrisk which = 337 value = 10 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 10 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 10 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 10 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = 7 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = 7 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = 7 } #Artois
+		command = { type = province_revoltrisk which = 380 value = 7 } #Flandern
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = revolt which = 378 } #Brabant
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = treasury value = 300 }
+		command = { type = stability value = 3 }
+		command = { type = setflag which = [Arras] }
+	}
+	action_c = {
+		name = "ACTIONNAME_UNIONARRASC" #Sign the Union of Arras and lower taxes
+		command = { type = province_revoltrisk which = 337 value = 5 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 5 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 5 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 5 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = -15 } #Luxembourg
+		command = { type = province_revoltrisk which = 379 value = -15 } #Artois
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = treasury value = -800 }
+		command = { type = stability value = -1 }
+		command = { type = setflag which = [Arras] }
+	}
+}
+
+#Flandern version
+event = {
+	id = 337043
+	trigger = {
+		NOT = {
+			AND = {
+				NOT = {
+					core = { province = 385 data = -1 } #Ile de France - not exempt FRA
+					AND = {
+						core = { province = 387 data = -1 } #Franche Comte - not exempt SPA, BUR and HAB
+						NOT = { #BUR exempted under conditions
+							AND = {
+								flag = [Lowlands]
+								exists = HOL
+							}
+						}
+					}
+					core = { province = 371 data = -1 } #Tirol, plugs a hole for HAB
+				}
+				AND = {
+					OR = {
+						core = { province = 337 data = -1 } #exempt FRI
+						core = { province = 338 data = -1 } #exempt GEL
+						core = { province = 378 data = -1 } #exempt HAU
+						core = { province = 377 data = -1 } #exempt LUX
+					}
+					NOT = { flag = [DutchClaim] } #not exempt PFA, MUN and KLE
+				}
+			}
+		}
+		NOT = { #have to be catholic for this one
+			religion = protestant
+			religion = reformed
+		}
+		NOT = { domestic = { type = innovative value = 8 } }
+		flag = [DutGenEst] #Only get this one if you had Dutch Nobles Demand general Estates
+		flag = [EdictBlood] #Only happens if you had the Edict of Blood
+		NOT = { flag = [Arras] }
+		NOT = { flag = [BraCouncil] }
+	}
+	random = no
+	province = 380 #Flandern
+	name = "EVENTNAME_UNIONARRAS" #Union of Arras
+	desc = "EVENTHIST_UNIONARRAS"
+	#-#After the failure of the Edict of Blood a more humane policy was adopted. It was understood that the Netherlands could only be kept if the wishes of the catholic provinces were agreed upon. In 1579 the Union of Arras was signed with the Catholic provinces of Artois and Hainault. In response, some of the Northern provinces then created the Union of Utrecht, the first sign of a new country. In addition to the northern provinces, all of the key southern cities, Bruges, Ghent, Antwerp, Brussels, and Brabant, joined the union despite apathy from their surrounding territories.
+
+	date = { day = 1 month = january year = 1579 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1586 }
+
+	action_a = {
+		name = "ACTIONNAME_UNIONARRASA" #Sign the Union of Arras
+		command = { type = province_revoltrisk which = 337 value = 10 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 10 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 10 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 10 } #Zeeland
+		command = { type = province_revoltrisk which = 380 value = 5 } #Flandern
+		command = { type = province_revoltrisk which = 378 value = 5 } #Brabant
+		command = { type = province_revoltrisk which = 377 value = -15 } #Luxembourg
+		command = { type = province_revoltrisk which = 379 value = -15 } #Artois
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = revolt which = 378 } #Brabant
+		command = { type = treasury value = -200 }
+		command = { type = stability value = 1 }
+		command = { type = setflag which = [Arras] }
+	}
+	action_b = {
+		name = "ACTIONNAME_UNIONARRASB" #No Concessions
+		command = { type = province_revoltrisk which = 337 value = 10 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 10 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 10 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 10 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = 7 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = 7 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = 7 } #Artois
+		command = { type = province_revoltrisk which = 380 value = 7 } #Flandern
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = revolt which = 378 } #Brabant
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = treasury value = 300 }
+		command = { type = stability value = 3 }
+		command = { type = setflag which = [Arras] }
+	}
+	action_c = {
+		name = "ACTIONNAME_UNIONARRASC" #Sign the Union of Arras and lower taxes
+		command = { type = province_revoltrisk which = 337 value = 5 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = 5 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 5 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 5 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = -15 } #Luxembourg
+		command = { type = province_revoltrisk which = 379 value = -15 } #Artois
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 339 } #Holland
+		command = { type = revolt which = 340 } #Zeeland
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = treasury value = -800 }
+		command = { type = stability value = -1 }
+		command = { type = setflag which = [Arras] }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#(1583-1593) The Dissolution of the Council of State
+
+#Brabant version
+event = {
+	id = 337072
+	trigger = {
+		NOT = {
+			AND = {
+				NOT = {
+					core = { province = 385 data = -1 } #Ile de France - not exempt FRA
+					AND = {
+						core = { province = 387 data = -1 } #Franche Comte - not exempt SPA, BUR and HAB
+						NOT = { #BUR exempted under conditions
+							AND = {
+								flag = [Brussels]
+								exists = HOL
+							}
+						}
+					}
+					core = { province = 371 data = -1 } #Tirol, plugs a hole for HAB
+				}
+				AND = {
+					OR = {
+						core = { province = 337 data = -1 } #exempt FRI
+						core = { province = 338 data = -1 } #exempt GEL
+						core = { province = 378 data = -1 } #exempt HAU
+						core = { province = 377 data = -1 } #exempt LUX
+					}
+					NOT = { flag = [DutchClaim] } #not exempt PFA, MUN and KLE
+				}
+			}
+		}
+		NOT = { #have to be catholic for this one
+			religion = protestant
+			religion = reformed
+		}
+		NOT = { owned = { province = 337 data = REB } } #Friesen - Can't have the rebels controlling the province
+		NOT = { domestic = { type = innovative value = 8 } }
+		flag = [DutGenEst] #Only get this one if you had Dutch Nobles Demand general Estates
+		flag = [EdictBlood] #Only happens if you had the Edict of Blood
+		NOT = { flag = [BraCouncil] }
+	}
+	random = no
+	province = 378 #Brabant
+	name = "EVENTNAME_BRACOUNCIL" #The Dissolution of the Council of State
+	desc = "EVENTHIST_BRACOUNCIL"
+	#-#From the start of Dutch Revolt a lack of central authority had made it difficult for the provinces to coordinate their efforts against royalist forces. By 1581 it was decided to setup Council of State, located in Brabant, to direct the war from a single command center. However, a competing council was also setup to direct forces in the northern theater. The division of Dutch forces allowed for a royalist resurgence in Brabant and Flanders. Viewing the southern lowlands as a lost cause, the Council of State in Brabant dissolved itself in 1583.
+
+	date = { day = 1 month = january year = 1583 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1593 }
+
+	action_a = {
+		name = "ACTIONNAME_BRACOUNCILA" #Regain control
+		command = { type = province_revoltrisk which = 378 value = -20 }
+		command = { type = province_revoltrisk which = 380 value = -20 }
+		command = { type = treasury value = 20 }
+		command = { type = setflag which = [BraCouncil] }
+	}
+}
+
+#Flandern version
+event = {
+	id = 337073
+	trigger = {
+		NOT = {
+			AND = {
+				NOT = {
+					core = { province = 385 data = -1 } #Ile de France - not exempt FRA
+					AND = {
+						core = { province = 387 data = -1 } #Franche Comte - not exempt SPA, BUR and HAB
+						NOT = { #BUR exempted under conditions
+							AND = {
+								flag = [Brussels]
+								exists = HOL
+							}
+						}
+					}
+					core = { province = 371 data = -1 } #Tirol, plugs a hole for HAB
+				}
+				AND = {
+					OR = {
+						core = { province = 337 data = -1 } #exempt FRI
+						core = { province = 338 data = -1 } #exempt GEL
+						core = { province = 378 data = -1 } #exempt HAU
+						core = { province = 377 data = -1 } #exempt LUX
+					}
+					NOT = { flag = [DutchClaim] } #not exempt PFA, MUN and KLE
+				}
+			}
+		}
+		NOT = { #have to be catholic for this one
+			religion = protestant
+			religion = reformed
+		}
+		NOT = { owned = { province = 337 data = REB } } #Friesen - Can't have the rebels controlling the province
+		NOT = { domestic = { type = innovative value = 8 } }
+		flag = [DutGenEst] #Only get this one if you had Dutch Nobles Demand general Estates
+		flag = [EdictBlood] #Only happens if you had the Edict of Blood
+		NOT = { flag = [BraCouncil] }
+	}
+	random = no
+	province = 380 #Flandern
+	name = "EVENTNAME_BRACOUNCIL" #The Dissolution of the Council of State
+	desc = "EVENTHIST_BRACOUNCIL"
+	#-#From the start of Dutch Revolt a lack of central authority had made it difficult for the provinces to coordinate their efforts against royalist forces. By 1581 it was decided to setup Council of State, located in Brabant, to direct the war from a single command center. However, a competing council was also setup to direct forces in the northern theater. The division of Dutch forces allowed for a royalist resurgence in Brabant and Flanders. Viewing the southern lowlands as a lost cause, the Council of State in Brabant dissolved itself in 1583.
+
+	date = { day = 1 month = january year = 1583 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1593 }
+
+	action_a = {
+		name = "ACTIONNAME_BRACOUNCILA" #Regain control
+		command = { type = province_revoltrisk which = 378 value = -20 }
+		command = { type = province_revoltrisk which = 380 value = -20 }
+		command = { type = treasury value = 20 }
+		command = { type = setflag which = [BraCouncil] }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#(1545-1648) The Dutch Revolt is successful!
+
+#Friesen version
+event = {
+	id = 337044
+	trigger = {
+		NOT = {
+			owned = { province = 337 data = HOL } #Friesen
+			AND = {
+				NOT = {
+					core = { province = 385 data = -1 } #Ile de France - not exempt FRA
+					AND = {
+						core = { province = 387 data = -1 } #Franche Comte - not exempt SPA, BUR and HAB
+						NOT = { #BUR exempted under conditions
+							AND = {
+								flag = [Lowlands]
+								exists = HOL
+							}
+						}
+					}
+					core = { province = 371 data = -1 } #Tirol, plugs a hole for HAB
+				}
+				core = { province = 337 data = -1 } #exempt FRI
+				AND = {
+					core = { province = 339 data = -1 }
+					countrysize = 1 #exempt HAU only if capital can't be relocated
+					NOT = {
+						flag = [HollandClaim] #not exempt FRI and ENG
+						flag = [DutchClaim] #not exempt PFA, MUN and KLE
+					}
+				}
+			}
+		}
+		exists = HOL
+		flag = [DutGenEst]
+		NOT = { event = 3808 } #Friesland joins the Netherlands
+		NOT = { event = 186009 } #Friesland was owned by the Netherlands
+	}
+	random = no
+	province = 337 #Friesen
+	name = "EVENTNAME_DUTCHSUCCESS" #The Union of Utrecht claims independence
+	desc = "EVENTHIST_DUTCHSUCCESS"
+	#-#In 1579 the Northern provinces in the Low Countries signed the Union of Utrecht as countermeasure to the Union of Arras, which the Southern provinces signed as a guarantee of allegiance to their suzerain in exchange of more freedom under condition that Catholic religion was to be restored and practiced in those lands. As answer to these concessions which were clearly driven to force-convert and subjugate the Dutch population, the largely Protestant and Reformed Northern provinces of the Low Countries of the Union of Utrecht proclaimed their independence from the 'tyrannical and untrustworthy' suzerain and convened their own General Estates with the representatives of the seven rebelling provinces in the presiding province of Holland at The Hague. As a result of this, we are swiftly losing control of large holdings in the Netherlands to the victorious Dutch rebels. More local nobles and magnates seem to be joining the Dutch cause every day. We must strike swiftly and without mercy if we want to put a stop to this outrage and save our finances!
+
+	date = { day = 1 month = january year = 1555 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1648 }
+
+	action_a = {
+		name = "ACTIONNAME_DUTCHSUCCESSA" #Those 'Gueux' must pay!
+		command = { type = secedeprovince which = HOL value = 337 } #Friesen
+		command = { type = casusbelli which = HOL value = 24 }
+	}
+}
+
+#Gelre version
+event = {
+	id = 337045
+	trigger = {
+		NOT = {
+			owned = { province = 338 data = HOL } #Gelre
+			AND = {
+				NOT = {
+					core = { province = 385 data = -1 } #Ile de France - not exempt FRA
+					AND = {
+						core = { province = 387 data = -1 } #Franche Comte - not exempt SPA, BUR and HAB
+						NOT = { #BUR exempted under conditions
+							AND = {
+								flag = [Lowlands]
+								exists = HOL
+							}
+						}
+					}
+					core = { province = 371 data = -1 } #Tirol, plugs a hole for HAB
+				}
+				AND = {
+					core = { province = 338 data = -1 } #exempt GEL
+					NOT = { flag = [DutchClaim] } #not exempt PFA, MUN and KLE
+				}
+				AND = {
+					core = { province = 339 data = -1 }
+					countrysize = 1 #exempt HAU only if capital can't be relocated
+					NOT = {
+						flag = [HollandClaim] #not exempt FRI and ENG
+						flag = [DutchClaim] #not exempt PFA, MUN and KLE
+					}
+				}
+			}
+		}
+		exists = HOL
+		flag = [DutGenEst]
+		NOT = { event = 3806 } #Gelre joins the Netherlands
+		NOT = { event = 186010 } #The Netherlands own Gelre at some point
+	}
+	random = no
+	province = 338 #Gelre
+	name = "EVENTNAME_DUTCHSUCCESS" #The Union of Utrecht claims independence
+	desc = "EVENTHIST_DUTCHSUCCESS"
+	#-#In 1579 the Northern provinces in the Low Countries signed the Union of Utrecht as countermeasure to the Union of Arras, which the Southern provinces signed as a guarantee of allegiance to their suzerain in exchange of more freedom under condition that Catholic religion was to be restored and practiced in those lands. As answer to these concessions which were clearly driven to force-convert and subjugate the Dutch population, the largely Protestant and Reformed Northern provinces of the Low Countries of the Union of Utrecht proclaimed their independence from the 'tyrannical and untrustworthy' suzerain and convened their own General Estates with the representatives of the seven rebelling provinces in the presiding province of Holland at The Hague. As a result of this, we are swiftly losing control of large holdings in the Netherlands to the victorious Dutch rebels. More local nobles and magnates seem to be joining the Dutch cause every day. We must strike swiftly and without mercy if we want to put a stop to this outrage and save our finances!
+
+	date = { day = 1 month = january year = 1555 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1648 }
+
+	action_a = {
+		name = "ACTIONNAME_DUTCHSUCCESSA" #Those 'Gueux' must pay!
+		command = { type = secedeprovince which = HOL value = 338 } #Geldre
+		command = { type = casusbelli which = HOL value = 24 }
+	}
+}
+
+#Holland version
+event = {
+	id = 337046
+	trigger = {
+		NOT = {
+			owned = { province = 339 data = HOL } #Holland
+			AND = {
+				NOT = {
+					core = { province = 385 data = -1 } #Ile de France - not exempt FRA
+					AND = {
+						core = { province = 387 data = -1 } #Franche Comte - not exempt SPA, BUR and HAB
+						NOT = { #BUR exempted under conditions
+							AND = {
+								flag = [Lowlands]
+								exists = HOL
+							}
+						}
+					}
+					core = { province = 371 data = -1 } #Tirol, plugs a hole for HAB
+				}
+				AND = {
+					core = { province = 339 data = -1 }
+					countrysize = 1 #exempt HAU only if capital can't be relocated
+					NOT = {
+						flag = [HollandClaim] #not exempt FRI and ENG
+						flag = [DutchClaim] #not exempt PFA, MUN and KLE
+					}
+				}
+			}
+		}
+		exists = HOL
+		#The Netherlands own Holland at some point
+		NOT = { event = 186011 } #HOL: Wartime devastation of Holland
+	}
+	random = no
+	province = 339 #Holland
+	name = "EVENTNAME_DUTCHSUCCESS" #The Union of Utrecht claims independence
+	desc = "EVENTHIST_DUTCHSUCCESS"
+	#-#In 1579 the Northern provinces in the Low Countries signed the Union of Utrecht as countermeasure to the Union of Arras, which the Southern provinces signed as a guarantee of allegiance to their suzerain in exchange of more freedom under condition that Catholic religion was to be restored and practiced in those lands. As answer to these concessions which were clearly driven to force-convert and subjugate the Dutch population, the largely Protestant and Reformed Northern provinces of the Low Countries of the Union of Utrecht proclaimed their independence from the 'tyrannical and untrustworthy' suzerain and convened their own General Estates with the representatives of the seven rebelling provinces in the presiding province of Holland at The Hague. As a result of this, we are swiftly losing control of large holdings in the Netherlands to the victorious Dutch rebels. More local nobles and magnates seem to be joining the Dutch cause every day. We must strike swiftly and without mercy if we want to put a stop to this outrage and save our finances!
+
+	date = { day = 1 month = january year = 1555 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1648 }
+
+	action_a = {
+		name = "ACTIONNAME_DUTCHSUCCESSA" #Those 'Gueux' must pay!
+		command = { type = secedeprovince which = HOL value = 339 } #Holland
+		command = { type = casusbelli which = HOL value = 24 }
+	}
+}
+
+#Zeeland version
+event = {
+	id = 337047
+	trigger = {
+		NOT = {
+			owned = { province = 340 data = HOL } #Zeeland
+			AND = {
+				NOT = {
+					core = { province = 385 data = -1 } #Ile de France - not exempt FRA
+					AND = {
+						core = { province = 387 data = -1 } #Franche Comte - not exempt SPA, BUR and HAB
+						NOT = { #BUR exempted under conditions
+							AND = {
+								flag = [Lowlands]
+								exists = HOL
+							}
+						}
+					}
+					core = { province = 371 data = -1 } #Tirol, plugs a hole for HAB
+				}
+				AND = {
+					core = { province = 339 data = -1 }
+					countrysize = 1 #exempt HAU only if capital can't be relocated
+					NOT = {
+						flag = [HollandClaim] #not exempt FRI and ENG
+						flag = [DutchClaim] #not exempt PFA, MUN and KLE
+					}
+				}
+			}
+		}
+		exists = HOL
+		flag = [DutGenEst]
+		NOT = { event = 186012 } #The Netherlands own Zeeland at some point
+	}
+	random = no
+	province = 340 #Zeeland
+	name = "EVENTNAME_DUTCHSUCCESS" #The Union of Utrecht claims independence
+	desc = "EVENTHIST_DUTCHSUCCESS"
+	#-#In 1579 the Northern provinces in the Low Countries signed the Union of Utrecht as countermeasure to the Union of Arras, which the Southern provinces signed as a guarantee of allegiance to their suzerain in exchange of more freedom under condition that Catholic religion was to be restored and practiced in those lands. As answer to these concessions which were clearly driven to force-convert and subjugate the Dutch population, the largely Protestant and Reformed Northern provinces of the Low Countries of the Union of Utrecht proclaimed their independence from the 'tyrannical and untrustworthy' suzerain and convened their own General Estates with the representatives of the seven rebelling provinces in the presiding province of Holland at The Hague. As a result of this, we are swiftly losing control of large holdings in the Netherlands to the victorious Dutch rebels. More local nobles and magnates seem to be joining the Dutch cause every day. We must strike swiftly and without mercy if we want to put a stop to this outrage and save our finances!
+
+	date = { day = 1 month = january year = 1555 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1648 }
+
+	action_a = {
+		name = "ACTIONNAME_DUTCHSUCCESSA" #Those 'Gueux' must pay!
+		command = { type = secedeprovince which = HOL value = 340 } #Zeeland
+		command = { type = casusbelli which = HOL value = 24 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#(1648) The Restoration in the Low Countries / Dutch defeated
+#now adds core on one province if you sucessfully defeated the rebels
+
+#Brabant version
+event = {
+	id = 337048
+	trigger = {
+		OR = { #if you had any of the Dutch revolt events
+			flag = [DutGenEst] #Dutch Nobles Demand General Estates
+			flag = [EdictBlood] #Edict of Blood
+			flag = [Arras] #Union of Arras
+		}
+		NOT = { flag = [NethRepat] } #can't have had another version of this one
+		NOT = { event = 3900 } #Dutch independence - HOL was never independent
+	}
+	random = no
+	province = 378 #Brabant
+	name = "EVENTNAME_DUTCHREPDEF" #The Restoration in the Low Countries
+	desc = "EVENTHIST_DUTCHREPDEF"
+	#-#In the first decades of the XVII century fierce religious struggles unceasingly prosecuted in the Low Countries and the Catholic army took up the offensive in the Netherlands winning victory after victory. The Dutch again opened the dykes to flood the enemy, but it backfired and they lost most of their elite troops. In 1625 Breda capitulated, and in 1627 Nijmegen fell, while the Lansquenets moved into Geldern and threatened Utrecht. But the best was yet to come. After winning a night-time sea battle the Catholic navy landed a large army in Zeeland, and within a year control was regained over the quarrelsome subjects. During the years until the Peace of The Hague, all non-Catholics were harshly subjugated. Catholics were given preferment and local self-governance. A pact between all the Catholic subjects and the suzerain was instituted. Many Calvinists, unwilling to be force-converted to Catholicism, had to leave the Netherlands for the newly born overseas colonies in South Africa and in the South East Indies. In 1648 with the end of the Eighty Years War against the Dutch rebels, the world at last acknowledged our rightful rule in the Low Countries.
+
+	date = { day = 1 month = january year = 1648 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1649 }
+
+	action_a = {
+		name = "ACTIONNAME_DUTCHREPDEF" #Those 'Gueux' are tamed!
+		command = { type = province_revoltrisk which = 337 value = -30 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = -30 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = -30 } #Holland
+		command = { type = province_revoltrisk which = 340 value = -30 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = -27 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = -27 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = -27 } #Artois
+		command = { type = province_revoltrisk which = 380 value = -27 } #Flandern
+		command = { type = setflag which = [NethRepat] } #so it doesn't happen again
+	}
+}
+
+#Flandern version
+event = {
+	id = 337049
+	trigger = {
+		OR = { #if you had any of the Dutch revolt events
+			flag = [DutGenEst] #Dutch Nobles Demand General Estates
+			flag = [EdictBlood] #Edict of Blood
+			flag = [Arras] #Union of Arras
+		}
+		NOT = { flag = [NethRepat] } #can't have had another version of this one
+		NOT = { event = 3900 } #Dutch independence - HOL was never independent
+	}
+	random = no
+	province = 380 #Flandern
+	name = "EVENTNAME_DUTCHREPDEF" #The Restoration in the Low Countries
+	desc = "EVENTHIST_DUTCHREPDEF"
+	#-#In the first decades of the XVII century fierce religious struggles unceasingly prosecuted in the Low Countries and the Catholic army took up the offensive in the Netherlands winning victory after victory. The Dutch again opened the dykes to flood the enemy, but it backfired and they lost most of their elite troops. In 1625 Breda capitulated, and in 1627 Nijmegen fell, while the Lansquenets moved into Geldern and threatened Utrecht. But the best was yet to come. After winning a night-time sea battle the Catholic navy landed a large army in Zeeland, and within a year control was regained over the quarrelsome subjects. During the years until the Peace of The Hague, all non-Catholics were harshly subjugated. Catholics were given preferment and local self-governance. A pact between all the Catholic subjects and the suzerain was instituted. Many Calvinists, unwilling to be force-converted to Catholicism, had to leave the Netherlands for the newly born overseas colonies in South Africa and in the South East Indies. In 1648 with the end of the Eighty Years War against the Dutch rebels, the world at last acknowledged our rightful rule in the Low Countries.
+
+	date = { day = 2 month = january year = 1648 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1649 }
+
+	action_a = {
+		name = "ACTIONNAME_DUTCHREPDEF" #Those 'Gueux' are tamed!
+		command = { type = province_revoltrisk which = 337 value = -30 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = -30 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = -30 } #Holland
+		command = { type = province_revoltrisk which = 340 value = -30 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = -27 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = -27 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = -27 } #Artois
+		command = { type = province_revoltrisk which = 380 value = -27 } #Flandern
+		command = { type = setflag which = [NethRepat] } #so it doesn't happen again
+	}
+}
+
+#Holland version
+event = {
+	id = 337050
+	trigger = {
+		OR = { #if you had any of the Dutch revolt events
+			flag = [DutGenEst] #Dutch Nobles Demand General Estates
+			flag = [EdictBlood] #Edict of Blood
+			flag = [Arras] #Union of Arras
+		}
+		NOT = { flag = [NethRepat] } #can't have had another version of this one
+		NOT = { event = 3900 } #Dutch independence - HOL was never independent
+	}
+	random = no
+	province = 339 #Holland
+	name = "EVENTNAME_DUTCHREPDEF" #The Restoration in the Low Countries
+	desc = "EVENTHIST_DUTCHREPDEF"
+	#-#In the first decades of the XVII century fierce religious struggles unceasingly prosecuted in the Low Countries and the Catholic army took up the offensive in the Netherlands winning victory after victory. The Dutch again opened the dykes to flood the enemy, but it backfired and they lost most of their elite troops. In 1625 Breda capitulated, and in 1627 Nijmegen fell, while the Lansquenets moved into Geldern and threatened Utrecht. But the best was yet to come. After winning a night-time sea battle the Catholic navy landed a large army in Zeeland, and within a year control was regained over the quarrelsome subjects. During the years until the Peace of The Hague, all non-Catholics were harshly subjugated. Catholics were given preferment and local self-governance. A pact between all the Catholic subjects and the suzerain was instituted. Many Calvinists, unwilling to be force-converted to Catholicism, had to leave the Netherlands for the newly born overseas colonies in South Africa and in the South East Indies. In 1648 with the end of the Eighty Years War against the Dutch rebels, the world at last acknowledged our rightful rule in the Low Countries.
+
+	date = { day = 3 month = january year = 1648 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1649 }
+
+	action_a = {
+		name = "ACTIONNAME_DUTCHREPDEF" #Those 'Gueux' are tamed!
+		command = { type = province_revoltrisk which = 337 value = -30 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = -30 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = -30 } #Holland
+		command = { type = province_revoltrisk which = 340 value = -30 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = -27 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = -27 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = -27 } #Artois
+		command = { type = province_revoltrisk which = 380 value = -27 } #Flandern
+		command = { type = setflag which = [NethRepat] } #so it doesn't happen again
+	}
+}
+
+#Zeeland version
+event = {
+	id = 337051
+	trigger = {
+		OR = { #if you had any of the Dutch revolt events
+			flag = [DutGenEst] #Dutch Nobles Demand General Estates
+			flag = [EdictBlood] #Edict of Blood
+			flag = [Arras] #Union of Arras
+		}
+		NOT = { flag = [NethRepat] } #can't have had another version of this one
+		NOT = { event = 3900 } #Dutch independence - HOL was never independent
+	}
+	random = no
+	province = 340 #Zeeland
+	name = "EVENTNAME_DUTCHREPDEF" #The Restoration in the Low Countries
+	desc = "EVENTHIST_DUTCHREPDEF"
+	#-#In the first decades of the XVII century fierce religious struggles unceasingly prosecuted in the Low Countries and the Catholic army took up the offensive in the Netherlands winning victory after victory. The Dutch again opened the dykes to flood the enemy, but it backfired and they lost most of their elite troops. In 1625 Breda capitulated, and in 1627 Nijmegen fell, while the Lansquenets moved into Geldern and threatened Utrecht. But the best was yet to come. After winning a night-time sea battle the Catholic navy landed a large army in Zeeland, and within a year control was regained over the quarrelsome subjects. During the years until the Peace of The Hague, all non-Catholics were harshly subjugated. Catholics were given preferment and local self-governance. A pact between all the Catholic subjects and the suzerain was instituted. Many Calvinists, unwilling to be force-converted to Catholicism, had to leave the Netherlands for the newly born overseas colonies in South Africa and in the South East Indies. In 1648 with the end of the Eighty Years War against the Dutch rebels, the world at last acknowledged our rightful rule in the Low Countries.
+
+	date = { day = 4 month = january year = 1648 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1649 }
+
+	action_a = {
+		name = "ACTIONNAME_DUTCHREPDEF" #Those 'Gueux' are tamed!
+		command = { type = province_revoltrisk which = 337 value = -30 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = -30 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = -30 } #Holland
+		command = { type = province_revoltrisk which = 340 value = -30 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = -27 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = -27 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = -27 } #Artois
+		command = { type = province_revoltrisk which = 380 value = -27 } #Flandern
+		command = { type = setflag which = [NethRepat] } #so it doesn't happen again
+	}
+}
+
+#Artois version
+event = {
+	id = 337052
+	trigger = {
+		OR = { #if you had any of the Dutch revolt events
+			flag = [DutGenEst] #Dutch Nobles Demand General Estates
+			flag = [EdictBlood] #Edict of Blood
+			flag = [Arras] #Union of Arras
+		}
+		NOT = { flag = [NethRepat] } #can't have had another version of this one
+		NOT = { event = 3900 } #Dutch independence - HOL was never independent
+	}
+	random = no
+	province = 379 #Artois
+	name = "EVENTNAME_DUTCHREPDEF" #The Restoration in the Low Countries
+	desc = "EVENTHIST_DUTCHREPDEF"
+	#-#In the first decades of the XVII century fierce religious struggles unceasingly prosecuted in the Low Countries and the Catholic army took up the offensive in the Netherlands winning victory after victory. The Dutch again opened the dykes to flood the enemy, but it backfired and they lost most of their elite troops. In 1625 Breda capitulated, and in 1627 Nijmegen fell, while the Lansquenets moved into Geldern and threatened Utrecht. But the best was yet to come. After winning a night-time sea battle the Catholic navy landed a large army in Zeeland, and within a year control was regained over the quarrelsome subjects. During the years until the Peace of The Hague, all non-Catholics were harshly subjugated. Catholics were given preferment and local self-governance. A pact between all the Catholic subjects and the suzerain was instituted. Many Calvinists, unwilling to be force-converted to Catholicism, had to leave the Netherlands for the newly born overseas colonies in South Africa and in the South East Indies. In 1648 with the end of the Eighty Years War against the Dutch rebels, the world at last acknowledged our rightful rule in the Low Countries.
+
+	date = { day = 5 month = january year = 1648 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1649 }
+
+	action_a = {
+		name = "ACTIONNAME_DUTCHREPDEF" #Those 'Gueux' are tamed!
+		command = { type = province_revoltrisk which = 337 value = -30 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = -30 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = -30 } #Holland
+		command = { type = province_revoltrisk which = 340 value = -30 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = -27 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = -27 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = -27 } #Artois
+		command = { type = province_revoltrisk which = 380 value = -27 } #Flandern
+		command = { type = setflag which = [NethRepat] } #so it doesn't happen again
+	}
+}
+
+#Luxembourg version
+event = {
+	id = 337053
+	trigger = {
+		OR = { #if you had any of the Dutch revolt events
+			flag = [DutGenEst] #Dutch Nobles Demand General Estates
+			flag = [EdictBlood] #Edict of Blood
+			flag = [Arras] #Union of Arras
+		}
+		NOT = { flag = [NethRepat] } #can't have had another version of this one
+		NOT = { event = 3900 } #Dutch independence - HOL was never independent
+	}
+	random = no
+	province = 377 #Luxembourg
+	name = "EVENTNAME_DUTCHREPDEF" #The Restoration in the Low Countries
+	desc = "EVENTHIST_DUTCHREPDEF"
+	#-#In the first decades of the XVII century fierce religious struggles unceasingly prosecuted in the Low Countries and the Catholic army took up the offensive in the Netherlands winning victory after victory. The Dutch again opened the dykes to flood the enemy, but it backfired and they lost most of their elite troops. In 1625 Breda capitulated, and in 1627 Nijmegen fell, while the Lansquenets moved into Geldern and threatened Utrecht. But the best was yet to come. After winning a night-time sea battle the Catholic navy landed a large army in Zeeland, and within a year control was regained over the quarrelsome subjects. During the years until the Peace of The Hague, all non-Catholics were harshly subjugated. Catholics were given preferment and local self-governance. A pact between all the Catholic subjects and the suzerain was instituted. Many Calvinists, unwilling to be force-converted to Catholicism, had to leave the Netherlands for the newly born overseas colonies in South Africa and in the South East Indies. In 1648 with the end of the Eighty Years War against the Dutch rebels, the world at last acknowledged our rightful rule in the Low Countries.
+
+	date = { day = 6 month = january year = 1648 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1649 }
+
+	action_a = {
+		name = "ACTIONNAME_DUTCHREPDEF" #Those 'Gueux' are tamed!
+		command = { type = province_revoltrisk which = 337 value = -30 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = -30 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = -30 } #Holland
+		command = { type = province_revoltrisk which = 340 value = -30 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = -27 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = -27 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = -27 } #Artois
+		command = { type = province_revoltrisk which = 380 value = -27 } #Flandern
+		command = { type = setflag which = [NethRepat] } #so it doesn't happen again
+	}
+}
+
+#Friesen version
+event = {
+	id = 337054
+	trigger = {
+		OR = { #if you had any of the Dutch revolt events
+			flag = [DutGenEst] #Dutch Nobles Demand General Estates
+			flag = [EdictBlood] #Edict of Blood
+			flag = [Arras] #Union of Arras
+		}
+		NOT = { flag = [NethRepat] } #can't have had another version of this one
+		NOT = { event = 3900 } #Dutch independence - HOL was never independent
+	}
+	random = no
+	province = 337 #Friesen
+	name = "EVENTNAME_DUTCHREPDEF" #The Restoration in the Low Countries
+	desc = "EVENTHIST_DUTCHREPDEF"
+	#-#In the first decades of the XVII century fierce religious struggles unceasingly prosecuted in the Low Countries and the Catholic army took up the offensive in the Netherlands winning victory after victory. The Dutch again opened the dykes to flood the enemy, but it backfired and they lost most of their elite troops. In 1625 Breda capitulated, and in 1627 Nijmegen fell, while the Lansquenets moved into Geldern and threatened Utrecht. But the best was yet to come. After winning a night-time sea battle the Catholic navy landed a large army in Zeeland, and within a year control was regained over the quarrelsome subjects. During the years until the Peace of The Hague, all non-Catholics were harshly subjugated. Catholics were given preferment and local self-governance. A pact between all the Catholic subjects and the suzerain was instituted. Many Calvinists, unwilling to be force-converted to Catholicism, had to leave the Netherlands for the newly born overseas colonies in South Africa and in the South East Indies. In 1648 with the end of the Eighty Years War against the Dutch rebels, the world at last acknowledged our rightful rule in the Low Countries.
+
+	date = { day = 7 month = january year = 1648 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1649 }
+
+	action_a = {
+		name = "ACTIONNAME_DUTCHREPDEF" #Those 'Gueux' are tamed!
+		command = { type = province_revoltrisk which = 337 value = -30 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = -30 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = -30 } #Holland
+		command = { type = province_revoltrisk which = 340 value = -30 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = -27 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = -27 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = -27 } #Artois
+		command = { type = province_revoltrisk which = 380 value = -27 } #Flandern
+		command = { type = setflag which = [NethRepat] } #so it doesn't happen again
+	}
+}
+
+#Geldre version
+event = {
+	id = 337055
+	trigger = {
+		OR = { #if you had any of the Dutch revolt events
+			flag = [DutGenEst] #Dutch Nobles Demand General Estates
+			flag = [EdictBlood] #Edict of Blood
+			flag = [Arras] #Union of Arras
+		}
+		NOT = { flag = [NethRepat] } #can't have had another version of this one
+		NOT = { event = 3900 } #Dutch independence - HOL was never independent
+	}
+	random = no
+	province = 338 #Gelre
+	name = "EVENTNAME_DUTCHREPDEF" #The Restoration in the Low Countries
+	desc = "EVENTHIST_DUTCHREPDEF"
+	#-#In the first decades of the XVII century fierce religious struggles unceasingly prosecuted in the Low Countries and the Catholic army took up the offensive in the Netherlands winning victory after victory. The Dutch again opened the dykes to flood the enemy, but it backfired and they lost most of their elite troops. In 1625 Breda capitulated, and in 1627 Nijmegen fell, while the Lansquenets moved into Geldern and threatened Utrecht. But the best was yet to come. After winning a night-time sea battle the Catholic navy landed a large army in Zeeland, and within a year control was regained over the quarrelsome subjects. During the years until the Peace of The Hague, all non-Catholics were harshly subjugated. Catholics were given preferment and local self-governance. A pact between all the Catholic subjects and the suzerain was instituted. Many Calvinists, unwilling to be force-converted to Catholicism, had to leave the Netherlands for the newly born overseas colonies in South Africa and in the South East Indies. In 1648 with the end of the Eighty Years War against the Dutch rebels, the world at last acknowledged our rightful rule in the Low Countries.
+
+	date = { day = 8 month = january year = 1648 }
+	offset = 13
+	deathdate = { day = 1 month = january year = 1649 }
+
+	action_a = {
+		name = "ACTIONNAME_DUTCHREPDEF" #Those 'Gueux' are tamed!
+		command = { type = province_revoltrisk which = 337 value = -30 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = -30 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = -30 } #Holland
+		command = { type = province_revoltrisk which = 340 value = -30 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = -27 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = -27 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = -27 } #Artois
+		command = { type = province_revoltrisk which = 380 value = -27 } #Flandern
+		command = { type = setflag which = [NethRepat] } #so it doesn't happen again
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#(1609-1648) End of Dutch revolts / Dutch sucessful
+
+#Friesen version
+event = {
+	id = 337056
+	trigger = {
+		OR = { #if you had any of the Dutch revolt events
+			flag = [DutGenEst] #Dutch Nobles Demand General Estates
+			flag = [EdictBlood] #Edict of Blood
+			flag = [Arras] #Union of Arras
+		}
+		NOT = { flag = [NethRepat] } #can't have had another version of this one
+		event = 3900 #Dutch independence - HOL was independent at some point
+	}
+	random = no
+	province = 337 #Friesen
+	name = "EVENTNAME_DUTCHREPSUC" #End of Dutch revolts
+	desc = "EVENTHIST_DUTCHREPSUC"
+	#-#After the initial failures of 1580-1590s and a prolonged cease-fire, in the first decades of the XVII century the enemy took up the offensive in the Low Countries again. The entrepreneurial and thrifty Dutch people were soon on the move, bearing all the costs of war in strengthening coastal and inland defences, both given by nature's favour or by man's skills, and stopping any enemy landing from the sea by means of an invincible fleet, the 'Gueux de mer' (The Sea Beggars). All of this constituted the defensive tactics made necessary to compensate the impossibility to have large armies available in battlefields. Even if in 1625 Breda capitulated and in 1627 Nijmegen fell while the enemy hired Lansquenets were moving into Geldern and threatened Utrecht, the Dutch independentists managed to withstand the invasion and to strengthen their national cohesion. In 1648, at the Peace of The Hague which ended the Eighty Years War between the United Provinces of the Low Countries (the Netherlands) and their former suzerain, the world at last acknowledged the legitimate self-determination of the Dutch people to rule themselves over their own country.
+
+	date = { day = 1 month = january year = 1609 }
+	offset = 1080
+	deathdate = { day = 1 month = january year = 1649 }
+
+	action_a = {
+		name = "AT_LAST"
+		command = { type = province_revoltrisk which = 337 value = -30 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = -30 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = -30 } #Holland
+		command = { type = province_revoltrisk which = 340 value = -30 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = -27 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = -27 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = -27 } #Artois
+		command = { type = province_revoltrisk which = 380 value = -27 } #Flandern
+		command = { type = setflag which = [NethRepat] } #so it doesn't happen again
+	}
+}
+
+#Geldre version
+event = {
+	id = 337057
+	trigger = {
+		OR = { #if you had any of the Dutch revolt events
+			flag = [DutGenEst] #Dutch Nobles Demand General Estates
+			flag = [EdictBlood] #Edict of Blood
+			flag = [Arras] #Union of Arras
+		}
+		NOT = { flag = [NethRepat] } #can't have had another version of this one
+		event = 3900 #Dutch independence - HOL was independent at some point
+	}
+	random = no
+	province = 338 #Gelre
+	name = "EVENTNAME_DUTCHREPSUC" #End of Dutch revolts
+	desc = "EVENTHIST_DUTCHREPSUC"
+	#-#After the initial failures of 1580-1590s and a prolonged cease-fire, in the first decades of the XVII century the enemy took up the offensive in the Low Countries again. The entrepreneurial and thrifty Dutch people were soon on the move, bearing all the costs of war in strengthening coastal and inland defences, both given by nature's favour or by man's skills, and stopping any enemy landing from the sea by means of an invincible fleet, the 'Gueux de mer' (The Sea Beggars). All of this constituted the defensive tactics made necessary to compensate the impossibility to have large armies available in battlefields. Even if in 1625 Breda capitulated and in 1627 Nijmegen fell while the enemy hired Lansquenets were moving into Geldern and threatened Utrecht, the Dutch independentists managed to withstand the invasion and to strengthen their national cohesion. In 1648, at the Peace of The Hague which ended the Eighty Years War between the United Provinces of the Low Countries (the Netherlands) and their former suzerain, the world at last acknowledged the legitimate self-determination of the Dutch people to rule themselves over their own country.
+
+	date = { day = 2 month = january year = 1609 }
+	offset = 1080
+	deathdate = { day = 1 month = january year = 1649 }
+
+	action_a = {
+		name = "AT_LAST"
+		command = { type = province_revoltrisk which = 337 value = -30 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = -30 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = -30 } #Holland
+		command = { type = province_revoltrisk which = 340 value = -30 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = -27 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = -27 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = -27 } #Artois
+		command = { type = province_revoltrisk which = 380 value = -27 } #Flandern
+		command = { type = setflag which = [NethRepat] } #so it doesn't happen again
+	}
+}
+
+#Holland version
+event = {
+	id = 337058
+	trigger = {
+		OR = { #if you had any of the Dutch revolt events
+			flag = [DutGenEst] #Dutch Nobles Demand General Estates
+			flag = [EdictBlood] #Edict of Blood
+			flag = [Arras] #Union of Arras
+		}
+		NOT = { flag = [NethRepat] } #can't have had another version of this one
+		event = 3900 #Dutch independence - HOL was independent at some point
+	}
+	random = no
+	province = 339 #Holland
+	name = "EVENTNAME_DUTCHREPSUC" #End of Dutch revolts
+	desc = "EVENTHIST_DUTCHREPSUC"
+	#-#After the initial failures of 1580-1590s and a prolonged cease-fire, in the first decades of the XVII century the enemy took up the offensive in the Low Countries again. The entrepreneurial and thrifty Dutch people were soon on the move, bearing all the costs of war in strengthening coastal and inland defences, both given by nature's favour or by man's skills, and stopping any enemy landing from the sea by means of an invincible fleet, the 'Gueux de mer' (The Sea Beggars). All of this constituted the defensive tactics made necessary to compensate the impossibility to have large armies available in battlefields. Even if in 1625 Breda capitulated and in 1627 Nijmegen fell while the enemy hired Lansquenets were moving into Geldern and threatened Utrecht, the Dutch independentists managed to withstand the invasion and to strengthen their national cohesion. In 1648, at the Peace of The Hague which ended the Eighty Years War between the United Provinces of the Low Countries (the Netherlands) and their former suzerain, the world at last acknowledged the legitimate self-determination of the Dutch people to rule themselves over their own country.
+
+	date = { day = 3 month = january year = 1609 }
+	offset = 1080
+	deathdate = { day = 1 month = january year = 1649 }
+
+	action_a = {
+		name = "AT_LAST"
+		command = { type = province_revoltrisk which = 337 value = -30 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = -30 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = -30 } #Holland
+		command = { type = province_revoltrisk which = 340 value = -30 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = -27 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = -27 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = -27 } #Artois
+		command = { type = province_revoltrisk which = 380 value = -27 } #Flandern
+		command = { type = setflag which = [NethRepat] } #so it doesn't happen again
+	}
+}
+
+#Zeeland version
+event = {
+	id = 337059
+	trigger = {
+		OR = { #if you had any of the Dutch revolt events
+			flag = [DutGenEst] #Dutch Nobles Demand General Estates
+			flag = [EdictBlood] #Edict of Blood
+			flag = [Arras] #Union of Arras
+		}
+		NOT = { flag = [NethRepat] } #can't have had another version of this one
+		event = 3900 #Dutch independence - HOL was independent at some point
+	}
+	random = no
+	province = 340 #Zeeland
+	name = "EVENTNAME_DUTCHREPSUC" #End of Dutch revolts
+	desc = "EVENTHIST_DUTCHREPSUC"
+	#-#After the initial failures of 1580-1590s and a prolonged cease-fire, in the first decades of the XVII century the enemy took up the offensive in the Low Countries again. The entrepreneurial and thrifty Dutch people were soon on the move, bearing all the costs of war in strengthening coastal and inland defences, both given by nature's favour or by man's skills, and stopping any enemy landing from the sea by means of an invincible fleet, the 'Gueux de mer' (The Sea Beggars). All of this constituted the defensive tactics made necessary to compensate the impossibility to have large armies available in battlefields. Even if in 1625 Breda capitulated and in 1627 Nijmegen fell while the enemy hired Lansquenets were moving into Geldern and threatened Utrecht, the Dutch independentists managed to withstand the invasion and to strengthen their national cohesion. In 1648, at the Peace of The Hague which ended the Eighty Years War between the United Provinces of the Low Countries (the Netherlands) and their former suzerain, the world at last acknowledged the legitimate self-determination of the Dutch people to rule themselves over their own country.
+
+	date = { day = 4 month = january year = 1609 }
+	offset = 1080
+	deathdate = { day = 1 month = january year = 1649 }
+
+	action_a = {
+		name = "AT_LAST"
+		command = { type = province_revoltrisk which = 337 value = -30 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = -30 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = -30 } #Holland
+		command = { type = province_revoltrisk which = 340 value = -30 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = -27 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = -27 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = -27 } #Artois
+		command = { type = province_revoltrisk which = 380 value = -27 } #Flandern
+		command = { type = setflag which = [NethRepat] } #so it doesn't happen again
+	}
+}
+
+#Luxembourg version
+event = {
+	id = 337060
+	trigger = {
+		OR = { #if you had any of the Dutch revolt events
+			flag = [DutGenEst] #Dutch Nobles Demand General Estates
+			flag = [EdictBlood] #Edict of Blood
+			flag = [Arras] #Union of Arras
+		}
+		NOT = { flag = [NethRepat] } #can't have had another version of this one
+		event = 3900 #Dutch independence - HOL was independent at some point
+	}
+	random = no
+	province = 377 #Luxembourg
+	name = "EVENTNAME_DUTCHREPSUC" #End of Dutch revolts
+	desc = "EVENTHIST_DUTCHREPSUC"
+	#-#After the initial failures of 1580-1590s and a prolonged cease-fire, in the first decades of the XVII century the enemy took up the offensive in the Low Countries again. The entrepreneurial and thrifty Dutch people were soon on the move, bearing all the costs of war in strengthening coastal and inland defences, both given by nature's favour or by man's skills, and stopping any enemy landing from the sea by means of an invincible fleet, the 'Gueux de mer' (The Sea Beggars). All of this constituted the defensive tactics made necessary to compensate the impossibility to have large armies available in battlefields. Even if in 1625 Breda capitulated and in 1627 Nijmegen fell while the enemy hired Lansquenets were moving into Geldern and threatened Utrecht, the Dutch independentists managed to withstand the invasion and to strengthen their national cohesion. In 1648, at the Peace of The Hague which ended the Eighty Years War between the United Provinces of the Low Countries (the Netherlands) and their former suzerain, the world at last acknowledged the legitimate self-determination of the Dutch people to rule themselves over their own country.
+
+	date = { day = 5 month = january year = 1609 }
+	offset = 1080
+	deathdate = { day = 1 month = january year = 1649 }
+
+	action_a = {
+		name = "AT_LAST"
+		command = { type = province_revoltrisk which = 337 value = -30 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = -30 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = -30 } #Holland
+		command = { type = province_revoltrisk which = 340 value = -30 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = -27 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = -27 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = -27 } #Artois
+		command = { type = province_revoltrisk which = 380 value = -27 } #Flandern
+		command = { type = setflag which = [NethRepat] } #so it doesn't happen again
+	}
+}
+
+#Brabant version
+event = {
+	id = 337061
+	trigger = {
+		OR = { #if you had any of the Dutch revolt events
+			flag = [DutGenEst] #Dutch Nobles Demand General Estates
+			flag = [EdictBlood] #Edict of Blood
+			flag = [Arras] #Union of Arras
+		}
+		NOT = { flag = [NethRepat] } #can't have had another version of this one
+		event = 3900 #Dutch independence - HOL was independent at some point
+	}
+	random = no
+	province = 378 #Brabant
+	name = "EVENTNAME_DUTCHREPSUC" #End of Dutch revolts
+	desc = "EVENTHIST_DUTCHREPSUC"
+	#-#After the initial failures of 1580-1590s and a prolonged cease-fire, in the first decades of the XVII century the enemy took up the offensive in the Low Countries again. The entrepreneurial and thrifty Dutch people were soon on the move, bearing all the costs of war in strengthening coastal and inland defences, both given by nature's favour or by man's skills, and stopping any enemy landing from the sea by means of an invincible fleet, the 'Gueux de mer' (The Sea Beggars). All of this constituted the defensive tactics made necessary to compensate the impossibility to have large armies available in battlefields. Even if in 1625 Breda capitulated and in 1627 Nijmegen fell while the enemy hired Lansquenets were moving into Geldern and threatened Utrecht, the Dutch independentists managed to withstand the invasion and to strengthen their national cohesion. In 1648, at the Peace of The Hague which ended the Eighty Years War between the United Provinces of the Low Countries (the Netherlands) and their former suzerain, the world at last acknowledged the legitimate self-determination of the Dutch people to rule themselves over their own country.
+
+	date = { day = 6 month = january year = 1609 }
+	offset = 1080
+	deathdate = { day = 1 month = january year = 1649 }
+
+	action_a = {
+		name = "AT_LAST"
+		command = { type = province_revoltrisk which = 337 value = -30 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = -30 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = -30 } #Holland
+		command = { type = province_revoltrisk which = 340 value = -30 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = -27 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = -27 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = -27 } #Artois
+		command = { type = province_revoltrisk which = 380 value = -27 } #Flandern
+		command = { type = setflag which = [NethRepat] } #so it doesn't happen again
+	}
+}
+
+#Artois version
+event = {
+	id = 337062
+	trigger = {
+		OR = { #if you had any of the Dutch revolt events
+			flag = [DutGenEst] #Dutch Nobles Demand General Estates
+			flag = [EdictBlood] #Edict of Blood
+			flag = [Arras] #Union of Arras
+		}
+		NOT = { flag = [NethRepat] } #can't have had another version of this one
+		event = 3900 #Dutch independence - HOL was independent at some point
+	}
+	random = no
+	province = 379 #Artois
+	name = "EVENTNAME_DUTCHREPSUC" #End of Dutch revolts
+	desc = "EVENTHIST_DUTCHREPSUC"
+	#-#After the initial failures of 1580-1590s and a prolonged cease-fire, in the first decades of the XVII century the enemy took up the offensive in the Low Countries again. The entrepreneurial and thrifty Dutch people were soon on the move, bearing all the costs of war in strengthening coastal and inland defences, both given by nature's favour or by man's skills, and stopping any enemy landing from the sea by means of an invincible fleet, the 'Gueux de mer' (The Sea Beggars). All of this constituted the defensive tactics made necessary to compensate the impossibility to have large armies available in battlefields. Even if in 1625 Breda capitulated and in 1627 Nijmegen fell while the enemy hired Lansquenets were moving into Geldern and threatened Utrecht, the Dutch independentists managed to withstand the invasion and to strengthen their national cohesion. In 1648, at the Peace of The Hague which ended the Eighty Years War between the United Provinces of the Low Countries (the Netherlands) and their former suzerain, the world at last acknowledged the legitimate self-determination of the Dutch people to rule themselves over their own country.
+
+	date = { day = 7 month = january year = 1609 }
+	offset = 1080
+	deathdate = { day = 1 month = january year = 1649 }
+
+	action_a = {
+		name = "AT_LAST"
+		command = { type = province_revoltrisk which = 337 value = -30 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = -30 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = -30 } #Holland
+		command = { type = province_revoltrisk which = 340 value = -30 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = -27 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = -27 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = -27 } #Artois
+		command = { type = province_revoltrisk which = 380 value = -27 } #Flandern
+		command = { type = setflag which = [NethRepat] } #so it doesn't happen again
+	}
+}
+
+#Flandern version
+event = {
+	id = 337063
+	trigger = {
+		OR = { #if you had any of the Dutch revolt events
+			flag = [DutGenEst] #Dutch Nobles Demand General Estates
+			flag = [EdictBlood] #Edict of Blood
+			flag = [Arras] #Union of Arras
+		}
+		NOT = { flag = [NethRepat] } #can't have had another version of this one
+		event = 3900 #Dutch independence - HOL was independent at some point
+	}
+	random = no
+	province = 380 #Flandern
+	name = "EVENTNAME_DUTCHREPSUC" #End of Dutch revolts
+	desc = "EVENTHIST_DUTCHREPSUC"
+	#-#After the initial failures of 1580-1590s and a prolonged cease-fire, in the first decades of the XVII century the enemy took up the offensive in the Low Countries again. The entrepreneurial and thrifty Dutch people were soon on the move, bearing all the costs of war in strengthening coastal and inland defences, both given by nature's favour or by man's skills, and stopping any enemy landing from the sea by means of an invincible fleet, the 'Gueux de mer' (The Sea Beggars). All of this constituted the defensive tactics made necessary to compensate the impossibility to have large armies available in battlefields. Even if in 1625 Breda capitulated and in 1627 Nijmegen fell while the enemy hired Lansquenets were moving into Geldern and threatened Utrecht, the Dutch independentists managed to withstand the invasion and to strengthen their national cohesion. In 1648, at the Peace of The Hague which ended the Eighty Years War between the United Provinces of the Low Countries (the Netherlands) and their former suzerain, the world at last acknowledged the legitimate self-determination of the Dutch people to rule themselves over their own country.
+
+	date = { day = 8 month = january year = 1609 }
+	offset = 1080
+	deathdate = { day = 1 month = january year = 1649 }
+
+	action_a = {
+		name = "AT_LAST"
+		command = { type = province_revoltrisk which = 337 value = -30 } #Friesen
+		command = { type = province_revoltrisk which = 338 value = -30 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = -30 } #Holland
+		command = { type = province_revoltrisk which = 340 value = -30 } #Zeeland
+		command = { type = province_revoltrisk which = 377 value = -27 } #Luxembourg
+		command = { type = province_revoltrisk which = 378 value = -27 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = -27 } #Artois
+		command = { type = province_revoltrisk which = 380 value = -27 } #Flandern
+		command = { type = setflag which = [NethRepat] } #so it doesn't happen again
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 337074

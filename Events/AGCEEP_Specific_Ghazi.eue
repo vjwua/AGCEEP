@@ -1,0 +1,70 @@
+#Ghazi (TEK)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1426-1430) Absorption of Aydin
+event = {
+	id = 293000
+	trigger = {
+		exists = TUR
+		NOT = {
+			vassal = { country = TEK country = TUR }
+			countrysize = 5
+		}
+		owned = { province = 478 data = -1 } #Smyrna
+		NOT = { event = 301017 } #TUR: Absorption of Aydin
+	}
+	random = no
+	country = TEK
+	name = "EVENTNAME293000" #The Ottoman rule is returned
+	desc = "EVENTHIST293000"
+	#-#The emirate of Aydin was first conquered by the Ottomans in 1390. Soon after Aydin was re-instated as an independent country by Timurlane, it found itself under the cloak of the Ottoman state again. One of the ghazi states to have supported a pretender to the Ottoman throne, the coastal state of Aydin was permanently annexed in 1426.
+
+	date = { day = 1 month = january year = 1426 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1430 }
+
+	action_a = {
+		name = "ACTIONNAME293000A" #If only we were stronger, we might have done something...
+		command = { type = secedeprovince which = TUR value = 478 } #Smyrna
+		command = { type = trigger which = 301017 } #TUR: Absorption of Aydin
+	}
+}
+
+#(1429-1439) Inheritance of Germiyan
+event = {
+	id = 293001
+	trigger = {
+		exists = TUR
+		NOT = { vassal = { country = TEK country = TUR } }
+		control = { province = 1610 data = -1 } #Antalya
+	}
+	random = no
+	country = TEK
+	name = "EVENTNAME293001" #The will of Yakub Bey
+	desc = "EVENTHIST293001"
+	#-#When the Byzantines released Mustafa Celebi as a pretender to the Ottoman throne, Germiyan and many of the other ghazi states supported him against Sultan Murad II. However, when Mustafa was murdered in 1423, in a flash of divine inspiration, Yakub Bey, ruler of Germiyan, realized that he had been in the wrong and decided to develop a good relationship with the Ottomans. Never having any sons, Yakub willed his country to the Ottoman state pursuant to his death in February of the year 1429.
+
+	date = { day = 1 month = february year = 1429 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1439 }
+
+	action_a = {
+		name = "ACTIONNAME293001A" #We join the Ottoman state (End Game)
+		command = { type = provincemanpower which = 1610 value = 1 } #Antalya
+		command = { type = provincetax which = 1610 value = 3 } #Antalya
+		command = { type = trigger which = 301018 } #TUR: Inheritance of Germiyan
+	}
+	action_b = {
+		name = "ACTIONNAME293001B" #A distant cousin shall fight for the rulership of our lands
+		command = { type = stability value = -2 }
+		command = { type = relation which = TUR value = -100 }
+		#command = { type = relation which = GEN value = 50 } #don't remember what this was
+		command = { type = war which = TUR }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 293002

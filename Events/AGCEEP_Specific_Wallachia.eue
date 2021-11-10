@@ -1,0 +1,1585 @@
+#Wallachia (WAL)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1421) Contested Throne
+event = {
+	id = 329001
+	trigger = {
+		NOT = { war = { country = HUN country = WAL } }
+	}
+	random = no
+	country = WAL
+	name = "EVENTNAME329001" #Struggle in Wallachia
+	desc = "EVENTHIST329001"
+	#-#In 1421 Sigismund of Hungary helps Dan II ascend to the throne. Dan II will rule between november 1421 and 1431 with many interruptions, as Radu will attempt a number of times to regain power.
+
+	date = { day = 29 month = october year = 1421 }
+
+	action_a = {
+		name = "ACTIONNAME329001A" #Dan II and Hungary
+		command = { type = breakvassal which = TUR } #no problem
+		command = { type = relation which = TUR value = -100 }
+		command = { type = relation which = HUN value = 100 }
+		command = { type = stability value = -2 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = revoltrisk which = 100 value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME329001B" #Radu II and the Turks
+		command = { type = sleepmonarch which = 0165501 } #Dan II
+		command = { type = wakemonarch which = 0165543 } #Dan II
+		command = { type = relation which = HUN value = -100 }
+		command = { type = relation which = TUR value = 50 }
+		command = { type = stability value = -1 }
+		command = { type = addcore which = 354 } #Banat
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = revoltrisk which = 100 value = 3 }
+		command = { type = sleepevent which = 188010 } #HUN: Dan II
+	}
+}
+
+#(1431) Alexander I -I-
+event = {
+	id = 329008
+	trigger = {
+		exists = MOL
+		NOT = { war = { country = MOL country = WAL } }
+		vassal = { country = HUN country = WAL }
+	}
+	random = no
+	country = WAL
+	name = "EVENTNAME329002" #Alexander I
+	desc = "EVENTHIST329002"
+	#-#In 1431 Alexandru I Aldea (another son of Mircea the Elder) takes the throne. He is helped, this time, by Moldavia.
+
+	date = { day = 1 month = june year = 1431 }
+	offset = 5
+	deathdate = { day = 1 month = july year = 1431 }
+
+	action_a = {
+		name = "ACTIONNAME329002A" #Moldavia it is
+		command = { type = breakvassal which = HUN }
+		command = { type = sleepevent which = 329009 } #WAL: Alexander I -II-
+		command = { type = sleepevent which = 329002 } #WAL: Alexander I -III-
+	}
+}
+#(1431) Alexander I -II-
+event = {
+	id = 329009
+	trigger = {
+		exists = MOL
+		NOT = { war = { country = MOL country = WAL } }
+		vassal = { country = TUR country = WAL }
+	}
+	random = no
+	country = WAL
+	name = "EVENTNAME329002" #Alexander I
+	desc = "EVENTHIST329002"
+	#-#In 1431 Alexandru I Aldea (another son of Mircea the Elder) takes the throne. He is helped, this time, by Moldavia.
+
+	date = { day = 1 month = june year = 1431 }
+	offset = 5
+	deathdate = { day = 1 month = july year = 1431 }
+
+	action_a = {
+		name = "ACTIONNAME329002A" #Moldavia it is
+		command = { type = breakvassal which = TUR }
+		command = { type = sleepevent which = 329008 } #WAL: Alexander I -I-
+		command = { type = sleepevent which = 329002 } #WAL: Alexander I -III-
+	}
+}
+#(1431) Alexander I -III-
+event = {
+	id = 329002
+	trigger = {
+		exists = MOL
+		NOT = { war = { country = MOL country = WAL } }
+		NOT = {
+			vassal = { country = HUN country = WAL }
+			vassal = { country = TUR country = WAL }
+		}
+	}
+	random = no
+	country = WAL
+	name = "EVENTNAME329002" #Alexander I
+	desc = "EVENTHIST329002"
+	#-#In 1431 Alexandru I Aldea (another son of Mircea the Elder) takes the throne. He is helped, this time, by Moldavia.
+
+	date = { day = 1 month = june year = 1431 }
+	offset = 5
+	deathdate = { day = 1 month = july year = 1431 }
+
+	action_a = {
+		name = "ACTIONNAME329002A" #Moldavia it is
+		command = { }
+		command = { type = sleepevent which = 329008 } #WAL: Alexander I -I-
+		command = { type = sleepevent which = 329009 } #WAL: Alexander I -II-
+	}
+}
+
+#(1436) The Dragon -I-
+event = {
+	id = 19000
+	trigger = {
+		vassal = { country = MOL country = WAL }
+	}
+	random = no
+	country = WAL
+	name = "EVENTNAME19000" #The Dragon
+	desc = "EVENTHIST19000"
+	#-#The German Emperor Sigismund of Luxembourg and his 2nd wife, Barbara von Cilli, founded the Order of the Dragon in 1387 as a secret military and religious organization with the aim of protecting the Catholic Church against heretics, such as the Hussites (who rose in Bohemia recently). An additional objective is the organization of Crusades against the Ottoman Turks, who had overrun most of the Balkan peninsula. On February 8, 1431, Vlad, henceforth known as Vlad Dracul, or the Dragon, was inducted in this order along with King Ladislas of Poland and Prince Lazarevic of Serbia. In addition, the Holy Roman Emperor has invested Vlad Dracul as the sovereign ruler of the Princedom of Wallachia. Dracul made good his claim by expelling Alexandru during the winter of 1436, and taking the throne.
+
+	date = { day = 25 month = december year = 1436 }
+
+	action_a = {
+		name = "ACTIONNAME19000A" #Wonderful... Sigismund is now our lord
+		command = { type = relation which = HUN value = 80 }
+		command = { type = relation which = LUX value = 80 }
+		command = { type = relation which = POL value = 80 }
+		command = { type = relation which = SER value = 80 }
+		command = { type = relation which = TUR value = -50 }
+		command = { type = breakvassal which = MOL }
+		command = { type = sleepevent which = 329010 } #WAL: The Dragon -II-
+	}
+	action_b = {
+		name = "ACTIONNAME19000B" #Stab Sigismund in the back!
+		command = { type = relation which = HUN value = -150 }
+		command = { type = relation which = TUR value = -50 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = stability value = -2 }
+		command = { type = sleepevent which = 188011 } #HUN: The Dragon
+		command = { type = sleepevent which = 329003 } #WAL: Battle of Varna
+		command = { type = sleepevent which = 329010 } #WAL: The Dragon -II-
+	}
+}
+#(1436) The Dragon -II-
+event = {
+	id = 329010
+	trigger = {
+		NOT = { vassal = { country = MOL country = WAL } }
+	}
+	random = no
+	country = WAL
+	name = "EVENTNAME19000" #The Dragon
+	desc = "EVENTHIST19000"
+	#-#The German Emperor Sigismund of Luxembourg and his 2nd wife, Barbara von Cilli, founded the Order of the Dragon in 1387 as a secret military and religious organization with the aim of protecting the Catholic Church against heretics, such as the Hussites (who rose in Bohemia recently). An additional objective is the organization of Crusades against the Ottoman Turks, who had overrun most of the Balkan peninsula. On February 8, 1431, Vlad, henceforth known as Vlad Dracul, or the Dragon, was inducted in this order along with King Ladislas of Poland and Prince Lazarevic of Serbia. In addition, the Holy Roman Emperor has invested Vlad Dracul as the sovereign ruler of the Princedom of Wallachia. Dracul made good his claim by expelling Alexandru during the winter of 1436, and taking the throne.
+
+	date = { day = 25 month = december year = 1436 }
+
+	action_a = {
+		name = "ACTIONNAME19000A" #Wonderful... Sigismund is now our lord
+		command = { type = relation which = HUN value = 80 }
+		command = { type = relation which = LUX value = 80 }
+		command = { type = relation which = POL value = 80 }
+		command = { type = relation which = SER value = 80 }
+		command = { type = relation which = TUR value = -50 }
+		command = { type = sleepevent which = 19000 } #WAL: The Dragon -I-
+	}
+	action_b = {
+		name = "ACTIONNAME19000B" #Stab Sigismund in the back!
+		command = { type = relation which = HUN value = -150 }
+		command = { type = relation which = TUR value = -50 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = stability value = -2 }
+		command = { type = sleepevent which = 188011 } #HUN: The Dragon
+		command = { type = sleepevent which = 329003 } #WAL: Battle of Varna
+		command = { type = sleepevent which = 19000 } #WAL: The Dragon -I-
+	}
+}
+
+#(1439) The Council of Florence and the Union of the Churches
+event = {
+	id = 3839 #triggered by BYZ_3833 A / BYZ_23020 B
+	random = no
+	country = WAL
+	name = "EVENTNAME3833" #The Council of Florence and the Union of the Churches
+	desc = "EVENTHIST3835"
+	#-#Faced with the terrible onslaught of the Ottoman Turks, representatives of the Byzantine Empire and the Greek Orthodox Church have gone to the Council of Florence in order to negotiate a Union of the Churches. The Byzantines and their patriarch have agreed to great concessions, and Orthodoxy has virtually surrendered to Rome. Now, Byzantium is begging us to support them in their desperate struggle against the Ottomans!
+
+	action_a = {
+		name = "VERY_WELL"
+		command = { type = casusbelli which = TUR value = 60 }
+	}
+}
+
+#(1442) The Dragon in Chains -I-
+event = {
+	id = 19001
+	trigger = {
+		vassal = { country = HUN country = WAL }
+		neighbour = TUR
+		NOT = { war = { country = TUR country = WAL } }
+	}
+	random = no
+	country = WAL
+	name = "EVENTNAME19001" #The Dragon in Chains
+	desc = "EVENTHIST19001"
+	#-#In the spring of 1442, Sultan Murad II beguiled Dracul into a meeting, and insensitive to the snare, Dracul crossed the Danube with his 2nd son, Vlad Dracula (son of the Dragon), and his youngest son Radu cel Frumas (the handsome) in tow. Dracul was captured, bound in chains, and brought before the Sultan. Vlad Dracul was forced to swear fealty to Murad II, and both Dracula and Radu were kept as hostages, although each child had remarkably different reactions to their captivity. Radu developed marked pro-Turkish attitudes, while Dracula's thoughts were more difficult to fathom.
+
+	date = { day = 15 month = april year = 1442 }
+
+	action_a = {
+		name = "ACTIONNAME19001A" #Meet with the Sultan Personally
+		command = { type = breakvassal which = HUN }
+		command = { type = relation which = TUR value = 100 }
+		command = { type = relation which = HUN value = -30 }
+		command = { type = relation which = LUX value = -30 }
+		command = { type = relation which = POL value = -30 }
+		command = { type = relation which = SER value = -30 }
+		command = { type = sleepevent which = 329043 } #WAL: The Dragon in Chains -II-
+	}
+	action_b = {
+		name = "ACTIONNAME19001B" #Send Emissary
+		command = { type = trigger which = 19003 } #TUR: Hostage from Wallachia
+		command = { type = treasury value = -25 }
+		command = { type = relation which = TUR value = 30 }
+		command = { type = relation which = HUN value = -30 }
+		command = { type = sleepevent which = 19002 } #TUR: Vassalage of Wallachia
+		command = { type = sleepevent which = 329043 } #WAL: The Dragon in Chains -II-
+	}
+}
+#(1442) The Dragon in Chains -II-
+event = {
+	id = 329043
+	trigger = {
+		NOT = { vassal = { country = HUN country = WAL } }
+		neighbour = TUR
+		NOT = { war = { country = TUR country = WAL } }
+	}
+	random = no
+	country = WAL
+	name = "EVENTNAME19001" #The Dragon in Chains
+	desc = "EVENTHIST19001"
+	#-#In the spring of 1442, Sultan Murad II beguiled Dracul into a meeting, and insensitive to the snare, Dracul crossed the Danube with his 2nd son, Vlad Dracula (son of the Dragon), and his youngest son Radu cel Frumas (the handsome) in tow. Dracul was captured, bound in chains, and brought before the Sultan. Vlad Dracul was forced to swear fealty to Murad II, and both Dracula and Radu were kept as hostages, although each child had remarkably different reactions to their captivity. Radu developed marked pro-Turkish attitudes, while Dracula's thoughts were more difficult to fathom.
+
+	date = { day = 15 month = april year = 1442 }
+
+	action_a = {
+		name = "ACTIONNAME19001A" #Meet with the Sultan Personally
+		command = { type = relation which = TUR value = 100 }
+		command = { type = relation which = HUN value = -30 }
+		command = { type = relation which = LUX value = -30 }
+		command = { type = relation which = POL value = -30 }
+		command = { type = relation which = SER value = -30 }
+		command = { type = sleepevent which = 19001 } #WAL: The Dragon in Chains -I-
+	}
+	action_b = {
+		name = "ACTIONNAME19001B" #Send Emissary
+		command = { type = trigger which = 19003 } #TUR: Hostage from Wallachia
+		command = { type = treasury value = -25 }
+		command = { type = relation which = TUR value = 30 }
+		command = { type = relation which = HUN value = -30 }
+		command = { type = sleepevent which = 19002 } #TUR: Vassalage of Wallachia
+		command = { type = sleepevent which = 19001 } #WAL: The Dragon in Chains -I-
+	}
+}
+
+#(1444-1446) Battle of Varna
+event = {
+	id = 329003
+	trigger = {
+		war = { country = HUN country = TUR }
+		event = 188024 #HUN: The Second Crusade
+	}
+	random = no
+	country = WAL
+	name = "EVENTNAME329003" #Battle of Varna
+	desc = "EVENTHIST329003"
+	#-#Vlad was summoned by Janos Hunyadi to respect the vows of the Order and join the Crusade. Vlad did not want to anger the Turks though, and he sent only a small contingent led by his eldest son, Mircea.
+
+	date = { day = 1 month = january year = 1444 }
+	offset = 90
+	deathdate = { day = 1 month = october year = 1446 }
+
+	action_a = {
+		name = "ACTIONNAME329003A" #Defy Janos and send only Mircea
+		command = { type = relation which = HUN value = -80 }
+		command = { type = relation which = LUX value = -50 }
+		command = { type = relation which = POL value = -50 }
+		command = { type = relation which = SER value = -50 }
+		command = { type = relation which = TUR value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME329003B" #For Christendom!
+		command = { type = casusbelli which = TUR value = 2 }
+		command = { type = relation which = HUN value = 80 }
+		command = { type = relation which = LUX value = 80 }
+		command = { type = relation which = POL value = 80 }
+		command = { type = relation which = SER value = 80 }
+		command = { type = relation which = TUR value = -100 }
+		command = { type = war which = TUR }
+		command = { type = sleepevent which = 329004 } #WAL: Boyars Revolt -I-
+		command = { type = sleepevent which = 329017 } #WAL: Boyars Revolt -II-
+	}
+}
+
+#(1446-1447) Boyars Revolt -I-
+event = {
+	id = 329004
+	trigger = {
+		event = 329003 #WAL: Battle of Varna
+	}
+	random = no
+	country = WAL
+	name = "EVENTNAME329004" #Boyars Revolt
+	desc = "EVENTHIST329004"
+	#-#Boyars revolt against Vlad II, who is killed along with the eldest son. Some speculate that the Hungarians had something to do with it, due to Vlad's reluctance of aiding the Crusade at Varna. Nevertheless, the country is in turmoil. Hunyadi restores the 'Danesti' faction to power in the person of Vladislav II.
+
+	date = { day = 15 month = december year = 1446 }
+	offset = 10
+	deathdate = { day = 1 month = february year = 1447 }
+
+	action_a = {
+		name = "ACTIONNAME329004A" #What can we do?
+		command = { type = breakvassal which = TUR } #no problem
+		command = { type = stability value = -3 }
+		command = { type = domestic which = CENTRALIZATION value = -2 }
+		command = { type = revolt which = -2 }
+		command = { type = trigger which = 301075 } #TUR: Boyars Revolt in Wallachia
+		command = { type = sleepevent which = 329017 } #WAL: Boyars Revolt -II-
+	}
+}
+#(1446-1447) Boyars Revolt -I-
+event = {
+	id = 329017
+	trigger = {
+		event = 329003 #WAL: Battle of Varna
+	}
+	random = no
+	country = WAL
+	name = "EVENTNAME329004" #Boyars Revolt
+	desc = "EVENTHIST329004"
+	#-#Boyars revolt against Vlad II, who is killed along with the eldest son. Some speculate that the Hungarians had something to do with it, due to Vlad's reluctance of aiding the Crusade at Varna. Nevertheless, the country is in turmoil. Hunyadi restores the 'Danesti' faction to power in the person of Vladislav II.
+
+	date = { day = 15 month = december year = 1446 }
+	offset = 10
+	deathdate = { day = 1 month = february year = 1447 }
+
+	action_a = {
+		name = "ACTIONNAME329004A" #What can we do?
+		command = { type = breakvassal which = TUR } #no problem
+		command = { type = stability value = -3 }
+		command = { type = domestic which = CENTRALIZATION value = -2 }
+		command = { type = revolt which = -2 }
+		command = { type = trigger which = 301075 } #TUR: Boyars Revolt in Wallachia
+		command = { type = sleepevent which = 329004 } #WAL: Boyars Revolt -I-
+	}
+}
+
+#(1456) Son of the Dragon
+event = {
+	id = 19004
+	random = no
+	country = WAL
+	name = "EVENTNAME19004" #Son of the Dragon
+	desc = "EVENTHIST19004"
+	#-#Vladislav II was a member of the Danesti family, descended from one of the brothers of Vlad Dracul, Prince Dan. He came to the Wallachian throne with the support of the great White Knight of Christendom, the Hungarian John Hunyadi. Hunyadi had probably ordered the assassination of Dracul and his oldest son, Mircea, in response to their justifiable blame which they heaped upon the white knight for the failure of an expidition ot Varna. Regardless, Vlad's son, Dracula, had close ties of political necessity to the Hunyadis (John and his son Matthias), and developed a friendship with Stephen of Moldavia. It was with their support that Dracula claimed his father's throne and ousted his rival.
+
+	date = { day = 1 month = april year = 1456 }
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = treasury value = 100 }
+		command = { type = domestic which = CENTRALIZATION value = 3 }
+		command = { type = relation which = HUN value = 100 }
+		command = { type = relation which = MOL value = 100 }
+		command = { type = relation which = TUR value = -30 }
+		command = { type = domestic which = SERFDOM value = -1 }
+		command = { type = domestic which = MERCANTILISM value = 1 }
+		command = { type = population which = -2 value = -300 }
+	}
+}
+
+#(1456-1464) Vlad the Impaler -I-
+event = {
+	id = 3832
+	trigger = {
+		vassal = { country = TUR country = WAL }
+		monarch = 0165506 #Vlad III Tepes
+	}
+	random = no
+	country = WAL
+	name = "EVENTNAME3832" #Vlad the Impaler
+	desc = "EVENTHIST3832"
+	#-#Our beloved monarch, Vlad III, also known as Dracula after his father Vlad II Dracul, has recently begun impaling captured Turkish soldiers and even civilians. Already he is being called 'Tepes' - the Impaler. The Turks are livid and insist that we at the very least apologize for his actions. Now, perhaps we could convince him to be a tad more... diplomatic?
+
+	date = { day = 1 month = april year = 1456 }
+	offset = 2300
+	deathdate = { day = 1 month = january year = 1464 }
+
+	action_a = {
+		name = "ACTIONNAME3832A" #We owe the Turks nothing! Let them squirm on the stakes!
+		command = { type = relation which = TUR value = -100 }
+		command = { type = relation which = PAP value = 80 }
+		command = { type = relation which = HUN value = 80 }
+		command = { type = relation which = VEN value = 80 }
+		command = { type = relation which = GEN value = 80 }
+		command = { type = domestic which = QUALITY value = 1 }
+		command = { type = breakvassal which = TUR }
+		command = { type = revokeaccess which = TUR }
+		command = { type = cancelaccess which = TUR }
+		command = { type = sleepevent which = 329011 } #WAL: Vlad the Impaler -II-
+	}
+	action_b = {
+		name = "ACTIONNAME3832B" #Apologize to the Sultan
+		command = { type = relation which = TUR value = 100 }
+		command = { type = sleepevent which = 329011 } #WAL: Vlad the Impaler -II-
+	}
+}
+#(1456-1464) Vlad the Impaler -II-
+event = {
+	id = 329011
+	trigger = {
+		neighbour = TUR
+		NOT = { vassal = { country = TUR country = WAL } }
+		monarch = 0165506 #Vlad III Tepes
+	}
+	random = no
+	country = WAL
+	name = "EVENTNAME3832" #Vlad the Impaler
+	desc = "EVENTHIST3832"
+	#-#Our beloved monarch, Vlad III, also known as Dracula after his father Vlad II Dracul, has recently begun impaling captured Turkish soldiers and even civilians. Already he is being called 'Tepes' - the Impaler. The Turks are livid and insist that we at the very least apologize for his actions. Now, perhaps we could convince him to be a tad more... diplomatic?
+
+	date = { day = 1 month = april year = 1456 }
+	offset = 2300
+	deathdate = { day = 1 month = january year = 1464 }
+
+	action_a = {
+		name = "ACTIONNAME3832A" #We owe the Turks nothing! Let them squirm on the stakes!
+		command = { type = relation which = TUR value = -100 }
+		command = { type = relation which = PAP value = 80 }
+		command = { type = relation which = HUN value = 80 }
+		command = { type = relation which = VEN value = 80 }
+		command = { type = relation which = GEN value = 80 }
+		command = { type = revokeaccess which = TUR }
+		command = { type = cancelaccess which = TUR}
+		command = { type = domestic which = QUALITY value = 1 }
+		command = { type = sleepevent which = 3832 } #WAL: Vlad the Impaler -I-
+	}
+	action_b = {
+		name = "ACTIONNAME3832B" #Apologize to the Sultan
+		command = { type = relation which = TUR value = 100 }
+		command = { type = sleepevent which = 3832 } #WAL: Vlad the Impaler -I-
+	}
+}
+
+#(1457-1459) Targoviste
+event = {
+	id = 329005
+	trigger = {
+		stability = 0
+	}
+	random = no
+	country = WAL
+	name = "EVENTNAME329005" #Targoviste
+	desc = "EVENTHIST329005"
+	#-#Vlad moved the capital from Curtea de Arges (the Arges Court) to Targoviste, a bustling city on the river Dambovita. Here he built a palace surrounded by strong fortifications (the ruins can still be seen, along with the Turnul Chindiei - the Evening Tower, still standing).
+
+	date = { day = 1 month = january year = 1457 }
+	offset = 10
+	deathdate = { day = 1 month = february year = 1459 }
+
+	action_a = {
+		name = "ACTIONNAME329005A" #Off we go a packing!
+		command = { type = infra value = 50 }
+		command = { type = fortress which = -2 value = 1 }
+	}
+}
+
+#(1466) Contested Throne -I-
+event = {
+	id = 19005
+	trigger = {
+		vassal = { country = HUN country = WAL }
+	}
+	random = no
+	country = WAL
+	name = "EVENTNAME19005" #Contested Throne
+	desc = "EVENTHIST19005"
+	#-#In 1462, under pressure from Turkish incursions, Dracula sought the help of the throne of Hungary. Meanwhile, the Turkish sultan gave Dracula's younger brother, Radu, an army with which to support his claim to the throne. In addition, the boyars, rose up against Dracula due to his well-known cruelty and the suppression of their rights. Matthias Corvinus, King of Hungary, realizing Dracula's precarious position, and wary of his volatility and devious nature, treacherously took Dracula to Hungary as a political prisoner, while Radu was left free to reign in Wallachia. Now, in 1466, Dracula has converted to catholicism and married into the Hungarian royal family. The state is divided between the cruel, yet heroic anti-Turkish Dracula, and the pro-Turkish Radu.
+
+	date = { day = 5 month = april year = 1466 }
+
+	action_a = {
+		name = "ACTIONNAME19005A" #Support Radu
+		command = { type = breakvassal which = HUN }
+		command = { type = wakeleader which = 0165803 } #Radu cel Frumas (WAL)
+		command = { type = relation which = TUR value = 100 }
+		command = { type = relation which = HUN value = -100 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = MOL value = -100 }
+		command = { type = domestic which = CENTRALIZATION value = -3 }
+		command = { type = sleepevent which = 329012 } #WAL: Contested Throne -II-
+	}
+	action_b = {
+		name = "ACTIONNAME19005B" #Support Dracula
+		command = { type = wakemonarch which = 0165541 } #Vlad III Tepes
+		command = { type = wakeleader which = 0165804 } #Vlad III Tepes (WAL)
+		command = { type = dynastic which = HUN }
+		command = { type = relation which = HUN value = 100 }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = relation which = MOL value = 100 }
+		command = { type = relation which = TUR value = -100 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = domestic which = QUALITY value = 1 }
+		command = { type = sleepevent which = 19006 } #TUR: Vassalage of Wallachia
+		command = { type = trigger which = 301076 } #TUR: Contested Throne
+		command = { type = sleepevent which = 329012 } #WAL: Contested Throne -II-
+	}
+}
+#(1466) Contested Throne -II-
+event = {
+	id = 329012
+	trigger = {
+		NOT = { vassal = { country = HUN country = WAL } }
+	}
+	random = no
+	country = WAL
+	name = "EVENTNAME19005" #Contested Throne
+	desc = "EVENTHIST19005"
+	#-#In 1462, under pressure from Turkish incursions, Dracula sought the help of the throne of Hungary. Meanwhile, the Turkish sultan gave Dracula's younger brother, Radu, an army with which to support his claim to the throne. In addition, the boyars, rose up against Dracula due to his well-known cruelty and the suppression of their rights. Matthias Corvinus, King of Hungary, realizing Dracula's precarious position, and wary of his volatility and devious nature, treacherously took Dracula to Hungary as a political prisoner, while Radu was left free to reign in Wallachia. Now, in 1466, Dracula has converted to catholicism and married into the Hungarian royal family. The state is divided between the cruel, yet heroic anti-Turkish Dracula, and the pro-Turkish Radu.
+
+	date = { day = 5 month = april year = 1466 }
+
+	action_a = {
+		name = "ACTIONNAME19005A" #Support Radu
+		command = { type = wakeleader which = 0165803 } #Radu cel Frumas (WAL)
+		command = { type = relation which = TUR value = 100 }
+		command = { type = relation which = HUN value = -100 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = MOL value = -100 }
+		command = { type = domestic which = CENTRALIZATION value = -3 }
+		command = { type = sleepevent which = 19005 } #WAL: Contested Throne -I-
+	}
+	action_b = {
+		name = "ACTIONNAME19005B" #Support Dracula
+		command = { type = wakemonarch which = 0165541 } #Vlad III Tepes
+		command = { type = wakeleader which = 0165804 } #Vlad III Tepes (WAL)
+		command = { type = dynastic which = HUN }
+		command = { type = relation which = HUN value = 100 }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = relation which = MOL value = 100 }
+		command = { type = relation which = TUR value = -100 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = domestic which = QUALITY value = 1 }
+		command = { type = sleepevent which = 19006 } #TUR: Vassalage of Wallachia
+		command = { type = trigger which = 301076 } #TUR: Contested Throne
+		command = { type = sleepevent which = 19005 } #WAL: Contested Throne -I-
+	}
+}
+
+#(1495) Radu the Great -I-
+event = {
+	id = 329006
+	trigger = {
+		vassal = { country = TUR country = WAL }
+	}
+	random = no
+	country = WAL
+	name = "EVENTNAME329006" #Radu the Great
+	desc = "EVENTHIST329006"
+	#-#Radu cel Mare (the Great) ascends to the throne. Radu the Great's rule was a respite from the strife of the previous decades. It was a time of stability, prosperity and innovation. The first printing press appeared in Wallachia, and the first religious book was printed in slavonic ('Liturgherul').
+
+	date = { day = 16 month = september year = 1495 }
+	offset = 10
+	deathdate = { day = 29 month = september year = 1495 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = breakvassal which = TUR }
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = vp value = 20 }
+		command = { type = population which = -2 value = 1000 }
+		command = { type = provincetax which = -2 value = 1 }
+		command = { type = stability value = 2 }
+		command = { type = relation which = HUN value = 50 }
+		command = { type = relation which = TUR value = 50 }
+		command = { type = relation which = POL value = 50 }
+		command = { type = relation which = MOL value = -50 }
+		command = { type = sleepevent which = 329013 } #WAL: Radu the Great -II-
+		command = { type = sleepevent which = 329014 } #WAL: Radu the Great -III-
+		command = { type = sleepevent which = 329015 } #WAL: Radu the Great -IV-
+	}
+}
+#(1495) Radu the Great -II-
+event = {
+	id = 329013
+	trigger = {
+		vassal = { country = HUN country = WAL }
+	}
+	random = no
+	country = WAL
+	name = "EVENTNAME329006" #Radu the Great
+	desc = "EVENTHIST329006"
+	#-#Radu cel Mare (the Great) ascends to the throne. Radu the Great's rule was a respite from the strife of the previous decades. It was a time of stability, prosperity and innovation. The first printing press appeared in Wallachia, and the first religious book was printed in slavonic ('Liturgherul').
+
+	date = { day = 16 month = september year = 1495 }
+	offset = 10
+	deathdate = { day = 29 month = september year = 1495 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = breakvassal which = HUN }
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = vp value = 20 }
+		command = { type = population which = -2 value = 1000 }
+		command = { type = provincetax which = -2 value = 1 }
+		command = { type = stability value = 2 }
+		command = { type = relation which = HUN value = 50 }
+		command = { type = relation which = TUR value = 50 }
+		command = { type = relation which = POL value = 50 }
+		command = { type = relation which = MOL value = -50 }
+		command = { type = sleepevent which = 329006 } #WAL: Radu the Great -I-
+		command = { type = sleepevent which = 329014 } #WAL: Radu the Great -III-
+		command = { type = sleepevent which = 329015 } #WAL: Radu the Great -IV-
+	}
+}
+#(1495) Radu the Great -III-
+event = {
+	id = 329014
+	trigger = {
+		vassal = { country = MOL country = WAL }
+	}
+	random = no
+	country = WAL
+	name = "EVENTNAME329006" #Radu the Great
+	desc = "EVENTHIST329006"
+	#-#Radu cel Mare (the Great) ascends to the throne. Radu the Great's rule was a respite from the strife of the previous decades. It was a time of stability, prosperity and innovation. The first printing press appeared in Wallachia, and the first religious book was printed in slavonic ('Liturgherul').
+
+	date = { day = 16 month = september year = 1495 }
+	offset = 10
+	deathdate = { day = 29 month = september year = 1495 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = breakvassal which = MOL }
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = vp value = 20 }
+		command = { type = population which = -2 value = 1000 }
+		command = { type = provincetax which = -2 value = 1 }
+		command = { type = stability value = 2 }
+		command = { type = relation which = HUN value = 50 }
+		command = { type = relation which = TUR value = 50 }
+		command = { type = relation which = POL value = 50 }
+		command = { type = relation which = MOL value = -50 }
+		command = { type = sleepevent which = 329006 } #WAL: Radu the Great -I-
+		command = { type = sleepevent which = 329013 } #WAL: Radu the Great -II-
+		command = { type = sleepevent which = 329015 } #WAL: Radu the Great -IV-
+	}
+}
+#(1495) Radu the Great -IV-
+event = {
+	id = 329015
+	trigger = {
+		NOT = {
+			vassal = { country = TUR country = WAL }
+			vassal = { country = HUN country = WAL }
+			vassal = { country = MOL country = WAL }
+		}
+	}
+	random = no
+	country = WAL
+	name = "EVENTNAME329006" #Radu the Great
+	desc = "EVENTHIST329006"
+	#-#Radu cel Mare (the Great) ascends to the throne. Radu the Great's rule was a respite from the strife of the previous decades. It was a time of stability, prosperity and innovation. The first printing press appeared in Wallachia, and the first religious book was printed in slavonic ('Liturgherul').
+
+	date = { day = 16 month = september year = 1495 }
+	offset = 10
+	deathdate = { day = 29 month = september year = 1495 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = vp value = 20 }
+		command = { type = population which = -2 value = 1000 }
+		command = { type = provincetax which = -2 value = 1 }
+		command = { type = stability value = 2 }
+		command = { type = relation which = HUN value = 50 }
+		command = { type = relation which = TUR value = 50 }
+		command = { type = relation which = POL value = 50 }
+		command = { type = relation which = MOL value = -50 }
+		command = { type = sleepevent which = 329006 } #WAL: Radu the Great -I-
+		command = { type = sleepevent which = 329013 } #WAL: Radu the Great -II-
+		command = { type = sleepevent which = 329014 } #WAL: Radu the Great -III-
+	}
+}
+
+#(1503-1504) Stephen's Overtures -I-
+event = {
+	id = 329007
+	trigger = {
+		exists = MOL
+		NOT = { vassal = { country = TUR country = MOL } }
+		vassal = { country = TUR country = WAL }
+	}
+	random = no
+	country = WAL
+	name = "EVENTNAME329007" #Stephen's overtures
+	desc = "EVENTHIST329007"
+	#-#In the last decades of the 15th century, Moldavia found herself more and more alone against the Ottoman Empire, and also having to fight Poland's designs on its territory. 1503 saw the last attempt by the aging Stephen of creating an anti-Ottoman alliance, with the Kings of Hungary and Poland, Venice, the Papal States. The aim of the new crusade was, as always, expelling the infidel from Europe. Stephen's aims were to regain control over the Bugeac (the citadels of Chilia and Cetatea Alba/Belgorod).
+
+	date = { day = 1 month = january year = 1503 }
+	offset = 30
+	deathdate = { day = 1 month = june year = 1504 }
+
+	action_a = {
+		name = "ACTIONNAME329007A" #Sit on the fence and see what's going on
+		command = { }
+		command = { type = sleepevent which = 329016 } #WAL: Stephen's Overtures -II-
+	}
+	action_b = {
+		name = "ACTIONNAME329007B" #Remain loyal to the Porte
+		command = { type = relation which = MOL value = -100 }
+		command = { type = relation which = TUR value = 50 }
+		command = { type = sleepevent which = 329016 } #WAL: Stephen's Overtures -II-
+	}
+	action_c = {
+		name = "ACTIONNAME329007C" #Join the crusade!
+		command = { type = breakvassal which = TUR }
+		command = { type = casusbelli which = TUR value = 12 }
+		command = { type = trigger which = 231006 } #MOL: Stephen's overtures
+		command = { type = sleepevent which = 329016 } #WAL: Stephen's Overtures -II-
+	}
+}
+#(1503-1504) Stephen's Overtures -II-
+event = {
+	id = 329016
+	trigger = {
+		exists = MOL
+		NOT = { vassal = { country = TUR country = MOL } }
+		NOT = { vassal = { country = TUR country = WAL } }
+	}
+	random = no
+	country = WAL
+	name = "EVENTNAME329007" #Stephen's overtures
+	desc = "EVENTHIST329007"
+	#-#In the last decades of the 15th century, Moldavia found herself more and more alone against the Ottoman Empire, and also having to fight Poland's designs on its territory. 1503 saw the last attempt by the aging Stephen of creating an anti-Ottoman alliance, with the Kings of Hungary and Poland, Venice, the Papal States. The aim of the new crusade was, as always, expelling the infidel from Europe. Stephen's aims were to regain control over the Bugeac (the citadels of Chilia and Cetatea Alba/Belgorod).
+
+	date = { day = 1 month = january year = 1503 }
+	offset = 30
+	deathdate = { day = 1 month = june year = 1504 }
+
+	action_a = {
+		name = "ACTIONNAME329007A" #Sit on the fence and see what's going on
+		command = { }
+		command = { type = sleepevent which = 329007 } #WAL: Stephen's Overtures -I-
+	}
+	action_b = {
+		name = "ACTIONNAME329007B" #Remain loyal to the Porte
+		command = { type = relation which = MOL value = -100 }
+		command = { type = relation which = TUR value = 50 }
+		command = { type = sleepevent which = 329007 } #WAL: Stephen's Overtures -I-
+	}
+	action_c = {
+		name = "ACTIONNAME329007C" #Join the crusade!
+		command = { type = casusbelli which = TUR value = 12 }
+		command = { type = trigger which = 231006 } #MOL: Stephen's overtures
+		command = { type = sleepevent which = 329007 } #WAL: Stephen's Overtures -I-
+	}
+}
+
+#(1508) Radu's death -I-
+event = {
+	id = 329018
+	trigger = {
+		neighbour = TUR
+		NOT = { vassal = { country = WAL country = TUR } }
+		NOT = { war = { country = WAL country = TUR } }
+		vassal = { country = HUN country = WAL }
+	}
+	random = no
+	country = WAL
+	name = "EVENTNAME329018" #Radu's Death
+	desc = "EVENTHIST329018"
+	#-#Following Radu's death, the Ottoman Empire strengthened its control over Wallachia by naming Mihnea, son of Vlad Dracula, as ruler. Mihnea's two years in power represented a drastic step back, his foreign policy would be totally asserved to the Porte, while his internal policy would gain him the surname 'cel Rau' (the Bad).
+
+	date = { day = 1 month = april year = 1508 }
+	offset = 10
+	deathdate = { day = 1 month = may year = 1508 }
+
+	action_a = {
+		name = "ACTIONNAME329018A" #Here we go again!
+		command = { type = breakvassal which = HUN }
+		command = { type = relation which = TUR value = 50 }
+		command = { type = treasury value = -200 }
+		command = { type = sleepevent which = 329019 } #WAL: Radu's death -II-
+		command = { type = sleepevent which = 329020 } #WAL: Radu's death -III-
+	}
+}
+#(1508) Radu's death -II-
+event = {
+	id = 329019
+	trigger = {
+		neighbour = TUR
+		NOT = { vassal = { country = WAL country = TUR } }
+		NOT = { war = { country = WAL country = TUR } }
+		vassal = { country = MOL country = WAL }
+	}
+	random = no
+	country = WAL
+	name = "EVENTNAME329018" #Radu's Death
+	desc = "EVENTHIST329018"
+	#-#Following Radu's death, the Ottoman Empire strengthened its control over Wallachia by naming Mihnea, son of Vlad Dracula, as ruler. Mihnea's two years in power represented a drastic step back, his foreign policy would be totally asserved to the Porte, while his internal policy would gain him the surname 'cel Rau' (the Bad).
+
+	date = { day = 1 month = april year = 1508 }
+	offset = 10
+	deathdate = { day = 1 month = may year = 1508 }
+
+	action_a = {
+		name = "ACTIONNAME329018A" #Here we go again!
+		command = { type = breakvassal which = MOL }
+		command = { type = relation which = TUR value = 50 }
+		command = { type = treasury value = -200 }
+		command = { type = sleepevent which = 329018 } #WAL: Radu's death -I-
+		command = { type = sleepevent which = 329020 } #WAL: Radu's death -III-
+	}
+}
+#(1508) Radu's death -III-
+event = {
+	id = 329020
+	trigger = {
+		neighbour = TUR
+		NOT = { vassal = { country = WAL country = TUR } }
+		NOT = { war = { country = WAL country = TUR } }
+		NOT = {
+			vassal = { country = MOL country = WAL }
+			vassal = { country = HUN country = WAL }
+		}
+	}
+	random = no
+	country = WAL
+	name = "EVENTNAME329018" #Radu's Death
+	desc = "EVENTHIST329018"
+	#-#Following Radu's death, the Ottoman Empire strengthened its control over Wallachia by naming Mihnea, son of Vlad Dracula, as ruler. Mihnea's two years in power represented a drastic step back, his foreign policy would be totally asserved to the Porte, while his internal policy would gain him the surname 'cel Rau' (the Bad).
+
+	date = { day = 1 month = april year = 1508 }
+	offset = 10
+	deathdate = { day = 1 month = may year = 1508 }
+
+	action_a = {
+		name = "ACTIONNAME329018A" #Here we go again!
+		command = { type = relation which = TUR value = 50 }
+		command = { type = treasury value = -200 }
+		command = { type = sleepevent which = 329018 } #WAL: Radu's death -I-
+		command = { type = sleepevent which = 329019 } #WAL: Radu's death -II-
+	}
+}
+
+#(1512) Neagoe Basarab
+event = {
+	id = 329021
+	random = no
+	country = WAL
+	name = "EVENTNAME329021" #Neagoe Basarab
+	desc = "EVENTHIST329021"
+	#-#Descending from the Craiovesti boyars, a family who had the lead of Wallachia during the 15th and 16th centuries, Neagoe Basarab (1512-1521) singles out as a balanced, wise and learned ruling prince. Though confronted with difficulties relating to the maintenance of order within the country, and to the increase of the tribute due to the Ottoman Empire in order to maintain his country's suzerainty, he protected the development of crafts and trade. His foreign policy would always seek to establish a balance between the claims of the Ottoman Empire and of the Hungarian royalty.
+
+	date = { day = 23 month = january year = 1512 }
+	offset = 20
+	deathdate = { day = 1 month = march year = 1512 }
+
+	action_a = {
+		name = "OK"
+		command = { type = stability value = 2 }
+		command = { type = infra value = 200 }
+		command = { type = trade value = 200 }
+		command = { type = relation which = HUN value = 50 }
+		command = { type = relation which = TUR value = 50 }
+		command = { type = relation which = POL value = 50 }
+		command = { type = relation which = PAP value = 50 }
+		command = { type = relation which = VEN value = 50 }
+	}
+}
+
+#(1513-1521) Neagoe Basarab's works
+event = {
+	id = 329022
+	random = no
+	country = WAL
+	name = "EVENTNAME329022" #Neagoe Basarab's works
+	desc = "EVENTHIST329022"
+	#-#Continuing the tradition set up by Byzantine emperors and willing to protect and assist the Orthodox Church, Neagoe Basarab made rich donations to monasteries in the Balkans, i.e. Cutlumus, Hilandar, Iviron, as well as to religious edifices in Constantinople, Jerusalem, at Mount Sinai, at Meteora (in Thessaly).
+
+	date = { day = 23 month = february year = 1513 }
+	offset = 1000
+	deathdate = { day = 1 month = february year = 1521 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = infra value = 200 }
+		command = { type = treasury value = -150 }
+		command = { type = gainmanufactory which = 322 value = luxury } #Wallachia
+	}
+}
+
+#(1521) Neagoe Basarab's will
+event = {
+	id = 329023
+	random = no
+	country = WAL
+	name = "EVENTNAME329023" #Neagoe Basarab's will
+	desc = "EVENTHIST329023"
+	#-#Neagoe Basarab wrote a treaty of philosophy, politology, military art, diplomacy, morals and ethics, entitled Neagoe Basarab's Teachings to his Son, Theodosie. The work is the first history of mentalities issued in the Romanian speaking provinces. Written in Slavonic, it was translated into Greek, and then into Romanian by scholar Udriste Nasturel from Matei Basarab's princely court by the beginning of the 17th century.
+
+	date = { day = 14 month = september year = 1521 }
+
+	action_a = {
+		name = "ACTIONNAME329023A" #Rest in peace, my prince
+		command = { type = infra value = 50 }
+		command = { type = vp value = 10 }
+	}
+}
+
+#(1521) Anarchy in Wallachia
+event = {
+	id = 329024
+	random = no
+	country = WAL
+	name = "EVENTNAME329024" #Anarchy in Wallachia
+	desc = "EVENTHIST329024"
+	#-#Following Neagoe Basarab's death, his son Theodosie was quickly removed from power which launched another period of struggle between pretenders, this time Radu (de la Afumati), son of Radu the Great struggled with Vladislav III (grandson of Vladislav II, the rival of Dracula if you remember). The struggle between these two princes and these descendants, as well as the increasing pressure of the Ottomans would characterise the Wallachian political and economical landscape for the rest of the century.
+
+	date = { day = 15 month = september year = 1521 }
+	offset = 30
+	deathdate = { day = 1 month = december year = 1521 }
+
+	action_a = {
+		name = "ACTIONNAME329024A" #What can we do?
+		command = { type = infra value = -500 }
+		command = { type = trade value = -200 }
+		command = { type = stability value = -6 }
+		command = { type = losemanufactory which = 322 } #Wallachia
+		command = { type = treasury value = -200 }
+		command = { type = relation which = TUR value = 50 }
+		command = { type = revoltrisk which = 840 value = 2 }
+	}
+}
+
+#(1583-1584) Petru Cercel's travels
+event = {
+	id = 329025
+	random = no
+	country = WAL
+	name = "EVENTNAME329025" #Petru Cercel's travels
+	desc = "EVENTHIST329025"
+	#-#Of all the pretenders to the Wallachian throne, Petru Cercel (1583-1585) stands out, as he is the only one who sought support for his claims not at Istambul, but in the West. His travels led him to Krakow, Vienna and even Paris. Here, the King Henri III used his influence at Istambul to make Petru Cercel prince of Wallachia in the detriment of Mihnea II. Petru Cercel's reign is like a (very short) breath of fresh air, his cosmopolitan court, which included Italians, French and Greeks resembled more the Renaissance courts of the West rather than the byzantine - oriental settings of old. New buildings in renaissance style and a thorough reform of the army, who, for the first time, is armed with bronze cannons are but few of his accomplishments.
+
+	date = { day = 1 month = september year = 1583 }
+	offset = 300
+	deathdate = { day = 1 month = august year = 1584 }
+
+	action_a = {
+		name = "ACTIONNAME329025A" #Finally, some good news!
+		command = { type = domestic which = INNOVATIVE value = 2 }
+		command = { type = infra value = 100 }
+		command = { type = trade value = 100 }
+		command = { type = ART which = -2 value = 10 }
+		command = { type = relation which = FRA value = 200 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = POL value = 50 }
+		command = { type = relation which = PAP value = 50 }
+		command = { type = relation which = SPA value = 50 }
+		command = { type = relation which = ENG value = 50 }
+		command = { type = treasury value = 300 }
+		command = { type = revoltrisk which = 90 value = 2 }
+	}
+}
+
+#(1593-1595) Michael the Brave -I-
+event = {
+	id = 329026
+	trigger = {
+		vassal = { country = TUR country = WAL }
+		NOT = { event = 329027 } #WAL: Michael the Brave -II-
+	}
+	random = no
+	country = WAL
+	name = "EVENTNAME329026" #Michael the Brave
+	desc = "EVENTHIST329026"
+	#-#Michael's 9 year rule of Wallachia is considered by many historians as being the most glorious period of this wretched country. Winning the favour of the Sultan against his opponent, the incumbent Alexander the Bad, by the old practice of promising more gold and resources for the Porte, Michael immediately breaks his vassalage to the porte and removes the Ottoman garrison from Bucharest. During his reign, Michael will defeat the Ottoman armies and will manage to unite/conquer Transylvania and Moldavia, recreating, even if just for a year, ancient Dacia. Wallachia is once again independent!
+
+	date = { day = 1 month = january year = 1593 }
+	offset = 400
+	deathdate = { day = 1 month = january year = 1595 }
+
+	action_a = {
+		name = "ACTIONNAME329026A" #Unity is at hand!
+		command = { type = breakvassal which = TUR }
+		command = { type = treasury value = 400 }
+		command = { type = population which = -2 value = 500 }
+		command = { type = stability value = 1 }
+		command = { type = INF which = -2 value = 20000 }
+		command = { type = CAV which = -2 value = 10000 }
+		command = { type = ART which = -2 value = 15 }
+		command = { type = land value = 500 }
+		command = { type = domestic which = QUALITY value = 1 }
+		command = { type = addcore which = 354 } #Banat
+		command = { type = addcore which = 323 } #Transylvania
+		command = { type = addcore which = 318 } #Moldova
+		command = { type = addcore which = 319 } #Bujak
+		command = { type = addcore which = 320 } #Dobrudja
+		command = { type = casusbelli which = TUR value = 96 }
+		command = { type = sleepevent which = 329027 } #WAL: Michael the Brave -II-
+	}
+}
+#(1593-1595) Michael the Brave -II-
+event = {
+	id = 329027
+	trigger = {
+		NOT = { vassal = { country = TUR country = WAL } }
+		NOT = { event = 329026 } #WAL: Michael the Brave -I-
+	}
+	random = no
+	country = WAL
+	name = "EVENTNAME329026" #Michael the Brave
+	desc = "EVENTHIST329027"
+	#-#Michael's 9 year rule of Wallachia is considered by many historians as being the most glorious period of this wretched country. During his reign, Michael will defeat the Ottoman armies and will manage to unite/conquer Transylvania and Moldova, recreating, even if just for a year, ancient Dacia.
+
+	date = { day = 1 month = january year = 1593 }
+	offset = 400
+	deathdate = { day = 1 month = january year = 1595 }
+
+	action_a = {
+		name = "ACTIONNAME329026A" #Unity is at hand!
+		command = { type = treasury value = 400 }
+		command = { type = population which = -2 value = 500 }
+		command = { type = stability value = 1 }
+		command = { type = INF which = -2 value = 20000 }
+		command = { type = CAV which = -2 value = 10000 }
+		command = { type = ART which = -2 value = 15 }
+		command = { type = land value = 500 }
+		command = { type = domestic which = QUALITY value = 1 }
+		command = { type = addcore which = 354 } #Banat
+		command = { type = addcore which = 323 } #Transylvania
+		command = { type = addcore which = 318 } #Moldova
+		command = { type = addcore which = 319 } #Bujak
+		command = { type = addcore which = 320 } #Dobrudja
+		command = { type = casusbelli which = TUR value = 96 }
+		command = { type = sleepevent which = 329026 } #WAL: Michael the Brave -I-
+	}
+}
+
+#(1599) Union of Transylvania
+event = {
+	id = 329000 #triggered by SIE_282006 B
+	random = no
+	country = WAL
+	name = "EVENTNAME329000" #Union of Transylvania
+	desc = "EVENTHIST329000"
+	#-#In 1599 Mihai II Viteazul crossed the Carpathians and defeated the Transylvanian Prince András Báthory at Selimbar (18 October 1599). Entering the Capitol Gyulafehérvár (Alba Julia) in impressive pomp, he proclaimed himself 'Imperial Governor of Transylvania' in the name of Rudolf II of Austria. In reality, he ruled like an independent prince.
+
+	action_a = {
+		name = "ACTIONNAME329000A" #Personal Union
+		command = { type = dynastic which = SIE }
+		command = { type = alliance which = SIE }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = relation which = TUR value = -50 }
+		command = { type = relation which = SIE value = 50 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME329000B" #Annex it
+		command = { type = inherit which = SIE }
+		command = { type = province_revoltrisk which = 323 value = 6 } #Transylvania
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = TUR value = -100 }
+		command = { type = INF which = -2 value = 2000 }
+		command = { type = CAV which = -2 value = 1000 }
+		command = { type = stability value = -2 }
+		command = { type = revolt which = 323 }
+		command = { type = revolt which = 323 }
+	}
+	action_c = {
+		name = "ACTIONNAME329000C" #A vassal
+		command = { type = vassal which = SIE }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = relation which = HAB value = 25 }
+		command = { type = relation which = TUR value = 25 }
+		command = { type = relation which = SIE value = 75 }
+		command = { type = stability value = -1 }
+		command = { type = treasury value = 75 }
+	}
+}
+
+#(1599-1601) Moldavia accepts Romanian union
+event = {
+	id = 329028 #triggered by MOL_231007 A
+	random = no
+	country = WAL
+	name = "EVENTNAME329028" #Moldavia accepts Romanian union
+	desc = "EVENTHIST329028"
+	#-#They wish to join a Romanian union!
+
+	action_a = {
+		name = "GREAT"
+		command = { type = vassal which = MOL }
+		command = { type = relation which = MOL value = 100 }
+		command = { type = stability value = 1 }
+		command = { type = addcore which = 318 } #Moldova
+		command = { type = addcore which = 319 } #Bujak
+		command = { type = relation which = HAB value = -150 }
+		command = { type = relation which = HUN value = -150 }
+	}
+}
+#(1599-1601) Moldavia declines Romanian union
+event = {
+	id = 329029 #triggered by MOL_231007 B
+	random = no
+	country = WAL
+	name = "EVENTNAME329029" #Moldavia declines Romanian union
+	desc = "EVENTHIST329029"
+	#-#They do not wish to join a Romanian union!
+
+	action_a = {
+		name = "ACTIONNAME329029A" #We'll show them!
+		command = { type = relation which = MOL value = -100 }
+		command = { type = casusbelli which = MOL value = 12 }
+		command = { type = addcore which = 318 } #Moldova
+		command = { type = addcore which = 319 } #Bujak
+		command = { type = relation which = HAB value = -50 }
+		command = { type = relation which = HUN value = -50 }
+	}
+}
+
+#(1601) Death of Michael the Brave
+event = {
+	id = 329030
+	trigger = {
+		exists = HAB
+		NOT = { vassal = { country = WAL country = HAB } }
+	}
+	random = no
+	country = WAL
+	name = "EVENTNAME329030" #Death of Michael the Brave
+	desc = "EVENTHIST329030"
+	#-#In 1601 following the rebellion of the Transylvanian nobility, Michael is forced to seek help in Vienna from Emperor Rudolph II. Rudolph agrees to help giving him an army under the leadership of general Basta, but when he finds out that Michael is preparing to invade Poland (who secretly financed dissension in Transylvania and Moldavia) the Emperor orders Basta to murder Michael, which he acomplished.
+
+	date = { day = 18 month = august year = 1601 }
+
+	action_a = {
+		name = "ACTIONNAME329030A" #Rest in peace, Michael!
+		command = { type = independence which = MOL }
+		command = { type = independence which = SIE } #removes RR +6 if b choice in WAL_329000
+		command = { type = removecore which = 354 } #Banat
+		command = { type = removecore which = 323 } #Transylvania
+		command = { type = removecore which = 318 } #Moldova
+		command = { type = removecore which = 319 } #Bujak
+		command = { type = stability value = -3 }
+		command = { type = wakemonarch which = 0165549 } #Anarchy
+	}
+	action_b = {
+		name = "ACTIONNAME329030B" #Let's keep the union intact!
+		command = { type = badboy value = 5 }
+		command = { type = stability value = -4 }
+		command = { type = province_revoltrisk which = 318 value = 2 } #Moldova
+		command = { type = province_revoltrisk which = 323 value = 2 } #Transylvania
+		command = { type = revolt which = 318 } #Moldova
+		command = { type = revolt which = 318 } #Moldova
+		command = { type = revolt which = 323 } #Transylvania
+		command = { type = revolt which = 323 } #Transylvania
+		command = { type = wakemonarch which = 0165549 } #Anarchy
+	}
+}
+
+#(1601) Anarchy in Wallachia
+event = {
+	id = 329031
+	trigger = {
+		event = 329030 #WAL: Death of Michael the Brave
+	}
+	random = no
+	country = WAL
+	name = "EVENTNAME329024" #Anarchy in Wallachia
+	desc = "EVENTHIST329031"
+	#-#The period between Michael the Brave's death and Matei Basarab's ascension is a customary anarchical period, with again a number of colourless pretenders fighting for power (Simon and Gavril Movila, Radu Mihnea, Radu Serban, Alexandru Ilias, etc. etc.).\n \n The Ottoman Empire uses this period to reinstate its political and economical control over the principality while forcing the princes of Moldavia and Wallachia to demolish their fortfications. As if that was not enough, Transylvania invades in 1610-1611.
+
+	date = { day = 19 month = august year = 1601 }
+	offset = 10
+	deathdate = { day = 19 month = september year = 1601 }
+
+	action_a = {
+		name = "ACTIONNAME329031A" #What can we do?
+		command = { type = relation which = TUR value = 50 }
+		command = { type = fortress which = -2 value = -1 }
+		command = { type = stability value = -3 }
+		command = { type = domestic which = CENTRALIZATION value = -3 }
+		command = { type = domestic which = SERFDOM value = 1 }
+		command = { type = treasury value = -200 }
+		command = { type = revoltrisk which = 360 value = 2 }
+		command = { type = relation which = HUN value = -50 }
+		command = { type = relation which = SIE value = -50 }
+		command = { type = trigger which = 301078 } #TUR: Vassalage of Wallachia
+	}
+	action_b = {
+		name = "ACTIONNAME329031B" #Try to preserve our independence
+		command = { type = revolt which = -2 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revoltrisk which = 360 value = 4 }
+		command = { type = relation which = TUR value = -50 }
+		command = { type = trigger which = 301079 } #TUR: Anarchy in Wallachia
+	}
+}
+
+#(1632-1633) Matei Basarab's reforms
+event = {
+	id = 329032
+	random = no
+	country = WAL
+	name = "EVENTNAME329032" #Matei Basarab's reforms
+	desc = "EVENTHIST329032"
+	#-#Described by the old chronicles as a 'kind, just, wise, brave and ardent Christian' prince, Matei Basarb's reign was a period of quiet, stability and prosperity for Wallachia. He shared power with the boyars, thus putting an end to the fraticidal struggle that plagued the country for the previous thirty years. He strengthened the armed forces, and increased the size of the 'Oastea Domneasca' (the Prince's Army) to 40,000 men, one of the largest standing armies in Eastern Europe. He supported the economy, the agriculture, the crafts and the trade. The first manufactories of Wallachia producing paper and glassware were setup during his reign.
+
+	date = { day = 1 month = august year = 1632 }
+	offset = 250
+	deathdate = { day = 1 month = may year = 1633 }
+
+	action_a = {
+		name = "ACTIONNAME329032A" #Reform trade and the economy
+		command = { type = infra value = 300 }
+		command = { type = trade value = 150 }
+		command = { type = merchants value = 3 }
+		command = { type = population which = -2 value = 800 }
+		command = { type = treasury value = -50 }
+		command = { type = domestic which = SERFDOM value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME329032B" #Concentrate on the army
+		command = { type = relation which = POL value = -50 }
+		command = { type = relation which = TUR value = -50 }
+		command = { type = relation which = MOL value = -50 }
+		command = { type = relation which = SIE value = -50 }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = CAV which = -2 value = 2500 }
+		command = { type = ART which = -2 value = 10 }
+		command = { type = domestic which = QUALITY value = 1 }
+		command = { type = domestic which = LAND value = 1 }
+		command = { type = land value = 500 }
+		command = { type = domestic which = SERFDOM value = -1 }
+		command = { type = treasury value = -100 }
+	}
+	action_c = {
+		name = "ACTIONNAME329032C" #Reform both the economy and the army
+		command = { type = infra value = 300 }
+		command = { type = trade value = 150 }
+		command = { type = merchants value = 3 }
+		command = { type = domestic which = SERFDOM value = 1 }
+		command = { type = treasury value = -300 }
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = CAV which = -2 value = 2500 }
+		command = { type = ART which = -2 value = 10 }
+		command = { type = relation which = POL value = -50 }
+		command = { type = relation which = TUR value = -50 }
+		command = { type = relation which = MOL value = -50 }
+		command = { type = relation which = SIE value = -50 }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = revoltrisk which = 240 value = 1 }
+	}
+}
+
+#(1638-1640) Matei Basarab's foreign policy
+event = {
+	id = 329033
+	random = no
+	country = WAL
+	name = "EVENTNAME329033" #Matei Basarab's foreign policy
+	desc = "EVENTHIST329033"
+	#-#Matei Basarab's foreign policy was marked by alliances with Transylvanian princes Ráckózi I and II, by good relations with Poland, Venice and Rome, and by a constant opposition to the Ottomans' interference into Wallachia's internal affairs. Most Prolific Church Founder in the 17th Century in Wallachia, he thwarted the Turks' plans to sow discord between him and Vasile Lupu (who ruled Moldavia by that time, and who had tried, encouraged by the Turks, to take over Wallachia too. Likewise, Matei Basarab assisted the struggle of Serbians, Bulgarians, and other Balkanic peoples against the Turks, as he thought that Orthodox faith served by the Slavonic language could strengthen them, and be an effective means of resistance against the Ottoman oppression.
+
+	date = { day = 1 month = march year = 1638 }
+	offset = 800
+	deathdate = { day = 1 month = march year = 1641 }
+
+	action_a = {
+		name = "ACTIONNAME329033A" #Oppose to the Ottomans' interference
+		command = { type = province_revoltrisk which = 318 value = -2 } #Moldova
+		command = { type = province_revoltrisk which = 323 value = -8 } #Transylvania
+		command = { type = diplomats value = 4 }
+		command = { type = relation which = POL value = 50 }
+		command = { type = relation which = PAP value = 50 }
+		command = { type = relation which = MOL value = -50 }
+		command = { type = relation which = TUR value = -50 }
+		command = { type = relation which = SIE value = 50 }
+		command = { type = relation which = HUN value = 50 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = VEN value = 50 }
+		command = { type = dynastic which = SIE }
+		command = { type = dynastic which = HUN }
+		command = { type = dynastic which = POL }
+		command = { type = dynastic which = VEN }
+		command = { type = dynastic which = PAP }
+		command = { type = treasury value = -100 }
+	}
+	action_b = {
+		name = "ACTIONNAME329007B" #Remain loyal to the Porte
+		command = { type = vp value = -20 }
+		command = { type = sleepevent which = 329034 } #WAL: Matei Basarab's cultural work
+		command = { type = sleepevent which = 329035 } #WAL: Udriste Nasturel
+	}
+}
+
+#(1640-1642) Matei Basarab's cultural work
+event = {
+	id = 329034
+	trigger = {
+		event = 329033 #WAL: Matei Basarab's foreign policy
+	}
+	random = no
+	country = WAL
+	name = "EVENTNAME329034" #Matei Basarab's cultural work
+	desc = "EVENTHIST329034"
+	#-#Matei Basarab's most outstanding accomplishments are related to the vast cultural work that he embarked upon, which may be compared to that of Neagoe Basarab (1512-1521), whose political and dynastic model he followed, and to Constantin Brâncoveanu's (1688-1714), descended, like he was, from the Brâncoveni family of boyars. Matei Basarab was the greatest church founder of the Romanian people, as in his time were erected and restored over 115 churches and monasteries both in Wallachia and abroad. He even went over the Ottoman interdiction by building fortified churches and monasteries.
+
+	date = { day = 1 month = september year = 1640 }
+	offset = 650
+	deathdate = { day = 1 month = september year = 1642 }
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = vp value = 25 }
+		command = { type = infra value = 100 }
+		command = { type = fortress which = -2 value = 1 }
+		command = { type = treasury value = -100 }
+		command = { type = relation which = MOL value = 20 }
+		command = { type = relation which = SIE value = 20 }
+		command = { type = relation which = GRE value = 20 }
+		command = { type = relation which = RUS value = 20 }
+		command = { type = relation which = BYZ value = 20 }
+		command = { type = relation which = TRE value = 20 }
+	}
+}
+
+#(1642-1644) Udriste Nasturel
+event = {
+	id = 329035
+	random = no
+	country = WAL
+	name = "EVENTNAME329035" #Udriste Nasturel
+	desc = "EVENTHIST329035"
+	#-#Though not a scholar himself, like his forefather Neagoe Basarab, Matei Basarab encouraged and assisted the learned men of his time. One of them was Udriste Nasturel, who fostered a Romanian humanism in the Slavonic language, which, in his opinion could express, just like the Latin, beside the values of classical antiquity, Orthodox solidarity of peoples living in South Eastern Europe. Udriste Nasturel played also an important part in the copying and printing activities of the time.
+
+	date = { day = 1 month = june year = 1642 }
+	offset = 600
+	deathdate = { day = 1 month = june year = 1644 }
+
+	action_a = {
+		name = "ACTIONNAME329035" #A wise man!
+		command = { type = vp value = 20 }
+		command = { type = infra value = 50 }
+		command = { type = relation which = MOL value = 20 }
+		command = { type = relation which = SIE value = 20 }
+		command = { type = relation which = GRE value = 20 }
+		command = { type = relation which = RUS value = 20 }
+		command = { type = relation which = BYZ value = 20 }
+		command = { type = relation which = TRE value = 20 }
+	}
+}
+
+#(1681-1820) Effect of introduction of Maize in Wallachia
+event = {
+	id = 329037 #triggered by ProvinceSpec_338292
+	random = no
+	country = WAL
+	name = "EVENTNAME329037" #Effect of introduction of Maize in Wallachia
+	desc = "EVENTHIST338292"
+	#-#This plant, originating from Mezo-America, was introduced in Wallachia and became the staple food of the country.
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = infra value = 50 }
+		command = { type = trade value = 50 }
+		command = { type = stability value = 2 }
+	}
+}
+
+#(1682-1688) Sherban Cantacuzino and the siege of Vienna
+event = {
+	id = 329036
+	trigger = {
+		war = { country = TUR country = HAB }
+		vassal = { country = TUR country = WAL }
+	}
+	random = no
+	country = WAL
+	name = "EVENTNAME329036" #Sherban Cantacuzino and the siege of Vienna
+	desc = "EVENTHIST329036"
+	#-#In 1683 the Ottoman Empire once again marched its armies towards the centre of Europe, laying siege to Vienna. Alongside the Turkish forces, there were Wallachian regiments led by Prince Sherban Cantacuzino (1679-1688), descendant of the illustrious greek family. Reluctant to aid the Turks against his Christian brothers, Sherban secretly aided the Holy League who, in turn, following the crushing victories over the Ottomans, promised him the mantle of the Eastern Roman Empire to which he was entitled by descent. Sherban died in 1688, probably poisoned on the orders of the Ottoman Sultan.
+
+	date = { day = 0 month = january year = 1682 }
+	offset = 5
+	deathdate = { day = 8 month = november year = 1688 } #death of Sherban Cantacuzino
+
+	action_a = {
+		name = "ACTIONNAME329036A" #Pretend to fight, but secretly support the League
+		command = { type = relation which = POL value = 50 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = SPA value = 50 }
+		command = { type = diplomats value = 3 }
+		command = { type = relation which = TUR value = -50 }
+		command = { type = relation which = CRI value = -50 }
+		command = { type = domestic which = QUALITY value = 1 }
+		command = { type = sleepevent which = 179097 } #HAB: Sherban Cantacuzino and the siege of Vienna
+	}
+	action_b = {
+		name = "ACTIONNAME329036B" #Support the Ottomans at all cost
+		command = { type = relation which = POL value = -50 }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = relation which = SPA value = -50 }
+		command = { type = stability value = -1 }
+		command = { type = relation which = TUR value = 50 }
+		command = { type = relation which = CRI value = 50 }
+		command = { type = treasury value = -50 }
+		command = { type = trigger which = 301080 } #TUR: Sherban Cantacuzino and the siege of Vienna
+		command = { type = sleepevent which = 179097 } #HAB: Sherban Cantacuzino and the siege of Vienna
+	}
+	action_c = {
+		name = "ACTIONNAME329036C" #Openly side with the Christian powers!
+		command = { type = relation which = POL value = 150 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = SPA value = 150 }
+		command = { type = stability value = -3 }
+		command = { type = breakvassal which = TUR }
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = treasury value = -50 }
+		command = { type = domestic which = QUALITY value = 1 }
+		command = { type = domestic which = LAND value = 1 }
+	}
+}
+
+#(1685) Sherban Cantacuzino's cultural works
+event = {
+	id = 329038
+	random = no
+	country = WAL
+	name = "EVENTNAME329038" #Sherban Cantacuzino's cultural works
+	desc = "EVENTHIST329038"
+	#-#In the style of the Wallachian baroque, Sherban Cantacuzino was an avid supporter of culture. He founded the first superior learning school, the Saint Sava College in Bucharest, many printing offices, and in 1688 the famous Romanian Bible was published, Romanian replacing Slavonic as the official and cultural language of the principality.
+
+	date = { day = 1 month = april year = 1685 }
+	offset = 250
+	deathdate = { day = 29 month = december year = 1685 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = vp value = 20 }
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = infra value = 100 }
+		command = { type = population which = 322 value = 500 } #Wallachia
+	}
+}
+
+#(1690-1691) Constantin Brancoveanu's foreign policy
+event = {
+	id = 329039
+	trigger = {
+		neighbour = TUR
+	}
+	random = no
+	country = WAL
+	name = "EVENTNAME329039" #Constantin Brancoveanu's foreign policy
+	desc = "EVENTHIST329039"
+	#-#Like Sherban before him, Constantin realized that the country was too weak to openly challenge the Ottoman influence. Nevertheless, he tried to take advantage of the collapsing Ottoman power by wooing the Austrians and the Russians and secretly helping them with intelligence, policy which eventually doomed him in the eyes of the Sultan.
+
+	date = { day = 1 month = may year = 1690 }
+	offset = 400
+	deathdate = { day = 1 month = september year = 1691 }
+
+	action_a = {
+		name = "ACTIONNAME329039A" #Pretend to be a loyal vassal
+		command = { type = relation which = TUR value = -50 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = RUS value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME329039B" #Support the Turks
+		command = { type = relation which = TUR value = 50 }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = relation which = RUS value = -50 }
+		command = { type = MIL which = 2 value = 150 }
+		command = { type = sleepevent which = 329040 } #WAL: The 'Brancovenesc' style
+		command = { type = sleepevent which = 329041 } #WAL: Death of Constantin Brancoveanu
+		command = { type = sleepevent which = 329042 } #WAL: Instauration of Phanariote rule in Wallachia
+	}
+}
+
+#(1693-1694) The 'Brancovenesc' style
+event = {
+	id = 329040
+	random = no
+	country = WAL
+	name = "EVENTNAME329040" #The 'Brancovenesc' style
+	desc = "EVENTHIST329040"
+	#-#Sherban Cantacuzino's successor, Constantin Brancoveanu continued his support of the arts and culture and built many palaces and churches throughout the country. Most famous is the palace of Mogosoaia, north of the capital Bucuresti, which can still be seen today.
+
+	date = { day = 1 month = october year = 1693 }
+	offset = 250
+	deathdate = { day = 1 month = july year = 1694 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = infra value = 100 }
+		command = { type = vp value = 20 }
+		command = { type = treasury value = -100 }
+	}
+}
+
+#(1710) Death of Constantin Brancoveanu
+event = {
+	id = 329041
+	trigger = {
+		neighbour = TUR
+	}
+	random = no
+	country = WAL
+	name = "EVENTNAME329041" #Death of Constantin Brancoveanu
+	desc = "EVENTHIST329041"
+	#-#Because of his anti-Turkish policy of forming alliances first with Austria and then with Russia, Constantin Brancoveanu was denounced to the Porte, deposed from his throne, and brought under arrest to Constantinople where he was imprisoned in 1710 at the fortress of Yedi Kuleh (the Seven Towers). There he was tortured by the Turks, who hoped to locate the 3,000,000 fortune he had supposedly amassed. He was beheaded with his four sons on August 26, 1714.
+
+	date = { day = 20 month = january year = 1710 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1710 }
+
+	action_a = {
+		name = "OH_NO"
+		command = { type = treasury value = -300 }
+		command = { type = stability value = -3 }
+		command = { type = domestic which = CENTRALIZATION value = -2 }
+	}
+}
+
+#(1716) Instauration of Phanariote rule in Wallachia
+event = {
+	id = 329042
+	trigger = {
+		neighbour = TUR
+	}
+	random = no
+	country = WAL
+	name = "EVENTNAME329042" #Instauration of Phanariote rule in Wallachia
+	desc = "EVENTHIST329042"
+	#-#Having grown tired of the native Wallachian princes' machinations behind his back, the Ottoman Sultan decided to auction the throne of Wallachia to the Greek community of Phanar, Istambul. Thus, the period 1716 - 1821 is known in Romanian history as the 'Phanariote era'. It was a difficult period for the principality. Economically it was drained to cover the bidding expenses of the prince and to pay the tribute to the Ottoman Porte. Culturally, Greek replaced Romanian as court language and Slavonic as church-service language.
+
+	date = { day = 1 month = january year = 1716 }
+	offset = 300
+	deathdate = { day = 29 month = january year = 1716 }
+
+	action_a = {
+		name = "ACTIONNAME329042A" #Wallachia in rags
+		command = { type = treasury value = -200 }
+		command = { type = relation which = TUR value = 50 }
+		command = { type = relation which = MOL value = 50 }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = relation which = RUS value = -50 }
+		command = { type = stability value = -3 }
+		command = { type = infra value = -500 }
+		command = { type = trade value = -500 }
+		command = { type = inflation value = 10 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 329044

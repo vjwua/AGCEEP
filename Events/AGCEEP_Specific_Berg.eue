@@ -1,0 +1,428 @@
+#Berg (MUN)
+
+#See AGCEEP_Alt_Germany.eue for KoG Alternative events
+
+#-----------------------------------------------------------------------------------------------
+
+#(1423) Inheritance of Jülich -I-
+event = {
+	id = 235000 #triggered by GEL_75000 A
+	random = no
+	country = MUN
+	name = "EVENTNAME235000" #Inheritance of Jülich
+	desc = "EVENTHIST235000"
+	#-#In 1423 Reinald, the last Duke of Jülich-Guelders, died. The estates elected Arnold, the Count of Egmont as new Duke, defying the claims of Adolf of Berg who was recognized as successor to Jülich by Emperor Sigismund in 1423 and to Guelders in 1425. In turn, Arnold of Egmont claimed the inheritance of Jülich as well. A succession war followed in which the cities and nobles of Guelders supported Arnold. It ended in Arnold retaining Guelders and Zutphen, and Gerard, the son of Adolf, being acknowledged as Duke of Jülich. Although Berg failed to conquer Guelders, its power increased significantly by the acquisition of the wealthy Duchy of Jülich.
+
+	action_a = {
+		name = "ACTIONNAME235000A" #Claim Guelders as well
+		command = { type = addcore which = 338 } #Geldre
+		command = { type = setflag which = [DutchClaim] }
+		command = { type = provincetax which = -2 value = 5 }
+		command = { type = provincemanpower which = -2 value = 2 }
+		command = { type = relation which = GEL value = -100 }
+		command = { type = casusbelli which = GEL value = 120 }
+		command = { type = trigger which = 173003 } #GEL: Berg renounces our rightfull Duke
+	}
+	action_b = {
+		name = "ACTIONNAME235000B" #Renounce our claim on Guelders
+		command = { type = relation which = GEL value = 100 }
+		command = { type = stability value = 1 }
+		command = { type = sleepevent which = 173004 } #GEL: End of the succession crisis
+	}
+}
+#(1423) Inheritance of Jülich and Guelders -II-
+event = {
+	id = 235001 #triggered by GEL_75000 B
+	random = no
+	country = MUN
+	name = "EVENTNAME235001" #Inheritance of Jülich and Guelders
+	desc = "EVENTHIST75001"
+	#-#In 1423 Reinald, the last Duke of Jülich-Guelders, died. The duke of Berg who had already annexed Jülich, inherited the Duchy, too.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = addcore which = 338 } #Geldre
+		command = { type = setflag which = [DutchClaim] }
+		command = { type = inherit which = GEL }
+	}
+}
+
+#(1437) End of the succession crisis
+#by Pietercornelis
+event = {
+	id = 235010 #triggered by GEL_173004
+	random = no
+	country = MUN
+	name = "EVENTNAME173004" #End of the succession crisis
+	desc = "EVENTHIST173004"
+	#-#With the death of Adolf of Gulik-Berg, Duke of Jülich-Berg, the Duchies of Guelders and Jülich-Berg grew further apart, and the succession crisis ended.
+
+	action_a = {
+		name = "ACTIONNAME173004A" #Peace at last!
+		command = { type = removecore which = 338 } #Geldre
+		command = { }
+	}
+}
+
+#(1447 or 1463) Burgundian Claims on Cleves - Ahistorical
+event = {
+	id = 20314 #triggered by BUR_28006
+	random = no
+	country = MUN
+	name = "EVENTNAME20314" #Burgundian Claims on Cleves
+	desc = "EVENTHIST20313"
+	#-#The Emperor has made Philip the Good of Burgundy King of Lotharingia, reviving the ninth century Kingdom of Lothar. The emperor has granted some of our lands to Burgundy!
+
+	action_a = {
+		name = "DAMN"
+		command = { type = casusbelli which = BUR value = 2500 }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = CAV which = -2 value = 6000 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#(1511) The succession in Jülich-Berg
+event = {
+	id = 235002
+	trigger = {
+		ai = yes
+		exists = KLE
+		exists = GEL
+		exists = SAC
+	}
+	random = no
+	country = MUN
+	name = "EVENTNAME235002" #The succession in Jülich-Berg
+	desc = "EVENTHIST235002"
+	#-#Wilhelm IV of Jülich-Berg died in 1511, lacking a male heir. His only daughter had been betrothed to Johann, the son of Duke Johann of Kleve-Mark, and by a hereditary union in 1496 Kleve-Mark and Jülich-Berg had guaranteed each other right of succession in case of one of them lacking a direct heir. Nevertheless, Karel of Guelders and the elector also made claims to Jülich-Berg. Having secured the approval and support of Emperor Maximilian, Johann of Kleve-Mark and his wife Maria succeeded to the Duchies of Jülich and Berg, securing the way for the eventual unification with Kleve-Mark.
+
+	date = { day = 6 month = september year = 1511 }
+
+	action_a = {
+		name = "ACTIONNAME235002A" #Johann of Kleve-Mark succeeds
+		command = { type = relation which = KLE value = 200 }
+		command = { type = dynastic which = KLE }
+		command = { type = relation which = GEL value = -50 }
+		command = { type = relation which = SAC value = -50 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = stability value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME235002B" #Karel of Guelders succeeds (End Game)
+		command = { type = trigger which = 173001 } #GEL: Inheritance of Jülich-Berg
+	}
+	action_c = {
+		name = "ACTIONNAME235002C" #Ernst of Saxony succeeds (End Game)
+		command = { type = trigger which = 273030 } #SAC: Inheritance of Jülich-Berg
+	}
+}
+event = {
+	id = 235003
+	trigger = {
+		ai = yes
+		NOT = { exists = GEL }
+		exists = SAC
+		exists = KLE
+	}
+	random = no
+	country = MUN
+	name = "EVENTNAME235002" #The succession in Jülich-Berg
+	desc = "EVENTHIST235002"
+	#-#Wilhelm IV of Jülich-Berg died in 1511, lacking a male heir. His only daughter had been betrothed to Johann, the son of Duke Johann of Kleve-Mark, and by a hereditary union in 1496 Kleve-Mark and Jülich-Berg had guaranteed each other right of succession in case of one of them lacking a direct heir. Nevertheless, Karel of Guelders and the elector also made claims to Jülich-Berg. Having secured the approval and support of Emperor Maximilian, Johann of Kleve-Mark and his wife Maria succeeded to the Duchies of Jülich and Berg, securing the way for the eventual unification with Kleve-Mark.
+
+	date = { day = 6 month = september year = 1511 }
+
+	action_a = {
+		name = "ACTIONNAME235002A" #Johann of Kleve-Mark succeeds
+		command = { type = relation which = KLE value = 200 }
+		command = { type = dynastic which = KLE }
+		command = { type = relation which = GEL value = -50 }
+		command = { type = relation which = SAC value = -50 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = stability value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME235002C" #Ernst of Saxony succeeds (End Game)
+		command = { type = trigger which = 273030 } #SAC: Inheritance of Jülich-Berg
+	}
+}
+event = {
+	id = 235004
+	trigger = {
+		ai = yes
+		exists = KLE
+		exists = GEL
+		NOT = { exists = SAC }
+	}
+	random = no
+	country = MUN
+	name = "EVENTNAME235002" #The succession in Jülich-Berg
+	desc = "EVENTHIST235002"
+	#-#Wilhelm IV of Jülich-Berg died in 1511, lacking a male heir. His only daughter had been betrothed to Johann, the son of Duke Johann of Kleve-Mark, and by a hereditary union in 1496 Kleve-Mark and Jülich-Berg had guaranteed each other right of succession in case of one of them lacking a direct heir. Nevertheless, Karel of Guelders and the elector also made claims to Jülich-Berg. Having secured the approval and support of Emperor Maximilian, Johann of Kleve-Mark and his wife Maria succeeded to the Duchies of Jülich and Berg, securing the way for the eventual unification with Kleve-Mark.
+
+	date = { day = 6 month = september year = 1511 }
+
+	action_a = {
+		name = "ACTIONNAME235002A" #Johann of Kleve-Mark succeeds
+		command = { type = relation which = KLE value = 200 }
+		command = { type = dynastic which = KLE }
+		command = { type = relation which = GEL value = -50 }
+		command = { type = relation which = SAC value = -50 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = stability value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME235002B" #Karel of Guelders succeeds (End Game)
+		command = { type = trigger which = 173001 } #GEL: Inheritance of Jülich-Berg
+	}
+	action_c = {
+		name = "ACTIONNAME235002C" #Ernst of Saxony succeeds (End Game)
+		command = { type = trigger which = 273030 } #SAC: Inheritance of Jülich-Berg
+	}
+}
+event = {
+	id = 235005
+	trigger = {
+		ai = yes
+		NOT = { exists = KLE }
+		exists = GEL
+		exists = SAC
+	}
+	random = no
+	country = MUN
+	name = "EVENTNAME235002" #The succession in Jülich-Berg
+	desc = "EVENTHIST235002"
+	#-#Wilhelm IV of Jülich-Berg died in 1511, lacking a male heir. His only daughter had been betrothed to Johann, the son of Duke Johann of Kleve-Mark, and by a hereditary union in 1496 Kleve-Mark and Jülich-Berg had guaranteed each other right of succession in case of one of them lacking a direct heir. Nevertheless, Karel of Guelders and the elector also made claims to Jülich-Berg. Having secured the approval and support of Emperor Maximilian, Johann of Kleve-Mark and his wife Maria succeeded to the Duchies of Jülich and Berg, securing the way for the eventual unification with Kleve-Mark.
+
+	date = { day = 6 month = september year = 1511 }
+
+	action_a = {
+		name = "ACTIONNAME235002B" #Karel of Guelders succeeds (End Game)
+		command = { type = trigger which = 173001 } #GEL: Inheritance of Jülich-Berg
+	}
+	action_b = {
+		name = "ACTIONNAME235002C" #Ernst of Saxony succeeds (End Game)
+		command = { type = trigger which = 273030 } #SAC: Inheritance of Jülich-Berg
+	}
+}
+event = {
+	id = 235006
+	trigger = {
+		ai = yes
+		NOT = { exists = KLE }
+		exists = GEL
+		NOT = { exists = SAC }
+	}
+	random = no
+	country = MUN
+	name = "EVENTNAME235002" #The succession in Jülich-Berg
+	desc = "EVENTHIST235002"
+	#-#Wilhelm IV of Jülich-Berg died in 1511, lacking a male heir. His only daughter had been betrothed to Johann, the son of Duke Johann of Kleve-Mark, and by a hereditary union in 1496 Kleve-Mark and Jülich-Berg had guaranteed each other right of succession in case of one of them lacking a direct heir. Nevertheless, Karel of Guelders and the elector also made claims to Jülich-Berg. Having secured the approval and support of Emperor Maximilian, Johann of Kleve-Mark and his wife Maria succeeded to the Duchies of Jülich and Berg, securing the way for the eventual unification with Kleve-Mark.
+
+	date = { day = 6 month = september year = 1511 }
+
+	action_a = {
+		name = "ACTIONNAME235002B" #Karel of Guelders succeeds (End Game)
+		command = { type = trigger which = 173001 } #GEL: Inheritance of Jülich-Berg
+	}
+}
+event = {
+	id = 235007
+	trigger = {
+		ai = yes
+		NOT = { exists = KLE }
+		NOT = { exists = GEL }
+		exists = SAC
+	}
+	random = no
+	country = MUN
+	name = "EVENTNAME235002" #The succession in Jülich-Berg
+	desc = "EVENTHIST235002"
+	#-#Wilhelm IV of Jülich-Berg died in 1511, lacking a male heir. His only daughter had been betrothed to Johann, the son of Duke Johann of Kleve-Mark, and by a hereditary union in 1496 Kleve-Mark and Jülich-Berg had guaranteed each other right of succession in case of one of them lacking a direct heir. Nevertheless, Karel of Guelders and the elector also made claims to Jülich-Berg. Having secured the approval and support of Emperor Maximilian, Johann of Kleve-Mark and his wife Maria succeeded to the Duchies of Jülich and Berg, securing the way for the eventual unification with Kleve-Mark.
+
+	date = { day = 6 month = september year = 1511 }
+
+	action_a = {
+		name = "ACTIONNAME235002C" #Ernst of Saxony succeeds (End Game)
+		command = { type = trigger which = 273030 } #SAC: Inheritance of Jülich-Berg
+	}
+}
+event = {
+	id = 235008
+	trigger = {
+		ai = no
+		exists = KLE
+	}
+	random = no
+	country = MUN
+	name = "EVENTNAME235002" #The succession in Jülich-Berg
+	desc = "EVENTHIST235002"
+	#-#Wilhelm IV of Jülich-Berg died in 1511, lacking a male heir. His only daughter had been betrothed to Johann, the son of Duke Johann of Kleve-Mark, and by a hereditary union in 1496 Kleve-Mark and Jülich-Berg had guaranteed each other right of succession in case of one of them lacking a direct heir. Nevertheless, Karel of Guelders and the elector also made claims to Jülich-Berg. Having secured the approval and support of Emperor Maximilian, Johann of Kleve-Mark and his wife Maria succeeded to the Duchies of Jülich and Berg, securing the way for the eventual unification with Kleve-Mark.
+
+	date = { day = 6 month = september year = 1511 }
+
+	action_a = {
+		name = "ACTIONNAME235002A" #Johann of Kleve-Mark succeeds
+		command = { type = relation which = KLE value = 200 }
+		command = { type = dynastic which = KLE }
+		command = { type = relation which = GEL value = -50 }
+		command = { type = relation which = SAC value = -50 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = stability value = -1 }
+	}
+}
+#-----------------------------------------------------------------------------------------------
+
+#(1521) Union with Kleve-Mark
+event = {
+	id = 235009 #triggered by KLE_200022
+	random = no
+	country = MUN
+	name = "EVENTNAME235009" #Union with Kleve-Mark
+	desc = "EVENTHIST235009"
+	#-#The union between Kleve, Mark, Jülich, Berg and Ravensberg, prepared by the marriage between Johann of Kleve and Maria of Berg in 1510 and the couple's succession to Jülich-Berg in 1511, was complete when the old Duke Johann of Kleve died in 1521 and his son Johann inherited Kleve and Mark.
+
+	action_a = {
+		name = "ACTIONNAME235009A" #Unite the low rhine duchies
+		command = { type = addcore which = 334 } #Münster
+		command = { type = inherit which = KLE }
+	}
+}
+
+#(1806-1810) Grand Duchy of Berg
+event = {
+	id = 235101 #triggered by FRA_170001 A
+	random = no
+	country = MUN
+	name = "EVENTNAME170001" #The creation of the Grand Duchy of Berg
+	desc = "EVENTHIST235101"
+	#-#Although Napoléon had originally only claimed the left bank of the Rhine for France, which he had achieved by the peace of Campoformio in 1797, he forced Bavaria to cede Berg and Jülich in 1806 and took Kleve from Prussia in 1805. To maintain at least the impression of legitimacy, he did not directly annex these territories to France, but chose to bestow them upon his loyal general Joachim Murat as independent 'Grand Duchy of Berg' with its capital in Düsseldorf instead.
+
+	action_a = {
+		name = "ACTIONNAME235101A" #Vive l'Empereur !
+		command = { type = flagname which = "Murat" }
+		command = { type = sleepmonarch which = 093511 } #Maximilian Josef
+		command = { type = wakemonarch which = 093512 } #Joachim Murat
+		command = { type = wakemonarch which = 093513 } #Comte de Beugnot
+		command = { type = wakemonarch which = 093514 } #Louis-Napoléon
+		command = { type = remove_countryculture which = german }
+		command = { type = add_countryculture which = french }
+		command = { type = relation which = FRA value = 300 }
+		command = { type = relation which = HOL value = 100 }
+		command = { type = relation which = SPA value = 100 }
+		command = { type = relation which = TOS value = 100 }
+		command = { type = relation which = NAP value = 100 }
+		command = { type = relation which = ITA value = 100 }
+		command = { type = addcore which = 334 } #Münster
+	}
+}
+
+#(1806-1820) The vassal-state of Berg-Cleves
+event = {
+	id = 235012
+	trigger = {
+		OR = {
+			monarch = 093512 #Joachim Murat
+			monarch = 093513 #Comte de Beugnot
+			monarch = 093514 #Louis-Napoléon
+		}
+		OR = {
+			AND = {
+				owned = { province = 334 data = FRA } #Münster
+				control = { province = 334 data = FRA } #Münster
+			}
+			vassal = { country = FRA country = KLE }
+			owned = { province = 334 data = -1 } #Münster
+		}
+		NOT = { war = { country = MUN country = FRA } }
+	}
+	random = no
+	country = MUN
+	name = "EVENTNAME170223" #The vassal-state of Berg-Cleves
+	desc = "EVENTHIST170223"
+	#-#Emperor Napoléon wanted to reward his most loyal general and brother-in-law, Joachim Murat, giving him the territories of Berg-Jülich and Cleves to administer with the title of Grand Duke of Berg-Cleves according to the French imperial directives.
+
+	date = { day = 1 month = january year = 1806 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "GOOD"
+		command = { type = inherit which = KLE }
+		command = { type = trigger which = 170223 } #FRA: The vassal-state of Berg-Cleves
+	}
+}
+
+#(1806-1808) Joachim Murat's administration
+event = {
+	id = 235102
+	trigger = {
+		monarch = 093512 #Joachim Murat
+	}
+	random = no
+	country = MUN
+	name = "EVENTNAME235102" #Joachim Murat's administration
+	desc = "EVENTHIST235102"
+	#-#After he had become Grand Duke of Berg, Joachim Murat soon introduced an administration similar to the French. In a decree from April 24th 1806 he created a centralised administration and completely merged Kleve and Berg, on April 30th all tolls and limitations on trade with France were abolished and replaced by a system favouring France and hurting Berg's economy and on August 8th the Grand Duchy was divided into eight arrondissements.
+
+	date = { day = 24 month = april year = 1806 }
+	offset = 1
+	deathdate = { day = 29 month = july year = 1808 }
+
+	action_a = {
+		name = "ACTIONNAME235102A" #Reform the administration
+		command = { type = domestic which = centralization value = 3 }
+		command = { type = domestic which = mercantilism value = 3 }
+	}
+}
+
+#(1810-1813) Introduction of the Code Napoléon
+event = {
+	id = 235103
+	trigger = {
+		monarch = 093514 #Louis-Napoléon
+	}
+	random = no
+	country = MUN
+	name = "EVENTNAME235103" #Introduction of the Code Napoléon
+	desc = "EVENTHIST235103"
+	#-#On January 1st 1810 the Code Napoléon was enacted in the Grand Duchy of Berg. Thus, in the country of Louis-Napoléon the last remaints of feudalism were crushed and the ideals of freedom, equality and fraternity fixed.
+
+	date = { day = 1 month = january year = 1810 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1813 }
+
+	action_a = {
+		name = "ACTIONNAME235103A" #Enact the Code civil
+		command = { type = domestic which = serfdom value = -3 }
+		command = { type = domestic which = aristocracy value = -4 }
+		command = { type = domestic which = innovative value = 3 }
+	}
+}
+
+#(1810-1820) The restoration of the Duchy of Berg
+event = {
+	id = 235011 #triggered by FRA_170128
+	trigger = {
+		monarch = 093514 #Louis-Napoléon
+	}
+	random = no
+	country = MUN
+	name = "EVENTNAME170258" #The restoration of the Duchy of Berg
+	desc = "EVENTHIST170128"
+	#-#The Congress of Vienna brought Europe back to its boundaries before the French Revolution. Only the former Republics of Genoa and Venice weren't granted the restoration of their pre-revolutionary governments. Since any sort of socalled Republic was now the most hated by all the monarchies of the restoration, they were respectively given to Savoy as to form a medium buffer state against France and to Austria as to strengthen her position in Southern Europe.
+
+	action_a = {
+		name = "OK"
+		command = { type = flagname which = "" }
+		command = { type = sleepmonarch which = 093514 } #Louis-Napoléon
+		command = { type = wakemonarch which = 093515 } #Maximilian Josef
+		command = { type = add_countryculture which = german }
+		command = { type = remove_countryculture which = french }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 235013

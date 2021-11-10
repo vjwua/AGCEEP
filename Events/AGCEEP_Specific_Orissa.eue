@@ -1,0 +1,1208 @@
+#Orissa (ORI)
+
+#-----------------------------------------------------------------------------------------------
+#The Eastern Gangas
+
+#(1434) Bhanudeva's Expedition against the Reddy
+event = {
+	id = 249001
+	trigger = { owned = { province = 565 data = ORI } } #Yanam
+	random = no
+	country = ORI
+	name = "EVENTNAME249001" #Bhanudeva's Expedition against the Reddy
+	desc = "EVENTHIST249001"
+	#-#The Reddy people ruled over two independent Hindu states to the south of Orissa, Kondavidu and Rajahmundry. Although they were small, the Kingdoms were rich and maintained large armies. In 1391 and 1398 the Reddy defeated King Narasimhadeva IV, but in spite of this Orissa maintained control of its southern provinces. Around the turn of the century the Reddy Kingdom was wracked by civil war and Narasimhadeva took advantage of it to reorganize the south against future invasions. His son Bhanudeva IV decided to end the Reddy threat once and for all and led an expedition to the far south in 1434.
+
+	date = { day = 1 month = january year = 1434 }
+	offset = 180
+	deathdate = { day = 1 month = january year = 1435 }
+
+	action_a = {
+		name = "ACTIONNAME249001A" #Lead an invasion force to the south
+		command = { type = CAV which = 565 value = 3000 } #Yanam
+	}
+	action_b = {
+		name = "ACTIONNAME249001B" #Prepare our defenses in the south
+		command = { type = domestic which = offensive value = -1 }
+	}
+}
+
+#(1435) Downfall of the Gangas
+event = {
+	id = 249002
+	random = no
+	country = ORI
+	name = "EVENTNAME249002" #Downfall of the Gangas
+	desc = "EVENTHIST249002"
+	#-#With Bhanudeva IV preoccupied with the Reddy in the south a young man named Kapilendra Routray took the opportunity to seize power. Kapilendra was the grandson of a nayaka, or feudal governor and tribal chief. He murdered the King and returned to the north with an army. The first years of his reign were spent fighting the forces of the Gangas and turning back an invasion by the Sultan of Bengal. To gain support for his shaky rule, Kapilendra abolished the unpopular salt tax and made generous donations to the priests of Jagannath, who in return announced that the god had personally chosen Kapilendra to be King. This gave Kapilendra much-needed legitimacy in the south and he began to persecute his enemies.
+
+	date = { day = 1 month = january year = 1435 }
+
+	action_a = {
+		name = "ACTIONNAME249002A" #Abolish the salt tax and give generously to the Brahmin
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 96 value = 10 } #Consolidated his rule in 1443
+		command = { type = revolt which = 560 } #Odisa
+		command = { type = revolt which = 561 } #Berhampur
+		command = { type = revolt which = 564 } #Palakimedi
+		command = { type = treasury value = -10 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = provincetax which = 560 value = -1 } #Odisa
+		command = { type = provincetax which = 561 value = -1 } #Berhampur
+		command = { type = provincetax which = 564 value = -1 } #Palakimedi
+		command = { type = provincetax which = 565 value = -1 } #Yanam
+	}
+	action_b = {
+		name = "ACTIONNAME249002B" #Rely on the military to maintain order
+		command = { type = stability value = -5 }
+		command = { type = revoltrisk which = 132 value = 12 }
+		command = { type = revolt which = 560 } #Odisa
+		command = { type = revolt which = 561 } #Berhampur
+		command = { type = revolt which = 564 } #Palakimedi
+		command = { type = domestic which = aristocracy value = 1 }
+	}
+}
+
+#(1443-1467) Revitalization of the Gangas - Ahistorical
+event = {
+	id = 249003
+	trigger = {
+		NOT = { event = 249004 } #The Surya Dynasty
+		control = { province = 560 data = REB }
+		OR = {
+			control = { province = 561 data = REB }
+			control = { province = 564 data = REB }
+			year = 1446 #Revoltrisk runs out even in option B
+		}
+	}
+	random = no
+	country = ORI
+	name = "EVENTNAME249003" #Revitalization of the Gangas
+	desc = "EVENTHIST249003"
+	#-#After Kapilendra's coup the forces of the Ganga dynasty regrouped and fought back, rallying around a son of Narasimhadeva IV who titled himself Kamarnadeva II. Thanks to a timely invasion by the Sultan of Bengal, Kamarnadeva was able to retake the capital and the Surya forces disintegrated. After this crisis the new ruler recognized the danger posed by the tribal chiefs who had rebelled and began taking steps to restrict their power. He confiscated the lands of those chiefs who had opposed him, but he did not redress the greviances of the people who resented the salt tax.
+
+	date = { day = 1 month = january year = 1443 }
+	offset = 90
+	deathdate = { day = 1 month = january year = 1467 }
+
+	action_a = {
+		name = "ACTIONNAME249003A" #Crush the tribal chieftains
+		command = { type = sleepmonarch which = 0101501 } #Kapilesvara Gajapati
+		command = { type = wakemonarch which = 0101502 } #Kamarnadeva II °
+		command = { type = sleepleader which = 0101800 } #Kapilendra I (ORI)
+		command = { type = MIL which = 1 value = 120 }
+		command = { type = stability value = 1 }
+		command = { type = domestic which = quality value = -1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = revolt which = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME249003B" #Address the greviances of the people
+		command = { type = sleepmonarch which = 0101501 } #Kapilesvara Gajapati
+		command = { type = wakemonarch which = 0101502 } #Kamarnadeva II °
+		command = { type = sleepleader which = 0101800 } #Kapilendra I (ORI)
+		command = { type = ADM which = 1 value = 120 }
+		command = { type = stability value = 2 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = gainbuilding which = -2 value = courthouse }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Early Suryas
+
+#(1443-1463) Oriya Literature - Flavor
+event = {
+	id = 249501
+	random = no
+	country = ORI
+	name = "EVENTNAME249501" #Oriya Literature
+	desc = "EVENTHIST249501"
+	#-#From the ninth through at least the thirteenth centuries, there was an active cult of yoginis in India that taught Tantric practices designed to give supernatural abilities to masters. Although the cult largely died out in mainstream India, it flourished in centers such as Orissa as late as the 16th century. Sharala Das was an Oriya scholar-priest who wrote the Chandi Purana and translated the Mahabharata into Oriya in the mid 15th century. These texts had a profound influence on Oriya religion but also helped pave the way for the rise of Oriya literature in the 16th century.
+
+	date = { day = 1 month = january year = 1443 }
+	offset = 7200
+	deathdate = { day = 1 month = january year = 1463 }
+
+	action_a = {
+		name = "ACTIONNAME249501A" #New ideas are seeping into Orissa
+		command = { type = domestic which = innovative value = 1 }
+	}
+}
+
+#(1443-1467) Revitalization of the Gangas
+event = {
+	id = 249004
+	trigger = {
+		NOT = { event = 249003 } #Revitalization of the Gangas
+		control = { province = 560 data = ORI } #Odisa
+		OR = {
+			control = { province = 561 data = ORI } #Berhampur
+			control = { province = 564 data = ORI } #Palakmedi
+			year = 1446 #Revoltrisk runs out even in option B
+		}
+	}
+	random = no
+	country = ORI
+	name = "EVENTNAME249004" #The Surya Dynasty
+	desc = "EVENTHIST249004"
+	#-#The Ganga dynasty of Orissa had ruled the Hindu Kingdom for centuries as the self-styled 'sons' (putra) and 'generals' (rauta) of Purusottama, but the Gangas were in decline by the 15th century after suffering a crushing defeat at the hands of the Sultan of Delhi. A weak ruler, Bhanudeva IV was overthrown by a tribal chieftain, Kapilendra, who defeated the vestiges of Ganga power and established the Suryavamsha (Sun) dynasty in its place, declaring himself the 'Servitor of Jagannath'.
+
+	date = { day = 1 month = january year = 1443 }
+	offset = 90
+	deathdate = { day = 1 month = january year = 1467 }
+
+	action_a = {
+		name = "ACTIONNAME249004A" #Kapilendra I is victorious!
+		command = { type = stability value = 2 }
+		#command = { type = breakdynastic which = VIJ } #New dynasty & will invade
+		command = { type = relation which = VIJ value = -50 }
+	}
+}
+
+#(1443-1468) The Temple of Jagannath
+event = {
+	id = 249005
+	trigger = {
+		atwar = no
+		control = { province = 560 data = ORI } #Odisa
+		monarch = 0101501 #Kapilesvara Gajapati #Kapilendra, Surya dynasty
+	}
+	random = no
+	country = ORI
+	name = "EVENTNAME249005" #The Temple of Jagannath
+	desc = "EVENTHIST249005"
+	#-#As they expanded down the coast, earlier Ganga monarchs had built a temple to Jagannath, a tribal deity, to build ties with their new subjects, but worship of their own god Purusottama remained dominant. Under the Surya dynasty this balance of power shifted in favor of the tribal deity Jagannath, whose temple at Puri was expanded greatly by the King. Surya monarchs used the Bhakti cult as a way of maintaining control over their Hindu subjects and even occasionally against other Hindu monarchs. The temple became a great site of pilgrimage, especially after the Maratha conquest, when it attracted pilgrims from across India.
+
+	date = { day = 1 month = january year = 1443 }
+	offset = 1000
+	deathdate = { day = 1 month = january year = 1468 }
+
+	action_a = {
+		name = "ACTIONNAME249005A" #Destroyed in 1568 (may be rebuilt) #Expand the temple
+		command = { type = gainmanufactory which = 560 value = luxury } #Puri is just SW of Cuttack #Odisa
+		command = { type = treasury value = -100 } #Stability bonus mostly meaningless
+	}
+	action_b = {
+		name = "ACTIONNAME249005B" #Let the Bhakti fend for themselves
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1443-1468) Conquests of Kapilendra
+event = {
+	id = 249006
+	trigger = {
+		atwar = no
+		control = { province = 560 data = ORI } #Odisa
+		owned = { province = 564 data = ORI } #Palakmedi
+		monarch = 0101501 #Kapilesvara Gajapati #Kapilendra
+		NOT = { vassal = { country = ORI country = VIJ } }
+	}
+	random = no
+	country = ORI
+	name = "EVENTNAME249006" #Conquests of Kapilendra
+	desc = "EVENTHIST249006"
+	#-#Kapilendra soon proved to be a great monarch. After consolidating power in Orissa by 1443 he took his armies and expanded down the coast into Vijayanagar. With the help of his son Hamvira, Oriya forces occupied the coast down to the Kaveri river by 1463, nearly cutting Vijayanagar off from the ocean. Most of these territories proved too hard to defend and were abandoned, but some, like the Reddy Kingdoms of Kondavidu and Rajahmundry, remained part of Orissa for generations. Kapilendra appointed his grandson Dakshina as the Parichna, or governor, of the newly conquered territory.
+
+	date = { day = 1 month = january year = 1443 }
+	offset = 1000
+	deathdate = { day = 1 month = january year = 1468 }
+
+	action_a = {
+		name = "ACTIONNAME249006A" #Ripe for the taking!
+		command = { type = domestic which = offensive value = 1 }
+		command = { type = CAV which = 564 value = 5000 } #Palakmedi
+		command = { type = casusbelli which = VIJ value = 96 }
+		command = { type = addcore which = 571 } #Madras
+		#command = { type = AI which = ORI_Kapilendra.ai }
+	}
+}
+
+#(1454-1468) Empire of the Gajapati
+event = {
+	id = 249009
+	trigger = { control = { province = 571 data = -1 } } #Madras
+	random = no
+	country = ORI
+	name = "EVENTNAME249009" #Empire of the Gajapati
+	desc = "EVENTHIST249009"
+	#-#Attacked simultaneously by three rivals, Orissa managed nevertheless to not only defeat the invaders but conquer new territory along the seaboard. By 1454 the Kondavidu territory was occupied by the army led by the King's son Hamvira. Udayagiri followed in 1460 and Chandragiri in 1464. With all three territories in his possession, the King was able to occupy the entire eastern coast of Vijayanagar up to the Kaveri river in the south, reaching the greatest extent of the elephant lords.
+
+	date = { day = 1 month = january year = 1454 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1468 }
+
+	action_a = {
+		name = "ACTIONNAME249009A" #We are now the dominant Hindu Kingdom!
+		command = { type = vp value = 10 }
+		command = { type = DIP which = 1 value = 168 }
+		command = { type = gainbuilding which = 571 value = bailiff } #Madras
+		command = { type = addcore which = 571 } #Madras, backup in case Ganga dynasty survived
+	}
+}
+
+#(1460-1461) The Bahmanids invade Debarkonda
+event = {
+	id = 249007
+	random = no
+	country = ORI
+	name = "EVENTNAME249007" #The Bahmanids invade Debarkonda
+	desc = "EVENTHIST249007"
+	#-#After defeating Allauddin II in 1448 Orissa and the Bahmani had shared friendly relations, even helping each other in war against the Sultan of Malwa in 1457. This alliance came to an end in 1459 when the new Sultan, Humayun Shah, invaded Debarkonda, a region ruled by the Velama. The Velama were a Hindu people who lived in Rajahkonda and Devarkonda, two small buffer states that maintained their independence by playing off the powers against each other. The chief of Debarkonda sought help from Orissa and in return the King sent his son Hamvira to Debarkdonda. After their victory Debarkonda became a client state of the Kingdom.
+
+	date = { day = 2 month = april year = 1460 }
+	offset = 180
+	deathdate = { day = 3 month = september year = 1461 }
+
+	action_a = {
+		name = "ACTIONNAME249007A" #Send an army to aid the Velama
+		command = { type = treasury value = -50 }
+		command = { type = provincetax which = 564 value = 1 } #Debarkonda and Rajahkonda #Palakimedi
+		command = { type = relation which = THE value = -25 }
+		command = { type = casusbelli which = THE value = 6 }
+		command = { type = sleepevent which = 410000 } #THE: The Kingdoms of the Velama
+	}
+	action_b = {
+		name = "ACTIONNAME249007B" #Let the Muslims have it
+		command = { type = relation which = THE value = 25 }
+	}
+}
+
+#(1461-1463) Disorder in the Deccan
+event = {
+	id = 249008
+	random = no
+	country = ORI
+	name = "EVENTNAME249008" #Disorder in the Deccan
+	desc = "EVENTHIST249008"
+	#-#In 1461 the Bahmani Sultan Humayun Shah passed away, succeeded by a minor son named Nizam Shah. This Bahmanid disorder presented a tempting opportunity to expand Orissa inland. The King led an invasion force into the Bahmani Sultanate but was forced to pull out when the Sharqi Sultan Hussan Shah invaded Orissa from the north. After driving out Hussan Shah, the King invaded the Bahmani Kingdom and conquered Vidar.
+
+	date = { day = 4 month = september year = 1461 }
+	offset = 60
+	deathdate = { day = 29 month = july year = 1463 }
+
+	action_a = {
+		name = "ACTIONNAME249008A" #Look to the west
+		command = { type = casusbelli which = THE value = 24 }
+		command = { type = relation which = THE value = -50 }
+		command = { type = CAV which = -2 value = 5000 }
+		#command = { type = AI which = ORI_Purushottama.ai }
+	}
+	action_b = {
+		name = "ACTIONNAME249008B" #Restore friendly relations with the Sultan
+		command = { type = relation which = THE value = 25 }
+		command = { type = diplomats value = 1 }
+	}
+}
+
+#(1467) The Succession Crisis
+event = {
+	id = 249010
+	random = no
+	country = ORI
+	name = "EVENTNAME249010" #The Succession Crisis
+	desc = "EVENTHIST249010"
+	#-#As death grew near the aging King of Orissa named his successor. Although his eldest son Hamvira was an able general, the King decided that his younger son Purusottam would be a better ruler. Born of a Bhramin lady named Parvatidevi, Purusottam had the love of the people. The brothers were rivals and Hamvira refused to accept this decision. With many officers supporting him Hamvira attempted to seize power but with the resources of the state at his command Purusottam managed to drive out his brother after two years of fighting.
+
+	date = { day = 29 month = december year = 1467 }
+
+	action_a = {
+		name = "ACTIONNAME249010A" #Purusottam Deva the Good
+		#command = { type = AI which = peaceful.ai }
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 24 value = 12 }
+	}
+	action_b = {
+		name = "ACTIONNAME249010B" #Hamviradeva the Conqueror
+		#command = { type = AI which = peaceful.ai }
+		command = { type = stability value = -5 }
+		command = { type = revoltrisk which = 24 value = 12 }
+		command = { type = sleepmonarch which = 0101503 } #Purushottama
+		command = { type = wakemonarch which = 0101504 } #Hamiradeva
+		command = { type = wakeleader which = 0101802 } #Hamviradeva I (ORI)
+	}
+}
+
+#(1472-1474) Return of the Prince
+event = {
+	id = 249011
+	trigger = {
+		monarch = 0101503 #Purushottama
+		exists = HYD
+		NOT = { event = 249012 } #Version B
+	}
+	random = no
+	country = ORI
+	name = "EVENTNAME249011" #Return of the Prince
+	desc = "EVENTHIST249011"
+	#-#Having fled Orissa, Hamvira went to the court of the Bahmani Sultan and convinced him to support his cause. Sultan Muhammad III sent an army under the command of Hussan Bheiry to support Hamvira. In its weakened state Orissa was no match for this foreign invasion and Purushottama was forced to flee the capital, leading resistance from the countryside. The victorious Hamvira rewarded his Muslim allies by giving them the border lands of Kondavidu and Rajahmundry.
+
+	date = { day = 1 month = january year = 1472 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1474 }
+
+	action_a = {
+		name = "ACTIONNAME249011A" #Flee the capital
+		#command = { type = AI which = peaceful.ai }
+		command = { type = stability value = -3 }
+		command = { type = wakeleader which = 0101802 } #Hamviradeva I (ORI)
+		command = { type = sleepmonarch which = 0101503 } #Purushottama
+		command = { type = wakemonarch which = 0101504 } #Hamiradeva A
+		command = { type = revolt which = 561 } #Berhampur - represents Purushottama's resistance
+		command = { type = revolt which = 564 } #Palakimedi
+		command = { type = revolt which = 565 } #Yanam
+		command = { type = revoltrisk which = 48 value = 10 }
+		command = { type = secedeprovince which = THE value = 565 } #Yanam
+		command = { type = trigger which = 410003 } #THE: Kondavidu and Rajahmundry
+	}
+	action_b = {
+		name = "ACTIONNAME249011B" #Fight to the end
+		#command = { type = AI which = peaceful.ai }
+		command = { type = stability value = -5 }
+		command = { type = revolt which = 560 } #Odisa
+		command = { type = revolt which = 560 } #Odisa
+		command = { type = revolt which = 560 } #Odisa
+		command = { type = revolt which = 560 } #Odisa
+		command = { type = revolt which = 560 } #Odisa
+		command = { type = revoltrisk which = 48 value = 10 }
+		command = { type = sleepevent which = 249015 } #Purushottama returns #ORI: Victory of Purushottama
+		command = { type = wakemonarch which = 0101505 } #Purushottama B
+	}
+}
+#(1472-1474) Return of the Prince
+event = {
+	id = 249012
+	trigger = {
+		monarch = 0101504 #Hamviradeva
+		exists = THE
+		NOT = { event = 249011 } #Version A
+	}
+	random = no
+	country = ORI
+	name = "EVENTNAME249012" #Return of the Prince
+	desc = "EVENTHIST249012"
+	#-#Having fled Orissa, Purushottama went to the court of the Bahmani Sultan and convinced him to support his cause. Sultan Muhammad III sent an army under the command ofHamvira was forced to flee the capital, leading resistance from the countryside. The victorious Purushottama rewarded his Muslim allies by giving them the border lands of Kondavidu and Rajahmundry.
+
+	date = { day = 1 month = january year = 1472 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1474 }
+
+	action_a = {
+		name = "ACTIONNAME249012A" #Flee the capital
+		#command = { type = AI which = peaceful.ai }
+		command = { type = stability value = -3 }
+		command = { type = sleepleader which = 0101802 } #Hamviradeva I (ORI)
+		command = { type = sleepmonarch which = 0101504 } #Hamiradeva
+		command = { type = wakemonarch which = 0101503 } #Purushottama A
+		command = { type = revolt which = 561 } #Berhampur - represents Hamvira's resistance
+		command = { type = revolt which = 564 } #Palakimedi
+		command = { type = revolt which = 565 } #Yanam
+		command = { type = revoltrisk which = 48 value = 10 }
+		command = { type = secedeprovince which = THE value = 565 } #Yanam
+		command = { type = trigger which = 410003 } #THE: Kondavidu and Rajahmundry
+	}
+	action_b = {
+		name = "ACTIONNAME249012B" #Fight to the end
+		#command = { type = AI which = peaceful.ai }
+		command = { type = stability value = -5 }
+		command = { type = revolt which = 560 } #Odisa
+		command = { type = revolt which = 560 } #Odisa
+		command = { type = revolt which = 560 } #Odisa
+		command = { type = revolt which = 560 } #Odisa
+		command = { type = revolt which = 560 } #Odisa
+		command = { type = revoltrisk which = 48 value = 10 }
+		command = { type = sleepevent which = 249016 } #Hamviradeva returns #ORI: Victory of Hamviradeva
+		command = { type = wakemonarch which = 0101506 } #Hamiradeva °
+	}
+}
+
+#(1472-1476) Hamvira seizes power
+event = {
+	id = 249013
+	trigger = {
+		monarch = 0101503 #Purushottama
+		event = 249011
+		control = { province = 560 data = REB } #Odisa
+	}
+	random = no
+	country = ORI
+	name = "EVENTNAME249013" #Hamvira seizes power
+	desc = "EVENTHIST249013"
+	#-#Leading a fresh army of Bahmani Muslims, Hamvara managed to retake the capital in a bloody campaign that decimated Purushottama's supporters. The prince himself was executed, ending any last resistance to Hamvara's reign. In his first act as priest-king Hamvara rewarded his Muslim allies by giving them the territories he had promised them.
+
+	date = { day = 1 month = january year = 1472 }
+	offset = 15
+	deathdate = { day = 1 month = january year = 1476 }
+
+	action_a = {
+		name = "ACTIONNAME249013A" #Thus to all my enemies!
+		#command = { type = AI which = peaceful.ai }
+		command = { type = wakeleader which = 0101803 } #Hamviradeva I (ORI)
+		command = { type = sleepmonarch which = 0101503 } #Purushottama A
+		command = { type = wakemonarch which = 0101506 } #Hamiradeva °
+		command = { type = stability value = 1 }
+		command = { type = revoltrisk which = 48 value = -10 }
+		command = { type = secedeprovince which = THE value = 565 } #Yanam
+		command = { type = trigger which = 410003 } #THE: Kondavidu and Rajahmundry
+	}
+}
+#(1472-1476) Purushottama seizes power
+event = {
+	id = 249014
+	trigger = {
+		monarch = 0101504 #Hamviradeva
+		event = 249012
+		control = { province = 560 data = REB } #Odisa
+	}
+	random = no
+	country = ORI
+	name = "EVENTNAME249014" #Purushottama seizes power
+	desc = "EVENTHIST249014"
+	#-#Leading a fresh army of Bahmani Muslims, Purushottama managed to retake the capital in a bloody campaign that decimated Hamviradeva's supporters. The prince himself was executed, ending any last resistance to Purushottama's reign. In his first act as priest-king Purushottama rewarded his Muslim allies by giving them the territories he had promised them.
+
+	date = { day = 1 month = january year = 1472 }
+	offset = 15
+	deathdate = { day = 1 month = january year = 1476 }
+
+	action_a = {
+		name = "ACTIONNAME249014A" #Thus to all my enemies!
+		#command = { type = AI which = peaceful.ai }
+		command = { type = sleepleader which = 0101802 } #Hamviradeva I (ORI)
+		command = { type = wakemonarch which = 0101505 } #Purushottama B
+		command = { type = sleepmonarch which = 0101504 } #Hamiradeva A
+		command = { type = stability value = 1 }
+		command = { type = revoltrisk which = 48 value = -10 }
+		command = { type = secedeprovince which = THE value = 565 } #Yanam
+		command = { type = trigger which = 410003 } #THE: Kondavidu and Rajahmundry
+	}
+}
+
+#(1476) Victory of Purushottama
+event = {
+	id = 249015
+	trigger = { event = 249011 } #Return of the Prince
+	random = no
+	country = ORI
+	name = "EVENTNAME249015" #Victory of Purushottama
+	desc = "EVENTHIST249015"
+	#-#Despite losing the capital to his brother, Purushottama continued to fight on from the countryside and in 1476 reoccupied the throne. Since the civil war looked like it could continue for some time, Purushottama made a deal with his brother, making him the ruler of the Khemundi territory in return for acknowledging Purushottama as King. This act finally ended the civil war once and for all.
+
+	date = { day = 1 month = january year = 1476 }
+	offset = 180
+	deathdate = { day = 1 month = january year = 1477 }
+
+	action_a = {
+		name = "ACTIONNAME249015A" #Make concessions to end the civil war
+		#command = { type = AI which = peaceful.ai }
+		command = { type = stability value = 1 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = treasury value = -50 }
+		command = { type = sleepleader which = 0101802 } #Hamviradeva I (ORI)
+		command = { type = wakemonarch which = 0101505 } #Purushottama B
+		command = { type = sleepmonarch which = 0101504 } #Hamiradeva A
+		command = { type = relation which = THE value = -100 }
+	}
+	action_b = {
+		name = "ACTIONNAME249015B" #This war can only end in blood
+		#command = { type = AI which = peaceful.ai }
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 24 value = 12 }
+		command = { type = sleepleader which = 0101802 } #Hamviradeva I (ORI)
+		command = { type = wakemonarch which = 0101505 } #Purushottama B
+		command = { type = sleepmonarch which = 0101504 } #Hamiradeva A
+		command = { type = relation which = THE value = -100 }
+	}
+}
+#(1476) Victory of Hamviradeva
+event = {
+	id = 249016
+	trigger = { event = 249012 } #Return of the Prince
+	random = no
+	country = ORI
+	name = "EVENTNAME249016" #Victory of Hamviradeva
+	desc = "EVENTHIST249016"
+	#-#Despite losing the capital to his brother, Hamviradeva continued to fight on from the countryside and in 1476 reoccupied the throne. Despite this victory, the civil war continued for some time as Purushottama continued to lead resistance from the countryside. Although he emerged victorious, some suggested the King should have made a deal with his treacherous brother in order to prevent Orissa from deteriorating further.
+
+	date = { day = 1 month = january year = 1476 }
+	offset = 180
+	deathdate = { day = 1 month = january year = 1477 }
+
+	action_a = {
+		name = "ACTIONNAME249016A" #This war can only end in blood
+		#command = { type = AI which = ORI_Kapilendra.ai } #An aggressive monarch like his father
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 24 value = 12 }
+		command = { type = wakeleader which = 0101803 } #Hamviradeva I (ORI)
+		command = { type = sleepmonarch which = 0101503 } #Purushottama A
+		command = { type = wakemonarch which = 0101506 } #Hamiradeva °
+		command = { type = relation which = THE value = -100 }
+	}
+	action_b = {
+		name = "ACTIONNAME249016B" #Make concessions to end the civil war
+		#command = { type = AI which = peaceful.ai }
+		command = { type = stability value = 1 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = treasury value = -50 }
+		command = { type = wakeleader which = 0101803 } #Hamviradeva I (ORI)
+		command = { type = sleepmonarch which = 0101503 } #Purushottama A
+		command = { type = wakemonarch which = 0101506 } #Hamiradeva °
+		command = { type = relation which = THE value = -100 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Late Suryas
+
+#(1477-1482) The Lost Territories
+event = {
+	id = 249017
+	trigger = {
+		event = 410003 #HYD: Kondavidu and Rajahmundry
+		OR = {
+			event = 249015 #Purushottama returns
+			event = 249016 #Hamviradeva returns
+		}
+		NOT = { war = { country = THE country = ORI } }
+		owned = { province = 565 data = THE }
+	}
+	random = no
+	country = ORI
+	name = "EVENTNAME249017" #The Lost Territories
+	desc = "EVENTHIST249017"
+	#-#The civil war between Purushottama and Hamvira had lasted almost a decade. In addition to the territories given to the Bahmani by the usurper, other lands had also been occupied by foreign powers. The remaining years of the King's reign were spent restoring Orissa's borders to their original shape. He began this process by invading Rajahmundry, but instead of armies the Sultan met him with words and signed a treaty of friendship with Orissa.
+
+	date = { day = 1 month = january year = 1477 }
+	offset = 360
+	deathdate = { day = 25 month = march year = 1482 }
+
+	action_a = {
+		name = "ACTIONNAME249017A" #Sign a treaty with the Sultan
+		#command = { type = AI which = peaceful.ai }
+		command = { type = relation which = THE value = 50 }
+		command = { type = stability value = 1 }
+		command = { type = dynastic which = THE }
+	}
+	action_b = {
+		name = "ACTIONNAME249017B" #We shall not rest until Rajahmundry is ours again!
+		#command = { type = AI which = ORI_Purushottama.ai }
+		command = { type = relation which = THE value = -50 }
+		command = { type = casusbelli which = THE value = 60 }
+	}
+}
+
+#(1478-1497) The Golden Age of Oriya Culture
+event = {
+	id = 249019
+	trigger = {
+		OR = {
+			monarch = 0101505 #Purushottama B
+			monarch = 0101503 #Purushottama A
+		}
+		countrysize = 4
+		atwar = no
+	}
+	random = no
+	country = ORI
+	name = "EVENTNAME249019" #The Golden Age of Oriya Culture
+	desc = "EVENTHIST249019"
+	#-#Having restored Orissa to its original borders, Purushottama could finally devote his attention to religion and culture, and he became a great patron of the arts and temple-builder. The slow decay of Oriya society reversed itself for the remainder of his reign and the age became known as an era of peace and prosperity.
+
+	date = { day = 1 month = january year = 1478 }
+	offset = 360
+	deathdate = { day = 1 month = april year = 1497 }
+
+	action_a = {
+		name = "ACTIONNAME249019A" #I shall restore Orissa's greatness!
+		#command = { type = AI which = peaceful.ai }
+		command = { type = stability value = 2 }
+		command = { type = vp value = 20 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = conversion which = -1 } #Probably meaningless
+		command = { type = infra value = 250 }
+		command = { type = trade value = 250 }
+		command = { type = wakemonarch which = 0101505 } #Backup in case Bahmanids stayed neutral #Purushottama
+	}
+}
+#(1478-1497) Military Reforms - Ahistorical
+event = {
+	id = 249020
+	trigger = {
+		OR = {
+			monarch = 0101505 #Hamviradeva B
+			monarch = 0101504 #Hamviradeva A
+			}
+		countrysize = 4
+		atwar = no
+	}
+	random = no
+	country = ORI
+	name = "EVENTNAME249020" #Military Reforms
+	desc = "EVENTHIST249020"
+	#-#Having restored Orissa to its original borders, Hamviradeva could finally devote his attention to much-needed reforms of the military. He reorganized the feudal nayaka, trained his men in newer firearms and the tactics used by Muslims and concentrated less on the war elephants Orissa was famous for.
+
+	date = { day = 1 month = january year = 1478 }
+	offset = 360
+	deathdate = { day = 1 month = april year = 1497 }
+
+	action_a = {
+		name = "ACTIONNAME249020A" #I shall restore Orissa's greatness!
+		#command = { type = AI which = default.ai }
+		command = { type = stability value = 1 }
+		command = { type = vp value = 10 }
+		command = { type = domestic which = quality value = 1 }
+		command = { type = land value = 500 }
+		command = { type = wakemonarch which = 0101506 } #Backup in case Bahmanids stayed neutral #Hamviradeva °
+	}
+}
+
+#(1482) Chaos in the Sultanate
+event = {
+	id = 249018
+	trigger = {
+		owned = { province = 564 data = THE } #Yanam
+		event = 410003 #HYD: Rajahmundry and Kondavidu
+		OR = {
+			event = 249015 #Purushottama returns
+			event = 249016 #Hamviradeva returns
+		}
+	}
+	random = no
+	country = ORI
+	name = "EVENTNAME249018" #Chaos in the Sultanate
+	desc = "EVENTHIST249018"
+	#-#In 1482 Sultan Muhammad died and was succeeded by his young son Mahmad Shah. Taking advantage of this instability, the King invaded the Bahmanids again in another attempt to regain the territories lost to them in the civil war and this time succeeded in retaking the lost lands.
+
+	date = { day = 25 month = march year = 1482 }
+	offset = 60
+	deathdate = { day = 1 month = january year = 1483 }
+
+	action_a = {
+		name = "ACTIONNAME249018A" #Take advantage of this instability
+		#command = { type = AI which = ORI_Purushottama.ai }
+		command = { type = domestic which = offensive value = 1 }
+		command = { type = relation which = THE value = -50 }
+		command = { type = CAV which = -2 value = 5000 }
+		command = { type = casusbelli which = THE value = 12 }
+	}
+	action_b = {
+		name = "ACTIONNAME249018B" #Leave well enough alone
+		#command = { type = AI which = peaceful.ai }
+		command = { type = relation which = THE value = 25 }
+	}
+}
+
+#(1497) The Scholar King - Flavor
+event = {
+	id = 249502
+	random = no
+	country = ORI
+	name = "EVENTNAME249502" #The Scholar King
+	desc = "EVENTHIST249502"
+	#-#Prataprudradeva succeeded his father in 1497 as the ruler of a vast Kingdom that was already in decay. Although he was not as strong a ruler as his father or grandfather before him, Prataprudradeva was a learned man and his reign was remarkable for the number of scholars who came to his court.
+
+	date = { day = 1 month = april year = 1497 }
+
+	action_a = {
+		name = "ACTIONNAME249502A" #A cultural revival
+		#command = { type = AI which = peaceful.ai }
+		command = { type = infra value = 50 }
+		command = { type = trade value = 50 }
+	}
+}
+
+#(1497-1519) The Garhjat Rebellion
+event = {
+	id = 249021
+	trigger = {
+		owned = { province = 561 data = ORI } #Berhampur
+		domestic = { type = centralization value = 5 }
+	}
+	random = no
+	country = ORI
+	name = "EVENTNAME249021" #The Garhjat Rebellion
+	desc = "EVENTHIST249021"
+	#-#The Ganga rulers of Orissa managed to replace the tribal chiefs of the Mandala, or middle region, with a feudal caste of nayaka, but the tributary chiefs in the mountainous hinterland proved more resistant. The Garhjat, or 'gada jata' (castle-born) occasionally rebelled against the centralization of the state. During Prataprudra's reign the Garhjat states again rebelled. This time traitorous generals in the core lands seized the opportunity to rebel as well, destabilizing the country but not destroying it.
+
+	date = { day = 1 month = april year = 1497 }
+	offset = 5000
+	deathdate = { day = 1 month = january year = 1519 }
+
+	action_a = {
+		name = "ACTIONNAME249021A" #Wipe out all resistance
+		command = { type = revoltrisk which = 24 value = 12 }
+		command = { type = desertion which = -1 value = 2500 }
+	}
+	action_b = {
+		name = "ACTIONNAME249021B" #Crush the generals but let the Garhjat gain their independence
+		command = { type = revoltrisk which = 12 value = 10 }
+		command = { type = desertion which = -1 value = 2500 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+	}
+	action_c = {
+		name = "ACTIONNAME249021C" #Bribe the generals and crush the Garhjat
+		command = { type = revoltrisk which = 24 value = 8 }
+		command = { type = treasury value = -100 }
+	}
+}
+
+#(1509) Prataprudra's Expedition
+event = {
+	id = 249022
+	random = no
+	country = ORI
+	name = "EVENTNAME249022" #Prataprudra's Expedition
+	desc = "EVENTHIST249022"
+	#-#In 1509 an untested ruler named Krishnadeva Raya ascended the throne of Vijayanagar. Prataprudra was already dealing with rebellious generals looking for action and the time was ripe for invasion. Prataprudra decided to lead an expedition against the southern empire.
+
+	date = { day = 1 month = may year = 1509 }
+	offset = 60
+	deathdate = { day = 1 month = january year = 1510 }
+
+	action_a = {
+		name = "ACTIONNAME249022A" #Let us test this untried emperor
+		#command = { type = AI which = ORI_Kapilendra.ai }
+		command = { type = casusbelli which = VIJ value = 12 }
+		command = { type = relation which = VIJ value = -50 }
+		command = { type = CAV which = -1 value = 2000 }
+	}
+	action_b = {
+		name = "ACTIONNAME249022B" #We dare not challenge such power
+		command = { type = domestic which = offensive value = -1 }
+		command = { type = relation which = VIJ value = 25 }
+		command = { type = revoltrisk which = 12 value = 2 }
+	}
+}
+
+#(1509-1529) Prataprudra's Folly
+event = {
+	id = 249023
+	trigger = {
+		war = { country = VIJ country = ORI }
+		exists = BGL
+	}
+	random = no
+	country = ORI
+	name = "EVENTNAME249023" #Prataprudra's Folly
+	desc = "EVENTHIST249023"
+	#-#While Prataprudra was busy fighting the Hindus in the south, the Sultan of Bengal took the opportunity to invade from the north. Before a decisive battle could be fought Prataprudra was forced to rush north. Although the Sultan was driven out of Orissa, the exhausted army was easily defeated by the Vijayanagar forces. This easy victory over Orissa emboldened the new ruler of Vijayanagar and he returned to Orissa twice again, conquering Udayagiri in 1512, Kondavidu in 1515, Simhachalam in 1516 and Kalak in 1519.
+
+	date = { day = 1 month = may year = 1509 }
+	offset = 180
+	deathdate = { day = 29 month = december year = 1529 }
+
+	action_a = {
+		name = "ACTIONNAME249023A" #Rush back to the capital
+		#command = { type = AI which = peaceful.ai }
+		command = { type = revolt which = -2 }
+		command = { type = revolt which = -2 }
+		command = { type = trigger which = 328053 } #VIJ: The Oriya Invasion
+	}
+}
+
+#(1510-1512) Sri Chaitanya - Flavor
+event = {
+	id = 249503
+	random = no
+	country = ORI
+	name = "EVENTNAME249503" #Sri Chaitanya
+	desc = "EVENTHIST249503"
+	#-#Sri Chaitanya Mahaprabhu was a guru later believed to be a messenger of God. He travelled around Bengal preaching the glory of Lord Krishna and rooting our moral degradation and degeneration wherever he found it. In 1510 he came to Orissa and preached the gospel of Vaishnavism. This had a profound effect on religion and culture in the Kingdom.
+
+	date = { day = 1 month = january year = 1510 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1512 }
+
+	action_a = {
+		name = "ACTIONNAME249503A" #A holy man
+		command = { type = revoltrisk which = 12 value = -1 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1518-1520) The River of God
+event = {
+	id = 249024
+	trigger = {
+		owned = { province = 571 data = VIJ } #Madras
+		owned = { province = 564 data = ORI } #Yanam
+		NOT = { war = { country = VIJ country = ORI } }
+	}
+	random = no
+	country = ORI
+	name = "EVENTNAME249024" #The River of God
+	desc = "EVENTHIST249024"
+	#-#In his last campaign against Orissa the Vijayanagar ruler Krishnadeva Raya reached the city of Kalak and burned it to the ground. Seeking an end to war between them, the two rulers agreed on a treaty in which the river Krishna was set as the southern boundary of Orissa, legitimizing the conquests of Vijayanagar. To seal the deal the Oriya King's daughter Jaganmohini married Krishnadeva Raya. Although it was a one-sided deal, it gave Prataprudra the breathing space he needed to defend Orissa against the increasingly aggressive Golconda.
+
+	date = { day = 1 month = january year = 1518 }
+	offset = 180
+	deathdate = { day = 1 month = january year = 1520 }
+
+	action_a = {
+		name = "ACTIONNAME249024A" #Sign the treaty with Vijayanagar
+		#command = { type = AI which = peaceful.ai }
+		command = { type = stability value = 1 }
+		command = { type = removecore which = 571 } #Madras
+		command = { type = relation which = VIJ value = 50 }
+		command = { type = dynastic which = VIJ }
+	}
+	action_b = {
+		name = "ACTIONNAME249024B" #Continue to fight Vijayanagar
+		#command = { type = AI which = ORI_Kapilendra.ai }
+		command = { type = stability value = -1 }
+		command = { type = relation which = VIJ value = -25 }
+		command = { type = casusbelli which = VIJ value = 24 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#The Bhois
+
+#(1533-1549) The Treachery of Raghubhanja
+event = {
+	id = 249026
+	trigger = {
+		monarch = 0101510 #Govindaraja Vidyadhara
+		war = { country = ORI country = HYD }
+	}
+	random = no
+	country = ORI
+	name = "EVENTNAME249026" #The Treachery of Raghubhanja
+	desc = "EVENTHIST249026"
+	#-#While the King was fighting the Bahmanids in 1540 his nephew Raghubhanja Chhotray revolted against him, occupying Cuttack despite the resistance of its governor. Govinda Bidyahar was forced to make a hurried peace with the Sultan and returned to the capital. His defeated nephew fled to Bengal for asylum.
+
+	date = { day = 1 month = january year = 1533 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1549 }
+
+	action_a = {
+		name = "ACTIONNAME249026A" #The apple doesn't fall far from the tree
+		command = { type = stability value = -2 }
+		#command = { type = revolt which = -2 } #debateable removal
+		#command = { type = revolt which = -2 }
+	}
+}
+
+#(1533-1549) The Godavari
+event = {
+	id = 249027
+	trigger = {
+		NOT = { war = { country = HYD country = ORI } }
+		exists = HYD
+	}
+	random = no
+	country = ORI
+	name = "EVENTNAME249027" #The Godavari
+	desc = "EVENTHIST249027"
+	#-#The Sultan Quli Qutab of Golconda invaded Orissa twice in his reign. Each invasion was only defeated at great cost and after several years. After the Sultan occupied Rajmahendri in 1540 the King signed a treaty recognizing the river Godavari as their mutual border.
+
+	date = { day = 1 month = january year = 1533 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1549 }
+
+	action_a = {
+		name = "ACTIONNAME249027A" #Sign the treaty with Golconda
+		command = { type = stability value = 1 }
+		command = { type = relation which = HYD value = 50 }
+		command = { type = dynastic which = HYD }
+	}
+	action_b = {
+		name = "ACTIONNAME249027B" #Continue to fight Golconda
+		command = { type = stability value = -1 }
+		command = { type = relation which = HYD value = -25 }
+		command = { type = casusbelli which = HYD value = 24 }
+	}
+}
+
+#(1534) The Murder of the Princes
+event = {
+	id = 249025
+	trigger = { monarch = 0101510 } #Govindaraja Vidyadhara
+	random = no
+	country = ORI
+	name = "EVENTNAME249025" #The Murder of the Princes
+	desc = "EVENTHIST249025"
+	#-#With the death of Prataprudra Deva his sons Kalua and then Kakharua became King, but they reigned for less than a year, murdered one after the other. With Kakharua's death the Suryavamsha line came to an end and the ambitious minister Govinda Bidyahar came to the throne, founding the Bhoi dynasty. Compared to previous rebellions it was nearly bloodless, but there were still repercussions for regicide.
+
+	date = { day = 1 month = january year = 1534 }
+
+	action_a = {
+		name = "ACTIONNAME249025A" #The Bhoi rule Orissa now
+		#command = { type = AI which = peaceful.ai }
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 6 value = 5 }
+		command = { type = relation which = VIJ value = -10 } #Vijayanagar
+		command = { type = relation which = HYD value = -5 } #Deccan (Bahmani Sultanate)
+		command = { type = relation which = AHM value = -5 } #Deccan (Bahmani Sultanate)
+		command = { type = relation which = DAM value = -5 } #Deccan (Bahmani Sultanate)
+		command = { type = relation which = BGL value = -5 } #Bengal
+		command = { type = relation which = DLH value = -5 } #Sultanate of Delhi
+	}
+}
+
+#(1549-1557) The Cruelty of Chakrapratap - Flavor
+event = {
+	id = 249504
+	random = no
+	country = ORI
+	name = "EVENTNAME249504" #The Cruelty of Chakrapratap
+	desc = "EVENTHIST249504"
+	#-#The King died in 1549 at Dashasvamedha Ghat and was succeeded by his son Chakrapratap. The new monarch was a weak and cruel ruler who was deeply unpopular among the people. He died under mysterious circumstances, probably murdered by his own son, who became King Narsinghajena.
+
+	date = { day = 1 month = january year = 1549 }
+	offset = 1500
+	deathdate = { day = 1 month = january year = 1557 }
+
+	action_a = {
+		name = "ACTIONNAME249504A" #An evil man
+		command = { type = revoltrisk which = 12 value = 2 }
+	}
+}
+
+#(1559) The Murder of the King
+event = {
+	id = 249028
+	trigger = { monarch = 0101513 } #Raghurâma Chhotra #Raghuram Jena
+	random = no
+	country = ORI
+	name = "EVENTNAME249028" #The Murder of the King
+	desc = "EVENTHIST249028"
+	#-#Narsinghajena ruled for only a short time before he himself was killed, this time by a nayaka of the Chalukya family named Mukunda Harichandan. After killing the King, Mukunda placed one of Narsinghajena's brothers on the throne in his place. Although Raghuram Jena ruled in name, Mukunda was the real power behind the throne.
+
+	date = { day = 1 month = january year = 1559 }
+	offset = 15
+	deathdate = { day = 1 month = january year = 1560 }
+
+	action_a = {
+		name = "ACTIONNAME249028A" #Mukunda becomes the power behind the throne
+		command = { type = ADM which = 1 value = 120 }
+		command = { type = DIP which = 1 value = 120 }
+		command = { type = MIL which = 1 value = 120 }
+		command = { type = domestic which = aristocracy value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME249028B" #Mukunda is executed for his crimes
+		command = { type = stability value = -2 }
+		command = { type = desertion which = -2 value = 2000 }
+		command = { type = revoltrisk which = 12 value = 8 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = sleepevent which = 249029 } #ORI: The Chalukya Dynasty
+	}
+	action_c = {
+		name = "ACTIONNAME249028C" #Mukunda is banished for his crimes
+		command = { type = stability value = -1 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#The fall of Orissa
+
+#(1560-1562) The Chalukya Dynasty
+event = {
+	id = 249029
+	random = no
+	country = ORI
+	name = "EVENTNAME249029" #The Chalukya Dynasty
+	desc = "EVENTHIST249029"
+	#-#Not content to work behind the scenes, in 1560 Mukunda captured his rival Janardan Bidyahar through guile and declared himself the ruler of Orissa, founding his own short-lived dynasty. Mukunda intended to restore the greatness of Orissa, but the country was weaker than ever. To guarantee his rule he needed to find a more powerful patron.
+
+	date = { day = 1 month = january year = 1560 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1562 }
+
+	action_a = {
+		name = "ACTIONNAME249029A" #Another usurper
+		command = { type = sleepmonarch which = 0101513 } #Raghurâma Chhotra
+		command = { type = wakemonarch which = 0101514 } #Mukundadeva Harishandra
+		command = { type = relation which = MOG value = 25 }
+		command = { type = relation which = DLH value = 25 }
+	}
+}
+
+#(1560-1592) The Temple of Jagannath is destroyed
+event = {
+	id = 249031
+	trigger = {
+		OR = {
+			war = { country = ORI country = BGL }
+			war = { country = ORI country = HYD }
+			war = { country = ORI country = MOG }
+			war = { country = ORI country = DLH }
+		}
+		NOT = { control = { province = 560 data = ORI } } #Odisa
+	}
+	random = no
+	country = ORI
+	name = "EVENTNAME249031" #The Temple of Jagannath is destroyed
+	desc = "EVENTHIST249031"
+	#-#In 1568 the Afghan Sultan of Bengal conquered the city of Puri and desecrated the Temple of Jagannath there. Muslim troops found the idols that the priests had hidden and burned them, slaughtered the priests and demolished as much as they could before withdrawing.
+
+	date = { day = 1 month = january year = 1560 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1592 }
+
+	action_a = {
+		name = "ACTIONNAME249031A" #This is terrible!
+		command = { type = losemanufactory which = 560 } #Odisa
+	}
+}
+
+#(1564) Ibrahim seeks asylum
+event = {
+	id = 249030 #triggered by BGL_128002
+	random = no
+	country = ORI
+	name = "EVENTNAME249030" #Ibrahim seeks asylum
+	desc = "EVENTHIST249030"
+	#-#In 1564 an Afghani chief named Suleiman Karrani occupied Bengal and became the new Shah. He drove out his rival Ibrahim, who fled to Orissa and sought the protection of the King. Seeing an opportunity to strike against Bengal the King gave Ibrahim asylum.
+
+	action_a = {
+		name = "ACTIONNAME249030A" #Give him our protection
+		command = { type = casusbelli which = BGL value = 18 }
+		command = { type = relation which = BGL value = -25 }
+	}
+	action_b = {
+		name = "ACTIONNAME249030B" #Send him away
+		command = { type = relation which = BGL value = 10 }
+	}
+}
+
+#(1567-1575) Mughal aid arrives - Ahistorical
+event = {
+	id = 249034 #triggered by MOG_230007 B
+	random = no
+	country = ORI
+	name = "EVENTNAME249034" #Mughal aid arrives
+	desc = "EVENTHIST249034"
+	#-#As a sign of goodwill the Great Mughal sent a small army to aid the beleagured forces of Mukundadeva.
+
+	action_a = {
+		name = "ACTIONNAME249034A" #A firm alliance
+		command = { type = INF which = -1 value = 5000 }
+		command = { type = treasury value = 50 }
+		command = { type = relation which = MOG value = 50 }
+	}
+}
+
+#(1567-1575) Ramachandra's Rebellion
+event = {
+	id = 249035
+	trigger = { control = { province = 560 data = BGL } }
+	random = no
+	country = ORI
+	name = "EVENTNAME249035" #Ramachandra's Rebellion
+	desc = "EVENTHIST249035"
+	#-#Mukundadeva's strategy of friendship with Akbar failed to protect him. He was defeated by the Shah and took shelter in the fort of Kotsima, where the Shah's forces besieged him. Elsewhere, the Shah's son Bayazid led his army to Cuttack and occupied the capital. It was at that critical moment that Ramachandra Bhanja, the feudal lord of Sarangagarh, led a rebellion against Mukundadeva.
+
+	date = { day = 1 month = october year = 1567 }
+	offset = 30
+	deathdate = { day = 1 month = april year = 1575 }
+
+	action_a = {
+		name = "ACTIONNAME249035A" #Make peace with the Shah at any cost
+		command = { type = trigger which = 128004 } #BGL: Mukundadeva surrenders
+		command = { type = treasury value = -100 }
+		command = { type = relation which = BGL value = 100 }
+		command = { type = relation which = MOG value = -50 }
+		command = { type = stability value = -3 }
+		#command = { type = revoltrisk which = 24 value = 12 }
+		#command = { type = revolt which = -1 }
+		#command = { type = revolt which = -3 }
+	}
+	action_b = {
+		name = "ACTIONNAME249035B" #Let them bleed for every inch they take!
+		command = { type = secedeprovince which = BGL value = 560 } #Odisa (capital)
+		command = { type = relation which = BGL value = -100 }
+		command = { type = relation which = MOG value = 50 }
+		command = { type = stability value = -6 }
+		#command = { type = revoltrisk which = 36 value = 12 } #Harder to stop the rebellion while fighting
+		#command = { type = revolt which = -1 }
+		#command = { type = revolt which = -3 }
+		#command = { type = revolt which = -1 }
+	}
+}
+
+#(1567-1575) The Afghan Conquest
+event = {
+	id = 249036
+	trigger = {
+		event = 249035 #ORI: Ramachandra's Rebellion
+		atwar = no
+		NOT = { control = { province = 560 data = ORI } }
+		exists = BGL
+	}
+	random = no
+	country = ORI
+	name = "EVENTNAME249036" #The Afghan Conquest
+	desc = "EVENTHIST249036"
+	#-#Mukundadeva led his armies against Ramachandra Bhanja but was killed at Gohiri Tikira, near Jaipur. Afterwards Ramachandra was defeated and slain by Bayazid, who claimed the throne of Orissa as his own. From this point on Orissa would be ruled by the Shahs of Bengal.
+
+	date = { day = 1 month = october year = 1567 }
+	offset = 30
+	deathdate = { day = 1 month = april year = 1575 }
+
+	action_a = {
+		name = "ACTIONNAME249036A" #Surrender to the inevitable (End Game)
+		command = { type = trigger which = 128005 } #BGL: Khan of Orissa
+	}
+	action_b = {
+		name = "ACTIONNAME249036B" #Hold out against all hope
+		command = { type = vp value = -25 }
+		command = { type = relation which = BGL value = -100 }
+		command = { type = stability value = -6 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Random Events
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1820) Elephant raids
+#by David Harper
+event = {
+	id = 249101
+	random = yes
+	country = ORI
+	name = "EVENTNAME249101" #Elephant raids
+	desc = "EVENTHIST249101"
+	#-#Orissa was famous for its elephants and often called the Kingdom of the Gajapatis, or Elephant Lords. Although this made the Kingdom strong it also made it the target of other nations which frequently raided Orissa to gain war elephants, often as ransom for powerful nobles taken in raids. The worst offender was the Sharqi Sultan of Jaunpur but others also posed a threat.
+
+	action_a = {
+		name = "ACTIONNAME249101A" #We will remember this!
+		command = { type = stability value = -2 }
+		command = { type = revolt which = -1 }
+		command = { type = treasury value = -25 } #Ransom
+		command = { type = relation which = -1 value = -25 }
+		command = { type = casusbelli which = -3 value = 12 }
+	}
+}
+
+#(1419-1534) Bhakti Cults and Brahminism
+#by David Harper
+event = {
+	id = 249102
+	trigger = { NOT = { year = 1534 } } #The Ganga and Surya dynasties were noted for this
+	random = yes
+	country = ORI
+	name = "EVENTNAME249102" #Bhakti Cults and Brahminism
+	desc = "EVENTHIST249102"
+	#-#A popular offshoot of Hinduism, Bhakti cults refused to divide people into castes and saw them as equals - although in practice there were still great differences between nobles and peasants. The cults had all but died out across India by the fifteenth century, but continued to dominate Orissa. Even there the Bhakti were losing ground to mainstream Hinduism as tribal deities were edged out in favor of Brahminical gods. At the same time popular religion became increasingly dominated by ritual and ceremonial pomp that required the presence of a priestly caste. The result was a formalized caste system with the Brahmins on top and very little social mobility. Although this made Orissa's faith more palatable to other Hindus it also eroded their unique culture. One way for the Bhakti to win back the populace was through royal support. As the servants of Purusottama, Oriya Kings built glorious Bhakti temples.
+
+	action_a = {
+		name = "ACTIONNAME249102A" #Give in to the demands of the Brahmin
+		command = { type = domestic which = serfdom value = 1 }
+		command = { type = relation which = VIJ value = 10 } #Hindu
+	}
+	action_b = {
+		name = "ACTIONNAME249102B" #Build a temple for the Bhakti cult
+		command = { type = treasury value = -50 }
+		command = { type = stability value = 1 }
+		command = { type = vp value = 5 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 249037

@@ -1,0 +1,559 @@
+#Courland (KUR)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1562-1620) The creation of the Duchy of Courland and Semigalia
+event = {
+	id = 206001
+	random = no
+	country = KUR
+	name = "EVENTNAME206001" #Creation of the Duchy of Courland and Semigalia
+	desc = "EVENTHIST206001"
+	#-#The nobles of Southern Livonia addressed to Poland-Lithuania for the protection against the aggressive policy of Russia. The Grandmaster of the Livonian Order, Livonian nobility in South, the Archbishop of Riga, swore loyalty to Sigismund August, King of Poland, in 1561. On March 5, 1562 in Riga castle Grandmaster Gotthard Kettler transferred the state seal of Livonia, keys from Riga and Order castles to Mikalaj Radziwill (the Black), Chancellor of Lithuania, and took off the cloak of the Grandmaster. Here on behalf of King Sigismund II August Gotthard was announced hereditary duke of Courland-Semigalia and a vassal of the Polish-Lithuanian state.
+
+	date = { day = 5 month = march year = 1562 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1620 }
+
+	action_a = {
+		name = "ACTIONNAME206001A" #Establish it
+		command = { type = stability value = 1 }
+		command = { type = religion which = protestant }
+		command = { type = provincereligion which = -2 value = protestant }
+		command = { type = relation which = DAN value = 50 }
+		command = { type = relation which = SWE value = 100 }
+		command = { type = relation which = ENG value = 50 }
+		command = { type = relation which = HOL value = 50 }
+		command = { type = relation which = PRU value = 50 }
+		command = { type = relation which = POM value = 50 }
+		command = { type = relation which = BRA value = 50 }
+		command = { type = relation which = RUS value = -50 }
+		command = { type = relation which = LIT value = 150 }
+		command = { type = relation which = POL value = 150 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = remove_countryculture which = ugric }
+	}
+}
+
+#(1570-1585) Pacta Subjections and Privilegium Gotthardinum
+event = {
+	id = 206002
+	random = no
+	country = KUR
+	name = "EVENTNAME206002" #Pacta Subjections and Privilegium Gotthardinum
+	desc = "EVENTHIST206002"
+	#-#Duke Gotthard Kettler obtained from the King of Poland the Pacta Subjections. This written document signed by Duke Gotthard established the boundaries of the duchy, religious rights, confirmed all privileges of Courland nobles, right to free commerce, the right to coin money. Poland recognized all the laws of Courland. Following the war, he sought to rebuild the duchy that had been destroyed. In order to enlist the unsupportive nobles, he had to provide them with certain privileges, which initiated the Privilegium Gotthardinum. Under the laws provided for by Duke Gotthard, nobles had the right to engage in commerce, distill spirits, brew beer, hunt, fish, run taverns etc, forbid the nobles from taxes and other obligations. In case of war they were to provide horses and men. Also rights were given to the nobles to have squires preside as judges on their private manors and non-noble inhabitants. The nobles were given rights to the land along with the right of enserfment.
+
+	date = { day = 1 month = january year = 1570 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1585 }
+
+	action_a = {
+		name = "ACTIONNAME206002A" #Sign these documents
+		command = { type = stability value = 1 }
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = domestic which = MERCANTILISM value = 1 }
+		command = { type = domestic which = SERFDOM value = 3 }
+		command = { type = provincetax which = -2 value = 1 }
+		command = { type = treasury value = 200 }
+	}
+	action_b = {
+		name = "ACTIONNAME206002B" #Reject it
+		command = { type = stability value = -3 }
+		command = { type = domestic which = ARISTOCRACY value = -1 }
+		command = { type = domestic which = SERFDOM value = -1 }
+	}
+}
+
+#(1609) The Marriage of Duke Wilhelm and Princess Sofia
+event = {
+	id = 206003
+	trigger = {
+		exists = PRU
+		NOT = { war = { country = KUR country = PRU } }
+	}
+	random = no
+	country = KUR
+	name = "EVENTNAME206003" #The Marriage of Duke Wilhelm and Princess Sofia
+	desc = "EVENTHIST206003"
+	#-#22 October 1609 Duke Wilhelm married Sofia Hohenzollern, daughter of Duke Albrecht Friedrich of Prussia, and regained back Grobina district to Courland. This strengthened his position in struggle against his brother Friedrich.
+
+	date = { day = 21 month = october year = 1609 }
+
+	action_a = {
+		name = "ACTIONNAME206003A" #Ask the duke of Prussia for the hand of his daughter
+		command = { type = trigger which = 263002 } #PRU: The Marriage of Duke Wilhelm and Princess Sofia
+	}
+	action_b = {
+		name = "ACTIONNAME206003B" #Hmm... We will find a wife for Wilhelm in another Royal House
+		command = { type = dynastic which = -1 }
+	}
+}
+#(1609) The Marriage of Duke Wilhelm and Princess Sofia
+event = {
+	id = 206005 #triggered by PRU_263002 A
+	random = no
+	country = KUR
+	name = "EVENTNAME206005" #The Marriage of Duke Wilhelm and Princess Sofia
+	desc = "EVENTHIST206005"
+	#-#The Duke of Prussia agreed upon the marriage of his daughter and returning Grobina district to Courland. The great ceremonies were arranged in connection with this memorable occasion in Konigsberg.
+
+	action_a = {
+		name = "ACTIONNAME206005A" #Let us arrange this magnificent wedding
+		command = { type = dynastic which = PRU }
+		command = { type = provincetax which = -2 value = 1 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1610-1615) Duke Wilhelm of Courland purchases Piltyn district
+event = {
+	id = 206006
+	random = no
+	country = KUR
+	name = "EVENTNAME206006" #Duke Wilhelm of Courland purchases Piltyn district
+	desc = "EVENTHIST206006"
+	#-#In 1610s Wilhelm, Duke of Courland, tried to pay out and regain the control over Piltyn district from Poland.
+
+	date = { day = 1 month = january year = 1610 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1615 }
+
+	action_a = {
+		name = "ACTIONNAME206006A" #Start the negotiations with Poland
+		command = { type = trigger which = 258015 } #POL_Duke Wilhelm of Courland purchases Piltyn district.
+	}
+	action_b = {
+		name = "ACTIONNAME206006B" #We cannot afford to buy it
+		command = { type = stability value = -1 }
+	}
+}
+#(1610-1615) Duke Wilhelm of Courland purchases Piltyn district
+event = {
+	id = 206008 #triggered by POL_258015 A
+	random = no
+	country = KUR
+	name = "EVENTNAME206008" #Duke Wilhelm of Courland purchases Piltyn district
+	desc = "EVENTHIST206008"
+	#-#King Sigismund III Vasa of Poland agreed to sell Piltyn district to his loyal vassal in Courland.
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = treasury value = -100 }
+		command = { type = provincetax which = -2 value = 1 }
+		command = { type = provincemanpower which = -2 value = 1 }
+	}
+}
+
+#(1616) The Two Dukes
+event = {
+	id = 206009
+	random = no
+	country = KUR
+	name = "EVENTNAME206009" #The Two Dukes
+	desc = "EVENTHIST206009"
+	#-#When Gotthard Kettler died, his sons, Friedrich and Wilhelm, divided Duchy into two parts: Friedrich owned eastern part Semigalia, while Wilhelm owned western part Courland. However, the relations between the duke and landowners, supported by Poland, were quite hostile. Duke Wilhelm expressed his disappointment with landowners, but this ended-up with his removal from duke's seat in 1616. Wilhelm left Courland for Pomerania, where he lived until 1639. Friedrich became the only duke of Courland since 1616. But Duke Friedrich had no children, which spelled doom for their Kettlers rule. Duke Friedrich appealed the King's of Poland decision and only in 1639 new King Wladyslaw IV, son of Sigismund III, agreed to recognize the rights of Wilhelm and his son Jacob Kettler for the throne of Courland. Duke Wilhelm died 1640, and his brother two years later, leaving the reunited duchy for Jacob Kettler.
+
+	date = { day = 1 month = january year = 1616 }
+
+	action_a = {
+		name = "ACTIONNAME206009A" #Dethrone Wilhelm
+		command = { type = relation which = POL value = 100 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = domestic which = QUALITY value = -1 }
+		command = { type = stability value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME206009B" #Support Wilhelm
+		command = { type = wakemonarch which = 073013 } #Wilhelm °
+		command = { type = sleepmonarch which = 073001 } #Friedrich and Wilhelm
+		command = { type = sleepmonarch which = 073002 } #Friedrich
+		command = { type = sleepleader which = 073301 } #Friedrich (KUR)
+		command = { type = dynastic which = BRA }
+		command = { type = relation which = POL value = -100 }
+		command = { type = relation which = PRU value = 50 }
+		command = { type = relation which = BRA value = 50 }
+		command = { type = relation which = SWE value = 50 }
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = domestic which = ARISTOCRACY value = -2 }
+		command = { type = domestic which = QUALITY value = 1 }
+		command = { type = naval value = 250 }
+		command = { type = infra value = 500 }
+		command = { type = stability value = -3 }
+		command = { type = revolt which = -2 }
+		command = { type = revoltrisk which = 36 value = 3 }
+	}
+}
+
+#(1618) Death of Albrecht Friedrich for Courland
+event = {
+	id = 206004 #triggered by PRU_263006 A
+	random = no
+	country = KUR
+	name = "EVENTNAME206004" #Death of Albrecht Friedrich
+	desc = "EVENTHIST206004"
+	#-#After years of illness the last Duke of Prussia from the Hohenzollern-Ansbach line, Albrecht Friedrich, died. According to the Treaty of Cracov from 1525, after the Prussian branch of the Hohenzollern family, the lands of the Duchy of Prussia were to be incorporated into Poland. However this was changed with the decision of the Polish Sejm on the 5th of may 1611. The Kettler-Courland branch was therefore allowed to inherit the Duchy.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = relation which = BRA value = -100 }
+		command = { type = relation which = HAB value = -25 }
+		command = { type = relation which = SWE value = -75 }
+		command = { type = relation which = RUS value = -50 }
+		command = { type = relation which = DAN value = -25 }
+		command = { type = relation which = LIT value = -25 }
+		command = { type = relation which = POL value = 100 } #to prevent breaking vassalage
+		command = { type = inherit which = PRU }
+		command = { type = addcore which = 289 } #Memel
+		command = { type = addcore which = 290 } #Prussia
+		command = { type = addcore which = 282 } #Livland
+		command = { type = addcore which = 276 } #Estland
+		command = { type = add_countryculture which = ugric }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1618-1700) New Capital - event for Prussia transformed into Courland
+event = {
+	id = 206007
+	trigger = {
+		flag = [Courland_line]
+		owned = { province = 283 data = -1 } #Kurland
+		control = { province = 283 data = -1 } #Kurland
+	}
+	random = no
+	country = KUR
+	name = "EVENTNAME206007" #New Capital
+	desc = "EVENTHIST206007"
+	#-#When Dukes of Courland united Ducal Prussia and Courland they decided to move their capital back to the Mittau.
+
+	date = { day = 1 month = january year = 1618 }
+	offset = 300
+	deathdate = { day = 1 month = june year = 1700 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = stability value = 1 }
+		command = { type = capital which = 283 } #Kurland
+		command = { type = population which = 283 value = 2000 }
+		command = { type = provincetax which = 283 value = 2 } #Kurland
+		command = { type = provincetax which = 290 value = -1 } #Prussia
+	}
+}
+
+#(1642-1660) The Mercantile Reforms of Duke Jacob Kettler
+event = {
+	id = 206010
+	random = no
+	country = KUR
+	name = "EVENTNAME206010" #The Mercantile Reforms of Duke Jacob Kettler
+	desc = "EVENTHIST206010"
+	#-#Duke Jacob Kettler was a very determined individual. In 1634, he joined the Polish army during the Polish-Russian War. He was well educated by Western standard and became very interested in Mercantilism. His goal was to improve the treatment of his serfs and beyond. In 1641 Duke Jacob began to rule over Courland. He began selecting his co-workers, the Courlanders that studied abroad, as well as foreign advisors. His interest in mercantilism grew as his goals of becoming eventually independent of Poland and economic self-sufficiency. Becoming very wealthy and a renowned among the larger European countries, Jacob realized that in order to have a steady economy, there must be a middle class. He brought industries in shipbuilding, timber, and techniques to better farming and he was the first duke in the Baltics to introduce a planned economy.
+
+	date = { day = 1 month = january year = 1642 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1660 }
+
+	action_a = {
+		name = "ACTIONNAME206010A" #Mercantilist Reforms
+		command = { type = domestic which = MERCANTILISM value = 2 }
+		command = { type = trade value = 1000 }
+		command = { type = infra value = 500 }
+		command = { type = naval value = 250 }
+		command = { type = provincetax which = -2 value = 2 }
+		command = { type = gainmanufactory which = -1 value = -1 }
+		command = { type = inflation value = -5 }
+	}
+	action_b = {
+		name = "ACTIONNAME206010B" #Free Trade Reforms
+		command = { type = stability value = -3 }
+		command = { type = domestic which = MERCANTILISM value = -3 }
+		command = { type = trade value = 1000 }
+		command = { type = naval value = 500 }
+		command = { type = merchants value = 5 }
+		command = { type = colonists value = 3 }
+		command = { type = treasury value = 300 }
+	}
+}
+
+#(1650-1660) Foreign Policy of Duke Jacob
+event = {
+	id = 206011
+	random = no
+	country = KUR
+	name = "EVENTNAME206011" #Foreign Policy of Duke Jacob
+	desc = "EVENTHIST206011"
+	#-#Jacob tries to lift well-being of his state, to develop trade, shipbuilding and colonies. First of all he tries to strengthen safety of the state by conclusion of the international contracts. Jacob does not want to interfere with wars of other countries and concludes so-called contracts on neutrality with Sweden, Russia and England. Jacob also entered trade agreements with such colonial powers as France, Spain, Portugal and England
+
+	date = { day = 1 month = january year = 1650 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1660 }
+
+	action_a = {
+		name = "ACTIONNAME206011A" #Stay Neutral
+		command = { type = relation which = SWE value = 50 }
+		command = { type = relation which = RUS value = 50 }
+		command = { type = relation which = POL value = 50 }
+		command = { type = relation which = LIT value = 50 }
+		command = { type = relation which = DAN value = 50 }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = ENG value = 50 }
+		command = { type = relation which = HOL value = 50 }
+		command = { type = relation which = BRA value = 50 }
+		command = { type = relation which = PRU value = 50 }
+		command = { type = relation which = POR value = 50 }
+		command = { type = relation which = SPA value = 50 }
+		command = { type = stability value = 2 }
+		command = { type = trade value = 250 }
+		command = { type = treasury value = 50 }
+		command = { type = colonists value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME206011B" #Ally with Protestant states
+		command = { type = relation which = SWE value = 150 }
+		command = { type = relation which = DAN value = 100 }
+		command = { type = relation which = BRA value = 100 }
+		command = { type = relation which = PRU value = 100 }
+		command = { type = relation which = ENG value = 100 }
+		command = { type = relation which = HOL value = 100 }
+		command = { type = relation which = POL value = -100 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = POR value = -50 }
+		command = { type = relation which = SPA value = -50 }
+		command = { type = stability value = -1 }
+	}
+	action_c = {
+		name = "ACTIONNAME206011C" #Support Catholic states
+		command = { type = relation which = POL value = 150 }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = relation which = POR value = 100 }
+		command = { type = relation which = SPA value = 100 }
+		command = { type = relation which = SWE value = -100 }
+		command = { type = relation which = DAN value = -100 }
+		command = { type = relation which = ENG value = -100 }
+		command = { type = relation which = HOL value = -100 }
+		command = { type = relation which = BRA value = -100 }
+		command = { type = relation which = PRU value = -100 }
+		command = { type = relation which = RUS value = -50 }
+		command = { type = stability value = -3 }
+	}
+}
+
+#(1650-1670) The Modernization of the Navy
+event = {
+	id = 206012
+	random = no
+	country = KUR
+	name = "EVENTNAME206012" #The Modernization of the Navy
+	desc = "EVENTHIST206012"
+	#-#In youth Duke Jacob traveled much. In 1653-1658 he visited France, Holland and England (King James Stewart was his godfather). He learned much in Holland having at that time the largest fleet in the world. Since then Jacob's dream was to create in Courland powerful trading and military fleet. He learned that the Courliandian peasants for the past several centuries were well known for their skills as daring sailors. Thanks to his energy a great number of big shipyards shortly were constructed in the Duchy. Shortly Courland owned 61 military ships and one of the world's largest merchant fleet.
+
+	date = { day = 1 month = january year = 1650 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1670 }
+
+	action_a = {
+		name = "ACTIONNAME206012A" #Reform the Navy
+		command = { type = domestic which = LAND value = -3 }
+		command = { type = naval value = 1500 }
+		command = { type = warships which = -1 value = 5 }
+		command = { type = provincemanpower which = -2 value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME206012B" #Reform the Army
+		command = { type = domestic which = LAND value = 1 }
+		command = { type = land value = 500 }
+		command = { type = fortress which = -1 value = 1 }
+		command = { type = provincemanpower which = -2 value = 1 }
+	}
+}
+
+#(1650-1680) Courland attempts of colonization
+event = {
+	id = 206013
+	random = no
+	country = KUR
+	name = "EVENTNAME206013" #Courland attempts of colonization
+	desc = "EVENTHIST206013"
+	#-#Though a small country, Courland soon had competed in the shipping and trade industry, alongside Holland, France, England etc, and played a crucial role in the history of Gambia of West Africa and Tobago of the West Indies. Duke Jacob was the first colonist to bring Protestant missionaries and treat the locals as equals in the African lands. Duke Jacob built Fort Jacobus on the Gambia river in West Africa in 1651 and founded his first colony in 1652 in Tobago Island, Caribbean, attempting to get a share in the African slave trade.
+
+	date = { day = 1 month = january year = 1650 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1680 }
+
+	action_a = {
+		name = "ACTIONNAME206013A" #We will exploit this
+		command = { type = merchants value = 5 }
+		command = { type = colonists value = 3 }
+		command = { type = treasury value = 200 }
+		command = { type = trade value = 500 }
+		command = { type = explorer which = -1 }
+	}
+}
+
+#(1698-1700) The Great Northern Conflict
+event = {
+	id = 206015
+	trigger = {
+		exists = RUS
+		exists = SWE
+	}
+	random = no
+	country =KUR
+	name = "EVENTNAME206015" #The Great Northern Conflict
+	desc = "EVENTHIST206015"
+	#-#In 1698 Russia, Saxony and Denmark formed an alliance against the eighteen year old King Charles XII of Sweden. They thought it as a good opportunity for revenge and to cut that major power to pieces. What will be our reaction?
+
+	date = { day = 1 month = january year = 1698 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1700 }
+
+	action_a = {
+		name = "ACTIONNAME206015A" #Support Saxony and Russia
+		command = { type = casusbelli which = SWE value = 36 }
+		command = { type = relation which = SWE value = -150 }
+		command = { type = relation which = RUS value = 200 }
+		command = { type = relation which = DAN value = 100 }
+		command = { type = relation which = SAC value = 100 }
+		command = { type = stability value = 1 }
+		command = { type = treasury value = 100 }
+	}
+	action_b = {
+		name = "ACTIONNAME206015B" #Stay Neutral
+		command = { type = relation which = SWE value = 10 }
+		command = { type = relation which = RUS value = -50 }
+		command = { type = relation which = POL value = 50 }
+		command = { type = relation which = DAN value = 10 }
+		command = { type = relation which = SAC value = -50 }
+		command = { type = stability value = 1 }
+	}
+	action_c = {
+		name = "ACTIONNAME206015C" #Support Sweden
+		command = { type = casusbelli which = RUS value = 36 }
+		command = { type = relation which = SWE value = 200 }
+		command = { type = relation which = RUS value = -150 }
+		command = { type = relation which = POL value = -100 }
+		command = { type = relation which = DAN value = -50 }
+		command = { type = relation which = SAC value = -100 }
+		command = { type = stability value = -1 }
+		command = { type = land value = 200 }
+	}
+}
+
+#(1726) The Courland Succession of 1726
+event = {
+	id = 3618
+	random = no
+	country = KUR
+	name = "EVENTNAME3618" #The Kurland Succession of 1726
+	desc = "EVENTHIST3618"
+	#-#The death of the last Duke of Kurland, Frederick William, in 1711, left no heirs to the Duchy except the weak and ill Ferdinand, and a lot of contenders in Russia and Poland. In 1726, the Polish Sejm managed to impose Maurice of Saxony, the bastard son of the current Polish King, as Duke, but only to change her mind and ask his withdrawal. At the same time, Russia was pushing for her own candidate, the Duke of Holstein-Gottorp, son-in-law of the Czarina Catherine I. After much bribing, negotiation and behind the scene diplomacy, Maurice was summoned to either leave or suffer war. It started in 1727, with Russia firmly committed and sending 8,000 troops to conquer the Duchy within 8 days. The war did not last long enough to embrace all of Europe and Maurice fled to France where he then had a brilliant military career.
+
+	date = { day = 13 month = january year = 1726 }
+
+	action_a = {
+		name = "ACTIONNAME3618A" #Fight for Freedom
+		command = { type = relation which = POL value = -50 }
+		command = { type = relation which = SAC value = -50 }
+		command = { type = relation which = RUS value = 100 }
+		command = { type = domestic which = CENTRALIZATION value = -2 }
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = stability value = 1 }
+		command = { type = revoltrisk which = 36 value = 5 }
+		command = { type = sleepevent which = 206000 } #KUR: Maurice of Saxony
+	}
+	action_b = {
+		name = "ACTIONNAME3618B" #Elect Maurice of Saxony
+		command = { type = wakemonarch which = 073016 } #Maurice °
+		command = { type = sleepmonarch which = 073006 } #Ferdinand and Anna Ivanovna
+		command = { type = sleepmonarch which = 073007 } #Anna Ivanovna (Regent)
+		command = { type = sleepmonarch which = 073008 } #Ernst Johann
+		command = { type = sleepmonarch which = 073009 } #The High Council (Regency)
+		command = { type = sleepmonarch which = 073010 } #Karl Christian Joseph
+		command = { type = sleepevent which = 206016 } #KUR: Ernst Johann Biron becomes new Duke
+		command = { type = relation which = POL value = 100 }
+		command = { type = relation which = SAC value = 100 }
+		command = { type = relation which = RUS value = -200 }
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = domestic which = ARISTOCRACY value = -2 }
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = domestic which = LAND value = 1 }
+		command = { type = land value = 500 }
+		command = { type = infra value = 250 }
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 36 value = 2 }
+	}
+	action_c = {
+		name = "ACTIONNAME3618C" #Elect Karl Friedrich von Holstein-Gottorp
+		command = { type = wakemonarch which = 073014 } #Karl Friedrich °
+		command = { type = wakemonarch which = 073015 } #Karl Peter Ulrich °
+		command = { type = sleepmonarch which = 073006 } #Ferdinand and Anna Ivanovna
+		command = { type = sleepmonarch which = 073007 } #Anna Ivanovna (Regent)
+		command = { type = sleepmonarch which = 073008 } #Ernst Johann
+		command = { type = sleepmonarch which = 073009 } #The High Council (Regency)
+		command = { type = sleepmonarch which = 073010 } #Karl Christian Joseph
+		command = { type = sleepevent which = 206016 } #KUR: Ernst Johann Biron becomes new Duke
+		command = { type = dynastic which = SHL }
+		command = { type = dynastic which = RUS }
+		command = { type = relation which = POL value = -100 }
+		command = { type = relation which = SAC value = -100 }
+		command = { type = relation which = SHL value = 400 }
+		command = { type = relation which = RUS value = 200 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 36 value = 3 }
+		command = { type = sleepevent which = 206000 } #KUR: Maurice of Saxony
+	}
+}
+
+#(1727-1762) Maurice of Saxony
+event = {
+	id = 206000
+	trigger = {
+		NOT = { event = 170191 } #FRA : Maurice de Saxe
+	}
+	random = no
+	country = KUR
+	name = "EVENTNAME206000" #Maurice of Saxony
+	desc = "EVENTHIST206000"
+	#-#Maurice, comte de Saxe (Moritz von Sachsen, 1696-1750) was a general and military theorist. Anna Ivanovna, duchess of Courland (later empress of Russia), secured Saxe's election as duke of Courland (a Baltic duchy between Prussia and Latvia) in 1726.
+
+	date = { day = 0 month = january year = 1727 }
+	offset = 100
+	deathdate = { day = 0 month = january year = 1762 }
+
+	action_a = {
+		name = "ACTIONNAME206000A" #We gain the services of Maurice of Saxony
+		command = { type = wakeleader which = 073303 } #Maurice (KUR)
+	}
+}
+
+#(1737) Ernst Johann Biron becomes new Duke
+event = {
+	id = 206016
+	random = no
+	country = KUR
+	name = "EVENTNAME206016" #Ernst Johann Biron becomes new Duke
+	desc = "EVENTHIST206016"
+	#-#From 1721-1737 the last Kettler Duke Ferdinand emerges. At this point the duchy and Poland-Lithuania is fairly weak. When Duke Ferdinand dies childless, his widow Anna, the Tsar Ivan V daughter, persuaded Russians to allow Ernst Johann Biron to be the new duke. Russian domination of Courland-Semigallia was secured.
+
+	date = { day = 4 month = may year = 1737 }
+
+	action_a = {
+		name = "ALAS"
+		command = { type = relation which = RUS value = 200 }
+		command = { type = domestic which = CENTRALIZATION value = -4 }
+		command = { type = domestic which = ARISTOCRACY value = 2 }
+		command = { type = domestic which = SERFDOM value = 1 }
+		command = { type = provincetax which = -2 value = -2 }
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 24 value = 3 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 206017

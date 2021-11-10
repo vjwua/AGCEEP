@@ -1,0 +1,221 @@
+#Ormuz (ORM)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1507-1515) Portuguese force-vassalization of Ormuz
+event = {
+	id = 423000 #triggered by POR_260033
+	trigger = {
+		NOT = { countrysize = 7 }
+	}
+	random = no
+	country = ORM
+	name = "EVENTNAME423000" #Ormuz submits to Portugal
+	desc = "EVENTHIST423000"
+	#-#In October of 1507 Afonso Albuquerque defeated Ormuz in a large naval battle, capturing the famous ship the Meri. Shortly after this Albuquerque's plans to build a fortress were cut short when Ormuz under the guidance of Cogeatar broke its vassalage to Portugal and three of Albuquerque's captains deserted him and sailed off to India.
+
+	action_a = {
+		name = "ACTIONNAME423000A" #Damn Portuguese!
+		command = { type = stability value = -1 }
+		command = { type = trade value = -50 }
+		command = { type = breakvassal which = PER }
+		command = { type = breakvassal which = TUR }
+		command = { type = breakvassal which = MAM }
+		command = { type = breakvassal which = GUJ }
+		command = { type = breakvassal which = QAR }
+		command = { type = breakvassal which = ADE }
+		command = { type = breakvassal which = ARA }
+		command = { type = breakvassal which = TIM }
+		command = { type = breakvassal which = AKK }
+		command = { type = trigger which = 260008 } #POR: Ormuz submits to Portugal
+	}
+}
+
+#(1513-1515) The cap of Xeque Ismail - Ormuz's conversion to Shiite -I-
+event = {
+	id = 423001 #triggered by PER_254019
+	trigger = {
+		exists = POR
+		NOT = { countrysize = 7 }
+	}
+	random = no
+	country = ORM
+	name = "EVENTNAME423001" #Ormuz takes the cap of Xeque Ismail
+	desc = "EVENTHIST423001"
+	#-#In 1513 Xeque Ismail of Persia sent a cap to Ormuz demanding that Ormuz convert to the Shia form of Islam and submit to Persia. Before Cogeatar died he advised the Sultan of Ormuz to wear this cap and to allow the Portuguese to build a fortress in Ormuz. When King Terunxa of Ormuz took the cap the Persian ambassador Reys Hamad held him captive in his palace and ruled Ormuz as governor.
+
+	action_a = {
+		name = "ACTIONNAME423001A" #Accept the cap but switch allegiance to the Portuguese if they return
+		command = { type = breakvassal which = POR }
+		command = { type = breakvassal which = TUR }
+		command = { type = breakvassal which = MAM }
+		command = { type = breakvassal which = GUJ }
+		command = { type = breakvassal which = QAR }
+		command = { type = breakvassal which = ADE }
+		command = { type = breakvassal which = ARA }
+		command = { type = breakvassal which = TIM }
+		command = { type = breakvassal which = AKK }
+		command = { type = religion which = shiite }
+		command = { type = ADM which = 3 value = 18 }
+		command = { type = DIP which = 3 value = 18 }
+		command = { type = relation which = PER value = 150 }
+		command = { type = trigger which = 254017 } #PER: Ormuz takes the cap of Xeque Ismail
+	}
+	action_b = {
+		name = "ACTIONNAME423001B" #Refuse the cap and give allegiance to the Portuguese if they return
+		command = { type = breakvassal which = PER }
+		command = { type = stability value = -1 }
+		command = { type = relation which = PER value = -50 }
+	}
+	action_c = {
+		name = "ACTIONNAME423001C" #Accept the cap but concede to the Portuguese as little as possible
+		command = { type = breakvassal which = POR }
+		command = { type = stability value = -3 }
+		command = { type = ADM which = 3 value = 120 }
+		command = { type = DIP which = 3 value = 120 }
+		command = { type = relation which = PER value = 150 }
+		command = { type = religion which = shiite }
+		command = { type = trigger which = 254017 } #PER: Ormuz takes the cap of Xeque Ismail
+		command = { type = sleepevent which = 260009 } #POR: Ormuz is secured for Portugal
+	}
+	action_d = {
+		name = "ACTIONNAME423001D" #Refuse the cap and concede to the Portuguese as little as possible
+		command = { type = breakvassal which = PER }
+		command = { type = stability value = -4 }
+		command = { type = relation which = POR value = -50 }
+		command = { type = relation which = PER value = -50 }
+		command = { type = sleepevent which = 260009 } #POR: Ormuz is secured for Portugal
+	}
+}
+#(1513-1515) The cap of Xeque Ismail - Ormuz's conversion to Shiite -II-
+event = {
+	id = 423002 #triggered by PER_254019
+	trigger = {
+		NOT = { exists = POR }
+		NOT = { countrysize = 7 }
+	}
+	random = no
+	country = ORM
+	name = "EVENTNAME423001" #Ormuz takes the cap of Xeque Ismail
+	desc = "EVENTHIST423002"
+	#-#In 1513 Xeque Ismail of Persia sent a cap to Ormuz demanding that Ormuz convert to the Shia form of Islam and submit to Persia. Before Cogeatar died he advised the Sultan of Ormuz to wear this cap. When King Terunxa of Ormuz took the cap the Persian ambassador Reys Hamad held him captive in his palace and ruled Ormuz as governor.
+
+	action_a = {
+		name = "ACTIONNAME423002A" #Accept the cap
+		command = { type = breakvassal which = TUR }
+		command = { type = breakvassal which = MAM }
+		command = { type = breakvassal which = GUJ }
+		command = { type = breakvassal which = QAR }
+		command = { type = breakvassal which = ADE }
+		command = { type = breakvassal which = ARA }
+		command = { type = breakvassal which = TIM }
+		command = { type = breakvassal which = AKK }
+		command = { type = religion which = shiite }
+		command = { type = ADM which = 3 value = 18 }
+		command = { type = DIP which = 3 value = 18 }
+		command = { type = relation which = PER value = 150 }
+		command = { type = trigger which = 254017 } #PER: Ormuz takes the cap of Xeque Ismail
+		command = { type = sleepevent which = 260009 } #POR: Ormuz is secured for Portugal
+	}
+	action_b = {
+		name = "ACTIONNAME423002B" #Refuse the cap
+		command = { type = breakvassal which = PER }
+		command = { type = stability value = -4 }
+		command = { type = relation which = PER value = -50 }
+		command = { type = sleepevent which = 260009 } #POR: Ormuz is secured for Portugal
+	}
+}
+
+#(1515) The Portuguese take possession of Ormuz
+event = {
+	id = 423005
+	trigger = {
+		exists = POR
+		NOT = { countrysize = 5 } #huge  Ormuz will only cede 2 provinces instead of being completely annexed
+		event = 423001 #ORM: Ormuz takes the cap of Xeque Ismail
+	}
+	random = no
+	country = ORM
+	name = "EVENTNAME423005" #Ormuz is secured for Portugal
+	desc = "EVENTHIST423005"
+	#-#In 1515 Albuquerque had the Persian governor of Ormuz, Reys Hamad, killed. He then had a fortress built in Ormuz and took control of Ormuz's arsenal making the Sheik of Ormuz a virtual puppet and giving Portugal control of Ormuz and its territory.
+
+	date = { day = 0 month = october year = 1515 }
+	offset = 30
+	deathdate = { day = 0 month = january year = 1516 }
+
+	action_a = {
+		name = "ACTIONNAME423005A" #We have no choice but to submit to Portugal
+		command = { type = independence which = GHA }
+		command = { type = independence which = HAA }
+		command = { type = secedeprovince which = HAA value = 507 } #Damman
+		command = { type = breakvassal which = -1 }
+		command = { type = relation which = POR value = 150 }
+		command = { type = stability value = 1 }
+	}
+}
+
+
+#(1515) The Portuguese take possession of Ormuz
+event = {
+	id = 423003
+	trigger = {
+		exists = POR
+		countrysize = 5
+		control = { province = 441 data = POR } #Portugal controls Lisboa 
+		event = 423001 #ORM: Ormuz takes the cap of Xeque Ismail
+	}
+	random = no
+	country = ORM
+	name = "EVENTNAME423005" #Ormuz is secured for Portugal
+	desc = "EVENTHIST423005"
+	#-#In 1515 Albuquerque had the Persian governor of Ormuz, Reys Hamad, killed ending persian influence in Ormuz. However Ormuz has grown to strong to fall completely into portuguese hands and with their limited resources managed only to wrest a foothold in Arabia from us and to destabilize our border regions.
+
+	date = { day = 0 month = october year = 1515 }
+	offset = 30
+	deathdate = { day = 0 month = january year = 1516 }
+
+	action_a = {
+		name = "ACTIONNAME423005A" #We have no choice but to submit to Portugal
+		command = { type = independence which = GHA }
+		command = { type = independence which = HAA }
+		command = { type = cedeprovince which = HAA value = 507 } #Damman - in case HAA already exists
+		command = { type = breakvassal which = -1 }
+		command = { type = cedeprovince which = POR value = 504 } #Mascate
+		command = { type = cedeprovince which = POR value = 509 } #Bahrain
+	}
+}
+
+#(1625-1650) The Election of Nasr al-Yarubi
+event = {
+	id = 423007
+	trigger = {
+		NOT = { exists = OMA }
+	}
+	random = no
+	country = ORM
+	name = "EVENTNAME423007" #The Election of Nasr al-Yarubi
+	desc = "EVENTHIST423007"
+	#-#For over 300 years, naval powers have controlled the coast of Oman while the interior remained disunited, with the election of Nasr al-Yarubi as Imam, all that begins to change.
+
+	date = { day = 1 month = january year = 1625 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1650 }
+
+	action_a = {
+		name = "ACTIONNAME423007A" #Hail the New Imam!
+		command = { type = flagname which = "" }
+		command = { type = country which = OMA }
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = domestic which = offensive value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME423007B" #Remain Loyal to Ormuz
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = stability value = -3 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 423003-423004 - 423006 - next: 423008

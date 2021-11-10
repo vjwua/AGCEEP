@@ -1,0 +1,363 @@
+#Goods
+
+#Goods must be uniquely named ("nothing" is reserved and may NOT be used).
+
+#base_price = X          Base price in $ (default is 1 if not specified).
+#min_demand = X.XX       Demand is never lower than this (default is 0.01 if not specified).
+#max_demand = X.XX       Demand is never higher than this (default is 1.50 if not specified).
+#land_support = yes/no   If yes, increases land support limit (default is no if not specified).
+#naval_support = yes/no  If yes, increases naval support limit (default is no if not specified).
+#slaves_demand = X       Specific goods for slaves demand calculations (default is 0 if not specified).
+#slaves = X.XX           If positive, each slaves_demand province increases slaves demand according to slaves value and under condition (default is 0.00 if not specified).
+#inflation = yes/no      If yes, increases inflation and mine value in province is used instead of supply-demand and base_price (default is no if not specified).
+#<building_name> = X.XX  Type of building or manufactory that gives a demand boost.
+#demand = { }            List of goods that get demand boost of the specified amount for each defined goods producing province (different from slaves_demand).
+#manufactory             Type for default manufactory and related income increase above normal value for manufactories if yes (default is weapons manufactory with no increase if not specified).
+
+#-----------------------------------------------------------------------------------------------
+#Base
+
+cloth = {
+	base_price = 10
+	
+	min_demand = 0.50
+	max_demand = 1.50
+	
+	barrack = 0.01
+	
+	goods = 0.01
+
+	demand = { cotton = 0.01 } #Each cloth province increases demand for cotton
+
+	manufactory = { type = goods income = yes }
+}
+
+fish = {
+	base_price = 10
+	
+	min_demand = 0.25
+	max_demand = 1.00
+	
+	barrack = 0.01
+	shipyard = 0.01
+	
+	luxury = 0.01
+	weapons = 0.01
+	navalequipment = 0.01
+	refinery = 0.01
+	goods = 0.01
+
+	manufactory = { type = navalequipment income = yes }
+}
+
+fur = {
+	base_price = 10
+	
+	min_demand = 0.75
+	max_demand = 2.00
+	
+	barrack = 0.01
+	cityrights = 0.01
+	courthouse = 0.01
+	shipyard = 0.01
+	
+	luxury = 0.01
+	weapons = 0.01
+	navalequipment = 0.01
+	refinery = 0.01
+	goods = 0.01
+
+	manufactory = { type = weapons income = no }
+}
+
+grain = {
+	base_price = 5
+	land_support = yes
+	
+	min_demand = 0.25
+	max_demand = 1.00
+	
+	barrack = 0.01
+	shipyard = 0.01
+	
+	luxury = 0.01
+	weapons = 0.01
+	navalequipment = 0.01
+	refinery = 0.01
+	goods = 0.01
+
+	manufactory = { type = weapons income = no }
+}
+
+naval_supplies = {
+	base_price = 5
+	naval_support = yes
+	
+	min_demand = 0.50
+	max_demand = 1.50
+	
+	shipyard = 0.01
+	
+	navalequipment = 0.01
+
+	manufactory = { type = navalequipment income = yes }
+}
+
+salt = {
+	base_price = 15
+	
+	min_demand = 0.25
+	max_demand = 1.00
+	
+	barrack = 0.01
+	shipyard = 0.01
+	
+	luxury = 0.01
+	weapons = 0.01
+	navalequipment = 0.01
+	refinery = 0.01
+	goods = 0.01
+
+	manufactory = { type = weapons income = no }
+}
+
+wine = {
+	base_price = 15
+	
+	min_demand = 0.25
+	max_demand = 1.00
+	
+	barrack = 0.01
+	shipyard = 0.01
+	
+	luxury = 0.01
+	weapons = 0.01
+	navalequipment = 0.01
+	refinery = 0.01
+	goods = 0.01
+
+	manufactory = { type = refinery income = yes }
+}
+
+wool = {
+	base_price = 5
+	
+	min_demand = 0.25
+	max_demand = 1.00
+	
+	barrack = 0.01
+	shipyard = 0.01
+	
+	luxury = 0.01
+	weapons = 0.01
+	navalequipment = 0.01
+	refinery = 0.01
+	goods = 0.01
+
+	manufactory = { type = goods income = no }
+}
+
+#-----------------------------------------------------------------------------------------------
+#Mines
+
+copper = {
+	base_price = 15
+
+	min_demand = 0.50
+	max_demand = 1.50
+
+	barrack = 0.01
+	shipyard = 0.01
+
+	manufactory = { type = weapons income = yes }
+}
+
+gold = {
+	base_price = 0
+	inflation = yes
+
+	min_demand = 1.00
+	max_demand = 1.00
+
+	manufactory = { type = luxury income = no }
+}
+
+iron = {
+	base_price = 15
+
+	min_demand = 0.50
+	max_demand = 1.50
+
+	barrack = 0.01
+
+	weapons = 0.01
+
+	manufactory = { type = weapons income = yes }
+}
+
+#-----------------------------------------------------------------------------------------------
+#Plantation
+
+coffee = {
+	base_price = 10
+	slaves_demand = 1
+
+	min_demand = 0.75
+	max_demand = 2.00
+
+	barrack = 0.01
+	cityrights = 0.01
+	courthouse = 0.01
+	shipyard = 0.01
+	
+	luxury = 0.01
+	weapons = 0.01
+	navalequipment = 0.01
+	refinery = 0.01
+	goods = 0.01
+
+	manufactory = { type = goods income = no }
+}
+
+cotton = {
+	base_price = 7
+	slaves_demand = 1
+
+	min_demand = 0.50
+	max_demand = 1.50
+
+	goods = 0.01
+
+	manufactory = { type = goods income = yes }
+}
+
+sugar = {
+	base_price = 16
+	slaves_demand = 1
+
+	min_demand = 0.75
+	max_demand = 1.00
+
+	refinery = 0.01
+
+	manufactory = { type = refinery income = yes }
+}
+
+tobacco = {
+	base_price = 14
+	slaves_demand = 1
+
+	min_demand = 0.75
+	max_demand = 2.00
+
+	barrack = 0.01
+	cityrights = 0.01
+	courthouse = 0.01
+	shipyard = 0.01
+	
+	luxury = 0.01
+	weapons = 0.01
+	navalequipment = 0.01
+	refinery = 0.01
+	goods = 0.01
+
+	manufactory = { type = goods income = yes }
+}
+
+#-----------------------------------------------------------------------------------------------
+#Slaves
+
+slaves = {
+	base_price = 8
+	slaves = 0.01
+
+	min_demand = 0.00
+	max_demand = 3.00
+
+	manufactory = { type = weapons income = no }
+}
+
+#-----------------------------------------------------------------------------------------------
+#Others
+
+ivory = {
+	base_price = 7
+
+	min_demand = 0.75
+	max_demand = 2.00
+
+	barrack = 0.01
+	cityrights = 0.01
+	courthouse = 0.01
+	shipyard = 0.01
+	
+	luxury = 0.01
+	weapons = 0.01
+	navalequipment = 0.01
+	refinery = 0.01
+	goods = 0.01
+
+	manufactory = { type = weapons income = no }
+}
+
+tea = {
+	base_price = 12
+
+	min_demand = 0.75
+	max_demand = 2.00
+
+	barrack = 0.01
+	cityrights = 0.01
+	courthouse = 0.01
+	shipyard = 0.01
+	
+	luxury = 0.01
+	weapons = 0.01
+	navalequipment = 0.01
+	refinery = 0.01
+	goods = 0.01
+
+	manufactory = { type = weapons income = no }
+}
+
+chinaware = {
+	base_price = 13
+
+	min_demand = 0.75
+	max_demand = 2.00
+
+	barrack = 0.01
+	cityrights = 0.01
+	courthouse = 0.01
+	shipyard = 0.01
+	
+	luxury = 0.01
+	weapons = 0.01
+	navalequipment = 0.01
+	refinery = 0.01
+	goods = 0.01
+
+	manufactory = { type = weapons income = no }
+}
+
+spices = {
+	base_price = 20
+
+	min_demand = 0.75
+	max_demand = 2.00
+
+	barrack = 0.01
+	cityrights = 0.01
+	courthouse = 0.01
+	shipyard = 0.01
+	
+	luxury = 0.01
+	weapons = 0.01
+	navalequipment = 0.01
+	refinery = 0.01
+	goods = 0.01
+
+	manufactory = { type = weapons income = no }
+}
+
+#-----------------------------------------------------------------------------------------------

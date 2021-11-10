@@ -1,0 +1,541 @@
+#Aztec Empire (AZT)
+
+#See AGCEEP_Alt_Iberia.eue for Alternative events involving Portugal
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1600) The Fall of Tenochtitlan
+#by AlanC9 - modified by Fodoron
+event = {
+	id = 82004
+	trigger = {
+		control = { province = 27 data = SPA }
+	}
+	random = no
+	country = AZT
+	name = "EVENTNAME82004" #The Fall of Tenochtitlan
+	desc = "EVENTHIST82004"
+	#-#The foreign invaders have taken our capitol. Our soldiers cannot withstand their magical weapons! What will we do?
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 5
+	deathdate = { day = 1 month = january year = 1600 }
+
+	action_a = {
+		name = "ACTIONNAME82004A" #Reject Christianity and be burned at the stake (End Game)
+		command = { }
+		command = { type = trigger which = 285157 } #SPA: The fall of Tenochtitlan
+	}
+	action_b = {
+		name = "ACTIONNAME82004B" #Escape disguised as a scullery maid
+		command = { type = stability value = -2 }
+		command = { type = manpower value = -10 }
+		command = { type = treasury value = -1000 }
+	}
+}
+
+#(1419-1600) Plague in the Aztec Empire population
+#by AlanC9 - modified by Fodoron
+event = {
+	id = 82021
+	trigger = {
+		OR = {
+			OR = {
+				discovered = 436 #Castilla
+				discovered = 439 #Toledo
+				discovered = 441 #Tago
+				discovered = 385 #Ile de France
+				discovered = 245 #Anglia
+				discovered = 339 #Holland
+			}
+			OR = {
+				neighbour = SPA
+				neighbour = CAS
+				neighbour = POR
+				neighbour = ENG
+				neighbour = FRA
+				neighbour = HOL
+			}
+			AND = {
+				atwar = yes
+				NOT = { #All Precolombian states
+					war = { country = AZT country = CHM }
+					war = { country = AZT country = INC }
+					war = { country = AZT country = MAA }
+					war = { country = AZT country = ZAP }
+				}
+			}
+			AND = {
+				event = 82010 #ZAP: Plagues from the Old World
+				neighbour = ZAP
+			}
+		}
+	}
+	random = no
+	country = AZT
+	name = "EVENTNAME82021" #Plagues from the Old World
+	desc = "EVENTHIST82021"
+	#-#For over 10,000 years, the Americans had been isolated from the Old World. During that time new diseases appeared in both land masses. With the discovery of the New World, the American natives were suddenly exposed to all the plagues and diseases still active in the Old World population, to which they had absolutely no immunity. Some of the plagues, like Smallpox had been identified by their horrible symptoms, while others remained as silent killers. The effect was devastating, and between 50 and 80 percent of the original native population was killed by several waves of diseases that swept the continent in the next 200 years. These plagues certainly played an important role in the easy conquest of the continent by Europeans, and in the aculturalization of the natives. The Old World population also received a horrible present from their long lost relatives: Syphilis, a disease that had appeared between the natives of the Antilles.
+
+	date = { day = 15 month = january year = 1419 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME82021A" #Our world is coming to an end
+		command = { type = population which = 24 value = -10000 } #Jalisco
+		command = { type = population which = 25 value = -10000 } #Saltillo
+		command = { type = population which = 26 value = -10000 } #Michoacan
+		command = { type = population which = 27 value = -150000 } #Zacatecas
+		command = { type = population which = 28 value = -30000 } #Tampico
+		command = { type = population which = 29 value = -30000 } #Tlaxcala
+		command = { type = population which = 30 value = -10000 } #Atlixco
+		command = { type = population which = 31 value = -10000 } #Tehuantepec
+		command = { type = stability value = -3 }
+	}
+}
+
+#(1519-1600) The Tlaxcalan Revolt
+#by AlanC9
+event = {
+	id = 82000
+	trigger = {
+		owned = { province = 29 data = -1 }
+		control = { province = 29 data = SPA }
+	}
+	random = no
+	country = AZT
+	name = "EVENTNAME82000" #The Tlaxcalan Revolt
+	desc = "EVENTHIST82000"
+	#-#The people of Tlaxcala have gone over to the strangers from the sea! Others of our subjects are willing to side with them as well. (Perhaps we shouldn't have sacrificed and eaten so many of them).
+
+	date = { day = 1 month = april year = 1519 }
+	offset = 15
+	deathdate = { day = 20 month = december year = 1600 }
+
+	action_a = {
+		name = "DAMN"
+		command = { type = secedeprovince which = SPA value = 29 } #Tlaxcala
+		command = { type = stability value = -6 }
+		command = { type = trigger which = 285155 } #SPA: Tlaxcala goes over to Spain
+	}
+}
+#(1519-1600) The Tlaxcalan Revolt (SPA AI version)
+#by AlanC9 modified by Fodoron
+event = {
+	id = 121010 #triggered by SPA_285154
+	random = no
+	country = AZT
+	name = "EVENTNAME82000" #The Tlaxcalan Revolt
+	desc = "EVENTHIST82000"
+	#-#The people of Tlaxcala have gone over to the strangers from the sea! Others of our subjects are willing to side with them as well. (Perhaps we shouldn't have sacrificed and eaten so many of them).
+
+	action_a = {
+		name = "DAMN"
+		command = { type = secedeprovince which = SPA value = 29 } #Tlaxcala
+		command = { type = stability value = -6 }
+		command = { type = trigger which = 285155 } #SPA: Tlaxcala goes over to Spain
+	}
+}
+
+#(1519-1600) The conquest of Mexico, AI version
+#War between AIs only
+#by Fodoron
+event = {
+	id = 82001
+	trigger = {
+		ai = yes
+		event = 285156 #SPA AI only
+		NOT = { war = { country = AZT country = SPA } }
+	}
+	random = no
+	country = AZT
+	name = "EVENTNAME82001" #Tlaxcala goes over to Spain
+	desc = "EVENTHIST82001"
+	#-#The people of Tlaxcala have decided to join us in overthrowing their Aztec overlords, sire!
+
+	date = { day = 1 month = april year = 1519 }
+	offset = 90
+	deathdate = { day = 20 month = december year = 1600 }
+
+	action_a = {
+		name = "ACTIONNAME82001A" #This means war!
+		command = { type = war which = SPA }
+	}
+}
+
+#(1519-1600) Plague in the Aztec Empire army
+#by AlanC9 - modified by Fodoron
+event = {
+	id = 82009
+	trigger = {
+		event = 82021 #AZT: Plagues from the Old World
+	}
+	random = no
+	country = AZT
+	name = "EVENTNAME82009" #Smallpox
+	desc = "EVENTHIST82009"
+	#-#A deadly disease is sweeping through our towns! Perhaps it comes from the strangers from over the sea...
+
+	date = { day = 1 month = april year = 1519 }
+	offset = 30
+	deathdate = { day = 20 month = december year = 1600 }
+
+	action_a = {
+		name = "DAMN"
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = stability value = -6 }
+	}
+}
+
+#(1600-1820) A Mesoamerican Empire - Ahistorical
+event = {
+	id = 121011
+	trigger = {
+			owned = { province = 24 data = -1 } #Jalisco
+			control = { province = 24 data = -1 }
+			owned = { province = 25 data = -1 } #Saltillo
+			control = { province = 25 data = -1 }
+			owned = { province = 26 data = -1 } #Michoagan
+			control = { province = 26 data = -1 }
+			owned = { province = 27 data = -1 } #Zacatecas
+			control = { province = 27 data = -1 }
+			owned = { province = 28 data = -1 } #Tampico
+			control = { province = 28 data = -1 }
+			owned = { province = 29 data = -1 } #Tlaxcala
+			control = { province = 29 data = -1 }
+			owned = { province = 30 data = -1 } #Atlixco
+			control = { province = 30 data = -1 }
+			owned = { province = 31 data = -1 } #Tehuantepec
+			control = { province = 31 data = -1 }
+			owned = { province = 32 data = -1 } #Tehuacan
+			control = { province = 32 data = -1 }
+			atwar = no
+			religion = pagan
+			stability = 3
+	}
+	random = no
+	country = AZT
+	name = "EVENTNAME121011" #A New Empire
+	desc = "EVENTHIST121011"
+	#-#We have successfully fought off European invaders and have learnt a lot from them in the process. Long military campaigns, gruelling diseases, and strange new ideologies of our enemies have taught us a lot about the world. On the devastated ruins of our old epmire we shall build a new one, one that will be larger, more modern, and much more powerful than any empire America has ever seen. We will rise to claim what is ours! And while we're at it, let us offer a sacrifice to the mighty Quetzalcoatl!
+
+	date = { day = 0 month = january year = 1600 }
+	offset = 5000
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME121011A" #Let us build a magnificent empire
+		command = { type = technology which = china }
+		command = { type = add_countryculture which = zapotek }
+		command = { type = treasury value = -1000 }
+		command = { type = addcore which = 12 } #Ensenada
+		command = { type = addcore which = 13 } #Baja
+		command = { type = addcore which = 15 } #Altar
+		command = { type = addcore which = 17 } #Empalme
+		command = { type = addcore which = 20 } #Chihuahua
+		command = { type = addcore which = 21 } #Mazatlan
+		command = { type = addcore which = 23 } #Coahuilha
+		command = { type = addcore which = 28 } #Tampico
+		command = { type = addcore which = 29 } #Tlaxcala
+		command = { type = addcore which = 30 } #Atlixco
+		command = { type = addcore which = 31 } #Tehuantepec
+		command = { type = addcore which = 32 } #Tehuacan
+		command = { type = addcore which = 33 } #Guatemala
+		command = { type = addcore which = 34 } #Campeche
+		command = { type = addcore which = 35 } #Yucatan
+		command = { type = addcore which = 36 } #Honduras
+		command = { type = addcore which = 37 } #Nicaragua
+		command = { type = addcore which = 38 } #Mosquitos
+		command = { type = addcore which = 39 } #Isthmus
+		command = { type = provincetax which = -2 value = 2 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = manpower value = 20 }
+		command = { type = population which = 27 value = -10000 } #Ritual sacrifices
+		command = { type = land value = 10000 }
+		command = { type = naval value = 10000 }
+		command = { type = trade value = 10000 }
+		command = { type = infra value = 10000 }
+		command = { type = gainmanufactory which = 27 value = luxury } #Zacatecas
+		command = { type = inflation value = -10 }
+		command = { type = conquistador which = -1 }
+		command = { type = conquistador which = -1 }
+		command = { type = explorer which = -1 }
+		command = { type = explorer which = -1 }
+		command = { type = cot which = 27 } #Zacatecas
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = domestic which = quality value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME121011B" #Let us build a lesser empire
+		command = { type = technology which = china }
+		command = { type = add_countryculture which = zapotek }
+		command = { type = treasury value = -500 }
+		command = { type = addcore which = 20 } #Chihuahua
+		command = { type = addcore which = 21 } #Mazatlan
+		command = { type = addcore which = 23 } #Coahuilha
+		command = { type = addcore which = 28 } #Tampico
+		command = { type = addcore which = 29 } #Tlaxcala
+		command = { type = addcore which = 30 } #Atlixco
+		command = { type = addcore which = 31 } #Tehuantepec
+		command = { type = addcore which = 32 } #Tehuacan
+		command = { type = addcore which = 33 } #Guatemala
+		command = { type = addcore which = 34 } #Campeche
+		command = { type = addcore which = 35 } #Yucatan
+		command = { type = addcore which = 36 } #Honduras
+		command = { type = provincetax which = -2 value = 3 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = manpower value = 10 }
+		command = { type = population which = 27 value = -5000 } #Ritual sacrifices
+		command = { type = land value = 5000 }
+		command = { type = naval value = 5000 }
+		command = { type = trade value = 5000 }
+		command = { type = infra value = 5000 }
+		command = { type = inflation value = -15 }
+		command = { type = conquistador which = -1 }
+		command = { type = explorer which = -1 }
+		command = { type = cot which = 27 } #Zacatecas
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = quality value = 1 }
+	}
+	action_c = {
+		name = "ACTIONNAME121011C" #Forget about empires
+		command = { type = technology which = china }
+		command = { type = add_countryculture which = zapotek }
+		command = { type = addcore which = 28 } #Tampico
+		command = { type = addcore which = 29 } #Tlaxcala
+		command = { type = addcore which = 30 } #Atlixco
+		command = { type = addcore which = 31 } #Tehuantepec
+		command = { type = addcore which = 32 } #Tehuacan
+		command = { type = provincetax which = -2 value = 4 }
+		command = { type = provincetax which = -1 value = 3 }
+		command = { type = provincetax which = -1 value = 2 }
+		command = { type = provincetax which = -1 value = 2 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = land value = 2000 }
+		command = { type = naval value = 4000 }
+		command = { type = trade value = 10000 }
+		command = { type = infra value = 10000 }
+		command = { type = inflation value = -20 }
+		command = { type = cot which = 27 } #Zacatecas
+		command = { type = domestic which = mercantilism value = -3 }
+		command = { type = domestic which = land value = -1 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Random Events
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1820) Flower wars - Set of 10 events
+#by Lambert Simnel - Corrected grammar in description. - Peter Ebbesen
+event = {
+	id = 121000
+	trigger = {
+		atwar = no
+		religion = pagan
+		owned = { province = 29 data = -1 }
+	}
+	random = yes
+	country = AZT
+	name = "EVENTNAME121000" #Flower wars
+	desc = "EVENTHIST121000"
+	#-#The temples often ran short of sacrificial victims and the priests of the Sun God Tonatiuh demanded the armies march forth to gather new captives, saying that without sacrifices the sun would cease to rise and all would die. The Texcalans were also in need of sacrificial victims, and the Aztecs occasionally arranged battles with them so that both could take captives. At other times they marched against their enemies.
+
+	action_a = {
+		name = "ACTIONNAME121000A" #Let us fight the Texcalans
+		command = { type = revolt which = 29 } #Tlaxcala
+		command = { type = revolt which = 29 } #Tlaxcala
+		command = { type = INF which = 29 value = 5000 } #Tlaxcala
+	}
+}
+event = {
+	id = 121001
+	trigger = {
+		atwar = no
+		religion = pagan
+		owned = { province = 29 data = -1 }
+	}
+	random = yes
+	country = AZT
+	name = "EVENTNAME121000" #Flower wars
+	desc = "EVENTHIST121000"
+	#-#The temples often ran short of sacrificial victims and the priests of the Sun God Tonatiuh demanded the armies march forth to gather new captives, saying that without sacrifices the sun would cease to rise and all would die. The Texcalans were also in need of sacrificial victims, and the Aztecs occasionally arranged battles with them so that both could take captives. At other times they marched against their enemies.
+
+	action_a = {
+		name = "ACTIONNAME121000A" #Let us fight the Texcalans
+		command = { type = revolt which = 29 } #Tlaxcala
+		command = { type = revolt which = 29 } #Tlaxcala
+		command = { type = INF which = 29 value = 5000 } #Tlaxcala
+	}
+}
+event = {
+	id = 121002
+	trigger = {
+		atwar = no
+		religion = pagan
+		owned = { province = 29 data = -1 }
+	}
+	random = yes
+	country = AZT
+	name = "EVENTNAME121000" #Flower wars
+	desc = "EVENTHIST121000"
+	#-#The temples often ran short of sacrificial victims and the priests of the Sun God Tonatiuh demanded the armies march forth to gather new captives, saying that without sacrifices the sun would cease to rise and all would die. The Texcalans were also in need of sacrificial victims, and the Aztecs occasionally arranged battles with them so that both could take captives. At other times they marched against their enemies.
+
+	action_a = {
+		name = "ACTIONNAME121000A" #Let us fight the Texcalans
+		command = { type = revolt which = 29 } #Tlaxcala
+		command = { type = revolt which = 29 } #Tlaxcala
+		command = { type = INF which = 29 value = 5000 } #Tlaxcala
+	}
+}
+event = {
+	id = 121003
+	trigger = {
+		atwar = no
+		religion = pagan
+		owned = { province = 29 data = -1 }
+	}
+	random = yes
+	country = AZT
+	name = "EVENTNAME121000" #Flower wars
+	desc = "EVENTHIST121000"
+	#-#The temples often ran short of sacrificial victims and the priests of the Sun God Tonatiuh demanded the armies march forth to gather new captives, saying that without sacrifices the sun would cease to rise and all would die. The Texcalans were also in need of sacrificial victims, and the Aztecs occasionally arranged battles with them so that both could take captives. At other times they marched against their enemies.
+
+	action_a = {
+		name = "ACTIONNAME121000A" #Let us fight the Texcalans
+		command = { type = revolt which = 29 } #Tlaxcala
+		command = { type = revolt which = 29 } #Tlaxcala
+		command = { type = INF which = 29 value = 5000 } #Tlaxcala
+	}
+}
+event = {
+	id = 121004
+	trigger = {
+		atwar = no
+		religion = pagan
+		owned = { province = 29 data = -1 }
+	}
+	random = yes
+	country = AZT
+	name = "EVENTNAME121000" #Flower wars
+	desc = "EVENTHIST121000"
+	#-#The temples often ran short of sacrificial victims and the priests of the Sun God Tonatiuh demanded the armies march forth to gather new captives, saying that without sacrifices the sun would cease to rise and all would die. The Texcalans were also in need of sacrificial victims, and the Aztecs occasionally arranged battles with them so that both could take captives. At other times they marched against their enemies.
+
+	action_a = {
+		name = "ACTIONNAME121000A" #Let us fight the Texcalans
+		command = { type = revolt which = 29 } #Tlaxcala
+		command = { type = revolt which = 29 } #Tlaxcala
+		command = { type = INF which = 29 value = 5000 } #Tlaxcala
+	}
+}
+event = {
+	id = 121005
+	trigger = {
+		atwar = no
+		religion = pagan
+		owned = { province = 29 data = -1 }
+	}
+	random = yes
+	country = AZT
+	name = "EVENTNAME121000" #Flower wars
+	desc = "EVENTHIST121000"
+	#-#The temples often ran short of sacrificial victims and the priests of the Sun God Tonatiuh demanded the armies march forth to gather new captives, saying that without sacrifices the sun would cease to rise and all would die. The Texcalans were also in need of sacrificial victims, and the Aztecs occasionally arranged battles with them so that both could take captives. At other times they marched against their enemies.
+
+	action_a = {
+		name = "ACTIONNAME121000A" #Let us fight the Texcalans
+		command = { type = revolt which = 29 } #Tlaxcala
+		command = { type = revolt which = 29 } #Tlaxcala
+		command = { type = INF which = 29 value = 5000 } #Tlaxcala
+	}
+}
+event = {
+	id = 121006
+	trigger = {
+		atwar = no
+		religion = pagan
+		owned = { province = 29 data = -1 }
+	}
+	random = yes
+	country = AZT
+	name = "EVENTNAME121000" #Flower wars
+	desc = "EVENTHIST121000"
+	#-#The temples often ran short of sacrificial victims and the priests of the Sun God Tonatiuh demanded the armies march forth to gather new captives, saying that without sacrifices the sun would cease to rise and all would die. The Texcalans were also in need of sacrificial victims, and the Aztecs occasionally arranged battles with them so that both could take captives. At other times they marched against their enemies.
+
+	action_a = {
+		name = "ACTIONNAME121000A" #Let us fight the Texcalans
+		command = { type = revolt which = 29 } #Tlaxcala
+		command = { type = revolt which = 29 } #Tlaxcala
+		command = { type = INF which = 29 value = 5000 } #Tlaxcala
+	}
+}
+event = {
+	id = 121007
+	trigger = {
+		atwar = no
+		religion = pagan
+		owned = { province = 29 data = -1 }
+	}
+	random = yes
+	country = AZT
+	name = "EVENTNAME121000" #Flower wars
+	desc = "EVENTHIST121000"
+	#-#The temples often ran short of sacrificial victims and the priests of the Sun God Tonatiuh demanded the armies march forth to gather new captives, saying that without sacrifices the sun would cease to rise and all would die. The Texcalans were also in need of sacrificial victims, and the Aztecs occasionally arranged battles with them so that both could take captives. At other times they marched against their enemies.
+
+	action_a = {
+		name = "ACTIONNAME121000A" #Let us fight the Texcalans
+		command = { type = revolt which = 29 } #Tlaxcala
+		command = { type = revolt which = 29 } #Tlaxcala
+		command = { type = INF which = 29 value = 5000 } #Tlaxcala
+	}
+}
+event = {
+	id = 121008
+	trigger = {
+		atwar = no
+		religion = pagan
+		owned = { province = 29 data = -1 }
+	}
+	random = yes
+	country = AZT
+	name = "EVENTNAME121000" #Flower wars
+	desc = "EVENTHIST121000"
+	#-#The temples often ran short of sacrificial victims and the priests of the Sun God Tonatiuh demanded the armies march forth to gather new captives, saying that without sacrifices the sun would cease to rise and all would die. The Texcalans were also in need of sacrificial victims, and the Aztecs occasionally arranged battles with them so that both could take captives. At other times they marched against their enemies.
+
+	action_a = {
+		name = "ACTIONNAME121000A" #Let us fight the Texcalans
+		command = { type = revolt which = 29 } #Tlaxcala
+		command = { type = revolt which = 29 } #Tlaxcala
+		command = { type = INF which = 29 value = 5000 } #Tlaxcala
+	}
+}
+event = {
+	id = 121009
+	trigger = {
+		atwar = no
+		religion = pagan
+		owned = { province = 29 data = -1 }
+	}
+	random = yes
+	country = AZT
+	name = "EVENTNAME121000" #Flower wars
+	desc = "EVENTHIST121000"
+	#-#The temples often ran short of sacrificial victims and the priests of the Sun God Tonatiuh demanded the armies march forth to gather new captives, saying that without sacrifices the sun would cease to rise and all would die. The Texcalans were also in need of sacrificial victims, and the Aztecs occasionally arranged battles with them so that both could take captives. At other times they marched against their enemies.
+
+	action_a = {
+		name = "ACTIONNAME121000A" #Let us fight the Texcalans
+		command = { type = revolt which = 29 } #Tlaxcala
+		command = { type = revolt which = 29 } #Tlaxcala
+		command = { type = INF which = 29 value = 5000 } #Tlaxcala
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 121012

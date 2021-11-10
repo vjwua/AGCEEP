@@ -1,0 +1,961 @@
+#Kara Koyunlu (QAR)
+
+#-----------------------------------------------------------------------------------------------
+#Check for Jahan Shah death
+
+#Approx 20% Jahan Shah lives, 80% chance normal sequence
+event = {
+	id = 266017
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "Jahan Shah"
+
+	date = { year = 1419 }
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "Check again"
+		#Cascade to next
+		command = { type = trigger which = 266018 } #second death check event
+	}
+	action_b = {
+		name = "Dies in Battle"
+		#Dies in Battle
+		command = { type = clrflag which = [qar_end] }
+	}
+	action_c = {
+		name = "Survives Battle"
+		#Survives Battle
+		command = { type = setflag which = [qar_end] }
+	}
+	action_d = {
+		name = "Survives Battle"
+		#Survives Battle
+		command = { type = setflag which = [qar_end] }
+	}
+}
+#Check for Jahan Shah death, triggered from the previous one
+event = {
+	id = 266018
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = "Jahan Shah"
+
+	action_a = {
+		name = "Dies in Battle"
+		#Dies in Battle
+		command = { type = clrflag which = [qar_end] }
+	}
+	action_b = {
+		name = "Survives Battle"
+		#Survives Battle
+		command = { type = setflag which = [qar_end] }
+	}
+	action_c = {
+		name = "Survives Battle"
+		#Survives Battle
+		command = { type = setflag which = [qar_end] }
+	}
+}
+#Jahan Shah Lives!
+event = {
+	id = 266019
+	trigger = {
+		OR = {
+			flag = [qar_end]
+			NOT = { exists = AKK }
+		}
+		NOT = {
+			event = 266012 #QAR: The Death of Jahan Shah
+			event = 266013 #QAR: The Death of Jahan Shah - alternate
+		}
+	}
+	random = no
+	country = MUS
+	name = "AI_EVENT"
+	desc = ""
+
+	date = { day = 0 month = january year = 1419 }
+	offset = 10
+	deathdate = { day = 12 month = april year = 1819 }
+
+	action_a = {
+		name = "OK"
+		command = { }
+		command = { type = sleepevent which = 266012 } #QAR: The Death of Jahan Shah
+		command = { type = sleepevent which = 266013 } #QAR: The Death of Jahan Shah - alternate
+	}
+}
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1467) Extinction of the White Sheep
+event = {
+	id = 266027
+	trigger = {
+		NOT = {
+			exists = AKK
+			event = 266012 #QAR: The Death of Jahan Shah
+			event = 266013 #QAR: The Death of Jahan Shah - alternate
+		}
+	}
+	random = no
+	country = QAR
+	name = "EVENTNAME266027" #Extinction of the White Sheep
+	desc = "EVENTHIST266027"
+	#-#The annihilation of the Ak Koyunlu, left the Kara Koyunlu as the masters of the turkmen tribes.
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 1
+	deathdate = { day = 10 month = october year = 1467 } #one month before Jahan Shah's historical death
+
+	action_a = {
+		name = "ACTIONNAME266027A" #Victory is ours!
+		command = { type = stability value = 1 }
+		command = { type = vp value = 50 }
+		command = { type = sleepmonarch which = 0114005 } #Hasan Ali
+		command = { type = sleepmonarch which = 0114007 } #Ali Shurk Beg *
+		command = { type = sleepmonarch which = 0114008 } #Abu Yusuf *
+	}
+}
+
+#(1420-1425) The Might of Shah Rukh
+event = {
+	id = 266020
+	trigger = {
+		OR = {
+			event = 296700 #TIM: Shâh Rûkh and Kara Yülük
+			war = { country = QAR country = TIM }
+		}
+		NOT = { monarch = 0114000 } #Kara Yusuf
+	}
+	random = no
+	country = QAR
+	name = "EVENTNAME266020" #The Might of Shâh Rûkh
+	desc = "EVENTHIST266020"
+	#-#The death of their leader, Kara Yusuf, was a terrible blow to the Kara Koyunlu. While their country was disorganized, Shah Rukh of the Timurid Empire took the oportunity to lay waste to Tabriz and recapture Qazvin. With Iskander, the successor of Kara Yusuf, just establishing his power, the Kara Koyunlu were unable to prevent this breach of their borders.
+
+	date = { day = 1 month = january year = 1420 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1425 }
+
+	action_a = {
+		name = "ACTIONNAME266020A" #It cannot be true!
+		command = { type = secedeprovince which = TIM value = 530 } #Tabriz
+		command = { type = revolt which = 487 } #Azerbaijan
+		command = { type = stability value = -3 }
+	}
+}
+
+#(1421-1423) Ownership of Tabriz
+event = {
+	id = 266000
+	trigger = {
+		exists = IRA
+		control = { province = 530 data = TIM } #Tabriz
+		owned = { province = 487 data = QAR } #Azerbaijan
+	}
+	random = no
+	country = QAR
+	name = "EVENTNAME266000" #Ownership of Tabriz
+	desc = "EVENTHIST266000"
+	#-#During the war in which Shah Rukh captured Qazvin, the region of Azerbaijan also fell into Timurid hands. However, despite his victory, Shah Rukh abandoned to the Azerbaijani region. Ispan, then ruling from Baghdad, rushed to lay claim to the city of Tabriz, but was eventually forced out by Iskandar.
+
+	date = { day = 1 month = december year = 1421 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1423 }
+
+	action_a = {
+		name = "ACTIONNAME266000A" #Foolish Ispan
+		command = { type = revolt which = 487 } #Azerbaijan
+		command = { type = desertion which = 487 value = 500 } #Azerbaijan
+	}
+}
+
+#(1421-1423) Ispan's Ambition
+event = {
+	id = 266001
+	trigger = {
+		event = 266000
+		control = { province = 487 data = REB } #Tabriz
+		NOT = { stability = -1 }
+	}
+	random = no
+	country = QAR
+	name = "EVENTNAME266001" #Ispan's Ambition
+	desc = "EVENTHIST266001"
+	#-#By retaining Tabriz in the face of Iskandar's forces, Ispan was able to proclaim himself head of the Kara Koyunlu. However, not all of the tribes were happy with a junior branch assuming power.
+
+	date = { day = 1 month = december year = 1421 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1423 }
+
+	action_a = {
+		name = "ACTIONNAME266001A" #Goodbye Iskandar
+		#sleep Iskandar
+		#wake ahistorical monarch Ispan same date as Iskandar
+		command = { type = inherit which = IRA }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#(1429-1430) The Jalayrids
+event = {
+	id = 266006
+	trigger = {
+		NOT = {	owned = { province = 508 data = -1 } } #Basrah
+		exists = BAS
+	}
+	random = no
+	country = QAR
+	name = "EVENTNAME266006" #The Jalayrids
+	desc = "EVENTHIST266006"
+	#-#The collapse of the Il-Khanate led to the formation of many successor states. The most succesful of these would become the legacy of Hasan the Jalayir, a governor of Turkey. His descendents would rule Azerbaijan and the Western half of Iran until 1374 when the Kara Koyunlu declared their independence and took Kurdistan and later Tabriz. These two nations would find themselves swept over by the might of Timurlane. However when Timurid hegemony receded, the Jalayirids remained permanently stunted allowing the Kara Koyunlu to overthrow the Jalayrids and annex the last of their lands in 1431.
+
+	date = { day = 21 month = december year = 1429 }
+	offset = 30
+	deathdate = { day = 21 month = december year = 1430 }
+
+	action_a = {
+		name = "ACTIONNAME266006A" #We tire of their existence!
+		command = { type = relation which = BAS value = -400 }
+		command = { type = INF which = -1 value = 5000 }
+		command = { type = CAV which = -2 value = 2500 }
+		command = { type = addcore which = 508 } #Basrah
+		command = { type = breakvassal which = BAS }
+		#command = { type = AI which = "QAR-basrah.ai" }
+	}
+	action_b = {
+		name = "ACTIONNAME266006B" #We will only be tolerant for so long
+		command = { type = relation which = BAS value = -200 }
+		command = { type = INF which = -2 value = 1000 }
+		command = { type = CAV which = -1 value = 500 }
+		command = { type = casusbelli which = BAS value = 240 }
+		command = { type = addcore which = 508 } #Basrah
+		command = { type = breakvassal which = BAS }
+		#command = { type = AI which = "QAR-basrah.ai" }
+	}
+	action_c = {
+		name = "ACTIONNAME266006C" #But they've been so faithful
+		command = { type = relation which = BAS value = 50 }
+		command = { type = alliance which = BAS }
+	}
+}
+
+#(1436) Jahan Shah as rival in Azerbaijan
+event = {
+	id = 266002
+	trigger = {
+		exists = TIM
+		NOT = { event = 266019 } #MUS: Jahan Shah Lives!
+	}
+	random = no
+	country = QAR
+	name = "EVENTNAME266002" #Jahan Shah as rival in Azerbaijan
+	desc = "EVENTHIST266002"
+	#-#Upon the death of his father, Kara Yusuf, Iskandar assumed rulership of the Kara Koyunlu. In the Spring of 1437, with the hopes of fragmenting the Kara Koyunlu, Shah Rukh appointed Kara Yusuf's second son, Jahan Shah, sovereign of Azerbaijan. Rukh's plan was fruitful as the introduction of Jahan as a second claimant triggered a conflict of interests amongst the tribes.
+
+	date = { day = 1 month = april year = 1436 }
+	offset = 5
+	deathdate = { day = 1 month = june year = 1436 }
+
+	action_a = {
+		name = "ACTIONNAME266002A" #Look what the Timurids have wrought
+		command = { type = revoltrisk which = 30 value = 2 }
+		command = { type = stability value = -3 }
+		command = { type = desertion which = 487 value = 1000 } #Azerbaijan
+	}
+}
+#(1436) Jahan Shah as rival in Azerbaijan - Ahistorical
+event = {
+	id = 266005
+	trigger = {
+		exists = TIM
+		event = 266019 #MUS: Jahan Shah Lives!
+	}
+	random = no
+	country = QAR
+	name = "EVENTNAME266002" #Jahan Shah as rival in Azerbaijan
+	desc = "EVENTHIST266002"
+	#-#When his brother Iskandar assumed rulership of the Kara Koyunlu, upon the death of their father, Kara Yusuf, Jahan Shah took up residence in Baghdad. In the Spring of 1437, with the hopes of fragmenting the Kara Koyunlu, Shah Rukh appointed Jahan Shah as the sovereign of Azerbaijan. His plan was fruitful as the reintroduction of this claimant triggered a conflict of interests amongst the tribes.
+
+	date = { day = 1 month = april year = 1436 }
+	offset = 5
+	deathdate = { day = 1 month = june year = 1436 }
+
+	action_a = {
+		name = "ACTIONNAME266002A" #Look what the Timurids have wrought
+		command = { type = revoltrisk which = 30 value = 2 }
+		command = { type = stability value = -3 }
+		command = { type = desertion which = 487 value = 1000 } #Azerbaijan
+		command = { type = sleepmonarch which = 0114005 } #Hasan Ali
+		command = { type = sleepmonarch which = 0114007 } #Ali Shurk Beg *
+		command = { type = sleepmonarch which = 0114008 } #Abu Yusuf *
+	}
+}
+
+#(1436-1440) Jahan Shah ousts Iskandar
+event = {
+	id = 266003
+	trigger = {
+		monarch = 0114004 #Jahan Shah
+		OR = {
+			event = 266002
+			event = 266005
+		}
+		NOT = { event = 266001 }
+	}
+	random = no
+	country = QAR
+	name = "EVENTNAME266003" #Jahan Shah ousts Iskandar
+	desc = "EVENTHIST266003"
+	#-#Despite valiant attempts to resist, with the support of the Shah Rukh, eventually Jahan Shah gained the upperhand in the battle for control of the tribes. On April 21st of 1438, Iskandar died during Jahan Shah's siege of the castle he was hiding in; Ispan wisely retreated to Baghdad. Although by establishing himself as the only ruler of the Kara Koyunlu, Jahan Shah would bring stability, intially a few tribes still resisted his authority.
+
+	date = { day = 1 month = april year = 1436 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1440 }
+
+	action_a = {
+		name = "ACTIONNAME266003A" #Now for something new
+		command = { type = stability value = 1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = trigger which = 296755 } #TIM: New Leadership of the Kara Koyunlu
+		command = { type = relation which = IRA value = -200 }
+	}
+}
+
+#(1444-1446) Death of Ispan
+event = {
+	id = 266004 #triggered by IRA_350001
+	random = no
+	country = QAR
+	name = "EVENTNAME266004" #Death of Ispan
+	desc = "EVENTHIST266004"
+	#-#The death of Ispan signaled trouble for the Baghdad branch of the Kara Koyunlu. Ispan bequeathed the government to his nephew Elvend as his son Fluad was too young at the time. However, most of the emirs preferred Fulad believing that a younger ruler would be easier to manipulate. Because the interests of these errant emirs were in conflict with those of Jahan Shah, the main branch of the Kara Koyunlu found itself taking greater interest in the affairs of Baghdad.
+
+	action_a = {
+		name = "ACTIONNAME266004A" #Lets solve their conflict for them
+		#command = { type = AI which = "QAR-Irak.ai" }
+		command = { type = addcore which = 489 } #Iraq
+	}
+}
+
+#(1445-1450) Elvend seeks asylum in Diyarbakir
+event = {
+	id = 266007 #triggered by AKK_103003 A/B
+	random = no
+	country = QAR
+	name = "EVENTNAME266007" #Elvend seeks asylum in Diyarbakir
+	desc = "EVENTHIST266007"
+	#-#Upon the capture of Baghdad, the Kara Koyunlu prince, Elvend, sought safety under the protection of the Ak Koyunlu. To allow Elvend to remain free posed risks for the stability of the Iraqi region, so Jahan Shah appropriately asked Jahangir for his return. However, as relations between the two rulers were less than favourable, Jahangir refused. The beginnings of a war were in the making.
+
+	action_a = {
+		name = "ACTIONNAME266007A" #How dare they shelter him
+		#command = { type = AI which = "QAR-1stsheep.ai" }
+		command = { type = casusbelli which = AKK value = 72 }
+		command = { type = breakvassal which = AKK }
+		command = { type = revolt which = 508 } #Basrah
+	}
+}
+#(1445-1450) Elvend seeks asylum in Diyarbakir
+event = {
+	id = 266008 #triggered by AKK_103003 C
+	random = no
+	country = QAR
+	name = "EVENTNAME266008" #Elvend seeks asylum in Diyarbakir
+	desc = "EVENTHIST266008"
+	#-#Upon the capture of Baghdad, the Kara Koyunlu prince, Elvend, sought safety under the protection of the Ak Koyunlu. To allow Elvend to remain free posed risks for the stability of the Iraqi region, so Jahan Shah appropriately asked Jahangir for his return. However, as relations between the two rulers were less than favourable, Jahangir agreed but only at the cost of a healthy ransom.
+
+	action_a = {
+		name = "ACTIONNAME266008A" #A ransom?
+		#command = { type = AI which = "QAR-1stsheep.ai" }
+		command = { type = casusbelli which = AKK value = 72 }
+		command = { type = breakvassal which = AKK }
+		command = { type = revolt which = 508 } #Basrah
+	}
+	action_b = {
+		name = "ACTIONNAME266008B" #We too desire better relations
+		command = { type = relation which = AKK value = 25 }
+		command = { type = dynastic which = AKK }
+		command = { type = treasury value = -50 }
+		command = { type = sleepevent which = 266009 } #QAR: War of Jahangir and Elvend
+	}
+}
+
+#(1445-1455) War of Jahangir and Elvend
+event = {
+	id = 266009
+	trigger = {
+		war = { country = QAR country = AKK }
+		event = 103003
+		NOT = { event = 103006 }
+	}
+	random = no
+	country = QAR
+	name = "EVENTNAME266009" #War of Jahangir and Elvend
+	desc = "EVENTHIST266009"
+	#-#Amongst other things, the conflict over Elvend sparked a war amongst the Sheep.
+
+	date = { day = 1 month = january year = 1445 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1455 }
+
+	action_a = {
+		name = "ACTIONNAME266009A" #Too little, too late
+		command = { type = setflag which = [Mizra] }
+		command = { }
+	}
+}
+
+#(1445-1447) Jahan Shah's Independence
+event = {
+	id = 266030
+	trigger = {
+		monarch = 0114004 #Jahan Shah
+		vassal = { country = TIM country = QAR }
+	}
+	random = no
+	country = QAR
+	name = "EVENTNAME266030" #Jahan Shah's Independence
+	desc = "EVENTHIST266030"
+	#-#After years as a vassal of Shah Rukh, to whom Jahan Shah was indebted for his throne, Jahan Shah decided to begin pursuing an independent rule. With Shah Rukh's death looming near, Jahan Shah seized the opportunity to become completely independent.
+
+	date = { day = 1 month = january year = 1445 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1447 }
+
+	action_a = {
+		name = "ACTIONNAME266030A" #And so we part ways
+		command = { type = breakvassal which = TIM }
+		command = { type = relation which = TIM value = -400 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1445-1455) Reconciliation
+event = {
+	id = 266010
+	trigger = {
+		flag = [Mizra]
+		NOT = { war = { country = QAR country = AKK } }
+		NOT = { event = 103006 }
+	}
+	random = no
+	country = QAR
+	name = "EVENTNAME266010" #Reconciliation
+	desc = "EVENTHIST266010"
+	#-#Pursuant to the end of the war, Jahan Shah and Jahangir made the first steps to establishing good relations between the two Koyunlu nations. As part of the reconiliation, the daughter of Jahangir was married to Muhammed Mizra, son of Jahan Shah.
+
+	date = { day = 1 month = january year = 1445 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1455 }
+
+	action_a = {
+		name = "ACTIONNAME266010A" #Its a start
+		command = { type = relation which = AKK value = 75 }
+		command = { type = dynastic which = AKK }
+		command = { type = trigger which = 103007 } #AKK: Reconciliation
+	}
+}
+
+#(1449-1500) The Importance of Pir Budaq
+event = {
+	id = 266021
+	trigger = {
+		OR = {
+			exists = TIM
+			exists = FAR
+		}
+		OR = {
+			owned = { province = 530 data = -1 }
+			owned = { province = 531 data = -1 }
+		}
+	}
+	random = no
+	country = QAR
+	name = "EVENTNAME266021" #The Importance of Pir Budaq
+	desc = "EVENTHIST266021"
+	#-#Under the leadership of Pir Budaq, son of Jahan Shah, the Kara Koyunlu expanded into most of the Fars-Kerman region by 1452.
+
+	date = { day = 1 month = january year = 1449 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1500 }
+
+	action_a = {
+		name = "ACTIONNAME266021A" #What is theirs shall be ours!
+		command = { type = addcore which = 528 } #Lut
+		command = { type = addcore which = 529 } #Tabaristan
+		command = { type = addcore which = 532 } #Awhaz
+		command = { type = addcore which = 533 } #Isfahan
+		command = { type = addcore which = 534 } #Fars
+		command = { type = INF which = 530 value = 7000 } #Tabriz
+		command = { type = relation which = TIM value = -300 }
+		command = { type = relation which = FAR value = -400 }
+		#command = { type = AI which = "QAR-Fars.ai" }
+	}
+}
+
+#(1449-1500) The Might of the Black Sheep
+event = {
+	id = 266022
+	trigger = {
+		OR = {
+			exists = TIM
+			exists = FAR
+		}
+		OR = {
+			owned = { province = 533 data = -1 }
+			owned = { province = 534 data = -1 }
+		}
+	}
+	random = no
+	country = QAR
+	name = "EVENTNAME266022" #The Might of the Black Sheep
+	desc = "EVENTHIST266022"
+	#-#With the successful conquest of the Isfahan-Fars region, the Kara Koyunlu effectively ended the reign of the Timurid Empire in Western Iran. The Kara Koyunlu had proven themselves a force to be reckoned with.
+
+	date = { day = 1 month = january year = 1450 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1500 }
+
+	action_a = {
+		name = "ACTIONNAME266022A" #We are unstoppable!
+		command = { type = addcore which = 527 } #Kerman
+		command = { type = addcore which = 535 } #Hormouz
+		command = { type = vp value = 50 }
+	}
+}
+
+#(1466-1485) The 'Other' Turkoman Horde
+event = {
+	id = 266011
+	trigger = {
+		NOT = { vassal = { country = AKK country = QAR } }
+		atwar = no
+		exists = AKK
+	}
+	random = no
+	country = QAR
+	name = "EVENTNAME266011" #The 'Other' Turkoman Horde
+	desc = "EVENTHIST266011"
+	#-#Under Jahan Shah the Kara Koyunlu extended greatly their domain, annexing portions of Iraq and the eastern coast of the Arabian Peninsula as well as Timurid western Iran. In 1466 Jahan Shah attempted to overtake Ak Koyunlu.
+
+	date = { day = 1 month = january year = 1466 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1485 }
+
+	action_a = {
+		name = "ACTIONNAME266011A" #We can take them on
+		command = { type = war which = AKK }
+		command = { type = setflag which = [sheep] }
+		command = { type = trigger which = 103024 } #AKK: The Might of Jahan Shah
+	}
+	action_b = {
+		name = "ACTIONNAME266011B" #The timing is just not quite right
+		command = { type = vp value = -20 }
+		command = { type = relation which = AKK value = -300 }
+		command = { type = casusbelli which = AKK value = 60 }
+		command = { type = trigger which = 103023 } #AKK: The Might of Usun
+	}
+}
+
+#(1467-1485) The Death of Jahan Shah
+event = {
+	id = 266012
+	trigger = {
+		flag = [sheep]
+		NOT = { monarch = 0114004 } #Jahan Shah
+	}
+	random = no
+	country = QAR
+	name = "EVENTNAME266012" #The Death of Jahan Shah
+	desc = "EVENTHIST266012"
+	#-#With the death of Jahan Shah in late 1467, the Black Sheep Turks were without a ruler facing the threat of military invasion by the neighbouring Ak Koyunlu, the empire of the White Sheep Turks.
+
+	date = { day = 11 month = november year = 1467 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1485 }
+
+	action_a = {
+		name = "ACTIONNAME266012A" #Kill the heart, kill the beast
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = stability value = -5 }
+		command = { type = revoltrisk which = 36 value = 15 }
+		command = { type = domestic which = centralization value = -3 }
+		command = { type = sleepevent which = 266013 } #QAR: The Death of Jahan Shah
+		#command = { type = trigger which = } #AKK: fleeing of Kara Koyunlu to AKK banner
+	}
+}
+#(1467-1485) The Death of Jahan Shah
+#sequence in which war of Sheep does not occur, but Jahan Shah dies nevertheless
+event = {
+	id = 266013
+	trigger = {
+		NOT = {
+			flag = [sheep]
+			monarch = 0114004 #Jahan Shah
+		}
+	}
+	random = no
+	country = QAR
+	name = "EVENTNAME266013" #The Death of Jahan Shah
+	desc = "EVENTHIST266013"
+	#-#With the death of Jahan Shah in late 1467, the Black Sheep Turks were without a proper leader and so ready to be absorbed into Ak Koyunlu, the empire of the White Sheep Turks ruled by Uzun Hasan.
+
+	date = { day = 11 month = november year = 1467 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1485 }
+
+	action_a = {
+		name = "ACTIONNAME266013A" #Kill the heart, kill the beast
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = stability value = -5 }
+		command = { type = revoltrisk which = 7 value = 10 }
+		command = { type = domestic which = centralization value = -3 }
+		command = { type = sleepevent which = 266012 } #QAR: The Death of Jahan Shah
+		#command = { type = trigger which = } #AKK: fleeing of Kara Koyunlu to AKK banner
+	}
+}
+
+#(1468) White Sheep Ascend, Black Sheep Descend
+event = {
+	id = 266014
+	trigger = {
+		exists = AKK
+		owned = { province = 531 data = -1 } #Hamadan
+		OR = {
+			event = 266012
+			event = 266013
+		}
+	}
+	random = no
+	country = QAR
+	name = "EVENTNAME266014" #White Sheep Ascend, Black Sheep Descend
+	desc = "EVENTHIST266014"
+	#-#White Sheep Ascend, Black Sheep Descend. Without the charismatic figure of Jahan Shah, the empire of the Black Sheep Turks seemed to inexorably wait for the end, any day now, to the benefits of the rising power of the White Sheep Turks of Ak Koyunlu.
+
+	date = { day = 1 month = november year = 1468 }
+
+	action_a = {
+		name = "DRATS"
+		command = { type = capital which = 531 } #Hamadan
+		command = { type = stability value = -3 }
+		command = { type = vp value = -100 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = revoltrisk which = 120 value = 10 }
+		command = { type = secedeprovince which = AKK value = 487 } #Azerbaijan
+		command = { type = secedeprovince which = AKK value = 488 } #Kirkuk
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = sleepevent which = 266025 } #QAR: White Sheep Ascend, Black Sheep Descend - alternate 1
+		command = { type = sleepevent which = 266026 } #QAR: White Sheep Ascend, Black Sheep Descend - alternate 2
+	}
+}
+#(1468) White Sheep Ascend, Black Sheep Descend - alternate 1
+event = {
+	id = 266025
+	trigger = {
+		exists = AKK
+		OR = {
+			event = 266012
+			event = 266013
+		}
+		NOT = {
+			owned = { province = 531 data = -1 } #Hamadan
+			countrysize = 15
+		}
+	}
+	random = no
+	country = QAR
+	name = "EVENTNAME266014" #White Sheep Ascend, Black Sheep Descend
+	desc = "EVENTHIST266014"
+	#-#White Sheep Ascend, Black Sheep Descend. Without the charismatic figure of Jahan Shah, the empire of the Black Sheep Turks seemed to inexorably wait for the end, any day now, to the benefits of the rising power of the White Sheep Turks of Ak Koyunlu.
+
+	date = { day = 1 month = november year = 1468 }
+
+	action_a = {
+		name = "ACTIONNAME266025A" #We are done for (End Game)
+		command = { type = stability value = -6 }
+		command = { type = vp value = -100 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = revoltrisk which = 120 value = 20 }
+		command = { type = domestic which = centralization value = -4 }
+		command = { type = trigger which = 103025 } #AKK: The End of the Black Sheep
+		command = { type = sleepevent which = 266016 } #QAR: The End of the Black Sheep
+		command = { type = sleepevent which = 266015 } #QAR: Capture of Hamadan
+		command = { type = sleepevent which = 266014 } #QAR: White Sheep Ascend, Black Sheep Descend
+		command = { type = sleepevent which = 266026 } #QAR: White Sheep Ascend, Black Sheep Descend - alternate 2
+	}
+}
+#(1468) White Sheep Ascend, Black Sheep Descend - alternate 2
+event = {
+	id = 266026
+	trigger = {
+		countrysize = 15
+		exists = AKK
+		OR = {
+			event = 266012
+			event = 266013
+		}
+		NOT = {
+			owned = { province = 531 data = -1 } #Hamadan
+		}
+	}
+	random = no
+	country = QAR
+	name = "EVENTNAME266014" #White Sheep Ascend, Black Sheep Descend
+	desc = "EVENTHIST266014"
+	#-#White Sheep Ascend, Black Sheep Descend. Without the charismatic figure of Jahan Shah, the empire of the Black Sheep Turks seemed to inexorably wait for the end, any day now, to the benefits of the rising power of the White Sheep Turks of Ak Koyunlu.
+
+	date = { day = 1 month = november year = 1468 }
+
+	action_a = {
+		name = "ACTIONNAME266026A" #All hope is lost
+		command = { type = stability value = -6 }
+		command = { type = vp value = -100 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = revoltrisk which = 120 value = 20 }
+		command = { type = domestic which = centralization value = -4 }
+		command = { type = sleepevent which = 266014 } #QAR: White Sheep Ascend, Black Sheep Descend
+		command = { type = sleepevent which = 266025 } #QAR: White Sheep Ascend, Black Sheep Descend - alternate 1
+	}
+}
+
+#(1468-1490) Capture of Hamadan
+event = {
+	id = 266015
+	trigger = {
+		exists = AKK
+		OR = {
+			AND = {
+				NOT = { owned = { province = 531 data = -1 } } #Hamadan
+				event = 266014 #QAR: White Sheep Ascend, Black Sheep Descend
+			}
+			AND = {
+				owned = { province = 531 data = -1 } #Hamadan
+				OR = {
+					event = 266014 #QAR: White Sheep Ascend, Black Sheep Descend
+					event = 266026 #QAR: White Sheep Ascend, Black Sheep Descend - alternate 2
+				}
+				OR = {
+					control = { province = 531 data = AKK } #Hamadan
+					control = { province = 531 data = REB } #Hamadan
+				}
+			}
+		}
+	}
+	random = no
+	country = QAR
+	name = "EVENTNAME266015" #Capture of Hamadan
+	desc = "EVENTHIST266015"
+	#-#The attempt to overtake Ak Koyunlu ended in Jahan Shah's defeat and death and within two years the Kara Koyunlu would succumb to the superior Ak Koyunlu forces, commanded by Usun Hasan.
+
+	date = { day = 1 month = january year = 1468 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1490 }
+
+	action_a = {
+		name = "ACTIONNAME266015A" #We gave it our best shot
+		command = { type = setflag which = [sheeplost] }
+	}
+}
+
+#(1468-1490) The End of the Black Sheep
+event = {
+	id = 266016
+	trigger = {
+		exists = AKK
+		atwar = no
+		flag = [sheeplost]
+	}
+	random = no
+	country = QAR
+	name = "EVENTNAME266016" #The End of the Black Sheep
+	desc = "EVENTHIST103025"
+	#-#After the defeat of Jahan Shah, the Kara Koyunlu tried to rally around Hasan Ali. However, their attempts proved in vain, and the were absorbed into Usun Hasan's growing empire.
+
+	date = { day = 1 month = january year = 1468 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1490 }
+
+	action_a = {
+		name = "ACTIONNAME266016A" #That's pretty much a wrap folks
+		command = { type = stability value = -2 }
+		command = { type = vp value = -100 }
+		command = { type = secedeprovince which = AKK value = 472 } #Iveria
+		command = { type = secedeprovince which = AKK value = 473 } #Armenia
+		command = { type = secedeprovince which = AKK value = 487 } #Azerbaijan
+		command = { type = secedeprovince which = AKK value = 488 } #Kirkuk
+		command = { type = secedeprovince which = AKK value = 489 } #Iraq
+		command = { type = secedeprovince which = AKK value = 528 } #Lut
+		command = { type = secedeprovince which = AKK value = 529 } #Tabaristan
+		command = { type = secedeprovince which = AKK value = 530 } #Tabriz
+		command = { type = secedeprovince which = AKK value = 532 } #Awhaz
+		command = { type = secedeprovince which = AKK value = 533 } #Isfahan
+		command = { type = secedeprovince which = AKK value = 534 } #Fars
+		command = { type = trigger which = 103025 } #AKK: The End of the Black Sheep
+	}
+}
+
+#(1485-1505) Safavid Takeover - Ahistorical
+event = {
+	id = 266023
+	trigger = {
+		NOT = {
+			exists = PER
+			event = 103015 #AKK: Safavid Takeover
+		}
+		owned = { province = 487 data = -1 } #Azerbaijan
+		control = { province = 487 data = -1 } #Azerbaijan
+		event = 266019 #MUS: Jahan Shah Lives!
+	}
+	random = no
+	country = QAR
+	name = "EVENTNAME266023" #Safavid Takeover
+	desc = "EVENTHIST266023"
+	#-#Jahan Shah's religious policy was quite lax and subject to change. Jahan Shah typically espoused the religion that would help him the most at a given moment. Such a policy was dangerous as it was inevitable that his followers would tire of his duplicity. As fate would have it the Safavid sect, a sect of shiite priests from Azerbaijan, began gaining popular support in the 1480s. As was his policy, Jahan Shah sought to prevent them from ever becoming a threat by appearing to pander to their beliefs and invited their leader, Sultan Haidar, to his court. Jahan Shah miscalculated badly, as upon Haidar's arrival in Tabriz, the people of the city took up arms against Jahan Shah and proclaimed Haidar ruler of Persia. While it would be a while before Haidar could consolidate his empire, the time of Kara Koyunlu dominance was over.
+
+	date = { day = 1 month = may year = 1485 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1505 }
+
+	action_a = {
+		name = "ACTIONNAME266023A" #He who plays with fire will one day be burnt
+		command = { type = flagname which = "" }
+		command = { type = country which = PER }
+		command = { type = capital which = 487 } #Azerbaijan
+		command = { type = add_countryculture which = persian }
+		command = { type = add_countryculture which = kurdish }
+		command = { type = revolt which = -2 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revoltrisk which = 60 value = 7 }
+		command = { type = stability value = -1 }
+		command = { type = domestic which = centralization value = -3 }
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = trigger which = 254020 } #PER: The Accession of the Safavids
+		command = { type = sleepevent which = 103015 } #AKK: Safavid Takeover
+	}
+}
+
+#(1501-1530) Ismail's Resurrection of Persia
+event = {
+	id = 3369
+	trigger = {
+		owned = { province = 487 data = -1 } #Azerbaijan
+		NOT = {
+			exists = PER
+			stability = 2 #Lower than 2
+		}
+	}
+	random = no
+	country = QAR
+	name = "EVENTNAME3369" #Ismail's Resurrection of Persia
+	desc = "EVENTHIST3369"
+	#-#Ismaïl emerged at the age of 14 to take his father's position as head of the Kizilbash (a Shiite Turkmen tribe). He quickly established a base of power in north-western Persia, and in 1501 he took the city of Tabriz and proclaimed himself Shah of Iran. In a succession of swift conquests he crushed the Ak Koyunlu (White Sheep Turks) and resurrected the nation of Iran under his Safavid dynasty.
+
+	date = { day = 1 month = january year = 1501 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1530 }
+
+	action_a = {
+		name = "ACTIONNAME3369A" #Crush the Shiite rebels
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revoltrisk which = 90 value = 8 }
+		command = { type = stability value = -6 }
+	}
+	action_b = {
+		name = "ACTIONNAME3369B" #Negotiate with Ismaïl
+		command = { type = flagname which = "" }
+		command = { type = country which = PER }
+		command = { type = religion which = shiite }
+		command = { type = add_countryculture which = persian }
+		command = { type = remove_countryculture which = turkish }
+		command = { type = remove_countryculture which = kurdish }
+		command = { type = revoltrisk value = -8 }
+		command = { type = cav which = -1 value = 7000 }
+		command = { type = stability value = 1 }
+		command = { type = sleepevent which = 266024 } #QAR: Ak Koyunlu join the Safavid cause
+	}
+}
+
+#(1501-1510) Ak Koyunlu join the Safavid cause
+event = {
+	id = 266024
+	trigger = {
+		NOT = {
+			event = 266019 #MUS: Jahan Shah Lives!
+			exists = PER
+			exists = AKK
+		}
+		event = 3369 #QAR: Ismail's Resurrection of Persia
+	}
+	random = no
+	country = QAR
+	name = "EVENTNAME266024" #Ak Koyunlu join the Safavid cause
+	desc = "EVENTHIST266024"
+	#-#In August of 1501, Sheikh Ismail of the Safavids departed from Erzincan with the goal of securing Širvan in order to establish a Safavid state. Despite their superior equipment and numbers, the army of Širvan found itself defeated by the religious zeal of Ismail's followers. After his success in Širvan, Ismail moved to conquer the castle of Gulistan. Uneasy under the yoke of the Kara Koyunlu, the Ak Koyunlu related to the Safavids via intermarriage, decided to seek common cause with Ismail and rose up in revolt.
+
+	date = { day = 1 month = january year = 1501 }
+	offset = 10
+	deathdate = { day = 1 month = december year = 1510 }
+
+	action_a = {
+		name = "ACTIONNAME103010A" #Most unfortunate
+		command = { type = revolt which = 487 } #Azerbaijan
+		command = { type = revolt which = 487 } #Azerbaijan
+		command = { type = revolt which = 487 } #Azerbaijan
+		command = { type = revolt which = 487 } #Azerbaijan
+		command = { type = revolt which = 473 } #Kurdistan
+		command = { type = revolt which = 474 } #Sivas
+		command = { type = revolt which = 476 } #Nuyssaybin
+		command = { type = revolt which = -1 }
+		command = { type = desertion which = 487 value = 7000 } #Azerbaijan
+		command = { type = desertion which = -1 value = 3000 }
+		command = { type = desertion which = -1 value = 3000 }
+		command = { type = desertion which = -1 value = 3000 }
+		command = { type = revoltrisk which = 60 value = 10 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 266028-266029 - next : 266031

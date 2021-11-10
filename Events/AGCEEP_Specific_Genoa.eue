@@ -1,0 +1,2866 @@
+#Genoa (GEN)
+
+#See AGCEEP_Alt_Italy.eue for KoI Alternative events
+
+#-----------------------------------------------------------------------------------------------
+#Black Sea colonies Sequence
+
+#(1419-1491) The trade in the Black Sea - when cot is removed
+event = {
+	id = 174023 #triggered by TUR_3352
+	trigger = {
+		owned = { province = 465 data = -1 } #Kerch
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174023" #The trade in the Black Sea
+	desc = "EVENTHIST174023"
+	#-#After the fall of Constantinople to the Ottomans, it became increasingly difficult and costly for Genoa to maintain its' possessions in the Black Sea. The economic influence of Italian merchants in the area was also diminishing, as the Ottomans could now control the inlet to the sea. Genoese government ceded all its' possessions there to the Bank of San Giorgio in 1453. The Bank of San Giorgio was administrating the holdings until they fell to the Ottomans twenty two years later. Due to the precarious location and isolation they couldn't be defended.
+
+	action_a = {
+		name = "ACTIONNAME174023A" #We are losing control
+		command = { type = provincetax which = 465 value = -1 } #Kerch
+	}
+}
+#(1475-1820) Genoa loses its colonies in the Black Sea
+event = {
+	id = 174022
+	trigger = {
+		owned = { province = 465 data = -1 } #Kerch
+		owned = { province = 357 data = TUR } #Thrace
+		NOT = { cot = 465 }
+		NOT = {
+			owned = { province = 464 data = -1 } #Kaffa
+			owned = { province = 463 data = -1 } #Crimea
+			owned = { province = 466 data = -1 } #Azov
+			owned = { province = 469 data = -1 } #Abkhazia
+		}
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174022" #Genoa loses its colonies in the Black Sea
+	desc = "EVENTHIST174022"
+	#-#After the fall of Constantinople to the Ottomans, it became increasingly difficult for Genoa to maintain its' possessions in the Black Sea. The Bank of San Giorgio in Genoa was administrating the holdings since 1453, the most important strongholds were the two fortresses Chembalo and Sudak, and the city Kaffa. In 1475 a large Turkish fleet under Grand Vizier Keduk Akhmet Pasha arrived to conduct a naval landing and started to besiege Kaffa with Tatar aid. After five days Kaffa surrendered and 500 Genoese families were sent to Constantinople, many leaders manage to flee to Mangup, including the governor Antonietto da Cabella and the general Francisco Guasconcini.
+
+	date = { day = 5 month = january year = 1475 }
+	offset = 100
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME174022A" #We cannot keep these outposts
+		command = { type = secedeprovince which = TUR value = 465 } #Kerch
+		command = { type = casusbelli which = TUR value = 60 }
+		command = { type = badboy value = -1 }
+		command = { type = trigger which = 301009 } #TUR: Conquest of Genoese strongholds
+	}
+}
+#End of Black Sea colonies Sequence
+#-----------------------------------------------------------------------------------------------
+
+#(1421) Genoa encircled
+event = {
+	id = 174005
+	trigger = {
+		exists = ARG
+		exists = MLO
+		NOT = {
+			owned = { province = 398 data = -1 } #Corsica
+		 	alliance = { country = GEN country = MLO }
+		 	vassal = { country = MLO country = GEN }
+		 	vassal = { country = GEN country = MLO }
+			war = { country = MLO country = ARG }
+		}
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174005" #Genoa encircled
+	desc = "EVENTHIST174005"
+	#-#In 1421 Genoa faced threats on two fronts. Aragon was controlling Corsica except for the two genoese cities of Calvi and Bonifacio, while at the same time Milan resumed its support of Genoese exiles who promised to submit to Milanese rule. As a large army under the famous general Carmagnola approached the Genoese border the situation of the city looked hopeless. In order to extract themselves from this predicament the Genoese offered to submit to Milan. Under Milanese rule order was maintained in Genoa and a loose control was maintained over the Genoese cities in Corsica. If we resist Aragon will eventually assert their claim over the whole of Corsica and we may face aggression from both Milan and Aragon. What should we do?
+
+	date = { day = 1 month = january year = 1421 }
+	offset = 60
+	deathdate = { day = 1 month = september year = 1421 }
+
+	action_a = {
+		name = "ACTIONNAME174005A" #Submit to Milan
+		command = { type = relation which = MLO value = -50 }
+		command = { type = relation which = ARG value = -20 }
+		command = { type = wakemonarch which = 052001 } #Filippo Maria Visconti
+		command = { type = trigger which = 228000 } #MLO: Genoa Submits to Milan
+	}
+	action_b = {
+		name = "ACTIONNAME174005B" #Fight the Milan-Aragon alliance
+		command = { type = relation which = MLO value = -50 }
+		command = { type = relation which = ARG value = -20 }
+		command = { type = trigger which = 228001 } #MLO: Genoa defies Milan
+		command = { type = trigger which = 111001 } #ARG: The alliance with Milan
+	}
+}
+#(1421) Genoa response if Genoa submits and Milan refuses, by Bordic
+event = {
+	id = 174024 #triggered by MLO_228000 B
+	random = no
+	country = GEN
+	name = "EVENTNAME174024" #Milan refuses our offer
+	desc = "EVENTHIST174024"
+	#-#Threatened with a final Aragonese invasion of Corsica, Genoa offered her submission to Milan in the hope to save Corsica, but Visconti didn't accept to establish his Signoria.
+
+	action_a = {
+		name = "ACTIONNAME174024A" #Hail to the Fregoso Family!
+		command = { type = relation which = MLO value = -25 }
+		command = { type = sleepmonarch which = 052001 } #Filippo Maria Visconti
+	}
+}
+
+#(1423) Aragon threatens the sea trade
+#by Bordic
+event = {
+	id = 174026 #triggered by MLO_228019 A
+	random = no
+	country = GEN
+	name = "EVENTNAME174026" #Aragon threatens the sea trade
+	desc = "EVENTHIST239011"
+	#-#Alfons of Aragon, after being adopted by Giovanna of Anjou-Durazzo, arrived at the Kingdom of Naples with the intention of being recognised as its legitimate ruler, due mainly to his descent from the last Hohenstaufen King of Sicily, and not due to the will of a member of an usurping dynasty, the House of Anjou. He wanted to take control of Naples immediately without waiting for the Queen's death. He soon imprisoned Caracciolo, Giovanna's lover, but he failed to capture the Queen. Muzio Attendolo Sforza, the Neapolitan condottiero in the service of the Pope, informed that Giovanna was in great danger, went hastily to Naples and rescued her. It was then easy for the Pope to convince the Queen to adopt Louis III of Anjou, Count of Provence, instead of Alfons of Aragon. Taking advantage of the absence of Alfons due to his problems in Aragon, and with the military help of Visconti, Duke of Milan and Signore of Genoa, the Aragonese were expelled from Naples, and Giovanna appointed Louis as Duke of Calabria, the heir's title. Louis moved his court to Cosenza to arrange his stay in Italy.
+
+	action_a = {
+		name = "ACTIONNAME228019A" #Support the Angevins in Naples
+		command = { type = relation which = PAP value = 25 }
+		command = { type = relation which = ARG value = -50 }
+		command = { type = treasury value = -30 }
+	}
+	action_b = {
+		name = "ACTIONNAME3192B" #Stay neutral
+		command = { type = stability value = -1 }
+		command = { type = relation which = PAP value = -25 }
+		command = { type = relation which = MLO value = -25 }
+	}
+}
+
+#(1425) Carmagnola Governor of Genoa
+#by Bordic
+event = {
+	id = 174025 #triggered by MLO_228015 C
+	trigger = {
+		vassal = { country = MLO country = GEN }
+		NOT = { event = 174024 } #GEN: Milan refuses our offer
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174025" #Carmagnola Governor of Genoa
+	desc = "EVENTHIST174025"
+	#-#The Duke of Milan, Filippo Maria Visconti, on advise of his nobles and also convinced that Carmagnola could become a danger to his rule, deprived him of the army command and retired him as governor of Genoa. The triumphant condottiero felt greatly aggrieved and most of all betrayed. After a harsh dispute with the Duke, he then submitted to his will and accepted the new appointment.
+
+	action_a = {
+		name = "ACTIONNAME174025A" #Hail!
+		command = { type = wakemonarch which = 052160 } #fantasy Carmagnola until 1435 #Francesco Bussone Carmagnola °
+		command = { type = MIL which = 2 value = 120 }
+	}
+}
+
+#(1434) Corsicans submit
+event = {
+	id = 174033 #triggered by ARG_111027
+	random = no
+	country = GEN
+	name = "EVENTNAME174033" #Corsicans will pledge to us
+	desc = "EVENTHIST174033"
+	#-#Since the middle of the fourteenth century, Corsica had been divided into three political entities. In the South, Dilà dei Monti (Beyond the Mountains) was the Terra di'Signori, the Land of the Lords held by feudal dynasties. The five most important were all issued from the same ancestor: Arrigu di Cinarca. The di Leca, the della Rocca, the d'Istria, the d'Ornanu and the di Bozzi kept fighting each other all the time, and alliances and truces between them were broken as easily as they were made. Having their support was essential for a foreign power trying to control this part of the island so they often found themselves supported in their petty strives by Pisa, Genoa or Aragon. Two of the Cinarchesi only managed to unite the whole Dilà under their rule. The first one had been Sinucellu Ghjudice di Cinarca (1219-1307) before dying in a Genoese cell. The second one was Vincentellu d'Istria appointed as a Viceroy by Alfons V of Aragon in 1416. In the North, Diquà dei Monti (Beneath the Mountains) was the Terra di U Cumunu, the Land of the Communes held by villagers' communities led by magistrates and making their own laws though they most often paid taxes to some higher authority. The original organization was kind of democratic but the powerful local families soon took the habit to manipulate the electoral system to keep the important positions between themselves. Some of them had been, or later would be, ennoblished by Genoa and frequent marriages occured between the d'Omessa, the della Casabianca, the di Matra, the di Casta and many others, and the Cinarchese or the Capicorsi lords. They were also merchant families who asked for peace and order before anything else and were ready to submit to whomever was insuring those, be they Pisan or Genoese Republics, or Aragonese Viceroy. In the Capicorsu, the Corsican Cape being the northernmost tip of the island, Genoese noble families had settled during the tweltfh and thirteenth centuries. Although they might be considered as Corsican more than a century later, the da Mare and the de Gentile still had strong ties with their branches which had remained in Genoa. They always provided the best support for the Genoans in their wars on the island. Only on a few occasions, when they deemed themselves tricked or robbed by the Republic, would they attempt to rebel or join ongoing revolts.\nThe Aragonese viceroy, Vincentellu d'Istria, was captured at sea. Tried in Genoa, he was executed on 27th April 1434. Simone da Mare, a Genoese nobleman elected Count by the rebels immediately pledged fealty to the Republic of Genoa and ruled on its behalf thereafter.
+
+	action_a = {
+		name = "ACTIONNAME174033A" #Acknowledge Simone da Mare as the Count of Corsica
+		command = { type = vassal which = COR }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = relation which = COR value = 200 }
+	}
+}
+#(1434) Corsicans won't submit
+event = {
+	id = 174034 #triggered by COR_150004 B / COR_150006 B
+	random = no
+	country = GEN
+	name = "EVENTNAME174034" #Corsicans still won't recognize our rule
+	desc = "EVENTHIST174034"
+	#-#The Aragonese viceroy, Vincentellu d'Istria, was captured at sea. Tried in Genoa, he was executed on 27th April 1434. Simone da Mare, a Genoese nobleman elected Count by the rebels seems to be having serious troubles dealing with other factions within the rebellion. What shall we do about it?
+
+	action_a = {
+		name = "ACTIONNAME174034A" #This island is ours
+		command = { type = war which = COR }
+		command = { type = domestic which = offensive value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME174034B" #Let fall of this piece of rock
+		command = { type = removecore which = 398 } #Corsica
+		command = { type = domestic which = land value = 2 }
+		command = { type = trigger which = 150009 } #COR: Freedom
+	}
+}
+
+#(1435) The Visconti's betrayal
+#by Bordic
+event = {
+	id = 174027 #triggered by MLO_228020
+	random = no
+	country = GEN
+	name = "EVENTNAME174027" #The Visconti's betrayal
+	desc = "EVENTHIST228020"
+	#-#After the death of Giovanna of Anjou without natural heirs, a war of succession for the Kingdom of Naples broke out between the two claimants, René of Anjou and Alfons of Aragon, both designated heirs in two different times by Giovanna. Filippo Maria Visconti of Milan, also Signore of Genoa, preoccupied for the increasing Aragonese influence in the Mediterranean sea trade routes as much as in the Italian peninsula, decided to support the Angevins. Alfons of Aragon was defeated and captured by a Genovese fleet at the battle of Ponza in 1435. Transferred to Milan, Alfons succeeded in gaining Visconti's favour to his cause against the French Angevins. He convinced Filippo Maria that a French presence in Italy could be against the interests of Milan since the House of Orléans had never hidden its dynastic claims on the Duchy of Milan. But Genoa, a bitter rival of Aragon during centuries of dispute over Sardinia, Corsica, and the control of the Western Mediterranean trade, was appalled by Visconti's sudden change of sides, and immediately asked for admission in the Venetian-Florentine league against her former suzerain.
+
+	action_a = {
+		name = "ACTIONNAME174027A" #We'll never support the Aragonese
+		command = { type = breakvassal which = MLO }
+		command = { type = stability value = 2 }
+		command = { type = relation which = MLO value = -200 }
+		command = { type = relation which = PRO value = 25 }
+		command = { type = casusbelli which = ARG value = 60 }
+		command = { type = casusbelli which = MLO value = 60 }
+	}
+}
+
+#(1436-1441) The league against Visconti
+event = {
+	id = 174096
+	trigger = {
+		event = 326070 #VEN: Genoa joins the league against Milan
+		vassal = { country = VEN country = GEN }
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174096" #The league against Visconti
+	desc = "EVENTHIST326070"
+	#-#As Alfonso of Aragon convinced the Duke of Milan to join his side against Angevin interference in Italy, the Republic of Genoa, a bitter rival of Aragon during centuries of dispute over Sardinia, Corsica, and the control of the Western Mediterranean trade, rejected Visconti's lordship joining the league formed by Venice and Florence against her former suzerain.
+
+	date = { day = 0 month = January year = 1436 }
+	offset = 20
+	deathdate = { day = 20 month = November year = 1441 }
+
+	action_a = {
+		name = "OK"
+		command = { type = breakvassal which = VEN }
+		command = { type = stability value = 3 }
+	}
+}
+
+#(1437) Annexation by Genoa
+event = {
+	id = 174035 #triggered by COR_150008 A
+	random = no
+	country = GEN
+	name = "EVENTNAME174035" #The three Counts of Corsica
+	desc = "EVENTHIST174035"
+	#-#The execution of Vincentellu d'Istria caused great troubles in Corsica during the following three years, as was intended. Three men found themselves fighting each other, each one claiming to be the rightful Count of Corsica: Simone da Mare (elected in 1430 and appointed by the Genoese in 1434), Ghjudice d'Istria (Vincentellu's nephew, appointed by the Aragonese in 1435), and Paulu della Rocca (elected in 1436). At the end of that year, the Republic endeavoured to take direct control back. Giovanni and Nicolo da Montaldo, sons of the former governor, were sent with troops in Corsica. They quickly rallied their partisans there and managed to defeat the two false pretenders. They also bought some key-fortresses to gain a tighter control over the countryside and eventually, they threw the da Mare lord in prison.
+
+	action_a = {
+		name = "ACTIONNAME174035A" #Send the two war-captains
+		command = { type = inherit which = COR }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = land value = -1 }
+		command = { type = treasury value = -100 }
+		command = { type = inf which = 403 value = 5000 } #Liguria
+	}
+}
+
+#(1438) First revolts after annexion
+event = {
+	id = 174036
+	trigger = {
+		event = 174035 #GEN: The three counts of Corsica
+		owned = { province = 398 data = -1 } #Corsica
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174036" #Da Mare partisans
+	desc = "EVENTHIST174036"
+	#-#Former count of Corsica, Simone da Mare was imprisoned by our governors as soon as they had used his help to crush the pro-aragonese and the local rebellions. It seems he had more partisans than the da Montaldo brothers thought. They are rising against us right now to free him and maybe put him in charge again.
+
+	date = { day = 0 month = january year = 1438 }
+	offset = 180
+	deathdate = { day = 29 month = june year = 1438 }
+
+	action_a = {
+		name = "ACTIONNAME174036A" #How ungrateful
+		command = { type = revolt which = 398 } #Corsica
+	}
+}
+
+#(1438-1820) Core removal upon Corsica - Ahistorical
+event = {
+	id = 174019
+	trigger = {
+		core = { province = 398 data = -1 } #Corsica
+		OR = {
+			AND = {
+				core = { province = 398 data = ARG }
+				owned = { province = 398 data = ARG }
+				control = { province = 398 data = ARG }
+				NOT = { war = { country = GEN country = ARG } }
+			}
+			AND = {
+				core = { province = 398 data = PAP }
+				owned = { province = 398 data = PAP }
+				control = { province = 398 data = PAP }
+				NOT = { war = { country = GEN country = PAP } }
+			}
+			AND = {
+				core = { province = 398 data = MLO }
+				owned = { province = 398 data = MLO }
+				control = { province = 398 data = MLO }
+				NOT = { war = { country = GEN country = MLO } }
+			}
+			AND = {
+				core = { province = 398 data = SAV }
+				owned = { province = 398 data = SAV }
+				control = { province = 398 data = SAV }
+				NOT = { war = { country = GEN country = SAV } }
+			}
+			AND = {
+				core = { province = 398 data = FRA }
+				owned = { province = 398 data = FRA }
+				control = { province = 398 data = FRA }
+				NOT = { war = { country = GEN country = FRA } }
+			}
+			AND = {
+				core = { province = 398 data = ENG }
+				owned = { province = 398 data = ENG }
+				control = { province = 398 data = ENG }
+				NOT = { war = { country = GEN country = ENG } }
+			}
+		}
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174019" #Corsica is lost
+	desc = "EVENTHIST174019"
+	#-#The new owner of Corsica now has much stronger claims than us, we can only acknowledge that.
+
+	date = { day = 0 month = january year = 1438 }
+	offset = 3600
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ALAS"
+		command = { type = removecore which = 398 }
+		command = { type = stability value = -3 }
+		command = { type = domestic which = land value = 2 }
+	}
+}
+
+#(1439-1440) Second revolts after annexion
+event = {
+	id = 174037
+	trigger = {
+		event = 174035 #GEN: The three counts of Corsica
+		owned = { province = 398 data = -1 } #Corsica
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174037" #Della Rocca partisans
+	desc = "EVENTHIST174037"
+	#-#Elected count of Corsica, Paulu della Rocca was defeated by our governors a few years ago. It seems he has found himself some new allies. The powerful di Leca family and some lesser ones such as the d'Ornanu and the di Bozzi side with him now.
+
+	date = { day = 0 month = august year = 1439 }
+	offset = 360
+	deathdate = { day = 29 month = july year = 1440 }
+
+	action_a = {
+		name = "ACTIONNAME174037A" #This is becoming messy...
+		command = { type = revolt which = 398 } #Corsica
+		command = { type = revolt which = 398 } #Corsica
+		command = { type = province_revoltrisk which = 398 value = 10 }
+	}
+}
+
+#(1443) Third revolts after annexion
+event = {
+	id = 174038
+	trigger = {
+		event = 174035 #GEN: The three counts of Corsica
+		owned = { province = 398 data = -1 } #Corsica
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174038" #D'Istria partisans
+	desc = "EVENTHIST174038"
+	#-#Count of Corsica on behalf of the King of Aragon, Ghjudice d'Istria had remained in his personal demesne for the last few years. With renewed support from his liege, it seems he is now trying to take advantage of the current state of disorder to pursue his claim.
+
+	date = { day = 0 month = april year = 1443 }
+	offset = 30
+	deathdate = { day = 29 month = april year = 1443 }
+
+	action_a = {
+		name = "ACTIONNAME174038A" #Well... the more fools...
+		command = { type = revolt which = 398 } #Corsica
+		command = { type = province_revoltrisk which = 398 value = 5 } #Corsica
+	}
+}
+
+#(1443-1447) Papal intervention in Corsica
+event = {
+	id = 174064 #triggered by PAP_251057 A
+	random = no
+	country = GEN
+	name = "EVENTNAME174064" #Papal intervention in Corsica
+	desc = "EVENTHIST174064"
+	#-#Tired of the endless fighting between various local factions and foreign invaders, five most eminent leaders of the Diquà dei Monti have called to the Pope and officially asked him to retake Corsica under full control. Soon, those men began to raise the Communes with help from Papal emissaries. Later, an army would come.
+
+	action_a = {
+		name = "ACTIONNAME174064A" #We didn't need that
+		command = { type = revolt which = 398 } #Corsica
+		command = { type = revolt which = 398 } #Corsica
+		command = { type = province_revoltrisk which = 398 value = 10 }
+	}
+}
+
+#(1444) Bankruptcy of the Casa San Giorgio
+event = {
+	id = 174006
+	random = no
+	country = GEN
+	name = "EVENTNAME174006" #Bankruptcy of the Casa San Giorgio
+	desc = "EVENTHIST174006"
+	#-#In 1407 Genoa had consolidated its state debt into a bank known as the Casa San Giorgio. Debt holders became shareholders in the Casa and their interest payments became dividends. Various taxes were paid directly to the Casa, which also provided loans and bills of exchange to shareholders. In 1437 the Casa took over the Genoese mint and responsibility for maintaining the value of the currency. In 1444 a combination of extensive new loans made to the state and the failure of the currency peg put the Casa into bankruptcy.
+
+	date = { day = 1 month = january year = 1444 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1444 }
+
+	action_a = {
+		name = "ACTIONNAME174006A" #There is nothing we can do
+		command = { type = treasury value = -30 }
+		command = { type = inflation value = 2 }
+		command = { type = stability value = -2 }
+	}
+	action_b = {
+		name = "ACTIONNAME174006B" #The state will meet the Casa's debts
+		command = { type = treasury value = -500 }
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1453) Bank of St-George
+event = {
+	id = 174039
+	trigger = {
+		owned = { province = 398 data = -1 }
+		OR = {
+			event = 174036 #GEN: First revolts after annexion
+			event = 174037 #GEN: Second revolts after annexion
+			event = 174038 #GEN: Third revolts after annexion
+			event = 174064 #GEN: Papal intervention in Corsica
+		}
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174039" #Capitulae Corsorum
+	desc = "EVENTHIST174039"
+	#-#At the beginning of 1453, the situation in Corsica had become unbearable. Either with help from Aragon and Papal States or of their own initiative, feudal lords in Dilà and free communes in Diquà were constantly rising against our rule. Crimes remained unpunished and taxes couldn't be raised. Some islander leaders then offered to submit to the Bank of St George in the hope that the Genoese institution would be able to restore order. The Capituale Corsorum signed by the Bank's representatives and the Corsican delegates gave authority to the former for all matters of public order, justice rendering and perception of taxes in the island. All the lords but one submitted to the Bank within the next months.
+
+	date = { day = 24 month = february year = 1453 }
+	offset = 210
+	deathdate = { day = 0 month = october year = 1453 }
+
+	action_a = {
+		name = "ACTIONNAME174039A" #Maybe they'll manage this island better
+		command = { type = stability value = -1 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = mercantilism value = 1 }
+		command = { type = province_revoltrisk which = 398 value = -20 } #Corsica
+		command = { type = provincetax which = 398 value = -1 } #Corsica
+		command = { type = trigger which = 251058 } #PAP: Failure in Corsica
+		command = { type = setflag which = [giorgio] }
+	}
+	action_b = {
+		name = "ACTIONNAME174039B" #Greedy lords can still be bought
+		command = { type = stability value = -2 }
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = domestic which = serfdom value = 1 }
+		command = { type = province_revoltrisk which = 398 value = -5 } #Corsica
+		command = { type = treasury value = -200 }
+		command = { type = adm which = 1 value = 24 }
+		command = { type = setflag which = [bribelords] }
+	}
+	action_c = {
+		name = "ACTIONNAME174039C" #We shall take care of the petty lords by force
+		command = { type = stability value = -3 }
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = revolt which = 398 }
+		command = { type = revolt which = 398 }
+		command = { type = revolt which = 398 }
+		command = { type = province_revoltrisk which = 398 value = 15 } #Corsica
+		command = { type = treasury value = -400 }
+		command = { type = inf which = 403 value = 8000 } #Liguria
+		command = { type = mil which = 1 value = 60 }
+		command = { type = setflag which = [crushlords] }
+	}
+}
+
+#(1453-1455) Corsican lords are bribed - Ahistorical
+event = {
+	id = 174061
+	trigger = {
+		flag = [bribelords]
+		owned = { province = 398 data = -1 } #Corsica
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174061" #Corsican lords are now our loyal subjects
+	desc = "EVENTHIST174061"
+	#-#The Cinarchese lords' privileges are confirmed and their nobility is officially recognized by the Genoese Senate. This makes them free from taxes and they will levy them upon their own demesnes. They shall have no reason to bear arms against us ever again.
+
+	date = { day = 1 month = october year = 1453 }
+	offset = 720
+	deathdate = { day = 0 month = october year = 1455 }
+
+	action_a = {
+		name = "ACTIONNAME174061A" #Fine
+		command = { type = province_revoltrisk which = 398 value = -20 }
+		command = { type = provincetax which = 398 value = -1 } #Corsica
+		command = { type = trigger which = 251058 } #PAP: Failure in Corsica
+		command = { type = sleepevent which = 174051 } #GEN: Death of the last of the Cinarchesi
+		command = { type = clrflag which = [bribelords] }
+	}
+}
+#(1453-1457) Corsican lords can't be bribed - Ahistorical
+event = {
+	id = 174062
+	trigger = {
+		flag = [bribelords]
+		owned = { province = 398 data = -1 } #Corsica
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174062" #Corsican lords still want more
+	desc = "EVENTHIST174062"
+	#-#The Cinarchese lords seem to want a near independence allowing them to choose themselves other lieges than the Republic. This is of course unacceptable, and has been deemed as such by our emissaries who finally broke the negociations and left the island.
+
+	date = { day = 1 month = october year = 1453 }
+	offset = 1440
+	deathdate = { day = 0 month = october year = 1457 }
+
+	action_a = {
+		name = "ACTIONNAME174062A" #Cede the island to the Bank of St. George
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = province_revoltrisk which = 398 value = -15 } #Corsica
+		command = { type = provincetax which = 398 value = -1 } #Corsica
+		command = { type = trigger which = 251058 } #PAP: Failure in Corsica
+		command = { type = clrflag which = [bribelords] }
+		command = { type = setflag which = [giorgio] }
+	}
+	action_b = {
+		name = "ACTIONNAME174062B" #We'll try to crush them now
+		command = { type = stability value = -2 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = revolt which = 398 }
+		command = { type = revolt which = 398 }
+		command = { type = province_revoltrisk which = 398 value = 20 } #Corsica
+		command = { type = treasury value = -300 }
+		command = { type = inf which = 403 value = 5000 } #Liguria
+		command = { type = clrflag which = [bribelords] }
+		command = { type = setflag which = [crushlords] }
+	}
+}
+#(1453-1465) Corsican lords are destroyed - Ahistorical
+event = {
+	id = 174063
+	trigger = {
+		flag = [crushlords]
+		owned = { province = 398 data = -1 } #Corsica
+		control = { province = 398 data = -1 } #Corsica
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174063" #The castles are destroyed and the lords dead or gone
+	desc = "EVENTHIST174063"
+	#-#The cost may be heavy for the Dilà dei Monti but finally, the descendants of Ghjudice di Cinarca are either dead or exiled. Entire villages had to be burnt to the ground, whole cities had to be forcefully submitted before the lords had to take refuge in their high strongholds. Those had to be taken by siege, one after the other. At last it seems we are the masters of Western Corsica.
+
+	date = { day = 1 month = october year = 1453 }
+	offset = 360
+	deathdate = { day = 0 month = october year = 1465 }
+
+	action_a = {
+		name = "ACTIONNAME174063A" #Fine
+		command = { type = province_revoltrisk which = 398 value = -40 } #Corsica
+		command = { type = provincetax which = 398 value = -2 } #Corsica
+		command = { type = population which = 398 value = -1000 }
+		command = { type = trigger which = 251058 } #PAP: Failure in Corsica
+		command = { type = sleepevent which = 174051 } #GEN: Death of the last of the Cinarchesi
+	}
+}
+
+#(1454) The Peace of Lodi
+#by Bordic
+event = {
+	id = 174032
+	trigger = {
+		exists = VEN
+		exists = MLO
+		exists = TOS
+		exists = PAP
+		NOT = { vassal = { country = MLO country = GEN } }
+		event = 228034 #MLO: The Peace of Lodi
+		OR = {
+			vassal = { country = PRO country = NAP }
+			owned = { province = 393 data = PRO } #Napoli
+		}
+		atwar = no
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME228034" #The Peace of Lodi
+	desc = "EVENTHIST326038"
+	#-#During the war of succession in Milan, all the belligerent nations were brought to exhaustion of money and troops. Francesco Sforza, ruler of Milan and Venice, the chief state of the league confederates, who was more and more threatened by the advancing Ottomans in her eastern Mediterranean territories, convened a cease-fire while a bilateral treaty was hastily signed in Lodi on 7 April 1454. With that treaty Sforza was legitimated Duke of Milan. Without even being called for, Florence and the Pope had no choice then to endorse the treaty. The King of Naples, being a rightful claimant on the ducal throne reluctantly joined the alliance under the condition to keep Genoa out of it. Intended 'infra terminos italicos', that treaty showed the objective impossibility for all the Italian major powers (specifically Milan, Tuscany, Venice, Naples and Papal States) to prevail upon each other in the struggle for the hegemony in Italy and that the better solution was to come to terms with each other. That would have also avoided the practice of very expensive and pointless wars in the next future. Although the treaty actually played a minor part in Italian balance of powers and so won't be able to avoid future wars of aggression from inside as well from outside Italy, the post-Lodi era historically represented a period of relative peace in which the figurative arts definitively flourished in the whole Italian peninsula, as well as economy and trade and, last but not the least, the skills and tricks of the art of diplomacy.
+
+	date = { day = 7 month = April year = 1454 }
+	offset = 30
+	deathdate = { day = 9 month = March year = 1466 }
+
+	action_a = {
+		name = "ACTIONNAME111018A" #Yes, peace
+		command = { type = relation which = TOS value = 50 }
+		command = { type = relation which = MLO value = 50 }
+		command = { type = stability value = 1 }
+		command = { type = diplomats value = 3 }
+		command = { type = merchants value = 2 }
+	}
+}
+
+#(1454-1456) Raffe di Leca -I-
+event = {
+	id = 174040
+	trigger = {
+		flag = [giorgio]
+		owned = { province = 398 data = -1 } #Corsica
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174040" #Raffe di Leca
+	desc = "EVENTHIST174040"
+	#-#He was the only lord of Cinarca to refuse the Bank's rule in the first place, and so the first one to revolt.
+
+	date = { day = 0 month = may year = 1454 }
+	offset = 720
+	deathdate = { day = 29 month = april year = 1456 }
+
+	action_a = {
+		name = "ACTIONNAME174040A" #He's alone, catch him
+		command = { type = revolt which = 398 } #Corsica
+		command = { type = revolt which = 398 } #Corsica
+	}
+}
+
+#(1458-1463) The French suzerainty -I-
+#by Bordic
+event = {
+	id = 174028
+	trigger = {
+		exists = NAP
+		OR = {
+			event = 111014 	#ARG: The Aragonese Kingdom of Naples
+			event = 7118 	#NAP: The Naples Trastamara Dynasty
+		}
+		OR = {
+			exists = FRA
+			exists = PRO
+		}
+		NOT = {
+			event = 174067 #GEN: The French suzerainty -II-
+			war = { country = GEN country = FRA }
+			war = { country = GEN country = PRO }
+			vassal = { country = GEN country = PRO }
+			vassal = { country = MLO country = GEN }
+			alliance = { country = PRO country = ARG }
+			alliance = { country = PRO country = NAP }
+		}
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174028" #The French suzerainty
+	desc = "EVENTHIST174028"
+	#-#Although several peace treaties were stipulated as to guarantee a certain balance of powers in Italy, they couldn't prevent Alfonso I King of Naples from pursuing his old interests on Genoese territories, notably Corsica, and West Mediterranean sea trade routes. Since the confederates of Lega Italica, amongst them Milan, wouldn't risk to break that fragile alliance, and some Genoese families, Adorno and Fieschi amongst them, had clearly in mind to support the Aragonese, King Alfonso represented a real threat for Genoa and the Fregoso family. In 1458, facing a new Aragonese aggression Genoa could only find help in France as it frequently occurred in the past. Charles VII, King of France, accepted the Genoese allegiance and sent Jean d'Anjou, Duke of Calabria and son of René d'Anjou to rule over Genoa. As soon as he established himself in the city as Governor, with the support of the Genoese fleet he arranged a military expedition to be led against Naples with the aim of getting the crown, which his father René failed to succeed in. But this time the political situation in Naples played in his favour: the local barons were opposing Ferdinando, Alfonso's natural son, not recognising him as the new King of Naples. For Jean d'Anjou, it was an invite to become entangled in there...
+
+	date = { day = 15 month = January year = 1458 }
+	offset = 30
+	deathdate = { day = 15 month = January year = 1463 }
+
+	action_a = {
+		name = "ACTIONNAME174028A" #Help the Duke of Calabria
+		command = { type = stability value = -1 }
+		command = { type = treasury value = -30 }
+		command = { type = alliance which = PRO }
+		command = { type = relation which = FRA value = 25 }
+		command = { type = relation which = MLO value = -50 }
+		command = { type = relation which = NAP value = -50 }
+		command = { type = relation which = PRO value = 100 }
+		command = { type = casusbelli which = NAP value = 60 }
+		command = { type = sleepevent which = 174067 } #GEN: The French suzerainty
+		command = { type = trigger which = 262008 } #PRO: The Suzerainty over Genoa
+	}
+}
+#(1458-1463) The French suzerainty - II - (in case Genoa is still vassal to Milan)
+#by Bordic
+event = {
+	id = 174067
+	trigger = {
+		vassal = { country = MLO country = GEN }
+		exists = NAP
+		OR = {
+			event = 111014 	#ARG: The Aragonese Kingdom of Naples
+			event = 7118 	#NAP: The Naples Trastamara Dynasty
+		}
+		OR = {
+			exists = FRA
+			exists = PRO
+		}
+		NOT = {
+			event = 174028 #GEN: The French suzerainty - I -
+			war = { country = GEN country = FRA }
+			war = { country = GEN country = PRO }
+			vassal = { country = GEN country = PRO }
+			alliance = { country = PRO country = ARG }
+			alliance = { country = PRO country = NAP }
+		}
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174028" #The French suzerainty
+	desc = "EVENTHIST174028"
+	#-#Although several peace treaties were stipulated as to guarantee a certain balance of powers in Italy, they couldn't prevent Alfonso I King of Naples from pursuing his old interests on Genoese territories, notably Corsica, and West Mediterranean sea trade routes. Since the confederates of Lega Italica, amongst them Milan, wouldn't risk to break that fragile alliance, and some Genoese families, Adorno and Fieschi amongst them, had clearly in mind to support the Aragonese, King Alfonso represented a real threat for Genoa and the Fregoso family. In 1458, facing a new Aragonese aggression Genoa could only find help in France as it frequently occurred in the past. Charles VII, King of France, accepted the Genoese allegiance and sent Jean d'Anjou, Duke of Calabria and son of René d'Anjou to rule over Genoa. As soon as he established himself in the city as Governor, with the support of the Genoese fleet he arranged a military expedition to be led against Naples with the aim of getting the crown, which his father René failed to succeed in. But this time the political situation in Naples played in his favour: the local barons were opposing Ferdinando, Alfonso's natural son, not recognising him as the new King of Naples. For Jean d'Anjou, it was an invite to become entangled in there...
+
+	date = { day = 15 month = January year = 1458 }
+	offset = 30
+	deathdate = { day = 15 month = January year = 1463 }
+
+	action_a = {
+		name = "ACTIONNAME174028A" #Help the Duke of Calabria
+		command = { type = breakvassal which = MLO }
+		command = { type = stability value = 1 }
+		command = { type = treasury value = -30 }
+		command = { type = alliance which = PRO }
+		command = { type = relation which = FRA value = 25 }
+		command = { type = relation which = MLO value = -50 }
+		command = { type = relation which = NAP value = -50 }
+		command = { type = relation which = PRO value = 100 }
+		command = { type = casusbelli which = NAP value = 60 }
+		command = { type = sleepevent which = 174028 } #GEN: The French suzerainty
+		command = { type = trigger which = 262008 } #PRO: The Suzerainty over Genoa
+	}
+}
+
+#(1459) Raffe di Leca -II-
+event = {
+	id = 174041 #triggered by ARG_111039 A
+	random = no
+	country = GEN
+	name = "EVENTNAME174041" #Cinarchese revolters
+	desc = "EVENTHIST174041"
+	#-#In april 1456, Raffe di Leca and his brothers were finally captured and executed. His partisans, that is every important lord in Cinarca, had to flee in Sardinia or Sicilia. When it became clear that Juan II of Aragon would forsake his father's claim, an end was put to their dreams of Aragonese reconquest. They had no choice but to fight on their own, and so they came back.
+
+	action_a = {
+		name = "ACTIONNAME174041A" #Damn them
+		command = { type = revolt which = 398 } #Corsica
+		command = { type = province_revoltrisk which = 398 value = 5 } #Corsica
+	}
+}
+
+#(1460) Brutal repression in Corsica
+event = {
+	id = 174042
+	trigger = {
+		flag = [giorgio]
+		owned = { province = 398 data = -1 } #Corsica
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174042" #Feast of Reconciliation
+	desc = "EVENTHIST174042"
+	#-#In 1460, the Bank of St George proclaimed a general amnesty for the rebellious lords who would drop arms. They were even invited to a magnificent banquet in Vicu, one of the main villages of Cinarca. When desert was served, the lords were brutally seized and put to death. Six of them were beheaded and fourteen others hanged. Only a handful of the Cinarchesi survived, either because they had wisely ignored the invitation or because they were still in exile. In the following year their partisans were pursued and imprisoned or put to death.
+
+	date = { day = 0 month = may year = 1460 }
+	offset = 30
+	deathdate = { day = 29 month = may year = 1460 }
+
+	action_a = {
+		name = "ACTIONNAME174042A" #The Bank is in charge
+		command = { type = province_revoltrisk which = 398 value = -10 } #Corsica
+		command = { type = provincetax which = 398 value = -1 } #Corsica
+		command = { type = population which = 398 value = -500 } #Corsica
+	}
+}
+
+#(1461) League of Pisa -I-
+event = {
+	id = 174043
+	trigger = {
+		event = 174042 #GEN: Feast of Reconciliation
+		owned = { province = 398 data = -1 } #Corsica
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174043" #The League of Pisa
+	desc = "EVENTHIST174043"
+	#-#The conspiracy developed among the exiled survivors of Vicu. They chose themselves a Genoese leader: Tomassino da Campofregoso, son of the former Doge Giano, whose mother was Corsican. Aware of Tommasino's ambitions the Genoans kept him safely in prison but his allies decided to attack anyway. Old Paulu della Rocca was there, with Raffe di Leca's cousins and even Vincentellu d'Istria's nephew.
+
+	date = { day = 0 month = january year = 1461 }
+	offset = 180
+	deathdate = { day = 29 month = june year = 1461 }
+
+	action_a = {
+		name = "ACTIONNAME174043A" #They should have killed them all
+		command = { type = revolt which = 398 } #Corsica
+		command = { type = province_revoltrisk which = 398 value = 10 } #Corsica
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1462) League of Pisa -II-
+event = {
+	id = 174044
+	trigger = {
+		event = 174043 #GEN: The League of Pisa
+		monarch = 052009 #Lodovico da Campofregoso
+		owned = { province = 398 data = -1 } #Corsica
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174044" #Tomassino da Campofregoso
+	desc = "EVENTHIST174044"
+	#-#Lodovico's nephew was freed in june 1462 by his uncle. He went to Corsica immediately to be elected Count by his many supporters. He then endeavoured to reduce the last Genoese holdings in the island.
+
+	date = { day = 0 month = june year = 1462 }
+	offset = 150
+	deathdate = { day = 29 month = october year = 1462 }
+
+	action_a = {
+		name = "ACTIONNAME174044A" #Traitor!
+		command = { type = revolt which = 398 } #Corsica
+		command = { type = revolt which = 398 } #Corsica
+		command = { type = province_revoltrisk which = 398 value = 15 } #Corsica
+		command = { type = stability value = -2 }
+	}
+}
+
+#(1463-1464) The Milanese suzerainty
+#by Bordic
+event = {
+	id = 174029
+	trigger = {
+		exists = MLO
+		OR = {
+			event = 174028 #GEN: The French suzerainty - I -
+			event = 174067 #GEN: The French suzerainty - II -
+		}
+		OR = {
+			NOT = {	owned = { province = 393 data = PRO } } #Napoli
+			NOT = {	vassal = { country = PRO country = NAP } }
+		}
+		NOT = { vassal = { country = GEN country = MLO } }
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174029" #The Milanese suzerainty
+	desc = "EVENTHIST174029"
+	#-#The French governors were imposing on the Republic so harsh tributes for continuing the war against Naples that they provoked big resentment in the Genoese population as much as to refuse a French suzerainty. Since the military expedition led by Jean d'Anjou to conquer the Kingdom of Naples failed and the rebelling Neapolitan barons eventually agreed to recognize Ferdinando as their King, Louis XI of France decide to abandon his plan to control the Genoese Republic granting his friend and ally Francesco Sforza, Duke of Milan, ownership's rights to the city of Genoa. Sforza soon sent an army led by Giacomo Vimercate to submit the city. As soon as Genoa fell under the Milanese troops and the despotic doge Paolo Fregoso fled with his fleet away, a delegation of the citizenship of Genoa went to Milan to swear allegiance to the new ruler.
+
+	date = { day = 1 month = April year = 1463 }
+	offset = 30
+	deathdate = { day = 1 month = April year = 1464 }
+
+	action_a = {
+		name = "ACTIONNAME174029A" #Submit to Milan
+		command = { type = breakvassal which = FRA }
+		command = { type = breakvassal which = PRO }
+		command = { type = relation which = FRA value = -25 }
+		command = { type = relation which = MLO value = -60 }
+		command = { type = stability value = -2 }
+		command = { type = wakemonarch which = 052161 } #Francesco Sforza
+		command = { type = wakemonarch which = 052011 } #Galeazzo Maria Sforza
+	}
+	action_b = {
+		name = "ACTIONNAME174029B" #Reject Milanese rule
+		command = { type = stability value = -2 }
+		command = { type = relation which = MLO value = -60 }
+		command = { type = relation which = FRA value = -25 }
+		command = { type = DIP which = -2 value = 120 }
+		command = { type = ADM which = -2 value = 120 }
+		command = { type = sleepevent which = 228023 } #MLO: Genoa submits to Milan
+	}
+}
+
+#(1464) Milan is offered Corsica
+event = {
+	id = 174045
+	trigger = {
+		monarch = 052161 #Francesco Sforza
+		flag = [giorgio]
+		owned = { province = 398 data = -1 } #Corsica
+		exists = MLO
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174045" #The Milanese peace
+	desc = "EVENTHIST174045"
+	#-#Hard pressed by the revolters, the Bank offered it to Francesco Sforza, our new liege from Milan. Maybe they will manage to bring order back.
+
+	date = { day = 11 month = july year = 1464 }
+	offset = 72
+	deathdate = { day = 23 month = september year = 1464 }
+
+	action_a = {
+		name = "ACTIONNAME174045A" #Will he take it?
+		command = { type = trigger which = 228037 } #MLO: Milan is offered Corsica
+	}
+}
+#(1464) Milan is given Corsica
+event = {
+	id = 174046 #triggered by MLO_228037 A
+	random = no
+	country = GEN
+	name = "EVENTNAME174046" #Sforza accepted
+	desc = "EVENTHIST174046"
+	#-#The Milanese agreed to take the load off from us.
+
+	action_a = {
+		name = "ACTIONNAME174046A" #Good luck to them
+		command = { type = secedeprovince which = MLO value = 398 } #Corsica
+		command = { type = relation which = MLO value = -50 }
+	}
+}
+#(1464) Genoa keeps Corsica
+event = {
+	id = 174047 #triggered by MLO_228037 B
+	random = no
+	country = GEN
+	name = "EVENTNAME174047" #Sforza refused
+	desc = "EVENTHIST174047"
+	#-#The Milanese refused to take charge in Corsica, we can only hope that things will calm down a bit.
+
+	action_a = {
+		name = "ACTIONNAME174047A" #So we're stuck with it
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1464-1465) Handling Tomassino da Campofregoso - Ahistorical
+event= {
+	id = 174065
+	trigger = {
+		event = 174044 #GEN: Tomassino da Campofregoso
+		OR = {
+			NOT = { monarch = 052161 } #Francesco Sforza
+			event = 174047 #GEN: Sforza refused
+		}
+		owned = { province = 398 data = -1 } #Corsica
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174065" #A request from the Bank of San Giorgio
+	desc = "EVENTHIST174065"
+	#-#Out of resources, the Bank is asking us to handle our cousin Tomassino who has managed to take control of most of Corsica together with his Cinarchese allies. The rumour is that he is contested in the island now that he has shown his despotic nature.
+
+	date = { day = 0 month = october year = 1464 }
+	offset = 360
+	deathdate = { day = 29 month = september year = 1465 }
+
+	action_a = {
+		name = "ACTIONNAME174065A" #Let things decay by themselves
+		command = { type = province_revoltrisk which = 398 value = -20 }
+		command = { type = stability value = -3 }
+	}
+	action_b = {
+		name = "ACTIONNAME174065B" #Crush him once and for all, cousin or not
+		command = { type = revolt which = 398 } #Corsica
+		command = { type = revolt which = 398 } #Corsica
+		command = { type = revolt which = 398 } #Corsica
+		command = { type = province_revoltrisk which = 398 value = -25 }
+		command = { type = treasury value = -100 }
+		command = { type = inf which = -2 value = 5000 }
+		command = { type = sleepevent which = 174049 } #GEN: Ghjuvan Paulu di Leca
+		command = { type = sleepevent which = 174050 } #GEN: Rinucciu della Rocca
+		command = { type = sleepevent which = 174051 } #GEN: Death of the last of the Cinarchesi
+	}
+}
+
+#(1471) Mengli Giray of Crimea
+event = {
+	id = 174097
+	trigger = {
+		owned = { province = 465 data = -1 } #Kerch
+		exists = CRI
+		NOT = { war = { country = CRI country = GEN } }
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174097" #Mengli Giray of Crimea
+	desc = "EVENTHIST174097"
+	#-#With the death of Hajji I of Crimea, a struggle ensued for the title of khan. Although Nur Dawlat was the rightful heir by the succession laws of the Golden Horde, Mengli, Hajji's other son, had the support of ambitious clansmen. Taking refuge in the Genoese colonies, Mengli asked for Genoa's support in overthrowing his brother. Nur Dawlat had become a concern for Genoese merchants as his stronghanded rule threatened Genoese trading in the region.
+
+	date = { day = 5 month = january year = 1471 }
+	offset = 10
+	deathdate = { day = 10 month = december year = 1471 }
+
+	action_a = {
+		name = "ACTIONNAME174097A" #Keep them occupied!
+		command = { type = relation which = CRI value = 50 }
+		command = { type = treasury value = -15 }
+		command = { type = trigger which = 152007 } #CRI: Genoa backs the pretender
+	}
+	action_b = {
+		name = "ACTIONNAME174097B" #We have bigger concerns
+		command = { type = merchants value = -2 }
+		command = { type = sleepevent which = 174098 } #GEN: Nur Dawlat and the Khanate of Crimea
+	}
+}
+
+#(1474) Nur Dawlat and the Khanate of Crimea
+event = {
+	id = 174098
+	trigger = {
+		owned = { province = 465 data = -1 } #Kerch
+		exists = CRI
+		NOT = { war = { country = CRI country = GEN } }
+		event = 174097 #GEN: Mengli Giray of Crimea
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174098" #Nur Dawlat and the Khanate of Crimea
+	desc = "EVENTHIST174098"
+	#-#While the succession struggle in Crimea kept the tatars occupied, unfortunately, Mengli was turning out just like his brother. Once again, a strong khan was threatening Genoese trade. Unhappy with the curtailing of their former privileges, a few prominent clansmen approached Genoa with a scheme to re-install Nur Dawlat.
+
+	date = { day = 5 month = january year = 1474 }
+	offset = 10
+	deathdate = { day = 10 month = december year = 1474 }
+
+	action_a = {
+		name = "ACTIONNAME174098A" #Support him!
+		command = { type = relation which = CRI value = 100 }
+		command = { type = treasury value = -15 }
+		command = { type = trigger which = 152008 } #CRI: Nur Dawlat returns
+	}
+	action_b = {
+		name = "ACTIONNAME174097B" #We have bigger concerns
+		command = { type = merchants value = -2 }
+		command = { type = trade value = -25 }
+	}
+}
+
+#(1477-1483) The return of Campofregoso family
+#by Bordic
+event = {
+	id = 174068 #triggered by MLO_228055
+	random = no
+	country = GEN
+	name = "EVENTNAME174068" #The return of Campofregoso family
+	desc = "EVENTHIST174068"
+	#-#Since Galeazzo Maria openly ruled his duchy as a tyrant he made many enemies amongst the Milanese noble families. On 26th december 1476 he was assassinated in Saint Stephen's church during religious mass. hand Cicco Simonetta, Sforza's secretary of State, managed to have Galeazzo's son, Gian Galeazzo, being proclaimed Duke while his mother Bona of Savoy being acknowledged as regent until Duke's minority. That provoked resentment in the brothers of the assassinated duke, also aming at the regency title, but negotiations were successfully conducted by Simonetta. If in Milan calm was restored an uprise broke in Genoa against the Milanese Governor Pallavicini led by members of the Fieschi and Campofregoso families united togetheragainst the Sforza rule. Cicco Simonetta gained the favour of Prospero Adorno, once opposer to Galeazzo's rule thus releasing him from prison, with the promise to crush the revolt and reeastablish the Milanese rule over Genoa. Adorno occupied Genoa and became Governor for Milan. But Adorno started to have contacts with the King of Naples and they represented a sign of rebellion. Battista Fregoso, member of the Campofregoso family, which gave several doges to the city, was asked to intervene in crushing the rebellion in order to restore the Sforza lordship over the Republic. Battista Fregoso managed to chase Adorno away and to proclaim himself Doge of the Republic. Milan didn't solve the problems with the administratio of Genoa as the new doge didn't seem to acknowledge Sforza's lordship over Genoa, instead he followed a policy of partnership with Milan without acknowledging the Duke as suzerain.
+
+	action_a = {
+		name = "GOOD"
+		command = { type = breakvassal which = MLO }
+		command = { type = stability value = 2 }
+		command = { type = INF which = -2 value = 8000 }
+		command = { type = addcore which = 398 } #Corsica
+		command = { type = relation which = MLO value = -100 }
+		command = { type = trigger which = 228056 } #MLO: Genoa gained full independence
+	}
+}
+
+#(1483) Corsica is returned
+event = {
+	id = 174048 #triggered by MLO_228042
+	random = no
+	country = GEN
+	name = "EVENTNAME174048" #The Bank gets Corsica back
+	desc = "EVENTHIST174048"
+	#-#Tomassino da Camporegoso and his son Gianni have lost control of the island. Foreign invaders are being called by various groups of revolters but most of the people still want the Bank of St George back in charge.
+
+	action_a = {
+		name = "ACTIONNAME174048A" #Let's hope they'll keep it
+		command = { type = stability value = 1 }
+		command = { type = inf which = 398 value = 5000 } #Corsica
+	}
+}
+
+#(1487) Last feudal revolts -I-
+event = {
+	id = 174049
+	trigger = {
+		flag = [giorgio]
+		owned = { province = 398 data = -1 } #Corsica
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174049" #Ghjuvan Paulu di Leca
+	desc = "EVENTHIST174049"
+	#-#The most powerful Corsican lord used to be also our most trusted support in the recent troubled times. Evilly counselled by Tomassino da Camprofregoso he has risen against us.
+
+	date = { day = 0 month = january year = 1487 }
+	offset = 90
+	deathdate = { day = 29 month = march year = 1487 }
+
+	action_a = {
+		name = "ACTIONNAME174049A" #So we can trust no one
+		command = { type = revolt which = 398 } #Corsica
+		command = { type = province_revoltrisk which = 398 value = 5 } #Corsica
+	}
+}
+
+#(1500-1512) The French King in Milan -I- (if Genoa is vassal to Milan)
+#by Bordic
+event = {
+	id = 174030
+	trigger = {
+		event = 228027 #MLO: Louis XII presses claims on Milan
+		vassal = { country = MLO country = GEN }
+		NOT = { vassal = { country = GEN country = FRA } }
+		NOT = {	event = 174053 } #GEN: The French King in Milan -II-
+		OR = {
+			war = { country = MLO country = FRA }
+			control = { province = 389 data = FRA } #Lombardia
+			owned = { province = 389 data = FRA }
+		}
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME170041" #The French King in Milan
+	desc = "EVENTHIST174030"
+	#-#In 1499 Louis XII invaded the Duchy of Milan asserting to be the legitimate heir and successor to Visconti according to his descent from Valentina Visconti, the daughter of Gian Galeazzo, first Duke of Milan and wife to his grand-father Louis I d'Orléans. As soon as a combined attack in order to surround the duchy was driven by French and Venetian troops simultaneoulsy, town after town surrendered while the Milanese troops preferred to compromise with the enemy instead of fighting. The Milanese population, already adversed to Sforza because of his harsh taxation policy, rebelled forcing il Moro to escape with his family and treasure to Innsbruck at the court of his liege Maximilian, King of the Romans and Archduke of Austria. The French troops led by Gian Giacomo Trivulzio, entered the city of Milan without any resistance receiving a unexpected welcome by the population which Sforza had harshly taxed. Even the castle's garrison surrendered without any fight to the French invaders. Following the example of Milan and of other Lombard cities, also the Republic of Genoa, which Sforza had being ruling since 1488, swore allegiance to the new masters. Following the example of Milan and of other Lombard cities, also the Republic of Genoa, which had being waiting for the favourable moment and an ally strong enough to oppose Milanese interference in her domestic affairs, swore allegiance to the French King.
+
+	date = { day = 15 month = january year = 1500 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1512 }
+
+	action_a = {
+		name = "ACTIONNAME174030A" #Submit to France
+		command = { type = breakvassal which = MLO }
+		command = { type = stability value = 2 }
+		command = { type = relation which = FRA value = 15 } #GEN vassal to France
+	}
+	action_b = {
+		name = "ACTIONNAME174030B" #Support France
+		command = { type = breakvassal which = MLO }
+		command = { type = relation which = FRA value = 40 }
+		command = { type = trigger which = 170046 } #FRA: Genoa supports Louis XII
+		command = { type = sleepevent which = 170047 } #FRA: Genoa submits to Louis XII
+	}
+}
+#(1500-1512) The French King in Milan -II- (if Genoa isn't vassal to Milan or France already)
+#by Bordic
+event = {
+	id = 174053
+	trigger = {
+		event = 228027 #MLO: Louis XII presses claims on Milan
+		NOT = { vassal = { country = MLO country = GEN } }
+		NOT = {	vassal = { country = FRA country = GEN } }
+		NOT = {	vassal = { country = GEN country = FRA } }
+		NOT = {	event = 174030 } #GEN: The French King in Milan -I-
+		OR = {
+			war = { country = MLO country = FRA }
+			control = { province = 389 data = FRA } #Lombardia
+			owned = { province = 389 data = FRA }
+		}
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME170041" #The French King in Milan
+	desc = "EVENTHIST174030"
+	#-#In 1499 Louis XII invaded the Duchy of Milan asserting to be the legitimate heir and successor to Visconti according to his descent from Valentina Visconti, the daughter of Gian Galeazzo, first Duke of Milan and wife to his grand-father Louis I d'Orléans. As soon as a combined attack in order to surround the duchy was driven by French and Venetian troops simultaneoulsy, town after town surrendered while the Milanese troops preferred to compromise with the enemy instead of fighting. The Milanese population, already adversed to Sforza because of his harsh taxation policy, rebelled forcing il Moro to escape with his family and treasure to Innsbruck at the court of his liege Maximilian, King of the Romans and Archduke of Austria. The French troops led by Gian Giacomo Trivulzio, entered the city of Milan without any resistance receiving a unexpected welcome by the population which Sforza had harshly taxed. Even the castle's garrison surrendered without any fight to the French invaders. Following the example of Milan and of other Lombard cities, also the Republic of Genoa, which Sforza had being ruling since 1488, swore allegiance to the new masters. Following the example of Milan and of other Lombard cities, also the Republic of Genoa, which had being waiting for the favourable moment and an ally strong enough to oppose Milanese interference in her domestic affairs, swore allegiance to the French King.
+
+	date = { day = 15 month = january year = 1500 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1512 }
+
+	action_a = {
+		name = "ACTIONNAME174030A" #Submit to France
+		command = { type = stability value = -1 }
+		command = { type = relation which = FRA value = 15 } #GEN vassal to France
+	}
+	action_b = {
+		name = "ACTIONNAME174030B" #Support France
+		command = { type = relation which = FRA value = 40 }
+		command = { type = trigger which = 170046 } #FRA: Genoa supports Louis XII
+		command = { type = sleepevent which = 170047 } #FRA: Genoa submits to Louis XII
+	}
+}
+
+#(1502-1503) Last feudal revolts -II-
+event = {
+	id = 174050
+	trigger = {
+		flag = [giorgio]
+		owned = { province = 398 data = -1 } #Corsica
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174050" #Rinucciu della Rocca
+	desc = "EVENTHIST174050"
+	#-#Another of our most trusted support in the island is now rising against our rule. We should be more careful not to anger our few precious allies.
+
+	date = { day = 0 month = october year = 1502 }
+	offset = 30
+	deathdate = { day = 29 month = october year = 1502 }
+
+	action_a = {
+		name = "ACTIONNAME174050A" #So we really can trust no one
+		command = { type = revolt which = 398 } #Corsica
+		command = { type = province_revoltrisk which = 398 value = 5 } #Corsica
+	}
+}
+
+#(1508) The League of Cambrai, Genoa is a minor player
+event = {
+	id = 174007 #triggered by FRA_3107 A / FRA_17023 A
+	trigger = {
+		OR = {
+			vassal = { country = FRA country = GEN }
+			alliance = { country = FRA country = GEN }
+		}
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME3107" #The League of Cambrai
+	desc = "EVENTHIST3107"
+	#-#Since 1495, Venice had been holding the main ports of Apulia despite Aragonese claims to have them back. With the French invasion of Milan, Venice had acquired Milanese territories east of the Adda River, and upon the fall of Cesare Borgia had also acquired Rimini, Faenza and Ravenna, against the will of Pope Julius II. The Venetians also held Veneto and Friuli, on which Maximilian of Habsburg had imperial claims. In late 1507 Maximilian announced his intention to travel to Italy to receive the imperial investiture from the Pope himself, and in early 1508 he assembled a big army to escort him down to Rome. He requested free passage through Venetian territories, but was told that he would be allowed passage only without his army. Enraged at the answer, Maximilian attacked Venice, but this decision proved unwise: Venice not only routed the imperial army but also seized the imperial cities of Trieste, Gorz and Fiume. A second assault by a Tyrolean force several weeks later was an even greater failure, forcing Maximilian to conclude a humiliating three-year truce. With Pope Julius II's assent, Maximilian took the title of 'Emperor-elect', thus breaking the century-old custom that the Holy Roman Emperor had to be crowned by the Pope. Shortly afterward, Venice provided a pretext for war by appointing her own candidate to the vacant bishopric of Vicenza. The Emperor, the King of France and Ferdinand of Aragon gathered in Cambrai in December 1508 to sign a treaty which seemed to be a defensive alliance against the Turk. In reality they meant to form a league to attack Venice and deprive the Serenissima of most of her mainland territories. Pope Julius II, after a renewed Venetian refusal to give the Romagna lands back to the Papacy, ratified the treaty and at the same time proceeded to excommunicate all Venetian citizens. Ferrara and Mantua, each with separate claims to territories held by Venice, joined the league as well. In April 1509 military operations started, and a month later French troops decimated one of the two Venetian armies at the battle of Agnadello. Even though in August 1509 Venice managed to eliminate Mantua from the war, she still faced the collapse of her strategic position and had by February 24, 1510 to accept the papal demands on the cities she had occupied in Romagna. However, Pope Julius II was still not satisfied and demanded that the war be prosecuted until Venice conceded control over their church to the Pope and compensated him for his expenses. The Council of Ten had privately resolved that the terms had been accepted under duress and were therefore invalid, and that Venice should violate them at the earliest opportunity. This opportunity presented itself shortly afterward.
+
+	action_a = {
+		name = "ACTIONNAME3107A" #Express Support
+		command = { type = casusbelli which = VEN value = 72 }
+		command = { type = relation which = VEN value = -75 }
+		command = { type = relation which = HAB value = 75 }
+		command = { type = relation which = PAP value = 75 }
+	}
+	action_b = {
+		name = "ACTIONNAME3107B" #Ignore
+		command = { type = relation which = VEN value = 50 }
+		command = { type = relation which = HAB value = -25 }
+		command = { type = relation which = PAP value = -25 }
+	}
+	action_c = {
+		name = "ACTIONNAME3107C" #Express Hostility
+		command = { type = relation which = VEN value = 75 }
+		command = { type = relation which = HAB value = -75 }
+		command = { type = relation which = PAP value = -75 }
+	}
+}
+
+#(1511-1515) End of feudal revolts
+event = {
+	id = 174051
+	trigger = {
+		flag = [giorgio]
+		owned = { province = 398 data = -1 } #Corsica
+		control = { province = 398 data = -1 }
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174051" #Death of the last of the Cinarchesi
+	desc = "EVENTHIST174051"
+	#-#With the murder of Rinucciu della Rocca at the hand of a hired traitor in 1511, and the death of Ghjuvan Paulu di Leca in Rome four years later, the two most powerful lineages which had rebelled against us in the past century had come to an end. Their demesnes were seized and their heirs killed or forced into exile.
+
+	date = { day = 11 month = april year = 1511 }
+	offset = 10
+	deathdate = { day = 29 month = march year = 1515 }
+
+	action_a = {
+		name = "ACTIONNAME174051A" #How can this be true?
+		command = { type = stability value = 2 }
+		command = { type = provincetax which = 398 value = 1 } #Corsica
+		command = { type = province_revoltrisk which = 398 value = -15 } #Corsica
+		command = { type = treasury value = 100 }
+	}
+}
+
+#(1512-1515) French troops abandon Genoa
+#by Bordic
+event = {
+	id = 174031 #triggered by FRA_12025 A
+	trigger = {
+		vassal = { country = FRA country = GEN }
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174031" #French troops abandon Genoa
+	desc = "EVENTHIST12025"
+	#-#In spite of their victories in Northern Italy, the French troops were forced to abandon the battlefield both because of financial reasons and because after the successful battle of Ravenna the Emperor was withdrawing troops and would have joined the holy league formed by Papal States, Spain, England and Venice with the help of Swiss troops hired by Pope Julius II himself and led into war by the Bishop of Sion, Mathias Schiner. Thence the decision to withdraw from Milan. Julius II recovered Ravenna, Bologna and the rest of the Romagna, while his commander, the Duke of Urbino, easily occupied Reggio and Modena, though Alfonso d'Este refused any settlement that would deprive him of Ferrara. After having chased out the French from Italy, the congress of allies which met at Mantua in August made over to the Pope Parma and Piacenza, to which he had at best a shadowy claim. The Emperor and Fernando would have been glad to give Milan to their grandson Charles but the Swiss were in possession and, supported by the Pope, made their will good. The duchy was given to Ercole Massimiliano Sforza, the elder son of Ludovico. The Venetian claims were left unsettled with Brescia still held out and the Swiss claiming Cremona and the Ghiara d'Adda for the duchy. And more, the Emperor demanded Vicenza and Verona. Florence, who in 1509 had ended her long war by the recovery of Pisa, was punished for her support of France by the restoration of the Medici. Entering Milan, Ercole Massimiliano Sforza received the keys to the city from the Swiss soldiers, who promised to protect the duchy of Milan and to help the Duke in sending to him all the troops he would need. The Duke granted them the acquisition of the ducal territories Ticino and Valtellina, the most important accesses to the Alpine passes. Genoa drew back its allegiance to the French King, who in 1506 harshly repressed a local rebellion that broke out owing to the decision taken by the French governor to grant privileges to the nobilty. But Julius II made also a treaty with his late ally, Maximilian, against Venice. The emperor was to support the Lateran council to oppose that one proclaimed by Louis XII in Pisa and to hand over Modena to the Pope, while Julius II was to join in compelling Venice to give up the fiefs which the Emperor claimed since Cambrai and to use on behalf of his new ally also the always convincing 'spiritual weapons'. When this treaty was made public, it had only the effect to drive Venice to side with France.
+
+	action_a = {
+		name = "ACTIONNAME174031A" #Reject French rule
+		command = { type = breakvassal which = FRA }
+		command = { type = stability value = 2 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = relation which = MLO value = 25 }
+	}
+}
+
+#(1528-1537) Rise of Andrea Doria and the alliance with Charles V
+event = {
+	id = 174008
+	trigger = {
+		exists = SPA
+		exists = FRA
+		NOT = { war = { country = GEN country = SPA } }
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174008" #Andrea Doria and Carlos I of Spain
+	desc = "EVENTHIST174008"
+	#-#Andrea Doria (1466-1560) was a Genoese condottiero and admiral born into an ancient Genoese family. He was orphaned at a young age and became a soldier of fortune fighting for various Italian princes. From 1524 to 1528 he fought in a number of battles for the French as a general in the service of King François Ier. He became dissatisfied as François was mean about payment for his services. In 1528 when his contract expired he staged a coup and took control of Genoa. This gave him the opportunity to join the service of Charles I of Spain (the emperor Charles V) in exchange for which Charles guaranteed Genoa's status as an independent republic. Under this arrangement Genoa was brought into the Spanish orbit and it remained one of Spain's most loyal allies for more than 150 years, serving as the port for Milan, the center of Spanish power in Northern Italy.
+
+	date = { day = 1 month = january year = 1528 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1537 }
+
+	action_a = {
+		name = "ACTIONNAME174008A" #Enter into alliance with Carlos I
+		command = { type = relation which = SPA value = 25 }
+		command = { type = relation which = HAB value = 75 }
+		command = { type = relation which = FRA value = -75 }
+		command = { type = breakvassal which = FRA }
+		command = { type = breakvassal which = MLO }
+		command = { type = sleepleader which = 052300 } #A Doria (GEN)
+		command = { type = galleys which = -2 value = 5 }
+		command = { type = treasury value = 50 } #Payment for Doria
+	}
+	action_b = {
+		name = "ACTIONNAME174008B" #Renew contract with François Ier
+		command = { type = relation which = FRA value = 75 }
+		command = { type = relation which = SPA value = -50 }
+		command = { type = relation which = HAB value = -25 }
+		command = { type = wakeleader which = 052300 } #A Doria (GEN)
+		command = { type = sleepevent which = 285000 } #SPA: The Genoese Alliance
+		command = { type = sleepevent which = 12028 } #FRA: The Peace of Cambrai
+	}
+}
+
+#(1528-1537) Andrea Doria's Reforms -I-
+event = {
+	id = 174009
+	trigger = {
+		OR = {
+			event = 174008 #GEN: Andrea Doria and Carlos I of Spain
+			NOT = {
+				exists = FRA
+				exists = SPA
+			}
+		}
+		NOT = {
+			vassal = { country = SPA country = GEN }
+			event = 174059 #GEN: Andrea Doria's Reforms -II-
+		}
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174009" #Andrea Doria's Reforms
+	desc = "EVENTHIST174009"
+	#-#Andrea Doria had near absolute political power in Genoa and he took the opportunity to reform the constitution. Political rights were limited to the nobility along with several of the more prominent common families who were ennobled. The Liber Civitas, the Genoese equivalent to Venice's Golden Book, listed all those in the political class, although the oligarchy was never as closed as was Venice's. These reforms ended the chronic unrest that had plagued Genoa for the previous 150 years. Doria could have also claimed rulership of Genoa but instead chose to exercise power behind the scenes as the permanent head of the censors, a sort of supreme court that ensured that the constitution was followed.
+
+	date = { day = 10 month = october year = 1528 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1537 }
+
+	action_a = {
+		name = "ACTIONNAME174009A" #Stop unrest and reform the Constitution
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = stability value = -1 }
+		command = { type = provincetax which = 403 value = 1 } #Liguria
+		command = { type = infra value = 500 }
+		command = { type = naval value = 500 }
+		command = { type = setflag which = [constitutional_reforms] }
+	}
+	action_b = {
+		name = "ACTIONNAME174009B" #Reform the Constitution and rule as Doge
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = stability value = -2 }
+		command = { type = provincetax which = 403 value = 1 } #Liguria
+		command = { type = dynastic which = KNI } #former knight of the order
+		command = { type = dynastic which = HAB } #imperial commander
+		command = { type = wakemonarch which = 052159 } #Andrea Doria °
+		command = { type = sleepmonarch which = 052022 } #Oberto Cattaneo Lazzari
+		command = { type = sleepmonarch which = 052023 } #Battista Spinola
+		command = { type = sleepmonarch which = 052024 } #Battista Lomellini
+		command = { type = sleepmonarch which = 052025 } #Cristoforo Grimaldi Rosso
+		command = { type = sleepmonarch which = 052026 } #Giovanni Battista Doria
+		command = { type = sleepmonarch which = 052027 } #Giannandrea Giustiniani Lungo
+		command = { type = sleepmonarch which = 052028 } #Leonardo Cattaneo della Volta
+		command = { type = sleepmonarch which = 052029 } #Andrea Centurione Pietrasanta
+		command = { type = sleepmonarch which = 052030 } #Giovanni Battista de Fornari
+		command = { type = sleepmonarch which = 052031 } #Benedetto Gentile Pevere
+		command = { type = sleepmonarch which = 052032 } #Gaspari Grimaldi Bracelli
+		command = { type = sleepmonarch which = 052033 } #Luca Spinola
+		command = { type = sleepmonarch which = 052034 } #Giacomo Promontorio
+	}
+	action_c = {
+		name = "ACTIONNAME174009C" #Genoa is doing fine, leave it's laws alone
+		command = { type = stability value = 1 }
+		command = { type = sleepevent which = 174011 } #GEN: The Fieschi conspiracy
+	}
+}
+#(1528-1537) Andrea Doria's Reforms -II-
+event = {
+	id = 174059
+	trigger = {
+		event = 174008 #GEN: Andrea Doria and Carlos I of Spain
+		vassal = { country = SPA country = GEN }
+		NOT = { event = 174009 } #GEN: Andrea Doria's Reforms - I -
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174009" #Andrea Doria's Reforms
+	desc = "EVENTHIST174009"
+	#-#Andrea Doria had near absolute political power in Genoa and he took the opportunity to reform the constitution. Political rights were limited to the nobility along with several of the more prominent common families who were ennobled. The Liber Civitas, the Genoese equivalent to Venice's Golden Book, listed all those in the political class, although the oligarchy was never as closed as was Venice's. These reforms ended the chronic unrest that had plagued Genoa for the previous 150 years. Doria could have also claimed rulership of Genoa but instead chose to exercise power behind the scenes as the permanent head of the censors, a sort of supreme court that ensured that the constitution was followed.
+
+	date = { day = 10 month = october year = 1528 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1537 }
+
+	action_a = {
+		name = "ACTIONNAME174009A" #Stop unrest and reform the Constitution
+		command = { type = breakvassal which = SPA }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = stability value = 2 }
+		command = { type = provincetax which = 403 value = 1 } #Liguria
+		command = { type = infra value = 500 }
+		command = { type = naval value = 500 }
+		command = { type = setflag which = [constitutional_reforms] }
+	}
+	action_b = {
+		name = "ACTIONNAME174009B" #Reform the Constitution and rule as Doge
+		command = { type = breakvassal which = SPA }
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = stability value = 1 }
+		command = { type = provincetax which = 403 value = 1 } #Liguria
+		command = { type = dynastic which = KNI } #former knight of the order
+		command = { type = dynastic which = HAB } #imperial commander
+		command = { type = wakemonarch which = 052159 } #fantasy #Andrea Doria
+		command = { type = sleepmonarch which = 052022 } #Oberto Cattaneo Lazzari
+		command = { type = sleepmonarch which = 052023 } #Battista Spinola
+		command = { type = sleepmonarch which = 052024 } #Battista Lomellini
+		command = { type = sleepmonarch which = 052025 } #Cristoforo Grimaldi Rosso
+		command = { type = sleepmonarch which = 052026 } #Giovanni Battista Doria
+		command = { type = sleepmonarch which = 052027 } #Giannandrea Giustiniani Lungo
+		command = { type = sleepmonarch which = 052028 } #Leonardo Cattaneo della Volta
+		command = { type = sleepmonarch which = 052029 } #Andrea Centurione Pietrasanta
+		command = { type = sleepmonarch which = 052030 } #Giovanni Battista de Fornari
+		command = { type = sleepmonarch which = 052031 } #Benedetto Gentile Pevere
+		command = { type = sleepmonarch which = 052032 } #Gaspari Grimaldi Bracelli
+		command = { type = sleepmonarch which = 052033 } #Luca Spinola
+		command = { type = sleepmonarch which = 052034 } #Giacomo Promontorio
+	}
+	action_c = {
+		name = "ACTIONNAME174009C" #Genoa is doing fine, leave it's laws alone
+		command = { type = breakvassal which = SPA }
+		command = { type = stability value = 4 }
+		command = { type = sleepevent which = 174011 } #GEN: The Fieschi conspiracy
+	}
+}
+
+#(1535-1540) The Barbary pirates
+event = {
+	id = 174010
+	trigger = {
+		leader = 052300 #A Doria (GEN)
+		NOT = {
+			war = { country = SPA country = GEN }
+			war = { country = HAB country = GEN }
+		}
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174010" #The Barbary pirates
+	desc = "EVENTHIST174010"
+	#-#As imperial admiral Andrea Doria directed the maritime struggle against the Turks and the Barbary pirates. In 1535 he co-operated with the emperor himself in the siege of Tunis, and in 1536 as head of the united squadron made up of the ships of the Pope, Venice, and the Knights of St John. He surprised the famous Barbarossa, a pirate, Ottoman admiral and ruler of Algiers, in the Gulf of Arta and then allowed him to escape. He accompanied Charles on the ill-fated Algerian expedition of 1541 of which he disapproved, and by his ability saved the whole force from complete disaster.
+
+	date = { day = 1 month = january year = 1535 }
+	offset = 180
+	deathdate = { day = 1 month = january year = 1540 }
+
+	action_a = {
+		name = "ACTIONNAME174010A" #We need to fight this pirate menace
+		command = { type = casusbelli which = TUN value = 240 }
+		command = { type = casusbelli which = ALD value = 240 }
+		command = { type = casusbelli which = XHO value = 240 }
+		command = { type = casusbelli which = TUR value = 240 }
+		command = { type = relation which = TUN value = -50 }
+		command = { type = relation which = ALD value = -50 }
+		command = { type = relation which = XHO value = -50 }
+		command = { type = relation which = TUR value = -50 }
+		command = { type = trade value = 100 }
+		command = { type = merchants value = 4 }
+	}
+	action_b = {
+		name = "ACTIONNAME174010B" #It's better to secure our trade with stronger convoys
+		command = { type = warships which = -2 value = 2 }
+		command = { type = naval value = 200 }
+		command = { type = treasury value = -50 }
+	}
+}
+
+#(1540-1545) Merchant bankers of Genoa, part 1
+event = {
+	id = 174012
+	trigger = {
+		exists = SPA
+		NOT = { war = { country = GEN country = SPA } }
+		vassal = { country = SPA country = GEN }
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174012" #Merchant Bankers of Genoa
+	desc = "EVENTHIST174012"
+	#-#The alliance with Spain allowed Genoese financiers to handle huge sums for the Spanish crown. The Genoese controlled Spanish trade and were the principal bankers of catholic Europe in the latter part of the sixteenth century.
+
+	date = { day = 1 month = january year = 1540 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1545 }
+
+	action_a = {
+		name = "ACTIONNAME174012A" #Invest in Spain and become bankers
+		command = { type = infra value = 100 }
+		command = { type = treasury value = 150 }
+		command = { type = relation which = SPA value = 25 }
+		command = { type = setflag which = [merchant_bankers] }
+	}
+	action_b = {
+		name = "ACTIONNAME174012B" #We are merchants, not bankers
+		command = { type = trade value = 100 }
+		command = { type = treasury value = 50 }
+		command = { type = merchants value = 6 }
+	}
+}
+
+#(1546-1549) The Fieschi conspiracy -I-
+event = {
+	id = 174011
+	trigger	= {
+		OR = {
+			event = 174009 #GEN: Andrea Doria reforms -I-
+			event = 174059 #GEN: Andrea Doria reforms -II-
+		}
+		NOT = {
+			vassal = { country = FRA country = GEN }
+			event = 174060 #GEN: The Fieschi conspiracy -II-
+		}
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174011" #The Fieschi conspiracy
+	desc = "EVENTHIST174011"
+	#-#Andrea Doria's great wealth and power as well as the arrogance of his nephew and heir Giannettino Doria made him many enemies, and in 1547 the Fieschi conspiracy took place. Giovanni Luigi Fieschi, count of Lavagna, was descended from one of the greatest families of Liguria. When he determined to conspire against Doria he found friends in many quarters. Pope Paul III was the first to encourage him, while both Pier Luigi Farnese, duke of Parma, and François Ier of France gave him much assistance. Giannettino was murdered but the conspirators were defeated and Andrea showed great vindictiveness in punishing them. Doria seized the fiefs of the conspirators and took them for himself. He involved himself in the conspiracy that led to the murder of the Duke of Parma.
+
+	date = { day = 1 month = january year = 1546 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1549 }
+
+	action_a = {
+		name = "ACTIONNAME174011A" #Crush the conspiracy and eliminate the conspirators
+		command = { type = relation which = PAR value = -100 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = relation which = PAP value = -30 }
+		command = { type = trade value = -200 }
+		command = { type = merchants value = -3 }
+		command = { type = treasury value = 80 }
+	}
+	action_b = {
+		name = "ACTIONNAME174011B" #Negotiate with Fieschi and his companions
+		command = { type = stability value = -2 }
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = relation which = FRA value = 30 } #Fieschi belonged to the French or popular party
+		command = { type = breakvassal which = SPA } #SPA is unlikely to be Genoa's vassal
+		command = { type = relation which = SPA value = -100 }
+		command = { type = relation which = HAB value = -100 }
+	}
+}
+#(1546-1549) The Fieschi conspiracy - II -
+event = {
+	id = 174060
+	trigger	= {
+		event = 174008 #GEN: Andrea Doria and Carlos I of Spain
+		vassal = { country = FRA country = GEN }
+		NOT = { event = 174011 } #GEN: The Fieschi conspiracy -I-
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174011" #The Fieschi conspiracy
+	desc = "EVENTHIST174011"
+	#-#Andrea Doria's great wealth and power as well as the arrogance of his nephew and heir Giannettino Doria made him many enemies, and in 1547 the Fieschi conspiracy took place. Giovanni Luigi Fieschi, count of Lavagna, was descended from one of the greatest families of Liguria. When he determined to conspire against Doria he found friends in many quarters. Pope Paul III was the first to encourage him, while both Pier Luigi Farnese, duke of Parma, and François Ier of France gave him much assistance. Giannettino was murdered but the conspirators were defeated and Andrea showed great vindictiveness in punishing them. Doria seized the fiefs of the conspirators and took them for himself. He involved himself in the conspiracy that led to the murder of the Duke of Parma.
+
+	date = { day = 1 month = january year = 1546 }
+	offset = 20
+	deathdate = { day = 1 month = january year = 1549 }
+
+	action_a = {
+		name = "ACTIONNAME174011A" #Crush the conspiracy and eliminate the conspirators
+		command = { type = breakvassal which = FRA }
+		command = { type = stability value = 2 }
+		command = { type = relation which = PAR value = -100 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = relation which = PAP value = -30 }
+		command = { type = trade value = -200 }
+		command = { type = merchants value = -3 }
+		command = { type = treasury value = 80 }
+	}
+	action_b = {
+		name = "ACTIONNAME174011B" #Negotiate with Fieschi and his companions
+		command = { type = stability value = -2 }
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = relation which = FRA value = 30 } #Fieschi belonged to the French or popular party
+		command = { type = relation which = SPA value = -100 }
+		command = { type = relation which = HAB value = -100 }
+	}
+}
+
+#(1560-1565) Merchant bankers of Genoa, part 2
+event = {
+	id = 174013
+	trigger = {
+		flag = [merchant_bankers]
+		exists = SPA
+		NOT = { war = { country = GEN country = SPA } }
+		vassal = { country = SPA country = GEN }
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174013" #Merchant Bankers of Genoa
+	desc = "EVENTHIST174013"
+	#-#It was said that 'Gold is born in America, dies in Spain and is buried in Genoa.' Genoese banking thrived as Spanish gold filled their coffers and great palaces were built in Genoa.
+
+	date = { day = 1 month = january year = 1560 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1565 }
+
+	action_a = {
+		name = "ACTIONNAME174013A" #This will lead to increased splendor in our city!
+		command = { type = treasury value = 100 }
+		command = { type = gainmanufactory which = -2 value = luxury }
+		command = { type = relation which = SPA value = 15 }
+	}
+}
+
+#(1562-1563) Genoa gets Corsica back from St George
+event = {
+	id = 174052
+	trigger = {
+		flag = [giorgio]
+		owned = { province = 398 data = -1 } #Corsica
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174052" #Corsica is returned
+	desc = "EVENTHIST174052"
+	#-#The only thing the Bank of St George was successful with in Corsica was dealing with the rebel aristocracy and the highest lineages are now destroyed or tamed. All other efforts to have Corsica begin its economic development have failed miserably and they lost a lot of money in these projects. The Bank is now willing to cede the island back to us. We will have to try really hard to improve the people's condition outside the Genoese colonies and cities to prevent any new uprisings.
+
+	date = { day = 29 month = june year = 1562 }
+	offset = 30
+	deathdate = { day = 29 month = july year = 1563 }
+
+	action_a = {
+		name = "ACTIONNAME174052A" #Everything will be fine
+		command = { type = provincetax which = 398 value = 1 } #Corsica
+		command = { type = domestic which = centralization value = 1 }
+	}
+}
+
+#(1564-1567) Sampiero Corso
+event = {
+	id = 174054
+	trigger = {
+		event = 170130 #FRA: Plan invasion of Corsica
+		owned = { province = 398 data = -1 } #Corsica
+		NOT = { war = { country = FRA country = GEN } }
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174054" #Sampiero Corso
+	desc = "EVENTHIST174054"
+	#-#Forsaken by his French liege, the petty condotierro now thinks himself as a national hero.
+
+	date = { day = 22 month = june year = 1564 }
+	offset = 180
+	deathdate = { day = 16 month = january year = 1567 }
+
+	action_a = {
+		name = "ACTIONNAME174054A" #He is desperate
+		command = { type = revolt which = 398 } #Corsica
+		command = { type = revolt which = 398 }
+	}
+}
+
+#(1571-1573) The Holy League - modified by YodaMaster
+event = {
+	id = 174014
+	trigger = {
+		exists = TUR
+		OR = {
+			event = 3549 #PAP: The Holy League
+			event = 236000 #MUS: The Holy League (no Papal States)
+		}
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME3549" #The Holy League
+	desc = "EVENTHIST3549"
+	#-#When in 1570 the Turks sent an ultimatum to Venice asking for the ceding of Cyprus and then invaded the island after the Republic of San Marco failed to respond, a great uproar was created in the Catholic world by the facts and rumors of Ottoman atrocities in the last Christian bastion of the eastern Mediterranean. After a first failure in the summer of 1570, Pope Pius V managed to convince major Catholic nations (except France) to join a Holy League against the heathens Turks, and it was proclaimed in May 1571. The League would lead to the great naval victory of Don Juan on the Turks at Lepanto, but would not outlast this first and final triumph. Selim II is rumored to have said, after the news he had lost 200 galleys at Lepanto: At Lepanto, the Christians have shaved me. At Cyprus, I cut their arm. My beard will grow again….
+
+	date = { day = 7 month = may year = 1571 }
+	offset = 30
+	deathdate = { day = 13 month = april year = 1573 }
+
+	action_a = {
+		name = "ACTIONNAME3161A" #Support the Holy League
+		command = { type = casusbelli which = TUR value = 72 }
+		command = { type = relation which = TUR value = -150 }
+		command = { type = relation which = PAP value = 50 }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = ITA value = 50 }
+		command = { type = relation which = KNI value = 50 }
+		command = { type = relation which = NAP value = 50 }
+		command = { type = relation which = SAV value = 50 }
+		command = { type = relation which = SIC value = 50 }
+		command = { type = relation which = SPA value = 50 }
+		command = { type = relation which = TOS value = 50 }
+		command = { type = relation which = VEN value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME3549B" #Let the matter fall
+		command = { type = relation which = TUR value = 50 }
+		command = { type = relation which = PAP value = -50 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = relation which = ITA value = -50 }
+		command = { type = relation which = KNI value = -50 }
+		command = { type = relation which = NAP value = -50 }
+		command = { type = relation which = SAV value = -50 }
+		command = { type = relation which = SIC value = -50 }
+		command = { type = relation which = SPA value = -50 }
+		command = { type = relation which = TOS value = -50 }
+		command = { type = relation which = VEN value = -50 }
+	}
+}
+
+#(1580-1588) Merchant bankers of Genoa, part 3
+event = {
+	id = 174015
+	trigger = {
+		flag = [merchant_bankers]
+		exists = SPA
+		NOT = { war = { country = GEN country = SPA } }
+		vassal = { country =SPA country = GEN }
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174015" #Merchant Bankers of Genoa
+	desc = "EVENTHIST174015"
+	#-#It was said that 'Gold is born in America, dies in Spain and is buried in Genoa.' Genoese banking thrived as Spanish gold filled their coffers.
+
+	date = { day = 1 month = november year = 1580 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1588 }
+
+	action_a = {
+		name = "ACTIONNAME174015A" #This will lead to increased splendor in our city!
+		command = { type = treasury value = 100 }
+		command = { type = relation which = SPA value = 15 }
+	}
+}
+
+#(1592-1598) First Spanish Bankruptcy
+event = {
+	id = 174016
+	trigger = {
+		flag = [merchant_bankers]
+		event = 3158 # Spanish bankruptcy
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174016" #Spanish Bankruptcy
+	desc = "EVENTHIST174016"
+	#-#The bankruptcies of the Spanish crown had a severe effect on the Genoese economy because so much Genoese capital was tied up in Spanish debt.
+
+	date = { day = 5 month = january year = 1592 }
+	offset = 700
+	deathdate = { day = 5 month = january year = 1598 }
+
+	action_a = {
+		name = "OH_NO"
+		command = { type = inflation value = 6 }
+		command = { type = treasury value = -200 }
+		command = { type = stability value = -3 }
+		command = { type = relation which = SPA value = -50 }
+	}
+}
+
+#(1615) Revolts of 1615
+event = {
+	id = 174056
+	trigger = {
+		owned = { province = 398 data = -1 } #Corsica
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174056" #Peasants revolts
+	desc = "EVENTHIST174056"
+	#-#In August 1615, bloody uprisings took place in the South-West of Corsica. This time, instead of targetting the Genoese garrisons or tax perceptors, the peasants assaulted the castles of their own local lords, the di Bozzi family. Many important members of this ancient feudal dynasty were slaughtered and the Genoese comissars had to react most violently: a small army was sent in the rebellious areas and the captured leaders were hanged or sent to the galleys. Taxes were maintained and the di Bozzi were put back in charge.
+
+	date = { day = 9 month = august year = 1615 }
+
+	action_a = {
+		name = "ACTIONNAME174056A" #Side with the lords
+		command = { type = revolt which = 398 }
+		command = { type = revolt which = 398 }
+		command = { type = province_revoltrisk which = 398 value = 1 }
+		command = { type = treasury value = -50 }
+		command = { type = inf which = 403 value = 5000 } #Liguria
+	}
+	action_b = {
+		name = "ACTIONNAME174056B" #Side with the peasants
+		command = { type = provincetax which = 398 value = -1 }
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = domestic which = serfdom value = -2 }
+		command = { type = stability value = -4 }
+	}
+}
+
+#(1621-1641) Second Spanish Bankruptcy
+event = {
+	id = 174017
+	trigger = {
+		flag = [merchant_bankers]
+		event = 3164 # Spanish bankruptcy
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174017" #Spanish Bankruptcy
+	desc = "EVENTHIST174017"
+	#-#The bankruptcies of the Spanish crown had a severe effect on the Genoese economy because so much Genoese capital was tied up in Spanish debt.
+
+	date = { day = 1 month = january year = 1621 }
+	offset = 700
+	deathdate = { day = 1 month = january year = 1641 }
+
+	action_a = {
+		name = "OH_NO"
+		command = { type = inflation value = 6 }
+		command = { type = treasury value = -200 }
+		command = { type = stability value = -3 }
+		command = { type = relation which = SPA value = -50 }
+	}
+}
+
+#(1657-1670) The Economic Crisis
+#by Bordic
+event = {
+	id = 174055 #triggered by ProvinceSpec_338241
+	trigger = {
+		owned = { province = 403 data = -1 } #Liguria
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME220013" #The Economic Crisis
+	desc = "EVENTHIST220013"
+	#-#The Spanish hegemony in the Italian peninsula was exercised by means of heavy bureaucracy and harsh taxation directly in the Habsburg dominions of Milan and Naples and indirectly in the rest of the peninsula by forcing the other minor Italian states to respect Spanish economic and diplomatic directives. The vassalage to Spain, which granted to some extent an enduring peace in Italy afer the Italian Wars, which the historians would call 'the pax hispanica', together with the disuse of the Mediterranean sea as international trade route towards the East Indies brought the Italian economic system to eventually collapse. As a result of this agriculture will become the prevailing economic activity in Italy until the end of XIXth century. That meant the coming back to power of the landowning aristocracy.
+
+	action_a = {
+		name = "ACTIONNAME220013A" #We hope for better times!
+		command = { type = stability value = -2 }
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = domestic which = MERCANTILISM value = 1 }
+		command = { type = domestic which = SERFDOM value = 1 }
+		command = { type = domestic which = LAND value = 1 }
+		command = { type = trade value = -500 }
+		command = { type = infra value = -500 }
+		command = { type = naval value = -500 }
+	}
+}
+
+#(1664) Franco-Papal diplomatic incident
+event = {
+	id = 174057 #triggered by PAP_251063 A
+	trigger = {
+		owned = { province = 398 data = -1 } #Corsica
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174057" #Corsicans are chased from Papal service
+	desc = "EVENTHIST174057"
+	#-#It all began when Corsican Guards, upon orders, pursued a man wanted for debts up to gardens of the Cardinal d'Este's palace. The French prelate's men protected the fugitive and repelled the Pope's guards, twice. A strong enmity ensued between French people in Rome and Corsican Guards, culminating on 20th August 1662 when a violent brawl between Corsicans and soldiers of the French ambassador, the Duke of Créquy, took place in a tavern. In the evening, the Duke's palace was assaulted and the ambassadress's carriage was even shot at. Six men died, including a civilian who happened to belong to the Duke's household. Louis XIV reacted immediately by sending back the Nuncio from Paris, invaded the Comtat- Venaissin and asked for the Corsican Guard to be entirely disbanded and for the Corsicans to be declared unfit to serve the Papal States. Before that, fifty of its members would have to be hanged and three-hundred and fifty others sent to the galleys.\nWe have been complaining several times to the Pope about his recruiting officers helping emptying Corsica. He has just agreed to the French demands when he had been disregarding ours for many years.
+
+	action_a = {
+		name = "ACTIONNAME174057A" #Good for us, or is it really?
+		command = { type = relation which = PAP value = 25 }
+		command = { type = population which = 398 value = 300 } #Corsica
+		command = { type = provincemanpower which = 398 value = 1 }
+		command = { type = province_revoltrisk which = 398 value = 1 }
+	}
+}
+
+#(1675-1715) Economic and Social Decadence
+#by Bordic
+event = {
+	id = 174066
+	trigger = {
+		NOT = {
+			countrysize = 10
+			domestic = { type = innovative value = 9 }
+			domestic = { type = serfdom value = 3 }
+			domestic = { type = aristocracy value = 1 }
+			event = 338232 #ProvinceSpec*389: The plague in Milan
+		}
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME251066" #Economic and Social Decadence
+	desc = "EVENTHIST251066"
+	#-#In the late XVIIth century, the disuse of the Mediterranean sea as the main international trade junction between Europa and the East Indies brought the Italian economic system to collapse. Italy became more removed from the mainstream of European development and each local administration along the peninsula lagged behind that of any other European contemporary. The practice of agriculture as prevailing economic activity meant the coming back to power of the most conservative landowning aristocracy. That economic backwardness associated with the effects of Counterreform deeply affected Italian social life too, now less and less inclined to accept innovation and to develop some entrepreneurial attitude.
+
+	date = { day = 22 month = january year = 1675 }
+	offset = 60
+	deathdate = { day = 0 month = january year = 1715 }
+
+	action_a = {
+		name = "ALAS"
+		command = { type = stability value = -1 }
+		command = { type = provincetax which = -2 value = -2 }
+		command = { type = provincemanpower which = -2 value = -1 }
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = domestic which = MERCANTILISM value = 1 }
+		command = { type = domestic which = SERFDOM value = 1 }
+		command = { type = domestic which = LAND value = 1 }
+		command = { type = trade value = -500 }
+		command = { type = infra value = -500 }
+		command = { type = naval value = -500 }
+	}
+}
+
+#(1676) Refugees from Maïna
+event = {
+	id = 174058
+	trigger = {
+		owned = { province = 398 data = -1 } #Corsica
+		owned = { province = 360 data = TUR } #Morea
+	}
+	random = no
+	country = GEN
+
+	name = "EVENTNAME174058" #Greek refugees in Corsica
+	desc = "EVENTHIST174058"
+	#-#The Republic considered Corsica as a colony since 1284 and its victory upon Pisa and most important coastal cities originated with Genoese settlers from the mainland. This policy was pursued during the following centuries and became even more intensive after the Cinarchese Wars and the War of the French, throughout the 'Iron Century' (1569-1729). One of the most peculiar group of settlers were in fact Greeks. On January 18th 1676, an agreement was signed between the Genoese Magistrates and the leaders of a community originating from Maïna in Morea. Fleeing from the Ottomans, the Stephanopoli brothers and their people were given land in Corsica and Genoese citizenship. This made them into most faithful supporters of Genoa and as a consequence created heavy tensions with the surrounding Corsican villages so that Greek settlings were often raided by various revolters. During the Forty Years War, they even had to flee to Ajaccio for a time before being resettled by the French in Carghjese, where they still are.
+
+	date = { day = 17 month = january year = 1676 }
+	offset = 15
+	deathdate = { day = 13 month = march year = 1676 }
+
+	action_a = {
+		name = "ACTIONNAME174058A" #Settle them there
+		command = { type = population which = 398 value = 730 } #Corsica
+		command = { type = province_revoltrisk which = 398 value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME174058B" #We owe them nothing
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1729) First round of revolts in Corsica
+event = {
+	id = 174069
+	trigger = {
+		owned = { province = 398 data = -1 } #Corsica
+		domestic = { type = aristocracy value = 2 }
+		domestic = { type = centralization value = 2 }
+		domestic = { type = mercantilism value = 2 }
+		domestic = { type = serfdom value = 2 }
+		NOT = {
+			domestic = { type = innovative value = 9 }
+			countrysize = 6
+		}
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174069" #Revolts in Boziu and Rustinu
+	desc = "EVENTHIST174069"
+	#-#The reasons were ancient and many: peasantry overburdened with taxes, upper and middle classes deprived of political and economical power, a colonial economy implying shameless pillaging of primary resources and massive importation of manufactured goods, obvious dicriminations between natives and Genoese citizens when it came to civil employment and judiciary matters.\nNow to the spark, it is told that on 27th December 1729, in the province of Boziu, Anton Francescu Lanfranchi, who was known as 'Cardone', was cruelly punihsed by the Genoese tax-collectors because he could not pay the due seini. The Due Seini were a very unfair tax, supposedly temporary, which had been instaured fifteen years earlier after Genoa had finally agreed to the Nobili Dodeci's longtime request to forbid firearms in Corsica. To compensate the resulting loss of income (the Republic used to sell licences for firearms) it was then decreed that every family would have to pay this new tax, which was approximatively equivalent to the licence's price. De facto, Corsicans were paying Genoa to forbid firearms, which were only needed because Genoa was not able to enforce law and order in the island.
+
+	date = { day = 26 month = december year = 1729 }
+
+	action_a = {
+		name = "ACTIONNAME174069A" #Order will soon be restored
+		command = { type = revolt which = 398 }
+		command = { type = province_revoltrisk which = 398 value = 10 }
+		command = { type = treasury value = -25 }
+	}
+}
+
+#(1730) The revolt spreads in Corsica
+event = {
+	id = 174070
+	trigger = {
+		event = 174069 #GEN: Revolts in Boziu and Rustinu
+		owned = { province = 398 data = -1 } #Corsica
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174070" #The revolt spreads like a wildfire
+	desc = "EVENTHIST174070"
+	#-#In the beginning of 1730, the initial localized uprising became a generalized revolt. Groups of insurgents were all over the island. Genoese companies were ambushed or openly defeated, and arms were seized. An assault was launched upon Bastia on 19th February, and upon Aiacciu on 8th March. The Genoese governor tried to cool things down through a local council of elected notables: the Nobili Dodeci, an institution two and a half centuries old. The two foremost negotiators designated to approach the rebels, Luiggi Giafferi and Andria Ceccaldi, joined their side in April. In May, the insurgents first formulated some revendications, especially about lowering of taxes and freedom of trade. Genoa made very few concessions and in the summer the fightings resumed. By then, the situation was out of control for Genoa. Bastia was even taken twice: in August and then again in December.
+
+	date = { day = 0 month = february year = 1730 }
+	offset = 60
+	deathdate = { day = 29 month = march year = 1730 }
+
+	action_a = {
+		name = "DAMN"
+		command = { type = revolt which = 398 }
+		command = { type = revolt which = 398 }
+		command = { type = revolt which = 398 }
+		command = { type = revolt which = 398 }
+		command = { type = desertion which = 398 value = 3000 }
+		command = { type = province_revoltrisk which = 398 value = 15 }
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1731) Loss of control in Corsica
+event = {
+	id = 174071
+	trigger = {
+		event = 174070 #GEN: The revolt spreads like a wildfire
+		owned = { province = 398 data = -1 } #Corsica
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174071" #We are losing control
+	desc = "EVENTHIST174071"
+	#-#In January 1731, Corsican leaders held a meeting in Corti. This was the first attempt to create a new local administration and an organized army. The Genoese were still trying to regain control through their last allies: a Capicorsu lord and the Bishop of Mariana even had a meeting with the rebel leaders. But meanwhile, the new administration was now engaged in a fight with the cities still faithful to Genoa: Sarté, Algaiola and San Fiurenzu were taken between March and April. In the late spring, Genoa was only holding its four historical citadels: Bastia, Aiacciu, Calvi and Bunifaziu.
+
+	date = { day = 0 month = march year = 1731 }
+	offset = 60
+	deathdate = { day = 29 month = april year = 1731 }
+
+	action_a = {
+		name = "ACTIONNAME174071A" #This is getting nasty
+		command = { type = revolt which = 398 }
+		command = { type = revolt which = 398 }
+		command = { type = province_revoltrisk which = 398 value = 5 }
+	}
+}
+
+#(1731-1733) Ask for Austrian support in Corsica
+event = {
+	id = 174072
+	trigger = {
+		event = 174070 #GEN: The revolt spreads like a wildfire
+		OR = {
+			AND = {
+				owned = { province = 398 data = -1 } #Corsica
+				control = { province = 398 data = REB }
+			}
+			war = { country = GEN country = COR }
+		}
+		exists = HAB
+		NOT = { war = { country = GEN country = HAB } }
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174072" #Ask for Austrian support
+	desc = "EVENTHIST174072"
+	#-#On 10th May 1731, the Genoese ambassador in Vienna, Marquis Gian Luca Pallavicini, was received by Karl II to present a request for military assistance on behalf of the Republic. On 10th August, nearly 4000 Austrian soldiers landed at Bastia under the Baron of Wachtendonck, with them were 3000 Genoese under Camillo Doria. The two men often disagreed as the Genoese often found the Austrian officer's attitude too conciliary towards the rebels. Some more troops landed at Calvi in early april 1732 under the Prince of Wurtemberg and there were now around 10000 Austrians in the island. In less than a month, this first revolt was over and the foremost leaders surrendered and were transfered in Genoa.
+
+	date = { day = 9 month = may year = 1731 }
+	offset = 10
+	deathdate = { day = 5 month = june year = 1733 }
+
+	action_a = {
+		name = "ACTIONNAME174072A" #We do need their help
+		command = { type = diplomats value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME174072B" #We'll do without
+		command = { type = stability value = -1 }
+		command = { type = sleepevent which = 179118 } #HAB: Austrian intervention in Corsica
+	}
+}
+
+#(1731-1733) Austrian intervention in Corsica
+event = {
+	id = 174073 #triggered by HAB_179118 A
+	random = no
+	country = GEN
+	name = "EVENTNAME174073" #Austria sends troops
+	desc = "EVENTHIST174073"
+	#-#The requested troops are ready to sail.
+
+	action_a = {
+		name = "GOOD_NEWS"
+		command = { type = inf which = -2 value = 8000 }
+		command = { type = galleys which = -2 value = 2 }
+		command = { type = transports which = -2 value = 3 }
+		command = { type = treasury value = -100 }
+	}
+}
+
+#(1733-1735) Granting concessions in Corsica - Austrian intervention
+event = {
+	id = 174074
+	trigger = {
+		event = 174073 #GEN: Austria sends troops
+		owned = { province = 398 data = -1 } #Corsica
+		control = { province = 398 data = -1 }
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174074" #The Concessioni Graziose
+	desc = "EVENTHIST174074"
+	#-#In January 1733 were published the Gracious Concessions granted by Genoa to the Corsicans under the firm pressure of Karl II. Those were very minor concessions, a few taxes were abolished and most of them were cancelled for 1732, some public offices were opened to Corsicans and there was a general amnesty for the rebels who would swear to remain faithful and loyal to the Republic. It could only bring peace for a while.
+
+	date = { day = 23 month = january year = 1733 }
+	offset = 10
+	deathdate = { day = 6 month = january year = 1735 }
+
+	action_a = {
+		name = "ACTIONNAME174074A" #Proclaim the new statutes
+		command = { type = province_revoltrisk which = 398 value = -25 } #Corsica
+		command = { type = provincetax which = 398 value = -1 }
+		command = { type = domestic which = mercantilism value = -1 }
+		command = { type = domestic which = serfdom value = -1 }
+	}
+}
+
+#(1733-1735) Granting concessions in Corsica - No Austrian intervention
+event = {
+	id = 174075
+	trigger = {
+		event = 174070 #GEN: The revolt spreads like a wildfire
+		NOT = { event = 174073 } #GEN: Austria sends troops
+		owned = { province = 398 data = -1 } #Corsica
+		control = { province = 398 data = -1 }
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174075" #Granting concessions in Corsica
+	desc = "EVENTHIST174075"
+	#-#The situation in the island has turned to a stalemate, shall we change our policy?
+
+	date = { day = 16 month = june year = 1733 }
+	offset = 10
+	deathdate = { day = 6 month = january year = 1735 }
+
+	action_a = {
+		name = "ACTIONNAME174075A" #Offer to negotiate
+		command = { type = stability value = -2 }
+		command = { type = province_revoltrisk which = 398 value = -30 } #Corsica
+		command = { type = provincetax which = 398 value = -1 }
+		command = { type = domestic which = mercantilism value = -1 }
+		command = { type = domestic which = serfdom value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME174075B" #Go on with the war
+		command = { type = inf which = -2 value = 10000 }
+		command = { type = art which = -2 value = 20 }
+		command = { type = galleys which = -2 value = 5 }
+		command = { type = transports which = -2 value = 5 }
+		command = { type = treasury value = -250 }
+		command = { type = domestic which = offensive value = 1 }
+		command = { type = sleepevent which = 174076 } #GEN: Ghjacintu Paoli
+	}
+}
+
+#(1733) Second round of revolts in Corsica
+event = {
+	id = 174076
+	trigger = {
+		owned = { province = 398 data = -1 } #Corsica
+		control = { province = 398 data = -1 }
+		event = 3204 #HAB: The Polish Succession of 1733
+		OR = {
+			event = 174074 #GEN: The Concessioni Graziose
+			event = 174075 #GEN: Granting concessions in Corsica
+		}
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174076" #Ghjacintu Paoli
+	desc = "EVENTHIST174076"
+	#-#For a moment order was restored in Corsica and the foremost leaders were imprisoned in Genoa. They were released a few months later but they were not allowed to come back to Corsica. Luiggi Giafferi entered the service of the Duke of Parma, while Andria Ceccaldi was to be found at the court of Felipe V. The Genoese, still feeling unsecure, endeavoured to capture the second-hand leaders, men like Ghjacintu Paoli or Ghjuvan Ghjacumu Ambrosi who were still in contact with the exiles. An attempt to seize them turned into a battle where the Genoese soldiers were routed. This is how the second round of revolts began. Freed from the fear of an Austrian intervention, thanks to the conflict about the Polish succession, the Corsican rebels took arms again. Corti, the historical capital, was taken in February and soon the exiled leaders were back and the revolters took hope again.
+
+	date = { day = 15 month = november year = 1733 }
+	offset = 60
+	deathdate = { day = 14 month = january year = 1734 }
+
+	action_a = {
+		name = "DAMN"
+		command = { type = revolt which = 398 } #Corsica
+		command = { type = revolt which = 398 }
+		command = { type = revolt which = 398 }
+		command = { type = province_revoltrisk which = 398 value = 25 }
+		command = { type = treasury value = -25 }
+	}
+}
+
+#(1736) A King in Corsica
+event = {
+	id = 174077
+	trigger = {
+		OR = {
+			event = 174074 #GEN: The Concessioni Graziose
+			event = 174075 #GEN: Granting concessions in Corsica
+		}
+		OR = {
+			owned = { province = 398 data = -1 } #Corsica
+			war = { country = GEN country = COR }
+		}
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174077" #Theodor von Neuhoff, King of Corsica
+	desc = "EVENTHIST174077"
+	#-#Quite discouraged by their lack of diplomatic success, and demoralized by the Genoese blocus, the rebels were on the brink to ask for surrendering terms when a strange adventurer landed in Corsica. He was not unknown from the Corsican leaders whom he had met in Livorno during their exile. Somehow he persuaded them to crown him King of Corsica. He was only bringing a few thousands rifles and some cannons, but he was also promising to rid Corsica from Genoese domination thanks to his diplomatic relations throughout the courts of Europe, most importantly in Spain, and France... Under his direction, the rebels took hope again and renewed assaults were launched upon the remaining Genoese citadels.
+
+	date = { day = 23 month = april year = 1736 }
+	offset = 30
+	deathdate = { day = 22 month = may year = 1736 }
+
+	action_a = {
+		name = "ACTIONNAME174077A" #We didn't need that
+		command = { type = revolt which = 398 } #Corsica
+		command = { type = revolt which = 398 }
+		command = { type = revolt which = 398 }
+		command = { type = province_revoltrisk which = 398 value = 10 }
+		command = { type = stability value = -2 }
+		command = { type = trigger which = 150011 } #COR: King Teodoru I
+	}
+}
+
+#(1737) Army Reorganisation
+event = {
+	id = 174018
+	random = no
+	country = GEN
+	name = "EVENTNAME174018" #Magistrate of War of the Republic reforms
+	desc = "EVENTHIST174018"
+	#-#In 1737 the Magistrate of War of the Republic initiated the first important reform of the old structures of the Genoan army. Following the example of most European countries the organization of the troops shifted from the company basis, as was practised, to battalion formation. By a decree of January 16th 1744 it was decided to increase the army up to 8,000 men, creating a sixth company in the Italian and Corsican battalions while increasing the strength of the companies to 120 men so that each battalion had 720 men.
+
+	date = { day = 20 month = april year = 1737 }
+	offset = 100
+	deathdate = { day = 29 month = december year = 1737 }
+
+	action_a = {
+		name = "ACTIONNAME174018A" #Reform of the old structures
+		command = { type = land value = 250 }
+		command = { type = provincemanpower which = -2 value = 1 }
+		command = { type = treasury value = -100 }
+	}
+	action_b = {
+		name = "ACTIONNAME174018B" #Maintain present system
+		command = { type = vp value = -1 }
+	}
+}
+
+#(1737-1739) French intervention in Corsica -I-
+event = {
+	id = 174078 #triggered by FRA_170193 A
+	random = no
+	country = GEN
+	name = "EVENTNAME174078" #French intervention in Corsica
+	desc = "EVENTHIST170193"
+	#-#On 5th August 1737, France officially offered the Republic military assistance to bring back order in the island of Corsica. The Count de Boissieux landed in San Fiurenzu on 6th February 1738 with 3000 men. At this time, there was already a strong party among the Corsican rebel leaders who were willing to bring Corsica under French domination, so they were quite disapointed when after a few parleys it became clear that the French troops were only acting on behalf of the Republic. De Boissieux too had learned something from these first meetings: that the Corsican rebels may give themselves to whichever power who would allow them to escape from Genoa, possibly an enemy of France. As for now, the rebels were gaining time, not daring to fight the French contingent until they were left choiceless. At the end of the year, new statutes were published, based upon the ones granted in 1733 with very few ameliorations, and of course arms would have to be surrendered. When the French troops began to move towards the interior to seize arms, the rebels were indeed left choiceless. On 13th December, the French were defeated by a large Corsican army at U Borgu and retreated towards Bastia. Reinforcements had to be sent and in the Spring of 1739 there were nearly 10000 French soldiers under the Marquis de Maillebois in Corsica. Against such a strong force, the rebels were soon militarily defeated. Corti fell at the end of June and on 10th July, Luiggi Giafferi, Ghjacintu Paoli and his young son Pasquale, Ghjuvan Ghjacumu Ambrosi and 26 other important leaders negotiated their exile from the island and took sail for Naples. The last fightings took place in the Dilà dei Monti until the end of October.
+
+	action_a = {
+		name = "ACTIONNAME174078A" #We do need help
+		command = { type = inf which = -2 value = 8000 }
+		command = { type = treasury value = -50 }
+		command = { type = trigger which = 170194 } #FRA: French intervention in Corsica
+	}
+	action_b = {
+		name = "ACTIONNAME174078B" #No, we don't need them
+		command = { type = stability value = -1 }
+		command = { type = trigger which = 170195 } #FRA: Genoa refuses our help
+	}
+}
+
+#(1740-1741) French offer to take charge in Corsica
+event = {
+	id = 174079 #triggered by FRA_170196
+	random = no
+	country = GEN
+	name = "EVENTNAME174079" #France offers to take charge in Corsica
+	desc = "EVENTHIST170196"
+	#-#At the beginning of 1740, the French government was very much aware of two facts that would determine its policy towards Genoa and Corsica for the next thirty years: firstly, most of the Corsican people hated the Genoese so much that they were ready to give themselves to any power once they would have thrown away the Genoese yoke, which would most certainly happen once the French troops had left the island, and secondly this power might very well be hostile towards France, which was unacceptable. For both of these reasons an official proposal was sent to the Genoese senate: France would administrate Corsica, including justice rendering and perception of taxes, for a number of years to be determined, until things would cool down some more.
+
+	action_a = {
+		name = "ACTIONNAME174079A" #We'll be fine
+		command = { type = relation which = FRA value = -25 }
+		command = { type = trigger which = 170197 } #FRA: The Genoese reject our offer
+		command = { type = trigger which = 170198 } #FRA: The Genoese reject our offer
+	}
+	action_b = {
+		name = "ACTIONNAME174079B" #We should trust them
+		command = { type = secedeprovince which = FRA value = 398 }
+		command = { type = trigger which = 170199 } #FRA: The Genoese accept our offer
+	}
+}
+#(1740-1741) French army leaving Corsica -I-
+event = {
+	id = 174080 #triggered by FRA_170198 A
+	random = no
+	country = GEN
+	name = "EVENTNAME174080" #The French leave Corsica
+	desc = "EVENTHIST174080"
+	#-#France accepted to withdraw their troops under the condition that we would ensure the revolts would stop, we have no real choice now.
+
+	action_a = {
+		name = "ACTIONNAME174080A" #We'll deal with them
+		command = { type = province_revoltrisk which = 398 value = 20 } #Corsica
+		command = { type = stability value = -1 }
+	}
+}
+#(1740-1741) The French chose to keep Corsica - Ahistorical
+event = {
+	id = 174081 #triggered by FRA_170198 B
+	random = no
+	country = GEN
+	name = "EVENTNAME174081" #France won't surrender Corsica
+	desc = "EVENTHIST174081"
+	#-#They pretend that we would end losing the island, with the rebels giving themselves to whichever foreign power who is ready to protect them. They fear that this foreign power could be hostile towards them and hold a strategical position against them in the Mediterranean Sea.
+
+	action_a = {
+		name = "ACTIONNAME174081A" #Corsica is ours
+		command = { type = casusbelli which = FRA value = 240 }
+		command = { type = relation which = FRA value = -200 }
+	}
+	action_b = {
+		name = "ACTIONNAME174081B" #They might be right
+		command = { type = removecore which = 398 } #Corsica
+		command = { type = relation which = FRA value = 100 }
+		command = { type = domestic which = land value = 2 }
+	}
+}
+
+#(1741-1743) Granting concessions in Corsica
+event = {
+	id = 174082
+	trigger = {
+		owned = { province = 398 data = -1 } #Corsica
+		control = { province = 398 data = -1 }
+		OR = {
+			event = 174076 #GEN: Ghjacintu Paoli
+			event = 174077 #GEN: Theodor von Neuhoff, King of Corsica
+		}
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174075" #Granting concessions in Corsica
+	desc = "EVENTHIST174075"
+	#-#The situation in the island has turned to a stalemate, shall we change our policy?
+
+	date = { day = 22 month = october year = 1741 }
+	offset = 10
+	deathdate = { day = 12 month = july year = 1743 }
+
+	action_a = {
+		name = "ACTIONNAME174075A" #Offer to negotiate
+		command = { type = province_revoltrisk which = 398 value = -25 } #Corsica
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = treasury value = -50 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME174075B" #Go on with the war
+		command = { type = inf which = -2 value = 5000 }
+		command = { type = art which = -2 value = 10 }
+		command = { type = galleys which = -2 value = 4 }
+		command = { type = transports which = -2 value = 1 }
+		command = { type = treasury value = -150 }
+		command = { type = domestic which = offensive value = 1 }
+	}
+}
+
+#(1743) The return of Theodor
+event = {
+	id = 174083
+	trigger = {
+		event = 174077 #GEN: Theodor von Neuhoff, King of Corsica
+		owned = { province = 398 data = -1 } #Corsica
+		NOT = {
+			alliance = { country = GEN country = ENG }
+			vassal = { country = ENG country = GEN }
+		}
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174083" #Theodor von Neuhoff is roaming around Corsica
+	desc = "EVENTHIST174083"
+	#-#At the beginning of 1743, borne by the English Royal Navy, the former so-called King of Corsica attempted a return in his island. He landed a couple of times and met some of the rebel leaders, some of which tried to raise the country in the East. At this moment it was already too late, the international alliances had shifted and most Corsican leaders didn't trust him anymore.
+
+	date = { day = 19 month = january year = 1743 }
+	offset = 10
+	deathdate = { day = 5 month = march year = 1743 }
+
+	action_a = {
+		name = "ACTIONNAME174083A" #Scare him away
+		command = { type = revolt which = 398 } #Corsica
+		command = { type = province_revoltrisk which = 398 value = 5 }
+		command = { type = relation which = ENG value = -25 }
+	}
+}
+
+#(1745-1748) Sardinian attempt on Corsica
+event = {
+	id = 174084 #triggered by SAV_275031 A
+	trigger = {
+		owned = { province = 398 data = -1 } #Corsica
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME275031" #Sardinian intervention in Corsica
+	desc = "EVENTHIST275031"
+	#-#On 2th october 1745, King Carlo-Emmanuel III of Sardinia made a proclamation promising assistance and protection to the Corsican people against Genoese oppression. One month later, Dumenicu Rivarola, a Corsican officer serving in the Sardinian army landed with a few hundred men in early november and Bastia was taken on the 22th with the joined forces of the Corsican local leaders: Ghjuvan Petru Gaffori and Aleriu Francescu Matra. Dissenssions soon arose between the three men and despite the reinforcements landing in the Spring of 1748, the conquest of the island could not be achieved. Once more the Corsicans were the victims of international treaties signed above their heads at Aix-la-Chapelle, and the Sardinian forces had to leave the island before the end of the year.
+
+	action_a = {
+		name = "DARN"
+		command = { type = revolt which = 398 } #Corsica
+		command = { type = revolt which = 398 }
+		command = { type = revolt which = 398 }
+		command = { type = stability value = -1 }
+		command = { type = province_revoltrisk which = 398 value = 30 }
+		command = { type = relation which = SAV value = -200 }
+		command = { type = casusbelli which = SAV value = 36 }
+	}
+}
+
+#(1748-1752) French intervention in Corsica -II-
+event = {
+	id = 174085 #triggered by FRA_170241 A
+	trigger = {
+		owned = { province = 398 data = -1 } #Corsica
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174078" #French intervention in Corsica
+	desc = "EVENTHIST170241"
+	#-#Seeing that the Genoese would soon be overwhelmed by the joined forces of the Sardinian expeditionary corps and the Corsican rebels, the French government soon decided a new intervention in the island. The Marquis de Cursay landed in Bastia with a few hundred men on 22th may 1748 to help the defenders of the city, mostly pro-Genoese Corsicans. More troops arrived in 1749, and the French were soon masters of most of the strong places in Corsica: Bastia, Corti, San Fiurenzu, Aiacciu, Sarté, without any official mandate from Genoa.
+
+	action_a = {
+		name = "ACTIONNAME174085A" #We no longer have a choice
+		command = { type = secedeprovince which = FRA value = 398 }
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1751-1752) The French army in Corsica
+event = {
+	id = 174086
+	trigger = {
+		event = 174085 #GEN: French intervention in Corsica
+		owned = { province = 398 data = FRA } #Corsica
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174086" #The Marquis de Cursay in Corsica
+	desc = "EVENTHIST174086"
+	#-#When the French landed in 1748, the Genoese were in no position to oppose them. Moreover they still hoped that they would manage to quell the revolts like they had ten years earlier. Soon it became clear that the French commander was here to negotiate with the rebel leaders who were allowed some kind autonomy in the areas which they controlled. The French kept promising that they would leave but feeling that most of the population was friendly towards them and dreaded the return of the Genoese, they showed no sign of moving. The first incidents between French and pro-Genoese Corsicans happened near Sarté in November 1751. The next year, more serious fights opposed French and Genoese soldiers first in Bastia and then in other places as the newly appointed Genoese Comissar Giovanni Grimaldi was touring the island.
+
+	date = { day = 0 month = november year = 1751 }
+	offset = 10
+	deathdate = { day = 5 month = september year = 1752 }
+
+	action_a = {
+		name = "ACTIONNAME174086A" #The French are too conciliant
+		command = { type = relation which = FRA value = -50 }
+		command = { type = treasury value = -50 }
+		command = { type = trigger which = 170243 } #FRA: Pro-Genoese resistance in Corsica
+	}
+	action_b = {
+		name = "ACTIONNAME174086B" #They're doing fine
+		command = { type = relation which = FRA value = 25 }
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1752-1753) French army leaving Corsica -II-
+event = {
+	id = 174087 #triggered by FRA_170244 A
+	random = no
+	country = GEN
+	name = "EVENTNAME174080" #The French leave Corsica
+	desc = "EVENTHIST170244"
+	#-#On 6th September 1752, the French and the Genoese finally found an agreement about Corsica. The French agreed to remove their troops but, always faithful to their policy that the island was never to fall into another great power's hands, they persuaded the Genoese to grant new concessions to the rebels. Faced with the rebel leaders' refusal to accept the Genoese offers, the newly appointed French commander (the former had been removed and imprisoned to appease the Genoese) freed Genoa from any engagement towards the rebels but pursued his preparations to leave the island. The last French soldiers left Corsica on 4th April 1753.
+
+	action_a = {
+		name = "GOOD_NEWS"
+		command = { type = relation which = FRA value = 25 }
+		command = { type = province_revoltrisk which = 398 value = 50 } #Corsica
+	}
+}
+
+#(1755-1764) A new leader in Corsica
+event = {
+	id = 174088
+	trigger = {
+		OR = {
+			AND = {
+				owned = { province = 398 data = -1 } #Corsica
+				control = { province = 398 data = REB }
+			}
+			war = { country = GEN country = COR }
+		}
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174088" #Pasquale Paoli
+	desc = "EVENTHIST174088"
+	#-#In 1755, the situation was back to a stalemate in Corsica. Dissenssions were rising amongst the Supreme Council established by the rebels after the assassination of Gaffori two years earlier and some of its members were now advocating to open negotiations with Genoa. This is when Clemente Paoli called unto his brother Pasquale who was living in mainland Italy. He was a soldier, having served as an officer, first in the Real Corsica and then in the Real Farnese in Sicily. And he was also an intellectual mostly influenced by Montesquieu and having studied at the University of Naples. During his sixteen years exile with his father Ghjacintu, he had had much time to devise great projects for his island, so with him ended the Corsican Revolt and the Corsican Revolution began.
+
+	date = { day = 14 month = july year = 1755 }
+	offset = 30
+	deathdate = { day = 13 month = july year = 1764 }
+
+	action_a = {
+		name = "ACTIONNAME174077A" #We didn't need that
+		command = { type = province_revoltrisk which = 398 value = 20 } #Corsica
+		command = { type = stability value = -1 }
+		command = { type = badboy value = 2 }
+	}
+}
+
+#(1756-1759) French intervention in Corsica -III-
+event = {
+	id = 174089 #triggered by FRA_170245 A
+	random = no
+	country = GEN
+	name = "EVENTNAME170245" #The first Treaty of Compiègne
+	desc = "EVENTHIST170245"
+	#-#In 1756 began the Seven Years War between France and England. The French, fearing that the English would try to expand their holdings in the Mediterranean Sea, offered the Republic to occupy some strongholds in Corsica in exchange for a large sum of money, military and diplomatic protection, and a mediation with the rebels. On 13 August 1756 was signed the first Treaty of Compiègne, giving them control of Calvi, Aiacciu and San Fiurenzu. Their troops would remain until April 1759 when the English threat became more urgent upon the coasts of Provence. For all this time, the rebels never attempted to attack the French cities, but neither did they listen to their proposals of mediation.
+
+	action_a = {
+		name = "ACTIONNAME174085A" #We no longer have a choice
+		command = { type = treasury value = 100 }
+		command = { type = province_revoltrisk which = 398 value = -30 }
+		command = { type = relation which = FRA value = 50 }
+	}
+}
+
+#(1759) French army leaving Corsica -III-
+event = {
+	id = 174090
+	trigger = {
+		event = 174089 #French intervention in Corsica
+		owned = { province = 398 data = -1 } #Corsica
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174080" #The French leave Corsica
+	desc = "EVENTHIST174090"
+	#-#In the beginnings of 1759, reports from French intelligence established that the English were more likely to land in Southern France. At the end of April, the troops occupying the three Corsican ports were moved to Provence. The rebels, who had been relatively quiet during the French stay, renewed their attacks against the Genoese coastal strongholds.
+
+	date = { day = 0 month = april year = 1759 }
+	offset = 30
+	deathdate = { day = 29 month = april year = 1759 }
+
+	action_a = {
+		name = "ACTIONNAME174080A" #We'll deal with them
+		command = { type = revolt which = 398 } #Corsica
+		command = { type = revolt which = 398 } #Corsica
+		command = { type = province_revoltrisk which = 398 value = 30 }
+		command = { type = inf which = -2 value = 5000 }
+		command = { type = treasury value = -50 }
+	}
+}
+
+#(1764-1767) French intervention in Corsica -IV-
+event = {
+	id = 174091 #triggered by FRA_170246 A
+	random = no
+	country = GEN
+	name = "EVENTNAME170246" #The second Treaty of Compiègne
+	desc = "EVENTHIST170246"
+	#-#With Genoa still unable to deal with the situation in Corsica, France renewed her diplomatics assaults. But the Genoese would not easily let go of an island they had viewed for so long as being essential to her survival. Still the Republic was now in a situation where it was only a matter of time before she had to resolve to a full evacuation. On 6 August 1764 was signed the second Treaty of Compiègne, by which the Genoese surrendered five major stronholds to the French: Bastia, Aiacciu, San Fiurenzu, Calvi et Algaiola, keeping only Bonifaziu. This agreement was supposed to last only four years.
+
+	action_a = {
+		name = "ACTIONNAME174085A" #We no longer have a choice
+		command = { type = treasury value = 100 }
+		command = { type = province_revoltrisk which = 398 value = -10 }
+		command = { type = relation which = FRA value = 50 }
+	}
+}
+
+#(1767-1768) France is offered Corsica
+event = {
+	id = 174092
+	trigger = {
+		owned = { province = 406 data = FRA } #Provence
+		OR = {
+			exists = COR
+			owned = { province = 398 data = -1 } #Corsica
+			AND = {
+				owned = { province = 398 data = FRA } #Corsica
+				event = 170248 #FRA: Corsicans refused
+			}
+		}
+		OR = {
+			event = 170194 #FRA: French intervention in Corsica
+			event = 174085 #GEN: French intervention in Corsica
+			event = 150014 #COR: French intervention
+			event = 174089 #GEN: French intervention in Corsica
+			event = 174091 #GEN: French intervention in Corsica
+		}
+		NOT = {
+			war = { country = FRA country = GEN }
+			event = 170249 #FRA: Corsicans submit
+		}
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174092" #The Treaty of Versailles
+	desc = "EVENTHIST174092"
+	#-#In 1767, the Republic, heavily indebted towards France after the various French interventions in Corsica, and the pro-Genoese cities in the island, finally acknowledged that the rebels could not be overcome by force. On 4 July, the Genoese ambassador in Paris, Agostino Sorba, was mandated to offer France full sovereignty over Corsica. The French, who had been waiting thirty years for this opportunity, did not miss the occasion and the Treaty of Versailles, signed on 15 May 1768, officialized the mortgaging of Corsica by Genoa to France. Of course, the island was to be ceded back if the Republic was ever able to pay back but everyone, Genoese, French and Corsicans, was well aware that this would almost surely never happen.
+
+	date = { day = 21 month = june year = 1767 }
+	offset = 10
+	deathdate = { day = 14 month = may year = 1768 }
+
+	action_a = {
+		name = "ACTIONNAME170196A" #Make an offer
+		command = { type = diplomats value = -1 }
+		command = { type = stability value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME174080A" #We'll deal with them
+		command = { type = province_revoltrisk which = 398 value = 10 } #Corsica
+		command = { type = inf which = -2 value = 10000 }
+		command = { type = art which = -2 value = 20 }
+		command = { type = transports which = -2 value = 3 }
+		command = { type = galleys which = -2 value = 6 }
+		command = { type = treasury value = -400 }
+		command = { type = sleepevent which = 170250 } #FRA: The Treaty of Versailles
+	}
+}
+
+#(1768-1769) France signs the Treaty of Versailles
+event = {
+	id = 174093 #triggered by FRA_170250 A
+	random = no
+	country = GEN
+	name = "EVENTNAME174093" #The French will take charge in Corsica
+	desc = "EVENTHIST174093"
+	#-#The French government has accepted our offer and will now take care of the island.
+
+	action_a = {
+		name = "VERY_WELL"
+		command = { type = independence which = COR }
+		command = { type = relation which = FRA value = 100 }
+		command = { type = removecore which = 398 }
+		command = { type = stability value = -2 }
+		command = { type = treasury value = 500 }
+		command = { type = trigger which = 150019 } #COR: The Treaty of Versailles
+	}
+}
+#(1768-1769) France refuses to sign the Treaty of Versailles
+event = {
+	id = 174094 #triggered by FRA_170250 B
+	random = no
+	country = GEN
+	name = "EVENTNAME174094" #The French will not take charge in Corsica
+	desc = "EVENTHIST174094"
+	#-#For obscure reasons, the French government now refuses what he's been trying to achieve for the last thirty years. We are now left on our own against the rebels.
+
+	action_a = {
+		name = "ACTIONNAME174080A" #We'll deal with them
+		command = { type = province_revoltrisk which = 398 value = 10 } #Corsica
+		command = { type = inf which = -2 value = 5000 }
+		command = { type = art which = -2 value = 10 }
+		command = { type = transports which = -2 value = 1 }
+		command = { type = galleys which = -2 value = 4 }
+		command = { type = treasury value = -200 }
+	}
+}
+
+#(1770-1789) Genoa managed to keep Corsica - Ahistorical
+event = {
+	id = 174095
+	trigger = {
+		event = 174092 #GEN: The Treaty of Versailles
+		owned = { province = 398 data = -1 } #Corsica
+		control = { province = 398 data = -1 }
+	}
+	random = no
+	country = GEN
+	name = "EVENTNAME174095" #Order restored in Corsica
+	desc = "EVENTHIST174095"
+	#-#After a long struggle, the Republic of Genoa finally overcame the Corsican rebels, though heavy concessions had to be made in order to isolate the die-hard nationalists and defeat them.
+
+	date = { day = 0 month = january year = 1770 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1789 }
+
+	action_a = {
+		name = "AT_LAST"
+		command = { type = province_revoltrisk which = 398 value = -100 } #Corsica
+		command = { type = provincetax which = 398 value = 1 }
+		command = { type = gainbuilding which = 398 value = cityrights }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = domestic which = mercantilism value = -2 }
+		command = { type = domestic which = land value = -1 }
+		command = { type = domestic which = serfdom value = -2 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = stability value = 2 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Random Events
+#-----------------------------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------------------------
+#Factionalism and revolts
+#by Isaac Brock
+
+#(1419-1560) Major Factional Strife in Genoa - Set of 2 events
+event = {
+	id = 174000
+	trigger = {
+		NOT = {
+			year = 1560
+			flag = [constitutional_reforms]
+			vassal = { country = MLO country = GEN }
+			vassal = { country = FRA country = GEN }
+		}
+	}
+	random = yes
+	country = GEN
+	name = "EVENTNAME174000" #Major Factional Strife in Genoa
+	desc = "EVENTHIST174000"
+	#-#In the 15th century Genoa was divided into many factions. There was a split between nobles and commoners, between he rich and poor, and between the 'Blacks' and the 'Whites', the descendants of the Guelf (papal) and Ghibelline (imperial) parties. All the important families had power bases in Genoa's many neighbourhoods. As a result there was civil strife throughout the century. Genoa's government was overthrown by force 19 times between 1419 and 1528. During Milanese and French influence, times were calmer.
+
+	action_a = {
+		name = "ALAS"
+		command = { type = ADM which = -2 value = 6 }
+		command = { type = MIL which = -2 value = 6 }
+		command = { type = DIP which = -2 value = 6 }
+		command = { type = infra value = -200 }
+		command = { type = trade value = -200 }
+		command = { type = stability value = -2 }
+		command = { type = revolt which = -2 }
+		command = { type = revolt which = -2 }
+		command = { type = revolt which = -2 }
+		command = { type = revoltrisk which = 3 value = 12 }
+		command = { type = desertion which = -1 value = 5000 }
+	}
+}
+event = {
+	id = 174001
+	trigger = {
+		NOT = {
+			year = 1560
+			flag = [constitutional_reforms]
+			vassal = { country = MLO country = GEN }
+			vassal = { country = FRA country = GEN }
+		}
+	}
+	random = yes
+	country = GEN
+	name = "EVENTNAME174000" #Major Factional Strife in Genoa
+	desc = "EVENTHIST174000"
+	#-#In the 15th century Genoa was divided into many factions. There was a split between nobles and commoners, between he rich and poor, and between the 'Blacks' and the 'Whites', the descendants of the Guelf (papal) and Ghibelline (imperial) parties. All the important families had power bases in Genoa's many neighbourhoods. As a result there was civil strife throughout the century. Genoa's government was overthrown by force 19 times between 1419 and 1528. During Milanese and French influence, times were calmer.
+
+	action_a = {
+		name = "ALAS"
+		command = { type = ADM which = -2 value = 6 }
+		command = { type = MIL which = -2 value = 6 }
+		command = { type = DIP which = -2 value = 6 }
+		command = { type = infra value = -200 }
+		command = { type = trade value = -200 }
+		command = { type = stability value = -2 }
+		command = { type = revolt which = -2 }
+		command = { type = revolt which = -2 }
+		command = { type = revolt which = -2 }
+		command = { type = revoltrisk which = 3 value = 12 }
+		command = { type = desertion which = -1 value = 5000 }
+	}
+}
+
+#(1419-1560) Factional Strife in Genoa - Set of 3 events
+event = {
+	id = 174002
+	trigger = {
+		NOT = {
+			year = 1560
+			flag = [constitutional_reforms]
+			vassal = { country = MLO country = GEN }
+			vassal = { country = FRA country = GEN }
+		}
+	}
+	random = yes
+	country = GEN
+	name = "EVENTNAME174002" #Factional Strife in Genoa
+	desc = "EVENTHIST174002"
+	#-#In the 15th century Genoa was divided into many factions. There was a split between nobles and commoners, between he rich and poor, and between the 'Blacks' and the 'Whites', the descendants of the Guelf (papal) and Ghibelline (imperial) parties. All the important families had power bases in Genoa's many neighbourhoods. As a result there was civil strife throughout the century. Genoa's government was overthrown by force 19 times between 1419 and 1528. During Milanese and French influence, times were calmer.
+
+	action_a = {
+		name = "ALAS"
+		command = { type = stability value = -1 }
+		command = { type = revolt which = -2 }
+		command = { type = revolt which = -2 }
+		command = { type = revoltrisk which = 3 value = 8 }
+	}
+}
+event = {
+	id = 174003
+	trigger = {
+		NOT = {
+			year = 1560
+			flag = [constitutional_reforms]
+			vassal = { country = MLO country = GEN }
+			vassal = { country = FRA country = GEN }
+		}
+	}
+	random = yes
+	country = GEN
+	name = "EVENTNAME174002" #Factional Strife in Genoa
+	desc = "EVENTHIST174002"
+	#-#In the 15th century Genoa was divided into many factions. There was a split between nobles and commoners, between he rich and poor, and between the 'Blacks' and the 'Whites', the descendants of the Guelf (papal) and Ghibelline (imperial) parties. All the important families had power bases in Genoa's many neighbourhoods. As a result there was civil strife throughout the century. Genoa's government was overthrown by force 19 times between 1419 and 1528. During Milanese and French influence, times were calmer.
+
+	action_a = {
+		name = "ALAS"
+		command = { type = stability value = -1 }
+		command = { type = revolt which = -2 }
+		command = { type = revolt which = -2 }
+		command = { type = revoltrisk which = 3 value = 8 }
+	}
+}
+event = {
+	id = 174004
+	trigger = {
+		NOT = {
+			year = 1560
+			flag = [constitutional_reforms]
+			vassal = { country = MLO country = GEN }
+			vassal = { country = FRA country = GEN }
+		}
+	}
+	random = yes
+	country = GEN
+	name = "EVENTNAME174002" #Factional Strife in Genoa
+	desc = "EVENTHIST174002"
+	#-#In the 15th century Genoa was divided into many factions. There was a split between nobles and commoners, between he rich and poor, and between the 'Blacks' and the 'Whites', the descendants of the Guelf (papal) and Ghibelline (imperial) parties. All the important families had power bases in Genoa's many neighbourhoods. As a result there was civil strife throughout the century. Genoa's government was overthrown by force 19 times between 1419 and 1528. During Milanese and French influence, times were calmer.
+
+	action_a = {
+		name = "ALAS"
+		command = { type = stability value = -1 }
+		command = { type = revolt which = -2 }
+		command = { type = revolt which = -2 }
+		command = { type = revoltrisk which = 3 value = 8 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 174099

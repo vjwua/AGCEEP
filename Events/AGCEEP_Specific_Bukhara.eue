@@ -1,0 +1,431 @@
+#Bukhara (BUK)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1561-1820) Formation of Khiva Khanate - Ahistorical
+event = {
+	id = 352000
+	trigger = {
+		owned = { province = 1592 data = -1 } #Samarkand
+		control = { province = 1592 data = -1 } #Samarkand
+		OR = {
+			owned = { province = 1594 data = -1 } #Uzbek
+			owned = { province = 1599 data = -1 } #Tadjikistan
+			owned = { province = 1598 data = -1 } #Kirgisistan
+		}
+		OR = {
+			owned = { province = 1533 data = -1 } #Khiva
+			owned = { province = 522 data = -1 } #Khwarizm
+		}
+		OR = {
+			core = { province = 518 data = -1 } #Ust Urt
+			core = { province = 521 data = -1 } #Karabogaz
+			core = { province = 522 data = -1 } #Khwarizm
+			core = { province = 523 data = -1 } #Kara Kum
+			core = { province = 524 data = -1 } #Turkmenistan
+		}
+		NOT = { exists = KHI }
+	}
+	random = no
+	country = BUK
+	name = "EVENTNAME325000" #Formation of Khiva Khanate
+	desc = "EVENTHIST325000"
+	#-#While Shaibani Khan was busy conquering the Timurid states of Central Asia and Khorasan, the nomadic Uzbeks in the west became restless. In 1511, the two sultans, Ilbars and Balbars conquered the Khwarazm region and founded the Khiva Khanate. Unsurprisingly, this Khanate would become a thorn in the side of the late Bukhara Khanate and was frequently at odds with it.
+
+	date = { day = 1 month = january year = 1561 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "DRATS"
+		command = { type = independence which = KHI }
+		command = { type = removecore which = 521 } #Karabogaz
+		command = { type = removecore which = 518 } #Ust Urt
+		command = { type = removecore which = 522 } #Khwarizm
+		command = { type = removecore which = 524 } #Turkmenistan
+		command = { type = removecore which = 523 } #Kara Kum
+		command = { type = stability value = -1 }
+		command = { type = trigger which = 303002 } #KHI: The Khiva Khanate
+	}
+}
+#(1561-1820) Khiva and The Western Provinces - Ahistorical
+event = {
+	id = 352001 #triggered by KHI_303002
+	random = no
+	country = BUK
+	name = "EVENTNAME325001" #Khiva and The Western Provinces
+	desc = "EVENTHIST325001"
+	#-#After the initial capture of Ugrench, all the other western provinces would leave the control of the Shaibanid state.
+
+	action_a = {
+		name = "ACTIONNAME325001A" #How bad is our luck?
+		command = { type = secedeprovince which = KHI value = 522 } #Khwarizm
+		command = { type = secedeprovince which = KHI value = 523 } #Kara Kum
+		command = { type = secedeprovince which = KHI value = 521 } #Karabogaz
+		command = { type = secedeprovince which = KHI value = 520 } #Bouzatchi
+		command = { type = secedeprovince which = KHI value = 524 } #Turkmenistan
+		command = { type = secedeprovince which = KHI value = 519 } #Emba
+		command = { type = secedeprovince which = SIB value = 514 } #Irgiz
+		command = { type = secedeprovince which = SIB value = 513 } #Orsk
+		command = { type = secedeprovince which = AST value = 515 } #Alga
+	}
+}
+
+#(1561-1820) Independence of Khiva - Ahistorical
+event = {
+	id = 352002
+	trigger = {
+		exists = KHI
+		OR = {
+			core = { province = 522 data = -1 } #Khwarizm
+			core = { province = 1533 data = -1 } #Khiva
+		}
+	}
+	random = no
+	country = BUK
+	name = "EVENTNAME65023" #Independence of Khiva
+	desc = "EVENTHIST65023"
+	#-#People of Khiva were always openly hostile to rulers of Bukhara. This hostility goes back to the times of Abu'l Khayr, when part of the tribes refused to follow him, and remained settled in the areas around Khiva and Urganj. Subsequently the area was reconquered by Muhammad Shaibani, and later on Ubaid'Allah, which didn't bring much popularity to the Bukharan rulers. The latter, however, never staked any claims to these lands, and used their military supremacy to keep Khiva vassalized, and protect the trade with Muscovy.
+
+	date = { day = 1 month = january year = 1561 }
+	offset = 200
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME65023A" #Recede the claim to these lands
+		command = { type = relation which = KHI value = 50 }
+		command = { type = removecore which = 1533 } #Khiva
+		command = { type = removecore which = 522 } #Khwarizm
+	}
+	action_b = {
+		name = "ACTIONNAME65023B" #Be defiant!
+		command = { type = relation which = KHI value = -100 }
+		command = { type = stability value = -1 }
+		command = { type = trigger which = 65024 } #KHI: Prepare to defend
+	}
+}
+
+#(1576-1586) Uzbek-Khivan tensions
+event = {
+	id = 65022
+	trigger = {
+		exists = KHI
+	}
+	random = no
+	country = BUK
+	name = "EVENTNAME65022" #Uzbek-Khivan tensions
+	desc = "EVENTHIST65022"
+	#-#Following a series of insults (or inconsiderations) from Khivan rulers, Abd'Allah decided to teach them a lesson. Taking advantage of Hajji Muhammad absence, he mounted an expedition in 1576, and brought Khiva under his influence.
+
+	date = { day = 1 month = january year = 1576 }
+	offset = 90
+	deathdate = { day = 1 month = january year = 1586 }
+
+	action_a = {
+		name = "ACTIONNAME65022A" #Use force to resolve the issues
+		command = { type = relation which = KHI value = -150 }
+		command = { type = casusbelli which = KHI value = 36 }
+	}
+	action_b = {
+		name = "ACTIONNAME65022B" #Let the matter slip
+		command = { type = relation which = KHI value = 50 }
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1580) Kazakh Honeymoon
+event = {
+	id = 65013
+	trigger = {
+		exists = KZK
+		owned = { province = 1534 data = -1 } #Kyzylkum
+		owned = { province = 1592 data = -1 } #Samarkand
+		control = { province = 1592 data = -1 } #Samarkand
+	}
+	random = no
+	country = BUK
+	name = "EVENTNAME65013" #Kazakh Honeymoon
+	desc = "EVENTHIST65013"
+	#-#During the 15 year long struggle against Abd'Allah, his nobles enlisted the help of Kazakh's Khan Haq Nazar. However, upon Haq Nazar' death, new Khan Shigai chose to be allied with Abd'Allah in exchange for a fief.
+
+	date = { day = 1 month = january year = 1580 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1581 }
+
+	action_a = {
+		name = "ACTIONNAME65013A" #Ally with Kazakhs
+		command = { type = capital which = 1592 } #Samarkand
+		command = { type = relation which = KZK value = 150 }
+		command = { type = secedeprovince which = KZK value = 1534 } #Kyzylkum
+		command = { type = stability value = 1 }
+		command = { type = alliance which = KZK }
+	}
+	action_b = {
+		name = "ACTIONNAME65013B" #No reason to waste precious lands
+		command = { type = relation which = KZK value = -250 }
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 24 value = 3 }
+		command = { type = sleepevent which = 65014 } #BUK: Prince Tawakkul and Abd'Allah
+	}
+}
+
+#(1580-1590) Abd'Allah's Military policies
+event = {
+	id = 65017
+	random = no
+	country = BUK
+	name = "EVENTNAME65017" #Army Reform
+	desc = "EVENTHIST65017"
+	#-#As a result of his centralization efforts, as well as an amicable relations with the Ottomans, the army of khanate became a very strong a feared opponent by many of her neighbors, including Persia.
+
+	date = { day = 1 month = january year = 1580 }
+	offset = 500
+	deathdate = { day = 1 month = january year = 1590 }
+
+	action_a = {
+		name = "ACTIONNAME65017A" #Improve the Army
+		command = { type = land value = 750 }
+		command = { type = INF which = -1 value = 5000 }
+		command = { type = CAV which = -3 value = 5000 }
+		command = { type = domestic which = quality value = 1 }
+		command = { type = domestic which = offensive value = 1 }
+	}
+}
+
+#(1582-1590) Abd'Allah's Economic policies
+event = {
+	id = 65016
+	random = no
+	country = BUK
+	name = "EVENTNAME65016" #Economical Policies of Abd'Allah
+	desc = "EVENTHIST65016"
+	#-#Throughout his reign, Abd'Allah carefully followed a course of improving economy of the khanate, through a wise and improved taxation system, as well as support for trade and agriculture. He also severely curtailed the appanage system, inherited from the times of Chengis Khan, and centralized the government of the khanate.
+
+	date = { day = 1 month = january year = 1582 }
+	offset = 1000
+	deathdate = { day = 1 month = january year = 1590 }
+
+	action_a = {
+		name = "ACTIONNAME65016A" #Improve the Economy
+		command = { type = trade value = 750 }
+		command = { type = stability value = 1 }
+		command = { type = infra value = 1000 }
+		command = { type = merchants value = 2 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = domestic which = centralization value = 3 }
+		command = { type = domestic which = innovative value = 1 }
+	}
+}
+
+#(1582-1586) Abd'Allah's International policies
+event = {
+	id = 65018
+	random = no
+	country = BUK
+	name = "EVENTNAME65018" #International Policies of Abd'Allah
+	desc = "EVENTHIST65018"
+	#-#Abd'Allah was very active in international affairs, sending embassies as far as Constantinople and Muscovy.
+
+	date = { day = 1 month = january year = 1582 }
+	offset = 90
+	deathdate = { day = 1 month = january year = 1586 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = relation which = RUS value = 50 }
+		command = { type = relation which = TUR value = 50 }
+		command = { type = relation which = NOG value = 50 }
+		command = { type = relation which = CHG value = 20 }
+		command = { type = relation which = MOG value = 50 }
+	}
+}
+
+#(1584) Prince Tawakkul and Abd'Allah
+event = {
+	id = 65014
+	trigger = {
+		event = 65013 #BUK: Kazakh Honeymoon
+	}
+	random = no
+	country = BUK
+	name = "EVENTNAME65014" #Prince Tawakkul and Abd'Allah
+	desc = "EVENTHIST65014"
+	#-#Prince Tawakkul had found a favor with Abd'Allah and was given an honor to lead the vanguard. However, an execution of a couple of nobles troublemakers, was taken as a fact of subordination by Abd'Allah, and a young prince suddenly lost the favor. Brooding over the humiliation, Tawakkul has left for the steppes, seemingly for good, the honeymonn was over.
+
+	date = { day = 1 month = january year = 1584 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1585 }
+
+	action_a = {
+		name = "ACTIONNAME65014A" #Disfavor him
+		command = { type = relation which = KZK value = -350 }
+		command = { type = stability value = -1 }
+		command = { type = domestic which = aristocracy value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME65014B" #Forgive him
+		command = { type = relation which = KZK value = 50 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1595-1598) Abd'Allah's International policies
+event = {
+	id = 65019
+	trigger = {
+		exists = SIB
+		exists = RUS
+	}
+	random = no
+	country = BUK
+	name = "EVENTNAME65019" #Siberian Puzzle
+	desc = "EVENTHIST65019"
+	#-#After Ermak's expedition into Siberia, relations between Russia and the khanate became somewhat strained, as khan Kuchum of Sibir was a relative of Abd'Allah. Abd'Allah continuously supported Kuchum with weapons and men, and even gave him an asylum in 1597.
+
+	date = { day = 1 month = january year = 1595 }
+	offset = 90
+	deathdate = { day = 1 month = january year = 1598 }
+
+	action_a = {
+		name = "ACTIONNAME65019A" #Support Kuchum
+		command = { type = relation which = RUS value = -100 }
+		command = { type = relation which = TUR value = 20 }
+		command = { type = relation which = NOG value = 20 }
+		command = { type = relation which = KZK value = 20 }
+		command = { type = relation which = SIB value = 100 }
+	}
+	action_b = {
+		name = "ACTIONNAME65019B" #Ignore the Issue
+		command = { type = relation which = RUS value = 50 }
+		command = { type = relation which = TUR value = -20 }
+		command = { type = relation which = NOG value = -20 }
+		command = { type = relation which = KZK value = -20 }
+		command = { type = relation which = SIB value = -100 }
+	}
+}
+
+#(1599) Death of Abd'al Mum'in
+event = {
+	id = 65025
+	random = no
+	country = BUK
+	name = "EVENTNAME65025" #Succession of Abd'al Mum'in
+	desc = "EVENTHIST65025"
+	#-#After the death of Abd'Allah II, his son Abd'al Mum'in ascended the throne, however, his cruelty and mass executions of the his father's amirs and advisors, has united the nobility of the Khanate against him. One dark night, while crossing a river on the back of his horse, he was hit by 3 dozen arrows, and died instantly. The power was bestowed on Pir Muhammad, who, being an opium addict, had absolutely no interest in ruling the country. In 1599 Pir Muhammad II was removed from power, which signified the end of the Shaibanid rule in Bukhara. 4 years and 2 interim rulers later, the power was transferred into the hands of the new dynasty.
+
+	date = { day = 22 month = july year = 1599 }
+
+	action_a = {
+		name = "ACTIONNAME65025A" #Slow transition to new dynasty
+		command = { type = domestic which = centralization value = -3 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = quality value = -1 }
+		command = { type = domestic which = offensive value = -2 }
+		command = { type = revoltrisk which = 60 value = 3 }
+		command = { type = stability value = -3 }
+	}
+	action_b = {
+		name = "ACTIONNAME65025B" #Rapid transition to new dynasty
+		command = { type = domestic which = offensive value = -2 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = stability value = -5 }
+		command = { type = wakemonarch which = 026003 } #Baqi Muhammad °
+		command = { type = sleepmonarch which = 026004 } #Yar Muhammad
+		command = { type = sleepmonarch which = 026005 } #Jani Muhammad
+		command = { type = sleepmonarch which = 026006 } #Baqi Muhammad
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = revoltrisk which = 60 value = 5 }
+		command = { type = domestic which = quality value = -1 }
+		command = { type = sleepevent which = 65026 } #BUK: Ascension of Baqi Muhammad
+	}
+}
+
+#(1603) Ascension of Baqi Muhammad
+event = {
+	id = 65026
+	random = no
+	country = BUK
+	name = "EVENTNAME65026" #Ascension of Baqi Muhammad
+	desc = "EVENTHIST65026"
+	#-#In 1603, after 4 years of interim rule, a new dynasty was founded, when Baqi Muhammad has ascended the throne.
+
+	date = { day = 16 month = november year = 1603 }
+
+	action_a = {
+		name = "ACTIONNAME65026A" #New dynasty
+		#to be included with new numbering scheme: command = { type = wakemonarch which = 05224 } #Baqi Muhammad
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1702) Death of Sa'id Subhan Quli Bahadur
+event = {
+	id = 65027
+	random = no
+	country = BUK
+	name = "EVENTNAME65027" #Ascension of Ubaid'Allah II
+	desc = "EVENTHIST65027"
+	#-#In 1702, the last great Astarkhanid ruler of Bukhara, Subhan Quli has died. He was followed by his 17 years old son Ubaid'Allah, whose ascension was quickly met by a revolt. Inefficiency and envy of the young khan almost assured political fragmentation and the backwardness of the Khanate for the years to come.
+
+	date = { day = 4 month = september year = 1702 }
+
+	action_a = {
+		name = "ACTIONNAME65027A" #Let the Nobles rule
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = revoltrisk which = 36 value = 3 }
+		command = { type = domestic which = quality value = -1 }
+		command = { type = domestic which = offensive value = -1 }
+		command = { type = domestic which = serfdom value = 1 }
+		command = { type = infra value = -400 }
+	}
+}
+
+#(1747) Rahim Bi Regency
+event = {
+	id = 65021
+	random = no
+	country = BUK
+	name = "EVENTNAME65021" #Rahim Bi Regency
+	desc = "EVENTHIST65021"
+	#-#Following the turmoil of Persian occupation, a powerful Manghit noble Rahim Bi has risen to prominence during the reign of Abu'l Fa'iz Khan. Slowly gaining power, Rahim Bi has murdered Abu'l Fa'iz Khan in 1746, and put his 7 yera old son Abd al-Mum'in on the throne and appoint himself a Regent. In the following 6 years, Rahim Bi has killed both Abd al-Mu'min, and his brother Ubaid'Allah, and proclaimed himself a ruler in 1753. His 11 year long rule was marked by almost constant warfare, as he managed to bring a lot of lands lost during Persian occupation back under Bukhara's control.
+
+	date = { day = 1 month = january year = 1747 }
+
+	action_a = {
+		name = "ACTIONNAME65021A" #Appoint Rahim Bi
+		command = { type = DIP which = 4 value = 72 }
+		command = { type = ADM which = 3 value = 72 }
+		command = { type = MIL which = 6 value = 72 }
+		command = { type = stability value = 2 }
+		command = { type = domestic which = centralization value = 1 }
+	}
+}
+
+#(1758) Danial Ataliq Regency
+event = {
+	id = 65020
+	random = no
+	country = BUK
+	name = "EVENTNAME65020" #Danial Ataliq's Regency
+	desc = "EVENTHIST65020"
+	#-#Following the death of Rahim Khan, a short scuffle for power has ended with Danial Ataliq defeating his opponents and putting an illiterate peasant Abu'l-Ghazi on the throne. Actual power, however, was totally in the hands of a powerful regent, who ruled with an iron fist, and brought stability to Bukhara.
+
+	date = { day = 1 month = january year = 1758 }
+
+	action_a = {
+		name = "ACTIONNAME65020A" #Appoint Danial Ataliq
+		command = { type = DIP which = 3 value = 324 }
+		command = { type = ADM which = 3 value = 324 }
+		command = { type = MIL which = 4 value = 324 }
+		command = { type = stability value = 1 }
+		command = { type = domestic which = centralization value = 1 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 352003

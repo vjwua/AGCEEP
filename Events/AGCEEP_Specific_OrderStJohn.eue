@@ -1,0 +1,1883 @@
+#Knights of St. John (KNI)
+
+#See AGCEEP_Alt_Cursader.eue for "Crusader" Alternative events
+#See AGCEEP_Alt_Iberia.eue for Alternative events involving Portugal
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419) Knights of Rhodes
+event = {
+	id = 24009
+	random = no
+	country = KNI
+	name = "EVENTNAME24009" #Knights of Rhodes
+	desc = "EVENTHIST24009"
+	#-#In a sense, the Knights of Rhodes were a medieval form of a multicultural international corporation in that their members were drawn from numerous Christian Kingdoms and Principalities. They were divided into eight Langues, or Tongues, consisting of the eight European nationalities from whom its members were primarily recruited. These Langues were Auvergne, Provence, France, Aragon, Castile and Portugal, England, Germany, and Italy. In a fortress occupied by the Knights, each Langue was responsible for defending a particular section of the walls. These divisions might be thought to promote disunity, but on the other hand, they also fostered a kind of rivalry that could ultimately lift morale and prove of benefit, especially during seige conditions. Furthermore, the Knights owned estates and enjoyed the revenues of thousands of manors across these same European areas.
+
+	date = { day = 19 month = may year = 1419 }
+
+	action_a = {
+		name = "ACTIONNAME201005A" #Praise the lord!
+		command = { type = relation which = PRO value = 20 }
+		command = { type = relation which = FRA value = 20 }
+		command = { type = relation which = ARG value = 20 }
+		command = { type = relation which = CAS value = 20 }
+		command = { type = relation which = POR value = 20 }
+		command = { type = relation which = ENG value = 20 }
+		command = { type = relation which = SCO value = 20 }
+		command = { type = relation which = HAB value = 20 }
+		command = { type = relation which = BAY value = 20 }
+		command = { type = relation which = BOH value = 20 }
+		command = { type = relation which = LOR value = 20 }
+		command = { type = relation which = SAC value = 20 }
+		command = { type = relation which = LAT value = 20 }
+		command = { type = relation which = PAP value = 20 }
+		command = { type = relation which = TOS value = 20 }
+		command = { type = relation which = MLO value = 20 }
+		command = { type = relation which = NAP value = 20 }
+		command = { type = relation which = MAN value = 20 }
+		command = { type = relation which = PAM value = 20 }
+		command = { type = relation which = GEN value = 20 }
+		command = { type = diplomats value = 2 }
+		command = { type = provincetax which = -2 value = 3 }
+	}
+}
+
+#(1419-1620) Knights in Tripolitania
+event = {
+	id = 201009
+	trigger = {
+		owned = { province = 740 data = -1 }
+	}
+	random = no
+	country = KNI
+	name = "EVENTNAME201009" #Knights in Tripolitania
+	desc = "EVENTHIST201009"
+	#-#Tripolitania is ours! Nevertheless, we need to increase our presence in North Africa, or face the reality that Tripolitania alone could be impossible to defend against a major Muslim threat...
+
+	date = { day = 1 month = november year = 1419 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1620 }
+
+	action_a = {
+		name = "OK"
+		command = { type = vp value = 5 }
+	}
+}
+
+#(1464) Crusade that Never Was
+event = {
+	id = 24010
+	random = no
+	country = KNI
+	name = "EVENTNAME24010" #The Crusade that Never Was
+	desc = "EVENTHIST24010"
+	#-#In September of 1459, Pope Pius II summoned a congress of the Christian powers at Mantua to organize a crusade, but the lack of enthusiasm among the delegates was notable. However, in 1462, it was announced that the Pope and the Duke of Burgundy, Philip the Good, would lead the crusade and that Venice would provide a fleet. The Duke of Burgundy insisted on further delay, perhaps due to trouble at home or recognition that the Papal forces were in disarray and not likely to prove an effective ally for a desperate expedition. In any event, Pius II set out for Ancona with the Papal troops to meet the Venetian Doge, Cristoforo Moro. No other significant forces had shown themselves so it was inevitable that following the death of Pius II, the would-be crusaders dispersed.
+
+	date = { day = 14 month = august year = 1464 }
+
+	action_a = {
+		name = "DAMN"
+		command = { type = stability value = -1 }
+		command = { type = relation which = PAP value = 40 }
+		command = { type = relation which = VEN value = 40 }
+		command = { type = relation which = BUR value = -40 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#(1440-1820) The Pirates of St. John - Two sets of 9 events (Rhodes owned of not)
+
+#(1440-1500) The Pirates of St. John
+event = {
+	id = 201005
+	trigger = {
+		owned = { province = 481 data = -1 } #Rhodes
+		OR = {
+			owned = { province = 357 data = TUR } #Thrace
+			AND = {
+				exists = TUR
+				NOT = { exists = BYZ }
+			}
+		}
+		NOT = {
+			AND = {
+				owned = { province = 484 data = VEN } #Cyprus
+				control = { province = 484 data = VEN } #Cyprus
+			}
+		}
+		NOT = {
+			alliance = { country = KNI country = TUR }
+			vassal = { country = TUR country = KNI }
+		}
+	}
+	random = no
+	country = KNI
+	name = "EVENTNAME201005" #The Pirates of St. John
+	desc = "EVENTHIST201005"
+	#-#The small but proficient fleet of the Knights was the scourge of Muslims for hundreds of years. Keeping the waters clear of enemy privateers as well as capturing trade ships of the Muslims, kept the coffers on Rhodos full and Muslim sailors in terror. One of the most famous events was the capturing of the Great Carrack from Alexandria in 1569, filled with enormous riches.
+
+	date = { day = 1 month = january year = 1440 }
+	offset = 21000
+	deathdate = { day = 29 month = december year = 1500 }
+
+	action_a = {
+		name = "ACTIONNAME201005A" #Praise the lord!
+		command = { type = treasury value = 175 }
+		command = { type = relation which = TUR value = -50 }
+		command = { type = sleepevent which = 201018 } #KNI: The Pirates of St. John
+	}
+	action_b = {
+		name = "ACTIONNAME201005B" #Refrain from our Piracy
+		command = { type = relation which = TUR value = 25 }
+		command = { type = sleepevent which = 201018 } #KNI: The Pirates of St. John
+	}
+}
+#(1480-1540) The Pirates of St. John
+event = {
+	id = 201006
+	trigger = {
+		owned = { province = 481 data = -1 } #Rhodes
+		OR = {
+			owned = { province = 357 data = TUR } #Thrace
+			AND = {
+				exists = TUR
+				NOT = { exists = BYZ }
+			}
+		}
+		NOT = {
+			AND = {
+				owned = { province = 484 data = VEN } #Cyprus
+				control = { province = 484 data = VEN } #Cyprus
+			}
+		}
+		NOT = {
+			alliance = { country = KNI country = TUR }
+			vassal = { country = TUR country = KNI }
+		}
+	}
+	random = no
+	country = KNI
+	name = "EVENTNAME201005" #The Pirates of St. John
+	desc = "EVENTHIST201005"
+	#-#The small but proficient fleet of the Knights was the scourge of Muslims for hundreds of years. Keeping the waters clear of enemy privateers as well as capturing trade ships of the Muslims, kept the coffers on Rhodos full and Muslim sailors in terror. One of the most famous events was the capturing of the Great Carrack from Alexandria in 1569, filled with enormous riches.
+
+	date = { day = 1 month = january year = 1480 }
+	offset = 21000
+	deathdate = { day = 29 month = december year = 1540 }
+
+	action_a = {
+		name = "ACTIONNAME201005A" #Praise the lord!
+		command = { type = treasury value = 175 }
+		command = { type = relation which = TUR value = -50 }
+		command = { type = sleepevent which = 201019 } #KNI: The Pirates of St. John
+	}
+	action_b = {
+		name = "ACTIONNAME201005B" #Refrain from our Piracy
+		command = { type = relation which = TUR value = 25 }
+		command = { type = sleepevent which = 201019 } #KNI: The Pirates of St. John
+	}
+}
+#(1520-1580) The Pirates of St. John
+event = {
+	id = 201007
+	trigger = {
+		owned = { province = 481 data = -1 } #Rhodes
+		OR = {
+			owned = { province = 357 data = TUR } #Thrace
+			AND = {
+				exists = TUR
+				NOT = { exists = BYZ }
+			}
+		}
+		NOT = {
+			AND = {
+				owned = { province = 484 data = VEN } #Cyprus
+				control = { province = 484 data = VEN } #Cyprus
+			}
+		}
+		NOT = {
+			alliance = { country = KNI country = TUR }
+			vassal = { country = TUR country = KNI }
+		}
+	}
+	random = no
+	country = KNI
+	name = "EVENTNAME201005" #The Pirates of St. John
+	desc = "EVENTHIST201005"
+	#-#The small but proficient fleet of the Knights was the scourge of Muslims for hundreds of years. Keeping the waters clear of enemy privateers as well as capturing trade ships of the Muslims, kept the coffers on Rhodos full and Muslim sailors in terror. One of the most famous events was the capturing of the Great Carrack from Alexandria in 1569, filled with enormous riches.
+
+	date = { day = 1 month = january year = 1520 }
+	offset = 21000
+	deathdate = { day = 29 month = december year = 1580 }
+
+	action_a = {
+		name = "ACTIONNAME201005A" #Praise the lord!
+		command = { type = treasury value = 175 }
+		command = { type = relation which = TUR value = -50 }
+		command = { type = sleepevent which = 201020 } #KNI: The Pirates of St. John
+	}
+	action_b = {
+		name = "ACTIONNAME201005B" #Refrain from our Piracy
+		command = { type = relation which = TUR value = 25 }
+		command = { type = sleepevent which = 201020 } #KNI: The Pirates of St. John
+	}
+}
+#(1560-1620) The Pirates of St. John
+event = {
+	id = 201008
+	trigger = {
+		owned = { province = 481 data = -1 } #Rhodes
+		OR = {
+			owned = { province = 357 data = TUR } #Thrace
+			AND = {
+				exists = TUR
+				NOT = { exists = BYZ }
+			}
+		}
+		NOT = {
+			AND = {
+				owned = { province = 484 data = VEN } #Cyprus
+				control = { province = 484 data = VEN } #Cyprus
+			}
+		}
+		NOT = {
+			alliance = { country = KNI country = TUR }
+			vassal = { country = TUR country = KNI }
+		}
+	}
+	random = no
+	country = KNI
+	name = "EVENTNAME201005" #The Pirates of St. John
+	desc = "EVENTHIST201005"
+	#-#The small but proficient fleet of the Knights was the scourge of Muslims for hundreds of years. Keeping the waters clear of enemy privateers as well as capturing trade ships of the Muslims, kept the coffers on Rhodos full and Muslim sailors in terror. One of the most famous events was the capturing of the Great Carrack from Alexandria in 1569, filled with enormous riches.
+
+	date = { day = 1 month = january year = 1560 }
+	offset = 21000
+	deathdate = { day = 29 month = december year = 1620 }
+
+	action_a = {
+		name = "ACTIONNAME201005A" #Praise the lord!
+		command = { type = treasury value = 175 }
+		command = { type = relation which = TUR value = -50 }
+		command = { type = sleepevent which = 201021 } #KNI: The Pirates of St. John
+	}
+	action_b = {
+		name = "ACTIONNAME201005B" #Refrain from our Piracy
+		command = { type = relation which = TUR value = 25 }
+		command = { type = sleepevent which = 201021 } #KNI: The Pirates of St. John
+	}
+}
+#(1600-1660) The Pirates of St. John
+event = {
+	id = 201013
+	trigger = {
+		owned = { province = 481 data = -1 } #Rhodes
+		OR = {
+			owned = { province = 357 data = TUR } #Thrace
+			AND = {
+				exists = TUR
+				NOT = { exists = BYZ }
+			}
+		}
+		NOT = {
+			AND = {
+				owned = { province = 484 data = VEN } #Cyprus
+				control = { province = 484 data = VEN } #Cyprus
+			}
+		}
+		NOT = {
+			alliance = { country = KNI country = TUR }
+			vassal = { country = TUR country = KNI }
+		}
+	}
+	random = no
+	country = KNI
+	name = "EVENTNAME201005" #The Pirates of St. John
+	desc = "EVENTHIST201005"
+	#-#The small but proficient fleet of the Knights was the scourge of Muslims for hundreds of years. Keeping the waters clear of enemy privateers as well as capturing trade ships of the Muslims, kept the coffers on Rhodos full and Muslim sailors in terror. One of the most famous events was the capturing of the Great Carrack from Alexandria in 1569, filled with enormous riches.
+
+	date = { day = 1 month = january year = 1600 }
+	offset = 21000
+	deathdate = { day = 29 month = december year = 1660 }
+
+	action_a = {
+		name = "ACTIONNAME201005A" #Praise the lord!
+		command = { type = treasury value = 175 }
+		command = { type = relation which = TUR value = -50 }
+		command = { type = sleepevent which = 201022 } #KNI: The Pirates of St. John
+	}
+	action_b = {
+		name = "ACTIONNAME201005B" #Refrain from our Piracy
+		command = { type = relation which = TUR value = 25 }
+		command = { type = sleepevent which = 201022 } #KNI: The Pirates of St. John
+	}
+}
+#(1640-1700) The Pirates of St. John
+event = {
+	id = 201014
+	trigger = {
+		owned = { province = 481 data = -1 } #Rhodes
+		OR = {
+			owned = { province = 357 data = TUR } #Thrace
+			AND = {
+				exists = TUR
+				NOT = { exists = BYZ }
+			}
+		}
+		NOT = {
+			AND = {
+				owned = { province = 484 data = VEN } #Cyprus
+				control = { province = 484 data = VEN } #Cyprus
+			}
+		}
+		NOT = {
+			alliance = { country = KNI country = TUR }
+			vassal = { country = TUR country = KNI }
+		}
+	}
+	random = no
+	country = KNI
+	name = "EVENTNAME201005" #The Pirates of St. John
+	desc = "EVENTHIST201005"
+	#-#The small but proficient fleet of the Knights was the scourge of Muslims for hundreds of years. Keeping the waters clear of enemy privateers as well as capturing trade ships of the Muslims, kept the coffers on Rhodos full and Muslim sailors in terror. One of the most famous events was the capturing of the Great Carrack from Alexandria in 1569, filled with enormous riches.
+
+	date = { day = 1 month = january year = 1640 }
+	offset = 21000
+	deathdate = { day = 29 month = december year = 1700 }
+
+	action_a = {
+		name = "ACTIONNAME201005A" #Praise the lord!
+		command = { type = treasury value = 175 }
+		command = { type = relation which = TUR value = -50 }
+		command = { type = sleepevent which = 201023 } #KNI: The Pirates of St. John
+	}
+	action_b = {
+		name = "ACTIONNAME201005B" #Refrain from our Piracy
+		command = { type = relation which = TUR value = 25 }
+		command = { type = sleepevent which = 201023 } #KNI: The Pirates of St. John
+	}
+}
+#(1680-1740) The Pirates of St. John
+event = {
+	id = 201015
+	trigger = {
+		owned = { province = 481 data = -1 } #Rhodes
+		OR = {
+			owned = { province = 357 data = TUR } #Thrace
+			AND = {
+				exists = TUR
+				NOT = { exists = BYZ }
+			}
+		}
+		NOT = {
+			AND = {
+				owned = { province = 484 data = VEN } #Cyprus
+				control = { province = 484 data = VEN } #Cyprus
+			}
+		}
+		NOT = {
+			alliance = { country = KNI country = TUR }
+			vassal = { country = TUR country = KNI }
+		}
+	}
+	random = no
+	country = KNI
+	name = "EVENTNAME201005" #The Pirates of St. John
+	desc = "EVENTHIST201005"
+	#-#The small but proficient fleet of the Knights was the scourge of Muslims for hundreds of years. Keeping the waters clear of enemy privateers as well as capturing trade ships of the Muslims, kept the coffers on Rhodos full and Muslim sailors in terror. One of the most famous events was the capturing of the Great Carrack from Alexandria in 1569, filled with enormous riches.
+
+	date = { day = 1 month = january year = 1680 }
+	offset = 21000
+	deathdate = { day = 29 month = december year = 1740 }
+
+	action_a = {
+		name = "ACTIONNAME201005A" #Praise the lord!
+		command = { type = treasury value = 175 }
+		command = { type = relation which = TUR value = -50 }
+		command = { type = sleepevent which = 201024 } #KNI: The Pirates of St. John
+	}
+	action_b = {
+		name = "ACTIONNAME201005B" #Refrain from our Piracy
+		command = { type = relation which = TUR value = 25 }
+		command = { type = sleepevent which = 201024 } #KNI: The Pirates of St. John
+	}
+}
+#(1720-1780) The Pirates of St. John
+event = {
+	id = 201016
+	trigger = {
+		owned = { province = 481 data = -1 } #Rhodes
+		OR = {
+			owned = { province = 357 data = TUR } #Thrace
+			AND = {
+				exists = TUR
+				NOT = { exists = BYZ }
+			}
+		}
+		NOT = {
+			AND = {
+				owned = { province = 484 data = VEN } #Cyprus
+				control = { province = 484 data = VEN } #Cyprus
+			}
+		}
+		NOT = {
+			alliance = { country = KNI country = TUR }
+			vassal = { country = TUR country = KNI }
+		}
+	}
+	random = no
+	country = KNI
+	name = "EVENTNAME201005" #The Pirates of St. John
+	desc = "EVENTHIST201005"
+	#-#The small but proficient fleet of the Knights was the scourge of Muslims for hundreds of years. Keeping the waters clear of enemy privateers as well as capturing trade ships of the Muslims, kept the coffers on Rhodos full and Muslim sailors in terror. One of the most famous events was the capturing of the Great Carrack from Alexandria in 1569, filled with enormous riches.
+
+	date = { day = 1 month = january year = 1720 }
+	offset = 21000
+	deathdate = { day = 29 month = december year = 1780 }
+
+	action_a = {
+		name = "ACTIONNAME201005A" #Praise the lord!
+		command = { type = treasury value = 175 }
+		command = { type = relation which = TUR value = -50 }
+		command = { type = sleepevent which = 201025 } #KNI: The Pirates of St. John
+	}
+	action_b = {
+		name = "ACTIONNAME201005B" #Refrain from our Piracy
+		command = { type = relation which = TUR value = 25 }
+		command = { type = sleepevent which = 201025 } #KNI: The Pirates of St. John
+	}
+}
+#(1760-1820) The Pirates of St. John
+event = {
+	id = 201017
+	trigger = {
+		owned = { province = 481 data = -1 } #Rhodes
+		OR = {
+			owned = { province = 357 data = TUR } #Thrace
+			AND = {
+				exists = TUR
+				NOT = { exists = BYZ }
+			}
+		}
+		NOT = {
+			AND = {
+				owned = { province = 484 data = VEN } #Cyprus
+				control = { province = 484 data = VEN } #Cyprus
+			}
+		}
+		NOT = {
+			alliance = { country = KNI country = TUR }
+			vassal = { country = TUR country = KNI }
+		}
+	}
+	random = no
+	country = KNI
+	name = "EVENTNAME201005" #The Pirates of St. John
+	desc = "EVENTHIST201005"
+	#-#The small but proficient fleet of the Knights was the scourge of Muslims for hundreds of years. Keeping the waters clear of enemy privateers as well as capturing trade ships of the Muslims, kept the coffers on Rhodos full and Muslim sailors in terror. One of the most famous events was the capturing of the Great Carrack from Alexandria in 1569, filled with enormous riches.
+
+	date = { day = 1 month = january year = 1760 }
+	offset = 21000
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME201005A" #Praise the lord!
+		command = { type = treasury value = 175 }
+		command = { type = relation which = TUR value = -50 }
+		command = { type = sleepevent which = 201026 } #KNI: The Pirates of St. John
+	}
+	action_b = {
+		name = "ACTIONNAME201005B" #Refrain from our Piracy
+		command = { type = relation which = TUR value = 25 }
+		command = { type = sleepevent which = 201026 } #KNI: The Pirates of St. John
+	}
+}
+#-----------------------------------------------------------------------------------------------
+#(1440-1500) The Pirates of St. John
+event = {
+	id = 201018
+	trigger = {
+		NOT = {
+			owned = { province = 481 data = -1 } #Rhodes
+		}
+		owned = { province = 819 data = -1 } #Malta
+		OR = {
+			owned = { province = 357 data = TUR } #Thrace
+			AND = {
+				exists = TUR
+				NOT = { exists = BYZ }
+			}
+		}
+		NOT = {
+			AND = {
+				owned = { province = 484 data = VEN } #Cyprus
+				control = { province = 484 data = VEN } #Cyprus
+			}
+		}
+		NOT = {
+			alliance = { country = KNI country = TUR }
+			vassal = { country = TUR country = KNI }
+		}
+	}
+	random = no
+	country = KNI
+	name = "EVENTNAME201005" #The Pirates of St. John
+	desc = "EVENTHIST201005"
+	#-#The small but proficient fleet of the Knights was the scourge of Muslims for hundreds of years. Keeping the waters clear of enemy privateers as well as capturing trade ships of the Muslims, kept the coffers on Rhodos full and Muslim sailors in terror. One of the most famous events was the capturing of the Great Carrack from Alexandria in 1569, filled with enormous riches.
+
+	date = { day = 1 month = january year = 1440 }
+	offset = 21000
+	deathdate = { day = 29 month = december year = 1500 }
+
+	action_a = {
+		name = "ACTIONNAME201005A" #Praise the lord!
+		command = { type = treasury value = 85 }
+		command = { type = relation which = TUR value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME201005B" #Refrain from our Piracy
+		command = { type = relation which = TUR value = 25 }
+	}
+}
+#(1480-1540) The Pirates of St. John
+event = {
+	id = 201019
+	trigger = {
+		NOT = {
+			owned = { province = 481 data = -1 } #Rhodes
+		}
+		owned = { province = 819 data = -1 } #Malta
+		OR = {
+			owned = { province = 357 data = TUR } #Thrace
+			AND = {
+				exists = TUR
+				NOT = { exists = BYZ }
+			}
+		}
+		NOT = {
+			AND = {
+				owned = { province = 484 data = VEN } #Cyprus
+				control = { province = 484 data = VEN } #Cyprus
+			}
+		}
+		NOT = {
+			alliance = { country = KNI country = TUR }
+			vassal = { country = TUR country = KNI }
+		}
+	}
+	random = no
+	country = KNI
+	name = "EVENTNAME201005" #The Pirates of St. John
+	desc = "EVENTHIST201005"
+	#-#The small but proficient fleet of the Knights was the scourge of Muslims for hundreds of years. Keeping the waters clear of enemy privateers as well as capturing trade ships of the Muslims, kept the coffers on Rhodos full and Muslim sailors in terror. One of the most famous events was the capturing of the Great Carrack from Alexandria in 1569, filled with enormous riches.
+
+	date = { day = 1 month = january year = 1480 }
+	offset = 21000
+	deathdate = { day = 29 month = december year = 1540 }
+
+	action_a = {
+		name = "ACTIONNAME201005A" #Praise the lord!
+		command = { type = treasury value = 85 }
+		command = { type = relation which = TUR value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME201005B" #Refrain from our Piracy
+		command = { type = relation which = TUR value = 25 }
+	}
+}
+#(1520-1580) The Pirates of St. John
+event = {
+	id = 201020
+	trigger = {
+		NOT = {
+			owned = { province = 481 data = -1 } #Rhodes
+		}
+		owned = { province = 819 data = -1 } #Malta
+		OR = {
+			owned = { province = 357 data = TUR } #Thrace
+			AND = {
+				exists = TUR
+				NOT = { exists = BYZ }
+			}
+		}
+		NOT = {
+			AND = {
+				owned = { province = 484 data = VEN } #Cyprus
+				control = { province = 484 data = VEN } #Cyprus
+			}
+		}
+		NOT = {
+			alliance = { country = KNI country = TUR }
+			vassal = { country = TUR country = KNI }
+		}
+	}
+	random = no
+	country = KNI
+	name = "EVENTNAME201005" #The Pirates of St. John
+	desc = "EVENTHIST201005"
+	#-#The small but proficient fleet of the Knights was the scourge of Muslims for hundreds of years. Keeping the waters clear of enemy privateers as well as capturing trade ships of the Muslims, kept the coffers on Rhodos full and Muslim sailors in terror. One of the most famous events was the capturing of the Great Carrack from Alexandria in 1569, filled with enormous riches.
+
+	date = { day = 1 month = january year = 1520 }
+	offset = 21000
+	deathdate = { day = 29 month = december year = 1580 }
+
+	action_a = {
+		name = "ACTIONNAME201005A" #Praise the lord!
+		command = { type = treasury value = 85 }
+		command = { type = relation which = TUR value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME201005B" #Refrain from our Piracy
+		command = { type = relation which = TUR value = 25 }
+	}
+}
+#(1560-1620) The Pirates of St. John
+event = {
+	id = 201021
+	trigger = {
+		NOT = {
+			owned = { province = 481 data = -1 } #Rhodes
+		}
+		owned = { province = 819 data = -1 } #Malta
+		OR = {
+			owned = { province = 357 data = TUR } #Thrace
+			AND = {
+				exists = TUR
+				NOT = { exists = BYZ }
+			}
+		}
+		NOT = {
+			AND = {
+				owned = { province = 484 data = VEN } #Cyprus
+				control = { province = 484 data = VEN } #Cyprus
+			}
+		}
+		NOT = {
+			alliance = { country = KNI country = TUR }
+			vassal = { country = TUR country = KNI }
+		}
+	}
+	random = no
+	country = KNI
+	name = "EVENTNAME201005" #The Pirates of St. John
+	desc = "EVENTHIST201005"
+	#-#The small but proficient fleet of the Knights was the scourge of Muslims for hundreds of years. Keeping the waters clear of enemy privateers as well as capturing trade ships of the Muslims, kept the coffers on Rhodos full and Muslim sailors in terror. One of the most famous events was the capturing of the Great Carrack from Alexandria in 1569, filled with enormous riches.
+
+	date = { day = 1 month = january year = 1560 }
+	offset = 21000
+	deathdate = { day = 29 month = december year = 1620 }
+
+	action_a = {
+		name = "ACTIONNAME201005A" #Praise the lord!
+		command = { type = treasury value = 85 }
+		command = { type = relation which = TUR value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME201005B" #Refrain from our Piracy
+		command = { type = relation which = TUR value = 25 }
+	}
+}
+#(1600-1660) The Pirates of St. John
+event = {
+	id = 201022
+	trigger = {
+		NOT = {
+			owned = { province = 481 data = -1 } #Rhodes
+		}
+		owned = { province = 819 data = -1 } #Malta
+		OR = {
+			owned = { province = 357 data = TUR } #Thrace
+			AND = {
+				exists = TUR
+				NOT = { exists = BYZ }
+			}
+		}
+		NOT = {
+			AND = {
+				owned = { province = 484 data = VEN } #Cyprus
+				control = { province = 484 data = VEN } #Cyprus
+			}
+		}
+		NOT = {
+			alliance = { country = KNI country = TUR }
+			vassal = { country = TUR country = KNI }
+		}
+	}
+	random = no
+	country = KNI
+	name = "EVENTNAME201005" #The Pirates of St. John
+	desc = "EVENTHIST201005"
+	#-#The small but proficient fleet of the Knights was the scourge of Muslims for hundreds of years. Keeping the waters clear of enemy privateers as well as capturing trade ships of the Muslims, kept the coffers on Rhodos full and Muslim sailors in terror. One of the most famous events was the capturing of the Great Carrack from Alexandria in 1569, filled with enormous riches.
+
+	date = { day = 1 month = january year = 1600 }
+	offset = 21000
+	deathdate = { day = 29 month = december year = 1660 }
+
+	action_a = {
+		name = "ACTIONNAME201005A" #Praise the lord!
+		command = { type = treasury value = 85 }
+		command = { type = relation which = TUR value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME201005B" #Refrain from our Piracy
+		command = { type = relation which = TUR value = 25 }
+	}
+}
+#(1640-1700) The Pirates of St. John
+event = {
+	id = 201023
+	trigger = {
+		NOT = {
+			owned = { province = 481 data = -1 } #Rhodes
+		}
+		owned = { province = 819 data = -1 } #Malta
+		OR = {
+			owned = { province = 357 data = TUR } #Thrace
+			AND = {
+				exists = TUR
+				NOT = { exists = BYZ }
+			}
+		}
+		NOT = {
+			AND = {
+				owned = { province = 484 data = VEN } #Cyprus
+				control = { province = 484 data = VEN } #Cyprus
+			}
+		}
+		NOT = {
+			alliance = { country = KNI country = TUR }
+			vassal = { country = TUR country = KNI }
+		}
+	}
+	random = no
+	country = KNI
+	name = "EVENTNAME201005" #The Pirates of St. John
+	desc = "EVENTHIST201005"
+	#-#The small but proficient fleet of the Knights was the scourge of Muslims for hundreds of years. Keeping the waters clear of enemy privateers as well as capturing trade ships of the Muslims, kept the coffers on Rhodos full and Muslim sailors in terror. One of the most famous events was the capturing of the Great Carrack from Alexandria in 1569, filled with enormous riches.
+
+	date = { day = 1 month = january year = 1640 }
+	offset = 21000
+	deathdate = { day = 29 month = december year = 1700 }
+
+	action_a = {
+		name = "ACTIONNAME201005A" #Praise the lord!
+		command = { type = treasury value = 85 }
+		command = { type = relation which = TUR value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME201005B" #Refrain from our Piracy
+		command = { type = relation which = TUR value = 25 }
+	}
+}
+#(1680-1740) The Pirates of St. John
+event = {
+	id = 201024
+	trigger = {
+		NOT = {
+			owned = { province = 481 data = -1 } #Rhodes
+		}
+		owned = { province = 819 data = -1 } #Malta
+		OR = {
+			owned = { province = 357 data = TUR } #Thrace
+			AND = {
+				exists = TUR
+				NOT = { exists = BYZ }
+			}
+		}
+		NOT = {
+			AND = {
+				owned = { province = 484 data = VEN } #Cyprus
+				control = { province = 484 data = VEN } #Cyprus
+			}
+		}
+		NOT = {
+			alliance = { country = KNI country = TUR }
+			vassal = { country = TUR country = KNI }
+		}
+	}
+	random = no
+	country = KNI
+	name = "EVENTNAME201005" #The Pirates of St. John
+	desc = "EVENTHIST201005"
+	#-#The small but proficient fleet of the Knights was the scourge of Muslims for hundreds of years. Keeping the waters clear of enemy privateers as well as capturing trade ships of the Muslims, kept the coffers on Rhodos full and Muslim sailors in terror. One of the most famous events was the capturing of the Great Carrack from Alexandria in 1569, filled with enormous riches.
+
+	date = { day = 1 month = january year = 1680 }
+	offset = 21000
+	deathdate = { day = 29 month = december year = 1740 }
+
+	action_a = {
+		name = "ACTIONNAME201005A" #Praise the lord!
+		command = { type = treasury value = 85 }
+		command = { type = relation which = TUR value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME201005B" #Refrain from our Piracy
+		command = { type = relation which = TUR value = 25 }
+	}
+}
+#(1720-1780) The Pirates of St. John
+event = {
+	id = 201025
+	trigger = {
+		NOT = {
+			owned = { province = 481 data = -1 } #Rhodes
+		}
+		owned = { province = 819 data = -1 } #Malta
+		OR = {
+			owned = { province = 357 data = TUR } #Thrace
+			AND = {
+				exists = TUR
+				NOT = { exists = BYZ }
+			}
+		}
+		NOT = {
+			AND = {
+				owned = { province = 484 data = VEN } #Cyprus
+				control = { province = 484 data = VEN } #Cyprus
+			}
+		}
+		NOT = {
+			alliance = { country = KNI country = TUR }
+			vassal = { country = TUR country = KNI }
+		}
+	}
+	random = no
+	country = KNI
+	name = "EVENTNAME201005" #The Pirates of St. John
+	desc = "EVENTHIST201005"
+	#-#The small but proficient fleet of the Knights was the scourge of Muslims for hundreds of years. Keeping the waters clear of enemy privateers as well as capturing trade ships of the Muslims, kept the coffers on Rhodos full and Muslim sailors in terror. One of the most famous events was the capturing of the Great Carrack from Alexandria in 1569, filled with enormous riches.
+
+	date = { day = 1 month = january year = 1720 }
+	offset = 21000
+	deathdate = { day = 29 month = december year = 1780 }
+
+	action_a = {
+		name = "ACTIONNAME201005A" #Praise the lord!
+		command = { type = treasury value = 85 }
+		command = { type = relation which = TUR value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME201005B" #Refrain from our Piracy
+		command = { type = relation which = TUR value = 25 }
+	}
+}
+#(1760-1820) The Pirates of St. John
+event = {
+	id = 201026
+	trigger = {
+		NOT = {
+			owned = { province = 481 data = -1 } #Rhodes
+		}
+		owned = { province = 819 data = -1 } #Malta
+		OR = {
+			owned = { province = 357 data = TUR } #Thrace
+			AND = {
+				exists = TUR
+				NOT = { exists = BYZ }
+			}
+		}
+		NOT = {
+			AND = {
+				owned = { province = 484 data = VEN } #Cyprus
+				control = { province = 484 data = VEN } #Cyprus
+			}
+		}
+		NOT = {
+			alliance = { country = KNI country = TUR }
+			vassal = { country = TUR country = KNI }
+		}
+	}
+	random = no
+	country = KNI
+	name = "EVENTNAME201005" #The Pirates of St. John
+	desc = "EVENTHIST201005"
+	#-#The small but proficient fleet of the Knights was the scourge of Muslims for hundreds of years. Keeping the waters clear of enemy privateers as well as capturing trade ships of the Muslims, kept the coffers on Rhodos full and Muslim sailors in terror. One of the most famous events was the capturing of the Great Carrack from Alexandria in 1569, filled with enormous riches.
+
+	date = { day = 1 month = january year = 1760 }
+	offset = 21000
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME201005A" #Praise the lord!
+		command = { type = treasury value = 85 }
+		command = { type = relation which = TUR value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME201005B" #Refrain from our Piracy
+		command = { type = relation which = TUR value = 25 }
+	}
+}
+#-----------------------------------------------------------------------------------------------
+
+#(1482) We've Captured Dublin?
+event = {
+	id = 24012
+	random = no
+	country = KNI
+	name = "EVENTNAME24012" #Keating and the Irish commandery
+	desc = "EVENTHIST24012"
+	#-#James Keating, prior of the Irish commandery, is revealed as little more than a bandit. Keating has even, on one occasion, seized Dublin castle! More importantly, he has failed to pay the responsions (revenues) due to the Order.
+
+	date = { day = 1 month = january year = 1482 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1483 }
+
+	action_a = {
+		name = "ACTIONNAME24012A" #Replace Keating
+		command = { type = stability value = -1 }
+		command = { type = relation which = EIR value = -40 }
+		command = { type = relation which = CON value = -40 }
+		command = { type = relation which = LEI value = -40 }
+		command = { type = relation which = MST value = -40 }
+		command = { type = relation which = ULS value = -40 }
+		command = { type = relation which = ENG value = -40 }
+		command = { type = provincetax which = -2 value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME24012B" #Give up Irish Commandery
+		command = { type = stability value = 1 }
+		command = { type = relation which = EIR value = 40 }
+		command = { type = relation which = CON value = 40 }
+		command = { type = relation which = LEI value = 40 }
+		command = { type = relation which = MST value = 40 }
+		command = { type = relation which = ULS value = 40 }
+		command = { type = relation which = ENG value = 40 }
+		command = { type = provincetax which = -2 value = -1 }
+	}
+}
+
+#(1483) Pierre d'Aubusson
+#modified by Pietercornelis
+event = {
+	id = 3535
+	random = no
+	country = KNI
+	name = "EVENTNAME3535" #Pierre d'Aubusson
+	desc = "EVENTHIST3535"
+	#-#The Grandmaster Hospitaler d'Aubusson who so successfully had defended Rhodos against the previous sultan, Mehmed II, imprisoned the brother of the Turkish sultan Bayezid II despite a promise of safe conduct in 1483. Such a prestigious captive was obviously a strong negotiation asset for many of the enemies of the Ottoman Empire and several countries was prepared to pay large sums for him.
+
+	date = { day = 1 month = january year = 1483 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1484 }
+
+	action_a = {
+		name = "ACTIONNAME3535A" #Hostage to Papacy for gold and Cardinal appointment
+		command = { type = relation which = PAP value = 100 }
+		command = { type = relation which = HUN value = -20 }
+		command = { type = relation which = VEN value = -20 }
+		command = { type = relation which = TUR value = -100 }
+		command = { type = treasury value = 200 }
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3535B" #Hostage to Hungary for gold
+		command = { type = relation which = PAP value = -20 }
+		command = { type = relation which = HUN value = 100 }
+		command = { type = relation which = VEN value = -20 }
+		command = { type = relation which = TUR value = -100 }
+		command = { type = treasury value = 250 }
+	}
+	action_c = {
+		name = "ACTIONNAME3535C" #Hostage to Venice for gold and trade rights
+		command = { type = relation which = PAP value = -20 }
+		command = { type = relation which = HUN value = -20 }
+		command = { type = relation which = VEN value = 100 }
+		command = { type = relation which = TUR value = -100 }
+		command = { type = treasury value = 200 }
+		command = { type = merchants value = 6 }
+	}
+	action_d = {
+		name = "ACTIONNAME3535D" #Keep Our Word with the Turks
+		command = { type = relation which = PAP value = -100 }
+		command = { type = relation which = HUN value = -100 }
+		command = { type = relation which = VEN value = -100 }
+		command = { type = relation which = TUR value = 100 }
+		command = { type = treasury value = 200 }
+	}
+}
+
+#(1485) Grant of Wealth from Dissolved Knightly Orders
+event = {
+	id = 24013
+	random = no
+	country = KNI
+	name = "EVENTNAME24013" #Grant of Wealth from Knightly Orders
+	desc = "EVENTHIST24013"
+	#-#In 1485, the Knights of Rhodes were granted the wealth and possessions of the now defunct Order of the Sacred Tomb of St. Lazarus.
+
+	date = { day = 1 month = january year = 1485 }
+
+	action_a = {
+		name = "ACTIONNAME24013A" #Bless St. Lazarus
+		command = { type = provincetax which = -2 value = 1 }
+	}
+}
+
+#(1501) Rhodians and other Greeks accepted into the Order
+event = {
+	id = 3536
+	random = no
+	country = KNI
+	name = "EVENTNAME3536" #Rhodians and other Greeks accepted into the Order
+	desc = "EVENTHIST3536"
+	#-#In the early 16th century, Rhodians and other Greeks were rashly allowed into the order in a last grand effort to build up manpower to stop the Turkish onslaught.
+
+	date = { day = 1 month = january year = 1501 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1502 }
+
+	action_a = {
+		name = "ACTIONNAME3536A" #Welcome the Greeks to Our Order
+		command = { type = add_countryculture which = greek }
+		command = { type = domestic which = QUALITY value = -2 }
+		command = { type = domestic which = SERFDOM value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3536B" #Do not rely on the Greeks
+		command = { type = domestic which = SERFDOM value = 1 }
+		command = { type = domestic which = INNOVATIVE value = -1 }
+	}
+}
+
+#(1503) Paolo's Angels
+event = {
+	id = 24014
+	random = no
+	country = KNI
+	name = "EVENTNAME24014" #Paolo's Angels
+	desc = "EVENTHIST24014"
+	#-#The Islamic corsair known as Jamali had used artillery to breach the walls of a castle held by the Knights on an outlying island. The castle was thought to be staffed with only two Knights: an elderly bedridden commander and a young brother, Paolo Simeoni. However, upon approaching the breach, the corsairs were amazed to see before them a large contingent of brethern waiting in the breach. They hastily set sail, not realizing that Fra' Paolo had simply dressed the island's entire population, man, woman, and child, in the surcoats of the Order.
+
+	date = { day = 1 month = april year = 1503 }
+	offset = 150
+	deathdate = { day = 1 month = september year = 1503 }
+
+	action_a = {
+		name = "ACTIONNAME24014A" #Ha!
+		command = { type = vp value = 5 }
+	}
+}
+
+#(1507) Capture of the Morgarbina
+event = {
+	id = 24015
+	trigger = {
+		owned = { province = 744 data = MAM } #Alexandria
+		NOT = {
+			alliance = { country = KNI country = MAM }
+			vassal = { country = MAM country = KNI }
+		}
+	}
+	random = no
+	country = KNI
+	name = "EVENTNAME24015" #Capture of the Morgarbina
+	desc = "EVENTHIST24015"
+	#-#The Morgarbina was a gigantic vessel with seven decks which plied the seas between Tunis and Constantinople. Wealthy merchants confidently used her to ship their richest wares, confident that not even the notorious Knights could capture her. Commander de Gastineau, a wily captain from Limousin, waylaid the leviathan off Crete. Under pretence of parleying, he laid the Order's own great carrack alongside and then mowed down the captain and officers on the poop with one murderous salvo of grapeshot. The leaderless crew struck their colours and the Knights boarded to find a staggering consignment of silver and jewellery as well as bales of silk, cashmere and carpets, and quantities of pepper, ginger, cloves, and cinnamon. On the way home, the brethern captured three smaller cargo ships, and the entire treasure was eventually sold in France, its owners being held to ransom or sent to the slave market.
+
+	date = { day = 1 month = april year = 1507 }
+	offset = 150
+	deathdate = { day = 1 month = september year = 1507 }
+
+	action_a = {
+		name = "ACTIONNAME201005A" #Praise the lord!
+		command = { type = treasury value = 150 }
+		command = { type = relation which = MAM value = -300 }
+		command = { type = galleys which = -1 value = 1 }
+		command = { type = transports which = -3 value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME201005B" #Refrain from our Piracy
+		command = { type = relation which = MAM value = 60 }
+		command = { type = sleepevent which = 24032 } #MAM: Capture of the Morgarbina
+	}
+}
+
+#(1520-1820) The Order of St. John accepts Malta (AI only)
+#by Crook modified by Fodoron
+event = {
+	id = 3540
+	trigger = {
+		event = 285123 #SPA: Carlos generous offer to the Hospitallers (creation of KNI)
+	}
+	country = KNI
+	name = "EVENTNAME3540" #The Order of St. John accepts Malta
+	desc = "EVENTHIST285123"
+	#-#When the Order of St. John was expelled from Rhodes in 1523, it underwent a crisis. Their possessions were being confiscated all over Europe, both by Catholic, and Protestant rulers, their income dwindled, their recruits stopped coming. They desperately needed a base, preferably by reconquering Rhodes, otherwise an island in the Aegean, but nobody helped and Venice opposed them. Europe was at war and there was no place for their neutrality. The emperor Carlos however came up with a master idea. He offered Malta to the Hospitallers. Malta was difficult to defend from the growing Ottoman power, but the Knights were a tough breed. They would give their life defending his shipping lines with Sicily. In 1524 the Hospitallers sent a commission to Malta. Their report was very negative. The island could not sustain itself, and the defences were very poor. Then Carlos decided to include Tripoli in the deal as a take it all or leave it all. The Knights opinion on Tripoli was even worse. They did not have the resources to upgrade its defences. But having no other option, the Chapter General decided in 1527 to accept the offer with the opposition of the French Langues. They still had hopes of recovering Rhodes, but in 1530 they gave up and moved to Malta, taking possession also of Tripoli. From then on, the Spaniards and the Knights of St. John would fight their battles in North Africa together.
+
+	date = { day = 0 month = january year = 1520 }
+	offset = 100
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME3540A" #Back in the game
+		command = { type = relation which = PAP value = 100 }
+		command = { type = removecore which = 481 } #Rhodes
+		command = { type = add_countryculture which = french }
+	}
+}
+
+#(1521-1523) Gabriele Tadini de Martinengo
+event = {
+	id = 3539
+	random = no
+	country = KNI
+	name = "EVENTNAME3539" #Gabriele Tadini de Martinengo
+	desc = "EVENTHIST3539"
+	#-#Martinengo was the best fortification engineer of Europe. He was authorized to improve the fortresses on Rhodes. In 1521, when he had worked for a couple of months he was so enamored with the Knights and their ideals that he kneeled in front of the Grand Master and begged him to make him a Knight. The Grand master accepted him into the brotherhood and he fought bravely dying in battle of Rhodes in 1522.
+
+	date = { day = 1 month = january year = 1521 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1523 }
+
+	action_a = {
+		name = "ACTIONNAME3539A" #Improve our defenses
+		command = { type = fortress which = -1 value = 1 }
+		command = { type = domestic which = OFFENSIVE value = -2 }
+		command = { type = infra value = 400 }
+	}
+}
+
+#(1521) Andreas d'Amaral
+event = {
+	id = 24016
+	random = no
+	country = KNI
+	name = "EVENTNAME24016" #Andreas d'Amaral
+	desc = "EVENTHIST24016"
+	#-#The magistral election of 1521 was hotly contested by Fra' Thomas Docwra, Prior of England, Fra' Andrea d'Amaral, the Portuguese Prior of Castile, and Fra' Philippe Villers de l'Isle Adam, Prior of Auvergne. The third candidate was chosen to the noisy dismay of d'Amaral, who shouted, 'This will be the last Grand Master of Rhodes!' It seems that d'Amaral may have tried to bring this about, as his servant has been caught communicating with the enemies of the Order. Put to the question, the servant has implicated his master in the plot.
+
+	date = { day = 1 month = january year = 1521 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1522 }
+
+	action_a = {
+		name = "ACTIONNAME24016A" #Execute the Traitor!
+		command = { type = stability value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME24016B" #Free d'Amaral
+		command = { type = desertion which = -1 value = 3000 }
+		command = { type = stability value = -2 }
+		command = { type = wakeleader which = 069815 } #Andrea d'Amaral (KNI)
+	}
+}
+
+#(1523-1798) The Knights request the help of Spain
+#by Fodoron
+event = {
+	id = 201000
+	trigger = {
+		exists = TUR
+		OR = {
+			AND = {
+				owned = { province = 819 data = SPA } #Malta
+				control = { province = 819 data = SPA } #Malta
+				NOT = {
+					countrysize = 2
+					war = { country = KNI country = SPA }
+					vassal = { country = KNI country = SPA }
+					vassal = { country = SPA country = KNI }
+				}
+			}
+			AND = {
+				owned = { province = 819 data = ARG } #Malta
+				control = { province = 819 data = ARG } #Malta
+				NOT = {
+					countrysize = 2
+					war = { country = KNI country = ARG }
+					vassal = { country = KNI country = ARG }
+					vassal = { country = ARG country = KNI }
+				}
+			}
+		}
+	}
+	random = no
+	country = KNI
+	name = "EVENTNAME201000" #The Knights request the help of Spain
+	desc = "EVENTHIST201000"
+	#-#A huge fleet is being readied at Constantinople. Our spies inform us that the Ottoman sultan will soon assault Rhodes to destroy us once and for all. Perhaps the Emperor can find another place for us...
+
+	date = { day = 1 month = january year = 1523 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1798 }
+
+	action_a = {
+		name = "ACTIONNAME201000A" #We did what we could to defend Rhodes
+		command = { type = vp value = -5 }
+		command = { type = trigger which = 285124 } #SPA: Generous offer to the Hospitallers
+		command = { type = trigger which = 111034 } #ARG: Generous offer to the Hospitallers
+	}
+	action_b = {
+		name = "ACTIONNAME201000B" #We will never leave Rhodes
+		command = { type = vp value = 5 }
+	}
+}
+#(1523-1798) The Order of St. John is offered Malta
+#by Crook modified by Fodoron
+event = {
+	id = 24001 #triggered by SPA_285124 A / ARG_111034 A
+	random = no
+	country = KNI
+	name = "EVENTNAME24001" #The Order of St. John is offered Malta
+	desc = "EVENTHIST285123"
+	#-#When the Order of St. John was expelled from Rhodes in 1523, it underwent a crisis. Their possessions were being confiscated all over Europe, both by Catholic, and Protestant rulers, their income dwindled, their recruits stopped coming. They desperately needed a base, preferably by reconquering Rhodes, otherwise an island in the Aegean, but nobody helped and Venice opposed them. Europe was at war and there was no place for their neutrality. The emperor Carlos however came up with a master idea. He offered Malta to the Hospitallers. Malta was difficult to defend from the growing Ottoman power, but the Knights were a tough breed. They would give their life defending his shipping lines with Sicily. In 1524 the Hospitallers sent a commission to Malta. Their report was very negative. The island could not sustain itself, and the defences were very poor. Then Carlos decided to include Tripoli in the deal as a take it all or leave it all. The Knights opinion on Tripoli was even worse. They did not have the resources to upgrade its defences. But having no other option, the Chapter General decided in 1527 to accept the offer with the opposition of the French Langues. They still had hopes of recovering Rhodes, but in 1530 they gave up and moved to Malta, taking possession also of Tripoli. From then on, the Spaniards and the Knights of St. John would fight their battles in North Africa together.
+
+	action_a = {
+		name = "ACTIONNAME24001A" #It solves our problem
+		command = { type = relation which = PAP value = 100 }
+		command = { type = relation which = SPA value = 400 }
+		command = { type = treasury value = 100 }
+		command = { type = stability value = 1 }
+		command = { type = removecore which = 481 } #Rhodes
+		command = { type = addcore which = 819 } #Malta
+		command = { type = remove_countryculture which = french }
+		command = { type = remove_countryculture which = greek }
+		command = { type = add_countryculture which = maltese }
+		command = { type = add_countryculture which = french }
+		command = { type = capital which = 819 } #Malta
+		command = { type = secedeprovince which = TUR value = 481 } #Rhodes
+		command = { type = inf which = 819 value = 3000 } #Malta
+		command = { type = trigger which = 301092 } #TUR: The Order of St. John is offered Malta
+	}
+}
+
+#(1523-1551) The Order of St. John accepts Tripoli
+#by Crook modified by Fodoron
+event = {
+	id = 24003 #triggered by SPA_285125
+	random = no
+	country = KNI
+	name = "EVENTNAME24003" #We take possession of Tripoli
+	desc = "EVENTHIST24003"
+	#-#Conscious of their duty to Christianity, the Knights Hospitallers took possession of Tripoli from Spain and prepared to defend it.
+
+	action_a = {
+		name = "ACTIONNAME24003A" #I can see some fighting ahead
+		command = { type = treasury value = -25 }
+	}
+}
+
+#(1523-1640) Spanish help
+#by Fodoron
+event = {
+	id = 201011 #triggered by SPA_285127 A
+	random = no
+	country = KNI
+	name = "EVENTNAME201011" #Spanish help
+	desc = "EVENTHIST285127"
+	#-#It was just a matter of time before the Ottomans attacked Malta. In May 1565, a powerful fleet from the Ottomans and their allies the Barbary pirates, arrived to the island and landed an army of 40,000. Against them were 540 knights, 400 Spaniards and 4,000 Maltese. Fort St. Elmo lasted 5 weeks of furious fights until almost all its defenders were killed. By then 600 Spaniards from Sicily had arrived to the city. The fighting continued all summer taking the lives of 5000 defenders with the Turkish loses three times higher, including the famous pirate Dragut. In early September, when the defenders were at their last resistance, help from Spain finally arrived under command of Álvaro de Bazán and García de Toledo. The Turks, low on morale, panicked and abandoned the island.
+
+	action_a = {
+		name = "ACTIONNAME201011A" #Not too late
+		command = { type = treasury value = 50 }
+		command = { type = INF which = 819 value = 10000 } #Malta
+		command = { type = CAV which = 819 value = 4000 } #Malta
+		command = { type = ART which = 819 value = 40 } #Malta
+		command = { type = galleys which = 819 value = 10 } #Malta
+		command = { type = relation which = SPA value = 400 }
+	}
+}
+#(1523-1640) Spain refuses to help
+#by Fodoron
+event = {
+	id = 201012 #triggered by SPA_285127 B
+	random = no
+	country = KNI
+	name = "EVENTNAME201012" #Spain refuses to help
+	desc = "EVENTHIST285127"
+	#-#It was just a matter of time before the Ottomans attacked Malta. In May 1565, a powerful fleet from the Ottomans and their allies the Barbary pirates, arrived to the island and landed an army of 40,000. Against them were 540 knights, 400 Spaniards and 4,000 Maltese. Fort St. Elmo lasted 5 weeks of furious fights until almost all its defenders were killed. By then 600 Spaniards from Sicily had arrived to the city. The fighting continued all summer taking the lives of 5000 defenders with the Turkish loses three times higher, including the famous pirate Dragut. In early September, when the defenders were at their last resistance, help from Spain finally arrived under command of Álvaro de Bazán and García de Toledo. The Turks, low on morale, panicked and abandoned the island.
+
+	action_a = {
+		name = "ACTIONNAME201012A" #To hell with them
+		command = { type = relation which = SPA value = -50 }
+		command = { type = breakvassal which = SPA } #no problem
+	}
+}
+#(1523-1640) Aragonese help - Ahistorical
+#by Fodoron
+event = {
+	id = 201003 #triggered by ARG_111042 A
+	random = no
+	country = KNI
+	name = "EVENTNAME285127" #Spanish help
+	desc = "EVENTHIST285127"
+	#-#It was just a matter of time before the Ottomans attacked Malta. In May 1565, a powerful fleet from the Ottomans and their allies the Barbary pirates, arrived to the island and landed an army of 40,000. Against them were 540 knights, 400 Spaniards and 4,000 Maltese. Fort St. Elmo lasted 5 weeks of furious fights until almost all its defenders were killed. By then 600 Spaniards from Sicily had arrived to the city. The fighting continued all summer taking the lives of 5000 defenders with the Turkish loses three times higher, including the famous pirate Dragut. In early September, when the defenders were at their last resistance, help from Spain finally arrived under command of Álvaro de Bazán and García de Toledo. The Turks, low on morale, panicked and abandoned the island.
+
+	action_a = {
+		name = "ACTIONNAME201011A" #Not too late
+		command = { type = treasury value = 50 }
+		command = { type = INF which = 819 value = 10000 } #Malta
+		command = { type = CAV which = 819 value = 4000 } #Malta
+		command = { type = ART which = 819 value = 40 } #Malta
+		command = { type = galleys which = 819 value = 10 } #Malta
+		command = { type = relation which = ARG value = 400 }
+	}
+}
+#(1523-1640) Aragon refuses to help - Ahistorical
+#by Fodoron
+event = {
+	id = 201004 #triggered by ARG_111042 B
+	random = no
+	country = KNI
+	name = "EVENTNAME201012" #Spain refuses to help
+	desc = "EVENTHIST285127"
+	#-#It was just a matter of time before the Ottomans attacked Malta. In May 1565, a powerful fleet from the Ottomans and their allies the Barbary pirates, arrived to the island and landed an army of 40,000. Against them were 540 knights, 400 Spaniards and 4,000 Maltese. Fort St. Elmo lasted 5 weeks of furious fights until almost all its defenders were killed. By then 600 Spaniards from Sicily had arrived to the city. The fighting continued all summer taking the lives of 5000 defenders with the Turkish loses three times higher, including the famous pirate Dragut. In early September, when the defenders were at their last resistance, help from Spain finally arrived under command of Álvaro de Bazán and García de Toledo. The Turks, low on morale, panicked and abandoned the island.
+
+	action_a = {
+		name = "ACTIONNAME201012A" #To hell with them
+		command = { type = relation which = ARG value = -50 }
+		command = { type = breakvassal which = ARG } #no problem
+	}
+}
+
+#(1530-1798) The purchase of Malta - Ahistorical
+#by Fodoron
+event = {
+	id = 201001 #triggered by ProvinceSpec_338163 A
+	random = no
+	country = KNI
+	name = "EVENTNAME201001" #The purchase of Malta
+	desc = "EVENTHIST201001"
+	#-#The owner of Malta is offering us the island for 200 ducats and our vassalage to them. What shall we do?
+
+	action_a = {
+		name = "ACTIONNAME201001A" #It is too expensive
+		command = { type = vp value = -5 }
+	}
+	action_b = {
+		name = "ACTIONNAME201001B" #It is a fair price
+		command = { type = treasury value = -200 }
+		command = { type = addcore which = 819 } #Malta
+		command = { type = trigger which = 338231 } #ProvinceSpec*819: We sold Malta
+	}
+}
+
+#(1530-1610) Order contemplates a move to Tripoli
+#by Crook
+event = {
+	id = 24004
+	trigger = {
+		owned = { province = 740 data = -1 }
+		control = { province = 740 data = -1 }
+		owned = { province = 819 data = -1 }
+		core = { province = 819 data = -1 }
+		continent = europe #always true at this point if no Alternative Events
+	}
+	random = no
+	country = KNI
+	name = "EVENTNAME24004" #Tripoli gamble
+	desc = "EVENTHIST24004"
+	#-#After the capture of Tripoli, Carlos V left the Knights of St. John in charge of the defenses of this North African city. The Grandmaster Juan de Omedes was not particularly happy about this new burden, as it proved to be a drain on the Knights' budget and was very hard to defend. Despite this, Tripoli held its own advantages. Mainly it had richer soils than the rocks of Malta and more fresh water, which would have cut the Knights' dependence on Carlos's governors in Sicily. For a while, the idea of moving to Tripoli was seriously entertained by the Order, but bureaucratic delays and the eventual loss of Tripoli buried the idea before it could become a reality.
+
+	date = { day = 1 month = january year = 1530 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1610 }
+
+	action_a = {
+		name = "ACTIONNAME24004A" #It's not worth it
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME24004B" #Move to Tripoli
+		command = { type = capital which = 740 } #Tripolitania
+		command = { type = addcore which = 740 } #Tripolitania
+		command = { type = relation which = TUR value = -50 }
+		command = { type = stability value = -1 }
+		command = { type = provincetax which = 740 value = 1 } #Tripolitania
+		command = { type = sleepevent which = 24056 } #KNI: Our Garrison in Tripoli
+	}
+}
+
+#(1531-1798) The Hospitallers consider a change of see (fantasy)
+#by Fodoron
+event = {
+	id = 201002
+	trigger = {
+		owned = { province = 819 data = -1 } #Malta
+		control = { province = 819 data = -1 } #Malta
+		owned = { province = 481 data = -1 } #Rhodes
+		NOT = {
+			event = 24001 #KNI: The Order of St. John is offered Malta (Knights moved already)
+			event = 285123 #SPA: Carlos generous offer to the Hospitallers (Knights created at Malta)
+			event = 111033 #ARG: Enric I's generous offer to the Hospitallers (Knights created at Malta)
+			event = 338026 #ProvinceSpec*819: The Hospitallers request Malta (Knights created at Malta)
+		}
+	}
+	random = no
+	country = KNI
+	name = "EVENTNAME201002" #The Hospitallers consider a change of see
+	desc = "EVENTHIST201002"
+	#-#Moving our see to Malta would make us dependent on Sicily for water and food, and most knights reject moving away from the enemies of Christendom. However it would allow us to get prompt help from our patrons in case of attack. What shall we do?
+
+	date = { day = 0 month = january year = 1531 }
+	offset = 300
+	deathdate = { day = 9 month = june year = 1798 }
+
+	action_a = {
+		name = "ACTIONNAME201002A" #Move closer to our patrons
+		command = { type = treasury value = -50 } #Moving cost
+		command = { type = vp value = -50 } #Cowardice
+		command = { type = stability value = -3 } #Cowardice
+		command = { type = addcore which = 819 } #Malta
+		command = { type = remove_countryculture which = french }
+		command = { type = remove_countryculture which = greek }
+		command = { type = add_countryculture which = maltese }
+		command = { type = add_countryculture which = french }
+		command = { type = capital which = 819 } #Malta
+	}
+	action_b = {
+		name = "ACTIONNAME201002B" #Remain close to our enemies
+		command = { type = vp value = 50 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1550-1620) Our Garrison in Tripoli
+event = {
+	id = 24056
+	trigger = {
+		owned = { province = 740 data = -1 }
+		NOT = { owned = { province = 739 data = -1 } } #Tunisia
+		NOT = { core = { province = 740 data = -1 } }
+		core = { province = 740 data = TUR }
+		owned = { province = 741 data = TUR }
+		owned = { province = 742 data = TUR }
+		NOT = { alliance = { country = TUR country = KNI } }
+		event = 201009 #KNI: Knights in Tripolitania
+		countrysize = 2
+	}
+	random = no
+	country = KNI
+	name = "EVENTNAME24056" #Our Garrison in Tripoli
+	desc = "EVENTHIST24056"
+	#-#The Knights were always in a precarious position, being caught between the two fueding powers of Habsburg Spain and the Ottoman Empire. Their rulership of Tripoli put them right in the middle of the Ottoman Turks quest for supremacy in North Africa. In 1551, the Turkish admiral, Sinan Pasha, was sent to drive the Knights out of Tripolitania. In doing so, he helped to spread the influence of the Ottoman Empire.
+
+	date = { day = 1 month = november year = 1550 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1620 }
+
+	action_a = {
+		name = "ACTIONNAME24056A" #We must flee the might of the Ottoman Empire!
+		command = { type = secedeprovince which = TUR value = 740 } #Tripolitania
+	}
+}
+
+#(1551) Dragut's Raid
+event = {
+	id = 24017
+	trigger = { leader = 0139322 } #Dragut (TUR)
+	random = no
+	country = KNI
+	name = "EVENTNAME24017" #Dragut's Raid
+	desc = "EVENTHIST24017"
+	#-#The infamous Dragut, scourge of the Christians in the Mediterranean, has boldly raided the Order's homeland.
+
+	date = { day = 1 month = april year = 1551 }
+	offset = 150
+	deathdate = { day = 1 month = september year = 1551 }
+
+	action_a = {
+		name = "ACTIONNAME24017A" #Infidel!
+		command = { type = treasury value = -100 }
+		command = { type = population which = -2 value = -200 }
+		command = { type = infra value = -250 }
+	}
+}
+
+#(1559) Dissolution of English Langue
+event = {
+	id = 24018
+	random = no
+	country = KNI
+	name = "EVENTNAME24018" #Dissolution of English Langue
+	desc = "EVENTHIST24018"
+	#-#The English Langue has been dissolved in almost all but name. English estates or commanderies have reverted to the crown. Only one English brother remains with the Order, Sir Oliver Starkey, Lieutenant Turcopolier and Latin Secretary to the Grand Master.
+
+	date = { day = 1 month = january year = 1559 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1560 }
+
+	action_a = {
+		name = "ACTIONNAME24011A" #Thy Will Be Done
+		command = { type = provincetax which = -2 value = -1 }
+		command = { type = relation which = ENG value = -100 }
+		command = { type = relation which = EIR value = -100 }
+		command = { type = relation which = SCO value = -100 }
+	}
+}
+
+#(1562) Knight's Inquisition
+event = {
+	id = 24019
+	random = no
+	country = KNI
+	name = "EVENTNAME24019" #Knight's Inquisition
+	desc = "EVENTHIST24019"
+	#-#The Inquisition is also instituted in the Order's holdings, although the Knights Inquisition never attains the influence or terror of the Spanish.
+
+	date = { day = 13 month = september year = 1562 }
+
+	action_a = {
+		name = "ACTIONNAME24019A" #Institute the Inquisition
+		command = { type = domestic which = innovative value = -2 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = relation which = PAP value = 40 }
+		command = { type = relation which = SPA value = 40 }
+	}
+	action_b = {
+		name = "ACTIONNAME24019B" #Do Not Institute the Inquisition
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = relation which = PAP value = -40 }
+		command = { type = relation which = SPA value = -40 }
+	}
+}
+
+#(1565) Jean Parisot de la Valette
+event = {
+	id = 3541
+	trigger = { leader = 069801 } #Jean de La Valette (KNI)
+	random = no
+	country = KNI
+	name = "EVENTNAME3541" #Jean Parisot de la Valette
+	desc = "EVENTHIST3541"
+	#-#After it was acquired by the Knights, Malta became as strong a fortress as Rhodes had been. Under Grand Master Jean Parisot de La Valette, they 1565 successfully withstood an Ottoman siege consisting of 180 ships and close to 50.000 men against only 9000 defenders for six months, before the invader was forced to leave. The new capital city of Valletta became a town of splendid palaces and unparalleled fortifications. Growing in power and wealth owing mainly to their maritime raiding adventures against the Turks.
+
+	date = { day = 1 month = january year = 1565 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1566 }
+
+	action_a = {
+		name = "ACTIONNAME3541A" #Improve defenses
+		command = { type = fortress which = -2 value = 1 }
+		command = { type = domestic which = OFFENSIVE value = -2 }
+		command = { type = infra value = 250 }
+	}
+}
+
+#(1571-1573) The Holy League - modified by YodaMaster
+event = {
+	id = 3542
+	trigger = {
+		exists = TUR
+		OR = {
+			event = 3549 #PAP: The Holy League
+			event = 236000 #MUS: The Holy League (no Papal States)
+		}
+	}
+	random = no
+	country = KNI
+	name = "EVENTNAME3549" #The Holy League
+	desc = "EVENTHIST3549"
+	#-#When in 1570 the Turks sent an ultimatum to Venice asking for the ceding of Cyprus and then invaded the island after the Republic of San Marco failed to respond, a great uproar was created in the Catholic world by the facts and rumors of Ottoman atrocities in the last Christian bastion of the eastern Mediterranean. After a first failure in the summer of 1570, Pope Pius V managed to convince major Catholic nations (except France) to join a Holy League against the heathens Turks, and it was proclaimed in May 1571. The League would lead to the great naval victory of Don Juan on the Turks at Lepanto, but would not outlast this first and final triumph. Selim II is rumored to have said, after the news he had lost 200 galleys at Lepanto: At Lepanto, the Christians have shaved me. At Cyprus, I cut their arm. My beard will grow again.
+
+	date = { day = 7 month = may year = 1571 }
+	offset = 30
+	deathdate = { day = 13 month = april year = 1573 }
+
+	action_a = {
+		name = "ACTIONNAME3161A" #Support the Holy League
+		command = { type = casusbelli which = TUR value = 72 }
+		command = { type = relation which = TUR value = -150 }
+		command = { type = relation which = PAP value = 50 }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = GEN value = 50 }
+		command = { type = relation which = ITA value = 50 }
+		command = { type = relation which = NAP value = 50 }
+		command = { type = relation which = SAV value = 50 }
+		command = { type = relation which = SIC value = 50 }
+		command = { type = relation which = SPA value = 50 }
+		command = { type = relation which = TOS value = 50 }
+		command = { type = relation which = VEN value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME3549B" #Let the matter fall
+		command = { type = relation which = TUR value = 50 }
+		command = { type = relation which = PAP value = -50 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = relation which = GEN value = -50 }
+		command = { type = relation which = ITA value = -50 }
+		command = { type = relation which = NAP value = -50 }
+		command = { type = relation which = SAV value = -50 }
+		command = { type = relation which = SIC value = -50 }
+		command = { type = relation which = SPA value = -50 }
+		command = { type = relation which = TOS value = -50 }
+		command = { type = relation which = VEN value = -50 }
+	}
+}
+
+#(1575) Sacra Infermeria Built
+event = {
+	id = 24020
+	random = no
+	country = KNI
+	name = "EVENTNAME24020" #Sacra Infermeria Built
+	desc = "EVENTHIST24020"
+	#-#A new hospital, the Sacra Infermeria, opens. This facility is thought to be one of the finest in the western world, in part due to an unprecedented emphasis on hygiene. The Knights may have also been inadvertently influenced by the philosophies of Eastern medicine. The infirmary sheltered an average of 350 patients, and the staff included Doctors, surgeons, nurses, and pharmacists. The food was specially chosen (vermicelli and chicken for the weak, wine and game for the stong) and served on silver dishes. There were clinics for outpatients, one for leprosy and another for venereal disease, slaves and beggars receiving free prescriptions. An external nursing service tended the old in their own homes. During his novitiate, each Knight had to serve in the Hospital for one day a week, as did the Grand Master and the bailiffs on great feast-days.
+
+	date = { day = 19 month = may year = 1575 }
+
+	action_a = {
+		name = "ACTIONNAME201005A" #Praise the lord!
+		command = { type = infra value = 250 }
+		command = { type = population which = -2 value = 300 }
+	}
+}
+
+#(1595) Jesuit Medical School
+event = {
+	id = 24021
+	random = no
+	country = KNI
+	name = "EVENTNAME24021" #Jesuit Medical School
+	desc = "EVENTHIST24021"
+	#-#The Jesuit Order, founded by Ignatius de Loyola, starts a medical school in collaboration with the Knights Hospitaller of St. John.
+
+	date = { day = 4 month = august year = 1595 }
+
+	action_a = {
+		name = "ACTIONNAME201005A" #Praise the lord!
+		command = { type = infra value = 200 }
+		command = { type = domestic which = INNOVATIVE value = 1 }
+	}
+}
+
+#(1607) Grand Master Created Prince of Holy Roman Empire
+event = {
+	id = 24022
+	random = no
+	country = KNI
+	name = "EVENTNAME24022" #Grand Master Created a Prince of the Holy Roman Empire
+	desc = "EVENTHIST24022"
+	#-#In 1607, Alofe de Wignacourt, Grand Master of the Knights of St. John was named a Prince of the Holy Roman Empire.
+
+	date = { day = 1 month = january year = 1607 }
+
+	action_a = {
+		name = "ACTIONNAME201005A" #Praise the lord!
+		command = { type = relation which = HAB value = 60 }
+		command = { type = diplomats value = 3 }
+	}
+}
+
+#(1607-1608) Caravaggio arrives in Malta
+#by Bordic
+event = {
+	id = 201010
+	trigger = {
+		event = 251053 #PAP: Genius and dissoluteness
+		owned = { province = 819 data = -1 } #Malta
+	}
+	random = no
+	country = KNI
+	name = "EVENTNAME201010" #Caravaggio arrives in Malta
+	desc = "EVENTHIST251053"
+	#-#Michelangelo Merisi, one of the most extraordinary painters in the history of art, was born in 1571 not far from the village of Caravaggio (near Milan) where his family came from and after which he named himself. In 1592, he moved to the 'Rome of the Popes' with the prospect of large and lucrative commissions. Once there his painting skills attracted the attention of patrons who gave him also food and lodgings. In the beginning, all of Caravaggio's early paintings were relatively small works, still-lifes, genre-scenes and a few occasional religious subjects: it was said he had used a prostitute as the model for some of his depictions of the Virgin Mary. The big chance came in 1597 with the commission of two large paintings for the Contarelli Chapel in San Luigi dei Francesi about St Matthew's life. This commission made him famous as much as his life-style and violent behaviour made him notorious everywhere. His name appeared regularly in the protocols of the Roman police, however he received support and protection by some of the most sophisticated patrons in Rome. But in 1606 his violent temper didn't save him from murdering a person with whom he, unwilling to pay a bet on a real tennis match, got involved in a fierce fight. In hiding himself Caravaggio left Rome and went to Naples where, waiting for the Papal pardon which would allow him to return, he did some paintings. With no answer from Rome, Caravaggio left Naples and in the following year arrived on the island of Malta. In his stay on the island he painted his masterpiece 'the Beheading of St John', for which he was made Knight of the Order of Obedience. Soon his 'tormented nature' led him to quarrel with a noble knight and subsequently to escape from the island. Back to Rome he was imprisoned because of his former killing, however he managed to escape and flee to Sicily and then to Naples where he was badly wounded by two hired killers. In 1610 he decided to leave Naples and set sail to Porto Ercole in the Spanish held State of Presidi, at only 80 km far from Rome waiting for the Papal pardon. But there he was mistakenly captured by the local police and imprisoned for some days. After his release, discovering that his boat had sailed away with all of his poor belongings still on board, he was seen running insanely along the shore until he fell unconscious, caught by a raging fever which brought him to death a few days after. He was only 38 years old...
+
+	date = { day = 10 month = July year = 1607 }
+	offset = 360
+	deathdate = { day = 10 month = July year = 1608 }
+
+	action_a = {
+		name = "ACTIONNAME201010A" #Let's award him with the Knighthood
+		command = { type = infra value = 75 }
+	}
+}
+
+#(1761) Magnificent Public Library Completed
+event = {
+	id = 24023
+	trigger = {
+		owned = { province = 819 data = -1 } #Malta
+		control = { province = 819 data = -1 } #Malta
+		atwar = no
+	}
+	random = no
+	country = KNI
+	name = "EVENTNAME24023" #Magnificent Public Library Completed
+	desc = "EVENTHIST24023"
+	#-#In 1761 Balì Fra Louis Guerin de Tencin instituted a Public Library in the house known as ''Il Forfantone'' whose former owner was Fra Tommaso Hozes, Balì of Toro and then of Lora, ambassador to the Viceroy of Sicily when the Donation of Malta was confirmed to the Order by the Spanish Kings. The library consisted of Balì Guerin de Tencin's own books and of other ones he bought or found out in the sacristy of Conventual Church of Saint John. At first the library numbered over 19,000 books, number augmented by books bequeathed by members of the Order. It is said that Balì Guerin de Tencin utilised the wood of the cases used in transporting the 9,700 books he bought from Cardinal Portocarrero in Rome for the shelves of his library.
+
+	date = { day = 1 month = january year = 1761 }
+	offset = 180
+	deathdate = { day = 29 month = december year = 1781 }
+
+	action_a = {
+		name = "ACTIONNAME201005A" #Praise the lord!
+		command = { type = infra value = 250 }
+		command = { type = domestic which = INNOVATIVE value = 1 }
+	}
+}
+
+#(1786) Schools of Mathematics and Nautical Sciences Opened
+#text adapted by Bordic from www.knightsusa.org
+event = {
+	id = 24024
+	random = no
+	country = KNI
+	name = "EVENTNAME24024" #School of Mathematics and Nautical Sciences Opened
+	desc = "EVENTHIST24024"
+	#-#In 1786 The School of Mathematics and Nautical Sciences was founded. Considered among the greatest centers of learning, the Nautical Science School showed the continued interest of the knights in the sea from which they had reaped so much glory.
+
+	date = { day = 1 month = january year = 1786 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1786 }
+
+	action_a = {
+		name = "ACTIONNAME201005A" #Praise the lord!
+		command = { type = infra value = 250 }
+		command = { type = naval value = 500 }
+	}
+}
+
+#(1791) Loss of French Grand Priories
+event = {
+	id = 24025
+	trigger = {
+		exists = FRA
+		OR = {
+			event = 3342 #FRA: French Revolution - Radical Republic
+			event = 3779 #FRA: French Revolution - Republican Monarchy
+		}
+	}
+	random = no
+	country = KNI
+	name = "EVENTNAME24025" #Loss of French Grand Priories
+	desc = "EVENTHIST24025"
+	#-#New republics and new ideas spreading across Europe fostered hostility against the aristocratic Knights. When it was discovered that the Order had helped to subsidize Louis XVI's unsuccessful flight to Varennes, the French Grand Priories were suppressed and the Knights no longer benefited from their revenues.
+
+	date = { day = 1 month = january year = 1791 }
+	offset = 180
+	deathdate = { day = 29 month = december year = 1791 }
+
+	action_a = {
+		name = "ACTIONNAME24011A" #Thy Will Be Done
+		command = { type = provincetax which = -2 value = -1 }
+		command = { type = relation which = FRA value = -100 }
+	}
+}
+
+#(1797-1820) A New Protector
+event = {
+	id = 24028
+	trigger = {
+		exists = RUS
+		owned = { province = 819 data = -1 }
+		NOT = { war = { country = KNI country = RUS } }
+		NOT = { countrysize = 6 }
+		exists = FRA
+		OR = {
+			event = 3342 #French Revolution - Radical Republic
+			event = 3779 #French Revolution - Republican Monarchy
+		}
+		NOT = { event = 24057 } #KNI: The Knights Leave Malta
+	}
+	random = no
+	country = KNI
+	name = "EVENTNAME24028" #A New Protector
+	desc = "EVENTHIST24028"
+	#-#In the 18th century Malta became a place of interest to the ever-expanding empires: Austria, England, France, and even Russia. Ecaterina II considered the island a great asset in her plans for expansion in the Balkans, and indeed, in 1768 a Russian squadron suddenly arrived off Malta, trying to enlist the Order's military help in their expedition against the Ottomans. Simultaneously, the empress' agents attempted to rouse the Maltese population against the Knights, and only with the help of the French royal court did the Order evade the threat. However, the French Revolution caused the Knights great financial problems, as over half of their lands were confiscated. When with the third partition of Poland the Russian czar took control of the Order's estates in Courland and Volyn, he decided to follow his mother's strategy, and declared himself the Protector of the Order of St. John. Distressed by the Revolution and the Knights' internal problems, Grand Master Emmanuel de Rohan accepted the offer in 1797.
+
+	date = { day = 1 month = january year = 1797 }
+	offset = 90
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME24028A" #Agree
+		command = { type = breakvassal which = SPA }
+		command = { type = relation which = RUS value = 100 }
+		command = { type = treasury value = 200 }
+	}
+	action_b = {
+		name = "ACTIONNAME24028B" #Reject the Offer
+		command = { type = relation which = RUS value = -150 }
+		command = { type = treasury value = -200 }
+		command = { type = trigger which = 24030 } #RUS: Russian Offer Rejected
+		command = { type = sleepevent which = 24029 } #RUS: Russian Offer Accepted
+	}
+}
+
+#(1802) The Knights Leave Malta
+#See FRA_170124 and KNI_24057 for reactivation
+#entries for text.csv:
+#ACTIONNAME24026A;Ask for Armistice
+#event = {
+#	id = 24026
+#	trigger = {
+#		owned = { province = 819 data = -1 }
+#		exists = ENG
+#		countrysize = 2
+#		NOT = { countrysize = 6 }
+#		NOT = { event = 24057 }
+#		exists = FRA
+#		event = 170124 #FRA: The military expedition in Egypt
+#	}
+#	random = no
+#	country = KNI
+#	name = "EVENTNAME24057" #The Knights Leave Malta
+#	desc = "EVENTHIST24057"
+#	#-#In 1797, Napoléon Bonaparte arrived on Malta with an expeditionary force to claim the island as a base for his Egyptian campaign. Many brethren were too old to fight, and some French and Spanish knights were unwilling to take part in its defense. Others, French knights embittered by the Revolution, were ready to man the walls. Early reverses in small engagements demoralized the Maltese, who began to desert. The Grandmaster, Ferdinand von Hompesch, faced with the prospect of mutiny, lost his nerve and asked for an armistice. On the night of June 17, 1798 the Grandmaster left his palace and the island taking with him all but a few religious artifacts. The French did not get a chance to settle down on Malta, as their reckless pillaging resulted in a full-scale uprising in a matter of months. The Maltese, supported by English and Portuguese forces, retook the island, and on June 15, 1802, a group of Maltese nobles led by Marquis Testaferrata offered the island to the British crown.
+#
+#	date = { day = 15 month = june year = 1802 }
+#
+#	action_a = {
+#		name = "ACTIONNAME24026A" #Ask for Armistice
+#		command = { type = relation which = FRA value = -100 }
+#		command = { type = secedeprovince which = ENG value = 819 } #Malta
+#	}
+#	action_b = {
+#		name = "ACTIONNAME24057B" #Withdraw into Fortress
+#		command = { type = wakemonarch which = 069540 } #de la Tour du Pin °
+#		command = { type = sleepmonarch which = 069539 } #Giuseppe Caracciolo di Sant Eramo *
+#		command = { type = revolt which = 819 } #Malta
+#		command = { type = stability value = -3 }
+#		command = { type = trigger which = 24027 } #FRA: The Knights Stand at Malta
+#	}
+#}
+#(1802) The Knights Leave Malta
+event = {
+	id = 24057
+	trigger = {
+		owned = { province = 819 data = -1 }
+		exists = ENG
+		countrysize = 1
+		NOT = { countrysize = 2 }
+		#NOT = { event = 24026 }
+		exists = FRA
+		event = 170124 #FRA: The military expedition in Egypt
+		OR = {
+			owned = { province = 243 data = ENG } #Wales
+			owned = { province = 246 data = ENG } #Bristol
+			owned = { province = 247 data = ENG } #Anglia
+			owned = { province = 248 data = ENG } #Kent
+			owned = { province = 249 data = ENG } #Wessex
+			owned = { province = 250 data = ENG } #Cornwall
+		}
+	}
+	random = no
+	country = KNI
+	name = "EVENTNAME24057" #The Knights Leave Malta
+	desc = "EVENTHIST24057"
+	#-#In 1797, Napoléon Bonaparte arrived on Malta with an expeditionary force to claim the island as a base for his Egyptian campaign. Many brethren were too old to fight, and some French and Spanish knights were unwilling to take part in its defense. Others, French knights embittered by the Revolution, were ready to man the walls. Early reverses in small engagements demoralized the Maltese, who began to desert. The Grandmaster, Ferdinand von Hompesch, faced with the prospect of mutiny, lost his nerve and asked for an armistice. On the night of June 17, 1798 the Grandmaster left his palace and the island taking with him all but a few religious artifacts. The French did not get a chance to settle down on Malta, as their reckless pillaging resulted in a full-scale uprising in a matter of months. The Maltese, supported by English and Portuguese forces, retook the island, and on June 15, 1802, a group of Maltese nobles led by Marquis Testaferrata offered the island to the British crown.
+
+	date = { day = 15 month = june year = 1802 }
+
+	action_a = {
+		name = "ACTIONNAME24057A" #Ask for Armistice (End Game)
+		command = { type = relation which = FRA value = -100 }
+		command = { type = trigger which = 24058 } #ENG: The Knights Stand at Malta
+	}
+	action_b = {
+		name = "ACTIONNAME24057B" #Withdraw into Fortress
+		command = { type = wakemonarch which = 069540 } #de la Tour du Pin °
+		command = { type = sleepmonarch which = 069539 } #Giuseppe Caracciolo di Sant Eramo *
+		command = { type = revolt which = 819 } #Malta
+		command = { type = stability value = -3 }
+		command = { type = trigger which = 24027 } #FRA: The Knights Stand at Malta
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 201027

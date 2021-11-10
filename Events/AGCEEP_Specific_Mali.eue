@@ -1,0 +1,292 @@
+#Mali - Malinke (MAL)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1433-1443) Independence of Timbuktu
+event = {
+	id = 218000
+	trigger = { control = { province = 1495 data = REB } }
+	random = no
+	country = MAL
+	name = "EVENTNAME218000" #Independence of Timbuktu
+	desc = "EVENTHIST218000"
+	#-#Taking advantage of the infirmity of Mali the Tuaregs captured Timbuktu in 1433. The city quickly asserted itself as an independent state free from Mali.
+
+	date = { day = 1 month = january year = 1433 }
+	offset = 15
+	deathdate = { day = 12 month = april year = 1443 }
+
+	action_a = {
+		name = "ACTIONNAME218000A" #How horrid!
+		command = { type = independence which = BAN }
+		command = { type = trigger which = 124000 } #BAN: Independence of Timbuktu
+	}
+}
+
+#(1433) Dissidence in Timbuktu
+event = {
+	id = 218003
+	random = no
+	country = MAL
+	name = "EVENTNAME218003" #Dissidence in Timbuktu
+	desc = "EVENTHIST218003"
+	#-#The Tuaregs spread into Timbuktu in an attempt to remove the region from the control of the Mali Empire.
+
+	date = { day = 1 month = january year = 1433 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1433 }
+
+	action_a = {
+		name = "ACTIONNAME218003A" #Curse those Tuaregs!
+		command = { type = revolt which = 1495 } #Timbuktu
+		command = { type = revolt which = 1495 } #Timbuktu
+		command = { type = province_revoltrisk which = 1495 value = 15 } #Timbuktu
+	}
+}
+
+#(1444-1490) Timbuktu is ours
+event = {
+	id = 218001
+	trigger = { owned = { province = 1495 data = -1 } }
+	random = no
+	country = MAL
+	name = "EVENTNAME218001" #Timbuktu is ours
+	desc = "EVENTHIST218001"
+	#-#The Mali Empire was able to fend off attacks from the Tuaregs. However the Tuaregs were only one obstacle in the struggle to prevent the inevitable.
+
+	date = { day = 1 month = january year = 1444 }
+	offset = 15
+	deathdate = { day = 12 month = april year = 1490 }
+
+	action_a = {
+		name = "ACTIONNAME218001A" #We still have much to do, but let us celebrate
+		command = { type = stability value = 1 }
+		command = { type = vp value = 75 }
+	}
+}
+
+#(1460-1492) The Mossi and the Songhai Empire
+event = {
+	id = 218002
+	trigger = {
+		owned = { province = 1492 data = -1 } #Niani
+		control = { province = 1492 data = -1 } #Niani
+		owned = { province = 1490 data = -1 } #Bambuk
+		NOT = { control = { province = 1490 data = -1 } }
+		OR = {
+			war = { country = MAL country = MSS }
+			war = { country = MAL country = SON }
+		}
+	}
+	random = no
+	country = MAL
+	name = "EVENTNAME218002" #The Mossi and the Songhai Empire
+	desc = "EVENTHIST218002"
+	#-#Under pressure from the Mossi tribes and the might of the Songhai Empire, the rulers of Mali retreated their capital back to Niani. Mali was to remain a independent Kingdom until vanquished by Segu and Kaarta in the 17th century.
+
+	date = { day = 1 month = january year = 1460 }
+	offset = 1
+	deathdate = { day = 1 month = january year = 1492 }
+
+	action_a = {
+		name = "ACTIONNAME218002A" #We must flee!
+		command = { type = capital which = 1492 } #Niani
+		command = { type = removecore which = 1489 } #Jenné
+		command = { type = removecore which = 1491 } #Segu
+		command = { type = vp value = -75 }
+		command = { type = stability value = -1 }
+		command = { type = secedeprovince which = SON value = 1490 } #Bambuk
+	}
+	action_b = {
+		name = "ACTIONNAME218002B" #Stand our ground!
+		command = { type = vp value = -75 }
+		command = { type = stability value = -6 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#(1466-1470) The Dream of Empire - by David Harper - Ahistorical
+event = {
+	id = 218005 #triggered by BAN_124007 B
+	random = no
+	country = MAL
+	name = "EVENTNAME218005" #The Dream of Empire
+	desc = "EVENTHIST218005"
+	#-#The Malinke Kings lost control over Timbuktu in 1433 when Tuareg nomads destroyed the garrison there, seizing it for their own. The Tuaregs were not kind overlords and their demands became more and more insistent, causing great death and destruction in what had once been a peaceful city of trade and learning. In 1466, the governor of Timbuktu sent a letter to the King of Mali asking for his help in restoring Muslim rule over the city. It was a chance for the empire of Mali to be restored, for with Timbuktu under its thumb, what could stop Mali? On the other hand Timbuktu was far away and the Tuaregs were capable opponents.
+
+	action_a = {
+		name = "ACTIONNAME218005A" #Timbuktu is too far away
+		command = { type = relation which = BAN value = 50 } #The Tuareg appreciate this!
+		command = { type = trigger which = 284007 } #SON: Timbuktu's Riches
+	}
+	action_b = {
+		name = "ACTIONNAME218005B" #Let us restore the empire!
+		command = { type = casusbelli which = BAN value = 36 }
+		command = { type = relation which = BAN value = -100 }
+	}
+}
+
+#(1500-1820) Morocco sacks Jenne - by idontlikeforms
+event = {
+	id = 218006 #triggered by ProvinceSpec_338166
+	trigger = { owned = { province = 1490 data = -1 } } #Bambuk
+	random = no
+	country = MAL
+	name = "EVENTNAME218006" #Consequence of the sack of Jenne
+	desc = "EVENTHIST338166"
+	#-#After defeating the Songhai at the battle of Tondibi Judar Pasha occupied the trade cities of Songhai. He secured control over the salt trade but couldn't find the source of Songhai's gold even though he tortured many citizens. Instead he looted the cities, sending their vast wealth back to Marrakesh to fill the treasury and build palaces. He made his way north with thirty camels loaded with gold, slaves and fifteen of the King's daughters, which he sent to be the Sultan's concubines.
+
+	action_a = {
+		name = "ACTIONNAME338166A" #Jenne is burning!
+		command = { type = stability value = -1 }
+		command = { type = merchants value = -1 }
+		command = { type = treasury value = -50 }
+	}
+}
+
+#(1589-1613) The Fall of the Empire of Songhai
+event = {
+	id = 218004 #triggered by SON_284047
+	trigger = {
+		vassal = { country = SON country = MAL }
+	}
+	random = no
+	country = MAL
+	name = "EVENTNAME218004" #The Fall of the Empire of Songhai
+	desc = "EVENTHIST218004"
+	#-#Upon the fall of its capital and Timbuktu, the rest of Songhai fell under siege by various other peoples of the Sudan. Songhai, busy with Morocco, was unable to prevent these incursions. The sun had set on the Empire of Songhai.
+
+	action_a = {
+		name = "ACTIONNAME218004A" #We are free!
+		command = { type = breakvassal which = SON }
+		command = { type = stability value = 2 }
+		command = { type = relation which = MOR value = -100 }
+		command = { type = relation which = SON value = -400 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Random Events
+#-----------------------------------------------------------------------------------------------
+
+#(1600-1820) Mali return to paganism - set of five events
+event = {
+	id = 218007
+	trigger = {
+		year = 1600
+		religion = sunni
+		NOT = { countrysize = 7 }
+		event = 218002 #MAL: The Mossi and the Songhai Empire
+	}
+	random = yes
+	country = MAL
+	name = "EVENTNAME218007" #Mali returns to paganism
+	desc = "EVENTHIST218007"
+	#-#With their empire ruins, the Malian rulers retreated to the safety of their former capital in Niani. Secluded from the rest of the Islamic world, their religious practices began to take on more traditional animistic characteristics. There was no longer an incentive to be Muslim.
+
+	action_a = {
+		name = "ACTIONNAME218007A" #Return to the faith of our ancestors
+		command = { type = religion which = pagan }
+	}
+	action_b = {
+		name = "ACTIONNAME218007B" #Stay with Islam
+		command = { type = stability value = 1 }
+	}
+}
+event = {
+	id = 218008
+	trigger = {
+		year = 1600
+		religion = sunni
+		NOT = { countrysize = 7 }
+		event = 218002 #MAL: The Mossi and the Songhai Empire
+	}
+	random = yes
+	country = MAL
+	name = "EVENTNAME218007" #Mali returns to paganism
+	desc = "EVENTHIST218007"
+	#-#With their empire ruins, the Malian rulers retreated to the safety of their former capital in Niani. Secluded from the rest of the Islamic world, their religious practices began to take on more traditional animistic characteristics. There was no longer an incentive to be Muslim.
+
+	action_a = {
+		name = "ACTIONNAME218007A" #Return to the faith of our ancestors
+		command = { type = religion which = pagan }
+	}
+	action_b = {
+		name = "ACTIONNAME218007B" #Stay with Islam
+		command = { type = stability value = 1 }
+	}
+}
+event = {
+	id = 218009
+	trigger = {
+		year = 1600
+		religion = sunni
+		NOT = { countrysize = 7 }
+		event = 218002 #MAL: The Mossi and the Songhai Empire
+	}
+	random = yes
+	country = MAL
+	name = "EVENTNAME218007" #Mali returns to paganism
+	desc = "EVENTHIST218007"
+	#-#With their empire ruins, the Malian rulers retreated to the safety of their former capital in Niani. Secluded from the rest of the Islamic world, their religious practices began to take on more traditional animistic characteristics. There was no longer an incentive to be Muslim.
+
+	action_a = {
+		name = "ACTIONNAME218007A" #Return to the faith of our ancestors
+		command = { type = religion which = pagan }
+	}
+	action_b = {
+		name = "ACTIONNAME218007B" #Stay with Islam
+		command = { type = stability value = 1 }
+	}
+}
+event = {
+	id = 218010
+	trigger = {
+		year = 1600
+		religion = sunni
+		NOT = { countrysize = 7 }
+		event = 218002 #MAL: The Mossi and the Songhai Empire
+	}
+	random = yes
+	country = MAL
+	name = "EVENTNAME218007" #Mali returns to paganism
+	desc = "EVENTHIST218007"
+	#-#With their empire ruins, the Malian rulers retreated to the safety of their former capital in Niani. Secluded from the rest of the Islamic world, their religious practices began to take on more traditional animistic characteristics. There was no longer an incentive to be Muslim.
+
+	action_a = {
+		name = "ACTIONNAME218007A" #Return to the faith of our ancestors
+		command = { type = religion which = pagan }
+	}
+	action_b = {
+		name = "ACTIONNAME218007B" #Stay with Islam
+		command = { type = stability value = 1 }
+	}
+}
+event = {
+	id = 218011
+	trigger = {
+		year = 1600
+		religion = sunni
+		NOT = { countrysize = 7 }
+		event = 218002 #MAL: The Mossi and the Songhai Empire
+	}
+	random = yes
+	country = MAL
+	name = "EVENTNAME218007" #Mali returns to paganism
+	desc = "EVENTHIST218007"
+	#-#With their empire ruins, the Malian rulers retreated to the safety of their former capital in Niani. Secluded from the rest of the Islamic world, their religious practices began to take on more traditional animistic characteristics. There was no longer an incentive to be Muslim.
+
+	action_a = {
+		name = "ACTIONNAME218007A" #Return to the faith of our ancestors
+		command = { type = religion which = pagan }
+	}
+	action_b = {
+		name = "ACTIONNAME218007B" #Stay with Islam
+		command = { type = stability value = 1 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 218012

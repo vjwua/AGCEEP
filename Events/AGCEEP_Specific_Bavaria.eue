@@ -1,0 +1,1723 @@
+#Bavaria (BAY)
+
+#See AGCEEP_Alt_Germany.eue for KoG Alternative events
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419) The Hussite Wars
+event = {
+	id = 125600 #triggered by SIL_401000 / ROM_398000
+	random = no
+	country = BAY
+	name = "EVENTNAME188600" #The Hussite Wars
+	desc = "EVENTHIST188600"
+	#-#The Czech priest and professor Jan Hus developed radical reformatory demands on the base of the teachings of John Wyclif. Despite a guarantee of safe-conduct by Emperor Sigismund, he was executed at the stake for heresy at the Council of Constance in 1415. This could however not stop the Hussite movement in Bohemia. Hus' followers were rapidly growing, and when King Vaclav IV of Bohemia died and his brother Sigismund, already Emperor and King of Hungary was to succeed him, they, unwilling to forgive him the betrayal of Hus and afraid that he would suppress them, refused to acknowledge him and gained control of most of Bohemia proper - while the lands of the Bohemian crown and the catholic part of Bohemia accepted Sigismund. Due to its radical anti-clerical and anti-feudal tendencies Hussitism posed a big threat to the church and nobility in the countries adjacent to Bohemia. Several German and European princes therefore decided to oppose the Hussites and to support Sigismund in his struggle with them that lasted for almost two decades. Should we decide to fight these heretics, we should be aware that this would be internationally regarded as an intervention in favour of Sigismund as rightful King of Bohemia rather than a war of conquest, and that therefore, if Sigismund prevails and manages to restore royal authority, we would be expected to turn over any conquests in Bohemia to the Kingdom of Bohemia.
+
+	action_a = {
+		name = "ACTIONNAME258600B" #Express hostility
+		command = { type = relation which = SIL value = -200 }
+		command = { type = casusbelli which = SIL value = 120 }
+	}
+	action_b = {
+		name = "ACTIONNAME258600A" #Covertly provide aid
+		command = { type = treasury value = -25 }
+		command = { type = relation which = SIL value = 25 }
+	}
+}
+
+#(1419-1499) Catholicism restored in Bohemia
+event = {
+	id = 125601
+	trigger = {
+		OR = {
+			religion = reformed
+			religion = protestant
+		}
+		NOT = { exists = SIL }
+		NOT = {
+			AND = {
+				exists = BOH
+				OR = {
+					event = 129051 #BOH: Taborite republic
+					event = 129052 #BOH: Utraquist republic
+					event = 129053 #BOH: Podiebrad dynasty
+				}
+			}
+		}
+	}
+	random = no
+	country = BAY
+	name = "EVENTNAME179601" #The Hussite heresy is suppressed
+	desc = "EVENTHIST179601"
+	#-#The Kingdom of Bohemia has finally been won back for catholicism. As a consequence, the German princes who have been forced by the Hussites to adapt their misguided faith can now safely return to the Roman church. By a general indulgence the Pope will make sure they will be forgiven having turned to the heresy under compulsion.
+
+	date = { day = 17 month = august year = 1419 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1499 }
+
+	action_a = {
+		name = "ACTIONNAME179601A" #Restore Catholicism
+		command = { type = religion which = catholic }
+		command = { type = stability value = 3 }
+	}
+}
+
+#(1425) Straubing granted to Habsburg
+event = {
+	id = 125001 #triggered by HAB_179019 A
+	random = no
+	country = BAY
+	name = "EVENTNAME125001" #Bavaria-Straubing is granted to Habsburg
+	desc = "EVENTHIST125001"
+	#-#In 1425 Duke Johann II the Merciless of Bavaria-Straubing (in Lower Bavaria) died and the Wittelsbach subbranch was extinct. Surprisingly, emperor Sigismund initially did not grant Straubing's possessions to one of the other Wittelsbach branches, but to Albrecht of Austria. This decision was opposed by the Wittelsbachs who claimed the former possession of their dynasty.
+
+	action_a = {
+		name = "ACTIONNAME125001A" #Oppose the Habsburgs and Sigismund
+		command = { type = relation which = HAB value = -50 }
+		command = { type = relation which = HUN value = -50 }
+		command = { type = addcore which = 348 } #Ansbach
+	}
+	action_b = {
+		name = "ACTIONNAME125001B" #Accept the emperor's wise decision
+		command = { type = sleepevent which = 188002 } #HUN: Sigismund reverses his decision regarding Bayern-Straubing
+		command = { type = relation which = HAB value = 30 }
+		command = { type = relation which = HUN value = 30 }
+	}
+}
+#(1425 or 1429) Inheritance of Straubing
+event = {
+	id = 125000 #triggered by HAB_179019 B / HUN_188001 B / HUN_188003 or HUN_188002 A
+	random = no
+	country = BAY
+	name = "EVENTNAME125000" #Inheritance of Bavaria-Straubing
+	desc = "EVENTHIST125000"
+	#-#In 1425 Duke Johann II the Merciless of Bavaria-Straubing (in Lower Bavaria) died and the Wittelsbach subbranch was extinct. Surprisingly, emperor Sigismund initially did not grant Straubing's possessions to one of the other Wittelsbach branches, but to Albrecht of Austria. This decision was opposed by the Wittelsbachs and revised in 1429 when Sigismund decided to divide it among the Bavarian Wittelsbach branches, with Bavaria-Munich getting the majority.
+
+	action_a = {
+		name = "ACTIONNAME125000A" #Finally
+		command = { type = relation which = HUN value = 100 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = addcore which = 348 } #Ansbach
+		command = { type = breakvassal which = HUN }
+	}
+}
+
+#(1435) Agnes Bernauer
+event = {
+	id = 125005
+	random = no
+	country = BAY
+	name = "EVENTNAME125005" #Agnes Bernauer
+	desc = "EVENTHIST125005"
+	#-#Agnes Bernauer, the daughter of a baker from Augsburg, was secretly married to Albert, son of Duke Ernst of Bavaria-Munich, who had fallen in love with her. Ignorant of the fact that this union was a lawful one, Ernst urged his son to marry and to give up his relationship with Agnes. Albert then declared she was his lawful wife but during his absence, she was arrested by order of Duke Ernest, accused of having bewitched the Duke's son and condemned to death. On October 12th 1435 she was drowned in the Danube near Straubing, in which town her remains were afterwards buried by Albert. This sad story lived long in the memory of the people, and inspired many German writers.
+
+	date = { day = 12 month = october year = 1435 }
+
+	action_a = {
+		name = "ACTIONNAME125005A" #Execute this witch
+		command = { type = stability value = -1 }
+		command = { type = domestic which = serfdom value = 1 }
+		command = { type = relation which = PAP value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME125005B" #Let her live, but dissolve her marriage with Albrecht
+		command = { type = stability value = -1 }
+	}
+	action_c = {
+		name = "ACTIONNAME125005C" #Allow the marriage of Agnes Bernauer and the Duke's son
+		command = { type = stability value = -3 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = relation which = PFA value = -50 }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = relation which = HUN value = -50 }
+		command = { type = relation which = PAP value = -50 }
+	}
+}
+
+#(1440-1460) The Bohemian throne
+event = {
+	id = 125040
+	trigger = {
+		event = 129004 #BOH: The Letter of Peace
+		NOT = { event = 125039 } #BAY: The Bohemian throne (BAY vassal of BOH)
+		NOT = {
+			vassal = { country = BOH country = BAY }
+		}
+	}
+	random = no
+	country = BAY
+	name = "EVENTNAME125040" #The Bohemian throne
+	desc = "EVENTHIST125040"
+	#-#Albrecht of Bavaria-Munich was offered the Bohemian throne by the estates of Bohemia in 1440. Busy fighting his hostile relatives and willing neither to risk a conflict with the Habsburgs nor to deal with the rebellious and heretic Bohemians Albrecht of Bavaria refused the proferred crown. This left the Bohemian nobility with no choice but to accept the still unborn child of Albrecht of Habsburg as his successor.
+
+	date = { day = 1 month = january year = 1440 }
+	offset = 40
+	deathdate = { day = 29 month = february year = 1460 }
+
+	action_a = {
+		name = "ACTIONNAME125040A" #Reject the offer
+		command = { type = relation which = BOH value = -100 }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = stability value = 1 }
+		command = { type = sleepevent which = 125039 } #BAY: The Bohemian throne (BAY vassal of BOH)
+		command = { type = trigger which = 129007 } #BOH: Bavaria refuses
+	}
+	action_b = {
+		name = "ACTIONNAME125040B" #Accept the offer and become King of Bohemia
+		command = { type = relation which = HAB value = -100 }
+		command = { type = vp value = 40 }
+		command = { type = vassal which = BOH }
+		command = { type = stability value = -2 }
+		command = { type = sleepevent which = 125039 } #BAY: The Bohemian throne (BAY vassal of BOH)
+		command = { type = trigger which = 129005 } #BOH: Albrecht accepts
+		command = { type = trigger which = 125041 } #BAY: The Crown of St. Wenceslas
+	}
+}
+#(1440-1460) The Bohemian throne (BAY vassal of BOH)
+event = {
+	id = 125039
+	trigger = {
+		event = 129004 #BOH: The Letter of Peace
+		NOT = { event = 125040 } #BAY: The Bohemian throne
+		vassal = { country = BOH country = BAY }
+	}
+	random = no
+	country = BAY
+	name = "EVENTNAME125040" #The Bohemian throne
+	desc = "EVENTHIST125040"
+	#-#Albrecht of Bavaria-Munich was offered the Bohemian throne by the estates of Bohemia in 1440. Busy fighting his hostile relatives and willing neither to risk a conflict with the Habsburgs nor to deal with the rebellious and heretic Bohemians Albrecht of Bavaria refused the proferred crown. This left the Bohemian nobility with no choice but to accept the still unborn child of Albrecht of Habsburg as his successor.
+
+	date = { day = 1 month = january year = 1440 }
+	offset = 40
+	deathdate = { day = 29 month = february year = 1460 }
+
+	action_a = {
+		name = "ACTIONNAME125040A" #Reject the offer
+		command = { type = relation which = BOH value = -100 }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = breakvassal which = BOH }
+		command = { type = sleepevent which = 125040 } #BAY: The Bohemian throne
+		command = { type = trigger which = 129007 } #BOH: Bavaria refuses
+	}
+	action_b = {
+		name = "ACTIONNAME125040B" #Accept the offer and become King of Bohemia
+		command = { type = relation which = HAB value = -100 }
+		command = { type = vp value = 40 }
+		command = { type = breakvassal which = BOH }
+		command = { type = stability value = 3 }
+		command = { type = dynastic which = BOH }
+		command = { type = sleepevent which = 125040 } #BAY: The Bohemian throne
+		command = { type = trigger which = 129005 } #BOH: Albrecht accepts
+		command = { type = trigger which = 125041 } #BAY: The Crown of St. Wenceslas
+	}
+}
+#(1440-1460) Coronation of Albrecht
+event = {
+	id = 125041 #triggered by BAY_125040 B / BAY_125039 B
+	random = no
+	country = BAY
+	name = "EVENTNAME125041" #The Crown of St. Wenceslas
+	desc = "EVENTHIST125041"
+	#-#Our Duke Albrecht has received the Crown of St. Wenceslas in Prague and is now King of Bohemia.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = alliance which = BOH }
+		command = { type = relation which = BOH value = 150 }
+		command = { type = DIP which = 2 value = 12 }
+	}
+}
+
+#(1460) Wittelsbachs become hereditary Kings of Bohemia
+event = {
+	id = 125042 #triggered by BOH_129024 C
+	random = no
+	country = BAY
+	name = "EVENTNAME125042" #Wittelsbachs become hereditary Kings of Bohemia
+	desc = "EVENTHIST125042"
+	#-#Bohemia has accepted the Bavarian Wittelsbachs as hereditary Kings. The crown of St. Wenceslas will be permanently ours.
+
+	action_a = {
+		name = "AWESOME"
+		command = { type = addcore which = 314 } #Silesia
+		command = { type = addcore which = 315 } #Moravia
+		command = { type = addcore which = 328 } #Bohemia
+		command = { type = addcore which = 329 } #Erz
+		command = { type = addcore which = 330 } #Sudeten
+		command = { type = inherit which = BOH }
+		command = { type = add_countryculture which = czech }
+	}
+}
+
+#(1487-1500) Tyrol offers Alsace
+event = {
+	id = 125029 #triggered by TYR_322009 B / TYR_322024 B
+	random = no
+	country = BAY
+	name = "EVENTNAME125029" #Tyrol offers Alsace
+	desc = "EVENTHIST125029"
+	#-#In the last years of his rule, Sigismund of Tyrol who was influenced by corrupt advisors contemplated selling the Vorlande to the Duke of Bavaria-Munich. Bavaria has the possibility of purchasing these rich lands, however a conflict with Sigismund's Habsburg relatives, the Emperor Friedrich V and the Roman King Maximilian, who are eager to secure the Vorlande for Austria, will be likely.
+
+	action_a = {
+		name = "ACTIONNAME125029A" #Buy the Habsburg Vorlande
+		command = { type = treasury value = -70 }
+		command = { type = addcore which = 374 } #Alsace
+		command = { type = relation which = HAB value = -200 }
+		command = { type = trigger which = 322010 } #TYR: Bavaria accepts
+	}
+	action_b = {
+		name = "ACTIONNAME125029B" #Reject the offer
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = TYR value = -50 }
+		command = { type = trigger which = 322011 } #TYR: Bavaria rejects the offer
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#(1503) Inheritance of Bavaria-Landshut
+event = {
+	id = 125006
+	trigger = { exists = PFA }
+	random = no
+	country = BAY
+	name = "EVENTNAME125006" #War of Succession in Landshut
+	desc = "EVENTHIST125006"
+	#-#On December 1st 1503 Duke Georg the Rich of Bayern-Landshut died without a male successor. Despite several treaties made in the 15th century that should secure the inheritance for Bavaria-Munich he declared his daughter Elisabeth and her husband, the palatine elector Ruprecht, heirs of his duchy. This caused a war between the palatine and the Bavarian Wittelsbach branches for the inheritance.
+
+	date = { day = 1 month = december year = 1503 }
+
+	action_a = {
+		name = "ACTIONNAME125006A" #Press our claim
+		command = { type = casusbelli which = PFA value = 36 }
+		command = { type = relation which = PFA value = -100 }
+		command = { type = trigger which = 255001 } #PFA: War of Succession in Landshut
+	}
+	action_b = {
+		name = "ACTIONNAME125006B" #Accept Georg's last will
+		command = { type = relation which = PFA value = 100 }
+		command = { type = trigger which = 255007 } #PFA: Inheritance of Bavaria-Landshut
+		command = { type = sleepevent which = 179001 } #HAB: The rewards of mediation
+	}
+}
+event = {
+	id = 125007
+	trigger = {
+		NOT = { exists = PFA }
+	}
+	random = no
+	country = BAY
+	name = "EVENTNAME125007" #Inheritance of Bavaria-Landshut
+	desc = "EVENTHIST125007"
+	#-#On December 1st 1503 Duke Georg the Rich of Bayern-Landshut died without a male successor. Despite several treaties made in the 15th century that should secure the inheritance for Bavaria-Munich he declared his daughter Elisabeth and her husband, the palatine elector Ruprecht, heirs of his duchy. This caused a war between the palatine and the Bavarian Wittelsbach branches for the inheritance. Bavaria eventually prevailed due to support from the emperor and the Swabian League and managed to secure Landshut.
+
+	date = { day = 1 month = december year = 1503 }
+
+	action_a = {
+		name = "ACTIONNAME125007A" #I werd narrisch
+		command = { type = provincetax which = -2 value = 7 }
+		command = { type = provincemanpower which = -2 value = 3 }
+		command = { type = population which = -2 value = 6000 }
+		command = { type = sleepevent which = 179001 } #HAB: The rewards of mediation
+	}
+}
+event = {
+	id = 125014 #triggered by PFA_255001 B / HAB_179001 A
+	random = no
+	country = BAY
+	name = "EVENTNAME125007" #Inheritance of Bavaria-Landshut
+	desc = "EVENTHIST125007"
+	#-#On December 1st 1503 Duke Georg the Rich of Bayern-Landshut died without a male successor. Despite several treaties made in the 15th century that should secure the inheritance for Bavaria-Munich he declared his daughter Elisabeth and her husband, the palatine elector Ruprecht, heirs of his duchy. This caused a war between the palatine and the Bavarian Wittelsbach branches for the inheritance. Bavaria eventually prevailed due to support from the emperor and the Swabian League and managed to secure Landshut.
+
+	action_a = {
+		name = "ACTIONNAME125007A" #I werd narrisch
+		command = { type = provincetax which = -2 value = 7 }
+		command = { type = provincemanpower which = -2 value = 3 }
+		command = { type = population which = -2 value = 6000 }
+	}
+}
+#-----------------------------------------------------------------------------------------------
+
+#(1506) Introduction of primogeniture
+event = {
+	id = 125008
+	trigger = { event = 125007 }
+	random = no
+	country = BAY
+	name = "EVENTNAME125008" #The introduction of a primogeniture law
+	desc = "EVENTHIST125008"
+	#-#After inheriting Bavaria-Landshut, thereby unifying the Bavarian Wittelsbach possessions again, Duke Albrecht IV secured the future unity, strength and prosperity of his country by introducing a primogeniture law in 1506 which was an obvious necessity considering the fatal consequences of the division in the 15th century. Bavaria was ready to recover its status as a major force in imperial politics.
+
+	date = { day = 1 month = january year = 1506 }
+	offset = 200
+	deathdate = { day = 29 month = december year = 1506 }
+
+	action_a = {
+		name = "ACTIONNAME125008A" #Introduce primogeniture
+		command = { type = stability value = 1 }
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = domestic which = aristocracy value = -1 }
+	}
+}
+
+#(1516) The Reinheitsgebot of 1516
+event = {
+	id = 125010
+	random = no
+	country = BAY
+	name = "EVENTNAME125010" #The Reinheitsgebot for beer
+	desc = "EVENTHIST125010"
+	#-#On April 23rd 1516 Wilhelm IV of Bavaria issued the first regulation of grocery in the world, the Reinheitsgebot (purity law) for beer. In this law exact prices and taxation for all known kinds of beer, and most importantly, the allowed contents of Bavarian beer are regulated. The Duke allowed to put nothing but water, malt and hops into beer, intending to make sure that there would be no more additional spices and, especially, no 'good' grain that could be used for bread instead in the beverage. Yeast, although an obviously necessary ingredient, was not mentioned because it was not known then that it took part in the fermentation process (the substance was discovered in the 19th century by Louis Pasteur). The beer law soon raised the quality standard of beer significantly and it became exemplary for the whole of Germany. Many German princes adapted a similar regulation in the next centuries. When Germany was united in 1871, the Bavarians made the introduction of their beer purity law in the whole empire one of their conditions for joining, and a similar statute is still valid in Germany today.
+
+	date = { day = 22 month = april year = 1516 }
+
+	action_a = {
+		name = "ACTIONNAME125010A" #Pass the beer purity law
+		command = { type = domestic which = mercantilism value = 1 }
+		command = { type = infra value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME125010B" #Don't regulate beer brewery
+		command = { type = relation which = -1 value = -10 }
+	}
+}
+
+#(1517-1522) Aventinus
+event = {
+	id = 125011
+	random = no
+	country = BAY
+	name = "EVENTNAME125011" #Aventinus, the father of Bavarian historiography
+	desc = "EVENTHIST125011"
+	#-#Johannes Turmair, calling himself Aventinus, born in Abensberg in 1477 was the father of Bavarian historiography. A humanist with universal education who studied in Ingolstadt, Krakow, Vienna and Paris, he was called to the Bavarian court as mentor of the princes Ernst and Ludwig in 1509. In 1517 he was given the noble office of a ducal historian. In 1521 he had completed the Annales ducum baiorum, a complete account of Bavarian history in which he applied an entirely new style based on humanist ideas: he did not only compile sources like medieval historians, but introduced a critical analysis of sources, questioned famous myths and legends and tried to work out greater contexts. Even more important than the completion of his innovative historic work in Latin was its translation into German that he started in 1522 because he wanted his history of Bavaria to be comprehensible for the people, not just for some scholars (thereby following the humanist concept of popular education). However, the Annales could not be made accessible to a broader public by printing them for a long time due to Aventine's critical, anticlerical point of view and the suspicion of being protestant. The venetian inquisition put his teachings on the index in 1554 and Aventinus himself was arrested for some months in 1527, after which he emigrated to the safe free city of Regensburg where he wrote the town history 'Von dem herkomen der statt Regenspurg' (about the origins of the town of Regensburg), completed the germanisation of his Bavarian chronicle and died in 1533. His Annales were finally printed in Ingolstadt in 1554, the german version 1566 in Frankfurt.
+
+	date = { day = 1 month = february year = 1517 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1522 }
+
+	action_a = {
+		name = "ACTIONNAME125011A" #Appoint Aventinus ducal historian
+		command = { type = infra value = 20 }
+		command = { type = vp value = 10 } #Aventinus tells the people about the accomplishments of former Dukes
+		command = { type = treasury value = -10 }
+	}
+	action_b = {
+		name = "ACTIONNAME125011B" #We already know about Bavaria's great deeds
+		command = { type = vp value = -5 }
+	}
+}
+
+#(1527-1529) The League of Schmalkalden
+event = {
+	id = 3613
+	trigger = {
+		exists = HAB
+		OR = {
+			religion = protestant
+			religion = reformed
+		}
+	}
+	random = no
+	country = BAY
+	name = "EVENTNAME3109" #The League of Schmalkalden
+	desc = "EVENTHIST3109"
+	#-#After Emperor Charles V had rejected the Protestants' confessional positions at the Imperial Parliament of Augsburg (1529-1530), the North German Protestant Imperial estates formed the League of Schmalkalden, with a joint army and treasury and seeking ties abroad (France). The League enjoyed early successes in the years 1532-1540 as the Emperor was threaten by Turkish danger and forced to conclude Religious peace settlements in Nuremberg (1532) and Kaaden (1534).
+
+	date = { day = 1 month = january year = 1527 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1529 }
+
+	action_a = {
+		name = "ACTIONNAME3109A" #Give it our support
+		command = { type = relation which = BRA value = 50 }
+		command = { type = relation which = HAN value = 50 }
+		command = { type = relation which = HES value = 50 }
+		command = { type = relation which = PFA value = 50 }
+		command = { type = relation which = SAC value = 50 }
+		#command = { type = relation which = THU value = 50 } #Bayreuth
+		command = { type = relation which = BAD value = 50 }
+		command = { type = relation which = PAP value = -50 }
+		command = { type = relation which = SPA value = -50 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = STR value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME3109B" #Ignore it
+		command = { type = relation which = BRA value = -150 }
+		command = { type = relation which = HAN value = -150 }
+		command = { type = relation which = HES value = -150 }
+		command = { type = relation which = PFA value = -150 }
+		command = { type = relation which = SAC value = -150 }
+		#command = { type = relation which = THU value = -150 } #Bayreuth
+		command = { type = relation which = BAD value = -150 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = KOL value = 50 }
+		command = { type = relation which = STR value = -150 }
+	}
+}
+
+#Ernst of Bavaria, Archbishop of Salzburg
+#event = {
+#	id = 125012
+#	random = no
+#	country = BAY
+#	name = "EVENTNAME125012" #Ernst of Bavaria is elected Archbishop of Salzburg
+#	desc = "EVENTHIST125012"
+#	#-#In 1540 Duke Ernst of Bavaria, the younger brother of Wilhelm of Bavaria, was chosen as successor to the Archbishopric of Salzburg which hence came under Wittelsbach influence for the 14 years of Ernst's reign.
+#
+#	action_a = {
+#		name = "GREAT"
+#		command = { type = vassal which = SLZ }
+#		command = { type = relation which = SLZ value = 50 }
+#		command = { type = alliance which = SLZ }
+#	}
+#}
+
+#(1541) Wilhelm IV invites the Jesuits into Bavaria
+event = {
+	id = 125009
+	random = no
+	country = BAY
+	name = "EVENTNAME125009" #Wilhelm IV invites the Jesuits into Bavaria
+	desc = "EVENTHIST125009"
+	#-#Besides the Habsburg emperor, Wilhelm of Bavaria was the Reformation's strongest and fiercest enemy in Germany, and prevented the new religion from spreading into Bavaria (which it was about to do). He even gave up the traditional rivalry to the Habsburgs when he signed a treaty at Linz with Ferdinand of Austria, Bohemia and Hungary to suppress the new faith. Furthermore he cooperated closely with the Pope, the clergy and the Inquisition and banned many reformers from his Duchy. The most effective and consequential measure was the invitation of the Jesuits into Bavaria in 1541. This order founded to oppose Protestantism and to revive the church spiritually and intellectually established its German headquarter in the Bavarian town of Ingolstadt.
+
+	date = { day = 1 month = january year = 1541 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1541 }
+
+	action_a = {
+		name = "ACTIONNAME125009A" #Take measures against Protestantism
+		command = { type = religion which = catholic }
+		command = { type = domestic which = innovative value = -2 }
+		command = { type = relation which = PAP value = 100 }
+		command = { type = relation which = HAB value = 100 }
+		#command = { type = relation which = SLZ value = 100 } #Salzburg
+		command = { type = relation which = KOL value = 100 }
+		command = { type = relation which = MAI value = 100 }
+		command = { type = relation which = WUR value = 100 }
+		command = { type = relation which = SPA value = 100 }
+	}
+	action_b = {
+		name = "ACTIONNAME125009B" #Be tolerant towards the new faith
+		command = { type = provincereligion which = -2 value = protestant }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = relation which = PAP value = -50 }
+		command = { type = relation which = HAB value = -50 }
+		#command = { type = relation which = SLZ value = -50 } #Salzburg
+		command = { type = relation which = KOL value = -50 }
+		command = { type = relation which = MAI value = -50 }
+		command = { type = relation which = WUR value = -50 }
+		command = { type = relation which = SPA value = -50 }
+	}
+	action_c = {
+		name = "ACTIONNAME125009C" #Embrace protestantism
+		command = { type = religion which = protestant }
+		command = { type = stability value = -2 }
+		command = { type = provincereligion which = -2 value = protestant }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = relation which = PAP value = -100 }
+		command = { type = relation which = HAB value = -100 }
+		#command = { type = relation which = SLZ value = -100 } #Salzburg
+		command = { type = relation which = KOL value = -100 }
+		command = { type = relation which = MAI value = -100 }
+		command = { type = relation which = WUR value = -100 }
+		command = { type = relation which = SPA value = -100 }
+	}
+}
+
+#(1550-1579) The extravagance of Albrecht V
+event = {
+	id = 125013
+	trigger = {
+		monarch = 020006 #Albrecht V
+	}
+	random = no
+	country = BAY
+	name = "EVENTNAME125013" #The extravagance of Albrecht V
+	desc = "EVENTHIST125013"
+	#-#Albert V was a great patron of art despite his intolerant religious policy. His court at Munich was the resort of artists of all kinds, the city was enriched with splendid buildings and artistic works were collected from Italy and elsewhere. The expenses of a magnificent court led to a permanent quarrel with the estates, to oppression of the subjects and to a great burden of debt when Albert died in October 1579, having been close to bankruptcy multiple times.
+
+	date = { day = 6 month = march year = 1550 }
+	offset = 6000
+	deathdate = { day = 24 month = october year = 1579 }
+
+	action_a = {
+		name = "ACTIONNAME125013A" #Promote arts and culture
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = domestic which = serfdom value = 1 }
+		command = { type = infra value = 200 }
+		command = { type = treasury value = -300 }
+		command = { type = inflation value = 10 }
+	}
+	action_b = {
+		name = "ACTIONNAME125013B" #Don't waste our precious money
+		command = { type = stability value = -1 }
+		command = { type = vp value = -10 }
+	}
+}
+
+#(1583-1612) Bavarian Archbishops in Cologne
+event = {
+	id = 3853 #triggered by KOL_3852
+	trigger = {
+		NOT = {
+			vassal = { country = KOL country = BAY }
+		}
+	}
+	random = no
+	country = BAY
+	name = "EVENTNAME3853" #The Archbishop in Cologne
+	desc = "EVENTHIST3853"
+	#-#Ernst, a member of our ruling Wittelsbach family, has been appointed Archbishop of Cologne. This means a new era of Bavarian influence there.
+
+	action_a = {
+		name = "SPLENDID"
+		command = { type = vassal which = KOL }
+		command = { type = trigger which = 125043 } #BAY: Ernst of Wittelsbach succeeds to the Archbishopric
+	}
+}
+#(1583-1612) Ernst of Wittelsbach succeeds to the Archbishopric
+event = {
+	id = 125043 #triggered by BAY_3853
+	random = no
+	country = BAY
+	name = "EVENTNAME125043" #Ernst of Wittelsbach succeeds to the Archbishopric
+	desc = "EVENTHIST125043"
+	#-#With his new throne Ernst of Wittelsbach brought Cologne into Bavaria's alliance and orbit.
+
+	action_a = {
+		name = "GOOD"
+		command = { type = alliance which = KOL }
+		command = { }
+	}
+}
+
+#(1597-1601) Administrative reforms of Maximilian I in 1598
+event = {
+	id = 125015
+	trigger = {
+		monarch = 020008 #Maximilian I
+	}
+	random = no
+	country = BAY
+	name = "EVENTNAME125015" #Administrative Reforms of Maximilian I
+	desc = "EVENTHIST125015"
+	#-#Maximilian I was the most talented and skilled Wittelsbach since Emperor Ludwig in the 14th century. Having found his Duchy in a miserable state, close to bankruptcy and in disorder, he began ambitious reforms, renewing the jurisdiction, reorganising the finances and tax collection, founding a class of civil servants and acquiring several small territories.
+
+	date = { day = 15 month = october year = 1597 }
+	offset = 900
+	deathdate = { day = 1 month = january year = 1601 }
+
+	action_a = {
+		name = "ACTIONNAME125015A" #Reform everything
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = provincetax which = -2 value = 1 }
+		command = { type = infra value = 300 }
+		command = { type = population which = -2 value = 1000 }
+		command = { type = inflation value = -5 }
+		command = { type = gainbuilding which = -2 value = bailiff }
+	}
+	action_b = {
+		name = "ACTIONNAME125015B" #Reform only the finances
+		command = { type = provincetax which = -2 value = 1 }
+		command = { type = infra value = 200 }
+		command = { type = population which = -2 value = 1000 }
+		command = { type = inflation value = -10 }
+		command = { type = gainbuilding which = -2 value = bailiff }
+	}
+	action_c = {
+		name = "ACTIONNAME125015C" #Don't reform anything
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1600-1602) Military reforms of Maximilian I
+event = {
+	id = 125016
+	trigger = {
+		event = 125015
+		monarch = 020008 #Maximilian I
+	}
+	random = no
+	country = BAY
+	name = "EVENTNAME125016" #Military Reforms of Maximilian I
+	desc = "EVENTHIST125016"
+	#-#After reforming the administration, Maximilian I improved Bavaria's military force by creating a national militia and employing foreign military advisors. Very soon Bavaria became a notable military power, able to play an important part in the Thirty Years War.
+
+	date = { day = 1 month = january year = 1600 }
+	offset = 900
+	deathdate = { day = 29 month = december year = 1602 }
+
+	action_a = {
+		name = "ACTIONNAME125016A" #Reform the army
+		command = { type = domestic which = quality value = -2 }
+		command = { type = domestic which = land value = 2 }
+		command = { type = domestic which = offensive value = 1 }
+		command = { type = INF which = -2 value = 10000 }
+		command = { type = CAV which = -2 value = 5000 }
+		command = { type = ART which = -2 value = 20 }
+		command = { type = treasury value = -50 }
+		command = { type = manpower value = 15 }
+		command = { type = provincemanpower which = -2 value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME125016B" #Make smaller reforms
+		command = { type = domestic which = quality value = 1 }
+		command = { type = domestic which = land value = 1 }
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = CAV which = -2 value = 2000 }
+		command = { type = ART which = -2 value = 5 }
+		command = { type = treasury value = -20 }
+		command = { type = manpower value = 8 }
+		command = { type = provincemanpower which = -2 value = 1 }
+	}
+	action_c = {
+		name = "ACTIONNAME125016C" #We can rely on our old army
+		command = { type = domestic which = land value = 1 }
+	}
+}
+
+#(1605-1609) The Evangelic Union
+event = {
+	id = 3614
+	trigger = {
+		OR = {
+			religion = protestant
+			religion = reformed
+		}
+	}
+	random = no
+	country = BAY
+	name = "EVENTNAME3634" #The Evangelic Union
+	desc = "EVENTHIST3634"
+	#-#The Holy Roman Empire had a fragile balance, split between 10 major and nearly 400 minor states and principalities, as well as two opposing religions. The power of the Emperor was quite limited beyond his direct domains and the erratic and inconsistent behavior of some of them as Rudolph II, such increased frictions. In 1608, the Protestant city of Donauwerth refused Catholics the right to practice their cult and was banned from the Empire. As a reaction, most German Protestant states formed the Evangelic Union to defend their freedom.
+
+	date = { day = 1 month = january year = 1605 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1609 }
+
+	action_a = {
+		name = "ACTIONNAME3634A" #Prepare to Join
+		command = { type = relation which = BRA value = 50 }
+		command = { type = relation which = HAN value = 50 }
+		command = { type = relation which = HES value = 50 }
+		command = { type = relation which = PFA value = 50 }
+		command = { type = relation which = SAC value = 50 }
+		#command = { type = relation which = THU value = 50 } #Bayreuth
+		command = { type = relation which = BAD value = 50 }
+		command = { type = relation which = PAP value = -50 }
+		command = { type = relation which = SPA value = -50 }
+		command = { type = relation which = HAB value = -100 }
+	}
+	action_b = {
+		name = "ACTIONNAME3634B" #Stay Neutral
+		command = { type = relation which = BRA value = -150 }
+		command = { type = relation which = HAN value = -150 }
+		command = { type = relation which = HES value = -150 }
+		command = { type = relation which = PFA value = -150 }
+		command = { type = relation which = SAC value = -150 }
+		#command = { type = relation which = THU value = -150 } #Bayreuth
+		command = { type = relation which = BAD value = -150 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = KOL value = 50 }
+	}
+}
+
+#(1607-1609) The Catholic League
+event = {
+	id = 3615
+	trigger = {
+		OR = {
+			religion = catholic
+			religion = counterreform
+		}
+	}
+	random = no
+	country = BAY
+	name = "EVENTNAME3192" #The Catholic League
+	desc = "EVENTHIST3192"
+	#-#The German Catholic states felt threatened by the 1608 creation of the Evangelic Union of their northern Protestant neighbors, following the Donauwerth exclusion from the Empire. Feeling the urge to unite, they regrouped into a Catholic League that same year. The stage was set for the Thirty Years War.
+
+	date = { day = 1 month = january year = 1607 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1609 }
+
+	action_a = {
+		name = "ACTIONNAME3192A" #Prepare to Join
+		command = { type = relation which = BRA value = -100 }
+		command = { type = relation which = HAN value = -100 }
+		command = { type = relation which = HES value = -100 }
+		command = { type = relation which = PFA value = -100 }
+		command = { type = relation which = SAC value = -100 }
+		#command = { type = relation which = THU value = -100 } #Bayreuth
+		command = { type = relation which = BAD value = -100 }
+		command = { type = relation which = KOL value = 100 }
+		command = { type = relation which = KLE value = 100 }
+		command = { type = relation which = PAP value = 150 }
+		command = { type = relation which = SPA value = 150 }
+		command = { type = relation which = HAB value = 150 }
+	}
+	action_b = {
+		name = "ACTIONNAME3192B" #Stay Neutral
+		command = { type = relation which = BRA value = 50 }
+		command = { type = relation which = HAN value = 50 }
+		command = { type = relation which = HES value = 50 }
+		command = { type = relation which = PFA value = 50 }
+		command = { type = relation which = SAC value = 50 }
+		#command = { type = relation which = THU value = 50 } #Bayreuth
+		command = { type = relation which = BAD value = 50 }
+		command = { type = relation which = PAP value = -50 }
+		command = { type = relation which = SPA value = -50 }
+		command = { type = relation which = HAB value = -100 }
+	}
+}
+
+#(1607-1608) Bavaria seizes Donauwörth in 1607
+event = {
+	id = 125017
+	trigger = {
+		OR = {
+			religion = counterreform
+			religion = catholic
+		}
+	}
+	random = no
+	country = BAY
+	name = "EVENTNAME125017" #The seizure of Donauwörth
+	desc = "EVENTHIST125017"
+	#-#In the protestant imperial city of Donauwörth adjacent to Bavaria there were only a few catholic families left in 1600 who celebrated their masses in the benedictine monastery Zum Heiligen Kreuz. Encouraged by the Bishop of Augsburg the monks used to make the Procession of St. Marc a big demonstration of Catholicism and marched through the town with banners and music. The protestant citizens felt provoked by this behaviour and attacked and dissolved the procession in 1607. Even after the Reichshofrat in Vienna had condemned the action and demanded tolerance for catholics, Donauwörth remained stubborn. As a consequence, emperor Rudolf outlawed the town and asked Maximilian of Bavaria to execute the empire's will. For Maximilian, this was a long-awaited opportunity to annex the wealthy town and to promote Catholicism. He went to Donauwörth with 5000 men and forced it to submit on December 17th 1607. A bavarian administration was installed and the recatholisation of the town initiated. In 1609 the emperor formally accepted the annexation of Donauwörth, and within a few years there were nearly no more protestants left in the town. The seizure of Donauwörth was one of the main reasons for the foundation of the Evangelic Union (and hence the Thirty Years War).
+
+	date = { day = 1 month = november year = 1607 }
+	offset = 30
+	deathdate = { day = 1 month = february year = 1608 }
+
+	action_a = {
+		name = "ACTIONNAME125017A" #Seize Donauwörth and recatholise it
+		command = { type = religion which = counterreform }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = TYR value = 50 }
+		command = { type = relation which = PRM value = 50 }
+		#command = { type = relation which = SLZ value = 50 } #Salzburg
+		command = { type = relation which = MAI value = 50 }
+		#command = { type = relation which = THU value = 50 } #Bayreuth
+		command = { type = relation which = KOL value = 50 }
+		command = { type = relation which = PFA value = -80 }
+		command = { type = relation which = BRA value = -80 }
+		command = { type = relation which = WUR value = -80 }
+		command = { type = relation which = HES value = -80 }
+		command = { type = provincetax which = -2 value = 1 }
+		command = { type = population which = -2 value = 1500 }
+	}
+	action_b = {
+		name = "ACTIONNAME125017B" #Seize Donauwörth, but be tolerant towards the protestants
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = relation which = PFA value = -50 }
+		command = { type = relation which = BRA value = -50 }
+		command = { type = relation which = WUR value = -50 }
+		command = { type = relation which = HES value = -50 }
+		command = { type = provincetax which = -2 value = 1 }
+		command = { type = population which = -2 value = 1500 }
+	}
+}
+
+#(1620-1648) The taking of the Bibiotheca Palatina
+event = {
+	id = 29008
+	trigger = {
+		war = { country = PFA country = BAY }
+		control = { province = 345 data = BAY } #Pfalz
+		event = 3665 #PFA: The Winter King of Prague
+	}
+	random = no
+	country = BAY
+	name = "EVENTNAME29008" #The taking of the Bibiotheca Palatina
+	desc = "EVENTHIST29008"
+	#-#In 1622 the Imperial General Tilly captured Heidelberg and had the famous Bibliotheca Palatina carried off to the Vatican.
+
+	date = { day = 2 month = january year = 1620 }
+	offset = 60
+	deathdate = { day = 1 month = january year = 1648 }
+
+	action_a = {
+		name = "ACTIONNAME29008A" #Send the Bibliotheca Palatina to the Vatican!
+		command = { type = relation which = PFA value = -100 }
+		command = { type = relation which = PAP value = 100 }
+		command = { type = trigger which = 29009 } #PFA: Bibliotheca Palatina stolen
+	}
+	action_b = {
+		name = "ACTIONNAME29008B" #Let the Palatinate keep their religious artifact
+		command = { type = relation which = PFA value = 100 }
+		command = { type = relation which = PAP value = -100 }
+	}
+}
+
+#(1629) The Electorate of Bavaria
+event = {
+	id = 125018
+	trigger = {
+		owned = { province = 348 data = -1 } #Ansbach
+		event = 3665 #PFA: The Winter King of Prague
+		event = 3196 #HAB: The Edict of Restitution
+		OR = {
+			religion = catholic
+			religion = counterreform
+		}
+	}
+	random = no
+	country = BAY
+	name = "EVENTNAME125018" #Bavaria assumes the electoral vote of the Palatinate
+	desc = "EVENTHIST125018"
+	#-#The first phase of the Thirty Years War, the war against the rebellious Bohemians and the Winterking, was an almost complete success for the Emperor and the Catholic League. In the battle of the White Mountain Bohemia was reconquered, and the protestant nobles who had dared to depose Ferdinand of Austria as Bohemian King were punished severely, their land was given to Catholics and a consequent persecution of Protestants began. To penalize Friedrich V of the Palatinate and to reward Maximilian of Bavaria, Ferdinand deprived Friedrich of his electorate and of the Upper Palatinate and granted both to Bavaria, which was an obvious violation of imperial law, but since no German prince was really in a position to defy Ferdinand and Maximilian, it was done and Maximilian had achieved a recognition proportionate to his power.
+
+	date = { day = 1 month = january year = 1629 }
+	offset = 20
+	deathdate = { day = 29 month = december year = 1629 }
+
+	action_a = {
+		name = "ACTIONNAME125018A" #Ignore these ridiculous objections and become an elector
+		command = { type = addcore_national  which = 345 } #Pfalz
+		command = { type = elector which = BAY value = 2 } # A new Kurfürst with 2 votes
+		command = { type = elector which = PFA value = 1 } # the same 1 vote as the other HRE minors 
+		command = { type = vp value = 50 }
+		command = { type = relation which = PFA value = -200 }
+		command = { type = relation which = BRA value = -150 }
+		command = { type = relation which = SAC value = -150 }
+		command = { type = relation which = WUR value = -150 }
+		command = { type = relation which = HAN value = -150 }
+		command = { type = relation which = OLD value = -150 }
+		command = { type = relation which = SHL value = -150 }
+		command = { type = relation which = SWE value = -150 }
+		command = { type = relation which = MAI value = -100 }
+		command = { type = relation which = FRA value = -100 }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = relation which = ENG value = -150 }
+		command = { type = relation which = SCO value = -150 }
+		command = { type = flagname which = "Electorate" }
+	}
+	action_b = {
+		name = "ACTIONNAME125018B" #Acknowledge imperial law and don't touch the palatine electorate
+		command = { type = stability value = 1 }
+		command = { type = relation which = PFA value = 200 }
+		command = { type = relation which = BRA value = 100 }
+		command = { type = relation which = SAC value = 100 }
+		command = { type = relation which = WUR value = 100 }
+		command = { type = relation which = HAN value = 100 }
+		command = { type = relation which = OLD value = 100 }
+		command = { type = relation which = SHL value = 100 }
+		command = { type = relation which = SWE value = 100 }
+		command = { type = relation which = MAI value = 100 }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = ENG value = 50 }
+		command = { type = relation which = SCO value = 50 }
+	}
+}
+
+#(1682-1683) Hiring of Prince Georg Friedrich of Waldeck
+event = {
+	id = 125031
+	random = no
+	country = BAY
+	name = "EVENTNAME125031" #von Waldeck
+	desc = "EVENTHIST125031"
+	#-#We have opportunity to hire the Prince Georg Friedrich von Waldeck. He is very skilled general who proved his abilities during his service in the Low Countries as well during his service for the Elector of Brandenburg. He is good infantry and cavalry leader. What shall we do?
+
+	date = { day = 1 month = january year = 1682 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1683 }
+
+	action_a = {
+		name = "ACTIONNAME125031A" #Hire him for 3 years
+		command = { type = wakeleader which = 020316 } #von Waldeck (BAY)
+		command = { type = treasury value = -10 }
+	}
+	action_b = {
+		name = "ACTIONNAME125031B" #Hire him for longer
+		command = { type = wakeleader which = 020317 } #von Waldeck (BAY)
+		command = { type = treasury value = -40 }
+		command = { type = sleepleader which = 060358 } #von Waldeck (HOL)
+	}
+	action_c = {
+		name = "ACTIONNAME125031C" #We do not need him
+		command = { }
+	}
+}
+
+#(1682-1690) The Ottoman war
+event = {
+	id = 125032
+	trigger = {
+		atwar = no
+		war = { country = HAB country = TUR }
+		NOT = { exists = HUN }
+	}
+	random = no
+	country = BAY
+	name = "EVENTNAME179076" #The Ottoman war
+	desc = "EVENTHIST179076"
+	#-#In the winter of 1682-83 a defensive-offensive coalition of powers formed against the Turks. The Pope organized another Holy League comprising of Austria, Poland, Saxony and Bavaria. The Venetians determined to join the struggle, signed in March 1684. Russia was eventually to join this League in 1686.
+
+	date = { day = 0 month = january year = 1682 }
+	offset = 90
+	deathdate = { day = 0 month = june year = 1690 }
+
+	action_a = {
+		name = "ACTIONNAME179076A" #War then
+		command = { type = casusbelli which = TUR value = 100 }
+		command = { type = relation which = TUR value = -200 }
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = alliance which = HAB }
+	}
+}
+
+#(1701) The Grand alliance (Spanish war of succession Bavarian version)
+#by Fodoron
+event = {
+	id = 125030 #triggered by FRA_170053 A / FRA_170192 A
+	random = no
+	country = BAY
+	name = "EVENTNAME125030" #The Grand Alliance
+	desc = "EVENTHIST125030"
+	#-#For years Europe has been preparing for the death of childless Carlos II of Spain. He was related to several royal families in Europe, but after the death of the designated heir, Joseph Ferdinand Wittelbach of Bavaria, at the age of six, the royal houses of Austria and France had a similar claim. But both were too powerful, and the addition of the Spanish empire would make any of them unstoppable, and so candidates not destined to their thrones, Philip of Anjou and Charles Habsburg, were discussed as heirs to Carlos, and several partition agreements were negotiated. That is precisely what everybody wanted to prevent in Spain. A will was redacted and the agonizing Carlos signed it. It left the Kingdom to Philip Anjou, but it contained two crucial clauses, the condition that the crowns of France and Spain should never be held by the same person and that the Spanish possessions could not be divided. Austria, of course, rejected it, but the rest of Europe seemed to agree, as the equilibrium was not broken. But Louis misjudged the uneasiness that the rest of Europe displayed for the French expansionism, and made several mistakes after the Spanish succession. He closed the Spanish-American commerce to the English and the Dutch, he recognized James III Stuart as King of England, and French troops occupied the fortresses in Spanish Netherlands. In February, the French States had ratified the right of Philip of Anjou to the crown of France, violating the will of Carlos II. The maritime powers had the motive and the excuse, and Austria discovered that now she had allies for the war of Spanish succession. The only allies of France were the Wittelsbach: the electors of Bavaria, Cologne and Trier, and the Duke of Savoy. Maximilian II of Bavaria had been named governor of the Spanish Netherlands. The Bavarian participation in the war lasted until the battle of Blenheim in 1704, when she was knocked out of the war by a crushing defeat.
+
+	action_a = {
+		name = "ACTIONNAME125030A" #Support Bourbon succession to the Spanish throne
+		command = { type = casusbelli which = HAB value = 120 }
+		command = { type = relation which = SPA value = 75 }
+		command = { type = relation which = FRA value = 75 }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = relation which = ENG value = -25 }
+		command = { type = relation which = HOL value = -25 }
+		#BAY and KOL are brothers and fought together against HAB
+		command = { type = trigger which = 202022 } #KOL: The Grand Alliance
+	}
+	action_b = {
+		name = "ACTIONNAME125030B" #We don't care who inherits Spain
+		command = { type = relation which = SPA value = -25 }
+		command = { type = relation which = FRA value = -25 }
+		command = { type = relation which = HAB value = 75 }
+		command = { type = relation which = ENG value = 25 }
+		command = { type = relation which = HOL value = 25 }
+	}
+}
+
+#(1740-1741) The Effects of the Pragmatic Sanction
+event = {
+	id = 3616
+	trigger = {
+		event = 3205 #HAB: The Effects of the Pragmatic Sanction
+	}
+	random = no
+	country = BAY
+	name = "EVENTNAME3205" #The Effects of the Pragmatic Sanction
+	desc = "EVENTHIST3205"
+	#-#The Pragmatic Sanction, solemnly rendered by Emperor Charles VI on 19th April 1713, established the indivisibility of the Habsburg patrimony, and ruled the order of succession by order of first born child, even to a woman. This made Maria-Theresa, born in 1717, the heir of the Empire. The Pragmatic Sanction was recognized by Spain in 1725 (confirmed in 1731), Russia in 1726, Prussia in 1728, the United Provinces in 1731, Hanover in 1732, the Heiliges Reich (except Bavaria) in 1732 and France in 1738 only. Bavarian refusal would lead to the War of the Austrian Succession.
+
+	date = { day = 21 month = october year = 1740 } #Emperor Karl VI's death
+	offset = 10
+	deathdate = { day = 1 month = june year = 1741 }
+
+	action_a = {
+		name = "ACTIONNAME3616A" #Anti-Habsburg
+		command = { type = casusbelli which = HAB value = 36 }
+		command = { type = stability value = -1 }
+		command = { type = relation which = PRU value = 150 }
+		command = { type = relation which = SAC value = 150 }
+		command = { type = relation which = GEN value = 50 }
+		command = { type = relation which = FRA value = 150 }
+		command = { type = relation which = ENG value = -100 }
+		command = { type = relation which = HOL value = -100 }
+		command = { type = relation which = RUS value = -100 }
+		command = { type = relation which = HES value = -50 }
+		command = { type = relation which = HAN value = -50 }
+		command = { type = relation which = HAB value = -150 }
+		command = { type = trigger which = 125036 } #BAY: Karl Albert's imperial ambitions
+	}
+	action_b = {
+		name = "ACTIONNAME3616B" #Neutral
+		command = { type = relation which = PRU value = -50 }
+		command = { type = relation which = SAC value = -50 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = relation which = ENG value = 100 }
+		command = { type = relation which = HOL value = 100 }
+		command = { type = relation which = RUS value = 50 }
+		command = { type = relation which = HES value = 100 }
+		command = { type = relation which = HAN value = 100 }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = stability value = 1 }
+		command = { type = sleepevent which = 125037 } #BAY: The claim to Bohemia - BAY won WoAS
+		command = { type = sleepevent which = 125038 } #BAY: The claim to Bohemia - BAY lost WoAS
+	}
+	action_c = {
+		name = "ACTIONNAME3616C" #Pro-Habsburg
+		command = { type = relation which = PRU value = -150 }
+		command = { type = relation which = SAC value = -150 }
+		command = { type = relation which = FRA value = -150 }
+		command = { type = relation which = ENG value = 150 }
+		command = { type = relation which = HOL value = 100 }
+		command = { type = relation which = RUS value = 50 }
+		command = { type = relation which = HES value = 150 }
+		command = { type = relation which = HAN value = 150 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = stability value = -2 }
+		command = { type = casusbelli which = PRU value = 12 }
+		command = { type = sleepevent which = 125037 } #BAY: The claim to Bohemia - BAY won WoAS
+		command = { type = sleepevent which = 125038 } #BAY: The claim to Bohemia - BAY lost WoAS
+	}
+}
+#(1740-1741) Karl Albert's imperial ambitions
+#by Bordic
+event = {
+	id = 125036 #triggered by BAY_3616 A
+	trigger = {
+		core = { province = 328 data = HAB } #Bohemia (Habsburgs dominion)
+	}
+	random = no
+	country = BAY
+	name = "EVENTNAME125036" #Karl Albert's imperial ambitions
+	desc = "EVENTHIST125036"
+	#-#According to the Will of Joseph, Maria Theresia's grandfather, under which his son and Maria Theresia's father Karl took the throne, the Elector of Bavaria would have the legal claim to all of the Austrian domains in the Empire (as per the Salic Law which precluded royal inheritance by a woman). So, upon the death of Karl of Habsburg, Karl Albert of Wittelsbach should have been elected Emperor and legitimatedly proclaimed Archduke of Austria and King of Bohemia. In facts, even in Bohemia he had a claim through a treaty stipulated with the House of Habsburg in the 16th century, successively confirmed by Leopold of Austria.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = addcore which = 315 } #Moravia
+		command = { type = addcore which = 327 } #Ostmarch
+		command = { type = addcore which = 328 } #Bohemia
+		command = { type = addcore which = 329 } #Erz
+		command = { type = addcore which = 330 } #Sudeten
+		command = { type = addcore which = 350 } #Salzburg
+		command = { type = addcore which = 351 } #Austria
+		command = { type = addcore which = 367 } #Krain
+		command = { type = addcore which = 369 } #Steiermark
+		command = { type = addcore which = 371 } #Tirol
+		command = { type = addcore which = 373 } #Baden (Breisgau)
+	}
+}
+
+#(1748-1749) The claim to Bohemia - BAY won WoAS - Ahistorical
+#by Bordic
+event = {
+	id = 125037
+	trigger = {
+		NOT = {
+			event = 125038 #BAY: The claim to Bohemia
+			war = { country = BAY country = HAB }
+		}
+		event = 125036 #BAY: Karl Albert's imperial ambitions
+		owned = { province = 348 data = -1 } #Ansbach
+		owned = { province = 349 data = -1 } #Bayern
+		OR = {
+			OR = {
+				vassal = { country = BAY country = HAB }
+				AND = {
+					NOT = { exists = HAB }
+					owned = { province = 351 data = -1 } #Austria
+				}
+			}
+			AND = {
+				OR = { #minimal Bavarian presence in Bohemia
+					owned = { province = 315 data = -1 } #Moravia
+					owned = { province = 327 data = -1 } #Ostmarch
+					owned = { province = 328 data = -1 } #Bohemia
+					owned = { province = 329 data = -1 } #Erz
+					owned = { province = 330 data = -1 } #Sudeten
+				}
+				OR = { #minimal Bavarian presence in Austrian territories
+					owned = { province = 350 data = -1 } #Salzburg
+					owned = { province = 351 data = -1 } #Austria
+					owned = { province = 367 data = -1 } #Krain
+					owned = { province = 369 data = -1 } #Steiermark
+					owned = { province = 371 data = -1 } #Tirol
+					owned = { province = 373 data = -1 } #Baden
+				}
+			}
+		}
+	}
+	random = no
+	country = BAY
+	name = "EVENTNAME125037" #The claim to Bohemia
+	desc = "EVENTHIST125037"
+	#-#The war of the Austrian succession was victorious for the Elector of Bavaria, who was granted the crown of Bohemia and the allegiance of Maria Theresia, Archduchess of Austria.
+
+	date = { day = 0 month = january year = 1748 }
+	offset = 10
+	deathdate = { day = 0 month = january year = 1749 }
+
+	action_a = {
+		name = "GOOD"
+		command = { type = stability value = 1 }
+		command = { type = DIP which = 2 value = 60 }
+		command = { type = ADM which = 2 value = 60 }
+		command = { type = alliance which = HAB } #as to let DA happen
+		command = { type = relation which = HAB value = 400 }
+		command = { type = sleepevent which = 125038 } #BAY: The claim to Bohemia
+		command = { type = trigger which = 179105 } #HAB: Bohemia is lost
+	}
+}
+
+#(1749-1753) The loss of claim to Bohemia - BAY lost WoAS
+#by Bordic
+event = {
+	id = 125038
+	trigger = {
+		exists = HAB
+		NOT = {
+			event = 125037 #BAY: The claim to Bohemia
+		}
+	}
+	random = no
+	country = BAY
+	name = "EVENTNAME125038" #The loss of claim to Bohemia
+	desc = "EVENTHIST125038"
+	#-#The war of the Austrian succession was disastrous for the Elector of Bavaria, who was deprived of the crown of Bohemia and forced to swear his allegiance to Maria Theresia, Archduchess of Austria and soon to become Holy Roman Empress.
+
+	date = { day = 1 month = january year = 1749 }
+	offset = 10
+	deathdate = { day = 0 month = january year = 1753 }
+
+	action_a = {
+		name = "ALAS"
+		command = { type = stability value = -1 }
+		command = { type = relation which = HAB value = 300 }
+		command = { type = removecore which = 315 } #Moravia
+		command = { type = removecore which = 327 } #Ostmarch
+		command = { type = removecore which = 328 } #Bohemia
+		command = { type = removecore which = 329 } #Erz
+		command = { type = removecore which = 330 } #Sudeten
+		command = { type = removecore which = 350 } #Salzburg
+		command = { type = removecore which = 351 } #Austria
+		command = { type = removecore which = 367 } #Krain
+		command = { type = removecore which = 369 } #Steiermark
+		command = { type = removecore which = 371 } #Tirol
+		command = { type = removecore which = 373 } #Baden (Breisgau)
+		command = { type = secedeprovince which = HAB value = 315 } #Moravia
+		command = { type = secedeprovince which = HAB value = 327 } #Ostmarch
+		command = { type = secedeprovince which = HAB value = 328 } #Bohemia
+		command = { type = secedeprovince which = HAB value = 329 } #Erz
+		command = { type = secedeprovince which = HAB value = 330 } #Sudeten
+		command = { type = secedeprovince which = HAB value = 350 } #Salzburg
+		command = { type = secedeprovince which = HAB value = 351 } #Austria
+		command = { type = secedeprovince which = HAB value = 367 } #Krain
+		command = { type = secedeprovince which = HAB value = 369 } #Steiermark
+		command = { type = secedeprovince which = HAB value = 371 } #Tirol
+		command = { type = secedeprovince which = HAB value = 373 } #Baden (Breisgau)
+	}
+}
+
+#(1756) Kreittmayr codifies the Bavarian law
+event = {
+	id = 125019
+	random = no
+	country = BAY
+	name = "EVENTNAME125019" #The codification of Bavarian law
+	desc = "EVENTHIST125019"
+	#-#Inspired by Prussian efforts to modernise the law, Maximilian III Joseph of Bavaria and his advisor Wiguläus Xaverius Aloysius von Kreittmayr undertook the codification of Bavarian. Their goal was not to incorporate the ideas of the Enlightenment, but to consolidate Bavaria after its devastating defeat in the War of Austrian Succession. Nevertheless, Kreittmayr managed to establish some enlightened concepts, such as an inner logic of the laws, the desire to apply them without discriminating between social classes and the use of the German language instead of latin. After passing the Codex iuris Bavarici criminalis, the criminal law, in 1751 and the Codex iuris Bavarici iudicarii, the reorganisation of the jurisdiction, in 1753, the most important part of the new legislation, the Codex Maximilianeus Bavarici civilis which took care of the civil law, was enacted on January 2nd 1756. It remained valid Bavarian law until 1899 when it was replaced by the Bürgerliche Gesetzbuch of the German Empire.
+
+	date = { day = 2 month = january year = 1756 }
+
+	action_a = {
+		name = "ACTIONNAME125019A" #Let Kreittmayr codify the law without big changes
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = gainbuilding which = -2 value = courthouse }
+		command = { type = gainbuilding which = -1 value = courthouse }
+		command = { type = inflation value = -5 }
+		command = { type = stability value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME125019B" #Incorporate the ideas of the Enlightenment
+		command = { type = domestic which = innovative value = 2 }
+		command = { type = domestic which = serfdom value = -2 }
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = gainbuilding which = -2 value = courthouse }
+		command = { type = gainbuilding which = -1 value = courthouse }
+		command = { type = stability value = -3 }
+	}
+	action_c = {
+		name = "ACTIONNAME125019C" #Leave the Bavarian law as it is
+		command = { type = domestic which = innovative value = -2 }
+	}
+}
+
+#(1761) Death of Klemens August I Wittelsbach
+event = {
+	id = 125044
+	trigger = {
+		NOT = { exists = KOL }
+		event = 3853 #BAY: The Archbishop in Cologne
+		owned = { province = 344 data = -1 } #Köln
+		control = { province = 344 data = -1 } #Köln
+	}
+	random = no
+	country = BAY
+	name = "EVENTNAME125044" #Death of Klemens August I Wittelsbach
+	desc = "EVENTHIST125044"
+	#-#With the death of Klemens August I Wittelsbach, any Bavarian influence over Cologne has been lost.
+
+	date = { day = 5 month = february year = 1761 }
+
+	action_a = {
+		name = "ALAS"
+		command = { type = independence which = KOL }
+		command = { type = stability value = 2 }
+	}
+}
+
+#(1777) The Palatinate inherits Bavaria
+event = {
+	id = 125020
+	trigger = { exists = PFA }
+	random = no
+	country = BAY
+	name = "EVENTNAME125020" #Death of the last Bavarian Wittelsbach
+	desc = "EVENTHIST125020"
+	#-#On December 30th 1777 Duke Maximilian III Joseph, the last Bavarian Wittelsbach, died. By virtue of a contract signed in 1724 for the case of one Wittelsbach dynasty dying out, the Palatine Elector Karl Theodor was the legitimate heir, with the condition that he moved his court to Munich so that Bavaria could remain the main Wittelsbach country.
+
+	date = { day = 29 month = december year = 1777 } #30th in RL
+
+	action_a = {
+		name = "ACTIONNAME125020A" #The Wittelsbach possessions shall be united (possibly End Game)
+		command = { type = trigger which = 255003 } #PFA: The Palatinate inherits Bavaria
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME125020B" #Let Bavaria pass to the sidebranch of Pfalz-Birkenfeld-Gelnhausen
+		command = { type = relation which = PFA value = -200 }
+		command = { type = relation which = KOL value = -200 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = stability value = -2 }
+		command = { type = sleepmonarch which = 020013 } #Karl Theodor
+		command = { type = sleepmonarch which = 020014 } #Maximilian IV
+		command = { type = wakemonarch which = 020015 } #Johann of Pfalz-Birkenfeld-Gelnhausen °
+		command = { type = wakemonarch which = 020016 } #Wilhelm of Pfalz-Birkenfeld-Gelnhausen °
+		command = { type = sleepevent which = 3207 } #HAB: The Bavarian Succession of 1777
+	}
+}
+#(1777) The Palatinate is united with Bavaria
+event = {
+	id = 125021 #triggered by PFA_255003 A
+	trigger = {
+		NOT = {
+			core = { province = 380 data = PFA } #Flandern
+		}
+	}
+	random = no
+	country = BAY
+	name = "EVENTNAME125021" #The Palatinate is united with Bavaria
+	desc = "EVENTHIST125021"
+	#-#Karl Theodor acknowledged the terms of the contract, making the Palatinate a mere side country, although he loved his residence in Mannheim and felt like a stranger among strangers in Munich. After more than 400 years of division the Wittelsbach possessions were united again.
+
+	action_a = {
+		name = "ACTIONNAME125021A" #Fine
+		command = { type = inherit which = PFA }
+		command = { type = addcore which = 345 } #Pfalz
+		command = { type = addcore which = 347 } #Würzburg
+		command = { type = domestic which = centralization value = -1 }
+	}
+}
+#(1777) The Palatinate is united with Bavaria (Palatinate inherited Burgundy)
+#by Bordic
+event = {
+	id = 125033 #triggered by PFA_255003 A
+	trigger = {
+		core = { province = 380 data = PFA } #Flandern
+	}
+	random = no
+	country = BAY
+	name = "EVENTNAME125021" #The Palatinate is united with Bavaria
+	desc = "EVENTHIST125021"
+	#-#Karl Theodor acknowledged the terms of the contract, making the Palatinate a mere side country, although he loved his residence in Mannheim and felt like a stranger among strangers in Munich. After more than 400 years of division the Wittelsbach possessions were united again.
+
+	action_a = {
+		name = "ACTIONNAME125021A" #Fine
+		command = { type = domestic which = centralization value = -2 }
+		#cores on Palatinate
+		command = { type = add_countryculture which = dutch }
+		command = { type = addcore which = 345 } #Pfalz
+		command = { type = addcore which = 347 } #Würzburg
+		#cores on the Low Countries
+		command = { type = addcore which = 339 } #Holland
+		command = { type = addcore which = 340 } #Zeeland
+		command = { type = addcore which = 378 } #Brabant
+		command = { type = addcore which = 379 } #Artois (if imperial fief)
+		command = { type = addcore which = 380 } #Flandern
+		command = { type = addcore which = 377 } #Luxemburg
+		command = { type = inherit which = PFA }
+	}
+}
+#(1777) The Palatinate inherits Bavaria - in case Palatinate doesn't exist
+event = {
+	id = 125034
+	trigger = {
+		NOT = { exists = PFA }
+	}
+	random = no
+	country = BAY
+	name = "EVENTNAME125034" #The Palatine Wittelsbach settles in Munich
+	desc = "EVENTHIST125034"
+	#-#On December 30th 1777 Duke Maximilian III Joseph, the last member of the Bavarian branch of the House of Wittelsbach, died. By virtue of a contract signed in 1724 for the case of one Wittelsbach dynasty dying out, Karl Theodor, member of the Palatine branch of the House of Wittelsbach was the legitimate heir with claims to both the Palatine and the Bavarian possessions. After more than 400 years of division the Wittelsbach possessions could be reunited again.
+
+	date = { day = 29 month = december year = 1777 } #30th in RL
+
+	action_a = {
+		name = "ACTIONNAME255008A" #The Wittelsbach possessions shall be united again
+		command = { type = stability value = 1 }
+		command = { type = addcore which = 345 } #Pfalz
+		command = { type = addcore which = 347 } #Ansbach
+		command = { type = relation which = KOL value = -50 }
+		command = { type = relation which = HAB value = -50 }
+	}
+}
+
+#(1778) The Bavarian Succession of 1777
+event = {
+	id = 3617 #triggered by HAB_3207 A
+	random = no
+	country = BAY
+	name = "EVENTNAME3617" #The Bavarian Succession of 1777
+	desc = "EVENTHIST3617"
+	#-#After the extinction of the Wittelsbach dynasty in Bavaria (1777), Joseph II endeavored to strengthen the position of Austria within the Empire. His plan to exchange territories with Charles Theodore of the Palatinate, the heir of the Bavarian throne (Lower Bavaria and the Upper Palatinate for Lower Austria) led to the War of the Bavarian Succession (1778-1779). Prussia intervened in July 1778 in what she saw as a dangerous Austrian expansion. It was a short conflict which started with a Prussian invasion of Bohemia but was terminated in May 1779s when Empress Maria Theresa forced her son Joseph II to capitulate. The peace was concluded at Teschen on 16th May 1779 and Austria settled for the small Inn district.
+
+	action_a = {
+		name = "ACTIONNAME3617A" #Defend the Throne
+		command = { type = alliance which = HAB }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = sleepevent which = 125022 } #BAY: Austria is defeated
+	}
+	action_b = {
+		name = "ACTIONNAME3617B" #Defend Straubing against Habsburg
+		command = { type = alliance which = PRU }
+		command = { type = relation which = PRU value = 150 }
+		command = { type = casusbelli which = HAB value = 24 }
+	}
+}
+#(1778) Straubing ceded to Austria
+event = {
+	id = 125035 #triggered by HAB_179092
+	trigger = {
+		core = { province = 348 data = -1 } #Ansbach
+	}
+	random = no
+	country = BAY
+	name = "EVENTNAME125023" #Straubing is ceded to Austria
+	desc = "EVENTHIST179092"
+	#-#After the extinction of the Wittelsbach dynasty in Bavaria in 1777, Joseph II endeavored to strengthen the position of Austria within the Empire by exchanging territories with Charles Theodore of the Palatinate, the heir of the Bavarian throne (Lower Bavaria and the Upper Palatinate for Lower Austria). Austria would then legitimatedly press her claims to Straubing, thereby expanding her influence into Southern Germany.
+
+	action_a = {
+		name = "OK"
+		command = { type = treasury value = 30 }
+		command = { type = secedeprovince which = HAB value = 348 } #Ansbach
+		command = { type = removecore which = 348 } #Ansbach
+		command = { type = relation which = HAB value = 50 }
+	}
+}
+
+#(1778-1783) Austria is defeated
+event = {
+	id = 125022
+	trigger = {
+		event = 3617 #BAY: Bavarian Succession of 1777 - Austria has claimed Straubing
+		OR = {
+			AND = {
+				control = { province = 329 data = -1 } #Sudeten, Erz and Silesia
+				control = { province = 330 data = -1 }
+				control = { province = 314 data = -1 }
+			}
+			AND = {
+				owned = { province = 328 data = HAB } #Bohemia
+				control = { province = 328 data = -1 }
+			}
+			AND = {
+				owned = { province = 351 data = HAB } #Austria
+				control = { province = 351 data = -1 }
+			}
+			AND = {
+				owned = { province = 378 data = HAB } #Brabant
+				control = { province = 378 data = -1 }
+			}
+		}
+		control = { province = 349 data = -1 } #Austria has not occupied Bavaria
+	}
+	random = no
+	country = BAY
+	name = "EVENTNAME125022" #Austria is defeated
+	desc = "EVENTHIST125022"
+	#-#The War of Bavarian Succession caused by Austria's attempts to annex Straubing was a short conflict without great military action which started with a Prussian invasion of Bohemia and was terminated in May 1779 when Empress Maria Theresia forced her son Joseph II to capitulate. The peace was concluded at Teschen on 16th May 1779 and Austria settled for the small Inn district.
+
+	date = { day = 1 month = january year = 1778 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1783 }
+
+	action_a = {
+		name = "ACTIONNAME125022A" #We are victorious
+		command = { type = vp value = 50 }
+		command = { type = relation which = PRU value = 100 }
+	}
+}
+
+#(1780-1783) Straubing ceded to Austria
+event = {
+	id = 125023 #triggered by HAB_179021
+	trigger = {
+		core = { province = 348 data = -1 } #Ansbach
+	}
+	random = no
+	country = BAY
+	name = "EVENTNAME125023" #Straubing is ceded to Austria
+	desc = "EVENTHIST125023"
+	#-#Despite resistance from Prussia, Austria managed to occupy and annex Straubing, thereby expanding into Southern Germany.
+
+	action_a = {
+		name = "OK"
+		command = { type = treasury value = 30 }
+		command = { type = secedeprovince which = HAB value = 348 } #Ansbach
+		command = { type = removecore which = 348 } #Ansbach
+		command = { type = relation which = HAB value = 50 }
+	}
+}
+
+#(1799) Montgelas and Napoleonic era events
+event = {
+	id = 125024
+	trigger = { event = 12124 } #FRA: General Bonaparte First Consul
+	random = no
+	country = BAY
+	name = "EVENTNAME125024" #Montgelas
+	desc = "EVENTHIST125024"
+	#-#Maximilian Josef Garnerin Count of Montgelas, a noble from Savoy, dominated Bavarian politics as Minister of Foreign Affairs, of Finances and of Domestic Affairs during the Napoleonic era and made it a much stronger, modern state. He was an unscrupulous, pragmatic politician and a supporter of Enlightenment. Under his influence, Bavaria betrayed the empire and allied with Napoléon, acquired territories from the Church (Würzburg and Salzburg) and from the defeated Habsburgs (Tirol and parts of Swabia) and eventually became a Kingdom in 1806. In order to strengthen the royal authority and to assimilate the new possessions, Montgelas introduced several reforms of the administration's organisation, competences and personal that have strongly affected Bavaria throughout his whole further history. Thus, he is considered the creator of modern Bavaria, although he always remained a stranger to the country and did not really understand its inhabitants or any nationalist sentiments that would have kept Bavaria away from an alliance with Napoléon.
+
+	date = { day = 17 month = november year = 1799 }
+
+	action_a = {
+		name = "ACTIONNAME125024A" #Make Montgelas our Minister
+		command = { type = DIP which = 3 value = 230 }
+		command = { type = ADM which = 3 value = 230 }
+		command = { type = MIL which = 2 value = 230 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = relation which = FRA value = 100 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = setflag which = [Montgelas] }
+	}
+	action_b = {
+		name = "ACTIONNAME125024B" #Appoint a less controversial person
+		command = { type = stability value = 1 }
+		command = { type = relation which = HAB value = 50 }
+	}
+}
+
+#(1803) Reichsdeputationshauptschluss: Bavaria incorporates Würzburg
+event = {
+	id = 125025
+	trigger = {
+		flag = [Montgelas]
+		owned = { province = 348 data = -1 } #Ansbach needed as connection to Würzburg
+		owned = { province = 344 data = FRA } #France owns the whole German left bank of the Rhine (Köln, Pfalz and Alsace)
+		owned = { province = 345 data = FRA }
+		owned = { province = 374 data = FRA }
+	}
+	random = no
+	country = BAY
+	name = "EVENTNAME125025" #The deputation of the Empire
+	desc = "EVENTHIST125025"
+	#-#By the Treaty of Lunéville of 1801 the empire formally ceded everything left of the Rhine to Napoleonic France. With the princes who thereby lost territory demanding a compensation and the empire disintegrating, it was evident that the empire would need to be drastically reformed. Negotiations began in 1802, and victorious France soon tried to influence them, in order to strengthen the medium powers like Bavaria, Württemberg, Baden and Hessen to be counterweights against Austria and Prussia. On February 25th an agreement was reached, the two most important decisions were the Mediatisation of all free cities except for Bremen, Hamburg, Lübeck, Frankfurt, Augsburg and Nürnberg and of most small independent principalities and the Secularisation of almost all church possessions in the empire. The big countries in Southern Germany that France wanted to ally with, Bavaria, Württemberg and Baden, massively increased their territories. Bavaria received the bishoprics of Würzburg, Bamberg and Augsburg, several abbeys and twelve former imperial cities.
+
+	date = { day = 25 month = february year = 1803 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1806 }
+
+	action_a = {
+		name = "ACTIONNAME125025A" #Fine
+		command = { type = addcore which = 347 } #Würzburg
+		#command = { type = inherit which = THU } #A competent Würzburg player would not let Bavaria survive that long, hence the 'inevitable' inheritance is not that bad; I actually don't see how the Bishoprics would have had any choice
+		command = { type = provincetax which = -2 value = 5 }
+		command = { type = provincemanpower which = -2 value = 4 }
+		command = { type = population which = -2 value = 10000 }
+		command = { type = provincetax which = 348 value = 3 } #Ansbach
+		command = { type = provincemanpower which = 348 value = 2 } #Ansbach
+		command = { type = population which = 348 value = 5000 } #Ansbach
+	}
+}
+
+#(1803) Centralization reforms of Montgelas
+event = {
+	id = 125026
+	trigger = { flag = [Montgelas] }
+	random = no
+	country = BAY
+	name = "EVENTNAME125026" #Enlightened centralistic reforms of Maximilian Josef and Montgelas
+	desc = "EVENTHIST125026"
+	#-#Maximilian Josef and his minister Montgelas, who both had an enlightened, anti-clerical attitude and believed in the necessity of drastic reforms from above, desired to make Bavaria an internally strong, homogenous and progressive state. After short, difficult discussions with the still powerful Bavarian estates they decided to just ignore the estates, and to gradually reduce their privileges, thus extending the Elector's power and central bureaucracy. Also, Montgelas reformed the education system, improved measurements and began the systematic dispossession of the clerus and the secularisation of administration and laws. These steps were not very well received by the rather conservative populace and especially the church, and resistance against them emerged.
+
+	date = { day = 1 month = january year = 1803 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1803 }
+
+	action_a = {
+		name = "ACTIONNAME125026A" #Reform
+		command = { type = stability value = -3 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = infra value = 300 }
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = relation which = PAP value = -200 }
+		command = { type = domestic which = aristocracy value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME125026B" #We don't need any reforms
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1806-1813) The Kingdom of Bavaria
+event = {
+	id = 125027
+	trigger = {
+		flag = [Montgelas]
+		countrysize = 3
+	}
+	random = no
+	country = BAY
+	name = "EVENTNAME125027" #The Kingdom of Bavaria
+	desc = "EVENTHIST125027"
+	#-#Montgelas, being a secret supporter of the revolution's ideas and an astute politician, seeked Napoleonic France's friendship with the goal to make Bavaria a first-rate-power at the expense of the small neighbouring principalities and especially Austria. He pursued this policy with determination and consumate skill, and achieved great successes by the Deputation of the Empire in 1803 and even more by the Peace of Pressburg signed between Napoléon and Austria. In this humiliating treaty Austria accepted the dissolution of the Holy Roman Empire, ceded large territories to France and Bavaria - almost all of Tyrol, the principality of Eichstädt, the margraviate of Burgau, the lordship of Vorarlberg, the countships of Hohenems and Konigsegg-Rothenfels, the lordships of Argen and Tetnang, and the city of Lindau with its territory were to be added to Bavaria - and allowed the promotion of several German allies of Napoléon to new ranks. The last was the most important term for Bavaria, since it finally gained the possibility of royal honours that so many Bavarian electors had failed to obtain before. The price which the new King Maximilian had reluctantly to pay for this triumph was the marriage of his daughter Augusta with Eugene Beauharnais and the accession to the Rhine Confederacy.
+
+	date = { day = 1 month = january year = 1806 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1813 }
+
+	action_a = {
+		name = "ACTIONNAME125027A" #Finally a King's crown
+		command = { type = addcore which = 371 } #Tirol
+		command = { type = addcore which = 350 } #Salzburg
+		command = { type = vp value = 50 }
+		command = { type = diplomats value = 3 }
+		command = { type = DIP which = 1 value = 180 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = dynastic which = FRA }
+		command = { type = flagname which = "Kingdom" }
+	}
+}
+
+#(1808) The Constitution of 1808
+event = {
+	id = 125028
+	trigger = { event = 125027 }
+	random = no
+	country = BAY
+	name = "EVENTNAME125028" #The Constitution of 1808
+	desc = "EVENTHIST125028"
+	#-#Urged by Napoleonic France and according to his own convictions, Montgelas managed to continue his reforms, after the proclamation of the Kingdom of Bavaria. The revolutionary constitution of May 1st 1808 can be considered his, greatest political achievement, introducing equality before the law, universal liability to taxation, abolition of serfdom, liberty of conscience, and some individual constitutional safeguards in all of Bavaria. In this code, Montgelas also, expanded Bavarian laws and administration to all new territories, including also Tyrol that had always enjoyed some autonomy, under Austrian rule. Again, his policies met great opposition, particularly in the newly acquired territories.
+
+	date = { day = 1 month = may year = 1808 }
+
+	action_a = {
+		name = "ACTIONNAME125028A" #Introduce the constitution in all of Bavaria
+		command = { type = domestic which = innovative value = 2 }
+		command = { type = domestic which = serfdom value = -3 }
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = stability value = -3 }
+		command = { type = province_revoltrisk which = 371 value = 5 } #Tirol
+		command = { type = province_revoltrisk which = 350 value = 4 } #Salzburg
+		command = { type = province_revoltrisk which = 347 value = 3 } #Würzburg
+	}
+	action_b = {
+		name = "ACTIONNAME125028B" #Introduce the constitution, but make concessions to the new territories
+		command = { type = domestic which = innovative value = 2 }
+		command = { type = domestic which = serfdom value = -3 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = stability value = -5 }
+		command = { type = province_revoltrisk which = 371 value = 3 } #Tirol
+		command = { type = province_revoltrisk which = 350 value = 3 } #Salzburg
+	}
+	action_c = {
+		name = "ACTIONNAME125028C" #Stop these dangerous reforms
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = stability value = 2 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Random Events
+#-----------------------------------------------------------------------------------------------
+
+#Struggle within the Wittelsbach family
+event = {
+	id = 125002
+	trigger = {
+		NOT = { event = 125006 } #BAY: Bavaria-Munich inherits Bavaria-Landshut
+	}
+	random = yes
+	country = BAY
+	name = "EVENTNAME125002" #Conflict with Bayern-Landshut
+	desc = "EVENTHIST125002"
+	#-#Although they were brothers or cousins, the Bavarian Wittelsbach subbranches of Munich, Landshut, Straubing and Ingolstadt were hostile towards each other and were in a state of civil war very often, leading to the temporary eclipse of Bavaria as a force in imperial politics. Neighbouring states seized Bavarian territory, and the nobles and cities ignored the authority of the dukes.
+
+	action_a = {
+		name = "ACTIONNAME125002A" #Fight our dishonourable relatives in Landshut
+		command = { type = revolt which = -2 }
+		command = { type = revoltrisk which = 24 value = 10 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = centralization value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME125002B" #Try to solve the interfamilial conflict peacefully
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 24 value = 5 }
+	}
+}
+
+event = {
+	id = 125003
+	trigger = { NOT = { year = 1425 } } #Bayern-Straubing dies out
+	random = yes
+	country = BAY
+	name = "EVENTNAME125003" #Conflict with Bavaria-Straubing
+	desc = "EVENTHIST125003"
+	#-#Although they were brothers or cousins, the Bavarian Wittelsbach subbranches of Munich, Landshut, Straubing and Ingolstadt were hostile towards each other and were in a state of civil war very often, leading to the temporary eclipse of Bavaria as a force in imperial politics. Neighbouring states seized Bavarian territory, and the nobles and cities ignored the authority of the dukes.
+
+	action_a = {
+		name = "ACTIONNAME125003A" #Fight our dishonourable relatives in Straubing
+		command = { type = revolt which = -2 }
+		command = { type = revoltrisk which = 24 value = 8 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = centralization value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME125003B" #Try to solve the interfamilial conflict peacefully
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 24 value = 4 }
+	}
+}
+
+event = {
+	id = 125004
+	trigger = { NOT = { year = 1447 } } #Bavaria-Ingolstadt is inherited by Landshut
+	random = yes
+	country = BAY
+	name = "EVENTNAME125004" #Conflict with Bavaria-Ingolstadt
+	desc = "EVENTHIST125004"
+	#-#Although they were brothers or cousins, the Bavarian Wittelsbach subbranches of Munich, Landshut, Straubing and Ingolstadt were hostile towards each other and were in a state of civil war very often, leading to the temporary eclipse of Bavaria as a force in imperial politics. Neighbouring states seized Bavarian territory, and the nobles and cities ignored the authority of the dukes.
+
+	action_a = {
+		name = "ACTIONNAME125004A" #Fight our dishonourable relatives in Ingolstadt
+		command = { type = revolt which = -2 }
+		command = { type = revoltrisk which = 24 value = 8 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = centralization value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME125004B" #Try to solve the interfamilial conflict peacefully
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 24 value = 4 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 125045

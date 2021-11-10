@@ -1,0 +1,369 @@
+#Lanka (LKA)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1545-1550) Portuguese vassalization of Lanka
+event = {
+	id = 413000
+	trigger = {
+		exists = POR
+	}
+	random = no
+	country = LKA
+	name = "EVENTNAME413000" #The Portuguese vassalization of Lanka
+	desc = "EVENTHIST413000"
+	#-#In 1545 Bhuvanaika Bahu VII submitted to Portugal payed tribute and became it's vassal to secure that his grandson Dharmapala would succeed him on the throne with the help ofthe Portuguese.
+
+	date = { day = 0 month = january year = 1545 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1550 }
+
+	action_a = {
+		 name = "ACTIONNAME413000A" #This will secure the throne for Dharmapala
+		command = { type = relation which = POR value = 175 }
+		command = { type = trade value = 200 }
+		command = { type = breakvassal which = MYS }
+		command = { type = breakvassal which = HYD }
+		command = { type = breakvassal which = VIJ }
+		command = { type = breakvassal which = JAI }
+		command = { type = breakvassal which = DLH }
+		command = { type = breakvassal which = ORI }
+		command = { type = breakvassal which = MAM }
+		command = { type = breakvassal which = TUR }
+		command = { type = breakvassal which = BGL }
+		command = { type = breakvassal which = OMA }
+		command = { type = breakvassal which = GUJ }
+		command = { type = trigger which = 260077 } #POR: The Portuguese vassalization of Lanka
+	}
+}
+
+#(1556) Lanka's conversion to Christianity
+event = {
+	id = 413001
+	trigger = { exists = POR }
+	random = no
+	country = LKA
+	name = "EVENTNAME413001" #Dharmapala becomes a Christian
+	desc = "EVENTHIST413001"
+	#-#By 1556 much of the population along the western coast of Ceylon had been converted to Christianity by Catholic missionaries. In 1556 Dharmapala was baptized and given the name Dom João Dharmapala. The Queen, many nobles, and many of the warriors of Kotte also converted to Christianity. This alienated many of the remaining Buddhists and they defected to his rival Mayadunne who had raised a rebellion.
+
+	date = { day = 0 month = january year = 1556 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1556 }
+
+	action_a = {
+		name = "ACTIONNAME413001A" #Convert to Christianity
+		command = { type = relation which = POR value = 100 }
+		command = { type = religion which = catholic }
+		command = { type = population which = 576 value = -1000 } #Colombo
+		command = { type = population which = 577 value = 1000 } #Jaffna
+		command = { type = trade value = 200 }
+		command = { type = stability value = -2 }
+		command = { type = revolt which = 577 } #Jaffna
+	}
+	action_b = {
+		name = "ACTIONNAME413001B" #Resist the Portuguese
+		command = { type = relation which = POR value = -100 }
+		command = { type = trade value = -500 }
+		command = { type = stability value = -1 }
+		command = { type = revolt which = 576 } #Colombo
+		command = { type = sleepevent which = 413002 } #LKA: Dharmapala wills Kotte to Portugal upon his death.
+	}
+}
+
+#(1597) Lanka is ceded to Portugal -I-
+event = {
+	id = 413002
+	trigger = {
+		monarch = 0150009 #Vimala Dharma Surya I
+		vassal = { country = POR country = LKA }
+		owned = { province = 577 data = -1 } #Jaffna
+	}
+	random = no
+	country = LKA
+	name = "EVENTNAME413002" #Dharmapala wills Kotte to Portugal upon his death
+	desc = "EVENTHIST413002"
+	#-#In 1597 Dharmapala, without an heir and on the advice of the Franciscans, donated the Kingdom of Kotte to the King of Portugal. Unfortunately, Wimaladharmasuriya, the King of Kandy, who controlled the center and eastern parts of the island, had become semi-independent of Kotte and refused to submit to the Portuguese.
+
+	date = { day = 0 month = january year = 1597 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1597 }
+
+	action_a = {
+		name = "ACTIONNAME413002A" #Resist the Portuguese and switch to the Kings of Kandy
+		command = { type = relation which = POR value = -200 }
+		command = { type = trade value = -200 }
+		command = { type = secedeprovince which = POR value = 576 } #Colombo
+		command = { type = capital which = 577 } #Jaffna
+		command = { type = religion which = buddhism }
+		command = { type = casusbelli which = POR value = 240 }
+		command = { type = breakvassal which = POR }
+		command = { type = trigger which = 260082 } #POR: Portugal inherits Kotte but the Kings of Kandy resist
+		command = { type = sleepevent which = 413011 } #LKA: Dharmapala wills Kotte to Portugal upon his death -II-
+	}
+	action_b = {
+		name = "ACTIONNAME413002B" #Give Kotte to Portugal (End Game)
+		command = { type = revolt which = 577 } #Jaffna
+		command = { type = trigger which = 260081 } #POR: Portugal inherits Kotte
+		command = { type = sleepevent which = 413011 } #LKA: Dharmapala wills Kotte to Portugal upon his death -II-
+	}
+}
+#(1597) Lanka is ceded to Portugal -II-
+event = {
+	id = 413011
+	trigger = {
+		monarch = 0150009 #Vimala Dharma Surya I
+		vassal = { country = POR country = LKA }
+		NOT = {
+			owned = { province = 577 data = -1 } #Jaffna
+		}
+	}
+	random = no
+	country = LKA
+	name = "EVENTNAME413002" #Dharmapala wills Kotte to Portugal upon his death
+	desc = "EVENTHIST413011"
+	#-#In 1597 Dharmapala, without an heir and on the advice of the Franciscans, donated the Kingdom of Kotte to the King of Portugal.
+
+	date = { day = 0 month = january year = 1597 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1597 }
+
+	action_a = {
+		name = "ACTIONNAME413002B" #Give Kotte to Portugal (End Game)
+		command = { type = trigger which = 260081 } #POR: Portugal inherits Kotte
+		command = { type = sleepevent which = 413002 } #LKA: Dharmapala wills Kotte to Portugal upon his death -I-
+	}
+}
+
+#(1617-1629) Truce in Ceylon
+event = {
+	id = 413003
+	trigger = {
+		event = 413002 #LKA: Lanka is ceded to Portugal
+		control = { province = 576 data = POR } #Colombo
+		NOT = {
+			relation = { country = POR data = 0 }
+		}
+	}
+	random = no
+	country = LKA
+	name = "EVENTNAME413003" #Kandy offers truce to Portugal
+	desc = "EVENTHIST413003"
+	#-#Senarat, the new King of Kandy, tired of the incessant warfare with the Portuguese and offered a truce in August 1617.
+
+	date = { day = 0 month = august year = 1617 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1629 }
+
+	action_a = {
+		name = "ACTIONNAME413003A" #Offer a truce
+		command = { type = relation which = POR value = 100 }
+	}
+	action_b = {
+		name = "ACTIONNAME413003B" #Continue to fight for what is rightfully ours!
+		command = { type = relation which = POR value = -100 }
+		command = { type = casusbelli which = POR value = 120 }
+	}
+}
+
+#(1638-1661) Alliance with the Dutch
+#by sturmvogel
+event = {
+	id = 413004
+	trigger = {
+		event = 413002 #LKA: Lanka is ceded to Portugal
+		event = 3503 #HOL: Vereenigde Oostindische Compagnie
+		control = { province = 576 data = POR } #Colombo
+		exists = HOL
+	}
+	random = no
+	country = LKA
+	name = "EVENTNAME413004" #Alliance with the Dutch
+	desc = "EVENTHIST413004"
+	#-#Rajahsinha II was an implacable foe of the Portuguese. He offered a spice monopoly and to pay the expenses of the Dutch if they would join him in attacking the Portuguese.
+
+	date = { day = 0 month = may year = 1638 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1661 }
+
+	action_a = {
+		name = "ACTIONNAME413004A" #Offer an alliance
+		command = { type = trigger which = 186062 } #HOL: Lanka offers an alliance
+	}
+	action_b = {
+		name = "ACTIONNAME413003B" #Continue to fight for what is rightfully ours!
+		command = { type = relation which = POR value = -100 }
+		command = { type = casusbelli which = POR value = 120 }
+	}
+}
+
+#(1641-1650) Wijayapala's Revolt
+#by sturmvogel
+event = {
+	id = 413006
+	trigger = {
+		event = 413002 #LKA: Lanka is ceded to Portugal
+		control = { province = 576 data = POR } #Colombo
+		war = { country = POR country = LKA }
+	}
+	random = no
+	country = LKA
+	name = "EVENTNAME413006" #Wijayapala's Revolt
+	desc = "EVENTHIST413006"
+	#-#While Raja Sinha II was preoccupied by his war against the Portuguese his older brother Wijayapala attempted to seize the throne.
+
+	date = { day = 0 month = february year = 1641 }
+	offset = 120
+	deathdate = { day = 29 month = december year = 1650 }
+
+	action_a = {
+		name = "DAMN"
+		command = { type = revolt which = 577 } #Jaffna
+	}
+}
+
+#(1658-1740) Debt to the Dutch
+#by sturmvogel
+event = {
+	id = 413005 #triggered by HOL_186063 A
+	random = no
+	country = LKA
+	name = "EVENTNAME413005" #Debt to the Dutch
+	desc = "EVENTHIST413005"
+	#-#The Treaty between Rajahsinha II and the Dutch specified that he was to reimburse them for all their expenses fighting the Portuguese. They refused to turn over any of their conquests until payment was made in full. Rajahsinha and his successors were never able to pay, but intrigued with both the French and English to overturn Dutch rule in Western Ceylon over the next century and a half.
+
+	action_a = {
+		name = "ACTIONNAME413005A" #Begrudgingly accept the Dutch terms
+		command = { type = relation which = HOL value = -100 }
+	}
+	action_b = {
+		name = "ACTIONNAME413003B" #Continue to fight for what is rightfully ours!
+		command = { type = relation which = HOL value = -200 }
+		command = { type = casusbelli which = HOL value = 900 }
+		command = { type = sleepevent which = 186065 } #HOL: Secure the cinnamon territories
+	}
+	action_c = {
+		name = "ACTIONNAME413005C" #Pay what is owed
+		command = { type = relation which = HOL value = 200 }
+		command = { type = treasury value = -200 }
+		command = { type = trigger which = 186064 } #HOL: Payment made in full
+		command = { type = sleepevent which = 186065 } #HOL: Secure the cinnamon territories
+	}
+}
+
+#(1664-1686) Palace Coup in Kandy
+event = {
+	id = 413007
+	trigger = {
+		control = { province = 576 data = HOL } #Colombo
+	}
+	random = no
+	country = LKA
+	name = "EVENTNAME413007" #Palace coup in Kandy
+	desc = "EVENTHIST413007"
+	#-#Disaffected nobles attempted to place Raja Sinha II's son, and only heir, on the throne, but the revolt was quickly put down. However, reports reached the Dutch that the prince had been put to death and Raja Sinha's letter requesting assistance from the Dutch caused Rijkloff Van Goens believed the time was ripe to enlarge Dutch-controlled territory.
+
+	date = { day = 0 month = december year = 1664 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1686 }
+
+	action_a = {
+		name = "DAMN"
+		command = { type = revolt which = 577 } #Jaffna
+	}
+}
+
+#(1668-1685) Diminution of trade
+event = {
+	id = 413008
+	trigger = {
+		event = 186069 #HOL: Expand our holdings in Kandy
+		control = { province = 576 data = HOL } #Colombo
+		owned = { province = 576 data = HOL } #Colombo
+	}
+	random = no
+	country = LKA
+	name = "EVENTNAME413008" #Diminution of trade
+	desc = "EVENTHIST413008"
+	#-#Dutch occupation of the main ports of the eastern coast of Ceylon greatly disrupted trade in Kandy as access to traditional markets was denied by the Dutch. Furthermore significant numbers of people were 'persuaded' to move from Kandy to Dutch-controlled territory.
+
+	date = { day = 0 month = january year = 1668 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1685 }
+
+	action_a = {
+		name = "ACTIONNAME413008A" #Damn those Dutchmen!
+		command = { type = population which = 577 value = -2000 }
+		command = { type = provincetax which = 577 value = -1 } #Jaffna
+	}
+}
+
+#(1672-1685) Raja Sinha bides his time
+event = {
+	id = 413009
+	trigger = {
+		event = 186069 #HOL: Expand our holdings in Kandy
+		control = { province = 576 data = HOL } #Colombo
+		owned = { province = 576 data = HOL } #Colombo
+	}
+	random = no
+	country = LKA
+	name = "EVENTNAME413009" #Raja Sinha bides his time
+	desc = "EVENTHIST413009"
+	#-#The Dutch began to move into the border territories in April 1665 and seized Trincomalee in September 1665. Rajah Sinha did nothing other than to send emissaries to the English requesting assistance against the Dutch in 1666, being well aware that his troops could not stand against the Dutch in open battle. This shrewd move failed when the ship bearing the diplomats was intercepted by the Dutch. Raja Sinha waited until the Dutch were over-extended and pre-occupied by the French attacks on their possessions in India and struck back with great effect in 1672. He was able to reconquer virtually all of the Dutch gains from the earlier phase of the war, although Dutch command of the sea enabled them to retain Trincomalee and the other ports on the eastern coast. His raids nearly penetrated to the western coast and he recovered many of the people that the Dutch had 'encouraged' to move into their territory.
+
+	date = { day = 0 month = april year = 1672 }
+	offset = 60
+	deathdate = { day = 29 month = december year = 1685 }
+
+	action_a = {
+		name = "ACTIONNAME413009A" #Revenge is a dish best served cold
+		command = { type = relation which = HOL value = -100 }
+		command = { type = population which = 577 value = 2000 }
+		command = { type = provincetax which = 577 value = 1 } #Jaffna
+		command = { type = trigger which = 186071 } #HOL: Raja Sinha's revenge
+	}
+	action_b = {
+		name = "ACTIONNAME413009B" #Now is the time to drive the Dutch into the sea!
+		command = { type = casusbelli which = LKA value = 96 }
+		command = { type = relation which = HOL value = -100 }
+		command = { type = INF which = 577 value = 5000 }
+		command = { type = CAV which = 577 value = 2000 }
+	}
+}
+
+#(1681-1687) Raja Sinha focuses on preparing for his succession
+event = {
+	id = 413010
+	trigger = {
+		event = 413009 #LKA: Raja Sinha bides his time
+		control = { province = 576 data = HOL } #Colombo
+		owned = { province = 576 data = HOL } #Colombo
+	}
+	random = no
+	country = LKA
+	name = "EVENTNAME413010" #Raja Sinha focuses on preparing for his succession
+	desc = "EVENTHIST413010"
+	#-#Raja Sinha's recent successes against the Dutch seem to have persuaded him that he could now have a more conciliatory policy towards the Dutch as it was virtually impossible to actually evict them from Ceylon, even in their current state of weakness after the end of the Franco-Dutch War. He was now quite elderly and wanted to devote his energy to ensuring the succession of his son.
+
+	date = { day = 29 month = november year = 1681 }
+	offset = 60
+	deathdate = { day = 6 month = december year = 1687 }
+
+	action_a = {
+		name = "ACTIONNAME413010A" #Time to focus on domestic issues
+		command = { type = relation which = HOL value = 200 }
+		command = { type = trade value = 250 }
+		command = { type = merchants value = 1 }
+		command = { type = trigger which = 186073 } #HOL: Change in Ceylonese policy
+	}
+	action_b = {
+		name = "ACTIONNAME413010B" #Ceylon is for Ceylonese!
+		command = { type = stability value = -2 }
+		command = { type = merchants value = -1 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 413012
