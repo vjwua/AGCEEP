@@ -24,14 +24,16 @@ event = {
 		name = "ACTIONNAME322013A" #Lead the House of Habsburg
 		command = { type = flagname which = "" }
 		command = { type = country which = HAB }
-		command = { type = addcore which = 350 } #Salzburg
-		command = { type = addcore which = 351 } #Austria
-		command = { type = addcore which = 327 } #Ostmarch
+		command = { type = addcore_claim which = 350 } #Salzburg
+		command = { type = addcore_national which = 351 } #Austria
+		command = { type = addcore_claim which = 327 } #Ostmarch
 		command = { type = sleepevent which = 179091 } #HAB: The claim to Tirol and Vorlande
 	}
 	action_b = {
 		name = "ACTIONNAME322013B" #Remain Dukes of Tyrol
 		command = { type = stability value = 1 }
+		command = { type = relation which = -1 value = 10 }
+		command = { type = relation which = -1 value = 10 }
 		command = { }
 	}
 }
@@ -151,6 +153,7 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME322015A" #We must take care of the children
+		command = { type = discover which = 367 }
 		command = { type = vassal which = PRM }
 		command = { type = alliance which = PRM }
 		command = { type = trigger which = 261012 } #PRM: Regency of Friedrich IV, Count of Tyrol
@@ -207,7 +210,7 @@ event = {
 
 	action_a = {
 		name = "OK"
-		command = { type = secedeprovince which = PRM value = 367 } #Krain
+		command = { type = cedeprovince which = PRM value = 367 } #Krain
 		command = { type = trigger which = 261003 } #PRM: Cilli's rule
 	}
 }
@@ -288,6 +291,7 @@ event = {
 		command = { type = relation which = HAB value = 100 }
 		command = { type = relation which = HUN value = 100 }
 		command = { type = relation which = BOH value = 100 }
+		command = { type = discover which = 328 }
 		command = { type = trigger which = 179050 } #HAB: The regency of Friedrich in Tyrol
 	}
 	action_b = {
@@ -377,6 +381,7 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME322025A" #Ignore Thurgau
+		
 		command = { type = relation which = FRA value = 10 }
 		command = { type = relation which = HEL value = 50 }
 		command = { type = relation which = BUR value = 10 }
@@ -384,6 +389,8 @@ event = {
 		command = { type = relation which = HAB value = -10 }
 		command = { type = provincemanpower which = 371 value = -1 } #Tirol
 		command = { type = provincetax which = 371 value = -1 } #Tirol
+		command = { type = removecore_national which = 388 } #Aargau
+		command = { type = removecore_national which = 1612 } #Thurgau
 	}
 	action_b = {
 		name = "ACTIONNAME322025B" #Defy Swiss aggression
@@ -481,8 +488,8 @@ event = {
 	action_b = {
 		name = "ACTIONNAME322014B" #We'll inherit no matter what
 		command = { type = inherit which = PRM }
-		command = { type = addcore which = 367 } #Krain
-		command = { type = addcore which = 369 } #Steiermark
+		command = { type = addcore_claim which = 367 } #Krain
+		command = { type = addcore_national which = 369 } #Steiermark
 		#command = { type = relation which = SLZ value = -200 } #Salzburg
 		command = { type = relation which = WUR value = -80 }
 		command = { type = relation which = BAD value = -80 }
@@ -534,8 +541,9 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME322005A" #Offer Alsace to Burgundy
+		command = { type = discover which = 409 }
 		command = { type = trigger which = 137001 } #BUR: The Treaty of St.Omer
-	}
+			}
 	action_b = {
 		name = "ACTIONNAME322005B" #Don't negotiate with Charles the Bold
 		command = { type = relation which = BUR value = -50 }
@@ -553,8 +561,8 @@ event = {
 
 	action_a = {
 		name = "OK"
-		command = { type = secedeprovince which = BUR value = 374 } #Alsace
-		command = { type = secedeprovince which = BUR value = 373 } #Baden
+		command = { type = cedeprovince which = BUR value = 374 } #Alsace
+		command = { type = cedeprovince which = BUR value = 373 } #Baden
 		command = { type = treasury value = 70 }
 	}
 }
@@ -605,7 +613,7 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME322028A" #We cannot afford this
-		command = { type = removecore which = 373 } #Baden
+		command = { type = removecore_national which = 373 } #Baden
 		#command = { type = removecore which = 374 } #Alsace to be changed to new Sundgau province as soon as new map appears
 		command = { type = relation which = BUR value = 50 }
 		command = { type = sleepevent which = 179153 } #HAB: Reclaiming Vorlande
@@ -668,8 +676,8 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME322009A" #Give in to the Emperor's pressure
-		command = { type = secedeprovince which = HAB value = 374 } #Alsace
-		command = { type = secedeprovince which = HAB value = 373 } #Baden
+		command = { type = cedeprovince which = HAB value = 374 } #Alsace
+		command = { type = cedeprovince which = HAB value = 373 } #Baden
 		command = { type = relation which = HAB value = 50 }
 		command = { type = stability value = 1 }
 		command = { type = trigger which = 179009 } #Maximilian takes control of the Vorlande #HAB: Siegmund grows old
@@ -722,8 +730,8 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME322023A" #Give in to the Emperor's pressure
-		command = { type = secedeprovince which = HAB value = 374 } #Alsace
-		command = { type = secedeprovince which = HAB value = 373 } #Baden
+		command = { type = cedeprovince which = HAB value = 374 } #Alsace
+		command = { type = cedeprovince which = HAB value = 373 } #Baden
 		command = { type = relation which = HAB value = 50 }
 		command = { type = stability value = 1 }
 		command = { type = trigger which = 179009 } #Maximilian takes control of the Vorlande #HAB: Siegmund grows old
@@ -792,8 +800,8 @@ event = {
 
 	action_a = {
 		name = "OK"
-		command = { type = secedeprovince which = BAY value = 374 } #Alsace
-		command = { type = secedeprovince which = BAY value = 373 } #Baden
+		command = { type = cedeprovince which = BAY value = 374 } #Alsace
+		command = { type = cedeprovince which = BAY value = 373 } #Baden
 		command = { type = treasury value = 70 }
 		command = { type = relation which = HAB value = -50 }
 	}
@@ -809,8 +817,8 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME322011A" #Give in to the Emperor's pressure
-		command = { type = secedeprovince which = HAB value = 374 } #Alsace
-		command = { type = secedeprovince which = HAB value = 373 } #Baden
+		command = { type = cedeprovince which = HAB value = 374 } #Alsace
+		command = { type = cedeprovince which = HAB value = 373 } #Baden
 		command = { type = relation which = HAB value = 50 }
 		command = { type = stability value = 1 }
 		command = { type = trigger which = 179009 } #Maximilian takes control of the Vorlande #HAB: Siegmund grows old
@@ -844,20 +852,20 @@ event = {
 		command = { type = independence which = LOR }
 		command = { type = independence which = WUR }
 		command = { type = independence which = BAY }
-		command = { type = secedeprovince which = BAY value = 348 } #Ansbach
+		command = { type = cedeprovince which = BAY value = 348 } #Ansbach
 		#command = { type = independence which = THU } #Bayreuth
 		command = { type = independence which = MAI }
 		command = { type = independence which = PFA }
-		command = { type = secedeprovince which = PFA value = 347 } #Würzburg
+		command = { type = cedeprovince which = PFA value = 347 } #Würzburg
 		command = { type = independence which = SAV }
-		command = { type = secedeprovince which = SAV value = 404 } #Piemonte
+		command = { type = cedeprovince which = SAV value = 404 } #Piemonte
 		command = { type = independence which = GEN }
 		command = { type = independence which = PAR }
 		command = { type = independence which = TOS }
 		command = { type = independence which = PAM }
 		#command = { type = independence which = SLZ } #Salzburg
-		command = { type = secedeprovince which = BUR value = 387 } #Franche-Comté
-		command = { type = secedeprovince which = BUR value = 409 } #Bourgogne
+		command = { type = cedeprovince which = BUR value = 387 } #Franche-Comté
+		command = { type = cedeprovince which = BUR value = 409 } #Bourgogne
 		command = { type = sleepmonarch which = 0140003 } #Maximilian I - inheritance by death of Sigismund
 		command = { type = wakemonarch which = 0140011 } #Maximilian I - inheritance by abdication of Sigismund
 		command = { type = trigger which = 179003 } #HAB: Austria inherits Tirol

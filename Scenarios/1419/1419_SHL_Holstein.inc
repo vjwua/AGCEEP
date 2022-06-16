@@ -46,8 +46,8 @@ country = {
 	controlledprovinces = {
 		306
 	}
-	nationalprovinces = {
-		306
+	claimedprovinces = {
+		306 #province 306 contains parts of South-Slesvig, the Republic of Dithmarschen, Holstein-Pinneberg, Holstein-Kiel and Holstein-Gottorp as well as the Hansecities of Hamburg and Lübeck
 	}
 	city = {
 		fortress = { level = 1 }

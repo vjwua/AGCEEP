@@ -91,7 +91,7 @@ event = {
 	country = CAS
 	name = "EVENTNAME142006" #Granada buys peace
 	desc = "EVENTHIST142006"
-	#-#The loss of Gibraltar in their last war had convince the emir of Granada to renew vassalage and pay tribute to the King of Castile. Given the troubles that Castile has with some nobles, perhaps it would be wise to delay the war of Granada.
+	#-#The loss of Gibraltar in their last war had convinced the emir of Granada to renew vassalage and pay tribute to the King of Castile. Given the troubles that Castile has with some nobles, perhaps it would be wise to delay the war of Granada.
 
 	action_a = {
 		name = "ACTIONNAME142006A" #We accept their submission. Granada can wait.
@@ -100,10 +100,12 @@ event = {
 	}
 	action_b = {
 		name = "ACTIONNAME142006B" #We don't accept their vassalage. Granada must die.
-		command = { type = stability value = 1 }
+		command = { type = stability value = -1 }
 		command = { type = relation which = GRA value = -200 }
-	}
-}
+		command = { type = addcore_claim which = 445 } 
+		command = { type = addcore_claim which = 444 } 
+			}
+		}
 
 #(1426-1465) The morisco royal guard
 #by Fodoron
@@ -156,7 +158,7 @@ event = {
 event = {
 	id = 142019
 	trigger = {
-		exists = GRA
+		neighbour = GRA
 	}
 	random = no
 	country = CAS
@@ -173,11 +175,14 @@ event = {
 	}
 	action_b = {
 		name = "ACTIONNAME142019B" #Finish the moors
+		command = { type = stability value = -1 }
 		command = { type = relation which = GRA value = -50 }
 		command = { type = treasury value = -50 }
 		command = { type = inf which = -1 value = 5000 }
+		command = { type = addcore_claim which = 445 } 
+		command = { type = addcore_claim which = 444 } 
+		}
 	}
-}
 
 #-----------------------------------------------------------------------------------------------
 #Papal Mediation in the Canaries
@@ -196,14 +201,16 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME142000A" #Send the ambassador to Rome and appeal
+		command = { type = discover which = 399 }
 		command = { type = relation which = POR value = -25 }
 		command = { type = trigger which = 260000 } #POR: The Pope supports Portuguese expansion
 	}
 	action_b = {
 		name = "ACTIONNAME142000B" #Deal with it ourselves
 		command = { type = relation which = PAP value = -25 }
+		command = { type = discover which = 979 }
 		command = { type = relation which = POR value = -25 }
-		command = { type = casusbelli which = POR value = 24 }
+		command = { type = addcore_casusbelli which = 817 } 
 		command = { type = INF which = 817 value = 2000 } #The Canary Islands
 		command = { type = trigger which = 260000 } #POR: The Pope supports Portuguese expansion
 		command = { type = sleepevent which = 251002 } #PAP: The Castilians appeal our Canarian resolution
@@ -222,7 +229,7 @@ event = {
 	action_a = {
 		name = "ACTIONNAME142001A" #Let's teach them manners
 		command = { type = relation which = POR value = -25 }
-		command = { type = casusbelli which = POR value = 24 }
+		command = { type = addcore_casusbelli which = 817 } 
 		command = { type = INF which = 817 value = 2000 } #The Canary Islands
 	}
 }
@@ -237,6 +244,7 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME142002A" #The Canary islands are ours
+		command = { type = addcore_claim which = 817 } 
 		command = { type = stability value = 1 }
 		command = { type = DIP which = 2 value = 12 }
 		command = { type = colonists value = 1 }
@@ -286,7 +294,7 @@ event = {
 	country = CAS
 	name = "EVENTNAME142020" #The battle of Olmedo
 	desc = "EVENTHIST142020"
-	#-#Although the war was initially favorable to Alvaro de Luna, the capture of Medina by the King of Navarre in 1441 left the King vulnerable, and Alvaro had to escape to save his life. Juan II became a prisoner of the King of Navarre until everybody became tired of him running the show. Even Prince Enrique with his favourite Juan Pacheco took the side of his father and helped him escape in 1444. The King, Prince Enrique and Alvaro de Luna joined forces against the most powerful nobles of Castile leaded by the King of Navarre and the infante Enrique. The battle took place at Olmedo on May 19, 1445 and it was a clear victory for Alvaro de Luna and the King. More importantly, the old infante Enrique died from his wounds a few days later finally bringing peace to Castile. As he was the Great Master of the powerful Order of St. James, the King invested Alvaro de Luna with this title, the most prestigious in Spain. But his rival and rising star Juan Pacheco, favourite of Prince Enrique, was made Marquis of Villena. Confident by his triumph the old Constable started making mistakes. He tried to make his post and honors hereditary to his son, and he arranged the wedding of Juan II, now a widower, with the young Princess Isabel of Portugal against his wishes. Isabel hated the old Constable because the power he had over the King, and Juan, always weak, could not resist his young wife wishes.
+	#-#Although the war was initially favorable to Alvaro de Luna, the capture of Medina by the King of Navarre in 1441 left the King vulnerable, and Alvaro had to escape to save his life. Juan II became a prisoner of the King of Navarre until everybody became tired of him running the show. Even Prince Enrique with his favourite Juan Pacheco took the side of his father and helped him escape in 1444. The King, Prince Enrique and Alvaro de Luna joined forces against the most powerful nobles of Castile lead by the King of Navarre and the infante Enrique. The battle took place at Olmedo on May 19, 1445 and it was a clear victory for Alvaro de Luna and the King. More importantly, the old infante Enrique died from his wounds a few days later finally bringing peace to Castile. As he was the Great Master of the powerful Order of St. James, the King invested Alvaro de Luna with this title, the most prestigious in Spain. But his rival and rising star Juan Pacheco, favourite of Prince Enrique, was made Marquis of Villena. Confident by his triumph the old Constable started making mistakes. He tried to make his post and honors hereditary to his son, and he arranged the wedding of Juan II, now a widower, with the young Princess Isabel of Portugal against his wishes. Isabel hated the old Constable because the power he had over the King, and Juan, always weak, could not resist his young wife wishes.
 
 	date = { day = 19 month = may year = 1445 }
 
@@ -331,6 +339,7 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME7104A" #The divorce is a peerless scandal!
+		command = { type = breakdynastic which = NAV }
 		command = { type = stability value = -2 }
 		command = { type = relation which = NAV value = -100 }
 	}
@@ -356,7 +365,7 @@ event = {
 		name = "ACTIONNAME142021A" #Accept their offer
 		command = { type = relation which = ARG value = -25 }
 		command = { type = stability value = 1 }
-		command = { type = addcore which = 429 } #Catalonia
+		command = { type = addcore_casusbelli which = 429 } #Catalonia
 	}
 	action_b = {
 		name = "ACTIONNAME142021B" #Reject their offer
@@ -380,10 +389,11 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME142022A" #I have lost Navarre and Barcelona
+		command = { type = discover which = 385 }
 		command = { type = stability value = -1 }
 		command = { type = relation which = FRA value = -25 }
 		command = { type = DIP which = -2 value = 60 }
-		command = { type = removecore which = 429 } #Catalonia
+		command = { type = removecore_national which = 429 } #Catalonia
 	}
 }
 
@@ -517,42 +527,42 @@ event = {
 	action_a = {
 		name = "ACTIONNAME142004A" #The Portuguese have accepted our generous offer
 		command = { type = stability value = 1 } #end of the war
-		command = { type = addcore which = 817 } #The Canary Islands
+		command = { type = addcore_claim which = 817 } #The Canary Islands
 		command = { type = naval value = 200 }
-		command = { type = secedeprovince which = POR value = 733 } #Fez
-		command = { type = secedeprovince which = POR value = 806 } #Toubkal
-		command = { type = secedeprovince which = POR value = 805 } #Sahara
-		command = { type = secedeprovince which = POR value = 804 } #Tassaret
-		command = { type = secedeprovince which = POR value = 1595 } #Anti Atlas
-		command = { type = secedeprovince which = POR value = 1596 } #Mdennan
-		command = { type = secedeprovince which = POR value = 1597 } #Azaouad
-		command = { type = secedeprovince which = POR value = 803 } #Nouadibuh
-		command = { type = secedeprovince which = POR value = 802 } #Nouakchott
-		command = { type = secedeprovince which = POR value = 801 } #Louga
-		command = { type = secedeprovince which = POR value = 800 } #Senegal
-		command = { type = secedeprovince which = POR value = 799 } #Dakar
-		command = { type = secedeprovince which = POR value = 798 } #Gambia
-		command = { type = secedeprovince which = POR value = 797 } #Casamance
-		command = { type = secedeprovince which = POR value = 796 } #Guinea
-		command = { type = secedeprovince which = POR value = 795 } #Leone
-		command = { type = secedeprovince which = POR value = 794 } #Palanas
-		command = { type = secedeprovince which = POR value = 793 } #Ivoria
-		command = { type = secedeprovince which = POR value = 792 } #Accra
-		command = { type = secedeprovince which = POR value = 791 } #Nigeria
-		command = { type = secedeprovince which = POR value = 790 } #Douala
-		command = { type = secedeprovince which = POR value = 789 } #Kribi
-		command = { type = secedeprovince which = POR value = 818 } #Cape Verde
-		command = { type = secedeprovince which = POR value = 816 } #Fernando Po
-		command = { type = secedeprovince which = POR value = 823 } #The Azores
-		command = { type = secedeprovince which = POR value = 434 } #Oporto
-		command = { type = secedeprovince which = POR value = 442 } #Algarve
+		command = { type = cedeprovince which = POR value = 733 } #Fez
+		command = { type = cedeprovince which = POR value = 806 } #Toubkal
+		command = { type = cedeprovince which = POR value = 805 } #Sahara
+		command = { type = cedeprovince which = POR value = 804 } #Tassaret
+		command = { type = cedeprovince which = POR value = 1595 } #Anti Atlas
+		command = { type = cedeprovince which = POR value = 1596 } #Mdennan
+		command = { type = cedeprovince which = POR value = 1597 } #Azaouad
+		command = { type = cedeprovince which = POR value = 803 } #Nouadibuh
+		command = { type = cedeprovince which = POR value = 802 } #Nouakchott
+		command = { type = cedeprovince which = POR value = 801 } #Louga
+		command = { type = cedeprovince which = POR value = 800 } #Senegal
+		command = { type = cedeprovince which = POR value = 799 } #Dakar
+		command = { type = cedeprovince which = POR value = 798 } #Gambia
+		command = { type = cedeprovince which = POR value = 797 } #Casamance
+		command = { type = cedeprovince which = POR value = 796 } #Guinea
+		command = { type = cedeprovince which = POR value = 795 } #Leone
+		command = { type = cedeprovince which = POR value = 794 } #Palanas
+		command = { type = cedeprovince which = POR value = 793 } #Ivoria
+		command = { type = cedeprovince which = POR value = 792 } #Accra
+		command = { type = cedeprovince which = POR value = 791 } #Nigeria
+		command = { type = cedeprovince which = POR value = 790 } #Douala
+		command = { type = cedeprovince which = POR value = 789 } #Kribi
+		command = { type = cedeprovince which = POR value = 818 } #Cape Verde
+		command = { type = cedeprovince which = POR value = 816 } #Fernando Po
+		command = { type = cedeprovince which = POR value = 823 } #The Azores
+		command = { type = cedeprovince which = POR value = 434 } #Oporto
+		command = { type = cedeprovince which = POR value = 442 } #Algarve
 	}
 	action_b = {
 		name = "ACTIONNAME142004B" #On second thought we are being too generous
 		command = { type = stability value = -2 } #war continues
 		command = { type = relation which = POR value = -50 }
 		command = { type = trigger which = 260004 } #POR: Treaty of Alcacovas Rejected
-		command = { type = addcore which = 796 } #Guinea claimed by Juan II and Isabel I for Castile
+		command = { type = addcore_claim which = 796 } #Guinea claimed by Juan II and Isabel I for Castile
 		command = { type = breakdynastic which = POR }
 		command = { type = treasury value = 50 } #Portuguese gold and slave routes attacked
 	}
@@ -570,7 +580,7 @@ event = {
 		name = "ACTIONNAME142025A" #Damn Portuguese!
 		command = { type = stability value = -1 } #war continues
 		command = { type = relation which = POR value = -50 }
-		command = { type = addcore which = 796 } #Guinea claimed by Juan II and Isabel I for Castile
+		command = { type = addcore_claim which = 796 } #Guinea claimed by Juan II and Isabel I for Castile
 		command = { type = treasury value = 50 } #Portuguese gold and slave routes attacked
 		command = { type = casusbelli which = POR value = 24 }
 	}
@@ -670,16 +680,16 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME142013A" #Isabel and Fernando will rule Aragon jointly from now on
-		command = { type = addcore which = 427 } #Gerona
-		command = { type = addcore which = 429 } #Catalonia
-		command = { type = addcore which = 430 } #Aragon
-		command = { type = addcore which = 437 } #Valencia
-		command = { type = addcore which = 821 } #The Baleares
-		command = { type = addcore which = 395 } #Messina
-		command = { type = addcore which = 396 } #Sicily
-		command = { type = addcore which = 397 } #Sardinia
-		command = { type = addcore which = 426 } #Roussillon
-		command = { type = addcore which = 819 } #Malta
+		command = { type = addcore_claim which = 427 } #Gerona
+		command = { type = addcore_claim which = 429 } #Catalonia
+		command = { type = addcore_claim which = 430 } #Aragon
+		command = { type = addcore_claim which = 437 } #Valencia
+		command = { type = addcore_claim which = 821 } #The Baleares
+		command = { type = addcore_claim which = 395 } #Messina
+		command = { type = addcore_claim which = 396 } #Sicily
+		command = { type = addcore_claim which = 397 } #Sardinia
+		command = { type = addcore_claim which = 426 } #Roussillon
+		command = { type = addcore_claim which = 819 } #Malta
 		command = { type = domestic which = CENTRALIZATION value = -1 }
 		command = { type = add_countryculture which = italian }
 		command = { type = add_countryculture which = amazonian } #Catalan
@@ -773,12 +783,12 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME142016A" #Yes, Castile shall become Spain
-		command = { type = addcore which = 427 } #Gerona
-		command = { type = addcore which = 429 } #Catalonia
-		command = { type = addcore which = 430 } #Aragon
-		command = { type = addcore which = 437 } #Valencia
-		command = { type = addcore which = 821 } #The Baleares
-		command = { type = addcore which = 428 } #Navarra
+		command = { type = addcore_claim which = 427 } #Gerona
+		command = { type = addcore_claim which = 429 } #Catalonia
+		command = { type = addcore_claim which = 430 } #Aragon
+		command = { type = addcore_claim which = 437 } #Valencia
+		command = { type = addcore_claim which = 821 } #The Baleares
+		command = { type = addcore_claim which = 428 } #Navarra
 		command = { type = flagname which = "" }
 		command = { type = country which = SPA }
 		command = { type = domestic which = centralization value = 1 }

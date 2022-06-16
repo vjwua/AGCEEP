@@ -229,7 +229,7 @@ country = {
 	technology = {
 		land = { level = 0 value = 1 }
 		naval = { level = 0 value = 1 }
-		stability = { level = 3 value = 0 }
+		stability = { level = 0 value = 0 }
 		trade = { level = 0 value = 1 }
 		infra = { level = 0 value = 1 }
 		group = exotic

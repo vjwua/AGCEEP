@@ -21,7 +21,10 @@ country = {
 		relation = { tag = HAS value = 75 }
 	}
 	knownprovinces = {
-		791 792 793 794 1487 1488 1489 1490 1491 1492 1493 1494 1495 1496 1497 1498 1499 1500 1501 1502
+			"Ivory"
+			#791 792 793 794 1487 1488 1489 1490 1491 1492 1493 1494 
+			1495 
+			#1496 1497 1498 1499 1500 1501 1502
 	}
 	ownedprovinces = {
 		791 792 793
@@ -30,8 +33,10 @@ country = {
 		791 792 793
 	}
 	nationalprovinces = {
-		792
-	}
+			}
+	claimedprovinces = {
+			792 
+			}
 	city = {
 		fortress = { level = 1 }
 		population = 15000

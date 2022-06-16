@@ -18,17 +18,19 @@ event = {
 	action_a = {
 		name = "ACTIONNAME351000A" #Obey the King and close the mint
 		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = DAU value = 50 }
 		command = { type = stability value = 1 }
 	}
 	action_b = {
 		name = "ACTIONNAME351000B" #Keep the mint
+		command = { type = breakvassal which = DAU }
 		command = { type = relation which = FRA value = -100 }
+		command = { type = relation which = DAU value = -100 }
 		command = { type = inflation value = 5 }
 		command = { type = treasury value = 75 }
 		command = { type = provincetax which = -2 value = 1 }
-		command = { type = stability value = -1 }
+			}
 	}
-}
 
 #(1436) Territorial consolidation
 event = {
@@ -45,6 +47,7 @@ event = {
 
 	action_a = {
 		name = "GREAT"
+		command = { type = addcore_national which = 425 }
 		command = { type = provincetax which = -2 value = 2 }
 		command = { type = provincemanpower which = -2 value = 1 }
 		command = { type = population which = -2 value = 3000 }
@@ -67,7 +70,10 @@ event = {
 		name = "ACTIONNAME351002A" #An expedite path
 		command = { type = stability value = 1 }
 		command = { type = relation which = ARG value = 25 }
+		command = { type = discover which = 429 }
+		command = { type = discover which = 385 }
 		command = { type = relation which = NAV value = 50 }
+		command = { type = addcore_casusbelli which = 428 }
 	}
 }
 
@@ -87,6 +93,7 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME351003A" #Rule separately
+		command = { type = addcore_casusbelli which = 428 }
 		command = { type = stability value = 2 }
 		command = { type = relation which = NAV value = 400 }
 		command = { type = ADM which = 2 value = 24 }
@@ -97,7 +104,8 @@ event = {
 		command = { type = stability value = -2 }
 		command = { type = revolt which = -1 }
 		command = { type = revolt which = -1 }
-		command = { type = addcore which = 428 } #Navarra
+		command = { type = addcore_claim which = 428 } #Navarra
+		command = { type = discover which = 430 }
 		command = { type = flagname which = "Navarre" }
 		command = { type = trigger which = 241000 } #NAV: The Foix inheritance (AI)
 		command = { type = trigger which = 241001 } #NAV: The Foix inheritance
@@ -122,6 +130,7 @@ event = {
 	action_a = {
 		name = "GREAT"
 		command = { type = stability value = 1 }
+		command = { type = discover which = 430 }
 		command = { type = inherit which = NAV } #Navarra
 		command = { type = add_countryculture which = basque }
 	}
@@ -152,6 +161,7 @@ event = {
 		command = { type = flagname which = "" }
 		command = { type = country which = NAV } #Navarra
 		command = { type = capital which = 428 } #Navarra
+		command = { type = discover which = 430 }
 		command = { type = vp value = 50 }
 	}
 }
@@ -194,6 +204,7 @@ event = {
 	action_a = {
 		name = "ACTIONNAME351007A" #Support Catherine and Jean d'Albret
 		command = { type = stability value = 1 }
+		command = { type = discover which = 422 }
 		command = { type = revoltrisk which = 36 value = 6 }
 		command = { type = revolt which = -1 }
 		command = { type = revolt which = -1 }
@@ -201,6 +212,7 @@ event = {
 	action_b = {
 		name = "ACTIONNAME351007B" #Support the Vicomte de Foix-Narbonne
 		command = { type = stability value = -2 }
+		command = { type = discover which = 423 }
 		command = { type = revoltrisk which = 48 value = 4 }
 		command = { type = revolt which = -1 }
 		command = { type = revolt which = -1 }
@@ -240,34 +252,29 @@ event = {
 		command = { type = capital which = 385 } #Ile de France
 		command = { type = flagname which = "" }
 		command = { type = country which = FRA }
-		command = { type = addcore which = 376 } #Champagne
-		command = { type = addcore which = 382 } #Calais
-		command = { type = addcore which = 383 } #Picardie
-		command = { type = addcore which = 384 } #Caux
-		command = { type = addcore which = 385 } #Ile de France
-		command = { type = addcore which = 386 } #Nivernais
-		#command = { type = addcore which = 387 } #Franche-Comté
-		command = { type = addcore which = 406 } #Provence
-		command = { type = addcore which = 407 } #Dauphiné
-		command = { type = addcore which = 408 } #Lyonnais
-		command = { type = addcore which = 409 } #Bourgogne
-		command = { type = addcore which = 410 } #Berri
-		command = { type = addcore which = 411 } #Orleanais
-		command = { type = addcore which = 412 } #Maine
-		command = { type = addcore which = 413 } #Normandie
-		command = { type = addcore which = 414 } #Armor
-		command = { type = addcore which = 415 } #Bretagne
-		command = { type = addcore which = 416 } #Morbihan
-		command = { type = addcore which = 417 } #Vendée
-		command = { type = addcore which = 418 } #Poitou
-		command = { type = addcore which = 419 } #Limousin
-		command = { type = addcore which = 420 } #Auvergne
-		command = { type = addcore which = 421 } #Cévennes
-		command = { type = addcore which = 422 } #Languedoc
-		command = { type = addcore which = 423 } #Guyenne
-		command = { type = addcore which = 424 } #Gascogne
-		command = { type = addcore which = 425 } #Béarn
-		#command = { type = addcore which = 426 } #Roussillon
+		command = { type = addcore_claim which = 376 } #Champagne
+		command = { type = addcore_claim which = 382 } #Calais
+		command = { type = addcore_claim which = 383 } #Picardie
+		command = { type = addcore_claim which = 384 } #Caux
+		command = { type = addcore_claim which = 385 } #Ile de France
+		command = { type = addcore_claim which = 386 } #Nivernais
+		command = { type = addcore_claim which = 406 } #Provence
+		command = { type = addcore_claim which = 407 } #Dauphiné
+		command = { type = addcore_claim which = 408 } #Lyonnais
+		command = { type = addcore_claim which = 409 } #Bourgogne
+		command = { type = addcore_claim which = 410 } #Berri
+		command = { type = addcore_claim which = 411 } #Orleanais
+		command = { type = addcore_claim which = 412 } #Maine
+		command = { type = addcore_claim which = 413 } #Normandie
+		command = { type = addcore_claim which = 417 } #Vendée
+		command = { type = addcore_claim which = 418 } #Poitou
+		command = { type = addcore_claim which = 419 } #Limousin
+		command = { type = addcore_claim which = 420 } #Auvergne
+		command = { type = addcore_claim which = 421 } #Cévennes
+		command = { type = addcore_claim which = 422 } #Languedoc
+		command = { type = addcore_claim which = 423 } #Guyenne
+		command = { type = addcore_claim which = 424 } #Gascogne
+		command = { type = addcore_claim which = 425 } #Béarn
 		command = { type = INF which = 385 value = 15000 } #Ile de France
 		command = { type = CAV which = 385 value = 10000 } #Ile de France
 		command = { type = ART which = 385 value = 30 } #Ile de France

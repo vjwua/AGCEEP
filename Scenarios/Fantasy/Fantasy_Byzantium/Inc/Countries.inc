@@ -221,7 +221,7 @@ country = {
 		1016 1017 1057 1058 1331 1361 1362 1466 1469 1470
 	}
 	ownedprovinces = { }
-	controlledprovinces = { }
+	controlledprovinces = { 399 }
 	nationalprovinces = { }
 	monarchtable = { }
 	leadertable = { }

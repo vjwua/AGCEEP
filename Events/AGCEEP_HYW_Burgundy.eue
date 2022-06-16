@@ -38,6 +38,8 @@ event = {
 		name = "ACTIONNAME137051A" #Let Us respect the Agreement
 		command = { type = stability value = -1 }
 		command = { type = war which = ENG }
+		command = { type = discover which = 384 }
+		command = { type = discover which = 413 }
 		command = { type = INF which = -2 value = 5000 }
 		command = { type = CAV which = -2 value = 2000 }
 		command = { type = relation which = ENG value = -50 }
@@ -196,9 +198,8 @@ event = {
 	action_a = {
 		name = "ACTIONNAME137056A" #Support the Rights of Henry of Lancaster
 		command = { type = stability value = 1 }
-		command = { type = breakvassal which = FRA }
-		command = { type = addcore which = 376 } #Champagne
-		command = { type = addcore which = 386 } #Nivernais
+		command = { type = addcore_claim which = 376 } #Champagne
+		command = { type = addcore_claim which = 386 } #Nivernais
 		command = { type = relation which = ENG value = 50 }
 		command = { type = relation which = FRA value = -25 }
 		command = { type = relation which = DAU value = -100 }
@@ -223,7 +224,7 @@ event = {
 	#-#After the refusal of Philip the Good to accept the Treaty of Troyes, Henry V decided to take up arms immediately. The Dauphin Charles remained isolated south of the Loire, but could not be expected to continue in such a state for long. Philip needed to decide whethter he would lead the French against the English invaders, or effectively withdraw. On the one hand, he was risking his Duchy against the English to win the unanimous support of northern France. It was feasible that Henry V would respond with an alliance with the Dauphin, which would spell certain doom for Philip. On the other hand, Philip could effectively withdraw from the field, burying vengeance in the meantime, and leave northern France for the Dauphinists and the English to waste away over.
 
 	action_a = {
-		name = "ACTIONNAME137057A" #We'll withdraw, tacitly acknowledging the Dauphin #We'll withdraw, tacitly acknowledging the Dauphin
+		name = "ACTIONNAME137057A" #We'll withdraw, tacitly acknowledging the Dauphin 
 		command = { type = stability value = -1 }
 		command = { type = relation which = DAU value = 50 }
 		command = { type = relation which = FRA value = -50 }
@@ -286,14 +287,14 @@ event = {
 		command = { type = relation which = DAU value = 200 }
 		command = { type = relation which = PRO value = 50 }
 		command = { type = alliance which = DAU }
-		command = { type = secedeprovince which = DAU value = 376 } #Champagne
-		command = { type = secedeprovince which = DAU value = 384 } #Caux
-		command = { type = secedeprovince which = DAU value = 385 } #Ile de France
-		command = { type = secedeprovince which = DAU value = 386 } #Nivernais
-		command = { type = secedeprovince which = DAU value = 408 } #Lyonnais
-		command = { type = secedeprovince which = DAU value = 411 } #Orleanais
-		command = { type = secedeprovince which = DAU value = 413 } #Normandie
-		command = { type = addcore which = 383 } #Picardie
+		command = { type = cedeprovince which = DAU value = 376 } #Champagne
+		command = { type = cedeprovince which = DAU value = 384 } #Caux
+		command = { type = cedeprovince which = DAU value = 385 } #Ile de France
+		command = { type = cedeprovince which = DAU value = 386 } #Nivernais
+		command = { type = cedeprovince which = DAU value = 408 } #Lyonnais
+		command = { type = cedeprovince which = DAU value = 411 } #Orleanais
+		command = { type = cedeprovince which = DAU value = 413 } #Normandie
+		command = { type = addcore_claim which = 383 } #Picardie
 		command = { type = trigger which = 361018 } #DAU: King Charles VII
 		command = { type = badboy value = -2 }
 	}
@@ -303,10 +304,10 @@ event = {
 		command = { type = revoltrisk which = 60 value = 2 }
 		command = { type = relation which = DAU value = -200 }
 		command = { type = relation which = PRO value = -50 }
-		command = { type = badboy value = 2 }
+		#command = { type = badboy value = 2 }
 		command = { type = trigger which = 361019 } #DAU: Burgundy Refuses the Rights of Charles
 		#Must be after the triggering of DAU_361019 and war command involved 
-		command = { type = inherit which = FRA }
+		command = { type = annex which = FRA } #changed inherit to annex - additional giving of badboy no longer necessary
 	}
 }
 #(1422) Henry VI Inherits the Crown of France
@@ -464,7 +465,7 @@ event = {
 
 	action_a = {
 		name = "GREAT"
-		command = { type = inherit which = DAU }
+		command = { type = annex which = DAU }
 		command = { }
 	}
 }
@@ -511,7 +512,7 @@ event = {
 		command = { type = treasury value = 100 }
 		command = { type = relation which = DAU value = 100 }
 		command = { type = relation which = ENG value = -50 }
-		command = { type = secedeprovince which = DAU value = 376 } #Champagne
+		command = { type = cedeprovince which = DAU value = 376 } #Champagne
 		command = { type = stability value = 1 }
 	}
 	action_b = {
@@ -602,7 +603,7 @@ event = {
 	action_a = {
 		name = "ACTIONNAME137071A" #Infamous Witch!
 		command = { type = stability value = -1 }
-		command = { type = secedeprovince which = FRA value = 383 } #Picardie
+		command = { type = cedeprovince which = FRA value = 383 } #Picardie
 		command = { type = desertion which = -1 value = 5000 }
 		command = { type = domestic which = offensive value = -1 }
 		command = { type = relation which = FRA value = -100 }
@@ -626,28 +627,28 @@ event = {
 		command = { type = stability value = 1 }
 		command = { type = relation which = FRA value = 300 }
 		command = { type = relation which = ENG value = -300 }
-		command = { type = secedeprovince which = FRA value = 385 } #Ile de France
-		command = { type = secedeprovince which = FRA value = 384 } #Caux
-		command = { type = secedeprovince which = FRA value = 376 } #Champagne
-		command = { type = secedeprovince which = FRA value = 386 } #Nivernais
-		command = { type = secedeprovince which = FRA value = 408 } #Lyonnais
-		command = { type = secedeprovince which = FRA value = 411 } #Orleanais
-		command = { type = secedeprovince which = FRA value = 413 } #Normandie
-		command = { type = secedeprovince which = FRA value = 407 } #Dauphiné
-		command = { type = secedeprovince which = FRA value = 410 } #Berri
-		command = { type = secedeprovince which = FRA value = 411 } #Orleanais
-		command = { type = secedeprovince which = FRA value = 420 } #Auvergne
-		command = { type = secedeprovince which = FRA value = 421 } #Cévennes
-		command = { type = secedeprovince which = FRA value = 422 } #Languedoc
-		command = { type = secedeprovince which = FRA value = 419 } #Limousin
-		command = { type = secedeprovince which = FRA value = 417 } #Vendée
-		command = { type = secedeprovince which = FRA value = 418 } #Poitou
-		command = { type = secedeprovince which = FRA value = 423 } #Guyenne
-		command = { type = secedeprovince which = FRA value = 424 } #Gascogne
-		command = { type = secedeprovince which = BEA value = 425 } #Béarn
-		command = { type = secedeprovince which = PRO value = 412 } #Maine
-		command = { type = removecore which = 376 } #Champagne
-		command = { type = removecore which = 386 } #Nivernais
+		command = { type = cedeprovince which = FRA value = 385 } #Ile de France
+		command = { type = cedeprovince which = FRA value = 384 } #Caux
+		command = { type = cedeprovince which = FRA value = 376 } #Champagne
+		command = { type = cedeprovince which = FRA value = 386 } #Nivernais
+		command = { type = cedeprovince which = FRA value = 408 } #Lyonnais
+		command = { type = cedeprovince which = FRA value = 411 } #Orleanais
+		command = { type = cedeprovince which = FRA value = 413 } #Normandie
+		command = { type = cedeprovince which = FRA value = 407 } #Dauphiné
+		command = { type = cedeprovince which = FRA value = 410 } #Berri
+		command = { type = cedeprovince which = FRA value = 411 } #Orleanais
+		command = { type = cedeprovince which = FRA value = 420 } #Auvergne
+		command = { type = cedeprovince which = FRA value = 421 } #Cévennes
+		command = { type = cedeprovince which = FRA value = 422 } #Languedoc
+		command = { type = cedeprovince which = FRA value = 419 } #Limousin
+		command = { type = cedeprovince which = FRA value = 417 } #Vendée
+		command = { type = cedeprovince which = FRA value = 418 } #Poitou
+		command = { type = cedeprovince which = FRA value = 423 } #Guyenne
+		command = { type = cedeprovince which = FRA value = 424 } #Gascogne
+		command = { type = cedeprovince which = BEA value = 425 } #Béarn
+		command = { type = cedeprovince which = PRO value = 412 } #Maine
+		command = { type = removecore_national which = 376 } #Champagne
+		command = { type = removecore_national which = 386 } #Nivernais
 		command = { type = trigger which = 170307 } #FRA: Treaty of Arras
 	}
 	action_b = {
@@ -708,29 +709,25 @@ event = {
 		command = { type = country which = FRA }
 		command = { type = stability value = -2 }
 		command = { type = revoltrisk which = 60 value = 3 }
-		command = { type = addcore which = 376 } #Champagne
-		command = { type = addcore which = 382 } #Calais
-		command = { type = addcore which = 383 } #Picardie
-		command = { type = addcore which = 384 } #Caux
-		command = { type = addcore which = 385 } #Ile de France
-		command = { type = addcore which = 386 } #Nivernais
-		command = { type = addcore which = 406 } #Provence
-		command = { type = addcore which = 407 } #Dauphiné
-		command = { type = addcore which = 408 } #Lyonnais
-		command = { type = addcore which = 410 } #Berri
-		command = { type = addcore which = 411 } #Orleanais
-		command = { type = addcore which = 412 } #Maine
-		command = { type = addcore which = 413 } #Normandie
-		command = { type = addcore which = 417 } #Vendée
-		command = { type = addcore which = 418 } #Poitou
-		command = { type = addcore which = 419 } #Limousin
-		command = { type = addcore which = 420 } #Auvergne
-		command = { type = addcore which = 421 } #Cévennes
-		command = { type = addcore which = 422 } #Languedoc
-		command = { type = addcore which = 423 } #Guyenne
-		command = { type = addcore which = 424 } #Gascogne
-		command = { type = addcore which = 425 } #Béarn
-		command = { type = addcore which = 426 } #Roussillon
+		command = { type = addcore_claim which = 376 } #Champagne
+		command = { type = addcore_claim which = 383 } #Picardie
+		command = { type = addcore_claim which = 384 } #Caux
+		command = { type = addcore_claim which = 385 } #Ile de France
+		command = { type = addcore_national which = 386 } #Nivernais
+		command = { type = addcore_claim which = 407 } #Dauphiné
+		command = { type = addcore_claim which = 408 } #Lyonnais
+		command = { type = addcore_claim which = 410 } #Berri
+		command = { type = addcore_claim which = 411 } #Orleanais
+		command = { type = addcore_claim which = 412 } #Maine
+		command = { type = addcore_claim which = 413 } #Normandie
+		command = { type = addcore_claim which = 417 } #Vendée
+		command = { type = addcore_claim which = 418 } #Poitou
+		command = { type = addcore_claim which = 419 } #Limousin
+		command = { type = addcore_claim which = 420 } #Auvergne
+		command = { type = addcore_claim which = 421 } #Cévennes
+		command = { type = addcore_claim which = 422 } #Languedoc
+		command = { type = addcore_claim which = 423 } #Guyenne
+		command = { type = addcore_claim which = 424 } #Gascogne
 		command = { type = province_revoltrisk which = 376 value = -5 } #Champagne
 		command = { type = province_revoltrisk which = 384 value = -5 } #Caux
 		command = { type = province_revoltrisk which = 385 value = -5 } #Ile de France
@@ -752,7 +749,7 @@ event = {
 		command = { type = province_revoltrisk which = 385 value = -5 } #Ile de France
 		command = { type = province_revoltrisk which = 386 value = -5 } #Nivernais
 		command = { type = province_revoltrisk which = 413 value = -5 } #Normandie
-		command = { type = removecore which = 385 } #Ile de France
+		command = { type = removecore_national which = 385 } #Ile de France
 		command = { type = sleepevent which = 137048 } #BUR: The end of the Dauphinist rebellion
 		command = { type = sleepevent which = 20100 } #BUR: The Crown of France
 	}
@@ -776,20 +773,20 @@ event = {
 		command = { type = capital which = 378 } #Brabant
 		command = { type = setflag which = [Lowlands] }
 		command = { type = add_countryculture which = dutch }
-		command = { type = addcore which = 376 } #Champagne
-		command = { type = addcore which = 383 } #Picardie
-		command = { type = addcore which = 386 } #Nivernais
-		command = { type = addcore which = 338 } #Geldre
+		command = { type = addcore_claim which = 376 } #Champagne
+		command = { type = addcore_claim which = 383 } #Picardie
+		command = { type = addcore_claim which = 386 } #Nivernais
+		command = { type = addcore_claim which = 338 } #Geldre
 		command = { type = INF which = -2 value = 3000 }
 		command = { type = CAV which = -2 value = 2000 }
 		command = { type = sleepevent which = 20100 } #BUR: The Crown of France
 	}
 	action_b = {
 		name = "ACTIONNAME137075B" #Rule from Dijon
-		command = { type = addcore which = 376 } #Champagne
-		command = { type = addcore which = 383 } #Picardie
-		command = { type = addcore which = 386 } #Nivernais
-		command = { type = addcore which = 338 } #Geldre
+		command = { type = addcore_claim which = 376 } #Champagne
+		command = { type = addcore_claim which = 383 } #Picardie
+		command = { type = addcore_claim which = 386 } #Nivernais
+		command = { type = addcore_claim which = 338 } #Geldre
 		command = { type = INF which = -2 value = 3000 }
 		command = { type = CAV which = -2 value = 2000 }
 		command = { type = sleepevent which = 75003 } #GEL: The sale of Guelders

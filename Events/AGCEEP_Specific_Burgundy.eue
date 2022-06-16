@@ -33,7 +33,8 @@ event = {
 	id = 3893
 	trigger = {
 		owned = { province = 379 data = -1 }
-	}
+		control = { province = 379 data = -1 }
+		}
 	random = no
 	country = BUR
 	name = "EVENTNAME3893" #The Duke of Gloucester and the Countess of Hainaut
@@ -103,8 +104,8 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME137011A" #Magnifique
-		command = { type = addcore which = 379 } #Artois
-		command = { type = addcore which = 339 } #Holland
+		command = { type = addcore_claim which = 379 } #Artois
+		command = { type = addcore_claim which = 339 } #Holland
 		command = { type = alliance which = LUX }
 		command = { type = relation which = LUX value = 100 }
 	}
@@ -133,6 +134,7 @@ event = {
 	id = 137301
 	trigger = {
 		owned = { province = 378 data = -1 }
+		control = { province = 378 data = -1 } #added in 159b5
 		NOT = { event = 182302 } #same event for HAU
 	}
 	random = no
@@ -339,8 +341,8 @@ event = {
 	action_a = {
 		name = "ACTIONNAME137000A" #Move to Brussels and focus expansion throughout the Lowlands
 		command = { type = stability value = -2 }
+		command = { type = addcore_national which = 378 } #Brabant
 		command = { type = capital which = 378 } #Brabant
-		command = { type = addcore which = 378 } #Brabant
 		command = { type = setflag which = [Lowlands] }
 		command = { type = add_countryculture which = dutch }
 		command = { type = sleepevent which = 20100 } #BUR: The Crown of France
@@ -414,10 +416,10 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME3776A" #Incorporate them
-		command = { type = addcore which = 378 } #Brabant
-		command = { type = addcore which = 340 } #Zeeland
-		command = { type = addcore which = 379 } #Artois
-		command = { type = addcore which = 339 } #Holland
+		command = { type = addcore_claim which = 378 } #Brabant
+		command = { type = addcore_claim which = 340 } #Zeeland
+		command = { type = addcore_claim which = 379 } #Artois
+		command = { type = addcore_claim which = 339 } #Holland
 		command = { type = inherit which = HAU }
 		command = { type = stability value = 2 }
 		command = { type = DIP which = 3 value = 36 }
@@ -437,10 +439,10 @@ event = {
 		command = { type = stability value = -1 }
 		command = { type = alliance which = HAU }
 		command = { type = relation which = HAU value = 100 }
-		command = { type = addcore which = 378 } #Brabant
-		command = { type = addcore which = 340 } #Zeeland
-		command = { type = addcore which = 379 } #Artois
-		command = { type = addcore which = 339 } #Holland
+		command = { type = addcore_casusbelli which = 378 } #Brabant
+		command = { type = addcore_casusbelli which = 340 } #Zeeland
+		command = { type = addcore_casusbelli which = 379 } #Artois
+		command = { type = addcore_casusbelli which = 339 } #Holland
 		command = { type = sleepleader which = 027307 } #Le Grand Bâtard (BUR)
 	}
 }
@@ -501,7 +503,7 @@ event = {
 	action_a = {
 		name = "ACTIONNAME137305A" #It seems fair to me
 		command = { type = treasury value = -200 }
-		command = { type = addcore which = 377 } #Luxembourg
+		command = { type = addcore_claim which = 377 } #Luxembourg
 		command = { type = dynastic which = LUX }
 		command = { type = vassal which = LUX }
 	}
@@ -523,8 +525,8 @@ event = {
 
 	action_a = {
 		name = "OK"
-		command = { type = inherit which = LUX }
-		command = { type = addcore which = 374 } #Alsace
+		command = { type = annex which = LUX }
+		command = { type = addcore_claim which = 374 } #Alsace
 		command = { type = stability value = 1 }
 	}
 }
@@ -578,7 +580,7 @@ event = {
 	}
 	action_b = {
 		name = "ACTIONNAME28004B" #Do not request the crown of Lotharingia
-		command = { type = relation which = HAB value = 50 } #should be HEI
+		command = { type = relation which = -7 value = 50 } 
 	}
 }
 #(1463) Philip the Good parleys with Emperor Frederick III -I-
@@ -625,7 +627,7 @@ event = {
 	}
 	action_b = {
 		name = "ACTIONNAME28004B" #Do not request the crown of Lotharingia
-		command = { type = relation which = HAB value = 50 } #should be HEI
+		command = { type = relation which = -7 value = 50 } 
 		command = { type = sleepevent which = 137049 } #BUR: Philip the Good parleys with Emperor Frederick III -II-
 	}
 }
@@ -669,7 +671,7 @@ event = {
 	}
 	action_b = {
 		name = "ACTIONNAME28004B" #Do not request the crown of Lotharingia
-		command = { type = relation which = HAB value = 50 } #should be HEI
+		command = { type = relation which = -7 value = 50 } 
 		command = { type = sleepevent which = 28007 } #BUR: Philip the Good parleys with Emperor Frederick III -I-
 	}
 }
@@ -685,20 +687,21 @@ event = {
 	action_a = {
 		name = "ACTIONNAME28006A" #God save the King!
 		command = { type = flagname which = "Lotharingia" }
-		command = { type = remove_countryculture which = french }
 		command = { type = add_countryculture which = german }
+		#command = { type = remove_countryculture which = french }
+		command = { type = badboy value = 5 } #added instead of removal of french in 159b5
 		command = { type = domestic which = CENTRALIZATION value = 3 }
-		command = { type = addcore which = 337 } #Friesen
-		command = { type = addcore which = 338 } #Geldre
-		command = { type = addcore which = 339 } #Holland
-		command = { type = addcore which = 340 } #Zeeland
-		command = { type = addcore which = 334 } #Munster
-		command = { type = addcore which = 335 } #Oldenburg
-		command = { type = addcore which = 343 } #Kleves
-		command = { type = addcore which = 344 } #Köln
-		command = { type = addcore which = 345 } #Pfalz
-		command = { type = addcore which = 375 } #Lorraine
-		command = { type = addcore which = 374 } #Alsace
+		command = { type = addcore_claim which = 337 } #Friesen
+		command = { type = addcore_claim which = 338 } #Geldre
+		command = { type = addcore_claim which = 339 } #Holland
+		command = { type = addcore_claim which = 340 } #Zeeland
+		command = { type = addcore_claim which = 334 } #Munster
+		command = { type = addcore_claim which = 335 } #Oldenburg
+		command = { type = addcore_claim which = 343 } #Kleves
+		command = { type = addcore_claim which = 344 } #Köln
+		command = { type = addcore_claim which = 345 } #Pfalz
+		command = { type = addcore_claim which = 375 } #Lorraine
+		command = { type = addcore_claim which = 374 } #Alsace
 		command = { type = DIP which = 2 value = 12 }
 		command = { type = relation which = KOL value = -50 }
 		command = { type = relation which = PFA value = -50 }
@@ -849,32 +852,25 @@ event = {
 		command = { type = INF which = 385 value = 15000 } #Ile de France
 		command = { type = CAV which = 385 value = 10000 } #Ile de France
 		command = { type = ART which = 385 value = 30 } #Ile de France
-		command = { type = addcore which = 376 } #Champagne
-		command = { type = addcore which = 382 } #Calais
-		command = { type = addcore which = 383 } #Picardie
-		command = { type = addcore which = 384 } #Caux
-		command = { type = addcore which = 385 } #Ile de France
-		command = { type = addcore which = 386 } #Nivernais
-		#command = { type = addcore which = 406 } #Provence
-		command = { type = addcore which = 407 } #Dauphiné
-		command = { type = addcore which = 408 } #Lyonnais
-		command = { type = addcore which = 410 } #Berri
-		command = { type = addcore which = 411 } #Orleanais
-		command = { type = addcore which = 412 } #Maine
-		command = { type = addcore which = 413 } #Normandie
-		#command = { type = addcore which = 414 } #Armor
-		#command = { type = addcore which = 415 } #Bretagne
-		#command = { type = addcore which = 416 } #Morbihan
-		command = { type = addcore which = 417 } #Vendée
-		command = { type = addcore which = 418 } #Poitou
-		command = { type = addcore which = 419 } #Limousin
-		command = { type = addcore which = 420 } #Auvergne
-		command = { type = addcore which = 421 } #Cévennes
-		command = { type = addcore which = 422 } #Languedoc
-		command = { type = addcore which = 423 } #Guyenne
-		command = { type = addcore which = 424 } #Gascogne
-		command = { type = addcore which = 425 } #Béarn
-		#command = { type = addcore which = 426 } #Roussillon
+		command = { type = addcore_national which = 376 } #Champagne
+		command = { type = addcore_claim which = 383 } #Picardie
+		command = { type = addcore_claim which = 384 } #Caux
+		command = { type = addcore_claim which = 385 } #Ile de France
+		command = { type = addcore_claim which = 386 } #Nivernais
+		command = { type = addcore_claim which = 407 } #Dauphiné
+		command = { type = addcore_claim which = 408 } #Lyonnais
+		command = { type = addcore_claim which = 410 } #Berri
+		command = { type = addcore_claim which = 411 } #Orleanais
+		command = { type = addcore_claim which = 412 } #Maine
+		command = { type = addcore_claim which = 413 } #Normandie
+		command = { type = addcore_claim which = 417 } #Vendée
+		command = { type = addcore_claim which = 418 } #Poitou
+		command = { type = addcore_claim which = 419 } #Limousin
+		command = { type = addcore_claim which = 420 } #Auvergne
+		command = { type = addcore_claim which = 421 } #Cévennes
+		command = { type = addcore_claim which = 422 } #Languedoc
+		command = { type = addcore_claim which = 423 } #Guyenne
+		command = { type = addcore_claim which = 424 } #Gascogne
 		command = { type = province_revoltrisk which = 376 value = -5 } #Champagne
 		command = { type = province_revoltrisk which = 384 value = -5 } #Caux
 		command = { type = province_revoltrisk which = 385 value = -5 } #Ile de France
@@ -952,8 +948,8 @@ event = {
 		name = "ACTIONNAME137029A" #We are treaty bound...
 		command = { type = treasury value = 200 }
 		command = { type = relation which = FRA value = -50 }
-		command = { type = secedeprovince which = FRA value = 383 } #Picardie
-		command = { type = removecore which = 383 }
+		command = { type = cedeprovince which = FRA value = 383 } #Picardie
+		command = { type = removecore_national which = 383 }
 	}
 }
 
@@ -970,10 +966,21 @@ event = {
 	action_a = {
 		name = "ACTIONNAME326028B" #Let's slay some infidels
 		command = { type = warships which = -1 value = 2 } #The Burgundian fleet
-		command = { type = casusbelli which = TUR value = 6 } #A crusade is a good reason to fight
-		command = { type = relation which = PAP value = 50 } #for fighting the Turk
+		command = { type = discover which = 936 }
+		command = { type = discover which = 925 }
 		command = { type = relation which = POR value = 50 }
-	}
+		command = { type = discover which = 441 }
+		command = { type = discover which = 979 }
+		command = { type = discover which = 980 }
+		command = { type = discover which = 982 }
+		command = { type = casusbelli which = TUR value = 6 } #A crusade is a good reason to fight
+		command = { type = casusbelli which = MOR value = 6 }
+		command = { type = relation which = PAP value = 50 } #for fighting the Turk
+		command = { type = discover which = 399 }
+		command = { type = discover which = 993 }
+		command = { type = relation which = TUR value = -50 }
+		command = { type = relation which = MOR value = -50 }
+			}
 	action_b = {
 		name = "ACTIONNAME326028A" #This Crusade is hopeless
 		command = { type = relation which = PAP value = -50 }
@@ -1022,7 +1029,7 @@ event = {
 		command = { type = stability value = 1 }
 		command = { type = relation which = BRI value = 50 }
 		command = { type = relation which = FRA value = -50 }
-		command = { type = addcore which = 383 } #Picardie
+		command = { type = addcore_claim which = 383 } #Picardie
 	}
 }
 
@@ -1037,7 +1044,8 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME137001A" #Buy the Habsburg Vorlande
-		command = { type = addcore which = 374 } #Alsace to be changed to new Sundgau province as soon as new map appears
+		command = { type = addcore_claim which = 374 } #Alsace to be changed to new Sundgau province as soon as new map appears
+		command = { type = addcore_casusbelli which = 388 } #Bern - Gransond and Murat/Murten
 		command = { type = treasury value = -130 }
 		command = { type = relation which = TYR value = 100 }
 		command = { type = relation which = HEL value = -100 }
@@ -1125,8 +1133,8 @@ event = {
 	action_a = {
 		name = "ACTIONNAME75004A" #Buy it
 		command = { type = treasury value = -200 }
-		command = { type = addcore which = 338 } #Geldre
-		command = { type = inherit which = GEL }
+		command = { type = addcore_claim which = 338 } #Geldre
+		command = { type = annex which = GEL }
 		command = { type = sleepevent which = 75010 } #GEL: Death of Charles of Egmont
 	}
 	action_b = {
@@ -1142,7 +1150,7 @@ event = {
 event = {
 	id = 20300
 	trigger = {
-		exists = HEL
+		neighbour = HEL
 		owned = { province = 374 data = -1 } #Alsace
 	}
 	random = no
@@ -1173,7 +1181,8 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME137017A" #Claim Alsace
-		command = { type = addcore which = 374 } #Alsace
+		command = { type = addcore_claim which = 374 } #Alsace - Sundgau and Breisgau
+		command = { type = addcore_claim which = 388 } #Bern - Grandson and Murten
 		command = { type = casusbelli which = STR value = 24 }
 		command = { type = vp value = 1 }
 	}
@@ -1225,26 +1234,26 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME137031A" #There is nothing we can do
-		command = { type = secedeprovince which = FRA value = 376 } #Champagne
-		command = { type = secedeprovince which = FRA value = 384 } #Caux
-		command = { type = secedeprovince which = FRA value = 385 } #Ile de France
-		command = { type = secedeprovince which = FRA value = 386 } #Nivernais
-		command = { type = secedeprovince which = FRA value = 407 } #Dauphiné
-		command = { type = secedeprovince which = FRA value = 408 } #Lyonnais
-		command = { type = secedeprovince which = FRA value = 409 } #Bourgogne
-		command = { type = secedeprovince which = FRA value = 410 } #Berri
-		command = { type = secedeprovince which = FRA value = 411 } #Orleanais
-		command = { type = secedeprovince which = FRA value = 412 } #Maine
-		command = { type = secedeprovince which = FRA value = 413 } #Normandie
-		command = { type = secedeprovince which = FRA value = 417 } #Vendée
-		command = { type = secedeprovince which = FRA value = 418 } #Poitou
-		command = { type = secedeprovince which = FRA value = 419 } #Limousin
-		command = { type = secedeprovince which = FRA value = 420 } #Auvergne
-		command = { type = secedeprovince which = FRA value = 421 } #Cévennes
-		command = { type = secedeprovince which = FRA value = 422 } #Languedoc
-		command = { type = secedeprovince which = FRA value = 423 } #Guyenne
-		command = { type = secedeprovince which = FRA value = 424 } #Gascogne
-		command = { type = secedeprovince which = FRA value = 425 } #Béarn
+		command = { type = cedeprovince which = FRA value = 376 } #Champagne
+		command = { type = cedeprovince which = FRA value = 384 } #Caux
+		command = { type = cedeprovince which = FRA value = 385 } #Ile de France
+		command = { type = cedeprovince which = FRA value = 386 } #Nivernais
+		command = { type = cedeprovince which = FRA value = 407 } #Dauphiné
+		command = { type = cedeprovince which = FRA value = 408 } #Lyonnais
+		command = { type = cedeprovince which = FRA value = 409 } #Bourgogne
+		command = { type = cedeprovince which = FRA value = 410 } #Berri
+		command = { type = cedeprovince which = FRA value = 411 } #Orleanais
+		command = { type = cedeprovince which = FRA value = 412 } #Maine
+		command = { type = cedeprovince which = FRA value = 413 } #Normandie
+		command = { type = cedeprovince which = FRA value = 417 } #Vendée
+		command = { type = cedeprovince which = FRA value = 418 } #Poitou
+		command = { type = cedeprovince which = FRA value = 419 } #Limousin
+		command = { type = cedeprovince which = FRA value = 420 } #Auvergne
+		command = { type = cedeprovince which = FRA value = 421 } #Cévennes
+		command = { type = cedeprovince which = FRA value = 422 } #Languedoc
+		command = { type = cedeprovince which = FRA value = 423 } #Guyenne
+		command = { type = cedeprovince which = FRA value = 424 } #Gascogne
+		command = { type = cedeprovince which = FRA value = 425 } #Béarn
 	}
 }
 #(1477) Louis's forces occupy Mary's French estates (Dijon is BUR capital)
@@ -1269,25 +1278,25 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME137031A" #There is nothing we can do
-		command = { type = secedeprovince which = FRA value = 376 } #Champagne
-		command = { type = secedeprovince which = FRA value = 384 } #Caux
-		command = { type = secedeprovince which = FRA value = 385 } #Ile de France
-		command = { type = secedeprovince which = FRA value = 386 } #Nivernais
-		command = { type = secedeprovince which = FRA value = 407 } #Dauphiné
-		command = { type = secedeprovince which = FRA value = 408 } #Lyonnais
-		command = { type = secedeprovince which = FRA value = 410 } #Berri
-		command = { type = secedeprovince which = FRA value = 411 } #Orleanais
-		command = { type = secedeprovince which = FRA value = 412 } #Maine
-		command = { type = secedeprovince which = FRA value = 413 } #Normandie
-		command = { type = secedeprovince which = FRA value = 417 } #Vendée
-		command = { type = secedeprovince which = FRA value = 418 } #Poitou
-		command = { type = secedeprovince which = FRA value = 419 } #Limousin
-		command = { type = secedeprovince which = FRA value = 420 } #Auvergne
-		command = { type = secedeprovince which = FRA value = 421 } #Cévennes
-		command = { type = secedeprovince which = FRA value = 422 } #Languedoc
-		command = { type = secedeprovince which = FRA value = 423 } #Guyenne
-		command = { type = secedeprovince which = FRA value = 424 } #Gascogne
-		command = { type = secedeprovince which = FRA value = 425 } #Béarn
+		command = { type = cedeprovince which = FRA value = 376 } #Champagne
+		command = { type = cedeprovince which = FRA value = 384 } #Caux
+		command = { type = cedeprovince which = FRA value = 385 } #Ile de France
+		command = { type = cedeprovince which = FRA value = 386 } #Nivernais
+		command = { type = cedeprovince which = FRA value = 407 } #Dauphiné
+		command = { type = cedeprovince which = FRA value = 408 } #Lyonnais
+		command = { type = cedeprovince which = FRA value = 410 } #Berri
+		command = { type = cedeprovince which = FRA value = 411 } #Orleanais
+		command = { type = cedeprovince which = FRA value = 412 } #Maine
+		command = { type = cedeprovince which = FRA value = 413 } #Normandie
+		command = { type = cedeprovince which = FRA value = 417 } #Vendée
+		command = { type = cedeprovince which = FRA value = 418 } #Poitou
+		command = { type = cedeprovince which = FRA value = 419 } #Limousin
+		command = { type = cedeprovince which = FRA value = 420 } #Auvergne
+		command = { type = cedeprovince which = FRA value = 421 } #Cévennes
+		command = { type = cedeprovince which = FRA value = 422 } #Languedoc
+		command = { type = cedeprovince which = FRA value = 423 } #Guyenne
+		command = { type = cedeprovince which = FRA value = 424 } #Gascogne
+		command = { type = cedeprovince which = FRA value = 425 } #Béarn
 	}
 }
 
@@ -1388,6 +1397,7 @@ event = {
 		command = { type = cedeprovince which = PFA value = 345 } #Pfalz
 		command = { type = cedeprovince which = PFA value = 347 } #Würzburg
 		command = { type = removecore_national which = 374 } #Alsace to be changed to new Sundgau province as soon as new map appears
+		command = { type = removecore_national which = 388 }
 		command = { type = sleepevent which = 3319 } #FRA: The Valois inheritance of Burgundy
 		command = { type = sleepevent which = 137046 } #BUR: The House of Kleve-Mark settles in Burgundy
 		command = { type = sleepevent which = 137044 } #BUR: The House of Wittelsbach settles in Burgundy
@@ -1540,7 +1550,7 @@ event = {
 		command = { type = cedeprovince which = HEL value = 1612} #Schwyz
 		command = { type = cedeprovince which = PFA value = 345 } #Pfalz
 		command = { type = cedeprovince which = PFA value = 347 } #Würzburg
-		command = { type = removecore which = 374 } #Alsace to be changed to new Sundgau province as soon as new map appears
+		command = { type = removecore_national which = 374 } #Alsace to be changed to new Sundgau province as soon as new map appears
 		command = { type = sleepevent which = 137046 } #BUR: The House of Kleve-Mark settles in Burgundy
 		command = { type = sleepevent which = 137044 } #BUR: The House of Wittelsbach settles in Burgundy
 		command = { type = sleepevent which = 322028 } #TYR: Reclaiming Vorlande
@@ -2223,21 +2233,21 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME137012A" #Preserve the lowlands
-		command = { type = secedeprovince which = FRA value = 385 } #Ile de France - just in case
-		command = { type = secedeprovince which = FRA value = 376 } #Nivernais
-		command = { type = secedeprovince which = FRA value = 379 } #Artois
-		command = { type = secedeprovince which = FRA value = 382 } #Calais
-		command = { type = secedeprovince which = FRA value = 383 } #Picardie
-		command = { type = secedeprovince which = FRA value = 386 } #Champagne
-		command = { type = secedeprovince which = FRA value = 387 } #Franche-Comté
-		command = { type = secedeprovince which = FRA value = 409 } #Bourgogne
+		command = { type = cedeprovince which = FRA value = 385 } #Ile de France - just in case
+		command = { type = cedeprovince which = FRA value = 376 } #Nivernais
+		command = { type = cedeprovince which = FRA value = 379 } #Artois
+		command = { type = cedeprovince which = FRA value = 382 } #Calais
+		command = { type = cedeprovince which = FRA value = 383 } #Picardie
+		command = { type = cedeprovince which = FRA value = 386 } #Champagne
+		command = { type = cedeprovince which = FRA value = 387 } #Franche-Comté
+		command = { type = cedeprovince which = FRA value = 409 } #Bourgogne
 		command = { type = relation which = FRA value = 200 }
-		command = { type = removecore which = 376 } #Nivernais
-		command = { type = removecore which = 379 } #Artois
-		command = { type = removecore which = 383 } #Picardie
-		command = { type = removecore which = 386 } #Champagne
-		command = { type = removecore which = 387 } #Franche-Comté
-		command = { type = removecore which = 409 } #Bourgogne
+		command = { type = removecore_national which = 376 } #Nivernais
+		command = { type = removecore_national which = 379 } #Artois
+		command = { type = removecore_national which = 383 } #Picardie
+		command = { type = removecore_national which = 386 } #Champagne
+		command = { type = removecore_national which = 387 } #Franche-Comté
+		command = { type = removecore_national which = 409 } #Bourgogne
 		command = { type = trigger which = 170061 } #FRA: Margarete's dowry
 	}
 	action_b = {
@@ -2304,8 +2314,8 @@ event = {
 
 	action_a = {
 		name = "GREAT"
-		command = { type = addcore which = 373 } #Baden
-		command = { type = addcore which = 374 } #Alsace to be changed to new Sundgau province as soon as new map appears
+		command = { type = addcore_claim which = 373 } #Baden / Breisgau
+		command = { type = addcore_claim which = 374 } #Alsace to be changed to new Sundgau province as soon as new map appears
 	}
 }
 #(1482-1486) Sigismund of Tyrol reclaims Vorlande - Ahistorical
@@ -2320,8 +2330,8 @@ event = {
 	action_a = {
 		name = "ACTIONNAME137077A" #We have no choice
 		command = { type = treasury value = 200 }
-		command = { type = secedeprovince which = TYR value = 373 } #Baden
-		command = { type = secedeprovince which = TYR value = 374 } #Alsace to be changed to new Sundgau province as soon as new map appears
+		command = { type = cedeprovince which = TYR value = 373 } #Baden
+		command = { type = cedeprovince which = TYR value = 374 } #Alsace to be changed to new Sundgau province as soon as new map appears
 	}
 }
 
@@ -2337,8 +2347,8 @@ event = {
 	action_a = {
 		name = "ACTIONNAME137077A" #We have no choice
 		command = { type = treasury value = 200 }
-		command = { type = secedeprovince which = HAB value = 373 } #Baden
-		command = { type = secedeprovince which = HAB value = 374 } #Alsace to be changed to new Sundgau province as soon as new map appears
+		command = { type = cedeprovince which = HAB value = 373 } #Baden
+		command = { type = cedeprovince which = HAB value = 374 } #Alsace to be changed to new Sundgau province as soon as new map appears
 	}
 }
 #(1487-1820) Habsburgs renounce claim on Vorlande - Ahistorical
@@ -2352,8 +2362,8 @@ event = {
 
 	action_a = {
 		name = "GREAT"
-		command = { type = addcore which = 373 } #Baden
-		command = { type = addcore which = 374 } #Alsace to be changed to new Sundgau province as soon as new map appears
+		command = { type = addcore_claim which = 373 } #Baden
+		command = { type = addcore_claim which = 374 } #Alsace to be changed to new Sundgau province as soon as new map appears
 	}
 }
 
@@ -2386,8 +2396,8 @@ event = {
 	action_a = {
 		name = "ACTIONNAME3421A" #Accept the treaty
 		command = { type = relation which = FRA value = 50 }
-		command = { type = addcore which = 379 } #Artois
-		command = { type = addcore which = 387 } #Franche-Comté
+		command = { type = addcore_claim which = 379 } #Artois
+		command = { type = addcore_claim which = 387 } #Franche-Comté
 		command = { type = hre which = 379 value = yes } #Artois as HRE fief
 		command = { type = hre which = 387 value = yes } #Franche-Comté HRE fief again
 		command = { type = DIP which = 2 value = 60 }
@@ -2488,7 +2498,7 @@ event = {
 		name = "ACTIONNAME137081A" #Move to Bruges
 		command = { type = stability value = 2 }
 		command = { type = capital which = 380 } #Flandern
-		command = { type = addcore which = 380 } #Flandern
+		command = { type = addcore_national which = 380 } #Flandern
 		command = { type = setflag which = [Lowlands] }
 		command = { type = dynastic which = SPA }
 		command = { type = domestic which = CENTRALIZATION value = 1 }
@@ -2517,7 +2527,7 @@ event = {
 	country = BUR
 	name = "EVENTNAME137035" #Philippe's Burgundian claims
 	desc = "EVENTHIST137035"
-	#-#On 7 April 1498, upon King Charles VIII's death, the throne passed to his cousin Louis of Orléans who reigned as Louis XII of France. On his accession, he took the titles of Duke of Milan and King of Sicily, sending a shrounding chill through Italy. No one was more alarmed than Ludovico Sforza, who had seized Milan from his nephew Gian Galeazzo and had subsequently seen his claim legitimized by Maximilian King of the Romans. Now, French imperliastic designs had directly challenged Philippe's father, Maximilan. Duke Philippe's interest in the matter sparked from claims to his ancestral domains in France, which had for some time now been ignored. Years before, Maximilian had refused to sign the Treaty of Arras. With the preserved the claim, Philippe, now a grown man, could repudiate the decision reached by the lowland government during his minority. He had been, afterall, a virtual prisoner of the Regency during that shaky period. Now, French imperliastic designs had directly challenged his father, Maximilan. Thus, Philippe laid claim to the counties his government had given away many years before.
+	#-#On 7 April 1498, upon King Charles VIII's death, the throne passed to his cousin Louis of Orléans who reigned as Louis XII of France. On his accession, he took the titles of Duke of Milan and King of Sicily, sending a shrounding chill through Italy. No one was more alarmed than Ludovico Sforza, who had seized Milan from his nephew Gian Galeazzo and had subsequently seen his claim legitimized by Maximilian King of the Romans. Now, French imperliastic designs had directly challenged Philippe's father, Maximilan. Duke Philippe's interest in the matter sparked from claims to his ancestral domains in France, which had for some time now been ignored. Years before, Maximilian had refused to sign the Treaty of Arras. With the preserved claim, Philippe, now a grown man, could repudiate the decision reached by the lowland government during his minority. He had been, afterall, a virtual prisoner of the Regency during that shaky period. Now, French imperialistic designs had directly challenged his father, Maximilan. Thus, Philippe laid claim to the counties his government had given away many years before.
 
 	date = { day = 1 month = january year = 1500 }
 	offset = 600
@@ -2531,10 +2541,11 @@ event = {
 	}
 	action_b = {
 		name = "ACTIONNAME137035B" #Lay claim to the old Duchy estates!
-		command = { type = addcore which = 379 } #Artois
-		command = { type = addcore which = 383 } #Picardie
-		command = { type = addcore which = 387 } #Franche Comte
-		command = { type = addcore which = 409 } #Bourgogne
+		command = { type = stability value = -1 }
+		command = { type = addcore_claim which = 379 } #Artois
+		command = { type = addcore_claim which = 383 } #Picardie
+		command = { type = addcore_claim which = 387 } #Franche Comte
+		command = { type = addcore_claim which = 409 } #Bourgogne
 		command = { type = relation which = FRA value = -100 }
 		command = { type = relation which = HAB value = 100 }
 	}
@@ -2571,12 +2582,13 @@ event = {
 	}
 	action_b = {
 		name = "ACTIONNAME137035B" #Lay claim to the old Duchy estates!
-		command = { type = addcore which = 376 } #Nivernais
-		command = { type = addcore which = 379 } #Artois
-		command = { type = addcore which = 383 } #Picardie
-		command = { type = addcore which = 386 } #Champagne
-		command = { type = addcore which = 387 } #Franche Comte
-		command = { type = addcore which = 409 } #Bourgogne
+		command = { type = stability value = -1 }
+		command = { type = addcore_claim which = 376 } #Nivernais
+		command = { type = addcore_claim which = 379 } #Artois
+		command = { type = addcore_claim which = 383 } #Picardie
+		command = { type = addcore_claim which = 386 } #Champagne
+		command = { type = addcore_claim which = 387 } #Franche Comte
+		command = { type = addcore_claim which = 409 } #Bourgogne
 		command = { type = relation which = FRA value = -100 }
 		command = { type = relation which = HAB value = 100 }
 	}
@@ -2627,7 +2639,7 @@ event = {
 		command = { type = stability value = 1 }
 		command = { type = DIP which = 2 value = 24 }
 		command = { type = treasury value = -50 }
-		command = { type = addcore which = 387 } #Franche-Comté
+		command = { type = addcore_claim which = 387 } #Franche-Comté
 		command = { type = relation which = HEL value = 50 }
 		command = { type = relation which = HAB value = -25 }
 		command = { type = relation which = SPA value = -25 }
@@ -2687,7 +2699,7 @@ event = {
 		command = { type = treasury value = -200 }
 		command = { type = trigger which = 22009 } #MEI: Charles II bought Friesland
 		command = { type = trigger which = 273038 } #SAC: Charles II bought Friesland
-		command = { type = addcore which = 337 } #Friesen
+		command = { type = addcore_claim which = 337 } #Friesen
 	}
 	action_b = {
 		name = "ACTIONNAME22008B" #Reject the offer
@@ -2744,14 +2756,14 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME137003A" #Make Spain the center of our empire (End Game)
-		command = { type = secedeprovince which = SPA value = 377 } #Luxembourg
-		#command = { type = secedeprovince which = SPA value = 378 } #Brabant (if capital, CTD)
-		command = { type = secedeprovince which = SPA value = 380 } #Flandern
-		command = { type = secedeprovince which = SPA value = 339 } #Holland
-		command = { type = secedeprovince which = SPA value = 340 } #Zeeland
-		command = { type = secedeprovince which = SPA value = 387 } #Franche-Comté
-		#command = { type = secedeprovince which = SPA value = 409 } #Bourgogne (if capital, CTD)
-		command = { type = secedeprovince which = SPA value = 379 } #Artois
+		command = { type = cedeprovince which = SPA value = 377 } #Luxembourg
+		#command = { type = cedeprovince which = SPA value = 378 } #Brabant (if capital, CTD)
+		command = { type = cedeprovince which = SPA value = 380 } #Flandern
+		command = { type = cedeprovince which = SPA value = 339 } #Holland
+		command = { type = cedeprovince which = SPA value = 340 } #Zeeland
+		command = { type = cedeprovince which = SPA value = 387 } #Franche-Comté
+		#command = { type = cedeprovince which = SPA value = 409 } #Bourgogne (if capital, CTD)
+		command = { type = cedeprovince which = SPA value = 379 } #Artois
 		command = { type = trigger which = 285100 } #SPA: The Burgundian inheritance
 	}
 	action_b = {
@@ -2771,30 +2783,30 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME137004A" #Charles is master of the world
-		command = { type = addcore which = 427 } #Gerona
-		command = { type = addcore which = 429 } #Catalonia
-		command = { type = addcore which = 430 } #Aragon
-		command = { type = addcore which = 431 } #Cantabria
-		command = { type = addcore which = 432 } #Asturias
-		command = { type = addcore which = 433 } #Galicia
-		command = { type = addcore which = 435 } #Leon
-		command = { type = addcore which = 436 } #Castilla
-		command = { type = addcore which = 437 } #Valencia
-		command = { type = addcore which = 438 } #Murcia
-		command = { type = addcore which = 439 } #Toledo
-		command = { type = addcore which = 440 } #Estramadura
-		command = { type = addcore which = 443 } #Andalusia
-		command = { type = addcore which = 444 } #Granada
-		command = { type = addcore which = 445 } #Gibraltar
-		command = { type = addcore which = 817 } #The Canary Islands
-		command = { type = addcore which = 821 } #The Baleares
-		command = { type = addcore which = 393 } #Napoli
-		command = { type = addcore which = 394 } #Apulia
-		command = { type = addcore which = 395 } #Messina
-		command = { type = addcore which = 396 } #Sicily
-		command = { type = addcore which = 397 } #Sardinia
-		command = { type = addcore which = 426 } #Roussillon
-		command = { type = addcore which = 428 } #Navarra
+		command = { type = addcore_claim which = 427 } #Gerona
+		command = { type = addcore_claim which = 429 } #Catalonia
+		command = { type = addcore_claim which = 430 } #Aragon
+		command = { type = addcore_claim which = 431 } #Cantabria
+		command = { type = addcore_claim which = 432 } #Asturias
+		command = { type = addcore_claim which = 433 } #Galicia
+		command = { type = addcore_national which = 435 } #Leon
+		command = { type = addcore_national which = 436 } #Castilla
+		command = { type = addcore_claim which = 437 } #Valencia
+		command = { type = addcore_claim which = 438 } #Murcia
+		command = { type = addcore_claim which = 439 } #Toledo
+		command = { type = addcore_claim which = 440 } #Estramadura
+		command = { type = addcore_claim which = 443 } #Andalusia
+		command = { type = addcore_claim which = 444 } #Granada
+		command = { type = addcore_claim which = 445 } #Gibraltar
+		command = { type = addcore_claim which = 817 } #The Canary Islands
+		command = { type = addcore_claim which = 821 } #The Baleares
+		command = { type = addcore_claim which = 393 } #Napoli
+		command = { type = addcore_claim which = 394 } #Apulia
+		command = { type = addcore_claim which = 395 } #Messina
+		command = { type = addcore_claim which = 396 } #Sicily
+		command = { type = addcore_claim which = 397 } #Sardinia
+		command = { type = addcore_claim which = 426 } #Roussillon
+		command = { type = addcore_claim which = 428 } #Navarra
 		command = { type = inherit which = SPA }
 	}
 }
@@ -2840,8 +2852,8 @@ event = {
 		command = { type = domestic which = INNOVATIVE value = -5 }
 		command = { type = domestic which = LAND value = -2 }
 		#Charles V's claims to Burgundian lands ceded with the treaty of Arras 1482
-		command = { type = addcore which = 379 } #Artois
-		command = { type = addcore which = 387 } #Franche-Comté
+		command = { type = addcore_claim which = 379 } #Artois
+		command = { type = addcore_claim which = 387 } #Franche-Comté
 		command = { type = country which = SPA }
 	}
 	action_b = {
@@ -2872,9 +2884,9 @@ event = {
 		command = { type = ADM which = -2 value = 60 }
 		command = { type = domestic which = CENTRALIZATION value = -1 }
 		#Charles V's claims to Burgundian lands ceded with the treaty of Arras 1482
-		command = { type = addcore which = 379 } #Artois
-		command = { type = addcore which = 387 } #Franche-Comté
-		command = { type = addcore which = 409 } #Bourgogne
+		command = { type = addcore_claim which = 379 } #Artois
+		command = { type = addcore_claim which = 387 } #Franche-Comté
+		command = { type = addcore_claim which = 409 } #Bourgogne
 	}
 }
 
@@ -2901,14 +2913,14 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME137005A" #Make Spain the center of our empire (End Game)
-		command = { type = secedeprovince which = SPA value = 377 } #Luxembourg
-		#command = { type = secedeprovince which = SPA value = 378 } #Brabant capital
-		command = { type = secedeprovince which = SPA value = 380 } #Flandern
-		command = { type = secedeprovince which = SPA value = 339 } #Holland
-		command = { type = secedeprovince which = SPA value = 340 } #Zeeland
-		command = { type = secedeprovince which = SPA value = 387 } #Franche-Comté
-		#command = { type = secedeprovince which = SPA value = 409 } #Bourgogne alt_capital
-		command = { type = secedeprovince which = SPA value = 379 } #Artois
+		command = { type = cedeprovince which = SPA value = 377 } #Luxembourg
+		#command = { type = cedeprovince which = SPA value = 378 } #Brabant capital
+		command = { type = cedeprovince which = SPA value = 380 } #Flandern
+		command = { type = cedeprovince which = SPA value = 339 } #Holland
+		command = { type = cedeprovince which = SPA value = 340 } #Zeeland
+		command = { type = cedeprovince which = SPA value = 387 } #Franche-Comté
+		#command = { type = cedeprovince which = SPA value = 409 } #Bourgogne alt_capital
+		command = { type = cedeprovince which = SPA value = 379 } #Artois
 		command = { type = trigger which = 285100 } #SPA: The Burgundian inheritance
 	}
 }
@@ -3014,10 +3026,10 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME137007A" #We acknowledge the Dutch Republic
-		command = { type = removecore which = 337 } #Friesen
-		command = { type = removecore which = 338 } #Geldre
-		command = { type = removecore which = 339 } #Holland
-		command = { type = removecore which = 340 } #Zeeland
+		command = { type = removecore_national which = 337 } #Friesen
+		command = { type = removecore_national which = 338 } #Geldre
+		command = { type = removecore_national which = 339 } #Holland
+		command = { type = removecore_national which = 340 } #Zeeland
 		command = { type = remove_countryculture which = Dutch }
 		command = { type = relation which = HOL value = 50 }
 	}

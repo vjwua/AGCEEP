@@ -51,6 +51,9 @@ event = {
 		command = { type = treasury value = -200 }
 		command = { type = naval value = 800 }
 		command = { type = gainmanufactory which = 442 value = navalequipment } #Algarve
+		command = { type = discover which = 821 } 
+		command = { type = discover which = 985 }
+		command = { type = discover which = 976 }
 	}
 	action_b = {
 		name = "ACTIONNAME18001B" #Invest in Known Trade Routes
@@ -59,6 +62,8 @@ event = {
 		command = { type = trade value = 800 }
 		command = { type = domestic which = MERCANTILISM value = 2 }
 		command = { type = merchants value = 6 }
+		command = { type = discover which = 922 }
+		command = { type = discover which = 923 }
 	}
 	action_c = {
 		name = "ACTIONNAME18001C" #Back the Reconquista
@@ -70,8 +75,9 @@ event = {
 		command = { type = domestic which = quality value = 1 }
 		command = { type = INF which = -1 value = 5000 }
 		command = { type = CAV which = -3 value = 1000 }
+		command = { type = addcore_casusbelli which = 732 } #Ceuta
+			}
 	}
-}
 
 #(1432) Cape Bojador
 event = {
@@ -85,7 +91,7 @@ event = {
 	country = POR
 	name = "EVENTNAME18002" #Cape Bojador
 	desc = "EVENTHIST18002"
-	#-#Cape Bojador, located south of the Canaries, was previously thought to have water too shallow, and currents too strong for ships to navigate. It was also a popular belief that the sun was too hot to support life south of the cape. Many regarded it as the edge of the world. At the urging of Prince Henry, one of his captains, Gil Eannes, finally passed Cape Bojador in 1434. Further improvements in Caravel design also promoted the exploration of the African Coast. Henceforth, a series of expedtions in Portuguese caravels sailed south with the red Templar cross emblazoned upon their sails, bringing back ivory, gold, slaves, and other strange flora and fauna to Lisbon.
+	#-#Cape Bojador, located south of the Canaries, was previously thought to have water too shallow, and currents too strong for ships to navigate. It was also a popular belief that the sun was too hot to support life south of the cape. Many regarded it as the edge of the world. At the urging of Prince Henry, one of his captains, Gil Eannes, finally passed Cape Bojador in 1434. Further improvements in Caravel design also promoted the exploration of the African Coast. Henceforth, a series of expeditons in Portuguese caravels sailed south with the red Templar cross emblazoned upon their sails, bringing back ivory, gold, slaves, and other strange flora and fauna to Lisbon.
 
 	date = { day = 25 month = december year = 1432 }
 
@@ -113,7 +119,7 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME260000A" #We now have a right to the Canary islands
-		command = { type = addcore which = 817 } #The Canary Islands
+		command = { type = addcore_casusbelli which = 817 } #The Canary Islands
 		command = { type = stability value = 1 }
 	}
 }
@@ -128,14 +134,16 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME260001A" #We accept the Pope's rejection of our claim to the Canary islands
+		command = { type = discover which = 399 } 
 		command = { type = relation which = CAS value = 50 }
+		command = { type = removecore_national which = 817 } #The Canary Islands
 	}
 	action_b = {
 		name = "ACTIONNAME260001B" #We don't care what the Pope says, we still need those islands
 		command = { type = relation which = PAP value = -25 }
 		command = { type = relation which = CAS value = -25 }
 		command = { type = stability value = -1 }
-		command = { type = casusbelli which = CAS value = 24 } #African competition
+		#command = { type = casusbelli which = CAS value = 24 } #African competition #not needed core on 817 159b5
 		command = { type = trigger which = 142001 } #CAS: The Portuguese press their claim despite papal rejection
 	}
 }
@@ -150,16 +158,16 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME260001A" #We accept the Pope's rejection of our claim to the Canary islands
-		command = { type = removecore which = 817 } #The Canary Islands
+		command = { type = discover which = 399 } 
+		command = { type = removecore_national which = 817 } #The Canary Islands
 		command = { type = trigger which = 142002 } #CAS: The Pope has been gained to our cause
 	}
 	action_b = {
 		name = "ACTIONNAME260001B" #We don't care what the Pope says, we still need those islands
-		command = { type = removecore which = 817 } #The Canary Islands
 		command = { type = relation which = PAP value = -25 }
 		command = { type = relation which = CAS value = -25 }
 		command = { type = stability value = -1 }
-		command = { type = casusbelli which = CAS value = 24 } #African competition
+		#command = { type = casusbelli which = CAS value = 24 } #African competition
 		command = { type = trigger which = 142002 } #CAS: The Pope has been gained to our cause
 	}
 }
@@ -186,7 +194,7 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME18005A" #Send Expedition
-		command = { type = casusbelli which = MOR value = 60 }
+		#command = { type = casusbelli which = MOR value = 60 } #not needed with core on 732
 		command = { type = addcore_claim which = 732 } #Tangiers
 		command = { type = stability value = -1 }
 		command = { type = trade value = -250 }
@@ -228,7 +236,7 @@ event = {
 		command = { type = stability value = -1 }
 	}
 }
-
+ 
 #(1441) Henry's Captains
 #Idea: Baston - Scripting by Annibale
 event = {
@@ -334,7 +342,7 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME260156A" #New islands!
-		command = { type = addcore which = 818 } #Cape Verde
+		command = { type = addcore_claim which = 818 } #Cape Verde
 	}
 }
 
@@ -370,7 +378,7 @@ event = {
 		control = { province = 823 data = -1 }
 	}
 	random = no
-	country = POR
+	province = 823 #Azores
 	name = "EVENTNAME18026" #Sugar in Azores
 	desc = "EVENTHIST18026"
 	#-#In 1452 the first water-powered sugar mill was constructed in Azores, being a first example of industrial production of this highly addictive substance.
@@ -423,7 +431,7 @@ event = {
 		command = { type = transports which = 441 value = 5 } #Tago
 		command = { type = stability value = 1 }
 		command = { type = addcore_claim which = 732 } #Tangiers
-		#command = { type = addcore which = 806 } #Toubkal
+		#command = { type = addcore which = 806 } #Toubkal is too small for the entire province
 	}
 	action_b = {
 		name = "ACTIONNAME260041B" #We have enough on our plate right now
@@ -488,7 +496,7 @@ event = {
 #(1479) these events give CAS the core on Canaries
 event = {
 	id = 260005
-	trigger = { exists = CAS } #Castillian version
+	trigger = { neighbour = CAS } #Castillian version
 	random = no
 	country = POR
 	name = "EVENTNAME260005" #Treaty of Alcacovas
@@ -500,17 +508,17 @@ event = {
 	action_a = {
 		name = "ACTIONNAME260005A" #Perpetual peace
 		command = { type = stability value = 1 } #end of the war
-		command = { type = removecore which = 817 } #The Canary Islands
-		command = { type = secedeprovince which = CAS value = 817 } #The Canary Islands
-		command = { type = secedeprovince which = CAS value = 443 } #Andalusia
-		command = { type = secedeprovince which = CAS value = 432 } #Asturias
-		command = { type = secedeprovince which = CAS value = 431 } #Cantabria
-		command = { type = secedeprovince which = CAS value = 440 } #Estramadura
-		command = { type = secedeprovince which = CAS value = 433 } #Galicia
-		command = { type = secedeprovince which = CAS value = 435 } #Leon
-		command = { type = secedeprovince which = CAS value = 438 } #Murcia
-		command = { type = secedeprovince which = CAS value = 436 } #Castilla
-		command = { type = secedeprovince which = CAS value = 439 } #Toledo
+		command = { type = removecore_national which = 817 } #The Canary Islands
+		command = { type = cedeprovince which = CAS value = 817 } #The Canary Islands
+		command = { type = cedeprovince which = CAS value = 443 } #Andalusia
+		command = { type = cedeprovince which = CAS value = 432 } #Asturias
+		command = { type = cedeprovince which = CAS value = 431 } #Cantabria
+		command = { type = cedeprovince which = CAS value = 440 } #Estramadura
+		command = { type = cedeprovince which = CAS value = 433 } #Galicia
+		command = { type = cedeprovince which = CAS value = 435 } #Leon
+		command = { type = cedeprovince which = CAS value = 438 } #Murcia
+		command = { type = cedeprovince which = CAS value = 436 } #Castilla
+		command = { type = cedeprovince which = CAS value = 439 } #Toledo
 		command = { type = trigger which = 142004 } #CAS: Treaty of Alcacovas
 		command = { type = treasury value = 50 } #Gold and slave routes secured
 		command = { type = relation which = CAS value = 50 }
@@ -534,7 +542,7 @@ event = {
 	id = 260003
 	trigger = {
 		NOT = { exists = CAS }
-		exists = SPA
+		neighbour = SPA
 	}
 	random = no
 	country = POR
@@ -547,17 +555,17 @@ event = {
 	action_a = {
 		name = "ACTIONNAME260005A" #Perpetual peace
 		command = { type = stability value = 1 } #end of the war
-		command = { type = removecore which = 817 } #The Canary Islands
-		command = { type = secedeprovince which = SPA value = 817 } #The Canary Islands
-		command = { type = secedeprovince which = SPA value = 443 } #Andalusia
-		command = { type = secedeprovince which = SPA value = 432 } #Asturias
-		command = { type = secedeprovince which = SPA value = 431 } #Cantabria
-		command = { type = secedeprovince which = SPA value = 440 } #Estramadura
-		command = { type = secedeprovince which = SPA value = 433 } #Galicia
-		command = { type = secedeprovince which = SPA value = 435 } #Leon
-		command = { type = secedeprovince which = SPA value = 438 } #Murcia
-		command = { type = secedeprovince which = SPA value = 436 } #Castilla
-		command = { type = secedeprovince which = SPA value = 439 } #Toledo
+		command = { type = removecore_national which = 817 } #The Canary Islands
+		command = { type = cedeprovince which = SPA value = 817 } #The Canary Islands
+		command = { type = cedeprovince which = SPA value = 443 } #Andalusia
+		command = { type = cedeprovince which = SPA value = 432 } #Asturias
+		command = { type = cedeprovince which = SPA value = 431 } #Cantabria
+		command = { type = cedeprovince which = SPA value = 440 } #Estramadura
+		command = { type = cedeprovince which = SPA value = 433 } #Galicia
+		command = { type = cedeprovince which = SPA value = 435 } #Leon
+		command = { type = cedeprovince which = SPA value = 438 } #Murcia
+		command = { type = cedeprovince which = SPA value = 436 } #Castilla
+		command = { type = cedeprovince which = SPA value = 439 } #Toledo
 		command = { type = trigger which = 285001 } #SPA: Treaty of Alcacovas
 		command = { type = treasury value = 50 } #Gold and slave routes secured
 		command = { type = relation which = SPA value = 50 }
@@ -593,7 +601,7 @@ event = {
 		command = { type = sleepevent which = 260048 } #POR: Settlement of El Mina
 		command = { type = casusbelli which = CAS value = 24 }
 		command = { type = casusbelli which = SPA value = 24 }
-		command = { type = addcore which = 817 } #The Canary Islands
+		command = { type = addcore_claim which = 817 } #The Canary Islands
 	}
 }
 #End of Treaty of Alcacovas for Portugal
@@ -657,7 +665,7 @@ event = {
 		command = { type = fortress which = 795 value = 1 } #Leone
 		command = { type = trade value = 150 }
 		command = { type = mine which = 795 value = 20 } #Leone
-		command = { type = addcore which = 795 } #Leone
+		command = { type = addcore_claim which = 795 } #Leone
 	}
 	action_b = {
 		name = "ACTIONNAME260048B" #We have more pressing issues at the moment
@@ -2341,7 +2349,7 @@ event = {
 		name = "ACTIONNAME260057A" #Abandon it, it's a waste of our resources
 		command = { type = fortress which = 756 value = -2 } #Socotra
 		command = { type = removecore which = 756 } #Socotra
-		command = { type = secedeprovince which = MRA value = 756 } #Socotra
+		command = { type = cedeprovince which = MRA value = 756 } #Socotra
 		command = { type = INF which = 549 value = 2000 }
 	}
 	action_b = {
@@ -2875,11 +2883,11 @@ event = {
 		name = "ACTIONNAME260956A" #Accept the agreement
 		command = { type = relation which = SPA value = 50 }
 		command = { type = relation which = PAP value = 50 }
-		command = { type = secedeprovince which = SPA value = 690 } #Luzon
-		command = { type = secedeprovince which = SPA value = 691 } #Mindoro
-		command = { type = secedeprovince which = SPA value = 692 } #Samar
-		command = { type = secedeprovince which = SPA value = 693 } #Mindanao
-		command = { type = secedeprovince which = SPA value = 694 } #Palawan
+		command = { type = cedeprovince which = SPA value = 690 } #Luzon
+		command = { type = cedeprovince which = SPA value = 691 } #Mindoro
+		command = { type = cedeprovince which = SPA value = 692 } #Samar
+		command = { type = cedeprovince which = SPA value = 693 } #Mindanao
+		command = { type = cedeprovince which = SPA value = 694 } #Palawan
 	}
 	action_b = {
 		name = "ACTIONNAME260956B" #No, Philippines is ours!
@@ -3123,7 +3131,7 @@ event = {
 #
 #	action_a = {
 #		name = "ACTIONNAME260042A" #We Cannot Afford This Interminable Struggle
-#		command = { type = secedeprovince which = MOR value = 806 } #Toubkal
+#		command = { type = cedeprovince which = MOR value = 806 } #Toubkal
 #		command = { type = removecore which = 806 } #Toubkal
 #		command = { type = stability value = -1 }
 #	}
@@ -4228,7 +4236,7 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME260961A" #Surrender Ambon
-		command = { type = secedeprovince which = HOL value = 715 } #Ceram
+		command = { type = cedeprovince which = HOL value = 715 } #Ceram
 		command = { type = removecore which = 715 } #Ceram
 		command = { type = relation which = HOL value = 25 }
 	}
@@ -4319,7 +4327,7 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME260962A" #Surrender Bacan
-		command = { type = secedeprovince which = HOL value = 713 } #Tindore
+		command = { type = cedeprovince which = HOL value = 713 } #Tindore
 		command = { type = removecore which = 713 } #Tindore
 		command = { type = relation which = HOL value = 25 }
 	}
@@ -4677,7 +4685,7 @@ event = {
 
 	action_a = {
 		name = "DRATS"
-		command = { type = secedeprovince which = HOL value = 576 } #Colombo
+		command = { type = cedeprovince which = HOL value = 576 } #Colombo
 		command = { type = removecore which = 576 } #Colombo
 	}
 	action_b = {
@@ -4964,7 +4972,7 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME260964A" #Surrender Malacca
-		command = { type = secedeprovince which = HOL value = 677 } #Malacca
+		command = { type = cedeprovince which = HOL value = 677 } #Malacca
 		command = { type = removecore which = 677 } #Malacca
 		command = { type = relation which = HOL value = 25 }
 	}
@@ -5103,7 +5111,7 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME260966A" #Surrender Timor
-		command = { type = secedeprovince which = HOL value = 712 } #Timor
+		command = { type = cedeprovince which = HOL value = 712 } #Timor
 		command = { type = removecore which = 712 } #Timor
 		command = { type = relation which = HOL value = 25 }
 	}
@@ -5234,7 +5242,7 @@ event = {
 
 	action_a = {
 		name = "DRATS"
-		command = { type = secedeprovince which = HOL value = 573 } #Cochin
+		command = { type = cedeprovince which = HOL value = 573 } #Cochin
 		command = { type = removecore which = 573 } #Cochin
 		command = { type = trigger which = 364008 } #FAT: Dutch ascendancy in Malabar
 	}
@@ -5349,7 +5357,7 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME21079A" #Give territory as a dowry
-		command = { type = secedeprovince which = ENG value = 732 } #Tangiers
+		command = { type = cedeprovince which = ENG value = 732 } #Tangiers
 		command = { type = removecore which = 548 } #Bombay
 		command = { type = removecore which = 732 } #Tangiers
 		command = { type = CAV which = 441 value = 2000 } #Tago
@@ -5497,7 +5505,7 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME260130A" #Hand it over
-		command = { type = secedeprovince which = ENG value = 548 } #Bombay
+		command = { type = cedeprovince which = ENG value = 548 } #Bombay
 	}
 }
 
@@ -6120,11 +6128,11 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME260017A" #Sign the agreement
-		command = { type = secedeprovince which = SPA value = 215 } #Uruguay
-		command = { type = secedeprovince which = SPA value = 216 } #Artigas
-		command = { type = secedeprovince which = SPA value = 217 } #Parana
-		command = { type = secedeprovince which = SPA value = 218 } #Neembucu
-		command = { type = secedeprovince which = SPA value = 816 } #Fernando Po
+		command = { type = cedeprovince which = SPA value = 215 } #Uruguay
+		command = { type = cedeprovince which = SPA value = 216 } #Artigas
+		command = { type = cedeprovince which = SPA value = 217 } #Parana
+		command = { type = cedeprovince which = SPA value = 218 } #Neembucu
+		command = { type = cedeprovince which = SPA value = 816 } #Fernando Po
 		command = { type = removecore which = 816 } #Fernando Po
 		command = { type = relation which = SPA value = 100 }
 		command = { type = trigger which = 285186 } #SPA: An exchange between two continents
@@ -6359,28 +6367,28 @@ event = {
 		command = { type = removecore which = 201 } #Maranhao
 		command = { type = removecore which = 202 } #Parnaiba
 		command = { type = removecore which = 204 } #Iguatu
-		command = { type = secedeprovince which = BRZ value = 203 } #Recife
-		command = { type = secedeprovince which = BRZ value = 205 } #Pernambuc
-		command = { type = secedeprovince which = BRZ value = 206 } #Alagoas
-		command = { type = secedeprovince which = BRZ value = 207 } #Diamentina
-		command = { type = secedeprovince which = BRZ value = 208 } #Minas Gerais
-		command = { type = secedeprovince which = BRZ value = 209 } #Salvador
-		command = { type = secedeprovince which = BRZ value = 210 } #Itaimas
-		command = { type = secedeprovince which = BRZ value = 211 } #Niteroi
-		command = { type = secedeprovince which = BRZ value = 212 } #Araxa
-		command = { type = secedeprovince which = BRZ value = 213 } #Curitiba
-		command = { type = secedeprovince which = BRZ value = 214 } #Cangucu
+		command = { type = cedeprovince which = BRZ value = 203 } #Recife
+		command = { type = cedeprovince which = BRZ value = 205 } #Pernambuc
+		command = { type = cedeprovince which = BRZ value = 206 } #Alagoas
+		command = { type = cedeprovince which = BRZ value = 207 } #Diamentina
+		command = { type = cedeprovince which = BRZ value = 208 } #Minas Gerais
+		command = { type = cedeprovince which = BRZ value = 209 } #Salvador
+		command = { type = cedeprovince which = BRZ value = 210 } #Itaimas
+		command = { type = cedeprovince which = BRZ value = 211 } #Niteroi
+		command = { type = cedeprovince which = BRZ value = 212 } #Araxa
+		command = { type = cedeprovince which = BRZ value = 213 } #Curitiba
+		command = { type = cedeprovince which = BRZ value = 214 } #Cangucu
 		#BRZ extras
-		command = { type = secedeprovince which = BRZ value = 183 } #Amapa
-		command = { type = secedeprovince which = BRZ value = 195 } #Mato Grosso
-		command = { type = secedeprovince which = BRZ value = 196 } #Goias
-		command = { type = secedeprovince which = BRZ value = 197 } #Caracas
-		command = { type = secedeprovince which = BRZ value = 198 } #Marajo
-		command = { type = secedeprovince which = BRZ value = 199 } #Para
-		command = { type = secedeprovince which = BRZ value = 200 } #Tiracambu
-		command = { type = secedeprovince which = BRZ value = 201 } #Maranhao
-		command = { type = secedeprovince which = BRZ value = 202 } #Parnaiba
-		command = { type = secedeprovince which = BRZ value = 204 } #Iguatu
+		command = { type = cedeprovince which = BRZ value = 183 } #Amapa
+		command = { type = cedeprovince which = BRZ value = 195 } #Mato Grosso
+		command = { type = cedeprovince which = BRZ value = 196 } #Goias
+		command = { type = cedeprovince which = BRZ value = 197 } #Caracas
+		command = { type = cedeprovince which = BRZ value = 198 } #Marajo
+		command = { type = cedeprovince which = BRZ value = 199 } #Para
+		command = { type = cedeprovince which = BRZ value = 200 } #Tiracambu
+		command = { type = cedeprovince which = BRZ value = 201 } #Maranhao
+		command = { type = cedeprovince which = BRZ value = 202 } #Parnaiba
+		command = { type = cedeprovince which = BRZ value = 204 } #Iguatu
 		command = { type = relation which = BRZ value = 100 }
 		command = { type = trigger which = 135000 } #BRZ: Brazilian Independence
 	}

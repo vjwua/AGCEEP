@@ -231,6 +231,7 @@ event = {
 		command = { type = relation which = NAP value = 50 }
 		command = { type = relation which = MLO value = 50 }
 		command = { type = relation which = ARG value = 25 }
+		command = { type = discover which = 429 } 
 	}
 	action_b = {
 		name = "ACTIONNAME251040B" #No compromise with Alfons
@@ -325,7 +326,9 @@ event = {
 	action_a = {
 		name = "ACTIONNAME252019A" #Visconti threatens the balance
 		command = { type = relation which = MLO value = -50 } #Romagna is still a Papal feud
+		command = { type = discover which = 389 } #Mailand
 		command = { type = relation which = VEN value = 25 }
+		command = { type = discover which = 370 } #Venedig
 		command = { type = relation which = TOS value = 25 }
 		command = { type = casusbelli which = MLO value = 24 }
 	}
@@ -357,14 +360,16 @@ event = {
 	action_a = {
 		name = "ACTIONNAME40201A" #Forbid sending the crown
 		command = { type = relation which = POL value = 30 }
+		command = { type = discover which = 299 } #Krakau
 		command = { type = relation which = LIT value = -30 }
-		command = { type = relation which = HUN value = -30 }
+		command = { type = relation which = -6 value = -30 }
 	}
 	action_b = {
 		name = "ACTIONNAME40201B" #It's not a bad idea
 		command = { type = relation which = POL value = -30 }
 		command = { type = relation which = LIT value = 30 }
-		command = { type = relation which = HUN value = 30 }
+		command = { type = discover which = 288 } #Vilnius
+		command = { type = relation which = -6 value = 30 }
 	}
 }
 
@@ -427,11 +432,15 @@ event = {
 		command = { type = trigger which = 142000 } #CAS: The Portuguese are trying to rob us with the help of the Pope
 		command = { type = relation which = CAS value = -25 }
 		command = { type = relation which = POR value = 50 }
+		command = { type = discover which = 441 } #Lissabon
+		command = { type = discover which = 817 } #Canaries
 	}
 	action_b = {
 		name = "ACTIONNAME251001B" #No, Castile is colonizing them
 		command = { type = trigger which = 260001 } #POR: The Pope decides against Portuguese request
 		command = { type = relation which = CAS value = 50 }
+		command = { type = discover which = 435 } 
+		command = { type = discover which = 817 } 
 		command = { type = relation which = POR value = -25 }
 	}
 }
@@ -458,6 +467,7 @@ event = {
 		command = { type = trigger which = 260002 } #POR: The Pope has been convinced to decide against Portugal
 		command = { type = relation which = POR value = -25 }
 		command = { type = relation which = CAS value = 50 }
+		command = { type = discover which = 435 } 
 	}
 	action_b = {
 		name = "ACTIONNAME251002B" #Our first decision was the right one
@@ -483,8 +493,9 @@ event = {
 		name = "ACTIONNAME251009A" #Antipope election
 		command = { type = treasury value = -50 }
 		command = { type = STABILITY value = -2 }
+		command = { type = discover which = 388 } #Basel is located in Bern province
+		}
 	}
-}
 
 #(1440-1449) The Vinland Map
 event = {
@@ -502,8 +513,9 @@ event = {
 	action_a = {
 		name = "GREAT"
 		command = { type = NAVAL value = 100 } #cartographic knowledge
+		command = { type = discover which = 408 } #Lyonais - Carpini started his voyage to Mongolia in Lyons and returned 106 days later to it
+		}
 	}
-}
 
 #(1443-1447) Corsica and the Papacy
 event = {
@@ -525,7 +537,9 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME251057A" #We are the rightful liege of Corsica
-		command = { type = addcore which = 398 } #Corsica
+		command = { type = addcore_claim which = 398 } #Corsica
+		command = { type = discover which = 398 } #Corsica
+		command = { type = discover which = 992 } #Sea around Corsica
 		command = { type = relation which = GEN value = -100 }
 		command = { type = relation which = ARG value = -100 }
 		command = { type = treasury value = -100 }
@@ -552,9 +566,9 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME251058A" #This is probably for the best
-		command = { type = removecore which = 398 } #Corsica
+		command = { type = removecore_national which = 398 } #Corsica
 		command = { type = relation which = GEN value = 20 }
-	}
+		}
 }
 
 #(1454-1466) Peace and Prosperity
@@ -597,7 +611,8 @@ event = {
 	id = 17405
 	trigger = {
 		owned = { province = 357 data = TUR }
-	}
+		control = { province = 357 data = TUR }
+		}
 	random = no
 	country = PAP
 	name = "EVENTNAME17405" #Callixtus's Gold
@@ -611,6 +626,7 @@ event = {
 	action_a = {
 		name = "ACTIONNAME17405A" #Raise Money for Crusade
 		command = { type = treasury value = 100 }
+		command = { type = discover which = 357 } #Byzanz
 		command = { type = provincetax which = -2 value = -1 }
 		command = { type = stability value = -2 }
 		command = { type = revoltrisk which = 12 value = 3 }
@@ -658,16 +674,20 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME17385A" #Absolve the Maid
+		command = { type = discover which = 437 } #Valencia
 		command = { type = relation which = FRA value = 40 }
+		command = { type = discover which = 385 } #Paris
 		command = { type = relation which = ENG value = -40 }
-	}
+			}
 	action_b = {
 		name = "ACTIONNAME17385B" #She was a Witch
+		command = { type = discover which = 437 } #Valencia
 		command = { type = relation which = FRA value = -40 }
 		command = { type = relation which = ENG value = 40 }
+		command = { type = discover which = 247 } #London
 		command = { type = sleepevent which = 12010 } #FRA: Jeanne is exonerated by the Pope
-	}
-}
+		}
+		}
 
 #(1458-1464) Election of Pius II
 event = {
@@ -786,7 +806,7 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME251070A" #Gain land
-		command = { type = addcore which = 391 } #Romagna
+		command = { type = addcore_claim which = 391 } #Romagna
 	}
 }
 
@@ -811,7 +831,7 @@ event = {
 	action_a = {
 		name = "ACTIONNAME17360A" #Assassinate them
 		command = { type = treasury value = -20 }
-		command = { type = addcore which = 391 } #Romagna (not Modena in a new map)
+		command = { type = addcore_claim which = 391 } #Romagna (not Modena in a new map)
 		command = { type = casusbelli which = TOS value = 12 }
 		command = { type = alliance which = NAP }
 		command = { type = relation which = TOS value = -40 }
@@ -846,6 +866,7 @@ event = {
 		name = "ACTIONNAME251042A" #Support the barons
 		command = { type = relation which = NAP value = -50 }
 		command = { type = casusbelli which = NAP value = 24 }
+		command = { type = discover which = 394 } #A
 	}
 	action_b = {
 		name = "ACTIONNAME3192B" #Stay neutral
@@ -977,6 +998,7 @@ event = {
 		name = "ACTIONNAME17401C" #to a minor Sforza dynasty
 		command = { type = dynastic which = MLO }
 		command = { type = relation which = MLO value = 20 }
+		command = { type = discover which = 402 } 
 	}
 	action_d = {
 		name = "ACTIONNAME17401D" #to the royals of Naples
@@ -1142,7 +1164,7 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME251045A" #Request what is ours by God's will
-		command = { type = addcore which = 391 } #Romagna (not Modena in a new map)
+		command = { type = addcore_claim which = 391 } #Romagna (not Modena in a new map)
 		command = { type = casusbelli which = VEN value = 60 }
 		command = { type = relation which = VEN value = -200 }
 		command = { type = relation which = FRA value = 50 }
@@ -1151,8 +1173,9 @@ event = {
 	}
 	action_b = {
 		name = "ACTIONNAME251045B" #Let Venice administer for us...
-		command = { type = removecore which = 391 } #Romagna
+		command = { type = removecore_national which = 391 } #Romagna
 		command = { type = relation which = VEN value = 100 }
+		command = { type = discover which = 370 } #Venedig
 		command = { type = relation which = FRA value = 50 }
 		command = { type = relation which = BUR value = 50 }
 		command = { type = relation which = HAB value = 50 }
@@ -1186,6 +1209,7 @@ event = {
 		command = { type = relation which = HEL value = 30 }
 		command = { type = domestic which = quality value = 1 }
 		command = { type = trigger which = 20306 } #HEL: The Swiss Guard in Rome
+		command = { type = discover which = 1612 } #Schwyz
 	}
 	action_b = {
 		name = "ACTIONNAME251021B" #Mercenaries are not faithful
@@ -1243,7 +1267,7 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME3107A" #Express Support
-		command = { type = addcore which = 391 } #Romagna (not Modena in a new map)
+		command = { type = addcore_claim which = 391 } #Romagna (not Modena in a new map)
 		command = { type = casusbelli which = VEN value = 24 }
 		command = { type = relation which = VEN value = -150 }
 		command = { type = relation which = FRA value = 150 }
@@ -1252,12 +1276,12 @@ event = {
 	}
 	action_b = {
 		name = "ACTIONNAME3107B" #Ignore
-		command = { type = removecore which = 391 } #Romagna (not Modena in a new map)
+		command = { type = removecore_national which = 391 } #Romagna (not Modena in a new map)
 		command = { type = relation which = VEN value = 50 }
 	}
 	action_c = {
 		name = "ACTIONNAME3107C" #Express Hostility
-		command = { type = removecore which = 391 } #Romagna (not Modena in a new map)
+		command = { type = removecore_national which = 391 } #Romagna (not Modena in a new map)
 		command = { type = relation which = VEN value = 150 }
 		command = { type = relation which = FRA value = -150 }
 		command = { type = relation which = HAB value = -150 }
@@ -1321,8 +1345,8 @@ event = {
 		command = { type = relation which = ENG value = 150 }
 		command = { type = relation which = ARG value = 150 }
 		command = { type = relation which = HAB value = 150 }
-		command = { type = addcore which = 402 } #Emilia (Parma on the new map)
-		command = { type = addcore which = 391 } #Romagna (Modena on the new map)
+		command = { type = addcore_claim which = 402 } #Emilia (Parma on the new map)
+		command = { type = addcore_claim which = 391 } #Romagna (Modena on the new map)
 		command = { type = trigger which = 252016 } #PAM: The Holy League against France
 		command = { type = trigger which = 17028 } #VEN: The Holy League against France
 	}
@@ -1409,6 +1433,7 @@ event = {
 	action_a = {
 		name = "ACTIONNAME251065A" #Support the Prince of Saxony
 		command = { type = treasury value = 200 }
+		command = { type = discover which = 332 } #Saxony
 		command = { type = relation which = SAC value = 100 }
 		command = { type = relation which = HAB value = -50 }
 		command = { type = relation which = SPA value = -50 }
@@ -1449,8 +1474,11 @@ event = {
 	action_a = {
 		name = "ACTIONNAME251024A" #Free this slave!
 		command = { type = trade value = 50 }
+		command = { type = discover which = 443 } #Andalusia
+		command = { type = discover which = 733 } #Fez
+		command = { type = discover which = 739 } #Tunis
+				}
 	}
-}
 
 #(1520) One historic and one unlikely reaction to Luther
 event = {
@@ -1590,7 +1618,7 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME251049A" #Let's legitimate the Emperor
-		command = { type = addcore which = 402 } #Emilia, independently from 1510 holy league
+		command = { type = addcore_claim which = 402 } #Emilia, independently from 1510 holy league
 		command = { type = DIP which = 2 value = 12 }
 		command = { type = ADM which = 2 value = 12 }
 		command = { type = independence which = TOS } #Medici are to be restored there!
@@ -1598,9 +1626,9 @@ event = {
 		command = { type = independence which = MLO }
 		command = { type = independence which = MAN }
 		command = { type = independence which = PIS }
-		command = { type = secedeprovince which = SPA value = 393 } #Napoli
-		command = { type = secedeprovince which = SPA value = 394 } #Apulia
-		command = { type = removecore which = 391 } #(Modena on the new map) #Romagna
+		command = { type = cedeprovince which = SPA value = 393 } #Napoli
+		command = { type = cedeprovince which = SPA value = 394 } #Apulia
+		command = { type = removecore_national which = 391 } #(Modena on the new map) #Romagna
 	}
 }
 
@@ -1765,7 +1793,7 @@ event = {
 		name = "ACTIONNAME251031A" #Make our son a Duke!
 		command = { type = provincetax which = 402 value = 1 } #Emilia
 		command = { type = independence which = PAR }
-		command = { type = removecore which = 402 } #Emilia
+		command = { type = removecore_national which = 402 } #Emilia
 		command = { type = domestic which = serfdom value = 1 }
 		command = { type = sleepevent which = 390008 } #PAR: Parma civic pride
 		command = { type = sleepevent which = 390009 } #PAR: The Duchy of Parma
@@ -1850,6 +1878,8 @@ event = {
 		command = { type = casusbelli which = ENG value = 100 }
 		command = { type = casusbelli which = BOH value = 100 }
 		command = { type = casusbelli which = HAB value = 100 }
+		command = { type = discover which = 328 } #Prag
+		command = { type = discover which = 351 } #Wien
 	}
 }
 #No option 3. I don't see this as the appropriate time for a sucessful call to crusade

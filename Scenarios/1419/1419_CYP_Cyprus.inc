@@ -45,10 +45,9 @@ country = {
 		484
 	}
 	nationalprovinces = {
-		484
-	}
+			}
 	claimedprovinces = {
-		483 491 492 493 #lost Kingdom of Jerusalem
+		483 484 491 492 493 #lost Kingdom of Jerusalem
 	}
 	city = {
 		fortress = { level = 1 }

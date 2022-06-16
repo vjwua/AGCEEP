@@ -20,37 +20,65 @@ country = {
 		type = cantonese
 	}
 	diplomacy = {
-		relation = { tag = KOR value = 50 guaranteed = { year = 1500 month = january day = 1 } }
-		relation = { tag = HAM value = 100 access = yes guaranteed = { year = 1450 month = january day = 1 } }
-		relation = { tag = TIB value = 50 guaranteed = { year = 1450 month = january day = 1 } }
+		relation = { tag = KOR value = 50 guaranteed = { year = 1418 month = january day = 1 } }
+		relation = { tag = HAM value = 100 access = yes guaranteed = { year = 1418 month = january day = 1 } }
+		relation = { tag = TIB value = 50 guaranteed = { year = 1418 month = january day = 1 } }
 		relation = { tag = KHM value = 40 }
 		relation = { tag = CHA value = 40 }
 		relation = { tag = MYA value = 40 }
 		relation = { tag = TAU value = 40 }
-		relation = { tag = LGD value = 0 guaranteed = { year = 1420 month = january day = 1 } }
-		relation = { tag = ASS value = -25 }
-		relation = { tag = MCH value = 25 }
-	}
+		relation = { tag = LGD value = 0 guaranteed = { year = 1418 month = january day = 1 } }
+		relation = { tag = ASS value = -25 refusetrade = yes }
+		relation = { tag = MCH value = 25 access = yes }
+			}
 	knownprovinces = {
-		596 599 601 603 605 607 627 629 625 626 628 634 635 636 637 638 639 640 641 642 643 644 645 646 647
-		648 649 650 651 652 653 654 655 656 657 658 659 660 661 662 663 664 665 666 685 686 687 688 689 940
-		941 942 943 944 1018 1019 1020 1021 1081 1082 1083 1084 1085 1086 1087 1088 1145 1146 1147 1149 1150
-		1151 1152 1207 1349 1350 1351 1352 1356 1544 1545 1546 1553 1554 1555 1556 1557 1558 1559 1560 1561
-		1562 1563 1564 1565 1566 1567
+		Peking
+		Shanghai
+		Canton
+		"Sha Anxi"
+		Yunnan
+		Chengdu
+		#596 599 601 603 605 607 627 629 625 626 628 634 635 636 637 638 639 640 641 
+		642 #Korea
+		643 645 646 #Manchuria
+	 	#644 
+		662 663 664 
+		#665 666 685 686 
+		#687 688 689 
+		940 941 
+		#942 943 944 
+		1018
+		#1019 1020 1021 1081 
+		1082 
+		#1083 1084 
+		1085 
+		#1086 1087 1088 1145 1146 1147 1149 1150
+		#1151 1152 1207 1349 1350 1351 1352 1356 1546 1554 
 		#Tibet
-		1542 1543 1605 1606 1607
+		#1542 
+		1543 
+		#1605 
+		1606 1607
 		#Bit of Burma
-		1547 1548 1549 1550
+		#1547 
+		1548 1549 
+		#1550
 		#Laos
-		669 1551 1552
+		669 
+		#1551 
+		1552
 		#Ayutthaya
-		670 674 675
+		#670 674 675
 		#Cambodia
-		667 668
+		#667 668
 		#The Silk Road
-		1592 1598 1599 1600 1601 1602 1603 1604 1608
+		#1592 1598 1599 1600 1601 1602 1603 1604 
+		1608
 		#Malaysia Indonesia India
-		541 543 545 547 558 559 560 561 563 569 571 573 574 575 576 577 672 673 676 677 678 679 680 681 682 695 696 697 698 702 703 704 705 1074 1068 1069 1070 1071 1072 1078 1079 1080 1138 1140 1141 1143 1205 1208 1389 1347 1353 1357 1523 1524 1527 1591
+		#541 543 545 547 558 559 560 561 563 569 571 573 574 575 576 577 672 673 676 677 678 679 680 681 682 695 696 697 698 702 703 704 705 
+		#1074 1068 
+		1069 
+		#1070 1071 1072 1078 1079 1080 1138 1140 1141 1143 1205 1208 1389 1347 1353 1357 1523 1524 1527 1591
 	}
 	ownedprovinces = {
 		646 1608 662 663 1554
@@ -61,9 +89,15 @@ country = {
 		647 648 649 650 651 652 653 654 655 656 657 658 659 660 661 1553 1555 1556 1558 1559 1560 1561 1562 1563 1564 1565 1566 1567
 	}
 	nationalprovinces = {
-		1608
-		646 647 648 649 650 651 652 653 654 655 656 657 658 659 660 661 1553 1555 1556 1557 1558 1559 1560 1561 1562 1563 1564 1565 1566 1567
-	}
+		647 649 #Prince of Yan powerbase since 1380
+			}
+	claimedprovinces = {
+		646 648 650 651 652 653 654 655 656 657 658 659 660 661 1553 1555 1556 1558 1559 1560 1561 1562 1563 1564 1565 1566 1567 1608 
+				}
+	casusbelliprovinces = {
+		643 662 663 1554 #Dai Viet/Annam
+	    	}	
+
 	city = {
 		fortress = { level = 1 }
 		population = 11000
@@ -324,7 +358,7 @@ country = {
 			shock = 3
 			siege = 0
 			location = 662
-			remark = "Military contributions during Cheng Zu's revolt against his nephew to sieze the throne. Replaced Zhang Fu in commanding Ming forces in Jiao Zhi. During his leadership he was at least able to get the rebellion under some control. His successors failed to do this."
+			remark = "Military contributions during Cheng Zu's revolt against his nephew to seize the throne. Replaced Zhang Fu in commanding Ming forces in Jiao Zhi. During his leadership he was at least able to get the rebellion under some control. His successors failed to do this."
 		}
 		infantry = 14000
 		cavalry = 5000

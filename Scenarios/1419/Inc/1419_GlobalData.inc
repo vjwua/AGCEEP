@@ -124,7 +124,8 @@ globaldata = {
 	alliance = {
 		id = { type = 6000 id = 1 }
 		type = vassalization
-		expirydate = { year = 1820 } #Broken by events
+		startdate = { year = 1397 month = june day = 17 }
+		expirydate = { year = 1459 } 
 		name = "Union of Kalmar"
 		participant = { DAN SWE }
 	}
@@ -185,7 +186,8 @@ globaldata = {
 	alliance = {
 		id = { type = 6000 id = 12 }
 		type = vassalization
-		expirydate = { year = 1820 }
+		startdate = { year = 1397 month = june day = 17 }
+		expirydate = { year = 1459 } 
 		name = "Union of Kalmar 2"
 		participant = { DAN NOR }
 	}
@@ -440,6 +442,12 @@ globaldata = {
 		type = vassalization
 		expirydate = { day = 29 month = december year = 1427 }
 		participant = { TUR SER }
+	}
+	alliance = {
+		id = { type = 6000 id = 56 }
+		type = vassalization
+		expirydate = { day = 15 month = june year = 1480 }
+		participant = { MTR BEI }
 	}
 ¤IF Alternative_Wales
 	alliance = {
@@ -917,8 +925,29 @@ globaldata = {
 		participant = { THE VIJ }
 	}
 
+	alliance = {
+		id = { type = 6000 id = 137 }
+		type = dynasticalliance
+		expirydate = { year = 1431 }
+		participant = { DAN ENG }
+	}
+
+	alliance = {
+		id = { type = 6000 id = 138 }
+		type = dynasticalliance
+		expirydate = { year = 1433 }
+		participant = { FRA BRI }
+	}
+
 	emperor = HUN
 
-}
+	defender = { PAP = catholic }
+	defender = { BYZ = orthodox }
+	defender = { MAM = sunni }
+	defender = { DAN = protestant }
+	defender = { QAR = shiite }
+	defender = { CHI = confucianism }
+	defender = { VIJ = hinduism }
+	}
 
 #-----------------------------------------------------------------------------------------------
