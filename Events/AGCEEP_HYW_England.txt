@@ -1,0 +1,1069 @@
+#Hundred Years War - England (ENG)
+
+#See AGCEEP_HYW_Misc.txt for related Core Removal and Province ceding events
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419) The Assassination of John the Fearless
+event = {
+	id = 164162 #triggered by BUR_137015
+	random = no
+	country = ENG
+	name = "EVENTNAME164162" #The Assassination of John the Fearless
+	desc = "EVENTHIST164162"
+	#-#On September 10, 1419, a meeting at Montereau, after a tentative agreement between the Dauphin and the Duke of Burgundy, turned into a pitched battle. After some insults, the two escorts launched into a confused fray during which John the Fearless received a fatal blow from an axe. For Burgundy, the only possible response to this affront was to ally with King Henry and crush this so-called Dauphin traitor!
+
+	action_a = {
+		name = "ACTIONNAME164162A" #Welcome our Cousin from Burgundy!
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1420-1422) Negotiations at Troyes
+event = {
+	id = 164163
+	trigger = {
+		exists = FRA
+		event = 137015 #BUR: The Assassination of John the Fearless
+		NOT = { war = { country = FRA country = ENG } }
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME164163" #Negotiation at Troyes
+	desc = "EVENTHIST164163"
+	#-#The Treaty of Troyes grew primarily from the seeds ofHenry V's desires to press his claim to the throne of France, and thereby vindicate the Lancastrian usurpation of 1399 in the hearts and minds of the people of England. Indeed, it was the warrior King Edward III, Henry's great grandfather, who had pressed his claim and had inititiated the war with France decades ago. Henry's marriage to Katherine Valois, a daughter of Charles VI, was designed, in part, to add an element of legitimacy to Henry's future should he become King of France. The agreement which formed the basis of the treaty was that the Dauphin, Charles, was to be disinherited by his father and Henry V named heir in his place. The treaty committed Henry to conquer those lands in France currently held by the Dauphin Charles and his supporters. An important clause, however, maintained that any and all lands in France which Henry V held or may hold could not be detached from the Crown of France. Furthermore, the institutions of France were to be upheld and respected. Notably, the Duchy of Guyenne was exempted from this clause. Nevertheless, there were other options, as Henry could have exchanged the extraordinary prisoners from Agincourt, the Duke of Orleans and the Duke of Bourbon, among others, along with his claim to the Crown of France, for the Duchies of Normandy and Guyenne in full sovereignty. Orleans and Bourbon, the notable leaders of the Armagnac alliance along with the Dukes of Berry, Alencon, and the late Count of Armagnac Bernard VII, had offered Henry the Duchy of Guyenne in full sovereignty prior to Agincourt. Henry's father, Henry IV, had worked hard for an alliance with the Armagnacs during his reign. Henry V, however, had always preferred an alliance with Burgundy and had openly criticised his father's policy. Alternatively, though at a great cost to the stability of his regime and his own legacy, Henry could have renounced the claims to Normandy and the Crown of France altogether. Regardless, France is ripe for our demands...
+
+	date = { day = 1 month = january year = 1420 }
+	offset = 20
+	deathdate = { day = 1 month = september year = 1422 }
+
+	action_a = {
+		name = "ACTIONNAME164163A" #We want the Crown of France!
+		command = { type = relation which = BRI value = -50 }
+		command = { type = relation which = DAU value = -100 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = relation which = PRO value = -50 }
+		command = { type = badboy value = 1 }
+		command = { type = trigger which = 137056 } #BUR: The Treaty of Troyes
+		command = { type = sleepevent which = 164197 } #ENG: We've lost Poitou for good
+		command = { type = sleepevent which = 164198 } #ENG: We've lost the loyalty of Guyenne for good
+	}
+	action_b = {
+		name = "ACTIONNAME164163B" #Press for the Duchies of Normandy and Guyenne
+		command = { type = stability value = -1 }
+		command = { type = treasury value = 50 }
+		command = { type = relation which = BRI value = 25 }
+		command = { type = relation which = BUR value = -100 }
+		command = { type = relation which = DAU value = 25 }
+		command = { type = relation which = FRA value = 25 }
+		command = { type = relation which = PRO value = 25 }
+		command = { type = removecore which = 385 } #Ile de France
+		command = { type = addcore which = 418 } #Poitou
+		command = { type = addcore which = 423 } #Guyenne
+		command = { type = independence which = PRO }
+		command = { type = cedeprovince which = FRA value = 376 } #Champagne
+		command = { type = cedeprovince which = FRA value = 383 } #Picardie
+		command = { type = cedeprovince which = FRA value = 386 } #Nivernais
+		command = { type = cedeprovince which = FRA value = 407 } #Dauphiné
+		command = { type = cedeprovince which = FRA value = 408 } #Lyonnais
+		command = { type = cedeprovince which = FRA value = 409 } #Bourgogne
+		command = { type = cedeprovince which = PRO value = 412 } #Maine
+		command = { type = cedeprovince which = FRA value = 417 } #Vendée
+		command = { type = cedeprovince which = FRA value = 419 } #Limousin
+		command = { type = cedeprovince which = FRA value = 420 } #Auvergne
+		command = { type = cedeprovince which = FRA value = 421 } #Cévennes
+		command = { type = cedeprovince which = FRA value = 422 } #Languedoc
+		command = { type = trigger which = 170290 } #FRA: The Treaty of Orleans
+		command = { type = sleepevent which = 164176 } #ENG: The Estate of Charles VI
+		command = { type = sleepevent which = 164188 } #ENG: Weakening of the English Positions in France
+		command = { type = sleepevent which = 164199 } #ENG: We have no hope in Paris
+		command = { type = sleepevent which = 164200 } #ENG: We have no hope in Maine and Anjou
+		command = { type = sleepevent which = 164201 } #ENG: We have no hope in Orleans
+	}
+	action_c = {
+		name = "ACTIONNAME164163C" #Renounce our mad ambitions once and for all!
+		command = { type = stability value = -2 }
+		command = { type = treasury value = 150 }
+		command = { type = relation which = BRI value = 50 }
+		command = { type = relation which = BUR value = -50 }
+		command = { type = relation which = DAU value = 100 }
+		command = { type = relation which = FRA value = 100 }
+		command = { type = relation which = PRO value = 50 }
+		command = { type = removecore which = 384 } #Caux
+		command = { type = removecore which = 385 } #Ile de France
+		command = { type = removecore which = 413 } #Normandie
+		command = { type = independence which = PRO }
+		command = { type = cedeprovince which = FRA value = 376 } #Champagne
+		command = { type = cedeprovince which = FRA value = 383 } #Picardie
+		command = { type = cedeprovince which = FRA value = 384 } #Caux
+		command = { type = cedeprovince which = FRA value = 386 } #Nivernais
+		command = { type = cedeprovince which = FRA value = 407 } #Dauphiné
+		command = { type = cedeprovince which = FRA value = 408 } #Lyonnais
+		command = { type = cedeprovince which = FRA value = 409 } #Bourgogne
+		command = { type = cedeprovince which = PRO value = 412 } #Maine
+		command = { type = cedeprovince which = FRA value = 413 } #Normandie
+		command = { type = cedeprovince which = FRA value = 417 } #Vendée
+		command = { type = cedeprovince which = FRA value = 418 } #Poitou
+		command = { type = cedeprovince which = FRA value = 419 } #Limousin
+		command = { type = cedeprovince which = FRA value = 420 } #Auvergne
+		command = { type = cedeprovince which = FRA value = 421 } #Cévennes
+		command = { type = cedeprovince which = FRA value = 422 } #Languedoc
+		command = { type = cedeprovince which = FRA value = 423 } #Guyenne
+		command = { type = trigger which = 170291 } #FRA: The Generous Peace of Henry V
+		command = { type = sleepevent which = 164176 } #ENG: The Estate of Charles VI
+		command = { type = sleepevent which = 164188 } #ENG: Weakening of the English Positions in France
+		command = { type = sleepevent which = 164194 } #ENG: We've lost the loyalty of Caux for good
+		command = { type = sleepevent which = 164195 } #ENG: We've lost the loyalty of Normandy for good
+		command = { type = sleepevent which = 164197 } #ENG: We've lost Poitou for good
+		command = { type = sleepevent which = 164198 } #ENG: We've lost the loyalty of Guyenne for good
+		command = { type = sleepevent which = 164199 } #ENG: We have no hope in Paris
+		command = { type = sleepevent which = 164200 } #ENG: We have no hope in Maine and Anjou
+		command = { type = sleepevent which = 164201 } #ENG: We have no hope in Orleans
+		command = { type = badboy value = -1 }
+	}
+}
+#(1420-1422) Refusal of the English Ambitions - Burgundy refused
+event = {
+	id = 164164 #triggered by FRA_170289
+	random = no
+	country = ENG
+	name = "EVENTNAME164164" #Refusal of the English Ambitions
+	desc = "EVENTHIST164164"
+	#-#Just when nothing seemed to oppose to the recognition of the rights of Henry V to the Crown of St. Louis, Philip the Good finally chose to oppose them, and his refusal brought about those of Isabel of Bavaria and Charles VI. So the truce failed to take hold, and Henry V again took the initiative in the field.
+
+	action_a = {
+		name = "ACTIONNAME164164A" #This Means War!
+		command = { type = stability value = -1 }
+		command = { type = war which = FRA }
+		command = { type = relation which = BUR value = -100 }
+		command = { type = trigger which = 137057 } #BUR: Resumption of Hostilities in France
+	}
+	action_b = {
+		name = "ACTIONNAME164164B" #We Shall Find a Better Moment for Our Revenge...
+		command = { type = relation which = BUR value = 50 }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = casusbelli which = BUR value = 60 }
+		command = { type = casusbelli which = FRA value = 60 }
+	}
+}
+
+#(1420-1422) Henry V is heir to France
+event = {
+	id = 164165
+	trigger = { event = 170288 } #FRA: The Treaty of Troyes
+	random = no
+	country = ENG
+	name = "EVENTNAME164165" #Henry V is heir to France
+	desc = "EVENTHIST164165"
+	#-#Faced with the Anglo-Burgundian alliance and the pressure of Queen Isabel, Charles VI signed a veritable surrender of the Royal government in the Treaty of Troyes. Charles VI disinherited his own son, the so-called King of Bourges, and agreed to recognize Henry V as heir, giving him his daughter Catherine in marriage. For the Lancastrians, the Treaty of Troyes was a triumphant victory which seemed to offer them the Crown of St. Louis for good.
+
+	date = { day = 1 month = january year = 1420 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1422 }
+
+	action_a = {
+		name = "ACTIONNAME164165A" #Take the Dauphin, and Our Victory Will be complete!
+		command = { type = stability value = 3 }
+		command = { type = relation which = BRI value = -25 }
+		command = { type = relation which = DAU value = -100 }
+		command = { type = relation which = PRO value = -50 }
+		command = { type = war which = DAU }
+		command = { type = casusbelli which = DAU value = 120 }
+		command = { type = province_revoltrisk which = 384 value = 1 } #Caux
+		command = { type = province_revoltrisk which = 413 value = 1 } #Normandie
+		command = { type = vassal which = FRA }
+		command = { type = vassal which = BUR }
+		command = { type = addcore_claim which = 376 } #Champagne
+		command = { type = addcore_claim which = 383 } #Picardie
+		command = { type = addcore_claim which = 386 } #Nivernais
+	}
+}
+
+#(1420-1422) The Treaty of Orleans
+event = {
+	id = 164166 #triggered by FRA_170290
+	random = no
+	country = ENG
+	name = "EVENTNAME164166" #The Treaty of Orleans
+	desc = "EVENTHIST164166"
+	#-#From the negotiations at Troyes emerged a treaty that was eventually signed at Orleans. Henry V, enomoured with Charles' daughter, Katherine, demanded her hand in marriage and the Duchies of Normandy and Guyenne which were to be held by Henry free from liege homage to the King of France. It was in effect a return to Henry's demands before the bulk of HEnry's forces had landed in Normandy, and to what the Armagnacs had promised him years before. Charles Duke of Orleans along with Jean Duke of Bourbon, after spending several years as prisoners in London, were ransomed back to France and lent the treaty their full support. Most importantly, Henry V was to renounce his claim to the throne of France. Charles VI was constrained to agree to Henry's proposal. The English were pacified and the Armagnacs claimed political success. Eager to solidify popular support and capture an air of legitimacy, the Kings of England and France, and the Dukes of Bourbon and Orleans would hold a public ceremony in Paris where each swore an extraordinary oath on behalf of themselves and their blood lines to uphold the treaty stipulations. Henry V formally renounced his claim to the throne of France. The Duke of Burgundy, who had stormed out of the Troyes negotiations, refused to attend the ceremonies. Eager to garner the support of the realm for his decision, Henry V wasted no time calling to session a Parliament that quickly ratified the treaty. Nevertheless, Guyenne was held by the Dauphin and his supporters, and it was clear that Henry V would need a lasting peace with Charles Dauphin of France.
+
+	action_a = {
+		name = "ACTIONNAME164166A" #Reconsile the Dauphin and Guyenne will be our sovereign possession!
+		command = { type = dynastic which = FRA }
+		command = { type = relation which = BRI value = 25 }
+		command = { type = relation which = BUR value = -25 }
+		command = { type = relation which = DAU value = 25 }
+		command = { type = relation which = FRA value = 25 }
+		command = { type = relation which = PRO value = 25 }
+	}
+}
+#(1420-1422) The Dauphin Ratifies the Treaty of Orleans
+event = {
+	id = 164167 #triggered by DAU_361010 A
+	random = no
+	country = ENG
+	name = "EVENTNAME164167" #The Dauphin Ratifies the Treaty of Orleans
+	desc = "EVENTHIST164167"
+	#-#England was inevitably forced to come to terms with the Dauphin after the signing of the Treaty of Orleans. After a furious period of negotiation, the Dauphin decided to ratify the Treaty. The Duchies are secured. Well done!
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = stability value = 1 }
+		command = { type = relation which = BUR value = -15 }
+		command = { type = relation which = DAU value = 50 }
+		command = { type = relation which = FRA value = 15 }
+		command = { type = relation which = PRO value = 15 }
+	}
+}
+#(1420-1422) The Dauphin's Refusal
+event = {
+	id = 164168 #triggered by DAU_361010 B
+	random = no
+	country = ENG
+	name = "EVENTNAME164168" #The Dauphin's Refusal
+	desc = "EVENTHIST164168"
+	#-#With the Treaty of Orleans, the Duchy of Guyenne was to be handed over to England. However, Charles of Valois, son of Charles VI and heir to his throne, refused to ratify the Treaty and thus his forces and those of the Armagnacs remained garrisoned in the duchy provinces. England would have to enforce the treaty through aggression, as Charles VI was in no condition to bring his rebellious son to tow.
+
+	action_a = {
+		name = "ACTIONNAME164168A" #Sniveling Swine! To war!
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1422-1425) Henry's Generous Legacy
+event = {
+	id = 164169
+	trigger = {
+		event = 170291 #FRA: The Generous Peace of Henry V
+		atwar = no
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME164169" #Henry's Generous Legacy
+	desc = "EVENTHIST164169"
+	#-#When Henry V returned to England with his new bride, it had seemed that his entire realm had erupted in joyous celebration for their conquering Hero King. However, once the festivities, ceremonies, and initial euphoria of peace and victory began to fade, a grim reality sunk into the hearts and minds of the commons. England had little to show for Henry's miraculous success on the fields of France, save a youthful French Princess and the possessions of Gascogne and Calais, both of which were now mortgaged to the Crown. Disillusioned, many began to view this as an outrage, and it rumours began to circulate widely that the King had abandonded his subjects, nobles and commons alike, at Troyes. Few had escaped many of the great sacrifices at home, and fewer still had reaped the spoils and plunder of victory in the fields of France. The lucrative attractions of the chevauchee and levying the patis were now gone, leaving many returning soldiers frustrated and unemployed. There were no more fortunes to be made in France by the landed gentry and lessor nobles, as any potentially lucrative positions of adminsitration fell to the greatest ascendant nobles and those who enjoyed the King's favour. Many Lords were now seeking payments for their terms of indenture, as were their own men, whilst the Commons now attempted to persuade the King to Resume Crown lands for fear of further taxation. Preferring to spend his time with his new bride and enjoying this relative time of peace, Henry V had neither the time nor the inclination to attend to these matters of redress. Nevertheless, upon his death, and with an infant King on the throne, the support of Parliament became crucial to legitimize the Regency. The ensuing Parliamentary sessions were strained and the Council was reluctant, if not outright opposed, to agree to Resumption. The sessions were twice prorogued for weeks due to rioting in London and Kent, which were brutally put down. It was the first real test for a fragile Regency...
+
+	date = { day = 1 month = september year = 1422 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1425 }
+
+	action_a = {
+		name = "ACTIONNAME164172A" #Appease the Nobles
+		command = { type = revolt which = -1 }
+		command = { type = treasury value = -100 }
+		command = { type = stability value = -1 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = revoltrisk which = 120 value = 3 }
+	}
+	action_b = {
+		name = "ACTIONNAME164172B" #Appease the Commons
+		command = { type = stability value = -2 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = revoltrisk which = 48 value = 4 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+	}
+	action_c = {
+		name = "ACTIONNAME164172C" #What?! Concessions?! Ridiculous!
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 60 value = 6 }
+	}
+}
+
+#(1422-1423) Nivernais is granted to Burgundy
+event = {
+	id = 164170
+	random = no
+	country = ENG
+	trigger = {
+		event = 170288 #FRA: The Treaty of Troyes
+		owned = { province = 386 data = ENG } #Nivernais
+		NOT = {
+			war = { country = ENG country = BUR }
+			event = 164173 #ENG: Proposal at Amiens
+		}
+	}
+	name = "EVENTNAME164170" #Nivernais is Granted to Burgundy
+	desc = "EVENTHIST164170"
+	#-#English policy in the heart of France was to leave the Duke of Burgundy, who had the most influence in the region, as the de facto ruler. The Regency of Henry VI would now confirm his status, officially legitimizing the status quo. The English still required the Duke's support in order to preserve the Treaty of Troyes, and confirming Burgundy's role in this new era was believed to be a necessary step to preserve the Anglo-Burgundian alliance.
+
+	date = { day = 1 month = september year = 1422 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1423 }
+
+	action_a = {
+		name = "ACTIONNAME164170A" #Hand the region to Burgundy
+		command = { type = cedeprovince which = BUR value = 386 } #Nivernais
+		command = { type = relation which = BUR value = 15 }
+	}
+}
+
+#(1422) The Legacy of Charles VI - Ahistorical
+event = {
+	id = 164171 #triggered by BUR_137061 B
+	random = no
+	country = ENG
+	name = "EVENTNAME164171" #The Legacy of Charles VI
+	desc = "EVENTHIST164171"
+	#-#On October 21, 1422, King Charles VI of France died in complete isolation. In accordance with the Treaty of Troyes, Charlse VI's son, Charles does not inherit the throne. Instead it is Henry V's son, the infant Henry VI, who inherits the Crown of St. Louis. Charles, residing south of the Loire, would be declared a bastard and unfit for the Crown of France. The English commanders in France led by Henry V's brother, the Duke of Bedford, now concerned themselves with consolidating their positions north of the Loire. The territories south and east of Paris were hostile to the foreign government now ruling from Paris and Rouen. The rebels would need to be put down in an effort to subjugate the population.
+
+	action_a = {
+		name = "ACTIONNAME164171A" #Long Live King Henry II of France!
+		command = { type = stability value = 3 }
+		command = { type = relation which = BUR value = -100 }
+		command = { type = relation which = DAU value = -200 }
+		command = { type = inherit which = FRA }
+		command = { type = cedeprovince which = BUR value = 383 } #Picardie
+		command = { type = war which = DAU }
+	}
+}
+
+#(1422-1425) Uncertainty in England
+event = {
+	id = 164172
+	trigger = {
+		event = 361010 #DAU: The Dauphin Ratifies the Treaty of Orleans
+		atwar = no
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME164172" #Uncertainty in England
+	desc = "EVENTHIST164172"
+	#-#In the months following the Treaty of Orleans, and the Dauphin's subsequent adherence to its stipulations, England's Lords and Commons had grown increasingly restless. During the remainder of his reign, Henry V declined to call Parliament. After Henry's death and once the Regency had been established, a Parliament was finally called in order to address England's misgivings. The mood of the proceedings was mixed. The war in France had been costly. Retainers, households, troops and loans had to be paid. England's lords had found themselves hard pressed for repayment of Crown debts. The Lords understood that only the greatest among them, and even then only those select few enjoying the King's favour, would profit greatly from England's newly acquired possessions in France. In contrast to the discontent of the nobles, the Commons were emboldened and enthusiastic. The populace had endured harsh taxation throughout the long war with France, and most desired an end to the burden. Having bitterly fought for an Act of Resumption ever since Henry IV's days, the Commons now looked on the latest political development as a golden opportunity to push further still. The Council was in a difficult position and was hard pressed to come to a concensus and make a decision. The Commons expected the King to pay for the defense of England's continental possessions out of his newly acquired possessions in France, while the nobles coveted the nwe lucrative positions on the continent, and were demanding payment for services rendered. For the meantime, stability in France was threatening stability in England.
+
+	date = { day = 1 month = november year = 1422 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1425 }
+
+	action_a = {
+		name = "ACTIONNAME164172A" #Appease the Nobles
+		command = { type = treasury value = -100 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = revoltrisk which = 120 value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME164172B" #Appease the Commons
+		command = { type = stability value = -1 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = revoltrisk which = 48 value = 3 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+	}
+	action_c = {
+		name = "ACTIONNAME164172C" #What?! Concessions?! Ridiculous!
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 60 value = 5 }
+	}
+}
+
+#(1423) Proposal at Amiens
+event = {
+	id = 164173
+	trigger = {
+		event = 170288 #FRA: Treaty of Troyes
+		NOT = {
+			war = { country = ENG country = BUR }
+			war = { country = ENG country = BRI }
+			war = { country = BUR country = BRI }
+		}
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME164173" #Proposal at Amiens
+	desc = "EVENTHIST164173"
+	#-#After the death of Charles VI, the infant son of Henry V had inherited the crown of France in accordance with the Treaty of Troyes. This treaty, with Burgndian aid, had granted the English command of the administration of France. However, the majority of France remained largely out of English hands. The English Council were treaty bound to undertake the enormous task of conquering the remnants of France. Thus, John of Lancaster, Duke of Bedford and now Regent of France continued to seek the aid of Duke Philip of Burgundy 'the good' and so approached Philip and John VI, Duke of Brittany with an alliance proposal. Specifically, Bedford proposed a marriage alliance to reafirm their treaty commitments and so Philip offered his sisters, Anne and Margaret as brides for Bedford and Arthur of Brittany, Earl of Richmond. How shall Bedford proceed?
+
+	date = { day = 1 month = february year = 1423 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1423 }
+
+	action_a = {
+		name = "ACTIONNAME164173A" #Vigorously persue this development!
+		command = { type = relation which = BUR value = 15 }
+		command = { type = relation which = BRI value = 15 }
+		command = { type = relation which = DAU value = -25 }
+	}
+	action_b = {
+		name = "ACTIONNAME164173B" #We needn't bother with Burgundian aid!
+		command = { type = relation which = BUR value = -25 }
+		command = { type = relation which = BRI value = -10 }
+		command = { type = sleepevent which = 137063 } #BUR: Treaty of Amiens, 1423
+	}
+}
+#(1423) Treaty of Amiens
+event = {
+	id = 164174 #triggered by BRI_134012 A
+	random = no
+	country = ENG
+	name = "EVENTNAME164174" #Treaty of Amiens, 1423
+	desc = "EVENTHIST164174"
+	#-#After some deliberation, Philip, Duke of Burgundy and John VI, Duke of Brittany agreed to Bedford's proposal. Within weeks of the treaty, Bedford was married to Anne of Burgundy while Arthur of Brittany, Earl of Richmond married Margaret of Burgundy. Perhaps more importantly, Burgundy and Brittany reaffirmed their commitments to the Treaty of Troyes, acknowledging Bedford as Regent of France. Thus the alliance between England, Burgundy and Brittany was reafirmed. Nevertheless, the stability as such was questionable, and neither leader trusted the other entirely. At the very least, Bedford was now free to persue the conquest of France without interference from Burgundy or Brittany. In England the Treaty of Amiens was celebrated as a token of Bedford's ability as Regent of France. Well done sire!
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = stability value = 1 }
+		command = { type = alliance which = BUR }
+		command = { type = dynastic which = BRI }
+		command = { type = relation which = BUR value = 50 }
+		command = { type = relation which = BRI value = 50 }
+		command = { type = relation which = DAU value = -25 }
+		command = { type = province_revoltrisk which = 385 value = -8 } #Ile de France
+	}
+}
+#(1423) Rejection at Amiens
+event = {
+	id = 164175 #triggered by BUR_137063 N
+	random = no
+	country = ENG
+	name = "EVENTNAME164175" #Rejection at Amiens
+	desc = "EVENTHIST164175"
+	#-#At Amiens, Bedford had approached Philip and John VI with a proposal for an alliance between the three dukes. At Amiens, Bedford had proposed a marriage alliance and so Philip offered his sisters Anne and Margaret to Bedford and Arthur of Brittany, Earl of Richmond, respectively. However, after some deliberation, the French dukes reversed their dispositions and rejected Bedford's proposal. Philip's refusal dealt a significant blow to the legitamacy of England's rule in France.
+
+	action_a = {
+		name = "ACTIONNAME164175A" #Treacherous upstarts!
+		command = { type = stability value = -1 }
+		command = { type = revolt which = 384 } #Caux
+		command = { type = revoltrisk which = 6 value = 3 }
+		command = { type = casusbelli which = BUR value = 12 }
+		command = { type = casusbelli which = BRI value = 12 }
+		command = { type = relation which = BUR value = -25 }
+		command = { type = relation which = BRI value = -25 }
+	}
+}
+
+#(1423-1426) The Estate of Charles VI
+event = {
+	id = 164176
+	trigger = {
+		OR = {
+			event = 361013 #DAU: The Legacy of Charles VI
+			event = 361019 #DAU: The Estate of Charles VI
+			event = 361018 #DAU: King Charles VII
+		}
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME164176" #The Estate of Charles VI
+	desc = "EVENTHIST164176"
+	#-#Having been unable to secure his rights to the Crown of St. Louis, Henry V left his infant son and the Regency Council in a murky situation. The death of the King of France, and the contempt which met the pretensions of the Lancaster heir meant that only war could enforce their rights. With a baby on the throne, and the Council showing signs of infighting, there was little the realm could afford to accomplish.
+
+	date = { day = 1 month = january year = 1423 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1426 }
+
+	action_a = {
+		name = "ACTIONNAME164176A" #Renounce our Ambitions
+		command = { type = removecore which = 383 } #Picardie
+		command = { type = removecore which = 384 } #Caux
+		command = { type = removecore which = 385 } #Ile de France
+		command = { type = removecore which = 413 } #Normandie
+		command = { type = relation which = FRA value = 100 }
+		command = { type = relation which = DAU value = 50 }
+		command = { type = relation which = BUR value = 100 }
+		command = { type = sleepevent which = 164188 } #ENG: Weakening of the English Positions in France
+		command = { type = sleepevent which = 164194 } #ENG: We've lost the loyalty of Caux for good
+		command = { type = sleepevent which = 164195 } #ENG: We've lost the loyalty of Normandy for good
+		command = { type = sleepevent which = 164197 } #ENG: We've lost Poitou for good
+		command = { type = sleepevent which = 164198 } #ENG: We've lost the loyalty of Guyenne for good
+		command = { type = sleepevent which = 164199 } #ENG: We have no hope in Paris
+		command = { type = sleepevent which = 164200 } #ENG: We have no hope in Maine and Anjou
+		command = { type = sleepevent which = 164201 } #ENG: We have no hope in Orleans
+	}
+	action_b = {
+		name = "ACTIONNAME164176B" #We Want our Share!
+		command = { type = stability value = -1 }
+		command = { type = removecore which = 385 } #Ile de France
+		command = { type = relation which = DAU value = -100 }
+		command = { type = relation which = BUR value = -100 }
+		command = { type = relation which = FRA value = -100 }
+		command = { type = casusbelli which = FRA value = 60 }
+		command = { type = casusbelli which = DAU value = 60 }
+		command = { type = casusbelli which = BUR value = 60 }
+		command = { type = sleepevent which = 164199 } #ENG: We have no hope in Paris
+		command = { type = sleepevent which = 164200 } #ENG: We have no hope in Maine and Anjou
+		command = { type = sleepevent which = 164201 } #ENG: We have no hope in Orleans
+	}
+}
+
+#(1424-1425) Bedford is granted the Duchy of Anjou
+event = {
+	id = 164177
+	trigger = {
+		event = 170288 #FRA: Treaty of Troyes
+		owned = { province = 385 data = -1 }
+		OR = {
+			owned = { province = 383 data = -1 } #Rouen and border provinces
+			owned = { province = 384 data = -1 }
+			owned = { province = 410 data = -1 }
+			owned = { province = 411 data = -1 }
+			owned = { province = 412 data = -1 }
+			owned = { province = 413 data = -1 }
+			owned = { province = 414 data = -1 }
+			owned = { province = 416 data = -1 }
+			owned = { province = 417 data = -1 }
+		}
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME164177" #Bedford is Granted the Duchy Lands of Anjou
+	desc = "EVENTHIST164177"
+	#-#The Treaty of Troyes bound the English to subdue the lands held by the Dauphin and his supporters. Though the Treaty guaranteed a status quo for those who swore allegiance to the King of England, any who refused had, by the same stipulation, commited treason. Thus, the lands, titles and possessions of the traitors, indeed their very lives snd livelihood, were now forfeit. Their material wealth was to be seized and resumed to the Crown, whom was free to distribute such wealth as they saw fit. In late spring of 1424, by letters pattent issued in the infant King Henry VI's name, John Duke Bedford and Regent of France was given King Rene I's lands in France, along with the Duchy of Alencon. The Duchy of Anjou was to become a formal possession of the Crown of France. Such a move was just as political and militant, as it was legal. The English were preparing to subdue French resistance in the counties of Maine and Anjou.
+
+	date = { day = 1 month = april year = 1424 }
+	offset = 60
+	deathdate = { day = 29 month = december year = 1425 }
+
+	action_a = {
+		name = "ACTIONNAME164177A" #Submit to our new lord Bedford, Regent of France!
+		command = { type = addcore_claim which = 412 } #Maine
+		command = { type = relation which = PRO value = -50 }
+		command = { type = relation which = DAU value = -50 }
+		command = { type = relation which = BUR value = -25 }
+		command = { type = relation which = BRI value = -25 }
+	}
+	action_b = {
+		name = "ACTIONNAME164177B" #We need not further punish Rene I
+		command = { type = addcore_casusbelli which = 412 } #Maine
+		command = { type = relation which = PRO value = -25 }
+		command = { type = relation which = DAU value = -50 }
+		command = { type = relation which = BUR value = -15 }
+		command = { type = relation which = BRI value = -15 }
+	}
+}
+
+#(1424-1426) Burgundy is Rewarded
+event = {
+	id = 164178
+	trigger = {
+		event = 164174 #ENG: The Treaty of Amiens
+		NOT = { war = { country = ENG country = BUR } }
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME164178" #Burgundy is Rewarded
+	desc = "EVENTHIST164178"
+	#-#The treaty of Troyes not only made Henry V successor of Charles VI, it confirmed him both as the sovereign lord and as the ally of Philip, Duke of Burgundy which meant, in practical terms, that Philip was staking his own great authority, both as lord and as leader of a political faction in France, behind the treaty. Such support was of incalculable value to the English. It meant that, where necessary, ducal pressure could be brought to bear upon individuals and corporations to accept the treaty's terms, and when Henry V died, it led to a more rapid and more general acceptance of his young son in Burgundian-controlled lands than might otherwise have been achieved. Such support would prove costly. The Burgundians were at pains to ensure payments were timely and in no short supply. No small wonder, then, that Philip was given several counties surrounding the County of Burgundy, and retained de facto control over the vast counties of Champagne and Nivernais.
+
+	date = { day = 1 month = june year = 1424 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1426 }
+
+	action_a = {
+		name = "ACTIONNAME164178A" #Grant our cousin of Burgundy Macon, Auxerre and confirm his estates!
+		command = { type = stability value = 1 }
+		command = { type = relation which = BUR value = 25 }
+		command = { type = cedeprovince which = BUR value = 376 } #Champagne
+		command = { type = cedeprovince which = BUR value = 386 } #Nivernais
+	}
+	action_b = {
+		name = "ACTIONNAME164178B" #What?! And detach such revenues from our royal inheritance?!
+		command = { type = relation which = BUR value = -50 }
+		command = { type = sleepevent which = 137065 } #BUR: A Gift of Several Counties
+	}
+}
+
+#(1425-1461) Orleanists Wish to Surrender to Burgundy
+event = {
+	id = 164179
+	trigger = {
+		event = 170288 #FRA: The Treaty of Troyes
+		event = 361021 #DAU: Jean of Orleans Swears Allegiance to Charles VII
+		owned = { province = 411 data = -1 } #Orleanais
+		NOT = {
+			war = { country = ENG country = BUR }
+			event = 164180 #ENG: English Final Victory
+		}
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME164179" #Orleanists Wish to Surrender to Burgundy
+	desc = "EVENTHIST164179"
+	#-#During the English siege of the city of Orleans, the inhabitants of Orleans offered to surrender peacefully, provided Orleans would fall to the jurisdiction of the Duke of Burgundy, rather than Bedford. Not long before, Charles had made a deal with Philip Duke of Burgundy promising Orleans to the Duke in exchange for his ceasing of hostilities towards the Dauphinists. Henry VI's Regent in France, Bedford, taken aback by this development, reacted harshly and rebutted what he considered to be an outrageous insult. Needless to say, the Duke of Burgundy became infuriated, abandoning Bedford's forces altogether. The relations between the two were deeply hurt, but the notion that such a hard fought province would fall to Burgundy was simply too incredible to consider seriously.
+
+	date = { day = 1 month = january year = 1425 }
+	offset = 90
+	deathdate = { day = 29 month = december year = 1461 }
+
+	action_a = {
+		name = "ACTIONNAME164179A" #Absolute nonsense! Orleans is ours!
+		command = { type = relation which = BUR value = -50 }
+		command = { type = province_revoltrisk which = 411 value = 5 } #Orleanais
+	}
+	action_b = {
+		name = "ACTIONNAME164179B" #Perhaps we were too hasty...hand Orleans over to Philip
+		command = { type = stability value = -1 }
+		command = { type = relation which = BUR value = 50 }
+		command = { type = cedeprovince which = BUR value = 411 } #Orleanais
+		command = { type = trigger which = 137067 } #BUR: Orleans Surrenders to Burgundy
+		command = { type = badboy value = -1 }
+	}
+}
+
+#(1425-1461) English Final Victory
+event = {
+	id = 164180 #triggered by DAU_361024
+	trigger = {
+		war = { country = ENG country = DAU }
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME164180" #English Final Victory
+	desc = "EVENTHIST164180"
+	#-#Despite the Treaty of Troyes, nothing was gained for England as long as they were resisted in the south by the Dauphin Charles and his Armagnac entourage. The Treaty bound England to destroy the Dauphin and recover any and all of the lands in his possession. Now, most of these lands were surrendering voluntarily to English forces. The Dauphin's son, Louis, would be hard pressed to maintain unity around him. Nevertheless, Louis could be utilized by any one of Henry VI's enemies, thus it would be best if Louis was removed entirely from the political scene. The Dauphinists must be eliminated, and the senior Valois line extinguished. The Treaty of Troyes demanded nothing less.
+
+	action_a = {
+		name = "ACTIONNAME164180A" #Our Rights are Finally Confirmed!
+		command = { type = stability value = 3 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = land value = 2 }
+		command = { type = addcore which = 383 } #Picardie
+		command = { type = addcore which = 411 } #Orleanais
+		command = { type = addcore which = 412 } #Maine
+		command = { type = addcore which = 376 } #Champagne
+		command = { type = addcore which = 386 } #Nivernais
+		command = { type = addcore which = 407 } #Dauphiné
+		command = { type = addcore which = 408 } #Lyonnais
+		command = { type = addcore which = 410 } #Berri
+		command = { type = addcore which = 417 } #Vendée
+		command = { type = addcore which = 418 } #Poitou
+		command = { type = addcore which = 419 } #Limousin
+		command = { type = addcore which = 420 } #Auvergne
+		command = { type = addcore which = 421 } #Cévennes
+		command = { type = addcore which = 422 } #Languedoc
+		command = { type = addcore which = 423 } #Guyenne
+		command = { type = province_revoltrisk which = 412 value = -4 } #Maine
+		command = { type = vp value = 50 }
+		command = { type = add_countryculture which = french }
+		command = { type = inherit which = DAU }
+		command = { type = sleepevent which = 164179 } #ENG: Orleanists Wish to Surrender to Burgundy
+		command = { type = sleepevent which = 164173 } #ENG: Proposal at Amiens
+		command = { type = sleepevent which = 137063 } #BUR: Treaty of Amiens, 1423
+		command = { type = sleepevent which = 164178 } #ENG: Burgundy is Rewarded
+		command = { type = sleepevent which = 164192 } #ENG: We'll Never Recover Champagne
+		command = { type = sleepevent which = 164193 } #ENG: We'll never recover Nivernais
+		command = { type = sleepevent which = 164194 } #ENG: We've lost the loyalty of Caux for good
+		command = { type = sleepevent which = 164195 } #ENG: We've lost the loyalty of Normandy for good
+		command = { type = sleepevent which = 164196 } #ENG: We've lost Gascogne for good
+		command = { type = sleepevent which = 164197 } #ENG: We've lost Poitou for good
+		command = { type = sleepevent which = 164198 } #ENG: We've lost the loyalty of Guyenne for good
+		command = { type = sleepevent which = 164199 } #ENG: We have no hope in Paris
+		command = { type = sleepevent which = 164200 } #ENG: We have no hope in Maine and Anjou
+		command = { type = sleepevent which = 164201 } #ENG: We have no hope in Orleans
+		command = { type = sleepevent which = 164177 } #ENG: Bedford is Granted the Duchy Lands of Anjou
+		command = { type = sleepevent which = 164217 } #ENG: Maine and Anjou our ours
+		command = { type = sleepevent which = 164059 } #ENG: Suffolk's Impeachment
+		command = { type = sleepevent which = 164061 } #ENG: Cade's Rebellion
+		command = { type = sleepevent which = 164062 } #ENG: Dartford
+		command = { type = sleepevent which = 164063 } #ENG: The Reading Parliament
+	}
+}
+
+#(1427-1430) The Loire Valley Offensive
+event = {
+	id = 164181
+	random = no
+	country = ENG
+	trigger = {
+		event = 164171 #ENG: The Legacy of Charles VI
+		NOT = {
+			event = 361024 #DAU: The Collapse of the Kingdom of Bourges
+			owned = { province = 411 data = -1 } #Orléanais
+			owned = { province = 411 data = BUR } #Orléanais
+		}
+	}
+	name = "EVENTNAME164181" #The Loire Valley Offensive
+	desc = "EVENTHIST164181"
+	#-#In 1427, the position of Henry VI in France was still not ensured due to the resistance of the Dauphin the widespread support he was receiving. To make matters worse, Burgundy seemed to be putting forth a lackluster effort towards pacifying the rebels in the south. Though Bedford wished to solidify the Lancastrian hold on Maine and Anjou, the Earl of Salisbury demanded firmer action and fervant prosecution of the war against the Dauphin. Bedford reluctantly agreed to send Salisbury to take the Loire Valley and eventually Orleans, the heavily fortified town and home of the Duke of Orleans. There were those besides Bedford who disliked the plan, as attacking the lands of a captive was widely considered a dishonourable act. The Duke of Orleans was a captive in London and had been since Agincourt. Nevertheless, the treaty of Troyes was firmly on the side of those who wished to press onwards...
+
+	date = { day = 1 month = april year = 1427 }
+	offset = 90
+	deathdate = { day = 29 month = december year = 1430 }
+
+	action_a = {
+		name = "ACTIONNAME164181A" #Salisbury's campaign is in the interests of the Treaty of Troyes
+		command = { type = treasury value = 100 }
+		command = { type = INF which = -2 value = 10000 }
+		command = { type = CAV which = -2 value = 3000 }
+		command = { type = war which = DAU }
+		command = { type = stability value = 4 }
+		command = { type = addcore_claim which = 411 } #Orleanais
+		command = { type = relation which = BUR value = -10 }
+		command = { type = relation which = DAU value = -50 }
+		command = { type = wakeleader which = 046304} #Salisbury (ENG)
+		command = { type = badboy value = 1 }
+		command = { type = sleepevent which = 164008 } #ENG: Maine and Anjou are Pacified
+	}
+	action_b = {
+		name = "ACTIONNAME164181B" #Discard Salisbury's campaign, subdue Maine and Anjou!
+		command = { type = treasury value = 50 }
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = CAV which = -2 value = 1500 }
+		command = { type = war which = DAU }
+	}
+	action_c = {
+		name = "ACTIONNAME164181C" #Remain on the Defensive
+		command = { type = stability value = -1 }
+		command = { type = sleepevent which = 164008 } #ENG: Maine and Anjou are Pacified
+	}
+}
+
+#(1427-1430) The push for Guyenne
+event = {
+	id = 164182
+	trigger = {
+		event = 164171 #ENG: The Legacy of Charles VI
+		OR = {
+			owned = { province = 411 data = -1 } #Orléanais
+			owned = { province = 411 data = BUR } #Orléanais
+		}
+		NOT = {
+			event = 164181 #ENG: The Loire Valley Offensive
+			event = 361024 #DAU: The Collapse of the Kingdom of Bourges
+		}
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME164182" #The push for Guyenne
+	desc = "EVENTHIST164182"
+	#-#In 1427, the position of Henry VI in France was still not ensured due to the resistance of the Dauphin and the widespread support he was receiving. To make matters worse, Burgundy seemed to be putting forth a lackluster effort towards pacifying the rebels in the south. Though Bedford wished to solidify the Lancastrian holdings north of the Loire, the Earl of Salisbury demanded firmer action and fervant prosecution of the war against the Dauphin in the name of the Treaty of Troyes. Bedford finally settled on the aim to unite England's northern and southern territories. Salisbury was saddled with this monumental task. Letters patent signed in Henry VI's name granted Bedford the Duchy of Touraine, while Salisbury was promised the county of Poitou.
+
+	date = { day = 1 month = april year = 1427 }
+	offset = 90
+	deathdate = { day = 29 month = december year = 1430 }
+
+	action_a = {
+		name = "ACTIONNAME164182A" #This campaign is in the interests of the Treaty of Troyes
+		command = { type = treasury value = 100 }
+		command = { type = INF which = -2 value = 10000 }
+		command = { type = CAV which = -2 value = 3000 }
+		command = { type = war which = DAU }
+		command = { type = addcore_claim which = 417 } #Vendée
+		command = { type = addcore_claim which = 418 } #Poitou
+		command = { type = relation which = BUR value = -50 }
+		command = { type = relation which = DAU value = -50 }
+		command = { type = wakeleader which = 046304 } #Earl of Salisbury #Salisbury (ENG)
+	}
+	action_b = {
+		name = "ACTIONNAME164182B" #Persue a consolidative course
+		command = { type = stability value = -1 }
+		command = { type = relation which = BUR value = 50 }
+		command = { type = relation which = DAU value = 50 }
+		command = { type = sleepevent which = 164008 } #ENG: Maine and Anjou are Pacified
+	}
+}
+
+#(1430-1461) Charles is crowned at Rheims
+event = {
+	id = 164183
+	trigger = { event = 361028 } #DAU: The Consecration of Charles VII
+	random = no
+	country = ENG
+	name = "EVENTNAME164183" #Charles is Crowned at Rheims
+	desc = "EVENTHIST164183"
+	#-#Joan of Arc rode to Rheims where Charles VII received royal anointment. All the cities of Champagne opened their doors to the one who had once been judged a bastard. Whereas the judgement of arms was still very undecided, the reconquest of the Kingdom of France however had taken a decisive turn.
+
+	date = { day = 0 month = january year = 1430 }
+	offset = 1
+	deathdate = { day = 22 month = july year = 1461 }
+
+	action_a = {
+		name = "ACTIONNAME164183A" #My Inheritance!
+		command = { type = stability value = -3 }
+		command = { type = remove_countryculture which = french }
+		command = { type = removecore which = 385 } #Ile de France
+		command = { type = domestic which = offensive value = -2 }
+	}
+}
+
+#(1430-1436) Champagne is granted to Burgundy
+event = {
+	id = 164184
+	trigger = {
+		owned = { province = 376 data = -1 } #Champagne
+		event = 170288 #FRA: The Treaty of Troyes
+		NOT = {
+			war = { country = ENG country = BUR }
+			event = 164180 #ENG: English Final Victory
+			event = 170307 #FRA: The Treaty of Arras
+		}
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME164184" #Champagne is granted to Burgundy
+	desc = "EVENTHIST164184"
+	#-#The countryside to the east and south of Paris had never truly accepted English rule. The Duke of Burgundy, particularly so in these lands so close to his own duchy, held more sway and had, for what it was worth, governed the region for most of Henry VI's reign. The English Regency, fearing a Burgundian lapse into neutrality, granted the county of Champagne to Philip in tail-male.
+
+	date = { day = 1 month = march year = 1430 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1436 }
+
+	action_a = {
+		name = "ACTIONNAME164184A" #Confirm Philip's supremacy in the region
+		command = { type = relation which = BUR value = 25 }
+		command = { type = cedeprovince which = BUR value = 376 } #Champagne
+		command = { type = removecore which = 376 } #Champagne
+		command = { type = trigger which = 137069 } #BUR: Henry VI Confers Champagne to Burgundy
+		command = { type = sleepevent which = 164192 } #ENG: We'll Never Recover Champagne...
+	}
+	action_b = {
+		name = "ACTIONNAME164184B" #We cannot sever the county from the Crown!
+		command = { type = relation which = BUR value = -50 }
+		command = { type = revolt which = 385 } #Ile de France
+		command = { type = revolt which = 383 } #Picardie
+		command = { type = revolt which = 376 } #Champagne
+	}
+}
+
+#(1431) Joan of Arc is Delivered to the English
+event = {
+	id = 164185 #triggered by BUR_137070 A
+	random = no
+	country = ENG
+	name = "EVENTNAME164185" #Joan of Arc is Delivered to the English
+	desc = "EVENTHIST164185"
+	#-#Captured by Burgundy and held by Philip the Good who hesitated over her fate, Joan was finally delivered to the English, who paid the ransom required while Charles VII looked the other way. The Maid, now in the hands of her enemies, had compromised English claims since the Consecration. To reverse this, execution was insufficient. She had to be shown a heretic to undermine her alleged divine mission and thus strike at Charles' legitimacy. For that, the English still had a weapon in hand: the theologians of the University of Paris and a trial for witchcraft.
+
+	action_a = {
+		name = "ACTIONNAME164185A" #Try her for Witchcraft
+		command = { type = stability value = -1 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = treasury value = -50 }
+		command = { type = relation which = FRA value = -100 }
+		command = { type = relation which = BUR value = 40 }
+		command = { type = relation which = PAP value = 25 }
+	}
+	action_b = {
+		name = "ACTIONNAME164185B" #Settle the Affair Without Wasting Time...
+		command = { type = stability value = 2 }
+		command = { type = domestic which = innovative value = -3 }
+		command = { type = domestic which = offensive value = 1 }
+		command = { type = sleepevent which = 164186 } #ENG: The Martyrdom of Joan
+		command = { type = sleepevent which = 164187 } #ENG: Joan is Released
+	}
+}
+
+#(1431-1433) The Martyrdom of Joan
+event = {
+	id = 164186
+	trigger = {
+		event = 164185 #ENG: Joan of Arc is Delivered to the English
+		NOT = { event = 164187 } #ENG: Joan is Released
+		stability = 0
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME164186" #The Martyrdom of Joan
+	desc = "EVENTHIST164186"
+	#-#Joan was given into the hands of the Parisian doctors of theology who, helped by various inquisitors and lay officials, tortured the Maid with the aim of getting her to deny the divine nature of her voices, proving her a witch and thus weakening the legitimacy of the Consecration of Charles VII. After months of investigation, trial, and infamies, and in spite of the attempts of Bishop of Beauvais, Cauchon, to avoid the execution, Joan was finally declared a witch. On May 14, 1431, she was burned alive in Rouen. However, the result did not meet the hopes of Bedford: the affair had been carried out so confusedly that even on the English side doubt appeared. As the Virgin was on her pyre in the old market, one Englishman exclaimed 'My God, we burned a saint...'
+
+	date = { day = 0 month = january year = 1431 }
+	offset = 150
+	deathdate = { day = 0 month = january year = 1433 }
+
+	action_a = {
+		name = "ACTIONNAME164186A" #A Good Thing we Have Done...
+		command = { type = stability value = 1 }
+		command = { type = domestic which = offensive value = 1 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = trigger which = 170303 } #FRA: The Death of Joan the Maid
+	}
+}
+#(1431-1433) Joan is Released
+event = {
+	id = 164187
+	trigger = {
+		event = 164185 #ENG: Joan of Arc is Delivered to the English
+		NOT = { event = 164186 } #ENG: The Martyrdom of Joan
+		NOT = { stability = 0 }
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME164187" #Joan is Released
+	desc = "EVENTHIST164187"
+	#-#Joan was given into the hands of the Parisian doctors of theology who, helped by various inquisitors and lay officials, tortured the Maid with the aim of getting her to deny the divine nature of her voices, proving her a witch and thus weakening the legitimacy of the Consecration of Charles VII. In spite of months of trial, Joan was finally cleared of charges of witchcraft. Even if the judges denied the divine nature of her voices, they credited them to a laudable religious exaltation, and allowed the Maid to take the veil in a save convent in the Diocese of Beauvais.
+
+	date = { day = 0 month = january year = 1431 }
+	offset = 200
+	deathdate = { day = 0 month = january year = 1433 }
+
+	action_a = {
+		name = "ACTIONNAME164187A" #Badly Concealed Fury...
+		command = { type = stability value = -1 }
+		command = { type = domestic which = offensive value = -1 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = revolt which = 384 } #Caux
+		command = { type = trigger which = 170304 } #FRA: Joan's Return
+	}
+	action_b = {
+		name = "ACTIONNAME164187B" #Assassinate the Maid
+		command = { type = stability value = -1 }
+		command = { type = domestic which = offensive value = 1 }
+		command = { type = domestic which = innovative value = -2 }
+		command = { type = revolt which = 384 } #Caux
+		command = { type = badboy value = 1 }
+		command = { type = trigger which = 170303 } #FRA: The Death of Joan the Maid
+	}
+}
+
+#(1435-1453) Weakening of the English Positions in France
+event = {
+	id = 164188
+	trigger = {
+		OR = {
+			event = 170307 #FRA: Treaty of Arras
+			alliance = { country = FRA country = BUR }
+		}
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME164188" #Weakening of the English Positions in France
+	desc = "EVENTHIST164188"
+	#-#After the death of Henry V, only the Burgundian alliance allowed England to preserve its position on the continent. From the truces concluded by Philip the Good, and moreso after the Treaty of Arras, which brought Burgundy back into alliance with France, English collapse was close.
+
+	date = { day = 1 month = january year = 1435 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1453 }
+
+	action_a = {
+		name = "ACTIONNAME164188A" #The Tide has Turned...
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 12 value = 4 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = remove_countryculture which = french }
+	}
+}
+
+#(1435-1480) Bordeaux Calls Upon the King of England for Help
+event = {
+	id = 164189
+	trigger = {
+		NOT = {
+			owned = { province = 424 data = -1 }
+		}
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME164189" #Bordeaux Calls Upon the King of England for Help
+	desc = "EVENTHIST164189"
+	#-#Always attached to the English market, Guyenne reacted in a negative way in the first years of the return to France. Agitation soon changed into a general uprising, and the city of Bordeaux, which feared ruin with the end of the purchases of wine by the English, called upon the King of England.
+
+	date = { day = 0 month = january year = 1435 }
+	offset = 30
+	deathdate = { day = 0 month = january year = 1480 }
+
+	action_a = {
+		name = "ACTIONNAME164189A" #Let us Reclaim our Stronghold
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = relation which = FRA value = -100 }
+		command = { type = casusbelli which = FRA value = 36 }
+		command = { type = treasury value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME164189B" #Let us Leave Them to Their Fate
+		command = { type = stability value = -1 }
+		command = { type = relation which = FRA value = 50 }
+	}
+}
+
+#(1439-1454) The Loss of France (During York's Tenure)
+event = {
+	id = 164190
+	trigger = {
+		atwar = no
+		event = 170288 #FRA: The Treaty of Troyes
+		event = 164233 #ENG: The Duke of York Returns to France
+		NOT = {
+			event = 164180 #ENG: English Final Victory
+			owned = { province = 376 data = -1 }
+			owned = { province = 383 data = -1 }
+			owned = { province = 384 data = -1 }
+			owned = { province = 385 data = -1 }
+			owned = { province = 386 data = -1 }
+			owned = { province = 408 data = -1 }
+			owned = { province = 410 data = -1 }
+			owned = { province = 411 data = -1 }
+			owned = { province = 412 data = -1 }
+			owned = { province = 413 data = -1 }
+			owned = { province = 417 data = -1 }
+			owned = { province = 418 data = -1 }
+			owned = { province = 419 data = -1 }
+			owned = { province = 420 data = -1 }
+			owned = { province = 421 data = -1 }
+			owned = { province = 422 data = -1 }
+			owned = { province = 423 data = -1 }
+			owned = { province = 424 data = -1 }
+		}
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME164190" #The Loss of France
+	desc = "EVENTHIST164190"
+	#-#Uniting England and France was a rapidly fading memory. The remnants of English forces in France had been obliterated by the forces of King Charles VII and his allies. Richard Duke of York had been Henry VI's commander in France, and as such he would be expected to shoulder the responsbility for the loss.
+
+	date = { day = 29 month = april year = 1439 }
+	offset = 180
+	deathdate = { day = 29 month = december year = 1454 }
+
+	action_a = {
+		name = "ACTIONNAME164190A" #York has failed
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 8 value = 4 }
+		command = { type = badboy value = -10 }
+	}
+}
+#(1439-1454) The Loss of France (During Somerset's Tenure)
+event = {
+	id = 164191
+	trigger = {
+		atwar = no
+		event = 170288 #FRA: The Treaty of Troyes
+		OR = {
+			event = 164236 #ENG: The Lieutenancy of France (No Norman Possessions)
+			event = 164237 #ENG: The Lieutenancy of France (Norman Possessions)
+		}
+		NOT = {
+			event = 164180 #ENG: English Final Victory
+			owned = { province = 376 data = -1 }
+			owned = { province = 383 data = -1 }
+			owned = { province = 384 data = -1 }
+			owned = { province = 385 data = -1 }
+			owned = { province = 386 data = -1 }
+			owned = { province = 408 data = -1 }
+			owned = { province = 410 data = -1 }
+			owned = { province = 411 data = -1 }
+			owned = { province = 412 data = -1 }
+			owned = { province = 413 data = -1 }
+			owned = { province = 417 data = -1 }
+			owned = { province = 418 data = -1 }
+			owned = { province = 419 data = -1 }
+			owned = { province = 420 data = -1 }
+			owned = { province = 421 data = -1 }
+			owned = { province = 422 data = -1 }
+			owned = { province = 423 data = -1 }
+			owned = { province = 424 data = -1 }
+		}
+	}
+	random = no
+	country = ENG
+	name = "EVENTNAME164190" #The Loss of France
+	desc = "EVENTHIST164191"
+	#-#Uniting England and France was a rapidly fading memory. The remnants of English forces in France had been obliterated by the forces of King Charles VII and his allies. Edmund Beaufort Earl of Somerset had been Henry VI's commander in France. However, his blood relations to the King, his poistion in court, and Queen Margaret's good graces would mean that Somerset would surely cushion the consequences of such a spectacular failure.
+
+	date = { day = 29 month = april year = 1439 }
+	offset = 180
+	deathdate = { day = 29 month = december year = 1454 }
+
+	action_a = {
+		name = "ACTIONNAME164191A" #Somerset has failed
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 8 value = 4 }
+		command = { type = badboy value = -10 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------

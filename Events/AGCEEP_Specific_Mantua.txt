@@ -1,0 +1,1224 @@
+#Mantua (MAN)
+
+#See AGCEEP_Alt_Italy.txt for KoI Alternative events
+
+#-----------------------------------------------------------------------------------------------
+
+#(1425-1441 or 1426-1441) The League against Milan
+#by Bordic
+event = {
+	id = 220015	#triggered by VEN_326054 A or VEN_326062 A
+	random = no
+	country = MAN
+	name = "EVENTNAME297034" #The League against Milan
+	desc = "EVENTHIST297034"
+	#-#Because of having established control over Lombardy and submitted Genoa, Filippo Maria Visconti clearly showed his intention to continue with the ambitious plan which his father Giangaleazzo once pursued: the unification of the whole Northern Italy under the Visconti's blazon. Romagna should have been Visconti's next step in his threatening hegemonic plan. But Invading Romagna, the duke of Milan would break the 1420 peace treaty stipulated with the Florentine Republic as to guarantee 10 years of non-belligerence. That treaty notably forbade Visconti from intervening in the lands beyond Panaro-Magra Rivers and so in Romagna and Tuscany, territories in which Florence directly exercised her influence. Florentine army alone was not enough powerful to face the Milanese well paid Mercenari. A League against Visconti urged immediately.
+
+	action_a = {
+		name = "ACTIONNAME252019A" #Visconti threatens the balance
+		command = { type = relation which = MLO value = -50 }
+		command = { type = relation which = VEN value = 25 }
+		command = { type = relation which = TOS value = 25 }
+		command = { type = casusbelli which = MLO value = 36 }
+	}
+	action_b = {
+		name = "ACTIONNAME326054B" #Grant neutrality and avoid expensive wars
+		command = { type = relation which = VEN value = -25 }
+		command = { type = relation which = TOS value = -25 }
+		command = { type = DIP which = -2 value = 24 }
+	}
+}
+
+#(1431-1435) The Alliance with Milan
+event = {
+	id = 220016	#triggered by MLO_228051 A
+	trigger = {
+		NOT = { war = { country = MLO country = MAN } }
+	}
+	random = no
+	country = MAN
+	name = "EVENTNAME220016" #The Alliance with Milan
+	desc = "EVENTHIST326026"
+	#-#In a chivalric dream of extraordinary dreams, Gianfrancesco of Mantua believed he was ready to challenge Venice, this war in collaboration with Milan now began concentrating on taking lands in the Veneto. The resulting defeat cost Mantua four thousand ducats as well as the loss of lands and strongholds to Venice.
+
+	action_a = {
+		name = "ACTIONNAME220016A" #Support Visconti
+		command = { type = casusbelli which = VEN value = 24 }
+		command = { type = relation which = VEN value = -50 }
+		command = { type = relation which = TOS value = -25 }
+		command = { type = relation which = MLO value = 25 }
+	}
+	action_b = {
+		name = "ACTIONNAME326054B" #Grant neutrality and avoid expensive wars
+		command = { type = relation which = MLO value = -50 }
+		command = { type = relation which = TOS value = 25 }
+		command = { type = relation which = VEN value = 25 }
+		command = { type = sleepevent which = 326026 } #VEN: Mantua threatens the balance
+	}
+}
+
+#(1433-1437) The Marquisate of Mantua
+#by Toio - revised by Aylo1
+event = {
+	id = 17341
+	random = no
+	country = MAN
+	name = "EVENTNAME17341" #The Marquisate of Mantua
+	desc = "EVENTHIST17341"
+	#-#For 120,000 gold florins, Holy Roman Emperor Sigismund made Gian Francesco Gonzaga (r.1407-44) - Signore di Mantova e 'Capitano del Popolo' (Captain of the People) Marchese di Mantova. Additionally Gonzaga's son Ludovico (II) wed the Emperor's niece Barbara von Hohenzollen (1423-81).
+
+	date = { day = 22 month = september year = 1433 }
+	offset = 10
+	deathdate = { day = 9 month = december year = 1437 } #Sigismund's death
+
+	action_a = {
+		name = "ACTIONNAME17341A" #Nobility at last
+		command = { type = relation which = MLO value = 100 }
+		command = { type = relation which = BRA value = 100 }
+		command = { type = relation which = HUN value = 100 }
+		command = { type = dynastic which = BRA }
+		command = { type = relation which = VEN value = -50 }
+		command = { type = breakvassal which = VEN } #not a real problem
+		command = { type = manpower value = 1 }
+		command = { type = treasury value = -120 }
+		command = { type = INF which = -2 value = 5000 }
+	}
+}
+
+#(1435-1445) Vittorino da Feltre
+#by Aylo1
+event = {
+	id = 220017
+	random = no
+	country = MAN
+	name = "EVENTNAME220017" #Vittorino da Feltre (1378-1446)
+	desc = "EVENTHIST220017"
+	#-#Italian humanist and teacher, da Feltre is remembered as a pioneer of modern education. Children at his school in Mantova were treated equally - regardless of birth or means. Closer contacts between teacher and pupil were encouraged in addition to adaptation of the curriculum to specific needs or ability of the student. Vittorino also placed emphasis on humanistic, religious and physical education.
+
+	date = { day = 1 month = january year = 1435 }
+	offset = 360
+	deathdate = { day = 0 month = january year = 1445 }
+
+	action_a = {
+		name = "OK"
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = treasury value = -25 }
+		command = { type = infra value = 25 }
+	}
+}
+
+#(1454-1466) The Peace of Lodi
+#by Bordic
+event = {
+	id = 220010
+	trigger = {
+		exists = VEN
+		exists = MLO
+		exists = TOS
+		exists = PAP
+		OR = {
+			event = 239022 #NAP: The Peace of Lodi
+			event = 111018 #ARG: The Peace of Lodi
+		}
+		atwar = no
+	}
+	random = no
+	country = MAN
+	name = "EVENTNAME228034" #The Peace of Lodi
+	desc = "EVENTHIST326038"
+	#-#During the war of succession in Milan, all the belligerent nations were brought to exhaustion of money and troops. Francesco Sforza, ruler of Milan and Venice, the chief state of the league confederates, who was more and more threatened by the advancing Ottomans in her eastern Mediterranean territories, convened a cease-fire while a bilateral treaty was hastily signed in Lodi on 7 April 1454. With that treaty Sforza was legitimated Duke of Milan. Without even being called for, Florence and the Pope had no choice then to endorse the treaty. The King of Naples, being a rightful claimant on the ducal throne reluctantly joined the alliance under the condition to keep Genoa out of it. Intended 'infra terminos italicos', that treaty showed the objective impossibility for all the Italian major powers (specifically Milan, Tuscany, Venice, Naples and Papal States) to prevail upon each other in the struggle for the hegemony in Italy and that the better solution was to come to terms with each other. That would have also avoided the practice of very expensive and pointless wars in the next future. Although the treaty actually played a minor part in Italian balance of powers and so won't be able to avoid future wars of aggression from inside as well from outside Italy, the post-Lodi era historically represented a period of relative peace in which the figurative arts definitively flourished in the whole Italian peninsula, as well as economy and trade and, last but not the least, the skills and tricks of the art of diplomacy.
+
+	date = { day = 7 month = April year = 1454 }
+	offset = 30
+	deathdate = { day = 9 month = March year = 1466 }
+
+	action_a = {
+		name = "ACTIONNAME111018A" #Yes, peace
+		command = { type = relation which = VEN value = 50 }
+		command = { type = relation which = PAP value = 50 }
+		command = { type = relation which = TOS value = 50 }
+		command = { type = relation which = MLO value = 50 }
+		command = { type = relation which = NAP value = 50 }
+		command = { type = stability value = 1 }
+		command = { type = diplomats value = 4 }
+		command = { type = merchants value = 3 }
+	}
+}
+
+#(1462) Mantegna - modeled on Paradox painterevents
+event = {
+	id = 17342
+	random = no
+	country = MAN
+	name = "EVENTNAME17342" #Andrea Mantegna
+	desc = "EVENTHIST17342"
+	#-#Andrea Mantegna was a prolific and admired painter. He is best known for his 'Triumph of Caesar' murals in Mantua. He directed the work of such artsts as Bellini, Rafael, Durer and da Vinci. Though he painted for many Renaissance princes he spent most of his career and produced his most prominent works in Mantua.
+
+	date = { day = 1 month = january year = 1462 }
+	offset = 180
+	deathdate = { day = 1 month = january year = 1463 }
+
+	action_a = {
+		name = "OK"
+		command = { type = stability value = 1 }
+		command = { type = infra value = 200 }
+	}
+}
+
+#(1480-1481) Murder of Gonzaga
+event = {
+	id = 17343
+	random = no
+	country = MAN
+	name = "EVENTNAME17343" #Murder of Gonzaga
+	desc = "EVENTHIST17343"
+	#-#The Marquis of Mantua, Frederico il Gobbo (the humpback) and his son were nearly poisoned by his brothers Rodolfo and Gian Francesco. The plot was betrayed by another brother, Ludovico, but caused concerns at court. Unusally for a Renaissance Prince, Frederico was inclined to be merciful. The incident was likely the origin of Shakespeare's 'Murder of Gonzaga'.
+
+	date = { day = 1 month = march year = 1480 }
+	offset = 180
+	deathdate = { day = 1 month = march year = 1481 }
+
+	action_a = {
+		name = "ACTIONNAME17343A" #Expel them
+		command = { type = stability value = -1 }
+		command = { type = ADM which = -2 value = 12 }
+		command = { type = DIP which = -2 value = 12 }
+	}
+	action_b = {
+		name = "ACTIONNAME17343B" #Execute them
+		command = { type = stability value = -2 }
+		command = { type = diplomats value = -1 }
+	}
+}
+
+#(1490) Isabelle d'Este
+event = {
+	id = 17344
+	random = no
+	country = MAN
+	name = "EVENTNAME17344" #Isabella d'Este
+	desc = "EVENTHIST17344"
+	#-#Isabella d'Este married Franceso Gonzaga, the Marquis of Mantua in 1490. As a princess of Ferrara she recieved an extensive education, and has been called the 'First Lady of the Renaissance'. She patronized great artists, and was painted by Rafael, Mantegna, da Vinci, and possibly Titian. She was one one the fashion trend settters in Italy. She administered Mantua very effectively for most of her husbands reign as he was generally absent serving as a Condottero. She had a large group of beautiful ladies-in-waiting who were often deployed to aid Mantuan diplomacy.
+
+	date = { day = 1 month = february year = 1490 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1490 }
+
+	action_a = {
+		name = "OK"
+		command = { type = ADM which = 2 value = 350 }
+		command = { type = DIP which = 2 value = 350 }
+		command = { type = infra value = 70 }
+		command = { type = dynastic which = MOD }
+		command = { type = relation which = MOD value = 50 }
+	}
+}
+
+#(1508-1509) The League of Cambrai
+#adapted by Isaac Brock
+#added by Bordic
+event = {
+	id = 220009
+	trigger = {
+		exists = VEN
+		event = 17017 #VEN: Seeing a Chance in Romagna
+		OR = {
+			event = 3107 #FRA: The League of Cambrai
+			event = 17023 #FRA: The League of Cambrai (HAB doesn't exists)
+		}
+	}
+	random = no
+	country = MAN
+	name = "EVENTNAME3107" #The League of Cambrai
+	desc = "EVENTHIST3107"
+	#-#Since 1495, Venice had been holding the main ports of Apulia despite Aragonese claims to have them back. With the French invasion of Milan, Venice had acquired Milanese territories east of the Adda River, and upon the fall of Cesare Borgia had also acquired Rimini, Faenza and Ravenna, against the will of Pope Julius II. The Venetians also held Veneto and Friuli, on which Maximilian of Habsburg had imperial claims. In late 1507 Maximilian announced his intention to travel to Italy to receive the imperial investiture from the Pope himself, and in early 1508 he assembled a big army to escort him down to Rome. He requested free passage through Venetian territories, but was told that he would be allowed passage only without his army. Enraged at the answer, Maximilian attacked Venice, but this decision proved unwise: Venice not only routed the imperial army but also seized the imperial cities of Trieste, Gorz and Fiume. A second assault by a Tyrolean force several weeks later was an even greater failure, forcing Maximilian to conclude a humiliating three-year truce. With Pope Julius II's assent, Maximilian took the title of 'Emperor-elect', thus breaking the century-old custom that the Holy Roman Emperor had to be crowned by the Pope. Shortly afterward, Venice provided a pretext for war by appointing her own candidate to the vacant bishopric of Vicenza. The Emperor, the King of France and Ferdinand of Aragon gathered in Cambrai in December 1508 to sign a treaty which seemed to be a defensive alliance against the Turk. In reality they meant to form a league to attack Venice and deprive the Serenissima of most of her mainland territories. Pope Julius II, after a renewed Venetian refusal to give the Romagna lands back to the Papacy, ratified the treaty and at the same time proceeded to excommunicate all Venetian citizens. Ferrara and Mantua, each with separate claims to territories held by Venice, joined the league as well. In April 1509 military operations started, and a month later French troops decimated one of the two Venetian armies at the battle of Agnadello. Even though in August 1509 Venice managed to eliminate Mantua from the war, she still faced the collapse of her strategic position and had by February 24, 1510 to accept the papal demands on the cities she had occupied in Romagna. However, Pope Julius II was still not satisfied and demanded that the war be prosecuted until Venice conceded control over their church to the Pope and compensated him for his expenses. The Council of Ten had privately resolved that the terms had been accepted under duress and were therefore invalid, and that Venice should violate them at the earliest opportunity. This opportunity presented itself shortly afterward.
+
+	date = { day = 10 month = December year = 1508 }
+	offset = 15
+	deathdate = { day = 1 month = April year = 1509 }
+
+	action_a = {
+		name = "ACTIONNAME3107A" #Express Support
+		command = { type = casusbelli which = VEN value = 36 }
+		command = { type = relation which = VEN value = -200 }
+		command = { type = relation which = FRA value = 150 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = ARG value = 150 }
+	}
+	action_b = {
+		name = "ACTIONNAME3107B" #Ignore
+		command = { type = relation which = VEN value = 50 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = relation which = ARG value = -50 }
+	}
+	action_c = {
+		name = "ACTIONNAME3107C" #Express Hostility
+		command = { type = relation which = VEN value = 150 }
+		command = { type = relation which = FRA value = -150 }
+		command = { type = relation which = HAB value = -150 }
+		command = { type = relation which = ARG value = -150 }
+	}
+}
+
+#(1524-1534) Palazzo del Te
+#by Aylo1
+event = {
+	id = 220018
+	random = no
+	country = MAN
+	name = "EVENTNAME220018" #Palazzo del Te
+	desc = "EVENTHIST220018"
+	#-#A masterpiece of mannerist architecture, the Palazzo del Te was designed by Giulio Romano - at the behest of Federico II. In short a square house built around a cloistered courtyard it was enclosed by colonnaded outbuildings terminated by a semi-circular colonnade called 'Esedra'. Interiors are covered in typical Renaissance frescos by local painters such as Benedetto Pagni and Rinaldo Mantovano. Its beauty and proximity to the city made it a perfect summer palace.
+
+	date = { day = 1 month = january year = 1524 }
+	offset = 360
+	deathdate = { day = 0 month = january year = 1534 }
+
+	action_a = {
+		name = "OK"
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = treasury value = -75 }
+		command = { type = infra value = 50 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Montferrato Sequence
+#reworked by Aylo1
+
+#(1528-1530) Montferrato Conspiracy
+event = {
+	id = 220019
+	random = no
+	country = MAN
+	name = "EVENTNAME220019" #Montferrato Conspiracy
+	desc = "EVENTHIST220019"
+	#-#Betrothed to Maria Paleologhina of Montferrat, Federico II expected to inherit the lands of her sickly brother Marchese Bonifacio IV. Paleologo recovered and joined his mother Anne d'Alencon in a plot against Gonzaga's mistress - Isabella Boschetti. This prompted Federico to rescind the contract and accept another to wed Holy Roman Emperor Carlo V's aunt Guilia d'Aragona.
+
+	date = { day = 12 month = august year = 1528 }
+	offset = 90
+	deathdate = { day = 24 month = march year = 1530 }
+
+	action_a = {
+		name = "ACTIONNAME220019A" #Divorce Maria of Montferrat
+		command = { type = stability value = -1 }
+		command = { type = DIP which = -2 value = 12 }
+	}
+	action_b = {
+		name = "ACTIONNAME220019B" #Maintain Marriage
+		command = { type = stability value = -2 }
+		command = { type = ADM which = -2 value = 18 }
+		command = { type = MIL which = -2 value = 18 }
+		command = { type = sleepevent which = 220020 } #MAN: An Imperial Offer
+		command = { type = sleepevent which = 220021 } #MAN: Montferrato's Death
+		command = { type = sleepevent which = 220022 } #MAN: Maria of Montferrat's Death
+	}
+}
+#(1530) An Imperial Offer
+event = {
+	id = 220020
+	trigger = {
+		exists = HAB
+		event = 220019 #MAN: Montferrato Conspiracy
+	}
+	random = no
+	country = MAN
+	name = "EVENTNAME220020" #An Imperial Offer
+	desc = "EVENTHIST220020"
+	#-#Holy Roman Emperor Carlo V offered to raise Mantova to the status of a Duchy if Federico II married the Emperor's aunt, Giulia d'Aragona. Giulia is much older than Federico.
+
+	date = { day = 25 month = march year = 1530 }
+	offset = 30
+	deathdate = { day = 17 month = july year = 1530 }
+
+	action_a = {
+		name = "ACTIONNAME220020A" #Marry the Emperor's Aunt
+		command = { type = stability value = 1 }
+		command = { type = treasury value = -150 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = SPA value = 50 }
+		command = { type = sleepevent which = 220022 } #MAN: Maria of Montferrat's Death
+		command = { type = sleepevent which = 220025 } #MAN: Duchy of Montferrat
+	}
+	action_b = {
+		name = "ACTIONNAME220020B" #Don't Marry the Emperor's Aunt
+		command = { type = sleepevent which = 220021 } #MAN: Montferrato's Death
+	}
+}
+#(1530) Montferrato's Death
+event = {
+	id = 220021
+	trigger = {
+		event = 220019 #MAN: Montferrato Conspiracy
+		event = 220020 #MAN: Imperial Offer
+	}
+	random = no
+	country = MAN
+	name = "EVENTNAME220021" #Montferrato's Death
+	desc = "EVENTHIST220021"
+	#-#Falling from his horse, Bonifacio IV died of complications. After their eldery uncle Gian-Giorgio, Maria Paleologina will inherit the Marchese. Federico II paid 50,000 ducats to annul his contract to Carlo V's aunt, retain his Ducal title and reinstate his previous agreement with Montferrato.
+
+	date = { day = 25 month = march year = 1530 } #Paleologo died
+	offset = 30
+	deathdate = { day = 4 month = october year = 1530 }
+
+	action_a = {
+		name = "ACTIONNAME220021A" #Return to Maria
+		command = { type = relation which = HAB value = -80 }
+		command = { type = relation which = SPA value = -80 }
+		command = { type = DIP which = -2 value = 12 }
+		command = { type = treasury value = -50 }
+		command = { type = stability value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME220021B" #Stay engaged to Giulia
+		command = { type = dynastic which = HAB }
+		command = { type = sleepevent which = 220022 } #MAN: Maria of Montferrat's Death
+		command = { type = sleepevent which = 220023 } #MAN: Inheritance of Montferrat
+		command = { type = sleepevent which = 220024 } #MAN: Capello Conspiracy
+		command = { type = sleepevent which = 220025 } #MAN: Duchy of Montferrat
+		command = { type = sleepevent which = 17324 } #MAN: Succession of Francesco IV
+	}
+}
+#(1531) Maria of Montferrat's Death
+event = {
+	id = 220022
+	trigger = {
+		event = 220019 #MAN: Montferrato Conspiracy
+	}
+	random = no
+	country = MAN
+	name = "EVENTNAME220022" #Maria of Montferrat's Death
+	desc = "EVENTHIST220022"
+	#-#When Maria Paleologina died (1531), her mother Dowager Marchessa Anne d'Alencon convinced Federico to marry Maria's sister Margherita - Heiress of Montferrato. When the last Marchese Gian-Giorgio died (1533), Montferrato passed to Gonzaga's rule.
+
+	date = { day = 5 month = october year = 1531 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1531 }
+
+	action_a = {
+		name = "ACTIONNAME220022A" #Wed Margherita Paleologhina
+		command = { type = treasury value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME220022B" #Don't marry her sister
+		command = { }
+		command = { type = sleepevent which = 220023 } #MAN: Inheritance of Montferrat
+		command = { type = sleepevent which = 220024 } #MAN: Capello Conspiracy
+		command = { type = sleepevent which = 220025 } #MAN: Duchy of Montferrat
+		command = { type = sleepevent which = 17324 } #MAN: Succession of Francesco IV
+	}
+}
+#(1533-1534) Inheritance of Montferrat
+event = {
+	id = 220023
+	trigger = {
+		event = 220019 #MAN: Montferrato Conspiracy
+	}
+	random = no
+	country = MAN
+	name = "EVENTNAME220023" #Inheritance of Montferrat
+	desc = "EVENTHIST220023"
+	#-#The death of Gian-Giorgio Paleologo (1553) passed Montferrato to his niece Margherita Paleologhina and her husband Federico II Gonzaga - setting aside Savoy's claims. The Gonzaga's retained the Marquisate til the XVIII century.
+
+	date = { day = 11 month = august year = 1533 }
+	offset = 90
+	deathdate = { day = 29 month = december year = 1534 }
+
+	action_a = {
+		name = "OK"
+		command = { type = stability value = 1 }
+		command = { type = provincetax which = 390 value = 5 } #Mantua
+		command = { type = provincemanpower which = 390 value = 1 }
+		command = { type = province_revoltrisk which = 390 value = 5 }
+		command = { type = fortress which = 390 value = 1 } #Mantua
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = trigger which = 17311 } #SAV: Mantuan Inheritance of Montferrat
+	}
+}
+#End of Montferrato Sequence
+#-----------------------------------------------------------------------------------------------
+
+#(1566-1568) Capello Conspiracy
+#by Aylo1
+event = {
+	id = 220024
+	trigger = {
+		event = 220023 #MAN: Inheritance of Montferrat
+		exists = SAV
+	}
+	random = no
+	country = MAN
+	name = "EVENTNAME220024" #Capello Conspiracy (1566-68)
+	desc = "EVENTHIST220024"
+	#-#Montferrato under Guglielmo lost its traditional autonomy and self-government to the autocracy of the Gonzagas. Restless inhabitants (secretly backed by Emmanuel-Philibert of Savoy) responded by fortifying Casale - forcing the Duke to bargain. Ensuing talks failed with Guglielmo wanting to strip Montferrato of more privileges - resulting in open revolt led by Oliviero Capello with Savoyard and Papal blessing. An attempt on Gonzaga (23 Oct 1567) during a church service cost Capello his life while potential suspects were also persecuted. Flaminio Paleologo - Signore di San Giorgio e Caluso (natural son of Gian-Giorgio Paleologo) is the most famous of these. His imprisonment at Gioto created a diplomatic nightmare with Austria, Spain, Savoy and the Papacy all calling for his release.
+
+	date = { day = 8 month = april year = 1566 }
+	offset = 20
+	deathdate = { day = 0 month = january year = 1568 }
+
+	action_a = {
+		name = "ACTIONNAME220024A" #Punish the traitors
+		command = { type = domestic which = aristocracy value = -1 } #revoked privileges
+		command = { type = fortress which = 390 value = -1 } #razed Casale's fort
+		command = { type = relation which = SPA value = -30 }
+		command = { type = relation which = HAB value = -30 }
+		command = { type = relation which = SAV value = -30 }
+		command = { type = relation which = PAP value = -30 }
+		command = { type = DIP which = -2 value = 24 }
+	}
+	action_b = {
+		name = "ACTIONNAME220024B" #Show clemency
+		command = { type = relation which = SPA value = 10 }
+		command = { type = relation which = HAB value = 10 }
+		command = { type = relation which = SAV value = 10 }
+		command = { type = relation which = PAP value = 10 }
+		command = { type = revoltrisk which = 36 value = 4 }
+		command = { type = revolt which = 390 } #Mantua
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1574) The Duchy of Montferrat
+event = {
+	id = 220025
+	trigger = {
+		event = 220023 #MAN: Inheritance of Montferrat
+		event = 220020 #MAN: An Imperial Offer
+		NOT = {	event = 220026 } #MAN: Duchy of Mantua
+	}
+	random = no
+	country = MAN
+	name = "EVENTNAME220025" #Duchy of Montferrat
+	desc = "EVENTHIST220025"
+	#-#Although the Holy Roman Emperor refused to make Mantova a Grand Duchy, he raised the Margravate of Montferrato to the ducal dignity.
+
+	date = { day = 25 month = august year = 1574 }
+
+	action_a = {
+		name = "ACTIONNAME220025A" #Accept this new title
+		command = { type = relation which = HAB value = 20 }
+		command = { type = treasury value = -100 }
+		command = { type = stability value = 1 }
+	}
+}
+#(1574) Duchy of Mantua
+event = {
+	id = 220026
+	trigger = {
+		NOT = { event = 220020 } #MAN: An Imperial Offer
+		NOT = { event = 220025 } #MAN: Duchy of Montferrat
+	}
+	random = no
+	country = MAN
+	name = "EVENTNAME220026" #Duchy of Mantua
+	desc = "EVENTHIST220026"
+	#-#In 1574, the Holy Roman Emperor raised Mantova to the status of a Duchy.
+
+	date = { day = 25 month = august year = 1574 }
+
+	action_a = {
+		name = "ACTIONNAME220025A" #Accept this new title
+		command = { type = relation which = HAB value = 20 }
+		command = { type = treasury value = -100 }
+		command = { type = stability value = 1 }
+
+	}
+}
+
+#(1560-1580) Hunchback of Mantova
+#by Aylo1
+event = {
+	id = 220027
+	trigger = {
+		event = 220023 #MAN: Inheritance of Montferrat
+	}
+	random = no
+	country = MAN
+	name = "EVENTNAME220027" #Hunchback of Mantova
+	desc = "EVENTHIST220027"
+	#-#Austere and hardworking, Guglielmos I worked tirelessly to improve the machine of state from reforming Mantova's institutions to the establishment of manufactures. Foreign affairs was dominated by the defence of Montferrato from possible Savoyard invasion. Higher taxes and closer relations with Austria were his solutions. Gonzaga's downside was a pious streak to compensate for his hunchback's body - citing 'that one does not govern with the body but with the spirit'.
+
+	date = { day = 1 month = january year = 1560 }
+	offset = 30
+	deathdate = { day = 0 month = january year = 1580 }
+
+	action_a = {
+		name = "ACTIONNAME220027A" #Streamline the bureaucracy
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = gainbuilding which = 390 value = bailiff } #Mantua
+		command = { type = ADM which = 1 value = 60 }
+		command = { type = treasury value = -100 }
+		command = { type = infra value = 150 }
+	}
+	action_b = {
+		name = "ACTIONNAME220027B" #Defend our possessions
+		command = { type = domestic which = offensive value = -2 }
+		command = { type = relation which = SAV value = -75 }
+		command = { type = fortress which = 390 value = 1 } #Mantua
+		command = { type = treasury value = -75 }
+		command = { type = dynastic which = HAB }
+	}
+	action_c = {
+		name = "ACTIONNAME220027C" #Invest in manufacturing
+		command = { type = gainmanufactory which = -1 value = goods }
+		command = { type = domestic which = mercantilism value = 1 }
+		command = { type = provincetax which = 390 value = 1 } #Mantua
+		command = { type = treasury value = -150 }
+		command = { type = trade value = 200 }
+	}
+}
+
+#(1565-1566) Heiress of Nivernais
+#by Aylo1
+event = {
+	id = 220028
+	trigger = {
+		exists = FRA
+	}
+	random = no
+	country = MAN
+	name = "EVENTNAME220028" #Heiress of Nevers
+	desc = "EVENTHIST220028"
+	#-#On March 4 1565, Henriette de la Marck - Heiress to the Duchies of Nevers and Rethel wed Luigi Gonzaga - youngest son of Federico II Gonzaga and Margherita Paleologhina. The union founded the junior line of Gonzaga de Nevers who also became Ducs de Mayenne et Pivot and Princes d'Arches. When the main line died out, their son Charles succeeded to the Duchies of Mantova and Montferrato.
+
+	date = { day = 1 month = january year = 1565 }
+	offset = 90
+	deathdate = { day = 0 month = january year = 1566 }
+
+	action_a = {
+		name = "ACTIONNAME220028A" #Puissiez vous vivre heureux ! (May you live happily ever after)
+		command = { type = relation which = FRA value = 30 }
+		command = { type = dynastic which = FRA }
+	}
+}
+
+#(1581) Vincenzo Gonzaga marries Elizabeth Farnese
+event = {
+	id = 17300
+	random = no
+	country = MAN
+	name = "EVENTNAME17300" #Vincenzo Gonzaga marries Elizabeth Farnese
+	desc = "EVENTHIST17300"
+	#-#Vincenzo Gonzaga, crown prince of Mantua, marries Elizabeth Farnese daughter of Alexander Farnese, duke of Parma, and a princess of Portugal.
+
+	date = { day = 1 month = april year = 1581 }
+
+	action_a = {
+		name = "OK"
+		command = { type = dynastic which = PAR }
+		command = { type = relation which = PAR value = 50 }
+		command = { type = relation which = SPA value = 15 }
+		command = { type = relation which = POR value = 30 }
+		command = { type = treasury value = 100 }
+		command = { type = ADM which = -2 value = 6 }
+	}
+}
+
+#(1582) Death of Chrichton
+event = {
+	id = 17301
+	random = no
+	country = MAN
+	name = "EVENTNAME17301" #Death of Chrichton
+	desc = "EVENTHIST17301"
+	#-#Vincenzo Gonzaga kills Chrichton, a Scotsman, who served as a counselor of his father's. His father, the duke Guglielmo is outraged. Vincenzo apologized to his father, and submitted to a hearing. Rumor has it that he was exonerated because his sword was shorter than Chrichton's, so he couldn't have been responsible. On the other hand, this is also a reference to Vincenzo's fruitless marriage.
+
+	date = { day = 3 month = july year = 1582 }
+
+	action_a = {
+		name = "OK"
+		command = { type = ADM which = -2 value = 6 }
+		command = { type = MIL which = -2 value = 6 }
+		command = { type = DIP which = -2 value = 6 }
+	}
+}
+
+#(1583) The Test of virility
+event = {
+	id = 17302
+	random = no
+	country = MAN
+	name = "EVENTNAME17302" #The Test
+	desc = "EVENTHIST17302"
+	#-#The marriage of Vincenzo Gonzaga and Elizabeth Farnese has not been consummated. Her relatives claim that Vincenzo is impotent, the Mantuan court maintains that it is her fault. An alternate marriage with a Tuscan princess has been established, however, the Tuscan court insists that Vincenzo proves his potency. They have arranged a test in which he will have to perform with an orphan girl in the presence of eight women and a set of guards, priests and agents.
+
+	date = { day = 1 month = august year = 1583 }
+	offset = 30
+	deathdate = { day = 1 month = october year = 1583 }
+
+	action_a = {
+		name = "ACTIONNAME17302A" #Vincenzo will submit to the test
+		command = { type = relation which = PAR value = -60 }
+		command = { type = relation which = POR value = -60 }
+		command = { type = relation which = SPA value = -30 }
+		command = { type = domestic which = centralization value = -1 } #monarch loses stature/morality #
+	}
+	action_b = {
+		name = "ACTIONNAME17302B" #Vincenzo will leave Elizabeth Farnese and seek a wife elsewhere
+		command = { type = relation which = PAR value = -60 }
+		command = { type = relation which = POR value = -60 }
+		command = { type = relation which = SPA value = -30 }
+		command = { type = relation which = TOS value = -100 }
+		command = { type = treasury value = -100 } #have to return the dowry#
+		command = { type = DIP which = -2 value = 20 } #he looks weak#
+		command = { type = sleepevent which = 17303 } #The second test of virility #MAN: The Congress of Venice
+	}
+	action_c = {
+		name = "ACTIONNAME17302C" #Vincenzo will stay with Elizabeth Farnese
+		command = { type = relation which = PAR value = 90 }
+		command = { type = relation which = POR value = 90 }
+		command = { type = relation which = SPA value = 45 }
+		command = { type = relation which = TOS value = -50 }
+		command = { type = relation which = HAB value = -10 }
+		command = { type = stability value = -1 } #no heir apparent
+		command = { type = diplomats value = -1 }
+		command = { type = sleepevent which = 17303 } #MAN: The second test of virility
+	}
+}
+
+#(1583-1587) The second test of virility
+event = {
+	id = 17303
+	trigger = { event = 17302 }
+	random = no
+	country = MAN
+	name = "EVENTNAME17303" #The second test of virility
+	desc = "EVENTHIST17303"
+	#-#Vincenzo did not perform in the presence of all the onlookers. Tuscany has reluctantly agreed to a second test, with another orphan girl. Vincenzo will be able to make 3 attempts, and all the witnesses but one will be behind screens. A doctor will examine Vincenzo during the act.
+
+	date = { day = 1 month = october year = 1583 }
+	offset = 600
+	deathdate = { day = 1 month = august year = 1587 }
+
+	action_a = {
+		name = "ACTIONNAME17303A" #Vincenzo must again submit to this indignity
+		command = { type = trigger which = 17304 } #MAN: Vincenzo Gonzaga's virility
+	}
+	action_b = {
+		name = "ACTIONNAME17303B" #No. A man cannot be expected to perform under these conditions!
+		command = { type = treasury value = -100 } #have to return the dowry to Parma#
+		command = { type = relation which = PAR value = -60 }
+		command = { type = relation which = POR value = -60 }
+		command = { type = relation which = SPA value = -30 }
+		command = { type = relation which = TOS value = -100 }
+		command = { type = relation which = HAB value = -20 }
+		command = { type = stability value = -1 } #Critics proven right#
+		command = { type = DIP which = -2 value = 40 }
+	}
+}
+#(1583-1587) Vincenzo Gonzaga's virility
+event = {
+	id = 17304 #triggered by MAN_17303 A
+	random = no
+	country = MAN
+	name = "EVENTNAME17304" #Vincenzo Gonzaga's virility
+	desc = "EVENTHIST17304"
+	#-#All witnesses agree that Vincenzo is fully potent and not to be blamed for the infertility of his former wife Elizabeth Farnese.
+
+	action_a = {
+		name = "OK"
+		command = { type = dynastic which = TOS }
+		command = { type = relation which = TOS value = 50 }
+		command = { type = treasury value = 500 }
+		command = { type = relation which = HAB value = 10 }
+		command = { type = vp value = 5 }
+		command = { type = DIP which = 1 value = 40 }
+	}
+}
+
+#(1590-1600) Distinction of Blood
+#by Aylo1
+event = {
+	id = 220029
+	trigger = {
+		atwar = no
+	}
+	random = no
+	country = MAN
+	name = "EVENTNAME220029" #Distinction of Blood
+	desc = "EVENTHIST220029"
+	#-#A true Renaissance Prince, Vincenzo I kept with family tradition - using art and letters to exhibit wealth and political strength. Employing the likes of Claudio Monteverdi (composer), Peter Paul Rubens (painter), Vincenzo Belleni (musician), Torquato Tasso (poet) and Giovanni Antonio Magini (astronomer), they richly embellished Gonzaga's cultural legacy. Even Galileo sought employment with him. Similarly, Vincenzo engaged in numerous inconclusive ventures which began Mantova's economic decline.
+
+	date = { day = 1 month = january year = 1590 }
+	offset = 360
+	deathdate = { day = 0 month = january year = 1600 }
+
+	action_a = {
+		name = "ACTIONNAME220029A" #Engage in Cultural Works
+		command = { type = gainmanufactory which = 390 value = luxury }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = treasury value = -100 }
+		command = { type = infra value = 200 }
+	}
+	action_b = {
+		name = "ACTIONNAME220029B" #Pursue Opportunies Abroad
+		command = { type = casusbelli which = TUR value = 24 } #Holy League 1594
+		command = { type = casusbelli which = PAR value = 36 } #Lifelong rivalry
+		command = { type = relation which = TUR value = -60 }
+		command = { type = relation which = PAR value = -80 }
+		command = { type = relation which = ALB value = -40 } #self-proclaimed King
+		command = { type = relation which = PAP value = -40 } #Inquisition
+		command = { type = DIP which = -1 value = 12 } #frivilous intrigue
+	}
+}
+
+#(1607-1610) Monteverdi for MAN - Flavor
+#by Marc Figueras
+#Text from the Grove Concise Dictionary of Music
+event = {
+	id = 220012
+	random = no
+	trigger = { stability = -1 }
+	country = MAN
+	name = "EVENTNAME220012" #Monteverdi and the first opera
+	desc = "EVENTHIST220012"
+	#-#The cremonese Claudio Monteverdi went to Mantua in 1591 to serve as a string player at the court of Duke Vincenzo Gonzaga. Monteverdi then became known as a leading exponent of the modem approach to harmony and text expression. In 1607 his first opera, 'Orfeo', was produced in Mantua, and is considered the first opera. In 1613 Monteverdi was appointed 'maestro di cappella' at St. Mark's, Venice. Monteverdi can be justly considered one of the most powerful figures in the history of music.
+
+	date = { day = 1 month = april year = 1607 }
+	offset = 60
+	deathdate = { day = 1 month = april year = 1610 }
+
+	action_a = {
+		name = "ACTIONNAME220012A" #The first opera is performed!
+		command = { type = vp value = 10 }
+	}
+}
+
+#(1612) The succession of Francesco of Mantua First Crisis
+event = {
+	id = 17324
+	trigger = {
+		exists = SAV
+		event = 220023 #MAN: Inheritance of Montferrat
+	}
+	random = no
+	country = MAN
+	name = "EVENTNAME17324" #First Mantuan Succession Crisis
+	desc = "EVENTHIST17324"
+	#-#Francesco IV died leaving only an infant daughter, Maria. Mantovan law forbade female succession, so Francesco's brother Cardinal Ferdinando succeeded to the ducal dignity. However, female succession is allowed by the laws of Montferrato, and Maria's maternal grandfather - Carlo Emanuele I of Savoy asserted her rights to that territory.
+
+	date = { day = 15 month = december year = 1612 }
+	offset = 12
+	deathdate = { day = 27 month = december year = 1612 }
+
+	action_a = {
+		name = "ACTIONNAME17324A" #The patrimony must remain united
+		command = { type = trigger which = 17325 } #SAV: First Mantuan Succession Crisis
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = revolt which = 390 } #Mantua
+	}
+	action_b = {
+		name = "ACTIONNAME17324B" #Montferrat is more trouble than it is worth
+		command = { type = trigger which = 17326 } #SAV: Montferrat Inheritance
+		command = { type = stability value = 1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = provincetax which = 390 value = -5 } #Mantua
+		command = { type = provincemanpower which = 390 value = -1 } #Mantua
+		command = { type = province_revoltrisk which = 390 value = -3 } #Mantua
+		command = { type = fortress which = 390 value = -1 } #Mantua
+	}
+}
+
+#(1626-1630) Sale of Gonzaga Collection
+#by Aylo1
+event = {
+	id = 220030
+	trigger = {
+		event = 220029 #MAN: Distinction of Blood
+	}
+	random = no
+	country = MAN
+	name = "EVENTNAME220030" #Sale of Gonzaga Collection
+	desc = "EVENTHIST220030"
+	#-#As Renaissance Patrons, the Gonzagas aquired over 2000 masterpiece paintings and 20,000 precious objects including musical scores, small bronzes, quartz crystals, weapons, jewels and naturalias. Best known pieces were Mantegna's 'Lamentation over the dead Christ', Ruben's 'Council of the Gods' and Corregio's 'Venus, Cupid and Mercury'. Economic hardship in the XVII century induced Vincenzo II to negotiate the sale of his family's artistic inheritance to Charles I of England for 80,000 pounds sterling. Carried out by his successors to finance the War of Mantovan Succession (1627-31), it caused an uproar to a cash-strapped England but in hindsight was a lesser evil when Habsburg troops sacked Mantova (1629) and carried off the remnants of the collection.
+
+	date = { day = 1 month = january year = 1626 }
+	offset = 180
+	deathdate = { day = 0 month = january year = 1630 }
+
+	action_a = {
+		name = "ACTIONNAME220030A" #Sell
+		command = { type = relation which = ENG value = 20 }
+		command = { type = treasury value = 80 }
+		command = { type = infra value = -250 }
+	}
+	action_b = {
+		name = "ACTIONNAME220030B" #Keep
+		command = { type = ADM which = -2 value = 36 } #can't operate without $
+		command = { type = stability value = -1 }
+		command = { type = inflation value = 5 }
+		command = { type = land value = -100 }
+		command = { type = naval value = -100 }
+		command = { type = trade value = -100 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#War of Mantovan Succession Sequence
+#reworked by Aylo1
+
+#(1627) The Succession of Vincenzo II in Mantua
+event = {
+	id = 220031
+	trigger = {
+		event = 220023 #MAN: Inheritance of Montferrat
+		event = 220028 #MAN: Heiress of Nevers
+		NOT = { event = 17326 } #SAV: Montferrat Inheritance
+		exists = FRA
+	 	OR = { #Habsburg faction
+			exists = HAB
+			exists = SPA
+		}
+	}
+	random = no
+	country = MAN
+	name = "EVENTNAME220031" #Succession of Vincenzo II
+	desc = "EVENTHIST220031"
+	#-#Amidst his ailing health, Vincenzo II tried ensuring a smooth transition of power by marrying his niece Maria to her cousin Charles II - Duc de Mayenne et Pivot. Their cousin Ferrante II di Guastalla contested the decision. Mayenne's father, Duc de Nevers led a coalition of Pope Urban VIII, Doge Giovanni I Corner and Louis XIII. Guastalla's faction had Ferdinand II of Austria, Felipe IV of Spain and Carlo Emanuele I of Savoy. Mantua was sacked by Habsburg troops (1629) while Savoy trapped Nevers at Casale til Richelieu dug him out and negotiated the Truce of Susa (Apr 1630). Peace of Regensburg (Oct 1630) confirmed Mayenne's rights with minor concessions for Savoy and Guastalla but reduced the Habsburg presence in Italy and prevented French interference. Bourbon refusal prolonged the war til an outbreak of plague and arrival of Gustavus II Adolphus in Germany ended the conflict with the Treaty of Cherasco (1631).
+
+	date = { day = 26 month = december year = 1627 }
+
+	action_a = {
+		name = "ACTIONNAME220031A" #Charles de Nevers
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = relation which = FRA value = 100 }
+		command = { type = relation which = PAP value = 75 }
+		command = { type = relation which = VEN value = 75 }
+		command = { type = relation which = SPA value = -150 }
+		command = { type = relation which = HAB value = -125 }
+		command = { type = relation which = SAV value = -125 }
+		command = { type = casusbelli which = SPA value = 36 }
+		command = { type = casusbelli which = HAB value = 36 }
+		command = { type = casusbelli which = SAV value = 36 }
+		command = { type = alliance which = FRA }
+		command = { type = alliance which = PAP }
+		command = { type = alliance which = VEN }
+		command = { type = breakvassal which = SPA }
+		command = { type = breakvassal which = HAB }
+		command = { type = stability value = 2 }
+		command = { type = trigger which = 179119 } #HAB: Nevers succeeds to Mantua
+		command = { type = trigger which = 285273 } #SPA: Guastalla Denied
+		command = { type = trigger which = 275027 } #SAV: Savoja's Montferrato Ambition
+	}
+	action_b = {
+		name = "ACTIONNAME220031B" #Ferrante di Guastalla
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = relation which = SPA value = 100 }
+		command = { type = relation which = HAB value = 75 }
+		command = { type = relation which = SAV value = 75 }
+		command = { type = relation which = FRA value = -150 }
+		command = { type = relation which = PAP value = -125 }
+		command = { type = relation which = VEN value = -125 }
+		command = { type = casusbelli which = FRA value = 36 }
+		command = { type = casusbelli which = PAP value = 36 }
+		command = { type = casusbelli which = VEN value = 36 }
+		command = { type = alliance which = SPA }
+		command = { type = alliance which = HAB }
+		command = { type = alliance which = SAV }
+		command = { type = breakvassal which = FRA }
+		command = { type = stability value = -1 }
+		command = { type = wakemonarch which = 083519 } #Ferrante I di Guastalla *
+		command = { type = wakemonarch which = 083520 } #Cesare *
+		command = { type = wakemonarch which = 083521 } #Ferrante II *
+		command = { type = wakemonarch which = 083522 } #Anna-Isabella *
+		command = { type = wakemonarch which = 083523 } #Vincenzo III *
+		command = { type = wakemonarch which = 083524 } #Ferrante III *
+		command = { type = wakemonarch which = 083525 } #Giuseppe *
+		command = { type = wakemonarch which = 083527 } #Habsburg Regency *
+		command = { type = sleepmonarch which = 083512 } #Carlo I di Nevers
+		command = { type = sleepmonarch which = 083513 } #Maria Gonzaga (Regent)
+		command = { type = sleepmonarch which = 083514 } #Carlo II
+		command = { type = sleepmonarch which = 083515 } #Isabella d'Asburgo (Regent)
+		command = { type = sleepmonarch which = 083516 } #Carlo III Ferdinando
+		command = { type = sleepmonarch which = 083517 } #Giovanni *
+		command = { type = sleepmonarch which = 083518 } #Filippo *
+		command = { type = sleepmonarch which = 083526 } #Habsburg Regency *
+		command = { type = sleepleader which = 083753 } #Carlo I (MAN)
+		command = { type = trigger which = 170225 } #FRA: Nevers Denied
+		command = { type = trigger which = 251073 } #PAP: Gonzaga's Successor
+		command = { type = trigger which = 326068 } #VEN: Mantova's Successor
+	}
+}
+#(1631) Treaty of Cherasco
+#by Aylo1
+event = {
+	id = 220032 #triggered by FRA_170226
+	random = no
+	country = MAN
+	name = "EVENTNAME179120" #Treaty of Cherasco (1631)
+	desc = "EVENTHIST179120"
+	#-#After Habsburg troops sacked Mantua (1629) and Savoyard troops occupied Montferrato, French intervention neutralized Savoy at Susa (Apr 1630). Unfavourable terms for France in the Peace of Regensburg (Oct 1630) prolonged the war, but developments in Germany helped restore peace at Cherasco (6 April 1631). Gonzagas's testimony was revised whereby Mayenne's father, Herzog von Nevers received Mantua. Guastalla gained lands Luzzara and Reggiolo whilst Savoy got parts of Montferrat. France renounced all Italian conquests for territories in the Piedmont. The Habsburgs retained their Italian hegemony but at a reduced military presence.
+
+	action_a = {
+		name = "OK"
+		command = { type = provincetax which = 390 value = -3 } #losses to SAV\Guastalla
+		command = { type = provincemanpower which = 390 value = -1 } #Mantua
+		command = { type = addcore which = 386 } #Nivernais
+		command = { type = addcore which = 412 } #Maine
+		command = { type = breakvassal which = MAN }
+		command = { type = breakvassal which = FRA }
+		command = { type = breakvassal which = SPA }
+		command = { type = dynastic which = FRA }
+		command = { type = relation which = FRA value = 30 }
+		command = { type = relation which = VEN value = 25 }
+		command = { type = relation which = PAP value = 25 }
+		command = { type = relation which = SPA value = -25 }
+		command = { type = relation which = HAB value = -25 }
+		command = { type = relation which = SAV value = -25 }
+		command = { type = stability value = 2 }
+		command = { type = sleepevent which = 179122 } #HAB: Guastalla Succession
+	}
+}
+#(1631) Treaty of Cherasco - Ahistorical
+#by Aylo1
+event = {
+	id = 220033 #triggered by SPA_285275
+	random = no
+	country = MAN
+	name = "EVENTNAME179120" #Treaty of Cherasco (1631)
+	desc = "EVENTHIST220033"
+	#-#After Imperial troops sacked Mantua (1629) and Savoy occupied Montferrato, French intervention ended Savoyard ambitions at Susa (Apr 1630). Although preliminary peace was achieved at Regensburg (Oct 1630), France continued to interfere. Fortunately a timely rebellion of French Huguenots under Enrico - Duca di Rohan (funded by Spanish gold) succeeded in drawing Richelieu's attentions from Italy, allowing Habsburg forces to retake Mantova and dictate the Treaty of Cherasco (1631). Nevers was expelled from Italy whilst the senior Gonzaga heiress Maria now wed Guastalla's heir - who became the new Duca di Mantova and vassal of the Imperatore. Montferrato was partitioned between Savoy and Spain, thereby securing the southern frontier shortly before the incursion of Gustavus II Adolphus in Germany.
+
+	action_a = {
+		name = "SPLENDID"
+		command = { type = provincetax which = 390 value = -5 } #lost Montferrat
+		command = { type = provincemanpower which = 390 value = -1 } #Mantua
+		command = { type = treasury value = 50 } #joined to Guastalla
+		command = { type = breakvassal which = HAB }
+		command = { type = breakvassal which = SPA }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = SPA value = 25 }
+		command = { type = relation which = SAV value = 25 }
+		command = { type = relation which = FRA value = -100 }
+		command = { type = relation which = VEN value = -50 }
+		command = { type = relation which = PAP value = -50 }
+		command = { type = dynastic which = SPA }
+		command = { type = dynastic which = HAB }
+		command = { type = stability value = 3 }
+		command = { type = sleepevent which = 258056 } #POL: Ludwika-Maria
+		command = { type = sleepevent which = 220034 } #MAN: Sale of Mayenne, Nevers and Rethel
+	}
+}
+#End of "War of Mantovan Succession" Sequence
+#-----------------------------------------------------------------------------------------------
+
+#(1629-1670) The Economic Crisis
+#by Bordic
+event = {
+	id = 220013 #triggered by ProvinceSpec_338233
+	trigger = {
+		owned = { province = 390 data = -1 } #Mantua
+	}
+	random = no
+	country = MAN
+	name = "EVENTNAME220013" #The Economic Crisis
+	desc = "EVENTHIST220013"
+	#-#The Spanish hegemony in the Italian peninsula was exercised by means of heavy bureaucracy and harsh taxation directly in the Habsburg dominions of Milan and Naples and indirectly in the rest of the peninsula by forcing the other minor Italian states to respect Spanish economic and diplomatic directives. The vassalage to Spain, which granted to some extent an enduring peace in Italy afer the Italian Wars, which the historians would call 'the pax hispanica', together with the disuse of the Mediterranean sea as international trade route towards the East Indies brought the Italian economic system to eventually collapse. As a result of this agriculture will become the prevailing economic activity in Italy until the end of XIXth century. That meant the coming back to power of the landowning aristocracy.
+
+	action_a = {
+		name = "ACTIONNAME220013A" #We hope for better times!
+		command = { type = stability value = -2 }
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = domestic which = MERCANTILISM value = 1 }
+		command = { type = domestic which = SERFDOM value = 1 }
+		command = { type = domestic which = LAND value = 1 }
+		command = { type = trade value = -500 }
+		command = { type = infra value = -500 }
+		command = { type = naval value = -500 }
+	}
+}
+
+#(1654-1659) Sale of Mayenne, Nevers and Rethel
+#by Aylo1
+event = {
+	id = 220034
+	trigger = {
+		monarch = 083514 #Carlo II
+		exists = FRA
+		core = { province = 386 data = -1 } #Nivernais
+		core = { province = 412 data = -1 } #Maine
+	}
+	random = no
+	country = MAN
+	name = "EVENTNAME220034" #Sale of Mayenne, Nevers and Rethel
+	desc = "EVENTHIST220034"
+	#-#The ailing economy of mid XVII century Mantova combined with Carlo II's ineptitude and expensive taste compelled him to sell the French Duchies of Mayenne (1654), Nevers and Rethel (1659) to Cardinal Jules Mazarin.
+
+	date = { day = 1 month = january year = 1654 }
+	offset = 180
+	deathdate = { day = 0 month = january year = 1659 }
+
+	action_a = {
+		name = "ACTIONNAME220034A" #Sell Duchies to Mazarin
+		command = { type = relation which = FRA value = 20 }
+		command = { type = cedeprovince which = FRA value = 386 } #Nivernais
+		command = { type = cedeprovince which = FRA value = 412 } #Maine
+		command = { type = removecore which = 386 } #Nivernais
+		command = { type = removecore which = 412 } #Maine
+		command = { type = treasury value = 75 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME220034B" #Keep them
+		command = { type = relation which = FRA value = -40 }
+		command = { type = province_revoltrisk which = 386 value = 4 }
+		command = { type = province_revoltrisk which = 412 value = 4 }
+		command = { type = add_countryculture which = french }
+		command = { type = treasury value = -50 }
+	}
+}
+
+#(1675-1715) Economic and Social Decadence
+#by Bordic
+event = {
+	id = 220014
+	trigger = {
+		NOT = {
+			countrysize = 10
+			domestic = { type = innovative value = 9 }
+			domestic = { type = serfdom value = 3 }
+			domestic = { type = aristocracy value = 1 }
+			event = 338232 #ProvinceSpec*389: The plague in Milan
+		}
+	}
+	random = no
+	country = MAN
+	name = "EVENTNAME251066" #Economic and Social Decadence
+	desc = "EVENTHIST251066"
+	#-#In the late XVIIth century, the disuse of the Mediterranean sea as the main international trade junction between Europa and the East Indies brought the Italian economic system to collapse. Italy became more removed from the mainstream of European development and each local administration along the peninsula lagged behind that of any other European contemporary. The practice of agriculture as prevailing economic activity meant the coming back to power of the most conservative landowning aristocracy. That economic backwardness associated with the effects of Counterreform deeply affected Italian social life too, now less and less inclined to accept innovation and to develop some entrepreneurial attitude.
+
+	date = { day = 18 month = january year = 1675 }
+	offset = 60
+	deathdate = { day = 0 month = january year = 1715 }
+
+	action_a = {
+		name = "ALAS"
+		command = { type = stability value = -1 }
+		command = { type = provincetax which = -2 value = -2 }
+		command = { type = provincemanpower which = -2 value = -1 }
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = domestic which = MERCANTILISM value = 1 }
+		command = { type = domestic which = SERFDOM value = 1 }
+		command = { type = domestic which = LAND value = 1 }
+		command = { type = trade value = -500 }
+		command = { type = infra value = -500 }
+		command = { type = naval value = -500 }
+	}
+}
+
+#(1678) Gonzaga Reunion
+#by Aylo1
+event = {
+	id = 220035 #triggered by HAB_179122 A
+	random = no
+	country = MAN
+	name = "EVENTNAME220035" #Gonzaga Reunion (1678-92)
+	desc = "EVENTHIST220035"
+	#-#Carlo III Ferdinando's marriage to Anna-Isabella Gonzaga di Guastalla healed the rift between the Nevers and Guastalla branches of the family. It also briefly (1678-92) incorporated the Duchies of Mantova and Guastalla. Nevertheless Holy Roman Emperor Leopold I used his rights as imperial suzerain in the West to declare the succession illegitmate - making Anna-Isabella's cousin and brother-in-law Vincenzo Gonzaga (Conte di San Paolo) Duca. Frustrated with Austrian intervention, Carlo became partial to French influence.
+
+	action_a = {
+		name = "ACTIONNAME220035A" #Cede Guastalla to Vincenzo
+		command = { type = provincetax which = 390 value = -1 } #Rep loss of Guastalla
+		command = { type = provincemanpower which = 390 value = -1 } #Mantua
+		command = { type = relation which = HAB value = -40 }
+		command = { type = relation which = FRA value = 20 }
+	}
+}
+#(1678-1681) Ercole Antonio Mattioli - Ahistorical
+#by Aylo1
+event = {
+	id = 220036
+	trigger = {
+		event = 179122 #HAB: Guastalla Succession
+		monarch = 083516 #Carlo III Ferdinando
+		exists = FRA
+	}
+	random = no
+	country = MAN
+	name = "EVENTNAME220036" #Mattioli's Intrigues
+	desc = "EVENTHIST220036"
+	#-#Habsburg intervention in the Guastalla Succession (1678-92) induced Carlo III Ferdinando to secretly sell Casale-Montferrato to Louis XIV. However Gonzaga's minister Ercole Antonio Mattioli (1640-94) informed France's rivals (Austria, Savoy, Spain and Venice) of the pact, disgracing both parties. Mattioli was imprisoned in France - becoming associated with the 'Man in the Iron Mask'. Regardless, Gonzaga and the Sun King stayed firm allies whereby Carlo became a French General - gaining a pension and a share in future French conquests in Italy (1681). These manoeuvres caused Gonzaga to lose face among his Italian peers and Mantova itself to Austria (1708) in the War of Spanish Succession (1701-14).
+
+	date = { day = 1 month = january year = 1678 }
+	offset = 90
+	deathdate = { day = 0 month = january year = 1681 }
+
+	action_a = {
+		name = "ACTIONNAME220036A" #Endorse Mattioli's scheme
+		command = { type = relation which = FRA value = -100 }
+		command = { type = relation which = HAB value = 25 }
+		command = { type = relation which = SAV value = 25 }
+		command = { type = relation which = SPA value = 25 }
+		command = { type = relation which = VEN value = 25 }
+		command = { type = DIP which = -1 value = 24 } #no credibility
+		command = { type = stability value = -1 }
+		command = { type = sleepevent which = 220011 } #Fate of Gonzaga-Nevers
+	}
+	action_b = {
+		name = "ACTIONNAME220036B" #Conclude pact with France
+		command = { type = relation which = FRA value = 100 }
+		command = { type = relation which = HAB value = -75 }
+		command = { type = relation which = SPA value = -75 }
+		command = { type = relation which = VEN value = -50 }
+		command = { type = relation which = SAV value = -50 }
+		command = { type = relation which = GEN value = -50 }
+		command = { type = relation which = PAR value = -50 }
+		command = { type = relation which = MOD value = -50 }
+		command = { type = relation which = TOS value = -50 }
+		command = { type = relation which = PAP value = -50 }
+		command = { type = fortress which = 390 value = -1 } #no casale-montferrato
+		command = { type = MIL which = 1 value = 36 } #Gnrl
+		command = { type = treasury value = 60 } #60k lire pension
+	}
+}
+
+#(1700-1706) The fate of the Gonzaga-Nevers (Spanish war of succession, Mantuan version)
+#by Bordic
+event = {
+	id = 220011
+	trigger = {
+		monarch = 083516 #Carlo III Ferdinando
+		NOT = {
+			war = { country = MAN country = FRA }
+			war = { country = MAN country = SPA }
+		}
+		event = 179081 #HAB: Charles proclaimed King of Spain in Vienna
+	}
+	random = no
+	country = MAN
+	name = "EVENTNAME220011" #The fate of the Gonzaga-Nevers
+	desc = "EVENTHIST220011"
+	#-#When Carlos II of Spain died childless, he bequeathed the crown of Spain in favour of Philip of Anjou, grandson of Louis XIV of France. Emperor Leopold I of Austria contested this will, but found little support. However, two years later, Louis expansionism had convinced England and the Netherlands to enter an alliance against France and Spain. Duke Carlo III Ferdinando decided to side with the House of Bourbon. That unlucky political decision would mean the end of the independence for Mantua: since the end of Second War of Mantuan Succession the Habsburgs were always hostile to a French presence in Italy (specifically the Nevers branch of the House of Gonzaga) and wouldn't miss the opportunity to definitively subjugate the ducal city to the imperial rule.
+
+	date = { day = 3 month = November year = 1700 }
+	offset = 30
+	deathdate = { day = 3 month = November year = 1706 }
+
+	action_a = {
+		name = "ACTIONNAME220011A" #Support the Bourbons in Spain
+		command = { type = MIL which = 2 value = 60 }
+		command = { type = casusbelli which = HAB value = 60 }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = SPA value = 50 }
+		command = { type = relation which = ENG value = -25 }
+		command = { type = relation which = HOL value = -25 }
+		command = { type = trigger which = 179100 } #HAB: The fate of Mantua
+	}
+	action_b = {
+		name = "ACTIONNAME220011B" #Don't get entangled in too risky matters
+		command = { type = DIP which = -2 value = 96 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = relation which = SPA value = -50 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = SAV value = 25 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 220037

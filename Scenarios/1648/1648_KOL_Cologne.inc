@@ -4,7 +4,7 @@
 
 country = {
 	tag = KOL
-	ai = "SmallCRC2.ai"
+	ai = "SmallCRC2.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no

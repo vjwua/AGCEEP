@@ -4,7 +4,7 @@
 
 country = {
 	tag = COR
-	ai = "SmallTrade1.ai"
+	ai = "SmallTrade1.txt"
 	flagname = "Vincentellu"
 	colonialattempts = 0
 	colonialnation = no

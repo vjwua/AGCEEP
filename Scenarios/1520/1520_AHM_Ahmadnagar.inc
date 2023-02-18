@@ -4,7 +4,7 @@
 
 country = {
 	tag = AHM
-	ai = "SmallTrade1.ai"
+	ai = "SmallTrade1.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -16,13 +16,13 @@ country = {
 	merchants = 0.083333
 	religion = { type = sunni }
 	culture = {
-		type = cambodian
+		type = telugu
 		type = marathi
 	}
 	diplomacy = {
 		relation = { tag = DLH value = -100 }
 		relation = { tag = VIJ value = -100 }
-		relation = { tag = HYD value = -50 }
+		relation = { tag = GOL value = -50 }
 		relation = { tag = VIJ value = -50 }
 		relation = { tag = POR value = -80 }
 	}

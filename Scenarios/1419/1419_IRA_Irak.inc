@@ -4,7 +4,7 @@
 
 country = {
 	tag = IRA
-	ai = "IRA_1419.ai"
+	ai = "IRA_1419.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -14,7 +14,7 @@ country = {
 	treasury = 50
 	inflation = 0.100000
 	merchants = 0.083333
-	religion = { type = shiite }
+	religion = { type = shia }
 	culture = { type = turkish }
 	diplomacy = {
 		relation = { tag = AKK value = -200 refusetrade = no }

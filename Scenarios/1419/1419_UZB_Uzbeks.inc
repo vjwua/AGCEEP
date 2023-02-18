@@ -4,7 +4,7 @@
 
 country = {
 	tag = UZB
-	ai = "UZB_1419_Default.ai"
+	ai = "UZB_1419_Default.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -14,8 +14,8 @@ country = {
 	treasury = 50
 	inflation = 0.000000
 	merchants = 0.083333
-	religion = { type = sunni}
-	culture = { type = naskapi }
+	religion = { type = sunni }
+	culture = { type = tatar }
 	diplomacy = {
 		relation = { tag = SIB value = 150 refusetrade = no }
 		relation = { tag = STE value = 150 refusetrade = no }

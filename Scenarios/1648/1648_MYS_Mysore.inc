@@ -4,7 +4,7 @@
 
 country = {
 	tag = MYS
-	ai = "SmallTrade1.ai"
+	ai = "SmallTrade1.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -14,12 +14,12 @@ country = {
 	treasury = 100
 	inflation = 0
 	merchants = 0.083333
-	religion = { type = hinduism }
-	culture = { type = dravidian }
+	religion = { type = hindu }
+	culture = { type = kannada }
 	diplomacy = {
-		relation = { tag = HYD value = -50 }
-		relation = { tag = FAT value = 130 }
-		relation = { tag = TAN value = 130 }
+		relation = { tag = GOL value = -50 }
+		relation = { tag = CLC value = 130 }
+		relation = { tag = TRV value = 130 }
 	}
 	knownprovinces = {
 		570 571 572 573 574 575 576 577 560 561 562 563 564 565 566 567 568 569 540 541 542

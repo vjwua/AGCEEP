@@ -1,0 +1,841 @@
+#Korea (KOR)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1420-1421) Chiphyonjon, the hall of assembled worthies, founded - Flavor
+event = {
+	id = 3885
+	random = no
+	country = KOR
+	name = "EVENTNAME3885" #Chiphyonjon, the hall of assembled worthies, founded
+	desc = "EVENTHIST3885"
+	#-#The Chiphyonjon, or Hall of Assembled Worthies, was a royal research institute founded at the behest of King Sejong. It brought about a number of major cultural achievements that have proved a lasting legacy to the Korean nation. Most important perhaps were the dozens of compilation projects supervised by the Chiphyonjon scholars on agriculture, Confucian thought, history, geography, law, linguistics, and medicine.
+
+	date = { day = 1 month = june year = 1420 }
+	offset = 180
+	deathdate = { day = 1 month = june year = 1421 }
+
+	action_a = {
+		name = "OK"
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = infra value = 200 }
+	}
+}
+
+#(1434) Official publication of Nogoldae and Paktongsa - Flavor
+event = {
+	id = 204004
+	random = no
+	country = KOR
+	name = "EVENTNAME204004" #Official publication of Nogoldae and Paktongsa
+	desc = "EVENTHIST204004"
+	#-#Before Yuan dynasty, Korean people only used confucian classics as chinese textbook, it caused many problems because contemporary spoken chinese is quite different to classical chinese. Inspired by Mongol's spoken mandarin-focused chinese textbook, some Korean wrote similar books for Koreans. In 1434, King Sejong ordered to publish the best two of these books, Nogoldae and Paktongsa, officially included them into official chinese textbook.
+
+	date = { day = 1 month = june year = 1434 }
+	offset = 5
+	deathdate = { day = 29 month = august year = 1434 }
+
+	action_a = {
+		name = "OK"
+		command = { type = trade value = 100 }
+ 		command = { type = infra value = 100 }
+	}
+}
+
+#(1446) Announcement of Korean characters -I-
+event = {
+	id = 3890
+	trigger = {
+		NOT = { vassal = { country = CHI country = KOR } }
+		NOT = { event = 204003 } #KOR: Announcement of Korean characters -II-
+	}
+	random = no
+	country = KOR
+	name = "EVENTNAME3890" #Announcement of Korean characters
+	desc = "EVENTHIST3890"
+	#-#In ancient and medieval Korea, scholars and bureaucrats used Chinese (sometimes in Korean word order) to write official documents and literatures. However, because Chinese language and Korean language were quite different, learning Chinese was more difficult to Koreans than Chinese. Sejong wanted to advance literacy amongst the Koreans, he thought a set of phonetic characters would be useful, and he led a group of scholars to research it. His action was strongly opposed by scholars, bureaucrats and other elites, who thought Sejong's idea was wrong. In 1446, Sejong announced his controversial work, and it became very popular among women and poor people. However, his successors didn't think these characters were important, and elite-controlled government still didn't use them until later 19th century.
+
+	date = { day = 1 month = june year = 1446 }
+	offset = 180
+	deathdate = { day = 29 month = december year = 1446 }
+
+	action_a = {
+		name = "ACTIONNAME3890A" #Announce it
+		command = { type = domestic which = serfdom value = -2 }
+		command = { type = domestic which = innovative value = 2 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = treasury value = -200 }
+		command = { type = provincetax which = 642 value = 2 } #Yalu
+		command = { type = relation which = CHI value = -150 }
+		command = { type = stability value = -1 }
+		command = { type = sleepevent which = 204003 } #KOR: Announcement of Korean characters -II-
+	}
+	action_b = {
+		name = "ACTIONNAME3890B" #Forget it
+		command = { type = stability value = 1 }
+		command = { type = sleepevent which = 204003 } #KOR: Announcement of Korean characters -II-
+	}
+}
+#(1446) Announcement of Korean characters -II-
+event = {
+	id = 204003
+	trigger = {
+		vassal = { country = CHI country = KOR }
+		NOT = { event = 3890 } #KOR: Announcement of Korean characters -I-
+	}
+	random = no
+	country = KOR
+	name = "EVENTNAME3890" #Announcement of Korean characters
+	desc = "EVENTHIST3890"
+	#-#In ancient and medieval Korea, scholars and bureaucrats used Chinese (sometimes in Korean word order) to write official documents and literatures. However, because Chinese language and Korean language were quite different, learning Chinese was more difficult to Koreans than Chinese. Sejong wanted to advance literacy amongst the Koreans, he thought a set of phonetic characters would be useful, and he led a group of scholars to research it. His action was strongly opposed by scholars, bureaucrats and other elites, who thought Sejong's idea was wrong. In 1446, Sejong announced his controversial work, and it became very popular among women and poor people. However, his successors didn't think these characters were important, and elite-controlled government still didn't use them until later 19th century.
+
+	date = { day = 1 month = june year = 1446 }
+	offset = 180
+	deathdate = { day = 29 month = december year = 1446 }
+
+	action_a = {
+		name = "ACTIONNAME3890A" #Announce it
+		command = { type = domestic which = serfdom value = -2 }
+		command = { type = domestic which = innovative value = 2 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = treasury value = -200 }
+		command = { type = provincetax which = 642 value = 2 } #Yalu
+		command = { type = breakvassal which = CHI }
+		command = { type = relation which = CHI value = -300 }
+		command = { type = stability value = -2 }
+		command = { type = sleepevent which = 3890 } #KOR: Announcement of Korean characters -I-
+	}
+	action_b = {
+		name = "ACTIONNAME3890B" #Forget it
+		command = { type = stability value = 1 }
+		command = { type = sleepevent which = 3890 } #KOR: Announcement of Korean characters -I-
+	}
+}
+
+#(1455) Palace Coup
+event = {
+	id = 204008
+	random = no
+	country = KOR
+	name = "EVENTNAME204008" #Palace Coup
+	desc = "EVENTHIST204008"
+	#-#In 1455, this government was overthrown in a coup led by the King's uncle, Sejo of Joseon, who persuaded a number of scholars and officials who had served in the court of Sejong the Great to support his claim to the throne. Hwangbo In and Kim Jongseo were seized and murdered in front of the gate of Gyeongbokgung. Danjong was forced to abdicate and exiled.\n \n The following year, six officials of the court attempted to restore him to power, but their plot was discovered and they were immediately executed. Perceiving that he would present a continuing threat to his rule, Sejo then accepted the advice of the court and ordered that Danjong be disposed of. He was murdered, possibly by poisoning, in 1457.
+
+	date = { day = 1 month = january year = 1455 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1455 }
+
+	action_a = {
+		name = "ACTIONNAME204008A" #This is just great
+		command = { type = stability value = -6 }
+		command = { type = revolt which = -1 }
+		command = { type = revoltrisk which = 30 value = 4 }
+	}
+}
+
+#(1460-1465) Sejo
+event = {
+	id = 204009
+	random = no
+	country = KOR
+	name = "EVENTNAME204009" #Sejo
+	desc = "EVENTHIST204009"
+	#-#Despite having snatched the throne from his young nephew, killing many people in the process, he proved himself one of the most able rulers and administrators in Korean history. First, he strengthened the monarchy established by Taejong, by weakening the power of the prime minister and bringing staff directly under the King's control. He also strengthened the administrative system, which had also been introduced by Taejong, enabling the government to determine exact population numbers and to mobilize troops effectively. Just like Taejong, he was a hardliner with regards to foreign policy, attacking Jurchens on the northern front in 1460 and 1467. He also revised the land ordinance to improve the national economy. He executed scholars from King Sejong's era for plotting against him, but encouraged publishing, including several history, economics, agricultural, and religious books.
+
+	date = { day = 1 month = january year = 1460 }
+	offset = 300
+	deathdate = { day = 1 month = january year = 1465 }
+
+	action_a = {
+		name = "ACTIONNAME204008A" #This is just great
+		command = { type = stability value = 3 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = infra value = 500 }
+	}
+}
+
+#(1498-1499) First Literati Purge - Flavor
+event = {
+	id = 3886
+	random = no
+	country = KOR
+	name = "EVENTNAME3886" #First Literati Purge
+	desc = "EVENTHIST3886"
+	#-#While serving as Third Censor in 1495, Kim Il-son, a former state historian, proved himself to be a man willing to go to great lengths in criticizing government officials regardless of their power or status. One of Kim's accusatory memoranda set off a controversy that soon took on a life all of its own. The resulting reaction lead to a purge of many of the intellectuals that had dared to critise the officials and the King.
+
+	date = { day = 1 month = june year = 1498 }
+	offset = 180
+	deathdate = { day = 1 month = june year = 1499 }
+
+	action_a = {
+		name = "OK"
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = infra value = -200 }
+	}
+}
+
+#(1504) Second Literati Purge - Flavor
+event = {
+	id = 3887
+	random = no
+	country = KOR
+	name = "EVENTNAME3887" #Second Literati Purge
+	desc = "EVENTHIST3887"
+	#-#During the course of a state banquet in the autumn of 1503, Minister of Rites Yi Se-jwa accidentally spilled wine on the King's robes during dinner. The King interpreted it as a crime against the sovereign and therefore treasonous. The incident set of a chain of events resulting in banishments, purges and executions of the officials and intellectuals, who had survived the first purge, to stamp out contempt for authority.
+
+	date = { day = 1 month = september year = 1504 }
+	offset = 30
+	deathdate = { day = 1 month = november year = 1504 }
+
+	action_a = {
+		name = "OK"
+		command = { type = domestic which = innovative value = -2 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = serfdom value = 1 }
+		command = { type = stability value = -2 }
+	}
+}
+
+#(1506) Palace Coup
+event = {
+	id = 204010
+	random = no
+	country = KOR
+	name = "EVENTNAME204010" #Palace Coup
+	desc = "EVENTHIST204010"
+	#-#Jungjong of Joseon ruled during the XVIth century in what is now Korea. He succeeded his half-brother, Yeonsangun, because of the latter's misrule, which culminated in a coup placing Jungjong on the throne.
+
+	date = { day = 1 month = january year = 1506 }
+	offset = 10
+	deathdate = { day = 1 month = february year = 1506 }
+
+	action_a = {
+		name = "ACTIONNAME204010A" #Down with the tyrant
+		command = { type = stability value = 2 }
+		command = { type = domestic which = innovative value = 1 }
+	}
+}
+
+#(1519-1520) Third Literati Purge - Flavor
+event = {
+	id = 3888
+	random = no
+	country = KOR
+	name = "EVENTNAME3888" #Third Literati Purge
+	desc = "EVENTHIST3888"
+	#-#Cho Kwang-jo, a Neo-Confucian reformer, attempted to shape the goverment according to Confucian ideals. His initial successes in reformation backfired when he went too far in attacking the old order. The fundamental devotion of the purge victims to the throne was never questioned, unlike earlier purges. The government believed that Cho Kwang-jo's clique, as it was called, was misguided, that much of its reform program would harm the government, and that the turbulence caused by its actions constituted a grave threat to Yi society and the foundations of the state. The result was that Cho Kwang-jo and his young idealists were eliminated and the inter-factional battles developed into naked power struggles. Scores of people were executed and hundreds were either dismissed from government office or exiled.
+
+	date = { day = 1 month = june year = 1519 }
+	offset = 180
+	deathdate = { day = 1 month = june year = 1520 }
+
+	action_a = {
+		name = "OK"
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = stability value = -3 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#(1544-1546) Fourth Literati Purge
+event = {
+	id = 204017
+	random = no
+	country = KOR
+	name = "EVENTNAME204017" #Fourth Literati Purge
+	desc = "EVENTHIST204017"
+	#-#There were two political factions at the time Myeongjong came to power, Greater Yun, headed by Yun Im, uncle of King Injong, and Smaller Yun, with Yun Won-Hyung, Myeongjong's uncle, as its leader. Greater Yun took power in 1544, when Injong succeeded Jungjong, but they failed to wipe out their opposition, since Queen Munjeong protected the Smaller Yun faction and other opposition officials. However, after the death of Injong in 1545, Smaller Yun replaced Greater Yun as the majority in the royal court and brutally ousted their adversaries, the Greater Yun faction. Yun Im was executed, as were many of his followers.
+
+	date = { day = 1 month = january year = 1544 }
+	offset = 180
+	deathdate = { day = 1 month = january year = 1546 }
+
+	action_a = {
+		name = "OK"
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 240 value = 4 }
+		command = { type = ADM which = -3 value = 240 }
+	}
+}
+
+#(1575-1585) East-West feud
+event = {
+	id = 204011
+	random = no
+	country = KOR
+	name = "EVENTNAME204011" #East-West feud
+	desc = "EVENTHIST204011"
+	#-#Among the scholars King Seonjo called to the government were Sim Ui-Gyeom and Kim Hyowon. Sim was a relative of the Queen, and heavily conservative. Kim was the leading figure of the new generation of officials, and called for liberal reforms. The scholars who supported King Seonjo began to split into two factions, headed by Sim and Kim. Members of the two factions even lived in the same neighborhood, Sim's faction lived on west side of the city while Kim's followers gathered on the east side. Consequently the two factions began to be called the Westerners Faction and the Easterners Faction, this two-faction political system lasted 400 years and later helped bring about the collapse of the dynasty.
+
+	date = { day = 1 month = january year = 1575 }
+	offset = 300
+	deathdate = { day = 1 month = january year = 1585 }
+
+	action_a = {
+		name = "ACTIONNAME204011A" #Pacify the factions
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = provincemanpower which = 641 value = -1 } #Kyongju
+		command = { type = provincemanpower which = 642 value = -1 } #Yalu
+		command = { type = ADM which = -1 value = 400 }
+	}
+	action_b = {
+		name = "ACTIONNAME204011B" #Impose authoritarian rule
+		command = { type = stability value = -6 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = revolt which = -2 }
+		command = { type = revolt which = -2 }
+		command = { type = revoltrisk which = 150 value = 3 }
+		command = { type = revoltrisk which = 300 value = 4 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = sleepevent which = 204012 } #KOR: Violence of Greater Northerner faction
+		command = { type = sleepevent which = 204013 } #KOR: Westerner Coup
+	}
+}
+
+#(1588-1601) Construction of Turtle Ships
+#Bugfix from threadid=55301 - Korath
+#And year trigger changed to date/deathdate, so it can fire at all - Korath
+event = {
+	id = 3891
+	trigger = {
+		war = { country = NIP country = KOR }
+		leader = 071300 #Yi Sun-sin (KOR)
+	}
+	random = no
+	country = KOR
+	name = "EVENTNAME3891" #Construction of Turtle Ships
+	desc = "EVENTHIST3891"
+	#-#Admiral Yi Sun-sin began work in 1588 on improving and strengthening the Korean navy's ships in face of the Japanese skill in close combat and muskets. The result was an new and effective ship design, even if the concept itself had previously been used in raids against pirates in 1419. It was designed to prevent enemy ships from getting close enough to use grappling hooks and muskets by using banks of cannons and concealed the ship with a smoke generator. The enclosed design with spike covered iron plates protected the crew from missiles made boarding difficult. Yi requires some more funds to finalise his fleet, if we don't provide them he says he will resign. What shall we do?
+
+	date = { day = 1 month = january year = 1588 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1601 }
+
+	action_a = {
+		name = "ACTIONNAME3891A" #Provide Funds
+		command = { type = domestic which = land value = -2 }
+		command = { type = treasury value = -200 }
+		command = { type = naval value = 500 }
+		command = { type = warships which = -1 value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME3891B" #Refuse funding
+		command = { type = sleepleader which = 071300 } #Yi Sun-sin (KOR)
+	}
+}
+
+#(1608-1609) Introduction of Uniform Land Tax Law - Flavor
+event = {
+	id = 3889
+	random = no
+	country = KOR
+	name = "EVENTNAME3889" #Introduction of Uniform Land Tax Law
+	desc = "EVENTHIST3889"
+	#-#The Korean economy was in a very bad shape by the 17th century and to rectify this state Chief State Councilor Yi Won-ik gradually introduced previously ignored reforms in the tax system. The tribute tax levied against households was replaced with a unified tax on arable land. The tax on goods was limited to a quota which let enterprising peasant and wholesalers make and sell surplus goods. The net effect was lower taxes for peasants, increased revenues for the state and an rise in commerce.
+
+	date = { day = 1 month = june year = 1608 }
+	offset = 180
+	deathdate = { day = 1 month = june year = 1609 }
+
+	action_a = {
+		name = "OK"
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = domestic which = mercantilism value = -1 }
+		command = { type = provincetax which = 641 value = 2 } #Kyongju
+		command = { type = provincetax which = 642 value = 2 } #Yalu
+	}
+}
+
+#(1610-1620) Violence of Greater Northerner faction
+event = {
+	id = 204012
+	random = no
+	country = KOR
+	name = "EVENTNAME204012" #Violence of Greater Northerner faction
+	desc = "EVENTHIST204012"
+	#-#Gwanghaegun tried to bring officials from various political and regional background to his court, but his plan was interrupted by Greater Northerners including Yi Yicheom and Jeong In-hong. Then Greater Northerners began to take out members of other political factions out of the government, especially Lesser Northerners. At last in 1613 Greater Northerners put their hand on Grand Prince Yeongchang, his grandfather Kim Je-nam was found guilty of treason and excuted, while Yeongchang was sent into exile, where he was murdered. At the same time Greater Northerners suppressed the Lesser Northerners. In 1618 Yeongchang's mother, Queen Inmok, was stripped off her title and imprisoned. However, Gwanghaegun had no power to stop this even though he was the official head of the government.
+
+	date = { day = 1 month = january year = 1610 }
+	offset = 300
+	deathdate = { day = 1 month = january year = 1620 }
+
+	action_a = {
+		name = "DARN"
+		command = { type = stability value = -6 }
+		command = { type = domestic which = aristocracy value = 1 }
+	}
+}
+
+#(1623) Westerner Coup
+event = {
+	id = 204013
+	random = no
+	country = KOR
+	name = "EVENTNAME204013" #Westerner Coup
+	desc = "EVENTHIST204013"
+	#-#In 1623 Gwanghaegun was deposed by the Westerners faction with a coup. He was confined first on Ganghwa Island and then Jeju Island, where he died in 1641. He does not have a royal mausoleum like the other Joseon rulers. His and Lady Ryu's remains were buried in a comparatively humble site in Namyangju in Gyeonggi Province.
+
+	date = { day = 12 month = april year = 1623 }
+
+	action_a = {
+		name = "ACTIONNAME204008A" #This is just great
+		command = { type = stability value = -3 }
+		command = { type = relation which = MCH value = -50 }
+		command = { type = domestic which = innovative value = -1 }
+	}
+}
+
+#(1624) Yi Gwal Rebellion
+event = {
+	id = 204014
+	trigger = {
+		event = 204013 #KOR: Westerner Coup
+	}
+	random = no
+	country = KOR
+	name = "EVENTNAME204014" #Yi Gwal Rebellion
+	desc = "EVENTHIST204014"
+	#-#In 1624, Yi Gwal, who thought he was treated unfairly and received too small reward for his role in the coup, rebelled against Injo, since almost every major leaders of coup was called to the court while he was sent to Northern front as military commander of Pyongyang to fight against expanding Manchus. Yi Gwal led 12,000 troops including 100 Japanese (who defected to Joseon during Seven Year War) to capital Hanseong. At the Battle of Jeotan, Yi Gwal defeated regular army under the command of General Jang Man, and surrounded Hansung. Injo fled to Gongju and Hansong was fell to the rebels.
+
+	date = { day = 1 month = january year = 1624 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1624 }
+
+	action_a = {
+		name = "DARN"
+		command = { type = stability value = -3 }
+		command = { type = revolt which = -2 }
+		command = { type = revolt which = -2 }
+		command = { type = revolt which = -2 }
+		command = { type = provincetax which = -2 value = -1 }
+	}
+}
+
+#(1627-1629) The Manchu advance
+event = {
+	id = 204007
+	trigger = {
+		neighbour = MCH
+		NOT = { war = { country = MCH country = KOR } }
+		NOT = { vassal = { country = MCH country = KOR } }
+		NOT = { vassal = { country = KOR country = MCH } }
+		NOT = { alliance = { country = MCH country = KOR } }
+	}
+	random = no
+	country = KOR
+	name = "EVENTNAME10035" #The Manchu advance
+	desc = "EVENTHIST204007"
+	#-#As the Manchu continued to advance and the Ming dynasty looked doomed, they suddenly crossed the Yalu. Manchu demanded that Korea stop supporting the Ming.
+
+	date = { day = 1 month = january year = 1627 }
+	offset = 300
+	deathdate = { day = 1 month = january year = 1629 }
+
+	action_a = {
+		name = "ACTIONNAME204007A" #Support the Manchu...we are weak
+		command = { type = stability value = -3 }
+		command = { type = provincemanpower which = 641 value = -2 }
+		command = { type = provincemanpower which = 642 value = -2 }
+		command = { type = relation which = CHI value = -200}
+		command = { type = breakvassal which = CHI } #could work both ways
+	}
+	action_b = {
+		name = "ACTIONNAME204007B" #Nope
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = stability value = -3 }
+		command = { type = provincemanpower which = 641 value = -3 }
+		command = { type = provincemanpower which = 642 value = -3 }
+		command = { type = relation which = CHI value = 100}
+		command = { type = trigger which = 221007 } #MCH: Eyes on Chosin
+		command = { type = sleepevent which = 221006 } #MCH: Submission of Korea
+	}
+}
+
+#(1644-1820) Korea takes control of China
+event = {
+	id = 204000
+	trigger = {
+		OR = {
+			AND = {
+				control = { province = 649 data = -1 } #Hebei
+				control = { province = 650 data = -1 } #Shandong
+				control = { province = 651 data = -1 } #Jinan
+				control = { province = 652 data = -1 } #Jiangsu
+				control = { province = 653 data = -1 } #Shanghai
+				control = { province = 654 data = -1 } #Anhui
+				control = { province = 655 data = -1 } #Zhejiang
+				control = { province = 1562 data = -1 } #Shanxi
+				control = { province = 1563 data = -1 } #Shaanxi
+				control = { province = 1564 data = -1 } #Henan
+				control = { province = 1565 data = -1 } #Hubei
+				control = { province = 1567 data = -1 } #Nanchang
+				countrysize = 16
+			}
+			AND = {
+				owned = { province = 649 data = -1 } #Hebei
+				control = { province = 649 data = -1 } #Hebei
+				countrysize = 20
+			}
+		}
+		exists = CHI
+	}
+	random = no
+	country = KOR
+	name = "EVENTNAME204000" #Claiming the Imperial Throne
+	desc = "EVENTHIST204000"
+	#-#With the sucessful capture and control of the core provinces of mainland China, the monarchy of Korea nation declares himself the new legitimate Emperor of China.
+
+	date = { day = 26 month = april year = 1644 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME204000A" #A new Emperor?
+		command = { type = vp value = 200 }
+	}
+}
+#(1644-1820) The Imperial Throne
+event = {
+	id = 204001 #triggered by CHI_147130
+	random = no
+	country = KOR
+	name = "EVENTNAME204001" #The Imperial Throne
+	desc = "EVENTHIST204001"
+	#-#With the sucessful capture and control of the core provinces of mainland China, the monarchy of Korea becomes the new legitimate Emperor of China.
+
+	action_a = {
+		name = "ACTIONNAME204001A" #Long live the Emperor!
+		command = { type = stability value = 1 }
+		command = { type = capital which = 649 } #Hebei
+		command = { type = addcore which = 646 } #Liaotung
+		command = { type = addcore which = 647 } #Liaoning
+		command = { type = addcore which = 648 } #Hepei
+		command = { type = addcore which = 649 } #Hebei
+		command = { type = addcore which = 650 } #Shandong
+		command = { type = addcore which = 651 } #Jinan
+		command = { type = addcore which = 652 } #Jiangsu
+		command = { type = addcore which = 653 } #Shanghai
+		command = { type = addcore which = 654 } #Anhui
+		command = { type = addcore which = 655 } #Zhejiang
+		command = { type = addcore which = 656 } #Fujian
+		command = { type = addcore which = 657 } #Kowloon
+		command = { type = addcore which = 658 } #Guangzhou
+		command = { type = addcore which = 659 } #Guangdong
+		command = { type = addcore which = 660 } #Hainan
+		command = { type = addcore which = 661 } #Guangxi
+		command = { type = addcore which = 1553 } #Yunnan
+		command = { type = addcore which = 1555 } #Wenshan
+		command = { type = addcore which = 1556 } #Guizhou
+		command = { type = addcore which = 1557 } #Sichuan Pendi
+		command = { type = addcore which = 1558 } #Lanzhou
+		command = { type = addcore which = 1559 } #Xining
+		command = { type = addcore which = 1560 } #Ningxia
+		command = { type = addcore which = 1561 } #Hohhot
+		command = { type = addcore which = 1562 } #Shanxi
+		command = { type = addcore which = 1563 } #Shaanxi
+		command = { type = addcore which = 1564 } #Henan
+		command = { type = addcore which = 1565 } #Hubei
+		command = { type = addcore which = 1566 } #Hunan
+		command = { type = addcore which = 1567 } #Nanchang
+		command = { type = addcore which = 1608 } #Qilian Pendi
+		command = { type = flagname which = "" }
+		command = { type = country which = CHI }
+		command = { type = sleepevent which = 204002 } #KOR: Claiming the Imperial Throne
+		command = { type = trigger which = 147132 } #CHI: A Korean dynasty for China
+	}
+}
+#(1644-1820) The Imperial Throne
+event = {
+	id = 204018 #triggered by SMI_317015
+	random = no
+	country = KOR
+	name = "EVENTNAME204001" #The Imperial Throne
+	desc = "EVENTHIST204001"
+	#-#With the sucessful capture and control of the core provinces of mainland China, the monarchy of Korea becomes the new legitimate Emperor of China.
+
+	action_a = {
+		name = "ACTIONNAME204001A" #Long live the Emperor!
+		command = { type = inherit which = SMI }
+		command = { type = stability value = 1 }
+		command = { type = capital which = 649 } #Hebei
+		command = { type = addcore which = 646 } #Liaotung
+		command = { type = addcore which = 647 } #Liaoning
+		command = { type = addcore which = 648 } #Hepei
+		command = { type = addcore which = 649 } #Hebei
+		command = { type = addcore which = 650 } #Shandong
+		command = { type = addcore which = 651 } #Jinan
+		command = { type = addcore which = 652 } #Jiangsu
+		command = { type = addcore which = 653 } #Shanghai
+		command = { type = addcore which = 654 } #Anhui
+		command = { type = addcore which = 655 } #Zhejiang
+		command = { type = addcore which = 656 } #Fujian
+		command = { type = addcore which = 657 } #Kowloon
+		command = { type = addcore which = 658 } #Guangzhou
+		command = { type = addcore which = 659 } #Guangdong
+		command = { type = addcore which = 660 } #Hainan
+		command = { type = addcore which = 661 } #Guangxi
+		command = { type = addcore which = 1553 } #Yunnan
+		command = { type = addcore which = 1555 } #Wenshan
+		command = { type = addcore which = 1556 } #Guizhou
+		command = { type = addcore which = 1557 } #Sichuan Pendi
+		command = { type = addcore which = 1558 } #Lanzhou
+		command = { type = addcore which = 1559 } #Xining
+		command = { type = addcore which = 1560 } #Ningxia
+		command = { type = addcore which = 1561 } #Hohhot
+		command = { type = addcore which = 1562 } #Shanxi
+		command = { type = addcore which = 1563 } #Shaanxi
+		command = { type = addcore which = 1564 } #Henan
+		command = { type = addcore which = 1565 } #Hubei
+		command = { type = addcore which = 1566 } #Hunan
+		command = { type = addcore which = 1567 } #Nanchang
+		command = { type = addcore which = 1608 } #Qilian Pendi
+		command = { type = sleepevent which = 204002 } #KOR: Claiming the Imperial Throne
+		command = { type = trigger which = 204020 } #KOR: A new dynasty for China
+	}
+}
+#(1644-1820) A new dynasty for China
+event = {
+	id = 204020 #triggered by KOR_204018
+	random = no
+	country = KOR
+	name = "EVENTNAME221010" #A new dynasty for China
+	desc = "EVENTHIST204001"
+	#-#With the sucessful capture and control of the core provinces of mainland China, the monarchy of Korea becomes the new legitimate Emperor of China.
+
+	action_a = {
+		name = "ACTIONNAME204001A" #Long live the Emperor!
+		command = { type = flagname which = "" }
+		command = { type = country which = CHI }
+		command = { type = trigger which = 147132 } #CHI: A Korean dynasty for China
+	}
+}
+
+#(1644-1820) Claiming the Imperial Throne
+event = {
+	id = 204002
+	trigger = {
+		owned = { province = 649 data = -1 } #Hebei
+		owned = { province = 650 data = -1 } #Shandong
+		owned = { province = 651 data = -1 } #Jinan
+		owned = { province = 652 data = -1 } #Jiangsu
+		owned = { province = 653 data = -1 } #Shanghai
+		owned = { province = 654 data = -1 } #Anhui
+		owned = { province = 655 data = -1 } #Zhejiang
+		owned = { province = 1562 data = -1 } #Shanxi
+		owned = { province = 1563 data = -1 } #Shaanxi
+		owned = { province = 1564 data = -1 } #Henan
+		owned = { province = 1565 data = -1 } #Hubei
+		owned = { province = 1567 data = -1 } #Nanchang
+		control = { province = 649 data = -1 } #Hebei
+		NOT = { exists = CHI }
+	}
+	random = no
+	country = KOR
+	name = "EVENTNAME204002" #Claiming the Imperial Throne
+	desc = "EVENTHIST204002"
+	#-#With the sucessful capture and control of the core provinces of mainland China, the monarchy of Korea declares himself the new legitimate Emperor of China.
+
+	date = { day = 25 month = april year = 1644 }
+	offset = 1
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME204002A" #Long live the Emperor!
+		command = { type = stability value = 1 }
+		command = { type = capital which = 649 } #Hebei
+		command = { type = addcore which = 646 } #Liaotung
+		command = { type = addcore which = 647 } #Liaoning
+		command = { type = addcore which = 648 } #Hepei
+		command = { type = addcore which = 649 } #Hebei
+		command = { type = addcore which = 650 } #Shandong
+		command = { type = addcore which = 651 } #Jinan
+		command = { type = addcore which = 652 } #Jiangsu
+		command = { type = addcore which = 653 } #Shanghai
+		command = { type = addcore which = 654 } #Anhui
+		command = { type = addcore which = 655 } #Zhejiang
+		command = { type = addcore which = 656 } #Fujian
+		command = { type = addcore which = 657 } #Kowloon
+		command = { type = addcore which = 658 } #Guangzhou
+		command = { type = addcore which = 659 } #Guangdong
+		command = { type = addcore which = 660 } #Hainan
+		command = { type = addcore which = 661 } #Guangxi
+		command = { type = addcore which = 1553 } #Yunnan
+		command = { type = addcore which = 1555 } #Wenshan
+		command = { type = addcore which = 1556 } #Guizhou
+		command = { type = addcore which = 1557 } #Sichuan Pendi
+		command = { type = addcore which = 1558 } #Lanzhou
+		command = { type = addcore which = 1559 } #Xining
+		command = { type = addcore which = 1560 } #Ningxia
+		command = { type = addcore which = 1561 } #Hohhot
+		command = { type = addcore which = 1562 } #Shanxi
+		command = { type = addcore which = 1563 } #Shaanxi
+		command = { type = addcore which = 1564 } #Henan
+		command = { type = addcore which = 1565 } #Hubei
+		command = { type = addcore which = 1566 } #Hunan
+		command = { type = addcore which = 1567 } #Nanchang
+		command = { type = addcore which = 1608 } #Qilian Pendi
+		command = { type = flagname which = "" }
+		command = { type = country which = CHI }
+		command = { type = trigger which = 147132 } #CHI: A Korean dynasty for China
+	}
+}
+
+#(1650-1653) Military Reforms of Hyo-jong
+event = {
+	id = 204015
+	random = no
+	country = KOR
+	name = "EVENTNAME204015" #Military Reforms of Hyo-jong
+	desc = "EVENTHIST204015"
+	#-#After coming to the throne, Hyo-jong began to reform and expand the military of Korea, first he removed Kim Ja-jeom from office, who corrupted politics and had stronger power than the King himself. He called Song Si Yeol and Kim Sang-heon to his court, who supported war against Qing Dynasty. His military expansion was massive, and he also build several border fortresses along Yalu River where Joseon and Qing shared border. When a band of Dutch sailors including Hendrick Hamel drifted on Jeju Island, he ordered him to build muskets for army, providing muskets to the Koreans for the first time after Seven Year War. However, Qing Dynasty continued to thrive, expanding quickly into west after successfully conquering China in 1644, after putting an end on Ming Dynasty.
+
+	date = { day = 1 month = january year = 1650 }
+	offset = 1200
+	deathdate = { day = 29 month = december year = 1653 }
+
+	action_a = {
+		name = "ACTIONNAME3699A" #Innovative Reform
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = domestic which = ARISTOCRACY value = -1 }
+		command = { type = domestic which = OFFENSIVE value = 1 }
+		command = { type = land value = 2000 }
+		command = { type = treasury value = -300 }
+		command = { type = INF which = -1 value = 15000 }
+		command = { type = CAV which = -3 value = 15000 }
+		command = { type = stability value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3699B" #Conservative Reform
+		command = { type = domestic which = OFFENSIVE value = 1 }
+		command = { type = land value = 1000 }
+		command = { type = treasury value = -50 }
+	}
+}
+
+#(1654) Hyo-jong's northern expedition
+event = {
+	id = 3892
+	trigger = {
+		exists = MCH
+	}
+	random = no
+	country = KOR
+	name = "EVENTNAME3892" #Hyo-jong's Northern Expedition
+	desc = "EVENTHIST3892"
+	#-#King Hyo-jong plans to launch a northern expedition to chastise the Manchus. This will require substantial preparations, funds and is impossible to keep secret. He plans to strengthen Korea's defenses by increasing and improving training and improving our fortresses. What shall we do?
+
+	date = { day = 1 month = july year = 1654 }
+	offset = 180
+	deathdate = { day = 29 month = december year = 1654 }
+
+	action_a = {
+		name = "ACTIONNAME3892A" #Provide Funds
+		command = { type = domestic which = land value = 1 }
+		command = { type = domestic which = quality value = 1 }
+		command = { type = land value = 300 }
+		command = { type = fortress which = 641 value = 1 } #Kyongju
+		command = { type = fortress which = 642 value = 1 } #Yalu
+		command = { type = provincemanpower which = 641 value = 1 } #Kyongju
+		command = { type = provincemanpower which = 642 value = 1 } #Yalu
+		command = { type = INF which = 642 value = 30000 } #Yalu
+		command = { type = CAV which = 642 value = 15000 } #Yalu
+		command = { type = casusbelli which = MCH value = 60 }
+		command = { type = relation which = MCH value = -50 }
+		command = { type = treasury value = -200 }
+	}
+	action_b = {
+		name = "ACTIONNAME3892B" #Refuse funding
+		command = { type = relation which = MCH value = 50 }
+	}
+}
+
+#(1690) Factional Strife
+event = {
+	id = 204016
+	random = no
+	country = KOR
+	name = "EVENTNAME204016" #Factional Strife
+	desc = "EVENTHIST204016"
+	#-#In 1690, Gyeongjong's designation as heir to the throne precipitated a struggle between the Noron faction, which supported his half-brother Prince Yeoning, and the Soron faction, which supported Gyeongjong of Joseon. Due to this struggle, Soron scholars were kept out of power and factional strife reached a high point during Gyeongjong's reign.
+
+	date = { day = 1 month = january year = 1690 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1690 }
+
+	action_a = {
+		name = "ACTIONNAME204016A" #Same old, same old
+		command = { type = stability value = -3 }
+	}
+}
+
+#(1795-1800) Christianity
+event = {
+	id = 204005
+	random = no
+	country = KOR
+	name = "EVENTNAME204005" #Christianity
+	desc = "EVENTHIST204005"
+	#-#Christian books had slowly made their way into Korea from Beijing. People in the south were generally recpetive. Alarmed, the government banned Christianity.
+
+	date = { day = 1 month = january year = 1795 }
+	offset = 300
+	deathdate = { day = 1 month = january year = 1800 }
+
+	action_a = {
+		name = "ACTIONNAME204005A" #Christianity Has No Place in the Land of the Gods
+		command = { type = stability value = 3 }
+		command = { type = domestic which = innovative value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME204005B" #Tolerate Christianity
+		command = { type = stability value = -1 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = relation which = POR value = 100 }
+		command = { type = relation which = PAP value = 100 }
+		command = { type = relation which = POL value = 50 }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = SPA value = 50 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = GER value = 50 }
+		command = { type = relation which = ITA value = 50 }
+		command = { type = revoltrisk which = 120 value = 5 }
+	}
+}
+
+#(1801-1810) Emancipation
+event = {
+	id = 204006
+	random = no
+	country = KOR
+	name = "EVENTNAME204006" #Emancipation
+	desc = "EVENTHIST204006"
+	#-#In 1801, the registers of serfs and bondmen were destroyed to assist in the process of emancipation. This was done to try to ease the labor shortage.
+
+	date = { day = 1 month = january year = 1801 }
+	offset = 300
+	deathdate = { day = 1 month = january year = 1810 }
+
+	action_a = {
+		name = "ACTIONNAME204006A" #Emancipate the serfs
+		command = { type = domestic which = serfdom value = -4 }
+		command = { type = stability value = 1 }
+		command = { type = provincemanpower which = 641 value = 2 } #Kyongju
+		command = { type = provincemanpower which = 642 value = 2 } #Yalu
+	}
+	action_b = {
+		name = "ACTIONNAME204006B" #No way
+		command = { type = stability value = -3 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 204019 - next: 204021

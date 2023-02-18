@@ -1,0 +1,362 @@
+#Moldavia (MOL)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1420-1430) Reorganization of the church life
+event = {
+	id = 231008
+	random = no
+	country = MOL
+	name = "EVENTNAME231008" #Reorganization of the church life
+	desc = "EVENTHIST231008"
+	#-#Following decades of conflict with the Patriarch of Constantinople concerning the person of the mitropolitan of Moldova, it was during Alexandru's reign that both parties agreed to name Iosif Musat mitropolitan of Moldova, residing in Suceava.
+
+	date = { day = 1 month = may year = 1420 }
+	offset = 3000
+	deathdate = { day = 1 month = january year = 1430 }
+
+	action_a = {
+		name = "ACTIONNAME231008A" #Accept this wise decision
+		command = { type = relation which = BYZ value = 100 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1422-1432) Moldavia and Poland
+event = {
+	id = 231009
+	trigger = { war = { country = POL country = LAT } }
+	random = no
+	country = MOL
+	name = "EVENTNAME231009" #Moldavia and Poland
+	desc = "EVENTHIST231009"
+	#-#In 1422 Alexandru is present at the battle of Marienburg between Poland and Lithuania on one side and the forces of the Teutonic Order on the other. The alliance between Moldavia and Poland and Lithuania is cemented.
+
+	date = { day = 1 month = january year = 1422 }
+	offset = 40
+	deathdate = { day = 1 month = may year = 1432 }
+
+	action_a = {
+		name = "ACTIONNAME231009A" #Help our allies!
+		command = { type = relation which = POL value = 80 }
+		command = { type = relation which = LIT value = 80 }
+		command = { type = relation which = LAT value = -80 }
+		command = { type = domestic which = QUALITY value = 1 }
+		command = { type = treasury value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME231009B" #Why bother?
+		command = { type = relation which = POL value = -50 }
+		command = { type = relation which = LIT value = -50 }
+		command = { type = relation which = LAT value = 50 }
+	}
+}
+
+#(1431) Alexander I
+event = {
+	id = 231005
+	trigger = {
+		NOT = { vassal = { country = WAL country = MOL } }
+		OR = {
+			event = 329002 #WAL: Alexander I -I-
+			event = 329008 #WAL: Alexander I -II-
+			event = 329009 #WAL: Alexander I -III-
+		}
+	}
+	random = no
+	country = MOL
+	name = "EVENTNAME231005" #Alexander I
+	desc = "EVENTHIST231005"
+	#-#Alexandru cel Bun supports Alexandru Aldea's claim on Walachia against Dan II, and as a result he gains Walachia as an ally and vassal.
+
+	date = { day = 1 month = june year = 1431 }
+	offset = 0
+	deathdate = { day = 1 month = august year = 1431 }
+
+	action_a = {
+		name = "ACTIONNAME231005A" #Alexander I is our ally
+		command = { type = vassal which = WAL }
+		command = { type = alliance which = WAL }
+		command = { type = relation which = WAL value = 50 }
+		command = { type = relation which = HUN value = -50 }
+		command = { type = relation which = TUR value = -50 }
+	}
+}
+
+#(1432) Death of Alexander cel Bun
+event = {
+	id = 231010
+	random = no
+	country = MOL
+	name = "EVENTNAME231010" #Death of Alexander cel Bun
+	desc = "EVENTHIST231010"
+	#-#After a 32 years long reign, Alexandru dies leaving the country to his sons, Ilias and Stefan. Unclear succession laws plunge the country into anarchy, Ilias and Stefan and their descendants struggling for power for the next two decades.
+
+	date = { day = 1 month = january year = 1432 }
+
+	action_a = {
+		name = "OH_NO"
+		command = { type = stability value = -1 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = infra value = -200 }
+		command = { type = trade value = -200 }
+		command = { type = revoltrisk which = 240 value = 2 }
+	}
+}
+
+#(1457) Stephen the Great
+event = {
+	id = 231011
+	random = no
+	country = MOL
+	name = "EVENTNAME231011" #Stephen the Great
+	desc = "EVENTHIST231011"
+	#-#The most glorious period in Moldavia's history, Stephen the Great's rule was both a time of continuous warfare against the Ottoman Empire, Hungary, Poland-Lithuania and Wallachia, and a time of great cultural development. Fighting over thirty battles against the Ottoman Empire, of which he lost only two, it is said that Stephen built a monastery after each victory, many of his monasteries adorning even today the landscape of Bucovina (Northern Moldova).
+
+	date = { day = 14 month = april year = 1457 }
+	offset = 30
+	deathdate = { day = 14 month = june year = 1457 }
+
+	action_a = {
+		name = "ACTIONNAME231011A" #Our time has come!
+		command = { type = vp value = 20 }
+		command = { type = infra value = 500 }
+		command = { type = trade value = 500 }
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = population which = -2 value = 1000 }
+		command = { type = provincetax which = -2 value = 1 }
+	}
+}
+
+#(1467-1469) Alliance with Hungary
+event = {
+	id = 231012
+	trigger = {
+		neighbour = HUN
+		NOT = { war = { country = HUN country = MOL } }
+	}
+	random = no
+	country = MOL
+	name = "EVENTNAME231012" #Alliance with Hungary
+	desc = "EVENTHIST231012"
+	#-#The Pope negociates a peace between Stephen and Mathias of Hungary. Following the defeat at Baia, Mathias abandoned temporarly his designs on Moldavia. The Pope sent a legate to Budapest and Suceava to lobby for an anti-Turkish alliance between the two enemies, mission which was successful.
+
+	date = { day = 1 month = january year = 1467 }
+	offset = 40
+	deathdate = { day = 1 month = january year = 1469 }
+
+	action_a = {
+		name = "ACTIONNAME231012A" #Ally with Hungary against the Turk
+		command = { type = relation which = HUN value = 100 }
+		command = { type = relation which = PAP value = 100 }
+		command = { type = DIP which = 1 value = 360 }
+		command = { type = trigger which = 188013 } #HUN: Alliance with Moldavia
+	}
+	action_b = {
+		name = "ACTIONNAME231012B" #I smell a Hungarian - Papist treachery
+		command = { type = relation which = HUN value = -75 }
+		command = { type = relation which = PAP value = -75 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1472) Maria of Mangup
+event = {
+	id = 231000 #triggered by THO_196000 A
+	random = no
+	country = MOL
+	name = "EVENTNAME231000" #Maria of Mangup
+	desc = "EVENTHIST196000"
+	#-#Maria of Mangup, daughter of Isac, married Stefan cel Mare, who got from that deal some claims on the principality. At the siege of the city, there were also present about 400 moldavians.
+
+	action_a = {
+		name = "ACTIONNAME231000A" #Beautiful
+		command = { type = dynastic which = THO }
+		command = { type = addcore which = 464 } #Kaffa
+	}
+}
+
+#(1492-1500) Crimean Interaction
+event = {
+	id = 231004
+	trigger = {
+		neighbour = CRI
+		NOT = { war = { country = MOL country = CRI } }
+	}
+	random = no
+	country = MOL
+	name = "EVENTNAME231004" #Our Crimean Neighbours
+	desc = "EVENTHIST231004"
+	#-#After accepting his vassal status to the Porte and the loss of the Bugeac (1486), Stephen the Great of Moldavia signs an offensive alliance with Mengli Giray, Khan of Crimea, directed against Poland Lithuania. Stephen desired Pocutia, while the Khan wanted to secure his supremacy over Kiev (Mankerman).
+
+	date = { day = 1 month = january year = 1492 }
+	offset = 60
+	deathdate = { day = 1 month = january year = 1500 }
+
+	action_a = {
+		name = "ACTIONNAME231004A" #Bow to the Crimeans
+		command = { type = DIP which = 1 value = 36 }
+		command = { type = relation which = CRI value = 300 }
+		command = { type = relation which = POL value = -100 }
+		command = { type = relation which = LIT value = -100 }
+		command = { type = trigger which = 152001 } #CRI: Stephen's Gambit
+	}
+	action_b = {
+		name = "ACTIONNAME231004B" #Never!!!
+		command = { type = DIP which = -1 value = 36 }
+		command = { type = relation which = CRI value = -100 }
+		command = { type = relation which = POL value = 25 }
+		command = { type = relation which = LIT value = 25 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = trigger which = 152002 } #CRI: Stephen's Gambit
+	}
+}
+
+#(1503-1504) Stephen's overtures
+event = {
+	id = 231006 #triggered by WAL_329007 C / WAL_218016 C
+	trigger = {
+		NOT = { alliance = { country = WAL country = MOL } }
+		NOT = { war = { country = MOL country = WAL } }
+	}
+	random = no
+	country = MOL
+	name = "EVENTNAME329007" #Stephen's overtures
+	desc = "EVENTHIST329007"
+	#-#In the last decades of the 15th century, Moldavia found herself more and more alone against the Ottoman Empire, and also having to fight Poland's designs on its territory. 1503 saw the last attempt by the aging Stephen of creating an anti-Ottoman alliance, with the Kings of Hungary and Poland, Venice, the Papal States. The aim of the new crusade was, as always, expelling the infidel from Europe. Stephen's aims were to regain control over the Bugeac (the citadels of Chilia and Cetatea Alba/Belgorod).
+
+	action_a = {
+		name = "ACTIONNAME231006A" #Wallachia is our ally
+		command = { type = alliance which = WAL }
+	}
+}
+
+#(1504-1600) Loss of Crimean claims
+event = {
+	id = 231001
+	trigger = {
+		event = 231000 #MOL: Maria of Mangup
+		NOT = { owned = { province = 464 data = -1 } } #Kaffa
+		exists = THO
+		NOT = { dynastic = { country = MOL country = THO } }
+	}
+	random = no
+	country = MOL
+	name = "EVENTNAME231001" #Loss of Crimean claims
+	desc = "EVENTHIST231001"
+	#-#With the death of Stefan, we have lost our claims on Theodoros.
+
+	date = { day = 2 month = july year = 1504 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1600 }
+
+	action_a = {
+		name = "DAMN"
+		command = { type = removecore which = 464 } #Kaffa
+	}
+}
+
+#(1561-1563) Jakob Heraklides
+event = {
+	id = 231002
+	trigger = {
+		OR = {
+			exists = HAB
+			exists = LIT
+		}
+		religion = orthodox
+	}
+	random = no
+	country = MOL
+	name = "EVENTNAME231002" #Jakob Heraklides, Despot of Moldavia
+	desc = "EVENTHIST231002"
+	#-#In 1561 a Greek soldier of fortune, called Jakob Heraklides (or John Jacob Eraclid), in service to the voivode of Moldavia siezed, with Habsburg and Lithuanian help, the throne of his unpopular master Alexander Lapusneanu. Having gained power he implemented a form of reformed protestantism. This was not popular, and worse was to come when, lacking money, he melted down the churches' crosses and icon frames to make coins.\n \n After just two years of rule the people rose up and the Despot and any others suspected of protestantism were killed.
+
+	date = { day = 1 month = january year = 1561 }
+	offset = 60
+	deathdate = { day = 1 month = july year = 1563 }
+
+	action_a = {
+		name = "ACTIONNAME231002A" #Fight this imposter
+		command = { type = ADM which = -1 value = 24 }
+		command = { type = stability value = -3 }
+		command = { type = relation which = LIT value = -50 }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = treasury value = -100 }
+		command = { type = religiousrevolt which = -1 }
+		command = { type = religiousrevolt which = -1 }
+		command = { type = revoltrisk which = 24 value = 5 }
+	}
+}
+
+#(1595) Polish Meddling
+event = {
+	id = 231003 #triggered by POL_258045 A
+	random = no
+	country = MOL
+	name = "EVENTNAME231003" #Polish Invasion
+	desc = "EVENTHIST258045"
+	#-#In 1593, war between the Ottoman Empire and the Habsburgs started. In 1594 a very strong Tatar raid, carried by about 20,000-30,000 men led by the Khan of Crimea, Gazi II Giray plundered Pokucie and moved to Hungary through mountain passes, in order to plunder Habsburg lands. Commonwealth troops gathered too late to intercept it. The Prince of Transylvania, Sigismund Báthory, nephew of former Polish King Stefan Batory, had strengthened Habsburg influence in Moldavia after setting Stefan Razvan on the Moldavian throne. In 1595 Zamoyski, persuaded by Moldavian refugees, decided to intervene. The Commonwealth forces under hetman Jan Zamoyski crossed the Dniestr, defeated local opposition and Ottoman reinforcements, and set Ieremia Movila on the Moldavian throne as a Commonwealth vassal. This was seen by many as very dangerous step because Ottomans were preparing to place their own candidate on Moldavian throne.
+
+	action_a = {
+		name = "ACTIONNAME231003A" #Accept the Polish hospodar
+		command = { type = stability value = -1 }
+		command = { type = breakvassal which = TUR }
+		command = { type = breakvassal which = HAB }
+		command = { type = breakvassal which = WAL }
+		command = { type = breakvassal which = RUS }
+		command = { type = breakvassal which = UKR }
+		command = { type = relation which = TUR value = -20 }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = relation which = POL value = 100 }
+		command = { type = dynastic which = POL }
+		command = { type = revolt which = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME231003B" #Stick with Stefan
+		command = { type = stability value = -3 }
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = relation which = POL value = -100 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = TUR value = 200 }
+		command = { type = war which = POL }
+		command = { type = sleepmonarch which = 090515 } #Jeremia Movila
+		command = { type = sleepevent which = 258046 } #POL: Moldavian Puppet
+	}
+}
+
+#(1599-1601) Romanian Union
+event = {
+	id = 231007
+	trigger = {
+		owned = { province = 323 data = WAL } #Transylvania
+		control = { province = 323 data = WAL } #Transylvania
+		NOT = { vassal = { country = MOL country = WAL } }
+	}
+	random = NO
+	country = MOL
+	name = "EVENTNAME231007" #Romanian Union
+	desc = "EVENTHIST231007"
+	#-#Michael the Brave controls Transylvania and wishes to be crowned Prince of Moldavia as well.
+
+	date = { day = 1 month = january year = 1599 }
+	offset = 20
+	deathdate = { day = 1 month = july year = 1601 }
+
+	action_a = {
+		name = "ACTIONNAME231007A" #We shall stand in unity!
+		command = { type = dynastic which = WAL }
+		command = { type = stability value = 2 }
+		command = { type = trigger which = 329028 } #WAL: Moldavia accepts Romanian union
+	}
+	action_b = {
+		name = "ACTIONNAME231007B" #We wish him well!
+		command = { type = stability value = -1 }
+		command = { type = relation which = WAL value = -50 }
+		command = { type = trigger which = 329029 } #WAL: Moldavia declines Romanian union
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 231013

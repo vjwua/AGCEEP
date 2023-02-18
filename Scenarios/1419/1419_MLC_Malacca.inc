@@ -4,7 +4,7 @@
 
 country = {
 	tag = MLC
-	ai = "SmallTrade3.ai"
+	ai = "SmallTrade3.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -14,10 +14,10 @@ country = {
 	treasury = 200
 	inflation = 0
 	merchants = 0
-	religion = { type = hinduism }
+	religion = { type = hindu }
 	culture = { type = malay }
 	diplomacy = {
-		relation = { tag = KHM value = 75 }
+		relation = { tag = LNA value = 75 }
 	}
 	knownprovinces = {
 		543 544 545 553 554 555 556 557 558 559 560 561 565 571 572 641

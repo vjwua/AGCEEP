@@ -1,0 +1,1932 @@
+#Mughal Empire (MOG)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1500-1820) Conquest of Delhi
+event = {
+	id = 3805
+	trigger = {
+		owned = { province = 543 data = -1 } #Delhi
+		control = { province = 543 data = -1 } #Delhi
+		NOT = { exists = DLH }
+	}
+	random = no
+	country = MOG
+	name = "EVENTNAME3805" #The Conquest of Delhi
+	desc = "EVENTHIST3805"
+	#-#The de facto capital of Hindustan, ruling from Delhi provided the nascent Mughal Empire with an air of legitimacy.
+
+	date = { day = 1 month = january year = 1500 }
+	offset = 10
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME3805A" #Move the throne to Delhi
+		command = { type = capital which = 543 } #Delhi
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = stability value = -2 }
+	}
+	action_b = {
+		name = "ACTIONNAME3805B" #Rule from the old capital
+		command = { type = domestic which = CENTRALIZATION value = -2 }
+		command = { type = stability value = 2 }
+	}
+}
+
+#(1504-1820) Founding of the Mughal Empire
+#modified by Isengard
+event = {
+	id = 3804
+	random = no
+	country = MOG
+	name = "EVENTNAME3804" #Founding of the Mughal Empire
+	desc = "EVENTHIST3804"
+	#-#Zahir-ud-din Muhammad, better known as Babur, was a Timurid Prince who founded the mighty Mughal dynasty. His early years were spent in bitter struggle with the Uzbeks, who under their brilliant Khan Muhammad Shaybani had occupied the old Timurid capital of Samarkand. Weary of this useless quest, Babur eventually turned his ambitious gaze east towards India.
+
+	date = { day = 1 month = march year = 1504 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME3804A" #Found the Empire!
+		command = { type = stability value = 1 }
+		command = { type = treasury value = 200 }
+	}
+}
+
+#(1514-1555) The Mansabdari system
+event = {
+	id = 230021
+	trigger = {
+		event = 3805 #MOG: Conquest of Delhi
+	}
+	random = no
+	country = MOG
+	name = "EVENTNAME230021" #The Mansabdari system
+	desc = "EVENTHIST230021"
+	#-#After the conquest of Delhi, Babur was left with the task of deciding how to administer his realm. Rather than keeping the Afghani structure that had kept the Sultan weak during the Lodi period, Babur looked to economic structure of Persia and adopted the Mansabdari system. Under the system, the Mughal emperor generated land revenues by granting land to mansabdars who would pledge to provide the emperor with a set number of troops proportional to the quantity of land they were given. As the bequests were both revocable and non-hereditary, the system provided the emperor great control over the mansabdars. Of course, its onset, the reformed system angered landed nobles.
+
+	date = { day = 1 month = january year = 1514 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1555 }
+
+	action_a = {
+		name = "ACTIONNAME230021A" #Institute it
+		command = { type = provincetax which = -2 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincemanpower which = -1 value = 1 }
+		command = { type = provincemanpower which = -1 value = 1 }
+		command = { type = provincemanpower which = -1 value = 1 }
+		command = { type = manpower value = 20 }
+		command = { type = revoltrisk which = 48 value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME230021B" #Too rash, let's focus on eliminating corruption
+		command = { type = stability value = 2 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = gainbuilding which = -1 value = bailiff }
+		command = { type = gainbuilding which = -1 value = bailiff }
+		command = { type = infra value = 2000 }
+	}
+}
+
+#(1515-1517) Military Reforms of Babur
+event = {
+	id = 230020
+	random = no
+	country = MOG
+	name = "EVENTNAME230020" #Military Reforms of Babur
+	desc = "EVENTHIST230020"
+	#-#After the Battle of Chaldiran, fought between the Ottomans and the Persians on the 23rd of August 1514, the use of musketry and cannons began to spread throughout the Asian Muslim world. Babur hired a cannon founderer named Ustad Ali Kuli, and with his help, Babur was able to modernize his army, allowing him to defeat neighboring Muslims with ease.
+
+	date = { day = 1 month = october year = 1515 }
+	offset = 600
+	deathdate = { day = 29 month = december year = 1517 }
+
+	action_a = {
+		name = "ACTIONNAME230020A" #Hire him
+		command = { type = ART which = -2 value = 20 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = domestic which = quality value = 2 }
+		command = { type = land value = 500 }
+		command = { type = treasury value = -200 }
+	}
+	action_b = {
+		name = "ACTIONNAME230020B" #We can't afford him, make small reforms
+		command = { type = land value = 100 }
+		command = { type = treasury value = -25 }
+	}
+}
+
+#(1520-1820) The Battle of Panipat
+event = {
+	id = 3921 #triggered by DLH_3919 A
+	random = no
+	country = MOG
+	name = "EVENTNAME3921" #The Battle of Panipat
+	desc = "EVENTHIST3921"
+	#-#With the capture of their capital, the weak Lodi state collapsed.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = inherit which = DLH }
+		command = { type = revoltrisk value = 5 }
+		command = { type = revolt which = 559 } #Bihar
+		command = { type = revolt which = 554 } #Tirhut
+		command = { type = revolt which = 553 } #Raipur
+	}
+}
+
+#(1524-1529) Babur in Lahore
+event = {
+	id = 230003 #triggered by DLH_161002
+	random = no
+	country = MOG
+	name = "EVENTNAME230003" #Babur in Lahore
+	desc = "EVENTHIST230003"
+	#-#Daulat Khan, Delhi governor of Punjab, invited Babur to conquer Delhi, in order to divert Ibrahim's wrath from himself. This fifth invasion of Hindustan was to prove most fruitful for Babur. A little too late, Daulat Khan realized that Babur's coming was detrimental to his own interests.
+
+	action_a = {
+		name = "ACTIONNAME230003A" #Onward to Delhi!
+		command = { type = relation which = DLH value = -200 }
+		command = { type = INF which = 1523 value = 5000 } #Thar
+		command = { type = CAV which = 1524 value = 2500 } #Quetta
+		command = { type = addcore which = 1520 } #Chandigarh
+		command = { type = addcore which = 1521 } #Panjab
+		command = { type = addcore which = 1525 } #Qandahar
+		command = { type = war which = DLH }
+	}
+	action_b = {
+		name = "ACTIONNAME230003B" #We will wait to strike the killing blow!
+		command = { type = relation which = DLH value = -200 }
+		command = { type = casusbelli which = DLH value = 48 }
+		command = { type = addcore which = 1520 } #Chandigarh
+		command = { type = addcore which = 1521 } #Panjab
+		command = { type = addcore which = 1525 } #Qandahar
+	}
+}
+
+#(1527-1528) Sher Khan joins Babur's camp
+event = {
+	id = 230011
+	trigger = {
+		owned = { province = 543 data = -1 } #Delhi
+	}
+	random = no
+	country = MOG
+	name = "EVENTNAME230011" #Sher Khan joins Babur's camp
+	desc = "EVENTHIST230011"
+	#-#Impressed by Mughal technology, an Afghan lord named Sher Khan left his position in Bihar and joined Babur's army in April 1527. He soon proved to be an impressive leader and was rewarded for his service in the eastern campaigns with the restoration of his family lands.
+
+	date = { day = 1 month = april year = 1527 }
+	offset = 30
+	deathdate = { day = 1 month = july year = 1528 }
+
+	action_a = {
+		name = "ACTIONNAME230011A" #Reward him generously for his service
+		command = { type = treasury value = -10 }
+		command = { type = wakeleader which = 090312 } #Sher Khan (MOG)
+	}
+	action_b = {
+		name = "ACTIONNAME230011B" #Let him serve as a common soldier
+		command = { type = domestic which = innovative value = -1 }
+	}
+}
+
+#(1529-1530) Bâburnâma - Flavor
+#by Aylo1
+event = {
+	id = 230026
+	random = no
+	country = MOG
+	name = "EVENTNAME230026" #Bâburnâma
+	desc = "EVENTHIST230026"
+	#-#The 'Book of Babur' are memoirs of Zahir-ud-din Muhammad Bâbur (r.1494-1530), founder of the Mughal Empire and descendant of Tamerlane. An autobiographical work, it recalls Bâbur's experiences of the life and times he lived in. Encompassing subjects including nature, society, politics, economics, geography and history, it has since been widely translated and used as a textbook throughout Central, Western and Southern Asia. His successors left similar works.
+
+	date = { day = 1 month = january year = 1529 }
+	offset = 700
+	deathdate = { day = 26 month = december year = 1530 }
+
+	action_a = {
+		name = "OK"
+		command = { type = infra value = 25 }
+	}
+}
+
+#(1529-1556) The Battle of Ghangara
+event = {
+	id = 230004
+	trigger = {
+		owned = { province = 543 data = -1 } #Delhi
+	}
+	random = no
+	country = MOG
+	name = "EVENTNAME230004" #The Battle of Ghangara
+	desc = "EVENTHIST230004"
+	#-#Remnants of the deposed Lodi family, former rulers of Delhi, fled to Bihar where they began raising forces to take back their country from Babur. Upon Babur's aproach, Mahumd Lodi fled to Bengal seeking protection from its ruler, Nusrat Shah. When Nusrat Shah refused to had over Lodi, Babur found himself with no choice but to attack the Afghans. Bengal and the Afghans were crushed by Babur's forces on the 6th of May, 1529 near the Ganga and its tributary, the Ghangara. As a consequence of this victory, Babur became sovereign of Bihar and the Afghan chiefs swore allegiance to him. Mughal rule was legitimate in the former lands of Delhi.
+
+	date = { day = 5 month = may year = 1529 }
+	offset = 5
+	deathdate = { day = 13 month = february year = 1556 }
+
+	action_a = {
+		name = "ACTIONNAME230004A" #Hindustan is ours!
+		command = { type = addcore which = 544 } #Awadh
+		command = { type = addcore which = 545 } #Bundelkhand
+		command = { type = addcore which = 553 } #Raipur
+		command = { type = addcore which = 554 } #Tirhut
+		command = { type = addcore which = 559 } #Bihar
+		command = { type = addcore which = 1520 } #Chandigarh - Just in case
+		command = { type = addcore which = 1521 } #Panjab
+		command = { type = addcore which = 1525 } #Qandahar
+		command = { type = stability value = 1 }
+		command = { type = remove_countryculture which = afghani } #check for duplicates
+		command = { type = add_countryculture which = hindi }
+		command = { type = add_countryculture which = afghani }
+		command = { type = relation which = -1 value = 25 }
+		command = { type = relation which = -1 value = 25 }
+		command = { type = badboy value = -2 }
+	}
+}
+
+#(1531-1532) The Afghan Uprising
+event = {
+	id = 230012
+	trigger = {
+		owned = { province = 543 data = -1 } #Delhi
+	}
+	random = no
+	country = MOG
+	name = "EVENTNAME230012" #The Afghan Uprising
+	desc = "EVENTHIST230012"
+	#-#Despite the legitimacy won by Babur at the battle of Ghangara, several Afghan chiefs remained discontented with what they considered alien rule. Early in his regin, Babur's son, Humayun was forced to confront the dissidents.
+
+	date = { day = 1 month = january year = 1531 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1532 }
+
+	action_a = {
+		name = "CURSES"
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 12 value = 8 }
+		command = { type = revolt which = 543 } #Delhi
+		command = { type = revolt which = 545 } #Bundelkhand
+		command = { type = revolt which = 544 } #Awadh
+	}
+}
+
+#(1535-1537) Humayun invades Gujarat
+event = {
+	id = 230013
+	trigger = {
+		owned = { province = 543 data = -1 } #Delhi
+		OR = {
+			control = { province = 542 data = GUJ } #Rajputana
+			owned = { province = 542 data = GUJ }
+			control = { province = 546 data = GUJ } #Malwa
+			owned = { province = 546 data = GUJ }
+			control = { province = 1522 data = GUJ } #Bikaner
+			owned = { province = 1522 data = GUJ }
+		}
+		NOT = {
+			alliance = { country = GUJ country = MOG }
+		}
+	}
+	random = no
+	country = MOG
+	name = "EVENTNAME230013" #Humayun invades Gujarat
+	desc = "EVENTHIST230013"
+	#-#In the early 1530's, the aggressive Sultan of Gujarat, Bahadur Shah, invaded and annexed the states of Malwa and Mewat. Although he attempted to maintain cordial relations with the Mughals, Humayun could not overlook the ambitious sultan's military gains. In 1535, Humayun led his forces into Gujarat to teach Bahadur Shah a lesson.
+
+	date = { day = 1 month = january year = 1535 }
+	offset = 90
+	deathdate = { day = 1 month = october year = 1537 }
+
+	action_a = {
+		name = "OK"
+		command = { type = casusbelli which = GUJ value = 12 }
+		command = { type = relation which = GUJ value = -100 }
+	}
+}
+
+#(1537) Mahmud Shah asks for help
+event = {
+	id = 230014 #triggered by BGL_128013
+	trigger = {
+		event = 3921 #MOG: The Battle of Panipat
+	}
+	random = no
+	country = MOG
+	name = "EVENTNAME230014" #Mahmud Shah asks for help
+	desc = "EVENTHIST230014"
+	#-#While Humayun was concerned with Gujarat, Sher Khan, formerly an impressive commander in the employ of Babur, took the opportunity to invade Bengal. By way of a circuitous route to the Bengali capital, Gaur, Sher Khan was able to catch the Shah completely unaware. The unprepared Shah was forced to buy off Sher Khan by ceding vast territories to him. Not content with his gains, Sher Khan invaded again in October 1537 with the aim of conquering all of Bengal. Only with news of a second invasion, did Humayun realize the gravity of the situation in the east. He marched against Sher Khan in December 1537 but was delayed by a long siege at Chunar and only entered Gaur in July 1538.
+
+	action_a = {
+		name = "ACTIONNAME230014A" #Sher Khan threatens our rule
+		command = { type = casusbelli which = BGL value = 12 }
+	}
+}
+
+#(1538-1556) Humayun enters Gaur
+event = {
+	id = 230015
+	trigger = {
+		event = 128013 #BGL: Sher Khan strikes
+		control = { province = 558 data = -1 } #Howrah
+	}
+	random = no
+	country = MOG
+	name = "EVENTNAME230015" #Humayun enters Gaur
+	desc = "EVENTHIST230015"
+	#-#Humayun's forces marched into Gaur without serious opposition in July and spent the autumn enjoying local festivities. In fact, Sher Shah was purposely avoiding open contests with the superior Mughal forces and left Bengal to occupy Mughal territories in Bihar and Jaunpur, plundering as far west as Kanauj. Humayun only belatedly realized the trap he was in and left Gaur for Agra before his retreat was cut off entirely. Sher Shah's Afghan followers lay in wait and Humayun's army was decimated.
+
+	date = { day = 1 month = january year = 1538 }
+	offset = 30
+	deathdate = { day = 13 month = february year = 1556 }
+
+	action_a = {
+		name = "ACTIONNAME230015A" #It's a trap!
+		command = { type = stability value = -1 }
+		command = { type = desertion which = 558 value = 5000 } #Howrah
+		command = { type = revolt which = 558 } #Howrah
+	}
+}
+
+#(1538-1556) Sher Khan's Victory
+event = {
+	id = 230016
+	trigger = {
+		event = 128014 #BGL: Sher Khan becomes Sher Shah
+		OR = {
+			AND = {
+				owned = { province = 553 data = -1 } #Raipur
+				control = { province = 553 data = BGL }
+			}
+			AND = {
+				owned = { province = 545 data = -1 } #Bundelkhand
+				control = { province = 545 data = BGL }
+			}
+			AND = {
+				owned = { province = 553 data = -1 } #Awadh
+				control = { province = 553 data = BGL }
+			}
+			AND = {
+				owned = { province = 543 data = -1 } #Delhi
+				control = { province = 543 data = BGL }
+			}
+			AND = {
+				owned = { province = 554 data = -1 } #Tirhut, owned by Delhi in 1520 scenario
+				control = { province = 554 data = BGL }
+			}
+		}
+	}
+	random = no
+	country = MOG
+	name = "EVENTNAME230016" #Sher Khan's Victory
+	desc = "EVENTHIST230016"
+	#-#On the way home from Gaur in June 1539, Humayun's forces entered battle against Sher Khan and his Afghan followers. Sher Shah proved victorious and the Mughal forces were massacred, drowned or captured. Humayun himself was saved by a water-carrier who carried him across the Ganges, into which he had recklessly jumped. This stunning victory over the Great Mughal was a tremendous success for Sher Khan and made him the de facto ruler of the Mughal lands from Kanauj in the west to the hills of Assam and Cittagong in the south.
+
+	date = { day = 1 month = january year = 1538 }
+	offset = 1
+	deathdate = { day = 13 month = february year = 1556 }
+
+	action_a = {
+		name = "ACTIONNAME230016A" #Retreat and live to fight another day
+		command = { type = stability value = -3 }
+		command = { type = cedeprovince which = BGL value = 545 } #Bundelkhand
+		command = { type = cedeprovince which = BGL value = 544 } #Awadh
+		command = { type = cedeprovince which = BGL value = 553 } #Raipur
+		command = { type = cedeprovince which = BGL value = 554 } #Tirhut, owned by Delhi in 1520 scenario
+		command = { type = domestic which = quality value = -2 }
+		command = { type = domestic which = offensive value = -1 }
+		command = { type = treasury value = -100 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+	}
+}
+
+#(1538-1556) The Battle of Kanauj
+event = {
+	id = 230017
+	trigger = {
+		NOT = { exists = DLH }
+		event = 230016 #MOG: Sher Khan's Victory
+		owned = { province = 543 data = -1 } #Delhi
+		control = { province = 543 data = BGL } #Delhi (Kanauj is just east of Agra, in Delhi province)
+	}
+	random = no
+	country = MOG
+	name = "EVENTNAME230017" #The Battle of Kanauj
+	desc = "EVENTHIST230017"
+	#-#The year after his disastrous defeat against Sher Shah, Humayun made another attempt to regain his empire and put down the rebellion. His brothers refused to cooperate with him in this, despite Humayun personally travelling to Lahore to convince them. Nevertheless, he quickly raised an army and faced the Afghans in battle on May 17, 1540 opposite Kanauj. Hopelessly demoralized and badly managed, Humayun's forces were soundly defeated and Humayun only just managed to escape. The great conquests of Babur had been lost and once more Hindustan returned to Afghan rule. Humayun was forced into exile for the next fifteen years.
+
+	date = { day = 1 month = january year = 1538 }
+	offset = 1
+	deathdate = { day = 13 month = february year = 1556 }
+
+	action_a = {
+		name = "ACTIONNAME230017A" #We have lost Hindustan but kept our life
+		#command = { type = AI which = peaceful.ai }
+		command = { type = stability value = -3 }
+		command = { type = capital which = 1523 } #(Lahore?) #Thar
+		command = { type = cedeprovince which = BGL value = 543 } #Delhi
+		command = { type = cedeprovince which = BGL value = 1520 } #Chandigarh
+		command = { type = cedeprovince which = BGL value = 1521 } #Panjab
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = treasury value = -100 }
+		command = { type = trigger which = 128015 } #BGL: Hindustan returns to Afghan rule
+	}
+}
+
+#(1556-1605) The Conquests of Akbar the Great
+event = {
+	id = 230010
+	trigger = {
+		OR = {
+			owned = { province = 543 data = -1 } #Delhi
+			event = 230004 #MOG: The Battle of Ghangara
+		}
+	}
+	random = no
+	country = MOG
+	name = "EVENTNAME230010" #The Conquests of Akbar the Great
+	desc = "EVENTHIST230010"
+	#-#While Bairam Khan ruled as regent for Akbar, the young King dreamed of a great Empire in India. From the early years of his reign he was motivated by love of territory, power, and wealth. Recognizing the importance of subjecting his neighbors to accomplish his goals, Akbar said, 'A monarch should be ever intent on conquest, otherwise his neighbors rise in arms against him. The army should always be excerised in warfare, lest for want of practice they become self-indulgent.' His reign was to prove to be a great period of expansion for the Mughals.
+
+	date = { day = 14 month = february year = 1556 }
+	offset = 5
+	deathdate = { day = 25 month = october year = 1605 }
+
+	action_a = {
+		name = "ACTIONNAME230010A" #We are India
+		command = { type = CAV which = -1 value = 5000 }
+		command = { type = CAV which = -1 value = 5000 }
+		command = { type = land value = 1500 }
+		command = { type = addcore which = 539 } #Indus
+		command = { type = addcore which = 540 } #Sindh
+		command = { type = addcore which = 541 } #Kutch
+		command = { type = addcore which = 542 } #Rajputana
+		command = { type = addcore which = 546 } #Malwa
+		command = { type = addcore which = 547 } #Gujarat
+		command = { type = addcore which = 548 } #Bombay
+		command = { type = addcore which = 549 } #Goa
+		command = { type = addcore which = 550 } #Maharashtra
+		command = { type = addcore which = 551 } #Khandesh
+		command = { type = addcore which = 552 } #Gondwana
+		command = { type = addcore which = 555 } #Koch
+		command = { type = addcore which = 557 } #Ganges
+		command = { type = addcore which = 558 } #Howrah
+		command = { type = addcore which = 560 } #Odisa
+		command = { type = addcore which = 561 } #Berhampur
+		command = { type = addcore which = 562 } #Sambalpur
+		command = { type = addcore which = 563 } #Bastar
+		command = { type = addcore which = 564 } #Palakimedi
+		command = { type = addcore which = 565 } #Yanam
+		command = { type = addcore which = 566 } #Hyderabad
+		command = { type = addcore which = 567 } #Bangalore
+		command = { type = addcore which = 568 } #Mangalore
+		command = { type = addcore which = 1522 } #Bikaner
+		#Temp fix - should be granted after Akbar
+		command = { type = addcore which = 570 } #Mysore
+		command = { type = addcore which = 571 } #Madras
+		command = { type = addcore which = 572 } #Pondicherry
+	}
+}
+
+#(1560-1580) Rajputana offers to join the Mughal Empire
+event = {
+	id = 230005 #triggered by RAJ_194004 A
+	random = no
+	country = MOG
+	name = "EVENTNAME230005" #Rajputana offers to join the Mughal Empire
+	desc = "EVENTHIST230005"
+	#-#The Rajput people have offered to join our mighty empire willingly! This is a glorious day for our nation!
+
+	action_a = {
+		name = "ACTIONNAME230005A" #We welcome the Rajputanians with open arms!
+		command = { type = inherit which = RAJ }
+		command = { type = add_countryculture which = rajput }
+		command = { type = setflag which = [rajput_favorable] }
+	}
+}
+#(1560-1580) Rajputana offers to become our vassal
+event = {
+	id = 230006 #triggered by RAJ_194004 B / RAJ_194015
+	random = no
+	country = MOG
+	name = "EVENTNAME230006" #Rajputana offers to become our vassal
+	desc = "EVENTHIST230006"
+	#-#The Rajput people have offered to join our mighty empire as a vassal willingly! This is a glorious day for our nation!
+
+	action_a = {
+		name = "ACTIONNAME230006A" #We welcome the Rajputanians with open arms!
+		command = { type = vassal which = RAJ }
+		command = { type = add_countryculture which = rajput }
+		command = { type = setflag which = [rajput_favorable] }
+	}
+}
+
+#(1560-1605) Adham Khan, Malwa
+event = {
+	id = 230024
+	trigger = {
+		exists = MLW
+		event = 230010 #MOG: The Conquests of Akbar the Great
+		NOT = {
+			vassal = { country = MOG country = MLW }
+			vassal = { country = MLW country = MOG }
+		}
+	}
+	random = no
+	country = MOG
+	name = "EVENTNAME230024" #Adham Khan, Malwa
+	desc = "EVENTHIST230024"
+	#-#Adham Khan, the son of Maham Anga, de facto regent after the expulsion of Bairam Khan, was encouraged by his mother to seek appointeeship as the leader of a force to invade Malwa. Given Maham's control over young Akbar, Adham was a shoe-in for the position.
+
+	date = { day = 1 month = october year = 1560 }
+	offset = 30
+	deathdate = { day = 26 month = october year = 1605 }
+
+	action_a = {
+		name = "ACTIONNAME230024A" #Start the invasion
+		command = { type = wakeleader which = 090316 } #Adham Khan (MOG)
+		command = { type = relation which = MLW value = -200 }
+	}
+	action_b = {
+		name = "ACTIONNAME230024B" #Malwa can wait
+		command = { type = relation which = MLW value = 20 }
+		command = { type = sleepevent which = 230025 } #MOG: An Emperor in His Own Right
+	}
+}
+
+#(1560-1605) An Emperor in His Own Right
+event = {
+	id = 230025
+	trigger = {
+		event = 230024 #MOG: Adham Khan, Malwa
+		owned = { province = 546 data = -1 } #Malwa
+		NOT = { exists = MLW }
+	}
+	random = no
+	country = MOG
+	name = "EVENTNAME230025" #An Emperor in His Own Right
+	desc = "EVENTHIST230025"
+	#-#Adham Khan was successful in his mission and conquered the Kingdom of Malwa. However, instead of handing over his spoils, Adham Khan set about ruling as if he was an independent ruler. Adham took grotesque liberties with the population of the province, raping many of the former ruler's harem and slaughtering the least attractive ones. Enraged by the audacity of his servant, Akbar rode out to Malwa to personally take control of the territory. When Adham barged into Akbar's harem and attempted to kill a noble appointed position equivalent to that of Prime Minister, Akbar ordered Adham to be thrown from the ramparts of the fort of Agra. Maham Anga went mentally insane with the death of her son, leaving Akbar, at 19, to take complete control of his Empire.
+
+	date = { day = 1 month = october year = 1560 }
+	offset = 30
+	deathdate = { day = 26 month = october year = 1605 }
+
+	action_a = {
+		name = "ACTIONNAME230025A" #The Regency is over!
+		command = { type = stability value = 1 }
+		command = { type = revolt which = 546 } #Malwa
+		command = { type = domestic which = centralization value = 1 }
+	}
+}
+
+#(1566-1673) Lahore Fort - Flavor
+#by Aylo1
+event = {
+	id = 230028
+	trigger = {
+		owned = { province = 1521 data = -1 } #Panjab (Lahore)
+		control = { province = 1521 data = -1 }
+	}
+	random = no
+	country = MOG
+	name = "EVENTNAME230028" #Shahi Qila Citadel
+	desc = "EVENTHIST230028"
+	#-#Better known as Lahore Fort, it measured 1400 feet long by 1115 feet wide. Founded in the mythical Ramayana age (1200-800 BC), it was repeatedly destroyed and rebuilt throughout the Islamic invasions. During the Mughal era, successive Emperors from Akbar to Aurangzeb left their marks on the fortress with Akbar strengthening and enlarging the stucture whilst his heirs added audience chambers, balconies, baths, gateways, mosques and palaces.
+
+	date = { day = 1 month = january year = 1566 }
+	offset = 3600
+	deathdate = { day = 29 month = december year = 1673 }
+
+	action_a = {
+		name = "ACTIONNAME230028A" #Enlarge and embellish
+		command = { type = fortress which = 1523 value = 1 }
+		command = { type = domestic which = offensive value = -1 }
+ 		command = { type = treasury value = -200 }
+		command = { type = land value = 100 }
+		command = { type = infra value = 100 }
+	}
+	action_b = {
+		name = "ACTIONNAME230028B" #Leave it be
+		command = { }
+	}
+}
+
+#(1567-1575) Orissa asks for aid
+event = {
+	id = 230007
+	trigger = {
+		event = 230004 #MOG: Akbar eyes Bengal
+		NOT = { war = { country = MOG country = ORI } }
+		war = { country = BGL country = ORI }
+	}
+	random = no
+	country = MOG
+	name = "EVENTNAME230007" #Orissa asks for aid
+	desc = "EVENTHIST230007"
+	#-#While Akbar was busy dealing with the Rajputs, the Shah of Bengal decided to strike first and invaded Orissa. Outnumbered and outmatched, the King of Orissa, Mukundadeva, asked for aid from the Mughals. The Mughal governor of Bihar, Munim Khan, was indifferent to his pleas and refused to send aid, while Akbar himself was simply too far away.
+
+	date = { day = 1 month = january year = 1567 }
+	offset = 90
+	deathdate = { day = 1 month = april year = 1575 }
+
+	action_a = {
+		name = "ACTIONNAME230007A" #Akbar is too busy to help
+		command = { type = relation which = ORI value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME230007B" #Send an army to aid the Gajapati
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = treasury value = -50 }
+		command = { type = trigger which = 249034 } #ORI: Mughal aid arrives
+	}
+}
+
+#(1567) The Death of Rana Sanga
+event = {
+	id = 230207
+	trigger = {
+		exists = RAJ
+		NOT = { vassal = { country = MOG country = RAJ } }
+	}
+	random = no
+	country = MOG
+	name = "EVENTNAME230207" #The Death of Rana Sanga
+	desc = "EVENTHIST230207"
+	#-#The Rajput Kingdom of Mewar refused to ally with Akbar and even gave shelter to his enemies, enraging the Grand Mughal. With the death of its King Rana Sanga, Mewar was left with the weak rule of Rana's son Udai Singh. Akbar took advantage of this instability and invaded, laying siege to the capital, Chittor, in October 1567. Udai fled his Kingdom, but the Rajput nobility fought the invasion for four months until the leaders of the rebellion were shot and Chittor fell.
+
+	date = { day = 1 month = october year = 1567 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1567 }
+
+	action_a = {
+		name = "ACTIONNAME230207A" #Lay siege to Chittor
+		#command = { type = AI which = MOG_Rajputs.ai }
+		command = { type = casusbelli which = RAJ value = 24 } #Rajputana
+		command = { type = relation which = RAJ value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME230207B" #Demand tribute from the new King
+		command = { type = trigger which = 194208 } #RAJ: The Mughals demand tribute
+	}
+}
+#(1567) Udai defies Akbar - Ahistorical
+event = {
+	id = 230210 #triggered by RAJ_194208 A
+	random = no
+	country = MOG
+	name = "EVENTNAME230210" #Udai defies Akbar
+	desc = "EVENTHIST230210"
+	#-#Despite the weakness of his position, Udai Singh of Mewar had the backing of several powerful Rajput nobles who intended to fight to the death to protect their independence. Akbar's demands were rejected and his emmisaries murdered. This drove Akbar into a rage and led to the invasion of Mewar.
+
+	action_a = {
+		name = "ACTIONNAME230210A" #Impudence!
+		command = { type = casusbelli which = RAJ value = 36 }
+		#command = { type = AI which = MOG_Rajputs.ai }
+	}
+}
+#(1567 or 1567-1605) Mewar submits to Mughal rule - Ahistorical
+event = {
+	id = 230209 #triggered by RAJ_194208 B or RAJ_194211 B
+	random = no
+	country = MOG
+	name = "EVENTNAME230209" #Mewar submits to Mughal rule
+	desc = "EVENTHIST230209"
+	#-#In his weakness Udai Singh made Mewar a tributary of the empire. With the fall of Chittor, the other Rajputs who had avoided alliance with Akbar submitted to him. In 1569 Rai Sarjana Hara of Ranthambhor and Raja Ramchand, the chief of Kalinjar in Bundelkhand surrendered. In 1570 the rulers of Bikaner and Jaisalmer also submitted, giving their daughters in marriage.
+
+	action_a = {
+		name = "ACTIONNAME230209A" #The Rajput princes are left with no choice now
+		command = { type = vassal which = RAJ }
+		command = { type = treasury value = 50 }
+		#command = { type = AI which = default.ai }
+	}
+}
+
+#(1570-1574) Akbar's Reforms
+event = {
+	id = 3899
+	trigger = {
+		event = 30324
+		monarch = 090004 #Akbar I
+	}
+	random = no
+	country = MOG
+	name = "EVENTNAME3899" #Akbar's Reforms
+	desc = "EVENTHIST3899"
+	#-#The Emperor has proposed sweeping reforms in order to modernize and restructure our state. These include economic reforms, a better tax-gathering system, a streamlined beaurocracy, and military restructuring. However, such a plan will be expensive and will cause a fair amount of resentment among the populace, the bureaucracy, and the military. Shall we implement the reforms?
+
+	date = { day = 1 month = january year = 1570 }
+	offset = 1000
+	deathdate = { day = 29 month = december year = 1574 }
+
+	action_a = {
+		name = "ACTIONNAME3899A" #Implement the reforms
+		command = { type = stability value = -4 }
+		command = { type = treasury value = -300 }
+		command = { type = domestic which = quality value = 1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = land value = 1 }
+		command = { type = provincetax which = -2 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3899B" #No, such restructuring would be too rash!
+		command = { type = stability value = 2 }
+		command = { type = domestic which = quality value = -1 }
+		command = { type = domestic which = centralization value = -1 }
+	}
+}
+
+#(1571-1584) Fatehpur Sikri
+#by Aylo1
+event = {
+	id = 230027
+	trigger = {
+		owned = { province = 543 data = -1 } #Delhi
+		control = { province = 543 data = -1 }
+	}
+	random = no
+	country = MOG
+	name = "EVENTNAME230027" #Fatehpur Sikri
+	desc = "EVENTHIST230027"
+	#-#Located 26 miles west of Agra, its regarded as Akbar I's crowning architectural legacy. Numerous structures here illustrate a fusion of Muslim, Hindu and Jain influences reflecting Mughal impulses of creativity and aestheticism. Its layout is likened to Akbar's moveable imperial encampments whilst attempting to reproduce rich spatial effects of nomadic life via strategic placement of buildings and squares. Some of Akbar's most innovative reforms was during Fatehpur Sikri's tenure as capitol but a lack of water led to its abandonment in 1585.
+
+	date = { day = 1 month = january year = 1571 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1584 }
+
+	action_a = {
+		name = "ACTIONNAME230027A" #Build a new Capitol
+		command = { type = domestic which = innovative value = 1 } #diff styles
+		command = { type = population which = 543 value = 1000 } #MOG Court
+		command = { type = treasury value = -150 }
+		command = { type = stability value = -1 }
+		command = { type = infra value = 100 } #rep structures
+	}
+	action_b = {
+		name = "ACTIONNAME230027B" #We are comfortable at Agra
+		command = { }
+	}
+}
+
+#(1572-1605) Instability in Gujarat
+event = {
+	id = 230022
+	trigger = {
+		exists = GUJ
+		event = 230010 #MOG: The Conquests of Akbar the Great
+		NOT = {
+			vassal = { country = MOG country = GUJ }
+			vassal = { country = GUJ country = MOG }
+		}
+	}
+	random = no
+	country = MOG
+	name = "EVENTNAME230022" #Instability in Gujarat
+	desc = "EVENTHIST230022"
+	#-#Feuding nobles have left the state of Gujarat in a precarious position. Controlling Gujarat would provide great economic benefits and would open the way for sea voyages to Mecca.
+
+	date = { day = 1 month = october year = 1572 }
+	offset = 30
+	deathdate = { day = 26 month = october year = 1605 }
+
+	action_a = {
+		name = "ACTIONNAME230022A" #Gujarat will be ours!
+		command = { type = relation which = GUJ value = -200 }
+		command = { type = casusbelli which = GUJ value = 24 }
+	}
+}
+
+#(1572-1605) Akbar in Ahmadabad
+event = {
+	id = 230023 #triggered by GUJ_178000
+	random = no
+	country = MOG
+	name = "EVENTNAME178000" #Akbar in Ahmadabad
+	desc = "EVENTHIST178000"
+	#-#The Mughal Emperor, Akbar, took advantage of instability in Gujarat, leading an invasion force straight to the Gujarati capital of Ahmadabad. With their capital captured, the nobles begrudgingly joined the Mughal Empire.
+
+	action_a = {
+		name = "ACTIONNAME230023A" #Gujarat is ours!
+		command = { type = inherit which = GUJ }
+		command = { type = sleepevent which = 230022 } #MOG: Instability in Gujarat
+	}
+}
+
+#(1573-1605) The Pratap spurns peace
+event = {
+	id = 230214 #triggered by RAJ_194213 A
+	random = no
+	country = MOG
+	name = "EVENTNAME230214" #The Pratap spurns peace
+	desc = "EVENTHIST230214"
+	#-#Having gone to war twice to conquer Mewar, Akbar changed tactics and sent a series of envoys to Pratap with a peace treaty. Although the King was amenable to peace, he adamantly refused to become a vassal of the Mughals and demanded that Mewar retain its independence. Frustrated and humiliated, Akbar gave the order to destroy Mewar once and for all. On May 3, 1573 the Mughals marched towards Kumbhalgarh.
+
+	action_a = {
+		name = "ACTIONNAME230214A" #Then we shall give him war!
+		command = { type = casusbelli which = RAJ value = 12 }
+		#command = { type = AI which = MOG_Rajputs.ai }
+	}
+}
+#(1573-1605) Peace at last
+event = {
+	id = 230215 #triggered by RAJ_194213 B
+	random = no
+	country = MOG
+	name = "EVENTNAME230215" #Peace at last
+	desc = "EVENTHIST230215"
+	#-#Having gone to war twice to conquer Mewar, Akbar changed tactics and sent a series of envoys to Pratap with a peace treaty. The Rajput King was amenable to a peace treaty but only reluctantly agreed to become a Mughal vassal. With the treaty, Akbar's ambitions of ruling all of India became one more step closer to reality.
+
+	action_a = {
+		name = "ACTIONNAME230215A" #Now we command the Rajput
+		command = { type = vassal which = RAJ }
+		command = { type = DIP which = 1 value = 120 }
+	}
+}
+
+#(1580-1584) Akbar's Religious Tolerance
+event = {
+	id = 6900
+	trigger = {
+		monarch = 090004 #Akbar I
+	}
+	random = no
+	country = MOG
+	name = "EVENTNAME6900" #Akbar's Religious Tolerance
+	desc = "EVENTHIST6900"
+	#-#The Emperor is very interested in comparative religion, and has hosted many debates by the learned of many different faiths. He believes that each person should be able to choose his or her own belief system, without interference by any others. He wishes this to become the law of the empire, but while this will be greeted with joy by our heathen population, it will be looked upon with horror and resentment by the Muslim ruling classes. Should we follow his wishes?
+
+	date = { day = 1 month = january year = 1580 }
+	offset = 1000
+	deathdate = { day = 29 month = december year = 1584 }
+
+	action_a = {
+		name = "ACTIONNAME6900A" #Tolerate all beliefs
+		command = { type = stability value = -4 }
+		command = { type = revoltrisk which = 60 value = -5 }
+		command = { type = domestic which = innovative value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME6900B" #No, we will not tolerate the idol-worshipers!
+		command = { type = stability value = 2 }
+		command = { type = religiousrevolt which = -1 }
+		command = { type = religiousrevolt which = -1 }
+		command = { type = religiousrevolt which = -1 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = sleepevent which = 230001 } #MOG: Akbar's Religious Conversion
+	}
+}
+
+#(1580-1605) Akbar's Religious Conversion
+event = {
+	id = 230001
+	trigger = {
+		monarch = 090004 #Akbar I
+	}
+	random = no
+	country = MOG
+	name = "EVENTNAME230001" #Akbar's Religious Conversion
+	desc = "EVENTHIST230001"
+	#-#As Akbar learned more and more about the world and various ideas, he began to believe that Islam might not truly be the true faith. He sent for the brightest scholars from all the known religions at the time to help him understand each religion's tenets and beliefs. After hearing from all these scholars he decided to create a new religion for himself and his country.
+
+	date = { day = 1 month = january year = 1580 }
+	offset = 400
+	deathdate = { day = 25 month = october year = 1605 }
+
+	action_a = {
+		name = "ACTIONNAME230001A" #Create the Divine Faith!
+		command = { type = stability value = -5 }
+		command = { type = religion which = hindu }
+		command = { type = revolt which = 543 } #Delhi
+		command = { type = revolt which = 543 } #Delhi
+		command = { type = province_revoltrisk which = 543 value = 1 } #Delhi
+		command = { type = revoltrisk value = 2 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = technology which = orthodox }
+	}
+	action_b = {
+		name = "ACTIONNAME230001B" #Convert to Hinduism
+		command = { type = stability value = -3 }
+		command = { type = religion which = hindu }
+		command = { type = revolt which = 543 } #Delhi
+		command = { type = revoltrisk value = 1 }
+		command = { type = domestic which = innovative value = 1 }
+	}
+	action_c = {
+		name = "ACTIONNAME230001C" #Convert to Jainism
+		command = { type = stability value = -3 }
+		command = { type = religion which = buddhist }
+		command = { type = revolt which = 543 } #Delhi
+		command = { type = revoltrisk value = 1 }
+		command = { type = domestic which = innovative value = 1 }
+	}
+	action_d = {
+		name = "ACTIONNAME230001D" #Keep the Faith
+		command = { type = stability value = -1 }
+		command = { type = revolt which = 543 } #Delhi
+		command = { type = revoltrisk value = 1 }
+		command = { type = domestic which = innovative value = -1 }
+	}
+}
+
+#(1597-1599) Ahmadnagar's Defiance
+event = {
+	id = 230008 #triggered by AHM_305000 A or GOL_190001 A
+	random = no
+	country = MOG
+	name = "EVENTNAME230008" #Ahmadnagar's Defiance
+	desc = "EVENTHIST230008"
+	#-#By 1527 there were mainly five Muslim Kingdoms in the Deccan, the remnants of the old Bahmani Sultanate established in the 14th century. The five had been fighting each other almost continuously since the Sultanate collapsed. In 1597, Akbar asked the successor state of Ahmadnagar to swear fealty to him, but it refused. Akbar responded by invading, sending one army from Malwa led by Khan Khanan and another from Gujarat led by his son, Murad.
+
+	action_a = {
+		name = "ACTIONNAME230008A" #They shall feel our displeasure
+		command = { type = casusbelli which = GOL value = 12 }
+		command = { type = casusbelli which = AHM value = 12 } #Ahmadnagar, if independent
+	}
+}
+#(1597-1599) Ahmadnagar's Submission - Ahistorical
+event = {
+	id = 230009 #triggered by AHM_305000 B or GOL_190001 B
+	random = no
+	country = MOG
+	name = "EVENTNAME230009" #Ahmadnagar's Submission
+	desc = "EVENTHIST230009"
+	#-#By 1527 there were mainly five Muslim Kingdoms in the Deccan, the remnants of the old Bahmani Sultanate established in the 14th century. The five had been fighting each other almost continuously since the Sultanate collapsed. In 1597, Akbar asked the successor state of Ahmadnagar to swear fealty to him.
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = DIP which = 1 value = 120 }
+		command = { type = inherit which = AHM } #Ahmadnagar
+		command = { type = trigger which = 230018 } #MOG: Ahmadnagar pays tribute
+	}
+}
+#(1597-1599) Ahmadnagar pays tribute - Ahistorical
+event = {
+	id = 230018 #triggered by MOG_230009
+	random = no
+	country = MOG
+	name = "EVENTNAME230018" #Ahmadnagar pays tribute
+	desc = "EVENTHIST230018"
+	#-#Seeing a way out of its internecine struggle or perhaps realistic about its chances against the Mughal empire, Ahmadnagar's dowager Queen, Chand Bibi, agreed to become a vassal and pay tribute to Akbar.
+
+	action_a = {
+		name = "OK"
+		command = { type = independence which = AHM } #Ahmadnagar
+		command = { type = sleepevent which = 190002 } #GOL: Chand Bibi's Betrayal
+		command = { type = sleepevent which = 305001 } #AHM: Chand Bibi's Betrayal
+	}
+}
+
+#(1597-1605) Ahmadnagar's Fall
+event = {
+	id = 230019 #triggered by AHM_305001 A
+	random = no
+	country = MOG
+	name = "EVENTNAME230019" #Ahmadnagar's Fall
+	desc = "EVENTHIST305001"
+	#-#Imperial troops laid siege to Ahmadnagar. Although the defenders fought fiercely, no help was coming and it could only be a matter of time. Sultan Murad, the enemy commander, sent an offer to raise the siege in return for the cession of Berar. Although the dowager Queen had fought valiantly, she lost heart when faced with the superior imperial forces. Facing famine in the city she agreed to the deal and gave away Berar. Upon hearing the news, her confidant and eunuch Jita Khan rushed from the palace crying that Chand Bibi had turned traitor. Bibi was murdered by a mob and without her rule, Ahmadnagar fell soon after.
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = DIP which = 1 value = 120 }
+		command = { type = inherit which = AHM } #Ahmadnagar
+	}
+}
+
+#(1599-1605) Mughal Fratricide - Salim
+event = {
+	id = 230034
+	random = no
+	country = MOG
+	name = "EVENTNAME230034" #Mughal Fratricide
+	desc = "EVENTHIST230034"
+	#-#In what became typical Mughal fashion, Prince Salim rebelled against his father Akbar I. Upon the latter's death he became Emperor Jahângîr. His eldest Khusrau Mirza immediately challenged him but was defeated and blinded.
+
+	date = { day = 1 month = january year = 1599 }
+	offset = 30
+	deathdate = { day = 12 month = october year = 1605 }
+
+	action_a = {
+		name = "DAMN"
+		command = { type = revoltrisk which = 72 value = 6 }
+		command = { type = stability value = -3 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#(1601-1651) Rajput revolt
+event = {
+	id = 230036 #triggered by RAJ_194008
+	random = no
+	country = MOG
+	name = "EVENTNAME230036" #Rajput revolt
+	desc = "EVENTHIST230036"
+	#-#After Akbar and his immediate successors treatment of Rajputs slowly reverted to the intolerant style they had been before.
+
+	action_a = {
+		name = "ACTIONNAME230036A" #What a bother
+		command = { type = remove_countryculture which = rajput }
+		command = { type = clrflag which = [rajput_favorable] }
+		command = { type = revolt which = 542 } #Rajputana
+		command = { type = revolt which = 542 } #Rajputana
+		command = { type = revolt which = 542 } #Rajputana
+		command = { type = revolt which = 543 } #Delhi
+		command = { type = revolt which = 543 } #Delhi
+		command = { type = revolt which = 543 } #Delhi
+		command = { type = revolt which = 546 } #Malwa
+		command = { type = revolt which = 546 } #Malwa
+		command = { type = revolt which = 546 } #Malwa
+		command = { type = revolt which = 1521 } #Panjab
+		command = { type = revolt which = 1521 } #Panjab
+		command = { type = revolt which = 1521 } #Panjab
+		command = { type = revolt which = 1522 } #Bikaner
+		command = { type = revolt which = 1522 } #Bikaner
+		command = { type = revolt which = 1522 } #Bikaner
+	}
+}
+
+#(1605-1626) Chain of Justice - Flavor
+event = {
+	id = 230029
+	random = no
+	country = MOG
+	name = "EVENTNAME230029" #Chain of Justice
+	desc = "EVENTHIST230029"
+	#-#The famous 'Golden Chain of Justice' stood outside the castle of Agra, joined to sixty bells. Anyone was allowed to pull the chain and received a personal hearing from Jahângîr himself.
+
+	date = { day = 12 month = october year = 1605 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1626 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1605-1626) Mughal Gardens - Flavor
+#by Aylo1
+event = {
+	id = 230030
+	trigger = {
+		owned = { province = 1520 data = -1 } #Chandigarh (Jammu and Kashmir)
+		control = { province = 1520 data = -1 }
+	}
+	random = no
+	country = MOG
+	name = "EVENTNAME230030" #Mughal Gardens
+	desc = "EVENTHIST230030"
+	#-#Found at the lake city of Srinagar in the Kashmir, Jahângîr made three gardens, the Shamilar, Nishat Bagh and Chashma Shahi for his beloved wife Nur Jehan (1577-1645). Each comprised of four terraces watered from a nearby canal. The top terrace was reserved for ladies of the court whom could witness the beauty of flora through its seasonal cycles.
+
+	date = { day = 12 month = october year = 1605 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1626 }
+
+	action_a = { #If there is a paradise on earth, it is this, it is this, it is this
+		name = "ACTIONNAME230030A" #If there is a paradise on earth...
+		command = { type = treasury value = -25 }
+		command = { type = infra value = 75 } #gardens
+	}
+}
+
+#(1606) Hiran Minar - Flavor
+#by Aylo1
+event = {
+	id = 230031
+	trigger = {
+		owned = { province = 1521 data = -1 } #Panjab (Lahore)
+		control = { province = 1521 data = -1 }
+	}
+	random = no
+	country = MOG
+	name = "EVENTNAME230031" #Hiran Minar
+	desc = "EVENTHIST230031"
+	#-#Built in memory of Jahângîr's pet antelope Mansraj, the structure consists of a square-like water tank beneath an octagonal pavilion surmounted by a 100 foot high minaret. Additionally, the complex contained its own water collection system which supplied drinking water for the royal animals and game. Furthermore, the minaret itself gave one the best views of the surrounding landscape.
+
+	date = { day = 1 month = january year = 1606 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1606 }
+
+	action_a = {
+		name = "OK"
+		command = { type = treasury value = -25 }
+		command = { type = infra value = 25 }
+	}
+}
+
+#(1606-1611) Return to Islam
+event = {
+	id = 230002
+	trigger = { NOT = { religion = sunni } }
+	random = no
+	country = MOG
+	name = "EVENTNAME230002" #Return to Islam
+	desc = "EVENTHIST230002"
+	#-#After Akbar's death there was tremendous pressure to return to Islam. Some tried to use this opportunity to usher in stricter Shiite teachings.
+
+	date = { day = 27 month = october year = 1606 }
+	offset = 400
+	deathdate = { day = 29 month = december year = 1611 }
+
+	action_a = {
+		name = "ACTIONNAME230002A" #Return to our Sunni ways
+		command = { type = stability value = 1 }
+		command = { type = religion which = sunni }
+		command = { type = provincereligion which = 543 value = sunni } #Delhi
+		command = { type = technology which = Muslim }
+		command = { type = domestic which = innovative value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME230002B" #Impliment the more strict teachings of Sh'ia
+		command = { type = stability value = -1 }
+		command = { type = religion which = shia }
+		command = { type = provincereligion which = 543 value = shia } #Delhi
+		command = { type = technology which = Muslim }
+		command = { type = domestic which = innovative value = -2 }
+	}
+	action_c = {
+		name = "ACTIONNAME230002C" #The Divine faith fits us better
+		command = { type = stability value = -3 }
+		command = { type = domestic which = innovative value = 1 }
+	}
+}
+
+#(1611-1626) Nur Jehan
+#by Aylo1
+event = {
+	id = 230032
+	random = no
+	country = MOG
+	name = "EVENTNAME230032" #Nur Jehan (1577-1645)
+	desc = "EVENTHIST230032"
+	#-#Born Mehr-un-Nisa to Persian nobility, her marriage to Jahângîr consolidated her family's preeminence at the Mughal Court. Her father Mirza Ghiyas Beg became Divan (Treasurer), brother Asaf Khan Wazir (Chief Minister) whilst her niece Arjumand Banu Begum (aka Mumtaz Mahal) wed the future Shâh Jehân. Nur Jehan's daughter from a previous marriage wed her stepson Shahryar. As Jahângîr was regularly indisposed, Nur Jehan effectively ruled the Empire on his behalf, receiving audiences and striking her own coins.
+
+	date = { day = 1 month = january year = 1611 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1626 }
+
+	action_a = {
+		name = "OK"
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = DIP which = 1 value = 180 }
+		command = { type = ADM which = 2 value = 180 }
+		command = { type = stability value = -1 } #jealous factions
+	}
+}
+
+#(1622-1627) Mughal Fratricide - Khurrum
+event = {
+	id = 230035
+	random = no
+	country = MOG
+	name = "EVENTNAME230034" #Mughal Fratricide
+	desc = "EVENTHIST230035"
+	#-#The marriage of Prince Khurrum's step-sister to his younger brother Shah Ryar endangered Khurrum's chances of being heir apparent. Colluding with his father-in-law Asaf Khan and Ahmadnagar's Regent Malik Anbar, the Prince rebelled against his father Jahângîr. Although the insurrection was quashed, Khurrum succeeded in eliminating fellow contenders Khusrau Mirza and Shah Ryar.
+
+	date = { day = 1 month = january year = 1622 }
+	offset = 30
+	deathdate = { day = 28 month = october year = 1627 }
+
+	action_a = {
+		name = "DAMN"
+		command = { type = revoltrisk which = 60 value = 6 }
+		command = { type = stability value = -3 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#(1628-1657) The Builder King
+#by Aylo1
+event = {
+	id = 230033
+	trigger = {
+		owned = { province = 543 data = -1 } #Delhi
+		control = { province = 543 data = -1 }
+		owned = { province = 1521 data = -1 } #Panjab (Lahore)
+		control = { province = 1521 data = -1 }
+	}
+	random = no
+	country = MOG
+	name = "EVENTNAME230033" #The Builder King
+	desc = "EVENTHIST230033"
+	#-#Under Shâh Jehân's rule, Mughal architecture reached its zenith. A prolific builder, his works featured delicate elegance with refined detail. Most famous of these is the Taj Mahal (manusoleum of his wife Mumtaz Mahal). He was also responsible for the palaces at Agra and Red Forts, the Pearl Mosque of Delhi, Shahjahan Mosque at Thatta and the Wazir Khan Mosque and Shamilar Gardens at Lahore - making Shâh Jehân the most magnificent builder of the Indian sovereigns.
+
+	date = { day = 1 month = january year = 1628 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1657 }
+
+	action_a = {
+		name = "ACTIONNAME230033A" #Lay the foundations of my legacy
+		command = { type = gainmanufactory which = 543 value = luxury } #Taj Mahal\palaces
+		command = { type = domestic which = innovative value = 1 } #architectural style
+		command = { type = fortress which = 543 value = 1 } #Red and Agra Forts
+		command = { type = treasury value = -500 } #nearly bankrupted empire
+		command = { type = stability value = -2 }
+		command = { type = infra value = 1000 } #mosques, gardens etc
+	}
+	action_b = {
+		name = "ACTIONNAME230033B" #Where are my blueprints?
+		command = { }
+	}
+}
+
+#(1628-1630) Mumtaz Mahal
+#by Aylo1
+event = {
+	id = 230050
+	random = no
+	country = MOG
+	name = "EVENTNAME230050" #Mumtaz Mahal (1593-1631)
+	desc = "EVENTHIST230050"
+	#-#The unquestioned love of Shâh Jehân, she was born Arjumand Banu Begum to Empress Nur Jehan's brother Asaf Khan. Marrying the future Badshah in 1612, Mumtaz Mahal became the archtype wife of her age with no political aspirations. Their intense relationship gave her considerable influence over her husband with Mumtaz Mahal often travelling with then Prince Khurrum, being keeper of the imperial seal 'Muhr Uzah' and often intervening on behalf of the poor and destitute. Her death at childbirth led to the construction of the Taj Mahal - Shâh Jehân's monument to her beauty, their love and life together.
+
+	date = { day = 1 month = january year = 1628 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1630 }
+
+	action_a = {
+		name = "OK"
+		command = { type = ADM which = 1 value = 36 } #unity of royal couple
+		command = { type = treasury value = -50 } #court entertainment\charitable works
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1657-1658) Mughal Fratricide - Aurangzeb
+event = {
+	id = 230040
+	random = no
+	country = MOG
+	name = "EVENTNAME230034" #Mughal Fratricide
+	desc = "EVENTHIST230040"
+	#-#Rumours of a dying Shah Jahan and the alleged ascendancy of Dara Shikoh (1657) gave premise for Princes Shah Shuja, Aurangzeb and Murad Baksh to stake their claims to the Peacock throne. A treacherous Aurangzeb eventually defeated his brothers and confined a frail Shâh Jehân to Agra Fort.
+
+	date = { day = 1 month = january year = 1657 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1658 }
+
+	action_a = {
+		name = "DAMN"
+		command = { type = revoltrisk which = 24 value = 6 }
+		command = { type = stability value = -3 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+}
+#(1659-1705) Aurangzeb's Religious Intolerance
+event = {
+	id = 6902
+	trigger = {
+		monarch = 090007 #Aurangzeb
+	}
+	random = no
+	country = MOG
+	name = "EVENTNAME6902" #Aurangzeb's Religious Intolerance
+	desc = "EVENTHIST6902"
+	#-#Notoriously famous for piety and zeal, Aurangzeb abandoned all semblances of religious tolerance during his reign. With his direction, numerous hindu temples were destroyed and the hated jizya tax on non-muslims was re-instated.
+
+	date = { day = 1 month = january year = 1659 }
+	offset = 100
+	deathdate = { day = 29 month = december year = 1705 }
+
+	action_a = {
+		name = "ACTIONNAME6902A" #No, we will not tolerate the idol-worshipers!
+		command = { type = stability value = 2 }
+		command = { type = religiousrevolt which = -1 }
+		command = { type = religiousrevolt which = -1 }
+		command = { type = domestic which = innovative value = -4 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = revoltrisk which = 480 value = 5 }
+		command = { type = gainbuilding which = -1 value = bailiff }
+		command = { type = gainbuilding which = -1 value = bailiff }
+		command = { type = gainbuilding which = -1 value = bailiff }
+	}
+	action_b = {
+		name = "ACTIONNAME6902B" #Push for religious uniformity but don't instate the Jizya
+		command = { type = stability value = -4 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = domestic which = centralization value = -4 }
+		command = { type = provincetax which = -2 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+	}
+}
+
+#(1662) Shah Shuja
+event = {
+	id = 230100 #triggered by ARK_112002
+	random = no
+	country = MOG
+	name = "EVENTNAME230100" #Shah Shuja
+	desc = "EVENTHIST230100"
+	#-#In 1660 a Mughal prince, Shah Shuja, fled to Mrohaung, the capital of Arakan, when he failed to keep his brother, Aurangzeb, from usurping the Mughal throne. Shah Shuja asked for ships to convey his family and retinue to Mecca but none were supplied. The Arakanese King Sandathudamma asked for one of Shah Shuja's daughters in marriage and was indignantly refused. Fearing he would be handed over to the Mughals Shah Shuja tried to escape. After his second attempt he was killed in a riot and his treasures were confiscated. When Aurangzeb heard the news he demanded the surrender of Shah Shuja's children.
+
+	action_a = {
+		name = "ACTIONNAME230100A" #Demand the Shah's Estate
+		command = { type = trigger which = 112003 } #ARK: Mughal Demands
+	}
+	action_b = {
+		name = "ACTIONNAME230100B" #I couldn't care less
+		command = { type = relation which = ARK value = 50 }
+	}
+}
+#(1662) Arakanese Challenge
+event = {
+	id = 230101 #triggered by ARK_112003 A
+	random = no
+	country = MOG
+	name = "EVENTNAME230101" #Arakanese Challenge
+	desc = "EVENTHIST230101"
+	#-#In response to Aurangzeb's demand to surrender Shah Shuja's children, King Sandathudamma of Arakan refused and war broke out.
+
+	action_a = {
+		name = "ACTIONNAME230101A" #They will pay!
+		command = { type = casusbelli which = ARK value = 240 }
+		command = { type = war which = ARK }
+	}
+	action_b = {
+		name = "ACTIONNAME230101B" #We will pay!
+		command = { type = relation which = ARK value = 50 }
+		command = { type = stability value = -1 }
+		command = { type = vp value = -50 }
+	}
+}
+#(1662) Sandathudamma Bows to Demands
+event = {
+	id = 230102 #triggered by ARK_112003 B
+	random = no
+	country = MOG
+	name = "EVENTNAME230102" #Sandathudamma Bows to Demands
+	desc = "EVENTHIST230102"
+	#-#In response to Aurangzeb's demand to surrender Shah Shuja's children, King Sandathudamma of Arakan conceded.
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = treasury value = 200 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1665-1674) A Crucial Moment
+event = {
+	id = 230103
+	trigger = {
+		war = { country = MOG country = ARK }
+	}
+	random = no
+	country = MOG
+	name = "EVENTNAME230103" #A Crucial Moment
+	desc = "EVENTHIST230103"
+	#-#At first the war went well for Arakan. The Feringhi made two devastating raids along the Bengal coast, but at a crucial moment they quarreled with the Arakanese. When the Mughals offered employment most of the Feringhi switched sides.
+
+	date = { day = 1 month = january year = 1665 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1674 }
+
+	action_a = {
+		name = "ACTIONNAME230103A" #Offer Employment
+		command = { type = naval value = 2000 }
+		command = { type = domestic which = LAND value = -2 }
+		command = { type = warships which = -1 value = 15 }
+		command = { type = treasury value = -500 }
+		command = { type = trigger which = 112004 } #ARK: A Crucial Moment
+	}
+	action_b = {
+		name = "ACTIONNAME230103B" #This is of no consequence.
+		command = { type = vp value = -30 }
+	}
+}
+
+#(1666-1670) Shivaji visits Delhi
+event = {
+	id = 230000 #slept by DLH_161000 A
+	trigger = {
+		exists = MAH
+		owned = { province = 543 data = -1 }
+	}
+	random = no
+	country = MOG
+	name = "EVENTNAME161000" #Shivaji visits Delhi
+	desc = "EVENTHIST161000"
+	#-#Shivaji visited Delhi in 1668 at the bequest of a concerned Aurangzeb.
+
+	date = { day = 29 month = december year = 1666 }
+	offset = 100
+	deathdate = { day = 28 month = june year = 1670 }
+
+	action_a = {
+		name = "ACTIONNAME161000A" #Put him under house arrest!
+		command = { type = stability value = 1 }
+		command = { type = relation which = MAH value = -100 }
+		command = { type = DIP which = -2 value = 18 }
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = trigger which = 216000 } #MAH: Escape of Shivaji
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = sleepevent which = 161000 } #DLH: Shivaji visits Delhi
+	}
+	action_b = {
+		name = "ACTIONNAME161000B" #Let him go!
+		command = { type = stability value = -4 }
+		command = { type = relation which = MAH value = 100 }
+		command = { type = domestic which = centralization value = -3 }
+		command = { type = DIP which = 2 value = 36 }
+		command = { type = revoltrisk value = 4 }
+		command = { type = sleepevent which = 161000 } #DLH: Shivaji visits Delhi
+		command = { type = badboy value = -1 }
+	}
+}
+
+#(1671-1672) Badshahi Masjid - Flavor
+#by Aylo1
+event = {
+	id = 230041
+	trigger = {
+		owned = { province = 1521 data = -1 } #Panjab (Lahore)
+		control = { province = 1521 data = -1 }
+	}
+	random = no
+	country = MOG
+	name = "EVENTNAME230041" #Badshahi Masjid
+	desc = "EVENTHIST230041"
+	#-#Located in Lahore, the 'Emperor's Mosque' epitomised the grandeur and beauty of the Mughal period. Built by Aurangzeb it could accommodate over 55,000 worshippers (for a time largest outside Mecca). Reflecting the Padishah's reverence for piety, the mosque is richly anointed with Indo-Greek, Central Asian and Indian architectural techniques and motifs whilst using all the lessons learnt over a millenia of Muslim mosque architecture.
+
+	date = { day = 1 month = january year = 1671 }
+	offset = 90
+	deathdate = { day = 29 month = december year = 1672 }
+
+	action_a = {
+		name = "ACTIONNAME230041A" #Build me a mosque
+		command = { type = treasury value = -50 }
+		command = { type = infra value = 100 }
+	}
+	action_b = {
+		name = "ACTIONNAME230041B" #Invest in military pursuits
+		command = { type = land value = 100 }
+	}
+}
+
+#(1675) The Sikh Rebellions
+event = {
+	id = 6903
+	trigger = {
+		OR = {
+			owned = { province = 1520 data = -1 }
+			owned = { province = 1521 data = -1 }
+		}
+		NOT = { exists = KSH }
+	}
+	random = no
+	country = MOG
+	name = "EVENTNAME6903" #The Sikh Rebellions
+	desc = "EVENTHIST6903"
+	#-#The Guru of the Sikhs has come to our capital to explain his sect's heterodox teachings. Sikhism is a mixture of Hindu and Islamic beliefs, and the Emperor feels such teachings are a heresy to Islam. However, any actions we take against him will have reprecussions in our Sikh provinces, where the Guru is revered as a holy man. What shall we do with this accused heretic?
+
+	date = { day = 27 month = november year = 1675 }
+
+	action_a = {
+		name = "ACTIONNAME6903A" #Execute him as a heretic!
+		command = { type = stability value = 1 }
+		command = { type = revolt which = 1520 } #Chandigarh
+		command = { type = revolt which = 1520 } #Chandigarh
+		command = { type = revolt which = 1521 } #Panjab
+		command = { type = revolt which = 1521 } #Panjab
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = domestic which = centralization value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME6903B" #Let him and his movement be.
+		command = { type = stability value = -4 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = domestic which = centralization value = -3 }
+	}
+}
+
+#(1694) Single richest crime in history
+#by Aylo1
+event = {
+	id = 230042
+	trigger = {
+		neighbour = ENG #or specific colonies?
+		event = 164600 #ENG: An Opportunity in India
+	}
+	random = no
+	country = MOG
+	name = "EVENTNAME230042" #Single richest crime in history
+	desc = "EVENTHIST230042"
+	#-#In August 1694 a squadron of pirates attacked a Mughal convoy enroute to Surat. One of their Captains' Henry Every boarded and sacked the escort ship 'Fateh Muhammed' for 50,000 pounds worth of treasure. He soon overtook the flagship 'Ganj-I-Sawai' whom succumbed after a vicious battle. Several days of horror followed before the location of its treasure was extracted - amassing a fortune between 325,000-600,000 pound sterling along with half a million gold and silver pieces. Later described as the 'single richest crime in history', Aurangzeb held the British East India Company responsible, closing four of its factories and arresting its officers. British parliament appeased the Great Mughal by refusing Every any pardon or amnesties and commissioning other corsairs like William Kidd to hunt down their breathern.
+
+	date = { day = 1 month = january year = 1694 }
+	offset = 240
+	deathdate = { day = 29 month = december year = 1694 }
+
+	action_a = {
+		name = "DAMN"
+		command = { type = relation which = ENG value = -40 }
+		command = { type = treasury value = -375 } #min amount lost
+		command = { type = stability value = -1 }
+		command = { type = trade value = -400 } #closed factories, loss business etc
+	}
+}
+
+#(1707-1711) Juliana Dias da Costa
+event = {
+	id = 230039
+	random = no
+	country = MOG
+	name = "EVENTNAME230039" #Juliana Dias da Costa (1658-1733)
+	desc = "EVENTHIST230039"
+	#-#A Portuguese refugee at the Mughal Court, Dona Juliana rose to prominence as Harem Queen of Bahâdur Shâh I (r.1707-12). Highly influential, she rode alongside the Emperor on a war elephant, and was much sought after by the Dutch, Portuguese, British and Vatican. In this capacity Dona Juliana helped her family's former protector - Jesuit Ippolito Desideri (1684-1733) in his mission to evangelize Tibet. Even after Bahâdur Shâh's death, Dona Juliana remained a respected, if less influential figure.
+
+	date = { day = 1 month = january year = 1707 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1711 }
+
+	action_a = {
+		name = "OK"
+		command = { type = DIP which = 1 value = 12 }
+		command = { type = relation which = HOL value = 20 }
+		command = { type = relation which = POR value = 20 }
+		command = { type = relation which = ENG value = 20 }
+		command = { type = relation which = PAP value = 20 }
+	}
+}
+
+#(1707-1708) Mughal Fratricide - Bahâdur Shâh I
+event = {
+	id = 230037
+	random = no
+	country = MOG
+	name = "EVENTNAME230034" #Mughal Fratricide
+	desc = "EVENTHIST230037"
+	#-#Succeeding Aurangzeb in 1707, Bahâdur Shâh I inherited an unstable Empire. Additionally he had to contend with his ambitious brothers Azam Shah and Muhammad Kam Baksh.
+
+	date = { day = 14 month = march year = 1707 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1708 }
+
+	action_a = {
+		name = "DAMN"
+		command = { type = revoltrisk which = 24 value = 6 }
+		command = { type = stability value = -3 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#(1712) Mughal Fratricide - Jahândur Shâh
+event = {
+	id = 230038
+	random = no
+	country = MOG
+	name = "EVENTNAME230034" #Mughal Fratricide
+	desc = "EVENTHIST230038"
+	#-#When Bahâdur Shâh I died, his sons Jahândur Shâh and Azim-ush-shan entered into a successional struggle. Jahândur Shâh emerged victorious but a debauched reign allowed his nephew Farrukh Siyar to depose him with help from the Saiyid brothers Huseyn Ali and Abdullah.
+
+	date = { day = 28 month = february year = 1712 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1712 }
+
+	action_a = {
+		name = "DAMN"
+		command = { type = domestic which = centralization value = -2 } #Saiyid brothers
+		command = { type = revoltrisk which = 24 value = 6 }
+		command = { type = stability value = -3 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#(1713-1719) Saiyid Brothers
+#by Aylo1
+event = {
+	id = 230043
+	random = no
+	country = MOG
+	name = "EVENTNAME230043" #Saiyid Brothers
+	desc = "EVENTHIST230043"
+	#-#In the aftermath of Aurangzeb's reign, the brothers Huseyn Ali Khan and Abdullah Khan Saiyid exploited the power vacuum to become the two most powerful men in the Mughal Empire. Infamous as Kingmakers they were responsible for the ascendancy and downfall of Farruk Siyar (r.1713-9), Rafi ul-Darjat, Shâh Jahan II, Nikusiyar (r.1719) and Muhammad Shah (r.1720-48). Their last candidate eventually overthrew and executed them but couldn't undo the damage done to the state.
+
+	date = { day = 1 month = january year = 1713 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1719 }
+
+	action_a = {
+		name = "DAMN"
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = centralization value = -3 }
+		command = { type = revoltrisk which = 84 value = 8 }
+		command = { type = DIP which = -1 value = 84 }
+		command = { type = ADM which = 1 value = 84 } #Wazir - Huseyn Ali
+		command = { type = MIL which = 1 value = 84 } #Gen - Abdullah
+		command = { type = treasury value = -200 }
+		command = { type = stability value = -4 }
+		command = { type = infra value = -500 }
+		command = { type = trade value = -500 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#(1717) Sale of trading rights
+#by Aylo1
+event = {
+	id = 230044
+	trigger = {
+		exists = ENG
+		event = 338012 #ProvinceSpec*557: British Traders near the Ganges
+		event = 164600 #ENG: An Opportunity in India
+		OR = {
+			owned = { province = 557 data = -1 } #Ganges
+			owned = { province = 558 data = -1 } #Howrah
+			owned = { province = 559 data = -1 } #Bihar
+			vassal = { country = MOG country = BGL }
+		}
+	}
+	random = no
+	country = MOG
+	name = "EVENTNAME230044" #Sale of trading rights
+	desc = "EVENTHIST230044"
+	#-#During the reign of Farrukh Siyar (r.1713-9), the East India Company purchased duty free trading rights throughout Bengal for 3000 rupees. This directive helped the British establish a foothold in India.
+
+	date = { day = 1 month = january year = 1717 }
+	offset = 90
+	deathdate = { day = 29 month = december year = 1717 }
+
+	action_a = {
+		name = "ACTIONNAME230044A" #Sign the Firman
+		command = { type = treasury value = 30 } #3000 rupees
+		command = { type = provincetax which = 557 value = -1 } #Ganges
+		command = { type = provincetax which = 558 value = -1 } #Howrah
+		command = { type = provincetax which = 559 value = -1 } #Bihar
+		command = { type = relation which = ENG value = 20 }
+	}
+}
+
+#(1720-1820) The Collapse of the Mughal Empire
+event = {
+	id = 3822
+	random = no
+	country = MOG
+	name = "EVENTNAME3822" #The Collapse of the Mughal Empire
+	desc = "EVENTHIST3822"
+	#-#After the series of civil wars resulting from the disputed succession after Aurangzib's death in 1707, various nobles and local officials, notably the Nawabs and the Nizams, have managed to usurp power in the provinces. How shall we deal with them?
+
+	date = { day = 1 month = january year = 1720 }
+	offset = 300
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME3822A" #Attempt to reclaim control
+		command = { type = stability value = -6 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revoltrisk which = 48 value = 10 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3822B" #Let them have semi-autonomy
+		command = { type = stability value = -6 }
+		command = { type = domestic which = CENTRALIZATION value = -5 }
+		command = { type = independence which = BGL } #Bengal
+		command = { type = independence which = GOL } #Golconda\Hyderabad
+		command = { type = independence which = JAI } #Jaunpur\Awadh
+	}
+}
+
+#(1739-1747) Sack of Delhi by Nadir Shah
+#by Aylo1
+event = {
+	id = 230045
+	trigger = {
+		war = { country = PER country = MOG }
+		owned = { province = 543 data = -1 } #Delhi
+		control = { province = 543 data = PER } #Delhi
+	}
+	random = no
+	country = MOG
+	name = "EVENTNAME230045" #Sack of Delhi
+	desc = "EVENTHIST230045"
+	#-#Capturing Muhammad Shah at the Battle of Karnel (1739), Persian Emperor Nadir Shah entered Delhi. The insuing bloodshed cost well over 30,000 lives. Their plunder included the Peacock Throne, the Koh-i-Noor and Darya-i-Noor Diamonds plus millions worth in gold, jewelery and coin. Before withdrawing, Nadir Shah crowned Muhammad Shah Badshah in an ignoble ceremony - further humiliating the Mughals.
+
+	date = { day = 1 month = january year = 1739 }
+	offset = 30
+	deathdate = { day = 19 month = june year = 1747 } #Nadir Shah died
+
+	action_a = {
+		name = "ACTIONNAME230045A" #Swallow the bitter pill
+		command = { type = population which = 543 value = -30000 } #Delhi
+		command = { type = losebuilding which = 543 value = barrack } #Delhi
+		command = { type = losemanufactory which = 543 } #Delhi
+		command = { type = provincetax which = 543 value = -2 } #Delhi
+		command = { type = provincetax which = 1521 value = -1 } #Paniah
+		command = { type = provincetax which = 1522 value = -1 } #Hikaner
+		command = { type = provincetax which = 1523 value = -1 } #Thar
+		command = { type = provincetax which = 1524 value = -1 } #Quetta
+		command = { type = provincetax which = 1525 value = -1 } #Qandarhar
+		command = { type = provincetax which = 1527 value = -1 } #Kabul
+		command = { type = treasury value = -500 }
+		command = { type = stability value = -3 }
+	}
+}
+
+#(1748-1760) Afghan Raids of Ahmad Shah Abdali
+#by Aylo1
+event = {
+	id = 230046
+	trigger = {
+		event = 6903 #MOG: Sikh Rebellions
+		war = { country = AFG country = MOG }
+		owned = { province = 543 data = -1 } #Delhi
+		control = { province = 543 data = AFG } #Delhi
+	}
+	random = no
+	country = MOG
+	name = "EVENTNAME230046" #Raids of Ahmad Shah Abdali
+	desc = "EVENTHIST230046"
+	#-#In a series of attacks Afghani Ahmad Shah Abdali raided deep into Mughal territory, forcing the Badshah to cede their lands west of the Indus River and marry his daughter to Abdali's son - the future Timur Shah (r.1772-93). Ahmad Shah later returned to pillage Delhi, Mathura, Kashmir and Panjab (1756-7). Interestingly this setback momentarily diverted Sikh and Maratha attention away from Delhi.
+
+	date = { day = 1 month = january year = 1748 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1760 }
+
+	action_a = {
+		name = "ACTIONNAME230046A" #Peace at all costs!
+		command = { type = cedeprovince which = AFG value = 539 } #Indus
+		command = { type = cedeprovince which = AFG value = 540 } #Sindh
+		command = { type = cedeprovince which = AFG value = 1523 } #Thar
+		#IF not already part of Afghanistan
+		command = { type = cedeprovince which = AFG value = 1524 } #Quetta
+		command = { type = cedeprovince which = AFG value = 1525 } #Qandarhar
+		command = { type = cedeprovince which = AFG value = 1527 } #Kabul
+		command = { type = revoltrisk which = 36 value = -4 } #Sikhs, Marathas
+		command = { type = dynastic which = AFG }
+		command = { type = treasury value = -250 } #treasury looted
+ 		command = { type = land value = -100 } #loss of lands, wealth...
+ 		command = { type = infra value = -100 }
+		command = { type = trade value = -200 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME230046B" #Resist the invaders!
+		command = { type = population which = 543 value = -7539 } #Delhi
+		command = { type = provincetax which = 543 value = -1 } #Delhi
+		command = { type = population which = 1520 value = -5682 } #Chandiganer
+		command = { type = provincetax which = 1520 value = -1 } #Chandiganer
+		command = { type = population which = 1521 value = -3517 } #Panjab
+		command = { type = provincetax which = 1521 value = -1 } #Panjab
+		command = { type = treasury value = -50 }
+		command = { type = stability value = -3 }
+		command = { type = revolt which = 543 } #raiders
+		command = { type = revolt which = 543 }
+		command = { type = revolt which = 1520 }
+		command = { type = revolt which = 1520 }
+		command = { type = revolt which = 1521 }
+		command = { type = revolt which = 1521 }
+	}
+}
+
+#(1750-1759) Wazir Ghazi-ud-Din
+#by Aylo1
+event = {
+	id = 230047
+	trigger = {
+		OR = {
+			event = 3822 #MOG: Collapse of the Mughal Empire
+			event = 230043 #MOG: Saiyid brothers
+		}
+	}
+	random = no
+	country = MOG
+	name = "EVENTNAME230047" #Ghazi-ud-Din
+	desc = "EVENTHIST230047"
+	#-#A grandson of Asaf Jah I - Nizam of Hyderabad, Ghazi-ud-Din was Wazir of the Mughal Empire. Like the Saiyid brothers, he was a Kingmaker responsible for deposing Ahmad Shah Bahadur (r.1748-54), Alamgir II (r.1754-9) and Shâh Jahan III (r.1759-60). Although he escaped punishment by going on pilgrimage to Mecca, the ramifications of his deeds further fragmented an already ailing Empire.
+
+	date = { day = 1 month = january year = 1750 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1759 }
+
+	action_a = {
+		name = "OK"
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = stability value = -3 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#(1759-1765) Treaty of Allahabad
+#by Aylo1
+event = {
+	id = 230048
+	trigger = {
+		event = 3045 #ENG: The East India Company
+		neighbour = ENG
+		OR = {
+			owned = { province = 558 data = -1 } #Howrah
+			owned = { province = 559 data = -1 } #Bihar
+			owned = { province = 560 data = -1 } #Orissa
+			vassal = { country = BGL country = MOG }
+		}
+	}
+	random = no
+	country = MOG
+	name = "EVENTNAME230048" #Treaty of Allahabad
+	desc = "EVENTHIST230048"
+	#-#Robert Clive's victories over the Nawab of Bengal at Plassey (1757) and Shah Alam II at Buxar (1764) induced the latter to grant the East India Company a diwani (right to collect revenue) in Bengal, Bihar and Orissa. This historic agreement laid the foundations of British-India. In exchange the Padishah regained the districts of Kora and Allahabad in addition to an annual tribute of 2.6 million rupees.
+
+	date = { day = 1 month = january year = 1759 }
+	offset = 30
+	deathdate = { day = 12 month = august year = 1765 }
+
+	action_a = {
+		name = "ACTIONNAME230048A" #Sign it
+		command = { type = cedeprovince which = ENG value = 558 } #Howrah
+		command = { type = cedeprovince which = ENG value = 559 } #Bihar
+		command = { type = cedeprovince which = ENG value = 560 } #Orissa
+		command = { type = removecore which = 558 } #Howrah
+		command = { type = removecore which = 559 } #Bihar
+		command = { type = removecore which = 560 } #Orissa
+		command = { type = provincetax which = 545 value = 1 } #Kora and Allahabad #Bundelkhand
+		command = { type = relation which = ENG value = 50 }
+ 		command = { type = treasury value = 260 }
+	}
+}
+
+#(1772-1781) Najaf Khan's Reforms
+#by Aylo1
+event = {
+	id = 230049
+	trigger = {
+		leader = 090317 #Mirza Najaf Khan (MOG)
+	}
+	random = no
+	country = MOG
+	name = "EVENTNAME230049" #Najaf Khan's Reforms
+	desc = "EVENTHIST230049"
+	#-#A Persian adventurer in Mughal service, Mirza Najaf Khan oversaw the Empire's final days of glory. Remodelling the infantry along European lines with traditional cavalry and artillery, they became the most formidable force in India after the British. A new Mughal Army (with Marathi help) performed well against marauding Sikhs and the Rohilla of Zabita Khan, but corruption, intrigue and jealousy ensured it didn't outlast its creator.
+
+	date = { day = 1 month = january year = 1772 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1781 }
+
+	action_a = {
+		name = "ACTIONNAME230049A" #Initiate Reforms
+		command = { type = domestic which = land value = 1 }
+		command = { type = domestic which = quality value = 2 } #modern arms
+		command = { type = INF which = -2 value = 8000 }
+		command = { type = CAV which = -2 value = 4000 }
+		command = { type = ART which = -2 value = 20 }
+		command = { type = manpower value = 40 }
+		command = { type = treasury value = -150 }
+		command = { type = land value = 1000 }
+	}
+	action_b = {
+		name = "ACTIONNAME230049B" #Rely on the Marathas
+		command = { type = domestic which = offensive value = 1 } #shock from cavalry
+		command = { type = relation which = MAH value = 50 }
+		command = { type = CAV which = -1 value = 10000 }
+		command = { type = treasury value = -100 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 230051

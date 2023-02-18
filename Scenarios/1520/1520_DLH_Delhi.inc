@@ -4,7 +4,7 @@
 
 country = {
 	tag = DLH
-	ai = "DLH_1419.ai"
+	ai = "DLH_1419.txt"
 	policy = {
 		aristocracy = 8
 		centralization = 1
@@ -30,9 +30,9 @@ country = {
 		relation = { tag = MOG value = -100 refusetrade = no }
 		relation = { tag = GUJ value = -100 }
 		relation = { tag = BGL value = -50 }
-		relation = { tag = JAI value = -100 }
-		relation = { tag = DAM value = -100 }
-		relation = { tag = HYD value = -100 }
+		relation = { tag = RAJ value = -100 }
+		relation = { tag = BIJ value = -100 }
+		relation = { tag = GOL value = -100 }
 		relation = { tag = AHM value = -100 }
 	}
 	knownprovinces = {

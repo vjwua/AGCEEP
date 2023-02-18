@@ -4,7 +4,7 @@
 
 country = {
 	tag = YEM
-	ai = "SmallTrade1.ai"
+	ai = "SmallTrade1.txt"
 	policy = {
 		aristocracy = 9
 		centralization = 3
@@ -24,7 +24,7 @@ country = {
 	treasury = 99
 	inflation = 0
 	merchants = 0.083333
-	religion = { type = shiite }
+	religion = { type = shia }
 	culture = { type = arabic }
 	diplomacy = { }
 	knownprovinces = {

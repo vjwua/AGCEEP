@@ -1,0 +1,169 @@
+#Sicily (SIC)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1571-1573) The Holy League
+#by Toio and YodaMaster
+event = {
+	id = 281000
+	trigger = {
+		exists = TUR
+		OR = {
+			event = 3549 #PAP: The Holy League
+			event = 236000 #MUS: The Holy League (no Papal States)
+		}
+	}
+	random = no
+	country = SIC
+	name = "EVENTNAME3549" #The Holy League
+	desc = "EVENTHIST3549"
+	#-#When in 1570 the Turks sent an ultimatum to Venice asking for the ceding of Cyprus and then invaded the island after the Republic of San Marco failed to respond, a great uproar was created in the Catholic world by the facts and rumors of Ottoman atrocities in the last Christian bastion of the eastern Mediterranean. After a first failure in the summer of 1570, Pope Pius V managed to convince major Catholic nations (except France) to join a Holy League against the heathens Turks, and it was proclaimed in May 1571. The League would lead to the great naval victory of Don Juan on the Turks at Lepanto, but would not outlast this first and final triumph. Selim II is rumored to have said, after the news he had lost 200 galleys at Lepanto: At Lepanto, the Christians have shaved me. At Cyprus, I cut their arm. My beard will grow again….
+
+	date = { day = 7 month = may year = 1571 }
+	offset = 30
+	deathdate = { day = 13 month = april year = 1573 }
+
+	action_a = {
+		name = "ACTIONNAME3161A" #Support the Holy League
+		command = { type = casusbelli which = TUR value = 72 }
+		command = { type = relation which = TUR value = -150 }
+		command = { type = relation which = PAP value = 50 }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = GEN value = 50 }
+		command = { type = relation which = ITA value = 50 }
+		command = { type = relation which = KNI value = 50 }
+		command = { type = relation which = NAP value = 50 }
+		command = { type = relation which = SAV value = 50 }
+		command = { type = relation which = SPA value = 50 }
+		command = { type = relation which = TOS value = 50 }
+		command = { type = relation which = VEN value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME3549B" #Let the matter fall
+		command = { type = relation which = TUR value = 50 }
+		command = { type = relation which = PAP value = -50 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = relation which = GEN value = -50 }
+		command = { type = relation which = KNI value = -50 }
+		command = { type = relation which = ITA value = -50 }
+		command = { type = relation which = NAP value = -50 }
+		command = { type = relation which = SAV value = -50 }
+		command = { type = relation which = SPA value = -50 }
+		command = { type = relation which = TOS value = -50 }
+		command = { type = relation which = VEN value = -50 }
+	}
+}
+
+#(1675-1715) Economic and Social Decadence - Ahistorical
+#by Bordic
+event = {
+	id = 281003
+	trigger = {
+		NOT = {
+			countrysize = 10
+			domestic = { type = innovative value = 9 }
+			domestic = { type = serfdom value = 3 }
+			domestic = { type = aristocracy value = 1 }
+			event = 338232 #ProvinceSpec*389: The plague in Milan
+		}
+	}
+	random = no
+	country = SIC
+	name = "EVENTNAME251066" #Economic and Social Decadence
+	desc = "EVENTHIST251066"
+	#-#In the late XVIIth century, the disuse of the Mediterranean sea as the main international trade junction between Europa and the East Indies brought the Italian economic system to collapse. Italy became more removed from the mainstream of European development and each local administration along the peninsula lagged behind that of any other European contemporary. The practice of agriculture as prevailing economic activity meant the coming back to power of the most conservative landowning aristocracy. That economic backwardness associated with the effects of Counterreform deeply affected Italian social life too, now less and less inclined to accept innovation and to develop some entrepreneurial attitude.
+
+	date = { day = 28 month = january year = 1675 }
+	offset = 60
+	deathdate = { day = 0 month = january year = 1715 }
+
+	action_a = {
+		name = "ALAS"
+		command = { type = stability value = -1 }
+		command = { type = provincetax which = -2 value = -2 }
+		command = { type = provincemanpower which = -2 value = -1 }
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = domestic which = MERCANTILISM value = 1 }
+		command = { type = domestic which = SERFDOM value = 1 }
+		command = { type = domestic which = LAND value = 1 }
+		command = { type = trade value = -500 }
+		command = { type = infra value = -500 }
+		command = { type = naval value = -500 }
+	}
+}
+
+#(1815-1820) The Bourbons restored
+#by Bordic
+event = {
+	id = 281002
+	trigger = {
+		event = 179061 #HAB: The Restoration in the Two Sicilies
+		atwar = no
+	}
+	random = no
+	country = SIC
+	name = "EVENTNAME281002" #The Bourbons restored
+	desc = "EVENTHIST179061"
+	#-#In the Congress of Vienna, the Kingdoms of Naples (which Murat believed to maintain) and Sicily, now united in the socalled Kingdom of Two Sicilies, were given back to the former King Ferdinando IV of Bourbon, who was forced to exile in Sicily when the French troops had invaded his realm. Ferdinando changed his numbering from IV to I as to represent that he was the first monarch to rule the United Kingdom of Two Sicilies.
+
+	date = { day = 3 month = may year = 1815 }
+	offset = 13
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME281002A" #King Ferdinando is back
+		command = { type = wakemonarch which = 0123513 } #Ferdinando I
+		command = { type = inherit which = NAP }
+		command = { type = flagname which = "Bourbon" }
+		command = { type = addcore which = 393 } #Napoli
+		command = { type = addcore which = 394 } #Apulia
+	}
+}
+
+#(1815-1820) Return to continental Italy
+#Savoyard event of 'Move Court Offshore' by Isaac Brock
+#reworked by Bordic for Sicily (Two Sicilies actually!)
+event = {
+	id = 281001
+	trigger = {
+		NOT = { exists = NAP }
+		event = 179058 #HAB: The Restoration in Italy
+		owned = { province = 393 data = -1 } #Napoli
+		control = { province = 393 data = -1 }
+		atwar = no
+	}
+	random = no
+	country = SIC
+	name = "EVENTNAME281001" #Return to continental Italy
+	desc = "EVENTHIST281001"
+	#-#The mainland has been freed from foreign domination and belongs to us once again. Shall we move the new government of the Two Sicilies to the old capital of the former Kingdom of Naples?
+
+	date = { day = 3 month = may year = 1815 }
+	offset = 17
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME281001A" #Return to Naples
+		command = { type = flagname which = "Bourbon" } #in case Sicily is released by Austria
+		command = { type = wakemonarch which = 0123513 } #Ferdinando I
+		command = { type = stability value = 1 }
+		command = { type = capital which = 393 } #Napoli
+		command = { type = addcore which = 393 } #Napoli
+		command = { type = addcore which = 394 } #Apulia
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME281001B" #Stay where it is permanently
+		command = { type = flagname which = "Bourbon" }
+		command = { type = wakemonarch which = 0123513 } #Ferdinando I
+		command = { type = stability value = -2 }
+		command = { type = domestic which = CENTRALIZATION value = -2 }
+		command = { type = revoltrisk which = 60 value = 5 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 281004

@@ -4,7 +4,7 @@
 
 country = {
 	tag = MAL
-	ai = "SmallTrade1.ai"
+	ai = "SmallTrade1.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -15,7 +15,7 @@ country = {
 	inflation = 0
 	merchants = 0
 	religion = { type = sunni }
-	culture = { type = mali }
+	culture = { type = mande }
 	diplomacy = { }
 	knownprovinces = {
 		791 792 793 794 795 1487 1488 1489 1490 1491 1492 1493 1494 1495 1496 1497 1498 1499 1500 1501 1502

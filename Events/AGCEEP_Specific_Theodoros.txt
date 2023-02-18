@@ -1,0 +1,299 @@
+#Theodoros (THO)
+
+#-----------------------------------------------------------------------------------------------
+
+#(14191453-1499) Fall of Constantinople
+#by Aylo1
+event = {
+	id = 196006
+	trigger = {
+		OR = {
+			NOT = { exists = BYZ }
+			event = 3353 #TUR: City of Men's Desire
+		}
+		NOT = {
+			owned = { province = 357 data = -1 } #Thrace
+			owned = { province = 357 data = TRE } #Thrace
+			owned = { province = 357 data = MRE } #Thrace
+		}
+		NOT = {
+			war = { country = GEN country = THO }
+		}
+		OR = {
+			owned = { province = 465 data = GEN } #Kerch
+			owned = { province = 463 data = GEN } #Crimea
+			owned = { province = 466 data = GEN } #Azov
+			owned = { province = 469 data = GEN } #Abkhazia
+		}
+	}
+	random = no
+	country = THO
+	name = "EVENTNAME196006" #Fall of Constantinople
+	desc = "EVENTHIST196006"
+	#-#Byzantium's demise (1453) was received with alarm in the Crimea. The consequences of a hostile nation manning the Bosporus forced old foes Theodoros and Genoan-Kaffa to reconcile in the face of a common enemy. An Ottoman campaign (1454) and the conquest of Trapezountas (1461) strengthened their resolve with both parties formally signing a defensive alliance in 1471.
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 120
+	deathdate = { day = 29 month = december year = 1499 }
+
+	action_a = {
+		name = "ACTIONNAME196006A" #Make amends
+		command = { type = relation which = GEN value = 100 }
+		command = { type = alliance which = GEN }
+		command = { type = treasury value = -20 }
+		command = { type = trigger which = 196007 } #THO: Consequence of the fall of Constantinople
+	}
+	action_b = {
+		name = "ACTIONNAME196006B" #Keep our own counsel
+		command = { }
+	}
+}
+#(1419-1499) Consequence of the fall of Constantinople
+event = {
+	id = 196007 #triggered by THO_196006 A
+	trigger = {
+		owned = { province = 357 data = TUR } #Thrace
+	}
+	random = no
+	country = THO
+	name = "EVENTNAME196007" #Consequence of the fall of Constantinople
+	desc = "EVENTHIST196006"
+	#-#Byzantium's demise (1453) was received with alarm in the Crimea. The consequences of a hostile nation manning the Bosporus forced old foes Theodoros and Genoan-Kaffa to reconcile in the face of a common enemy. An Ottoman campaign (1454) and the conquest of Trapezountas (1461) strengthened their resolve with both parties formally signing a defensive alliance in 1471.
+
+	action_a = {
+		name = "DAMN"
+		command = { type = relation which = TUR value = -80 }
+	}
+}
+
+#(1420-1429) Fortress of Mangup-Kale
+#by Aylo1
+event = {
+	id = 196002
+	trigger = {
+		owned = { province = 464 data = -1 } #Kaffa
+		control = { province = 464 data = -1 } #Kaffa
+		atwar = no
+	}
+	random = no
+	country = THO
+	name = "EVENTNAME196002" #Fortress of Mangup-Kale
+	desc = "EVENTHIST196002"
+	#-#Built by the Byzantine Emperors during the VI and VII centuries, it was associated with the mysterious fortress of Doros - serving as bastion of imperial might in the Crimea. Under the stewardship of Prinkeps Alexios (r.1403-47) the site was renovated as capitol of the Principality. The basilica and citadel were restored with an additonal palace while the city benefitted from three lines of fortifications that exploited the terrain. Taken by the Ottomans in 1475, they used it as an outpost in the Crimea until the XVIII century.
+
+	date = { day = 0 month = january year = 1420 }
+	offset = 120
+	deathdate = { day = 29 month = december year = 1429 }
+
+	action_a = {
+		name = "ACTIONNAME196002A" #Make it fit for a Prince
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = domestic which = OFFENSIVE value = -2 }
+		command = { type = fortress which = 464 value = -2 } #Kaffa
+		#Kaffa fortress +1
+		command = { type = fortress which = 464 value = 1 } #Kaffa
+		command = { type = treasury value = -100 }
+		command = { type = infra value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME196002B" #Leave the ruins alone
+		command = { }
+	}
+}
+
+#(1422-1431) Mastery of the Euxine - Part 1
+#by Aylo1
+event = {
+	id = 196003
+	trigger = {
+		OR = {
+			owned = { province = 465 data = GEN } #Kerch
+			neighbour = GEN
+		}
+		NOT = {
+			alliance = { country = THO country = GEN }
+		}
+	}
+	random = no
+	country = THO
+	name = "EVENTNAME196003" #Mastery of the Euxine
+	desc = "EVENTHIST196003"
+	#-#Beginning in 1422, Theodoros and Genoa both claimed the strategic seaport of Cembalo and subsequently control of the Black Sea trade. It repeatedly changed hands in the next decade with Genoa fortifying Cembalo (1425) while Prinkeps Alexios attempted to recoup his losses by rebuilding the harbour at Kalimita (1427).
+
+	date = { day = 0 month = january year = 1422 }
+	offset = 180
+	deathdate = { day = 29 month = december year = 1432 }
+
+	action_a = {
+		name = "ACTIONNAME196003A" #Cembalo is ours
+		command = { type = casusbelli which = GEN value = 36 }
+		command = { type = relation which = GEN value = -150 }
+		command = { type = trade value = -100 } #disruption
+		command = { type = treasury value = -35 }
+	}
+	action_b = {
+		name = "ACTIONNAME196003B" #Move trade to Kalimita
+		command = { type = domestic which = MERCANTILISM value = 1 }
+		command = { type = provincetax which = 464 value = 1 }
+		command = { type = relation which = GEN value = -50 } #new competition
+		command = { type = treasury value = -65 }
+		command = { type = trade value = 100 }
+		command = { type = naval value = 100 }
+		command = { type = sleepevent which = 196004 } #THO: Cembalo Conflict
+	}
+}
+
+#(1432-1440) Mastery of the Euxine - Part 2
+#by Aylo1
+event = {
+	id = 196004
+	trigger = {
+		event = 196003 #THO: Mastery of the Euxine
+		war = { country = THO country = GEN }
+		NOT = {
+			control = { province = 465 data = -1 } #Kerch
+		}
+		owned = { province = 464 data = -1 } #Kaffa
+		control = { province = 464 data = -1 } #Kaffa
+		exists = VEN
+	}
+	random = no
+	country = THO
+	name = "EVENTNAME196004" #Cembalo Conflict
+	desc = "EVENTHIST196004"
+	#-#Allying with Genoa's arch-enemy Venice (1432), Theodoros briefly held Cembalo (1433) through its Greek citizens but lost it again to the Genoese Fleet (1434). A combined land and naval operation ravaged Kalimita and prolonged the conflict until 1441. Neither side made any permanent gains.
+
+	date = { day = 0 month = january year = 1432 }
+	offset = 180
+	deathdate = { day = 29 month = december year = 1440 }
+
+	action_a = {
+		name = "ACTIONNAME196004A" #Court Venetian support
+		command = { type = population which = 464 value = -327 } #Kaffa
+		command = { type = relation which = GEN value = -150 }
+		command = { type = relation which = VEN value = 100 }
+		command = { type = naval value = -75 }
+		command = { type = infra value = -75 }
+		command = { type = trade value = -100 }
+	}
+	action_b = {
+		name = "ACTIONNAME196004B" #Make peace with Genoa
+		command = { type = relation which = GEN value = 100 }
+		command = { type = treasury value = -50 }
+		command = { type = stability value = 2 }
+	}
+}
+
+#(1446-1447) Trapezountas Dispute
+#by Aylo1
+event = {
+	id = 196005
+	trigger = {
+		event = 298013 #TRE: Genoan Arrears
+		exists = BYZ
+		exists = TRE
+		NOT = {
+			alliance = { country = GEN country = THO }
+			vassal = { country = THO country = GEN }
+		}
+	}
+	random = no
+	country = THO
+	name = "EVENTNAME196005" #Trapuzentine Dispute
+	desc = "EVENTHIST196005"
+	#-#When relations deteriorated between Ioannes IV of Trapezountas and the Genoan Republic, Alexios of Theodoros and Ioannes VIII of Byzantium were quick to support a fellow Greek potentate. The Byzantine Navy blockaded Genoan Kaffa while the Principate Army raided Cembalo and reinforced Trapuzentine forces in the region under Despotes Dauid (II).
+
+	date = { day = 0 month = january year = 1446 }
+	offset = 60
+	deathdate = { day = 29 month = december year = 1447 }
+
+	action_a = {
+		name = "ACTIONNAME196005A" #Support the Megas Komnenos
+		command = { type = casusbelli which = GEN value = 12 }
+		command = { type = relation which = GEN value = -75 }
+		command = { type = relation which = TRE value = 50 }
+		command = { type = relation which = BYZ value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME196005B" #Don't get involved
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1472) Wedded Bliss
+#by Khephren - reworked by YodaMaster and aylo1
+event = {
+	id = 196000
+	trigger = {
+		exists = MOL
+	}
+	random = no
+	country = THO
+	name = "EVENTNAME196000" #Wedded Bliss
+	desc = "EVENTHIST196000"
+	#-#Maria Asanina Palaiologina (aka Maria of Mangup) was a niece of Issakios Saichos (r.1458-75). Her marriage with Stefan III cel Mare of Moldavia (r.1457-1504) in 1472 proved bittersweet. On one hand Theodoros gained an ally against the Ottomans but the Prince's new relation later engineered Issakios's downfall in favour of his new brother-in-law Alexandros (1475). A proposed marital alliance between Saichos's daughter and Ivan III of Muscovy's son (Ivan 'Molodoy') was also made but came to naught with his demise - despite promises of trade concessions to Muscovite merchants.
+
+	date = { day = 13 month = september year = 1472 }
+	offset = 30
+	deathdate = { day = 13 month = october year = 1472 }
+
+	action_a = {
+		name = "ACTIONNAME196000A" #Marry the Voivode
+		command = { type = relation which = MOL value = 50 }
+		command = { type = treasury value = -20 }
+		command = { type = trigger which = 231000 } #MOL: Maria of Mangup
+	}
+	action_b = {
+		name = "ACTIONNAME196000B" #Marry Muscovy's heir
+		command = { type = relation which = MOS value = 50 }
+		command = { type = treasury value = -20 }
+		command = { type = dynastic which = MOS }
+		command = { type = trade value = 50 }
+		command = { type = sleepevent which = 196001 } #THO: Palace Coup
+	}
+
+}
+
+#(1475) Palace Coup
+#by Khephren - reworked by YodaMaster and aylo1
+event = {
+	id = 196001
+	trigger = {
+		OR = {
+			neighbour = MOL
+			control = { province = 319 data = MOL } #Bujak Moldavias connection to the Black sea
+		}
+		event = 231000 #MOL: Maria of Mangup
+		NOT = {
+			AND = {
+				countrysize = 4
+				control = { province = 464 data = -1 } #Kaffa
+				war = { country = THO country = TUR }
+			}
+		}
+	}
+	random = no
+	country = THO
+	name = "EVENTNAME196001" #Palace Coup
+	desc = "EVENTHIST196001"
+	#-#In light of Issakios Saichos's pro-Ottoman stance, Stefan III of Moldavia backed Alexandros Gabras's bid for the throne. Supplying him with 300 mercenaries, Gabras sailed from Montecastro to Kalimita where he murdered Saichos and assumed control of Theodoros. This usurpation led to Mangup being invested by Ottoman general Gedik Ahmed Pasha - who took its citadel in December 1475.
+
+	date = { day = 1 month = january year = 1475 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1475 }
+
+	action_a = {
+		name = "ACTIONNAME196001A" #Proclaim Alexandros Prince
+		command = { type = relation which = TUR value = -150 }
+		command = { type = relation which = MOL value = 50 }
+		command = { type = wakemonarch which = 066503 } #Alexandros
+		command = { type = stability value = -3 }
+		command = { type = manpower value = 15 } #rep troops vs TUR later
+		command = { type = revolt which = 464 } #Kerch
+		command = { type = revolt which = 464 } #Kerch
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 196008

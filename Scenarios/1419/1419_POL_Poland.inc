@@ -4,7 +4,7 @@
 
 country = {
 	tag = POL
-	ai = "POL_1419.ai"
+	ai = "POL_1419.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -24,11 +24,10 @@ country = {
 		relation = { tag = BOH value = 170 }
 		relation = { tag = HUN value = 170 }
 		relation = { tag = CRO value = 170 }
-		relation = { tag = SIE value = 165 }
 		relation = { tag = LAT value = 125 }
 		relation = { tag = LIV value = 125 }
 		relation = { tag = SWE value = 45 }
-		relation = { tag = MIN value = 175 }
+		relation = { tag = MAS value = 175 }
 		relation = { tag = BRA value = 150 }
 	}
 	knownprovinces = {

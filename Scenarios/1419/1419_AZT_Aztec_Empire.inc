@@ -4,7 +4,7 @@
 
 country = {
 	tag = AZT
-	ai = "AZT_1419.ai"
+	ai = "AZT_1419.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -15,7 +15,7 @@ country = {
 	inflation = 0
 	merchants = 0.083333
 	religion = { type = pagan }
-	culture = { type = aztek }
+	culture = { type = aztec }
 	diplomacy = { }
 	knownprovinces = {
 		14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 822 1477 1478 1479

@@ -4,7 +4,7 @@
 
 country = {
 	tag = SON
-	ai = "Large.ai"
+	ai = "Large.txt"
 	policy = {
 		aristocracy = 7
 		centralization = 4
@@ -25,7 +25,7 @@ country = {
 	inflation = 0
 	merchants = 0
 	religion = { type = sunni }
-	culture = { type = mali }
+	culture = { type = mande }
 	diplomacy = {
 		relation = { tag = MAL value = -50 }
 		relation = { tag = HAS value = -50 }
@@ -67,7 +67,6 @@ country = {
 		location = 1495
 		bailiff = yes
 		manufactory = luxury
-		construction = luxury
 	}
 	city = {
 		fortress = { level = 1 }

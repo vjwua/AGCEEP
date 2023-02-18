@@ -4,7 +4,7 @@
 
 country = {
 	tag = GEL
-	ai = "SmallTrade1.ai"
+	ai = "SmallTrade1.txt"
 	colonialattempts = 0
 	colonialnation = yes
 	major = no
@@ -17,7 +17,7 @@ country = {
 	religion = { type = catholic }
 	culture = { type = german }
 	diplomacy = {
-		relation = { tag = MUN value = 175 }
+		relation = { tag = BRG value = 175 }
 	}
 	knownprovinces = {
 		1614 #Pope

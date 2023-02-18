@@ -4,7 +4,7 @@
 
 country = {
 	tag = TOS
-	ai = "SmallCRC0.ai"
+	ai = "SmallCRC0.txt"
 	policy = {
 		aristocracy = 4
 		centralization = 5
@@ -63,7 +63,6 @@ country = {
 		bailiff = yes
 		courthouse = yes
 		manufactory = luxury
-		construction = luxury
 		date = { year = 1480 month = january day = 7 }
 	}
 	landunit = {

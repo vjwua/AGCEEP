@@ -4,7 +4,7 @@
 
 country = {
 	tag = DAX
-	ai = "CHI_1635_CivilWar.ai"
+	ai = "CHI_1635_CivilWar.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -14,7 +14,7 @@ country = {
 	treasury = 100
 	inflation = 0
 	merchants = 0.083333
-	religion = { type = confucianism }
+	religion = { type = confucian }
 	culture = { type = han }
 	diplomacy = {
 		relation = { tag = SMI value = -200 }

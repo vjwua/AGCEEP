@@ -4,7 +4,7 @@
 
 country = {
 	tag = MOR
-	ai = "Large.ai"
+	ai = "Large.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -13,7 +13,7 @@ country = {
 	inflation = 0.3000000
 	merchants = 0.083333
 	religion = { type = sunni }
-	culture = { type = delaware }
+	culture = { type = maghrebi }
 	diplomacy = { }
 	knownprovinces = {
 		238 239 240 241 242 243 244 245 246 247 248 249 250 291 292 293 294

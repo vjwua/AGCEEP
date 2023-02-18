@@ -1,0 +1,3737 @@
+#Sweden (SWE)
+
+#-----------------------------------------------------------------------------------------------
+#Erik VII Sequence
+
+#(1419-1439) Erik issues war taxes
+event = {
+	id = 291018 #triggered by DAN_159043 A
+	random = no
+	country = SWE
+	name = "EVENTNAME291018" #Erik issues war taxes
+	desc = "EVENTHIST291018"
+	#-#During his wars King Erik needed money for troops badly. Therefore he issues a series of war taxes in Sweden.
+
+	action_a = {
+		name = "ACTIONNAME291018A" #We must pay our leige
+		command = { type = stability value = -1 }
+		command = { type = ADM which = -2 value = 180 }
+		command = { type = treasury value = -80 }
+		command = { type = revoltrisk which = 360 value = 3 }
+	}
+}
+#(1419-1439) Unrest in Sweden
+event = {
+	id = 291019 #triggered by DAN_159045 A
+	random = no
+	country = SWE
+	name = "EVENTNAME291019" #Unrest in Sweden
+	desc = "EVENTHIST291019"
+	#-#Following the wars against the counts of Holstein the unrest in Sweden was very high due to the war taxes imposed by Erik. In 1434 this resulted in major rebellion in northern and central Sweden. Erik had no choice but to sign a treaty that severely reduced his power in Sweden or face a full-scale Swedish war. He ended up signing the treaty and was now obliged to heed the advice of the Swedish State Council as well as only allow Swedish nobles to govern Swedish provinces. Erik was furious and left for his castle in Gotland leaving the administration of Denmark in the hands of the Danish State Council.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = stability value = 3 }
+		command = { type = ADM which = 3 value = 120 }
+		command = { type = MIL which = 2 value = 120 }
+		command = { type = DIP which = 1 value = 120 }
+		command = { type = domestic which = aristocracy value = 1 } #More influence for the Swedish nobility
+		command = { type = domestic which = centralization value = -1 } #More influence for the Swedish nobility
+		command = { type = revoltrisk which = 120 value = -3 } #Swedish nobles less likely to revolt for now
+	}
+}
+#(1419-1439) Rebellion in Sweden
+event = {
+	id = 291020 #triggered by DAN_159045 B
+	random = no
+	country = SWE
+	name = "EVENTNAME291020" #Rebellion in Sweden
+	desc = "EVENTHIST291020"
+	#-#The Swedes were not happy with the Danes' frequent wars on Schleswig, Holstein, Mecklenburg, and Pomerania, which were a disturbance to Swedish iron exports to the European continent. Furthermore, the centralization of government in Denmark raised suspicions. The Swedish Privy Council wanted to retain a fair degree of self-government. The unity of the union eroded in the 1430s, even to the point of armed rebellion, leading to the expulsion of Danish forces from Sweden.
+
+	action_a = {
+		name = "ACTIONNAME291020A" #Sweden will be independent
+		command = { type = stability value = 3 }
+		command = { type = breakvassal which = DAN }
+		command = { type = war which = DAN }
+		command = { type = domestic which = aristocracy value = 1 } #More influence for the Swedish nobility
+		command = { type = domestic which = centralization value = -1 } #More influence for the Swedish nobility
+		command = { type = revoltrisk which = 120 value = -3 } #Swedish nobles less likely to revolt for now
+		command = { type = sleepmonarch which = 0131500 } #Erik av Pommern
+		command = { type = wakemonarch which = 0131540 } #Swedish Privy Council *
+	}
+	action_b = {
+		name = "ACTIONNAME291020B" #Lets fight the rebellion instead
+		command = { type = stability value = -3 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = domestic which = aristocracy value = -1 } #Less influence for the Swedish nobility
+		command = { type = domestic which = centralization value = 1 } #Less influence for the Swedish nobility
+		command = { type = revoltrisk which = 120 value = 3 } #Swedish nobles more likely to revolt for now
+		command = { type = province_revoltrisk which = 254 value = -2 } #Svealand
+		command = { type = province_revoltrisk which = 257 value = -1 } #Bergslagen
+		command = { type = province_revoltrisk which = 1469 value = -1 } #Gästrikland
+	}
+}
+#(1448-1459) Erik has lost support from Denmark
+event = {
+	id = 291021
+	random = no
+	country = SWE
+	name = "EVENTNAME291021" #Sweden claims Gotland and Norway
+	desc = "EVENTHIST291021"
+	#-#When Erik retreated to Gotland and began pirating on merchants in the Baltic Sea he lost support from Denmark. An opportunity to seize the claim on Gotland for the Swedish nobles presented itself at the death of Christopher of Bavaria in 1448, without a direct heir, Charles VIII was elected king of Sweden on June 20 and on June 28 he was hailed as the new monarch at the Stone of Mora, not far from Uppsala. Charles now claimed Norway and Gotland as Swedish crown lands. His election as king of Sweden resulted in an effort to reestablish the Kalmar Union, this time under Swedish initiative, and in 1449 he was also elected king of Norway. The Danish had in September 1448 elected Christian I as their new monarch. Soon, in 1450, Charles was forced to cede Norway to Christian. From 1451, Sweden and Denmark were in state of war against each other which would last for three years.
+
+	date = { day = 27 month = june year = 1448 }
+	offset = 90
+	deathdate = { day = 1 month = january year = 1459 }
+
+	action_a = {
+		name = "ACTIONNAME291021A" #Gotland belongs to Sweden
+		command = { type = addcore which = 308 } #Gotland
+		command = { type = relation which = DAN value = -100 }
+	}
+}
+#(1449-1459) The invasion of Gotland is launched -I-
+event = {
+	id = 291022
+	trigger = {
+		atwar = no
+		ai = yes
+		event = 291021 #SWE: Erik has lost support from Denmark
+		NOT = {
+			owned = { province = 308 data = -1 } #Gotland
+			owned = { province = 308 data = POM } #Gotland
+		}
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME291022" #The invasion of Gotland is launched
+	desc = "EVENTHIST291022"
+	#-#In 1449 the Swedish forces tried to invade Gotland.
+
+	date = { day = 1 month = january year = 1449 }
+	offset = 90
+	deathdate = { day = 1 month = january year = 1459 }
+
+	action_a = {
+		name = "ACTIONNAME291022A" #Launch the invasion of Gotland
+		command = { type = stability value = -1 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = sleepevent which = 291023 } #SWE: The invasion of Gotland is launched -II-
+	}
+}
+#(1449-1459) The invasion of Gotland is launched -II-
+event = {
+	id = 291023
+	trigger = {
+		atwar = no
+		ai = yes
+		event = 291021 #SWE: Erik has lost support from Denmark
+		owned = { province = 308 data = POM } #Gotland
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME291022" #The invasion of Gotland is launched
+	desc = "EVENTHIST291022"
+	#-#In 1449 the Swedish forces tried to invade Gotland.
+
+	date = { day = 1 month = january year = 1449 }
+	offset = 90
+	deathdate = { day = 1 month = january year = 1459 }
+
+	action_a = {
+		name = "ACTIONNAME291022A" #Launch the invasion of Gotland
+		command = { type = stability value = -1 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = trigger which = 259008 } #POM: The invasion of Gotland
+		command = { type = sleepevent which = 291022 } #SWE: The invasion of Gotland is launched -I-
+	}
+}
+#(1419-1459) Gotland is yet again in Danish hands
+event = {
+	id = 291025
+	trigger = {
+		owned = { province = 308 data = DAN }
+		event = 291021 #SWE: Erik has lost support from Denmark
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME291025" #Gotland is yet again in Danish hands
+	desc = "EVENTHIST291025"
+	#-#Despite having the opputunity to conquer Gotland from the rogue pirat Erik of Pommeerania and thereby securing Gotland for Sweden we allowed Gotland to fall into Danish hands again. There will go many years before we can assert our claim again and the Swedish nobles are not pleased.
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1459 }
+
+	action_a = {
+		name = "ACTIONNAME291025A" #Lets forget about Gotland for now
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 36 value = 3 }
+		command = { type = removecore which = 308 } #Gotland
+	}
+}
+#(1449-1459) The invasion of Gotland
+event = {
+	id = 291024 #also triggered by POM_259008
+	trigger = {
+		NOT = {
+			vassal = { country = DAN country = SWE }
+			alliance   = { country = DAN country = SWE }
+		}
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME259008" #The invasion of Gotland
+	desc = "EVENTHIST291024"
+	#-#In 1449 the Swedish forces in Gotland aided Erik in the war against the Danes. While Erik was successful in defending the island, he realised that there was no way he could win the war. Therefore he agreed to leave Gotland to the Danes for safe passage to Pomerania.
+
+	date = { day = 1 month = january year = 1449 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1459 }
+
+	action_a = {
+		name = "ACTIONNAME291024A" #Accept Danish sovereignty of Gotland
+		command = { type = stability value = 1 }
+		command = { type = removecore which = 308 } #Gotland
+	}
+	action_b = {
+		name = "ACTIONNAME291024B" #Claim Gotland and declare war on Denmark
+		command = { type = war which = DAN }
+	}
+}
+#End of Erik VII Sequence
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1605) Migration from Karelia
+event = {
+	id = 291038
+	trigger = {
+		owned = { province = 263 data = -1 } #Österbotten
+		OR = {
+			owned = { province = 1470 data = MOS } #Karelia
+			owned = { province = 1470 data = RUS } #Karelia
+		}
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME291038" #Migration from Karelia
+	desc = "EVENTHIST291038"
+	#-#Since the 13th century the Karelians have lived in the tension between the East and the West, between Eastern Orthodoxy and Western Catholicism. During this century, the Swedish crown established Korsholm as the administrative centre of Österbotten and Swedish became the main culture of the region. During the early 15th century large parts of the inland Österbotten were colonized by Finnish settlers who arrived from Karelia due to the religious persecution by the Russians and the Orthodox church.
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 90
+	deathdate = { day = 29 month = december year = 1605 }
+
+	action_a = {
+		name = "ACTIONNAME291038A" #Accept the Karelians
+		command = { type = provinceculture which = 263 value = ugric } #Österbotten
+		command = { }
+	}
+}
+
+#(1433-1435) The Engelbrekt Rebellion
+event = {
+	id = 3217 #triggered by DAN_3283 A
+	random = no
+	country = SWE
+	name = "EVENTNAME3217" #The Engelbrekt Rebellion
+	desc = "EVENTHIST3217"
+	#-#Engelbrekt Engelbrektsson is a legendary and enigmatic figure in Swedish medieval history. In 1434 the peasants of Dalarna (The Dales) in Sweden had had enough of union King Erik's crushing taxes and brutal sheriffs. Led by Engelbrekt, the peasants and miners, supported by certain factions within the church and gentry, rose up in open rebellion. They captured castle after castle and soon controlled the greater part of Sweden. Meanwhile, Erik Puke had joined Engelbrekt in revolt in Finland. For two years, Engelbrekt was the de-facto ruler of Sweden, but intrigue among the noblemen and infighting between Engelbrekt, Erik Puke and Karl Knutsson finally resulted in Engelbrekts murder at the hands of Måns Bengtsson Natt och Dag.
+
+	action_a = {
+		name = "ACTIONNAME3217A" #Have Engelbrekt murdered
+		command = { type = revolt which = 257 } #Bergslagen
+		command = { type = revolt which = 257 } #Bergslagen
+		command = { type = revolt which = 253 } #Västergötland
+		command = { type = revolt which = 253 } #Västergötland
+		command = { type = revolt which = 265 } #Nyland
+		command = { type = revolt which = 265 } #Nyland
+		command = { type = revolt which = 342 } #Finland
+		command = { type = sleepleader which = 0131800 } #Engelbrekt is murdered #Engelbrekt (SWE)
+		command = { type = stability value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME3217B" #Direct the rebellion towards Denmark proper
+		command = { type = trigger which = 3756 } #DAN: The Rebellion Spreads
+		command = { type = revolt which = 257 } #Bergslagen
+		command = { type = revolt which = 257 } #Bergslagen
+		command = { type = revoltrisk which = 12 value = 4 }
+		command = { type = sleepleader which = 0131800 } #Engelbrekt is on his own #Engelbrekt (SWE)
+	}
+	action_c = {
+		name = "ACTIONNAME3217C" #Pick of the torch of freedom!
+		command = { type = breakvassal which = DAN }
+		command = { type = casusbelli which = DAN value = 240 }
+		command = { type = relation which = DAN value = -200 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = stability value = -3 } #The nobles get upset
+	}
+}
+
+#(1470-1497) Sten Stures demands accepted
+event = {
+	id = 291001 #triggered by DAN_159000 B
+	random = no
+	country = SWE
+	name = "EVENTNAME291001" #Sten Stures demands accepted
+	desc = "EVENTHIST291001"
+	#-#In 1471 the Swedish regent Sten Sture den äldre (the elder) had been gathering support for Swedish independence of the Kalmer Union. His forces actually had control over a large portion of Sweden. The Danish monarch Christian I reluctantly accepted an independent Sweden.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = breakvassal which = DAN }
+		command = { type = relation which = DAN value = 200 }
+		command = { type = domestic which = centralization value = 2 }
+	}
+}
+
+#(1471-1497) The Battle at Brunkeberg
+event = {
+	id = 291000
+	trigger = {
+		exists = DAN
+		event = 159000 #DAN: Rise of Sten Sture den äldre (the elder)
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME291000" #The Battle at Brunkeberg
+	desc = "EVENTHIST291000"
+	#-#In 1471 the Swedish regent Sten Sture den äldre (the elder) had been gathering support for Swedish independence of the Kalmer Union. His forces actually had control over a large portion of Sweden. The Danish monarch Christian I of course wasn't happy about this and his fleet set sail for Stockholm to reclaim Sweden. There it met with the mobilized armies of his allies among the swedish nobility. However Sten Sture den äldre (the elder) massed an army combining both Swedish nobles, the commoners from Dalarna and the burghers of Stockholm, and met him in battle at Brunkeberg outside the city walls. Here King Christian lost the battle and he was forced to leave swedish ground. Sten Sture den äldre (the elder) would remain ruler of sweden for several years.
+
+	date = { day = 1 month = january year = 1471 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1497 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = breakvassal which = DAN }
+		command = { type = relation which = DAN value = -100 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = revolt which = 254 } #Svealand
+		command = { type = revolt which = 254 } #Svealand
+		command = { type = revolt which = 254 } #Svealand
+		command = { type = trigger which = 159001 } #DAN: The Battle at Brunkeberg
+	}
+}
+
+#(1477) Uppsala University 1 - Flavor
+#by Zenek K
+event = {
+	id = 291016
+	trigger = {
+		owned = { province = 254 data = -1 } #Svealand
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME291016" #Uppsala University
+	desc = "EVENTHIST291016"
+	#-#Uppsala University was founded in 1477 and was the first university in Scandinavia. The initiative in this matter came from the Primate of the Catholic Church of Sweden, Archbishop Jakob Ulvsson of Uppsala. After the Pope's approval the new University was established. It was small, having at most 50 students and a handful of professors. Uppsala University fell into decay in the first decade of the 16th century due to the political unrest of the period.
+
+	date = { day = 1 month = january year = 1477 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1477 }
+
+	action_a = {
+		name = "ACTIONNAME291016A" #Establish it
+		command = { type = infra value = 200 }
+		command = { type = treasury value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME291016B" #We cannot afford it
+		command = { type = vp value = -10 }
+		command = { type = sleepevent which = 291017 } #SWE_Restoring privileges of the Uppsala University
+	}
+}
+
+#(1482-1501) The coronation of King Hans -1-
+event = {
+	id = 291002
+	trigger = {
+		exists = DAN
+		event = 159002 #DAN: The coronation of King Hans
+		NOT = { vassal = { country = DAN country = SWE } }
+		NOT = { event = 291003 } #SWE: The coronation of King Hans -II-
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME291002" #The coronation of King Hans
+	desc = "EVENTHIST291002"
+	#-#In may 1482 Hans the son of Christian I and Dorothea of Brandenburg were crowned King of Denmark. According to an old agreement he was to rule both Denmark, Norway and Sweden.
+
+	date = { day = 1 month = may year = 1482 }
+	offset = 570
+	deathdate = { day = 8 month = august year = 1501 }
+
+	action_a = {
+		name = "ACTIONNAME291002A" #Stall the coronation of Hans
+		command = { type = stability value = -2 }
+		command = { type = relation which = DAN value = -50 }
+		command = { type = relation which = BRA value = -10 }
+		command = { type = sleepmonarch which = 0131503 } #Hans
+		command = { type = sleepmonarch which = 0131504 } #Christian II
+	}
+	action_b = {
+		name = "ACTIONNAME291002B" #We will honor the agreement
+		command = { type = stability value = 1 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = provincetax which = 257 value = -3 } #Bergslagen
+		command = { type = relation which = DAN value = 200 }
+		command = { type = trigger which = 159009 } #DAN: Sweden crowns Hans as their King
+		command = { type = sleepevent which = 291004 } #DAN: Swedish nobles support Sten Sture den äldre (the elder)
+		command = { type = sleepevent which = 159017 } #DAN: Sweden is stalling
+	}
+	action_c = {
+		name = "ACTIONNAME291002C" #Never! Sweden shall remain independent
+		command = { type = stability value = -7 }
+		command = { type = relation which = DAN value = -100 }
+		command = { type = relation which = BRA value = -25 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = revolt which = 252 } #Småland
+		command = { type = revolt which = 253 } #Västergötland
+		command = { type = revolt which = 254 } #Svealand
+		command = { type = trigger which = 159010 } #DAN: Sten Sture den äldre (the elder) refuses to crown Hans
+		command = { type = sleepevent which = 159017 } #DAN: Sweden is stalling
+		command = { type = sleepmonarch which = 0131503 } #Hans
+		command = { type = sleepmonarch which = 0131504 } #Christian II
+	}
+}
+#(1482-1501) The coronation of King Hans -II-
+event = {
+	id = 291003
+	trigger = {
+		exists = DAN
+		event = 159002 #DAN: The coronation of King Hans.
+		vassal = { country = DAN country = SWE }
+		NOT = { event = 291002 } #SWE: The coronation of King Hans -I-
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME291002" #The coronation of King Hans
+	desc = "EVENTHIST291002"
+	#-#In may 1482 Hans the son of Christian I and Dorothea of Brandenburg were crowned King of Denmark. According to an old agreement he was to rule both Denmark, Norway and Sweden.
+
+	date = { day = 1 month = may year = 1482 }
+	offset = 570
+	deathdate = { day = 8 month = august year = 1501 }
+
+	action_a = {
+		name = "ACTIONNAME291002B" #We will honor the agreement
+		command = { type = stability value = 1 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = provincetax which = 257 value = -3 } #Bergslagen
+		command = { type = relation which = DAN value = 200 }
+		command = { type = trigger which = 159009 } #DAN: Sweden crowns Hans as their King
+		command = { type = sleepevent which = 291004 } #DAN: Swedish nobles support Sten Sture den äldre (the elder)
+	}
+	action_b = {
+		name = "ACTIONNAME291003B" #Never! Sweden shall be independent
+		command = { type = stability value = -7 }
+		command = { type = breakvassal which = DAN }
+		command = { type = relation which = DAN value = -200 }
+		command = { type = relation which = BRA value = -25 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = revolt which = 252 } #Småland
+		command = { type = revolt which = 253 } #Västergötland
+		command = { type = revolt which = 254 } #Svealand
+		command = { type = trigger which = 159010 } #DAN: Sten Sture den äldre (the elder) refuses to crown Hans
+		command = { type = sleepmonarch which = 0131503 } #Hans
+		command = { type = sleepmonarch which = 0131504 } #Christian II
+	}
+}
+
+#(1482-1501) Swedish nobles support Sten Sture den äldre (the elder)
+event = {
+	id = 291004
+	trigger = {
+		exists = DAN
+		event = 291001 #SWE: Sten Stures demands accepted
+		OR = {
+			event = 291002 #SWE: The coronation of King Hans -I-
+			event = 291003 #SWE: The coronation of King Hans -II-
+		}
+		NOT = { event = 159017 } #DAN: Sweden is stalling.
+		NOT = { vassal = { country = DAN country = SWE } }
+		NOT = { vassal = { country = SWE country = DAN } }
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME291004" #Swedish nobles support Sten Sture den äldre (the elder)
+	desc = "EVENTHIST291004"
+	#-#When the Danish King Hans tried to make claims on the Swedish crown Sten Sture den äldre (the elder) went to the Swedish nobles to get their support against Hans. Because of Christian I acceptance of an independent Sweden the nobles narrowly accepted Sten Stures proposal of rejecting Hanses demand.
+
+	date = { day = 1 month = may year = 1482 }
+	offset = 1440
+	deathdate = { day = 8 month = august year = 1501 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = stability value = 3 }
+		command = { type = relation which = DAN value = -200 }
+		command = { type = relation which = BRA value = -25 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = treasury value = 100 }
+		command = { type = INF which = -1 value = 2000 }
+		command = { type = INF which = -1 value = 2000 }
+		command = { type = CAV which = -1 value = 2000 }
+		command = { type = sleepevent which = 159017 } #DAN: Sweden is stalling
+	}
+}
+
+#(1497-1501) The arrival of King Hans
+event = {
+	id = 291005 #triggered by DAN_159017 A
+	random = no
+	country = SWE
+	name = "EVENTNAME291005" #The arrival of King Hans
+	desc = "EVENTHIST291005"
+	#-#By 1497 it was painfully clear that Swedens regent Sten Sture den äldre (the elder) had been stalling the coronation of King Hans. Hans mobilised an army which headed for Stäket north of Stockholm. Stäket were under siege by Sten Sture den äldre (the elder), but with the arrival of King Hans's army Sten Sture den äldre (the elder) was forced to retreat to Stockholm. Here he waited for a pleasant army to arrive and assist him. The Swedish nobles had to deside if they should support Hans or Sten Sture den äldre (the elder).
+
+	action_a = {
+		name = "ACTIONNAME291005A" #Accept Hans as our King
+		command = { type = stability value = -1 }
+		command = { type = INF which = 1469 value = 4000 } #Gästrikland
+		command = { type = INF which = 1469 value = 4000 } #Gästrikland
+		command = { type = CAV which = 1469 value = 4000 } #Gästrikland
+		command = { type = revolt which = -2 }
+		command = { type = revolt which = 257 } #Bergslagen
+		command = { type = relation which = DAN value = 100 }
+		command = { type = provincetax which = 257 value = -3 } #Bergslagen
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = wakemonarch which = 0131503 } #Hans
+	}
+	action_b = {
+		name = "ACTIONNAME291005B" #Support Sten Sture
+		command = { type = stability value = -7 }
+		command = { type = relation which = DAN value = -100 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = revolt which = 1469 } #Gästrikland
+		command = { type = revolt which = 1469 } #Gästrikland
+		command = { type = revolt which = 1469 } #Gästrikland
+		command = { type = revolt which = 252 } #Småland
+		command = { type = revolt which = 253 } #Västergötland
+		command = { type = revolt which = 254 } #Svealand
+		command = { type = trigger which = 159010 } #DAN: Sten Sture den äldre (the elder) refuses to crown Hans
+		command = { type = sleepevent which = 159018 } #DAN: Sten Sture den äldre (the elder) submits to Hans
+	}
+}
+
+#(1497-1501) Sten Sture den äldre (the elder) submits to Hans
+event = {
+	id = 291006 #triggered by DAN_159018 A
+	random = no
+	country = SWE
+	name = "EVENTNAME291006" #Sten Sture den äldre (the elder) submits to Hans
+	desc = "EVENTHIST291006"
+	#-#In november 1497 Hans was crowned King of Sweden, and he returned to denmark with his army. Sten Stures peasant army had been defeated in two great battles, and he had no other option than to capitulate to Hans. Sten Sture den äldre (the elder) still had great support among the Swedish commoners though, and Hans desided to let him live.
+
+	action_a = {
+		name = "ACTIONNAME291006A" #Long live King Hans!
+		command = { type = stability value = 1 }
+		command = { type = relation which = DAN value = 100 }
+		command = { type = desertion which = -1 value = 2500 }
+		command = { type = desertion which = -1 value = 2500 }
+		command = { type = desertion which = -1 value = 2500 }
+	}
+}
+#(1497-1501) Sten Sture den äldre (the elder) executed
+event = {
+	id = 291007 #triggered by DAN_159018 B
+	random = no
+	country = SWE
+	name = "EVENTNAME291007" #Sten Sture den äldre (the elder) executed
+	desc = "EVENTHIST291007"
+	#-#Following his victory in Stockholm Hans were crowned King of Sweden. He then put Sten Sture den äldre (the elder) on trial for high treason, and had him executed. This desision led to much unrest since Sten Sture den äldre (the elder) had enjoyed a vast popularity among the Swedish commoners. To make matters even worse Hans returned to Denmark with his army, so the Swedish nobles were left on their own to fight the growing rebellions.
+
+	action_a = {
+		name = "ACTIONNAME291007A" #Sten Sture will be avenged
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 120 value = 1 }
+		command = { type = relation which = DAN value = -100 }
+		command = { type = casusbelli which = DAN value = 120 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = desertion which = -1 value = 2500 }
+		command = { type = desertion which = -1 value = 2500 }
+		command = { type = desertion which = -1 value = 2500 }
+	}
+	action_b = {
+		name = "ACTIONNAME291007B" #Accept Hans's desision
+		command = { type = stability value = -6 }
+		command = { type = revoltrisk which = 120 value = 3 }
+		command = { type = desertion which = -1 value = 2500 }
+		command = { type = desertion which = -1 value = 2500 }
+		command = { type = desertion which = -1 value = 2500 }
+	}
+}
+
+#(1499-1504) The Kalmar Recess
+event = {
+	id = 3218
+	trigger = {
+		exists = DAN
+		vassal = { country = DAN country = SWE }
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME3218" #The Kalmar Recess
+	desc = "EVENTHIST3218"
+	#-#Following Sweden's victory over Russia in 1497, the scheming Union King Hans realized he had to curb the power of the Swedish marshal Sten Sture den äldre (the elder). Defeating the Swedes at Rotebro he marched into Stockholm and was crowned King of Sweden, but only after granting amnesty to Sten Sture den äldre (the elder) and the rebels. This event was called the 'Kalmar Recess'. In 1500, following King Hans's crushing defeat by the peasant rebels in the Ditmarsk, Sten Sture den äldre (the elder) and the Swedish nobles rejected the Kalmar Racess, claiming Hans had not been honoring the agreement. This was to mark the beginning of the end for the Union of Kalmar.
+
+	date = { day = 1 month = january year = 1499 }
+	offset = 720
+	deathdate = { day = 1 month = january year = 1504 }
+
+	action_a = {
+		name = "ACTIONNAME3218A" #Reject the Kalmar Recess
+		command = { type = relation which = DAN value = -100 }
+		command = { type = casusbelli which = DAN value = 120 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = provincetax which = -1 value = 2 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = stability value = -4 }
+	}
+	action_b = {
+		name = "ACTIONNAME3218B" #Honor the Agreement
+		command = { type = treasury value = 200 }
+		command = { type = relation which = DAN value = 100 }
+		command = { type = stability value = 3 }
+		command = { type = domestic which = SERFDOM value = 1 }
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+	}
+}
+
+#(1501-1504) Hans defeated in Ditmarsken
+event = {
+	id = 291008
+	trigger = {
+		vassal = { country = DAN country = SWE }
+		monarch = 0131503 #Hans
+		OR = {
+			event = 159019 #DAN: The defeat at Ditmarsken -I-
+			event = 159020 #DAN: The defeat at Ditmarsken -II-
+			event = 159021 #DAN: The gift to Frederik
+		}
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME291008" #Hans defeated in Ditmarsken
+	desc = "EVENTHIST291008"
+	#-#In 1501 the Danish army suffered a massive defeat at the hands of a peasant army in Ditmarsken. This gave the Swedish nobles renewed hope of a independent Sweden. Sten Sture den äldre (the elder) siezed the moment and gathered the nobles to rally them against King Hans. The nobles agreed that time had, come for a independent Sweden and wrote a letter of independence to King Hans. Following that they seiged the castle at Stockholm where the Danish Queen Christine currently resided. Christine kept the Swedish army at bay with a 1000 men for about seven month before she was forced to surrender.
+
+	date = { day = 9 month = august year = 1501 }
+	offset = 30
+	deathdate = { day = 19 month = july year = 1504 }
+
+	action_a = {
+		name = "ACTIONNAME291008A" #Sweden shall be independent
+		command = { type = breakvassal which = DAN }
+		command = { type = wakemonarch which = 0131541 } #Sten Sture den äldre
+		command = { type = relation which = DAN value = -200 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = provincetax which = 257 value = 3 } #Bergslagen
+		command = { type = trigger which = 159022 } #DAN: Sweden declares itself independent
+	}
+	action_b = {
+		name = "ACTIONNAME291008B" #Remain loyal to Hans
+		command = { type = stability value = 1 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = revoltrisk which = 120 value = 1 }
+		command = { type = revolt which = 254 } #Svealand
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+}
+#(1501-1504) Denmark withdraws
+event = {
+	id = 291009 #triggered by DAN_159022 A
+	random = no
+	country = SWE
+	name = "EVENTNAME291009" #Denmark withdraws
+	desc = "EVENTHIST291009"
+	#-#Three days after Christine surrendered King Hans arrived with the Danish fleet, but since the Dannebrog (the Danish flag) no longer swayed above the castle of Stockholm and Christine was held prisoner, he chose but to withdraw and negotiate for Christine's release.
+
+	action_a = {
+		name = "ACTIONNAME291009A" #Keep Christine for now, but release her in the future
+		command = { type = relation which = DAN value = 25 }
+		command = { type = sleepevent which = 159024 } #DAN: Christine is not going to be released
+	}
+	action_b = {
+		name = "ACTIONNAME291009B" #Release Christine now
+		command = { type = stability value = -1 }
+		command = { type = relation which = DAN value = 75 }
+		command = { type = trigger which = 159023 } #DAN: Christine is released
+		command = { type = sleepevent which = 291010 } #DAN: War has come
+		command = { type = sleepevent which = 159027 } #DAN: Christine is rescued
+		command = { type = sleepevent which = 159024 } #DAN: Christine is not going to be released
+	}
+	action_c = {
+		name = "ACTIONNAME291009C" #Christine shall never be free
+		command = { type = stability value = 1 }
+		command = { type = relation which = DAN value = -25 }
+		command = { type = sleepevent which = 159023 } #DAN: Christine is released
+	}
+	action_d = {
+		name = "ACTIONNAME291009D" #Execute her
+		command = { type = stability value = 2 }
+		command = { type = DIP which = -2 value = 60 }
+		command = { type = relation which = DAN value = -75 }
+		command = { type = trigger which = 159025 } #DAN: Christine is not going to be released
+		command = { type = sleepevent which = 291010 } #DAN: War has come
+		command = { type = sleepevent which = 159027 } #DAN: Christine is rescued
+		command = { type = sleepevent which = 159023 } #DAN: Christine is released.
+		command = { type = sleepevent which = 159024 } #DAN: Christine is not going to be released
+	}
+}
+
+#(1501-1513) War has come
+event = {
+	id = 291010
+	trigger = {
+		event = 291009 #SWE: Denmark withdraws
+		war = { country = DAN country = SWE }
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME291010" #War has come
+	desc = "EVENTHIST291010"
+	#-#Despite of the fact that Sten Sture den äldre (the elder) held Queen Christine of Denmark captured the Danish King desided to wage war against Sweden. Sten Sture den äldre (the elder) was now left with a difficult choice. Either he could execute Christine to show his power, or he could simply let her remain confined. Executing Christine would surely gather support in Sweden, and cause unrest in Denmark, but it would also damage foreign relations.
+
+	date = { day = 9 month = august year = 1501 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1513 }
+
+	action_a = {
+		name = "ACTIONNAME291010A" #Execute Christine
+		command = { type = stability value = 1 }
+		command = { type = relation which = DAN value = -25 }
+		command = { type = trigger which = 159026 } #DAN: War has come
+		command = { type = sleepevent which = 159027 } #DAN: Christine is rescued
+	}
+	action_b = {
+		name = "ACTIONNAME291010B" #Leave Christine in prison
+		command = { type = relation which = DAN value = 25 }
+	}
+}
+
+#(1517) Trial of Trolle
+event = {
+	id = 291011
+	random = no
+	country = SWE
+	name = "EVENTNAME291011" #Trial of Trolle
+	desc = "EVENTHIST291011"
+	#-#Gustav Trolle was the Archbishop of Sweden and a clearly pro-union politician. He was one of the richer men in Sweden and his castle (Stäket) was situated strategically between Stockholm and Bergslagen, and could thus in the event of war be used to prevent reinforcements from arriving that way. In addition to this the struggle between Sten Sture den yngre (the younger) and Trolle was a matter of land and riches, in 1517 the swedish Riksdag therefore decided to remove the bishop from his position and raze his castle, even though this was something that only the Pope was allowed to do. Trolle's removal was the reason cited for the Bloodbath of Stockholm.
+
+	date = { day = 1 month = january year = 1517 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1518 }
+
+	action_a = {
+		name = "ACTIONNAME291011A" #Remove Trolle and raze his castle
+		command = { type = treasury value = 50 }
+		command = { type = provincetax which = 254 value = 1 } #Svealand
+		command = { type = fortress which = 254 value = -1 } #Svealand
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = stability value = -1 }
+		command = { type = relation which = PAP value = -100 }
+		command = { type = relation which = DAN value = -150 }
+		command = { type = breakvassal which = DAN }
+		command = { type = trigger which = 159028 } #DAN: Trial of Trolle
+		command = { type = sleepevent which = 159029 } #SWE: Trolle supports the Danish army
+	}
+	action_b = {
+		name = "ACTIONNAME291011B" #Let Trolle remain archbishop
+		command = { type = stability value = 2 }
+		command = { type = domestic which = centralization value = -1 }
+	}
+}
+
+#(1520-1530) Battle of Åsunden
+event = {
+	id = 291012 #triggered by DAN_159030 A
+	random = no
+	country = SWE
+	name = "EVENTNAME291012" #Battle of Åsunden
+	desc = "EVENTHIST291012"
+	#-#At the Battle of Åsunden's Ice Christian II defeated the Swedish army under Sten Sture den yngre (the younger)'s command. Sture was fatally wounded during the battle and died soon afterwards. Within a few months most of Sweden was in the hands of King Christian II. He arranged to have himself crowned King of Sweden in exchange for returning the conquered territories to their rightful noble owners.
+
+	action_a = {
+		name = "ACTIONNAME291012A" #Accept Christian II offer
+		command = { type = relation which = DAN value = -50 }
+	}
+}
+
+#(1520-1530) The Stockholmian Massacre
+event = {
+	id = 291013 #triggered by DAN_159031 A
+	random = no
+	country = SWE
+	name = "EVENTNAME291013" #The Stockholmian Massacre
+	desc = "EVENTHIST291013"
+	#-#The fourth of November 1520 King Christian II was crowned as King of Sweden having promised amnesty for any and all that opposed him, and he had invitited a large part of the Sture-party to his coronation. Suddenly, the 7th of November, King Christian summoned the nobles to the Great Hall, where he proceeded to accuse them of heresy and conspiracy against the True Church. The reason cited for this was the removal of Trolle, and Trolle himself demanded, that he be repaid for the destruction of his castle and his removal. Sten Sture's widow, Kristian Gyllenstierna, however, made the fatal mistake of showing King Christian the list of the names of the people who had signed the document of Trolles removal. Christian took the opportunity, and declared all the involved (except Hans Brask, the Bishop of Skara) to be heretics and enemies of the Church, a few days later the executions began, it is estimated that between 60 and 90 noblemen were executed, and many more burghers and regular Stockholmers.
+
+	action_a = {
+		name = "ACTIONNAME291013A" #This is an outrage! Lets drive the Danes away!
+		command = { type = stability value = 1 }
+		command = { type = relation which = DAN value = -200 }
+		command = { type = INF which = 257 value = 5000 } #Bergslagen
+		command = { type = CAV which = 257 value = 1000 } #Bergslagen
+		command = { type = breakvassal which = DAN }
+		command = { type = domestic which = aristocracy value = -2 }
+	}
+}
+
+#(1521-1525) Centralization of the Kalmar Union
+event = {
+	id = 291014 #triggered by the DAN_159036 A
+	random = no
+	country = SWE
+	name = "EVENTNAME291014" #Centralization of the Kalmar Union
+	desc = "EVENTHIST291014"
+	#-#When Gustav Vasa tried to claim the throne of Sweden and withdraw the country from the Kalmar Union, he faced a massive unexpected resistance from the Swedish nobles. The end result was that Sweden proclaimed their everlasting support of the Kalmar Union. This gave King Christian an opputunity to proclaim a united union and integrate Sweden which he seized. This left Sweden with the choice of either joining Denmark or accepting Gustav Vasa as their King and rebel against Christian II.
+
+	action_a = {
+		name = "ACTIONNAME291014A" #Accept the Danish proposal (End Game)
+		command = { type = trigger which = 159037 } #DAN: Centralization of the Kalmar Union
+	}
+	action_b = {
+		name = "ACTIONNAME291014B" #Decline the Danish proposal and proclaim Gustav Vasa King of Sweden
+		command = { type = breakvassal which = DAN }
+		command = { type = relation which = DAN value = -100 }
+		command = { type = domestic which = ARISTOCRACY value = -1 }
+		command = { type = stability value = -2 }
+		command = { type = trigger which = 3289 } #DAN: The End of the Kalmar Union
+		command = { type = trigger which = 3846 } #NOR: The End of the Kalmar Union
+	}
+}
+
+#(1521-1525) End of the Kalmar Union
+#Modified by Sutekh
+event = {
+	id = 3219
+	trigger = {
+		exists = DAN
+		event = 159031 #Danish event: The Stockholmian Massacre.
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME3219" #The End of the Kalmar Union
+	desc = "EVENTHIST3219"
+	#-#The crown councils of Norway, Sweden and Denmark met in 1397 in the city of Kalmar and decided to unite the three Scandinavian nations under a single monarch. This 'Union of Kalmar', at the time the largest state in Europe, was troubled from the start by its loose organization and unbalancing Danish domination. Constant strife in the late 1470's between Sweden and Denmark led to the final dissolution of the Union in 1523, when the national council of Sweden chose the freedom fighter Gustav Eriksson Vasa as King Gustav I (1523-1560), long after Regent Sten Sture den äldre (the elder) of Sweden had defeated the Danes at the battle of the Brunkeberg in 1471.
+
+	date = { day = 1 month = january year = 1521 }
+	offset = 1094
+	deathdate = { day = 1 month = january year = 1525 }
+
+	action_a = {
+		name = "FREEDOM"
+		command = { type = breakvassal which = DAN }
+		command = { type = relation which = DAN value = -100 }
+		command = { type = domestic which = ARISTOCRACY value = -1 }
+		command = { type = stability value = -2 }
+		command = { type = trigger which = 3289 } #DAN: The End of the Kalmar Union
+		command = { type = trigger which = 3846 } #NOR: The End of the Kalmar Union
+		#command = { type = AI which = Sweden_Wasa.ai }
+	}
+	action_b = {
+		name = "ACTIONNAME3219B" #Stay in the Union
+		command = { type = revoltrisk which = 36 value = 4 }
+		command = { type = domestic which = ARISTOCRACY value = 2 }
+		command = { type = relation which = DAN value = 200 }
+		command = { type = trigger which = 159036 } #DAN: Sweden remains in the Kalmar Union
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Swedish rule in Karelia events
+
+#(1523-1820) Swedish rule in Kola - Ahistorical
+event = {
+	id = 291041
+	trigger = {
+		owned = { province = 262 data = -1 } #Kola
+		control = { province = 262 data = -1 }
+		OR = {
+			AND = { #Protestant Sweden
+				religion = protestant
+				provincereligion = { province = 262 data = protestant }
+			}
+			AND = { #Catholic Sweden
+				religion = catholic
+				provincereligion = { province = 262 data = catholic }
+			}
+			AND = { #Reformed Sweden
+				religion = reformed
+				provincereligion = { province = 262 data = reformed }
+			}
+			AND = { #Tolerant government
+				religion = reformed
+				domestic = { type = innovative value = 8 }
+			}
+		}
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME291041" #Swedish Rule in Kola
+	desc = "EVENTHIST291041"
+	#-#Before the 19th century, the Kola peninsula was sparsely populated. The Sami people made up most of the permanent population. We now have fully incorporated the province into our administative system and established profitable trading relations with the Sami.
+
+	date = { day = 6 month = june year = 1523 } #Gustav I Vasa elected as king of Sweden
+	offset = 10000
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = provinceculture which = 262 value = ugric } #Kola
+		command = { type = population which = 262 value = 50 } #Colonists
+	}
+}
+#(1523-1820) Swedish rule in Kexholm - Ahistorical
+event = {
+	id = 291042
+	trigger = {
+		owned = { province = 266 data = -1 } #Kexholm
+		control = { province = 266 data = -1 }
+		OR = {
+			AND = { #Protestant Sweden
+				religion = protestant
+				provincereligion = { province = 266 data = protestant }
+			}
+			AND = { #Catholic Sweden
+				religion = catholic
+				provincereligion = { province = 266 data = catholic }
+			}
+			AND = { #Reformed Sweden
+				religion = reformed
+				provincereligion = { province = 266 data = reformed }
+			}
+			AND = { #Tolerant government
+				religion = reformed
+				domestic = { type = innovative value = 8 }
+			}
+		}
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME291042" #Swedish Rule in Kexholm
+	desc = "EVENTHIST291042"
+	#-#The Karelians were Finnic-speaking people closely related to the Finns. Most Karelians lived in Russia and were Orthodox Christian, but a significant minority residing in Finland was Western by culture and by religion. We now consider people in the province Kexholm as accepted subjects of our empire.
+
+	date = { day = 6 month = june year = 1523 } #Gustav I Vasa elected as king of Sweden
+	offset = 13000
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = provinceculture which = 266 value = ugric } #Kexholm
+		command = { type = population which = 266 value = 300 } #Colonists
+	}
+}
+#(1523-1820) Swedish rule in Karelia - Ahistorical
+event = {
+	id = 291044
+	trigger = {
+		owned = { province = 1470 data = -1 } #Karelia
+		control = { province = 1470 data = -1 }
+		OR = {
+			AND = { #Protestant Sweden
+				religion = protestant
+				provincereligion = { province = 1470 data = protestant }
+			}
+			AND = { #Catholic Sweden
+				religion = catholic
+				provincereligion = { province = 1470 data = catholic }
+			}
+			AND = { #Reformed Sweden
+				religion = reformed
+				provincereligion = { province = 1470 data = reformed }
+			}
+			AND = { #Tolerant government
+				religion = reformed
+				domestic = { type = innovative value = 8 }
+			}
+		}
+		event = 291042 #SWE: Swedish Rule in Kexholm
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME291044" #Swedish Rule in Karelia
+	desc = "EVENTHIST291044"
+	#-#The Karelians were Finnic-speaking people closely related to the Finns. Most Karelians lived in Russia and were Orthodox Christian, but a significant minority residing in Finland was Western by culture and by religion. We now consider people in the province Karelia as accepted subjects of our empire.
+
+	date = { day = 6 month = june year = 1523 } #Gustav I Vasa elected as king of Sweden
+	offset = 16000
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = provinceculture which = 1470 value = ugric } #Karelia
+		command = { type = population which = 1470 value = 100 } #Colonists
+	}
+}
+#(1523-1753) Swedish rule in Olonets - Ahistorical
+event = {
+	id = 291045
+	trigger = {
+		owned = { province = 267 data = -1 } #Olonets
+		control = { province = 267 data = -1 }
+		OR = {
+			AND = { #Protestant Sweden
+				religion = protestant
+				provincereligion = { province = 267 data = protestant }
+			}
+			AND = { #Catholic Sweden
+				religion = catholic
+				provincereligion = { province = 267 data = catholic }
+			}
+			AND = { #Reformed Sweden
+				religion = reformed
+				provincereligion = { province = 267 data = reformed }
+			}
+			AND = { #Tolerant government
+				religion = reformed
+				domestic = { type = innovative value = 8 }
+			}
+		}
+		event = 291044 #SWE: Swedish Rule in Karelia
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME291045" #Swedish Rule in Olonets
+	desc = "EVENTHIST291045"
+	#-#The Karelians were Finnic-speaking people closely related to the Finns. Most Karelians lived in Russia and were Orthodox Christian, but a significant minority residing in Finland was Western by culture and by religion. We now consider people in the province Olonets as accepted subjects of our empire.
+
+	date = { day = 6 month = june year = 1523 } #Gustav I Vasa elected as king of Sweden
+	offset = 18000
+	deathdate = { day = 27 month = may year = 1753 } #50 years after foundation of St. Petersburg - probably too russified at this point
+
+	action_a = {
+		name = "GREAT"
+		command = { type = provinceculture which = 267 value = ugric } #Olonets
+		command = { type = population which = 267 value = 200 } #Colonists
+	}
+}
+#(1523-1634) Swedish rule in Arhangelsk - Ahistorical
+event = {
+	id = 291046
+	trigger = {
+		owned = { province = 269 data = -1 } #Arkhangelsk
+		control = { province = 269 data = -1 }
+		OR = {
+			AND = { #Protestant Sweden
+				religion = protestant
+				provincereligion = { province = 269 data = protestant }
+			}
+			AND = { #Catholic Sweden
+				religion = catholic
+				provincereligion = { province = 269 data = catholic }
+			}
+			AND = { #Reformed Sweden
+				religion = reformed
+				provincereligion = { province = 269 data = reformed }
+			}
+			AND = { #Tolerant government
+				religion = reformed
+				domestic = { type = innovative value = 8 }
+			}
+		}
+		event = 291045 #SWE: Swedish Rule in Olonets
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME291046" #Swedish Rule in Arkhangelsk
+	desc = "EVENTHIST291046"
+	#-#Before it was colonized by Russia in the 16th century, the Arkhangelsk region was mainly populated by the Nenets people, Nenets meaning ''man''. We now have fully incorporated the province into our administrative system.
+
+	date = { day = 6 month = june year = 1523 } #Gustav I Vasa elected as king of Sweden
+	offset = 18500
+	deathdate = { day = 1 month = january year = 1634 } #50 years after foundation of Arkhangelsk; probably too russified at this point
+
+	action_a = {
+		name = "GREAT"
+		command = { type = provinceculture which = 269 value = ugric } #Arkhangelsk
+		command = { type = population which = 269 value = 50 } #Colonists
+	}
+}
+#(1617-1721) Swedish rule in Kexholm
+event = {
+	id = 291043
+	trigger = {
+		owned = { province = 266 data = -1 } #Kexholm
+		provincereligion = { province = 266 data = orthodox } #Hasn't been converted
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME291043" #Swedish Conquest of Kexholm
+	desc = "EVENTHIST291043"
+	#-#Sweden received the county of Kexholm through the treaty of Stolbovo in 1617. Most of the population in Kexholm was Orthodox Karelian alongside an Ortodox Russian minority. Under the terms of the treaty people were free to practice their religion, but under the first governor of the new province, Jacob de la Gardie, Orthodox monks and boyars were ordered to leave and religious repression began. This caused a massive exodus of Karelians and Russians from the province over the decades despite an official ban on relocation. At the same time Swedish and especially Finnish immigrants were invited to settle and occupy the province permanently.
+
+	date = { day = 27 month = february year = 1617 } #Treaty of Stolbovo - Kexholm ceded to Sweden
+	offset = 19000
+	deathdate = { day = 10 month = september year = 1721 } #Treaty of Nystad - Kexholm returned to Russia
+
+	action_a = {
+		name = "ACTIONNAME291043A" #Repress Orthodox Christianity
+		command = { type = provinceculture which = 266 value = ugric } #Kexholm - immigrants from Finland and Sweden settle and take over the economy
+		command = { type = population which = 266 value = -3000 } #Karelian exodus
+		command = { type = provincetax which = 266 value = -1 }
+		command = { type = trigger which = 271057 } #RUS: Karelian Exodus From Kexholm
+	}
+	action_b = {
+		name = "ACTIONNAME291043B" #Let people practice their religion freely
+		command = { type = population which = 266 value = -500 } #Some people still decide to leave
+		command = { type = vp value = 10 }
+	}
+}
+#End of Swedish rule in Karelia events
+#-----------------------------------------------------------------------------------------------
+
+#(1530-1533) The Parliament of Västerås
+event = {
+	id = 3226
+	trigger = { religion = catholic }
+	random = no
+	country = SWE
+	name = "EVENTNAME3226" #The Parliament of Västerås
+	desc = "EVENTHIST3226"
+	#-#During the Swedish liberation war, the Crown had accrued enormous debts to the Hanseatic League and Gustav Vasa needed money quickly in order to placate the powerful merchants. At the Parliament of Västerås in the summer of 1527 he took the first step towards Protestantism when the church was obliged to 'lend' the state money in the form of silver chalices, bells and other valuable objects. Over the coming three decades, Sweden gradually slipped into the evangelic faith despite several uprisings.
+
+	date = { day = 1 month = january year = 1530 }
+	offset = 720
+	deathdate = { day = 1 month = january year = 1533 }
+
+	action_a = {
+		name = "ACTIONNAME3226A" #Convert to Protestantism
+		command = { type = religion which = protestant }
+		command = { type = treasury value = 250 }
+		command = { type = stability value = -2 }
+		command = { type = breakdynastic which = POL }
+		command = { type = relation which = POL value = -100 }
+		command = { type = breakdynastic which = HAB }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = breakdynastic which = SPA }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = breakdynastic which = POR }
+		command = { type = relation which = POR value = -100 }
+		command = { type = breakdynastic which = PAP }
+		command = { type = relation which = PAP value = -100 }
+		command = { type = revoltrisk which = 120 value = 3 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3226B" #Remain true to Catholicism
+		command = { type = stability value = 3 }
+		command = { type = relation which = PAP value = 100 }
+		command = { type = relation which = SPA value = 100 }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = relation which = POR value = 100 }
+		command = { type = relation which = POL value = 100 }
+	}
+}
+
+#(1535-1545) The Centralization Reforms of Gustav Vasa
+event = {
+	id = 3223
+	random = no
+	country = SWE
+	name = "EVENTNAME3223" #The Centralization Reforms of Gustav Vasa
+	desc = "EVENTHIST3223"
+	#-#Upon his ascension to the Swedish throne, Gustav Vasa was faced with a seemingly endless list of discouraging tasks. The country was in massive debt to the Hansa (which threatened to side with Denmark in its attempts to restore the Union), the nobles were untrustworthy, and the army and navy were in shambles. Worst of all, however, was the unbalanced distribution of land. The crown lands were too small to provide the vital taxes needed to support the state. The King proved up to the challenge, and with unpopular reductions and obsessive micromanagement he got the country back on its feet. In his early reign, Gustav also sought to gain the Skåne counties and Gotland from Denmark with the help of the Hansa. He didn't succeed, but the claim had been staked...
+
+	date = { day = 1 month = january year = 1535 }
+	offset = 3600
+	deathdate = { day = 29 month = december year = 1545 }
+
+	action_a = {
+		name = "ACTIONNAME3223A" #Hansa-friendly Reforms
+		command = { type = addcore which = 308 } #Gotland
+		command = { type = infra value = 1500 }
+		command = { type = domestic which = MERCANTILISM value = -2 }
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = revoltrisk which = 48 value = 5 } #Upset noblemen
+		command = { type = provincetax which = -1 value = 2 }
+		command = { type = provincetax which = -1 value = 2 }
+		command = { type = provincetax which = -1 value = 2 }
+		command = { type = provincetax which = -1 value = 2 }
+		command = { type = land value = 2000 }
+		command = { type = naval value = 2000 }
+		command = { type = gainmanufactory which = 253 value = refinery } #Västergötland
+		command = { type = addcore which = 251 } #Skåne
+		#command = { type = AI which = Sweden_Wasa.ai }
+	}
+	action_b = {
+		name = "ACTIONNAME3223B" #Hansa-hostile Reforms
+		command = { type = addcore which = 381 } #Jämtland
+		command = { type = trade value = 1500 }
+		command = { type = domestic which = MERCANTILISM value = 2 }
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = revoltrisk which = 48 value = 5 } #Upset noblemen
+		command = { type = provincetax which = -1 value = 2 }
+		command = { type = provincetax which = -1 value = 2 }
+		command = { type = provincetax which = -1 value = 2 }
+		command = { type = provincetax which = -1 value = 2 }
+		command = { type = land value = 2000 }
+		command = { type = naval value = 2000 }
+		command = { type = gainmanufactory which = 253 value = refinery } #Västergötland
+		command = { type = addcore which = 251 } #Skåne
+		#command = { type = AI which = Sweden_Wasa.ai }
+	}
+}
+
+#(1542) The Dacke Feud
+event = {
+	id = 3224
+	random = no
+	country = SWE
+	name = "EVENTNAME3224" #The Dacke Feud
+	desc = "EVENTHIST3224"
+	#-#Nils Dacke was a well-off farmer from Småland who got so fed up with the centralism, high taxes and confiscation of church property that he led the old border county in open revolt. Thousands of peasants with improvised weaponry marched across the border into Östergötland. Initially the peasants were successful, but when the King brought in German mercenaries their fortunes quickly reversed. In the forests of Småland, Nils Dacke is still regarded as a hero of the common folk.
+
+	date = { day = 1 month = january year = 1542 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1542 }
+
+	action_a = {
+		name = "ACTIONNAME3224A" #Crush the rebellion
+		command = { type = revolt which = 252 } #Småland
+		command = { type = revolt which = 252 } #Småland
+		command = { type = revolt which = -1 }
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 24 value = 4 }
+	}
+	action_b = {
+		name = "ACTIONNAME3224B" #Negotiate with Dacke
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = provincetax which = 252 value = -2 } #Småland
+	}
+}
+
+#(1560-1590) The Fate of the Livonian Order
+#by Greven
+event = {
+	id = 3220 #triggered by LIV_3620 A
+	random = no
+	country = SWE
+	name = "EVENTNAME3220" #The Fate of the Livonian Order
+	desc = "EVENTHIST3220"
+	#-#Following Russian attacks in the 1550's, and out of the collapse of the Livonian Order, Master Gotthard Ketteler salvaged Kurland from the Order's territory as a secular duchy under Polish sovereignty. This vassalage brought Poland into conflict with Russia, allied with Denmark and started the 1563-1570 War of the Three Crowns against Sweden. At the 1582 armistice of Jan Zapolski, Russia was beaten, gave up Livland and Polotsk and Sweden won the Baltic province of Estland while Livland and Kurland remained under Polish control. At this time the Grandmaster has accepted to sign an Agreement with Poland and Sweden.
+
+	action_a = {
+		name = "ACTIONNAME3220A" #Accept Agreement
+		command = { type = addcore which = 276 } #Estland
+		command = { type = addcore which = 275 } #Ingermanland
+		command = { type = relation which = KUR value = 150 }
+		command = { type = relation which = POL value = 100 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3220B" #Only accept our part of the Agreement
+		command = { type = addcore which = 282 } #Livland
+		command = { type = addcore which = 281 } #Polotsk
+		command = { type = addcore which = 276 } #Estland
+		command = { type = addcore which = 275 } #Ingermanland
+		command = { type = relation which = KUR value = 100 }
+		command = { type = relation which = POL value = -100 }
+		command = { type = stability value = -2 }
+	}
+}
+#(1560-1590) The Fate of the Livonian Order
+#by Greven
+event = {
+	id = 3221 #triggered by LIV_3620 B
+	random = no
+	country = SWE
+	name = "EVENTNAME3221" #The Fate of the Livonian Order
+	desc = "EVENTHIST3221"
+	#-#Following Russian attacks in the 1550's, and out of the collapse of the Livonian Order, Master Gotthard Ketteler salvaged Kurland from the Order's territory as a secular duchy under Polish sovereignty. This vassalage brought Poland into conflict with Russia, allied with Denmark and started the 1563-1570 War of the Three Crowns against Sweden. At the 1582 armistice of Jan Zapolski, Russia was beaten, gave up Livland and Polotsk and Sweden won the Baltic province of Estland while Livland and Kurland remained under Polish control. At this time the Grandmaster has accepted to sign an Agreement with Denmark and Russia.
+
+	action_a = {
+		name = "ACTIONNAME3221A" #Defy the Agreement
+		command = { type = addcore which = 282 } #Livland
+		command = { type = addcore which = 281 } #Polotsk
+		command = { type = addcore which = 276 } #Estland
+		command = { type = addcore which = 275 } #Ingermanland
+		command = { type = relation which = KUR value = -50 }
+		command = { type = relation which = POL value = 150 }
+		command = { type = relation which = RUS value = -150 }
+		command = { type = relation which = DAN value = -150 }
+		command = { type = casusbelli which = DAN value = 60 }
+		command = { type = casusbelli which = RUS value = 60 }
+		command = { type = stability value = -2 }
+	}
+	action_b = {
+		name = "ACTIONNAME3221B" #Accept the Agreement
+		command = { type = relation which = KUR value = 150 }
+		command = { type = relation which = POL value = -50 }
+		command = { type = relation which = RUS value = 100 }
+		command = { type = relation which = DAN value = 100 }
+		command = { type = stability value = 1 }
+		command = { type = treasury value = 200 }
+	}
+}
+#(1560-1590) The Fate of the Livonian Order
+#by Greven
+event = {
+	id = 3222 #triggered by LIV_3620 C
+	random = no
+	country = SWE
+	name = "EVENTNAME3222" #The Fate of the Livonian Order
+	desc = "EVENTHIST3222"
+	#-#Following Russian attacks in the 1550's, and out of collapse of the Livonian Order, Master Gotthard Ketteler salvaged Kurland from the Order's territory as a secular duchy under Polish sovereignty. This vassalage brought Poland into conflict with Russia, allied with Denmark and started the 1563-1570 War of the Three Crowns against Sweden. At the 1582 armistice of Jan Zapolski, Russia was beaten, gave up Livland and Polotsk and Sweden won the Baltic province of Estland while Livland and Kurland remained under Polish control. At this time the Grandmaster has decided to revert to Catholicism and defy all claims on its territories.
+
+	action_a = {
+		name = "ACTIONNAME3222A" #Defy the Knights
+		command = { type = addcore which = 282 } #Livland
+		command = { type = addcore which = 281 } #Polotsk
+		command = { type = addcore which = 276 } #Estland
+		command = { type = addcore which = 275 } #Ingermanland
+		command = { type = casusbelli which = LIV value = 60 }
+		command = { type = stability value = -2 }
+		command = { type = relation which = LIV value = -150 }
+		command = { type = relation which = POL value = 50 }
+		command = { type = relation which = RUS value = 50 }
+		command = { type = relation which = DAN value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME3222B" #Accept this Government
+		command = { type = stability value = 1 }
+		command = { type = treasury value = 200 }
+		command = { type = relation which = LIV value = 150 }
+		command = { type = relation which = POL value = -50 }
+		command = { type = relation which = RUS value = -50 }
+		command = { type = relation which = DAN value = -50 }
+	}
+}
+
+#(1568) The Sons of Gustav Vasa
+event = {
+	id = 3225
+	random = no
+	country = SWE
+	name = "EVENTNAME3225" #The Sons of Gustav Vasa
+	desc = "EVENTHIST3225"
+	#-#Gustav Vasa had four sons - Erik, John, Magnus and Charles. Erik was the oldest and succeeded his father on the throne as Erik XIV (although he was actually only the eighth King of that name) in 1560. He was an able King who reformed the army and pursued an aggressive foreign policy, securing the northern part of Estonia for Sweden in 1561. However, his relation to his brother John, the Duke of Finland, plummeted when the latter married a Polish princess against the King's will. John and his wife were sentenced to death (but later pardoned) and imprisoned until the paranoid King Erik suffered a period of insanity and stabbed one of his advisors to death in 1567. Fleeing into the countryside, the King was found wandering a few days later and eventually recovered. However his brothers (except Magnus, who went insane in 1562) conspired against him and managed to depose him in 1568. Erik died in prison in 1577 - probably murdered at the order of King John.
+
+	date = { day = 28 month = september year = 1568 }
+
+	action_a = {
+		name = "ACTIONNAME3225A" #Dethrone Erik
+		command = { type = relation which = POL value = 150 }
+		command = { type = dynastic which = POL }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = domestic which = ARISTOCRACY value = -1 }
+		command = { type = domestic which = QUALITY value = -1 }
+		command = { type = stability value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME3225B" #Have John Executed
+		command = { type = sleepmonarch which = 0131515 } #Johan III
+		command = { type = wakemonarch which = 0131514 } #Erik XV
+		command = { type = relation which = POL value = -150 }
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = domestic which = QUALITY value = 1 }
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1595-1599) Uppsala University 2 - Flavor
+#by Zenek K
+event = {
+	id = 291017
+	trigger = {
+		event = 291016 #SWE: Uppsala University
+		owned = { province = 254 data = -1 } #Svealand
+		OR = {
+			religion = protestant
+			religion = reformed
+		}
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME291017" #Restoring privileges of the Uppsala University
+	desc = "EVENTHIST291017"
+	#-#At the end of the 16th century the Protestant clergy had gained a firm hold over religious teaching and a decision was made at a meeting in Uppsala in 1593 to restore the privileges of the University. The new charter was signed on 15 March 1595. During the reign of Gustav II Adolf Sweden became a bureaucratic state, so the Kingdom needed competent government officials. The King provided benefits to the University, both economically and administratively. Professors from other countries were summoned and the number of students increased.
+
+	date = { day = 15 month = march year = 1595 }
+	offset = 360
+	deathdate = { day = 15 month = march year = 1599 }
+
+	action_a = {
+		name = "ACTIONNAME291017A" #Confirm privileges
+		command = { type = infra value = 400 }
+		command = { type = treasury value = -50 }
+		command = { type = population which = 254 value = 500 } #Svealand
+	}
+	action_b = {
+		name = "ACTIONNAME291017B" #No way
+		command = { type = infra value = -50 }
+	}
+}
+
+#(1598) King Sigismund and Duke Charles -I-
+event = {
+	id = 3229
+	trigger = {
+		NOT = { vassal = { country = POL country = SWE } }
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME3229" #King Sigismund and Duke Charles
+	desc = "EVENTHIST3229"
+	#-#John III had a son named Sigismund who was crowned King of Poland-Lithuania in 1587. Although his father was a Lutheran (albeit one who sought reconciliation with the Pope), he was raised a catholic by his mother and was tutored by Jesuits. When John died in 1592, Sigismund also inherited the Swedish crown, creating for a few years the most powerful political entity in Europe. However, Sigismund's Catholicism alienated him from many important Swedish nobles who could not stomach the thought of seeing their country revert to papism. Sigismund's uncle Charles rose up in rebellion as soon as the King had left for Poland after his coronation in 1594. Sigismund returned with an army but was defeated at Stångebro in 1598, which effectively ended the brief union. For decades to come, the Polish Kings would regard Charles and his successors as usurpers - a claim that would spark several bloody wars between the nations.
+
+	date = { day = 15 month = september year = 1598 }
+
+	action_a = {
+		name = "ACTIONNAME3229A" #God is with Duke Charles
+		command = { type = sleepmonarch which = 0131516 } #Sigismund
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = domestic which = ARISTOCRACY value = -1 }
+		command = { type = domestic which = SERFDOM value = -1 }
+		command = { type = infra value = 500 }
+		command = { type = treasury value = 300 }
+		command = { type = stability value = 2 }
+		command = { type = sleepevent which = 291037 } #SWE: King Sigismund and Duke Charles -II-
+	}
+	action_b = {
+		name = "ACTIONNAME3229B" #Sigismund is the rightful King
+		command = { type = sleepmonarch which = 0131523 } #Kristina
+		command = { type = sleepmonarch which = 0131524 } #Karl X Gustav
+		command = { type = sleepmonarch which = 0131525 } #Karl XI
+		command = { type = sleepmonarch which = 0131526 } #Karl XII
+		command = { type = sleepmonarch which = 0131527 } #Ulrika Eleonora
+		command = { type = wakemonarch which = 0131517 } #Johan IV °
+		command = { type = wakemonarch which = 0131518 } #Johan V Kasimir °
+		command = { type = wakemonarch which = 0131519 } #Johan VI Wilhelm °
+		command = { type = wakemonarch which = 0131520 } #Karl IX Filip °
+		command = { type = sleepleader which = 0131816 } #Hertig Karl (SWE)
+		command = { type = sleepleader which = 0131833 } #Karl X Gustav (SWE)
+		command = { type = sleepleader which = 0131834 } #Karl XI (SWE)
+		command = { type = sleepleader which = 0131840 } #Karl XII (SWE)
+		command = { type = sleepevent which = 3230 } #SWE: Emperor Charles Philip of Russia
+		command = { type = sleepevent which = 3236 } #SWE: Oxenstierna's Regency
+		command = { type = sleepevent which = 3237 } #SWE: The Quarter Reduction of Charles X
+		command = { type = sleepevent which = 3238 } #SWE: The Quarter Reduction of Christina
+		command = { type = sleepevent which = 3239 } #SWE: Queen Christina-The Catholic Maiden
+		command = { type = sleepevent which = 3240 } #SWE: De La Gardie's Regency
+		command = { type = sleepevent which = 3245 } #SWE: The Oriental Diplomacy
+		command = { type = sleepevent which = 3246 } #SWE: Arvid Horn and the Age of Freedom
+		command = { type = sleepevent which = 3248 } #SWE: Pietism and the Conventicle Edict
+		command = { type = sleepevent which = 3254 } #SWE: Swedish Parliament of 1738
+		command = { type = sleepevent which = 3754 } #SWE: The Threat to Protestantism in Germany
+		command = { type = relation which = POL value = 250 }
+		command = { type = dynastic which = POL }
+		command = { type = alliance which = POL }
+		command = { type = vassal which = POL }
+		command = { type = religion which = catholic }
+		command = { type = stability value = -3 }
+		command = { type = sleepevent which = 291037 } #SWE: King Sigismund and Duke Charles -II-
+	}
+}
+#(1598) King Sigismund and Duke Charles -II-
+event = {
+	id = 291037
+	trigger = {
+		vassal = { country = POL country = SWE }
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME3229" #King Sigismund and Duke Charles
+	desc = "EVENTHIST3229"
+	#-#John III had a son named Sigismund who was crowned King of Poland-Lithuania in 1587. Although his father was a Lutheran (albeit one who sought reconciliation with the Pope), he was raised a catholic by his mother and was tutored by Jesuits. When John died in 1592, Sigismund also inherited the Swedish crown, creating for a few years the most powerful political entity in Europe. However, Sigismund's Catholicism alienated him from many important Swedish nobles who could not stomach the thought of seeing their country revert to papism. Sigismund's uncle Charles rose up in rebellion as soon as the King had left for Poland after his coronation in 1594. Sigismund returned with an army but was defeated at Stångebro in 1598, which effectively ended the brief union. For decades to come, the Polish Kings would regard Charles and his successors as usurpers - a claim that would spark several bloody wars between the nations.
+
+	date = { day = 15 month = september year = 1598 }
+
+	action_a = {
+		name = "ACTIONNAME3229A" #God is with Duke Charles
+		command = { type = breakvassal which = POL }
+		command = { type = sleepmonarch which = 0131516 } #Sigismund
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = domestic which = ARISTOCRACY value = -1 }
+		command = { type = domestic which = SERFDOM value = -1 }
+		command = { type = infra value = 500 }
+		command = { type = treasury value = 300 }
+		command = { type = stability value = 2 }
+		command = { type = sleepevent which = 3229 } #SWE: King Sigismund and Duke Charles -I-
+	}
+	action_b = {
+		name = "ACTIONNAME3229B" #Sigismund is the rightful King
+		command = { type = sleepmonarch which = 0131523 } #Kristina
+		command = { type = sleepmonarch which = 0131524 } #Karl X Gustav
+		command = { type = sleepmonarch which = 0131525 } #Karl XI
+		command = { type = sleepmonarch which = 0131526 } #Karl XII
+		command = { type = sleepmonarch which = 0131527 } #Ulrika Eleonora
+		command = { type = wakemonarch which = 0131517 } #Johan IV °
+		command = { type = wakemonarch which = 0131518 } #Johan V Kasimir °
+		command = { type = wakemonarch which = 0131519 } #Johan VI Wilhelm °
+		command = { type = wakemonarch which = 0131520 } #Karl IX Filip °
+		command = { type = sleepleader which = 0131816 } #Hertig Karl (SWE)
+		command = { type = sleepleader which = 0131833 } #Karl X Gustav (SWE)
+		command = { type = sleepleader which = 0131834 } #Karl XI (SWE)
+		command = { type = sleepleader which = 0131840 } #Karl XII (SWE)
+		command = { type = sleepevent which = 3230 } #SWE: Emperor Charles Philip of Russia
+		command = { type = sleepevent which = 3236 } #SWE: Oxenstierna's Regency
+		command = { type = sleepevent which = 3237 } #SWE: The Quarter Reduction of Charles X
+		command = { type = sleepevent which = 3238 } #SWE: The Quarter Reduction of Christina
+		command = { type = sleepevent which = 3239 } #SWE: Queen Christina-The Catholic Maiden
+		command = { type = sleepevent which = 3240 } #SWE: De La Gardie's Regency
+		command = { type = sleepevent which = 3245 } #SWE: The Oriental Diplomacy
+		command = { type = sleepevent which = 3246 } #SWE: Arvid Horn and the Age of Freedom
+		command = { type = sleepevent which = 3248 } #SWE: Pietism and the Conventicle Edict
+		command = { type = sleepevent which = 3254 } #SWE: Swedish Parliament of 1738
+		command = { type = sleepevent which = 3754 } #SWE: The Threat to Protestantism in Germany
+		command = { type = relation which = POL value = 250 }
+		command = { type = dynastic which = POL }
+		command = { type = alliance which = POL }
+		command = { type = religion which = catholic }
+		command = { type = stability value = -3 }
+		command = { type = sleepevent which = 3229 } #SWE: King Sigismund and Duke Charles -I-
+	}
+}
+
+#(1600-1611) The Walloons in Sweden
+event = {
+	id = 3227
+	trigger = {
+		AND = {
+			owned = { province = 257 data = -1 } #Bergslagen
+			control = { province = 257 data = -1 } #Bergslagen
+			controlchange = { province = 257 years = 5 }
+		}
+        AND = { 
+			owned = { province = 260 data = -1 } #Lappland
+			control = { province = 260 data = -1 } #Lappland
+			controlchange = { province = 260 years = 5 }
+		}
+		stability = 0 #stability 0 or higher
+		domestic = { type = innovative value = 3 } #3 or higher if you are too narrowminded you can´t integrate foreigners       
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME3227" #The Walloons in Sweden
+	desc = "EVENTHIST3227"
+	#-#In 1618, the Walloon entrepreneur Louis de Geer set up shop in Sweden and undertook the development of the iron ore mining and foundries in northern Sweden. For some time already, Walloon craftsmen from the Hainaut, Brabant and Luxemburg regions had been fleeing unemployment and immigrated to Sweden. The influx of master metal workers and ore refiners vitalized the industry and led to a massive improvement in steel quality - a major advantage in weapons manufacture. In a few decades, Sweden became a major exporter of steel and cannon as well as copper and iron.
+
+	date = { day = 1 month = january year = 1600 }
+	offset = 3649
+	deathdate = { year = 1618 }
+
+	action_a = {
+		name = "ACTIONNAME3227A" #Encourage Walloon immigration
+		command = { type = provincetax which = 257 value = 9 } #Bergslagen
+		command = { type = provincetax which = 260 value = 4 } #Lappland
+		command = { type = population which = 257 value = 2000 } #Bergslagen
+		command = { type = population which = 260 value = 400 } #Lappland
+		command = { type = gainmanufactory which = 257 value = weapons } #Bergslagen
+		command = { type = infra value = 1000 }
+		command = { type = revoltrisk which = 48 value = 3 } #Disgruntled Swedish workers
+		command = { type = stability value = -1 } #Integration problems
+	}
+}
+
+#(1604) Russian pretender finds support at Polish court
+event = {
+	id = 40105
+	trigger = {
+		exists = RUS
+		exists = POL
+		NOT = { exists = LIT }
+		event = 40104 #POL: Russian pretender
+		NOT = { event = 40107 } #SWE: Russian pretender receives cautious support
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME40105" #Russian pretender finds support at Polish Court
+	desc = "EVENTHIST40105"
+	#-#Grigori Otrepiev, claiming to be Dmitry, the son of Ivan IV, has found a royal welcome at the Polish Court. Poland looks to invade Russia and strengthen her position at the expense of Russia, which seems to be slowly drifting into turmoil. Should we support the Russians, or stay neutral in the conflict?
+
+	date = { day = 1 month = january year = 1604 }
+	offset = 50
+	deathdate = { day = 1 month = january year = 1605 }
+
+	action_a = {
+		name = "ACTIONNAME40105A" #Support Russia
+		command = { type = relation which = RUS value = 200 }
+		command = { type = casusbelli which = POL value = 72 }
+	}
+	action_b = {
+		name = "ACTIONNAME40105B" #Stay neutral
+		command = { type = relation which = RUS value = 50 }
+	}
+}
+#(1604) Russian pretender receives cautious support
+event = {
+	id = 40107
+	trigger = {
+		exists = RUS
+		exists = POL
+		event = 40104 #POL: Russian pretender
+		NOT = { exists = LIT }
+		NOT = {
+			event = 40105 } #SWE: Russian pretender finds support at Polish Court
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME40107" #Russian pretender receives cautious support
+	desc = "EVENTHIST40107"
+	#-#Grigori Otrepiev, claiming to be Dmitry, the son of Ivan IV, has found a royal welcome at the Polish Court. Poland looks to be cautious in her dealing with the matter by not showing open support to his claim. However, should the pretender invade Russia, he might gain a considerable local support, as Russia seems to be slowly drifting into turmoil. Should we support the Russians, or stay neutral in the conflict?
+
+	date = { day = 1 month = january year = 1604 }
+	offset = 50
+	deathdate = { day = 1 month = january year = 1605 }
+
+	action_a = {
+		name = "ACTIONNAME40105B" #Stay neutral
+		command = { type = relation which = RUS value = 30 }
+	}
+	action_b = {
+		name = "ACTIONNAME40105A" #Support Russia
+		command = { type = relation which = RUS value = 100 }
+		command = { type = casusbelli which = POL value = 72 }
+	}
+}
+
+#(1606-1819) Swedish migrate for trade
+event = {
+	id = 291039
+	trigger = {
+		OR = {
+			owned = { province = 263 data = -1 } #Österbotten
+			control = { province = 263 data = -1 } #Österbotten
+		}
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME291039" #Swedish migration in Österbotten
+	desc = "EVENTHIST291039"
+	#-#Korsholm has a history that can be dated back to 1348. Thanks to the sea connections with Stockholm, ship building and trade became the main export, Österbotten flourished and attracted Swedish migration. On October 2, 1606 during  the reign of Charles IX of Sweden the town was grated city status and renamed to Vaasa, the new capital of the area was near the old harbour and trade point close to the Korsholm church. In 1611 the city was chartered and renamed after the Royal House of Vasa. The municipality since the Karelian migration was bilingual, with a majority from 17th century,  being Swedish and a minority being Finnish speakers. Religiously by 1606, both Swedes and Finns in Österbotten had the same religion.
+
+	date = { day = 0 month = january year = 1606 }
+	offset = 90
+	deathdate = { day = 0 month = april year = 1819 }
+
+	action_a = {
+		name = "ACTIONNAME291039A" #Colonize and arm
+		command = { type = provinceculture which = 263 value = scandinavian } #osterbotten
+		command = { }
+	}
+}
+
+#(1609-1610) Treaty of Vyborg
+event = {
+	id = 40118
+	trigger = {
+		exists = RUS
+		exists = POL
+		NOT = { exists = LIT }
+		event = 3414 #RUS: Pretender
+		NOT = {
+			event = 40114 #RUS: Dmitry retakes the throne
+		}
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME40118" #Treaty of Vyborg
+	desc = "EVENTHIST40118"
+	#-#Sweden was looking to get into the conflict between Russia and Poland from 1607, mainly because King Sigismund of Poland was an arch-enemy of King Karl IX of Sweden. Vasily Shuisky was very reluctant to invite the Swedes, yet he was in a very precarious position. Poland didn't follow the articles of 1608 treaty, and pretender was still getting regular reinforcements from Poland. Finally, tsar Vasily gave in, and in 1609 Skopin-Shuisky signed an agreement with Sweden. Sweden was to send 2,000 cavalry and 3,000 infantry mercenary force, for which the Russians were to pay. In addition, the King promised non-specified number of troops as a token of his friendship. In return, Russia was to recede its claim on Livonia, cede Korela to Sweden, and enter into alliance with Sweden against Poland. The treaty provided Russian government with some quality troops, but forced Poland into a full-scale war against it.
+
+	date = { day = 2 month = february year = 1609 }
+	offset = 30
+	deathdate = { day = 1 month = june year = 1610 }
+
+	action_a = {
+		name = "ACTIONNAME40118A" #Propose the treaty
+		command = { type = relation which = POL value = -30 }
+		command = { type = trigger which = 40119 } #RUS: Treaty of Vyborg
+	}
+	action_b = {
+		name = "ACTIONNAME40118B" #Stay away from the conflict
+		command = { type = relation which = POL value = 30 }
+		command = { }
+	}
+}
+#(1609-1610) Treaty of Vyborg
+event = {
+	id = 40120 #triggered by RUS_40119 A
+	random = no
+	country = SWE
+	name = "EVENTNAME40120" #Russia signs the treaty of Vyborg
+	desc = "EVENTHIST40118"
+	#-#Sweden was looking to get into the conflict between Russia and Poland from 1607, mainly because King Sigismund of Poland was an arch-enemy of King Karl IX of Sweden. Vasily Shuisky was very reluctant to invite the Swedes, yet he was in a very precarious position. Poland didn't follow the articles of 1608 treaty, and pretender was still getting regular reinforcements from Poland. Finally, tsar Vasily gave in, and in 1609 Skopin-Shuisky signed an agreement with Sweden. Sweden was to send 2,000 cavalry and 3,000 infantry mercenary force, for which the Russians were to pay. In addition, the King promised non-specified number of troops as a token of his friendship. In return, Russia was to recede its claim on Livonia, cede Korela to Sweden, and enter into alliance with Sweden against Poland. The treaty provided Russian government with some quality troops, but forced Poland into a full-scale war against it.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = relation which = POL value = -100 }
+		command = { type = treasury value = 100 }
+	}
+}
+#(1609-1610) Treaty of Vyborg
+event = {
+	id = 40122 #triggered by POL_40121 A
+	trigger = {
+		NOT = {
+			war = { country = SWE country = POL }
+		}
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME40122" #War or peace
+	desc = "EVENTHIST40122"
+	#-#Poland has attacked our new ally Russia. According to the treaty we have just signed with them, we must declare the war on Poland. Should we support Russia as we promised, or leave them?
+
+	action_a = {
+		name = "WAR"
+		command = { type = war which = POL }
+		command = { type = casusbelli which = POL value = 60 } #in case of no automatic DOW on POL
+	}
+	action_b = {
+		name = "PEACE"
+		command = { type = relation which = RUS value = -50 }
+		command = { type = relation which = POL value = 50 }
+		command = { type = stability value = -2 }
+		command = { type = trigger which = 40123 } #RUS: Punish the traitors
+	}
+}
+
+#(1609-1613) Tsar Vladislav
+event = {
+	id = 40127 #triggered by POL_40125
+	random = no
+	country = SWE
+	name = "EVENTNAME40127" #Russo-Polish alliance
+	desc = "EVENTHIST40127"
+	#-#Russia has agreed to crown Polish prince Vladislav as their tsar, making them a de-facto Polish vassal and ally. Russia, thus violated the Vyborg treaty they signed with us, should we punish them?
+
+	action_a = {
+		name = "ACTIONNAME40127A" #Punish them
+		command = { type = casusbelli which = RUS value = 36 }
+		command = { type = relation which = RUS value = -100 }
+	}
+}
+
+#(1611-1614) Emperor Charles Philip of Russia
+event = {
+	id = 3230
+	trigger = {
+		exists = RUS
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME3230" #Emperor Charles Philip of Russia
+	desc = "EVENTHIST3230"
+	#-#During the Russian Time of Troubles, Sweden intervened in favor of the elected Czar Vasily Shuisky. Poland also intervened and managed to place their candidate Vladislav Vasa on the throne for a short while, ousting Vasily Shuisky. When the Poles were eventually driven off, the Russians agreed to elect the Swedish prince Karl Filip, brother to Gustavus Vasa, but the young prince was reluctant to go, and certain political factions desired territorial concessions from the Russians instead. In 1613 the Russians got tired of waiting and united under Michael Romanov instead.
+
+	date = { day = 1 month = january year = 1611 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1614 }
+
+	action_a = {
+		name = "ACTIONNAME3230A" #The Prince deserves better
+		command = { type = addcore which = 266 } #Kexholm
+		command = { type = addcore which = 275 } #Ingermanland
+		command = { type = addcore which = 282 } #Livland
+		command = { type = addcore which = 276 } #Estland
+		command = { type = casusbelli which = RUS value = 6 }
+		command = { type = relation which = RUS value = -150 }
+		command = { type = relation which = POL value = -100 }
+	}
+	action_b = {
+		name = "ACTIONNAME3230B" #He will make an excellent Czar!
+		command = { type = stability value = 1 }
+		command = { type = relation which = RUS value = 50 }
+		command = { type = relation which = POL value = 50 }
+	}
+}
+
+#(1612) Axel Oxenstierna
+event = {
+	id = 3233
+	random = no
+	country = SWE
+	name = "EVENTNAME3233" #Axel Oxenstierna
+	desc = "EVENTHIST3233"
+	#-#Born in 1583, Axel Oxenstierna started his civil career for the Swedish State in 1602, and became Chancellor between 1612 and 1654. He proved to be the most able administrator Sweden has ever had. Like Charles IX, Oxenstierna was impressed by Calvinism, and harbored notions of adopting at least elements of that faith. As Gustavus Adolphus's right hand man, he fought against the King's plans to intervene in the Thirty Years War. However, after the death of the King at Lützen in 1632, he assumed the leadership of the Protestant cause and managed to convince the French to actively participate in the conflict. He always followed domestic policies closely, but lost most of his influence following the abdication of Queen Christina, which he opposed. He died in 1654, shortly after the coronation of King Charles X Gustavus.
+
+	date = { day = 1 month = january year = 1612 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1612 }
+
+	action_a = {
+		name = "ACTIONNAME3233A" #Appoint him Chancellor
+		command = { type = DIP which = 4 value = 240 }
+		command = { type = ADM which = 4 value = 240 }
+		command = { type = MIL which = 4 value = 240 }
+		command = { type = stability value = 3 }
+	}
+	action_b = {
+		name = "ACTIONNAME3233B" #Allow him free reign
+		command = { type = domestic which = ARISTOCRACY value = 2 }
+		command = { type = domestic which = SERFDOM value = 1 }
+		command = { type = religion which = reformed }
+		command = { type = provincereligion which = 252 value = reformed } #Småland
+		command = { type = provincereligion which = 254 value = reformed } #Svealand
+		command = { type = provincereligion which = 257 value = reformed } #Bergslagen
+		command = { type = provincereligion which = 341 value = reformed } #Västerbotten
+		command = { type = provincereligion which = 1469 value = reformed } #Gästrikland
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 36 value = 5 }
+		command = { type = relation which = ENG value = 100 }
+		command = { type = relation which = HOL value = 100 }
+		command = { type = relation which = DAN value = -100 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = relation which = PAP value = -100 }
+		command = { type = relation which = POL value = -100 }
+		command = { type = DIP which = 4 value = 240 }
+		command = { type = ADM which = 4 value = 240 }
+		command = { type = MIL which = 4 value = 240 }
+	}
+}
+
+#(1613-1669) Peace of Stolbovo
+event = {
+	id = 40074 #triggered by RUS_40078 A
+	trigger = {
+		OR = {
+			owned = { province = 267 data = -1 }
+			owned = { province = 268 data = -1 }
+			owned = { province = 269 data = -1 }
+			owned = { province = 271 data = -1 }
+			owned = { province = 274 data = -1 }
+			owned = { province = 277 data = -1 }
+			owned = { province = 278 data = -1 }
+			owned = { province = 279 data = -1 }
+			owned = { province = 280 data = -1 }
+			owned = { province = 1470 data = -1 }
+			owned = { province = 262 data = -1 }
+			owned = { province = 275 data = -1 }
+			owned = { province = 266 data = -1 }
+		}
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME40074" #Peace of Stolbovo
+	desc = "EVENTHIST40074"
+	#-#In 1617, following a messy Russian Time of Troubles, and Polish-Swedish intervention, peace between Russia and Sweden was finally reached in the Treaty of Stolbovo, with English mediation. In it, Sweden renounced all claims to the Russian throne and Novgorod, gave back three towns for 20,000 rubles, and held Gdov until new boundaries were delimited. Russia gave up Ivangorod, Jama, Kopor'e, Nöteborg, abandoned claims on Livonia, ceded Kexholm to Sweden, and agreed not to aid Poles against Sweden.
+
+	action_a = {
+		name = "ACTIONNAME3143A" #Sign it
+		command = { type = cedeprovince which = RUS value = 262 } #Kola
+		command = { type = cedeprovince which = RUS value = 267 } #Olonets
+		command = { type = cedeprovince which = RUS value = 268 } #Vologda
+		command = { type = cedeprovince which = RUS value = 269 } #Arkhangelsk
+		command = { type = cedeprovince which = RUS value = 271 } #Vladimir
+		command = { type = cedeprovince which = RUS value = 274 } #Novgorod
+		command = { type = cedeprovince which = RUS value = 277 } #Pskov
+		command = { type = cedeprovince which = RUS value = 278 } #Tver
+		command = { type = cedeprovince which = RUS value = 279 } #Tula
+		command = { type = cedeprovince which = RUS value = 280 } #Welikia
+		command = { type = cedeprovince which = RUS value = 1470 } #Karelia
+		command = { type = relation which = RUS value = 150 }
+		command = { type = treasury value = 200 }
+	}
+	action_b = {
+		name = "ACTIONNAME3023B" #Refuse to sign it
+		command = { type = relation which = RUS value = -150 }
+		command = { type = trigger which = 40075 } #RUS: Sweden refuses to sign the Treaty of Stolbovo
+	}
+}
+
+#(1614) The Court of Appeals
+event = {
+	id = 3235
+	random = no
+	country = SWE
+	name = "EVENTNAME3235" #The Court of Appeals
+	desc = "EVENTHIST3235"
+	#-#Gustavus Adolphus founded the first Swedish court of appeals, 'Svea Hovrätt', in 1614 as a higher instance than the old local courts, or 'tingsrätt'. Today there are six such courts in Sweden.
+
+	date = { day = 1 month = january year = 1614 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1614 }
+
+	action_a = {
+		name = "OK"
+		command = { type = stability value = 1 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+	}
+}
+
+#(1615) The Military Reforms of Gustavus Adolphus
+event = {
+	id = 3228
+	random = no
+	country = SWE
+	name = "EVENTNAME3228" #The Military Reforms of Gustavus Adolphus
+	desc = "EVENTHIST3228"
+	#-#In the early 17th century, Swedish King Gustavus Adolphus undertook a set of measures to reform the Swedish military system. Sweden would develop a professional army around the conscription of soldiers on the basis of same geographical origin (cities, hamlets, villages) that would bring team spirit and cohesion to units that did not exist in most mercenary armies of the time. The tactical innovations included shallower and broader formations to maximize firepower, cross training between the army branches, and light, highly mobile field artillery. The new Swedish tactical doctrine was based on firepower and mobility, eschewing heavy artillery and slow-moving tercios.
+
+	date = { day = 1 month = january year = 1615 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1615 }
+
+	action_a = {
+		name = "ACTIONNAME3228A" #Regional Conscription
+		command = { type = domestic which = QUALITY value = 2 }
+		command = { type = domestic which = OFFENSIVE value = 1 }
+		command = { type = land value = 2000 }
+		command = { type = provincemanpower which = -2 value = 2 }
+		command = { type = provincemanpower which = -1 value = 1 }
+		command = { type = provincemanpower which = -1 value = 1 }
+		command = { type = provincemanpower which = -1 value = 1 }
+		command = { type = provincemanpower which = -1 value = 1 }
+		command = { type = provincemanpower which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = -1 } #Lost farmers
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		#command = { type = AI which = Sweden_TYW.ai }
+	}
+	action_b = {
+		name = "ACTIONNAME3228B" #Mercenary Core
+		command = { type = manpower value = 5 }
+		command = { type = domestic which = QUALITY value = 1 }
+		command = { type = domestic which = OFFENSIVE value = 1 }
+		command = { type = land value = 2000 }
+		#command = { type = AI which = Sweden_TYW.ai }
+	}
+	action_c = {
+		name = "ACTIONNAME3228C" #Naval Expansion
+		command = { type = naval value = 4000 }
+		command = { type = gainbuilding which = 254 value = shipyard } #Svealand
+		command = { type = gainmanufactory which = 252 value = navalequipment } #Småland
+		command = { type = domestic which = LAND value = -2 }
+		#command = { type = AI which = Sweden_TYW.ai }
+	}
+}
+
+#(1620-1670) The Mercantile Reforms
+event = {
+	id = 3231
+	trigger = {
+		owned = { province = 251 data = -1 } #Skåne
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME3231" #The Mercantile Reforms
+	desc = "EVENTHIST3231"
+	#-#During the first half of the 17th century, the newly risen great power of Sweden sought ways of reforming her trade as effectively as she had the army. Foreign entrepreneurs (mostly from the Low Countries, like Louis de Geer) started up flourishing businesses and provided excellent role models for Swedish merchants. The Swedes were even persuaded by certain Dutchmen to embark on lucrative colonial ventures, but the attempts were half-hearted as Sweden chose instead to pursue an aggressive continental policy. Swedish trade never really took off either, due to the constant mercantilist interference of a money starved government.
+
+	date = { day = 1 month = january year = 1620 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1670 }
+
+	action_a = {
+		name = "ACTIONNAME3231A" #Mercantilist Policy
+		command = { type = domestic which = MERCANTILISM value = 2 }
+		command = { type = removecot which = 305 } #Mecklenburg
+		command = { type = removecot which = 307 } #Sjælland
+		command = { type = cot which = 254 } #Svealand
+		command = { type = provincetax which = -2 value = 3 }
+		command = { type = provincetax which = -1 value = 2 }
+		command = { type = provincetax which = -1 value = 2 }
+		command = { type = provincetax which = -1 value = 2 }
+		command = { type = provincetax which = -1 value = 2 }
+		command = { type = provincetax which = -1 value = 2 }
+		command = { type = trade value = 1000 }
+	}
+	action_b = {
+		name = "ACTIONNAME3231B" #Free Trade Policy
+		command = { type = merchants value = 5 }
+		command = { type = removecot which = 305 } #Mecklenburg
+		command = { type = removecot which = 307 } #Sjælland
+		command = { type = cot which = 254 } #Svealand
+		command = { type = domestic which = MERCANTILISM value = -3 }
+		command = { type = trade value = 1000 }
+	}
+	action_c = {
+		name = "ACTIONNAME3231C" #Align with Dutch colonialism
+		command = { type = revoltrisk which = 48 value = 4 }
+		command = { type = merchants value = 5 }
+		command = { type = colonists value = 6 }
+		command = { type = removecot which = 305 } #Mecklenburg
+		command = { type = removecot which = 307 } #Sjælland
+		command = { type = cot which = 254 } #Svealand
+		command = { type = domestic which = MERCANTILISM value = -4 }
+		command = { type = domestic which = LAND value = -2 }
+		command = { type = naval value = 2000 }
+		command = { type = relation which = HOL value = 150 }
+		command = { type = relation which = ENG value = -150 }
+		command = { type = relation which = SPA value = -150 }
+		command = { type = relation which = POR value = -150 }
+		command = { type = trade value = 1000 }
+	}
+}
+
+#(1629-1635) The Threat to Protestantism in Germany
+event = {
+	id = 3754
+	trigger = {
+		OR = {
+			religion = protestant
+			religion = reformed
+		}
+		event = 3196 #HAB: The Edict of Restitution
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME3754" #The Threat to Protestantism in Germany
+	desc = "EVENTHIST3754"
+	#-#The victories of the Catholic League led by Maximilian of Bavaria against the German Protestant princes and the King of Denmark, who unsuccessfully supported the Lutheran rulers, persuaded Emperor Ferdinand II to issue the Edict of Restitution with the intention to take back the Lutheran holdings that were, according to the Peace of Augsburg, rightfully the possession of the Catholic Church. So this brief document purported to do no more than enforce the terms of the Peace of Augsburg. However, the interpretation put on that document was that which had been urged by partisans of Catholicism. Thus it became the source of outrage for King Gustav II Adolphus of Sweden (the Lion of the North) who, like Christian IV before him, came to aid the German Lutherans to forestall Catholic aggression against their homeland and to obtain economic influence in the German states around the Baltic Sea which were being threatened by the growing influence of the imperial authority.
+
+	date = { day = 1 month = january year = 1629 }
+	offset = 25
+	deathdate = { day = 1 month = january year = 1635 }
+
+	action_a = {
+		name = "ACTIONNAME3754A" #Make it our cause
+		command = { type = casusbelli which = HAB value = 60 }
+		command = { type = casusbelli which = BAY value = 36 }
+		command = { type = addcore which = 336 } #Bremen
+		command = { type = addcore which = 304 } #Vorpommern
+		command = { type = relation which = HOL value = 150 }
+		command = { type = relation which = DAN value = 50 }
+		command = { type = relation which = FRA value = 100 }
+		command = { type = relation which = BRA value = 150 }
+		command = { type = relation which = HAN value = 150 }
+		command = { type = relation which = HES value = 150 }
+		command = { type = relation which = PFA value = 150 }
+		command = { type = relation which = SAC value = 150 }
+		#command = { type = relation which = THU value = 150 } #Bayreuth
+		command = { type = relation which = SHL value = 150 }
+		command = { type = relation which = KLE value = -100 }
+		command = { type = relation which = KOL value = -150 }
+		command = { type = relation which = BAY value = -150 }
+		command = { type = relation which = PAP value = -150 }
+		command = { type = relation which = SPA value = -150 }
+		command = { type = relation which = HAB value = -150 }
+		command = { type = stability value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3754B" #Don't mess around in Germany
+		command = { type = relation which = HOL value = -50 }
+		command = { type = relation which = DAN value = -50 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = relation which = BRA value = -50 }
+		command = { type = relation which = HAN value = -50 }
+		command = { type = relation which = HES value = -50 }
+		command = { type = relation which = PFA value = -50 }
+		command = { type = relation which = SAC value = -50 }
+		#command = { type = relation which = THU value = -50 } #Bayreuth
+		command = { type = relation which = SHL value = -50 }
+		command = { type = relation which = KLE value = 100 }
+		command = { type = relation which = KOL value = 100 }
+		command = { type = relation which = BAY value = 100 }
+		command = { type = relation which = PAP value = 100 }
+		command = { type = relation which = SPA value = 100 }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = stability value = 1 }
+		command = { type = sleepevent which = 12062 } #FRA: French Encirclement by the Habsburgs
+	}
+}
+
+#(1632) Oxenstierna's Regency
+event = {
+	id = 3236
+	trigger = {
+		monarch = 0131523 #Kristina
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME3236" #Oxenstierna's Regency
+	desc = "EVENTHIST3236"
+	#-#Upon Gustavus Adolphus not entirely unexpected but greatly feared demise at Lützen on November 6, 1632 Axel Oxenstierna had to shoulder the full burden of governing the realm as head regent for Gustavus's six year old daughter Christina. The brilliant administrator kept the nation running smoothly, but the aristocratic tendencies that had been kept in check by the late King were unleashed in full by the high lords of the regency to the great detriment of the lower classes and the Crown. One of the other five regents was Karl Karlsson Gyllenhielm, bastard brother to Gustavus and high admiral of the realm. Of the lot, he was the least concerned with personal wealth and privileges.
+
+	date = { day = 7 month = november year = 1632 }
+
+	action_a = {
+		name = "ACTIONNAME3236A" #Regency under Oxenstierna
+		command = { type = DIP which = 4 value = 264 }
+		command = { type = ADM which = 4 value = 264 }
+		command = { type = MIL which = 4 value = 264 }
+		command = { type = domestic which = ARISTOCRACY value = 2 }
+		command = { type = domestic which = SERFDOM value = 1 }
+		command = { type = provincetax which = -1 value = -2 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3236B" #Regency under Gyllenhielm
+		command = { type = stability value = -3 }
+		command = { type = naval value = 1000 }
+		command = { type = infra value = 500 }
+		command = { type = sleepevent which = 291031 } #SWE: The Hannibal controversy
+	}
+}
+
+#(1637) The Acquisition of Vorpommern
+event = {
+	id = 291029 #triggered by POM_3895 A
+	random = no
+	country = SWE
+	name = "EVENTNAME291029" #The Acquisition of Vorpommern
+	desc = "EVENTHIST291029"
+	#-#With our constant diplomatic pressure on the Pomeranian rulers we managed to obtain economic influence upon the German territories around the Baltic Sea and to set gain control over one the most important trade routes of the Holy Roman Empire.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = trade value = 150 }
+		command = { type = addcore which = 304 } #Vorpommern
+	}
+}
+#(1637) The Acquisition of Pomerania
+event = {
+	id = 291030 #triggered by POM_259010 A
+	random = no
+	country = SWE
+	name = "EVENTNAME291030" #The Acquisition of Pomerania
+	desc = "EVENTHIST291029"
+	#-#With our constant diplomatic pressure on the Pomeranian rulers we managed to obtain economic influence upon the German territories around the Baltic Sea and to set gain control over one the most important trade routes of the Holy Roman Empire.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = inherit which = POM }
+		command = { type = addcore which = 302 } #Hinterpommern
+		command = { type = addcore which = 304 } #Vorpommern
+		command = { type = trade value = 250 }
+	}
+}
+
+#(1642-1643) The Hannibal controversy
+#by YodaMaster - text from wikipedia
+event = {
+	id = 291031
+	trigger = {
+		OR = {
+			owned = { province = 381 data = DAN } #Jämtland
+			owned = { province = 308 data = DAN } #Gotland
+			owned = { province = 251 data = DAN } #Skåne
+			owned = { province = 381 data = NOR } #Jämtland
+			owned = { province = 308 data = NOR } #Gotland
+			owned = { province = 251 data = NOR } #Skåne
+		}
+		NOT = {
+			vassal = { country = DAN country = SWE }
+			vassal = { country = NOR country = SWE }
+		}
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME291031" #The Hannibal controversy
+	desc = "EVENTHIST291031"
+	#-#Sweden had been highly successful in the Thirty Years' War, having defeated Danish armies in Germany and seen substantial victories under Gustavus Adolphus and, after this death, under the leadership of Count Axel Oxenstierna, Lord High Chancellor of Sweden. At the same time, Sweden was continually threatened by Denmark-Norway, which almost completely encircled Sweden from the south (Blekinge, Skåne, and Halland), the west (Bohuslän) and the northwest (Jämtland). The Danish Sound Dues were also a continuing source of irritation and a contributing factor to the war. \n \nIn the spring of 1643 the Swedish Privy Council determined that their military strength made territorial gains at the expense of Denmark likely. The Count drew up the plan for war and directed a surprise multiple-front attack on Denmark in May.
+
+	date = { day = 1 month = january year = 1642 }
+	offset = 90
+	deathdate = { day = 29 month = december year = 1643 }
+
+	action_a = {
+		name = "ACTIONNAME291031A" #Draw up a plan
+		command = { type = addcore which = 381 } #Jämtland
+		command = { type = addcore which = 308 } #Gotland
+		command = { type = addcore which = 251 } #Skåne
+		command = { type = casusbelli which = DAN value = 36 }
+		command = { type = casusbelli which = NOR value = 36 }
+		command = { type = sleepevent which = 291032 } #SWE: The claim to Jämtland, Gotland and Skäne
+	}
+	action_b = {
+		name = "ACTIONNAME291031B" #Sweden is not threatened
+		command = { type = relation which = DAN value = 30 }
+		command = { type = relation which = NOR value = 30 }
+		command = { type = vp value = -50 }
+	}
+}
+
+#(1644-1820) The claim to Jämtland, Skäne and Gotland - Ahistorical
+#in case Sweden didn't get any historical cores on Jämtland (381), Gotland (308) and Skåne (251)
+#by YodaMaster
+event = {
+	id = 291032
+	trigger = {
+		NOT = {
+			core = { province = 381 data = -1 } #Jämtland
+			core = { province = 308 data = -1 } #Gotland
+			core = { province = 251 data = -1 } #Skåne
+		}
+		OR = {
+			AND = {
+				owned = { province = 252 data = -1 } #Småland
+				owned = { province = 257 data = -1 } #Bergslagen
+				owned = { province = 253 data = -1 } #Västergötland
+				owned = { province = 1469 data = -1 } #Gästrikland
+				control = { province = 252 data = -1 } #Småland
+				control = { province = 253 data = -1 } #Västergötland
+				control = { province = 257 data = -1 } #Bergslagen
+				control = { province = 1469 data = -1 } #Gästrikland
+			}
+			AND = {
+				owned = { province = 381 data = -1 } #Jämtland
+				owned = { province = 308 data = -1 } #Gotland
+				owned = { province = 251 data = -1 } #Skåne
+				control = { province = 381 data = -1 } #Jämtland
+				control = { province = 308 data = -1 } #Gotland
+				control = { province = 251 data = -1 } #Skåne
+			}
+		}
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME291032" #The claim to Jämtland, Gotland and Skäne
+	desc = "EVENTHIST291032"
+	#-#Sweden is powerful enough to claim these territories...
+
+	date = { day = 2 month = January year = 1644 }
+	offset = 90
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME291032A" #Those are Swedish lands
+		command = { type = addcore which = 381 } #Jämtland
+		command = { type = addcore which = 308 } #Gotland
+		command = { type = addcore which = 251 } #Skåne
+	}
+	action_b = {
+		name = "ACTIONNAME291032B" #Don't press our claims
+		command = { type = stability value = 1 }
+		command = { type = vp value = -5 }
+	}
+}
+
+#(1650-1652) The Quarter Reduction of Christina
+event = {
+	id = 3238
+	trigger = {
+		monarch = 0131523 #Kristina
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME3238" #The Quarter Reduction of Christina
+	desc = "EVENTHIST3238"
+	#-#Queen Christina's reign was troubled by her struggle with the high lords of the Council, particularly the chancellor, Axel Oxenstierna. In spite of his opposition, she was a prime mover in concluding the Peace of Westphalia (1648) and ending the Thirty Years War. An assiduous politician, Christina was able to keep the bitter class rivalries that broke out after the war from lapsing into civil war but was unable to solve the desperate financial problems caused by the long years of fighting. In the end, she had to recall Oxenstierna and accept the failure of her reform program.
+
+	date = { day = 1 month = january year = 1650 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1652 }
+
+	action_a = {
+		name = "ACTIONNAME3238A" #Align with the Lords
+		command = { type = stability value = 1 }
+		command = { type = revoltrisk which = 12 value = 3 }
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = INF which = -2 value = 3000 }
+		command = { type = CAV which = -2 value = 3000 }
+		command = { type = artillery which = -2 value = 10 }
+	}
+	action_b = {
+		name = "ACTIONNAME3238B" #Increased Contributions
+		command = { type = stability value = -1 }
+		command = { type = treasury value = 300 }
+		command = { type = provincetax which = -1 value = 1 }
+	}
+	action_c = {
+		name = "ACTIONNAME3238C" #More land to the Crown
+		command = { type = stability value = -2 }
+		command = { type = domestic which = ARISTOCRACY value = -1 }
+		command = { type = provincetax which = -2 value = 2 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+	}
+}
+
+#(1654) Queen Christina-The Catholic Maiden
+event = {
+	id = 3239
+	trigger = {
+		monarch = 0131523 #Kristina
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME3239" #Queen Christina-The Catholic Maiden
+	desc = "EVENTHIST3239"
+	#-#At the parliament of 1650 Christina had set her mind on making her cousin Charles Gustavus heir to the throne and she also did. But what if..? Her intention to abdicate had reached the ears of Magnus Gabriel de la Gardie and the men around him. The High Nobility of Sweden defied this and managed to break any burgher-peasant coalition Christina manages to create. In a nightly discussion De la Gardie promised the Queen that she might herself chose the religion of her conscience if she stayed as Queen and ruled together with the cream of the Nobility. However, should she decide not to then De la Gardie and his friend would see to it that Charles Gustavus never became heir. Thus, Christina surrendered and chose stay on the throne in 1654.
+
+	date = { day = 6 month = june year = 1654 }
+
+	action_a = {
+		name = "ACTIONNAME3239A" #Abdicate
+		command = { type = sleepmonarch which = 0131523 } #Kristina
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = domestic which = ARISTOCRACY value = -1 }
+		command = { type = domestic which = SERFDOM value = -1 }
+		command = { type = land value = 250 }
+		command = { type = stability value = 1 }
+		#command = { type = AI which = Sweden_Post_TYW.ai }
+	}
+	action_b = {
+		name = "ACTIONNAME3239B" #Stay and personally convert to Catholicism
+		command = { type = revoltrisk which = 60 value = 5 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = domestic which = ARISTOCRACY value = 2 }
+		command = { type = domestic which = SERFDOM value = 1 }
+		command = { type = gainmanufactory which = -1 value = luxury }
+		command = { type = relation which = POL value = 100 }
+		command = { type = relation which = FRA value = 150 }
+		command = { type = relation which = SPA value = 150 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = PAP value = 150 }
+		command = { type = relation which = BAY value = 150 }
+		command = { type = relation which = COL value = 150 }
+		command = { type = relation which = SAV value = 150 }
+		command = { type = relation which = POR value = 150 }
+		command = { type = stability value = -1 }
+		#command = { type = AI which = Sweden_Post_TYW.ai }
+	}
+}
+
+#(1655-1660) Karl X Gustav ambitions
+#by Duc de Guise with help from rybka
+event = {
+	id = 291034
+	trigger = {
+		#Jan Kazimierz denied Karl X rights on Swedish throne, irritating him
+		monarch = 0131524 #Karl X Gustav
+		war = { country = RUS country = POL }
+		owned = { province = 301 data = POL } #Danzig
+		control = { province = 284 data = RUS } #Belarus
+		control = { province = 285 data = RUS } #Smolensk
+		control = { province = 287 data = RUS } #Mozyr
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME291034" #Karl X Gustav ambitions
+	desc = "EVENTHIST291034"
+	#-#The Russians invaded and crushed the Polish army, easily retaking Smolensk, and maybe advance further toward our Baltic possessions. Should we react and conquer royal Prussia before Russia grabs it?
+
+	date = { day = 1 month = january year = 1655 }
+	offset = 72
+	deathdate = { day = 13 month = february year = 1660 } #death of Karl X
+
+	action_a = {
+		name = "ACTIONNAME291034A" #Let's take care of our bitter rival once and for all!
+		command = { type = casusbelli which = POL value = 12 }
+		command = { type = relation which = POL value = -200 }
+		command = { type = addcore which = 301 } #Karl X pressed claim on royal Prussia
+	}
+	action_b = {
+		name = "ACTIONNAME291034B" #No more wars
+		command = { type = relation which = POL value = 100 }
+	}
+}
+
+#(1656-1661) The Quarter Reduction of Charles X
+event = {
+	id = 3237
+	trigger = {
+		monarch = 0131524 #Karl X Gustav
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME3237" #The Quarter Reduction of Charles X
+	desc = "EVENTHIST3237"
+	#-#Charles Gustavus selection as crown prince came about only with promises of change for the peasants and burghers at the Riksdag of 1650. Thus, when he succeeded Christina to the throne in 1654 he felt an obligation to lighten their burden as well as strengthen the state finances. As always, there were only two real ways of accomplishing this - reduction or increased contributions from the aristocracy. With great reluctance the nobles agreed to a limited reduction. After all, increased contributions were almost the same thing as paying taxes, something nobles simply didn't do.
+
+	date = { day = 1 month = january year = 1656 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1661 }
+
+	action_a = {
+		name = "ACTIONNAME3237A" #More land to the Crown!
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 6 value = 3 }
+		command = { type = domestic which = ARISTOCRACY value = -1 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = provincetax which = -2 value = 2 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3237B" #Force the nobles to contribute more
+		command = { type = stability value = -1 }
+		command = { type = treasury value = 500 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+	}
+	action_c = {
+		name = "ACTIONNAME3237C" #Align with the Lords
+		command = { type = stability value = 1 }
+		command = { type = revoltrisk which = 24 value = 4 }
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = CAV which = -2 value = 5000 }
+		command = { type = artillery which = -2 value = 20 }
+	}
+}
+
+#(1656) Treaty of Marienburg
+#by Duc de Guise
+event = {
+	id = 291035
+	trigger = {
+		monarch = 0131524 #Karl X Gustav
+		war = { country = SWE country = POL }
+		control = { province = 291 data = POL } #reaction of Karl Gustav after Warsaw retook by Poles #Mazovia
+		exists = BRA
+		NOT = {
+			war = { country = BRA country = SWE }
+		}
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME291035" #Treaty of Marienburg
+	desc = "EVENTHIST291035"
+	#-#The Poles, in a shocking return of their King, managed to hold/retake their capital, forcing Swedish troops to go back. Military help of the Elector Friedrich-Wilhelm was needed.
+
+	date = { day = 1 month = june year = 1656 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1656 }
+
+	action_a = {
+		name = "ACTIONNAME291035A" #Ask for Brandenburgian help
+		command = { type = trigger which = 132029 } #BRA: Treaty of Marienburg
+	}
+}
+
+#(1656) Treaty of Labiau
+#by Duc de Guise
+event = {
+	id = 291036
+	trigger = {
+		monarch = 0131524 #Karl X Gustav
+		war = { country = POL country = SWE }
+		exists = BRA
+		NOT = {
+			war = { country = BRA country = SWE }
+		}
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME291036" #Treaty of Labiau
+	desc = "EVENTHIST291036"
+	#-#Friedrich-Wilhelm seems to get closer to the Poles. We must try to make concessions in order to keep him allied with us.
+
+	date = { day = 1 month = september year = 1656 }
+	offset = 10
+	deathdate = { day = 29 month = november year = 1656 }
+
+	action_a = {
+		name = "ACTIONNAME291036A" #Make concessions to Brandenburg for further help
+		#Karl Gustav renounce on royal Prussia
+		command = { type = removecore which = 301 } #Danzig
+		#Karl Gustav new goals
+		command = { type = addcore which = 283 } #Kurland
+		command = { type = addcore which = 289 } #Memel
+		command = { type = addcore which = 290 } #Prussia
+		command = { type = trigger which = 132030 } #BRA: Treaty of Labiau
+	}
+}
+
+#(1660) Magnus Gabriel de la Gardie's Regency
+event = {
+	id = 3240
+	trigger = {
+		monarch = 0131524 #Karl X Gustav
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME3240" #De La Gardie's Regency
+	desc = "EVENTHIST3240"
+	#-#On his deathbed, Charles X appointed the regents for his son Charles in a way that would limit the power of the high aristocracy to avoid a situation similar to Axel Oxenstierna's regency. Soon after he was dead however, the Council and the House of Lords managed to replace two of his closest supporters, Prince Adolf Johan and Herman Fleming, with the more pliable Lars Kagg and Gustav Bonde. The result was a return to the government statutes of 1634, with policies closely aligned with the interests of the landed nobles.
+
+	date = { day = 14 month = february year = 1660 }
+	offset = 30
+	deathdate = { day = 14 month = april year = 1660 }
+
+	action_a = {
+		name = "ACTIONNAME3240A" #Replace the King's Men
+		command = { type = domestic which = ARISTOCRACY value = 3 }
+		command = { type = domestic which = SERFDOM value = 1 }
+		command = { type = domestic which = QUALITY value = -2 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = relation which = FRA value = 100 }
+	}
+	action_b = {
+		name = "ACTIONNAME3240B" #Comply with the King's Will
+		command = { type = stability value = -3 }
+	}
+}
+
+#(1679) Erik Dahlberg - Flavor
+event = {
+	id = 5030
+	random = no
+	country = SWE
+	name = "EVENTNAME5030" #Erik Dahlberg
+	desc = "EVENTHIST5030"
+	#-#In 1679 veteran campaigner and military engineer Erik Dahlberg was appointed head of the Swedish Bureau of Fortifications. At the time Sweden was at the zenith of its power and the offensive policy of the previous decades had left the country with longer borders than ever. Erik Dahlberg and his team designed several forbidding fortresses and had them constructed at key points around the Empire masterfully using the terrain to the greatest possible effect. The great forts Lejonet and Kronan in Gothenburg the fortress of Varberg and the fortress of Dalarö are all testaments to his genius. Unfortunately the strained budget did not allow for the eastern provinces which would prove disastrous in the years to come...
+
+	date = { day = 1 month = january year = 1679 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1679 }
+
+	action_a = {
+		name = "OK"
+		command = { type = fortress which = -2 value = 1 } #Dalarö
+		command = { type = fortress which = 253 value = 1 } #Gothenburg #Västergötland
+		command = { type = fortress which = 251 value = 1 } #Varberg #Skåne
+		command = { type = fortress which = -1 value = 1 }
+	}
+}
+
+#(1679) The Absolutism
+event = {
+	id = 3232
+	random = no
+	country = SWE
+	name = "EVENTNAME3232" #The Absolutism
+	desc = "EVENTHIST3232"
+	#-#After the disastrous war of 1674-79, which Sweden was more or less forced into by France, Charles XI and broad layers of the Swedish administration realized that something had to change. The King, in two surprisingly painless parliament sessions 1680 and 1682, assumed sole control of the country with no obligation to heed either parliament or royal council. Thus began the period of Caroline absolutism in Sweden, with the King called 'the Graycoat' for his humility and simple habits, answerable only to God.
+
+	date = { day = 1 month = january year = 1679 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1679 }
+
+	action_a = {
+		name = "ACTIONNAME3232A" #The King shall rule supreme
+		command = { type = stability value = -2 }
+		command = { type = domestic which = ARISTOCRACY value = -2 }
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME3232B" #The King must heed the Council
+		command = { type = stability value = 3 }
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+	}
+}
+
+#(1680-1730) The Oriental Diplomacy
+event = {
+	id = 3245
+	trigger = {
+		war = { country = SWE country = RUS }
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME3245" #The Oriental Diplomacy
+	desc = "EVENTHIST3245"
+	#-#The Great Northern War required powerful allies - something Sweden had rarely been blessed with before. Charles XII thought he had found such allies in the Ottoman Empire and the Ukrainian Cossacks under Mazepa, but his hopes were eventually most cruelly dashed. Mazepa proved much less resourceful than expected and the Turks were notoriously unreliable. However, the only alternative allies were the great nations of Western Europe, and they were in no real position to strike against Russia.
+
+	date = { day = 1 month = january year = 1680 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1730 }
+
+	action_a = {
+		name = "ACTIONNAME3245A" #Align with the Oriental Powers
+		command = { type = relation which = TUR value = 200 }
+		command = { type = relation which = UKR value = 200 }
+		command = { type = relation which = PER value = 100 }
+	}
+	action_b = {
+		name = "ACTIONNAME3245B" #Align with France
+		command = { type = relation which = FRA value = 200 }
+		command = { type = relation which = ENG value = -200 }
+		command = { type = relation which = HOL value = -200 }
+	}
+	action_c = {
+		name = "ACTIONNAME3245C" #Align with England and Holland
+		command = { type = relation which = ENG value = 200 }
+		command = { type = relation which = HOL value = 200 }
+		command = { type = relation which = FRA value = -200 }
+	}
+}
+
+#(1681) The Great Reduction of Charles XI
+event = {
+	id = 3243
+	random = no
+	country = SWE
+	name = "EVENTNAME3243" #The Great Reduction
+	desc = "EVENTHIST3243"
+	#-#The Swedish Kings of the 16th and 17th centuries alternated between acceptance and dislike of the nobility. In Gustav Vasa's time there was little difference between a rich farmer and a nobleman, but the situation changed towards the end of his life. Erik XIV kept the nobles on a short leash whereas his brother John wanted to expand their privileges. The third brother, who was to become Charles IX, hated the nobility with an almost revolutionary fervor and surrounded himself with men of the lower classes, toying with ideas that were unheard of in his time. Under Gustavus Adolphus and Axel Oxenstierna the pendulum swung the other way and the nobles gained both land and power. This tendency took an abrupt end with Charles XI, who after the humiliating defeat of Sweden in 1679 commenced a policy of wide scale reductions of the lands and powers of the nobility and abolished the special privileges of the Baltic lords.
+
+	date = { day = 1 month = january year = 1681 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1681 }
+
+	action_a = {
+		name = "ACTIONNAME3243A" #Time of reckoning for the lords
+		command = { type = stability value = -3 }
+		command = { type = revolt which = -1 }
+		command = { type = domestic which = ARISTOCRACY value = -2 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = provincetax which = -2 value = 3 }
+		command = { type = provincetax which = -1 value = 2 }
+		command = { type = provincetax which = -1 value = 2 }
+		command = { type = provincetax which = -1 value = 2 }
+		command = { type = provincetax which = -1 value = 2 }
+		command = { type = provincetax which = -1 value = 2 }
+		command = { type = domestic which = SERFDOM value = -1 }
+		command = { type = add_countryculture which = baltic }
+	}
+	action_b = {
+		name = "ACTIONNAME3243B" #Bargain with the lords
+		command = { type = stability value = 3 }
+		command = { type = revoltrisk which = 48 value = 4 }
+		command = { type = treasury value = 1000 }
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = CAV which = -2 value = 10000 }
+		command = { type = artillery which = -2 value = 30 }
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+	}
+}
+
+#(1683-1688) The Great Army Reorganisation
+event = {
+	id = 3244
+	random = no
+	country = SWE
+	name = "EVENTNAME3244" #The Great Army Reorganisation
+	desc = "EVENTHIST3244"
+	#-#Charles XI was not a great warrior King like his father and his son, but he was a great reorganizer and consolidator. Apart from his centralization efforts and huge reduction of aristocratic land holdings he also remodelled the army. Most importantly, he devised the genial 'indelningsverk', or military-tenure system. The system was a military organisation where the soldiers were given a croft to live in and cultivate (made possible by the reduction), where the harvest served as their wages. Thus the country could maintain a large army in both times of peace and of war. If a peasant assumed the responsibility of maintaining an enlisted rider, his horse and equipment, he was exempted from conscription and freed from paying taxes. The peasants could cooperate in groups of 2-5 farms and maintain a soldier or a sailor. The soldiers were organized into companies of 150 men, and every county should field a regiment of 1200 men. The new system also made no distinction between officers of noble birth and commoners.
+
+	date = { day = 1 month = january year = 1683 }
+	offset = 1600
+	deathdate = { day = 1 month = january year = 1688 }
+
+	action_a = {
+		name = "ACTIONNAME3244A" #Reform the army
+		command = { type = gainbuilding which = -2 value = barrack }
+		command = { type = provincemanpower which = -1 value = 2 }
+		command = { type = provincemanpower which = -1 value = 2 }
+		command = { type = provincemanpower which = -1 value = 2 }
+		command = { type = provincemanpower which = -1 value = 2 }
+		command = { type = provincemanpower which = -1 value = 2 }
+		command = { type = provincetax which = -1 value = -1 } #Lost taxes
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3244B" #Use the old system
+		command = { type = vp value = -1 }
+	}
+}
+
+#(1697-1700) The Great Northern Conflict
+#by Greven
+event = {
+	id = 3241
+	trigger = {
+		OR = {
+			exists = RUS
+			exists = POL
+			exists = DAN
+		}
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME3241" #The Great Northern Conflict
+	desc = "EVENTHIST3241"
+	#-#In 1697, the 15 years old Charles XII ascended the Swedish throne. Seeing the opportunity, the Russian Czar Peter I allied with Denmark and Poland-Saxony in 1699. However, with British and Dutch naval assistance, Charles XII landed on Zealand and promptly defeated the Danes, then moved to Estland where his badly outnumbered Swedes (1 to 5) won a crushing victory over the Russians. Instead of finishing the Russians, Charles moved against August II of Poland-Saxony and drove him out of Poland in 1704 (having the pro-Swedish Stanislas Leszinski elected King), then subjugating Saxony in 1706. While the Russians started the construction of St-Petersburg (1703) and rebuilt their armies, they also took parts of Estland (1704-1706). Charles then decided to march to Moscow via the Ukraine where the Cossacks under Mazeppa had again risen in revolt (1708). The harsh winter and Russian raids decimated his army and he was finally beaten at the battle of Poltava in 1709. The wounded King escaped to the Ottomans. The Russians were encircled by the Ottomans on the Prut River, but Peter succeeded through bribery to obtain a safe conduct in exchange for Azov. While Charles was still exiled in Turkey, Russian, Danish, Hanoverian and even Prussian troops captured most of the Swedish territory around the Baltic. Having emerged from Turkish internment, Charles got killed in 1718 in front of the Norwegian fortress of Frederickshald. The peace treaties that followed Sweden lost most of her Baltic empire.
+
+	date = { day = 15 month = june year = 1697 }
+	offset = 10
+	deathdate = { day = 1 month = april year = 1700 }
+
+	action_a = {
+		name = "ACTIONNAME3241A" #Denmark First-Strategy
+		command = { type = casusbelli which = DAN value = 36 }
+		command = { type = relation which = RUS value = -100 }
+		command = { type = relation which = POL value = -100 }
+		command = { type = relation which = DAN value = -200 }
+		command = { type = relation which = SAC value = -100 }
+		command = { type = relation which = SHL value = 200 }
+		command = { type = relation which = ENG value = 100 }
+		command = { type = relation which = HOL value = 100 }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = dynastic which = SHL }
+		command = { type = alliance which = SHL }
+		command = { type = stability value = 1 }
+		#command = { type = AI which = Sweden_Great_Nordic_War.ai }
+	}
+	action_b = {
+		name = "ACTIONNAME3241B" #Poland First-Strategy
+		command = { type = casusbelli which = POL value = 36 }
+		command = { type = relation which = RUS value = -100 }
+		command = { type = relation which = POL value = -200 }
+		command = { type = relation which = DAN value = -100 }
+		command = { type = relation which = SAC value = -200 }
+		command = { type = relation which = SHL value = -50 }
+		command = { type = relation which = ENG value = 50 }
+		command = { type = relation which = HOL value = 50 }
+		command = { type = relation which = FRA value = 150 }
+		command = { type = dynastic which = SHL }
+		command = { type = alliance which = SHL }
+		command = { type = stability value = -1 }
+		#command = { type = AI which = Sweden_Great_Nordic_War.ai }
+	}
+	action_c = {
+		name = "ACTIONNAME3241C" #Russia First-Strategy
+		command = { type = casusbelli which = RUS value = 36 }
+		command = { type = relation which = RUS value = -200 }
+		command = { type = relation which = POL value = -100 }
+		command = { type = relation which = DAN value = -100 }
+		command = { type = relation which = SAC value = -100 }
+		command = { type = relation which = SHL value = -50 }
+		command = { type = relation which = ENG value = 100 }
+		command = { type = relation which = HOL value = 50 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = dynastic which = SHL }
+		command = { type = alliance which = SHL }
+		#command = { type = AI which = Sweden_Great_Nordic_War.ai }
+	}
+}
+
+#(1700-1720) The Dethronement of August the Strong
+#by Greven
+event = {
+	id = 3242
+	trigger = {
+		OR = {
+			vassal = { country = SWE country = POL }
+			AND = {
+				vassal = { country = SWE country = SAC }
+				OR = {
+					event = 3486 #POL: The Polish Succession of 1697 -I-
+					event = 258084 #POL: The Polish Succession of 1697 -III-
+				}
+			}
+		}
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME3242" #The Dethronement of August the Strong
+	desc = "EVENTHIST3242"
+	#-#Charles XII spent six years (1701-1706) campaigning in Poland trying to force the Polish nobles to depose Augustus of Saxony and accept a peace settlement. In 1704 the Polish nobleman Stanislaw Leszczynski was installed on the throne, but Augustus still had many supporters. In 1706 Charles XII invaded Saxony and forced August to abdicate, but Charles's defeat at Poltava in 1709 saw Augustus back on the throne and Stanislaw in exile in Alsace. Poland has been vassalized, should we install Stanislaw Leszczynski as King?
+
+	date = { day = 1 month = january year = 1700 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1720 }
+
+	action_a = {
+		name = "ACTIONNAME3242A" #Yes, dethrone the Saxon pig
+		command = { type = trigger which = 3492 } #POL: The Dethronement of August the Strong
+		command = { type = relation which = POL value = 150 }
+		command = { type = relation which = SAC value = -150 }
+		command = { type = relation which = RUS value = -150 }
+		command = { type = casusbelli which = SAC value = 60 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3242B" #No, that could unite the Szlachta against us
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1702) Olof Rudbeck publishes 'Atlantica' - Flavor
+event = {
+	id = 5031
+	random = no
+	country = SWE
+	name = "EVENTNAME5031" #Olof Rudbeck publishes 'Atlantica'
+	desc = "EVENTHIST5031"
+	#-#Botanist architect historian astronomer musician. Olof Rudbeck was an academic jack-of-all-trades but above all he was a romantic and a patriot. His life's work was the 'Atlantica' - a massive history in which he claimed that Sweden was in fact the mythical Atlantis. Due to Rudbeck's outstanding reputation and the learned nature of his discourse the grandiose work was surprisingly well received. All cultures the professor claimed originated in Sweden.
+
+	date = { day = 1 month = january year = 1702 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1702 }
+
+	action_a = {
+		name = "OK"
+		command = { type = stability value = 1 }
+		command = { type = relation which = ENG value = 30 }
+		command = { type = relation which = FRA value = 30 }
+		command = { type = relation which = -1 value = 30 }
+		command = { type = relation which = -1 value = 30 }
+	}
+}
+
+#(1717-1820) The loss of the Baltic Provinces
+event = {
+	id = 291040
+	trigger = {
+		event = 3243 #SWE: The Great Reduction of Charles XI
+		NOT = {
+			control = { province = 276 data = -1 } #Estland
+			control = { province = 282 data = -1 } #Livland
+		}
+	}
+	random = no
+	country = SWE
+	name = "EVENTHIST291040" #The loss of the Baltic Provinces
+	desc = "EVENTHIST291040"
+	#-#Our claim on the Baltics is in question since we no longer control the provinces of Estonia and Livonia. The nobelmen and burghers of the bigger cities are refusing to cooperate with our officials and are negociating with neighboring kings, asking for their protection.
+
+	date = { day = 1 month = january year = 1717 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME291040" #Yes, We will focus our attention elsewhere
+		command = { type = remove_countryculture which = baltic }
+		command = { type = stability value = 1 }
+		command = { type = removecore which = 276 } #Estland
+		command = { type = removecore which = 282 } #Livland
+		command = { type = removecore which = 283 } #Kurland
+		command = { type = removecore which = 281 } #Polotsk
+	}
+}
+
+#(1720) Arvid Horn and the Age of Freedom
+event = {
+	id = 3246
+	random = no
+	country = SWE
+	name = "EVENTNAME3246" #Arvid Horn and the Age of Freedom
+	desc = "EVENTHIST3246"
+	#-#The death of the childless Charles XII left his younger sister Ulrika Eleonora in charge as Queen. The staunch parliamentarian, Chancellor Arvid Horn, immediately seized this opportunity to bring down the absolutism and strengthen the powers of Parliament. While his democratic leanings were in a way commendable, his actions were to completely destabilize Sweden and make her a puppet of foreign interests for the next 50 years. This so called Age of Freedom also saw the aristocracy regain some of their lost ground. However, the young Queen saw no clear alternative that would not upset her war weary people too much.
+
+	date = { day = 1 month = january year = 1720 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1720 }
+
+	action_a = {
+		name = "ACTIONNAME3246A" #Abandon absolutism
+		command = { type = stability value = 3 }
+		command = { type = domestic which = SERFDOM value = -1 }
+		command = { type = domestic which = INNOVATIVE value = 2 }
+		command = { type = domestic which = ARISTOCRACY value = 2 }
+		command = { type = domestic which = QUALITY value = -3 }
+		command = { type = domestic which = CENTRALIZATION value = -2 }
+		command = { type = relation which = RUS value = 150 }
+		command = { type = losebuilding which = -1 value = barrack }
+		command = { type = provincemanpower which = -1 value = -2 }
+		command = { type = provincemanpower which = -1 value = -2 }
+		command = { type = provincemanpower which = -1 value = -2 }
+		command = { type = provincemanpower which = -1 value = -2 }
+		command = { type = provincemanpower which = -1 value = -2 }
+		#command = { type = AI which = Sweden_18th_century.ai }
+	}
+	action_b = {
+		name = "ACTIONNAME3246B" #Hold on to the reins
+		command = { type = stability value = -6 }
+		command = { type = revoltrisk which = 60 value = 6 }
+		command = { type = relation which = RUS value = -150 }
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = sleepevent which = 3253 } #SWE: The Mercantile Reforms of the Hats
+		command = { type = sleepevent which = 3254 } #SWE: Swedish Parliament of 1738
+		command = { type = sleepevent which = 3255 } #SWE: Swedish Parliament of 1746
+		command = { type = sleepevent which = 3256 } #SWE: The Coup of 1756
+		command = { type = sleepevent which = 3257 } #SWE: Swedish Parliament of 1760
+		command = { type = sleepevent which = 3258 } #SWE: Swedish Parliament of 1765
+		command = { type = sleepevent which = 3262 } #SWE: The Coup d'Etat and the Enlightened Despot
+		#command = { type = AI which = Sweden_18th_century.ai }
+	}
+}
+
+#(1720-1820) The decline of Swedish influence in Germany
+#by Bordic
+event = {
+	id = 291028
+	trigger = {
+		core = { province = 336 data = -1 } #Bremen (in case SWE intervened in the TYW)
+		atwar = no
+		event = 3241 #SWE: The Great Northern Conflict
+		NOT = { owned = { province = 336 data = -1 } } #Bremen
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME291028" #The decline of Swedish influence in Germany
+	desc = "EVENTHIST291028"
+	#-#Sweden's military campaign conducted against an Anti-Swedish coalition, originally formed by Russia, Denmark, Saxony and Poland (and successively enlarged with Hanover and Prussia) in the so-called Great Northern Conflict, saw most of her possessions around the estuaries of Elbe and Weser Rivers, severely threatened by invasions of enemy armies. The possession of these territories enabled the owner to gain control over the most important trade routes of the Holy Roman Empire, claimed by Sweden in the stipulation of the treaty of Wesphalia, which ended the Thirty Years War. Signing the treaty of Stockholm in 1720 Sweden renounced her Northern German possessions in the bishoprics of Bremen and Verden.
+
+	date = { day = 1 month = january year = 1720 }
+	offset = 350
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME291028A" #We cannot ensure steady control over imperial trade
+		command = { type = stability value = 1 }
+		command = { type = removecore which = 336 } #Bremen
+		command = { type = relation which = RUS value = 100 }
+		command = { type = relation which = DAN value = 100 }
+		command = { type = relation which = POL value = 100 }
+		command = { type = relation which = HAN value = 100 }
+		command = { type = trade value = -150 }
+	}
+	action_b = {
+		name = "ACTIONNAME291028B" #We will never give up our foothold in Germany
+		command = { type = stability value = -2 }
+		command = { type = relation which = RUS value = -150 }
+		command = { type = relation which = DAN value = -150 }
+		command = { type = relation which = POL value = -150 }
+		command = { type = relation which = HAN value = -150 }
+		command = { type = infra value = -150 }
+	}
+}
+
+#(1721-1820) The rise of Russian power
+#by YodaMaster
+event = {
+	id = 291033
+	trigger = {
+		core = { province = 275 data = -1 } #Ingermanland
+		owned = { province = 275 data = RUS } #Ingermanland
+		atwar = no
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME291033" #The rise of Russian power
+	desc = "EVENTHIST291033"
+	#-#In 1705, the Russians had succeeded in taking Narva, and the foundations for St. Petersburg were being laid. In the Peace of Nystadt in 1721 Sweden ceded Livonia, Estonia, Ingria and Eastern Karelia to Russia.
+
+	date = { day = 1 month = january year = 1721 }
+	offset = 350
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME291033A" #We cannot resist
+		command = { type = removecore which = 266 } #Kexholm
+		command = { type = removecore which = 275 } #Ingermanland
+		command = { type = removecore which = 276 } #Estland
+		command = { type = removecore which = 282 } #Livland
+		command = { type = removecore which = 281 } #Polotsk
+		command = { type = relation which = RUS value = 50 }
+		command = { type = relation which = POL value = 25 }
+	}
+	action_b = {
+		name = "ACTIONNAME291033B" #We will never give up
+		command = { type = stability value = -2 }
+		command = { type = relation which = RUS value = -200 }
+		command = { type = relation which = POL value = -50 }
+		command = { type = relation which = DAN value = 50 }
+	}
+}
+
+#(1721) Containing Russia (Sweden)
+event = {
+	id = 291015
+	trigger = {
+		control = { province = 276 data = RUS } #Estland
+		control = { province = 283 data = RUS } #Kurland
+		exists = DAN
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME291015" #Containing Russia
+	desc = "EVENTHIST291015"
+	#-#The death of King Karl XII of Sweden marked the end of the last great inter-Scandinavian conflicts. During this period the two countries agreed to put centuries of hostilities behind themselves and instead focus on containing Europe's new superpower, the expansionistic Russia of Tzar Peter the Great.
+
+	date = { day = 1 month = january year = 1721 }
+	offset = 200
+	deathdate = { day = 29 month = december year = 1721 }
+
+	action_a = {
+		name = "ACTIONNAME291015A" #Pro-Denmark
+		command = { type = relation which = DAN value = 100 }
+	}
+	action_b = {
+		name = "ACTIONNAME291015B" #Take no definite stance
+		command = { type = relation which = DAN value = -25 }
+		command = { }
+	}
+}
+
+#(1723-1725) The Product Act
+event = {
+	id = 3247
+	random = no
+	country = SWE
+	name = "EVENTNAME3247" #The Product Act
+	desc = "EVENTHIST3247"
+	#-#In 1724, following the disastrous conclusion to the Great Northern War, the Swedish Riksdag decided to implement a policy similar to the English Act of Navigation of 1651. Success was very limited. Although the ship building industry was stimulated as a positive side-effect, the increase in trade revenues was slight. In the end, the act mainly succeeded in garnering the hostility of the English and Dutch merchants who were the obvious targets.
+
+	date = { day = 1 month = january year = 1723 }
+	offset = 720
+	deathdate = { day = 1 month = january year = 1725 }
+
+	action_a = {
+		name = "ACTIONNAME3247A" #Pass the Act
+		command = { type = domestic which = MERCANTILISM value = 2 }
+		command = { type = relation which = HOL value = -50 }
+		command = { type = relation which = ENG value = -50 }
+		command = { type = relation which = DAN value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME3247B" #Maintain the present policy
+		command = { type = stability value = 1 }
+	}
+	action_c = {
+		name = "ACTIONNAME3247C" #Ease up on the present policy
+		command = { type = domestic which = MERCANTILISM value = -1 }
+		command = { type = treasury value = -100 }
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1725-1727) Pietism and the Conventicle Edict
+event = {
+	id = 3248
+	random = no
+	country = SWE
+	name = "EVENTNAME3248" #Pietism and the Conventicle Edict
+	desc = "EVENTHIST3248"
+	#-#Pietism was a religious movement that started in Germany during the latter part of the 17th century. Traditionally, the Pietist movement has been viewed as a backlash against intellectualism prevalent in and among the Protestant ranks, especially in the Lutheran Church during that period. The poor Swedish soldiers, who spent long years as prisoners in Tobolsk following the battle of Poltava, had to hold their own Lutheran mass thus learning to appreciate pietism. It was with their return that the movement really took off in Sweden. However, the Swedish Lutheran Church disapproved most strongly of unauthorized preaching, which led to the Conventicle Edict of 1726, forbidding any religious gatherings outside the framework of the Church.
+
+	date = { day = 1 month = january year = 1725 }
+	offset = 720
+	deathdate = { day = 1 month = january year = 1727 }
+
+	action_a = {
+		name = "ACTIONNAME3248A" #Sign the Conventicle Edict
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = stability value = 2 }
+		command = { type = revoltrisk which = 240 value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3248B" #Allow Pietism
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = stability value = -2 }
+	}
+}
+
+#(1726) The Courland Succession of 1726
+#by Greven
+event = {
+	id = 3250
+	trigger = { exists = KUR }
+	random = no
+	country = SWE
+	name = "EVENTNAME3250" #The Kurland Succession of 1726
+	desc = "EVENTHIST3250"
+	#-#The death of the last Duke of Kurland, Frederick William, in 1711, left no heirs to the Duchy except the weak and ill Ferdinand, and a lot of contenders in Russia and Poland. In 1726, the Polish Sejm managed to impose Maurice of Saxony, the bastard son of the current Polish King, as Duke, but only to change her mind and ask his withdrawal. At the same time, Russia was pushing for her own candidate, the Duke of Holstein-Gottorp, son-in-law of the Czarina Catherine I. After much bribing, negotiation and behind the scene diplomacy, Maurice was summoned to either leave or suffer war. It started in 1727, with Russia firmly committed and sending 8,000 troops to conquer the Duchy within 8 days. The war did not last long enough to embrace all of Europe and Maurice fled to France where he then had a brilliant military career.
+
+	date = { day = 13 month = january year = 1726 }
+
+	action_a = {
+		name = "ACTIONNAME3250A" #We will defend our claims
+		command = { type = addcore which = 283 } #Kurland
+		command = { type = relation which = RUS value = -150 }
+		command = { type = relation which = KUR value = 150 }
+		command = { type = casusbelli which = RUS value = 3 }
+		command = { type = casusbelli which = POL value = 3 }
+		command = { type = casusbelli which = PRU value = 3 }
+		command = { type = stability value = -2 }
+	}
+	action_b = {
+		name = "ACTIONNAME3250B" #Leave this death-trap alone
+		command = { type = stability value = 1 }
+		command = { type = relation which = RUS value = 100 }
+	}
+}
+
+#(1733) The Polish Succession of 1733
+#by Greven
+event = {
+	id = 3249 #triggered by FRA_3136 B
+	random = no
+	country = SWE
+	name = "EVENTNAME3495" #The Polish Succession of 1733
+	desc = "EVENTHIST3495"
+	#-#In 1733, the death of August II prompted a new election for the Polish monarch. Due to the permanent practice of Liberum Veto and the ensuing constant bribery, the Polish Sejm was unable to agree between the French Candidate, Stanislaw Leszczynski and his opponent, August III of Saxony, supported by Austria and Russia. The Sejm finally agreed on Stanislas, but this was rejected by Austria and Russia starting the war of Polish Succession. The war ended with August III on the Polish throne.
+
+	action_a = {
+		name = "ACTIONNAME3249A" #Fight for Old Stanislaw
+		command = { type = casusbelli which = RUS value = 12 }
+		command = { type = stability value = -1 }
+		command = { type = relation which = FRA value = 100 }
+		command = { type = relation which = PRU value = 100 }
+		command = { type = relation which = POL value = 100 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = RUS value = -150 }
+		command = { type = relation which = SAC value = -100 }
+	}
+	action_b = {
+		name = "ACTIONNAME3249B" #Be Neutral under the Mists of Warcry
+		command = { type = stability value = 1 }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = PRU value = 50 }
+		command = { type = relation which = POL value = 50 }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = relation which = RUS value = -100 }
+		command = { type = relation which = SAC value = -50 }
+	}
+}
+
+#(1738) Swedish Parliament of 1738
+event = {
+	id = 3254
+	random = no
+	country = SWE
+	name = "EVENTNAME3254" #Swedish Parliament of 1738
+	desc = "EVENTHIST3254"
+	#-#Swedish politics from 1721 to 1772 was dominated completely by the paralyzing bickering between the so called Hat and Cap parties. The Caps, initially led by Arvid Horn, were backed by Russia and England, whereas the Hats were supported by France. The foreign meddling increased steadily, and when Gustavus III seized power in 1772 the most powerful political figure in Sweden was the Russian ambassador. At the Riksdag of 1738 the Hats managed to outmaneuver the peaceful Arvid Horn and seize power. Horn had made the mistake of renewing the defensive alliance of 1724 with Russia and at the same time trying to negotiate a subsidy treaty with France, which was still officially supporting Stanislas Leszinski against the Russians in Poland.
+
+	date = { day = 1 month = january year = 1738 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1738 }
+
+	action_a = {
+		name = "ACTIONNAME3254A" #Let the Hats win
+		command = { type = relation which = RUS value = -100 }
+		command = { type = casusbelli which = RUS value = 60 }
+		command = { type = relation which = ENG value = -50 }
+		command = { type = relation which = FRA value = 100 }
+		command = { type = treasury value = 100 } #French subsidies
+		command = { type = domestic which = MERCANTILISM value = 1 }
+		command = { type = land value = 500 }
+	}
+	action_b = {
+		name = "ACTIONNAME3254B" #Let the Caps win
+		command = { type = relation which = RUS value = 100 }
+		command = { type = relation which = ENG value = 50 }
+		command = { type = relation which = FRA value = -100 }
+		command = { type = domestic which = MERCANTILISM value = -1 }
+		command = { type = infra value = 500 }
+		command = { type = sleepevent which = 3253 } #SWE: The Mercantile Reforms of the Hats
+	}
+}
+
+#(1739) The Mercantile Reforms of the Hats
+event = {
+	id = 3253
+	random = no
+	country = SWE
+	name = "EVENTNAME3253" #The Mercantile Reforms of the Hats
+	desc = "EVENTHIST3253"
+	#-#The Swedish Hat party, impressed by the large manufactories in the Netherlands and England, decided to speed up the industrialization in Sweden by founding a number of state controlled ventures in cooperation with the potato farmer and industrial magnate Jonas Ahlströmer. Success was limited, but some of the manufactories proved able to turn out a handsome profit... eventually.
+
+	date = { day = 1 month = january year = 1739 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1739 }
+
+	action_a = {
+		name = "ACTIONNAME3253A" #Time to Experiment
+		command = { type = treasury value = -100 }
+		command = { type = gainmanufactory which = -1 value = goods }
+		command = { type = domestic which = MERCANTILISM value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3253B" #Mercantilism is Dead
+		command = { type = domestic which = MERCANTILISM value = -1 }
+	}
+}
+
+#(1740) The Effects of the Pragmatic Sanction
+#by Greven
+event = {
+	id = 3251
+	trigger = {
+		exists = HAB
+		OR = {
+			event = 3527 #PRU: The Effects of the Pragmatic Sanction
+			event = 3616 #BAY: The Effects of the Pragmatic Sanction
+		}
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME3205" #The Effects of the Pragmatic Sanction
+	desc = "EVENTHIST3205"
+	#-#The Pragmatic Sanction, solemnly rendered by Emperor Charles VI on April 19 1713, established the indivisibility of the Habsburg patrimony, and ruled the order of succession by order of first born child - even to a woman. This made Maria-Theresa, born in 1717, the heir of the Empire. The Pragmatic Sanction was recognized by Spain in 1725 (confirmed in 1731), Russia in 1726, Prussia in 1728, the United Provinces in 1731, Hanover in 1732, the Holy Roman Empire (except Bavaria) in 1732 and France in 1738 only. The Bavarian refusal would lead to the War of the Austrian Succession.
+
+	date = { day = 2 month = january year = 1740 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1741 }
+
+	action_a = {
+		name = "ACTIONNAME3616B" #Neutral
+		command = { type = relation which = BAY value = 50 }
+		command = { type = relation which = SAC value = 50 }
+		command = { type = relation which = PRU value = 50 }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = ENG value = -50 }
+		command = { type = relation which = RUS value = -100 }
+		command = { type = relation which = HES value = 50 }
+		command = { type = relation which = HAN value = -50 }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = relation which = DAN value = 50 }
+		command = { type = stability value = 1 }
+		command = { type = casusbelli which = RUS value = 12 }
+	}
+	action_b = {
+		name = "ACTIONNAME3616A" #Anti-Habsburg
+		command = { type = relation which = BAY value = 150 }
+		command = { type = relation which = SAC value = 150 }
+		command = { type = relation which = PRU value = 150 }
+		command = { type = relation which = FRA value = 150 }
+		command = { type = relation which = ENG value = -150 }
+		command = { type = relation which = RUS value = -150 }
+		command = { type = relation which = HES value = -100 }
+		command = { type = relation which = HAN value = -150 }
+		command = { type = relation which = HAB value = -150 }
+		command = { type = relation which = DAN value = -50 }
+		command = { type = stability value = -1 }
+		command = { type = casusbelli which = RUS value = 12 }
+		command = { type = casusbelli which = HAB value = 12 }
+	}
+	action_c = {
+		name = "ACTIONNAME3616C" #Pro-Habsburg
+		command = { type = relation which = BAY value = -150 }
+		command = { type = relation which = SAC value = -150 }
+		command = { type = relation which = PRU value = -150 }
+		command = { type = relation which = FRA value = -150 }
+		command = { type = relation which = ENG value = 150 }
+		command = { type = relation which = RUS value = 150 }
+		command = { type = relation which = HES value = 100 }
+		command = { type = relation which = HAN value = 150 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = DAN value = 100 }
+		command = { type = stability value = 2 }
+		command = { type = casusbelli which = PRU value = 12 }
+		command = { type = casusbelli which = FRA value = 12 }
+	}
+}
+
+#(1743) The Election of a Swedish Crownprince
+event = {
+	id = 3252
+	random = no
+	country = SWE
+	name = "EVENTNAME3252" #The Election of a Swedish Crown prince
+	desc = "EVENTHIST3252"
+	#-#King Fredrik had several children by his mistress Hedvig Taube, but his marriage with Ulrika was cursed with childlessness. Naturally, the two opposing parties of the Riksdag were embroiled in a bitter fight over the choice of a crown prince. The Caps argued for the Danish prince Frederik, but the Hats had found another candidate in Adolf Frederik of Holstein-Gottorp. In 1743 Adolf Frederik was elected heir to the throne of Sweden by the Hats, who favored a foreign policy that would regain Swedish hegemony in the Baltic. The Hats hoped by their choice to obtain better conditions of peace from the Russian empress Elizabeth, who was favorable to the house of Gottorp.
+
+	date = { day = 1 month = january year = 1743 }
+	offset = 100
+	deathdate = { day = 29 month = december year = 1743 }
+
+	action_a = {
+		name = "ACTIONNAME3252A" #Adolf Frederik of Holstein-Gottorp
+		command = { type = trigger which = 3303 } #DAN: The Election of a Swedish Crown prince
+		command = { type = trigger which = 3433 } #RUS: The Election of a Swedish Crown prince
+		command = { type = relation which = RUS value = 100 }
+		command = { type = relation which = DAN value = -100 }
+		command = { type = domestic which = CENTRALIZATION value = -2 }
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = domestic which = QUALITY value = -2 }
+		command = { type = revolt which = 257 } #Bergslagen
+		command = { type = stability value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3252B" #Frederik of Denmark
+		command = { type = dynastic which = SWE }
+		command = { type = trigger which = 3304 } #DAN: The Election of a Swedish Crown prince
+		command = { type = trigger which = 3792 } #RUS: The Election of a Swedish Crown prince
+		command = { type = wakemonarch which = 0131505 } #Frederik V °
+		command = { type = wakemonarch which = 0131506 } #Christian VII °
+		command = { type = wakemonarch which = 0131507 } #Frederik VI °
+		command = { type = sleepleader which = 0131854 } #Karl XIV Johan (SWE)
+		command = { type = sleepevent which = 3255 } #SWE: Swedish Parliament of 1746
+		command = { type = sleepevent which = 3256 } #SWE: The Coup of 1756
+		command = { type = sleepevent which = 3257 } #SWE: Swedish Parliament of 1760
+		command = { type = sleepevent which = 3258 } #SWE: Swedish Parliament of 1765
+		command = { type = sleepevent which = 3260 } #SWE: The Dethronement of Gustav IV Adolf
+		command = { type = sleepevent which = 3261 } #SWE: The Reforms of Gustav IV Adolf
+		command = { type = sleepevent which = 3262 } #SWE: The Coup d'Etat and the Enlightened Despot
+		command = { type = sleepevent which = 3263 } #SWE: The Act of Union and Security
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = domestic which = ARISTOCRACY value = -1 }
+		command = { type = domestic which = QUALITY value = 2 }
+		command = { type = relation which = RUS value = -100 }
+		command = { type = relation which = DAN value = 100 }
+		command = { type = stability value = 1 }
+	}
+}
+#(1743) The Election of a Swedish Crown Prince - vassal acknowledgement
+event = {
+	id = 3538 #triggered by DAN_3304
+	trigger = { ai = no }
+	random = no
+	country = SWE
+	name = "EVENTNAME3304" #The Election of a Swedish Crown prince
+	desc = "EVENTHIST3792"
+	#-#King Frederick of Sweden had several children by his mistress Hedvig Taube, but his marriage with Ulrika was cursed with childlessness. Naturally, the two opposing parties of the Riksdag were embroiled in a bitter fight over the choice of a crown prince. The Caps argued for the Danish prince Frederick, but the Hats had found another candidate in Adolf Frederick of Holstein-Gottorp. The Swedes have chosen the Danish prince!
+
+	action_a = {
+		name = "ACTIONNAME3660A" #Ruled as Vassal
+		command = { type = vp value = -50 }
+	}
+}
+
+#(1746) Swedish Parliament of 1746
+event = {
+	id = 3255
+	random = no
+	country = SWE
+	name = "EVENTNAME3255" #Swedish Parliament of 1746
+	desc = "EVENTHIST3255"
+	#-#Swedish politics from 1721 to 1772 was dominated completely by the paralyzing bickering between the so called Hat and Cap parties. The Caps, initially led by Arvid Horn, were backed by Russia and England, whereas the Hats were supported by France. The foreign meddling increased steadily, and when Gustavus III seized power in 1772 the most powerful political figure in Sweden was the Russian ambassador. At the Riksdag of 1746 the Hats once again got the upper hand, despite their recent disastrous war against Russia. Sweden entered a defensive pact with Prussia and began reforming the army and navy with French subsidies.
+
+	date = { day = 1 month = january year = 1746 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1746 }
+
+	action_a = {
+		name = "ACTIONNAME3255A" #Let the Hats win
+		command = { type = relation which = RUS value = -50 }
+		command = { type = relation which = ENG value = -20 }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = PRU value = 100 }
+		command = { type = treasury value = 100 } #French subsidies
+		command = { type = domestic which = MERCANTILISM value = 1 }
+		command = { type = land value = 500 }
+		command = { type = naval value = 500 }
+		command = { type = fortress which = 265 value = 2 } #Sveaborg #Nyland
+	}
+	action_b = {
+		name = "ACTIONNAME3255B" #Let the Caps win
+		command = { type = relation which = RUS value = 50 }
+		command = { type = relation which = ENG value = 20 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = relation which = PRU value = -100 }
+		command = { type = domestic which = MERCANTILISM value = -1 }
+		command = { type = infra value = 500 }
+		command = { type = trade value = 500 }
+	}
+}
+
+#(1750-1751) The expedition of La Condamine (for SWE) - Flavor
+#by mfigueras
+event = {
+	id = 291026
+	trigger = {
+		OR = {
+			event = 170118 #FRA: The true sphericity of the Earth
+			event = 170119 #FRA: The true sphericity of the Earth
+		}
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME170118" #The true sphericity of the Earth
+	desc = "EVENTHIST170118"
+	#-#In the 1730s the french physicist Pierre de Maupertuis proposed the organization of two scientific expeditions in order to test whether the Earth was flattened at the poles (as predicted by Newton) or flattened at the equator (as predicted by Descartes). One expedition, with Maupertuis and Clairaut, travelled to Laponia and the other, with La Condamine and Antonio de Ulloa, to the vice-royalty of Peru, near Quito. Both expeditions measured a certain fraction of degree of the Earth's sphere and compared the longitudes obtained. The results showed the correctness of Newton's hypothesis. These two expedition were one of the first true international scientific enterprises, involving, among others, french, swedish, spanish and ecuadorian scientists.
+
+	date = { day = 1 month = january year = 1750 }
+	offset = 360
+	deathdate = { day = 1 month = december year = 1751 }
+
+	action_a = {
+		name = "ACTIONNAME285200A" #An interesting expedition
+		command = { type = infra value = 25 }
+		command = { type = naval value = 25 }
+	}
+}
+
+#(1753-1755) Carl von Linné - Flavor
+event = {
+	id = 5033
+	trigger = {
+		domestic = { type = innovative value = 2 }
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME5033" #Carl von Linné
+	desc = "EVENTHIST5033"
+	#-#Swedish botanist Carolus Linnaeus is the father of modern taxonomy. The publication of his 'Species Plantarum' in 1753 marked the beginning of an age of classification and discovery. Linnaeus himself was mostly active in Sweden eagerly cataloguing the flora of northern Europe but his students were dispatched all over the world. Daniel Solander even accompanied Captain James Cook on his famous first journey around the globe.
+
+	date = { day = 1 month = january year = 1753 }
+	offset = 360
+	deathdate = { day = 1 month = december year = 1755 }
+
+	action_a = {
+		name = "OK"
+		command = { type = infra value = 50 }
+	}
+}
+
+#(1753-1772) The Prussian threat
+#by Bordic
+event = {
+	id = 291027
+	trigger = { event = 179053 } #HAB: The Reversion of all alliances
+	random = no
+	country = SWE
+	name = "EVENTNAME271003" #The Prussian threat
+	desc = "EVENTHIST179053"
+	#-#In 1740s the problem of Maria Theresia's succession to the Austrian throne and to the Habsburg inheritance caused a big instability in the European balance of powers which led to the War of Austrian succession. The peace that followed the conflict, provoked by the foreign opposition to the Pragmatic Sanction stated by the former Emperor Charles VI and ended with the Treaty of Aix-la-Chapelle in 1748, resulted in a well defined rivalry between major European powers forming essentially two main political formations: the alliance of the socalled 'Bourbon family pact' (France, Spain, Naples and the latest Parma, all with members of the same House of Bourbons) with Prussia and the alliance between Austria, Russia and England. Disappointed by England's interested approaches to the emerging power of Prussia wich led to the Convention of Westminster, a treaty with which both countries would avoid any foreign military presence or access in the German territories, Austria strengthened her political ties with Saxony, Russia and Sweden and started new diplomatic handlings with France, traditionally an arch-enemy of the Habsburgs since the old dispute over the Burgundian inheritance but for sure the most powerful antagonist to the rising British colonial empire. And an alliance with France would also mean the support of Spain and the Bourbon Italian monarchies. That diplomatic move would lead to a huge world conflict fought in the years between 1756 and 1763: the socalled 'Seven Years War'.
+
+	date = { day = 1 month = January year = 1753 }
+	offset = 20
+	deathdate = { day = 0 month = january year = 1772 }
+
+	action_a = {
+		name = "ACTIONNAME170120A" #Side with the Habsburgs
+		command = { type = casusbelli which = PRU value = 36 }
+		command = { type = relation which = FRA value = 150 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = RUS value = 150 }
+		command = { type = relation which = SAC value = 150 }
+		command = { type = relation which = PRU value = -150 }
+	}
+	action_b = {
+		name = "ACTIONNAME179053B" #Stay Neutral
+		command = { type = stability value = -1 }
+		command = { type = relation which = FRA value = 25 }
+		command = { type = relation which = HAB value = -25 }
+		command = { type = relation which = RUS value = -25 }
+		command = { type = relation which = SAC value = 25 }
+		command = { type = relation which = PRU value = 25 }
+	}
+}
+
+#(1756) The Coup of 1756
+event = {
+	id = 3256
+	random = no
+	country = SWE
+	name = "EVENTNAME3256" #The Coup of 1756
+	desc = "EVENTHIST3256"
+	#-#The Swedish King Adolf Frederick had been reduced to a puppet that had to sign whatever document the National Council put on his desk. Nevertheless, the King and his Queen, Lovisa Ulrika, tried to sabotage the council sessions and enforce their will whenever they got the chance. In 1756, the Council informed the King that they were going to start using a royal seal on documents he refused to sign. Furious at this blatant insult, the Queen began planning a Coup d'Etat in June, but her co-conspirators were exposed and executed. As a result, royal power was reduced yet another notch.
+
+	date = { day = 1 month = january year = 1756 }
+	offset = 350
+	deathdate = { day = 29 month = december year = 1756 }
+
+	action_a = {
+		name = "ACTIONNAME3256A" #Confirm the Current Constitution
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3256B" #Increase the Royal influence
+		command = { type = domestic which = ARISTOCRACY value = -2 }
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = stability value = -3 }
+	}
+}
+
+#(1758) Emanuel Swedenborg - Flavor
+event = {
+	id = 5032
+	random = no
+	country = SWE
+	name = "EVENTNAME5032" #Emanuel Swedenborg
+	desc = "EVENTHIST5032"
+	#-#Emanuel Swedenborg was one of Sweden's first natural scientists whose early works included the brilliant 'Principles of Natural Things' in which he reached by inductive argument several conclusions that greatly resemble the theories of modern scientists. Swedenborg's life changed dramatically during one of his travels. He had strange dreams and visions that caused him forsake natural science and turn to mysticism. In 1758 he published his most influential work - 'On Heaven and Its Wonders and on Hell'.
+
+	date = { day = 1 month = january year = 1758 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1758 }
+
+	action_a = {
+		name = "OK"
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = revoltrisk value = 1 }
+	}
+}
+
+#(1760) Swedish Parliament of 1760
+event = {
+	id = 3257
+	random = no
+	country = SWE
+	name = "EVENTNAME3257" #Swedish Parliament of 1760
+	desc = "EVENTHIST3257"
+	#-#Swedish politics from 1721 to 1772 was dominated completely by the paralyzing bickering between the so called Hat and Cap parties. The Caps, initially led by Arvid Horn, were backed by Russia and England, whereas the Hats were supported by France. The foreign meddling increased steadily, and when Gustavus III seized power in 1772 the most powerful political figure in Sweden was the Russian ambassador. The situation at the Riksdag of 1760 was a Hat party that was losing its French support due to its ineffectual policies and a revitalized Cap party propagating for freedom of press and free trade. Nevertheless the Hats won yet again, perhaps due to the ongoing war with Prussia.
+
+	date = { day = 1 month = january year = 1760 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1760 }
+
+	action_a = {
+		name = "ACTIONNAME3257A" #Let the Hats win
+		command = { type = relation which = RUS value = -30 }
+		command = { type = relation which = ENG value = -20 }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = PRU value = -50 }
+		command = { type = treasury value = 50 } #French subsidies
+		command = { type = domestic which = MERCANTILISM value = 1 }
+		command = { type = land value = 200 }
+		command = { type = naval value = 200 }
+		command = { type = fortress which = 265 value = 1 } #Sveaborg #Nyland
+	}
+	action_b = {
+		name = "ACTIONNAME3257B" #Let the Caps win
+		command = { type = relation which = RUS value = 30 }
+		command = { type = relation which = ENG value = 20 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = relation which = PRU value = 50 }
+		command = { type = domestic which = MERCANTILISM value = -1 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = infra value = 200 }
+		command = { type = trade value = 200 }
+	}
+}
+
+#(1765) Swedish Parliament of 1765
+event = {
+	id = 3258
+	random = no
+	country = SWE
+	name = "EVENTNAME3258" #Swedish Parliament of 1765
+	desc = "EVENTHIST3258"
+	#-#Swedish politics from 1721 to 1772 was dominated completely by the paralyzing bickering between the so called Hat and Cap parties. The Caps, initially led by Arvid Horn, were backed by Russia and England, whereas the Hats were supported by France. The foreign meddling increased steadily, and when Gustavus III seized power in 1772 the most powerful political figure in Sweden was the Russian ambassador. In 1765 the Caps finally managed to regain power in the Riksdag after almost 30 years of more or less disastrous Hat rule. The Caps only ruled for three years, and despite but managed to institute freedom of press and initiate limited free trade reforms.
+
+	date = { day = 1 month = january year = 1765 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1765 }
+
+	action_a = {
+		name = "ACTIONNAME3258A" #Let the Caps win
+		command = { type = relation which = RUS value = 30 }
+		command = { type = relation which = ENG value = 20 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = relation which = PRU value = 50 }
+		command = { type = domestic which = MERCANTILISM value = -1 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = infra value = 100 }
+		command = { type = trade value = 100 }
+	}
+	action_b = {
+		name = "ACTIONNAME3258B" #Let the Hats win
+		command = { type = relation which = RUS value = -30 }
+		command = { type = relation which = ENG value = -20 }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = PRU value = -50 }
+		command = { type = treasury value = 50 } #French subsidies
+		command = { type = domestic which = MERCANTILISM value = 1 }
+		command = { type = land value = 100 }
+		command = { type = naval value = 100 }
+		command = { type = fortress which = 265 value = 1 } #Sveaborg #Nyland
+	}
+}
+
+#(1772) The Coup d'Etat and the Enlightened Despot
+event = {
+	id = 3262
+	random = no
+	country = SWE
+	name = "EVENTNAME3262" #The Coup d'Etat and the Enlightened Despot
+	desc = "EVENTHIST3262"
+	#-#Gustav III, upon succeeding to the Swedish throne, beheld a nation being sucked down into a maelstrom of chaos by the paralyzing bickering of the Hat and Cap parties. Something had to be done, and soon, or Sweden might share the same fate as poor, unfortunate Poland. So, rather than standing back and watching his nation being torn asunder by Scylla and Carybdis, the King took matters in his own hands and seized power through a bloodless Coup d'Etat. Thus began the Gustavian period of Swedish history.
+
+	date = { day = 1 month = january year = 1772 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1772 }
+
+	action_a = {
+		name = "ACTIONNAME3262A" #The King shall rule!
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = domestic which = ARISTOCRACY value = -1 }
+		command = { type = domestic which = MERCANTILISM value = -2 }
+		command = { type = domestic which = QUALITY value = 2 }
+		command = { type = stability value = -3 }
+	}
+	action_b = {
+		name = "ACTIONNAME3262B" #No more tyrants!
+		command = { type = stability value = 3 }
+		command = { type = sleepevent which = 03261 } #SWE: The Reforms of Gustav IV Adolf
+		command = { type = sleepevent which = 03263 } #SWE: The Act of Union and Security
+		command = { type = sleepevent which = 03264 } #SWE: The Great Agricultural Reform
+	}
+}
+
+#(1788-1790) The Act of Union and Security
+event = {
+	id = 3263
+	random = no
+	country = SWE
+	name = "EVENTNAME3263" #The Act of Union and Security
+	desc = "EVENTHIST3263"
+	#-#In response to the rising clamor for more power to the aristocracy, Gustav III appealed to the three lower estates (clergy, burghers, and peasants) of the Riksdag and in 1789 established a new constitution that augmented the royal authority. This Act of Union and Security was in effect almost a return to the days of absolutism under Charles XI and XII. It proved too much for the aristocracy however, and the King was murdered while attending the Stockholm opera house on March 16, 1792
+
+	date = { day = 1 month = january year = 1788 }
+	offset = 720
+	deathdate = { day = 1 month = january year = 1790 }
+
+	action_a = {
+		name = "ACTIONNAME3263A" #Pass the Act
+		command = { type = trigger which = 3439 } #RUS: The Anjala League
+		command = { type = domestic which = ARISTOCRACY value = -2 }
+		command = { type = domestic which = QUALITY value = 2 }
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = stability value = -3 }
+	}
+	action_b = {
+		name = "ACTIONNAME3263B" #Refuse the Act
+		command = { type = domestic which = ARISTOCRACY value = 2 }
+		command = { type = domestic which = QUALITY value = -2 }
+		command = { type = domestic which = CENTRALIZATION value = -2 }
+		command = { type = stability value = 3 }
+	}
+}
+#(1788-1790) The Anjala League
+event = {
+	id = 3259 #triggered by RUS_3439 A
+	random = no
+	country = SWE
+	name = "EVENTNAME3259" #The Anjala League
+	desc = "EVENTHIST3259"
+	#-#Gustavus III, the 'theatre King', declared war on Russia in the summer of 1788. His main goals were to reclaim the honor of the Swedish military, retake some land that had been lost to Russia in previous wars and perhaps most importantly - put a stop to the incessant Russian meddling in Swedish politics. At the time, Sweden had a magnificent fleet and a rather effective army, but most of the officers could be described as politicians rather than soldiers. The Swedish army began marching on St. Petersburg and won some minor battles despite the compact resistance from the officers. On August 12 a group of 112 Finnish noble officers formed the 'Anjala League' and opened up negotiations with the Russians, declaring the war to be illegal and probing for the possibility of an independent Finnish state. This event effectively ended all hopes of a Swedish victory since the King was in a poor position to execute the traitors and have them replaced.
+
+	action_a = {
+		name = "ACTIONNAME3259A" #Negotiate with the Traitors
+		command = { type = revolt which = 342 } #Finland
+		command = { type = revolt which = 264 } #Tavastland
+		command = { type = revolt which = 265 } #Nyland
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3259B" #Execute the Traitors
+		command = { type = domestic which = ARISTOCRACY value = -1 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = revoltrisk which = 60 value = 5 }
+		command = { type = stability value = -2 }
+	}
+}
+
+#(1792) The French Revolutionary Wars
+event = {
+	id = 12119 #triggered by FRA_12114 A
+	random = no
+	country = SWE
+	name = "EVENTNAME12114" #The French Revolutionary Wars
+	desc = "EVENTHIST12114"
+	#-#With the creation of a Legislative Assembly to limit the monarchic power, several reasons pushed France towards war in 1792. Internally, the republican party of the Girondins were calling for a war to rid Europe of monarchy and despotism but also to rid France of any internal reactions. Externally, the nobility, the socalled emigrés, fleeing to Austria and Prussia requested that those powers intervene to restore the French monarchy. Louis XVI, King of the French, saw in a war failure the possibility to restore absolutism. But the dissolution of the Ancien Régime in France alarmed all the European royal courts fearing that the French Jacobinism would have spread in the whole continent and provoked deep destabilization inside their own absolutist government systems.
+
+	action_a = {
+		name = "ACTIONNAME12114A" #Rattle Our Sabres
+		command = { type = casusbelli which = FRA value = 80 }
+		command = { type = relation which = ENG value = 150 }
+		command = { type = relation which = SAV value = 150 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = SPA value = 150 }
+		command = { type = relation which = PRU value = 150 }
+		command = { type = relation which = RUS value = 150 }
+		#command = { type = AI which = Sweden_Antifrench.ai }
+	}
+	action_b = {
+		name = "ACTIONNAME12114B" #Temporize
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1796) The Reforms of Gustav IV Adolf
+event = {
+	id = 3261
+	random = no
+	country = SWE
+	name = "EVENTNAME3261" #The Reforms of Gustav IV Adolf
+	desc = "EVENTHIST3261"
+	#-#Gustav IV Adolf was in many ways the complete opposite of his father. Upon assuming the throne, he immediately put an end to the glamorous but costly balls, state dinners and parties that Gustav III had so dearly loved. Indeed, despite his other failures, Gustav IV Adolf had a keen sense of economy and the state finances improved significantly under his administration.
+
+	date = { day = 1 month = january year = 1796 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1796 }
+
+	action_a = {
+		name = "ACTIONNAME3261A" #Reform the economy
+		command = { type = stability value = -1 }
+		command = { type = domestic which = MERCANTILISM value = -1 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3261B" #Carry on as before
+		command = { type = stability value = 2 }
+	}
+}
+
+#(1798) The Great Agricultural Reform
+event = {
+	id = 3264
+	random = no
+	country = SWE
+	name = "EVENTNAME3264" #The Great Agricultural Reform
+	desc = "EVENTHIST3264"
+	#-#Gustav IV Adolf has always been blamed for the loss of Finland, and been accused of being a weak and insanely stubborn monarch. Time has forgotten the many important reforms he put in motion - not the least of which was the great agricultural reform supervised by Rutger MacLean. MacLean was a harsh man, who didn't hesitate to burn down the houses of peasants who refused to move to their assigned lots. But in the end the farmers thanked him, as the new methods and larger fields resulted in more bountiful harvests than ever before.
+
+	date = { day = 1 month = january year = 1798 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1798 }
+
+	action_a = {
+		name = "ACTIONNAME3264A" #Initiate the Reform
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = revoltrisk which = 48 value = 3 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3264B" #Carry on as before
+		command = { type = stability value = 2 }
+	}
+}
+
+#(1809) The Dethronement of Gustav IV Adolf
+event = {
+	id = 3260
+	trigger = {
+		NOT = { #Sweden should have lost provinces in Finland
+			control = { province = 263 data = -1 } #Österbotten
+			control = { province = 264 data = -1 } #Tavastland
+			control = { province = 265 data = -1 } #Nyland
+			control = { province = 273 data = -1 } #Savolaks
+			control = { province = 342 data = -1 } #Finland
+		}
+		event = 170126 #NAP: Napoléon's ambitions
+	}
+	random = no
+	country = SWE
+	name = "EVENTNAME3260" #The Dethronement of Gustav IV Adolf
+	desc = "EVENTHIST3260"
+	#-#The devastating loss of Finland in 1809 was widely blamed on King Gustav IV Adolf, and on March 13, 1809 he was deposed in a coup d'Etat by certain liberal officials and officers in Sweden's western army. Gustav and his heirs were deprived of their royal titles and encouraged to leave the country. The deposed King eventually settled in Switzerland under the name of Colonel Gustafsson. While the search went on for a new crown prince Sweden was ruled by Gustav III's aged and childless uncle Charles (XIII). The Danish prince Christian August was elected as adopted son and successor, but died suddenly in 1810. The Swedish Parliament frantically cast about for a replacement and finally decided on the French marshal Jean-Baptiste Bernadotte.
+
+	date = { day = 1 month = may year = 1809 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1809 }
+
+	action_a = {
+		name = "ACTIONNAME3260A" #Install Jean-Baptiste Bernadotte
+		command = { type = trigger which = 3341 } #FRA: Bernadotte inherit the Swedish Throne
+		command = { type = wakemonarch which = 0131532 } #Karl XIII
+		command = { type = wakemonarch which = 0131533 } #Karl XIV Johan
+		command = { type = wakeleader which = 0131854 } #Karl XIV Johan (SWE)
+		command = { type = relation which = RUS value = 150 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3260B" #Gustav is our rightful King
+		command = { type = ADM which = -3 value = 120 }
+		command = { type = DIP which = 4 value = 120 }
+		command = { type = relation which = RUS value = 50 }
+		command = { type = relation which = ENG value = 50 }
+		command = { type = stability value = -2 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 291047

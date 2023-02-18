@@ -4,7 +4,8 @@
 
 country = {
 	tag = POL
-	ai = "Large.ai"
+	ai = "Large.txt"
+	leadertable = "scenarios\1648\leaders\leaders_pol.txt"
 	flagname = "Union"
 	policy = {
 		date = { year = 0 month = january day = 0 }

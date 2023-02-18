@@ -4,7 +4,7 @@
 
 country = {
 	tag = MTR
-	ai = "SmallTrade1.ai"
+	ai = "SmallTrade1.txt"
 	policy = {
 		aristocracy = 8
 		centralization = 4

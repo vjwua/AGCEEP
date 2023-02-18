@@ -4,7 +4,7 @@
 
 country = {
 	tag = GEN
-	ai = "SmallCRC3.ai"
+	ai = "SmallCRC3.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -19,7 +19,7 @@ country = {
 	diplomacy = {
 		relation = { tag = BYZ value = 150 }
 		relation = { tag = VEN value = 75 }
-		relation = { tag = KAL value = -50 }
+		relation = { tag = THO value = -50 }
 		relation = { tag = CYP value = -50 access = yes }
 		relation = { tag = ARG value = -100 }
 		relation = { tag = MLO value = -50 }

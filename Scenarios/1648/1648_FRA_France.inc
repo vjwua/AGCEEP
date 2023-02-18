@@ -4,7 +4,7 @@
 
 country = {
 	tag = FRA
-	ai = "FRA_1655_LaSalle.ai"
+	ai = "FRA_1655_LaSalle.txt"
 	flagname = "Bourbon"
 	policy = {
 		aristocracy = 6

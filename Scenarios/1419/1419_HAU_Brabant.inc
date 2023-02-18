@@ -4,7 +4,7 @@
 
 country = {
 	tag = HAU
-	ai = "SmallTrade1.ai"
+	ai = "SmallTrade1.txt"
 	flagname = "Duchy"
 	colonialattempts = 0
 	colonialnation = yes
@@ -26,7 +26,7 @@ country = {
 		relation = { tag = LUX value = -50 }
 		relation = { tag = GEL value = 140 }
 		relation = { tag = FRI value = 140 }
-		relation = { tag = MUN value = 140 }
+		relation = { tag = BRG value = 140 }
 		relation = { tag = KOL value = 140 }
 	}
 	knownprovinces = {

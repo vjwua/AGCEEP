@@ -4,7 +4,7 @@
 
 country = {
 	tag = SAC
-	ai = "SmallTrade1.ai"
+	ai = "SmallTrade1.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no

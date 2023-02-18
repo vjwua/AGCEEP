@@ -4,7 +4,7 @@
 
 country = {
 	tag = ENG
-	ai = "ENG_1419_HYW.ai"
+	ai = "ENG_1419_HYW.txt"
 	colonialattempts = 0
 	colonialnation = yes
 	major = no
@@ -26,7 +26,7 @@ country = {
 		relation = { tag = FRA value = -200 }
 		relation = { tag = CON value = 25 }
 		relation = { tag = LEI value = 25 }
-		relation = { tag = MST value = 25 }
+		relation = { tag = DES value = 25 }
 		relation = { tag = ULS value = 25 }
 		relation = { tag = SCO value = -75 }
 		relation = { tag = PRO value = -35 }

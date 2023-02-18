@@ -4,7 +4,7 @@
 
 country = {
 	tag = SPA
-	ai = "SPA_1518_Cortes.ai"
+	ai = "SPA_1518_Cortes.txt"
 	flagname = "Saltire"
 	leadertable = "scenarios\1520\leaders\leaders_spa.txt"
 	policy = {
@@ -29,7 +29,7 @@ country = {
 	merchants = 4.083333
 	religion = { type = catholic }
 	culture = {
-		type = iberian
+		type = castilian
 		type = italian
 		type = maltese
 		type = basque
@@ -45,7 +45,7 @@ country = {
 		relation = { tag = POR value = 50 }
 		relation = { tag = ZAP value = -50 }
 		relation = { tag = MAA value = -50 }
-		relation = { tag = XHO value = -200 refusetrade = no }
+		relation = { tag = TLE value = -200 refusetrade = no }
 	}
 	knownprovinces = {
 		1614 #Pope

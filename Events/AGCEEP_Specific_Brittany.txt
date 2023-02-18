@@ -1,0 +1,536 @@
+#Brittany (BRI)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1422-1515) The Crown of France
+event = {
+	id = 3601
+	trigger = {
+		owned = { province = 385 data = -1 } #Ile de France
+		control = { province = 385 data = -1 } #Ile de France
+		control = { province = 376 data = -1 } #Champagne
+		NOT = {
+			exists = FRA
+			exists = DAU
+		}
+	}
+	random = no
+	country = BRI
+	name = "EVENTNAME3606" #The Crown of France
+	desc = "EVENTHIST3606"
+	#-#Since the Early Medieval times one of the most powerful Frankish Kingdoms had been centered at Paris and around Ile-de-France from which it took its name. Later on one of its Kings managed not only to unite the large area formerly called 'Gallia', but also to conquer most of Germany, Northern Italy and become chosen as Holy Roman Emperor, namely Charlemagne. His heritage was very powerful and important. The Duke of Normandy might be the most powerful man in France, but he was not France, only the French King was never so powerless. The Legacy of Charlemagne lived on and the greatest wish of man powerful monarch was bear the Crown of France...
+
+	date = { day = 22 month = october year = 1422 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1515 }
+
+	action_a = {
+		name = "ACTIONNAME3606A" #France is reborn with me
+		command = { type = vp value = 200 }
+		command = { type = remove_countryculture which = celtic }
+		command = { type = add_countryculture which = french }
+		command = { type = add_countryculture which = celtic } #to order them properly
+		command = { type = stability value = 3 }
+		command = { type = capital which = 385 } #Ile de France
+		command = { type = flagname which = "" }
+		command = { type = country which = FRA }
+		command = { type = addcore which = 376 } #Champagne
+		command = { type = addcore which = 382 } #Calais
+		command = { type = addcore which = 383 } #Picardie
+		command = { type = addcore which = 384 } #Caux
+		command = { type = addcore which = 385 } #Ile de France
+		command = { type = addcore which = 386 } #Nivernais
+		#command = { type = addcore which = 387 } #Franche-Comté
+		command = { type = addcore which = 406 } #Provence
+		command = { type = addcore which = 407 } #Dauphiné
+		command = { type = addcore which = 408 } #Lyonnais
+		command = { type = addcore which = 409 } #Bourgogne
+		command = { type = addcore which = 410 } #Berri
+		command = { type = addcore which = 411 } #Orleanais
+		command = { type = addcore which = 412 } #Maine
+		command = { type = addcore which = 413 } #Normandie
+		command = { type = addcore which = 417 } #Vendée
+		command = { type = addcore which = 418 } #Poitou
+		command = { type = addcore which = 419 } #Limousin
+		command = { type = addcore which = 420 } #Auvergne
+		command = { type = addcore which = 421 } #Cévennes
+		command = { type = addcore which = 422 } #Languedoc
+		command = { type = addcore which = 423 } #Guyenne
+		command = { type = addcore which = 424 } #Gascogne
+		command = { type = addcore which = 425 } #Béarn
+		#command = { type = addcore which = 426 } #Roussillon
+		command = { type = INF which = 385 value = 15000 } #Ile de France
+		command = { type = CAV which = 385 value = 10000 } #Ile de France
+		command = { type = ART which = 385 value = 30 } #Ile de France
+	}
+	action_b = {
+		name = "ACTIONNAME3606B" #Let France rest in peace
+		command = { type = vp value = -100 }
+		command = { type = stability value = -3 }
+		command = { type = relation which = ENG value = 150 }
+		command = { type = relation which = BUR value = 150 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = SPA value = 150 }
+	}
+}
+
+#(1423) Treaty of Amiens - HYW
+event = {
+	id = 134012 #triggered by BUR_137063 A
+	random = no
+	country = BRI
+	name = "EVENTNAME134012" #Treaty of Amiens, 1423
+	desc = "EVENTHIST134012"
+	#-#After the death of Charles VI, John of Lancaster, Duke of Bedford and Regent of France continued to seek the aid of both Philip, Duke of Burgundy and John VI, Duke of Brittany. The English were treaty bound to undertake the monumental task of subduing southern France in order to secure the ascension of their boy-king, Henry VI, to the throne of France. Burgundy and Brittany's support would be critical for the success of this campaign. Thus Bedford approached Philip and John VI with a proposal for an alliance between the three dukes. Aiding the English would certainly help secure a sovereign future for Brittany. However, France yearned for French unity and a French King, and an English King would certainly contradict these desires. At Amiens, Bedford had proposed a marriage alliance and so Philip offered his sister, Anne to Bedford, and sister Margaret to Arthur of Brittany, Earl of Richmond. Philip and John VI accepted Bedford's proposal, acknowledging Bedford as Regent of France, and reaffirming the Treaty of Troyes, but would make a secret pact with each other to remain committed should their mutual alliance with England fail. Well, sire?
+
+	action_a = {
+		name = "ACTIONNAME134012A" #Sign the Treaty!
+		command = { type = alliance which = BUR }
+		command = { type = dynastic which = BUR }
+		command = { type = relation which = ENG value = 50 }
+		command = { type = relation which = BUR value = 50 }
+		command = { type = relation which = DAU value = -25 }
+		command = { type = trigger which = 164174 } #ENG: Treaty of Amiens, 1423
+	}
+	action_b = {
+		name = "ACTIONNAME134012B" #Reject Bedford's proposal but confirm the pact with Burgundy
+		command = { type = breakdynastic which = ENG }
+		command = { type = relation which = ENG value = -50 }
+		command = { type = relation which = BUR value = 25 }
+		command = { type = relation which = DAU value = 15 }
+		command = { type = trigger which = 137064 } #BUR: Pact at Amiens
+		command = { type = trigger which = 164175 } #ENG: Rejection at Amiens
+	}
+}
+#(1423) Pact at Amiens - HYW
+event = {
+	id = 134013 #triggered by BUR_137063 B
+	random = no
+	country = BRI
+	name = "EVENTNAME134013" #Pact at Amiens
+	desc = "EVENTHIST134013"
+	#-#After the death of Charles VI, John of Lancaster, Duke of Bedford and Regent of France continued to seek the aid of Philip, Duke of Burgundy. The English were treaty bound to undertake the monemental task of subduing southern France in order to enforce the Treaty of Troyes and thus secure the true ascension of their boy-king, Henry VI, to the throne of France. Burgundy and Brittany's support would be crucial for this campaign. Thus Bedford approached Philip and John VI with a proposal for an alliance between the three dukes. At Amiens, Bedford had proposed a marriage alliance and so Philip offered his sisters Anne and Margaret to Bedford and Arthur of Brittany, Earl of Richmond, respectively. After some deliberation, Philip reversed his disposition and rejected Bedford's proposal. Nevertheless, Philip and John VI made a pact of mutual aid and friendship in the event of a failed alliance with England.
+
+	action_a = {
+		name = "ACTIONNAME134013A" #Our pact with Burgundy is sealed!
+		command = { type = breakdynastic which = ENG }
+		command = { type = relation which = ENG value = -50 }
+		command = { type = relation which = BUR value = 25 }
+		command = { type = relation which = DAU value = 15 }
+		command = { type = trigger which = 137064 } #BUR: Pact at Amiens
+	}
+}
+
+#(1465-1467) The War of the Public Weal
+event = {
+	id = 134014 #triggered by FRA_170135
+	trigger = {
+		vassal = { country = FRA country = BRI }
+	}
+	random = no
+	country = BRI
+	name = "EVENTNAME170135" #The War of the Public Weal
+	desc = "EVENTHIST170135"
+	#-#During the early years of his reign, King Louis XI had done much to antagonize the great magnates of France in his attempts to centralize the monarchy. A steady stream of dissenters flowed to a group of nobles who would form a League against Louis. The principle members were the Duke of Alencon, the Count of Dunois, Charles 'the Bold' Count of Charolais, the Count of Saint-Pol, the Duke of Brittany, Charles II of Albret, John Duke of Lorraine and Calabria and Jacques d'Armagnac, Duke of Nemours, among others. The revolt was signaled when Louis' brother, Charles, Duke of Berry, fled to the court of the Duke of Brittany. Soon afterwards, the Duke of Bourbon marched against the King. Burgundy and Brittany followed suit within a short time.
+
+	action_a = {
+		name = "OK"
+		command = { type = relation which = FRA value = -50 }
+		command = { type = breakvassal which = FRA }
+	}
+}
+
+#(1471-1477) Divide and Conquer
+event = {
+	id = 134018 #triggered by ENG_164250
+	random = no
+	country = BRI
+	name = "EVENTNAME134018" #Divide and Conquer
+	desc = "EVENTHIST134018"
+	#-#Sire, the King of England intends to resume the Hundred Years' War and demands we aid him in the re-conquest of his second kingdom, usurped from him and his heirs by that vile Pretender, Louis Valois. Mutterings in Court suggest it best not to risk war with the French, who would surely use this as an opportunity to overrun our little duchy and annex us into the Crown of France! But, if the English were to succeed in their invasion, more land and gold would be ours for the taking, and our future independence assured. My lord, what should we do?
+
+	action_a = {
+		name = "ACTIONNAME134018A" #You English lost this war long ago!
+		command = { type = relation which = FRA value = 25 }
+		command = { type = treasury value = 50 } #from Louis, for staying neutral
+		command = { type = trigger which = 164271 } #ENG: A Letter from Duke Francis
+	}
+	action_b = {
+		name = "ACTIONNAME134018B" #Well, I am Earl of Richmond I suppose...
+		command = { type = alliance which = ENG }
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = casusbelli which = FRA value = 12 }
+		command = { type = relation which = ENG value = 25 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = stability value = -1 }
+		command = { type = treasury value = -50 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Brittany Inheritance Sequence by matteli and edited by ribbon22
+#main branches finalized, options for Brittany's survival remain open for ideas and script
+
+#(1486) François II's Succession and the Estates of Rennes
+event = {
+	id = 134000
+	trigger = {
+		exists = FRA
+	}
+	random = no
+	country = BRI
+	name = "EVENTNAME134000" #François II's Succession and the Estates of Rennes
+	desc = "EVENTHIST134000"
+	#-#Duke François II had spent most of his life defending Brittany's independence from greedy and centralizing clutches of the Crown of France. However, having no male heir, François had never faced a more serious looming threat to his proud Duchy. Anxious to secure his succession upon his eldest daughter, Anne, he summoned the Estates to Rennes. In a subsequent solemn Act of unity, the Estates granted the Duke's request and thus ensured that the sovereign rights of Anne would be maintained. Brittany was to be united under her rulership upon François's death, defend Anne's lawful and rightful inheritance, and preserve Brittany's independence in the face of ever intensifying encroachment from France.
+
+	date = { day = 8 month = february year = 1486 }
+
+	action_a = {
+		name = "GOOD"
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = stability value = 1 }
+		command = { type = relation which = FRA value = -50 }
+	}
+}
+#(1487) Louis II Duke of Orleans Arrives at Nantes
+event = {
+	id = 134001
+	trigger = {
+		event = 170135 #FRA: The War of the Public Weal
+		exists = FRA
+	}
+	random = no
+	country = BRI
+	name = "EVENTNAME134001" #Louis II Duke of Orléans Arrives at Nantes
+	desc = "EVENTHIST134001"
+	#-#After the failure of the League of the Public Weal and his recent attempt to push the Parisians to revolt, Louis II Duke of Orléans was forced to flee in Brittany. Forgiven a first time by the Regent of France, Anne de Beaujeu, he continued to resist her regime. In January 1487, he was again forced to flee with several great lords of France, the count of Dunois, Albret, the Duke of Bourbon, and the Duke of Lorraine, taking refuge in Nantes in the court of his friend Duke François II. Louis and his French noble peers were admitted into François' Council, much to the chagrin of the principal Breton lords who were forced to make way. Louis and his peers proceeded to encourage François to prepare for war with France.
+
+	date = { day = 12 month = january year = 1487 }
+
+	action_a = {
+		name = "ACTIONNAME134001A" #Let Louis of Orléans enter in the council
+		#command = { type = wakeleader which = Louis d'Orleans (define it) }
+		command = { type = stability value = -1 }
+		command = { type = ADM which = 1 value = 18 } #finish with st aubin des cormiers's battle (28/07/88)
+		command = { type = MIL which = 3 value = 18 }
+		command = { type = fortress which = -2 value = 1 }
+		command = { type = treasury value = 200 }
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = sleepevent which = 170273 } #FRA: The Breton Lords
+	}
+	action_b = {
+		name = "ACTIONNAME134001B" #Deny Louis admission into the Ducal Council...
+		command = { type = stability value = 1 }
+		command = { type = sleepevent which = 134002 } #BRI: Breton Lords Rebel
+		command = { type = sleepevent which = 170273 } #FRA: The Breton Lords
+	}
+}
+#(1487) Breton Lords Rebel - BRI still doesn't exist when the historical time comes
+event = {
+	id = 134015 #triggered by FRA_170273
+	random = no
+	country = BRI
+	name = "EVENTNAME134002" #Breton Lords Rebel
+	desc = "EVENTHIST134015"
+	#-#After the failure of the League of the Public Weal and his recent attempt to push the Parisians to revolt, Louis II Duke of Orléans was forced to flee in Brittany. Forgiven a first time by the Regent of France, Anne de Beaujeu, he continued to resist her regime. In January 1487, he was again forced to flee with several great lords of France, the count of Dunois, Albret, the Duke of Bourbon, and the Duke of Lorraine, taking refuge in Nantes in the court of his friend Duke François II. Louis and his French noble peers were admitted into François' Council, much to the chagrin of the principal Breton lords who were forced to make way. Louis and his peers proceeded to encourage François to prepare for war with France.But the great barons of the Duke of Brittany, François II, regarded Duke Louis II's arrival and subsequent entrenchment within François' council with indignation. As a consequence, some of Brittany's foremost nobles began negotiations with the French. At Châteaubriant, the French proposed to join the Breton lords in ousting Louis II and his entourage from Brittany. The treaty bound roughly sixty of Brittany's Lords, including Pierre of Rohan, to assist the royal troops in their efforts to dislodge Louis of Orleans and his affinity from the Duchy in exchange for the recognition of their feudal rights as stipulated in the treaty.
+
+	action_a = {
+		name = "OH_NO"
+		command = { type = breakvassal which = FRA }
+		command = { type = relation which = FRA value = -100 }
+		command = { type = desertion which = 415 value = 5000 } #Bretagne
+		command = { type = desertion which = 414 value = 5000 } #Armor
+		command = { type = desertion which = 416 value = 2000 } #Morbihan
+		command = { type = revolt which = 415 } #Bretagne
+		command = { type = province_revoltrisk which = 415 value = 5 } #Bretagne
+		command = { type = province_revoltrisk which = 414 value = 2 } #Armor
+		command = { type = province_revoltrisk which = 416 value = 2 } #Morbihan
+	}
+}
+#(1487-1498) Breton Lords Rebel
+event = {
+	id = 134002
+	trigger = {
+		event = 134001 #BRI: Louis II Duke of Orleans Arrives at Nantes
+	}
+	random = no
+	country = BRI
+	name = "EVENTNAME134002" #Breton Lords Rebel
+	desc = "EVENTHIST134002"
+	#-#The great barons of the Duke of Brittany, François II, regarded Duke Louis II's arrival and subsequent entrenchment within François' council with indignation. As a consequence, some of Brittany's foremost nobles began negotiations with the French. At Châteaubriant, the French proposed to join the Breton lords in ousting Louis II and his entourage from Brittany. The treaty bound roughly sixty of Brittany's Lords, including Pierre of Rohan, to assist the royal troops in their efforts to dislodge Louis of Orleans and his affinity from the Duchy in exchange for the recognition of their feudal rights as stipulated in the treaty.
+
+	date = { day = 8 month = february year = 1487 }
+	offset = 30
+	deathdate = { day = 6 month = april year = 1498 }
+
+	action_a = {
+		name = "ACTIONNAME134002A" #Traitors!
+		command = { type = stability value = -1 }
+		command = { type = relation which = FRA value = -100 }
+		command = { type = desertion which = 415 value = 5000 } #Bretagne
+		command = { type = desertion which = 414 value = 5000 } #Armor
+		command = { type = desertion which = 416 value = 2000 } #Morbihan
+		command = { type = revolt which = 415 } #Bretagne
+		command = { type = province_revoltrisk which = 415 value = 5 } #Bretagne
+		command = { type = province_revoltrisk which = 414 value = 2 } #Armor
+		command = { type = province_revoltrisk which = 416 value = 2 } #Morbihan
+	}
+}
+#(1488-1498) Anne Surrenders
+event = {
+	id = 134007 #triggered by FRA_170189
+	random = no
+	country = BRI
+	name = "EVENTNAME134007" #Duchess Anne of Brittany Surrenders
+	desc = "EVENTHIST134007"
+	#-#The French occupation of Brittany was now complete. The French troops had devastated Brittany and seized several fortress. Duchess Anne was taken prisoner and escorted to King Charles VIII with all the honors due to her standing. Charles VIII was now determined to have the Duchy for himself. Anne's 'bootless calf' marriage to Maximilian was annuled. In part to preserve as much of Brittany as was currently possible, Anne agreed to marry Charles. Thus, on December 6, 1491 Charles VIII married Anne of Brittany at Langeais. Although Brittany was to be restored to Anne and she was to retain her rights as Duchess of Brittany, the Duchy itself was now firmly subjected to the Crown of France.
+
+	action_a = {
+		name = "ACTIONNAME134007A" #At least the Duchy will be preserved...for a while
+		command = { type = stability value = 1 }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = dynastic which = FRA }
+		command = { type = alliance which = FRA }
+	}
+}
+#(1488-1498) The Treaty of Le Verger
+event = {
+	id = 134004
+	trigger = {
+		event = 170201 #FRA: The Treaty of Le Verger
+	}
+	random = no
+	country = BRI
+	name = "EVENTNAME134004" #The Treaty of Le Verger
+	desc = "EVENTHIST134004"
+	#-#Brittany's forces, depleted, and exhausted of fighting, could not resist the might of France. Louis II Duke of Orleans was captured and Duke Francois II could see little to gain with continued resistance. Thus, three weeks before his death, Francois made terms with King Charles VIII of France. The Treaty of Le Verger resulted in Francois's complete submission to King Charles, and a full recognition of Charles's rights as overlord of a French fiefdom of Brittany. A stipulation in the Treaty forced Francois to accept Charles's right to the wardship of the youthful Anne. Upon Francois's death, Charles pressed his right as Anne's ward.
+
+	date = { day = 8 month = february year = 1488 }
+	offset = 20
+	deathdate = { day = 6 month = april year = 1498 }
+
+	action_a = {
+		name = "ACTIONNAME134004" #We have no choice...
+		command = { type = stability value = 1 }
+		command = { type = province_revoltrisk which = 415 value = -5 } #Bretagne
+		command = { type = province_revoltrisk which = 414 value = -2 } #Armor
+		command = { type = province_revoltrisk which = 416 value = -2 } #Morbihan
+		command = { type = relation which = FRA value = 75 }
+	}
+}
+#(1488-1489) Lord Woodville Lends His Services
+event = {
+	id = 134003 #triggered by ENG_164018
+	random = no
+	country = BRI
+	name = "EVENTNAME134003" #Lord Woodville Lends His Services
+	desc = "EVENTHIST134003"
+	#-#Brittany was the last of the great feudal fiefdoms of France that retained its old independence, and King Charles VIII of France and his Council were bent on completing the policy of Louis XI by annexing the Duchy. In England, there was a strong feeling against allowing such an important province to be added to the French Crown. Added to this, was the obvious strategic threat posed by a Breton coast under French rule. Nevertheless, King Henry VII of England was reluctant to go to war with France and instead preferred a diplomatic settlement. While Henry VII and his Council discussed the developments in France, Lord Woodville, Governor of the Isle of Wight, crossed to Brittany with a contigent of men and placed himself under the orders of Fracois II Duke of Brittany. Henry VII promptly disowned the act...
+
+	action_a = {
+		name = "ACTIONNAME134003A" #Some reinforcements!
+		command = { type = stability value = 1 }
+		command = { type = INF which = -1 value = 3000 }
+		command = { type = relation which = ENG value = 15 }
+	}
+}
+#(1488-1489) English Reinforcements
+event = {
+	id = 134005 #triggered by ENG_164019
+	random = no
+	country = BRI
+	name = "EVENTNAME134005" #English Reinforcements
+	desc = "EVENTHIST134005"
+	#-#In the spring King Henry VII concluded a treaty with the Duchess Anne by which England would send several thousand troops to aid Anne in the defence of her Duchy. In return, Anne was to make her resources available at a time of Henry's choosing to recover any of England's old possessions in France.
+
+	action_a = {
+		name = "GOOD"
+		command = { type = INF which = -1 value = 6000 }
+		command = { type = relation which = ENG value = 25 }
+	}
+}
+#(1490-1498) Duchess Anne's Suitors
+event = {
+	id = 134006
+	random = no
+	country = BRI
+	name = "EVENTNAME134006" #Duchess Anne's Suitors
+	desc = "EVENTHIST134006"
+	#-#In the aftermath of her father's death, Anne, barely in her teens was thrust into the forefront of the biggest crisis Brittany had faced in more than a century. Anne had been left under the guardianship of Marshal de Rieux. De Rieux unhappily favoured the proposal of a marriage between her and D'Albret, who, being a powerful lord of Gascony and father to the King of Navarre, would undoubtedly have been able to give her very efficient support. However, Anne made public her distaste for the union and in so doing had alienated De Rieux and D'Albret. Thus, the Duchess favoured Count Dunois and her Chancellor, Philip de Montauban. De Rieux resonded with accusations that Dunois and de Montauben favoured the interests of the French, and refused Anne admittance into Nantes unless she would enter privately. To complicate matters, Anne had received overtures from several other realms in Europe. The King of England, Henry VII, had proposed the 11 year old Duke of Buckingham as a suitor for Anne. Meanwhile, King Ferdinand of Spain had proposed his son, Don Juan, the 11 year old 'infanta of Spain'. In the end, both Spain and England agreed to withdraw their suitors in favour of Maximilian of Austria, the favourite of Anne's deceased father.
+
+	date = { day = 8 month = february year = 1490 }
+	offset = 180
+	deathdate = { day = 6 month = april year = 1498 }
+
+	action_a = {
+		name = "ACTIONNAME134006A" #Maximilian of Austria
+		command = { type = relation which = FRA value = -50 }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = dynastic which = HAB }
+	}
+	action_b = {
+		name = "ACTIONNAME134006B" #Alain d'Albret
+		command = { type = relation which = FRA value = -50 }
+		command = { type = INF which = -1 value = 5000 }
+		command = { type = CAV which = -1 value = 3000 }
+	}
+	action_c = {
+		name = "ACTIONNAME134006C" #Edward Stafford, Duke of Buckingham
+		command = { type = relation which = FRA value = -50 }
+		command = { type = relation which = ENG value = 100 }
+		command = { type = dynastic which = ENG }
+	}
+}
+#(1498-1499) The Duchess Returns
+event = {
+	id = 134010
+	trigger = {
+		OR = {
+			event = 170213 #FRA: The Duchess Returns (Brittany does not exist)
+			event = 170206 #FRA: Anne Surrenders
+			event = 170158 #FRA: Duchess Anne of Brittany Surrenders
+		}
+	}
+	random = no
+	country = BRI
+	name = "EVENTNAME134010" #The Duchess Returns
+	desc = "EVENTHIST134010"
+	#-#The accidental death of Charles VIII in April 1498 settled the Crown of France on the heir presumptive, Louis II Duke of Orleans, now King Louis XII, whom had long since reconciled with his rival, Anne de Beaujeu, Charles VIII's mother. The days of the League of the Public Weal were now distant memories, and as King of France, Louis XII quickly adopted the role and policies of his predecessors. Charles VIII had promised his wife Anne, Duchess of Brittany, that should he die without issue, Brittany would be freed of her obligations to the Crown of France, provided Anne marry his successor. Charles and Anne had had four children together, yet all had perished in their youth...
+
+	date = { day = 1 month = august year = 1498 }
+	offset = 30
+	deathdate = { day = 1 month = august year = 1499 }
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = breakvassal which = FRA }
+		command = { type = stability value = 1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = aristocracy value = -1 }
+	}
+}
+#(1498-1500) Louis XII's Proposal
+event = {
+	id = 134011
+	trigger = {
+		OR = {
+			event = 134010 #BRI: The Duchess Returns
+			vassal = { country = FRA country = BRI }
+			alliance = { country = FRA country = BRI }
+			NOT = { war = { country = FRA country = BRI } }
+		}
+		event = 170207 #FRA: Pope Alexander VI and Louis XII
+	}
+	random = no
+	country = BRI
+	name = "EVENTNAME134011" #Louis XII's Proposal
+	desc = "EVENTHIST134011"
+	#-#In order to intimidate the Bretons and to coerce Anne of Brittany to marry him, Louis XII moved his troops near the frontiers of the duchy of Brittany. Anne of Brittany, having taken back full control of the Duchy, agreed to marry Louis provided she could keep her title and Brittany would remained free. Louis readily agreed and so for a second time, Anne would marry a King of France, while Brittany would remain a free Duchy once more.
+
+	date = { day = 1 month = august year = 1498 }
+	offset = 60
+	deathdate = { day = 1 month = august year = 1500 }
+
+	action_a = {
+		name = "ACTIONNAME134011A" #Long live King Louis XII and our Queen Anne of France!
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = dynastic which = FRA }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = sleepevent which = 170211 } #FRA: Anne's Refusal
+	}
+	action_b = {
+		name = "ACTIONNAME134011B" #Refuse to marry Louis...we must find allies elsewhere
+		command = { type = stability value = -1 }
+		command = { type = breakvassal which = FRA }
+		command = { type = relation which = FRA value = -100 }
+		command = { type = sleepevent which = 170210 } #FRA: The marriage of Anne and Louis XII
+	}
+}
+#(1524) The death of Claude of France
+event = {
+	id = 134016 #triggered by FRA_170213
+	random = no
+	country = BRI
+	name = "EVENTNAME170213" #The death of Claude of France
+	desc = "EVENTHIST170213"
+	#-#On June 20, 1524, Claude of France, daughter of Anne of Brittany, weakened by her seven pregnancies, died. Her husband, the King of France François Ier inherited the Breton lands.
+
+	action_a = {
+		name = "ACTIONNAME134016A" #France and Brittany will be united
+		command = { type = sleepmonarch which = 025008 } #Pierre III *
+		command = { type = wakemonarch which = 025007 } #François III
+	}
+}
+#(1524-1532) Breton Lords rebel again - Ahistorical
+event = {
+	id = 134017
+	trigger = {
+		ai = no
+		monarch = 025007 #François III
+	}
+	random = no
+	country = BRI
+	name = "EVENTNAME134017" #Breton Lords rebel again
+	desc = "EVENTHIST134017"
+	#-#After a successful rebellion, François III is chased and Brittany becomes free once more.
+
+	date = { day = 20 month = june year = 1524 }
+	offset = 2700
+	deathdate = { day = 2 month = august year = 1532 }
+
+	action_a = {
+		name = "GOOD"
+		command = { type = stability value = -6 }
+		command = { type = wakemonarch which = 025015 } #Pierre III *
+		command = { type = sleepevent which = 170214 } #FRA: France and Brittany are united
+	}
+}
+#-----------------------------------------------------------------------------------------------
+
+#(1488-1491) The Succession in Brittany (No France) - Ahistorical
+#by Johnny Canuck
+event = {
+	id = 20071
+	random = no
+	country = BRI
+	trigger = {
+		exists = HAB
+		exists = ENG
+		OR = {
+			event = 361030 #DAU: Death of the Dauphin Charles
+			event = 361024 #DAU: The Collapse of the Kingdom of Bourges
+		}
+		NOT = { exists = FRA }
+		NOT = {
+			event = 137074 #BUR: The Throne of France
+		}
+	}
+	name = "EVENTNAME20072" #The Marriage of Anne of Brittany
+	desc = "EVENTHIST3603"
+	#-#Anne of Brittany, the daughter of Duke François II of Brittany, was heiress to his duchy. Shortly before her father's death (1488), a French army under Louis de La Trémoille successfully invaded Brittany and secured the duke's promise that Anne would marry only with the consent of the French crown. Upon becoming duchess, the young Anne's hand and her duchy were eagerly sought. To prevent France from swallowing up the duchy, a coalition including Archduke Maximilian of Austria, King Henry VII of England, and King Ferdinand II of Aragón sent forces to Anne's aid. Nevertheless, Anne's situation was perilous and she appealed (1489) directly to Maximilian for protection. In 1490, Maximilian married Anne by proxy but failed to assist her with armed strength. Besieged at Rennes in 1491, Anne was forced by the French to annul her marriage and was quickly married to Charles VIII. It was agreed that if Charles died before Anne without issue, she was to marry his successor. Accordingly, in 1499, she married Louis XII, who had previously obtained a divorce from his first wife. The marriage (1514) of Claude, Anne's daughter by Louis XII, to François of Angoulême (later François Ier of France) led to the eventual incorporation (1532) by France of Brittany, which had previously remained theoretically separate.
+
+	date = { day = 9 month = september year = 1488 }
+	offset = 30
+	deathdate = { day = 22 month = december year = 1491 }
+
+	action_a = {
+		name = "ACTIONNAME3603A" #Maximilian of Austria
+		command = { type = trigger which = 20072 } #ENG: The Marriage of Anne of Brittany
+		command = { type = dynastic which = HAB }
+		command = { type = alliance which = HAB }
+		command = { type = stability value = 2 }
+		command = { type = relation which = ENG value = -50 }
+		command = { type = relation which = HAB value = 100 }
+	}
+	action_b = {
+		name = "ACTIONNAME3603B" #Let a remote relative become Duke
+		command = { type = stability value = -2 }
+		command = { type = revolt which = -1 }
+		command = { type = trigger which = 20073 } #ENG: English Claims on Brittany
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 134019

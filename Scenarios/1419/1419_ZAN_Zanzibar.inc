@@ -4,7 +4,7 @@
 
 country = {
 	tag = ZAN
-	ai = "SmallTrade1.ai"
+	ai = "SmallTrade1.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -17,11 +17,11 @@ country = {
 	religion = { type = sunni }
 	culture = { type = swahili }
 	diplomacy = {
-		relation = { tag = ARM value = 155 refusetrade = no }
-		relation = { tag = DEL value = 125 refusetrade = no }
-		relation = { tag = ZUL value = 155 refusetrade = no }
-		relation = { tag = KIE value = 125 refusetrade = no }
-		relation = { tag = ANH value = 125 refusetrade = no }
+		relation = { tag = MLI value = 155 refusetrade = no }
+		relation = { tag = MGU value = 125 refusetrade = no }
+		relation = { tag = MOM value = 155 refusetrade = no }
+		relation = { tag = KIL value = 125 refusetrade = no }
+		relation = { tag = ANG value = 125 refusetrade = no }
 	}
 	knownprovinces = {
 		489 495 496 497 498 499 500 501 502 503 504 505 506 507 508 509 532 533 534 536 537

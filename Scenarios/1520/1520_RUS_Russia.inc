@@ -4,7 +4,7 @@
 
 country = {
 	tag = RUS
-	ai = "RUS_1480.ai"
+	ai = "RUS_1480.txt"
 	policy = {
 		aristocracy = 10
 		centralization = 6
@@ -27,7 +27,7 @@ country = {
 	religion = { type = orthodox }
 	culture = {
 		type = russian
-		type = naskapi
+		type = tatar
 	}
 	diplomacy = {
 		relation = { tag = DAN value = 100 trade = yes }
@@ -115,7 +115,6 @@ country = {
 		location = 272
 		bailiff = yes
 		manufactory = refinery
-		construction = refinery
 		date = { year = 1468 month = august day = 2 }
 	}
 	city = {
@@ -151,7 +150,6 @@ country = {
 		bailiff = yes
 		barrack = yes
 		manufactory = luxury
-		construction = luxury
 		date = { year = 1495 month = january day = 17 }
 	}
 	city = {

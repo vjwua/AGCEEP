@@ -4,7 +4,7 @@
 
 country = {
 	tag = GEO
-	ai = "SmallTrade0.ai"
+	ai = "SmallTrade0.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -47,7 +47,6 @@ country = {
 		472
 	}
 	city = {
-		name = "Kutaisi"
 		fortress = { level = 1 }
 		population = 8000
 		location = 469

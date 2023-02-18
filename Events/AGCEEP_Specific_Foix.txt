@@ -1,0 +1,288 @@
+#Foix (FOI)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1422) Mint in Pamiers
+event = {
+	id = 351000
+	random = no
+	country = FOI
+	name = "EVENTNAME351000" #Mint in Pamiers
+	desc = "EVENTHIST351000"
+	#-#In 1419 Count Jean de Foix created his own mint in the city of Pamiers to improve his financial situation. The copper coins produced were called 'Guilhems' because they were used for a war against Guillaume d'Orange. However, French King Charles VII considered the production of coins a royal privilege and demanded the mint's closure in 1422. Honoring his status as a vassal of the crown, Jean obeyed and closed the mint.
+
+	date = { day = 1 month = january year = 1422 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1422 }
+
+	action_a = {
+		name = "ACTIONNAME351000A" #Obey the King and close the mint
+		command = { type = relation which = FRA value = 50 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME351000B" #Keep the mint
+		command = { type = relation which = FRA value = -100 }
+		command = { type = inflation value = 5 }
+		command = { type = treasury value = 75 }
+		command = { type = provincetax which = -2 value = 1 }
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1436) Territorial consolidation
+event = {
+	id = 351001
+	random = no
+	country = FOI
+	name = "EVENTNAME351001" #Acquisition of Bigorre, Marquefave, Villemur and Auterive
+	desc = "EVENTHIST351001"
+	#-#After the death of Jean de Foix-Grailly in 1436 the new possessions he had acquired during his reign, the County of Bigorre and the Lordships of Marquefave, Villemur and Auterive, were secured for his heirs and annexed definitely to Foix.
+
+	date = { day = 1 month = january year = 1436 }
+	offset = 100
+	deathdate = { day = 29 month = december year = 1436 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = provincetax which = -2 value = 2 }
+		command = { type = provincemanpower which = -2 value = 1 }
+		command = { type = population which = -2 value = 3000 }
+	}
+}
+
+#(1470) A bid for Navarre
+#by Fodoron
+event = {
+	id = 351002
+	random = no
+	country = FOI
+	name = "EVENTNAME351002" #A bid for Navarre
+	desc = "EVENTHIST351002"
+	#-#Gaston IV of Foix had married Leonor, the third child of Queen Blanca of Navarre. His chances to the throne were slim until Carlos, heir of Navarre, started a war against his father Juan, King of Aragon, who had illegally retained the crown of Navarre from him. When Carlos died, he bequeathed his right to Navarre to his sister Blanca, who also opposed her father. Juan, in the midst of a civil war, sought the help of the King of France and named Leonor heir to Navarre, and together with Gaston, governors of the Kingdom. For this arrangement to work, the legal heir had to disappear, and Gaston had Blanca imprisoned and probably killed. Now that Leonor was heir to Navarre, Juan was lasting too long, so with the support of the Navarrese Beaumont party, Leonor and Gaston took arms against him. Since Juan had run out of heirs, he named Leonor's son, also Gaston, as the new heir. But Gaston de Foix-Navarre, married to the daughter of the King of France, died in a tournament in 1470. Without much choice, Juan and Leonor reconciled again.
+
+	date = { day = 11 month = november year = 1470 }
+
+	action_a = {
+		name = "ACTIONNAME351002A" #An expedite path
+		command = { type = stability value = 1 }
+		command = { type = relation which = ARG value = 25 }
+		command = { type = relation which = NAV value = 50 }
+	}
+}
+
+#(1481-1482) The throne of Navarre
+#by Fodoron
+event = {
+	id = 351003
+	random = no
+	country = FOI
+	name = "EVENTNAME351003" #The throne of Navarre
+	desc = "EVENTHIST351003"
+	#-#At the death of Juan, King of Aragon and Navarre, Gaston IV had already died, and his young grandson François Phoebus was the Count of Foix. His grandmother Leonor just barely was crowned and died two weeks later. Madeleine of France became regent of Navarre in the name of his son in the midst of civil war between Beaumonts and Gramonts. Finally in December 1481, François Phoebus, Count of Foix and Bigorre, Viscount of Bèarn, was crowned King of Navarre.
+
+	date = { day = 1 month = december year = 1481 }
+	offset = 100
+	deathdate = { day = 29 month = january year = 1482 }
+
+	action_a = {
+		name = "ACTIONNAME351003A" #Rule separately
+		command = { type = stability value = 2 }
+		command = { type = relation which = NAV value = 400 }
+		command = { type = ADM which = 2 value = 24 }
+		command = { type = flagname which = "Navarre" }
+	}
+	action_b = {
+		name = "ACTIONNAME351003B" #Incorporate Foix to Navarre
+		command = { type = stability value = -2 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = addcore which = 428 } #Navarra
+		command = { type = flagname which = "Navarre" }
+		command = { type = trigger which = 241000 } #NAV: The Foix inheritance (AI)
+		command = { type = trigger which = 241001 } #NAV: The Foix inheritance
+	}
+}
+
+#(1482) A bigger land
+#by Fodoron
+event = {
+	id = 351004
+	trigger = { event = 241000 } #NAV: The Foix inheritance (AI)
+	random = no
+	country = FOI
+	name = "EVENTNAME351004" #A bigger land
+	desc = "EVENTHIST351004"
+	#-#All our domains have been reunited under our rule.
+
+	date = { day = 1 month = february year = 1482 }
+	offset = 100
+	deathdate = { day = 29 month = november year = 1482 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = stability value = 1 }
+		command = { type = inherit which = NAV } #Navarra
+		command = { type = add_countryculture which = basque }
+	}
+}
+
+#(1482-1510) A bigger Kingdom
+#by Fodoron
+event = {
+	id = 351005
+	trigger = {
+		event = 351004 #FOI: A bigger land
+		owned = { province = 428 data = -1 } #Navarra
+		control = { province = 428 data = -1 } #Navarra
+		atwar = no
+	}
+	random = no
+	country = FOI
+	name = "EVENTNAME351005" #A bigger Kingdom
+	desc = "EVENTHIST351005"
+	#-#Our King is now the King of a greater Navarre.
+
+	date = { day = 1 month = february year = 1482 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1510 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = flagname which = "" }
+		command = { type = country which = NAV } #Navarra
+		command = { type = capital which = 428 } #Navarra
+		command = { type = vp value = 50 }
+	}
+}
+
+#(1484) Catherine de Foix marries Jean d'Albret
+event = {
+	id = 351006
+	random = no
+	country = FOI
+	name = "EVENTNAME351006" #Catherine de Foix marries Jean d'Albret
+	desc = "EVENTHIST351006"
+	#-#Catherine de Foix, heiress to Foix, Béarn and the throne of Navarre, married Jean d'Albret who had extensive possessions in Southern France. Thus, the domains of the Foix and the Albret were united and a new dominating dynasty in Occitania created. Jean took control of all their territories and unfortunately very soon proved to be completely uninterested and incompetent.
+
+	date = { day = 1 month = january year = 1484 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1484 }
+
+	action_a = {
+		name = "OK"
+		command = { type = provincetax which = 425 value = 3 } #Béarn
+		command = { type = provincemanpower which = 425 value = 2 } #Béarn
+		command = { type = population which = 425 value = 6000 } #Béarn
+		command = { type = vp value = 10 }
+	}
+}
+
+#(1494-1497) War of Succession in the Foix territories
+event = {
+	id = 351007
+	random = no
+	country = FOI
+	name = "EVENTNAME351007" #War of Succession in the Foix territories
+	desc = "EVENTHIST351007"
+	#-#Upon the premature childless death of François Phoebus, his sister Catherine succeeded him. This arrangement was opposed by the next male relative, Jean Vicomte de Narbonne who started contesting his niece's and her husband's inheritance in 1494. The war lasted for three years and crippled the whole country until Jean finally submitted in the Peace of Tarbes on September 7th 1497.
+
+	date = { day = 1 month = january year = 1494 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1497 }
+
+	action_a = {
+		name = "ACTIONNAME351007A" #Support Catherine and Jean d'Albret
+		command = { type = stability value = 1 }
+		command = { type = revoltrisk which = 36 value = 6 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME351007B" #Support the Vicomte de Foix-Narbonne
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 48 value = 4 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = desertion which = -1 value = 6000 }
+		command = { type = sleepmonarch which = 020504 } #Jean II d'Albret
+		command = { type = wakemonarch which = 020514 } #Jean III °
+		command = { type = wakemonarch which = 020515 } #Gaston V °
+	}
+}
+
+#(1555-1575) The Crown of France
+event = {
+	id = 351008
+	trigger = {
+		owned = { province = 385 data = -1 } #Ile de France
+		control = { province = 385 data = -1 } #Ile de France
+		control = { province = 376 data = -1 } #Champagne
+		NOT = {
+			exists = FRA
+			exists = DAU
+		}
+	}
+	random = no
+	country = FOI
+	name = "EVENTNAME3606" #The Crown of France
+	desc = "EVENTHIST3606"
+	#-#Since the Early Medieval times one of the most powerful Frankish Kingdoms had been centered at Paris and around Ile-de-France from which it took its name. Later on one of its Kings managed not only to unite the large area formerly called 'Gallia', but also to conquer most of Germany, Northern Italy and become chosen as Holy Roman Emperor, namely Charlemagne. His heritage was very powerful and important. The Duke of Normandy might be the most powerful man in France, but he was not France, only the French King was never so powerless. The Legacy of Charlemagne lived on and the greatest wish of man powerful monarch was bear the Crown of France...
+
+	date = { day = 1 month = january year = 1555 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1575 }
+
+	action_a = {
+		name = "ACTIONNAME3606A" #France is reborn with me
+		command = { type = vp value = 200 }
+		command = { type = stability value = 3 }
+		command = { type = capital which = 385 } #Ile de France
+		command = { type = flagname which = "" }
+		command = { type = country which = FRA }
+		command = { type = addcore which = 376 } #Champagne
+		command = { type = addcore which = 382 } #Calais
+		command = { type = addcore which = 383 } #Picardie
+		command = { type = addcore which = 384 } #Caux
+		command = { type = addcore which = 385 } #Ile de France
+		command = { type = addcore which = 386 } #Nivernais
+		#command = { type = addcore which = 387 } #Franche-Comté
+		command = { type = addcore which = 406 } #Provence
+		command = { type = addcore which = 407 } #Dauphiné
+		command = { type = addcore which = 408 } #Lyonnais
+		command = { type = addcore which = 409 } #Bourgogne
+		command = { type = addcore which = 410 } #Berri
+		command = { type = addcore which = 411 } #Orleanais
+		command = { type = addcore which = 412 } #Maine
+		command = { type = addcore which = 413 } #Normandie
+		command = { type = addcore which = 414 } #Armor
+		command = { type = addcore which = 415 } #Bretagne
+		command = { type = addcore which = 416 } #Morbihan
+		command = { type = addcore which = 417 } #Vendée
+		command = { type = addcore which = 418 } #Poitou
+		command = { type = addcore which = 419 } #Limousin
+		command = { type = addcore which = 420 } #Auvergne
+		command = { type = addcore which = 421 } #Cévennes
+		command = { type = addcore which = 422 } #Languedoc
+		command = { type = addcore which = 423 } #Guyenne
+		command = { type = addcore which = 424 } #Gascogne
+		command = { type = addcore which = 425 } #Béarn
+		#command = { type = addcore which = 426 } #Roussillon
+		command = { type = INF which = 385 value = 15000 } #Ile de France
+		command = { type = CAV which = 385 value = 10000 } #Ile de France
+		command = { type = ART which = 385 value = 30 } #Ile de France
+	}
+	action_b = {
+		name = "ACTIONNAME3606B" #Let France rest in peace
+		command = { type = vp value = -100 }
+		command = { type = stability value = -3 }
+		command = { type = relation which = ENG value = 150 }
+		command = { type = relation which = BUR value = 150 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = SPA value = 150 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 351009

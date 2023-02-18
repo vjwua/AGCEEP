@@ -1,0 +1,246 @@
+#Afghanistan (AFG)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1820) Raiders
+event = {
+	id = 102001
+	trigger = {
+		atwar = no
+		NOT = { stability = -1 }
+	}
+	random = no
+	country = AFG
+	name = "EVENTNAME102001" #Raiders
+	desc = "EVENTHIST102001"
+	#-#The vast lawless stretches of Central Asia were frequently home to bandits and raiders on the lucrative east-west trade routes.
+
+	date = { day = 1 month = march year = 1419 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME102001A" #Support the raiders!
+		command = { type = CAV which = -1 value = 5000 }
+		command = { type = treasury value = 200 }
+		command = { type = stability value = 1 }
+		command = { type = relation which = TIM value = -100 }
+		command = { type = relation which = KHO value = -100 }
+		command = { type = relation which = FAR value = -100 }
+		command = { type = relation which = UZB value = -100 }
+		command = { type = relation which = MOG value = -100 }
+		command = { type = relation which = PER value = -100 }
+		command = { type = relation which = GUJ value = -100 }
+		command = { type = relation which = DLH value = -100 }
+	}
+	action_b = {
+		name = "ACTIONNAME102001B" #Crush the raiders
+		command = { type = revoltrisk which = 60 value = 4 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#(1440-1820) Afghan Response
+event = {
+	id = 102000 #triggered by KSH_205001
+	trigger = {
+		war = { country = KSH country = MAH }
+	}
+	random = no
+	country = AFG
+	name = "EVENTNAME102000" #Afghan Response
+	desc = "EVENTHIST102000"
+	#-#Punjab is asking for our aid in their ongoing war against the Marathas
+
+	date = { day = 1 month = january year = 1440 }
+	offset = 400
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME102000A" #It is our duty to help!
+		command = { type = alliance which = KSH }
+		command = { type = relation which = KSH value = 100 }
+		command = { type = casusbelli which = MAH value = 600 }
+		command = { type = stability value = -1 }
+		command = { type = INF which = -1 value = 20000 }
+		command = { type = CAV which = -1 value = 5000 }
+		command = { type = trigger which = 205000 } #KSH: We are a united front
+	}
+	action_b = {
+		name = "ACTIONNAME102000B" #It is an Indian affair!
+		command = { type = relation which = KSH value = -100 }
+		command = { type = DIP which = -2 value = 60 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1504-1530) Babur in Kabul
+event = {
+	id = 102002
+	trigger = {
+		owned = { province = 1527 data = -1 } #Kabul
+		NOT = {
+			exists = KAB
+			exists = MOG
+			event = 375000 #KAB: Babur's Ambition
+			event = 296613 #TIM: Babur's Ambition
+		}
+	}
+	random = no
+	country = AFG
+	name = "EVENTNAME102002" #Babur in Kabul
+	desc = "EVENTHIST102002"
+	#-#In October of 1504, Babur sent messages to Muqim Beg Arghun, telling him to give up Kabul which the latter had usurped from Babur's nephew. Babur had ambitious plans to conquer the whole of Afghanistan.
+
+	date = { day = 1 month = october year = 1504 }
+	offset = 10
+	deathdate = { day = 1 month = november year = 1530 }
+
+	action_a = {
+		name = "ACTIONNAME102002A" #How aggravating!
+		command = { type = revolt which = 1527 } #Kabul
+		command = { type = revolt which = 1527 } #Kabul
+		command = { type = revolt which = 1527 } #Kabul
+		command = { type = revoltrisk which = 24 value = 10 }
+		command = { type = stability value = -3 }
+	}
+}
+
+#(1504-1530) Babur Conquers Afghanistan
+event = {
+	id = 102003
+	trigger = {
+		owned = { province = 1527 data = -1 } #Kabul
+		control = { province = 1527 data = REB } #Kabul
+		event = 102002 #AFG: Babur in Kabul
+	}
+	random = no
+	country = AFG
+	name = "EVENTNAME102003" #Babur Conquers Afghanistan
+	desc = "EVENTHIST102003"
+	#-#Upon his succesful capture of Kabul from Muqim Beg Arghun, Babur went on to bring the Afghan tribes under his heel. With that accomplished, he stylized himself, King of Kabul.
+
+	date = { day = 1 month = october year = 1504 }
+	offset = 10
+	deathdate = { day = 1 month = november year = 1530 }
+
+	action_a = {
+		name = "ACTIONNAME102003A" #From the ashes, rises a new Kingdom!
+		command = { type = flagname which = "" }
+		command = { type = country which = KAB }
+		command = { type = INF which = -2 value = 7000 }
+		command = { type = CAV which = -1 value = 2500 }
+		command = { type = stability value = 1 }
+		command = { type = remove_countryculture which = afghani }
+		command = { type = add_countryculture which = mongol }
+		command = { type = add_countryculture which = turkoman }
+		command = { type = sleepevent which = 375001 } #KAB: Babur in Kabul
+	}
+}
+
+#(1793) Afghan Succession to the Throne
+event = {
+	id = 65000
+	trigger = {
+		owned = { province = 1531 data = -1 } #Herat
+		owned = { province = 1525 data = -1 } #Qandahar
+	}
+	random = no
+	country = AFG
+	name = "EVENTNAME65000" #Afghan Succession to the Throne
+	desc = "EVENTHIST65000"
+	#-#After the death of Taimur Shah, Sandar Payenda Khan attempted to take control of Afghanistan by force. The governors of Herat and Qandahar sided with his brother Zaman.
+
+	date = { day = 22 month = may year = 1793 }
+
+	action_a = {
+		name = "ACTIONNAME65000A" #Support Zaman Shah
+		command = { type = revolt which = -1 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = aristocracy value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME65000B" #Support Sandar Payenda Khan
+		command = { type = revolt which = 1525 } #Qandahar
+		command = { type = revolt which = 1531 } #Herat
+		command = { type = stability value = -2 }
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = wakeleader which = 02302 } #Sardar Payenda Khan (AFG)
+		command = { type = wakemonarch which = 02009 } #Sandar Payenda Khan *
+		command = { type = sleepmonarch which = 02008 } #Zaman Shah Sadozai
+	}
+}
+
+#(1793) Guerilla uprisings
+event = {
+	id = 65028
+	random = no
+	country = AFG
+	name = "EVENTNAME65028" #Guerilla uprisings
+	desc = "EVENTHIST65028"
+	#-#Massive guerilla uprisings are occuring throughout our country! Kashmir influence suspected!
+
+	date = { day = 22 month = may year = 1793 }
+	offset = 400
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "DAMN"
+		command = { type = casusbelli which = KSH value = 48 }
+		command = { type = revoltrisk which = 48 value = 4 }
+		command = { type = stability value = -3 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#(1812) Ex-Shah of Afghanistan begs for help
+event = {
+	id = 102100
+	trigger = {
+		NOT = {	owned = { province = 1521 data = AFG } }
+	}
+	random = no
+	province = 1521
+	name = "EVENTNAME102100" #Ex-Shah of Afghanistan begs for help
+	desc = "EVENTHIST102100"
+	#-#The former ruler of Afghanistan, Shuja ul-Mulk Sadozai, has escaped from his imprisoment and has come to seek our aid in the hopes of reclaiming the Afghan throne. In exchange he offers the famous Koh-e-Núr diamond.
+
+	date = { day = 1 month = january year = 1812 }
+	offset = 400
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME102100A" #Rob him blind!
+		command = { type = stability value = -2 }
+		command = { type = treasury value = 250 }
+		command = { type = vp value = -30 }
+		command = { type = badboy value = 3 }
+	}
+	action_b = {
+		name = "ACTIONNAME102100B" #Support him indirectly
+		command = { type = treasury value = 250 }
+		command = { type = desertion which = -1 value = 1000 }
+		command = { type = desertion which = -1 value = 1000 }
+		command = { type = desertion which = -1 value = 1000 }
+		command = { type = trigger which = 65028 } #AFG: Guerilla uprisings
+	}
+	action_c = {
+		name = "ACTIONNAME102100C" #Declare war on Afghanistan!
+		command = { type = treasury value = 250 }
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = CAV which = -2 value = 3000 }
+		command = { type = ART which = -2 value = 20 }
+		command = { type = war which = AFG }
+	}
+	action_d = {
+		name = "ACTIONNAME102100D" #Ignore his plight
+		command = { type = vp value = -20 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 102004

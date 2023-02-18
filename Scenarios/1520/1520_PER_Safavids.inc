@@ -4,7 +4,7 @@
 
 country = {
 	tag = PER
-	ai = "PER_1499.ai"
+	ai = "PER_1499.txt"
 	policy = {
 		aristocracy = 7
 		centralization = 2
@@ -24,7 +24,7 @@ country = {
 	treasury = 800
 	inflation = 0.100000
 	merchants = 0.083333
-	religion = { type = shiite }
+	religion = { type = shia }
 	culture = {
 		type = turkish
 		type = persian

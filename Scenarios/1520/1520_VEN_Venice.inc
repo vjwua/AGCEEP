@@ -4,7 +4,7 @@
 
 country = {
 	tag = VEN
-	ai = "VEN_1419.ai"
+	ai = "VEN_1419.txt"
 	policy = {
 		aristocracy = 6
 		centralization = 3
@@ -71,7 +71,6 @@ country = {
 		courthouse = yes
 		shipyard = yes
 		manufactory = weapons
-		construction = weapons
 		date = { year = 1480 month = january day = 7 }
 	}
 	city = {

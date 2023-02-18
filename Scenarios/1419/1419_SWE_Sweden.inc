@@ -4,7 +4,7 @@
 
 country = {
 	tag = SWE
-	ai = "SWE_1419_Union.ai"
+	ai = "SWE_1419_Union.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no

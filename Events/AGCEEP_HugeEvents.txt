@@ -1,0 +1,202 @@
+#Huge and Religious Events
+
+#-----------------------------------------------------------------------------------------------
+#Huge Epochal Events
+
+#(1494) Tordesillas
+event = {
+	id = 110
+	global = yes
+	name = "EVENTNAME103" #Treaty of Tordesillas
+	desc = "EVENTHIST103"
+	#-#Formalizing the papal support in the Treaty of Tordesillas the world west of the Azores was reserved for Spain and the eastern half for Portugal. Eventually they agreed to push the demarcation line to the west of the Cape Verde islands to ensure Portuguese possession of Brazil. Portugal and Spain may now attack and conquer any non-European provinces without having to declare war on their owner.
+
+	date = { day = 6 month = june year = 1494 }
+
+	action_a = {
+		name = "OK"
+		command = { type = flag which = 0 }
+	}
+}
+
+#(1582) The Gregorian Calendar (Global Version)
+event = {
+	id = 115
+	global = yes
+	trigger = {
+		discovered = 1614 #Pope (especially for Christian countries knowing MUS/Perpetual Pope)
+		NOT = {
+			AND = {	#the Pope has his own event
+				core = { province = 399 data = -1 } #Roma
+				event = 251030 #PAP: The Gregorian Calendar
+			}
+		}
+	}
+	random = no
+	name = "EVENTNAME115" #The Gregorian Calendar
+	desc = "EVENTHIST115"
+	#-#The Gregorian calendar was proposed by Aloysius Lilius, a physician from Naples, and adopted by Pope Gregory XIII in accordance with instructions from the Council of Trent (1545-1563) to correct for errors in the older Julian Calendar. In February, 1582, Pope Gregory XIII issued a Papal Bull requiring that 10 days should be dropped from October 1582 so that 15 October should follow immediately after 4 October, and from then on the reformed calendar should be used. This was observed in Italy, Poland, Portugal, and Spain. Other Catholic countries followed shortly after, the Rest of the World adopted it only after 1700. In most countries it was also decided to adopt 1 January as the start of the year at the same time. In the Gregorian calendar, the tropical year is approximated as 365 97/400 days = 365.2425 days. Thus it takes approximately 3300 years for the tropical year to shift one day with respect to the Gregorian calendar. The approximation 365 97/400 is achieved by having 97 leap years every 400 years. These are calculated introducing a new corrective device to curb further error: century years such as 1700 or 1800 are no longer to be counted as leap years, unless they are like 1600 divisible by 400. If somewhat inelegant, this system was undeniably effective since the Gregorian calendar differed from solar year only by 26 seconds.
+
+	date = { day = 4 month = october year = 1582 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1582 }
+
+	action_a = {
+		name = "ACTIONNAME115A" #The Pope has decreed it!
+		command = { }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Religious Events
+
+#(1518-1519) Reformation
+event = {
+	id = 100
+	global = yes
+	name = "EVENTNAME101" #Reformation
+	desc = "EVENTHIST101"
+	#-#On October 31, 1517 Martin Luther pinned his 95 articles on the churchdoor at Wittenberg condemning the trafficking of Redeems by the Pope and advocating a return to a purer former of Christianity. This is normally said to be the birth of the Protestant branch of Christianity. Catholic nations can now convert to Protestantism thereby increasing their long term tax incomes and giving a one-time bonus of 25$ per province as church property is confiscated by the State.
+
+	date = { day = 0 month = january year = 1518 }
+	offset = 700
+	deathdate = { day = 29 month = december year = 1519 }
+
+	action_a = {
+		name = "OK"
+		command = { type = flag which = 1 }
+		command = { type = trigger which = 251074 } #PAP: Response of the Papacy to Luther
+		command = { type = trigger which = 133009 } #BRE: Response of the Papacy to Luther
+		command = { type = trigger which = 202021 } #KOL: Response of the Papacy to Luther
+		command = { type = trigger which = 217004 } #MAI: Response of the Papacy to Luther
+	}
+}
+
+#(1521-1522) John Calvin
+event = {
+	id = 101
+	global = yes
+	name = "EVENTNAME101" #Reformation
+	desc = "EVENTHIST204"
+	#-#Luther's followers created a formal church but Zwingli and later Calvin's followers created many churches – among them the French Huguenots the English Puritans the Scottish Presbyterians and the Dutch Reformed Church. Protestant nations may now convert to Reformed Christians thereby increasing their long term tax incomes.
+
+	date = { day = 0 month = january year = 1521 }
+	offset = 700
+	deathdate = { day = 29 month = december year = 1522 }
+
+	action_a = {
+		name = "OK"
+		command = { type = flag which = 2 }
+	}
+}
+
+#(1564) Council of Trent
+event = {
+	id = 102
+	global = yes
+	name = "EVENTNAME102" #Council of Trent
+	desc = "EVENTHIST102"
+	#-#In the sixteenth century it became imperative for the State and the Church to stem the tide of Lutheranism sweeping through Europe. The decrees included the reorganization and moralization of the ecclesiastical body and solemnly reconfirmed the Pope's indisputable and absolute authority. Catholic nations may now convert to Counter Reformed Catholics, thereby allowing them to force enemy nations to convert back to Catholicism as a peace option.
+
+	date = { day = 0 month = january year = 1564 }
+	offset = 330
+	deathdate = { day = 29 month = december year = 1564 }
+
+	action_a = {
+		name = "OK"
+		command = { type = flag which = 3 }
+	}
+}
+
+#(1658-1659) Edict of Tolerance
+event = {
+	id = 103
+	global = yes
+	name = "EVENTNAME302" #Edict of Tolerance
+	desc = "EVENTHIST302"
+	#-#Starting in the latter part of the 16th century, the Edict of Nantes and other similar legislation aimed to stop religious hostilities by imposing tolerance and mutual recognition of other religious groups. Freedom of religion was not completely forthcoming, the Edict of Nantes was repealed in 1685 by the Edict of Fontainebleau, making Protestantism illegal in France, but a trend towards progress had been set in motion. By the end of the Thirty Year's War, the era of the so called Counter-Reformation was at a close. Concurrent with an increase of religious tolerance, the Treaty of Tordesillas was no longer viewed as an impediment to non-Spanish, non-Portuguese colonization. The boundaries of the Holy Roman Empire were also revised accordingly.
+
+	date = { day = 0 month = january year = 1658 }
+	offset = 700
+	deathdate = { day = 29 month = december year = 1659 }
+
+	action_a = { #new HRE boundaries in case of HOL independent from HRE
+		name = "OK" 
+		trigger = { event = 186015 } #HOL: The peace treaty of Münster
+		command = { 
+			trigger = {
+				OR = {
+					core_claim = { province = 345 data = BAY } #Pfalz (in case the TYW followed historical path)
+					core_national = { province = 345 data = BAY } #Pfalz (in case BAY owns it > 30 years)
+				}
+			}
+			type = elector which = PFA value = 2 #(Palatine Kurfürst is now restored)
+		}
+		command = { 
+			trigger = {
+				OR = {
+					core_claim = { province = 345 data = BAY } #Pfalz (in case the TYW followed historical path)
+					core_national = { province = 345 data = BAY } #Pfalz (in case BAY owns it > 30 years)
+				}
+			}
+			type = removecore_national which = 345 #Pfalz (just to be sure about any core involved)
+		}
+		#Northern Dutch provinces
+		command = { type = hre which = 337 value = no } #Friesen
+		command = { type = hre which = 338 value = no } #Geldre
+		command = { type = hre which = 339 value = no } #Holland
+		command = { type = hre which = 340 value = no } #Zeeland
+		#Swiss provinces (in case HEL_184033 action A didn't fire)
+		command = { 
+			trigger = { exists = HEL } 
+			type = hre which = 388 value = no #Bern
+		}
+		command = { 
+			trigger = { exists = HEL } 
+			type = hre which = 1612 value = no #Schwyz
+		}
+		#Northern Italian provinces
+		command = { type = hre which = 389 value = no } #Lombardia
+		command = { type = hre which = 400 value = no } #Siena
+		command = { type = hre which = 401 value = no } #Firenze
+		command = { type = hre which = 402 value = no } #Emilia
+		command = { type = hre which = 403 value = no } #Liguria
+		command = { type = hre which = 404 value = no } #Piemonte
+		command = { type = hre which = 405 value = no } #Savoie
+		#French provinces
+		command = { 
+			trigger = {
+				NOT = { event = 3323 } #FRA: The Succession in Provence 
+			}
+			type = hre which = 406 value = no #Provence
+		}
+		command = { type = flag which = 5 }
+	}
+	action_b = { #in case the Netherlands never got their independence
+		name = "OK"
+		trigger = { 
+			NOT = { event = 186015 } #HOL: The peace treaty of Münster
+		}
+		command = { 
+			trigger = {
+				OR = {
+					core_claim = { province = 345 data = BAY } #Pfalz
+					core_national = { province = 345 data = BAY } #Pfalz
+				}
+			}
+			type = elector which = PFA value = 2
+		}
+		command = { 
+			trigger = {
+				OR = {
+					core_claim = { province = 345 data = BAY } #Pfalz
+					core_national = { province = 345 data = BAY } #Pfalz
+				}
+			}
+			type = removecore_national which = 345 #Pfalz
+		}
+		command = { type = flag which = 5 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------

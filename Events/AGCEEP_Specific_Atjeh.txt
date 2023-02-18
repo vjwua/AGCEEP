@@ -1,0 +1,292 @@
+#Atjeh (ATJ)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1820) Settlement of Sumatra
+event = {
+	id = 65100
+	trigger = {
+		owned = { province = 681 data = -1 }
+		owned = { province = 682 data = -1 }
+	}
+	random = no
+	country = ATJ
+	name = "EVENTNAME65100" #Settlement of Sumatra
+	desc = "EVENTHIST65100"
+	#-#The sultanate of Atjeh rose to prominence in the late 15th and early 16th centuries. After the capture of Melaka by the Portuguese in 1511, Atjeh would become a dominant power in the region until its near collapse in the mid-1630s.
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 60
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME65100A" #Add these lands to the Crown
+		command = { type = addcore which = 681 } #Jambi
+		command = { type = addcore which = 682 } #Palembang
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1520-1525) Centralization efforts of Ali Mughayat Shah
+event = {
+	id = 65101
+	random = no
+	country = ATJ
+	name = "EVENTNAME65101" #Centralization efforts of Ali Mughayat Shah
+	desc = "EVENTHIST65101"
+	#-#Following a long period of Melaka domination, a patchwork of Atjeh trading centres was united in 1520-1524 by Ali Mughayat Shah as a counter to clumsy Portuguese efforts to monopolize the trade in the region.
+
+	date = { day = 1 month = january year = 1520 }
+	offset = 60
+	deathdate = { day = 1 month = january year = 1525 }
+
+	action_a = {
+		name = "ACTIONNAME65101A" #Unite
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = domestic which = mercantilism value = 1 }
+		command = { type = stability value = 1 }
+		command = { type = domestic which = offensive value = 1 }
+		command = { type = trade value = 800 }
+		command = { type = relation which = MLC value = 50 }
+	}
+}
+
+#(1539-1571) Crusade of Ala-ud-Din Ri'ayat Shah al-Qahhar
+event = {
+	id = 65102
+	random = no
+	country = ATJ
+	name = "EVENTNAME65102" #Crusade of Ala-ud-Din Ri'ayat Shah al-Qahhar
+	desc = "EVENTHIST65102"
+	#-#Under Ala-ud-Din Ri'ayat Shah al-Qahhar Atjeh promptly rose to power by catering to the merchants exiled by the Portuguese takeover of Melaka. During his reign, however, a merchant aristocracy gained significant political influence, which would eventually bring Atjeh down from its heights.
+
+	date = { day = 1 month = january year = 1539 }
+	offset = 6000
+	deathdate = { day = 1 month = january year = 1571 }
+
+	action_a = {
+		name = "ACTIONNAME65102A" #Power to Merchants
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = domestic which = mercantilism value = 1 }
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = trade value = 1000 }
+		command = { type = relation which = MLC value = -50 }
+		command = { type = relation which = BEI value = -50 }
+		command = { type = domestic which = offensive value = 1 }
+		command = { type = treasury value = 250 }
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = CAV which = -2 value = 5000 }
+	}
+}
+
+#(1565-1571) Ottomans support al-Qahhar
+event = {
+	id = 65103
+	trigger = { exists = TUR }
+	random = no
+	country = ATJ
+	name = "EVENTNAME65103" #Ottomans support al-Qahhar
+	desc = "EVENTHIST65103"
+	#-#Serving as a protector of Muslim traders, Shah al-Qahhar came into contact with Ottomans and received troops, cannons and gunsmiths from them to fight the infidel Portuguese.
+
+	date = { day = 1 month = january year = 1565 }
+	offset = 600
+	deathdate = { day = 1 month = january year = 1571 }
+
+	action_a = {
+		name = "ACTIONNAME65103A" #Improve the Army
+		command = { type = land value = 2000 }
+		command = { type = naval value = 2000 }
+		command = { type = infra value = 800 }
+		command = { type = relation which = TUR value = 200 }
+		command = { type = domestic which = offensive value = 1 }
+		command = { type = treasury value = 200 }
+		command = { type = INF which = -1 value = 5000 }
+		command = { type = CAV which = -3 value = 5000 }
+		command = { type = domestic which = quality value = 1 }
+	}
+}
+
+#(1568-1640) Decline of the Malaccan trade
+event = {
+	id = 118000 #triggered by POR_260019
+	random = no
+	country = ATJ
+	name = "EVENTNAME260019" #Decline of the Malaccan trade
+	desc = "EVENTHIST260019"
+	#-#By the late 16th century Malacca had ceased to be the premier trade emporium of South East Asia and the Moluccas. This was a result of excessive piracy from Atjeh and Johore and because of frequent attacks at sea and seiges of Malacca by Atjeh, Portugal's primary rival in the region. Atjeh by this time became the premier trade emporium instead, as Muslim merchants prefered to trade at a port controlled by their co-religionists.
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = cot which = 679 } #Ajeh
+		command = { type = population which = 679 value = 5000 } #Ajeh
+		command = { type = provincetax which = 679 value = 1 } #Ajeh
+		command = { type = trade value = 1000 }
+	}
+}
+
+#(1579) Rise of Merchant Aristocracy
+event = {
+	id = 65104
+	random = no
+	country = ATJ
+	name = "EVENTNAME65104" #Rise of Merchant Aristocracy
+	desc = "EVENTHIST65104"
+	#-#After the death of al-Qahhar's son in 1579, a 10 year-long period of power struggle followed, with 5 sultans being dethroned in those 10 years. Merchant magnates were at the height of their power.
+
+	date = { day = 18 month = june year = 1579 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1580 }
+
+	action_a = {
+		name = "ACTIONNAME65104A" #Empower the Merchants
+		command = { type = trade value = 700 }
+		command = { type = naval value = 600 }
+		command = { type = infra value = 500 }
+		command = { type = domestic which = offensive value = -1 }
+		command = { type = domestic which = mercantilism value = 1 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = stability value = -3 }
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = revoltrisk which = 64 value = 4 }
+	}
+}
+
+#(1589) Sultan al-Mukammil
+event = {
+	id = 65105
+	random = no
+	country = ATJ
+	name = "EVENTNAME65105" #Sultan al-Mukammil
+	desc = "EVENTHIST65105"
+	#-#The reign of the merchant oligarchy came to an end when the laksamana, or admiral, used his position as guardian of a boy King to seize power himself. He ruled as Sultan Ala'ad-din Ri'ayat Shah Sayyid al-Mukammil, and his ruthlessness and cruelty helped to centralize the state, but alienated the Atjeh merchants.
+
+	date = { day = 1 month = july year = 1589 }
+	offset = 3200
+	deathdate = { day = 1 month = january year = 1604 }
+
+	action_a = {
+		name = "ACTIONNAME65105A" #Crush the Oligarchy
+		command = { type = trade value = -1200 }
+		command = { type = naval value = 300 }
+		command = { type = infra value = -500 }
+		command = { type = domestic which = mercantilism value = -1 }
+		command = { type = stability value = -3 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = revoltrisk which = 60 value = 4 }
+		command = { type = treasury value = 200 }
+	}
+}
+
+#(1607-1630) Expansionist Policy of Iskandar Muda
+event = {
+	id = 65106
+	random = no
+	country = ATJ
+	name = "EVENTNAME65106" #Expansionist Policy of Iskandar Muda
+	desc = "EVENTHIST65106"
+	#-#A similar policy of ruthless centralisation was carried out by al-Mukammil's grandson, Sultan Iskandar Muda (1607-36), the strongest of Atjeh's rulers. His relentless policy of expansionism and conquest alienated both English and Dutch, and exhausted the country.
+
+	date = { day = 1 month = july year = 1607 }
+	offset = 320
+	deathdate = { day = 1 month = january year = 1630 }
+
+	action_a = {
+		name = "ACTIONNAME65106A" #Monopolize and Conquer
+		command = { type = naval value = 500 }
+		command = { type = land value = 300 }
+		command = { type = infra value = -800 }
+		command = { type = domestic which = land value = 2 }
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = stability value = -2 }
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = domestic which = offensive value = 2 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = casusbelli which = MLC value = 120 }
+		command = { type = casusbelli which = MTR value = 120 }
+		command = { type = casusbelli which = BEI value = 120 }
+		command = { type = INF which = -1 value = 5000 }
+		command = { type = CAV which = -3 value = 5000 }
+		command = { type = warships which = -1 value = 5 }
+	}
+}
+
+#(1637-1641) Peaceful rule of Iskandar Thani
+event = {
+	id = 65107
+	random = no
+	country = ATJ
+	name = "EVENTNAME65107" #Peaceful rule of Iskandar Thani
+	desc = "EVENTHIST65107"
+	#-#Following the wild rampage of Iskandar Muda, his son Iskandar Thani concentrated more on restoring the country's economy and moral values.
+
+	date = { day = 1 month = january year = 1637 }
+	offset = 400
+	deathdate = { day = 1 month = january year = 1641 }
+
+	action_a = {
+		name = "ACTIONNAME65107A" #Restore the order
+		command = { type = infra value = 300 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = stability value = 1 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = domestic which = offensive value = -1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = gainbuilding which = -1 value = courthouse }
+	}
+}
+
+#(1642-1675) Women at the helm
+event = {
+	id = 65108
+	random = no
+	country = ATJ
+	name = "EVENTNAME65108" #Women at the helm
+	desc = "EVENTHIST65108"
+	#-#The unexpected death of Iskandar Thani without an heir started a lengthy period of women's rule. Taj al-Alam's rule saw the most prosperous time in Atjeh's history.
+
+	date = { day = 1 month = january year = 1642 }
+	offset = 400
+	deathdate = { day = 1 month = january year = 1675 }
+
+	action_a = {
+		name = "ACTIONNAME65108A" #Restore the order
+		command = { type = infra value = 600 }
+		command = { type = trade value = 300 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = stability value = 2 }
+		command = { type = domestic which = offensive value = -1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 2 }
+		command = { type = gainbuilding which = -1 value = courthouse }
+		command = { type = inflation value = -10 }
+	}
+}
+
+#(1699) A letter from Mecca
+event = {
+	id = 65109
+	random = no
+	country = ATJ
+	name = "EVENTNAME65109" #A letter from Mecca
+	desc = "EVENTHIST65109"
+	#-#While Taj al-Alam was uniquely qualified to take the throne as a daughter of Iskandar Muda and a widow of Iskandar Thani, later Queens lacked her prestige and abilities. The growing opposition to Queens finally succeeded in obtaining a letter from Mecca condemning female rule.
+
+	date = { day = 1 month = october year = 1699 }
+
+	action_a = {
+		name = "ACTIONNAME65109A" #Dethrone Zinat ud-Din
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = stability value = -2 }
+		command = { type = domestic which = offensive value = -1 }
+		command = { type = domestic which = serfdom value = 1 }
+		command = { type = domestic which = innovative value = -1 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 118001

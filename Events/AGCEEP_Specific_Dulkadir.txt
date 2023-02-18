@@ -1,0 +1,101 @@
+#Dulkadir (DUL)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1468) Shah Suwar, the Dulkadir
+event = {
+	id = 162000
+	trigger = {
+		vassal = { country = DUL country = MAM }
+	}
+	random = no
+	country = DUL
+	name = "EVENTNAME162000" #Shah Suwar, the Dulkadir
+	desc = "EVENTHIST162000"
+	#-#In the fall of 1468, Shah Suwar supplanted his brother in Elbistan and renounced his vassalage oath to the Mamluks sultan. Fearing that this would encourage others to rebel, Qa'itbay dispatched multiple armies to squash the rebellion at quite a significant cost. Suwar's rebellion dealt the reputation of the Mamluk sultanate as a bastion of stability in the tense area of southwest asian politics a humiliating blow. His rebellion was also a harbringer of future challaenges to Cairo's supremacy in the Muslim world.
+
+	date = { day = 2 month = october year = 1468 }
+
+	action_a = {
+		name = "ACTIONNAME162000A" #Renounce our oath!
+		command = { type = breakvassal which = MAM }
+		command = { type = stability value = -2 }
+		command = { type = relation which = MAM value = -200 }
+		command = { type = war which = MAM }
+		command = { type = trigger which = 219004 } #MAM: Shah Suwar, the Dulkadir
+	}
+	action_b = {
+		name = "ACTIONNAME162000B" #Remain subsurvient
+		command = { type = vp value = -10 }
+		command = { type = relation which = MAM value = 25 }
+	}
+}
+
+#(1515) Revolt of the Grand-Vezier
+event = {
+	id = 50014
+	random = no
+	country = DUL
+	name = "EVENTNAME50014" #Revolt of the Grand-Vezier
+	desc = "EVENTHIST50014"
+	#-#In 1515 Ala ud-Daulah Bozqurd Bey of Dulkadir has died, and his young son Ali rose to the throne. His Grand-Vezier, however, had other plans, and openly revolted against the new ruler. Wary of the gravity of the situation on the border with hostile shiite Persia, sultan Selim decided to interfere and annexed the beylik in July of 1515.
+
+	date = { day = 1 month = june year = 1515 }
+	offset = 30
+	deathdate = { day = 1 month = august year = 1515 }
+
+	action_a = {
+		name = "ACTIONNAME50014A" #Ingrateful Bastard!
+		command = { type = revoltrisk which = 60 value = 8 }
+		command = { type = stability value = -6 }
+		command = { type = revolt which = -2 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#(1515-1520) Trigger Ottoman inheritance of Dulkadir
+event = {
+	id = 50015
+	trigger = {
+		control = { province = 474 data = REB }
+		exists = TUR
+		neighbour = TUR
+		OR = {
+			AND = {
+				owned = { province = 474 data = DUL } #Sivas
+				control = { province = 474 data = REB }
+				NOT = { countrysize = 3 }
+			}
+			AND = {
+				owned = { province = 485 data = DUL } #Aleppo
+				control = { province = 485 data = REB }
+				NOT = { countrysize = 3 }
+			}
+		}
+	}
+	random = no
+	country = DUL
+	name = "EVENTNAME50015" #Rebels are successful
+	desc = "EVENTHIST50015"
+	#-#Rebels has succeeded in overrunning the country, and expelling the rightful ruler. Should we ask for Ottoman protection and become part of their glorious Kingdom, or try to fight it through ourselves?
+
+	date = { day = 1 month = june year = 1515 }
+	offset = 1
+	deathdate = { day = 1 month = august year = 1520 }
+
+	action_a = {
+		name = "ACTIONNAME50015A" #Become a part of Ottoman Empire (possibly End Game)
+		command = { type = trigger which = 50016 } #TUR: Dulkadir Troubles
+	}
+	action_b = {
+		name = "ACTIONNAME50015B" #Rely on our own forces
+		command = { type = inf which = -1 value = 6000 }
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 48 value = 3 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 162001

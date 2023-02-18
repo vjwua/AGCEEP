@@ -4,7 +4,7 @@
 
 country = {
 	tag = TUR
-	ai = "TUR_1520_SuleymanI.ai"
+	ai = "TUR_1520_SuleymanI.txt"
 	policy = {
 		aristocracy = 5
 		centralization = 5
@@ -31,7 +31,7 @@ country = {
 		type = slavonic
 		type = greek
 		type = albanian
-		type = delaware
+		type = maghrebi
 	}
 	diplomacy = {
 		relation = { tag = HUN value = -150 casusbelli = { type = permanent expirydate = { year = 1820 } } }
@@ -42,10 +42,10 @@ country = {
 		relation = { tag = CRI value = 150 }
 		relation = { tag = WAL value = 50 }
 		relation = { tag = MOL value = 50 }
-		relation = { tag = FEZ value = -100 refusetrade = no }
+		relation = { tag = SUS value = -100 refusetrade = no }
 		relation = { tag = ALD value = 100 refusetrade = no }
 		relation = { tag = TUN value = 100 refusetrade = no }
-		relation = { tag = XHO value = 100 refusetrade = no }
+		relation = { tag = TLE value = 100 refusetrade = no }
 	}
 	knownprovinces = {
 		231 232 233 234 235 236 237 238 239 240 241 242 243 244 245 246 247 248 249 250 251
@@ -79,6 +79,9 @@ country = {
 	}
 	nationalprovinces = {
 		319 320 321 355 356 357 358 359 360 361 363 364 464 465 473 474 475 476 477 478 479 481 482 483 484 485 486 488 490 491 492 493 494 495 496 497 498 734 735 736 737 738 741 742 743 744 745 746 747 748 749 1609 1610 1611
+	}
+	claimedprovinces = {
+		499
 	}
 	city = {
 		fortress = { level = 1 }

@@ -4,7 +4,7 @@
 
 country = {
 	tag = VEN
-	ai = "VEN_1419.ai"
+	ai = "VEN_1419.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no

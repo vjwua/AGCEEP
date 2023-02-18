@@ -9,7 +9,7 @@ country = {
 			[Imperialflag] = yes
 		}
 	}
-	ai = "HAB_1564_Empire.ai"
+	ai = "HAB_1564_Empire.txt"
 	flagname = "Imperial"
 	policy = {
 		aristocracy = 2
@@ -36,12 +36,12 @@ country = {
 		type = slavonic
 		type = czech
 		type = slovak
-		type = syrian
+		type = dalmatian
 	}
 	diplomacy = {
 		relation = { tag = BAY value = 100 }
 		relation = { tag = TUR value = -150 }
-		relation = { tag = SIE value = 150 }
+		relation = { tag = TRA value = 150 }
 		relation = { tag = FRA value = -150 }
 		relation = { tag = BRA value = -100 }
 		relation = { tag = SWE value = -150 }

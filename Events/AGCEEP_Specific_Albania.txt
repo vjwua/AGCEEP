@@ -1,0 +1,343 @@
+#Albania (ALB)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1420-1440) Warring Princes
+#by Aylo1 - based on suggestion by Todor
+event = {
+	id = 104008
+	random = no
+	country = ALB
+	name = "EVENTNAME104008" #Warring Princes
+	desc = "EVENTHIST104008"
+	#-#Prior to the emergence of Skanderbeg, Albania was ruled by independent feudal lords. With names including Gjon Kastrioti, Gjergj Arianti, Andrea Topia, Teodor Muzaka, Nikolle Dagjini, Pal Dukagjini, Gjergj Stres Balsha and the Crnojevics of Zeta, each persued their clan's agenda - often at the expense of a rival. Constant feuding helped the Turks reduce them to vassalage, but some like Gjergj Arianti fought back (1433-36) whereas others like Skanderbeg's father Gjon Kastrioti accepted Ottoman suzerainty and sent their sons as hostages to the Sultan.
+
+	date = { day = 1 month = january year = 1420 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1440 }
+
+	action_a = {
+		name = "ACTIONNAME104008A" #Settle our differences
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = relation which = TUR value = -25 } #:(
+		command = { type = revoltrisk which = 60 value = -2 } #truce
+		command = { type = DIP which = 1 value = 36 } #one voice
+		command = { type = treasury value = -50 }
+		command = { type = stability value = 1 }
+		command = { type = manpower value = 10 } #prep for war with Turk
+		command = { type = land value = 100 }
+	}
+	action_b = {
+		name = "ACTIONNAME104008B" #My lands come first
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = domestic which = centralization value = -3 } #no unity
+		command = { type = revoltrisk which = 120 value = 6 } #quarrels
+		command = { type = relation which = TUR value = 5 }
+		command = { type = ADM which = -1 value = 36 }
+		command = { type = MIL which = 1 value = 36 } #more warlike
+		command = { type = stability value = -3 } #civil war
+		command = { type = treasury value = 50 } #loot
+		command = { type = revolt which = 361 } #Albania
+		command = { type = revolt which = 361 } #Albania
+	}
+}
+
+#(1439) The Council of Florence and the Union of the Churches
+event = {
+	id = 3836 #triggered by BYZ_3833 A / BYZ_23020 B
+	random = no
+	country = ALB
+	name = "EVENTNAME3833" #The Council of Florence and the Union of the Churches
+	desc = "EVENTHIST3835"
+	#-#Faced with the terrible onslaught of the Ottoman Turks, representatives of the Byzantine Empire and the Greek Orthodox Church have gone to the Council of Florence in order to negotiate a Union of the Churches. The Byzantines and their patriarch have agreed to great concessions, and Orthodoxy has virtually surrendered to Rome. Now, Byzantium is begging us to support them in their desperate struggle against the Ottomans!
+
+	action_a = {
+		name = "VERY_WELL"
+		command = { type = casusbelli which = TUR value = 60 }
+	}
+}
+
+#(1442) The Death of Gjon Kastrioti -I-
+event = {
+	id = 104000
+	trigger = {
+		OR = {
+			neighbour = TUR
+			vassal = { country = TUR country = ALB }
+		}
+	}
+	random = no
+	country = ALB
+	name = "EVENTNAME104000" #The Death of Gjon Kastrioti
+	desc = "EVENTHIST104000"
+	#-#In 1442 while Skanderbeg was fighting under the banner of Sultan Murat II, his father Gjon died. The death of this valiant Albanian Prince induced the Sultan to occupy, without losing time, this region also, thus adding more territory to his conquests. Gjergj Kastrioti, undoubtedly the ablest of the sons of Gjon was islamized and the other three sons were of no value whatsoever, and Murat II therefore bequeathed the principality to an Albanian renegade named Hassan Bey, who in a short time betrayed his country by putting the entire domain under the rule of the Crescent Moon.
+
+	date = { day = 29 month = december year = 1442 }
+
+	action_a = {
+		name = "ACTIONNAME104000A" #We submit
+		command = { type = religion which = sunni } #Muslim Administration
+		command = { type = trigger which = 301025 } #TUR: The Death of Gjon Kastrioti
+	}
+}
+#(1442) Hassan Bey is given control
+event = {
+	id = 104002 #triggered by TUR_301025 A
+	random = no
+	country = ALB
+	name = "EVENTNAME104002" #The Rule of Hassan Bey
+	desc = "EVENTHIST104002"
+	#-#The Sultan has given control of Albania to Hassan Bey.
+
+	action_a = {
+		name = "ACTIONNAME104002A" #Albania is now under the Crescent Moon
+		command = { type = relation which = TUR value = 100 }
+	}
+}
+
+#(1442) The Death of Gjon Kastrioti -II- Ahistorical
+event = {
+	id = 104009
+	trigger = {
+		NOT = {
+			neighbour = TUR
+			vassal = { country = TUR country = ALB }
+		}
+	}
+	random = no
+	country = ALB
+	name = "EVENTNAME104000" #The Death of Gjon Kastrioti
+	desc = "EVENTHIST104009"
+	#-#In 1442 Gjon Kastrioti died. The death of this valiant Albanian Prince let his son Gjergj Skanderbeg Kastrioti a chance to rise on the throne of Albania.
+
+	date = { day = 29 month = december year = 1442 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = religion which = orthodox }
+		command = { type = conversion which = 361 } #Albania
+		command = { type = sleepmonarch which = 03001 } #Hassan Bey
+		command = { type = wakemonarch which = 03002 } #Gjergj Skanderbeg Kastrioti
+		command = { type = wakeleader which = 03300 } #Skanderbeg (ALB)
+		command = { type = fortress which = 361 value = -2 } #Albania
+		#Albania fortress +2 - Kruja is reinforced
+		command = { type = fortress which = 361 value = 1 } #Albania
+		command = { type = fortress which = 361 value = 1 } #Albania
+		command = { type = sleepevent which = 301026 } #TUR: The Betrayal of Iskander Bey
+		command = { type = sleepevent which = 104004 } #ALB: Albanian Independence
+	}
+}
+
+#(1443 or 1443-1468) Albanian Independence
+event = {
+	id = 104004 #also triggered by TUR_301026
+	trigger = {
+		vassal = { country = TUR country = ALB }
+	}
+	random = no
+	country = ALB
+	name = "EVENTNAME104004" #Albanian Independence
+	desc = "EVENTHIST104004"
+	#-#In 1443, during the battle against the Hungarians of Hunyadi in Nish (in present day Serbia), Gjergj Skanderbeg Kastrioti abandoned the Ottoman Army and captured Kruja, his father's seat in middle Albania. Above the castle he rose the Albanian flag, a red flag with the black double-headed eagle, the present-day Albanian flag, and pronounced to his countrymen the famous words: 'I have not brought you liberty, I found it here, among you'.
+
+	date = { day = 11 month = november year = 1443 }
+
+	action_a = {
+		name = "ACTIONNAME104004A" #I have not brought you liberty, I found it here, among you
+		command = { type = religion which = orthodox }
+		command = { type = provincereligion which = 361 value = orthodox } #In case Hassan was naughty #Albania
+		command = { type = breakvassal which = TUR }
+		command = { type = sleepmonarch which = 03001 } #Hassan Bey
+		command = { type = wakemonarch which = 03002 } #Gjergj Skanderbeg Kastrioti
+		command = { type = wakeleader which = 03300 } #Skanderbeg (ALB)
+		command = { type = stability value = 3 }
+		command = { type = fortress which = 361 value = -2 } #Albania
+		#Albania fortress +2 - Kruja is reinforced
+		command = { type = fortress which = 361 value = 1 } #Albania
+		command = { type = fortress which = 361 value = 1 } #Albania
+	}
+}
+
+#(1444) The Gathering at Lesh
+event = {
+	id = 104005
+	trigger = {
+		monarch = 03002 #Gjergj Skanderbeg Kastrioti
+	}
+	random = no
+	country = ALB
+	name = "EVENTNAME104005" #The Gathering at Lesh
+	desc = "EVENTHIST104005"
+	#-#On March 1st, 1444, the Cathedral of St. Nicholas at Lesh was crowded with a motley throng. From every corner of the territory the princes had come in picturesque array. Among them was the representative of the Republic of Venice, intent on learning what this unusual gathering would accomplish, and at the same time mindful to steer the deliberations in a direction that would benefit only the Most Serene Republic. Those present gave their unreserved support to the immediate creation of a League of Albanian Princes – a feat that for years had seemed beyond the realms of possibility. George Kastrioti was unanimously elected as its Leader and as Commander of the joint armies. He was offered an annual revenue of two hundred thousand ducats for military requirements. Skanderbeg had also always admired the Janissary system of the Turks and used the same doctrine for the Albanian army.
+
+	date = { day = 3 month = march year = 1444 }
+
+	action_a = {
+		name = "ACTIONNAME104005A" #Elect Skanderbeg
+		command = { type = provinceculture which = 362 value = albanian } #Ragusa
+		command = { type = treasury value = 200 }
+		command = { type = domestic which = quality value = 1 } #Janissary system incorporated within the army
+		command = { type = domestic which = centralization value = 1 } #The Albanian principalities unite
+		command = { type = relation which = TUR value = -100 }
+		command = { type = relation which = VEN value = 30 } #Albania fights against the Muslim hordes
+		command = { type = INF which = -1 value = 5000 } #Albanian princes give their armies for Skanderbeg to command
+	}
+}
+
+#(1444-1820) Muslim Administration -I- - Ahistorical
+event = {
+	id = 104011
+	trigger = {
+		vassal = { country = TUR country = ALB }
+		atwar = no
+		OR = {
+			AND = {
+				year = 1444
+				monarch = 03001 #Hassan Bey
+			}
+			monarch = 03003 #Lekë Dukagjini
+			year = 1515
+		}
+	}
+	random = no
+	country = ALB
+	name = "EVENTNAME104011" #Muslim Administration
+	desc = "EVENTHIST104011"
+	#-#Turkish domination and influence in the Albanian Administration becomes overwhelming.
+
+	date = { day = 4 month = march year = 1444 }
+	offset = 360
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "OK"
+		command = { type = religion which = sunni } #Muslim Administration
+	}
+}
+#(1512-1820) Muslim Administration -II- - Ahistorical
+event = {
+	id = 104012
+	trigger = {
+		vassal = { country = TUR country = ALB }
+		atwar = no
+		event = 3360 #TUR: Turko-Persian Conflicts: Shiite rebels
+	}
+	random = no
+	country = ALB
+	name = "EVENTNAME104011" #Muslim Administration
+	desc = "EVENTHIST104011"
+	#-#Turkish domination and influence in the Albanian Administration becomes overwhelming.
+
+	date = { day = 1 month = may year = 1512 }
+	offset = 360
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "OK"
+		command = { type = religion which = shia } #Muslim Administration
+	}
+}
+
+#(1458) Rescuing the Crown of Naples
+#by Bordic
+event = {
+	id = 104006
+	trigger = {
+		monarch = 03002 #Gjergj Skanderbeg Kastrioti
+		event = 262008 	#PRO: The Expedition of Jean d'Anjou
+		NOT = { war = { country = ALB country = NAP } }
+	}
+	random = no
+	country = ALB
+	name = "EVENTNAME104006" #Rescuing the Crown of Naples
+	desc = "EVENTHIST7118"
+	#-#In 1458, in accordance with his father's will, Ferdinando succeeded Alfonso I on the throne of Naples. Ferdinando I, also called Don Ferrante, was the natural son of Alfonso V of Aragon and I of Sicily and Naples. In order to arrange a good future to his bastard son, King Alfonso had him married in 1444 to Isabella of Chiaramonte, a feudal heiress of remarkable feudal possessions in Southern Italy and granddaughter of Maria d'Enghien, Queen consort of Ladislao, the last Angevin King of Naples. But after Alfonso died Pope Calixtus III didn't legitimate Ferdinando as new King of Naples, he declared instead that the line of Aragon was extinct and that the Kingdom was to be considered a fief of the church. Although the Pope died before he could make good his claim and the new Pope Pius II on the contrary recognized Ferdinando, Jean d'Anjou, Duke of Lorraine and René's son, also known as 'Duke of Calabria', profiting by the discontent of the pro-Angevin Neapolitan barons, decided to attempt to regain the throne of his ancestors and invaded Naples. The war started well for the Anjou with the easy occupation of Apulia and the temporary control of Naples after the victorious battle of Sarno in 1460. Ferdinand was so severely defeated that his Kingdom seemed to be completely lost in Angevin hands, but with the military help of Francesco Sforza, Duke of Milan, through his brother Alessandro and of the Albanian leader Gjergj Kastrioti, known as 'Skanderbeg', who came to the aid of the prince whose father had aided him, he triumphed over his enemies in the battle of Troja in 1462. By 1464 Ferdinando could re-establish his authority in the Kingdom, Jean d'Anjou left Southern Italy while the barons agreed to recognize the Aragonese as their King.
+
+	date = { day = 18 month = August year = 1458 }
+	offset = 30
+	deathdate = { day = 18 month = August year = 1462 }
+
+	action_a = {
+		name = "ACTIONNAME104006A" #Help King Ferdinando
+		command = { type = relation which = NAP value = 50 }
+		command = { type = relation which = GEN value = -50 }
+		command = { type = relation which = PRO value = -50 }
+		command = { type = casusbelli which = PRO value = 24 }
+		command = { type = casusbelli which = GEN value = 24 }
+		command = { type = treasury value = -30 }
+	}
+	action_b = {
+		name = "ACTIONNAME3192B" #Stay neutral
+		command = { type = stability value = -1 }
+		command = { type = relation which = NAP value = -50 }
+		command = { type = relation which = ARG value = -25 }
+	}
+}
+
+#(1468) Death of Skanderbeg
+event = {
+	id = 104007
+	trigger = {
+		monarch = 03002 #Gjergj Skanderbeg Kastrioti
+	}
+	random = no
+	country = ALB
+	name = "EVENTNAME104007" #Death of Skanderbeg
+	desc = "EVENTHIST104007"
+	#-#When Gjergj Kastrioti died (1468), his sometime rival Lekë Dukagjini (1410-81) carried on as leader of the Albanian resistance with the occasional Venetian and Papal aid. He proved a better administrator (instituting the Kanuni Lawcode) than warrior, nor was he as charismatic as the Dragon Prince. Loyalties wavered and betrayals were common - ultimately leading to complete Ottoman occupation. Had the League of Albanian Princes chose Skanderbeg's young son Gjon as his successor...
+
+	date = { day = 16 month = january year = 1468 }
+
+	action_a = {
+		name = "ACTIONNAME104007A" #Elect Lekë Dukagjini
+		command = { type = gainbuilding which = -1 value = courthouse } #Kanuni
+		command = { type = revoltrisk which = 120 value = 6 } #betrayals
+		command = { type = relation which = VEN value = 100 }
+		command = { type = relation which = PAP value = 100 }
+		command = { type = relation which = NAP value = -50 }
+		command = { type = galleys which = -1 value = 2 } #VEN fleet
+		command = { type = treasury value = 50 } #PAP funds
+	}
+	action_b = {
+		name = "ACTIONNAME104007B" #Elect Gjon II Kastrioti
+		command = { type = sleepmonarch which = 03003 } #Lekë Dukagjini
+		command = { type = sleepmonarch which = 03004 } #Gjon II 1481
+		command = { type = wakemonarch which = 03005 } #Gjon II 1468
+		command = { type = relation which = VEN value = -50 }
+		command = { type = relation which = PAP value = -50 }
+		command = { type = relation which = NAP value = 100 }
+		command = { type = stability value = 3 } #Skanderbeg's son
+		command = { type = INF which = -1 value = 2000 } #NAP holdings
+		command = { type = CAV which = -1 value = 1000 }
+	}
+}
+#(1468) Election of Lekë Dukagjini
+event = {
+	id = 104010
+	trigger = {
+		NOT = { monarch = 03002 } #Gjergj Skanderbeg Kastrioti
+	}
+	random = no
+	country = ALB
+	name = "EVENTNAME104010" #Election of Lekë Dukagjini
+	desc = "EVENTHIST104010"
+	#-#Lekë Dukagjini (1410-81) carried on as leader of the Albanian resistance with the occasional Venetian and Papal aid. He proved a better administrator (instituting the Kanuni Lawcode) than warrior. Loyalties wavered and betrayals were common - ultimately leading to complete Ottoman occupation.
+
+	date = { day = 16 month = january year = 1468 }
+
+	action_a = {
+		name = "ACTIONNAME104007A" #Elect Lekë Dukagjini
+		command = { type = gainbuilding which = -1 value = courthouse } #Kanuni
+		command = { type = revoltrisk which = 120 value = 6 } #betrayals
+		command = { type = relation which = VEN value = 100 }
+		command = { type = relation which = PAP value = 100 }
+		command = { type = relation which = NAP value = -50 }
+		command = { type = galleys which = -1 value = 2 } #VEN fleet
+		command = { type = treasury value = 50 } #PAP funds
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 104013

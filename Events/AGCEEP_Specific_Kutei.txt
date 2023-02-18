@@ -1,0 +1,55 @@
+#Kutei (KUT)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1478-1820) The End of the Majapahit Empire
+event = {
+	id = 426000 #triggered by MTR_234000 A
+	trigger = {
+		vassal = { country = MTR country = KUT }
+	}
+	country = KUT
+	random = no
+	name = "EVENTNAME80707" #The End of the Majapahit Empire
+	desc = "EVENTHIST80707"
+	#-#The Majapahit Empire is dead. We owe their successors nothing.
+
+	action_a = {
+		name = "ACTIONNAME80707A" #We shall rule ourselves
+		command = { type = breakvassal which = MTR }
+	}
+}
+
+#(1560-1820) Kutei converts to Islam
+#MKJ(?)
+event = {
+	id = 80703
+	trigger = {
+		NOT = { religion = sunni }
+	}
+	country = KUT
+	random = no
+	name = "EVENTNAME80703" #Kutei converts to Islam
+	desc = "EVENTHIST80703"
+	#-#Kutei had been under increasing pressure from external and internal sources to convert to Islam. Much of the populace had already converted by the time the Raja himself converted, becoming the Sultan of Kutei.
+
+	date = { day = 1 month = january year = 1560 }
+	offset = 2000
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME80703A" #Become Sultanate of Kutei
+		command = { type = religion which = sunni }
+		command = { type = provincereligion which = -2 value = sunni }
+		command = { type = provincereligion which = -1 value = sunni }
+	}
+	action_b = {
+		name = "ACTIONNAME80703B" #Remain the Raj of Kutei
+		command = { type = stability value = -2 }
+		command = { type = provincereligion which = -1 value = sunni }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 426001

@@ -4,7 +4,7 @@
 
 country = {
 	tag = SPA
-	ai = "SPA_1586_Habsburgs.ai"
+	ai = "SPA_1586_Habsburgs.txt"
 	flagname = "Saltire"
 	policy = {
 		aristocracy = 10
@@ -27,7 +27,7 @@ country = {
 	merchants = 0
 	religion = { type = counterreform }
 	culture = {
-		type = iberian
+		type = castilian
 		type = italian
 		type = basque
 	}

@@ -179,7 +179,7 @@ globaldata = {
 		type = vassalization
 		name = ""
 		expirydate = { year = 1526 month = january day = 0 }
-		participant = { DLH JAI }
+		participant = { DLH RAJ }
 	}
 	alliance = {
 		id = { type = 6000 id = 23 }
@@ -263,7 +263,7 @@ globaldata = {
 		type = vassalization
 		name = ""
 		expirydate = { year = 1528 month = january day = 0 }
-		participant = { PAP PAM }
+		participant = { PAP MOD }
 	}
 	alliance = {
 		id = { type = 6000 id = 35 }
@@ -316,7 +316,7 @@ globaldata = {
 		type = vassalization
 		name = ""
 		expirydate = { year = 1820 }
-		participant = { PER CAL }
+		participant = { PER MSH }
 	}
 	alliance = {
 		id = { type = 6000 id = 43 }
@@ -364,7 +364,7 @@ globaldata = {
 		type = vassalization
 		name = ""
 		expirydate = { year = 1820 }
-		participant = { POR ZUL }
+		participant = { POR MOM }
 	}
 	alliance = {
 		id = { type = 6000 id = 50 }
@@ -385,7 +385,7 @@ globaldata = {
 		type = vassalization
 		name = ""
 		expirydate = { year = 1820 }
-		participant = { FRA BEA }
+		participant = { FRA FOI }
 	}
 
 	war = {
@@ -1014,7 +1014,7 @@ history = {
 	147004 #CHI: Failure to pacify An Nam
 	152060 #CRI: Crimean Khanate seeks Ottoman support
 	159028 #Trial of Trolle
-	160000 #DEL: Attack on the Harbor
+	160000 #MGU: Attack on the Harbor
 	166003 #The Moriscos Request Aid
 	170114 #FRA: Josquin Desprez
 	170201 #FRA: The Treaty of Le Verger
@@ -1047,9 +1047,9 @@ history = {
 	242028 #NIP: Ashikaga Yoshitane is driven from the throne
 	249024 #ORI: The River of God
 	251024 #PAP: Leo Africanus
-	252011 #PAM: The Sound of Music
-	252013 #PAM: Duke Alfonso's Artillery
-	252014 #PAM: Orlando Furioso
+	252011 #MOD: The Sound of Music
+	252013 #MOD: Duke Alfonso's Artillery
+	252014 #MOD: Orlando Furioso
 	254010 #PER: Khiva and Shiite Governors
 	254018 #PER: Shiite Immigrants
 	254025 #PER: Annexation of Khorasan
@@ -1107,6 +1107,7 @@ history = {
 	285126 #SPA: The Columbian exchange
 	285154 #SPA: Cortes disembarks in Cempoala and burns his ships
 	285155 #SPA: Tlaxcala goes over to Spain
+	285179 #SPA: Sugar in the Canaries
 	285205 #SPA: The Burgundian court
 	285219 #SPA: Forced conversion of the Mudejars
 	285221 #SPA: The Imperial Election
@@ -1128,6 +1129,7 @@ history = {
 	301049 #TUR: Turkish dominance on the Black Sea
 	301062 #TUR: Ottoman Rule solidified
 	301086 #TUR: Fall of the Mamluk Empire
+	301138 #TUR: Ottoman claim on Yemen
 	322003 #TYR: The silver mines of Schwaz
 	325000 #UZB: Formation of Khiva Khanate
 	325001 #UZB: Khiva and The Western Provinces
@@ -1138,12 +1140,12 @@ history = {
 	326031 #VEN: Dominican Inquisition
 	326058 #VEN: The Water Supervisors
 	329022 #WAL: Neagoe Basarab's works
-	332013 #XHO: Refugees from Granada
-	333000 #KIE: Portuguese demand submission
+	332013 #TLE: Refugees from Granada
+	333000 #KIL: Portuguese demand submission
 	334000 #ZAP: Smallpox
 	335003 #ZIM: Zimbabwe's Decline
 	335004 #ZIM: The Mwenemutapa Empire
-	336000 #ZUL: Portuguese Explorers in East Africa
+	336000 #MOM: Portuguese Explorers in East Africa
 	337558 #Mines: Lanzhou (1558)
 	337559 #
 	337560 #
@@ -1198,10 +1200,10 @@ history = {
 	338448 #Albania Veneta - 362 #Ragusa
 	338451 #German dominance in Odenburg - 352 #Odenburg
 	338496 #Swiss expansion - 405 #Savoie
-	355003 #COI: Appeal to Portugal
-	364001 #FAT: The Treachery of Cochin
-	364002 #FAT: Anti-Portuguese Feelings
-	364003 #FAT: Commercial Treaty with Portugal
+	355003 #COC: Appeal to Portugal
+	364001 #CLC: The Treachery of Cochin
+	364002 #CLC: Anti-Portuguese Feelings
+	364003 #CLC: Commercial Treaty with Portugal
 	437000 #PAK: Independence of Perak
 	600262 #AI change: UZB_1496_Samarkand.ai
 	170298 #FRA: The End of the Hundred Years War

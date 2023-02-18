@@ -1,0 +1,207 @@
+#Algiers (Al-Djazaïr) (ALD)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1502-1530) Moor Refugees from Al-Andalus
+event = {
+	id = 3652 #triggered by SPA_285219
+	trigger = {
+		NOT = { exists = MOR }
+	}
+	random = no
+	country = ALD
+	name = "EVENTNAME3652" #Moor Refugees from Al-Andalus
+	desc = "EVENTHIST3652"
+	#-#The great Christian victory (1212) of Navas de Tolosa prepared the way for the downfall of the Muslims. Córdoba fell to Ferdinand III of Castile in 1236. The wars went on, and one by one the Moorish strongholds fell, until only Granada remained in their hands. Málaga was taken (1487) after a long siege by the forces of Ferdinand and Isabella, and in 1492 Granada was recovered. Many of the Moors remained in Spain, those who remained faithful to Islam were called Mudejares, while those who accepted Christianity were called Moriscos. They were allowed to stay in Spain but were kept under close surveillance.
+
+	action_a = {
+		name = "ACTIONNAME3652A" #Al-Andalus has fallen
+		command = { type = population which = -1 value = 1000 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = trade value = 200 }
+		command = { type = land value = 200 }
+		command = { type = treasury value = 100 }
+	}
+}
+
+#(1511-1530) Emergence of Algiers
+#by Garbon
+event = {
+	id = 105000 #triggered by TLE_332000
+	random = no
+	country = ALD
+	name = "EVENTNAME105000" #Emergence of Algiers
+	desc = "EVENTHIST51025"
+	#-#In the 16th century, Spain occupied various ports in North Africa. Algiers was blockaded and forced to pay tribute. Other ports were captured outright. The desperate Muslims called for help from the Ottoman sultan, then the caliph of all Islam. Two corsair brothers, the Barbarossas petitioned the sultan to send them with a fleet to North Africa. They had planned to use the port of Tunis as a gathering point. However, their gifts did not impress the ruler of Tunis who barred them from the city. Despite this inconvenience, they still continued piracy operations and began attacks on Algiers. At the same time, rulers of rivaling cities took the chance to launch attacks on Tlemcen.
+
+	action_a = {
+		name = "ACTIONNAME105000A" #We ascend!
+		command = { type = breakvassal which = TLE }
+		command = { type = stability value = 2 }
+		command = { type = relation which = TLE value = -300 }
+		command = { type = relation which = TUR value = 100 }
+		command = { type = relation which = TUN value = 50 }
+		command = { type = addcore which = 734 } #Orania
+		command = { type = province_revoltrisk which = 738 value = -8 } #Kabylia
+		command = { type = province_revoltrisk which = 737 value = -8 } #Al Djazair
+	}
+}
+
+#(1525-1554) The Ottoman protection of Al-Djazaïr
+event = {
+	id = 3651
+	trigger = {
+		exists = TUR
+		NOT = {
+			vassal = { country = TLE country = ALD }
+			vassal = { country = TUN country = ALD }
+			vassal = { country = MOR country = ALD }
+		}
+		NOT = {
+			vassal = { country = ALD country = TUR }
+		}
+		OR = {
+			owned = { province = 734 data = -1 } #Orania
+			owned = { province = 737 data = -1 } #Al Djazair
+		}
+	}
+	random = no
+	country = ALD
+	name = "EVENTNAME3651" #The Ottoman protection of Al-Djazaïr
+	desc = "EVENTHIST3651"
+	#-#A Turkish pirate of name Aruj, took over Al-Djazaîr in 1516 when he defeated the Spaniards. He then killed the local pasha and proclaimed himself pasha. He was known as Baba Aruj, or father Aruj. This was translated by the Spaniards as Barbarroja (Barbarossa in Italian, or Red beard). He was driven out of Tlemcen by the Spaniards and killed in 1518. However his brother, Khayr ad-Din Barbarossa, succeeded him. He sought protection from the Ottoman Empire and was appointed beylerbey. Driven out in 1520 by the Hafsids, he returned in 1525, massacring Arabs and Kabyles who resisted him. Under his rule Al-Djazaîr accepted the overlordship of the Ottoman Empire and continued the fight against the Spaniards, the Hafsids of Tunis and the Zayyanids of Tlemcen.
+
+	date = { day = 1 month = january year = 1525 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1554 }
+
+	action_a = {
+		name = "ACTIONNAME3651A" #Accept the protection of the Grand Sultan
+		command = { type = trigger which = 3372 } #TUR: The Ottoman protection of Al-Djazaïr
+		command = { type = dynastic which = TUR }
+		command = { type = treasury value = 200 }
+		command = { type = relation which = TUR value = 100 }
+		command = { type = relation which = TLE value = -100 }
+		command = { type = relation which = TUN value = -100 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = casusbelli which = TUN value = 24 }
+		command = { type = casusbelli which = TLE value = 24 }
+		command = { type = casusbelli which = SPA value = 24 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3651B" #Decline the Sultan's offer
+		command = { type = relation which = TUR value = -100 }
+		command = { type = galleys which = -1 value = 15 }
+		command = { type = transports which = -1 value = 5 }
+		command = { type = stability value = -2 }
+	}
+}
+
+#(1555-1820) Tlemcen incorporated
+event = {
+	id = 105004 #triggered by TLE_332018 A
+	random = no
+	country = ALD
+	name = "EVENTNAME301043" #Tlemcen incorporated
+	desc = "EVENTHIST332005"
+	#-#With the disappearance of the Zayyanid dynasty in Tlemcen, and with the country under Ottoman control, the sultan decided that the Pasha of Al-Djazaîr, then Salah Raïs, should rule also over Tlemcen. This effectively put an end to the existence of this country that became part of what would eventually be Algeria.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = inherit which = TLE } #Tlemcen
+	}
+}
+
+#(1527-1572) Barbarossa attacks Tunis
+#by Fodoron
+event = {
+	id = 105001
+	trigger = {
+		exists = TUN
+		exists = TUR
+		event = 3372 #TUR: The Ottoman Vassalization of Al-Djazaîr
+		NOT = {
+			war = { country = TUR country = ALD }
+			war = { country = TUN country = ALD }
+			vassal = { country = TUN country = ALD }
+			vassal = { country = ALD country = TUN }
+		}
+	}
+	random = no
+	country = ALD
+	name = "EVENTNAME105001" #Barbarossa attacks Tunis
+	desc = "EVENTHIST105001"
+	#-#Khayr ad-Din Barbarossa was the main Ottoman instrument in North Africa. After obtaining Ottoman support he attacked the Hafsids, conquering Tunis in 1534. The deposed Hafsid pasha, al-Hassan, asked for help from Carlos of Spain, who sent a powerful fleet and recaptured Tunis, restoring al-Hassan as his vassal.
+
+	date = { day = 0 month = january year = 1527 }
+	offset = 100
+	deathdate = { day = 0 month = january year = 1572 }
+
+	action_a = {
+		name = "ACTIONNAME105001A" #Attack Tunis
+		command = { type = casusbelli which = TUN value = 24 }
+		command = { type = relation which = TUN value = -50 }
+		command = { type = INF which = -1 value = 10000 } #Janissaries
+		command = { type = CAV which = -1 value = 4000 } #Sipahi
+		command = { type = trigger which = 300001 } #TUN: Tunis under attack from Barbarossa
+	}
+	action_b = {
+		name = "ACTIONNAME105001B" #Not worth it
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1546-1600) Al-Djazaîr becomes part of the Ottoman empire
+#by Fodoron
+event = {
+	id = 105002
+	trigger = {
+		vassal = { country = TUR country = ALD }
+		OR = {
+			owned = { province = 734 data = -1 } #Orania
+			owned = { province = 737 data = -1 } #Al Djazair
+			neighbour = TUR
+		}
+	}
+	random = no
+	country = ALD
+	name = "EVENTNAME105002" #Al-Djazaîr becomes part of the Ottoman Empire
+	desc = "EVENTHIST105002"
+	#-#At the death of Khayr ad-Din Barbarossa in Istanbul, the sultan named his son Hassan Pasha the new Pasha of Al-Djazaîr. For over a century, the rulers of Al-Djazaîr were chosen by the Porte, incorporating it to the domains of the Ottoman Empire.
+
+	date = { day = 4 month = july year = 1546 }
+	offset = 50
+	deathdate = { day = 0 month = january year = 1600 }
+
+	action_a = {
+		name = "ACTIONNAME105002A" #Let the sultan name our ruler (End Game)
+		command = { type = relation which = TUR value = 50 }
+		command = { type = trigger which = 50019 } #TUR: Al-Djazaîr becomes part of the Ottoman Empire
+	}
+	action_b = {
+		name = "ACTIONNAME105002B" #We shall decide who rules us
+		command = { type = relation which = TUR value = -50 }
+	}
+}
+
+#(1710-1730) The regent of Algiers
+event = {
+	id = 105003 #triggered by TUR_3897 A
+	random = no
+	country = ALD
+	name = "EVENTNAME301081" #The regent of Algiers
+	desc = "EVENTHIST301081"
+	#-#The Dey persuaded the Sultan to recognize him and his successors as regent, replacing the Pasha in that role. Although Algiers remained a part of the Ottoman Empire, the Ottoman government ceased to have effective influence there.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = relation which = TUR value = -100 }
+		command = { type = breakvassal which = TUR }
+		command = { type = addcore which = 734 } #Orania
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 105005

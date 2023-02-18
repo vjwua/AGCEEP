@@ -4,81 +4,81 @@
 #Provinces: culture and religion changes between 1520 and 1648
 
 #Uzbek Settlement
-province = { id = 1532 culture = "uzbehk" } #Bukhara
+province = { id = 1532 culture = "uzbek" } #Bukhara
 
 #The Purge of the Morisques
-province = { id = 444 religion = catholic culture = "iberian" } #Granada
-province = { id = 445 religion = catholic culture = "iberian" } #Gibraltar
+province = { id = 444 religion = catholic culture = "castilian" } #Granada
+province = { id = 445 religion = catholic culture = "castilian" } #Gibraltar
 #Spanish Colonies
-province = { id = 38 religion = catholic culture = "iberian" } #Mosquitos
-province = { id = 37 religion = catholic culture = "iberian" } #Nicaragua
-province = { id = 36 religion = catholic culture = "iberian" } #Honduras
-province = { id = 35 religion = catholic culture = "iberian" } #Yucatan
-province = { id = 34 religion = catholic culture = "iberian" } #Campeche
-province = { id = 33 religion = catholic culture = "iberian" } #Guatemala
-province = { id = 32 religion = catholic culture = "iberian" } #Tehuacan
-province = { id = 31 religion = catholic culture = "iberian" } #Tehuantepec
-province = { id = 30 religion = catholic culture = "iberian" } #Atlixco
-province = { id = 29 religion = catholic culture = "iberian" } #Tlaxcala
-province = { id = 28 religion = catholic culture = "iberian" } #Tampico
-province = { id = 27 religion = catholic culture = "iberian" } #Zacatecas
-province = { id = 26 religion = catholic culture = "iberian" } #Michoagan
-province = { id = 25 religion = catholic culture = "iberian" } #Saltillo
-province = { id = 24 religion = catholic culture = "iberian" } #Jalisco
-province = { id = 48 religion = catholic culture = "iberian" } #Talahassee
-province = { id = 49 religion = catholic culture = "iberian" } #Seminole
-province = { id = 50 religion = catholic culture = "iberian" } #Everglades
-province = { id = 158 religion = catholic culture = "iberian" } #Cartagena
-province = { id = 157 religion = catholic culture = "iberian" } #Maracaibo
-province = { id = 156 religion = catholic culture = "iberian" } #Tocuvo
-province = { id = 154 religion = catholic culture = "iberian" } #Yaraguay
-province = { id = 160 religion = catholic culture = "iberian" } #Bogota
-province = { id = 161 religion = catholic culture = "iberian" } #Cupica
-province = { id = 162 religion = catholic culture = "iberian" } #Cali
-province = { id = 163 religion = catholic culture = "iberian" } #Azuay
-province = { id = 164 religion = catholic culture = "iberian" } #Guayaquil
-province = { id = 165 religion = catholic culture = "iberian" } #Cajamarca
-province = { id = 166 religion = catholic culture = "iberian" } #Huanaco
-province = { id = 167 religion = catholic culture = "iberian" } #Ayacucho
-province = { id = 168 religion = catholic culture = "iberian" } #Lima
-province = { id = 169 religion = catholic culture = "iberian" } #Cuzco
-province = { id = 170 religion = catholic culture = "iberian" } #Arequipa
-province = { id = 171 religion = catholic culture = "iberian" } #Moquega
-province = { id = 172 religion = catholic culture = "iberian" } #Arica
-province = { id = 173 religion = catholic culture = "iberian" } #Atacama
-province = { id = 174 religion = catholic culture = "iberian" } #Coquimbo
-province = { id = 175 religion = catholic culture = "iberian" } #Valparaiso
-province = { id = 176 religion = catholic culture = "iberian" } #Talca
-province = { id = 192 religion = catholic culture = "iberian" } #Taqari
-province = { id = 193 religion = catholic culture = "iberian" } #Titicaca
-province = { id = 194 religion = catholic culture = "iberian" } #Potosi
-province = { id = 215 religion = catholic culture = "iberian" } #Uruguay
-province = { id = 216 religion = catholic culture = "iberian" } #Artigas
-province = { id = 217 religion = catholic culture = "iberian" } #Parana
-province = { id = 218 religion = catholic culture = "iberian" } #Neembucu
-province = { id = 219 religion = catholic culture = "iberian" } #Tucuman
-province = { id = 220 religion = catholic culture = "iberian" } #Jujuy
-province = { id = 221 religion = catholic culture = "iberian" } #Corrientes
-province = { id = 223 religion = catholic culture = "iberian" } #Aires
-province = { id = 224 religion = catholic culture = "iberian" } #Copetonas
-province = { id = 225 religion = catholic culture = "iberian" } #San Matias
-province = { id = 226 religion = catholic culture = "iberian" } #Chubut
-province = { id = 227 religion = catholic culture = "iberian" } #Santa Cruz
-province = { id = 822 religion = catholic culture = "iberian" } #Costa Rica
-province = { id = 690 religion = catholic culture = "iberian" } #Luzon
-province = { id = 691 religion = catholic culture = "iberian" } #Mindoro
-province = { id = 692 religion = catholic culture = "iberian" } #Samar
-province = { id = 1482 religion = catholic culture = "iberian" } #Montana
-province = { id = 1483 religion = catholic culture = "iberian" } #Atalaya
-province = { id = 1484 religion = catholic culture = "iberian" } #Manu
+province = { id = 38 religion = catholic culture = "castilian" } #Mosquitos
+province = { id = 37 religion = catholic culture = "castilian" } #Nicaragua
+province = { id = 36 religion = catholic culture = "castilian" } #Honduras
+province = { id = 35 religion = catholic culture = "castilian" } #Yucatan
+province = { id = 34 religion = catholic culture = "castilian" } #Campeche
+province = { id = 33 religion = catholic culture = "castilian" } #Guatemala
+province = { id = 32 religion = catholic culture = "castilian" } #Tehuacan
+province = { id = 31 religion = catholic culture = "castilian" } #Tehuantepec
+province = { id = 30 religion = catholic culture = "castilian" } #Atlixco
+province = { id = 29 religion = catholic culture = "castilian" } #Tlaxcala
+province = { id = 28 religion = catholic culture = "castilian" } #Tampico
+province = { id = 27 religion = catholic culture = "castilian" } #Zacatecas
+province = { id = 26 religion = catholic culture = "castilian" } #Michoagan
+province = { id = 25 religion = catholic culture = "castilian" } #Saltillo
+province = { id = 24 religion = catholic culture = "castilian" } #Jalisco
+province = { id = 48 religion = catholic culture = "castilian" } #Talahassee
+province = { id = 49 religion = catholic culture = "castilian" } #Seminole
+province = { id = 50 religion = catholic culture = "castilian" } #Everglades
+province = { id = 158 religion = catholic culture = "castilian" } #Cartagena
+province = { id = 157 religion = catholic culture = "castilian" } #Maracaibo
+province = { id = 156 religion = catholic culture = "castilian" } #Tocuvo
+province = { id = 154 religion = catholic culture = "castilian" } #Yaraguay
+province = { id = 160 religion = catholic culture = "castilian" } #Bogota
+province = { id = 161 religion = catholic culture = "castilian" } #Cupica
+province = { id = 162 religion = catholic culture = "castilian" } #Cali
+province = { id = 163 religion = catholic culture = "castilian" } #Azuay
+province = { id = 164 religion = catholic culture = "castilian" } #Guayaquil
+province = { id = 165 religion = catholic culture = "castilian" } #Cajamarca
+province = { id = 166 religion = catholic culture = "castilian" } #Huanaco
+province = { id = 167 religion = catholic culture = "castilian" } #Ayacucho
+province = { id = 168 religion = catholic culture = "castilian" } #Lima
+province = { id = 169 religion = catholic culture = "castilian" } #Cuzco
+province = { id = 170 religion = catholic culture = "castilian" } #Arequipa
+province = { id = 171 religion = catholic culture = "castilian" } #Moquega
+province = { id = 172 religion = catholic culture = "castilian" } #Arica
+province = { id = 173 religion = catholic culture = "castilian" } #Atacama
+province = { id = 174 religion = catholic culture = "castilian" } #Coquimbo
+province = { id = 175 religion = catholic culture = "castilian" } #Valparaiso
+province = { id = 176 religion = catholic culture = "castilian" } #Talca
+province = { id = 192 religion = catholic culture = "castilian" } #Taqari
+province = { id = 193 religion = catholic culture = "castilian" } #Titicaca
+province = { id = 194 religion = catholic culture = "castilian" } #Potosi
+province = { id = 215 religion = catholic culture = "castilian" } #Uruguay
+province = { id = 216 religion = catholic culture = "castilian" } #Artigas
+province = { id = 217 religion = catholic culture = "castilian" } #Parana
+province = { id = 218 religion = catholic culture = "castilian" } #Neembucu
+province = { id = 219 religion = catholic culture = "castilian" } #Tucuman
+province = { id = 220 religion = catholic culture = "castilian" } #Jujuy
+province = { id = 221 religion = catholic culture = "castilian" } #Corrientes
+province = { id = 223 religion = catholic culture = "castilian" } #Aires
+province = { id = 224 religion = catholic culture = "castilian" } #Copetonas
+province = { id = 225 religion = catholic culture = "castilian" } #San Matias
+province = { id = 226 religion = catholic culture = "castilian" } #Chubut
+province = { id = 227 religion = catholic culture = "castilian" } #Santa Cruz
+province = { id = 822 religion = catholic culture = "castilian" } #Costa Rica
+province = { id = 690 religion = catholic culture = "castilian" } #Luzon
+province = { id = 691 religion = catholic culture = "castilian" } #Mindoro
+province = { id = 692 religion = catholic culture = "castilian" } #Samar
+province = { id = 1482 religion = catholic culture = "castilian" } #Montana
+province = { id = 1483 religion = catholic culture = "castilian" } #Atalaya
+province = { id = 1484 religion = catholic culture = "castilian" } #Manu
 
 #Confucianism in Japan
-province = { id = 683 religion = confucianism } #Ezochi
-province = { id = 684 religion = confucianism } #Tohoku
-province = { id = 685 religion = confucianism } #Kanto
-province = { id = 686 religion = confucianism } #Kansai
-province = { id = 687 religion = confucianism } #Shikoku
-province = { id = 688 religion = confucianism } #Kyushu
+province = { id = 683 religion = confucian } #Ezochi
+province = { id = 684 religion = confucian } #Tohoku
+province = { id = 685 religion = confucian } #Kanto
+province = { id = 686 religion = confucian } #Kansai
+province = { id = 687 religion = confucian } #Shikoku
+province = { id = 688 religion = confucian } #Kyushu
 
 #Dutch Influence in the Colonies
 province = { id = 87 religion = reformed culture = "dutch" } #Manhattan
@@ -96,25 +96,25 @@ province = { id = 800 religion = reformed culture = "dutch" } #Senegal
 province = { id = 802 religion = reformed culture = "dutch" } #Nouakchott
 province = { id = 824 religion = reformed culture = "dutch" } #St. Helena
 #Special
-province = { id = 689 religion = confucianism culture = "han" } #Taiwan
+province = { id = 689 religion = confucian culture = "han" } #Taiwan
 
 #Portuguese colonial influence
 province = { id = 549 religion = catholic } #Goa
 province = { id = 576 religion = catholic } #Colombo
 province = { id = 577 religion = catholic } #Jaffna
-province = { id = 183 religion = catholic culture = "mississippian" } #Amapa
-province = { id = 198 religion = catholic culture = "mississippian" } #Marajo
-province = { id = 199 religion = catholic culture = "mississippian" } #Para
-province = { id = 200 religion = catholic culture = "mississippian" } #Tiracambu
-province = { id = 202 religion = catholic culture = "mississippian" } #Parnaiba
-province = { id = 203 religion = catholic culture = "mississippian" } #Recife
-province = { id = 205 religion = catholic culture = "mississippian" } #Pernambuc
-province = { id = 209 religion = catholic culture = "mississippian" } #Salvador
-province = { id = 210 religion = catholic culture = "mississippian" } #Itaimas
-province = { id = 211 religion = catholic culture = "mississippian" } #Niteroi
-province = { id = 711 religion = catholic culture = "mississippian" } #Flores
-province = { id = 783 religion = catholic culture = "mississippian" } #Lobito
-province = { id = 784 religion = catholic culture = "mississippian" } #Luanda
+province = { id = 183 religion = catholic culture = "portuguese" } #Amapa
+province = { id = 198 religion = catholic culture = "portuguese" } #Marajo
+province = { id = 199 religion = catholic culture = "portuguese" } #Para
+province = { id = 200 religion = catholic culture = "portuguese" } #Tiracambu
+province = { id = 202 religion = catholic culture = "portuguese" } #Parnaiba
+province = { id = 203 religion = catholic culture = "portuguese" } #Recife
+province = { id = 205 religion = catholic culture = "portuguese" } #Pernambuc
+province = { id = 209 religion = catholic culture = "portuguese" } #Salvador
+province = { id = 210 religion = catholic culture = "portuguese" } #Itaimas
+province = { id = 211 religion = catholic culture = "portuguese" } #Niteroi
+province = { id = 711 religion = catholic culture = "portuguese" } #Flores
+province = { id = 783 religion = catholic culture = "portuguese" } #Lobito
+province = { id = 784 religion = catholic culture = "portuguese" } #Luanda
 
 #Russia
 province = { id = 269 culture = "russian" } #Arkhangelsk
@@ -163,7 +163,7 @@ province = { id = 232 religion = reformed } #Ulster
 province = { id = 263 culture = "scandinavian" } #Österbotten
 province = { id = 298 religion = catholic } #Galizien
 province = { id = 337 culture = "dutch" } #Friesen
-province = { id = 467 religion = buddhism } #Kalmuk
+province = { id = 467 religion = buddhist } #Kalmuk
 province = { id = 1466 religion = protestant } #Iceland
 #The Edict of Restitution
 province = { id = 330 culture = "german" religion = catholic } #Sudeten
@@ -208,8 +208,8 @@ province = { id = 578 religion = sunni } #Ichim
 province = { id = 691 religion = catholic } #Mindoro
 province = { id = 86 religion = protestant culture = "scandinavian" } #Delaware
 province = { id = 145 religion = protestant culture = "scandinavian" } #St. Thomas
-province = { id = 664 religion = confucianism } #Da Nang
-province = { id = 665 religion = confucianism } #Da Lat
+province = { id = 664 religion = confucian } #Da Nang
+province = { id = 665 religion = confucian } #Da Lat
 
 
 #Natives

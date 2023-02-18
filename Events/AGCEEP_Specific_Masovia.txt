@@ -1,0 +1,130 @@
+#Masovia (MAS)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1820) Masovia becomes Poland
+event = {
+	id = 225000
+	trigger = {
+		owned = { province = 299 data = -1 } #Krakow
+		control = { province = 299 data = -1 } #Krakow
+		owned = { province = 300 data = -1 } #Wielkopolska
+		owned = { province = 303 data = -1 } #Poznan
+		NOT = { exists = POL }
+	}
+	random = no
+	country = MAS
+	name = "EVENTNAME225000" #Masovia becomes Poland
+	desc = "EVENTHIST225000"
+	#-#We have united main polish lands under our rule. Shall we revive that old Kingdom of Poland?
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME225000A" #We shall become Poland
+		command = { type = flagname which = "" }
+		command = { type = country which = POL }
+		command = { type = capital which = 299 } #Krakow
+		command = { type = addcore which = 292 } #Podlasia
+		command = { type = addcore which = 298 } #Galizien
+		command = { type = addcore which = 299 } #Krakow
+		command = { type = addcore which = 300 } #Wielkopolska
+		command = { type = addcore which = 301 } #Danzig
+		command = { type = addcore which = 303 } #Poznan
+		command = { type = add_countryculture which = ruthenian }
+		command = { type = vp value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME225000B" #No, we have other things to do
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1462-1500) Polish crown inherits Masovian duchies
+event = {
+	id = 225001
+	trigger = { exists = POL }
+	random = no
+	country = MAS
+	name = "EVENTNAME225001" #Polish crown inherits Masovian duchies
+	desc = "EVENTHIST225001"
+	#-#In late XV century Masovia consisted of many duchies ruled by Masovian Piasts, however with the time some of Masovian Piast were dying without leaving male heritage. Polish crown used these opportunities to inherit such duchies. In 1462 Poland inherited Gostynin, Rawa and Belz and in 1492 entire Plock duchy.
+
+	date = { day = 1 month = january year = 1462 }
+	offset = 360
+	deathdate = { day = 1 month = february year = 1500 }
+
+	action_a = {
+		name = "ACTIONNAME225001A" #We have to be more cautious about policy of Poland
+		command = { type = stability value = -1 }
+		command = { type = relation which = POL value = -15 }
+		command = { type = treasury value = -30 }
+		command = { type = trigger which = 258016 } #POL: Polish crown inherits Masovian duchies
+	}
+}
+
+#(1489-1500) Prince Janusz II of Plock and the Teutonic Order
+event = {
+	id = 225002
+	trigger = { exists = LAT }
+	random = no
+	country = MAS
+	name = "EVENTNAME225002" #Prince Janusz II and the Teutonic Order
+	desc = "EVENTHIST225002"
+	#-#In late XV century Masovia was facing threats of being incorporated to Poland, despite of this Janusz II, the prince of Ciechanow and Plock duchies in Mazovia was very active in politics. One of results of his policy was normalizing and improving relations with the Teutonic Order. In 1489 as only Polish he was invited by the Teutonic Order Grandmaster, Johann von Tieffen to become member of the Order.
+
+	date = { day = 1 month = january year = 1489 }
+	offset = 360
+	deathdate = { day = 1 month = february year = 1500 }
+
+	action_a = {
+		name = "ACTIONNAME225002A" #Accept the offer
+		command = { type = stability value = -1 }
+		command = { type = vp value = 10 }
+		command = { type = relation which = LAT value = 50 }
+		command = { type = relation which = POL value = -30 }
+	}
+	action_b = {
+		name = "ACTIONNAME225002B" #Refuse
+		command = { type = relation which = LAT value = -30 }
+		command = { type = relation which = POL value = 30 }
+	}
+}
+
+#(1525-1596) The end of Piast dynasty on Masovia
+#Vilkouak-AGC
+event = {
+	id = 20141
+	trigger = {
+		relation = { country = POL data = 0 }
+		exists = POL
+	}
+	random = no
+	country = MAS
+	name = "EVENTNAME20141" #The end of Piast dynasty on Masovia
+	desc = "EVENTHIST20141"
+	#-#The last princes of the Masovian line of the Piast dynasty lived short lives and were more interested in trivial distractions than in governing their state. When Janusz IV died in 1526, few cried, and Poland had no problems with incorporating their once-owned province back into the Crown.
+
+	date = { day = 1 month = january year = 1525 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1596 }
+
+	action_a = {
+		name = "ACTIONNAME20141A" #We accept
+		command = { type = trigger which = 20142 } #POL: The Polish Inheritance of Masovia
+	}
+	action_b = {
+		name = "ACTIONNAME20141B" #Refuse polish demands
+		command = { type = sleepevent which = 20142 } #POL: The Polish Inheritance of Masovia
+		command = { type = trigger which = 20143 } #POL doesn't inherit #POL: The Polish Claims on Masovia
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = stability value = 3 }
+		command = { type = relation which = POL value = -100 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 225003

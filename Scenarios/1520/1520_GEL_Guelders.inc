@@ -4,7 +4,7 @@
 
 country = {
 	tag = GEL
-	ai = "SmallTrade1.ai"
+	ai = "SmallTrade1.txt"
 	colonialattempts = 0
 	colonialnation = yes
 	major = no

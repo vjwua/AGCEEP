@@ -4,7 +4,7 @@
 
 country = {
 	tag = AZT
-	ai = "AZT_1419.ai"
+	ai = "AZT_1419.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -15,7 +15,7 @@ country = {
 	inflation = 0
 	merchants = 0.083333
 	religion = { type = pagan }
-	culture = { type = aztek }
+	culture = { type = aztec }
 	diplomacy = {
 		relation = { tag = MAA value = -100 }
 		relation = { tag = ZAP value = -100 }

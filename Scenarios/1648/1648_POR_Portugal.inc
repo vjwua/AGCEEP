@@ -4,7 +4,7 @@
 
 country = {
 	tag = POR
-	ai = "POR_1580_vassal.ai"
+	ai = "POR_1580_vassal.txt"
 	policy = {
 		aristocracy = 5
 		centralization = 8
@@ -25,7 +25,7 @@ country = {
 	inflation = 0
 	merchants = 0
 	religion = { type = catholic }
-	culture = { type = mississippian }
+	culture = { type = portuguese }
 	diplomacy = {
 		relation = { tag = HOL value = -200 }
 		relation = { tag = OMA value = -200 }
@@ -34,7 +34,7 @@ country = {
 		relation = { tag = ENG value = 125 }
 		relation = { tag = MOG value = 120 }
 		relation = { tag = KON value = 100 }
-		relation = { tag = ARM value = 130 }
+		relation = { tag = MLI value = 130 }
 		relation = { tag = MKS value = -100 }
 		relation = { tag = NIP value = -200 }
 	}

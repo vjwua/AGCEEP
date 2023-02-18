@@ -1,0 +1,558 @@
+#Cambodia - Khmer (CAM)
+
+#Direct Citations
+# Russel R. Ross. "Cambodia: a Country Study"
+
+#See AGCEEP_Alt_Iberia.txt for Alternative events involving Portugal
+
+#-----------------------------------------------------------------------------------------------
+
+#(1430) Sack of Angkor
+event = {
+	id = 140000 #triggered by AYU_120000 A
+	random = no
+	country = CAM
+	name = "EVENTNAME65124" #Sack of Angkor
+	desc = "EVENTHIST65124"
+	#-#When the Thai invaded Angkor, the seat of royal power, in 1431, they went on a rampage, killing, destroying, and looting. They stripped Angkor of its wealth and destroyed its infrastructure. The royal court eventually moved itself southeast.
+
+	action_a = {
+		name = "ACTIONNAME65124A" #We will not let the capital fall!
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1430-1461) Fall of the Khmer Empire
+event = {
+	id = 140001
+	trigger = {
+		NOT = { control = { province = 668 data = -1 } } #Cambodia
+	}
+	random = no
+	country = CAM
+	name = "EVENTNAME65125" #Fall of the Khmer Empire
+	desc = "EVENTHIST65125"
+	#-#The Thai have sacked Angkor. We must move southeast.
+
+	date = { day = 1 month = june year = 1430 }
+	offset = 1
+	deathdate = { day = 18 month = june year = 1461 }
+
+	action_a = {
+		name = "ACTIONNAME65125A" #Our empire has entered dark times
+		command = { type = capital which = 667 } #Khmer
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = population which = 668 value = -3000 } #Cambodia
+		command = { type = population which = 667 value = 500 } #Khmer
+		command = { type = provincemanpower which = 668 value = -1 } #Cambodia
+		command = { type = provincemanpower which = 667 value = -1 } #Khmer
+		command = { type = provincetax which = 668 value = -1 } #Cambodia
+		command = { type = provincetax which = 667 value = -1 } #Khmer
+		command = { type = infra value = -250 }
+		command = { type = trade value = -250 }
+		command = { type = stability value = -3 }
+		command = { type = treasury value = -300 }
+		command = { type = trigger which = 120001 } #AYU: Angkor is Sacked
+		command = { type = sleepevent which = 140002 } #CAM: The Revival of the Khmer Empire
+	}
+}
+
+#(1436-1462) Move to Phnom Penh: A New Cambodia
+event = {
+	id = 140003
+	trigger = {
+		event = 140001 #CAM: Fall of the Khmer Empire
+	}
+	random = no
+	country = CAM
+	name = "EVENTNAME65127" #Phnom Penh: A New Cambodia
+	desc = "EVENTHIST65127"
+	#-#Following the abandonment of the Angkorian sites, the Khmer established a new capital several hundred kilometers to the southeast on the site of what is now Phnom Penh. This new center of power was located at the confluence of the Mekong and the Tonle Sab rivers. Thus, it controlled the river commerce of the Khmer heartland and the Laotian Kingdoms and had access, by way of the Mekong Delta, to international trade routes that linked the China coast, the South China Sea, and the Indian Ocean. A new kind of state and society emerged, more open to the outside world and more dependent on commerce as a source of wealth than its inland predecessor.
+
+	date = { day = 1 month = january year = 1436 }
+	offset = 33
+	deathdate = { day = 18 month = january year = 1462 }
+
+	action_a = {
+		name = "ACTIONNAME65127A" #Let's make ourselves comfortable
+		command = { type = domestic which = MERCANTILISM value = -2 }
+		command = { type = domestic which = LAND value = -2 }
+		command = { type = domestic which = SERFDOM value = -1 }
+		command = { type = relation which = CHI value = 50 }
+		command = { type = relation which = MLC value = 50 }
+		command = { type = relation which = CHA value = -50 }
+		command = { type = relation which = LAX value = -50 }
+		command = { type = relation which = DAI value = -50 }
+		command = { type = naval value = 250 }
+		command = { type = trade value = 250 }
+		command = { type = provincetax which = -2 value = 1 }
+		command = { type = merchants value = 3 }
+		command = { type = stability value = 2 }
+	}
+}
+
+#(1450-1510) Cham Refugees
+event = {
+	id = 140012
+	trigger = {
+		owned = { province = 665 data = DAI }
+	}
+	random = no
+	country = CAM
+	name = "EVENTNAME65136" #Cham Refugees
+	desc = "EVENTHIST65136"
+	#-#By the late 15th century, the Vietnamese had defeated the once-powerful Kingdom of Champa in central Vietnam. Thousands of Cham fled into Khmer territory.
+
+	date = { day = 1 month = january year = 1450 }
+	offset = 30
+	deathdate = { day = 22 month = april year = 1510 }
+
+	action_a = {
+		name = "ACTIONNAME65136A" #They'll do no harm
+		command = { type = population which = -1 value = 2000 }
+		command = { type = population which = -1 value = 2000 }
+		command = { type = provincemanpower which = -1 value = 1 }
+		command = { type = provincemanpower which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 24 value = 4 }
+	}
+}
+
+#(1461-1820) The Revival of the Khmer Empire
+event = {
+	id = 140002
+	trigger = {
+		owned = { province = 668 data = -1 }
+		owned = { province = 667 data = -1 }
+		owned = { province = 666 data = -1 }
+		control = { province = 668 data = -1 }
+		control = { province = 667 data = -1 }
+		control = { province = 666 data = -1 }
+		atwar = no
+	}
+	random = no
+	country = CAM
+	name = "EVENTNAME65126" #The Revival of the Khmer Empire
+	desc = "EVENTHIST65126"
+	#-#Having successfully turned back the Thai invasion, King Sedaiya of Cambodia is ready to open a new golden age of the Khmer Empire. He sets out on a program of expansion and consolidation.
+
+	date = { day = 25 month = june year = 1461 }
+	offset = 70
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME65126A" #We're back!
+		command = { type = relation which = CHA value = -75 }
+		command = { type = relation which = AYU value = -100 }
+		command = { type = relation which = DAI value = -50 }
+		command = { type = relation which = LAX value = -50 }
+		command = { type = casusbelli which = CHA value = 360 }
+		command = { type = casusbelli which = AYU value = 360 }
+		command = { type = casusbelli which = DAI value = 360 }
+		command = { type = casusbelli which = LAX value = 360 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1480-1820) Khmer Internal Development and Consolidation
+event = {
+	id = 140004
+	trigger = {
+		event = 140002
+		owned = { province = 668 data = -1 }
+	}
+	random = no
+	country = CAM
+	name = "EVENTNAME65128" #Khmer Internal Development and Consolidation
+	desc = "EVENTHIST65128"
+	#-#The constant warfare and building preoccupatations of the preceding centuries caused the Khmer's elaborate irrigation system, no longer properly tended, to fall into disrepair and silt up. Canals had become clogged, reservoirs had dried up, ricefields had reverted to swampland, and food production had dwindled. Stagnant water had led to an increase in the number of malaria-carrying mosquitoes.
+
+	date = { day = 1 month = june year = 1480 }
+	offset = 70
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME65128A" #Reclaim the land
+		command = { type = population which = -2 value = 2000 }
+		command = { type = population which = 667 value = 2000 } #Khmer
+		command = { type = population which = 666 value = 2000 } #Mekong Delta
+		command = { type = provincetax which = -2 value = 1 }
+		command = { type = provincetax which = 667 value = 1 } #Khmer
+		command = { type = provincetax which = 666 value = 1 } #Mekong Delta
+		command = { type = provincemanpower which = -2 value = 1 }
+		command = { type = provincemanpower which = 667 value = 1 } #Khmer
+		command = { type = provincemanpower which = 666 value = 1 } #Mekong Delta
+		command = { type = infra value = 500 }
+		command = { type = stability value = 1 }
+		command = { type = treasury value = -300 }
+	}
+	action_b = {
+		name = "ACTIONNAME65128B" #Rebuild the army and infrastructure instead
+		command = { type = land value = 300 }
+		command = { type = infra value = 250 }
+		command = { type = treasury value = -150 }
+	}
+	action_c = {
+		name = "ACTIONNAME65128C" #Build navy and commerce instead
+		command = { type = warships which = -1 value = 3 }
+		command = { type = naval value = 250 }
+		command = { type = trade value = 250 }
+		command = { type = merchants value = 2 }
+		command = { type = treasury value = -150 }
+	}
+	action_d = {
+		name = "ACTIONNAME65128D" #Spend money on concubines
+		command = { type = MIL which = -2 value = 3 }
+		command = { type = treasury value = -20 }
+	}
+}
+
+#(1490-1820) The Splendor of Angkor
+event = {
+	id = 140005
+	random = no
+	country = CAM
+	trigger = {
+		event = 140002
+		owned = { province = 668 data = -1 }
+	}
+	name = "EVENTNAME65129" #The Splendour of Angkor
+	desc = "EVENTHIST65129"
+	#-#Angkor, the capital of the Khmer Empire, was undoubtedly as splendid as any European city. It was built between the 9th and 14th centuries as the administrative and religious center of the powerful Khmer Empire. Zhou Daguan, a Chinese envoy in Cambodia from 1296-1297, described a glittering city of palaces and pagodas, palanquins and elephants, concubines, celestial dancers, and slaves. With the revival of the Khmer Empire, the Khmer King wished to bring back the splendor of Angkor with the construction and restoration of buildings and monuments.
+
+	date = { day = 1 month = june year = 1490 }
+	offset = 120
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME65129A" #Beautify Angkor
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = infra value = 200 }
+		command = { type = stability value = 2 }
+		command = { type = treasury value = -100 }
+		command = { type = inflation value = 3 }
+	}
+	action_b = {
+		name = "ACTIONNAME65129B" #Save some money
+		command = { type = stability value = -1 }
+		command = { type = treasury value = 30 }
+	}
+}
+
+#(1500-1820) Foreign Envoys Visit Angkor
+event = {
+	id = 140006
+	random = no
+	country = CAM
+	trigger = {
+		event = 140005
+		owned = { province = 668 data = -1 }
+	}
+	name = "EVENTNAME65130" #Foreign Envoys Visit Angkor
+	desc = "EVENTHIST65130"
+	#-#Thai, Laotian, Vietnamese, Cham, Mallacan, Burmese, and Chinese envoys visit the newly rebuilt Khmer capital of Angkor. They are bedazzled and return to their homelands with stories of a heavenly city on Earth.
+
+	date = { day = 1 month = january year = 1500 }
+	offset = 120
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME65130A" #Our prestige and magnificence grows
+		command = { type = relation which = CHA value = 20 }
+		command = { type = relation which = AYU value = 20 }
+		command = { type = relation which = DAI value = 20 }
+		command = { type = relation which = LAX value = 20 }
+		command = { type = relation which = CHI value = 20 }
+		command = { type = relation which = BRM value = 20 }
+		command = { type = relation which = MLC value = 20 }
+	}
+}
+
+#(1512-1566) Lovek
+event = {
+	id = 140007
+	trigger = { event = 140003 }
+	random = no
+	country = CAM
+	name = "EVENTNAME65131" #Lovek
+	desc = "EVENTHIST65131"
+	#-#King Ang Chan (1516-66), one of the few great Khmer monarchs of the post-Angkorian period, moved the capital from Phnom Penh to Lovek. Portuguese and Spanish travelers who visited the city, located on the banks of the Tonle Sab, a river north of Phnom Penh, described it as a place of fabulous wealth. The products traded there included precious stones, metals, silk and cotton, incense, ivory, lacquer, livestock (including elephants), and rhinoceros horn (prized by the Chinese as a rare and potent medicine).
+
+	date = { day = 8 month = june year = 1512 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1566 }
+
+	action_a = {
+		name = "ACTIONNAME65131A" #Let's go
+		command = { type = domestic which = MERCANTILISM value = -1 }
+		command = { type = domestic which = LAND value = -1 }
+		command = { type = domestic which = SERFDOM value = -1 }
+		command = { type = relation which = CHI value = 20 }
+		command = { type = relation which = MAL value = 20 }
+		command = { type = relation which = POR value = 20 }
+		command = { type = relation which = SPA value = 20 }
+		command = { type = relation which = NIP value = 20 }
+		command = { type = naval value = 250 }
+		command = { type = trade value = 250 }
+		command = { type = provincetax which = -2 value = 1 }
+		command = { type = gainmanufactory which = -1 value = goods }
+		command = { type = merchants value = 3 }
+		command = { type = stability value = 2 }
+	}
+}
+
+#(1593-1613) Thai Threat
+event = {
+	id = 140008
+	trigger = {
+		OR = {
+			owned = { province = 690 data = SPA } #Luzon
+			owned = { province = 691 data = SPA } #Mindoro
+		}
+		NOT = { war = { country = CAM country = SPA } }
+	}
+	random = no
+	country = CAM
+	name = "EVENTNAME65132" #Thai Threat
+	desc = "EVENTHIST65132"
+	#-#Hard-pressed by the Thai, King Sattha (1576-94) surrounded himself with a personal guard of Spanish and Portuguese mercenaries, and in 1593 asked the Spanish governor of the Phillipines for aid.
+
+	date = { day = 1 month = april year = 1593 }
+	offset = 20
+	deathdate = { day = 18 month = june year = 1613 }
+
+	action_a = {
+		name = "ACTIONNAME65132A" #Ask for Spanish aid
+		command = { type = DIP which = 2 value = 12 }
+		command = { type = trigger which = 65149 } #SPA: Cambodia asks for aid
+	}
+	action_b = {
+		name = "ACTIONNAME65132B" #We can fight the Thai ourselves
+		command = { type = inf which = -1 value = 3000 }
+		command = { type = stability value = -1 }
+	}
+}
+#(1593-1613) Spanish Intervention
+event = {
+	id = 140009 #triggered by SPA_65149 A
+	random = no
+	country = CAM
+	name = "EVENTNAME65133" #Spanish Intervention
+	desc = "EVENTHIST65133"
+	#-#With Spanish aid came concessions. The Khmer were forced to become a protectorate of Spain.
+
+	action_a = {
+		name = "ACTIONNAME65133A" #We are powerless
+		command = { type = stability value = -2 }
+		command = { type = inf which = -1 value = 1000 } #Spanish military help
+	}
+}
+#(1593-1613) Spanish Refusal
+event = {
+	id = 140010 #triggered by SPA_65149 B
+	random = no
+	country = CAM
+	name = "EVENTNAME65134" #Spanish Refusal
+	desc = "EVENTHIST65134"
+	#-#The Spanish refuse to send aid.
+
+	action_a = {
+		name = "ACTIONNAME65134A" #We're on our own
+		command = { type = stability value = -2 }
+		command = { type = desertion which = -1 value = 1000 }
+	}
+}
+
+#(1593-1613) Lovek is captured
+event = {
+	id = 140011
+	trigger = {
+		owned = { province = 667 data = -1 } #Khmer
+		control = { province = 667 data = AYU } #Khmer
+	}
+	random = no
+	country = CAM
+	name = "EVENTNAME65143" #Lovek is Captured
+	desc = "EVENTHIST65135"
+	#-#The Thai have dealt a fatal blow to Cambodian independence by capturing Lovek. With the posting of a Thai military governor in the city, a degree of foriegn political control was established over the Kingdom for the first time. Cambodian chronicles decribe the fall of Lovek as a catastrophe from which the nation never fully recovered.
+
+	date = { day = 1 month = april year = 1593 }
+	offset = 10
+	deathdate = { day = 18 month = june year = 1613 }
+
+	action_a = {
+		name = "ACTIONNAME65135A" #We must submit to our new Thai masters
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = population which = 667 value = -2000 } #Khmer
+		command = { type = provincemanpower which = 667 value = -1 } #Khmer
+		command = { type = provincetax which = 667 value = -1 } #Khmer
+		command = { type = infra value = -250 }
+		command = { type = trade value = -250 }
+		command = { type = stability value = -3 }
+		command = { type = treasury value = -300 }
+		command = { type = breakvassal which = SPA }
+		command = { type = sleepevent which = 120002 } #AYU: Attack on Lovek
+		command = { type = trigger which = 65150 } #SPA: Lovek is Captured
+	}
+}
+
+#(1620-1630) Cambodian-Vietnamese Marriage
+event = {
+	id = 140013
+	trigger = {
+		event = 140011 #CAM: Lovek is captured
+		exists = ANN
+	}
+	random = no
+	country = CAM
+	name = "EVENTNAME65137" #Cambodian-Vietnamese Marriage
+	desc = "EVENTHIST65137"
+	#-#In 1620 King Chey Chettha II (1618-28) married a daughter of Sai Vuong, one of the Nguyen lords (1558-1778), who ruled southern Vietnam for most of the period of the restored Le dynasty (1428-1788). Three years later, Chey Chettha allowed the Vietnamese to establish a custom-house at Prey Nokor, near what is now Ho Chi Minh City (until 1975, Saigon). For more than almost a century and a half afterwards, Cambodia remained in the Vietnamese sphere of influence.
+
+	date = { day = 1 month = january year = 1620 }
+	offset = 20
+	deathdate = { day = 18 month = june year = 1630 }
+
+	action_a = {
+		name = "ACTIONNAME65137A" #May they have a happy marriage!
+		command = { type = breakvassal which = AYU }
+		command = { type = dynastic which = ANN }
+		command = { type = provincetax which = 666 value = -1 } #Mekong Delta
+		command = { type = stability value = 1 }
+		command = { type = trigger which = 120004 } #AYU: Cambodia Has Switched Allegiances
+	}
+}
+
+#(1674-1680) Loss of Mekong Delta and Access to the Sea
+event = {
+	id = 140014 #triggered by ANN_107001
+	random = no
+	country = CAM
+	name = "EVENTNAME65138" #Loss of Mekong Delta and Access to the Sea
+	desc = "EVENTHIST65138"
+	#-#The Vietnamese were involved in a lengthy civil war until 1674, but upon its conclusion they promptly annexed sizable areas of contiguous Cambodian territory in the region of the Mekong Delta. Cambodia was cut off from access to the sea. Trade with the outside world was possible only with Vietnamese permission.
+
+	action_a = {
+		name = "ACTIONNAME65138A" #We can only stand by and watch
+		command = { type = trade value = -500 }
+		command = { type = cedeprovince which = ANN value = 666 } #Mekong Delta
+		command = { type = stability value = -2 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Random Events
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1820) White Elephants
+event = {
+	id = 140015
+	random = yes
+	country = CAM
+	name = "EVENTNAME140015" #White Elephants
+	desc = "EVENTHIST140015"
+	#-#The Buddhist Kings of Southeast Asia have always treasured the possession of white elephants, enhancing royal prestige and ensuring the country's prosperity.
+
+	action_a = {
+		name = "SPLENDID"
+		command = { type = stability value = 1 }
+		command = { type = revoltrisk which = 12 value = -3 }
+	}
+}
+
+#(1419-1820) Bountiful Fish
+event = {
+	id = 140016
+	random = yes
+	country = CAM
+	name = "EVENTNAME140016" #Bountiful Fish
+	desc = "EVENTHIST140016"
+	#-#Cambodia's preferred source of protein is freshwater fish, caught mainly from the Tonle Sap and from the Tonle Sab, the Mekong, and the Basak rivers. Cambodians eat it fresh, salted, smoked, or made into fish sauce and paste. It is said that if one was to cross the the Tonele Sab (Great Lake of Cambodia)one, could not avoid large schools of fish swimming under the boat.
+
+	action_a = {
+		name = "ACTIONNAME140016A" #Yummie!
+		command = { type = treasury value = 50 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1419-1820) Overflooding Great Lake
+event = {
+	id = 140017
+	random = yes
+	country = CAM
+	name = "EVENTNAME140017" #Overflooding Great Lake
+	desc = "EVENTHIST140017"
+	#-#The flow of water into the Tonle Sab is seasonal. In September or in October, the flow of the Mekong River, fed by monsoon rains, increases to a point where its outlets through the delta cannot handle the enormous volume of water. At this point, the water pushes northward up the Tonle Sab and empties into the Tonle Sap, thereby increasing the size of the lake from about 2,590 square kilometers to about 24,605 square kilometers at the height of the flooding. After the Mekong's waters crest--when its downstream channels can handle the volume of water--the flow reverses, and water flows out of the engorged lake. However, sometimes this is delayed or flooding is much worse. As the level of the Tonle Sap retreats, it deposits a new layer of sediment. The annual flooding, combined with poor drainage immediately around the lake, transforms the surrounding area into marshlands unusable for agricultural purposes during the dry season.
+
+	action_a = {
+		name = "ACTIONNAME140017A" #How terrible!
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 12 value = 3 }
+	}
+}
+
+#(1419-1820) Seasonal Flooding
+event = {
+	id = 140018
+	random = yes
+	country = CAM
+	name = "EVENTNAME140018" #Seasonal Flooding
+	desc = "EVENTHIST140018"
+	#-#The flow of water into the Tonle Sab is seasonal. In September or in October, the flow of the Mekong River, fed by monsoon rains, increases to a point where its outlets through the delta cannot handle the enormous volume of water. At this point, the water pushes northward up the Tonle Sab and empties into the Tonle Sap (The 'Great Lake' of Cambodia), thereby increasing the size of the lake from about 2,590 square kilometers to about 24,605 square kilometers at the height of the flooding. After the Mekong's water crest - when its downstream channels can handle the volume of water - the flow reverses, and water flows out of the engorged lake. The annual flooding causes an occasional displacement of people and minor damage.
+
+	action_a = {
+		name = "DRATS"
+		command = { type = population which = -1 value = -100 }
+		command = { type = stability value = -1 }
+		command = { type = treasury value = -25 }
+	}
+}
+
+#(1419-1820) Fisheries
+event = {
+	id = 140019
+	random = yes
+	country = CAM
+	name = "EVENTNAME140019" #Fisheries
+	desc = "EVENTHIST140019"
+	#-#Cambodia's preferred source of protein is freshwater fish, caught mainly from the Tonle Sap and from the Tonle Sab, the Mekong, and the Basak rivers. Cambodians eat it fresh, salted, or smoked. Fishing was a good source of food and income
+
+	action_a = {
+		name = "ACTIONNAME140019A" #Eat 'em up, yum!
+		command = { type = treasury value = 20 }
+	}
+}
+
+#(1461-1820) Maintenance and Building in Angkor
+event = {
+	id = 140020
+	trigger = {
+		event = 140002
+		owned = { province = 668 data = -1 }
+	}
+	random = yes
+	country = CAM
+	name = "EVENTNAME140020" #Maintenance and Building in of Angkor
+	desc = "EVENTHIST140020"
+	#-#The building of new monuments and buildings in Angkor, along with the maintenance of existing ones, was a continually expensive and laborious task. Villagers were pressed into service for temple construction or maintenance tasks. The magnificence of Angkor helped to boost peasant morale as they held it in awe and increase the prestige of the Khmer Empire
+
+	action_a = {
+		name = "ACTIONNAME140020A" #Build and Maintain
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = DIP which = 1 value = 30 }
+		command = { type = stability value = 1 }
+		command = { type = treasury value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME140020B" #Save some money
+		command = { type = stability value = -1 }
+		command = { type = domestic which = INNOVATIVE value = -1 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 140021

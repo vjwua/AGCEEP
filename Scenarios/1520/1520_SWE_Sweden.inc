@@ -4,7 +4,7 @@
 
 country = {
 	tag = SWE
-	ai = "SWE_1419_Union.ai"
+	ai = "SWE_1419_Union.txt"
 	policy = {
 		date = { year = 0 month = january day = 0 }
 		aristocracy = 5

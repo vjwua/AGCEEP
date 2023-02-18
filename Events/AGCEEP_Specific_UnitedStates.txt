@@ -1,0 +1,1102 @@
+#United States of America (USA)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1773-1820) The Creation of the Continental Army
+event = {
+	id = 3055
+	trigger = { atwar = yes }
+	random = no
+	country = USA
+	name = "EVENTNAME3055" #The Creation of the Continental Army
+	desc = "EVENTHIST3055"
+	#-#On May 10, 1775 representatives from all thirteen colonies met in Philadelphia deciding to create a national army, The Continental Army, under the leadership of the Cavalier George Washington of Virginia. This was a very important for the young Nation as the Professional Army was the first stepping stone to recognition from the Old World. The form of the army was though hotly debated. How will we choose?
+
+	date = { day = 1 month = october year = 1773 }
+	offset = 150
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME3055A" #Raise Professional Army
+		command = { type = domestic which = QUALITY value = 2 }
+		command = { type = domestic which = OFFENSIVE value = 1 }
+		command = { type = stability value = -1 }
+		command = { type = INF which = -2 value = 25000 }
+		command = { type = CAV which = -2 value = 10000 }
+		command = { type = artillery which = -2 value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME3055B" #Raise Provincial Militias
+		command = { type = domestic which = QUALITY value = -1 }
+		command = { type = domestic which = OFFENSIVE value = -2 }
+		command = { type = stability value = 1 }
+		command = { type = INF which = -1 value = 5000 }
+		command = { type = INF which = -1 value = 5000 }
+		command = { type = INF which = -1 value = 5000 }
+	}
+	action_c = {
+		name = "ACTIONNAME3055C" #Call for Volunteers
+		command = { type = domestic which = QUALITY value = -2 }
+		command = { type = domestic which = SERFDOM value = -2 }
+		command = { type = stability value = 2 }
+		command = { type = provincemanpower which = -1 value = 3 }
+		command = { type = provincemanpower which = -1 value = 3 }
+		command = { type = provincemanpower which = -1 value = 3 }
+	}
+}
+
+#(1773-1820) The Continental Congress
+#20 Nov 2001, BiB, State Machine - New event of the Continental Congress
+#meeting after hostilities have started, to try to form a united front.
+event = {
+	id = 4990
+	trigger = {
+		OR = {
+			event = 3049
+			event = 338342 #ProvinceSpec*103: Massachusetts Government Act
+			event = 338343 #ProvinceSpec*86: Continental Congress of Pennsylvania
+		}
+		OR = {
+			event = 3349 #ENG: American Self-assurance Increase
+			event = 3047 #ENG: Tax Revolt in America
+			event = 3048 #ENG: The American Colonial Policy
+			event = 3049 #ENG: The American Revolution
+			event = 164046 #ENG: The Olive Branch Petition
+		}
+		atwar = yes
+	}
+	random = no
+	country = USA
+	name = "EVENTNAME4990" #The Continental Congress
+	desc = "EVENTHIST4990"
+	#-#A Congress has been assembled of honored and influential representatives from all of the colonies afflicted by the outrageous policies of our Monarch. Will the Congress be able to find common cause and support the rebellion, thereby joining all colonies to the open revolt against His Majesty? Or will the Congress fail to create a united front, leaving the colonies that are revolting to fight alone?
+
+	date = { day = 1 month = january year = 1773 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME4990A" #Yes, let us bind our fates together!
+		command = { type = capital which = 86 } #Delaware
+		command = { type = add_countryculture which = anglosaxon }
+		command = { type = remove_countryculture which = creek }
+		command = { type = remove_countryculture which = iroquis }
+		command = { type = remove_countryculture which = cherokee }
+		command = { type = religion which = reformed }
+		command = { type = trigger which = 4982 } #ENG: The Continental Congress Succeeds
+		command = { type = sleepevent which = 164046 } #ENG: The Olive Branch Petition
+		command = { type = sleepevent which = 324006 } #USA: The Continental Congress - alternate 1
+		command = { type = sleepevent which = 324007 } #USA: The Continental Congress - alternate 2
+	}
+	action_b = {
+		name = "ACTIONNAME4990B" #We do not share the same grievances
+		command = { type = add_countryculture which = anglosaxon }
+		command = { type = remove_countryculture which = creek }
+		command = { type = remove_countryculture which = iroquis }
+		command = { type = remove_countryculture which = cherokee }
+		command = { type = religion which = protestant }
+		command = { type = trade value = 1000 }
+		command = { type = infra value = 2000 }
+		command = { type = merchants value = 6 }
+		command = { type = revoltrisk which = 120 value = 4 }
+		command = { type = trigger which = 4986 } #ENG: The Continental Congress Fails
+		command = { type = sleepevent which = 324006 } #USA: The Continental Congress - alternate 1
+		command = { type = sleepevent which = 324007 } #USA: The Continental Congress - alternate 2
+	}
+}
+#(1773-1820) The Continental Congress - alternate 1
+#England is not involved in the American Revolution and America isn't pagan
+event = {
+	id = 324006
+	trigger = {
+		OR = {
+			event = 3049
+			event = 338342 #ProvinceSpec*103: Massachusetts Government Act
+			event = 338343 #ProvinceSpec*86: Continental Congress of Pennsylvania
+		}
+		NOT = {
+			event = 3349 #ENG: American Self-assurance Increase
+			event = 3047 #ENG: Tax Revolt in America
+			event = 3048 #ENG: The American Colonial Policy
+			event = 3049 #ENG: The American Revolution
+			event = 164046 #ENG: The Olive Branch Petition
+		}
+		NOT = { religion = pagan }
+		atwar = yes
+	}
+	random = no
+	country = USA
+	name = "EVENTNAME4990" #The Continental Congress
+	desc = "EVENTHIST4990"
+	#-#A Congress has been assembled of honored and influential representatives from all of the colonies afflicted by the outrageous policies of our Monarch. Will the Congress be able to find common cause and support the rebellion, thereby joining all colonies to the open revolt against His Majesty? Or will the Congress fail to create a united front, leaving the colonies that are revolting to fight alone?
+
+	date = { day = 1 month = january year = 1773 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME4990A" #Yes, let us bind our fates together!
+		command = { type = capital which = 86 } #Delaware
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = stability value = 1 }
+		command = { type = sleepevent which = 4990 } #USA: The Continental Congress
+		command = { type = sleepevent which = 324007 } #USA: The Continental Congress - alternate 2
+	}
+	action_b = {
+		name = "ACTIONNAME4990B" #We do not share the same grievances
+		command = { type = trade value = 1000 }
+		command = { type = infra value = 2000 }
+		command = { type = merchants value = 6 }
+		command = { type = revoltrisk which = 120 value = 4 }
+		command = { type = sleepevent which = 4990 } #USA: The Continental Congress
+		command = { type = sleepevent which = 324007 } #USA: The Continental Congress - alternate 2
+	}
+}
+#(1773-1820) The Continental Congress - alternate 2
+#England is not involved in the American Revolution and America is pagan
+event = {
+	id = 324007
+	trigger = {
+		OR = {
+			event = 3049
+			event = 338342 #ProvinceSpec*103: Massachusetts Government Act
+			event = 338343 #ProvinceSpec*86: Continental Congress of Pennsylvania
+		}
+		NOT = {
+			event = 3349 #ENG: American Self-assurance Increase
+			event = 3047 #ENG: Tax Revolt in America
+			event = 3048 #ENG: The American Colonial Policy
+			event = 3049 #ENG: The American Revolution
+			event = 164046 #ENG: The Olive Branch Petition
+		}
+		religion = pagan
+		atwar = yes
+	}
+	random = no
+	country = USA
+	name = "EVENTNAME4990" #The Continental Congress
+	desc = "EVENTHIST4990"
+	#-#A Congress has been assembled of honored and influential representatives from all of the colonies afflicted by the outrageous policies of our Monarch. Will the Congress be able to find common cause and support the rebellion, thereby joining all colonies to the open revolt against His Majesty? Or will the Congress fail to create a united front, leaving the colonies that are revolting to fight alone?
+
+	date = { day = 1 month = january year = 1773 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME4990A" #Yes, let us bind our fates together!
+		command = { type = religion which = protestant }
+		command = { type = capital which = 86 } #Delaware
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = stability value = 1 }
+		command = { type = sleepevent which = 4990 } #USA: The Continental Congress
+		command = { type = sleepevent which = 324006 } #USA: The Continental Congress - alternate 1
+	}
+	action_b = {
+		name = "ACTIONNAME4990B" #We do not share the same grievances
+		command = { type = religion which = catholic }
+		command = { type = trade value = 1000 }
+		command = { type = infra value = 2000 }
+		command = { type = merchants value = 6 }
+		command = { type = revoltrisk which = 120 value = 4 }
+		command = { type = sleepevent which = 4990 } #USA: The Continental Congress
+		command = { type = sleepevent which = 324006 } #USA: The Continental Congress - alternate 1
+	}
+}
+
+#(1773-1820) We share the same goals and objectives
+#20 Nov 2001, BiB, State Machine - New event of the consequences of the Continental Congress
+event = {
+	id = 4992
+	trigger = {
+		OR = {
+			event = 4990 #USA: The Continental Congress
+			event = 324006 #USA: The Continental Congress - alternate 1
+			event = 324007 #USA: The Continental Congress - alternate 2
+		}
+		atwar = yes
+	}
+	random = no
+	country = USA
+	name = "EVENTNAME4992" #Continental Congress Territorial Consequences
+	desc = "EVENTHIST4992"
+	#-#Our goals and objectives are the same. We will expand to the frontier and beyond.
+
+	date = { day = 1 month = january year = 1773 }
+	offset = 10
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "OK"
+		command = { type = addcore which = 54 } #Savannah
+		command = { type = addcore which = 62 } #Carolina
+		command = { type = addcore which = 63 } #Santee
+		command = { type = addcore which = 64 } #Roanoke
+		command = { type = addcore which = 65 } #Catawba
+		command = { type = addcore which = 66 } #Appalache
+		command = { type = addcore which = 68 } #Chesapeake
+		command = { type = addcore which = 69 } #Powhatan
+		command = { type = addcore which = 70 } #Shenandoah
+		command = { type = addcore which = 83 } #Irondekoit
+		command = { type = addcore which = 84 } #Tuscarora
+		command = { type = addcore which = 90 } #Mohawk
+		command = { type = addcore which = 85 } #Susquehanna
+		command = { type = addcore which = 86 } #Delaware
+		command = { type = addcore which = 87 } #Manhattan
+		command = { type = addcore which = 88 } #Catskill
+		command = { type = addcore which = 89 } #Oswego
+		command = { type = addcore which = 91 } #Onondaga
+		command = { type = addcore which = 100 } #Adirondak
+		command = { type = addcore which = 101 } #Sebago
+		command = { type = addcore which = 102 } #Connecticut
+		command = { type = addcore which = 103 } #Massachusetts
+		command = { type = addcore which = 104 } #Penobscot
+		command = { type = addcore which = 112 } #Bangor
+	}
+}
+
+#(1773-1820) The Declaration of Independence
+#20 Nov 2001, State Machine - New event of the consequence of the Continental
+#Congress forming a united front.
+event = {
+	id = 4993
+	trigger = {
+		OR = {
+			event = 4990 #USA: The Continental Congress
+			event = 324006 #USA: The Continental Congress - alternate 1
+			event = 324007 #USA: The Continental Congress - alternate 2
+		}
+		atwar = yes
+	}
+	random = no
+	country = USA
+	name = "EVENTNAME4993" #The Declaration of Independence
+	desc = "EVENTHIST4993"
+	#-#The Continental Congress is unified in the goal of cutting the cords that bind us to Great Britain. We will govern ourselves as an independent nation. We will deliver our Declaration of Independence to the King. All colonies will now join the revolt against the Redcoats.
+
+	date = { day = 1 month = january year = 1773 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME4993A" #So be it!
+		command = { }
+	}
+}
+
+#(1773-1820) Treaty of Paris - un petit peace
+#20 Nov 2001, State Machine - New event. The USA has won (ie survived)
+event = {
+	id = 4994
+	trigger = {
+		OR = {
+			event = 4990 #USA: The Continental Congress
+			event = 324006 #USA: The Continental Congress - alternate 1
+			event = 324007 #USA: The Continental Congress - alternate 2
+		}
+		atwar = no
+		OR = {
+			owned = { province = 64 data = ENG } #Roanoke
+			owned = { province = 68 data = ENG } #Chesapeake
+			owned = { province = 85 data = ENG } #Susquehanna
+			owned = { province = 86 data = ENG } #Delaware
+			owned = { province = 87 data = ENG } #Manhattan
+			owned = { province = 88 data = ENG } #Catskill
+			owned = { province = 101 data = ENG } #Sebago
+			owned = { province = 102 data = ENG } #Connecticut
+			owned = { province = 103 data = ENG } #Massachusetts
+		}
+	}
+	random = no
+	country = USA
+	name = "EVENTNAME4994" #The Treaty of Paris
+	desc = "EVENTHIST4994"
+	#-#We have survived, but do not hold several key colonies. At least, Great Britain does acknowledge our independence and accepts some of our claims in the Americas.
+
+	date = { day = 1 month = january year = 1773 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "OK"
+		command = { type = vp value = 200 }
+		command = { type = capital which = 86 } #Delaware
+		command = { type = addcore which = 46 } #Biloxi
+		command = { type = addcore which = 47 } #Mobile
+		command = { type = addcore which = 52 } #Yazoo
+		command = { type = addcore which = 53 } #Tuscaloosa
+		command = { type = addcore which = 55 } #Alabama
+		command = { type = addcore which = 56 } #Tennessee
+		command = { type = addcore which = 59 } #Illinois
+		command = { type = addcore which = 60 } #Miamis
+		command = { type = addcore which = 61 } #Alleghany
+		command = { type = addcore which = 67 } #Kentucky
+		command = { type = addcore which = 71 } #Erie
+		command = { type = addcore which = 72 } #Hindua
+		command = { type = addcore which = 73 } #Fox
+		command = { type = addcore which = 74 } #Milwaukee
+		command = { type = addcore which = 77 } #Mesabi
+		command = { type = addcore which = 78 } #Duluth
+		command = { type = addcore which = 79 } #Wisconsin
+		command = { type = addcore which = 80 } #Oskosh
+		command = { type = addcore which = 81 } #Michilimakinak
+		command = { type = addcore which = 82 } #Detroit
+		command = { type = addcore which = 93 } #Sault
+		command = { type = addcore which = 99 } #Ticonderoga
+	}
+}
+#(1773-1820) Treaty of Paris - un grand peace
+#20 Nov 2001, State Machine - New event. The USA has won big.
+event = {
+	id = 4995
+	trigger = {
+		OR = {
+			event = 4990 #USA: The Continental Congress
+			event = 324006 #USA: The Continental Congress - alternate 1
+			event = 324007 #USA: The Continental Congress - alternate 2
+		}
+		atwar = no
+		NOT = {
+			owned = { province = 64 data = ENG } #Roanoke
+			owned = { province = 68 data = ENG } #Chesapeake
+			owned = { province = 85 data = ENG } #Susquehanna
+			owned = { province = 86 data = ENG } #Deleware
+			owned = { province = 87 data = ENG } #Manhattan
+			owned = { province = 88 data = ENG } #Catskill
+			owned = { province = 101 data = ENG } #Sebago
+			owned = { province = 102 data = ENG } #Conneticut
+			owned = { province = 103 data = ENG } #Massachusetts
+		}
+	}
+	random = no
+	country = USA
+	name = "EVENTNAME4994" #The Treaty of Paris
+	desc = "EVENTHIST4995"
+	#-#We have won our righteous cause and have secured a peace wherein Great Britain acknowledges our independence and accepts all of our rightful claims in the Americas.
+
+	date = { day = 1 month = january year = 1773 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "WONDERFUL"
+		command = { type = vp value = 400 }
+		command = { type = capital which = 86 } #Delaware
+		command = { type = addcore which = 46 } #Biloxi
+		command = { type = addcore which = 47 } #Mobile
+		command = { type = addcore which = 52 } #Yazoo
+		command = { type = addcore which = 53 } #Tuscaloosa
+		command = { type = addcore which = 55 } #Alabama
+		command = { type = addcore which = 56 } #Tennessee
+		command = { type = addcore which = 59 } #Illinois
+		command = { type = addcore which = 60 } #Miamis
+		command = { type = addcore which = 61 } #Alleghany
+		command = { type = addcore which = 67 } #Kentucky
+		command = { type = addcore which = 71 } #Erie
+		command = { type = addcore which = 72 } #Hindua
+		command = { type = addcore which = 73 } #Fox
+		command = { type = addcore which = 74 } #Milwaukee
+		command = { type = addcore which = 77 } #Mesabi
+		command = { type = addcore which = 78 } #Duluth
+		command = { type = addcore which = 79 } #Wisconsin
+		command = { type = addcore which = 80 } #Oskosh
+		command = { type = addcore which = 81 } #Michilimakinak
+		command = { type = addcore which = 82 } #Detroit
+		command = { type = addcore which = 93 } #Sault
+		command = { type = addcore which = 99 } #Ticonderoga
+	}
+}
+
+#(1773-1820) Treatment of the Loyalists
+#event effects mitigated somewhat by alanC9 and Crook
+event = {
+	id = 70000
+	trigger = {
+		OR = {
+			event = 4994 #USA: The Treaty of Paris - Little peace settlement
+			event = 4995 #USA: The Treaty of Paris - Large peace settlement
+		}
+	}
+	random = no
+	country = USA
+	name = "EVENTNAME70000" #Treatment of the Loyalists
+	desc = "EVENTHIST70000"
+	#-#During the American Revolution colonial society became bitterly divided by the war. After the war the loyalists(those who stayed loyal to Britain) were persecuted to the extent that they left the US for better grounds. According to some history texts some 60,000 loyalists left the states even after cooler heads prevailed to ease the loyalists' status in the new republic.
+
+	date = { day = 1 month = january year = 1773 }
+	offset = 10
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME70000A" #Persecute the Loyalists
+		command = { type = relation which = ENG value = -50 }
+		command = { type = domestic which = aristocracy value = -1 } #Random population loss in provinces owned by the US#
+		command = { type = population which = -1 value = -500 }
+		command = { type = population which = -1 value = -500 }
+		command = { type = population which = -1 value = -500 }
+		command = { type = trigger which = 70001 } #Cause event to add population to the British Empire #ENG: Loyalist refugees from the United States
+	}
+	action_b = {
+		name = "ACTIONNAME70000B" #Protect the Loyalists
+		command = { type = relation which = ENG value = 50 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = revoltrisk which = 24 value = 3 }
+	}
+}
+#(1773-1820) Loyalist refugees from the United States
+event = {
+	id = 70001 #triggered by USA_70000 A
+	random = no
+	country = ENG
+	name = "EVENTNAME70001" #Loyalist refugees from the United States
+	desc = "EVENTHIST70001"
+	#-#During the American Revolution colonial society became bitterly divided by the American Revolution. After the war the loyalists(those who stayed loyal to Britain) were persecuted to the extent that they left the US for better grounds. According to some history texts some 60,000 loyalists left the states even after cooler heads prevailed. These refugees settled in other parts of the British Empire.
+
+	action_a = {
+		name = "ACTIONNAME3637A" #We are in his hands and must pay
+		command = { type = domestic which = aristocracy value = 1 } #Random population increase from the influx of refugees#
+		command = { type = population which = -1 value = 500 }
+		command = { type = population which = -1 value = 500 }
+		command = { type = population which = -1 value = 500 }
+	}
+}
+
+#(1773-1820) The State of Franklin
+event = {
+	id = 70002
+	trigger = {
+		OR = {
+			event = 4994 #USA: The Treaty of Paris - Little peace settlement
+			event = 4995 #USA: The Treaty of Paris - Large peace settlement
+		}
+		NOT = { event = 3057 }
+		owned = { province = 64 data = -1 }
+		control = { province = 64 data = -1 }
+		owned = { province = 65 data = -1 }
+		control = { province = 65 data = -1 }
+		owned = { province = 66 data = -1 }
+		control = { province = 66 data = -1 }
+		owned = { province = 56 data = -1 }
+		control = { province = 56 data = -1 }
+	}
+	random = no
+	country = USA
+	name = "EVENTNAME70002" #The State of Franklin
+	desc = "EVENTHIST70002"
+	#-#Before North Carolina ceded her lands to Congress, the state government reserved jurisdiction over the region till Congress accepted them. This caused settlers in the region some concern over their security which caused settlers to quickly form a government. They then applied to become a state in the union. North Carolina exercised its jurisdiction over the territory which caused a civil war in that region. Congress, not wishing to antogonize North Carolina, didn't intervene in the conflict. The situation resolved itself when no successor was elected to fill the office of the governor of the newly created state and the defeat of the settlers by North Carolina.
+
+	date = { day = 1 month = january year = 1773 }
+	offset = 10
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME70002A" #Let the situation resolve itself
+		command = { type = domestic which = centralization value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME70002B" #Intervene
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1773-1783) French Assistance
+event = {
+	id = 324001 #triggered by FRA_12099
+	random = no
+	country = USA
+	name = "EVENTNAME324001" #French Assistance
+	desc = "EVENTHIST324001"
+	#-#The French provided an enormous amount of financial assistance to the United States during the American Revolution.
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = treasury value = 1000 }
+		command = { type = INF which = -1 value = 10000 }
+		command = { type = CAV which = -3 value = 5000 }
+		command = { type = ART which = -3 value = 5 }
+	}
+}
+
+#(1775-1820) The American Revolutionary War
+#by Bordic
+event = {
+	id = 324002 #triggered by ENG_164046 A
+	random = no
+	country = USA
+	name = "EVENTNAME324002" #The American Revolutionary War
+	desc = "EVENTHIST164046"
+	#-#Following the Boston Tea Party and the English blockade of Boston harbour, the representatives from all of the American colonies on the East Coast subject to His Majesty except Georgia, assembled in the First Continental Congress in Philadelphia in September 1774 to discuss about following a common policy in defining their rights of British American colonists and suspending trade with the motherland, so distrusting the authority of a Parliament lacking American representatives. The following year, in a situation of internal conflicts between 'Patriots', rebels arranged in a local militia, and English regular troops, a Second Continental Congress was convened in Philadelphia, on 10 May 1775, with the participation of representatives of 13 colonies. Decisions were made about the creation of a Continental Army under the command of a Virginian planter, George Washington, to oppose the British and about signing a petition (Olive Branch Petition) to be extended to the crown and assure the King of England of the loyalty of the British American colonists, who were asking for reconciliation and resignation of His Majesty's ministers, clearly unable to meet their requests. But news of the English army successfully repressing the rebels in America came to Britain together with that petition so that the King firmly refused to intercede and redress colonial grievances. He issued the 'Proclamation for Suppressing Rebellion and Sedition' declaring elements of the American colonies in a state of open and avowed rebellion. There would be no negotiations whatsoever until the stipulation of the Treaty of Paris in 1783, with which England would formally recognize the independence of the Thirteen United States of America.
+
+	action_a = {
+		name = "ACTIONNAME324002A" #Chase the Redcoats away
+		command = { type = breakvassal which = ENG }
+		command = { type = stability value = 2 }
+		command = { type = war which = ENG }
+		command = { type = MIL which = 2 value = 24 }
+	}
+	action_b = {
+		name = "ACTIONNAME324002B" #Try to settle the issue with the King
+		command = { type = DIP which = 2 value = 24 }
+		command = { type = diplomats value = 3 }
+	}
+}
+
+#(1776-1783) John Paul Jones
+event = {
+	id = 324000
+	trigger = {
+		war = { country = ENG country = USA }
+		OR = {
+			owned = { province = 54 data = -1 } #Savannah
+			owned = { province = 62 data = -1 } #Carolina
+			owned = { province = 63 data = -1 } #Santee
+			owned = { province = 64 data = -1 } #Roanoke
+			owned = { province = 68 data = -1 } #Chesapeake
+			owned = { province = 86 data = -1 } #Delaware
+			owned = { province = 87 data = -1 } #Manhattan
+			owned = { province = 102 data = -1 } #Connecticut
+			owned = { province = 103 data = -1 } #Massachusetts
+			owned = { province = 104 data = -1 } #Penobscot
+			owned = { province = 112 data = -1 } #Bangor
+		}
+	}
+	random = no
+	country = USA
+	name = "EVENTNAME324000" #John Paul Jones
+	desc = "EVENTHIST324000"
+	#-#In 1775, Jones entered the Continental Navy. In December he was, commissioned a lieutenant on the first American flagship, Alfred. Jones was, quickly promoted to captain in 1776 and given command of the sloop, Providence. On his first cruise, he destroyed British fisheries in Nova Scotia, and captured sixteen prize British ships. In command of Ranger in 1777 and, 1778, he operated in British home waters. He terrorized the coastal population, of Scotland and England by making daring raids ashore, capturing and, destroying many British vessels. Considered as naval hero in USA, he was, considered a murderer, a pirate, a war criminal by the British.
+
+	date = { day = 1 month = january year = 1776 }
+	offset = 30
+	deathdate = { day = 3 month = september year = 1783 }
+
+	action_a = {
+		name = "ACTIONNAME324000A" #Let him command
+		command = { type = warships which = -1 value = 2 }
+		command = { type = transports which = -3 value = 1 }
+		command = { type = treasury value = -50 }
+		command = { type = wakeleader which = 0161822 } #J.P.Jones (USA)
+		command = { type = badboy value = 1 }
+		command = { type = trigger which = 164100 } #ENG: John Paul Jones
+	}
+	action_b = {
+		name = "ACTIONNAME324000B" #No commission for him
+		command = { type = vp value = -5 }
+	}
+}
+
+#(1779-1783) Spanish Assistance
+#by Bordic
+event = {
+	id = 324003 #triggered by SPA_285241
+	random = no
+	country = USA
+	name = "EVENTNAME324003" #Spanish Assistance
+	desc = "EVENTHIST324003"
+	#-#Spain sided with France in supporting the United States during the American Revolution, providing both financial and military aid. The Spanish fleet managed to avoid the British Navy from reinforcing His Majesty's land troops which were fighting against the rebelling colonists in the Northern American mainland.
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = treasury value = 300 }
+		command = { type = warships which = -1 value = 10 }
+		command = { type = INF which = -1 value = 5000 }
+	}
+}
+
+#(1779-1820) The Congress' Printing Machine
+event = {
+	id = 3056
+	trigger = { atwar = yes }
+	random = no
+	country = USA
+	name = "EVENTNAME3056" #The Congress' Printing Machine
+	desc = "EVENTHIST3056"
+	#-#In 1779 the Military situation was severe, but the economic situation was even worse. The Congress was not yet an efficient vehicle of governance and members of it let the printing press run freely. The money was needed, but the effect was a growing inflation. The usage of the printing press was a collective decision the body of men responsible could have decided differently. How will we decide?
+
+	date = { day = 1 month = october year = 1779 }
+	offset = 50
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME3056A" #Print more money
+		command = { type = inflation value = 5 }
+		command = { type = treasury value = 500 }
+		command = { type = stability value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3056B" #Use with constrain
+		command = { type = inflation value = 1 }
+		command = { type = treasury value = 100 }
+		command = { type = stability value = -1 }
+	}
+	action_c = {
+		name = "ACTIONNAME3056C" #Stop immediately
+		command = { type = inflation value = -1 }
+		command = { type = treasury value = -50 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1780-1783) Dutch Assistance
+#by Bordic
+event = {
+	id = 324004 #triggered by HOL_186028
+	random = no
+	country = USA
+	name = "EVENTNAME324004" #Dutch Assistance
+	desc = "EVENTHIST324004"
+	#-#The Netherlands sided with France in supporting the United States during the American Revolution, providing both financial and military aid. The Dutch fleet managed to avoid the the British Navy from reinforcing His Majesty's land troops which were fighting against the rebelling colonists in the Northern American mainland.
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = treasury value = 100 }
+		command = { type = warships which = -1 value = 5 }
+		command = { type = INF which = -1 value = 5000 }
+	}
+}
+
+#(1786-1788) The US Constitution
+event = {
+	id = 3057
+	random = no
+	country = USA
+	name = "EVENTNAME3057" #The US Constitution
+	desc = "EVENTHIST3057"
+	#-#In 1787 the representatives of all colonies except Rhode Island met to create a joint constitution. After four months' hard labour the US constitution was signed. This made the US the first modern democracy, but it had its price. It was a great compromise between many interests and thus a source of both conflict and cooperation among the citizens of the new United States of America. During the forging of the constitution a number of different approaches were tried. Which one will we choose?
+
+	date = { day = 1 month = october year = 1786 }
+	offset = 570
+	deathdate = { day = 2 month = may year = 1788 }
+
+	action_a = {
+		name = "ACTIONNAME3057A" #Governmental Balance of Power
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = domestic which = SERFDOM value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3057B" #Strong Federal Government
+		command = { type = domestic which = ARISTOCRACY value = 3 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = domestic which = SERFDOM value = 2 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+	}
+	action_c = {
+		name = "ACTIONNAME3057C" #Confederacy of Independent States
+		command = { type = domestic which = ARISTOCRACY value = -3 }
+		command = { type = domestic which = CENTRALIZATION value = -2 }
+		command = { type = domestic which = SERFDOM value = -2 }
+		command = { type = provincetax which = -1 value = -2 }
+		command = { type = provincetax which = -1 value = -2 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+	}
+}
+
+#(1790-1793) The Creation of the New York Stock Exchange
+#by Pietercornelis
+event = {
+	id = 324005
+	random = no
+	country = USA
+	name = "EVENTNAME324005" #The Creation of the New York Stock Exchange
+	desc = "EVENTHIST324005"
+	#-#The origin of the NYSE can be traced to May 17, 1792, when the Buttonwood Agreement was signed by twenty-four stock brokers outside of 68 Wall Street in New York under a buttonwood tree. On March 8, 1817, the organization drafted a constitution and renamed itself the ''New York Stock & Exchange Board''. This name was shortened to its current form in 1863. Over the next 100 years, it would grow to be the biggest Stock Market in the world.
+
+	date = { day = 1 month = january year = 1790 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1793 }
+
+	action_a = {
+		name = "ACTIONNAME324005A" #Expand Loan Market
+		command = { type = loansize which = 400 }
+		command = { type = gainmanufactory which = -1 value = refinery }
+		command = { type = inflation value = 8 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME324005B" #Issue Strict Control
+		command = { type = gainmanufactory which = -1 value = refinery }
+		command = { type = inflation value = -5 }
+		command = { type = stability value = 2 }
+	}
+}
+
+#(1797) US. Presidential Election of 1796
+event = {
+	id = 3058
+	random = no
+	country = USA
+	name = "EVENTNAME3058" #US. Presidential Election of 1796
+	desc = "EVENTHIST3058"
+	#-#Campaign and the Issues, 1796: Federalist flocked under the banner of John Adams, who vowed to reinforce Washington's Strong Government. Jefferson and the Anti-Federalists opposed the growing government and rode the wave of popular fears of insidious royalism. Adams supporters retaliated by condemning the French Revolution as Monocracy, the former cherished by the Anti-Federalists. The Anti-Federalists on the other hand still viewed England as the principal enemy and said that Adams was going to pay lip service to Her Majesty's Government. Washington's support and the New Englanders effort to stop Alexander Hamilton from sabotaging Adams campaign gave Adams a marginal electoral victory, 71-68. How will the Spirit of America choose this time?
+
+	date = { day = 4 month = march year = 1797 }
+
+	action_a = {
+		name = "ACTIONNAME3058A" #John Adams
+		command = { type = domestic which = ARISTOCRACY	value = 1 }
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = relation which = ENG value = 50 }
+		command = { type = wakemonarch which = 0161502 } #John Adams
+	}
+	action_b = {
+		name = "ACTIONNAME3058B" #Thomas Jefferson
+		command = { type = domestic which = ARISTOCRACY	value = -1 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = relation which = ENG value = -50 }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = wakemonarch which = 0161504 } #Thomas Jefferson °
+	}
+}
+
+#(1799-1800) Federal Taxes on Property
+event = {
+	id = 3059
+	random = no
+	country = USA
+	name = "EVENTNAME3059" #Federal Taxes on Property
+	desc = "EVENTHIST3059"
+	#-#In July 1798 President Adams approved legislation levying federal taxes on property. This had consequences. The most obvious was the Fries Rebellion of 1799, a group of armed Pennsylvanians resisted tax assessors and collectors. But it also created a great debate of the limits of power of government that never ended, but continues up to this day and beyond. However, depending on the political position of the President and the representatives in Congress a different legislation package could have been approved. How will we choose?
+
+	date = { day = 1 month = january year = 1799 }
+	offset = 360
+	deathdate = { day = 2 month = january year = 1800 }
+
+	action_a = {
+		name = "ACTIONNAME3059A" #Limited Federal Taxation Rights
+		command = { type = stability value = 1 }
+		command = { type = provincetax which = -1 value = 2 }
+		command = { type = provincetax which = -1 value = 2 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3059B" #No Federal Taxation Rights
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = domestic which = SERFDOM value = -3 }
+		command = { type = domestic which = ARISTOCRACY value = -3 }
+		command = { type = provincetax which = -1 value = -2 }
+		command = { type = provincetax which = -1 value = -2 }
+		command = { type = provincetax which = -1 value = -2 }
+		command = { type = provincetax which = -1 value = -2 }
+		command = { type = provincetax which = -1 value = -2 }
+		command = { type = provincetax which = -1 value = -2 }
+		command = { type = provincetax which = -1 value = -2 }
+		command = { type = provincetax which = -1 value = -2 }
+		command = { }
+	}
+	action_c = {
+		name = "ACTIONNAME3059C" #Unlimited Federal Taxation Rights
+		command = { type = provincetax which = -1 value = 4 }
+		command = { type = provincetax which = -1 value = 4 }
+		command = { type = provincetax which = -1 value = 4 }
+		command = { type = provincetax which = -1 value = 4 }
+		command = { type = provincetax which = -1 value = 4 }
+		command = { type = provincetax which = -1 value = 4 }
+		command = { type = provincetax which = -1 value = 4 }
+		command = { type = provincetax which = -1 value = 4 }
+		command = { type = desertion which = -1 value = 10000 }
+		command = { type = desertion which = -1 value = 10000 }
+		command = { type = desertion which = -1 value = 10000 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revoltrisk which = 64 value = 2 }
+	}
+}
+
+#(1800-1820) Washington, D.C.
+event = {
+	id = 324008
+	trigger = {
+		owned = { province = 69 data = -1 } #Powhatan
+		control = { province = 69 data = -1 } #Powhatan
+		OR = {
+			event = 4994 #USA: The Treaty of Paris - Little peace settlement
+			event = 4995 #USA: The Treaty of Paris - Large peace settlement
+		}
+	}
+	random = no
+	country = USA
+	name = "EVENTNAME324008" #The New Capital
+	desc = "EVENTHIST324008"
+	#-#In 1790 Congress designated 260 square kilometers of territory for the new seat of government of the USA. The site of the new capital was largely the result of a compromise between the Southern and Northern states. By 1800 the first Congress session was held, and president John Adams moved into the Executive Mansion (nowadays White House).
+
+	date = { day = 1 month = january year = 1800 }
+	offset = 500
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME324008A" #Let us move to Washington, D.C.
+		command = { type = capital which = 69 } #Powhatan
+		command = { type = provincetax which = 69 value = 2 } #The site had significant commercial potential
+		command = { type = population which = 69 value = 1500 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME324008B" #Let us remain in the current capital
+		command = { type = stability value = 2 }
+	}
+}
+
+#(1800-1805) The Louisiana Purchase
+event = {
+	id = 3061 #triggered by FRA_3087 A
+	random = no
+	country = USA
+	name = "EVENTNAME3061" #The Louisiana Purchase
+	desc = "EVENTHIST3061"
+	#-#In 1803 Napoléon of France was hard pressed for cash as he was set on a dream of European hegemony. He therefore offered the Louisiana Territory, a vast region between the Mississippi and the Rockies against a lump sum of 15 million U.S. dollars. The President and the Senate agreed and the United States nearly doubled its size. We would only get the provinces that France presently owns (South of Canada and North of Mexico). How will we choose?
+
+	action_a = {
+		name = "ACTIONNAME3061A" #Accept Offer
+		command = { type = treasury value = -1000 }
+		command = { type = relation which = FRA value = 100 }
+		command = { type = trigger which = 3088 } #FRA: The United States bought the Louisiana Territory
+	}
+	action_b = {
+		name = "ACTIONNAME3061B" #Decline Offer
+		command = { type = relation which = FRA value = -100 }
+		command = { type = vp value = -100 }
+		command = { type = trigger which = 3089 } #FRA: The United States declined the offer of Louisiana
+	}
+}
+
+#(1801) US. Presidential Election of 1800
+event = {
+	id = 3060
+	random = no
+	country = USA
+	name = "EVENTNAME3060" #US. Presidential Election of 1800
+	desc = "EVENTHIST3060"
+	#-#Campaign and the Issues, 1800: The Federalists urged voters to choose God-and a religious President (Adams) over Jefferson…and no God. Initially the Federalists monopolized the media thanks to the Sedition Act that outlawed most opposition as treason. Though this Act was also the rallying point of the Anti-Federalists, or the Republicans, as they were now called as James Madison had written the controversial Virginia and Kentucky Resolution in 1798-1799 which declared the Sedition Act unconstitutional. At a late stage the majority in New York changed and the new electoral votes changed the balance into the favor of Jefferson. However as the nominally vice presidential candidate Aaron Burr got the same number of electoral votes as the Jefferson, Burr later forced the issue to a vote in the House which was eventually won by Jefferson. The Electoral Votes: Jefferson 73, Burr 73, Adams 65. How will the Spirit of America choose this time?
+
+	date = { day = 4 month = march year = 1801 }
+
+	action_a = {
+		name = "ACTIONNAME3060A" #Thomas Jefferson
+		command = { type = domestic which = ARISTOCRACY	value = -1 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = wakemonarch which = 0161505 } #Thomas Jefferson
+	}
+	action_b = {
+		name = "ACTIONNAME3060B" #Aaron Burr
+		command = { type = domestic which = ARISTOCRACY	value = 2 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = domestic which = INNOVATIVE value = -3 }
+		command = { type = wakemonarch which = 0161509 } #Aaron Burr °
+	}
+	action_c = {
+		name = "ACTIONNAME3060C" #John Adams
+		command = { type = domestic which = ARISTOCRACY	value = 1 }
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = wakemonarch which = 0161503 } #John Adams °
+	}
+}
+
+#(1805) US. Presidential Election of 1804
+event = {
+	id = 3062
+	random = no
+	country = USA
+	name = "EVENTNAME3062" #US. Presidential Election of 1804
+	desc = "EVENTHIST3062"
+	#-#Campaign and the Issues, 1804: President Jefferson handily checked a feeble challenge from the dying Federalist Party. The Party had been severely damaged by a radical group within called the Essex Junta, which had tried in vain to enlist some eastern seaboard states to secede from the union forming a New England Confederacy free of Jeffersonian Democracy. Among the elites of the country many still supported the Federalists and Pinckney, but the masses were discouraged by the behavior of the Junta. The Biggest Issue was the Louisiana Purchase as Federalists feared that more immigrants (Jefferson-supporters that is) would break the balance of power at the expense of the Federalists. Thus Jefferson made significant inroads in once solidly Federalist New England and victory was his. Electoral Votes: Jefferson 162, Pinckney 14. How will the Spirit of America choose this time?
+
+	date = { day = 4 month = march year = 1805 }
+
+	action_a = {
+		name = "ACTIONNAME3062A" #Thomas Jefferson
+		command = { type = domestic which = ARISTOCRACY	value = -1 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = domestic which = MERCANTILISM value = 3 }
+		command = { type = trade value = -2000 }
+		command = { type = merchants value = -6 }
+		command = { type = wakemonarch which = 0161506 } #Thomas Jefferson
+	}
+	action_b = {
+		name = "ACTIONNAME3062B" #Charles Pinckney
+		command = { type = domestic which = ARISTOCRACY	value = 1 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = domestic which = MERCANTILISM value = -1 }
+		command = { type = revolt which = -2 }
+		command = { type = revolt which = -1 }
+		command = { type = wakemonarch which = 0161510 } #Charles Pinckney °
+	}
+}
+
+#(1809) US. Presidential Election of 1808
+event = {
+	id = 3063
+	random = no
+	country = USA
+	name = "EVENTNAME3063" #US. Presidential Election of 1808
+	desc = "EVENTHIST3063"
+	#-#Campaign and the Issues, 1808: As Thomas Jefferson retired he endorsed James Madison as his successor. Madison was only vulnerable to one issue - The Embargo. As Secretary of State he had been handled the Embargo which was both retaliation against French and British disrespect and a policy of Protectionism. The Embargo was very unpopular in both camps, thus the Federalists once again revitalized under Charles Pinckney and Free-Trade Republicans threatened to support the republican vice presidential candidate George Clinton. The Free-Trade threat never materialized and although Pinckney did well he could not compete with the popularity of former President Jefferson. Jefferson was instrumental in urging fellows and foes alike to stand behind Madison and thus securing his victory. Electoral Vote: Madison 122, Pinckney 47, Clinton 6. How will the Spirit of America choose this time?
+
+	date = { day = 4 month = march year = 1809 }
+
+	action_a = {
+		name = "ACTIONNAME3063A" #James Madison
+		command = { type = domestic which = ARISTOCRACY	value = -1 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = domestic which = MERCANTILISM value = 3 }
+		command = { type = wakemonarch which = 0161507 } #James Madison
+	}
+	action_b = {
+		name = "ACTIONNAME3063B" #Charles Pinckney
+		command = { type = domestic which = ARISTOCRACY	value = 1 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = domestic which = MERCANTILISM value = -1 }
+		command = { type = wakemonarch which = 0161511 } #Charles Pinckney °
+	}
+	action_c = {
+		name = "ACTIONNAME3063C" #George Clinton
+		command = { type = domestic which = ARISTOCRACY	value = -1 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = domestic which = MERCANTILISM value = -1 }
+		command = { type = wakemonarch which = 0161512 } #George Clinton °
+	}
+}
+
+#(1812) Hawks and Doves of 1812
+event = {
+	id = 3064
+	trigger = {
+		neighbour = ENG
+	}
+	random = no
+	country = USA
+	name = "EVENTNAME3064" #Hawks and Doves of 1812
+	desc = "EVENTHIST3064"
+	#-#During the years up to the War of 1812 the English had never respected the independence of the United States de facto. England disrespected US neutral rights at sea and impressed American seamen and confiscated the goods of her ships at sea. She also encouraged and supported Indian Unrest in the West. This together with the fact that some American gentlemen like Henry Clay and John C. Calhoun lobbied aggressively for war in an effort to exploit the opportunity to seize Canada made it hard for the President in International affairs. The Nation was though badly divided and when the President asked the Congress for a declaration of war (June1) the South and the west voted for and New England against.
+
+	date = { day = 1 month = january year = 1812 }
+	offset = 20
+	deathdate = { day = 2 month = december year = 1812 }
+
+	action_a = {
+		name = "ACTIONNAME3064A" #Support War hawks
+		command = { type = casusbelli which = ENG value = 48 }
+		command = { type = relation which = ENG value = -100 }
+		command = { type = stability value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3064B" #Support Doves
+		command = { type = relation which = ENG value = 50 }
+		command = { type = stability value = 2 }
+		command = { type = diplomats value = 4 }
+	}
+}
+
+#(1812) The Economic Dependency on England is broken
+event = {
+	id = 3068
+	trigger = {
+		war = { country = ENG country = USA }
+	}
+	random = no
+	country = USA
+	name = "EVENTNAME3068" #The Economic Dependency on England is broken
+	desc = "EVENTHIST3068"
+	#-#With the second war with England, The War of 1812, the United States' economic dependency on England had finally come to an end. Domestic industry, filled the vacuum created by a suspension of trade with Europe, emerged from the war a vital, expanding force in the economy. America had taken its first steps in the evolution from a largely agrarian nation into an industrial giant.
+
+	date = { day = 1 month = july year = 1812 }
+	offset = 15
+	deathdate = { day = 1 month = february year = 1815 }
+
+	action_a = {
+		name = "AT_LAST"
+		command = { type = infra value = 5000 }
+		command = { type = gainmanufactory which = -1 value = goods }
+		command = { type = gainmanufactory which = -1 value = refinery }
+		command = { type = gainmanufactory which = -1 value = weapons }
+	}
+}
+
+#(1813) US. Presidential Election of 1812
+event = {
+	id = 3065
+	random = no
+	country = USA
+	name = "EVENTNAME3065" #US. Presidential Election of 1812
+	desc = "EVENTHIST3065"
+	#-#Campaign and the Issues, 1812: The War of 1812 dominated the campaign. Because the United States suffered early defeats in the West, DeWitt Clinton's supporters blasted the president for incompetence in directing the war effort, a war that Federalists denounced as groundless. Madison's campaigners defended the war as necessary to establish American neutral rights. Madison was not that popular, but two things turned against Clinton. First, Clinton tried to appeal to hawks and doves alike making his position non-credible. Second, Madison was a president at war and people rallied to his defense. Electoral Votes: Madison 128, Clinton 89. How will the Spirit of America choose this time?
+
+	date = { day = 4 month = march year = 1813 }
+
+	action_a = {
+		name = "ACTIONNAME3065A" #James Madison
+		command = { type = relation which = ENG value = -25 }
+		command = { type = stability value = 1 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = domestic which = MERCANTILISM value = 1 }
+		command = { type = wakemonarch which = 0161515 } #James Madison
+	}
+	action_b = {
+		name = "ACTIONNAME3065B" #DeWitt Clinton
+		command = { type = relation which = ENG value = -50 }
+		command = { type = stability value = -1 }
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = domestic which = MERCANTILISM value = -1 }
+		command = { type = wakemonarch which = 0161513 } #DeWitt Clinton °
+	}
+}
+
+#(1817) US. Presidential Election of 1816
+event = {
+	id = 3066
+	random = no
+	country = USA
+	name = "EVENTNAME3066" #US. Presidential Election of 1816
+	desc = "EVENTHIST3066"
+	#-#Campaign and the Issues, 1816: There were no big issues. James Monroe was supported by two popular former presidents, Jefferson and Madison, and Monroe was a skilled tactician doing very little campaigning. The election was a sure thing all from the beginning as there were in fact only one efficient party, the Republicans. The Federalists existed, but was trashed from opposing the War of 1812 and had its voters in the New England area. Its organization and form was old and obsolete and it did not even officially nominate a candidate. It though supported Rufus King who put up only token opposition against the republican juggernaut. The Republicans was on the other hand an all-American movement with strong bases in New York, Virginia and in the South from which it campaign with skill and effect. Four republican presidential terms in a row had strengthened the party proportionally to the decline of the Federalists. James Monroe won a walk-over even if it was not as superior as his victory in 1820 where he grabbed all electors but one. Electoral Votes: Monroe 183, King 34. How will the Spirit of America choose this time?
+
+	date = { day = 4 month = march year = 1817 }
+
+	action_a = {
+		name = "ACTIONNAME3066A" #James Monroe
+		command = { type = domestic which = MERCANTILISM value = 1 }
+		command = { type = stability value = 2 }
+		command = { type = wakemonarch which = 0161508 } #James Monroe
+	}
+	action_b = {
+		name = "ACTIONNAME3066B" #Rufus King
+		command = { type = domestic which = MERCANTILISM value = -2 }
+		command = { type = relation which = ENG value = 100 }
+		command = { type = wakemonarch which = 0161514 } #Rufus King °
+	}
+}
+
+#(1819) Adam-Onís Treaty
+event = {
+	id = 3067 #triggered by SPA_3090 A
+	random = no
+	country = USA
+	name = "EVENTNAME3067" #Adam-Onís Treaty
+	desc = "EVENTHIST3067"
+	#-#During the First Seminole War (1817-1818) US forces had attacked Seminole Indians and fugitive slaves in Florida that had raided Georgia and massacred residents. To root out the problem General Andrew Jackson burnt villages and overthrew the Spanish governor. This episode convinced the Spanish government that the United States was capable of seizing Florida at will. This belief grew so strong that the Spanish government offered Florida to the United Sates for a lump sum of money. The agreement was finalized by U.S. Secretary of State John Quincy Adams and Spanish Minister Luis de Onís. Mr. President, we will get Florida for a lump sum of 500 ducats should we heed the offer?
+
+	action_a = {
+		name = "ACTIONNAME3067A" #Accept Offer
+		command = { type = treasury value = -500 }
+		command = { type = relation which = SPA value = 100 }
+		command = { type = addcore which = 49 } #Seminole
+		command = { type = addcore which = 50 } #Everglades
+		command = { type = trigger which = 3091 } #SPA: Adam-Onís Treaty
+	}
+	action_b = {
+		name = "ACTIONNAME3067B" #Decline Offer
+		command = { type = relation which = SPA value = -100 }
+		command = { type = vp value = -75 }
+		command = { type = trigger which = 3092 } #SPA: The United States declined the offer of Florida
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 324009

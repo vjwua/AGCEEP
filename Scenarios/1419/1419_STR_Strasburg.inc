@@ -4,7 +4,7 @@
 
 country = {
 	tag = STR
-	ai = "SmallCRC0.ai"
+	ai = "SmallCRC0.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -18,7 +18,7 @@ country = {
 	culture = { type = german }
 	diplomacy = {
 		relation = { tag = TYR value = 150 }
-		relation = { tag = PRM value = 150 }
+		relation = { tag = SEI value = 150 }
 		relation = { tag = WUR value = 150 }
 		relation = { tag = MAI value = 175 }
 		relation = { tag = KOL value = 175 }

@@ -1,0 +1,93 @@
+#Lan Na (LNA)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1450) Golden Age of Lan Na
+event = {
+	id = 199001
+	random = no
+	country = LNA
+	name = "EVENTNAME199001" #Golden Age of Lan Na
+	desc = "EVENTHIST199001"
+	#-#The 15th century was the golden age of Chiang Mai, when Lan Na art and power reached its peak during the reign of King Tilokaraja. He was a great warlord and a devout Buddhist, able in 1455 AD to arrange the eighth world Bhuddist council in Chiang Mai. The fact that this was feasible attests to the power, wealth, safety and communications that Lan Na enjoyed.
+
+	date = { day = 1 month = january year = 1450 }
+
+	action_a = {
+		name = "SPLENDID"
+		command = { type = relation which = -1 value = 40 }
+		command = { type = relation which = -1 value = 40 }
+		command = { type = relation which = -1 value = 40 }
+		command = { type = relation which = -1 value = 20 }
+		command = { type = relation which = -1 value = 20 }
+		command = { type = infra value = 250 }
+		command = { type = trade value = 250 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = domestic which = INNOVATIVE value = -2 }
+		command = { type = provincetax which = 1550 value = 1 } #Lampang
+		command = { type = treasury value = 100 }
+	}
+}
+
+#(1545) Effect of the devastating earthquake
+event = {
+	id = 199002 #triggered by ProvinceSpec_338087
+	trigger = { owned = { province = 1550 data = -1 } } #Lampang
+	random = no
+	country = LNA
+	name = "EVENTNAME199002" #Effect of the earthquake
+	desc = "EVENTHIST199002"
+	#-#This is a disaster for Lan Na...
+
+	action_a = {
+		name = "ACTIONNAME199002A" #How unfortunate!
+		command = { type = treasury value = -30 }
+		command = { type = stability value = -3 }
+	}
+}
+
+#(1547) Inheritance by Lan Xang
+event = {
+	id = 199000
+	trigger = { exists = LAX }
+	random = no
+	country = LNA
+	name = "EVENTNAME199000" #Inheritance by Lan Xang
+	desc = "EVENTHIST199000"
+	#-#The last King of Chiangmai died childless in 1543, and Phothisarat, whose mother was a Chiangmai princess, promptly claimed the empty throne. So did Siam and a Shan prince named Mekut'i. Laos won the first round, and Phothisarat placed his son, prince Setthathirat, on the Chiangmai throne. However, the Laotian King died only thirteen months later, and Setthathirat had to hurry to Luang Prabang where he was proclaimed King of Lan Xang.
+
+	date = { day = 1 month = january year = 1547 }
+
+	action_a = {
+		name = "ACTIONNAME199000A" #We will bow
+		command = { type = trigger which = 106002 } #LAX: Inheritance of Lan Na
+	}
+	action_b = {
+		name = "ACTIONNAME199000B" #Keep seperate Kingdoms
+		command = { }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Random Events
+#-----------------------------------------------------------------------------------------------
+
+#White Elephants
+event = {
+	id = 199003
+	random = yes
+	country = LNA
+	name = "EVENTNAME199003" #White Elephants
+	desc = "EVENTHIST199003"
+	#-#The Buddhist Kings of Southeast Asia have always treasured the possession of white elephants, enhancing royal prestige and ensuring the country's prosperity.
+
+	action_a = {
+		name = "SPLENDID"
+		command = { type = stability value = 1 }
+		command = { type = revoltrisk which = 12 value = -3 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 199003

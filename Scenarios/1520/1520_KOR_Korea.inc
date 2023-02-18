@@ -4,7 +4,7 @@
 
 country = {
 	tag = KOR
-	ai = "SmallTrade2.ai"
+	ai = "SmallTrade2.txt"
 	policy = {
 		aristocracy = 9
 		centralization = 7
@@ -24,7 +24,7 @@ country = {
 	treasury = 200
 	inflation = 0
 	merchants = 0
-	religion = { type = confucianism }
+	religion = { type = confucian }
 	culture = { type = korean }
 	diplomacy = { }
 	knownprovinces = {

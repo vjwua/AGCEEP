@@ -4,7 +4,7 @@
 
 country = {
 	tag = RUS
-	ai = "RUS_1600.ai"
+	ai = "RUS_1600.txt"
 	policy = {
 		aristocracy = 9
 		centralization = 9
@@ -27,7 +27,7 @@ country = {
 	religion = { type = orthodox }
 	culture = {
 		type = russian
-		type = naskapi
+		type = tatar
 	}
 	diplomacy = {
 		relation = { tag = HOL value = 150 }

@@ -4,7 +4,7 @@
 
 country = {
 	tag = YEM
-	ai = "SmallTrade1.ai"
+	ai = "SmallTrade1.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -14,13 +14,13 @@ country = {
 	treasury = 200
 	inflation = 0
 	merchants = 0.083333
-	religion = { type = shiite }
+	religion = { type = shia }
 	culture = { type = arabic }
 	diplomacy = {
 		relation = { tag = OMA value = 125 }
 		relation = { tag = HAA value = 125 }
 		relation = { tag = HAD value = 125 }
-		relation = { tag = GHA value = 125 }
+		relation = { tag = GHR value = 125 }
 		relation = { tag = MRA value = 125 }
 	}
 	knownprovinces = {

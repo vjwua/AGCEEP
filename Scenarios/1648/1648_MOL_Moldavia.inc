@@ -4,7 +4,7 @@
 
 country = {
 	tag = MOL
-	ai = "SmallTrade0.ai"
+	ai = "SmallTrade0.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -18,7 +18,7 @@ country = {
 	culture = { type = romanian }
 	diplomacy = {
 		relation = { tag = WAL value = 170 }
-		relation = { tag = SIE value = 170 }
+		relation = { tag = TRA value = 170 }
 	}
 	knownprovinces = {
 		1614 #Pope

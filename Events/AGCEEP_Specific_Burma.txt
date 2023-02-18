@@ -1,0 +1,844 @@
+#Burma (BRM)
+
+#Direct Citations
+# "Bygone Leaders of Myanmar" http://www.myanmars.net/history/hero.htm
+# http://www.mrcusa.org/yangon.htm
+
+#-----------------------------------------------------------------------------------------------
+
+#(1426-1435) Arakanese Kingdom - Bengal's meddling in Arakan
+#from EEP 1.4.2b adapted by Bordic
+event = {
+	id = 30322
+	trigger = {
+		event = 30323 #BGL: Kingdom of Arakan
+	}
+	random = no
+	country = BRM
+	name = "EVENTNAME30322" #Bengal's meddling in Arakan
+	desc = "EVENTHIST30322"
+	#-#In 1426, former Arakanese King Narameikhla marched with Bengalese troops into Arakan. Fortunately for Burmese, the commander of the army, Wali Khan, changed sides, and Narameikhla found himself a Burmese captive. However, 2 years later he managed to escape, and led another, this time successful, expedition against the Burmese. The Kingdom of Arakan was thus restored in 1430.
+
+	date = { day = 1 month = january year = 1426 }
+	offset = 90
+	deathdate = { day = 1 month = january year = 1435 }
+
+	action_a = {
+		name = "ACTIONNAME30322A" #Bengalese are helping the Arakanese rebels
+		command = { type = stability value = -3 }
+		command = { type = province_revoltrisk which = 672 value = 8 } #Tarakan
+		command = { type = province_revoltrisk which = 671 value = 8 } #Chin
+		command = { type = casusbelli which = BGL value = 24 }
+	}
+	action_b = {
+		name = "ACTIONNAME30322B" #Let Arakan go free
+		command = { type = stability value = -1 }
+		command = { type = independence which = ARK }
+		command = { type = sleepevent which = 30319 } #BRM: Arakanese rebellions cease
+	}
+}
+
+#(1440-1450) Lu Chuan rebellion (2)
+event = {
+	id = 136017 #triggered by CHI_147032 A
+	random = no
+	country = BRM
+	name = "EVENTNAME136017" #China promises Lu Chuan land in exchange for rebel leader
+	desc = "EVENTHIST136017"
+	#-#Wang Zhen, the powerful eunuch in Ming government, decided to send 150,000 men, led by general Jiang Gui and commanded by military secretary Wang Ji, to eliminate the Lu Chuan rebellion started by Si Ren Fa. Rebel forces were defeated and Ming army entered Lu Chuan. However, Si Ren Fa escaped to Myanmar. Ming government decreed that whichever tribe hands over Si Ren Fa to China would be rewarded with the land of Lu Chuan. Myanmar was hesitant about handing over Si Ren Fa, as they did not trust China about rewarding the land to them and feared revenge by Si Ren Fa's son, who fled to Meng Yang.
+
+	action_a = {
+		name = "ACTIONNAME136017A" #Hand over Si Ren Fa
+		command = { type = addcore which = 1557 } #Sichuan Pendi
+		command = { type = casusbelli which = LCH value = 60 }
+		command = { type = relation which = CHI value = -70 }
+	}
+	action_b = {
+		name = "ACTIONNAME136017B" #Take over the land and hand over Si Ren Fa
+		command = { type = addcore which = 1557 } #Sichuan Pendi
+		command = { type = casusbelli which = LCH value = 1 }
+		command = { type = war which = LCH }
+		command = { type = relation which = CHI value = 80 }
+		command = { type = relation which = MUB value = -100 }
+		command = { type = relation which = MYG value = -100 }
+		command = { type = trigger which = 378002 } #LCH: New rebellion against China
+	}
+}
+
+#(1444-1454) Arakanese Kingdom - Arakanese rebellions cease
+#from EEP 1.4.2b adapted by Bordic
+event = {
+	id = 30319
+	trigger = {
+		event = 30322 #BRM: Bengal's meddling in Arakan
+		OR = {
+			owned = { province = 671 data = -1 } #Chin
+			owned = { province = 672 data = -1 } #Tarakan
+		}
+	}
+	random = no
+	country = BRM
+	name = "EVENTNAME30319" #Arakanese rebellions cease
+	desc = "EVENTHIST30319"
+	#-#After 15 years of rebellions, incited by treacherous Kings of Bengal, our mighty army managed to subdue the Arakanese rebels.
+
+	date = { day = 1 month = january year = 1444 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1454 }
+
+	action_a = {
+		name = "ACTIONNAME30319A" #The rebels are finally subdued
+		command = { type = stability value = 1 }
+		command = { type = province_revoltrisk which = 672 value = -8 } #Chin
+		command = { type = province_revoltrisk which = 671 value = -8 } #Tarakan
+	}
+}
+
+#(1446-1452) End of Lu Chuan Rebellion
+event = {
+	id = 136018 #triggered by CHI_147036 A
+	random = no
+	country = BRM
+	name = "EVENTNAME136018" #End of Lu Chuan Rebellion
+	desc = "EVENTHIST136018"
+	#-#After the Ming invasion into Meng Yang, commander Wang Ji knew that the rebels could not be eliminated, and thus made an agreement with Si Lu, allowing them to reside in Meng Yang, but erected a stone tablet at Irrawaddy River, with the words 'thou shall not cross until the seas dry up and the rocks crumble'. The Ming Emperor then granted Myanmar authority to govern the Meng Yang area and to capture Si Ji Fa.
+
+	action_a = {
+		name = "ACTIONNAME136018A" #The land is ours!
+		command = { type = addcore which = 1545 } #Kachin
+		command = { type = casusbelli which = MYG value = 60 }
+		command = { type = relation which = MYG value = -100 }
+	}
+}
+
+#(1486) Burmese Resurgence
+event = {
+	id = 136004
+	random = no
+	country = BRM
+	name = "EVENTNAME136004" #Burmese Resurgence
+	desc = "EVENTHIST136004"
+	#-#King Minkyino ascended the throne of the Burmese town of Taungu in 1486. His reign initiated a resurgence of the Burmese realm and the overthrow of the Shan yoke.
+
+	date = { day = 1 month = january year = 1486 }
+	offset = 20
+	deathdate = { day = 1 month = february year = 1486 }
+
+	action_a = {
+		name = "ACTIONNAME136004A" #It is a new era!
+		command = { type = breakvassal which = MUB }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = land value = 1 }
+		command = { type = domestic which = offensive value = 1 }
+		command = { type = trigger which = 292001 } #MUB: Resurgence of Burma
+	}
+	action_b = {
+		name = "ACTIONNAME136004B" #Let us still bow down.
+		command = { type = relation which = MUB value = 50 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1530) Burma unified
+event = {
+	id = 65120
+	random = no
+	country = BRM
+	name = "EVENTNAME65120" #Unification of Burma
+	desc = "EVENTHIST65120"
+	#-#After his ascension to power, King Tabinshwehti conquered and united local Burmese Kingdoms, and he and his successors brought greatness to the Kingdom of Burma.
+
+	date = { day = 1 month = january year = 1530 }
+	offset = 90
+	deathdate = { day = 29 month = december year = 1530 }
+
+	action_a = {
+		name = "EXCELLENT"
+		#command = { type = AI which = "taungu.ai" }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = land value = 1 }
+		command = { type = domestic which = offensive value = 2 }
+		command = { type = domestic which = aristocracy value = 1 }
+	}
+}
+
+#(1538) Subjugation of the Mon
+event = {
+	id = 136001
+	trigger = {
+		exists = MON
+		NOT = { vassal = { country = BRM country = MON } }
+	}
+	random = no
+	country = BRM
+	name = "EVENTNAME136001" #Subjugation of the Mon
+	desc = "EVENTHIST136001"
+	#-#For two hundred years, there was incessant warfare between the Mon and the Burmans, but the Mon managed to retain their independence until 1539, when they came under the domination of Myanmar led by King Tabinshwehti.
+
+	date = { day = 1 month = january year = 1538 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1538 }
+
+	action_a = {
+		name = "ACTIONNAME136001A" #They shall submit!
+		command = { type = relation which = MON value = -100 }
+		command = { type = addcore which = 673 } #Irrawady
+		command = { type = addcore which = 674 } #Kwai
+		command = { type = sleepevent which = 136019 } #BRM: The submission of the Mon
+	}
+	action_b = {
+		name = "ACTIONNAME136001B" #We are cowards!
+		command = { type = relation which = MON value = 50 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1539-1599) Move to Pegu I
+event = {
+	id = 136008
+	trigger = {
+		owned = { province = 673 data = -1 } #Irrawady
+		control = { province = 673 data = -1 } #Irrawady
+	}
+	random = no
+	country = BRM
+	name = "EVENTNAME136008" #Move to Pegu
+	desc = "EVENTHIST136008"
+	#-#Pegu (also known as Bago) was the capital of a united Burman Kingdom from 1539-1599.
+
+	date = { day = 1 month = january year = 1539 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1599 }
+
+	action_a = {
+		name = "ACTIONNAME136008A" #Move to Pegu
+		command = { type = capital which = 673 } #Irrawady
+		command = { type = addcore which = 673 } #Irrawady
+		command = { type = addcore which = 674 } #Kwai
+		command = { type = setflag which = [Pegu] }
+		command = { type = sleepevent which = 136019 } #BRM: The submission of the Mon
+	}
+	action_b = {
+		name = "ACTIONNAME136008B" #Stay in Ava
+		command = { type = sleepevent which = 136009 } #BRM: Leaving Pegu
+		command = { type = sleepevent which = 136010 } #BRM: Move to Pegu again
+		command = { type = sleepevent which = 136011 } #BRM: Leaving Pegu again
+	}
+}
+
+#(1539-1820) The submission of the Mon - Ahistorical
+event = {
+	id = 136019
+	trigger = {
+		OR = {
+			event = 136008 #BRM: Move to Pegu
+			AND = {
+				NOT = { event = 136008 } #BRM: Move to Pegu
+				year = 1600
+			}
+		}
+		OR = {
+			AND = {
+				OR = {
+					owned = { province = 673 data = -1 } #Irrawady
+					owned = { province = 674 data = -1 } #Kwai
+				}
+				NOT = { exists = MON }
+			}
+			vassal = { country = BRM country = MON }
+		}
+		NOT = {
+			core = { province = 673 data = -1 } #Irrawady
+			core = { province = 674 data = -1 } #Kwai
+		}
+	}
+	random = no
+	country = BRM
+	name = "EVENTNAME136019" #The submission of the Mon
+	desc = "EVENTHIST136001"
+	#-#For two hundred years, there was incessant warfare between the Mon and the Burmans, but the Mon managed to retain their independence until 1539, when they came under the domination of Myanmar led by King Tabinshwehti.
+
+	date = { day = 1 month = january year = 1539 }
+	offset = 300
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME136019A" #The land is ours!
+		command = { type = addcore which = 673 } #Irrawady
+		command = { type = addcore which = 674 } #Kwai
+	}
+}
+
+#(1551) Subjugation of the Shan
+event = {
+	id = 136002
+	trigger = {
+		exists = MUB
+		NOT = { vassal = { country = BRM country = MUB } }
+	}
+	random = no
+	country = BRM
+	name = "EVENTNAME136002" #Subjugation of the Shan
+	desc = "EVENTHIST136002"
+	#-#The Shans ruled this region of northern Burma, called the Shan States, until the 16th century, when King Bayinnaung established Burmese control over all of the Shan States.
+
+	date = { day = 1 month = january year = 1551 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1551 }
+
+	action_a = {
+		name = "ACTIONNAME136002A" #They shall submit!
+		command = { type = relation which = MUB value = -100 }
+		command = { type = addcore which = 1548 } #Shan
+		command = { type = addcore which = 1549 } #Bago
+		command = { type = sleepevent which = 136020 } #BRM: The submission of the Shan
+	}
+	action_b = {
+		name = "ACTIONNAME136002B" #We are cowards!
+		command = { type = relation which = MUB value = 50 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1552-1820) The submission of the Shan - Ahistorical
+event = {
+	id = 136020
+	trigger = {
+		OR = {
+			AND = {
+				OR = {
+					owned = { province = 1548 data = -1 } #Shan
+					owned = { province = 1549 data = -1 } #Bago
+				}
+				NOT = { exists = MUB }
+			}
+			vassal = { country = BRM country = MUB }
+		}
+		NOT = {
+			core = { province = 1548 data = -1 } #Shan
+			core = { province = 1549 data = -1 } #Bago
+		}
+	}
+	random = no
+	country = BRM
+	name = "EVENTNAME136020" #The submission of the Shan
+	desc = "EVENTHIST136002"
+	#-#The Shans ruled this region of northern Burma, called the Shan States, until the 16th century, when King Bayinnaung established Burmese control over all of the Shan States.
+
+	date = { day = 1 month = january year = 1552 }
+	offset = 300
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME136020A" #The land is ours!
+		command = { type = addcore which = 1548 } #Shan
+		command = { type = addcore which = 1549 } #Bago
+	}
+}
+
+#(1557) Subjugation of Lan Na
+event = {
+	id = 136003
+	trigger = {
+		exists = LNA
+		NOT = { vassal = { country = BRM country = LNA } }
+	}
+	random = no
+	country = BRM
+	name = "EVENTNAME136003" #Subjugation of Lan Na
+	desc = "EVENTHIST136003"
+	#-#In 1558 AD Chiang Mai was taken by the Burmese empire. Most of Lan Na remained under Burmese control for over 200 years, although for much of the population the effects were barely noticeable except during the odd small-scale rebellion, when the Burmese would sack a rebellious dukedom as a punishment. There was no direct colonization, but annual tributes to Myanmar had to be paid, and a Burmese prince sat on the throne in Chiang Mai.
+
+	date = { day = 1 month = january year = 1557 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1557 }
+
+	action_a = {
+		name = "ACTIONNAME136003A" #They shall submit!
+		command = { type = relation which = LNA value = -100 }
+		command = { type = addcore which = 1550 } #Lampang
+		command = { type = sleepevent which = 136021 } #BRM: The submission of Lan Na
+	}
+	action_b = {
+		name = "ACTIONNAME136003B" #We are cowards!
+		command = { type = relation which = LNA value = 50 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1552-1820) The submission of Lan Na - Ahistorical
+event = {
+	id = 136021
+	trigger = {
+		OR = {
+			AND = {
+				owned = { province = 1550 data = -1 } #Lampang
+				NOT = { exists = LNA }
+			}
+			vassal = { country = BRM country = LNA }
+		}
+		NOT = {
+			core = { province = 1550 data = -1 } #Lampang
+		}
+	}
+	random = no
+	country = BRM
+	name = "EVENTNAME136021" #The submission of Lan Na
+	desc = "EVENTHIST136003"
+	#-#In 1558 AD Chiang Mai was taken by the Burmese empire. Most of Lan Na remained under Burmese control for over 200 years, although for much of the population the effects were barely noticeable except during the odd small-scale rebellion, when the Burmese would sack a rebellious dukedom as a punishment. There was no direct colonization, but annual tributes to Myanmar had to be paid, and a Burmese prince sat on the throne in Chiang Mai.
+
+	date = { day = 1 month = january year = 1568 }
+	offset = 300
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME136021A" #The land is ours!
+		command = { type = addcore which = 1550 } #Lampang
+	}
+}
+
+#(1567-1602) Offensive into Ayutthaya
+event = {
+	id = 65119
+	trigger = {
+		exists = AYU
+		NOT = {
+			vassal = { country = BRM country = AYU }
+			vassal = { country = AYU country = BRM }
+		}
+	}
+	random = no
+	country = BRM
+	name = "EVENTNAME65119" #Expansionism policies
+	desc = "EVENTHIST65119"
+	#-#After his ascension to power, King Tabinshwehti conquered and united local Burmese Kingdoms. His next target was the Kingdom of Ayutthaya. 3 wars were fought starting in 1538, ending in the 1569 with the capture of Ayutthaya and subjugation of the country.
+
+	date = { day = 1 month = january year = 1567 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1602 }
+
+	action_a = {
+		name = "ACTIONNAME65119A" #Expand South
+		command = { type = domestic which = land value = 2 }
+		command = { type = domestic which = offensive value = 1 }
+		command = { type = domestic which = quality value = 1 }
+		command = { type = CAV which = -2 value = 7000 }
+		command = { type = INF which = -2 value = 20000 }
+		command = { type = relation which = AYU value = -100 }
+		command = { type = casusbelli which = AYU value = 360 }
+		command = { type = land value = 500 }
+	}
+	action_b = {
+		name = "ACTIONNAME65119B" #Expand West
+		command = { type = domestic which = land value = 2 }
+		command = { type = domestic which = offensive value = 1 }
+		command = { type = domestic which = quality value = 1 }
+		command = { type = CAV which = -2 value = 5000 }
+		command = { type = INF which = -2 value = 15000 }
+		command = { type = casusbelli which = AYU value = 120 }
+		command = { type = land value = 500 }
+		command = { type = casusbelli which = ARK value = 120 }
+	}
+}
+
+#(1568-1605) Capture of Ayutthaya
+event = {
+	id = 65121 #triggered by AYU_65122 A
+	trigger = {
+		NOT = {
+			vassal = { country = AYU country = BRM }
+		}
+	}
+	random = no
+	country = BRM
+	name = "EVENTNAME65121" #Capture of Ayutthaya
+	desc = "EVENTHIST65121"
+	#-#In 1569, Burmese troops under the command of King Bayinnaung overran the Thai troops and captured the capital of Ayutthaya. The occupation lasted only for 15 years, when the future King Naresuan rebelled and expelled Burmese forces from Ayutthaya.
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = vassal which = AYU }
+		command = { type = relation which = AYU value = -50 }
+		command = { type = trade value = 300 }
+		command = { type = population which = -2 value = 1000 }
+		command = { type = treasury value = 100 }
+	}
+}
+
+#(1571) Disappearance of a King
+event = {
+	id = 136000 #triggered by LAX_106004
+	random = no
+	country = BRM
+	name = "EVENTNAME136000" #Disappearance of a King
+	desc = "EVENTHIST136000"
+	#-#King Setthathirath of Lan Xang mysteriously disappeared in 1571 on his way home from a punitive expedition against Cambodia, perhaps in battle with the unconquered tribes in the highlands. Lan Xang then entered a period of twenty years of anarchy and Burmese domination.
+
+	action_a = {
+		name = "ACTIONNAME136000A" #Let us take advantage!
+		command = { type = treasury value = 100 }
+		command = { type = casusbelli which = LAX value = 240 }
+		command = { type = war which = LAX }
+	}
+	action_b = {
+		name = "ACTIONNAME136000B" #We are cowards!
+		command = { type = relation which = LAX value = 50 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1584) Thai Impudence
+event = {
+	id = 136007 #triggered by AYU_120008 A
+	random = no
+	country = BRM
+	name = "EVENTNAME136007" #Thai Impudence
+	desc = "EVENTHIST136007"
+	#-#Together with his younger brother, Ekatotsarot, Naresuen began to gather armed followers. He had gained an insight into Burmese armed strength and strategies during his formative years. He trained his troops in the art of guerilla warfare and their hit-and-run tactics earned them the nicknames Wild Tigers and Peeping Cats. Naresuen's opportunity to restore Siamese independence came following the death of Bayinnaung, in 1581. Revolts in the Shan states and at Ava were tying young King Nandabayin down at home when Naresuen declared Ayutthaya's freedom, in 1584. During the following nine years, the Burmese made several attempts to resubjugate Siam, but Naresuen had taken thorough defensive measures and repulsed all invasions. On one of these occasions, he killed the Burmese crown prince in single combat, both of them mounted on elephants.
+
+	action_a = {
+		name = "ACTIONNAME136007A" #Hmmmpphhh!
+		command = { type = casusbelli which = AYU value = 98 }
+		command = { type = revolt which = 1547 } #Mandalay
+		command = { type = revolt which = 1548 } #Shan
+		command = { type = stability value = -2 }
+	}
+}
+
+#(1599-1613) Leaving Pegu I
+event = {
+	id = 136009
+	trigger = {
+		owned = { province = 1547 data = -1 } #Mandalay
+		control = { province = 1547 data = -1 } #Mandalay
+		flag = [Pegu]
+	}
+	random = no
+	country = BRM
+	name = "EVENTNAME136009" #Leaving Pegu
+	desc = "EVENTHIST136009"
+	#-#The capital was moved back to Ava in 1599.
+
+	date = { day = 2 month = january year = 1599 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1613 }
+
+	action_a = {
+		name = "ACTIONNAME136009A" #Move back to Ava
+		command = { type = capital which = 1547 } #Mandalay
+		command = { type = clrflag which = [Pegu] }
+	}
+	action_b = {
+		name = "ACTIONNAME136009B" #Stay in Pegu
+		command = { type = sleepevent which = 136010 } #BRM: Move to Pegu again
+		command = { type = sleepevent which = 136011 } #BRM: Leaving Pegu again
+	}
+}
+
+#(1613-1634) Move to Pegu II
+event = {
+	id = 136010
+	trigger = {
+		owned = { province = 673 data = -1 } #Irrawady
+		control = { province = 673 data = -1 } #Irrawady
+		NOT = { flag = [Pegu] }
+	}
+	random = no
+	country = BRM
+	name = "EVENTNAME136010" #Move to Pegu again
+	desc = "EVENTHIST136010"
+	#-#Pegu (also known as Bago) was the capital of a united Burman Kingdom from 1613-1634.
+
+	date = { day = 2 month = january year = 1613 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1634 }
+
+	action_a = {
+		name = "ACTIONNAME136010A" #Move back to Pegu
+		command = { type = capital which = 673 } #Irrawady
+		command = { type = setflag which = [Pegu] }
+	}
+	action_b = {
+		name = "ACTIONNAME136010B" #Stay in Ava
+		command = { type = sleepevent which = 136011 } #BRM: Leaving Pegu again
+	}
+}
+
+#(1634) Leaving Pegu II
+event = {
+	id = 136011
+	trigger = {
+		owned = { province = 1547 data = -1 } #Mandalay
+		control = { province = 1547 data = -1 } #Mandalay
+		flag = [Pegu]
+	}
+	random = no
+	country = BRM
+	name = "EVENTNAME136011" #Leaving Pegu again
+	desc = "EVENTHIST136011"
+	#-#The capital was moved back to Ava in 1634.
+
+	date = { day = 2 month = january year = 1634 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME136011A" #Move back to Ava
+		command = { type = capital which = 1547 } #Mandalay
+		command = { type = clrflag which = [Pegu] }
+	}
+	action_b = {
+		name = "ACTIONNAME136011B" #Stay in Pegu
+		command = { }
+	}
+}
+
+#(1740) Mon Revolt
+event = {
+	id = 136012
+	trigger = {
+		OR = {
+			AND = {
+				OR = {
+					owned = { province = 673 data = -1 } #Irrawady
+					owned = { province = 674 data = -1 } #Kwai
+				}
+				NOT = { exists = MON }
+			}
+			vassal = { country = BRM country = MON }
+		}
+	}
+	random = no
+	country = BRM
+	name = "EVENTNAME136012" #Mon Revolt
+	desc = "EVENTHIST136012"
+	#-#Mon refused to recognize our rule and our informers there have sensed that a major revolt is soon to break out! Our army is waiting for our order to crush the rebels, what are we going to do?
+
+	date = { day = 1 month = january year = 1740 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1740 }
+
+	action_a = {
+		name = "ACTIONNAME136012A" #It's not worth it
+		command = { type = revolt which = -2 }
+		command = { type = independence which = MON }
+		command = { type = stability value = -3 }
+		command = { type = trigger which = 253000 } #MON: Mon Independence
+	}
+	action_b = {
+		name = "ACTIONNAME136012B" #They shall submit!
+		command = { type = revolt which = -2 }
+		command = { type = war which = MON }
+		command = { type = stability value = -5 }
+	}
+}
+
+#(1747-1753) Mon Sack of Ava
+event = {
+	id = 136013
+	trigger = {
+		owned = { province = 1547 data = -1 } #Mandalay
+		control = { province = 1547 data = MON }
+	}
+	random = no
+	country = BRM
+	name = "EVENTNAME136013" #Mon Sack of Ava
+	desc = "EVENTHIST136013"
+	#-#The people of Mon continue to give us big troubles, this time they attacked our city in Mandalay. Form a big army and crush those dregs...
+
+	date = { day = 1 month = january year = 1747 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1753 }
+
+	action_a = {
+		name = "ACTIONNAME136013A" #Crush those cursed Mon!
+		command = { type = relation which = MON value = -100 }
+		command = { type = domestic which = land value = 1 }
+		command = { type = domestic which = offensive value = 3 }
+		command = { type = domestic which = quality value = 1 }
+		command = { type = land value = 1000 }
+		command = { type = trade value = -250 }
+		command = { type = infra value = -250 }
+		command = { type = population which = -2 value = -2000 }
+		command = { type = stability value = -4 }
+		command = { type = inf which = -1 value = 25000 }
+		command = { type = cav which = -3 value = 10000 }
+	}
+}
+
+#(1763-1769) Destruction of Ayutthaya
+event = {
+	id = 136014
+	trigger = {
+		exists = AYU
+		NOT = {
+			vassal = { country = BRM country = AYU }
+			vassal = { country = AYU country = BRM }
+		}
+	}
+	random = no
+	country = BRM
+	name = "EVENTNAME136014" #Destruction of Ayutthaya
+	desc = "EVENTHIST136014"
+	#-#Alaungpaya's last campaign was an invasion of Siam (Thailand). He led an army through the town of Tavoy southward to Tenasserim and then northward to Ayutthaya (Ayuthia), the Siamese capital, which he surrounded in April 1760. During the siege he was wounded, and he died while his army was in retreat to Myanmar. King Hsinbyushin, third King (1763-76) of the Alaungpaya, or Konbaung, dynasty in Myanmar (Myanmar). He pursued a policy of expansion at the expense of practically all his neighbours. Hsinbyushin's most important single project was the subjugation of Siam (now Thailand). In 1764 he campaigned eastward, taking Chiang Mai (Chiengmai) and Vientiane before invading the Chao Phraya River valley. When the Siamese capital of Ayutthaya fell in April 1767, he deported thousands of prisoners to Myanmar. According to the Siamese chronicles, 'the King of Hanthawaddy (Bayinnaung) waged war like a monarch, but the King of Ava (Hsinbyushin) like a robber'.
+
+	date = { day = 1 month = november year = 1763 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1769 }
+
+	action_a = {
+		name = "ACTIONNAME136014A" #Crush those Thai!
+		command = { type = domestic which = land value = 1 }
+		command = { type = domestic which = offensive value = 1 }
+		command = { type = domestic which = quality value = 1 }
+		command = { type = CAV which = -2 value = 10000 }
+		command = { type = INF which = -2 value = 35000 }
+		command = { type = relation which = AYU value = -100 }
+		command = { type = casusbelli which = AYU value = 360 }
+		command = { type = relation which = LNA value = -100 }
+		command = { type = casusbelli which = LNA value = 360 }
+		command = { type = relation which = VIE value = -100 }
+		command = { type = casusbelli which = VIE value = 360 }
+		command = { type = land value = 1000 }
+		command = { type = stability value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME136014B" #We are cowards!
+		command = { type = relation which = AYU value = 50 }
+		command = { type = relation which = LNA value = 50 }
+		command = { type = relation which = VIE value = 50 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1763-1779) Sack of Ayutthaya
+event = {
+	id = 136015 #triggered by AYU_120014 B
+	trigger = {
+		NOT = {
+			vassal = { country = AYU country = BRM }
+		}
+	}
+	random = no
+	country = BRM
+	name = "EVENTNAME136015" #Sack of Ayutthaya
+	desc = "EVENTHIST136015"
+	#-#In 1767, a second Burmese invasion, led by Alaungpaya's son Hsinbyushin, succeeded in capturing Ayutthaya after a siege of fourteen months. In their hurry to withdraw from the conquered capital, the Burmese killed, looted and set fire to the whole city, thereby expunging four centuries of Thai civilization. Showing complete disregard for their common religion, the Buddhist Burmese plundered Ayutthaya's rich temples, melting down all the available gold from Buddha's images. Members of the royal family, along with 90,000 captives and the accumulated booty, were removed to Burma.
+
+	action_a = {
+		name = "SPLENDID"
+		command = { type = vassal which = AYU }
+		command = { type = relation which = AYU value = -50 }
+		command = { type = trade value = 300 }
+		command = { type = population which = -2 value = 3000 }
+		command = { type = treasury value = 200 }
+	}
+}
+
+#(1763-1779) Expelled from Ayutthaya
+event = {
+	id = 136016 #triggered by AYU_120014 A
+	random = no
+	country = BRM
+	name = "EVENTNAME136016" #Expelled from Ayutthaya
+	desc = "EVENTHIST136016"
+	#-#Ayutthaya is forcefully revolting against us, causing unforseen trouble and discontent
+
+	action_a = {
+		name = "ACTIONNAME136016A" #Hmmmpphhh!
+		command = { type = revolt which = 1548 } #Shan
+		command = { type = revolt which = 1548 } #Shan
+		command = { type = stability value = -2 }
+	}
+}
+
+#(1784) Subjugation of Arakan
+event = {
+	id = 136005
+	trigger = {
+		exists = ARK
+		NOT = { vassal = { country = BRM country = ARK } }
+	}
+	random = no
+	country = BRM
+	name = "EVENTNAME136005" #Subjugation of Arakan
+	desc = "EVENTHIST136005"
+	#-#In 1784 Burmese King Boddawphaya sent 30,000 soldiers to conquer Arakan at the request of Rakhine noble Nagasandi and returned in February 1785 with the royal family and 20,000 inhabitants as prisoner. Thousand of Arakanese Muslims and Arakanese Buddhists were put to death. The Burmese soldiers destroyed mosques, temples, shrines, seminaries and libraries, including the Mrauk-U Royal Library. As for Arakanese Buddhists, their revered Mahamuni Image of Lord Buddha was taken away to Burma. The fall of Mrauk-U Empire was a mortal blow to the Muslims for every thing that was materially and culturally Islamic was razed to the ground.
+
+	date = { day = 1 month = january year = 1784 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1784 }
+
+	action_a = {
+		name = "ACTIONNAME136005A" #They shall submit!
+		command = { type = relation which = ARK value = -100 }
+		command = { type = addcore which = 671 } #Chin
+		command = { type = addcore which = 672 } #Tarakan
+		command = { type = sleepevent which = 136022 } #BRM: The submission of the Arakan
+	}
+	action_b = {
+		name = "ACTIONNAME136005B" #We are cowards!
+		command = { type = relation which = ARK value = 50 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1785-1820) The submission of Arakan - Ahistorical
+event = {
+	id = 136022
+	trigger = {
+		OR = {
+			AND = {
+				OR = {
+					owned = { province = 671 data = -1 } #Chin
+					owned = { province = 672 data = -1 } #Tarakan
+				}
+				NOT = { exists = ARK }
+			}
+			vassal = { country = BRM country = ARK }
+		}
+		NOT = {
+			core = { province = 671 data = -1 } #Chin
+			core = { province = 672 data = -1 } #Tarakan
+		}
+	}
+	random = no
+	country = BRM
+	name = "EVENTNAME136022" #The submission of Arakan
+	desc = "EVENTHIST136005"
+	#-#In 1784 Burmese King Boddawphaya sent 30,000 soldiers to conquer Arakan at the request of Rakhine noble Nagasandi and returned in February 1785 with the royal family and 20,000 inhabitants as prisoner. Thousand of Arakanese Muslims and Arakanese Buddhists were put to death. The Burmese soldiers destroyed mosques, temples, shrines, seminaries and libraries, including the Mrauk-U Royal Library. As for Arakanese Buddhists, their revered Mahamuni Image of Lord Buddha was taken away to Burma. The fall of Mrauk-U Empire was a mortal blow to the Muslims for every thing that was materially and culturally Islamic was razed to the ground.
+
+	date = { day = 1 month = january year = 1785 }
+	offset = 300
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME136022A" #The land is ours!
+		command = { type = addcore which = 671 } #Chin
+		command = { type = addcore which = 672 } #Tarakan
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Random Events
+#-----------------------------------------------------------------------------------------------
+
+#White Elephants
+event = {
+	id = 136006
+	random = yes
+	country = BRM
+	name = "EVENTNAME136006" #White Elephants
+	desc = "EVENTHIST136006"
+	#-#The Buddhist Kings of Southeast Asia have always treasured the possession of white elephants, enhancing royal prestige and ensuring the country's prosperity.
+
+	action_a = {
+		name = "SPLENDID"
+		command = { type = stability value = 1 }
+		command = { type = revoltrisk which = 12 value = -3 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 136023

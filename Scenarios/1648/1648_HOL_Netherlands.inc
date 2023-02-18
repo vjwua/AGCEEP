@@ -11,7 +11,7 @@ country = {
 			[WIC] = yes
 		}
 	}
-	ai = "HOL_1590.ai"
+	ai = "HOL_1590.txt"
 	flagname = "Princevlag"
 	policy = {
 		aristocracy = 3
@@ -36,7 +36,7 @@ country = {
 	religion = { type = reformed }
 	culture = { type = dutch }
 	diplomacy = {
-		relation = { tag = BTM value = -100 }
+		relation = { tag = BTN value = -100 }
 		relation = { tag = OMA value = 150 }
 		relation = { tag = MLC value = 120 }
 		relation = { tag = SPA value = -200 }

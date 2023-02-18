@@ -4,7 +4,7 @@
 
 country = {
 	tag = BUR
-	ai = "BUR_1419.ai"
+	ai = "BUR_1419.txt"
 	colonialattempts = 0
 	colonialnation = yes
 	major = no
@@ -33,7 +33,7 @@ country = {
 		relation = { tag = SAV value = 150 }
 		relation = { tag = KOL value = 150 }
 		relation = { tag = GEL value = 150 }
-		relation = { tag = MUN value = 150 }
+		relation = { tag = BRG value = 150 }
 		relation = { tag = LOR value = 150 }
 		relation = { tag = TYR value = 150 }
 		relation = { tag = HEL value = 150 }

@@ -1,0 +1,1132 @@
+#CoTs Events - range 337800-337999
+
+#-----------------------------------------------------------------------------------------------
+#Africa
+
+#(1500-1650) Rise of Kenya and decline of Kilwa
+#Event designed to provide continuity between scenarios
+event = {
+	id = 337800
+	trigger = {
+		cot = 766
+		OR = {
+			control = { province = 766 data = POR } #Rufiji
+			owned = { province = 765 data = POR } #Zanzibar
+			vassal = { country = POR country = KIL }
+			war = { country = KIL country = POR }
+			continent = europe #in case another European power took Rufiji
+		}
+	}
+	random = no
+	province = 766 #Rufiji
+	name = "EVENTNAME337800" #Rise of Kenya and decline of Kilwa
+	desc = "EVENTHIST337800"
+	#-#When the Europeans arrived in the Indian Ocean, they destroyed Muslim shipping along the East African coast. Kilwa as a powerful trade center became a thing of the past and it was sometime before the city could recover to be even a shadow of it's former self.
+
+	date = { day = 1 month = january year = 1500 }
+	offset = 300
+	deathdate = { day = 1 month = january year = 1650 }
+
+	action_a = {
+		name = "ACTIONNAME337800A" #A new market
+		command = { type = removecot which = 766 } #Rufiji
+		command = { type = provincetax which = 766 value = -2 } #Rufiji
+		command = { type = cot which = 762 } #Kenya
+	}
+}
+
+#(1638-1750) Rise of Zanzibar and decline of Kenya
+#Event designed to provide continuity between scenarios, and because after removal of Aden Eastern Africa deserves CoT, and Portugal has already lost Mascate, Malacca and Goa CoTs during tests on 1648 scenario, after removal of CoTs in Aden and Danzig, Bourbon and Zanzibar have appeared
+event = {
+	id = 337801
+	trigger = { cot = 762 }
+	random = no
+	province = 765 #Zanzibar
+	name = "EVENTNAME337801" #Rise of Zanzibar and decline of Kenya
+	desc = "EVENTHIST337801"
+	#-#Struggles between Omani and Portuguese and exploration led by other European nations has changed local trade patterns.
+
+	date = { day = 1 month = january year = 1638 }
+	offset = 2000
+	deathdate = { day = 29 month = december year = 1750 }
+
+	action_a = {
+		name = "ACTIONNAME337801A" #A new market
+		command = { type = removecot which = 762 } #Kenya
+		command = { type = cot which = 765 } #Zanzibar
+	}
+}
+
+#(1695-1750) Creation of CoT in Morocco - alternative version
+event = {
+	id = 337829
+	trigger = {
+		NOT = { event = 232005 } #MOR: Ismail's Foreign Relations
+		NOT = { #MOR have a specific event until 1705
+			AND = {
+				owned = { province = 733 data = MOR }
+				NOT = { year = 1705 }
+			}
+		}
+		owned = { province = 733 data = -1 } #Fez
+		owned = { province = 806 data = -1 } #Toubkal
+		owned = { province = 1595 data = -1 } #Anti-Atlas
+		owned = { province = 1596 data = -1 } #Mdennan
+		owned = { province = 1597 data = -1 } #Azaouad
+	}
+	random = no
+	province = 733 #Fez
+	name = "EVENTNAME337829" #Control over Maghreb
+	desc = "EVENTHIST337829"
+	#-#By holding Maghreb we control trade routes to the central Africa.
+
+	date = { day = 1 month = january year = 1695 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1750 }
+
+	action_a = {
+		name = "ACTIONNAME337829A" #We control our own trade
+		command = { type = removecot which = 1495 } #Timbuktu
+		command = { type = cot which = 733 } #Fez
+		command = { type = sleepevent which = 338110 } #ProvinceSpec*1495: The Gold-Salt Trade dries up
+		command = { type = sleepevent which = 232005 } #MOR: Ismail's Foreign Relations
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#America
+
+#(1450-1820) Resurrection of Cuzco Trade Center - set of 6 events
+event = {
+	id = 337820
+	trigger = {
+		NOT = { cot = 169 }
+		OR = {
+			owned = { province = 169 data = CHM } #Cuzco
+			owned = { province = 169 data = INC } #Cuzco
+		}
+	}
+	random = no
+	province = 169 #Cuzco
+	name = "EVENTNAME337820" #Resurrection of Cuzco Trade Center
+	desc = "EVENTHIST337820"
+	#-#Cuzco was capital of Inca Empire and acted as a hub for the Andean trade until arrival of Europeans.
+
+	date = { day = 1 month = january year = 1450 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1820 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = cot which = 169 } #Cuzco
+	}
+}
+event = {
+	id = 337821
+	trigger = {
+		event = 337820
+		NOT = { cot = 169 }
+		OR = {
+			owned = { province = 169 data = CHM } #Cuzco
+			owned = { province = 169 data = INC } #Cuzco
+		}
+	}
+	random = no
+	province = 169 #Cuzco
+	name = "EVENTNAME337820" #Resurrection of Cuzco Trade Center
+	desc = "EVENTHIST337820"
+	#-#Cuzco was capital of Inca Empire and acted as a hub for the Andean trade until arrival of Europeans.
+
+	date = { day = 1 month = january year = 1470 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1820 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = cot which = 169 } #Cuzco
+	}
+}
+event = {
+	id = 337822
+	trigger = {
+		event = 337821
+		NOT = { cot = 169 }
+		OR = {
+			owned = { province = 169 data = CHM } #Cuzco
+			owned = { province = 169 data = INC } #Cuzco
+		}
+	}
+	random = no
+	province = 169 #Cuzco
+	name = "EVENTNAME337820" #Resurrection of Cuzco Trade Center
+	desc = "EVENTHIST337820"
+	#-#Cuzco was capital of Inca Empire and acted as a hub for the Andean trade until arrival of Europeans.
+
+	date = { day = 1 month = january year = 1500 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1820 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = cot which = 169 } #Cuzco
+	}
+}
+event = {
+	id = 337823
+	trigger = {
+		event = 337822
+		NOT = { cot = 169 }
+		OR = {
+			owned = { province = 169 data = CHM } #Cuzco
+			owned = { province = 169 data = INC } #Cuzco
+		}
+	}
+	random = no
+	province = 169 #Cuzco
+	name = "EVENTNAME337820" #Resurrection of Cuzco Trade Center
+	desc = "EVENTHIST337820"
+	#-#Cuzco was capital of Inca Empire and acted as a hub for the Andean trade until arrival of Europeans.
+
+	date = { day = 1 month = january year = 1530 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1820 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = cot which = 169 } #Cuzco
+	}
+}
+event = {
+	id = 337824
+	trigger = {
+		event = 337823
+		NOT = { cot = 169 }
+		OR = {
+			owned = { province = 169 data = CHM } #Cuzco
+			owned = { province = 169 data = INC } #Cuzco
+		}
+	}
+	random = no
+	province = 169 #Cuzco
+	name = "EVENTNAME337820" #Resurrection of Cuzco Trade Center
+	desc = "EVENTHIST337820"
+	#-#Cuzco was capital of Inca Empire and acted as a hub for the Andean trade untill arrival of Europeans.
+
+	date = { day = 1 month = january year = 1560 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1820 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = cot which = 169 } #Cuzco
+	}
+}
+event = {
+	id = 337825
+	trigger = {
+		event = 337824
+		NOT = { cot = 169 }
+		OR = {
+			owned = { province = 169 data = CHM } #Cuzco
+			owned = { province = 169 data = INC } #Cuzco
+		}
+	}
+	random = no
+	province = 169 #Cuzco
+	name = "EVENTNAME337820" #Resurrection of Cuzco Trade Center
+	desc = "EVENTHIST337820"
+	#-#Cuzco was capital of Inca Empire and acted as a hub for the Andean trade untill arrival of Europeans.
+
+	date = { day = 1 month = january year = 1590 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1820 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = cot which = 169 } #Cuzco
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Asia
+
+#(1466-1519) Caspian Sea trade
+#Event designed to provide continuity between scenarios; Astrakhan is revolter and there is small chance that it will own Volgograd (or be larger than 4) - in fact only if Golden Horde decide to transform into Crimea (and even then Volgograd is seceded to Kazan) or Uzbecks conquer a lot and move to Samarkand
+#Kerch must be deleted, I propose to delete Azerbaijan as well (Ak and Kara Konlyu are fighting all the time or have internal crisises so these are not atractive for trade IMO
+event = {
+	id = 337812
+	trigger = {
+		owned = { province = 457 data = AST } #Astrakhan
+		countrysize = 4
+	}
+	random = no
+	province = 457 #Astrakhan
+	name = "EVENTNAME337812" #Caspian Sea trade
+	desc = "EVENTHIST337812"
+	#-#Astrakhan had a flourishing trade with Persia, Khiva, and Bukhara. Due to its location at the mouth of the Volga, Astrakhan controlled important trade routes between Eastern Europe and Central Asia.
+
+	date = { day = 1 month = january year = 1466 }
+	offset = 300
+	deathdate = { day = 1 month = january year = 1519 }
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = removecot which = 465 } #Kerch
+		command = { type = removecot which = 487 } #Azerbaijan
+		command = { type = cot which = 457 } #Astrakhan
+	}
+}
+
+#(1500-1550) Closure of the Kyzylkum Centre of Trade
+event = {
+	id = 337827
+	trigger = {
+		cot = 1534
+		OR = {
+			owned = { province = 1592 data = -1 } #Samarkand
+			AND = {
+				NOT = {	owned = { province = 1573 data = -1 } #Tobolsk
+				 	owned = { province = 1535 data = -1 } #Karsak
+				}
+				year = 1520
+			}
+		}
+	}
+	random = no
+	province = 1534 #Kyzylkum
+	name = "EVENTNAME337827" #Closure of the Kyzylkum Centre of Trade
+	desc = "EVENTHIST337827"
+	#-#Glorious days of Kyzylkum are over. Political and economical centers of Central Asia lie in the south.
+
+	date = { day = 1 month = january year = 1500 }
+	offset = 1000
+	deathdate = { day = 0 month = january year = 1550 }
+
+	action_a = {
+		name = "ACTIONNAME337827A" #Kyzylkum has lost its importance
+		command = { type = removecot which = 1534 } #Kyzylkum
+	}
+}
+
+#(1510-1519) Decline of Santal and rise of Ganges
+#Event designed to provide continuity between scenarios
+event = {
+	id = 337818
+	random = no
+	province = 557 #Ganges
+	name = "EVENTNAME337818" #Rise of Ganges and decline of Santal
+	desc = "EVENTHIST337818"
+	#-#Changes of local trade patterns resulted in movement of Centre of Trade to our province.
+
+	date = { day = 1 month = january year = 1510 }
+	offset = 3600
+	deathdate = { day = 29 month = december year = 1519 }
+
+	action_a = {
+		name = "ACTIONNAME337818A" #A new market
+		command = { type = removecot which = 556 } #Santal
+		command = { type = cot which = 557 } #Ganges
+	}
+}
+
+#(1517-1820) CoT from Al Kharam to Mascate
+event = {
+	id = 337804
+	trigger = {
+		NOT = {
+			OR = {
+				owned = { province = 505 data = POR } #Al Kharam
+				owned = { province = 504 data = POR } #Mascate
+			}
+			owned = { province = 505 data = ORM } #Al Kharam
+			AND = { #should not happen if Oman only owns Al Kharam
+				owned = { province = 505 data = OMA } #Al Kharam
+				NOT = {
+					owned = { province = 504 data = OMA } #Mascate
+				}
+			}
+		}
+	}
+	random = no
+	province = 504 #Mascate
+	name = "EVENTNAME337804" #Decline of Al Kharam
+	desc = "EVENTHIST337804"
+	#-#After political changes in the area, Al Kharam lost its importance and most of the trade relocated to Mascate.
+
+	date = { day = 1 month = january year = 1517 } #deathdate of Portuguese inheritance of Ormuz
+	offset = 360
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME337804A" #A new center of Trade
+		command = { type = removecot which = 505 } #Al Kharam
+		command = { type = cot which = 504 } #Mascate
+		command = { type = trade value = 1000 }
+		command = { type = merchants value = 3 }
+		command = { type = trigger which = 337805 } #CoTs*505: Consequence of the decline of Al Kharam
+		command = { type = population which = 504 value = 1500 } #Mascate
+	}
+}
+event = {
+	id = 337805 #triggered by CoTs_337804
+	random = no
+	province = 505 #Al Kharam
+	name = "EVENTNAME337805" #Consequence of the decline of Al Kharam
+	desc = "EVENTHIST337805"
+	#-#After political changes in the area, Al Kharam lost its importance and most of the trade relocated to Mascate.
+
+	action_a = {
+		name = "ALAS"
+		command = { type = population which = 505 value = -1500 } #Al Kharam
+	}
+}
+
+#(1520-1600) Persian trade
+event = {
+	id = 337814
+	trigger = {
+		OR = {
+			AND = {
+				owned = { province = 532 data = PER } #Awhaz
+				owned = { province = 533 data = PER } #Isfahan
+				owned = { province = 534 data = PER } #Fars
+				owned = { province = 529 data = PER } #Tabaristan
+				owned = { province = 530 data = PER } #Tabriz
+			}
+			AND = {
+				year = 1598
+				owned = { province = 533 data = PER } #Isfahan
+				control = { province = 533 data = PER } #Isfahan
+			}
+		}
+		OR = {
+			owned = { province = 487 data = TUR } #Azerbaijan
+			AND = {
+				NOT = { owned = { province = 487 data = PER } } #Azerbaijan
+				neighbour = TUR
+			}
+			AND = {
+				owned = { province = 488 data = TUR } #Kirkuk
+				owned = { province = 489 data = TUR } #Iraq
+				neighbour = TUR
+			}
+		}
+	}
+	random = no
+	province = 533 #Isfahan
+	name = "EVENTNAME337814" #Persian trade
+	desc = "EVENTHIST337814"
+	#-#Persia was gaining profit from the trade between Silk Route and India on east and Europe on west since ancient times. Victories over Uzbeks in second half of XVIth century moved Safavid's north-eastern border and protected central Iran. On the other hand Safavid Shah's defeats against Ottoman Sultans resulted in loss of eastern Anatolia, Iraq, Georgia and most of Azerbaijan. Thus, Shahs have finally moved their capital to Isfahan which has became hub of Persian trade.
+
+	date = { day = 1 month = january year = 1520 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1600 }
+
+	action_a = {
+		name = "ACTIONNAME337814A" #A new market
+		command = { type = merchants value = 3 }
+		command = { type = removecot which = 487 } #Azerbaijan
+		command = { type = cot which = 533 } #Isfahan
+	}
+}
+
+#(1540-1820) Closure of the Aden Centre of Trade
+#Number of CoTs should be lowered, and Aden is dangerous for newly created Mascate or East African CoTs (draining trade off other CoTs and leading to their decline); historically it declined
+event = {
+	id = 337802
+	trigger = {
+		cot = 500
+		OR = { #Portuguese influence or rise of Oman
+			cot = 549 #Goa
+			cot = 504 #Mascate
+		}
+		NOT = {
+			AND = {
+				countrysize = 6
+				OR = {
+					owned = { province = 500 data = ADE }
+					owned = { province = 500 data = YEM } #Yemen
+				}
+			}
+		}
+	}
+	random = no
+	province = 500 #Aden
+	name = "EVENTNAME337802" #Closure of the Aden Centre of Trade
+	desc = "EVENTHIST337802"
+	#-#Aden was important Trade Center in the middle ages. It was getting rich on the trade between East and West. However, appearance of the Portuguese, who opened another route to Europe, captured Mombassa, Al-Kharam, Ormuz and several Indian cities, led to decline of Aden importance. In the second half of 16th century Ottoman Empire subjugated area of Yemen. Since 1630 Yemen was de-facto independent but did not regain importance until Suez Canal was build.
+
+	date = { day = 1 month = january year = 1540 }
+	offset = 1000
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME337802A" #Aden has lost its importance
+		command = { type = removecot which = 500 } #Aden
+	}
+}
+
+#(1556-1820) Closure of the Astrakhan Centre of Trade
+#Should Russia own it?, I guess so, anyway Samarkand will have separate decline event; Samarkand is at the receiving end of Silk Road and Russia did not control Central Asia before XVIII century so after creation of Isfahan, Astrakhan will not be big CoT; and what about other khanates? - IMO let them keep it and maybe delete CoT at some given date? - 1580 right now, before 1630 for sure
+event = {
+	id = 337813
+	trigger = {
+		cot = 457
+		OR = {
+			NOT = {
+				owned = { province = 457 data = RUS }
+				religion = sunni
+			}
+			year = 1580
+		}
+	}
+	random = no
+	province = 457 #Astrakhan
+	name = "EVENTNAME337813" #Closure of the Astrakhan Centre of Trade
+	desc = "EVENTHIST337813"
+	#-#Astrakhan functioned as a transit trade center but time of flourishing trade is over now...\n \n Historically, Ivan the Terrible captured Astrakhan in 1556. This was the beginning of the end. Muslim elites fled to other Khanates, mosques has been replaced by Orthodox churches. At the beginning of 17th century Astrakhan has finally lost its importance.
+
+	date = { day = 1 month = january year = 1556 }
+	offset = 1000
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME337813A" #Astrakhan has lost its importance
+		command = { type = removecot which = 457 } #Astrakhan
+	}
+}
+
+#(1550-1700) Control of the Persian trade
+event = {
+	id = 337815
+	trigger = {
+		NOT = { event = 337814 } #CoTs*533: Persian Trade
+		NOT = {
+			AND = {
+				owned = { province = 533 data = PER }
+				NOT = { year = 1600 }
+			}
+		}
+		AND = {
+			owned = { province = 532 data = -1 } #Awhaz
+			owned = { province = 534 data = -1 } #Fars
+			owned = { province = 535 data = -1 } #Hormouz
+			owned = { province = 529 data = -1 } #Tabaristan
+			owned = { province = 530 data = -1 } #Tabriz
+		}
+	}
+	random = no
+	province = 533 #Isfahan
+	name = "EVENTNAME337815" #Control of the Persian trade
+	desc = "EVENTHIST337815"
+	#-#By holding Persia and Ormuz we control trade in the Persian Gulf and intermediate between India and Europe.
+
+	date = { day = 1 month = january year = 1550 }
+	offset = 1000
+	deathdate = { day = 1 month = january year = 1700 }
+
+	action_a = {
+		name = "ACTIONNAME337815A" #A new market
+		command = { type = sleepevent which = 337814 } #CoTs*533: Persian Trade
+		command = { type = merchants value = 3 }
+		command = { type = removecot which = 487 } #Azerbaijan
+		command = { type = cot which = 533 } #Isfahan
+	}
+}
+
+#(1620-1820) Decline of Samarkand
+#Samarkand is at the receiving end of Silk Road and Russia did not control Central Asia before XVIII century, it had contacts with India and Persia
+event = {
+	id = 337830
+	trigger = {
+		cot = 1592
+		OR = {
+			NOT = {
+				countrysize = 20
+				year = 1670
+			}
+			AND = {
+				cot = 1573 #Tobolsk
+				#Russia deep inside Siberian corridor
+				owned = { province = 600 data = RUS } #Irkutsk
+			}
+			AND = {
+				cot = 1573 #Tobolsk
+				#Russia completely blocks Siberian corridor
+				owned = { province = 580 data = RUS } #Omsk
+				owned = { province = 584 data = RUS } #Novosibirsk
+				owned = { province = 583 data = RUS } #Irtych
+			}
+			#someone else colonized quite deep - will be entitled to another CoT
+			AND = {
+				NOT = { owned = { province = 588 data = -1 } } #Ob
+				NOT = { provincereligion = { province = 588 data = pagan } } #Ob
+				NOT = { owned = { province = 586 data = -1 } } #Demianka
+				NOT = { provincereligion = { province = 586 data = pagan } }
+				NOT = { owned = { province = 583 data = -1 } } #Irtych
+				NOT = { provincereligion = { province = 583 data = pagan } }
+				OR = {
+					AND = {
+						NOT = { owned = { province = 585 data = -1 } } #Altai
+						NOT = { provincereligion = { province = 585 data = pagan } }
+					}
+					AND = {
+						NOT = { owned = { province = 584 data = -1 } } #Novosibirsk
+						NOT = { provincereligion = { province = 584 data = pagan } }
+					}
+				}
+			}
+		}
+	}
+	random = no
+	province = 1592 #Samarkand
+	name = "EVENTNAME337830" #Decline of Samarkand
+	desc = "EVENTHIST337830"
+	#-#Colonization of Siberia opened new markets and revealed abundance of new resources. Minerals, furs and other commodities flow from Siberia while another stream of merchandises flow into Siberia. Unfortunatelly, Samarkand cannot compete any longer.
+
+	date = { day = 1 month = january year = 1620 }
+	offset = 1000
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME337830A" #Samarkand has lost its importance
+		command = { type = removecot which = 1592 } #Samarkand
+	}
+}
+
+#(1630-1820) Decline of Malacca and rise of Jakarta
+#Event designed to provide continuity between scenarios
+event = {
+	id = 337817
+	trigger = {
+		owned = { province = 702 data = HOL }
+	}
+	random = no
+	province = 702 #Jakarta
+	name = "EVENTNAME337817" #A new Trading Center in Indonesia
+	desc = "EVENTHIST337817"
+	#-#The Dutch managed to break the Portuguese monopoly of the spice trade. As the Dutch fleets grew in size, so did their interference with Portuguese trade, and the first skirmishes took place. By 1619, the Dutch conquered Jakarta which they rename Batavia and make it their East Indies capital. For the next twenty years the two cities of Goa and Batavia would fight each other relentlessly, since they stood as the capital of the Portuguese India State (or the Indian Vice-Royalty) and the Dutch EastIndia Company's base of operations.
+
+	date = { day = 1 month = january year = 1630 }
+	offset = 360
+	deathdate = { year = 1820 } #or earlier if further changes will be made
+
+	action_a = {
+		name = "ACTIONNAME337817A" #A new market
+		command = { type = removecot which = 679 } #Ajeh
+		command = { type = removecot which = 677 } #Malacca
+		command = { type = cot which = 702 } #Jakarta
+	}
+}
+
+#(1638-1647) Rise of Surat and decline of Goa
+#Event designed to provide continuity between scenarios
+event = {
+	id = 337816
+	random = no
+	trigger = {
+		cot = 549
+	}
+	province = 547 #Gujarat
+	name = "EVENTNAME337816" #Rise of Surat and decline of Goa
+	desc = "EVENTHIST337816"
+	#-#Decline of Portuguese Trade Empire has changed local trade patterns.
+
+	date = { day = 1 month = january year = 1638 }
+	offset = 3600
+	deathdate = { day = 29 month = december year = 1647 }
+
+	action_a = {
+		name = "ACTIONNAME337816A" #A new market
+		command = { type = removecot which = 549 } #Goa
+		command = { type = cot which = 547 } #Gujarat
+	}
+}
+
+#(1638-1647) Rise of Surat and decline of Goa
+#Event designed to provide continuity between scenarios
+event = {
+	id = 337831
+	trigger = {
+		cot = 569
+		event = 337816
+		OR = {
+			AND = {
+				NOT = { countrysize = 8 }
+				continent = asia
+			}
+			owned = { province = 547 data = -1 } #Gujarat
+		}
+	}
+	random = no
+	province = 569 #Kerala
+	name = "EVENTNAME337816" #Rise of Surat and decline of Goa
+	desc = "EVENTHIST337816"
+	#-#Decline of Portuguese Trade Empire has changed local trade patterns.
+
+	date = { day = 1 month = january year = 1638 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1647 }
+
+	action_a = {
+		name = "OK"
+		command = { type = removecot which = 569 } #Kerala
+	}
+}
+
+#(1638-1647) Decline of Ganges and rise of Howrah
+#Event designed to provide continuity between scenarios
+event = {
+	id = 337819
+	random = no
+	province = 558 #Howrah
+	name = "EVENTNAME337819" #Rise of Howrah and decline of Ganges
+	desc = "EVENTHIST337819"
+	#-#Changes of local trade patterns resulted in movement of Centre of Trade to our province.
+
+	date = { day = 1 month = january year = 1638 }
+	offset = 3600
+	deathdate = { day = 29 month = december year = 1647 }
+
+	action_a = {
+		name = "ACTIONNAME337819A" #A new market
+		command = { type = removecot which = 556 } #Santal; just to be safe
+		command = { type = removecot which = 557 } #Ganges
+		command = { type = cot which = 558 } #Howrah
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Europe
+
+#(1419-1600) Control of the Bosporus
+event = {
+	id = 337808
+	trigger = {
+		NOT = { event = 3352 } #The Economic Reforms of Mehmed II
+		NOT = { #TUR have a specific event until 1491
+			AND = {
+				owned = { province = 357 data = TUR }
+				NOT = { year = 1491 }
+			}
+		}
+		AND = {
+			owned = { province = 477 data = -1 } #Anatolia
+			owned = { province = 478 data = -1 } #Smyrna
+			owned = { province = 357 data = -1 } #Thrace
+			owned = { province = 358 data = -1 } #Macedonia
+		}
+	}
+	random = no
+	province = 357 #Thrace
+	name = "EVENTNAME337808" #Control of the Bosporus
+	desc = "EVENTHIST337808"
+	#-#By holding the Bosporus we can control trade in the Black Sea.
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1600 }
+
+	action_a = {
+		name = "ACTIONNAME337808A" #A new market
+		command = { type = removecot which = 465 } #Kerch
+		command = { type = cot which = 357 } #Thrace
+		command = { type = relation which = VEN value = -150 }
+		command = { type = relation which = GEN value = -100 }
+		command = { type = domestic which = MERCANTILISM value = 2 }
+		command = { type = merchants value = 6 }
+		command = { type = sleepevent which = 3352 } #TUR: The Economic Reforms of Mehmed II
+	}
+}
+
+#(1458-1820) Decline of Livland
+event = {
+	id = 337809
+	trigger = {
+		cot = 282
+	}
+	random = no
+	province = 282 #Livland
+	name = "EVENTNAME337809" #Closure of the Livland Centre of Trade
+	desc = "EVENTHIST337809"
+	#-#With the reduced importance of Livonian Order, Riga gradually lost its importance in the international trade.
+
+	date = { day = 1 month = january year = 1458 } #the last chance for Danzig CoT is in the 1457
+	offset = 1000
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME337809A" #Livland has lost its importance
+		command = { type = removecot which = 282 } #Livland
+	}
+}
+
+#(1470-1820) Decline of Mecklenburg
+event = {
+	id = 337810
+	trigger = {
+		cot = 305
+		cot = 301 #only lack of Danzig saves Mecklenburg
+	}
+	random = no
+	province = 305 #Mecklenburg
+	name = "EVENTNAME337810" #Closure of the Mecklenburg Centre of Trade
+	desc = "EVENTHIST337810"
+	#-#Glorious days of strong Hanza are over. Kings and princes across the whole Europe introduce even more protectionst policies and we cannot do anything about it.
+
+	date = { day = 1 month = january year = 1470 }
+	offset = 1000
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME337810A" #Mecklenburg has lost its importance
+		command = { type = removecot which = 305 } #Mecklenburg
+	}
+}
+
+#(1540-1820) Decline of Liguria
+event = {
+	id = 337806
+	trigger = {
+		NOT = {
+			AND = {
+				OR = {
+					owned = { province = 403 data = ITA }
+					owned = { province = 403 data = GEN }
+				}
+				countrysize = 12
+			}
+		}
+	}
+	random = no
+	province = 403 #Liguria
+	name = "EVENTNAME337806" #Decline of Liguria
+	desc = "EVENTHIST337806"
+	#-#With the reduced importance of Mediterranean trade, Genoa gradually lost its importance in international trade.
+
+	date = { day = 1 month = january year = 1540 }
+	offset = 1800
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ALAS"
+		command = { type = merchants value = -2 }
+		command = { type = removecot which = 403 } #Liguria
+	}
+}
+
+#(1606-1794) Livorno: Porto franco, Free Port
+event = {
+	id = 337835
+	trigger = {
+		owned = { province = 401 data = TOS } #Firenze
+		control = { province = 401 data = TOS } #Firenze
+		NOT = { cot = 403 } #Liguria
+	}
+	random = no
+	province = 401 #Firenze
+	name = "EVENTNAME337835" #Livorno: Porto franco, Free Port
+	desc = "EVENTHIST337835"
+	#-#In the late 1580s, Ferdinando I de Medici declared Livorno a ''porto Franco'', which meant that the goods traded here were duty free. The "Leggi Livornine" were laws which ruled between 1590 and 1603. These laws helped the trading activities of the merchant, freedom of religion and amnesty for some penance. Thanks to these laws, Livorno became a cosmopolitan city and one of the most important ports of the entire Mediterranean area. Many foreigners moved to Livorno, Armenians, Dutch, English, Greeks, and Jews, were among those who relocated to live and trade. Some Moriscos also moved to Livorno. On the 19th of March 1606, the Granduca di Toscana Ferdinando I de' Medici, in the Fortezza Vecchia Chapel of Saint Francis of Assisi elevated Livorno at the rank of city. During the Napoleonic Wars, trade with England was prohibited and the economy of Livorno suffered greatly.
+
+	date = { day = 18 month = march year = 1606 }
+	offset = 90
+	deathdate = { day = 29 month = december year = 1794 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = cot which = 401 } #Firenze
+		command = { }
+	}
+}
+
+#(1607-1795) Closure of Livorno CoT
+event = {
+	id = 337836
+	trigger = {
+		cot = 401 #Firenze
+		owned = { province = 401 data = SPA } #Firenze
+		control = { province = 401 data = SPA } #Firenze
+	}
+	random = no
+	province = 401 #Firenze
+	name = "EVENTNAME337836" #Closure of Livorno Centre of Trade
+	desc = "EVENTHIST337836"
+	#-#Ferdinando I de' Medici, Grand Duke of Tuscany, foreign policy, attempted to free Tuscany from Spanish domination. While Spain's interest was to direct all trade from northern Europe to Spanish ports and not Italian ports.
+
+	date = { day = 0 month = january year = 1607 }
+	offset = 30
+	deathdate = { day = 0 month = april year = 1795 }
+
+	action_a = {
+		name = "ACTIONNAME337836A" #Livorno must not compete
+		command = { type = removecot which = 401 } #Firenze
+		command = { type = sleepevent which = 337835 } #CoTs: Livorno: Porto franco, Free Port
+	}
+}
+
+#(1643-1820) Decline of Sjælland
+#Only annexation of Sweden or preventing Netherlands to form can stop it; for it Sweden is harder: other country would be eligible for Netherlands help: e.g. Poland or Russia, make your pick
+event = {
+	id = 337811
+	trigger = {
+		cot = 307
+		OR = {
+			AND = { #for Denmark
+				owned = { province = 307 data = DAN }
+				AND = {
+					exists = SWE #only one country
+					exists = HOL
+				}
+			}
+			AND = { #for Sweden
+				owned = { province = 307 data = SWE }
+				OR = {
+					exists = DAN
+					AND = {
+						exists = HOL
+						exists = POL #or RUS?
+					}
+				}
+			}
+			AND = { #someone else destroyed Denmark
+				NOT = { owned = { province = 307 data = DAN } }
+				NOT = { owned = { province = 307 data = SWE } }
+			}
+		}
+	}
+	random = no
+	province = 307 #Sjælland
+	name = "EVENTNAME337811" #Closure of the Sjælland Centre of Trade
+	desc = "EVENTHIST337811"
+	#-#Since the dissolution of Kalmar Union Sweden always wanted to gain dominance over Denmark. Danish taxes on Sund were one of sore points also for the Netherlands, so they gladly helped to modernize Swedish army and navy, allowed Swedish recruitment and even borrowed its own navy against Denmark. Thirty Years War was an arena of rivalry between two Protestant countries as well. Danish fleet has been broken and Swedes landed near Copenhagen. In 1645 King Christian had to sign humiliating peace treaty and times of Danish dominance on the Baltic were over.
+
+	date = { day = 1 month = january year = 1643 }
+	offset = 1000
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME337811A" #Sjælland has lost its importance
+		command = { type = removecot which = 307 } #Sjælland
+	}
+}
+
+#(1644-1648) Closure of the Tago Centre of Trade
+#There will be CoT in Morocco and Portugal can capture a lot of other CoTs; date changed to provide West-African CoT in 1648 scenario
+event = {
+	id = 444188
+	trigger = {
+		cot = 441
+	}
+	random = no
+	province = 441 #Tago
+	name = "EVENTNAME337803" #Closure of the Tago Centre of Trade
+	desc = "EVENTHIST337803"
+	#-#Portuguese colonies and trade routes were taken over by Dutch, English, Spaniards and even Arabs. It is sad, but Tago has declined.
+
+	date = { day = 1 month = january year = 1644 }
+	offset = 1000
+	deathdate = { day = 0 month = january year = 1648 }
+
+	action_a = {
+		name = "ACTIONNAME337803A" #Tago has lost its importance
+		command = { type = removecot which = 441 } #Tago
+		command = { type = cot which = 794 } #Palanas, instead of El-Mina
+	}
+}
+
+#(1648-1820) Decline of Flandern
+#if Netherlands did not form most probable occupants are Spain, France, England and much less Denmark, historically trade left devastated Flandern, IMO should move somewhere into Germany
+#if Netherlands did not form before end of 30 Years War there is little chance that will form, if they form much later they will not have time/chance to dominate world's trade and create colonial empire
+event = {
+	id = 337828
+	trigger = {
+		cot = 380
+		OR = {
+			event = 337027 #Dutch Nobility demands General Estates for Flandern
+			event = 337035 #Edict of Blood for Flandern
+		}
+	}
+	random = no
+	province = 380 #Flandern
+	name = "EVENTNAME337828" #Closure of the Flandern Centre of Trade
+	desc = "EVENTHIST337828"
+	#-#Decades of wars, rebellions and religious pogroms left Lower Countries broken and devastated. There is little left here.
+
+	date = { day = 1 month = january year = 1648 }
+	offset = 1000
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME337828A" #Flandern has lost its importance
+		command = { type = removecot which = 380 } #Flandern
+		command = { type = sleepevent which = 186320 } #HOL: The Economic Growth of Amsterdam
+	}
+}
+
+#(1669-1820) Paris: economic center of France
+event = {
+	id = 337834
+	trigger = {
+		owned = { province = 385 data = FRA } #Ile de France
+		control = { province = 385 data = FRA } #Ile de France
+		countrysize = 10
+		OR = {
+			event = 12075 #FRA: Jean-Baptiste Colbert
+			event = 3126 #FRA: Versailles stands in Unearthly Glory
+			year = 1700
+		}
+	}
+	random = no
+	province = 385 #Ile de France
+	name = "EVENTNAME337834" #Paris: economic center of France
+	desc = "EVENTHIST337834"
+	#-#After the instauration of tariffs and the construction of internal improvements under Louis XIV, Paris is firmly established as the economic center of France.
+
+	date = { day = 0 month = june year = 1669 }
+	offset = 360
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME337834A" #We now gain control of our own finances
+		command = { type = removecot which = 408 } #Lyonnais
+		command = { type = capital which = 385 } #Ile de France - just in case
+		command = { type = clrflag which = [Lowlands] } #just in case
+		command = { type = cot which = 385 } #Ile de France
+		command = { type = merchants value = 6 }
+		command = { type = treasury value = 200 }
+	}
+}
+
+#(1670-1797) Decline of Venice CoT
+event = {
+	id = 337807
+	trigger = {
+		cot = 370 #Veneto
+		OR = {
+			NOT = { exists = VEN }
+			AND = {
+				NOT = { countrysize = 10 }
+				owned = { province = 370 data = VEN } #Veneto
+				NOT = { owned = { province = 480 data = VEN } } #Crete
+			}
+		}
+	}
+	random = no
+	province = 370 #Veneto
+	name = "EVENTNAME337807" #Closure of Venice Centre of Trade
+	desc = "EVENTHIST337807"
+	#-#Venice had been steadily losing its place as a center of commerce since the fall of Constantinople in 1453. The further loss of Crete the last of the way stations to the Levant made trade virtually come to halt.
+
+	date = { day = 11 month = march year = 1670 }
+	offset = 90
+	deathdate = { day = 12 month = april year = 1797 }
+
+	action_a = {
+		name = "ACTIONNAME337807A" #Venice has lost its importance
+		command = { type = removecot which = 370 } #Veneto
+	}
+}
+#(1670-1797) Vienna: economic center of Austria
+event = {
+	id = 337833
+	trigger = {
+		NOT = { cot = 351 } #Austria
+		owned = { province = 351 data = HAB } #Austria
+		control = { province = 351 data = HAB } #Austria
+		countrysize = 8
+		event = 179023 #HAB: Vienna
+		event = 337807 #CoTs*370: Closure of Venice Centre of Trade
+		NOT = { event = 337832 } #CoTs*370: Closure of Venice Centre of Trade
+	}
+	random = no
+	province = 351 #Austria
+	name = "EVENTNAME337833" #Vienna: economic center of Austria
+	desc = "EVENTHIST337833"
+	#-#Vienna is firmly established as the economic center of the holdings of the Austrian Habsburgs.
+
+	date = { day = 12 month = march year = 1670 }
+	offset = 90
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = cot which = 351 } #Austria
+		command = { type = sleepevent which = 337832 } #CoTs*370: Closure of Venice Centre of Trade
+	}
+}
+
+#(1718-1797) Loss of Venice CoT
+event = {
+	id = 337832
+	trigger = {
+		AND = {
+			exists = HAB
+			owned = { province = 351 data = HAB } #Austria
+			control = { province = 351 data = HAB } #Austria
+			event = 179023 #HAB: Vienna
+		}
+		exists = VEN
+		NOT = { owned = { province = 360 data = VEN } } #Morea
+		NOT = { event = 337807 } #CoTs*370: Closure of Venice Centre of Trade
+	}
+	random = no
+	province = 370 #Veneto
+	name = "EVENTNAME337807" #Closure of Venice Centre of Trade
+	desc = "EVENTHIST337832"
+	#-#Treaty of Passarowitz was the peace treaty signed on July 21, 1718 between the Ottoman Empire on one side and the Habsburg Monarchy of Austria and the Republic of Venice on the other. During the years 1714–1718, the Ottomans had been successful against Venice in Morea and Crete, but had been defeated by the Austrian troops of Prince Eugene of Savoy. The treaty reflected the military situation. The Ottoman Empire lost the Banat of Temeswar, northern Serbia , northern Bosnia and Lesser Wallachia to Austria. Venice lost its possessions on the Peloponnesus peninsula and on Crete, gained by the Treaty of Karlowitz, retaining only the Ionian Islands and Dalmatia. With the loss of Morea and Tinos, Venice lost it last stopover point for trade in the Levant.
+
+	date = { day = 0 month = july year = 1718 }
+	offset = 30
+	deathdate = { day = 0 month = april year = 1797 }
+
+	action_a = {
+		name = "ACTIONNAME337807A" #Venice has lost its importance
+		command = { type = removecot which = 370 } #Veneto
+		command = { type = cot which = 351 } #Austria
+		command = { }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Russia/Siberia
+
+#(1670-1820) Decline of Siberian Trade
+event = {
+	id = 337826
+	trigger = {
+		cot = 1537 #Tobolsk
+		NOT = { owned = { province = 583 data = RUS } } #Irtych
+		NOT = { owned = { province = 584 data = RUS } } #Novosibirsk
+		NOT = { owned = { province = 585 data = RUS } } #Altai
+		NOT = { owned = { province = 586 data = RUS } } #Demianka
+		OR = {
+			AND = {	#someone else owns Siberia
+				NOT = { provincereligion = { province = 583 data = pagan } }
+				NOT = { provincereligion = { province = 584 data = pagan } }
+				NOT = { provincereligion = { province = 585 data = pagan } }
+				NOT = { provincereligion = { province = 586 data = pagan } }
+			}
+			#Russia is not interested in Siberia at all
+			year = 1720 #Tobolsk can be created till 1750, but I say that if Russia starts expansion into Siberia so late, then
+		}
+	}
+	random = no
+	province = 1537 #Tobolsk
+	name = "EVENTNAME337826" #Decline of Siberian Trade
+	desc = "EVENTHIST337826"
+	#-#Failure of Russian expansion into Siberia prevented development of Tobolsk into significant Centre of Trade. Absence of military protection of Russian interests and expansion of other nations causes shift in Siberian and Central Asian trade.
+
+	date = { day = 1 month = january year = 1670 }
+	offset = 1000
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "DRATS"
+		command = { type = removecot which = 1537 } #Tobolsk
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 337837

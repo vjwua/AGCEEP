@@ -1,0 +1,85 @@
+#Madurai (MAD)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1559-1562) Visvanatha's Administrative Reforms
+#by Garbon
+event = {
+	id = 362001
+	trigger = {
+		atwar = no
+		control = { province = 575 data = -1 } #Madurai
+	}
+	random = no
+	country = MAD
+	name = "EVENTNAME362001" #Visvanatha's Administrative Reforms
+	desc = "EVENTHIST362001"
+	#-#During the governorship of Visvanatha, Madurai underwent several reforms that helped to strengthen its position. Among the administrative reforms were a new double-walled fortress around the capital, new canals, and the beginning of the polygar system which partioned of land to minor chiefs to take care of and then subsequently provided Madurai with manpower.
+
+	date = { day = 1 month = january year = 1559 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1562 }
+
+	action_a = {
+		name = "ACTIONNAME362001A" #Our power increases
+		command = { type = INF which = -2 value = 2500 }
+		command = { type = provincetax which = 575 value = 1 } #Madurai
+		command = { type = provincetax which = -1 value = 1 } #likely Madurai
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = quality value = 1 }
+		command = { type = manpower value = 10 }
+	}
+}
+
+#(1563-1570) Polygar revolt
+#by Garbon
+event = {
+	id = 362002
+	trigger = {
+		event = 362001 #MAD: Visvanatha's Administrative Reforms
+		control = { province = 575 data = -1 } #Madurai
+	}
+	random = no
+	country = MAD
+	name = "EVENTNAME362002" #Polygar revolt
+	desc = "EVENTHIST362002"
+	#-#Under the Polygar system, the nayakas of Madurai transferred some of their control to minor chiefs. It was inevitable that an ambitious individual would try to use his minor holdings to throw off the yoke of the Madurai. During the reign of Kumara Krishnappa, several polygars attempted rebellion.
+
+	date = { day = 1 month = january year = 1563 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1570 }
+
+	action_a = {
+		name = "ACTIONNAME362002A" #Damn them!
+		command = { type = desertion which = -1 value = 500 }
+		command = { type = revoltrisk which = 12 value = 2 }
+		command = { type = revolt which = -1 }
+		command = { type = manpower value = -2 }
+	}
+}
+
+#(1565-1820) The Fall of the City of Victory
+#by Garbon
+event = {
+	id = 362000 #triggered by VIJ_3823 A
+	random = no
+	country = MAD
+	name = "EVENTNAME3823" #The Fall of The City of Victory
+	desc = "EVENTHIST3823"
+	#-#A combination of internal dissention and foreign attack has resulted in armies marching upon our capital in a lightning-quick campaign! Vijayanagar has been subjected to a thorough three-month sack, resulting in the complete disruption of the government, the massive loss of revenue, and the collapse of our authority in the provinces!
+
+	action_a = {
+		name = "ACTIONNAME362000A" #Our ties to Vijayanagar weaken
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = relation which = VIJ value = -250 }
+	}
+	action_b = {
+		name = "ACTIONNAME362000B" #Support the Princes of Vijayanagar
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = relation which = VIJ value = 25 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 362003

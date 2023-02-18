@@ -1,0 +1,116 @@
+#Mysore (MYS)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1565-1820) The Fall of the City of Victory
+event = {
+	id = 238000 #triggered by VIJ_3823 A
+	random = no
+	country = MYS
+	name = "EVENTNAME3823" #The Fall of The City of Victory
+	desc = "EVENTHIST3823"
+	#-#A combination of internal dissention and foreign attack has resulted in armies marching upon our capital in a lightning-quick campaign! Vijayanagar has been subjected to a thorough three-month sack, resulting in the complete disruption of the government, the massive loss of revenue, and the collapse of our authority in the provinces!
+
+	action_a = {
+		name = "ACTIONNAME362000A" #Our ties to Vijayanagar weaken
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = relation which = VIJ value = -250 }
+	}
+	action_b = {
+		name = "ACTIONNAME362000B" #Support the Princes of Vijayanagar
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = relation which = VIJ value = 25 }
+	}
+}
+
+#(1766-1783) Usurpation of Haydar 'Alî
+event = {
+	id = 238001
+	random = no
+	country = MYS
+	name = "EVENTNAME238001" #Usurpation of Haydar 'Alî
+	desc = "EVENTHIST238001"
+	#-#Haydar 'Alî came from a family of cavalry officers in the Mysore army. While serving as a commandant, Haydar 'Alî had many occasions to learn about European methods of fighting and was deeply impressed. As early as 1755-56, he is said to have obtained the services of Frenchmen to organize his artillery, arsenal and workshop. Haydar 'Alî's rise to power was the result of not only his personal diplomatic skills, but largely on the armed power he acquired. His brilliant combination of European styled musket-using infantry and mobile calvary organized on the Mughal pattern proved invincible. Undoubtedly, he was the first important Indian commander to realize the value of European methods for drilling infantry, whom he tried to provide with flintlocks. Intervening in a struggle between the raja and his powerful minister, Haydar 'Alî styled himself the power behind the throne. After receiving the title of Haydar 'Alî Khan from the Mughal Viceroy of the Deccan, Haydar 'Alî found pretence to claim himself superior to the Raja of Mysore and took over control of the state. Shortly thereafter, he would go on to expand towards the Malabar coast.
+
+
+	date = { day = 25 month = april year = 1766 }
+	offset = 0
+	deathdate = { day = 1 month = january year = 1783 }
+
+	action_a = {
+		name = "WONDERFUL"
+		command = { type = religion which = sunni }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = stability value = -2 }
+		command = { type = land value = 3000 }
+		command = { type = gainmanufactory which = -2 value = weapons }
+		command = { type = treasury value = -200 }
+		command = { type = addcore which = 568 } #Mangalore
+		command = { type = addcore which = 567 } #Bangalore
+		command = { type = addcore which = 569 } #Kerala
+		command = { type = sleepmonarch which = 095020 } #Chamaraja Wodeyar VIII
+		command = { type = sleepmonarch which = 095021 } #Krishnaraja Wodeyar III
+		command = { type = wakemonarch which = 095022 } #Haydar 'Alî
+		command = { type = wakemonarch which = 095023 } #Tîpû Sâhib
+		command = { type = wakemonarch which = 095024 } #Krishnaraja Wodeyar III
+		command = { type = flagname which = "Tiger" }
+	}
+}
+
+#(1782-1790) The Tiger of Mysore
+event = {
+	id = 238002
+	trigger = {
+		monarch = 095023 #Tîpû Sâhib
+		exists = FRA
+		OR = {
+			neighbour = ENG
+			owned = { province = 557 data = ENG } #Ganges
+			owned = { province = 556 data = ENG } #Santal
+			owned = { province = 571 data = ENG } #Madras
+			owned = { province = 548 data = ENG } #Bombay
+		}
+		NOT = {
+			vassal = { country = MYS country = ENG }
+			vassal = { country = ENG country = MYS }
+			war = { country = FRA country = MYS }
+		}
+	}
+	random = no
+	country = MYS
+	name = "EVENTNAME238002" #The Tiger of Mysore
+	desc = "EVENTHIST238002"
+	#-#Upon the death of his father in 1782, Tîpû Sâhib assumed the status of de facto ruler of Mysore. Tîpû Sâhib continued his father's policy of hostility towards the British. He also sought to increase the size of his Kingdom by raiding the minor potentates of the Venad. His troops were trained and financed by the French, who were eager to halt British advances on the subcontinent. In doing so, Tîpû Sâhib also stuck to his father's plans of modernization.
+
+	date = { day = 7 month = december year = 1782 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1790 }
+
+	action_a = {
+		name = "ACTIONNAME238002A" #Expansion!
+		command = { type = addcore which = 573 } #Cochin
+		command = { type = addcore which = 574 } #Trivandrum
+		command = { type = relation which = ENG value = -200 }
+		command = { type = domestic which = CENTRALIZATION value = 3 }
+		command = { type = domestic which = INNOVATIVE value = 2 }
+		command = { type = domestic which = OFFENSIVE value = 2 }
+		command = { type = domestic which = LAND value = 1 }
+		command = { type = domestic which = QUALITY value = 2 }
+		command = { type = badboy value = 2 }
+		command = { type = flagname which = "Tiger" }
+	}
+	action_b = {
+		name = "ACTIONNAME238002B" #Let's focus on converting our subjects
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		#command = { type = sleepevent which = 4084084 }
+		#command = { type = sleepevent which = 5725721 }
+		command = { type = provincereligion which = -2 value = sunni }
+		command = { type = population which = -2 value = -2500 }
+		command = { type = missionaries value = 6 }
+		command = { type = flagname which = "Tiger" }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 238003

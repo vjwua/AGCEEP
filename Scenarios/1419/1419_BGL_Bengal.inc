@@ -4,7 +4,7 @@
 
 country = {
 	tag = BGL
-	ai = "SmallTrade1.ai"
+	ai = "SmallTrade1.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -17,8 +17,8 @@ country = {
 	religion = { type = sunni }
 	culture = { type = bengali }
 	diplomacy = {
-		relation = { tag = MYA value = 75 }
-		relation = { tag = JUT value = 25 }
+		relation = { tag = BRM value = 75 }
+		relation = { tag = JAI value = 25 }
 	}
 	knownprovinces = {
 		#Indian Mainland

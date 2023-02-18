@@ -4,7 +4,7 @@
 
 country = {
 	tag = SCO
-	ai = "SmallTrade1.ai"
+	ai = "SmallTrade1.txt"
 	flagname = "Ancient"
 	colonialattempts = 0
 	colonialnation = no
@@ -16,7 +16,7 @@ country = {
 	inflation = 0
 	merchants = 0.083333
 	religion = { type = catholic }
-	culture = { type = gaelic }
+	culture = { type = celtic }
 	diplomacy = {
 		relation = { tag = ENG value = -75 refusetrade = no casusbelli = { type = temporary expirydate = { year = 1489 month = january day = 1 } } }
 		relation = { tag = DAU value = 150 }

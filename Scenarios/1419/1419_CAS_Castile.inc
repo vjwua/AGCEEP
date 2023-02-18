@@ -4,7 +4,7 @@
 
 country = {
 	tag = CAS
-	ai = "Large.ai"
+	ai = "Large.txt"
 	colonialattempts = 0
 	colonialnation = yes
 	major = no
@@ -16,14 +16,14 @@ country = {
 	merchants = 4.083333
 	religion = { type = catholic }
 	culture = {
-		type = iberian
+		type = castilian
 	}
 	diplomacy = {
 		relation = { tag = POR value = 100 }
 		relation = { tag = ARG value = 150 }
 		relation = { tag = GRA value = 150 }
 		relation = { tag = MOR value = -200 }
-		relation = { tag = XHO value = -200 }
+		relation = { tag = TLE value = -200 }
 		relation = { tag = KNI value = 170 }
 	}
 	knownprovinces = {

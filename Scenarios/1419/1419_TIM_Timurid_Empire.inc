@@ -4,7 +4,7 @@
 
 country = {
 	tag = TIM
-	ai = "Large.ai"
+	ai = "Large.txt"
 	badboy = 10
 	colonialattempts = 0
 	colonialnation = no
@@ -17,8 +17,8 @@ country = {
 	merchants = 0.083333
 	religion = { type = sunni }
 	culture = {
-		type = hawaiian
-		type = canary
+		type = uighur
+		type = turkoman
 		type = persian
 	}
 	diplomacy = {

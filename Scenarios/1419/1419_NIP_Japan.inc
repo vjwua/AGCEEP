@@ -4,7 +4,7 @@
 
 country = {
 	tag = NIP
-	ai = "SmallTrade3.ai"
+	ai = "SmallTrade3.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no

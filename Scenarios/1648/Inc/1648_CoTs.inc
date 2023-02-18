@@ -16,7 +16,7 @@ cot = {
 	location = 702
 	merchant = { TAG = HOL level = 6 }
 	merchant = { TAG = MLC level = 3 }
-	merchant = { TAG = BTM level = 1 }
+	merchant = { TAG = BTN level = 1 }
 	merchant = { TAG = MKS level = 2 }
 	merchant = { TAG = ENG level = 2 }
 }

@@ -4,7 +4,7 @@
 
 country = {
 	tag = DAN
-	ai = "DAN_1670_Colonizer.ai"
+	ai = "DAN_1670_Colonizer.txt"
 	colonialattempts = 0
 	colonialnation = yes
 	major = no

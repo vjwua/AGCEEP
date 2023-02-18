@@ -1,0 +1,1186 @@
+#Prussia (PRU)
+
+#-----------------------------------------------------------------------------------------------
+#Ducal Prussia
+
+#(1524-1540) Hohenzollern Prussia become Polish Duchy
+#by Neuromancer - modified by YodaMaster
+event = {
+	id = 263020
+	trigger = { exists = POL }
+	random = no
+	country = PRU
+	name = "EVENTNAME3516" #Hohenzollern Prussia become Polish Duchy
+	desc = "EVENTHIST3516"
+	#-#In the religious turmoil of the Reformation one of the early converters to the new religion is the Teutonic Orders Grandmaster from Brandenburg, Albrecht of Hohenzollern. Inspired by Luther he also decides to secularize the land areas under his control, Prussia, into a protestant duchy. Naturally the duchy is to be inherited by his bloodline.
+
+	date = { day = 1 month = january year = 1524 }
+	offset = 30
+	deathdate = { day = 1 month = april year = 1540 }
+
+	action_a = {
+		name = "ACTIONNAME3516A" #Secularize Prussia as Polish vassal
+		command = { type = cedeprovince which = LIV value = 275 } #Ingermanland
+		command = { type = cedeprovince which = LIV value = 276 } #Estland
+		command = { type = cedeprovince which = LIV value = 281 } #Polotsk
+		command = { type = cedeprovince which = LIV value = 282 } #Livland
+		command = { type = cedeprovince which = LIV value = 283 } #Kurland
+		command = { type = cedeprovince which = BRA value = 311 } #Magdeburg
+		command = { type = cedeprovince which = BRA value = 312 } #Brandenburg
+		command = { type = cedeprovince which = BRA value = 313 } #Küstrin
+		command = { type = religion which = protestant } #1.08 no longer breaks vassalages after conversion
+		command = { type = breakvassal which = DAN }
+		command = { type = breakvassal which = SWE }
+		command = { type = breakvassal which = LIT }
+		command = { type = breakvassal which = MAS }
+		command = { type = breakvassal which = LIV }
+		command = { type = breakvassal which = BRA }
+		command = { type = provincereligion which = 290 value = protestant } #Prussia
+		command = { type = provincereligion which = 289 value = protestant } #Memel
+		command = { type = stability value = 6 }
+		command = { type = removecore which = 301 } #Danzig - historical justification
+		command = { type = removecore which = 312 } #Brandenburg - revolter core
+		command = { type = removecore which = 313 } #Küstrin - revolter core
+		command = { type = relation which = LIV value = -50 }
+		command = { type = relation which = POL value = 350 }
+		command = { type = relation which = LIT value = 350 } #So they won't DoW instantly
+		command = { type = relation which = MAS value = 350 } #So they won't DoW instantly
+		command = { type = relation which = BRA value = 400 }
+		command = { type = dynastic which = BRA }
+		command = { type = trigger which = 258231 } #Hohenzollern Prussia becomes Polish Duchy #POL: Treaty of Cracov
+	}
+	action_b = {
+		name = "ACTIONNAME3516B" #Secularize Prussia as independent country
+		command = { type = cedeprovince which = LIV value = 275 } #Ingermanland
+		command = { type = cedeprovince which = LIV value = 276 } #Estland
+		command = { type = cedeprovince which = LIV value = 281 } #Polotsk
+		command = { type = cedeprovince which = LIV value = 282 } #Livland
+		command = { type = cedeprovince which = LIV value = 283 } #Kurland
+		command = { type = cedeprovince which = BRA value = 311 } #Magdeburg
+		command = { type = cedeprovince which = BRA value = 312 } #Brandenburg
+		command = { type = cedeprovince which = BRA value = 313 } #Küstrin
+		command = { type = breakvassal which = DAN }
+		command = { type = breakvassal which = SWE }
+		command = { type = breakvassal which = LIT }
+		command = { type = breakvassal which = MAS }
+		command = { type = breakvassal which = LIV }
+		command = { type = breakvassal which = BRA }
+		command = { type = breakvassal which = POL }
+		command = { type = religion which = protestant }
+		command = { type = provincereligion which = 290 value = protestant } #Prussia
+		command = { type = provincereligion which = 289 value = protestant } #Memel
+		command = { type = addcore which = 301 } #Danzig
+		command = { type = relation which = LIV value = -150 }
+		command = { type = relation which = POL value = -150 }
+		command = { type = relation which = BRA value = 250 }
+		command = { type = dynastic which = BRA }
+		command = { type = trigger which = 258034 } #POL: Albrech Hohenzollern defies Poland
+	}
+}
+
+#(1600-1820) Germans are migrating to Danzig
+#Vilkouak-AGC
+event = {
+	id = 20125
+	trigger = {
+		owned = { province = 301 data = -1 } #Danzig
+		atwar = no
+		OR = {
+			religion = protestant
+			religion = reformed
+		}
+	}
+	random = no
+	country = PRU
+	name = "EVENTNAME20125" #Germans are migrating to Danzig
+	desc = "EVENTHIST20125"
+	#-#The city of Danzig was always crucial to the whole province. Its importance in the territorially small country which was Prussia in seventeenth century was even stronger than earlier in Poland. Moreover, Prussia was a German state that could play a decisive role in German outlook of the province.
+
+	date = { day = 1 month = january year = 1600 }
+	offset = 5000
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME20125A" #The German population is dominant
+		command = { type = provinceculture which = 301 value = german } #Middle German #Danzig
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = treasury value = -50 }
+		#No idea what 20200 is - Jaymz
+		#command = { type = sleepevent which = 20200 }
+	}
+	action_b = {
+		name = "ACTIONNAME20125B" #Let them decide on the local level
+		command = { type = relation which = POL value = 50 }
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = treasury value = 50 }
+	}
+}
+
+#(1609) The Marriage of Duke Wilhelm and Princess Sofia
+event = {
+	id = 263002 #triggered by KUR_206003 A
+	random = no
+	country = PRU
+	name = "EVENTNAME263002" #The Marriage of Duke Wilhelm and Princess Sofia
+	desc = "EVENTHIST263002"
+	#-#Wilhelm, Duke of Courland, asks us for the hand of Princess Sofia, daughter of Duke Albrecht Friedrich, and to regain back Grobina district to Courland in a form of dowry. What will be our response?
+
+	action_a = {
+		name = "ACTIONNAME263002A" #Accept the offer and give him Grobina district as a dowry
+		command = { type = relation which = KUR value = 150 }
+		command = { type = provincetax which = -2 value = -1 }
+		command = { type = stability value = 1 }
+		command = { type = trigger which = 206005 } #KUR: The Marriage of Duke Wilhelm and Princess Sofia
+	}
+	action_b = {
+		name = "ACTIONNAME263002B" #Say 'nein' to this impudent man
+		command = { type = relation which = KUR value = -100 }
+	}
+}
+
+#(1617) The Fate of Prussia
+#Description does not mention Treaty of Cracov, which might have happened; corresponding event for AI is 263006; human and ai needs different versions because of possible inheritance of Prussia by Poland
+event = {
+	id = 263009
+	trigger = {
+		ai = no
+	}
+	random = no
+	country = PRU
+	name = "EVENTNAME263009" #The Fate of Prussia
+	desc = "EVENTHIST263009"
+	#-#Electors of Brandenburg were administrating Duchy during times of mental ilness of Duke Albrecht Friedrich. Current Brandenburg Elector married the eldest daughter of the Duke and since all sons of Albrecht Friedrich died, his claim on the Duchy of Prussia is the strongest. However, also Duke Jacob Kettler from the neighbouring Courland could press claims since he married another daughter of Friedrich Albrecht and King of Poland suggests that we may chose his son as our ruler. Whom will we support in the struggle for the Albrecht Friedrich's heirloom?
+
+	date = { day = 15 month = december year = 1617 }
+
+	action_a = {
+		name = "ACTIONNAME263009A" #Choose the Hohenzollern-Brandenburg line
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = SWE value = -50 }
+		command = { type = relation which = DAN value = -50 }
+		command = { type = relation which = KUR value = -50 }
+		command = { type = relation which = POL value = 100 }
+		command = { type = relation which = LIT value = -25 }
+		command = { type = inherit which = BRA }
+		command = { type = stability value = 1 }
+		command = { type = treasury value = -50 }
+		command = { type = setflag which = [Brandenburg_line] }
+		command = { type = sleepevent which = 132082 } #BRA: Death of Albrecht Friedrich
+		command = { type = sleepevent which = 263006 } #PRU: The Fate of Prussia (AI)
+	}
+	action_b = {
+		name = "ACTIONNAME263009B" #Choose the Kettler-Courland line
+		command = { type = relation which = BRA value = -100 }
+		command = { type = relation which = HAB value = -25 }
+		command = { type = relation which = SWE value = -75 }
+		command = { type = relation which = RUS value = -50 }
+		command = { type = relation which = DAN value = -25 }
+		command = { type = relation which = POL value = 100 }
+		command = { type = relation which = LIT value = -25 }
+		command = { type = inherit which = KUR }
+		command = { type = stability value = 1 }
+		command = { type = treasury value = -50 }
+		command = { type = setflag which = [Courland_line] }
+		command = { type = sleepevent which = 132082 } #BRA: Death of Albrecht Friedrich
+		command = { type = sleepevent which = 263006 } #PRU: The Fate of Prussia (AI)
+	}
+	action_c = {
+		name = "ACTIONNAME263009C" #Choose Polish prince
+		command = { type = relation which = BRA value = -100 }
+		command = { type = relation which = POL value = 200 }
+		command = { type = relation which = SWE value = -50 }
+		command = { type = relation which = RUS value = -25 }
+		command = { type = relation which = KUR value = 25 }
+		command = { type = relation which = LIT value = -25 }
+		command = { type = stability value = -1 }
+		command = { type = treasury value = 100 }
+		command = { type = setflag which = [Polish_line] }
+		command = { type = wakemonarch which = 0112518 } #Wladyslaw Wasa °
+		command = { type = sleepevent which = 132082 } #BRA: Death of Albrecht Friedrich
+		command = { type = sleepevent which = 263006 } #PRU: The Fate of Prussia (AI)
+	}
+}
+
+#(1617) A price to pay
+event = {
+	id = 263010 #triggered by POL_258032
+	random = no
+	country = PRU
+	name = "EVENTNAME263010" #A price to pay
+	desc = "EVENTHIST263010"
+	#-#In the Treaty of Cracov it was agreed that only the Prussian branch of the Hohenzollern family could inherit the Duchy. Due to the Polish involvment in the Russian civil war and the war with Sweden, on the 5th of may 1611 the Sejm decided that other dynasties were allowed to rule in Prussia after the Prussian branch expires but not for free. A price must be paid.
+
+	action_a = {
+		name = "ACTIONNAME263010A" #We have to pay
+		command = { type = treasury value = -300 }
+		command = { type = cedeprovince which = POL value = 288 } #Lithuania
+		command = { type = cedeprovince which = POL value = 291 } #Masovia
+		command = { type = cedeprovince which = POL value = 292 } #Podlasia
+		command = { type = cedeprovince which = POL value = 300 } #Wielkopolska
+		command = { type = cedeprovince which = POL value = 303 } #Poznan
+	}
+}
+
+#(1617) Prussia forms Brandenburg (human only)
+event = {
+	id = 263004
+	trigger = {
+		flag = [Brandenburg_line]
+		event = 263009 #PRU: Fate of Prussia
+	}
+	random = no
+	country = PRU
+	name = "EVENTNAME263004" #Prussia forms Brandenburg
+	desc = "EVENTHIST263004"
+	#-#After years of illness the last Duke of Prussia from the Hohenzollern-Ansbach line, Albrecht Friedrich, died. According to the Treaty of Cracov from 1525, after the Prussian branch of the Hohenzollern family, the lands of the Duchy of Prussia were to be incorporated into Poland. However this was changed with the decision of the Polish Sejm on the 5th of may 1611. The Hohenzollern-Brandenburg dukes were therefore allowed to inherit the Duchy.
+
+	date = { day = 21 month = december year = 1617 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = flagname which = "" }
+		command = { type = country which = BRA }
+		command = { type = addcore which = 311 } #Magdeburg
+		command = { type = addcore which = 312 } #Brandenburg
+		command = { type = addcore which = 313 } #Kustrin
+		command = { type = setflag which = [ClaimOnPrussia] }
+	}
+}
+#(1617) Prussia forms Courland
+event = {
+	id = 263005
+	trigger = {
+		flag = [Courland_line]
+		event = 263009 #PRU: Fate of Prussia
+	}
+	random = no
+	country = PRU
+	name = "EVENTNAME263005" #Prussia forms Courland
+	desc = "EVENTHIST263005"
+	#-#After years of illness the last Duke of Prussia from the Hohenzollern-Ansbach line, Albrecht Friedrich, died. According to the Treaty of Cracov from 1525, after the Prussian branch of the Hohenzollern family, the lands of the Duchy of Prussia were to be incorporated into Poland. However this was changed with the decision of the Polish Sejm on the 5th of may 1611. The Duke of Courland was therefore allowed to inherit the Duchy.
+
+	date = { day = 21 month = december year = 1617 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = flagname which = "" }
+		command = { type = country which = KUR }
+		command = { type = addcore which = 283 } #Kurland
+		command = { type = addcore which = 282 } #Livland
+		command = { type = addcore which = 276 } #Estland
+		command = { type = add_countryculture which = ugric }
+	}
+}
+
+#(1618) The Fate of Prussia (AI)
+#ai event, if BRA, POL did not inherit (did not want, do not exist etc); Brandenburg's path is closed for AI
+event = {
+	id = 263006
+	trigger = {
+		ai = yes
+		OR = {
+			NOT = { exists = BRA }
+			event = 132082 #BRA: Death of Albrecht Friedrich
+		}
+	}
+	random = no
+	country = PRU
+	name = "EVENTNAME263006" #The Fate of Prussia
+	desc = "EVENTHIST263006"
+	#-#Electors of Brandenburg were administrating Duchy during times of mental ilness of Duke Albrecht Friedrich. Current Brandenburg Elector married the eldest daughter of the Duke and since all sons of Albrecht Friedrich died, his claim on the Duchy of Prussia is the strongest. However, also Duke Jacob Kettler from the neighbouring Courland could press claims since he married another daughter of Friedrich Albrecht and King of Poland suggests that we may chose his son as our ruler. Whom will we support in the struggle for the Albrecht Friedrich's heirloom?
+
+	date = { day = 2 month = february year = 1618 }
+
+	action_a = {
+		name = "ACTIONNAME263006A" #Choose the Kettler-Courland line (End Game)
+		command = { type = setflag which = [Courland_line] }
+		command = { type = trigger which = 206004 } #KUR: Death of Albrecht Friedrich
+	}
+	action_b = {
+		name = "ACTIONNAME263006B" #Choose Polish prince (End Game)
+		command = { type = setflag which = [Polish_line] }
+		command = { type = wakemonarch which = 0112518 } #Wladyslaw Wasa °
+		command = { type = trigger which = 258033 } #POL: Death of Albrecht Friedrich
+	}
+}
+
+#(1632) Polish election of 1632 - Ahistorical
+event = {
+	id = 263007
+	trigger = {
+		flag = [Polish_line]
+	}
+	random = no
+	country = PRU
+	name = "EVENTNAME263007" #Polish election of 1632
+	desc = "EVENTHIST263007"
+	#-#Polish King Sigismung Vasa has died in april 1632. There were few candidates for the Polish throne, but prince Wladyslaw Vasa was known to the nobility and had blood of Jagiellon dynasty in his veins. There was no doubt regarding the final result of election, but Commonwealth's nobility has laid down hard terms.
+
+	date = { day = 6 month = november year = 1632 }
+
+	action_a = {
+		name = "ACTIONNAME263007A" #Wladyslaw will rule Poland
+		command = { type = domestic which = land value = 2 }
+		command = { type = domestic which = quality value = 2 }
+		command = { type = domestic which = serfdom value = 4 }
+		command = { type = domestic which = centralization value = -6 }
+		command = { type = domestic which = aristocracy value = 4 }
+		command = { type = religion which = catholic }
+		command = { type = inherit which = POL }
+	}
+}
+#(1632) Prussia forms Poland - Ahistorical
+event = {
+	id = 263008
+	trigger = {
+		flag = [Polish_line]
+		event = 263007 #PRU: Polish election of 1632
+		NOT = { exists = POL }
+		exists = LIT
+	}
+	random = no
+	country = PRU
+	name = "EVENTNAME263008" #Prussia forms Poland
+	desc = "EVENTHIST263008"
+	#-#After years of illness the last Duke of Prussia from the Hohenzollern-Ansbach line, Albrecht Friedrich, died. According to the Treaty of Cracov from 1525, after the Prussian branch of the Hohenzollern family, the lands of the Duchy of Prussia were to be incorporated into Poland. However this was changed with the decision of the Polish Sejm on the 5th of may 1611. Prince Wladyslaw Waza was allowed to inherit Duchy and now.
+
+	date = { day = 7 month = november year = 1632 }
+	offset = 1
+	deathdate = { day = 29 month = november year = 1632 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = flagname which = "" }
+		command = { type = country which = POL }
+		command = { type = addcore which = 291 } #Masovia
+		command = { type = addcore which = 292 } #Podlasia
+		command = { type = addcore which = 298 } #Galizien
+		command = { type = addcore which = 299 } #Krakow
+		command = { type = addcore which = 300 } #Wielkopolska
+		command = { type = addcore which = 301 } #Danzig
+		command = { type = addcore which = 303 } #Poznan
+		command = { type = addcore which = 297 } #Podolia
+		command = { type = addcore which = 280 } #Welikia
+		command = { type = addcore which = 281 } #Polotsk
+		command = { type = addcore which = 284 } #Belarus
+		command = { type = addcore which = 285 } #Smolensk
+		command = { type = addcore which = 286 } #Kursk
+		command = { type = addcore which = 287 } #Mozyr
+		command = { type = addcore which = 288 } #Lithuania
+		command = { type = addcore which = 293 } #Volyn
+		command = { type = addcore which = 294 } #Chernigov
+		command = { type = addcore which = 295 } #Ukraina
+		command = { type = addcore which = 450 } #Belgorod
+		command = { type = sleepevent which = 263015 } #PRU: Prussia forms Poland-Lithuania
+	}
+}
+#(1632) Prussia forms Poland-Lithuania - Ahistorical
+event = {
+	id = 263015
+	trigger = {
+		flag = [Polish_line]
+		event = 263007 #PRU: Polish election of 1632
+		NOT = { exists = POL }
+		NOT = { exists = LIT }
+	}
+	random = no
+	country = PRU
+	name = "EVENTNAME263015" #Prussia forms Poland-Lithuania
+	desc = "EVENTHIST263008"
+	#-#After years of illness the last Duke of Prussia from the Hohenzollern-Ansbach line, Albrecht Friedrich, died. According to the Treaty of Cracov from 1525, after the Prussian branch of the Hohenzollern family, the lands of the Duchy of Prussia were to be incorporated into Poland. However this was changed with the decision of the Polish Sejm on the 5th of may 1611. Prince Wladyslaw Waza was allowed to inherit Duchy and now.
+
+	date = { day = 7 month = november year = 1632 }
+	offset = 1
+	deathdate = { day = 29 month = november year = 1632 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = flagname which = "" }
+		command = { type = country which = POL }
+		command = { type = flagname which = "Union" }
+		command = { type = addcore which = 291 } #Masovia
+		command = { type = addcore which = 292 } #Podlasia
+		command = { type = addcore which = 298 } #Galizien
+		command = { type = addcore which = 299 } #Krakow
+		command = { type = addcore which = 300 } #Wielkopolska
+		command = { type = addcore which = 301 } #Danzig
+		command = { type = addcore which = 303 } #Poznan
+		command = { type = addcore which = 297 } #Podolia
+		command = { type = addcore which = 280 } #Welikia
+		command = { type = addcore which = 281 } #Polotsk
+		command = { type = addcore which = 284 } #Belarus
+		command = { type = addcore which = 285 } #Smolensk
+		command = { type = addcore which = 286 } #Kursk
+		command = { type = addcore which = 287 } #Mozyr
+		command = { type = addcore which = 288 } #Lithuania
+		command = { type = addcore which = 293 } #Volyn
+		command = { type = addcore which = 294 } #Chernigov
+		command = { type = addcore which = 295 } #Ukraina
+		command = { type = addcore which = 450 } #Belgorod
+		command = { type = sleepevent which = 263008 } #PRU: Prussia forms Poland
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Kingdom of Prussia
+
+#(1701-1760) The Kingdom of Prussia
+event = {
+	id = 263014 #triggered by BRA_3524
+	random = no
+	country = PRU
+	name = "EVENTNAME263014" #The Kingdom of Prussia
+	desc = "EVENTHIST263014"
+	#-#The self-proclamation to King of Prussia would anger the Holy Roman Emperor somewhat, but the Emperor also needed to secure Prussia-Brandenburg support in the Habsburg wars against the House of Bourbon and was not likely to risk a confrontation and lose one of its potential strongest allies over this issue. In order to secure the Emperor's approval, the newly King of Prussia offered to lend out 8.000 of his soldiers to the House of Habsburg for a yearly payment of 100.000 Taler.
+
+	action_a = {
+		name = "VIVAT"
+		command = { type = desertion which = -1 value = 8000 }
+		command = { type = treasury value = 250 }
+		command = { type = relation which = HAB value = -40 }
+		command = { type = diplomats value = 3 }
+		command = { type = badboy value = -10 }
+	}
+}
+
+#(1713-1765) The Absolutism
+event = {
+	id = 3525
+	trigger = {
+		event = 263014 #PRU: The Kingdom of Prussia
+	}
+	random = no
+	country = PRU
+	name = "EVENTNAME3525" #Frederick William's Absolutism
+	desc = "EVENTHIST3525"
+	#-#King Frederick William of Prussia endowed the Prussian state with its military and bureaucratic character. He was fanatically addicted to work and a firm autocrat. Frederick William reorganized the administrative system, raised the army to 80,000 men (equivalent to 4 percent of the population) and geared the whole organization of the state to the military machine. Prussia thus became a militaristic and absolutist state - the new great power of Northern Europe.
+
+	date = { day = 1 month = january year = 1713 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1765 }
+
+	action_a = {
+		name = "ACTIONNAME3525A" #Introduce Absolute Monarchy
+		command = { type = domestic which = CENTRALIZATION value = 3 }
+		command = { type = domestic which = ARISTOCRACY value = -1 }
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = treasury value = 400 }
+		command = { type = stability value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3525B" #Keep Constitutional Monarchy
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = treasury value = 300 }
+	}
+}
+
+#(1713-1715) The Reform of the Prussian Army
+event = {
+	id = 3526
+	trigger = {
+		event = 263014 #PRU: The Kingdom of Prussia
+	}
+	random = no
+	country = PRU
+	name = "EVENTNAME3526" #The Great Prussian Military Reform
+	desc = "EVENTHIST3526"
+	#-#Under its 2nd and 3rd Kings, Frederick William I and Frederick II (the Great), Prussia became a thoroughly militaristic state boasting the most efficient army in Europe. Without a doubt the great military reforms were an absolute necessity for an expansionist country so precariously positioned between vengeful neighbors.
+
+	date = { day = 1 month = january year = 1713 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1765 }
+
+	action_a = {
+		name = "ACTIONNAME3526A" #Offensive Army Reform
+		command = { type = domestic which = LAND value = 1 }
+		command = { type = domestic which = OFFENSIVE value = 1 }
+		command = { type = domestic which = QUALITY value = 1 }
+		command = { type = land value = 1000 }
+		command = { type = INF which = -1 value = 8000 }
+		command = { type = CAV which = -3 value = 6000 }
+		command = { type = ART which = -3 value = 20 }
+	}
+	action_b = {
+		name = "ACTIONNAME3526B" #Defensive Army Reform
+		command = { type = domestic which = LAND value = 1 }
+		command = { type = domestic which = OFFENSIVE value = -1 }
+		command = { type = domestic which = QUALITY value = 1 }
+		command = { type = land value = 1000 }
+		command = { type = fortress which = -1 value = 1 }
+		command = { type = fortress which = -1 value = 1 }
+
+	}
+	action_c = {
+		name = "ACTIONNAME3526C" #Naval Reform
+		command = { type = domestic which = LAND value = -1 }
+		command = { type = domestic which = QUALITY value = 1 }
+		command = { type = naval value = 1000 }
+		command = { type = warships which = -1 value = 10 }
+		command = { type = transports which = -3 value = 3 }
+	}
+}
+
+#(1726) The Courland Succession of 1726
+event = {
+	id = 3529
+	trigger = {
+		event = 263014 #PRU: The Kingdom of Prussia
+		exists = KUR
+	}
+	random = no
+	country = PRU
+	name = "EVENTNAME3529" #The Kurland Succession of 1726
+	desc = "EVENTHIST3529"
+	#-#The death of the last Duke of Kurland, Frederick William, in 1711, left no heirs to the Duchy except the weak and ill Ferdinand, and a lot of contenders in Russia and Poland. In 1726, the Polish Sejm managed to impose Maurice of Saxony, the bastard son of the current Polish King, as Duke, but only to change her mind and ask his withdrawal. At the same time, Russia was pushing for her own candidate, the Duke of Holstein-Gottorp, son-in-law of the Czarina Catherine I. After much bribing, negotiation and behind the scene diplomacy, Maurice was summoned to either leave or suffer war. It started in 1727, with Russia firmly committed and sending 8,000 troops to conquer the Duchy within 8 days. The war did not last long enough to embrace all of Europe and Maurice fled to France where he then had a brilliant military career.
+
+	date = { day = 13 month = january year = 1726 }
+
+	action_a = {
+		name = "ACTIONNAME3529A" #We will defend our claims
+		command = { type = addcore which = 283 } #Kurland
+		command = { type = relation which = RUS value = -150 }
+		command = { type = relation which = KUR value = 150 }
+		command = { type = casusbelli which = RUS value = 3 }
+		command = { type = casusbelli which = POL value = 3 }
+		command = { type = casusbelli which = SWE value = 3 }
+		command = { type = stability value = -2 }
+	}
+	action_b = {
+		name = "ACTIONNAME3529B" #Leave this deathtrap alone
+		command = { type = stability value = 1 }
+		command = { type = relation which = RUS value = 150 }
+	}
+}
+
+#(1731) Protestant Refugees from Salzburg
+event = {
+	id = 3543 #triggered by HAB_3203 A (and SLZ_3755)
+	trigger = {
+		event = 263014 #PRU: The Kingdom of Prussia
+		OR = {
+			owned = { province = 289 data = -1 } #Memel
+			owned = { province = 290 data = -1 } #Prussia
+		}
+	}
+	random = no
+	country = PRU
+	name = "EVENTNAME3203" #The Purge of the Archbishop of Salzburg
+	desc = "EVENTHIST3203"
+	#-#In 1731 the Archbishop of Salzburg purged his lands from Protestants. The Protestants had grown in number over the years and the archbishop had started to feel his powers threatened by their existence. More than 26000 ethnic German Protestants fled for their lives. 17000 of them were welcomed in Prussia in 1732 and most of them settle in East Prussia. Several protestant countries started nation-wide collections to help the fugitives.
+
+	action_a = {
+		name = "ACTIONNAME3598A" #Incorporate them
+		command = { type = population which = 289 value = 5000 } #Memel
+		command = { type = population which = 290 value = 5000 } #Prussia
+	}
+}
+
+#(1733) The Polish Succession of 1733
+event = {
+	id = 3528 #triggered by FRA_3136 B / SAC_3626 A
+	trigger = {
+		event = 263014 #PRU: The Kingdom of Prussia
+	}
+	random = no
+	country = PRU
+	name = "EVENTNAME3495" #The Polish Succession of 1733
+	desc = "EVENTHIST3495"
+	#-#In 1733, the death of August II prompted a new election for the Polish monarch. Due to the permanent practice of Liberum Veto and the ensuing constant bribery, the Polish Sejm was unable to agree between the French Candidate, Stanislaw Leszczynski and his opponent, August III of Saxony, supported by Austria and Russia. The Sejm finally agreed on Stanislas, but this was rejected by Austria and Russia starting the war of Polish Succession. The war ended with August III on the Polish throne.
+
+	action_a = {
+		name = "ACTIONNAME3528A" #Take it easy and only go for Saxony
+		command = { type = casusbelli which = FRA value = 12 }
+		command = { type = stability value = -1 }
+		command = { type = relation which = FRA value = -100 }
+		command = { type = relation which = SWE value = -100 }
+		command = { type = relation which = POL value = 50 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = RUS value = 50 }
+		command = { type = relation which = SAC value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME3528B" #Support the pro-Wettin party in this Affair
+		command = { type = casusbelli which = FRA value = 24 }
+		command = { type = stability value = 1 }
+		command = { type = relation which = FRA value = -150 }
+		command = { type = relation which = SWE value = -150 }
+		command = { type = relation which = POL value = 100 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = RUS value = 150 }
+		command = { type = relation which = SAC value = 150 }
+	}
+}
+
+#(1739) The acquisition of Silesia - Ahistorical
+#by Bordic
+event = {
+	id = 263013 #triggered by HAB_3205
+	trigger = {
+		event = 263014 #PRU: The Kingdom of Prussia
+	}
+	random = no
+	country = PRU
+	name = "EVENTNAME263013" #The acquisition of Silesia
+	desc = "EVENTHIST263013"
+	#-#The Pragmatic Sanction, solemnly rendered by Emperor Charles VI on 19th April 1713, established the indivisibility of the Habsburg patrimony, and ruled the order of succession by order of first born child, even to a woman. This made Maria-Theresa, born in 1717, the heir of the Empire. The Pragmatic Sanction was recognized by Spain in 1725 (confirmed in 1731), Russia in 1726, Prussia in 1728, the United Provinces in 1731, Hanover in 1732, the Heiliges Reich (except Bavaria) in 1732 and France in 1738 only. As to avoid war with Prussia the Emperor acknowledged Frederick II the Great legitimate claims over Silesia.
+
+	action_a = {
+		name = "GOOD"
+		command = { type = addcore which = 314 } #Silesia
+	}
+}
+
+#(1740) The Effects of the Pragmatic Sanction
+event = {
+	id = 3527
+	trigger = {
+		event = 263014 #PRU: The Kingdom of Prussia
+		event = 3205 #HAB: The Effects of the Pragmatic Sanction
+	}
+	random = no
+	country = PRU
+	name = "EVENTNAME3205" #The Effects of the Pragmatic Sanction
+	desc = "EVENTHIST3205"
+	#-#The Pragmatic Sanction, solemnly rendered by Emperor Charles VI on 19th April 1713, established the indivisibility of the Habsburg patrimony, and ruled the order of succession by order of first born child, even to a woman. This made Maria-Theresa, born in 1717, the heir of the Empire. The Pragmatic Sanction was recognized by Spain in 1725 (confirmed in 1731), Russia in 1726, Prussia in 1728, the United Provinces in 1731, Hanover in 1732, the Holy Roman Empire (except Bavaria) in 1732 and France in 1738 only. Bavarian refusal would lead to the War of the Austrian Succession.
+
+	date = { day = 1 month = january year = 1740 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1741 }
+
+	action_a = {
+		name = "ACTIONNAME3616A" #Anti-Habsburg
+		command = { type = addcore which = 314 } #Silesia
+		command = { type = casusbelli which = HAB value = 36 }
+		command = { type = stability value = -1 }
+		command = { type = relation which = BAY value = 150 }
+		command = { type = relation which = SAC value = 150 }
+		command = { type = relation which = GEN value = 50 }
+		command = { type = relation which = FRA value = 150 }
+		command = { type = relation which = ENG value = -100 }
+		command = { type = relation which = HOL value = -100 }
+		command = { type = relation which = RUS value = -100 }
+		command = { type = relation which = HES value = -50 }
+		command = { type = relation which = HAN value = -50 }
+		command = { type = relation which = HAB value = -150 }
+		command = { type = clrflag which = [PrussiaHRE] }
+	}
+	action_b = {
+		name = "ACTIONNAME3616B" #Neutral
+		command = { type = relation which = BAY value = -50 }
+		command = { type = relation which = SAC value = -50 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = relation which = ENG value = 100 }
+		command = { type = relation which = HOL value = 100 }
+		command = { type = relation which = RUS value = 50 }
+		command = { type = relation which = HES value = 100 }
+		command = { type = relation which = HAN value = 100 }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = stability value = 1 }
+	}
+	action_c = {
+		name = "ACTIONNAME3616C" #Pro-Habsburg
+		command = { type = relation which = BAY value = -150 }
+		command = { type = relation which = SAC value = -150 }
+		command = { type = relation which = FRA value = -150 }
+		command = { type = relation which = ENG value = 150 }
+		command = { type = relation which = HOL value = 100 }
+		command = { type = relation which = RUS value = 50 }
+		command = { type = relation which = HES value = 150 }
+		command = { type = relation which = HAN value = 150 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = stability value = -3 }
+		command = { type = casusbelli which = BAY value = 12 }
+		command = { type = sleepevent which = 263003 } #PRU: The Convention of Westminster
+	}
+}
+
+#(1745-1820) Rise of the Kingdom of Prussia
+event = {
+	id = 263011
+	trigger = {
+		event = 263014 #PRU: The Kingdom of Prussia
+		countrysize = 10
+		owned = { province = 290 data = -1 } #Prussia
+		owned = { province = 314 data = -1 } #Silesia
+		owned = { province = 312 data = -1 } #Brandenburg
+		owned = { province = 302 data = -1 } #Hinterpommern
+	}
+	random = no
+	country = PRU
+	name = "EVENTNAME263011" #Expansion of Kingdom of Prussia
+	desc = "EVENTHIST263011"
+	#-#Kingdom of Prussia became major European power during XVIIIth century. Internal reforms strengthened Prussian economy. Kingdom has also expanded its territory inside and outside HRE due to the successions, after Great Northern War, wars against Austria and Partitioning of Poland.
+
+	date = { day = 1 month = january year = 1745 }
+	offset = 1000
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME263011A" #A new market
+		command = { type = removecot which = 301 } #Danzig
+		command = { type = removecot which = 339 } #Holland
+		command = { type = cot which = 312 } #Brandenburg
+		command = { type = merchants value = 3 }
+	}
+}
+
+#(1750-1785) The Enlightened Reforms of Frederick the Great
+event = {
+	id = 3530
+	trigger = {
+		event = 263014 #PRU: The Kingdom of Prussia
+	}
+	random = no
+	country = PRU
+	name = "EVENTNAME3530" #The Enlightened Reforms of Frederick the Great
+	desc = "EVENTHIST3530"
+	#-#After the end of the reign of Louis XIV in France and the following wars of the Spanish succession, the age of enlightenment slowly began to spread all over Europe by the words of writers and philosophers of the time such as Locke, Rosseau, Diderot, Hume, Leibniz and Montesquieu. The New Ideals was religious freedom, education and freedom of speech and political opinion. The monumental work that captured the essence of the enlightenment was Diderot's Encyclopédie, taking 25 years for it's completion and in the end totaling a collection of no less then 35 volumes of 1000 pages each describing everything from how to knit a sock to methods of improving the manufacturing of artillery pieces. Of the monarchs of Europe none was a stronger believer of these ideas than the Prussian King, Friedrich II also know as Frederick the Great.
+
+	date = { day = 1 month = january year = 1750 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1785 }
+
+	action_a = {
+		name = "ACTIONNAME3530A" #Reforms of Enlightenment
+		command = { type = domestic which = Aristocracy value = -2 }
+		command = { type = domestic which = Centralization value = 2 }
+		command = { type = domestic which = Innovative value = 3 }
+		command = { type = domestic which = Serfdom value = -2 }
+		command = { type = stability value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3530B" #No Change
+		command = { type = stability value = 1 }
+	}
+	action_c = {
+		name = "ACTIONNAME3530C" #Reforms of Reaction
+		command = { type = colonists value = 4 }
+		command = { type = INF which = -1 value = 6000 }
+		command = { type = CAV which = -3 value = 1000 }
+		command = { type = ART which = -3 value = 20 }
+		command = { type = stability value = -1 }
+		command = { type = domestic which = Innovative value = -3 }
+		command = { type = domestic which = Serfdom value = 2 }
+	}
+
+}
+
+#(1753-1772) The Convention of Westminster
+#by Bordic
+event = {
+	id = 263003
+	trigger = {
+		event = 263014 #PRU: The Kingdom of Prussia
+		event = 3205 #HAB: The Effects of the Pragmatic Sanction
+		countrysize = 4
+		exists = FRA
+		exists = ENG
+		neighbour = HAB
+		NOT = {
+			war = { country = ENG country = PRU }
+		 	event = 179099 #HAB: The Austracist victory in Spain
+			event = 125037 #BAY: The claim to Bohemia - BAY won the WoAS
+		}
+	}
+	random = no
+	country = PRU
+	name = "EVENTNAME164038" #The Convention of Westminster
+	desc = "EVENTHIST179053"
+	#-#In 1740s the problem of Maria Theresia's succession to the Austrian throne and to the Habsburg inheritance caused a big instability in the European balance of powers which led to the War of Austrian succession. The peace that followed the conflict, provoked by the foreign opposition to the Pragmatic Sanction stated by the former Emperor Charles VI and ended with the Treaty of Aix-la-Chapelle in 1748, resulted in a well defined rivalry between major European powers forming essentially two main political formations: the alliance of the socalled 'Bourbon family pact' (France, Spain, Naples and the latest Parma, all with members of the same House of Bourbons) with Prussia and the alliance between Austria, Russia and England. Disappointed by England's interested approaches to the emerging power of Prussia wich led to the Convention of Westminster, a treaty with which both countries would avoid any foreign military presence or access in the German territories, Austria strengthened her political ties with Saxony, Russia and Sweden and started new diplomatic handlings with France, traditionally an arch-enemy of the Habsburgs since the old dispute over the Burgundian inheritance but for sure the most powerful antagonist to the rising British colonial empire. And an alliance with France would also mean the support of Spain and the Bourbon Italian monarchies. That diplomatic move would lead to a huge world conflict fought in the years between 1756 and 1763: the socalled 'Seven Years War'.
+
+	date = { day = 15 month = January year = 1753 }
+	offset = 30
+	deathdate = { day = 0 month = january year = 1772 }
+
+	action_a = {
+		name = "ACTIONNAME263003A" #Ask for English support
+		command = { type = addcore which = 314 } #Silesia
+		command = { type = stability value = 1 }
+		command = { type = casusbelli which = HAB value = 36 }
+		command = { type = casusbelli which = RUS value = 36 }
+		command = { type = casusbelli which = SWE value = 36 }
+		command = { type = relation which = HAB value = -150 }
+		command = { type = relation which = RUS value = -150 }
+		command = { type = relation which = SWE value = -150 }
+		command = { type = relation which = SAC value = -150 }
+		command = { type = relation which = FRA value = -150 }
+		command = { type = relation which = ENG value = 150 }
+		command = { type = clrflag which = [PrussiaHRE] }
+		command = { type = trigger which = 164038 } #ENG: The Convention of Westminster
+	}
+	action_b = {
+		name = "ACTIONNAME263003B" #No deal with them
+		command = { type = casusbelli which = HAB value = 36 }
+		command = { type = casusbelli which = RUS value = 36 }
+		command = { type = casusbelli which = SWE value = 36 }
+		command = { type = relation which = ENG value = -100 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = RUS value = -75 }
+		command = { type = relation which = SWE value = -75 }
+		command = { type = relation which = SAC value = -75 }
+		command = { type = relation which = FRA value = 150 }
+		command = { type = sleepevent which = 179053 } #HAB: The Reversion of all alliances
+	}
+}
+
+#(1764-1772) 1st Partition of Poland
+event = {
+	id = 3533 #triggered by POL_3499 A
+	trigger = {
+		event = 263014 #PRU: The Kingdom of Prussia
+		neighbour = POL
+		countrysize = 4
+	}
+	random = no
+	country = PRU
+	name = "EVENTNAME3440" #The Partition of Poland
+	desc = "EVENTHIST3440"
+	#-#Stanislas II Poniatowsky (1764-1795) had been elected King of Poland under Russian pressure. The favorite of Catherine II of Russia, he aspired to reform the conditions of his realm, described as 'anarchy tempered by civil war'. Russia placed her supporters in the 1767 Confederation of Slutsk to prevent any curtailment in the Liberum Veto. Civil war occurred in 1768 and by 1772, the powers of Russia, Prussia and Austria, under the inspiration of Frederick II, proceeded to the first partition of Poland, taking border provinces from her and demanding that the Liberum Veto be maintained and all reforms abandoned.
+
+	action_a = {
+		name = "ACTIONNAME3440A" #Poland is trying to reform and it must be stopped
+		command = { type = casusbelli which = POL value = 60 }
+		command = { type = relation which = POL value = -150 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = RUS value = 200 }
+		command = { type = stability value = 3 }
+		command = { type = treasury value = 250 }
+		command = { type = addcore which = 301 } #Danzig
+		command = { type = addcore which = 303 } #Poznan
+	}
+}
+
+#(1778) The Bavarian Succession of 1777
+event = {
+	id = 3531
+	trigger = {
+		event = 263014 #PRU: The Kingdom of Prussia
+		countrysize = 4
+		NOT = { relation = { country = HAB data = 0 } }
+		event = 3207
+	}
+	random = no
+	country = PRU
+	name = "EVENTNAME3531" #The Bavarian Succession of 1777
+	desc = "EVENTHIST3531"
+	#-#After the extinction of the Wittelsbach dynasty in Bavaria (1777), Joseph II endeavored to strengthen the position of Austria within the Empire. His plan to exchange territories with Charles Theodore of the Palatinate, the heir of the Bavarian throne (Lower Bavaria and the Upper Palatinate for Lower Austria) led to the War of the Bavarian Succession (1778-1779). Prussia intervened in July 1778 in what she saw as a dangerous Austrian expansion. It was a short conflict which started with a Prussian invasion of Bohemia but was terminated in May 1779s when Empress Maria Theresa forced her son Joseph II to capitulate. The peace was concluded at Teschen on 16th May 1779 and Austria settled for the small Inn district.
+
+	date = { day = 1 month = january year = 1778 }
+	offset = 10
+	deathdate = { day = 1 month = july year = 1778 }
+
+	action_a = {
+		name = "ACTIONNAME3531A" #Defend Zweibrücken's inheritance
+		command = { type = casusbelli which = HAB value = 24 }
+		command = { type = casusbelli which = BAY value = 24 }
+		command = { type = casusbelli which = PFA value = 24 }
+		command = { type = relation which = HAB value = -150 }
+		command = { type = relation which = PFA value = -150 }
+		command = { type = relation which = BAY value = -150 }
+		command = { type = stability value = 2 }
+		command = { type = clrflag which = [PrussiaHRE] }
+	}
+	action_b = {
+		name = "ACTIONNAME3531B" #Do not interfer in the Habsburg Backyard
+		command = { type = relation which = BAY value = 50 }
+		command = { type = relation which = PFA value = 50 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = stability value = -1 }
+		command = { type = sleepevent which = 263000 } #PRU: Austria is defeated
+	}
+}
+
+#(1778-1783) Austria is defeated
+event = {
+	id = 263000
+	trigger = {
+		event = 263014 #PRU: The Kingdom of Prussia
+		event = 3531
+		OR = {
+			AND = {
+				control = { province = 329 data = -1 }
+				control = { province = 330 data = -1 }
+				control = { province = 314 data = -1 }
+			}
+			AND = {
+				owned = { province = 328 data = HAB }
+				control = { province = 328 data = -1 }
+			}
+			AND = {
+				owned = { province = 351 data = HAB }
+				control = { province = 351 data = -1 }
+			}
+			AND = {
+				owned = { province = 378 data = HAB }
+				control = { province = 378 data = -1 }
+			}
+			control = { province = 349 data = -1 }
+		}
+	}
+	random = no
+	country = PRU
+	name = "EVENTNAME263000" #Austria is defeated
+	desc = "EVENTHIST263000"
+	#-#The War of Bavarian Succession caused by Austria's attempts to annex Straubing was a short conflict without great military action which started with a Prussian invasion of Bohemia and was terminated in May 1779 when Empress Maria Theresia forced her son Joseph II to capitulate. The peace was concluded at Teschen on 16th May 1779 and Austria settled for the small Inn district.
+
+	date = { day = 1 month = january year = 1778 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1783 }
+
+	action_a = {
+		name = "ACTIONNAME263000A" #We are victorious
+		command = { type = vp value = 50 }
+		command = { type = relation which = BAY value = 100 }
+		command = { type = relation which = PFA value = 100 }
+	}
+}
+
+#(1781) Immanuel Kant - Flavor
+event = {
+	id = 5140
+	trigger = {
+		event = 263014 #PRU: The Kingdom of Prussia
+		owned = { province = 290 data = -1 } #Prussia
+	}
+	random = no
+	country = PRU
+	name = "EVENTNAME5140" #Immanuel Kant
+	desc = "EVENTHIST5140"
+	#-#Kant was the foremost thinker of the Enlightenment and one of the greatest philosophers of all time. In him were subsumed new trends that had begun with the Rationalism (stressing reason) of René Descartes and the Empiricism (stressing experience) of Francis Bacon. He thus inaugurated a new era in the development of philosophical thought.
+
+	date = { day = 1 month = january year = 1781 }
+
+	action_a = {
+		name = "OK"
+		command = { type = domestic which = INNOVATIVE value = 1 }
+	}
+}
+
+#(1788-1792) 2nd Partition of Poland
+event = {
+	id = 3534 #triggered by POL_3500 A
+	trigger = {
+		event = 263014 #PRU: The Kingdom of Prussia
+		neighbour = POL
+		countrysize = 4
+	}
+	random = no
+	country = PRU
+	name = "EVENTNAME3440" #The Partition of Poland
+	desc = "EVENTHIST3441"
+	#-#The 1788-1791 Four Years Diet of Poland took opportunity of the war between Russia, Turkey and Sweden (1788-1790) to attempt the transformation of Poland into a hereditary constitutional monarchy, which was proclaimed in the Constitution of May 1791. Influenced by Russia, the opposition forced the King to 'join' and called Russian troops to restore order. This led to the partition of the country in 1793, between her neighbouring countries, which deprived Poland of most of her territory. She would disappear after the 1794 popular uprising of Kosciuszko and the final dissolution of the state in 1795.
+
+	action_a = {
+		name = "ACTIONNAME3440A" #Poland is trying to reform and it must be stopped
+		command = { type = casusbelli which = POL value = 60 }
+		command = { type = relation which = POL value = -150 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = RUS value = 75 }
+		command = { type = stability value = 3 }
+		command = { type = treasury value = 250 }
+		command = { type = addcore which = 301 } #Danzig
+		command = { type = addcore which = 303 } #Pozna
+		command = { type = addcore which = 300 } #Wielkopolska
+		command = { type = addcore which = 291 } #Masovia
+	}
+}
+
+#(1792) The French Revolutionary Wars
+event = {
+	id = 12117 #triggered by FRA_12114 A
+	trigger = {
+		event = 263014 #PRU: The Kingdom of Prussia
+	}
+	random = no
+	country = PRU
+	name = "EVENTNAME12114" #The French Revolutionary Wars
+	desc = "EVENTHIST12114"
+	#-#With the creation of a Legislative Assembly to limit the monarchic power, several reasons pushed France towards war in 1792. Internally, the republican party of the Girondins were calling for a war to rid Europe of monarchy and despotism but also to rid France of any internal reactions. Externally, the nobility, the socalled emigrés, fleeing to Austria and Prussia requested that those powers intervene to restore the French monarchy. Louis XVI, King of the French, saw in a war failure the possibility to restore absolutism. But the dissolution of the Ancien Régime in France alarmed all the European royal courts fearing that the French Jacobinism would have spread in the whole continent and provoked deep destabilization inside their own absolutist government systems.
+
+	action_a = {
+		name = "ACTIONNAME12114A" #Rattle Our Sabres
+		command = { type = casusbelli which = FRA value = 80 }
+		command = { type = relation which = ENG value = 150 }
+		command = { type = relation which = SAV value = 150 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = SPA value = 150 }
+		command = { type = relation which = RUS value = 150 }
+		command = { type = relation which = SWE value = 150 }
+	}
+	action_b = {
+		name = "ACTIONNAME12114B" #Temporize
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1803) The Napoleonic Wars
+event = {
+	id = 12126 #triggered by FRA_12125 A
+	trigger = {
+		event = 263014 #PRU: The Kingdom of Prussia
+	}
+	random = no
+	country = PRU
+	name = "EVENTNAME12125" #The Napoleonic Wars
+	desc = "EVENTHIST12128"
+	#-#Napoléon argued that he wanted to build a federation of free peoples in a Europe united under a liberal government. But if this was indeed his goal, he intended to achieve it by taking power into his own hands. He supposedly intended to grant constitutions, introduce laws, abolished feudalism, create efficient governments and foster education, science, literature and the arts. The other powers of Europe looked on with alarm at an expansionist France, bringing its revolutionary ideals and fervour abroad in the wake of Napoléon's military might.
+
+	action_a = {
+		name = "WAR"
+		command = { type = casusbelli which = FRA value = 192 }
+		command = { type = relation which = ENG value = 150 }
+		command = { type = relation which = SAV value = 150 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = SPA value = 150 }
+		command = { type = relation which = RUS value = 150 }
+		command = { type = relation which = NAP value = 150 }
+		command = { type = relation which = POR value = 150 }
+	}
+	action_b = {
+		name = "PEACE"
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1807) Von Scharnhorst's and Von Stein's Reforms
+event = {
+	id = 3532
+	trigger = {
+		event = 263014 #PRU: The Kingdom of Prussia
+	}
+	random = no
+	country = PRU
+	name = "EVENTNAME3532" #Von Scharnhorst's and Von Stein's Reforms
+	desc = "EVENTHIST3532"
+	#-#After the humiliating defeat against Napoléon's armies and the harsh terms that followed in the peace, the need for drastic measures for Prussia to regain its former military and economical strength was obvious. A wide range of reforms implemented led to the abolishment of serfdom, privileges being revoked and an efficient decentralized government as well as compulsory military service. However this was not a sure thing as different segments of society wanted different types of reforms. It could have been quite differently.
+
+	date = { day = 1 month = january year = 1807 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1807 }
+
+	action_a = {
+		name = "ACTIONNAME3532A" #Plebeian Mass Reform
+		command = { type = domestic which = Aristocracy value = -2 }
+		command = { type = domestic which = Centralization value = 2 }
+		command = { type = domestic which = Serfdom value = -3 }
+		command = { type = gainbuilding which = -1 value = barrack }
+		command = { type = domestic which = Quality value = -2 }
+		command = { type = domestic which = Offensive value = 2 }
+		command = { type = land value = 1000 }
+		command = { type = manpower value = 20 }
+	}
+	action_b = {
+		name = "ACTIONNAME3532B" #Frederickian Elite Reform
+		command = { type = domestic which = Aristocracy value = 2 }
+		command = { type = domestic which = Centralization value = 2 }
+		command = { type = domestic which = Serfdom value = 1 }
+		command = { type = gainbuilding which = -1 value = barrack }
+		command = { type = domestic which = Quality value = 2 }
+		command = { type = domestic which = Offensive value = -2 }
+		command = { type = land value = 1000 }
+	}
+	action_c = {
+		name = "ACTIONNAME3532C" #Balanced Reform
+		command = { type = domestic which = Centralization value = 1 }
+		command = { type = gainbuilding which = -1 value = barrack }
+		command = { type = domestic which = Quality value = 1 }
+		command = { type = land value = 1000 }
+		command = { type = manpower value = 10 }
+	}
+
+}
+
+#(1809-1820) The Restoration of the French Monarchy
+event = {
+	id = 3784 #triggered by FRA_3788
+	trigger = {
+		event = 263014 #PRU: The Kingdom of Prussia
+	}
+	random = no
+	country = PRU
+	name = "EVENTNAME3784" #The Restoration of the French Monarchy
+	desc = "EVENTHIST3784"
+	#-#Many countries had viewed the French revolution with neutral mistrust or eager interest, but with the Reign of Terror and the Execution of King Louis most countries became abhorred. The New Republic and its ideas undermined the 'Old Order' that existed in most European countries. Those several alliances were set up to restore the Bourbons to the French Throne, crush the revolution and get Europe back to normal again. This succeeded in 1814 and again in 1815 when foreign armies brought Louis XVIII on the throne. Louis XVIII was the brother of the Executed King Louis of France and in early life was known as the Comte de Provence. He remained in Paris after the outbreak of the French Revolution in 1789 but escaped to Belgium two years later. After King Louis' execution in 1793 he proclaimed himself regent, and after the death of his brother's heir in 1795, he took the title Louis XVIII. He lived as an exile in various European countries until he became King after Napoléon's first abdication in 1814. On Napoléon's return to power in 1815, however, Louis again fled to Belgium
+
+	action_a = {
+		name = "ACTIONNAME3784A" #The Bourbons are reinstalled
+		command = { type = vp value = 500 }
+		command = { type = treasury value = 500 }
+		command = { type = relation which = FRA value = 200 }
+		command = { type = stability value = 3 }
+	}
+}
+
+#(1815-1820) Creation of the Rhine province
+event = {
+	id = 263001
+	trigger = {
+		event = 263014 #PRU: The Kingdom of Prussia
+		OR = {
+			event = 3086 #Restoration of the French monarchy, a "Congress of Vienna" event would of course be better
+			event = 3177
+			event = 3209
+			event = 3784
+			event = 3783
+		}
+		OR = {
+			vassal = { country = FRA country = KLE }
+			vassal = { country = PRU country = KLE }
+			vassal = { country = HAB country = KLE }
+			vassal = { country = RUS country = KLE }
+			vassal = { country = ENG country = KLE }
+			owned = { province = 343 data = -1 }
+		}
+		OR = {
+			vassal = { country = FRA country = BRG }
+			vassal = { country = PRU country = BRG }
+			vassal = { country = HAB country = BRG }
+			vassal = { country = RUS country = BRG }
+			vassal = { country = ENG country = BRG }
+			owned = { province = 334 data = -1 }
+		}
+		OR = {
+			vassal = { country = FRA country = KOL }
+			vassal = { country = PRU country = KOL }
+			vassal = { country = HAB country = KOL }
+			vassal = { country = RUS country = KOL }
+			vassal = { country = ENG country = KOL }
+			owned = { province = 344 data = -1 }
+		}
+	}
+	random = no
+	country = PRU
+	name = "EVENTNAME263001" #The Rhine province
+	desc = "EVENTHIST263001"
+	#-#On the Congress of Vienna the territory bordering the Rhine was redistributed. Austria gave up the guarding of the Rhine by turning the Austrian Netherlands over to the Dutch Republic and let the task pass to Prussia which was given the former clerical territories of Cologne and Münster and the whole Grand Duchy of Berg, including the Wittelsbach possessions Berg and Jülich, and in return ceded Ostfriesland to Hanover and most of Guelders to the Netherlands. A coherent 'Rhine province' extending from the dutch border to the bavarian Palatinate with a central administration was formed.
+
+	date = { day = 1 month = january year = 1815 }
+	offset = 10
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME263001A" #Accept the new borders in the west
+		command = { type = addcore which = 334 } #Münster
+		command = { type = addcore which = 343 } #Kleves
+		command = { type = addcore which = 344 } #Köln
+		command = { type = inherit which = KLE }
+		command = { type = inherit which = BRG }
+		command = { type = inherit which = KOL }
+		command = { type = cedeprovince which = HOL value = 338 } #Geldre
+		command = { type = cedeprovince which = HAN value = 335 } #Oldenburg
+		command = { type = domestic which = centralization value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME263001B" #Reject the new borders in the west
+		command = { type = relation which = HOL value = -100 }
+		command = { type = relation which = ENG value = -100 }
+		command = { type = relation which = HAN value = -100 }
+		command = { type = relation which = HAB value = -100 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 263016

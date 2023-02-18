@@ -4,7 +4,7 @@
 
 country = {
 	tag = CAM
-	ai = "SmallTrade1.ai"
+	ai = "SmallTrade1.txt"
 	policy = {
 		aristocracy = 7
 		centralization = 4
@@ -24,7 +24,7 @@ country = {
 	treasury = 200
 	inflation = 3
 	merchants = 0
-	religion = { type = buddhism }
+	religion = { type = buddhist }
 	culture = {
 		type = khmer
 	}
@@ -32,7 +32,7 @@ country = {
 		relation = { tag = AYU value = -130 }
 		relation = { tag = DAI value = -70 }
 		relation = { tag = CHI value = 45 }
-		relation = { tag = MYA value = 145 }
+		relation = { tag = BRM value = 145 }
 		relation = { tag = MLC value = 45 }
 	}
 	knownprovinces = {

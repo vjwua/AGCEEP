@@ -9,7 +9,7 @@ country = {
 			[TUN_Hafsids] = yes
 		}
 	}
-	ai = "SmallTrade1.ai"
+	ai = "SmallTrade1.txt"
 	flagname = "Hafsids"
 	colonialattempts = 0
 	colonialnation = no
@@ -21,7 +21,7 @@ country = {
 	inflation = 0
 	merchants = 0.083333
 	religion = { type = sunni }
-	culture = { type = delaware }
+	culture = { type = maghrebi }
 	diplomacy = {
 		relation = { tag = KNI value = -200 refusetrade = no }
 		relation = { tag = TUR value = 100 refusetrade = no }

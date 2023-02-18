@@ -1,0 +1,1105 @@
+#Mamluks (MAM)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1421-1422) Anarchy
+event = {
+	id = 24033
+	random = no
+	country = MAM
+	name = "EVENTNAME24033" #Anarchy
+	desc = "EVENTHIST24033"
+	#-#After the death of al-Muayyad Shaykh, al-Muzaffar Ahmad, a child of three years old, ascended the throne under the regency of al-Zahir Tatar. A few month later, he was deposed by his regent, and the sultanate entered a state of political anarchy and economical collapse. Commercial concessions granted to foreign traders (mostly Venetians) were revoked, and their stay in the sultanate was limited.
+
+	date = { day = 1 month = march year = 1421 }
+	offset = 30
+	deathdate = { day = 1 month = june year = 1422 }
+
+	action_a = {
+		name = "ACTIONNAME24033A" #Let the beys run the show
+		command = { type = domestic which = mercantilism value = 2 }
+		command = { type = stability value = -6 }
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = revoltrisk which = 18 value = 7 }
+		command = { type = revolt which = -1 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = relation which = VEN value = -30 }
+	}
+	action_b = {
+		name = "ACTIONNAME24033B" #Curtail their power
+		command = { type = stability value = -8 }
+		command = { type = revoltrisk which = 60 value = 10 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = relation which = VEN value = 30 }
+	}
+}
+
+#(1427) The Rescue of Janus (Egypt version)
+#This event is a fusion of the Cyprus and Egypt events on the 1426 expedition.
+event = {
+	id = 24034 #triggered by CYP_154003
+	random = no
+	country = MAM
+	name = "EVENTNAME24034" #The submission of Cyprus
+	desc = "EVENTHIST24034"
+	#-#In 1426-27 sultan Barsbay launched a major offensive against Cyprus. The reason behind the campaign was twofold: to prevent the threat to Egyptian shipping from the French, and to enforce the monopoly of spice trade between its two major ports of Alexandria and Aleppo. The island was taken and its King, Jean de Lusignan, became vassal of the sultan. This success allowed Barsbay to gain an upper hand in his dealings with Genoese traders.
+
+	action_a = {
+		name = "ACTIONNAME24034A" #That ought to teach him
+		command = { type = vassal which = CYP }
+		command = { type = treasury value = 100 }
+		command = { type = stability value = 1 }
+		command = { type = relation which = CYP value = 50 } # They were good vassals from then on.
+		command = { type = relation which = GEN value = -50 }
+	}
+}
+
+#(1422-1438) Policies of Sultan Barsbay
+event = {
+	id = 24038
+	random = no
+	country = MAM
+	name = "EVENTNAME24038" #Policies of Sultan Barsbay
+	desc = "EVENTHIST24038"
+	#-#During the rule of the sultan Barsbay, the administration of the Sultanate was cleared of the Jews and Christians. Many goods belonging to Europeans were confiscated in Egypt and Syria, high customs duties were imposed on merchants, the circulation of the Christian currencies was prohibited.
+
+	date = { day = 1 month = may year = 1422 }
+	offset = 3200
+	deathdate = { day = 1 month = january year = 1438 }
+
+	action_a = {
+		name = "ACTIONNAME24038A" #Replace the administration
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = domestic which = serfdom value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME24038B" #Leave the old administration
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1428-1445) Rule of Sultan Barsbay
+event = {
+	id = 24035
+	trigger = {
+		exists = VEN
+		event = 24034
+		OR = {
+			control = { province = 484 data = -1 }
+			vassal = { country = MAM country = CYP }
+		}
+	}
+	random = no
+	country = MAM
+	name = "EVENTNAME24035" #Pepper Monopoly
+	desc = "EVENTHIST24035"
+	#-#Spices, and pepper in particular, from the Orient were carried by Arab merchants and unloaded at Jiddah, which the Mamluks had control of. From here it was shipped to Egypt, and offered for sale to the Venetians, who dominated the spice trade from Egypt by this time. There were no other alternative spice routes to Europe, as Cyprus was controlled by the Mamluks. In 1426 sultan Barsbay decided to make pepper a royal monopoly by increasing the price of pepper, and then again in 1428 and 1430. The Venetians had a choice of paying up, or giving up the centerpiece of their trade. They paid. The Sultan's demands went up and up in the 1430s, and his successor continued the extortion.
+
+	date = { day = 1 month = may year = 1428 }
+	offset = 30
+	deathdate = { day = 1 month = june year = 1445 }
+
+	action_a = {
+		name = "ACTIONNAME24035A" #Institute royal monopoly
+		command = { type = domestic which = mercantilism value = 4 }
+		command = { type = treasury value = 200 }
+		command = { type = trade value = -250 }
+		command = { type = merchants value = 2 }
+		command = { type = relation which = VEN value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME24035B" #Conduct fair trade
+		command = { type = domestic which = mercantilism value = -1 }
+		command = { type = relation which = VEN value = 50 }
+		command = { type = sleepevent which = 24036 } #VEN: Pepper Monopoly
+	}
+}
+
+#(1438) Succession of Sultan Barsbay
+event = {
+	id = 24037
+	random = no
+	country = MAM
+	name = "EVENTNAME24037" #Plague and Syrian Revolt
+	desc = "EVENTHIST24037"
+	#-#In 1438 sultan Barsbay was campaigning with his troops in Syria, when an epidemic of plague struck and left him and thousands of his soldiers dead. Barsbay's son Yusuf al-Aziz succeeded him under the regency of of his former atabeq Cakmak, but was deposed a mere few days later. Unhappy beys had revolted and were finally subdued in 1439.
+
+	date = { day = 6 month = june year = 1438 }
+
+	action_a = {
+		name = "DRATS"
+		command = { type = desertion which = 1209 value = 3000 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = stability value = -6 }
+		command = { type = revoltrisk which = 18 value = 8 }
+		command = { type = religiousrevolt which = -1 }
+	}
+}
+
+#(1441-1444) Granada asks for help
+#by mfigueras
+event = {
+	id = 24051 #triggered by GRA_7123 A
+	random = no
+	country = MAM
+	name = "EVENTNAME24051" #The emir of Granada asks for help
+	desc = "EVENTHIST24051"
+	#-#In 1441, Muhammad IX, emir of Granada, requests the aid of the Mamluk sultan, Sáid Caqmaq for aid against the Castillians. Caqmaq rejected the request, but send to Granada money and sumptuous presents.
+
+	action_a = {
+		name = "ACTIONNAME24051A" #It's too far away. Let's send some presents instead
+		command = { type = treasury value = -100 }
+		command = { type = DIP which = -1 value = 12 }
+		command = { type = trigger which = 7153 } #GRA: Sultan sends us money
+	}
+	action_b = {
+		name = "ACTIONNAME24051B" #We must help them. Let's send our best troops!
+		command = { type = desertion which = -1 value = 6000 }
+		command = { type = treasury value = -50 }
+		command = { type = DIP which = 1 value = 18 }
+		command = { type = diplomats value = 1 }
+		command = { type = trigger which = 7154 } #GRA: Sultan sends troops to help us
+	}
+	action_c = {
+		name = "ACTIONNAME24051C" #Bah! We have our own problems. We must send nothing
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 24 value = 8 }
+		command = { type = trigger which = 7155 } #GRA: Sultan refuses to help us
+	}
+}
+
+#(1442-1453) Peaceful reign of Sultan Cakmak
+event = {
+	id = 24039
+	random = no
+	country = MAM
+	name = "EVENTNAME24039" #Pacification
+	desc = "EVENTHIST24039"
+	#-#After conducting unsuccessful military campaigns against the Knights of Rhodes, sultan Cakmak signed a peace with them in 1444. For the rest of his reign, al-Zahir Cakmak was pursuing a policy of peace inside and tried to maintain good diplomatic relations with the Timurides, Ottomans and the princes of Asia Minor.
+
+	date = { day = 1 month = april year = 1442 }
+	offset = 1000
+	deathdate = { day = 1 month = january year = 1453 }
+
+	action_a = {
+		name = "ACTIONNAME24039A" #Conduct peaceful policy
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = relation which = TUR value = 30 }
+		command = { type = relation which = TIM value = 30 }
+		command = { type = relation which = DUL value = 30 }
+		command = { type = relation which = KAR value = 30 }
+		command = { type = relation which = CAN value = 30 }
+	}
+	action_b = {
+		name = "ACTIONNAME24039B" #Conduct aggressive policy
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = stability value = -3 }
+		command = { type = casusbelli which = KNI value = 100 }
+		command = { type = casusbelli which = TUR value = 100 }
+	}
+}
+
+#(1444-1454) Piratical Knights
+event = {
+	id = 219008
+	trigger = {
+		exists = KNI
+		owned = { province = 481 data = KNI } #Rhodes
+		owned = { province = 744 data = -1 } #Alexandria
+		control = { province = 744 data = -1 } #Alexandria
+		atwar = no
+	}
+	random = no
+	country = MAM
+	name = "EVENTNAME219008" #Piratical Knights
+	desc = "EVENTHIST219008"
+	#-#By 1444, the Soldan of Egypt, Zaher Gaqmaq was so distraught with the loss of revenue between Aleppo and Alexandria by the piratical Latins, that he decided to capture the Island of Rhodes and put an end to the nest of pirates who harboured there under the protection of the Knights of Rhodes.
+
+	date = { day = 10 month = august year = 1444 }
+	offset = 60
+	deathdate = { day = 19 month = december year = 1454 }
+
+	action_a = {
+		name = "ACTIONNAME219008A" #We need to curb the piratical Knights
+		command = { type = casusbelli which = KNI value = 120 }
+		command = { type = relation which = KNI value = -50 }
+		command = { type = galleys which = 744 value = 5 }
+		command = { type = transports which = 744 value = 5 }
+		command = { type = trade value = 100 }
+		}
+	action_b = {
+		name = "ACTIONNAME219008B" #Rely on our fleet to safe guard the waters
+		command = { type = galleys which = 744 value = 10 }
+		command = { type = relation which = KNI value = -20 }
+		command = { type = merchants value = -3 }
+	}
+}
+
+#(1453) Succession of Sultan Cakmak
+event = {
+	id = 24040
+	random = no
+	country = MAM
+	name = "EVENTNAME24040" #Succession of sultan Caqmaq
+	desc = "EVENTHIST24040"
+	#-#After the death of sultan Caqmaq, grand amirs and the caliph chose his 19 years old son Uthman to succeed him. However, he immediately had to face a revolt of Mamluks, and was deposed by his atabeg al-Ashraf Inal, who managed to gather sufficient support to be recognized sultan. He at once appointed Mamluks loyal to him to all essential positions of the State and the army.
+
+	date = { day = 13 month = february year = 1453 }
+	offset = 1
+	deathdate = { day = 1 month = march year = 1453 }
+
+	action_a = {
+		name = "ACTIONNAME24040A" #Let the beys fight
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = stability value = -6 }
+		command = { type = revoltrisk which = 20 value = 6 }
+		command = { type = religiousrevolt which = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME24040B" #Try to control them
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = stability value = -6 }
+		command = { type = revoltrisk which = 26 value = 8 }
+		command = { type = religiousrevolt which = -1 }
+	}
+}
+
+#(1460) Plague of 1460
+event = {
+	id = 24041
+	random = no
+	country = MAM
+	name = "EVENTNAME24041" #Plague of 1460
+	desc = "EVENTHIST24041"
+	#-#In 1460 a plague devastated Egypt.
+
+	date = { day = 1 month = january year = 1460 }
+	offset = 120
+	deathdate = { day = 1 month = january year = 1461 }
+
+	action_a = {
+		name = "DRATS"
+		command = { type = populationpercent which = 744 value = -25 } #Alexandria
+		command = { type = populationpercent which = 745 value = -25 } #Delta
+		command = { type = populationpercent which = 746 value = -25 } #Egypt
+		command = { type = populationpercent which = 747 value = -25 } #Nile
+		command = { type = stability value = -1 }
+		command = { type = provincetax which = 744 value = -1 } #Alexandria
+		command = { type = provincetax which = 746 value = -1 } #Egypt
+		command = { type = provincemanpower which = 744 value = -1 } #Alexandria
+	}
+}
+
+#(1461) Succession of Sultan Inal
+event = {
+	id = 24042
+	random = no
+	country = MAM
+	name = "EVENTNAME24042" #Succession of sultan Inal
+	desc = "EVENTHIST24042"
+	#-#After the death of sultan Inal, his elder son, Ahmad al-Muayyad, ascended the throne but only for a few months and was soon deposed by his atabeg, Khushkadam. However, he soon realizes that the governors of Damask and Djedda, that helped to bring him to the helm, are frightening rivals.
+
+	date = { day = 1 month = may year = 1461 }
+	offset = 60
+	deathdate = { day = 1 month = august year = 1461 }
+
+	action_a = {
+		name = "ACTIONNAME24040A" #Let the beys fight
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = stability value = -6 }
+		command = { type = revoltrisk which = 19 value = 6 }
+		command = { type = religiousrevolt which = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME24040B" #Try to control them
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = stability value = -6 }
+		command = { type = revoltrisk which = 28 value = 8 }
+		command = { type = religiousrevolt which = -1 }
+	}
+}
+
+#(1462-1466) Arab uprisings
+event = {
+	id = 24043
+	random = no
+	country = MAM
+	name = "EVENTNAME24043" #Arab uprisings
+	desc = "EVENTHIST24043"
+	#-#From 1462 through 1466 Bedouins and arabic tribes in Syria and Northern Arabia revolted and terrorized the population in these provinces. Sultan Khushqadam had to send multiple expeditions against them, but still couldn't subdue them by the end of his reign.
+
+	date = { day = 1 month = january year = 1462 }
+	offset = 180
+	deathdate = { day = 1 month = january year = 1466 }
+
+	action_a = {
+		name = "DRATS"
+		command = { type = revoltrisk which = 48 value = 7 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = stability value = -2 }
+	}
+}
+
+#(1467-1469) Succession of Sultan Khushkadam
+event = {
+	id = 24044
+	random = no
+	country = MAM
+	name = "EVENTNAME24044" #Succession of sultan Khushkadam
+	desc = "EVENTHIST24044"
+	#-#Sultan Khushkadam has died without naming the successor, and his atabeg al-Zahir Yalbay became a sultan. However, he was quickly deposed by his own atabeg al-Zahir Timurbugha, who, in turn, after the reign of less than a year, is overthrown by his own atabeg, Qa'itbay. Qa'itbay, unlike his predecessors, treats former sultans with honor. His lengthy reign, mostly peaceful, will be followed by increasingly unstable 20 years which will bring the downfall of the oldest Islamic dynasty.
+
+	date = { day = 9 month = october year = 1467 }
+	offset = 20
+	deathdate = { day = 1 month = january year = 1469 }
+
+	action_a = {
+		name = "ACTIONNAME24040A" #Let the beys fight
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 24 value = 5 }
+		command = { type = religiousrevolt which = -1 }
+	}
+}
+
+#(1468-1500) The Growing Might of the Ak Koyunlu
+event = {
+	id = 219017
+	trigger = {
+		NOT = { exists = QAR }
+		event = 103014 #AKK: Ak Koyunlu in Azerbaijan
+		exists = AKK
+	}
+	random = no
+	country = MAM
+	name = "EVENTNAME301129" #The Growing Might of the Ak Koyunlu
+	desc = "EVENTHIST301129"
+	#-#Although the Ak Koyunlu had started as a relatively small state at the start of Usun Hasan's reign, their destruction of the Kara Koyunlu put the state on equal footing with the Ottomans and Mamluks. The Ak Koyunlu had become a formidable state.
+
+	date = { day = 1 month = january year = 1468 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1500 }
+
+	action_a = {
+		name = "ACTIONNAME301129A" #The Ak Koyunlu are a threat to our interests
+		command = { type = relation which = AKK value = -200 }
+		command = { type = INF which = -1 value = 2500 }
+		command = { type = INF which = -1 value = 2500 }
+	}
+	action_b = {
+		name = "ACTIONNAME301129B" #Congratulate them on their victory
+		command = { type = relation which = AKK value = 25 }
+		command = { type = trigger which = 103017 } #AKK: Mamluk recognition
+	}
+}
+
+#(1468) Shah Suwar, the Dulkadir
+#by Garbon
+event = {
+	id = 219003
+	trigger = {
+		owned = { province = 485 data = -1 }
+		NOT = { exists = DUL }
+	}
+	random = no
+	country = MAM
+	name = "EVENTNAME219003" #Shah Suwar, the Dulkadir
+	desc = "EVENTHIST219003"
+	#-#In the fall of 1468, Shah Suwar supplanted his brother in Elbistan and renounced his vassalage oath to the Mamluks sultan. Fearing that this would encourage others to rebel, Qa'itbay dispatched multiple armies to squash the rebellion at quite a significant cost. Suwar's rebellion dealt the reputation of the Mamluk sultanate as a bastion of stability in the tense area of southwest asian politics a humiliating blow. His rebellion was also a harbringer of future challaenges to Cairo's supremacy in the Muslim world.
+
+	date = { day = 2 month = october year = 1468 }
+
+	action_a = {
+		name = "ACTIONNAME219003A" #We will not allow our power to be diminished
+		command = { type = revolt which = 485 } #Aleppo
+		command = { type = revolt which = 485 } #Aleppo
+		command = { type = vp value = -10 }
+		command = { type = treasury value = -50 }
+		command = { type = inf which = -2 value = 5000 }
+	}
+}
+#(1468) Shah Suwar, the Dulkadir
+event = {
+	id = 219004 #triggered by DUL_162000 A
+	random = no
+	country = MAM
+	name = "EVENTNAME219004" #Shah Suwar, the Dulkadir
+	desc = "EVENTHIST219004"
+	#-#In the fall of 1468, Shah Suwar supplanted his brother in Elbistan and renounced his vassalage oath to the Mamluks sultan. Fearing that this would encourage others to rebel, Qa'itbay dispatched multiple armies to squash the rebellion at quite a significant cost. Suwar's rebellion dealt the reputation of the Mamluk sultanate as a bastion of stability in the tense area of southwest asian politics a humiliating blow. His rebellion was also a harbringer of future challaenges to Cairo's supremacy in the Muslim world.
+
+	action_a = {
+		name = "ACTIONNAME219004A" #We will not allow our power to be diminished
+		command = { type = vp value = -10 }
+		command = { type = treasury value = -50 }
+		command = { type = inf which = -2 value = 5000 }
+	}
+}
+
+#(1476-1490) Policies of sultan Qa'itbay
+event = {
+	id = 24045
+	random = no
+	country = MAM
+	name = "EVENTNAME24045" #Policies of sultan Qa'itbay
+	desc = "EVENTHIST24045"
+	#-#During his exceptionally long reign, sultan Qa'itbay resumed the trade policy by granting new privileges to Italian merchants, and exercising a stricter control over governors. He also undertook a massive construction program in both Cairo and in Medina. Unfortunately, the coffers of the State were empty by then and the country was struck heavily and impoverished by natural disasters.
+
+	date = { day = 1 month = may year = 1476 }
+	offset = 1200
+	deathdate = { day = 1 month = august year = 1490 }
+
+	action_a = {
+		name = "ACTIONNAME24045A" #Try to improve the economy
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = mercantilism value = -1 }
+		command = { type = stability value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = infra value = 600 }
+		command = { type = trade value = 500 }
+		command = { type = treasury value = -100 }
+	}
+	action_b = {
+		name = "ACTIONNAME24045B" #Try to improve the army
+		command = { type = domestic which = land value = 1 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = land value = 600 }
+		command = { type = inf which = -1 value = 6000 }
+		command = { type = casusbelli which = -1 value = 48 }
+		command = { type = relation which = -3 value = -80 }
+		command = { type = treasury value = -100 }
+	}
+}
+
+#(1476-1490) Sultan Cem
+event = {
+	id = 24046
+	trigger = { event = 3368 }
+	random = no
+	country = MAM
+	name = "EVENTNAME24046" #Sultan Cem asks for asylum
+	desc = "EVENTHIST24046"
+	#-#In 1481 brother of Ottoman sultan Bayezid II Cem revolted, but was quickly defeated and had to flee. Mamluks offered him asylum, partially because Qa'itbay was concerned with the growing might of the Ottomans and their meddlings in the affairs of smaller states in Asia Minor.
+
+	date = { day = 1 month = may year = 1476 }
+	offset = 1200
+	deathdate = { day = 1 month = august year = 1490 }
+
+	action_a = {
+		name = "ACTIONNAME24046A" #Give him asylum
+		command = { type = relation which = TUR value = -150 }
+		command = { type = stability value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME24046B" #Send him back to Bayezid
+		command = { type = relation which = TUR value = 50 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1484-1489) Qa'itbay and the Ottomans
+event = {
+	id = 219005 #triggered by TUR_301500 A / TUR_301501 A
+	random = no
+	country = MAM
+	name = "EVENTNAME219005" #Qa'itbay and the Ottomans
+	desc = "EVENTHIST219005"
+	#-#Since his acension, Bayezid had maintained positive relations with Mamluk sultan, Qa'itbay. However, in 1484, under pressue to renew the empire's expansive drive eastward, he began harassing the Dulkadir principality, a vassal state of the Mamluks in Elbistan. Qa'itbay would pursue multiple expeditions against the Ottomans whose expenses lethally damaged to the formal system of supply requisition and revenue collection.
+
+	action_a = {
+		name = "ACTIONNAME219005A" #We must protect our vassals!
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = treasury value = -100 }
+		command = { type = inf which = -2 value = 5000 }
+		command = { type = cav which = -2 value = 2500 }
+	}
+}
+
+#(1485-1566) Fall of the Mamluk Empire -I-
+event = {
+	id = 219001
+	trigger = {
+		war = { country = TUR country = MAM }
+		neighbour = TUR
+		NOT = { countrysize = 22 }
+		NOT = { control = { province = 485 data = MAM } } #Aleppo
+		NOT = { control = { province = 490 data = MAM } } #Syria
+		NOT = { control = { province = 746 data = MAM } } #Egypt
+		someof = {
+			number = 3
+			control = { province = 491 data = TUR } #Lebanon
+			control = { province = 492 data = TUR } #Samaria
+			control = { province = 493 data = TUR } #Judea
+			control = { province = 744 data = TUR } #Alexandria
+			control = { province = 745 data = TUR } #Delta
+			control = { province = 747 data = TUR } #Nile
+			control = { province = 746 data = TUR } #Egypt
+		}
+		OR = {
+			TUR = { monarch = 0139006 } #Selim I #historical Sultan to conquer MAM
+			NOT = { stability = 0 }
+		}
+	}
+	random = no
+	country = MAM
+	name = "EVENTNAME219001" #Fall of the Mamluk Empire
+	desc = "EVENTHIST219001"
+	#-#The Ottoman Sultan Selim I was determined to eliminate all potential enemies in the east in order to be able to overrun Europe without fearing an attack from the other direction. Having defeated Safavid Persia, he turned to the Mamluk Empire. At that time, the Mamluk state already was in a state of anarchy and its armies hopelessly inferior to those of the Ottomans, and thus Selim's armies rushed through its defenses at an incredible speed. On August 24th the Syrian army led by the Sultan himself who got killed in that battle was destroyed near Aleppo, the city of Damaskus conquered on October 12th and the rest of Syria and Palestina quickly overrun. After wintering in Damaskus, Selim progressed to Egypt. On January 21st, the last remaining Mamluk army engaged for the final battle near Radania and was decisively defeated. This battle marked the end of the Mamluk Empire. Selim offered vassal status to the last Sultan Tumanbeg...
+
+	date = { day = 1 month = january year = 1485 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1566 }
+
+	action_a = {
+		name = "ACTIONNAME219001A" #Tumanbeg refuses vassal status and is executed (End Game)
+		command = { type = cedeprovince which = TUR value = 485 } #Aleppo
+		command = { type = cedeprovince which = TUR value = 486 } #Nuyssaybin
+		command = { type = cedeprovince which = TUR value = 488 } #Kirkuk
+		command = { type = cedeprovince which = TUR value = 489 } #Iraq
+		command = { type = cedeprovince which = TUR value = 490 } #Syria
+		command = { type = cedeprovince which = TUR value = 491 } #Lebanon
+		command = { type = cedeprovince which = TUR value = 492 } #Samaria
+		command = { type = cedeprovince which = TUR value = 493 } #Judea
+		command = { type = cedeprovince which = TUR value = 494 } #Sinai
+		command = { type = cedeprovince which = TUR value = 495 } #Jordan
+		command = { type = cedeprovince which = TUR value = 483 } #Adana
+		command = { type = cedeprovince which = TUR value = 474 } #Sivas
+		command = { type = independence which = ARA }
+		command = { type = independence which = TRI }
+		command = { type = trigger which = 219011 } #MAM: The Ottoman subjugation
+		command = { type = trigger which = 301022 } #TUR: Annexation of the Mamluk Empire
+	}
+	action_b = {
+		name = "ACTIONNAME219001B" #Tumanbeg accepts vassal status
+		command = { type = vp value = -200 }
+		command = { type = cedeprovince which = TUR value = 485 } #Aleppo
+		command = { type = cedeprovince which = TUR value = 486 } #Nuyssaybin
+		command = { type = cedeprovince which = TUR value = 488 } #Kirkuk
+		command = { type = cedeprovince which = TUR value = 489 } #Iraq
+		command = { type = cedeprovince which = TUR value = 490 } #Syria
+		command = { type = cedeprovince which = TUR value = 491 } #Lebanon
+		command = { type = cedeprovince which = TUR value = 492 } #Samaria
+		command = { type = cedeprovince which = TUR value = 493 } #Judea
+		command = { type = cedeprovince which = TUR value = 494 } #Sinai
+		command = { type = cedeprovince which = TUR value = 495 } #Jordan
+		command = { type = cedeprovince which = TUR value = 483 } #Adana
+		command = { type = cedeprovince which = TUR value = 474 } #Sivas
+		command = { type = independence which = ARA }
+		command = { type = independence which = TRI }
+		command = { type = trigger which = 219012 } #MAM: The Ottoman vassalization
+		command = { type = trigger which = 110000 } #ARA: Fall of the Mamluk Empire
+		command = { type = trigger which = 301023 } #TUR: Submission of the Mamluk Sultan
+	}
+	action_c = {
+		name = "ACTIONNAME219001C" #Continue to fight the Ottomans
+		command = { type = stability value = -5 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = cedeprovince which = TUR value = 485 } #Aleppo
+		command = { type = cedeprovince which = TUR value = 486 } #Nuyssaybin
+		command = { type = cedeprovince which = TUR value = 488 } #Kirkuk
+		command = { type = cedeprovince which = TUR value = 489 } #Iraq
+		command = { type = cedeprovince which = TUR value = 490 } #Syria
+		command = { type = cedeprovince which = TUR value = 491 } #Lebanon
+		command = { type = cedeprovince which = TUR value = 492 } #Samaria
+		command = { type = cedeprovince which = TUR value = 493 } #Judea
+		command = { type = cedeprovince which = TUR value = 495 } #Jordan
+		command = { type = cedeprovince which = TUR value = 483 } #Adana
+		command = { type = cedeprovince which = TUR value = 474 } #Sivas
+		command = { type = independence which = ARA }
+		command = { type = trigger which = 219013 } #MAM: The Ottoman invasion
+	}
+}
+#(1485-1566 or 1510-1820) The Ottoman subjugation
+event = {
+	id = 219011 #triggered by MAM_219001 A or MAM_219014
+	trigger = {
+		OR = {
+			owned = { province = 497 data = -1 } #Medina
+			owned = { province = 498 data = -1 } #Mekkah
+		}
+	}
+	random = no
+	country = MAM
+	name = "EVENTNAME219011" #The Ottoman subjugation
+	desc = "EVENTHIST219011"
+	#-#Selim offered vassal status to the last Sultan Tumanbeg, but he proudly refused and preferred being beheaded. Syria, Palestina and Egypt were incorporated into the Ottoman Empire that now stretched over three continents. For the administration of the new African possessions a third Beglerbeg with his seat in Kairo was appointed.
+
+	action_a = {
+		name = "OK"
+		command = { type = cedeprovince which = ARA value = 497 } #Medina
+		command = { type = cedeprovince which = ARA value = 498 } #Mekkah
+		command = { }
+	}
+}
+#(1485-1566) The Ottoman vassalization
+event = {
+	id = 219012 #triggered by MAM_219001 B
+	trigger = {
+		OR = {
+			owned = { province = 497 data = -1 } #Medina
+			owned = { province = 498 data = -1 } #Mekkah
+		}
+	}
+	random = no
+	country = MAM
+	name = "EVENTNAME219012" #The Ottoman vassalization
+	desc = "EVENTHIST219012"
+	#-#Selim offered vassal status to the last Sultan Tumanbeg. The cowardly dog has accepted this humiliation and will now rule Egypt as a subject of the Ottoman Sultan.
+
+	action_a = {
+		name = "OK"
+		command = { type = cedeprovince which = ARA value = 497 } #Medina
+		command = { type = cedeprovince which = ARA value = 498 } #Mekkah
+	}
+}
+#(1485-1566) The Ottoman invasion
+event = {
+	id = 219013 #triggered by MAM_219001 C
+	trigger = {
+		OR = {
+			owned = { province = 497 data = -1 } #Medina
+			owned = { province = 498 data = -1 } #Mekkah
+		}
+	}
+	random = no
+	country = MAM
+	name = "EVENTNAME219013" #The Ottoman invasion
+	desc = "EVENTHIST219013"
+	#-#Selim offered vassal status to Sultan Tumanbeg, but he proudly refused and preferred to withstand the invading Ottomans to death.
+
+	action_a = {
+		name = "OK"
+		command = { type = cedeprovince which = ARA value = 497 } #Medina
+		command = { type = cedeprovince which = ARA value = 498 } #Mekkah
+	}
+}
+
+#(1490-1496) Bayezid's Peace with Qa'itbay
+event = {
+	id = 219006 #triggered by TUR_301502
+	random = no
+	country = MAM
+	name = "EVENTNAME219006" #Bayezid's Peace with Qa'itbay
+	desc = "EVENTHIST219006"
+	#-#As the result of Qa'itbay's large expeditions against the Ottomans, Bayezid's emissaries eventually concluded a peace with the Mamluk sultan that recognized him as the paramount suzerain of Syria and Southeastern Anatolia. After the Ottoman Wars, Qa'itbay enjoyed a primacy of place among Muslim monarchs uncontested by any foreign counterpart.
+
+	action_a = {
+		name = "ACTIONNAME219006A" #Was the economic devastation really worth it?
+		command = { type = vp value = 10 }
+		command = { type = relation which = -1 value = 10 }
+		command = { type = relation which = -1 value = 10 }
+		command = { type = relation which = -1 value = 10 }
+		command = { type = relation which = -1 value = 10 }
+	}
+}
+
+#(1492-1516) Plague in the army
+event = {
+	id = 24047
+	trigger = {
+		atwar = yes
+	}
+	random = no
+	country = MAM
+	name = "EVENTNAME24047" #Plague in the army
+	desc = "EVENTHIST24047"
+	#-#Historically on campaign against the Ottomans in 1492, Mamluk army suffered a devastating blow, as plague decimated their ranks, and they had to sue for peace.
+
+	date = { day = 1 month = january year = 1492 }
+	offset = 120
+	deathdate = { day = 1 month = january year = 1516 }
+
+	action_a = {
+		name = "DRATS"
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = manpower value = -5 }
+		command = { type = stability value = -2 }
+	}
+}
+
+#(1492-1517) The Moriscos Request Aid
+#EEP Garbon
+event = {
+	id = 219000
+	trigger = {
+		event = 301000 #TUR: Recognition of the Moriscos
+		exists = SPA
+		NOT = { exists = GRA }
+	}
+	random = no
+	country = MAM
+	name = "EVENTNAME219000" #The Moriscos Request Aid
+	desc = "EVENTHIST219000"
+	#-#Prior to its fall, the Muslim Kingdom of Granada routinely asked its Muslim brothers for support. After its fall, many Moriscos still held out hope that the Ottoman Empire would liberate them. However, surely, the Moriscos would not have become agitated had the Mamluk Empire come to their aid.
+
+	date = { day = 1 month = january year = 1492 }
+	offset = 1800
+	deathdate = { day = 29 month = december year = 1517 }
+
+	action_a = {
+		name = "ACTIONNAME219000A" #We have other concerns
+		command = { type = merchants value = 1 }
+		command = { type = diplomats value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME219000B" #We must help them!
+		command = { type = cav which = -1 value = 150 }
+		command = { type = warships which = 745 value = 2 }
+		command = { type = stability value = -2 }
+		command = { type = casusbelli which = SPA value = 24 }
+		command = { type = manpower value = 5 }
+	}
+}
+
+#(1494) Plague of 1494
+event = {
+	id = 24048
+	random = no
+	country = MAM
+	name = "EVENTNAME24048" #Famine of 1494
+	desc = "EVENTHIST24048"
+	#-#In 1494 a severe famine completely devastated the lands of Egypt.
+
+	date = { day = 1 month = january year = 1494 }
+	offset = 120
+	deathdate = { day = 29 month = december year = 1494 }
+
+	action_a = {
+		name = "DRATS"
+		command = { type = populationpercent which = -2 value = -25 }
+		command = { type = populationpercent which = -1 value = -25 }
+		command = { type = provincetax which = -2 value = -2 }
+		command = { type = provincemanpower which = -2 value = -1 }
+		command = { type = provincetax which = -1 value = -1 }
+		command = { type = provincemanpower which = -3 value = -1 }
+		command = { type = stability value = -2 }
+	}
+}
+
+#(1496) Succession of Sultan Qa'itbay
+event = {
+	id = 24049
+	random = no
+	country = MAM
+	name = "EVENTNAME24049" #Succession of sultan Qa'itbay
+	desc = "EVENTHIST24049"
+	#-#After the death of Qa'itbay, a 5 year long struggle for power between various clans ensued. al-Nasir Muhammad, who succeeded Qa'itbay, is quickly deposed by Khamsumia. He, in turn, is assassinated at the instigation of Qansuh less than a year later. In the middle of this struggle, plague strikes the country again in 1498, the year Qansuh seized the power thanks to the support of the Bedouins and the clan of the former sultan Qa'itbay. But in 1499 Qansuh is faced with yet another uprising by rival Mamluks, who force him to abandon the throne and flee Cairo. Finally, in the time period of 1499-1501 al-Ashraf Djanbulat is brought to the throne with the support of emir Tumanbay, then replaced by Tumanbay himself, but not for long. Tumanbay is proclaimed sultan in Damascus, then assassinated after a few months of reign. al-Ashraf Qansuh al-Ghawri is proclaimed sultan following the revolt of emirs in Cairo.
+
+	date = { day = 7 month = july year = 1496 }
+
+	action_a = {
+		name = "ACTIONNAME24040A" #Let the beys fight
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = domestic which = quality value = -1 }
+		command = { type = stability value = -7 }
+		command = { type = revoltrisk which = 60 value = 6 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = population which = -1 value = -1000 }
+		command = { type = population which = -1 value = -1000 }
+		command = { type = provincemanpower which = -3 value = -1 }
+	}
+}
+
+#(1497-1528) Caliph of the Sahara - by David Harper
+event = {
+	id = 219002
+	trigger = { event = 284021 } #SON: The Hajj
+	random = no
+	country = MAM
+	name = "EVENTNAME219002" #Caliph of the Sahara
+	desc = "EVENTHIST219002"
+	#-#In 1497 a strange caravan arrived in Cairo from West Africa. Over a thousand soldiers arrived with Askia Mohammad, King of the Songhai Empire of the Niger river. Askia Mohammad was on his way to Mecca to perform the hajj, but stopped in Egypt to meet with the Sharif of Egypt, who was a descendant of the Prophet Mohammed through his daughter Fatima. The Sharif was impressed with the African emperor and made him his lieutenant over all the Songhai lands. In addition, an ambassador to Songhai was appointed and several Islamic scholars made the return trip with Askia Mohammad.
+
+	date = { day = 1 month = january year = 1497 }
+	offset = 180
+	deathdate = { day = 26 month = august year = 1528 }
+
+	action_a = {
+		name = "ACTIONNAME219002A" #Make him our lieutenant in Africa
+		command = { type = vp value = 10 }
+		command = { type = relation which = SON value = 50 }
+	}
+}
+
+#(1501) Rule of Sultan al-Ghawri
+event = {
+	id = 24050
+	random = no
+	country = MAM
+	name = "EVENTNAME24050" #Rule of Sultan al-Ghawri
+	desc = "EVENTHIST24050"
+	#-#The reign of sultan al-Ghawri was characterized by continuous attempts to impose his authority over the emirs of Syria and other clans of Mamluks. The decline of the Egyptian economy continued, under the repeated blows of the epidemics of plague. The freedom of trade is again granted to foreign traders in Egypt to stop the decline of the economy of the sultanate. Finally, in 1511, against the will of the Mamluks, al-Ghawri creates a unit of artillery in its army and a foundry of guns.
+
+	date = { day = 9 month = november year = 1501 }
+
+	action_a = {
+		name = "ACTIONNAME24050A" #Conduct the reforms
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = mercantilism value = -1 }
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 90 value = 2 }
+		command = { type = trade value = 300 }
+		command = { type = infra value = 300 }
+		command = { type = revolt which = -1 }
+		command = { type = population which = -2 value = -2000 }
+		command = { type = population which = -1 value = -1000 }
+		command = { type = provincemanpower which = -3 value = -1 }
+		command = { type = provincetax which = -3 value = -1 }
+		command = { type = provincetax which = -2 value = -1 }
+	}
+}
+
+#(1503-1511) The Portuguese Damage the Spice Trade Through the Red Sea
+#by sturmvogel
+event = {
+	id = 219010
+	trigger = {
+		owned = { province = 756 data = POR } #Socotra
+	}
+	random = no
+	country = MAM
+	name = "EVENTNAME219010" #The Portuguese Damage the Spice Trade Through the Red Sea
+	desc = "EVENTHIST219010"
+	#-#The Portuguese seizure of Socotra allowed them to decimate the Muslim trade into the Red Sea. Income from the entrepôts at Alexandria and Aden were badly damaged until the sailors could adjust to their presence and switch to slower, safer trade routes.
+
+	date = { day = 1 month = january year = 1503 }
+	offset = 300
+	deathdate = { day = 1 month = january year = 1511 }
+
+	action_a = {
+		name = "ACTIONNAME338283A" #Damn Portuguese!
+		command = { type = relation which = POR value = -100 }
+		command = { type = merchants value = -3 }
+		command = { type = infra value = -200 }
+		command = { type = trade value = -1000 }
+	}
+}
+
+#(1507-1515) Capture of the Morgarbina
+event = {
+	id = 24032
+	trigger = {
+		event = 24015 #KNI: Capture of the Morgarbina
+		atwar = no
+		NOT = { alliance = { country = KNI country = MAM } }
+		exists = KNI
+		owned = { province = 744 data = MAM } #then not to weak
+		control = { province = 744 data = MAM } #then not to weak
+	}
+	random = no
+	country = MAM
+	name = "EVENTNAME24015" #Capture of the Morgarbina
+	desc = "EVENTHIST24015"
+	#-#The Morgarbina was a gigantic vessel with seven decks which plied the seas between Tunis and Constantinople. Wealthy merchants confidently used her to ship their richest wares, confident that not even the notorious Knights could capture her. Commander de Gastineau, a wily captain from Limousin, waylaid the leviathan off Crete. Under pretence of parleying, he laid the Order's own great carrack alongside and then mowed down the captain and officers on the poop with one murderous salvo of grapeshot. The leaderless crew struck their colours and the Knights boarded to find a staggering consignment of silver and jewellery as well as bales of silk, cashmere and carpets, and quantities of pepper, ginger, cloves, and cinnamon. On the way home, the brethern captured three smaller cargo ships, and the entire treasure was eventually sold in France, its owners being held to ransom or sent to the slave market.
+
+	date = { day = 1 month = april year = 1507 }
+	offset = 10
+	deathdate = { day = 1 month = september year = 1515 }
+
+	action_a = {
+		name = "ACTIONNAME24032A" #Punish the pirates right away
+		command = { type = casusbelli which = KNI value = 120 }
+		command = { type = relation which = KNI value = -400 }
+		command = { type = stability value = 1 }
+		command = { type = galleys which = 744 value = 10 } #Alexandria
+		command = { type = merchants value = -2 }
+		command = { type = treasury value = -150 }
+		command = { type = trade value = -200 }
+	}
+}
+
+#(1508-1514) Fight Back Against the Portuguese Interference in the Spice Trade
+#by sturmvogel
+event = {
+	id = 219009
+	trigger = {
+		event = 18012 #POR: Commercial Conflict in the Indian Ocean
+		exists = POR
+		owned = { province = 747 data = -1 } #Nile
+		control = { province = 747 data = -1 } #Nile
+	}
+	random = no
+	country = MAM
+	name = "EVENTNAME219009" #Fight Back Against the Portuguese Interference in the Spice Trade
+	desc = "EVENTHIST219009"
+	#-#Portuguese depredations on Muslim shipping in the Indian Ocean greatly disrupted the spice trade in Alexandria where Venetian merchants came to buy the precious material. The Mamluk Sultan ordered a fleet built, using wood imported from the Black Sea by the Venetians, to defeat the upstarts. Amir Hussain led the fleet to Diu, in Gujarat where he conferred with Malik Ayaz, a former Russian slave and the Governor of Diu for the Sultan of Cambay. There he heard of a small Portuguese fleet anchored nearby at Chaul under the leadership of Lourenço de Almeida, son of the Portuguese Viceroy. Although many of the Portuguese galleys escaped Lourenço de Almeida was killed in the battle and his ship captured. In February 1509 Francisco de Almeida massed his ships and sailed to Diu to revenge his son. There he decisively defeated the Egyptian, Gujarati and Calicutian ships, dying the whole harbor crimson to quote one chronicler. This victory established the Portuguese as masters of the Indian Ocean until the arrival of the English and Dutch during the next century.
+
+	date = { day = 0 month = february year = 1508 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1514 }
+
+	action_a = {
+		name = "ACTIONNAME219009A" #How dare they interfere with our trade!
+		command = { type = relation which = POR value = -200 }
+		command = { type = casusbelli which = POR value = 90 }
+		command = { type = relation which = VEN value = 50 } #Have to buy timber from the Venetians for the ships
+		command = { type = galleys which = 747 value = 6 } #Nile
+		command = { type = warships which = 747 value = 6 } #Nile
+		command = { type = INF which = 747 value = 5000 } #Nile
+		command = { type = wakeleader which = 083302 } #Mir Hozem (MAM)
+	}
+	action_b = {
+		name = "ACTIONNAME219009B" #Leave things well enough alone
+		command = { type = relation which = POR value = 50 }
+		command = { type = sleepevent which = 101002 } #ADE: Mamluk Invasion
+	}
+}
+
+#(1510-1820) Fall of the Mamluk Empire -II-
+event = {
+	id = 219014 #triggered by TUR_301086
+	random = no
+	country = MAM
+	name = "EVENTNAME219001" #Fall of the Mamluk Empire
+	desc = "EVENTHIST301086"
+	#-#The Mamluk Empire is under Ottoman hands...
+
+	action_a = {
+		name = "ALAS"
+		command = { type = cedeprovince which = TUR value = 485 } #Aleppo
+		command = { type = cedeprovince which = TUR value = 486 } #Nuyssaybin
+		command = { type = cedeprovince which = TUR value = 488 } #Kirkuk
+		command = { type = cedeprovince which = TUR value = 489 } #Iraq
+		command = { type = cedeprovince which = TUR value = 490 } #Syria
+		command = { type = cedeprovince which = TUR value = 491 } #Lebanon
+		command = { type = cedeprovince which = TUR value = 492 } #Samaria
+		command = { type = cedeprovince which = TUR value = 493 } #Judea
+		command = { type = cedeprovince which = TUR value = 494 } #Sinai
+		command = { type = cedeprovince which = TUR value = 495 } #Jordan
+		command = { type = cedeprovince which = TUR value = 483 } #Adana
+		command = { type = cedeprovince which = TUR value = 474 } #Sivas
+		command = { type = independence which = ARA }
+		command = { type = independence which = TRI }
+		command = { type = trigger which = 219011 } #MAM: The Ottoman subjugation
+		command = { type = trigger which = 301022 } #TUR: Annexation of the Mamluk Empire
+	}
+}
+
+#(1512-1520) Ottoman Expansionism
+event = {
+	id = 219007 #triggered by TUR_301503
+	random = no
+	country = MAM
+	name = "EVENTNAME219007" #Ottoman Expansionism
+	desc = "EVENTHIST301503"
+	#-#During the reign of Bayezid II, relations between the Ottomans and Mamluks were quite cordial. Although initially there was some quarreling over southeastern Anatolia, Bayezid II largely preferred co-existance. All of this was to change when his youngest son, Selim rose to the throne. Unlike his father, Selim was an expansionist. His policies put the two states on a collision course when he began harassing Dulkadir.
+
+	action_a = {
+		name = "ACTIONNAME219007A" #And things had been going so well...
+		command = { type = relation which = TUR value = -200 }
+	}
+}
+
+#(1768-1797) The Sultanate of Egypt -I-
+event = {
+	id = 219015
+	trigger = {
+		NOT = { exists = EGY }
+		NOT = { vassal = { country = MAM country = TUR } }
+	}
+	random = no
+	country = MAM
+	name = "EVENTNAME219015" #The Sultanate of Egypt
+	desc = "EVENTHIST219015"
+	#-#After more than 200 years without a single strong ruler, the leadership of Mamluks is centralized again and Sultanate of Egypt proclaimed.
+
+	date = { day = 1 month = january year = 1768 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1780 }
+
+	action_a = {
+		name = "ACTIONNAME24059A" #Egypt controls it's own destiny
+		command = { type = breakvassal which = TUR }
+		command = { type = flagname which = "" }
+		command = { type = country which = EGY }
+		command = { type = flagname which = "Mamluks" }
+		#Cores of Egypt
+		command = { type = addcore which = 741 } #Cyrenaica
+		command = { type = addcore which = 742 } #Quattara
+		command = { type = addcore which = 743 } #Cataract
+		command = { type = addcore which = 747 } #Nile
+		command = { type = addcore which = 490 } #Syria
+		command = { type = addcore which = 491 } #Lebanon
+		command = { type = addcore which = 492 } #Samaria
+		command = { type = addcore which = 493 } #Judea
+		command = { type = addcore which = 494 } #Sinai
+		command = { type = addcore which = 495 } #Jordan
+		command = { type = addcore which = 496 } #Arabia
+		command = { type = addcore which = 497 } #Medina
+		command = { type = addcore which = 498 } #Mekkah
+		#Extras
+		command = { type = addcore which = 748 } #Batn al Hajar
+		command = { type = addcore which = 749 } #Nubia
+		command = { type = relation which = TUR value = -150 }
+		command = { type = sleepevent which = 219016 } #MAM: The Sultanate of Egypt -II-
+	}
+}
+#(1768-1797) The Sultanate of Egypt -II- (just in case OE are vassals of the Mamluks)
+event = {
+	id = 219016
+	trigger = {
+		NOT = { exists = EGY }
+		vassal = { country = MAM country = TUR }
+	}
+	random = no
+	country = MAM
+	name = "EVENTNAME219015" #The Sultanate of Egypt
+	desc = "EVENTHIST219015"
+	#-#After more than 200 years without a single strong ruler, the leadership of Mamluks is centralized again and Sultanate of Egypt proclaimed.
+
+	date = { day = 1 month = january year = 1768 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1780 }
+
+	action_a = {
+		name = "ACTIONNAME24059A" #Egypt controls it's own destiny
+		command = { type = flagname which = "" }
+		command = { type = country which = EGY }
+		command = { type = flagname which = "Mamluks" }
+		#Cores of Egypt
+		command = { type = addcore which = 741 } #Cyrenaica
+		command = { type = addcore which = 742 } #Quattara
+		command = { type = addcore which = 743 } #Cataract
+		command = { type = addcore which = 747 } #Nile
+		command = { type = addcore which = 490 } #Syria
+		command = { type = addcore which = 491 } #Lebanon
+		command = { type = addcore which = 492 } #Samaria
+		command = { type = addcore which = 493 } #Judea
+		command = { type = addcore which = 494 } #Sinai
+		command = { type = addcore which = 495 } #Jordan
+		command = { type = addcore which = 496 } #Arabia
+		command = { type = addcore which = 497 } #Medina
+		command = { type = addcore which = 498 } #Mekkah
+		#Extras
+		command = { type = addcore which = 748 } #Batn al Hajar
+		command = { type = addcore which = 749 } #Nubia
+		command = { type = relation which = TUR value = -150 }
+		command = { type = sleepevent which = 219015 } #MAM: The Sultanate of Egypt -I-
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 219018

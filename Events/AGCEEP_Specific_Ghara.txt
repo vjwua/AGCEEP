@@ -1,0 +1,168 @@
+#Ghara (GHR)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1722-1737) The Ghafir Faction Assembles
+event = {
+	id = 422000
+	trigger = {
+		neighbour = OMA
+		event = 248006 #OMA: Bilarab al-Yarubi assumes the Imamate
+	}
+	random = no
+	country = GHR
+	name = "EVENTNAME422000" #The Rising of Bilarab bin Nasir
+	desc = "EVENTHIST422000"
+	#-#In Response to the usurpation of Bilarab al-Yarubi in Oman, dissidents at the capital persuaded Bilarab bin Nasir, brother-in-Law to the late Imam Sultan ibn Sayyif, to raise the standard of revolt with the aid of the Banu Ghafir.
+
+	date = { day = 1 month = january year = 1722 }
+	offset = 30
+	deathdate = { day = 29 month = june year = 1737 }
+
+	action_a = {
+		name = "ACTIONNAME422000A" #Down with the Murderous Fiend
+		command = { type = addcore which = 504 } #Mascate
+		command = { type = addcore which = 505 } #Al Kharam
+		command = { type = INF which = -1 value = 5000 }
+		command = { type = CAV which = -1 value = 5000 }
+		command = { type = relation which = OMA value = -200 }
+	}
+	action_b = {
+		name = "ACTIONNAME422000B" #Turn Over the Traitor
+		command = { type = relation which = OMA value = 100 }
+		command = { type = stability value = -2 }
+		command = { type = sleepevent which = 254011 } #PER: Yarubis Request Intervention
+	}
+}
+
+#(1722-1749) If Ghara Victorious - Ahistorical
+event = {
+	id = 422002
+	trigger = {
+		OR = {
+			AND = { #both provinces owned by Oman
+				owned = { province = 504 data = OMA } #Mascate
+				control = { province = 504 data = -1 } #Mascate
+				owned = { province = 505 data = OMA } #Al Kharam
+				control = { province = 505 data = -1 } #Al Kharam
+			}
+			AND = { #only Mascate
+				owned = { province = 504 data = OMA } #Mascate
+				control = { province = 504 data = -1 } #Mascate
+				NOT = {
+					owned = { province = 505 data = OMA } #Al Kharam
+				}
+			}
+			AND = { #only Al Kharam
+				NOT = {
+					owned = { province = 504 data = OMA } #Mascate
+				}
+				owned = { province = 505 data = OMA } #Al Kharam
+				control = { province = 505 data = -1 } #Al Kharam
+			}
+			AND = {
+				owned = { province = 504 data = -1 } #Mascate
+				control = { province = 504 data = -1 } #Mascate
+				NOT = { exists = OMA }
+			}
+			AND = {
+				owned = { province = 505 data = OMA } #Al Kharam
+				control = { province = 505 data = -1 } #Al Kharam
+				NOT = { exists = OMA }
+			}
+			vassal = { country = GHR country = OMA }
+		}
+	}
+	random = no
+	country = GHR
+	name = "EVENTNAME422002" #Victory of the Ghafir
+	desc = "EVENTHIST422002"
+	#-#Having run down the last of the Hinawi faction, the Ghafir and their allies now rule Oman.
+
+	date = { day = 1 month = january year = 1722 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1749 }
+
+	action_a = {
+		name = "ACTIONNAME422002A" #Assume the Mantle of Oman
+		command = { type = addcore which = 504 } #Mascate
+		command = { type = addcore which = 505 } #Al Kharam
+		command = { type = inherit which = OMA }
+		command = { type = sleepevent which = 254011 } #PER: Yarubis Request Intervention
+		command = { type = sleepevent which = 248007 } #OMA: The victory of Sayyid Ahmad
+	}
+	action_b = {
+		name = "ACTIONNAME422002B" #Continue to Rule as the Ghafir
+		command = { type = addcore which = 504 } #Mascate
+		command = { type = addcore which = 505 } #Al Kharam
+		command = { type = inherit which = OMA }
+		command = { type = sleepevent which = 254011 } #PER: Yarubis Request Intervention
+		command = { type = sleepevent which = 422003 } #GHR: Claim the Omani Sultanate
+		command = { type = sleepevent which = 248007 } #OMA: The victory of Sayyid Ahmad
+	}
+}
+
+#(1722-1749) If Ghara Victorious - Ahistorical
+event = {
+	id = 422003
+	trigger = {
+		event = 422002 #GHR: Victory of the Ghafir
+		NOT = {
+			exists = OMA
+		}
+	}
+	random = no
+	country = GHR
+	name = "EVENTNAME422003" #Claim the Omani Sultanate
+	desc = "EVENTHIST422003"
+	#-#With Oman under their thumb, the Ghafir may now claim Oman as their own.
+
+	date = { day = 1 month = january year = 1722 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1749 }
+
+	action_a = {
+		name = "ACTIONNAME422003A" #Advance Our Claims
+		command = { type = flagname which = "" }
+		command = { type = country which = OMA }
+		command = { type = add_countryculture which = Swahili }
+		command = { type = add_countryculture which = Somali }
+		command = { type = addcore which = 760 } #Mogadiscio
+		command = { type = addcore which = 761 } #Malindi
+		command = { type = addcore which = 762 } #Kenya
+		command = { type = addcore which = 763 } #Mombasa
+		command = { type = addcore which = 764 } #Tanga
+		command = { type = addcore which = 765 } #Zanzibar
+		command = { type = addcore which = 766 } } #Rufiji
+	action_b = {
+		name = "ACTIONNAME422003B" #No thanks
+		command = { type = domestic which = centralization value = -2 }
+	}
+}
+
+#(1750-1755) The Deafeat of the Ghafir
+event = {
+	id = 422001 #triggered by OMA_248027
+	random = no
+	country = GHR
+	name = "EVENTNAME422001" #The Defeat of the Ghafir
+	desc = "EVENTHIST422001"
+	#-#Having evicted the Persians from Oman, Sayyid Ahmad completed the pacification of Oman by routing the Ghafir at Farq in 1749.
+
+	action_a = {
+		name = "ACTIONNAME422001A" #Accept Sayyid as Overlord
+		command = { type = removecore which = 504 } #Mascate
+		command = { type = removecore which = 505 } #Al Kharam
+	}
+	action_b = {
+		name = "ACTIONNAME422001B" #Fight On
+		command = { type = stability value = -6 }
+		command = { type = desertion which = -1 value = 10000 }
+		command = { type = revolt which = -1 }
+		command = { type = breakvassal which = OMA }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 422004

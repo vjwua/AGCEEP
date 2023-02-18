@@ -1,0 +1,359 @@
+#Crimea (CRI)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1427-1465) Cessation of Crimea
+event = {
+	id = 40063 #triggered by STE_287024
+	random = no
+	country = CRI
+	name = "EVENTNAME40063" #Cessation of Crimea
+	desc = "EVENTHIST40063"
+	#-#Shortly after Khan Ahmad expelled Ulugh Muhammad from Sarai, his son Hajji Giray declared his independence in Crimea. This started the great rivalry between 2 countries which lasted until the complete destruction of Golden Horde by Girays in 1502.
+
+	action_a = {
+		name = "ACTIONNAME40063A" #We owe a debt of gratitude to Ulugh...not!
+		command = { type = breakvassal which = STE }
+		command = { type = CAV which = -2 value = 10000 }
+		command = { type = relation which = STE value = -350 }
+		command = { type = relation which = MOS value = 50 }
+		command = { type = relation which = KAZ value = -25 }
+		command = { type = relation which = TUR value = 75 }
+		command = { type = relation which = POL value = 100 }
+		command = { type = relation which = LIT value = 100 }
+		command = { type = addcore which = 458 } #to give CB against STE #Volgograd
+		#command = { type = AI which = "crimea.ai" }
+	}
+}
+
+#(1462-1465) Crimea loses grip on Eastern posessions
+event = {
+	id = 152006 #triggered by STE_287025 A
+	random = no
+	country = CRI
+	name = "EVENTNAME152006" #Crimea loses grip on Eastern posessions
+	desc = "EVENTHIST152006"
+	#-#The move of the base of the Horde to Crimea has created a power vacuum which has been siezed upon by the other Khanates.
+
+	action_a = {
+		name = "ACTIONNAME152006A" #We will fight to regain control of the steppe
+		command = { type = cedeprovince which = KAZ value = 446 } #Kazan
+		command = { type = cedeprovince which = KAZ value = 447 } #Tambow
+		command = { type = cedeprovince which = KAZ value = 453 } #Ufa
+		command = { type = cedeprovince which = KAZ value = 454 } #Samara
+		command = { type = cedeprovince which = KAZ value = 458 } #Volgograd
+		command = { type = cedeprovince which = AST value = 513 } #Orsk
+		command = { type = cedeprovince which = AST value = 514 } #Irgiz
+		command = { type = cedeprovince which = AST value = 515 } #Alga
+		command = { type = cedeprovince which = AST value = 455 } #Uralsk
+		command = { type = cedeprovince which = AST value = 456 } #Orenburg
+		command = { type = cedeprovince which = SIB value = 1570 } #Sadrinsk
+		command = { type = cedeprovince which = SIB value = 511 } #Kustanai
+		command = { type = cedeprovince which = SIB value = 510 } #Kurgan
+	}
+}
+
+#(1471) Genoa backs the pretender
+event = {
+	id = 152007 #triggered by GEN_174097 A
+	random = no
+	country = CRI
+	name = "EVENTNAME152007" #Genoa backs the pretender
+	desc = "EVENTHIST152007"
+	#-#Although in 1469, Nur Dawlat had been able to dislodge his brother from the peninsula, Mengli was still a threat. Mengli turned to Genoa for backing of his claim to the throne. In 1471, with the assistance of Genoa and the backing of much of the Crimean aristocracy, Mengli succesfully overthrew his brother. Nur Dawlat would have to bide his time on the sidelines.
+
+	action_a = {
+		name = "ACTIONNAME152007A" #A new Khan!
+		command = { type = stability value = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = wakemonarch which = 037502 } #Mengli I
+		command = { type = sleepmonarch which = 037501 } #Nur Dawlat I
+		#command = { type = wakeleader which = xx } #Mamak Mirza (CRI)
+	}
+}
+
+#(1474) Nur Dawlat returns
+event = {
+	id = 152008 #triggered by GEN_174098 A
+	random = no
+	country = CRI
+	name = "EVENTNAME152008" #Nur Dawlat returns
+	desc = "EVENTHIST152008"
+	#-#Dissatisfied with Mengli's attempts to curtail their power, a few dissatisfied nobles approached the Genoese with a scheme to re-install Nur Dawlat. Mengli quickly found himself removed from power.
+
+	action_a = {
+		name = "ACTIONNAME152008A" #His second reign
+		command = { type = stability value = -1 }
+		command = { type = relation which = GEN value = 50 }
+		command = { type = wakemonarch which = 037503 } #Nur Dawlat I
+		command = { type = sleepmonarch which = 037502 } #Mengli I
+		#command = { type = wakeleader which = xx } #Eminek Mirza (CRI)  - make him a non-dormant leader 3-1-3 (1474-1484)?
+	}
+}
+
+#(1475) Mengli and the Ottomans
+event = {
+	id = 152009
+	trigger = {
+		event = 301009 #TUR: Conquest of Genoese strongholds
+		OR = {
+			event = 152008 #CRI: Nur Dawlat returns
+			NOT = { event = 152007 } #CRI: Genoa backs the pretender
+		}
+	}
+	random = no
+	country = CRI
+	name = "EVENTNAME152009" #Mengli and the Ottomans
+	desc = "EVENTHIST152009"
+	#-#Ever fickle, the leading Crimean tribes quickly became alarmed at Nur Dawlat's close relationship with the Genoese. In 1475, the Shirin bey formally requested that the Ottoman sultan conquer Kaffa, which would eliminate Nur Dawlat's ally. The succesful Turkish conquest of Kaffa allowed for Mengli to become khan.
+
+	date = { day = 5 month = january year = 1475 }
+	offset = 10
+	deathdate = { day = 10 month = december year = 1475 }
+
+	action_a = {
+		name = "ACTIONNAME152009A" #Mengli is khan
+		command = { type = stability value = -1 }
+		command = { type = relation which = TUR value = 50 }
+		command = { type = relation which = GEN value = -150 }
+		command = { type = wakemonarch which = 037504 } #Mengli I
+		command = { type = sleepmonarch which = 037501 } #Nur Dawlat I
+		command = { type = sleepmonarch which = 037503 } #Nur Dawlat I
+	}
+}
+
+#(1476) The Golden Horde revives its claim
+event = {
+	id = 152010 #triggered by STE_287008 A
+	random = no
+	country = CRI
+	name = "EVENTNAME152010" #The Golden Horde revives its claim
+	desc = "EVENTHIST152010"
+	#-#In 1475, Mengli Giray wrote a letter to the Ottoman sultan promising to be ''the enemy of the Sultan's enemy, the friend of his friend.'' Alarmed by Mengli Giray's Ottoman friendly gestures, the Golden Horde sent a full invasion force to put Nur Dawlat in his place. The khan also sent a governor to oversee Nur Dawlat's activities.
+
+	action_a = {
+		name = "ACTIONNAME152010A" #He reigns again
+		command = { type = stability value = -1 }
+		command = { type = relation which = STE value = 50 }
+		command = { type = wakemonarch which = 037505 } #Nur Dawlat I
+		command = { type = sleepmonarch which = 037502 } #Mengli I
+		command = { type = sleepmonarch which = 037504 } #Mengli I
+	}
+}
+
+#(1478) Ottoman authority over Crimea
+event = {
+	id = 152011 #triggered by TUR_301132 A
+	random = no
+	country = CRI
+	name = "EVENTNAME152011" #Ottoman authority over Crimea
+	desc = "EVENTHIST152011"
+	#-#In 1478 at the bequest of several prominent Crimean beys, Mehmed sent Mengli Giray, accompanied by the Ottoman army, to invade Crimea. With Mengli Giray's enthronement, Ottoman authority in the region became unquestioned.
+
+	action_a = {
+		name = "ACTIONNAME152011A" #Finally!
+		command = { type = stability value = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = relation which = STE value = -150 }
+		command = { type = wakemonarch which = 037506 } #Mengli I
+		command = { type = sleepmonarch which = 037501 } #Nur Dawlat I
+		command = { type = sleepmonarch which = 037503 } #Nur Dawlat I
+		command = { type = sleepmonarch which = 037505 } #Nur Dawlat I
+		command = { type = wakeleader which = 037802 } #Mengli I (CRI)
+	}
+}
+
+#(1478-1700) Crimean Khanate seeks Ottoman support
+event = {
+	id = 152060
+	trigger = {
+		OR = {
+			AND = {
+				neighbour = RUS
+				exists = TUR
+			}
+			AND = {
+				neighbour = TUR
+				OR = {
+					exists = RUS
+					exists = MOS
+				}
+			}
+		}
+		NOT = { countrysize = 5 }
+		NOT = {
+			vassal = { country = TUR country = CRI }
+			vassal = { country = CRI country = TUR }
+			war = { country = CRI country = TUR }
+		}
+		NOT = {
+			monarch = 037501 #Nur Dawlat I
+			monarch = 037503 #Nur Dawlat I
+			monarch = 037505 #Nur Dawlat I
+		}
+	}
+	random = no
+	country = CRI
+	name = "EVENTNAME152060" #Crimean Khanate seeks Ottoman support
+	desc = "EVENTHIST152060"
+	#-#While Russia managed to overtake the other Khanates of the European steppe in the 16th century, the Khanate of Crimea lasted well into the 1700s. A major reason for this longevity was the support of the Ottoman Empire.
+
+	date = { day = 1 month = january year = 1478 }
+	offset = 200
+	deathdate = { day = 1 month = january year = 1700 }
+
+	action_a = {
+		name = "ACTIONNAME152060A" #Offer our vassalage to the Ottomans
+		command = { type = stability value = 1 }
+		command = { type = diplomats value = -1 }
+		command = { type = relation which = TUR value = 50 }
+		command = { type = trigger which = 301050 } #TUR: Crimean Khanate seeks Ottoman support
+	}
+	action_b = {
+		name = "ACTIONNAME152060B" #We can stand on our own
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1492-1500) Moldova
+#by Khephren
+event = {
+	id = 152001 #triggered by MOL_231004 A
+	random = no
+	country = CRI
+	name = "EVENTNAME152001" #Stephen's Gambit
+	desc = "EVENTHIST231004"
+	#-#After accepting his vassal status to the Porte and the loss of the Bugeac (1486), Stephen the Great of Moldavia signs an offensive alliance with Mengli Giray, Khan of Crimea, directed against Poland Lithuania. Stephen desired Pocutia, while the Khan wanted to secure his supremacy over Kiev (Mankerman).
+
+	action_a = {
+		name = "ACTIONNAME152001A" #Stephen signs on
+		command = { type = alliance which = MOL }
+		command = { type = relation which = POL value = -200 }
+		command = { type = relation which = LIT value = -200 }
+		command = { type = casusbelli which = POL value = 60 }
+		command = { type = casusbelli which = LIT value = 60 }
+	}
+}
+#(1492-1500) Moldova
+#by Khephren
+event = {
+	id = 152002 #triggered by MOL_231004 B
+	random = no
+	country = CRI
+	name = "EVENTNAME152001" #Stephen's Gambit
+	desc = "EVENTHIST231004"
+	#-#After accepting his vassal status to the Porte and the loss of the Bugeac (1486), Stephen the Great of Moldavia signs an offensive alliance with Mengli Giray, Khan of Crimea, directed against Poland Lithuania. Stephen desired Pocutia, while the Khan wanted to secure his supremacy over Kiev (Mankerman).
+
+	action_a = {
+		name = "ACTIONNAME152002A" #Stephen risks our wrath
+		command = { type = casusbelli which = MOL value = 120 }
+	}
+}
+
+#(1500-1820) The Golden Horde Vanishes
+event = {
+	id = 152050 #triggered by STE_287003 A
+	random = no
+	country = CRI
+	name = "EVENTNAME152050" #The Golden Horde Vanishes
+	desc = "EVENTHIST152050"
+	#-#In 1502, Mengli Giray of Crimea captured and destroyed the city of Sarai capital of the Golden Horde. The last piece in its decline, the Golden Horde vanished as a political entity, with this act. Members of the Golden Horde still lived on hoping to rekindle lost glory, but the days of the Golden Horde were over.
+
+	action_a = {
+		name = "ACTIONNAME152050A" #Haha!
+		command = { type = inherit which = STE }
+		command = { type = independence which = KAZ }
+		command = { type = independence which = AST }
+		command = { type = independence which = IMR }
+		command = { type = removecore which = 458 } #Volgograd
+		command = { type = trigger which = 152000 } #CRI: Disintegration of the Golden Horde
+		command = { type = trigger which = 271010 } #RUS: The Golden Horde Vanishes
+		command = { type = trigger which = 210024 } #LIT: The Golden Horde Vanishes
+		command = { type = trigger which = 301083 } #TUR: The Golden Horde Vanishes
+	}
+}
+#(1500-1820) Disintegration of the Golden Horde
+event = {
+	id = 152000 #triggered by CRI_152050
+	trigger = {
+		OR = {
+			owned = { province = 446 data = -1 } #Kazan
+			owned = { province = 447 data = -1 } #Tambow
+			owned = { province = 453 data = -1 } #Ufa
+			owned = { province = 454 data = -1 } #Samara
+			owned = { province = 455 data = -1 } #Uralsk
+			owned = { province = 456 data = -1 } #Orenburg
+			owned = { province = 458 data = -1 } #Volgograd
+			owned = { province = 469 data = -1 } #Abkhazia
+			owned = { province = 470 data = -1 } #Kolkhis
+		}
+	}
+	random = no
+	country = CRI
+	name = "EVENTNAME152000" #Disintegration of the Golden Horde
+	desc = "EVENTHIST152000"
+	#-#After the fall of the Golden Horde several Khanates regained complete independency.
+
+	action_a = {
+		name = "OH_NO"
+		command = { type = cedeprovince which = KAZ value = 446 } #Kazan
+		command = { type = cedeprovince which = KAZ value = 447 } #Tambow
+		command = { type = cedeprovince which = KAZ value = 453 } #Ufa
+		command = { type = cedeprovince which = KAZ value = 454 } #Samara
+		command = { type = cedeprovince which = AST value = 455 } #Uralsk
+		command = { type = cedeprovince which = AST value = 456 } #Orenburg
+		command = { type = cedeprovince which = AST value = 458 } #Volgograd
+		command = { type = cedeprovince which = IMR value = 469 } #Abkhazia
+		command = { type = cedeprovince which = IMR value = 470 } #Kolkhis
+	}
+}
+#(1500-1820) Russia and the disintegration of the Golden Horde
+event = {
+	id = 152003 #triggered by RUS_271010
+	random = no
+	country = CRI
+	name = "EVENTNAME152003" #Russia and the disintegration of the Golden Horde
+	desc = "EVENTHIST152003"
+	#-#After the fall of the Golden Horde, foreign powers extended their influence in the area.
+
+	action_a = {
+		name = "OH_NO"
+		command = { type = cedeprovince which = RUS value = 450 } #Belgorod
+		command = { type = cedeprovince which = RUS value = 451 } #Bogutjar
+		command = { type = cedeprovince which = RUS value = 452 } #Saratow
+		command = { type = cedeprovince which = RUS value = 460 } #Donetsk
+	}
+}
+#(1500-1820) Lithuania and the disintegration of the Golden Horde
+event = {
+	id = 152004 #triggered by LIT_210024
+	random = no
+	country = CRI
+	name = "EVENTNAME152004" #Lithuania and the disintegration of the Golden Horde
+	desc = "EVENTHIST152003"
+	#-#After the fall of the Golden Horde, foreign powers extended their influence in the area.
+
+	action_a = {
+		name = "OH_NO"
+		command = { type = cedeprovince which = LIT value = 461 } #Poltava
+		command = { type = cedeprovince which = LIT value = 462 } #Krementjug
+	}
+}
+#(1500-1820) Ottoman Empire and the disintegration of the Golden Horde
+event = {
+	id = 152005 #triggered by TUR_301083
+	random = no
+	country = CRI
+	name = "EVENTNAME152005" #Ottoman Empire and the disintegration of the Golden Horde
+	desc = "EVENTHIST152003"
+	#-#After the fall of the Golden Horde, foreign powers extended their influence in the area.
+
+	action_a = {
+		name = "OH_NO"
+		command = { type = cedeprovince which = TUR value = 296 } #Jedisan
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 152012

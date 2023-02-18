@@ -1,0 +1,877 @@
+#Tyrol (TYR)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1820) Tyrol becomes Austria - Ahistorical
+event = {
+	id = 322013
+	trigger = {
+		NOT = { exists = HAB }
+		countrysize = 2
+		atwar = no
+	}
+	random = no
+	country = TYR
+	name = "EVENTNAME322013" #Tyrol becomes Austria
+	desc = "EVENTHIST322013"
+	#-#Since all other branches of the Austrian Habsburgs have ceased to exist, it is now upon the Dukes of Tyrol to lead the dynasty.
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME322013A" #Lead the House of Habsburg
+		command = { type = flagname which = "" }
+		command = { type = country which = HAB }
+		command = { type = addcore which = 350 } #Salzburg
+		command = { type = addcore which = 351 } #Austria
+		command = { type = addcore which = 327 } #Ostmarch
+		command = { type = sleepevent which = 179091 } #HAB: The claim to Tirol and Vorlande
+	}
+	action_b = {
+		name = "ACTIONNAME322013B" #Remain Dukes of Tyrol
+		command = { type = stability value = 1 }
+		command = { }
+	}
+}
+
+#(1419) Opposition against Friedrich IV
+event = {
+	id = 322017
+	random = no
+	country = TYR
+	name = "EVENTNAME322017" #Opposition against Friedrich IV
+	desc = "EVENTHIST322017"
+	#-#Since the beginning of his reign in 1406, Friedrich IV had been opposed by the Tyrolean nobility and the bishoprics of Trient, Brixen and Chur. The large noble dynasties of Tyrol formed several leagues to pursue their goal of deposing the Habsburg count and have Tyrol turned into an immediate imperial fief. They almost seemed to succeed when Friedrich was excommunicated and imprisoned at the council of Konstanz in 1415 after having supported the anti-Pope Johann XXIII. However Friedrich managed to escape, to return to his country and, with the aid of the Tyrolean peasantry and his brother Ernst of Styria, to recover rule of Tyrol. The situation however remained unstable, and Friedrich IV found his rule opposed by several strong forces.
+
+	date = { day = 1 month = january year = 1419 }
+
+	action_a = {
+		name = "ACTIONNAME322017A" #They'll regret this one day
+		command = { type = province_revoltrisk which = 371 value = 5 } #Tirol
+	}
+}
+
+#(1420) Acquisition of Bludenz
+event = {
+	id = 322018
+	random = no
+	country = TYR
+	name = "EVENTNAME322018" #Acquisition of the County of Bludenz
+	desc = "EVENTHIST322018"
+	#-#In 1394, the childless Count Albrecht IV of Werdenberg-Heiligenberg-Bludenz sold the County of Bludenz, situated in Vorarlberg, the small region between Tyrol, Swabia and Switzerland, the fortress of Bürs, the lordship of St. Peter and the Montafon area to the Habsburg dynasty for 5000 Gulden, to be ceded to them upon his death. He died on January 9th 1420, and Bludenz and the other holdings passed to the Habsburg Duke Friedrich IV, Count of Tyrol.
+
+	date = { day = 9 month = january year = 1420 }
+
+	action_a = {
+		name = "ACTIONNAME322018A" #So our investment finally pays off
+		command = { type = provincetax which = 371 value = 1 } #Tirol
+		command = { type = fortress which = 371 value = 1 } #The fortress of Bludenz and the fortress of Bürs, both rather decent fortifications #Tirol
+	}
+}
+
+#(1423) Foundation of a new league against Friedrich IV
+event = {
+	id = 322019
+	random = no
+	country = TYR
+	name = "EVENTNAME322019" #Foundation of a new league against Friedrich IV
+	desc = "EVENTHIST322019"
+	#-#Friedrich IV gradually reduced the power of the rebellious nobility through diplomacy and military successes. In a last desperate attempt to keep their power, several nobles concluded an alliance against Friedrich with the bishoprics of Trient, Brixen and Chur on July 18th 1423.
+
+	date = { day = 18 month = july year = 1423 }
+
+	action_a = {
+		name = "ACTIONNAME322019A" #Crush these traitors
+		command = { type = province_revoltrisk which = 371 value = 2 } #Tirol
+		command = { type = revolt which = 371 } #Tirol
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1423-1431) Diet at Meran
+event = {
+	id = 322020
+	trigger = { control = { province = 371 data = -1 } }
+	random = no
+	country = TYR
+	name = "EVENTNAME322020" #First assembly of the Tyrolean diet at Meran
+	desc = "EVENTHIST322020"
+	#-#The league against Friedrich IV founded in July 1423 was basically doomed from the beginning. Ever since his return from his imprisonment, Friedrich IV had been seeking the support of burghers and peasantry, who had suffered much from the decade of unrest, largely despised the rebellious nobles whom they perceived to betray Tyrol to satisfy their personal greed and ambitions and therefore willingly rallied behind the popular, folksy count. Castle Greifenstein, the apparently impregnable stronghold of the Starkenberg dynasty which was among the most important adherents to the rebellion, fell to Friedrich in 1423. The decisive move happened in Meran in November 1423: for the first time in the history of Tyrol, a diet with representatives of all estates, including the burghers and the peasantry, assembled and forced the league of the nobles to surrender and dissolve. Political power was thereby shifted to Friedrich and the elements that had supported him – the lesser nobility, the burghers and the peasantry. The influence of the noble oligarchy was almost entirely broken. Oswald von Wolkenstein, their former leader, was captured and had to submit to Friedrich in 1427, and Peter Spaur, another important rebel, committed suicide when he realized that his plans had thoroughly failed.
+
+	date = { day = 1 month = november year = 1423 }
+	offset = 30
+	deathdate = { day = 0 month = january year = 1431 }
+
+	action_a = {
+		name = "ACTIONNAME322020A" #Ally with the lower classes
+		command = { type = stability value = 1 }
+		command = { type = province_revoltrisk which = 371 value = -7 } #Tirol
+		command = { type = domestic which = aristocracy value = -4 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = quality value = -1 } #Tyrol needs to rely more on peasant armies
+		command = { type = domestic which = serfdom value = -2 }
+	}
+	action_b = {
+		name = "ACTIONNAME322020B" #Compromise with the rebellious nobles
+		command = { type = stability value = 2 }
+		command = { type = province_revoltrisk which = 371 value = -7 } #Tirol
+		command = { type = domestic which = serfdom value = 1 }
+	}
+}
+
+#(1424-1439) Zurich lends us money for the County of Kyburg
+event = {
+	id = 322026 #triggered by HEL_184027 A
+	random = no
+	country = TYR
+	name = "EVENTNAME322026" #Zurich lends us money for the County of Kyburg
+	desc = "EVENTHIST322026"
+	#-#The town of Zurich accepted the County of Kyburg as pawn for a loan to Sigismund of Tyrol.
+
+	action_a = {
+		name = "OK"
+		command = { type = treasury value = 25 }
+		command = { type = population which = 371 value = -500 } #Tirol
+		command = { type = provincetax which = 371 value = -1 } #Tirol
+		command = { type = provincemanpower which = 371 value = -1 } #Tirol
+		command = { type = sleepevent which = 184055} #HEL: Zurich War
+	}
+}
+
+#(1424) Regency in Inner Austria
+event = {
+	id = 322015 #triggered by SEI_261010 A
+	random = no
+	country = TYR
+	name = "EVENTNAME322015" #Regency of Friedrich IV in Inner Austria
+	desc = "EVENTHIST322015"
+	#-#Although by the treaty of Neuberg of 1379 the Habsburg lands had been partitioned into separate entities, to be held by different members of the Habsburg family, the idea of the unity of the family survived. The most important consequence of this was that by a clause in the treaty in the case of a minor inheriting one of the states the oldest member of the family was to assume tutelage over the minor ruler and regency of his countries. Therefore when Archduke Ernst the Iron of Styria prematurely died in his best manhood in 1424 at the age of 47, and his sons Friedrich and Albrecht were only 9 and 5 years old, their uncle Friedrich IV, Count of Tyrol, became tutor of the two brothers and administered Styria, Carinthia and Carniola not only for them as their tutor, but personally as regent.
+
+	action_a = {
+		name = "ACTIONNAME322015A" #We must take care of the children
+		command = { type = vassal which = SEI }
+		command = { type = alliance which = SEI }
+		command = { type = trigger which = 261012 } #SEI: Regency of Friedrich IV, Count of Tyrol
+	}
+}
+
+#(1435-1456) Cilli's rule the Slovenians
+event = {
+	id = 322029
+	trigger = {
+		AND = {
+			owned = { province = 369 data = -1 } #Steirmark
+			control = { province = 369 data = -1 }
+		}
+		AND = {
+			owned = { province = 367 data = -1 } #Krain
+			control = { province = 367 data = -1 }
+		}
+		NOT = { exists = SEI }
+		exists = HAB
+	}
+	random = no
+	country = TYR
+	name = "EVENTNAME322029" #Let Herman rule the Slovenians
+	desc = "EVENTHIST322029"
+	#-#In 1396 count Hermann II of Cilli was in command of Styrian troops that took part in the Battle of Nicopolis. The Ottoman army won the battle decisively, but the count saved the life of the Hungarian King Sigismund of Luxemburg. A strong bond between the two men, which was further strengthened when Sigismund married Hermann's daughter Barbara, was created. In 1436 the Emperor Sigismund elevated the counts of Cilli to the rank of dukes and granted large lands in Lower Styria to them.
+
+	date = { day = 1 month = december year = 1435 }
+	offset = 1
+	deathdate = { day = 1 month = january year = 1456 }
+
+	action_a = {
+		name = "ACTIONNAME322029A" #Give in to the Emperor's pressure
+		command = { type = independence which = SEI }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = stability value = 1 }
+		command = { type = trigger which = 322030 } #TYR: Herman rules the Slovenians
+	}
+	action_b = {
+		name = "ACTIONNAME322029B" #Keep Krain
+		command = { type = relation which = HAB value = -50 }
+		command = { type = stability value = -1 }
+		command = { type = remove_countryculture which = slavonic }
+	}
+}
+#(1435-1456) Cilli's rule the Slovenians
+event = {
+	id = 322030 #triggered by TYR_322029 A
+	random = no
+	country = TYR
+	name = "EVENTNAME322030" #Herman rules the Slovenians
+	desc = "EVENTHIST261003"
+	#-#Having first supported the Habsburgs in their war against the counts of Gorizia-Tyrol in 1308. The Cilli family where always amongst the favorites of the Habsburgs. The Cilli family slowly acquired large estates in the adjoining duchies of Styria, Carinthia,and Carniola as well as in the territories of the Hungarian crown in Croatia and Slavonia. Their influence rose and they became one of the most powerful families in the area.
+
+	action_a = {
+		name = "OK"
+		command = { type = cedeprovince which = SEI value = 367 } #Krain
+		command = { type = trigger which = 261003 } #SEI: Cilli's rule
+	}
+}
+
+#(1431) Friedrich V of Styria comes of age
+event = {
+	id = 322016
+	trigger = {
+		event = 322015
+		vassal = { country = TYR country = SEI }
+	}
+	random = no
+	country = TYR
+	name = "EVENTNAME261014" #Friedrich V comes of age
+	desc = "EVENTHIST261014"
+	#-#Friedrich IV, regent for the minors Friedrich V and Albrecht VI, only reluctantly accepted to turn over Styria to his nephews. Usually, regencies in Habsburg lands lasted until the heir had reached adulthood, which was by Habsburg law at the age of 16. However when Friedrich V came of age in 1431, Friedrich IV managed to extend his term until Albrecht VI's 16th birthday in 1435, under the pretext that a possible partition between the two brothers could only be negotiated fairly when both had reached adulthood. Even in 1435, Friedrich IV refused to give up rule of Styria. Only because of the arbitration of Albrecht V of Austria did Friedrich IV finally agree to end his regency on March 25th 1436.
+
+	date = { day = 20 month = september year = 1431 }
+
+	action_a = {
+		name = "ACTIONNAME322016A" #Maintain Friedrich's regency in Styria
+		command = { type = relation which = SEI value = -40 }
+		command = { type = relation which = HAB value = -20 }
+	}
+	action_b = {
+		name = "ACTIONNAME322016B" #Respect family law and let Friedrich V rule Styria
+		command = { type = trigger which = 261014 } #End of Friedrich IV's regency #SEI: Friedrich V comes of age
+		command = { type = relation which = SEI value = 30 }
+		command = { type = relation which = HAB value = 10 }
+	}
+}
+
+#(1436) Death of the last Toggenburg
+event = {
+	id = 322021
+	random = no
+	country = TYR
+	name = "EVENTNAME322021" #Recovery of the County of Feldkirch
+	desc = "EVENTHIST322021"
+	#-#The County of Feldkirch in Vorarlberg had been a Habsburg possession since 1379. During Friedrich IV's imprisonment, it was however seized by Imperial troops. Emperor Sigmund, who desired to completely break Friedrich's power, mortgaged Feldkirch to Count Friedrich of Toggenburg in 1417. Upon the latter's death on April 30th 1436, Friedrich IV managed to rebuy the pawn from the widow, Elisabeth von Matsch, for 22.000 Gulden.
+
+	date = { day = 29 month = april year = 1436 }
+
+	action_a = {
+		name = "ACTIONNAME322021A" #Rebuy the County of Feldkirch
+		command = { type = treasury value = -22 }
+		command = { type = provincetax which = 371 value = 1 } #Tirol
+		command = { type = provincemanpower which = 371 value = 1 } #Tirol
+	}
+	action_b = {
+		name = "ACTIONNAME322021B" #We cannot afford it
+		command = { type = vp value = -5 }
+	}
+}
+
+#(1439) Regency of Emperor Friedrich V.
+event = {
+	id = 322001
+	trigger = {
+		NOT = {
+			war = { country = HAB country = TYR }
+			vassal = { country = TYR country = HAB }
+		}
+	}
+	random = no
+	country = TYR
+	name = "EVENTNAME322001" #The regency of Friedrich of Styria
+	desc = "EVENTHIST322001"
+	#-#When Duke Friedrich IV. of Tyrol died, his son Sigmund was still a child. His uncle, Emperor Friedrich V., ruled the duchy for him until he was an adult.
+
+	date = { day = 23 month = june year = 1439 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1439 }
+
+	action_a = {
+		name = "ACTIONNAME322001A" #Accept this
+		command = { type = relation which = SEI value = 100 } #All Habsburg "countries"
+		command = { type = relation which = HAB value = 100 }
+		command = { type = relation which = HUN value = 100 }
+		command = { type = relation which = BOH value = 100 }
+		command = { type = trigger which = 179050 } #HAB: The regency of Friedrich in Tyrol
+	}
+	action_b = {
+		name = "ACTIONNAME322001B" #Refuse Friedrich and let a local noble reign
+		command = { type = relation which = SEI value = -200 } #All Habsburg "countries"
+		command = { type = relation which = HAB value = -200 }
+		command = { type = relation which = HUN value = -200 }
+		command = { type = relation which = BOH value = -200 }
+		#command = { type = wakemonarch which = XXXXX } #local Regency
+		command = { type = stability value = -3 }
+		command = { type = sleepevent which = 322002 } #TYR: Sigmund ascends the throne
+	}
+}
+
+#(1440-1446) We are rewarded
+event = {
+	id = 322027 #triggered by HEL_184028
+	random = no
+	country = TYR
+	name = "EVENTNAME322027" #We are rewarded
+	desc = "EVENTHIST322027"
+	#-#For our aid in the Zurich War, the town of Zurich rewards us and returns the county of Kyburg to our rule. If we are lucky the Swiss will kill each other - or at least Zurich will win and the Swiss Confederacy become a useful ally.
+
+	action_a = {
+		name = "OK"
+		command = { type = desertion which = -1 value = 1000 }
+		command = { type = population which = 371 value = 500 } #Tirol
+		command = { type = provincetax which = 371 value = 1 } #Tirol
+		command = { type = provincemanpower which = 371 value = 1 } #Tirol
+	}
+}
+
+#(1446) Sigmund ascends the throne
+event = {
+	id = 322002
+	trigger = {
+		event = 179050 #HAB: The regency of Friedrich in Tyrol
+		vassal = { country = HAB country = TYR }
+	}
+	random = no
+	country = TYR
+	name = "EVENTNAME322002" #Sigmund ascends the throne
+	desc = "EVENTHIST322002"
+	#-#In 1446 Sigmund was finally adult and took over Tyrol from his uncle Friedrich.
+
+	date = { day = 1 month = january year = 1446 }
+
+	action_a = {
+		name = "ACTIONNAME322002A" #Sigmund becomes Duke
+		command = { type = breakvassal which = HAB }
+		command = { type = relation which = HAB value = -50 }
+	}
+}
+
+#(1449-1580) Silver mining in Schwaz
+event = {
+	id = 322003
+	trigger = {
+		owned = { province = 371 data = -1 } #Tirol
+		control = { province = 371 data = -1 }
+	}
+	random = no
+	country = TYR
+	name = "EVENTNAME322003" #The silver mines of Schwaz
+	desc = "EVENTHIST322003"
+	#-#In 1449, Duke Sigmund issued the Schwazer Bergordnung, rules which standardized the legal regulations governing mining. With a secure legal foundation to work with mine-owners and merchants were more willing invest in existing mines and to explore for new ones.
+
+	date = { day = 1 month = january year = 1449 }
+	offset = 100
+	deathdate = { day = 0 month = january year = 1580 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = infra value = 250 }
+		command = { type = trade value = 100 }
+	}
+}
+
+#(1460) Tyrol's response to Switzerland
+event = {
+	id = 322025 #triggered by HEL_184056
+	random = no
+	country = TYR
+	name = "EVENTNAME322025" #The Swiss dare to steal our lands
+	desc = "EVENTHIST322025"
+	#-#In 1460, the Pope excommunicated Sigismund of Tyrol, and the Swiss used the opportunity to seize the county of Thurgau from Sigismund - the events of 1415 that lead to the loss of Aargau seem to repeat.
+
+	action_a = {
+		name = "ACTIONNAME322025A" #Ignore Thurgau
+		command = { type = relation which = FRA value = 10 }
+		command = { type = relation which = HEL value = 50 }
+		command = { type = relation which = BUR value = 10 }
+		command = { type = relation which = PAP value = 10 }
+		command = { type = relation which = HAB value = -10 }
+		command = { type = provincemanpower which = 371 value = -1 } #Tirol
+		command = { type = provincetax which = 371 value = -1 } #Tirol
+	}
+	action_b = {
+		name = "ACTIONNAME322025B" #Defy Swiss aggression
+		command = { type = casusbelli which = HEL value = 48 }
+		command = { type = relation which = HEL value = -100 }
+		command = { type = relation which = PAP value = -10 }
+		command = { type = relation which = HAB value = 10 }
+		command = { type = provincemanpower which = 371 value = -1 } #Tirol
+		command = { type = provincetax which = 371 value = -1 } #Tirol
+	}
+}
+
+#(1460-1462) Conflict with cardinal Nikolaus Cosanus
+event = {
+	id = 322004
+	random = no
+	country = TYR
+	name = "EVENTNAME322004" #Conflict with Cardinal Nikolaus Cosanus
+	desc = "EVENTHIST322004"
+	#-#Cardinal Nikolaus Cosanus of Brixen tried to overthrow the Habsburg duke's authority, and to establish clerical sovereignty in Tirol. In the inevitable conflict Duke Sigmund prevailed because he was supported by the nobility and populace of Tirol.
+
+	date = { day = 1 month = january year = 1460 }
+	offset = 600
+	deathdate = { day = 1 month = january year = 1462 }
+
+	action_a = {
+		name = "ACTIONNAME322004A" #Fight this preposterous cleric
+		command = { type = relation which = PAP value = -50 }
+		#command = { type = relation which = MAG value = -30 } #Magdeburg
+		#command = { type = relation which = SLZ value = -30 } #Salzburg
+		command = { type = relation which = STR value = -30 }
+		command = { type = relation which = MAI value = -30 }
+		command = { type = relation which = WUR value = -30 }
+		command = { type = relation which = KOL value = -30 }
+		command = { type = relation which = BRG value = -30 }
+		command = { type = relation which = BRE value = -30 }
+		command = { type = revoltrisk which = 24 value = 2 }
+		command = { type = stability value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME322004B" #Try to achieve an agreement with Cosanus
+		command = { type = relation which = PAP value = 50 }
+		#command = { type = relation which = MAG value = 30 } #Magdeburg
+		#command = { type = relation which = SLZ value = 30 } #Salzburg
+		command = { type = relation which = STR value = 30 }
+		command = { type = relation which = MAI value = 30 }
+		command = { type = relation which = WUR value = 30 }
+		command = { type = relation which = KOL value = 30 }
+		command = { type = relation which = BRG value = 30 }
+		command = { type = relation which = BRE value = 30 }
+		command = { type = vp value = -30 }
+		command = { type = provincetax which = 371 value = -2 } #Cosanus gets a part of the income #Tirol
+	}
+}
+
+#(1460-1490) Sigmund's bastards
+event = {
+	id = 322022
+	random = no
+	country = TYR
+	name = "EVENTNAME322022" #Sigmund's bastards
+	desc = "EVENTHIST322022"
+	#-#Sigmund of Tyrol's two marriages produced only one child which died with its mother, Eleanor of Scotland, in childbed in 1480. There were however about 50 children whom Sigmund had recognized as his illegitimate offspring and who were supported financially from Sigmund's coffers. Whether he indeed was so fertile or just accepted these bastards as his in order to be able to blame his failure to father a heir on his wifes cannot be asserted with certainty. In any case, the generous supply of 50 children was a huge drain on Tyrol's finances.
+
+	date = { day = 1 month = january year = 1460 }
+	offset = 9000
+	deathdate = { day = 0 month = january year = 1490 }
+
+	action_a = {
+		name = "ACTIONNAME322022A" #Recognize and supply them
+		command = { type = stability value = 2 }
+		command = { type = treasury value = -50 }
+		command = { type = relation which = PAP value = -5 }
+	}
+	action_b = {
+		name = "ACTIONNAME322022B" #Don't you know I'm Sigmund the Chaste?
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1463) Styria willed to Tyrol
+event = {
+	id = 322014 #triggered by SEI_261000 B
+	random = no
+	country = TYR
+	name = "EVENTNAME322014" #Styria and Krain are willed to Tyrol
+	desc = "EVENTHIST322014"
+	#-#In december 1463 Duke Albert of Styria died childlessly. Despite his brother, emperor Friedrich V, that he had had a long struggle for power in Austria and Styria with having the strongest claim, he willed Styria to his cousin Sigmund of Tyrol. Tyrol can inherit Styria and Krain, however this would almost inevitably cause a conflict with Friedrich V and the whole empire.
+
+	action_a = {
+		name = "ACTIONNAME322014A" #Austria is the rightful heir, we'll reject the inheritance
+		command = { type = relation which = HAB value = 100 }
+		command = { type = trigger which = 179002 } #HAB: Austria inherits Styria
+	}
+	action_b = {
+		name = "ACTIONNAME322014B" #We'll inherit no matter what
+		command = { type = inherit which = SEI }
+		command = { type = addcore which = 367 } #Krain
+		command = { type = addcore which = 369 } #Steiermark
+		#command = { type = relation which = SLZ value = -200 } #Salzburg
+		command = { type = relation which = WUR value = -80 }
+		command = { type = relation which = BAD value = -80 }
+		command = { type = relation which = STR value = -80 }
+		command = { type = relation which = PFA value = -80 }
+		command = { type = relation which = LOR value = -80 }
+		command = { type = relation which = HES value = -80 }
+		command = { type = relation which = BAY value = -80 }
+		command = { type = relation which = MAI value = -80 }
+		command = { type = relation which = SAC value = -80 }
+		command = { type = relation which = KOL value = -80 }
+		command = { type = relation which = KLE value = -80 }
+		command = { type = relation which = BRG value = -80 }
+		command = { type = relation which = BRA value = -80 }
+		#command = { type = relation which = MAG value = -80 } #Magdeburg
+		command = { type = relation which = MEC value = -80 }
+		command = { type = relation which = POM value = -80 }
+		command = { type = relation which = SHL value = -80 }
+		command = { type = relation which = BRE value = -80 }
+		command = { type = relation which = OLD value = -80 }
+		command = { type = relation which = HAN value = -80 }
+		command = { type = relation which = MAN value = -80 }
+		command = { type = relation which = SAV value = -80 }
+		command = { type = relation which = GEL value = -80 }
+		command = { type = stability value = -2 }
+		command = { type = trigger which = 179094 } #HAB: The Question of Styria
+	}
+}
+
+#(1469) Alsace mortgaged to Burgundy
+event = {
+	id = 322005
+	trigger = {
+		exists = BUR
+		OR = {
+			owned = { province = 374 data = -1 } #Alsace
+			owned = { province = 373 data = -1 } #Baden
+		}
+	}
+	random = no
+	country = TYR
+	name = "EVENTNAME322005" #Problems in the Vorlande
+	desc = "EVENTHIST137001"
+	#-#Sigismund of Tyrol ruled the Vorlande, the Habsburg possessions north of the Alps, in Alsace and Breisgau, very ineffectively. Most of the local nobility operated as robber barons, there was virtually no tax collection and the Swiss neighbours in the south occasionally sent pillaging troops in and tried to expand into these territories. One such border war with Helvetia in 1468 was concluded by Sigismund promising to pay 10000 Guldens. Since he was always in financial trouble, he soon searched for someone to grant him a credit. After the Emperor's and the French King's refusal, the only likely creditor was Charles the Bold, Duke of Burgundy. When on March 21st 1469 the two princes met in Arras, they negotiated an even more far-reaching agreement: Sigismund saw Burgundy as a potentially useful ally against the Helvetian threat, and in order to tie him closely to Tyrol, he offered him to mortgage the Vorlande for an amount of 50000 Guldens. To rebuy the provinces, Tyrol would have had to pay back not only this sum, but also all expenses Burgundy would make for the establishment of an administration, which seemed practically impossible for the struggling Count. Hence by the treaty of St. Omer signed in May Sigismund sold the Vorlande to Burgundy in exchange for the money he badly needed and Burgundian support against his Helvetian enemies. Only due to Charles' premature death in battle the vorlande were returned to Tyrol.
+
+	date = { day = 1 month = january year = 1469 }
+	offset = 200
+	deathdate = { day = 29 month = december year = 1469 }
+
+	action_a = {
+		name = "ACTIONNAME322005A" #Offer Alsace to Burgundy
+		command = { type = trigger which = 137001 } #BUR: The Treaty of St.Omer
+	}
+	action_b = {
+		name = "ACTIONNAME322005B" #Don't negotiate with Charles the Bold
+		command = { type = relation which = BUR value = -50 }
+		command = { type = treasury value = -30 } #They have to pay Helvetia themselves
+	}
+}
+#(1469) Burgundy accepts
+event = {
+	id = 322006 #triggered by BUR_137001 A
+	random = no
+	country = TYR
+	name = "EVENTNAME322006" #Burgundy accepts
+	desc = "EVENTHIST322006"
+	#-#Charles the Bold of Burgundy has accepted our offer. Alsace, Breisgau, Sundgau and the Rhenanian cities will be mortgaged to Burgundy for 50000 Guldens.
+
+	action_a = {
+		name = "OK"
+		command = { type = cedeprovince which = BUR value = 374 } #Alsace
+		command = { type = cedeprovince which = BUR value = 373 } #Baden
+		command = { type = treasury value = 70 }
+	}
+}
+
+#(1470) Construction of Sigmundskron
+event = {
+	id = 322007
+	random = no
+	country = TYR
+	name = "EVENTNAME322007" #Construction of castle Sigmundskron
+	desc = "EVENTHIST322007"
+	#-#Duke Sigmund expanded Castle Formigar near Bozen in 1470, making it the largest fortification in Tirol, and called it Sigmundskron. Using the advantages of the mountainous terrain, this mighty castle made an invasion from the south difficult for a long time.
+
+	date = { day = 1 month = january year = 1470 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1470 }
+
+	action_a = {
+		name = "ACTIONNAME322007A" #Build Sigmundskron
+		command = { type = fortress which = 371 value = 1 } #Tirol
+		command = { type = domestic which = offensive value = -1 }
+		command = { type = treasury value = -100 }
+	}
+	action_b = {
+		name = "ACTIONNAME322007B" #Save the money
+		command = { type = population which = -1 value = 10 } #dummy effect to allow the option
+	}
+}
+
+#(1482-1486) Reclaiming Vorlande - Ahistorical
+event = {
+	id = 322028
+	trigger = {
+		OR = {
+			owned = { province = 373 data =	BUR } #Baden
+			owned = { province = 374 data = BUR } #Alsace to be changed to new Sundgau province as soon as new map appears
+		}
+	}
+	random = no
+	country = TYR
+	name = "EVENTNAME322028" #Reclaiming Vorlande
+	desc = "EVENTHIST322028"
+	#-#Mary of Burgundy is dead and another dynasty has established itself in Brussels. This was the last opportunity for Sigismund to buy his lands back, since the new Burgundian dynasty will certainly want to incorporate those territories into their own.
+
+	date = { day = 1 month = march year = 1482 }
+	offset = 60
+	deathdate = { day = 29 month = december year = 1486 }
+
+	action_a = {
+		name = "ACTIONNAME322028A" #We cannot afford this
+		command = { type = removecore which = 373 } #Baden
+		#command = { type = removecore which = 374 } #Alsace to be changed to new Sundgau province as soon as new map appears
+		command = { type = relation which = BUR value = 50 }
+		command = { type = sleepevent which = 179153 } #HAB: Reclaiming Vorlande
+		command = { type = sleepevent which = 179091 } #HAB: The claim to Tirol and Vorlande
+		command = { type = trigger which = 137076 } #BUR: Sigismund of Tyrol renounces claim on Vorlande
+	}
+	action_b = {
+		name = "ACTIONNAME322028B" #Let's have our lands back
+		command = { type = treasury value = -200 }
+		command = { type = sleepevent which = 179153 } #HAB: Reclaiming Vorlande
+		command = { type = trigger which = 137077 } #BUR: Sigismund of Tyrol reclaims Vorlande
+	}
+}
+
+#(1486) First silver dollar in the world
+event = {
+	id = 322008
+	random = no
+	country = TYR
+	name = "EVENTNAME322008" #The first silver dollar
+	desc = "EVENTHIST322008"
+	#-#The silver mines of Schwaz prospering, Sigmund had the idea to use the produced silver for coins, instead of gold. He moved the ducal mint to Hall, which was near Schwaz, in 1477, and in 1486 the Uncialis, the first silver dollar in the world, was made.
+
+	date = { day = 1 month = january year = 1486 }
+	offset = 100
+	deathdate = { day = 29 month = december year = 1486 }
+
+	action_a = {
+		name = "ACTIONNAME322008A" #Nice
+		command = { type = infra value = 25 }
+	}
+}
+
+#(1487-1500) Sigismund grows old - 1st version
+event = {
+	id = 322009
+	trigger = {
+		OR = {
+			AND = {
+				owned = { province = 374 data =	TYR } #Alsace
+				control = { province = 374 data = TYR }
+			}
+			AND = {
+				owned = { province = 373 data =	TYR } #Baden
+				control = { province = 373 data = TYR }
+			}
+		}
+		exists = HAB
+		exists = BAY
+	}
+	random = no
+	country = TYR
+	name = "EVENTNAME322009" #Our duke grows old
+	desc = "EVENTHIST322009"
+	#-#In the last years of his rule, Sigismund who was influenced by corrupt advisors, contemplated selling the Vorlande to the Duke of Bavaria-Munich. However, his relatives, Emperor Friedrich and his son Maximilian, who were eager to expand the dynasty's power, did not tolerate and, cooperating with the estates of the Vorlande who desired to stay under Habsburg rule, forced Sigismund to turn these territories over to Austria, and a few years later to abdicate completely.
+
+	date = { day = 1 month = january year = 1487 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1500 }
+
+	action_a = {
+		name = "ACTIONNAME322009A" #Give in to the Emperor's pressure
+		command = { type = cedeprovince which = HAB value = 374 } #Alsace
+		command = { type = cedeprovince which = HAB value = 373 } #Baden
+		command = { type = relation which = HAB value = 50 }
+		command = { type = stability value = 1 }
+		command = { type = trigger which = 179009 } #Maximilian takes control of the Vorlande #HAB: Siegmund grows old
+		command = { type = sleepevent which = 322023 } #2nd version #TYR: Our duke grows old
+		command = { type = sleepevent which = 322024 } #3rd version #TYR: Our duke grows old
+	}
+	action_b = {
+		name = "ACTIONNAME322009B" #Sell the Vorlande to Bavaria
+		command = { type = relation which = HAB value = -50 }
+		command = { type = relation which = BAY value = 50 }
+		command = { type = stability value = -1 }
+		command = { type = trigger which = 125029 } #BAY: Tyrol offers Alsace
+		command = { type = sleepevent which = 322023 } #2nd version #TYR: Our duke grows old
+		command = { type = sleepevent which = 322024 } #3rd version #TYR: Our duke grows old
+	}
+	action_c = {
+		name = "ACTIONNAME322009C" #Keep the Vorlande
+		command = { type = relation which = HAB value = -50 }
+		command = { type = stability value = -1 }
+		command = { type = sleepevent which = 322023 } #2nd version #TYR: Our duke grows old
+		command = { type = sleepevent which = 322024 } #3rd version #TYR: Our duke grows old
+	}
+}
+#(1487-1500) Sigismund grows old - 2nd version
+event = {
+	id = 322023
+	trigger = {
+		OR = {
+			AND = {
+				owned = { province = 374 data =	-1 } #Alsace
+				control = { province = 374 data = -1 }
+			}
+			AND = {
+				owned = { province = 373 data =	-1 } #Baden
+				control = { province = 373 data = -1 }
+			}
+		}
+		not = { exists = BAY }
+		exists = HAB
+	}
+	random = no
+	country = TYR
+	name = "EVENTNAME322009" #Our duke grows old
+	desc = "EVENTHIST322023"
+	#-#In the last years of his rule, Sigismund was forced by his relatives, Emperor Friedrich and his son Maximilian to turn the Habsburg Vorlande over to Austria, and a few years later to abdicate completely.
+
+	date = { day = 1 month = january year = 1487 }
+	offset = 1
+	deathdate = { day = 1 month = january year = 1500 }
+
+	action_a = {
+		name = "ACTIONNAME322023A" #Give in to the Emperor's pressure
+		command = { type = cedeprovince which = HAB value = 374 } #Alsace
+		command = { type = cedeprovince which = HAB value = 373 } #Baden
+		command = { type = relation which = HAB value = 50 }
+		command = { type = stability value = 1 }
+		command = { type = trigger which = 179009 } #Maximilian takes control of the Vorlande #HAB: Siegmund grows old
+		command = { type = sleepevent which = 322009 } #1st version #TYR: Our duke grows old
+		command = { type = sleepevent which = 322024 } #3rd version #TYR: Our duke grows old
+	}
+	action_b = {
+		name = "ACTIONNAME322023B" #Keep the Vorlande
+		command = { type = relation which = HAB value = -50 }
+		command = { type = stability value = -1 }
+		command = { type = sleepevent which = 322009 } #1st version #TYR: Our duke grows old
+		command = { type = sleepevent which = 322024 } #3rd version #TYR: Our duke grows old
+	}
+}
+#(1487-1500) Sigismund grows old - 3rd version
+event = {
+	id = 322024
+	trigger = {
+		OR = {
+			AND = {
+				owned = { province = 374 data =	-1 } #Alsace
+				control = { province = 374 data = -1 }
+			}
+			AND = {
+				owned = { province = 373 data =	-1 } #Baden
+				control = { province = 373 data = -1 }
+			}
+		}
+		exists = BAY
+		not = { exists = HAB }
+		not = { exists = SEI }
+	}
+	random = no
+	country = TYR
+	name = "EVENTNAME322009" #Our duke grows old
+	desc = "EVENTHIST322024"
+	#-#In the last years of his rule, Sigismund who was influenced by corrupt advisors, contemplated selling the Vorlande to the Duke of Bavaria-Munich. In the end however, he chose to keep the Vorlande in Habsburg hands.
+
+	date = { day = 1 month = january year = 1487 }
+	offset = 1
+	deathdate = { day = 1 month = january year = 1500 }
+
+	action_a = {
+		name = "ACTIONNAME322024A" #Keep the Vorlande
+		command = { type = stability value = 1 } #Nobility in vorlande preferred to be ruled by Habsburgs
+		command = { type = sleepevent which = 322009 } #1st version #TYR: Our duke grows old
+		command = { type = sleepevent which = 322023 } #2nd version #TYR: Our duke grows old
+	}
+	action_b = {
+		name = "ACTIONNAME322024B" #Sell the Vorlande to Bavaria
+		command = { type = relation which = BAY value = 50 }
+		command = { type = stability value = -1 }
+		command = { type = trigger which = 125029 } #BAY: Tyrol offers Alsace
+		command = { type = sleepevent which = 322009 } #1st version #TYR: Our duke grows old
+		command = { type = sleepevent which = 322023 } #2nd version #TYR: Our duke grows old
+	}
+}
+#(1487-1500) Bavaria accepts
+event = {
+	id = 322010 #triggered by BAY_125029 A
+	random = no
+	country = TYR
+	name = "EVENTNAME322010" #Bavaria accepts
+	desc = "EVENTHIST322010"
+	#-#Bavaria has accepted our offer to buy the Vorlande. This will hurt the relations with our Habsburg relatives.
+
+	action_a = {
+		name = "OK"
+		command = { type = cedeprovince which = BAY value = 374 } #Alsace
+		command = { type = cedeprovince which = BAY value = 373 } #Baden
+		command = { type = treasury value = 70 }
+		command = { type = relation which = HAB value = -50 }
+	}
+}
+#(1487-1500) Bavaria rejects the offer
+event = {
+	id = 322011 #triggered by BAY_125029 B
+	random = no
+	country = TYR
+	name = "EVENTNAME322011" #Bavaria rejects the offer
+	desc = "EVENTHIST322011"
+	#-#Bavaria has rejected our offer of the Vorlande. Our Habsburg relatives still insist that these territories are seceded to them.
+
+	action_a = {
+		name = "ACTIONNAME322011A" #Give in to the Emperor's pressure
+		command = { type = cedeprovince which = HAB value = 374 } #Alsace
+		command = { type = cedeprovince which = HAB value = 373 } #Baden
+		command = { type = relation which = HAB value = 50 }
+		command = { type = stability value = 1 }
+		command = { type = trigger which = 179009 } #Maximilian takes control of the Vorlande #HAB: Siegmund grows old
+	}
+	action_b = {
+		name = "ACTIONNAME322011B" #Keep the Vorlande
+		command = { type = relation which = HAB value = -50 }
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1490) Abdication of Sigmund der Münzreiche
+event = {
+	id = 322012
+	trigger = { exists = HAB }
+	random = no
+	country = TYR
+	name = "EVENTNAME322012" #Abdication of Duke Sigmund
+	desc = "EVENTHIST322012"
+	#-#In 1490, the old, childless Duke Sigmund of Tyrol was tired of ruling. He abdicated in favor of his nephew, soon-to-be emperor Maximilian I.
+
+	date = { day = 1 month = january year = 1490 }
+	offset = 50
+	deathdate = { day = 29 month = december year = 1490 }
+
+	action_a = {
+		name = "ACTIONNAME322012A" #Tyrol shall be united with Austria
+		command = { type = independence which = HEL }
+		command = { type = independence which = MLO }
+		command = { type = independence which = MAN }
+		command = { type = independence which = LOR }
+		command = { type = independence which = WUR }
+		command = { type = independence which = BAY }
+		command = { type = cedeprovince which = BAY value = 348 } #Ansbach
+		#command = { type = independence which = THU } #Bayreuth
+		command = { type = independence which = MAI }
+		command = { type = independence which = PFA }
+		command = { type = cedeprovince which = PFA value = 347 } #Würzburg
+		command = { type = independence which = SAV }
+		command = { type = cedeprovince which = SAV value = 404 } #Piemonte
+		command = { type = independence which = GEN }
+		command = { type = independence which = PAR }
+		command = { type = independence which = TOS }
+		command = { type = independence which = MOD }
+		#command = { type = independence which = SLZ } #Salzburg
+		command = { type = cedeprovince which = BUR value = 387 } #Franche-Comté
+		command = { type = cedeprovince which = BUR value = 409 } #Bourgogne
+		command = { type = sleepmonarch which = 0140003 } #Maximilian I - inheritance by death of Sigismund
+		command = { type = wakemonarch which = 0140011 } #Maximilian I - inheritance by abdication of Sigismund
+		command = { type = trigger which = 179003 } #HAB: Austria inherits Tirol
+	}
+	action_b = {
+		name = "ACTIONNAME322012B" #Tyrol remains independent
+		command = { type = relation which = HAB value = -200 }
+		command = { type = stability value = -3 }
+		command = { type = DIP which = -2 value = 240 } #Sigmund is old and tired
+		command = { type = ADM which = -4 value = 240 } #Sigmund is old and tired
+		command = { type = MIL which = -4 value = 240 } #Sigmund is old and tired
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 322031

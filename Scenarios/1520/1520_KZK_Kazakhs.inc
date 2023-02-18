@@ -4,7 +4,7 @@
 
 country = {
 	tag = KZK
-	ai = "SmallTrade0.ai"
+	ai = "SmallTrade0.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -14,8 +14,8 @@ country = {
 	treasury = 250
 	inflation = 0.00000
 	merchants = 0.083333
-	religion = { type = sunni}
-	culture = { type = khazak }
+	religion = { type = sunni }
+	culture = { type = kazakh }
 	diplomacy = { }
 	knownprovinces = {
 		272 296 446 447 448 449 451 452 453 454 455 456 457 458 459 460 461 462 463 466 467 468 510

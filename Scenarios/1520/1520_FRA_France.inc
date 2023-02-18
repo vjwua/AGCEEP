@@ -4,7 +4,7 @@
 
 country = {
 	tag = FRA
-	ai = "FRA_1523_Verrazzano.ai"
+	ai = "FRA_1523_Verrazzano.txt"
 	policy = {
 		aristocracy = 8
 		centralization = 5
@@ -35,7 +35,7 @@ country = {
 		relation = { tag = POR value = 50 }
 		relation = { tag = SAV value = 0 access = yes }
 		relation = { tag = SCO value = 100 }
-		relation = { tag = BEA value = 50 access = yes }
+		relation = { tag = FOI value = 50 access = yes }
 	}
 	knownprovinces = {
 		1614 #Pope

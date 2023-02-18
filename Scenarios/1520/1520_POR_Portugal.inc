@@ -9,7 +9,7 @@ country = {
 			[Manuel_I] = yes
 		}
 	}
-	ai = "POR_1514_3explorers.ai"
+	ai = "POR_1514_3explorers.txt"
 	flagname = "Manuel_I"
 	policy = {
 		aristocracy = 5
@@ -31,20 +31,20 @@ country = {
 	inflation = 0
 	merchants = 1.083333
 	religion = { type = catholic }
-	culture = { type = mississippian }
+	culture = { type = portuguese }
 	diplomacy = {
 		relation = { tag = MOR value = -150 refusetrade = no }
 		relation = { tag = SPA value = 50 }
 		relation = { tag = FRA value = 50 }
-		relation = { tag = HYD value = -80 }
+		relation = { tag = GOL value = -80 }
 		relation = { tag = AHM value = -80 }
-		relation = { tag = DAM value = -80 }
+		relation = { tag = BIJ value = -80 }
 		relation = { tag = VIJ value = 50 }
 		relation = { tag = MLC value = -100 }
 		relation = { tag = ATJ value = -100 }
-		relation = { tag = KIE value = -70 casusbelli = { type = permanent expirydate = { year = 1575 month = january day = 1 } } }
-		relation = { tag = ZUL value = -200 refusetrade = no casusbelli = { type = permanent expirydate = { year = 1575 month = january day = 1 } } }
-		relation = { tag = ARM value = 100 refusetrade = no }
+		relation = { tag = KIL value = -70 casusbelli = { type = permanent expirydate = { year = 1575 month = january day = 1 } } }
+		relation = { tag = MOM value = -200 refusetrade = no casusbelli = { type = permanent expirydate = { year = 1575 month = january day = 1 } } }
+		relation = { tag = MLI value = 100 refusetrade = no }
 		relation = { tag = BEN value = 150 }
 		relation = { tag = KON value = 25 }
 	}

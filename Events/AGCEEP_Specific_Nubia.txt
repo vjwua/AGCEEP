@@ -1,0 +1,149 @@
+#Nubia (NUB)
+
+#NOTE: 1.3 includes SUD as a separate tag for Sudan; add if needed.
+
+#-----------------------------------------------------------------------------------------------
+
+#(1504-1699) The fall of Alodia
+event = {
+	id = 289000
+	random = no
+	country = NUB
+	name = "EVENTNAME289000" #The fall of Alodia
+	desc = "EVENTHIST289000"
+	#-#Medieval Nubia was divided onto two Kingdoms. The northern, known as Makkura or Makuria with its capital at Dongola reached its zenith at the end of the first millennium. It was eventually destroyed and conquered by the growing Mamluk state in 14th century, though some small Christian pockets like the Kingdom of Dotawo survived well into 15th century. In contrast to well known Makuria, the history of southern Nubian Kingdom of Alodia or Alwa, with capital at Soba, is almost completely unknown. The only thing that we can be sure is that it preserved its political and cultural independence for much longer. Modern historians speculate that Alodia or its successor states finally met their end in 1504 when a confederation of Muslim tribes called Funj conquered central Nubia and established sultanate of Sennar there. The fate of local Christians is obscure, but they most probably suffered severe persecutions. Ethiopian chronicles mention envoys sent by Nubian Christians with desperate calls for help. Nevertheless, Nubia became almost entirely Muslim country before the end of 17th century.
+
+	date = { day = 1 month = january year = 1504 }
+	offset = 2000
+	deathdate = { day = 1 month = june year = 1699 }
+
+	action_a = {
+		name = "ACTIONNAME289000A" #Ancient Nubia came to an end
+		command = { type = religion which = sunni }
+		command = { type = add_countryculture which = arabic }
+		command = { type = conversion which = -2 }
+		#command = { type = trigger which = xxx } #event for ETH that will be added later
+	}
+	action_b = {
+		name = "ACTIONNAME289000B" #Keep the ways of our forefathers
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1510-1800) Mamluk refugees
+event = {
+	id = 289003
+	trigger = {
+		religion = sunni
+		NOT = { exists = MAM }
+	}
+	random = no
+	country = NUB
+	name = "EVENTNAME289003" #Mamluk refugees
+	desc = "EVENTHIST289003"
+	#-#After the destruction of the Mamluk state from the hands of the Ottomans, thousands of surviving Mamluks fled to Nubia. Initially weak Nubian sultanates welcomed those skilled warriors with open arms. However Mamluks soon merged with local population and became one of the dominant powers in the region by themselves. Much of the local petty dynasties were descendants of such Mamluks. Others settled along Blue Nile and created an unique society of nomadic warriors quite similar to Ukrainian and Russian Cossacks. Their main source of incomes came from regular looting of the Ethiopian highlands.
+
+	date = { day = 1 month = january year = 1510 }
+	offset = 90
+	deathdate = { day = 1 month = june year = 1800 }
+
+	action_a = {
+		name = "WELCOME"
+		command = { type = stability value = -2 }
+		command = { type = domestic which = ARISTOCRACY value = 3 }
+		command = { type = domestic which = CENTRALIZATION value = -4 }
+		command = { type = domestic which = QUALITY value = 1 }
+		command = { type = domestic which = offensive value = 1 }
+		command = { type = provincemanpower which = -2 value = 1 }
+		command = { type = CAV which = -2 value = 5000 }
+		command = { type = relation which = ETH value = -150 }
+	}
+	action_b = {
+		name = "ACTIONNAME289003B" #Fight them off
+		command = { type = revoltrisk which = 24 value = 6 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+	}
+}
+
+#(1550-1700) Gum Arabic
+event = {
+	id = 289002
+	random = no
+	country = NUB
+	name = "EVENTNAME289002" #Gum Arabic
+	desc = "EVENTHIST289002"
+	#-#Manufacturing of Gum Arabic was the backbone of Nubian economy thorough ages. Second part of 16th century saw the improvement of both quality and quantity of production due to new techniques of cultivation and introduction of a new specie of acacia - Acacia Senegali. The thriving Gum Arabic industry flourished for centuries and its golden age finally ended with the beginning of the Mahdiya, Mahdi's Uprising, in the second half of 19th century.
+
+	date = { day = 1 month = january year = 1550 }
+	offset = 365
+	deathdate = { day = 1 month = june year = 1700 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = provincetax which = -2 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = domestic which = serfdom value = 1 } #Slaves
+	}
+}
+
+#(1776-1800) Anarchy
+event = {
+	id = 289001
+	trigger = {
+		religion = sunni
+		NOT = { domestic = { type = CENTRALIZATION value = 7 } }
+	}
+	random = no
+	country = NUB
+	name = "EVENTNAME289001" #Anarchy
+	desc = "EVENTHIST289001"
+	#-#With the disintegration of the Sultanate of Sennar in 1776 Nubia fell into complete anarchy that lasted well into 19th century.
+
+	date = { day = 1 month = january year = 1776 }
+	offset = 365
+	deathdate = { day = 1 month = june year = 1800 }
+
+	action_a = {
+		name = "DARN"
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 48 value = 7 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = domestic which = ARISTOCRACY value = 3 }
+		command = { type = domestic which = CENTRALIZATION value = -3 }
+	}
+}
+
+#(1800-1810) Rise of Islamic mystics
+event = {
+	id = 289004
+	trigger = { religion = sunni }
+	random = no
+	country = NUB
+	name = "EVENTNAME289004" #Rise of Islamic mystics
+	desc = "EVENTHIST289004"
+	#-#The beginning of 19th century saw the growth of various Islamic sects, schools and hermits thorough Nubia. Much of these were founded by newcomers from Arabia, Turkey or Egypt that indroduced new, more orthodox forms of Islam. Decades later from one of these schools emerged Islamic mufti Muhammad Ahmad, better known as Mahdi.
+
+	date = { day = 1 month = january year = 1800 }
+	offset = 300
+	deathdate = { day = 1 month = june year = 1810 }
+
+	action_a = {
+		name = "ACTIONNAME289004A" #Allow them to spread their teachings
+		command = { type = stability value = 1 }
+		command = { type = domestic which = INNOVATIVE value = -2 }
+		command = { type = domestic which = offensive value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME289004B" #Expell them
+		command = { type = stability value = -2 }
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 289005

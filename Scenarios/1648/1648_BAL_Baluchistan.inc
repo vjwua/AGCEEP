@@ -4,7 +4,7 @@
 
 country = {
 	tag = BAL
-	ai = "SmallTrade0.ai"
+	ai = "SmallTrade0.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -14,7 +14,7 @@ country = {
 	treasury = 100
 	inflation = 0
 	merchants = 0
-	religion = { type = shiite }
+	religion = { type = shia }
 	culture = { type = baluchi }
 	diplomacy = {
 		relation = { tag = PER value = 120 }

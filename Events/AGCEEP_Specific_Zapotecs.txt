@@ -1,0 +1,179 @@
+#Zapotecs (ZAP)
+
+#See AGCEEP_Alt_Iberia.txt for Alternative events involving Portugal
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1600) The Zapotecs ally with Spain
+event = {
+	id = 82002
+	trigger = {
+		war = { country = SPA country = AZT }
+		NOT = { relation = { country = AZT data = -100 } }
+		war = { country = ZAP country = AZT }
+		OR = {
+			owned = { province = 29 data = -1 }
+			owned = { province = 29 data = SPA }
+		}
+		NOT = { war = { country = ZAP country = SPA } }
+	}
+	random = no
+	country = ZAP
+	name = "EVENTNAME82002" #The Alliance with Spain
+	desc = "EVENTHIST82002"
+	#-#The Spanish wish to aid us against our enemies. All we must do is grant them a base from which to operate, and swear fealty to their King -- whatever that might mean.
+
+	date = { day = 1 month = september year = 1419 }
+	offset = 1
+	deathdate = { day = 1 month = january year = 1600 }
+
+	action_a = {
+		name = "ACTIONNAME82002A" #Let us crush our enemies together
+		command = { type = cedeprovince which = SPA value = 29 } #Tlaxcala
+		command = { type = religion which = catholic }
+		command = { type = stability value = 2 }
+		command = { type = trigger which = 82003 } #SPA: The Zapotecs become our clients
+	}
+	action_b = {
+		name = "ACTIONNAME82002B" #Are you mad? The foreigners are more dangerous than any of our neighbors
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1419-1600) The Fall of Atlixco
+event = {
+	id = 82007
+	trigger = {
+		control = { province = 30 data = SPA }
+	}
+	random = no
+	country = ZAP
+	name = "EVENTNAME82007" #The Fall of Atlixco
+	desc = "EVENTHIST82007"
+	#-#The foreign invaders have taken our capitol. Our soldiers cannot withstand their magical weapons! What will we do?
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 1
+	deathdate = { day = 1 month = january year = 1600 }
+
+	action_a = {
+		name = "ACTIONNAME82007A" #Reject Christianity and be burned at the stake (End Game)
+		command = { type = trigger which = 82008 } #SPA: The Conquest of the Zapotecs
+	}
+	action_b = {
+		name = "ACTIONNAME82007B" #Escape disguised as a scullery maid
+		command = { type = stability value = -2 }
+		command = { type = manpower value = -10 }
+		command = { type = treasury value = -1000 }
+	}
+}
+
+#(1419-1820) Plague among the Zapotecs
+event = {
+	id = 82010
+	trigger = {
+		OR = {
+			OR = {
+				discovered = 436 #Castilla
+				discovered = 439 #Toledo
+				discovered = 441 #Tago
+				discovered = 385 #Ile de France
+				discovered = 245 #Anglia
+				discovered = 339 #Holland
+			}
+			OR = {
+				neighbour = SPA
+				neighbour = CAS
+				neighbour = POR
+				neighbour = ENG
+				neighbour = FRA
+				neighbour = HOL
+			}
+			AND = {
+				atwar = yes
+				NOT = { #All Precolombian states
+					war = { country = ZAP country = AZT }
+					war = { country = ZAP country = CHM }
+					war = { country = ZAP country = INC }
+					war = { country = ZAP country = MAA }
+				}
+			}
+			AND = {
+				event = 82021 #AZT: Plagues from the Old World
+				neighbour = AZT
+			}
+		}
+	}
+	random = no
+	country = ZAP
+	name = "EVENTNAME82021" #Plagues from the Old World
+	desc = "EVENTHIST82021"
+	#-#For over 10,000 years, the Americans had been isolated from the Old World. During that time new diseases appeared in both land masses. With the discovery of the New World, the American natives were suddenly exposed to all the plagues and diseases still active in the Old World population, to which they had absolutely no immunity. Some of the plagues, like Smallpox had been identified by their horrible symptoms, while others remained as silent killers. The effect was devastating, and between 50 and 80 percent of the original native population was killed by several waves of diseases that swept the continent in the next 200 years. These plagues certainly played an important role in the easy conquest of the continent by Europeans, and in the aculturalization of the natives. The Old World population also received a horrible present from their long lost relatives: Syphilis, a disease that had appeared between the natives of the Antilles.
+
+	date = { day = 1 month = April year = 1419 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "DAMN"
+		command = { type = population which = 24 value = -10000 } #Jalisco
+		command = { type = population which = 25 value = -10000 } #Saltillo
+		command = { type = population which = 26 value = -10000 } #Michoacan
+		command = { type = population which = 27 value = -150000 } #Zacatecas
+		command = { type = population which = 28 value = -30000 } #Tampico
+		command = { type = population which = 29 value = -30000 } #Tlaxcala
+		command = { type = population which = 30 value = -10000 } #Atlixco
+		command = { type = population which = 31 value = -10000 } #Tehuantepec
+		command = { type = stability value = -6 }
+	}
+}
+
+#(1510) Tlaxcala in Aztec hands
+#by Fodoron
+event = {
+	id = 82020
+	trigger = { owned = { province = 29 data = -1 } }
+	random = no
+	country = ZAP
+	name = "EVENTNAME82020" #Aztec conquest of Tlaxcala
+	desc = "EVENTHIST82020"
+	#-#Prior to the arrival of the Spaniards, Tlaxcala was subjugated by the Aztec empire. The control was however tenuous, and their resentment high.
+
+	date = { day = 1 month = april year = 1510 }
+
+	action_a = {
+		name = "OK"
+		command = { type = cedeprovince which = AZT value = 29 } #Tlaxcala
+	}
+}
+
+#(1519-1600) Plague in the Zapotec army
+#by AlanC9 - modified by Fodoron
+event = {
+	id = 334000
+	trigger = {
+		event = 82010 #ZAP: Plagues from the Old World
+	}
+	random = no
+	country = ZAP
+	name = "EVENTNAME82009" #Smallpox
+	desc = "EVENTHIST82009"
+	#-#A deadly disease is sweeping through our towns! Perhaps it comes from the strangers from over the sea...
+
+	date = { day = 1 month = april year = 1519 }
+	offset = 30
+	deathdate = { day = 20 month = december year = 1600 }
+
+	action_a = {
+		name = "DAMN"
+		command = { type = desertion which = -1 value = 2500 }
+		command = { type = desertion which = -1 value = 2500 }
+		command = { type = desertion which = -1 value = 2500 }
+		command = { type = desertion which = -1 value = 2500 }
+		command = { type = stability value = -6 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 334001

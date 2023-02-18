@@ -4,7 +4,7 @@
 
 country = {
 	tag = ENG
-	ai = "ENG_1496_Cabot.ai"
+	ai = "ENG_1496_Cabot.txt"
 	policy = {
 		aristocracy = 8
 		centralization = 9

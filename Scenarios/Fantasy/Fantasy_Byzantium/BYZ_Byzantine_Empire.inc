@@ -2,7 +2,7 @@
 
 country = {
 	tag = BYZ
-	ai = "SmallTrade1.ai"
+	ai = "SmallTrade1.txt"
 	leadertable = "scenarios\Fantasy\Fantasy_Byzantium\db\leaders\leaders_byz.txt"
 	monarchtable = "scenarios\Fantasy\Fantasy_Byzantium\db\monarchs\monarchs_byz.txt"
 	colonialattempts = 0
@@ -16,7 +16,7 @@ country = {
 	merchants = 0.083333
 	loansize = 100
 	religion = { type = orthodox }
-	culture = { type = greek}
+	culture = { type = greek }
 	diplomacy = {
 		relation = { tag = TUR value = -25 }
 		relation = { tag = SER value = 170 }
@@ -29,9 +29,9 @@ country = {
 		relation = { tag = VEN value = 150 }
 		relation = { tag = GEN value = 150 }
 		relation = { tag = KNI value = 25 }
-		relation = { tag = SPR value = 200 }
-		relation = { tag = TEK value = 50 }
-		relation = { tag = KAL value = 50 }
+		relation = { tag = MRE value = 200 }
+		relation = { tag = GZI value = 50 }
+		relation = { tag = THO value = 50 }
 	}
 	knownprovinces = {
 		231 232 233 234 235 236 237 238 239 240 241

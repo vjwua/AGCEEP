@@ -74,11 +74,11 @@ cot = {
 	merchant = { TAG = BAY level = 2 }
 	merchant = { TAG = PFA level = 1 }
 	merchant = { TAG = PAP level = 1 }
-	merchant = { TAG = PAM level = 1 }
+	merchant = { TAG = MOD level = 1 }
 	merchant = { TAG = BOH level = 1 }
 	merchant = { TAG = LUX level = 1 }
 	merchant = { TAG = HUN level = 1 }
-	merchant = { TAG = PIS level = 1 }
+	merchant = { TAG = SIE level = 1 }
 	merchant = { TAG = TOS level = 1 }
 }
 
@@ -92,8 +92,8 @@ cot = {
 	merchant = { TAG = ARG level = 2 }
 	merchant = { TAG = SAV level = 1 }
 	merchant = { TAG = HEL level = 1 }
-	merchant = { TAG = PIS level = 1 }
-	merchant = { TAG = PAM level = 1 }
+	merchant = { TAG = SIE level = 1 }
+	merchant = { TAG = MOD level = 1 }
 }
 
 #CoT 6 - DarkYellow
@@ -108,7 +108,7 @@ cot = {
 	merchant = { TAG = FRA level = 3 }
 	merchant = { TAG = SAV level = 1 }
 	merchant = { TAG = ENG level = 1 }
-	merchant = { TAG = BEA level = 1 }
+	merchant = { TAG = FOI level = 1 }
 	merchant = { TAG = NAV level = 1 }
 	merchant = { TAG = ARG level = 1 }
 }
@@ -161,10 +161,10 @@ cot = {
 	merchant = { TAG = VEN level = 4 }
 	merchant = { TAG = GEN level = 3 }
 	merchant = { TAG = TOS level = 2 }
-	merchant = { TAG = SUD level = 1 }
+	merchant = { TAG = NUB level = 1 }
 	merchant = { TAG = TUN level = 1 }
 	merchant = { TAG = ATH level = 1 }
-	merchant = { TAG = SPR level = 1 }
+	merchant = { TAG = MRE level = 1 }
 	merchant = { TAG = BYZ level = 1 }
 	merchant = { TAG = CYP level = 1 }
 }
@@ -190,7 +190,7 @@ cot = {
 	location = 569
 	merchant = { TAG = GUJ level = 2 }
 	merchant = { TAG = VIJ level = 1 }
-	merchant = { TAG = FAT level = 1 }
+	merchant = { TAG = CLC level = 1 }
 }
 
 #CoT 14 - White
@@ -217,9 +217,9 @@ cot = {
 	merchant = { TAG = BGL level = 4 }
 	merchant = { TAG = ORI level = 2 }
 	merchant = { TAG = DLH level = 2 }
-	merchant = { TAG = THE level = 2 }
+	merchant = { TAG = BMD level = 2 }
 	merchant = { TAG = VIJ level = 1 }
-	merchant = { TAG = TAU level = 1 }
+	merchant = { TAG = MUB level = 1 }
 }
 
 #CoT 17 - LightGreen
@@ -227,11 +227,11 @@ cot = {
 cot = {
 	location = 547
 	merchant = { TAG = GUJ level = 4 }
-	merchant = { TAG = JAI level = 2 }
-	merchant = { TAG = THE level = 2 }
+	merchant = { TAG = RAJ level = 2 }
+	merchant = { TAG = BMD level = 2 }
 	merchant = { TAG = DLH level = 2 }
 	merchant = { TAG = TIM level = 1 }
-	merchant = { TAG = MES level = 1 }
+	merchant = { TAG = SIN level = 1 }
 	merchant = { TAG = VIJ level = 1 }
 }
 
@@ -297,7 +297,7 @@ cot = {
 #Rufiji
 cot = {
 	location = 766
-	merchant = { TAG = KIE level = 4 }
+	merchant = { TAG = KIL level = 4 }
 }
 
 #-----------------------------------------------------------------------------------------------

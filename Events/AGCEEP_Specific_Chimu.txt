@@ -1,0 +1,124 @@
+#Chimú (CHM)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1820) Become The Inca
+event = {
+	id = 148000
+	trigger = {
+		owned = { province = 169 data = CHM } #Cuzco
+		control = { province = 169 data = CHM } #Cuzco
+		NOT = { exists = INC }
+		atwar = no
+	}
+	random = no
+	country = CHM
+	name = "EVENTNAME148000" #Become The Inca
+	desc = "EVENTHIST148000"
+	#-#The Chimu people were desert dwellers who worshipped the moon. Unlike the Incas who worshipped the sun, the Chimu viewed the sun as a destroyer. They were skilled goldsmiths, and the Incas adopted many of their ceremonial customs. Much of the gold that was later looted by the Spanish was created by the skilled hands of the Chimu.
+
+	date = { day = 1 month = april year = 1419 }
+	offset = 10
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME148000A" #The Inca Empire Is Reborn
+		command = { type = flagname which = "" }
+		command = { type = country which = INC }
+		command = { type = capital which = 169 } #Cuzco
+		command = { type = stability value = -2 }
+		command = { type = treasury value = -100 }
+	}
+	action_b = {
+		name = "ACTIONNAME148000B" #Remain Chimor
+		command = { type = stability value = 1 }
+	}
+	action_c = {
+		name = "ACTIONNAME148000C" #Become Inca, But keep Our Own Capital
+		command = { type = flagname which = "" }
+		command = { type = country which = INC }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1500-1600) The Great Plague - Ahistorical
+event = {
+	id = 148001
+	trigger = {
+		OR = {
+			OR = {
+				discovered = 436 #Castilla
+				discovered = 439 #Toledo
+				discovered = 441 #Tago
+				discovered = 385 #Ile de France
+				discovered = 245 #Anglia
+				discovered = 339 #Holland
+			}
+			OR = {
+				neighbour = SPA
+				neighbour = CAS
+				neighbour = POR
+				neighbour = ENG
+				neighbour = FRA
+				neighbour = HOL
+			}
+			AND = {
+				atwar = yes
+				NOT = { #All Precolombian states
+					war = { country = CHM country = AZT }
+					war = { country = CHM country = INC }
+					war = { country = CHM country = MAA }
+					war = { country = CHM country = ZAP }
+				}
+			}
+			AND = {
+				event = 81007 #INC: The Great Plague
+				neighbour = INC
+			}
+		}
+	}
+	random = no
+	country = CHM
+	name = "EVENTNAME81007" #The Great Plague
+	desc = "EVENTHIST81007"
+	#-#Historically, the Spanish settlement at Panama introduced a new disease to the continent. The epidemic gradually expanded, leaving millions of South American Indians dead in it's wake.
+
+	date = { day = 1 month = january year = 1500 }
+	offset = 301
+	deathdate = { day = 29 month = december year = 1600 }
+
+	action_a = {
+		name = "ACTIONNAME81007A" #Our People Are Dying!
+		command = { type = stability value = -5 }
+		command = { type = population which = 162 value = -5000 } #Cali
+		command = { type = population which = 163 value = -5000 } #Azuay
+		command = { type = population which = 164 value = -5000 } #Guayaquil
+		command = { type = population which = 165 value = -20000 } #Cajamarca
+		command = { type = population which = 1482 value = -8000 } #Montana
+		command = { type = population which = 166 value = -1000 } #Huanuco
+		command = { type = population which = 1483 value = -300 } #Atalaya
+		command = { type = population which = 168 value = -400 } #Lima
+		command = { type = population which = 167 value = -1400 } #Ayacucho
+		command = { type = population which = 1484 value = -400 } #Manu
+		command = { type = population which = 169 value = -50000 } #Cuzco
+		command = { type = population which = 170 value = -700 } #Arequipa
+		command = { type = population which = 193 value = -1400 } #Titicaca
+		command = { type = population which = 192 value = -400 } #Taqari
+		command = { type = population which = 194 value = -700 } #Potosi
+		command = { type = population which = 171 value = -1100 } #Moquega
+		command = { type = population which = 172 value = -400 } #Arica
+		command = { type = population which = 219 value = -1000 } #Tucuman
+		command = { type = population which = 173 value = -1000 } #Atacama
+		command = { type = population which = 174 value = -400 } #Coquimbo
+		command = { type = manpower value = -20 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = losebuilding which = 169 value = barrack } #Cuzco
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 148002

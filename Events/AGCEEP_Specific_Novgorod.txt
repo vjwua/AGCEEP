@@ -1,0 +1,193 @@
+#Novgorod (NVG)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1421) Trade Agreement
+#by Solmyr
+event = {
+	id = 40070
+	trigger = {
+		exists = LIV
+		NOT = { war = { country = NVG country = LIV } }
+	}
+	random = no
+	country = NVG
+	name = "EVENTNAME40070" #Trade Agreement with Livonian Order
+	desc = "EVENTHIST40070"
+	#-#In 1421, the Republic of Novgorod signed a trade agreement with the Livonian Order.
+
+	date = { day = 1 month = january year = 1421 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1421 }
+
+	action_a = {
+		name = "ACTIONNAME3143A" #Sign it
+		command = { type = domestic which = mercantilism value = -1 }
+		command = { type = relation which = LIV value = 25 }
+		command = { type = merchants value = 3 }
+	}
+	action_b = {
+		name = "ACTIONNAME3143B" #Refuse to sign it
+		command = { type = domestic which = mercantilism value = 1 }
+		command = { type = relation which = LIV value = -25 }
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1426-1429) Lithuanian demands
+#Vilkouak
+event = {
+	id = 245000 #triggered by LIT_210005 A
+	random = no
+	country = NVG
+	name = "EVENTNAME245000" #Lithuanian demands
+	desc = "EVENTHIST245000"
+	#-#In 1425 Wassilij I, ruler of Muscovy, fostered his young son Vassilij II with his father-in-law Vytautas, and soon afterwards died. Vytautas was still determined to win a crown, but needed a visible success which could be proof of his strong position in eastern Europe and thus strengthen his claims. His first objective was Pskov. In 1426 he invaded the republic and forced it to pay tribute. In 1427 he made the borderland between Lithuania and Muscovy, known as the Wierchovian princedoms, subordinate to himself. It was composed of many small regions, which maintained their independence by maintaining tensions between Lithuania and Muscovy. After subduing Pskov, Vytautas turned his attention to Novgorod. In 1428 he invaded Novgorod and forced it to pay a very high tribute (11,000 rubles).
+
+	action_a = {
+		name = "ACTIONNAME245000A" #Better pay
+		command = { type = stability value = 1 }
+		command = { type = treasury value = -100 }
+		command = { type = relation which = LIT value = -50 }
+		command = { type = trigger which = 210010 } #LIT: Response of Novgorod
+	}
+	action_b = {
+		name = "ACTIONNAME245000B" #We will defend our independence
+		command = { type = stability value = -1 }
+		command = { type = INF which = -2 value = 10000 }
+		command = { type = relation which = LIT value = -100 }
+		command = { type = casusbelli which = LIT value = 48 }
+		command = { type = trigger which = 210011 } #LIT: Response of Novgorod
+	}
+}
+
+#(1450-1475) Submission to Muscovy
+event = {
+	id = 40088 #triggered by MOS_40087 A
+	random = no
+	country = NVG
+	name = "EVENTNAME40088" #Submission to Muscovy
+	desc = "EVENTHIST40087"
+	#-#In 1450s, a lengthy bickering over the ownership of the lands being bought by Novgorodian boyars in (formally) Muscovy-controlled areas arose between Muscovy and Novgorod. On the other hand, Muscovites were still bitter over the heartily welcome given to Shemiaka by Novgorodians, as well as their refusal to pay 8,000 rubles tribute to Muscovy. Vasily II declared war on Novgorod in 1456, after the matter couldn't be resolved peacefully. Muscovy troops defeated Novgorodians and threatened to capture the city. The ensuing peace made Novgorod pay additional 8,500 rubles, return all the lands bought by Novgorodian boyars to Muscovy crown, pay yearly tribute to Muscovy Grand Prince, and agreed to write all laws in the name of Vasily II, and not veche, thus ending the independence of Novgorodian Republic.
+
+	action_a = {
+		name = "ACTIONNAME40088A" #Agree to become Muscovy's vassal
+		command = { type = relation which = LIT value = -30 }
+		command = { type = treasury value = -100 }
+		command = { type = trigger which = 40089 } #MOS: Novgorod agrees to submit to Muscovy
+	}
+	action_b = {
+		name = "ACTIONNAME40088B" #Refuse
+		command = { type = stability value = -3 }
+		command = { type = relation which = MOS value = -300 }
+		command = { type = trigger which = 40090 } #MOS: Novgorod refuses to become Muscovy's vassal
+	}
+}
+
+#(1466-1467) Epidemic Plague
+event = {
+	id = 40012
+	random = no
+	country = NVG
+	name = "EVENTNAME40012" #Epidemic Plague
+	desc = "EVENTHIST40012"
+	#-#During a winter of 1467 a strange decease claimed about 60,000 lives of people of Novgorod.
+
+	date = { day = 1 month = december year = 1466 }
+	offset = 35
+	deathdate = { day = 28 month = february year = 1467 }
+
+	action_a = {
+		name = "DARN"
+		command = { type = stability value = -1 }
+		command = { type = population which = -2 value = -1000 }
+		command = { type = provincetax which = -2 value = -1 }
+	}
+}
+
+#(1470) Civil War in Novgorod
+event = {
+	id = 3583
+	random = no
+	country = NVG
+	name = "EVENTNAME3583" #Civil War in Novgorod
+	desc = "EVENTHIST3583"
+	#-#The 14th century witnessed the start of Novgorod's long struggle with Moscow for supremacy. Internecine disputes among the republic's leaders weakened it in the face of growing Muscovite strength. Although it became a vassal of Moscow after the Muscovite invasions in 1456 and 1470, Novgorod was allowed to retain its self-government. It was not until 1478 that it came under Moscow's complete control and lost its freedom. Novgorod retained its commercial position until St. Petersburg was built in 1703.
+
+	date = { day = 4 month = november year = 1470 }
+
+	action_a = {
+		name = "ACTIONNAME3583A" #Support Merchant Faction
+		command = { type = stability value = -4 }
+		command = { type = revoltrisk which = 48 value = 7 }
+		command = { type = revolt which = -2 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#(1480-1820) The Empire of Russia
+event = {
+	id = 3582
+	trigger = {
+		owned = { province = 279 data = -1 } #Moscow/Tula
+		control = { province = 279 data = -1 } #Moscow/Tula
+		owned = { province = 271 data = -1 } #Vladimir
+		owned = { province = 274 data = -1 } #Novgorod
+		OR = {
+			owned = { province = 278 data = -1 } #Tver
+			owned = { province = 277 data = -1 } #Pskov
+			owned = { province = 268 data = -1 } #Vologda
+		}
+		NOT = { exists = RUS }
+		atwar = no
+	}
+	random = no
+	country = NVG
+	name = "EVENTNAME40010" #The Empire of Russia
+	desc = "EVENTHIST3582"
+	#-#Historically, in the 16th century the Roman Empire of Constantinople was long gone and its revival viewed as impossible. The Orthodox Faith never had a head figure like the Pope of the Catholic Faith. It however was mostly guided from Constantinople by the Patriarch there. As the Sunni Muslim Ottomans used the Patriarchs hostage-like situation for there own political gains many Orthodox countries felt appalled and started to loosen the chains of tradition. There had not existed a country as mighty as the Byzantines until...Russia was formed. Russia was created from the notion of full control of all those orthodox people that once had been Christianized from Kiev. This together with the fact that there was only one Orthodox country powerful enough to take up the mantle of the fallen Byzantines made the solution perfect and, thus the Greatest of Princedoms changed into the Empire of Russia.
+
+	date = { day = 1 month = january year = 1480 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME40010A" #Become the Third Rome
+		command = { type = vp value = 200 }
+		command = { type = stability value = 2 }
+		command = { type = capital which = 279 } #Tula
+		command = { type = population which = 279 value = 3000 } #Tula
+		command = { type = flagname which = "" }
+		command = { type = country which = RUS }
+		command = { type = sleepevent which = 40045 } #RUS: Closing of Novgorod to Hansa merchants
+		#command = { type = AI which = "russia1.ai" }
+	}
+}
+
+#(1552-1553) Plague in Novgorod
+event = {
+	id = 40101
+	trigger = {
+		owned = { province = 274 data = -1 }
+		NOT = { event = 40099 } #RUS: Plague in Novgorod
+	}
+	random = no
+	country = NVG
+	name = "EVENTNAME40099" #Plague in Novgorod
+	desc = "EVENTHIST40099"
+	#-#In the fall of 1552 plague hit Novgorod extremely hard, as 280,000 people has died from the epidemic.
+
+	date = { day = 1 month = october year = 1552 }
+	offset = 30
+	deathdate = { day = 1 month = august year = 1553 }
+
+	action_a = {
+		name = "DARN"
+		command = { type = population which = 274 value = -2000 } #Novgorod
+		command = { type = provincetax which = 274 value = -1 } #Novgorod
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 245001

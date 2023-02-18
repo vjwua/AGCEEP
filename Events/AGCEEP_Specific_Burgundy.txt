@@ -1,0 +1,3028 @@
+#Burgundy (BUR)
+
+#See AGCEEP_HYW_Burgundy.txt for HYW related events
+#See AGCEEP_Alt_Germany.txt for KoG Alternative events
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1820) Burgundy and the End of the Hundred Years' War - Titles, and the such...
+#Created by Fate
+event = {
+	id = 20044 #triggered by ENG_20043 A
+	random = no
+	country = BUR
+	name = "EVENTNAME20044" #Titles, and the such...
+	desc = "EVENTHIST20044"
+	#-#Nothing could be more repugnant to the interests of the house of Burgundy than to unite the crowns of France and England on the same head, an event which, had it taken place, would have reduced the duke to the rank of a petty prince. The Kingdoms of England and France are united under one crown, and the time has come to sort out matters of the state. The lands of Bourgogne, Picarde, and Artois are rightful lands of the Anglo-French crown, and as such our Duke is subject to their rule. We now have a choice: shall we accept the rank of prince, or shall we defy our leige lords and keep our duke?
+
+	action_a = {
+		name = "ACTIONNAME20044A" #Defy the English, and Feudal Law
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = stability value = -4 }
+		command = { type = relation which = ENG value = -400 }
+		command = { type = trigger which = 20045 } #ENG: Philippe the Fool
+	}
+	action_b = {
+		name = "ACTIONNAME20044B" #Submit to English Authority, and Become a Vassal of England
+		command = { type = trigger which = 20046 } #ENG: Philippe the Good
+	}
+}
+
+#(1423) The Duke of Gloucester and the Countess of Hainaut
+event = {
+	id = 3893
+	trigger = {
+		owned = { province = 379 data = -1 }
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME3893" #The Duke of Gloucester and the Countess of Hainaut
+	desc = "EVENTHIST3893"
+	#-#Jacqueline, the Countess of Hainaut and Holland, has, by dubious means, divorced our cousin the Duke of Brabant and has married the English Duke of Gloucester, the King's uncle. This sudden elopement endangers our deep influence in her domains and threatens to replace it with English influence instead. To add insult to injury, she and her new 'husband' (although to use the term is dubious, as many believe the union is bigamous) have landed an army in Hainaut in order to take complete control of the County!
+
+	date = { day = 1 month = january year = 1423 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1423 }
+
+	action_a = {
+		name = "ACTIONNAME3893A" #How dare they!
+		command = { type = relation which = ENG value = -50 }
+		command = { type = revolt which = 379 } #Artois
+	}
+}
+
+#(1424) Support for Jan of Brabant
+event = {
+	id = 137009 #triggered by HAU_182002 A
+	random = no
+	country = BUR
+	name = "EVENTNAME137009" #Support for Jan of Brabant
+	desc = "EVENTHIST137009"
+	#-#Jacqueline, daughter of Wilhelm, the last Count of Holland, Hainault and Zeeland, and rightful heiress to his possessions, was deprived of her inheritance by her uncle Jan of Bavaria and her husband Jan IV of Brabant. In an angry reaction, she declared her marriage invalid, fled to England and there fell in love with Humphrey of Gloucester, brother of the King, whom, after obtaining a dispens from the Antipope, she married and declared her coregent. With an English army, the couple on October 26th crossed the channel, landed in Calais and invaded Hainault. They managed to take control of most of the county and even threatened Brabant. Only with the support of his Burgundian cousin - and because her husband left her to be with his mistress - Jan IV of Brabant managed to beat her back, and the superior troops of Philipp captured Jacqueline in 1425.
+
+	action_a = {
+		name = "ACTIONNAME137009A" #Support Brabant against the infamous countess
+		command = { type = relation which = ENG value = -50 }
+		command = { type = relation which = HAU value = 100 }
+		command = { type = vassal which = HAU }
+		command = { type = alliance which = HAU }
+		command = { type = manpower value = -3 }
+	}
+}
+#(1424) Support for Jan of Bavaria
+event = {
+	id = 137010 #triggered by LUX_213000 A
+	random = no
+	country = BUR
+	name = "EVENTNAME137010" #Support for Jan of Bavaria
+	desc = "EVENTHIST137010"
+	#-#Jacqueline, daughter of Wilhelm, the last Count of Holland, Hainault and Zeeland, and rightful heiress to his possessions, was deprived of her inheritance by her uncle Jan of Bavaria and her husband Jan IV of Brabant. In an angry reaction, she declared her marriage invalid, fled to England and there fell in love with Humphrey of Gloucester, brother of the King, whom, after obtaining a dispens from the Antipope, she married and declared her coregent. With an English army, the couple on October 26th crossed the channel, landed in Calais and invaded Hainault. They managed to take control of most of the county. Since it is in our interest to secure the Dutch Wittelsbach inheritance for the childless Jan of Bavaria, who seems willing to declare the Duke of Burgundy his heir, we have offered him support, and he gladly accepts.
+
+	action_a = {
+		name = "ACTIONNAME137010A" #Support Jan of Bavaria against the infamous countess
+		command = { type = relation which = ENG value = -50 }
+		command = { type = relation which = LUX value = 100 }
+		command = { type = vassal which = LUX }
+		command = { type = alliance which = LUX }
+		command = { type = desertion which = -1 value = 9000 }
+	}
+}
+
+#(1424) Testament of Jan of Bavaria
+event = {
+	id = 137011
+	random = no
+	country = BUR
+	name = "EVENTNAME137011" #The testament of Jan of Bavaria
+	desc = "EVENTHIST137011"
+	#-#Despite having opposed Burgundy before, the childless Jan of Bavaria, pawnee of Luxemburg and claimant to Holland and Zeeland, in 1424 agreed to declare the Duke of Burgundy heir to his claim on the succession to the Dutch Wittelsbach possessions. Burgundy profited from this testament already in January 1425 when Jan died, probably poisoned, and Philip the Good inherited Holland from Jan, and was accepted as 'regent' by his cousin Jan IV of Brabant, who in theory was still rightful owner of Holland.
+
+	date = { day = 1 month = november year = 1424 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1424 }
+
+	action_a = {
+		name = "ACTIONNAME137011A" #Magnifique
+		command = { type = addcore which = 379 } #Artois
+		command = { type = addcore which = 339 } #Holland
+		command = { type = alliance which = LUX }
+		command = { type = relation which = LUX value = 100 }
+	}
+}
+
+#(1424-1426) Treaty of Amsterdam
+event = {
+	id = 137309 #triggered by ENG_164226
+	random = no
+	country = BUR
+	name = "EVENTNAME137309" #Treaty of Amsterdam
+	desc = "EVENTHIST137309"
+	#-#Jacqueline, with the aid of her valiant husband, Gloucester, had recoquered her inheritance. There was little Philip could do, since peace between England and Burgundy had facilitated negotiations, and Burgundy was in a difficult position to refuse England's terms. In return for the recognition of Jacqueline's claims, England would seek neither reparition nor payments for damages. The treaty was signed in Amsterdam and ratified within weeks. The English had expanded their foothold in the lowlands...
+
+	action_a = {
+		name = "ACTIONNAME137309A" #There is little we can do
+		command = { type = stability value = -1 }
+		command = { type = vp value = -50 }
+		command = { type = relation which = ENG value = 50 }
+	}
+}
+
+#(1425) Foundation of the university of Leuven, by Archeolooginspe
+#(Only if the own the province, historically they did not, but it was founded by the one in the Burgundian family)
+event = {
+	id = 137301
+	trigger = {
+		owned = { province = 378 data = -1 }
+		NOT = { event = 182302 } #same event for HAU
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME137301" #Foundation of the university of Leuven
+	desc = "EVENTHIST137301"
+	#-#Founded in 1425 by Pope Martin V, the K.U.Leuven bears the honour of being the oldest Catholic university in the world still in existence and the oldest university in the Low Countries. In its early days this University was modeled on the universities of Paris, Cologne and Vienna. In a short time it grew into one of the largest and most renowned universities in Europe. Its academic fame attracted scientists who have made valuable contributions to European culture. Let us enumerate a few renowned names: In the 16th century the humanist, Desiderius Erasmus, lectured here. He founded the Collegium Trilingue in 1517 for the study of Hebrew, Latin and Greek - the first of its kind. The tutor of the young emperor Charles V, Adriaan Cardinal Florensz of Utrecht, was a professor here before being elected in 1522 as the last non-Italian Pope before Pope John Paul II. The philologist, legal scholar and historian, Justus Lipsius, taught here for years.
+
+	date = { day = 1 month = january year = 1425 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1426 }
+
+	action_a = {
+		name = "ACTIONNAME137301A" #Found the university
+		command = { type = infra value = 150 }
+		command = { type = diplomats value = 1 }
+		command = { type = missionaries value = 1 }
+		command = { type = relation which = PAP value = 10 }
+		command = { type = treasury value = -45 }
+		command = { type = sleepevent which = 182302 } #GEL: Foundation of the university of Leuven
+	}
+	action_b = {
+		name = "ACTIONNAME137301B" #Our money is better spend on a hall for wool
+		command = { type = trade value = 150 }
+		command = { type = merchants value = 1 }
+		command = { type = treasury value = -45 }
+	}
+	action_c = {
+		name = "ACTIONNAME137301C" #We better keep the money in our pockets
+		command = { type = relation which = PAP value = -10 }
+		command = { type = vp value = -1 }
+	}
+}
+
+#(1425) The Dutch Wittelsbach possessions (Luxemburg honoured the agreement)
+event = {
+	id = 137026 #triggered by LUX_213001 A
+	random = no
+	country = BUR
+	name = "EVENTNAME137024" #The Dutch Wittelsbach possessions
+	desc = "EVENTHIST213001"
+	#-#Jan of Bavaria, husband of Elisabeth of Görlitz and as such pawnee of Luxemburg, died, probably of poison, on January 6th 1425. While his wife retained her pawn Luxemburg, the Duchy of Bavaria-Straubing was seized by Emperor Sigismund as a vacant Imperial fief and his part of the Dutch Wittelsbach inheritance passed to Burgundy, on the base of a treaty that had just been concluded, which is why the Duke of Burgundy was immediately suspected of having ordered the assassination of Jan.
+
+	action_a = {
+		name = "OK"
+		command = { }
+	}
+}
+#(1425) The Dutch Wittelsbach possessions (Luxemburg defies Burgundy)
+event = {
+	id = 137027 #triggered by LUX_213001 B
+	random = no
+	country = BUR
+	name = "EVENTNAME137024" #The Dutch Wittelsbach possessions
+	desc = "EVENTHIST213001"
+	#-#Jan of Bavaria, husband of Elisabeth of Görlitz and as such pawnee of Luxemburg, died, probably of poison, on January 6th 1425. While his wife retained her pawn Luxemburg, the Duchy of Bavaria-Straubing was seized by Emperor Sigismund as a vacant Imperial fief and his part of the Dutch Wittelsbach inheritance passed to Burgundy, on the base of a treaty that had just been concluded, which is why the Duke of Burgundy was immediately suspected of having ordered the assassination of Jan.
+
+	action_a = {
+		name = "ACTIONNAME137025A" #It's open war with them!
+		command = { }
+	}
+}
+
+#(1427-1430) The Dutch Wittelsbach possessions (Brabant renounced claims on Holland and Hainaut)
+event = {
+	id = 137024 #triggered by HAU_182003 A
+	random = no
+	country = BUR
+	name = "EVENTNAME137024" #The Dutch Wittelsbach possessions
+	desc = "EVENTHIST182003"
+	#-#Jan IV of Brabant had almost always been been a sickly man, so his premature death in April 1427 came as no surprise, and had been anticipated in particular by his Burgundian cousin. While his brother Filips succeeded him in Brabant, Burgundy took full control of Hainault, Holland and Zeeland. Being in no position to openly oppose the move, and also lacking the claim his brother had due to his marriage with Jacqueline, heiress of Holland, Hainault and Zeeland, Filips had to accept the fact.
+
+	action_a = {
+		name = "OK"
+		command = { }
+	}
+}
+#(1427-1430) The Dutch Wittelsbach possessions (Brabant defies Burgundy)
+event = {
+	id = 137025 #triggered by HAU_182003 B
+	random = no
+	country = BUR
+	name = "EVENTNAME137024" #The Dutch Wittelsbach possessions
+	desc = "EVENTHIST182003"
+	#-#Jan IV of Brabant had almost always been been a sickly man, so his premature death in April 1427 came as no surprise, and had been anticipated in particular by his Burgundian cousin. While his brother Filips succeeded him in Brabant, Burgundy took full control of Hainault, Holland and Zeeland. Being in no position to openly oppose the move, and also lacking the claim his brother had due to his marriage with Jacqueline, heiress of Holland, Hainault and Zeeland, Filips had to accept the fact.
+
+	action_a = {
+		name = "ACTIONNAME137025A" #It's open war with them!
+		command = { }
+	}
+}
+
+#(1428-1435) Treaty of Delft
+event = {
+	id = 137307
+	trigger = {
+		OR = {
+			event = 164220 #ENG: Jacqueline of Hainault
+			event = 164221 #ENG: Jacqueline of Hainault
+		}
+		exists = ENG
+		NOT = {
+			event = 164226 #ENG: Treaty of Amsterdam
+			owned = { province = 379 data = ENG }
+		}
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME137307" #Treaty of Delft
+	desc = "EVENTHIST137307"
+	#-#Jacqueline's attempt to secure her inheritance of the lowlands has failed miserably, and her pitiful rebellion has disintegrated. Moreover, her English husband has abandoned her and a papal decree has annulled the marriage. Imprisoned at Ghent, Jacqueline was forced to sign the Treaty of Delft, which recognized her as nominal countess and Philip Duke of Burgundy as her administrator and heir.
+
+	date = { day = 1 month = july year = 1428 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1435 }
+
+	action_a = {
+		name = "GOOD"
+		command = { type = stability value = 1 }
+		command = { type = relation which = ENG value = -25 }
+	}
+}
+#(1428-1435) Treaty of Delft (ENG having backed Gloucester)
+event = {
+	id = 137308
+	trigger = {
+		OR = {
+			event = 164220 #ENG: Jacqueline of Hainault
+			event = 164221 #ENG: Jacqueline of Hainault
+		}
+		exists = ENG
+		NOT = {
+			event = 164226 #Treaty of Amsterdam
+			owned = { province = 379 data = ENG }
+			war = { country = ENG country = BUR }
+			war = { country = ENG country = HAU }
+		}
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME137307" #Treaty of Delft
+	desc = "EVENTHIST137308"
+	#-#Jacqueline's attempt to secure her inheritance of the lowlands has failed miserably, and her pitiful rebellion has disintegrated. Moreover, her English husband has abandoned her and a papal decree has annulled the marriage. Imprisoned at Ghent, she's was forced to sign the Treaty of Delft, which recognized her as nominal countess and Philip Duke of Burgundy as her administrator and heir. Burgundy has dealt a terrific blow to England's prestige.
+
+	date = { day = 1 month = july year = 1428 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1435 }
+
+	action_a = {
+		name = "GOOD"
+		command = { type = stability value = 1 }
+		command = { type = relation which = ENG value = -50 }
+	}
+}
+
+#(1430) The Order of the Golden Fleece, by Archeolooginspe
+event = {
+	id = 137302
+	trigger = {
+		countrysize = 4
+		owned = { province = 380 data = -1 } #Flandern
+		control = { province = 380 data = -1 } #Flandern
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME137302" #Golden Fleece
+	desc = "EVENTHIST137302"
+	#-#The Order of the Golden Fleece was established in 1430 by Philip the Good, Duke of Burgundy in celebration of the prosperous and wealthy domains united in his person that ran from Flanders to Switzerland. He also used it to keep the local nobility attached to him.
+
+	date = { day = 1 month = january year = 1430 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1431 }
+
+	action_a = {
+		name = "ACTIONNAME137302A" #Found this order in our honour
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = stability value = 1 }
+		command = { type = treasury value = -250 }
+	}
+	action_b = {
+		name = "ACTIONNAME137302B" #It costs way too much
+		command = { type = vp value = -5 }
+	}
+}
+
+#(1430-1440) The Burgundian Capital
+event = {
+	id = 137000
+	trigger = {
+		owned = { province = 378 data = -1 }
+		control = { province = 378 data = -1 }
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME137000" #The Burgundian Capital
+	desc = "EVENTHIST137000"
+	#-#The Duchy of Burgundy was originally a French state, but with the acquisitions of Flanders, Hainault, and Namur the core of the duchy shifted North to the Netherlands. In time Burgundian monarchs absorbed Dutch culture, and when Brussels fell into the hands of Philip the Good he decided to move his royal court.
+
+	date = { day = 1 month = january year = 1430 }
+	offset = 1
+	deathdate = { day = 1 month = january year = 1440 }
+
+	action_a = {
+		name = "ACTIONNAME137000A" #Move to Brussels and focus expansion throughout the Lowlands
+		command = { type = stability value = -2 }
+		command = { type = capital which = 378 } #Brabant
+		command = { type = addcore which = 378 } #Brabant
+		command = { type = setflag which = [Lowlands] }
+		command = { type = add_countryculture which = dutch }
+		command = { type = sleepevent which = 20100 } #BUR: The Crown of France
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME137000B" #Remain in Dijon and focus on subjugating France
+		command = { type = relation which = ENG value = 100 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = sleepevent which = 75003 } #GEL: The sale of Guelders
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#(1430-1440) Revolts in Flanders - Beginning
+#by archeolooginspe
+event = {
+	id = 137303
+	trigger = {
+		owned = { province = 380 data = -1 } #Flanders
+		domestic = { type = centralization value = 3 }
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME137303" #Revolts in Flanders
+	desc = "EVENTHIST137303"
+	#-#During the Burgundian reign over Flanders many cities revolted against the infringement of their rights and autonomy. In 1435-36 Bruges revolted and in 1453 Ghent. The duke succeeded in putting down these revolts because with all his newly aquired lands he was no longer dependent on the cities.
+
+	date = { day = 1 month = january year = 1430 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1440 }
+
+	action_a = {
+		name = "DAMN"
+		command = { type = province_revoltrisk which = 380 value = 2 } #Flandern
+		command = { type = infra value = -75 }
+	}
+}
+#(1455-1457) Revolts in Flanders - End
+event = {
+	id = 137304
+	trigger = {
+		event = 137303
+		owned = { province = 380 data = -1 }
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME137304" #Order restored
+	desc = "EVENTHIST137304"
+	#-#Due to the growing power of the Burgundian monarchs, rebellious cities were soon put in line.
+
+	date = { day = 1 month = january year = 1455 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1457 }
+
+	action_a = {
+		name = "OK"
+		command = { type = province_revoltrisk which = 380 value = -2 } #Flandern
+	}
+}
+#-----------------------------------------------------------------------------------------------
+
+#(1430) The Succession in Brabant
+event = {
+	id = 3776 #triggered by HAU_3775 A
+	random = no
+	country = BUR
+	name = "EVENTNAME3775" #The Succession in Brabant
+	desc = "EVENTHIST3775"
+	#-#The Duchy of Brabant had been under Burgundian influence for a while in the decades leading up to 1430 with side branches of the Burgundian dynasty occupying the title of Duke and on the 1st of August, 1430 it formally passed to the control of Philip the Good of Burgundy further strengthening the Burgundian hold on the Netherlands and continuing Philip's moves towards their unification.\n \n An alternative, however, would have been to offer the duchy to Philip's illegitimate son, Anthony, the Grand Bastard of Burgundy. This would ensure the duchy's independence through an illegitimate line of the Valois-Bourgogne dynasty, yet the Burgundian alliance would also safeguard the duchy against French aggression. Though only a boy at the time, Anthony would grow up to become a strong and respected warrior, as well as a powerful influence over and ally of his younger half-brother, Charles the Bold.
+
+	action_a = {
+		name = "ACTIONNAME3776A" #Incorporate them
+		command = { type = addcore which = 378 } #Brabant
+		command = { type = addcore which = 340 } #Zeeland
+		command = { type = addcore which = 379 } #Artois
+		command = { type = addcore which = 339 } #Holland
+		command = { type = inherit which = HAU }
+		command = { type = stability value = 2 }
+		command = { type = DIP which = 3 value = 36 }
+	}
+}
+#(1430) The Succession in Brabant
+event = {
+	id = 3778 #triggered by HAU_3775 B
+	random = no
+	country = BUR
+	name = "EVENTNAME3775" #The Succession in Brabant
+	desc = "EVENTHIST3775"
+	#-#The Duchy of Brabant had been under Burgundian influence for a while in the decades leading up to 1430 with side branches of the Burgundian dynasty occupying the title of Duke and on the 1st of August, 1430 it formally passed to the control of Philip the Good of Burgundy further strengthening the Burgundian hold on the Netherlands and continuing Philip's moves towards their unification.\n \n An alternative, however, would have been to offer the duchy to Philip's illegitimate son, Anthony, the Grand Bastard of Burgundy. This would ensure the duchy's independence through an illegitimate line of the Valois-Bourgogne dynasty, yet the Burgundian alliance would also safeguard the duchy against French aggression. Though only a boy at the time, Anthony would grow up to become a strong and respected warrior, as well as a powerful influence over and ally of his younger half-brother, Charles the Bold.
+
+	action_a = {
+		name = "ACTIONNAME3778A" #Well, it's better than nothing...
+		command = { type = stability value = -1 }
+		command = { type = alliance which = HAU }
+		command = { type = relation which = HAU value = 100 }
+		command = { type = addcore which = 378 } #Brabant
+		command = { type = addcore which = 340 } #Zeeland
+		command = { type = addcore which = 379 } #Artois
+		command = { type = addcore which = 339 } #Holland
+		command = { type = sleepleader which = 027307 } #Le Grand Bâtard (BUR)
+	}
+}
+
+#(1431) The Succession in Lorraine
+event = {
+	id = 137008 #triggered by LOR_211000 B
+	random = no
+	country = BUR
+	name = "EVENTNAME137008" #The succession in Lorraine
+	desc = "EVENTHIST137008"
+	#-#Charles, the former Duke of Lorraine and the father-in-law of René d'Anjou, is dead. While the former Duke supported his son-in-law against Burgundy, the Burgundians managed to install his rival, Antoine de Vaudémont, instead. Antoine was weak and depended on the Burgundians.
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = vassal which = LOR }
+		command = { type = alliance which = LOR } #If possible
+	}
+}
+
+#(1436) Unrest in Bruges
+event = {
+	id = 28009
+	trigger = {
+		owned = { province = 380 data = BUR }
+		domestic = { type = centralization value = 3 } #added
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME28009" #Unrest in Bruges
+	desc = "EVENTHIST28009"
+	#-#The cities of the low countries did not take kindly to the efforts of the Dukes of Burgundy to bring them under central control and in 1436 the people of Bruges rose in revolt.
+
+	date = { day = 1 month = january year = 1436 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1436 }
+
+	action_a = {
+		name = "ACTIONNAME28009A" #Suppress the revolt
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = stability value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME28009B" #Allow the cities of the low countries more autonomy
+		command = { type = domestic which = CENTRALIZATION value = -1 } #lowered from -3
+	}
+}
+
+#(1441) Purchase of Luxembourg
+event = {
+	id = 137305 #triggered by LUX_213102 A
+	random = no
+	country = BUR
+	name = "EVENTNAME137305" #The purchase of Luxembourg
+	desc = "EVENTHIST137305"
+	#-#The Burgundians bought Luxembourg from Elizabeth von Görlitz, making it part of their possessions in the Netherlands.
+
+	action_a = {
+		name = "ACTIONNAME137305A" #It seems fair to me
+		command = { type = treasury value = -200 }
+		command = { type = addcore which = 377 } #Luxembourg
+		command = { type = dynastic which = LUX }
+		command = { type = vassal which = LUX }
+	}
+	action_b = {
+		name = "ACTIONNAME137305B" #No, it's to much
+		command = { type = relation which = LUX value = -175 }
+		command = { type = sleepevent which = 213103 } #LUX: A nightly ambush
+	}
+}
+
+#(1443) Annexation of Luxemburg
+event = {
+	id = 137306 #triggered by LUX_213103 A
+	random = no
+	country = BUR
+	name = "EVENTNAME137306" #Annexation of Luxemburg
+	desc = "EVENTHIST137306"
+	#-#Having bought the Duchy of Luxembourg from Elisabeth of Görlitz, Philip the Good needed some time to secure his new possession. Full control of the Duchy was only achieved when they took the city of Luxemburg by a nightly ambush. With Luxemburg, another step on Burgundy's way towards their goal of connecting their hereditary lands with their Dutch possessions had been made.
+
+	action_a = {
+		name = "OK"
+		command = { type = inherit which = LUX }
+		command = { type = addcore which = 374 } #Alsace
+		command = { type = stability value = 1 }
+	}
+}
+#(1443) Resistance in Luxemburg (Luxemburg defies Burgundy)
+event = {
+	id = 137028 #triggered by LUX_213103 B
+	random = no
+	country = BUR
+	name = "EVENTNAME137028" #Resistance in Luxemburg
+	desc = "EVENTHIST137028"
+	#-#Having bought the Duchy of Luxembourg from Elisabeth of Görlitz, Philip the Good needed some time to secure, his new possession. Full control of the Duchy wasn't still achieved even if the Burgundian troops took the city of Luxemburg by a nightly ambush. However, another step on Burgundy's way towards achieving the primary goal of its policies, connecting their hereditary, lands with their Dutch possessions, had been already made.
+
+	action_a = {
+		name = "ACTIONNAME137025A" #It's open war with them!
+		command = { }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#(1447) Philip the Good parleys with Emperor Frederick III
+event = {
+	id = 28004
+	trigger = {
+		stability = 3
+		atwar = no
+		owned = { province = 339 data = BUR } #Holland
+		owned = { province = 340 data = BUR } #Zeeland
+		owned = { province = 378 data = BUR } #Brabant
+		owned = { province = 379 data = BUR } #Artois
+		owned = { province = 380 data = BUR } #Flandern
+		owned = { province = 387 data = BUR } #Franche-Comté
+		owned = { province = 409 data = BUR } #Bourgogne
+		exists = HAB
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME28004" #Philip the Good parleys with Emperor Frederick III
+	desc = "EVENTHIST28005"
+	#-#After the death of Louis the Pious in 840 the Carolingian Empire was divided between his three sons. Two of these Kingdoms would survive to become France and the Holy Roman Empire. The third Kingdom, Lotharingia, dwindled and was upon the death of King Zwentibold absorbed into Germany. Twice during his reign Philip the Good requested from Emperor Frederick III the vacant crown of Lotharingia.
+
+	date = { day = 1 month = january year = 1447 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1447 }
+
+	action_a = {
+		name = "ACTIONNAME28004A" #Request the crown of Lotharingia
+		command = { type = trigger which = 28005 } #HAB: Philip the Good requests the Lotharingian crown
+		command = { type = relation which = LOR value = -50 }
+		command = { type = relation which = HEL value = -50 }
+		command = { type = relation which = FRA value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME28004B" #Do not request the crown of Lotharingia
+		command = { type = relation which = HAB value = 50 } #should be HEI
+	}
+}
+#(1463) Philip the Good parleys with Emperor Frederick III -I-
+event = {
+	id = 28007
+	trigger = {
+		stability = 3
+		atwar = no
+		owned = { province = 339 data = BUR } #Holland
+		owned = { province = 340 data = BUR } #Zeeland
+		owned = { province = 377 data = BUR } #Luxembourg
+		owned = { province = 378 data = BUR } #Brabant
+		owned = { province = 379 data = BUR } #Artois
+		owned = { province = 380 data = BUR } #Flandern
+		owned = { province = 387 data = BUR } #Franche-Comté
+		owned = { province = 409 data = BUR } #Bourgogne
+		exists = HAB
+		OR = {
+			ai = yes
+			AND = {
+				ai = no
+				NOT = { relation = { country = HAB data = 170 } }
+			}
+		}
+		NOT = { event = 137049 } #BUR: Philip the Good parleys with Emperor Frederick III -II-
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME28004" #Philip the Good parleys with Emperor Frederick III
+	desc = "EVENTHIST28005"
+	#-#After the death of Louis the Pious in 840 the Carolingian Empire was divided between his three sons. Two of these Kingdoms would survive to become France and the Holy Roman Empire. The third Kingdom, Lotharingia, dwindled and was upon the death of King Zwentibold absorbed into Germany. Twice during his reign Philip the Good requested from Emperor Frederick III the vacant crown of Lotharingia.
+
+	date = { day = 1 month = january year = 1463 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1463 }
+
+	action_a = {
+		name = "ACTIONNAME28004A" #Request the crown of Lotharingia
+		command = { type = trigger which = 28008 } #HAB: Philip the Good requests the Lotharingian crown
+		command = { type = relation which = LOR value = -50 }
+		command = { type = relation which = HEL value = -50 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = sleepevent which = 137049 } #BUR: Philip the Good parleys with Emperor Frederick III -II-
+	}
+	action_b = {
+		name = "ACTIONNAME28004B" #Do not request the crown of Lotharingia
+		command = { type = relation which = HAB value = 50 } #should be HEI
+		command = { type = sleepevent which = 137049 } #BUR: Philip the Good parleys with Emperor Frederick III -II-
+	}
+}
+#(1463) Philip the Good parleys with Emperor Frederick III -II-
+event = {
+	id = 137049
+	trigger = {
+		stability = 3
+		atwar = no
+		owned = { province = 339 data = BUR } #Holland
+		owned = { province = 340 data = BUR } #Zeeland
+		owned = { province = 377 data = BUR } #Luxembourg
+		owned = { province = 378 data = BUR } #Brabant
+		owned = { province = 379 data = BUR } #Artois
+		owned = { province = 380 data = BUR } #Flandern
+		owned = { province = 387 data = BUR } #Franche-Comté
+		owned = { province = 409 data = BUR } #Bourgogne
+		AND = {
+			ai = no
+			relation = { country = HAB data = 170 }
+		}
+		NOT = { event = 28007 } #BUR: Philip the Good parleys with Emperor Frederick III -I-
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME28004" #Philip the Good parleys with Emperor Frederick III
+	desc = "EVENTHIST28005"
+	#-#After the death of Louis the Pious in 840 the Carolingian Empire was divided between his three sons. Two of these Kingdoms would survive to become France and the Holy Roman Empire. The third Kingdom, Lotharingia, dwindled and was upon the death of King Zwentibold absorbed into Germany. Twice during his reign Philip the Good requested from Emperor Frederick III the vacant crown of Lotharingia.
+
+	date = { day = 1 month = january year = 1463 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1463 }
+
+	action_a = {
+		name = "ACTIONNAME28004A" #Request the crown of Lotharingia
+		command = { type = trigger which = 179123 } #HAB: Philip the Good requests the Lotharingian crown
+		command = { type = relation which = LOR value = -50 }
+		command = { type = relation which = HEL value = -50 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = sleepevent which = 28007 } #BUR: Philip the Good parleys with Emperor Frederick III -I-
+	}
+	action_b = {
+		name = "ACTIONNAME28004B" #Do not request the crown of Lotharingia
+		command = { type = relation which = HAB value = 50 } #should be HEI
+		command = { type = sleepevent which = 28007 } #BUR: Philip the Good parleys with Emperor Frederick III -I-
+	}
+}
+#(1447 or 1463) The Ascension - Ahistorical
+event = {
+	id = 28006 #triggered by HAB_28005 B or HAB_28008 B / HAB_179123 A
+	random = no
+	country = BUR
+	name = "EVENTNAME28006" #King Philip
+	desc = "EVENTHIST28006"
+	#-#Philip the Good has been crowned King of Lotharingia.
+
+	action_a = {
+		name = "ACTIONNAME28006A" #God save the King!
+		command = { type = flagname which = "Lotharingia" }
+		command = { type = remove_countryculture which = french }
+		command = { type = add_countryculture which = german }
+		command = { type = domestic which = CENTRALIZATION value = 3 }
+		command = { type = addcore which = 337 } #Friesen
+		command = { type = addcore which = 338 } #Geldre
+		command = { type = addcore which = 339 } #Holland
+		command = { type = addcore which = 340 } #Zeeland
+		command = { type = addcore which = 334 } #Munster
+		command = { type = addcore which = 335 } #Oldenburg
+		command = { type = addcore which = 343 } #Kleves
+		command = { type = addcore which = 344 } #Köln
+		command = { type = addcore which = 345 } #Pfalz
+		command = { type = addcore which = 375 } #Lorraine
+		command = { type = addcore which = 374 } #Alsace
+		command = { type = DIP which = 2 value = 12 }
+		command = { type = relation which = KOL value = -50 }
+		command = { type = relation which = PFA value = -50 }
+		command = { type = relation which = OLD value = -50 }
+		command = { type = relation which = BRG value = -50 }
+		command = { type = relation which = KLE value = -50 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = relation which = LOR value = -50 }
+		command = { type = relation which = STR value = -50 }
+		command = { type = relation which = FRI value = -50 }
+		command = { type = relation which = GEL value = -50 }
+		command = { type = sleepevent which = 20100 } #BUR: The Crown of France
+		command = { type = sleepevent which = 137074 } #BUR: The Crown of France (HYW_Burgundy)
+		command = { type = sleepevent which = 28007 } #BUR: Philip the Good parleys with Emperor Frederick III -I-
+		command = { type = sleepevent which = 137049 } #BUR: Philip the Good parleys with Emperor Frederick III -II-
+		command = { type = trigger which = 20313 } #KOL: Burgundian Claims on Cologne
+		command = { type = trigger which = 20314 } #BRG: Burgundian Claims on Cleves
+		command = { type = trigger which = 20315 } #OLD: Burgundian Claims on Oldenburg
+		command = { type = trigger which = 20316 } #PFA: Burgundian Claims on the Palatinate
+		command = { type = trigger which = 20317 } #KLE: Burgundian Claims on Munster
+		command = { type = trigger which = 20322 } #LOR: Burgundian Claims on Lorraine
+		command = { type = trigger which = 20323 } #STR: Burgundian Claims on Strasburg
+		command = { type = trigger which = 171001 } #FRI: Burgundian Claims on Friesen
+		command = { type = trigger which = 173005 } #GEL: Burgundian Claims on Guelders
+		command = { type = trigger which = 20320 } #FRA: Philip of Burgundy made King of Lotharingia
+	}
+}
+#-----------------------------------------------------------------------------------------------
+
+#(1451) Unrest in Ghent
+event = {
+	id = 28010
+	trigger = {
+		owned = { province = 380 data = BUR }
+		domestic = { type = centralization value = 3 } #added
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME28010" #Unrest in Ghent
+	desc = "EVENTHIST28010"
+	#-#The cities of the low countries did not take kindly to the efforts of the Dukes of Burgundy to bring them under central control and in 1451 the people of Ghent rose in a revolt that took two years to crush.
+
+	date = { day = 1 month = january year = 1451 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1451 }
+
+	action_a = {
+		name = "ACTIONNAME28009A" #Suppress the revolt
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = stability value = -1 }
+		command = { type = province_revoltrisk which = 380 value = 12 } #Flandern
+	}
+	action_b = {
+		name = "ACTIONNAME28009B" #Allow the cities of the low countries more autonomy
+		command = { type = domestic which = CENTRALIZATION value = -1 } #lowered from -3
+		command = { type = sleepevent which = 28011 } #BUR: The defeat of Ghent
+	}
+}
+
+#(1453) The defeat of Ghent
+event = {
+	id = 28011
+	trigger = {
+		owned = { province = 380 data = BUR }
+		control = { province = 380 data = BUR }
+		event = 28010
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME28011" #The defeat of Ghent
+	desc = "EVENTHIST28011"
+	#-#After two years the commune of Ghent was defeated at Gavre, enabling Philip the Good to strengthen his authority in Flanders.
+
+	date = { day = 1 month = january year = 1453 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1453 }
+
+	action_a = {
+		name = "ACTIONNAME28009A" #Suppress the revolt
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = province_revoltrisk which = 380 value = -12 } #Flandern
+	}
+}
+
+#(1454) Feast of the Pheasant
+event = {
+	id = 137082
+	trigger = {
+		atwar = no
+		owned = { province = 379 data = -1 } #Artois
+		control = { province = 379 data = -1 } #Artois
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME137082" #Feast of the Pheasant
+	desc = "EVENTHIST137082"
+	#-#On February 17, 1454, a most remarkable feast took place at Duke Phillip the Good’s primary residence at Lille. Philip, the third and in some ways most successful of the four Valois dukes of Burgundy, was well known for arranging magnificent and spectacular events, but this one was destined to top them all. Rather conveniently, Philip had a vow written out which he passed to the herald to read out, after which he repeated his vow to take up the cross, as long as the King of France or his regent went as well, or to go alone as long as his own lands were secure and peaceful. He then went on to swear to seek out the Ottoman leader and defeat him in single combat. In what appears to have been a carefully organised rush of enthusiasm, his son Charles, Count of Charolais, immediately made similar oaths, as did the Duke of Cleves. Alas the crusade to free Constantinople never happened. Philip announced sweeping reforms to his finances, explicitly stated as being to raise money for the crusade, and seriously cut back on domestic expenses and pensions. He completely reformed his revenue raising mechanisms, and made them far more efficient.
+
+	date = { day = 17 month = february year = 1454 }
+	offset = 60
+	deathdate = { day = 29 month = december year = 1459 }
+
+	action_a = {
+		name = "ACTIONNAME137082A" #Yes, let's feast
+		command = { type = badboy value = -5 } #Papal forgiveness
+		command = { type = relation which = HAB value = 80 }
+		command = { type = relation which = GEN value = 30 }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = KLE value = 20 }
+		command = { type = relation which = VEN value = 30 }
+		command = { type = relation which = GEL value = 20 }
+		command = { type = relation which = PAP value = 50 }
+		command = { type = treasury value = 200 }
+	}
+}
+
+#(1462-1476) The Crown of France - Ahistorical
+event = {
+	id = 20100
+	trigger = {
+		owned = { province = 385 data = -1 } #Ile de France
+		control = { province = 385 data = -1 } #Ile de France
+		control = { province = 376 data = -1 } #Champagne
+		NOT = {
+			exists = FRA
+			exists = DAU
+			event = 137074 #BUR: The Throne of France
+		}
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME3606" #The Crown of France
+	desc = "EVENTHIST3606"
+	#-#Since the Early Medieval times one of the most powerful Frankish Kingdoms had been centered at Paris and around Ile-de-France from which it took its name. Later on one of its Kings managed not only to unite the large area formerly called 'Gallia', but also to conquer most of Germany, Northern Italy and become chosen as Holy Roman Emperor, namely Charlemagne. His heritage was very powerful and important. The Duke of Normandy might be the most powerful man in France, but he was not France, only the French King was never so powerless. The Legacy of Charlemagne lived on and the greatest wish of man powerful monarch was bear the Crown of France...
+
+	date = { day = 1 month = january year = 1462 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1476 }
+
+	action_a = {
+		name = "ACTIONNAME3606A" #France is reborn with me
+		command = { type = vp value = 100 }
+		command = { type = domestic which = CENTRALIZATION value = 3 }
+		command = { type = stability value = 1 }
+		command = { type = capital which = 385 } #Ile de France
+		command = { type = flagname which = "" }
+		command = { type = country which = FRA }
+		command = { type = INF which = 385 value = 15000 } #Ile de France
+		command = { type = CAV which = 385 value = 10000 } #Ile de France
+		command = { type = ART which = 385 value = 30 } #Ile de France
+		command = { type = addcore which = 376 } #Champagne
+		command = { type = addcore which = 382 } #Calais
+		command = { type = addcore which = 383 } #Picardie
+		command = { type = addcore which = 384 } #Caux
+		command = { type = addcore which = 385 } #Ile de France
+		command = { type = addcore which = 386 } #Nivernais
+		#command = { type = addcore which = 406 } #Provence
+		command = { type = addcore which = 407 } #Dauphiné
+		command = { type = addcore which = 408 } #Lyonnais
+		command = { type = addcore which = 410 } #Berri
+		command = { type = addcore which = 411 } #Orleanais
+		command = { type = addcore which = 412 } #Maine
+		command = { type = addcore which = 413 } #Normandie
+		#command = { type = addcore which = 414 } #Armor
+		#command = { type = addcore which = 415 } #Bretagne
+		#command = { type = addcore which = 416 } #Morbihan
+		command = { type = addcore which = 417 } #Vendée
+		command = { type = addcore which = 418 } #Poitou
+		command = { type = addcore which = 419 } #Limousin
+		command = { type = addcore which = 420 } #Auvergne
+		command = { type = addcore which = 421 } #Cévennes
+		command = { type = addcore which = 422 } #Languedoc
+		command = { type = addcore which = 423 } #Guyenne
+		command = { type = addcore which = 424 } #Gascogne
+		command = { type = addcore which = 425 } #Béarn
+		#command = { type = addcore which = 426 } #Roussillon
+		command = { type = province_revoltrisk which = 376 value = -5 } #Champagne
+		command = { type = province_revoltrisk which = 384 value = -5 } #Caux
+		command = { type = province_revoltrisk which = 385 value = -5 } #Ile de France
+		command = { type = province_revoltrisk which = 386 value = -5 } #Nivernais
+		command = { type = province_revoltrisk which = 413 value = -5 } #Normandie
+		command = { type = sleepevent which = 137048 } #BUR: The end of the Dauphinist rebellion
+		command = { type = sleepevent which = 28004 } #BUR: Philip the Good parleys with Emperor Frederick III
+		command = { type = sleepevent which = 28007 } #BUR: Philip the Good parleys with Emperor Frederick III
+	}
+	action_b = {
+		name = "ACTIONNAME3606B" #Let France rest in peace
+		command = { type = vp value = -200 }
+		command = { type = stability value = -1 }
+		command = { type = province_revoltrisk which = 376 value = -5 } #Champagne
+		command = { type = province_revoltrisk which = 384 value = -5 } #Caux
+		command = { type = province_revoltrisk which = 385 value = -5 } #Ile de France
+		command = { type = province_revoltrisk which = 386 value = -5 } #Nivernais
+		command = { type = province_revoltrisk which = 413 value = -5 } #Normandie
+		command = { type = relation which = ENG value = 150 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = SPA value = 150 }
+		command = { type = sleepevent which = 137048 } #BUR: The end of the Dauphinist rebellion
+	}
+}
+
+#(1462-1820) The end of the Dauphinist rebellion - Ahistorical
+event = {
+	id = 137048
+	trigger = {
+		event = 137062 #BUR: Dauphinists Rebel
+		NOT = {
+			exists = FRA
+			exists = DAU
+			event = 137074 #BUR: The Throne of France
+			event = 20100 #BUR: The Crown of France
+		}
+		OR = {
+			owned = { province = 384 data = -1 } #Caux
+			owned = { province = 385 data = -1 } #Ile de France
+			owned = { province = 386 data = -1 } #Nivernais
+			owned = { province = 376 data = -1 } #Champagne
+			owned = { province = 413 data = -1 } #Normandie
+		}
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME137048" #The end of the Dauphinist rebellion
+	desc = "EVENTHIST137048"
+	#-#Without any support, Dauphinist rebellion finally vanished...
+
+	date = { day = 1 month = january year = 1462 }
+	offset = 180
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "GOOD"
+		command = { type = province_revoltrisk which = 384 value = -5 } #Caux
+		command = { type = province_revoltrisk which = 385 value = -5 } #Ile de France
+		command = { type = province_revoltrisk which = 386 value = -5 } #Nivernais
+		command = { type = province_revoltrisk which = 376 value = -5 } #Champagne
+		command = { type = province_revoltrisk which = 413 value = -5 } #Normandie
+	}
+}
+
+#(1463-1467) Louis XI Regains the Somme Towns
+event = {
+	id = 137029 #triggered by FRA_170134
+	random = no
+	country = BUR
+	name = "EVENTNAME137029" #Louis XI Regains the Somme Towns
+	desc = "EVENTHIST137029"
+	#-#Under the terms of the treaty signed so long ago between Charles VII and the Duke of Burgundy, the Crown reserved the right to purchase back the Somme territories for a sum that, at the time, no one had believed the Crown would ever afford. As a result, it was to Duke Philip's great surprise when King Louis XI requested the territories back at the exorbitant sum of 400,000 ecus.
+
+	action_a = {
+		name = "ACTIONNAME137029A" #We are treaty bound...
+		command = { type = treasury value = 200 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = cedeprovince which = FRA value = 383 } #Picardie
+		command = { type = removecore which = 383 }
+	}
+}
+
+#(1464) The Crusade of Pius II (Burgundian version)
+#by the Council of Ten (Democratic Venetian AAR)
+event = {
+	id = 137013 #triggered by PAP_251015
+	random = no
+	country = BUR
+	name = "EVENTNAME251015" #The Crusade that Never Was
+	desc = "EVENTHIST137013"
+	#-#In 1459 Pope Pius II called the Congress of Mantua to organise a crusade against the Turk, but only a few delegates showed up. By 1461 the crusade had made no progress so Pius asked Mehmed II to convert. Since that didn't work either, he decided to lead the crusade himself despite being ill. France was at odds with the Pope, Burgundy delayed their help, Milan was trying to seize Genoa, and Florence cynically advised the Pope to let the Turks and the Venetians wear each other out. But the Venetians and the Hungarians signed their support in 1463. Thousands of destitute men from all of Europe came to the Pope's call and he led them to Ancona in the summer of 1464, where he became very ill. Meanwhile Philip The Good dispatched a fleet commanded by his two bastard sons, who on the way to Italy liberated Portuguese Ceuta from Berber besiegers. When the fleet arrived in Marseille the Pope had already died and the crusade never happened.
+
+	action_a = {
+		name = "ACTIONNAME326028B" #Let's slay some infidels
+		command = { type = warships which = -1 value = 2 } #The Burgundian fleet
+		command = { type = casusbelli which = TUR value = 6 } #A crusade is a good reason to fight
+		command = { type = relation which = PAP value = 50 } #for fighting the Turk
+		command = { type = relation which = POR value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME326028A" #This Crusade is hopeless
+		command = { type = relation which = PAP value = -50 }
+	}
+}
+
+#(1465) Unrest in Liege
+event = {
+	id = 28012
+	trigger = {
+		owned = { province = 378 data = BUR }
+		domestic = { type = centralization value = 3 } #added
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME28012" #Unrest in Liege
+	desc = "EVENTHIST28012"
+	#-#The cities of the low countries did not take kindly to the efforts of the Dukes of Burgundy to bring them under central control and in 1465 the people of Liege rose in revolt.
+
+	date = { day = 1 month = january year = 1465 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1465 }
+
+	action_a = {
+		name = "ACTIONNAME28009A" #Suppress the revolt
+		command = { type = revolt which = 378 } #Brabant
+		command = { type = stability value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME28009B" #Allow the cities of the low countries more autonomy
+		command = { type = domestic which = CENTRALIZATION value = -1 } #lowered from -3
+	}
+}
+
+#(1465-1467) The Treaty of Conflans
+event = {
+	id = 137030 #triggered by FRA_170136
+	random = no
+	country = BUR
+	name = "EVENTNAME170136" #The Treaty of conflans
+	desc = "EVENTHIST137030"
+	#-#During the early years of his reign, King Louis XI had done much to antagonize the great magnates of France in his attempts to centralize the monarchy. A steady stream of dissenters flowed to a group of nobles who would form a League against Louis. Charles, Count of Charolais and son of Philippe, Duke of Burgundy, had captured several of the Somme territories along with several towns and estates ceded to Jean, Count of Etampes and Nevers, by the Duke of Burgundy. Royal troops led by Louis met the Burgundian army at Montlhery. The resulting battle left Burgundians masters of the field. Louis had escaped to Paris where he would soon be under seige. The Burgundian and Breton troops, united, forced Louis to agree to the rebels' demands. Thus, Burgundy regained the Somme towns and Charles Count of Charolais received the territories ceded to Jean Count of Etampes and Nevers. Louis XI would not be compensated for the Somme towns, and, by the terms of the Treaty, Louis was not entitled to repurchase the territory until after Charles' death.
+
+	action_a = {
+		name = "ACTIONNAME137030A" #Well, we have regained Picardie!
+		command = { type = stability value = 1 }
+		command = { type = relation which = BRI value = 50 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = addcore which = 383 } #Picardie
+	}
+}
+
+#(1469) Treaty of St. Omer (Purchase of Alsace)
+event = {
+	id = 137001 #triggered by TYR_322005 A
+	random = no
+	country = BUR
+	name = "EVENTNAME137001" #The Treaty of St. Omer
+	desc = "EVENTHIST137001"
+	#-#Sigismund of Tyrol ruled the Vorlande, the Habsburg possessions north of the Alps, in Alsace and Breisgau, very ineffectively. Most of the local nobility operated as robber barons, there was virtually no tax collection and the Swiss neighbours in the south occasionally sent pillaging troops in and tried to expand into these territories. One such border war with Helvetia in 1468 was concluded by Sigismund promising to pay 10000 Guldens. Since he was always in financial trouble, he soon searched for someone to grant him a credit. After the Emperor's and the French King's refusal, the only likely creditor was Charles the Bold, Duke of Burgundy. When on March 21st 1469 the two princes met in Arras, they negotiated an even more far-reaching agreement: Sigismund saw Burgundy as a potentially useful ally against the Helvetian threat, and in order to tie him closely to Tyrol, he offered him to mortgage the Vorlande for an amount of 50000 Guldens. To rebuy the provinces, Tyrol would have had to pay back not only this sum, but also all expenses Burgundy would make for the establishment of an administration, which seemed practically impossible for the struggling Count. Hence by the treaty of St. Omer signed in May Sigismund sold the Vorlande to Burgundy in exchange for the money he badly needed and Burgundian support against his Helvetian enemies. Only due to Charles' premature death in battle the vorlande were returned to Tyrol.
+
+	action_a = {
+		name = "ACTIONNAME137001A" #Buy the Habsburg Vorlande
+		command = { type = addcore which = 374 } #Alsace to be changed to new Sundgau province as soon as new map appears
+		command = { type = treasury value = -130 }
+		command = { type = relation which = TYR value = 100 }
+		command = { type = relation which = HEL value = -100 }
+		command = { type = trigger which = 322006 } #TYR: Burgundy accepts
+	}
+	action_b = {
+		name = "ACTIONNAME137001B" #Refuse to help Sigismund
+		command = { type = relation which = TYR value = -50 }
+	}
+}
+
+#(1471) Military Reform
+#by Lambert Simnel
+event = {
+	id = 137002
+	trigger = { countrysize = 4 }
+	random = no
+	country = BUR
+	name = "EVENTNAME137002" #The Ordonnance of 1471
+	desc = "EVENTHIST137002"
+	#-#During the reign of Philip the Good the quality of the armies provided by the feudal levy had declined, the men-at-arms were ill-equiped and poorly skilled, the armed valets that in other armies fought alongside their masters were all but absent and not all nobles were able or willing to heed the call to muster. Nor could the disciplined city militias of the low countries be relied upon as the city governments were often in oposition to the Dukes of Burgundy. In 1471 a decision was finally made to reform the army. At the core of the new army would be the best mercenaries available: English longbowmen, German pikemen, Italian crossbowmen and men-at-arms from throughout Christendom.
+
+	date = { day = 1 month = january year = 1471 }
+	offset = 120
+	deathdate = { day = 1 month = january year = 1472 }
+
+	action_a = {
+		name = "ACTIONNAME137002A" #Strengthen the army with mercenaries
+		command = { type = treasury value = -400 }
+		command = { type = domestic which = LAND value = 1 }
+		command = { type = domestic which = QUALITY value = 4 }
+		command = { type = domestic which = ARISTOCRACY value = -1 }
+		command = { type = CAV which = -2 value = 5000 }
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = ART which = -2 value = 20 }
+		command = { type = land value = 250 }
+	}
+	action_b = {
+		name = "ACTIONNAME137002B" #Reform the feudal troops
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = domestic which = ARISTOCRACY value = 2 }
+		command = { type = domestic which = SERFDOM value = 1 }
+		command = { type = stability value = 2 }
+	}
+}
+
+#(1471-1477) And from our Brother, England?
+event = {
+	id = 137080 #triggered by ENG_164250
+	random = no
+	country = BUR
+	name = "EVENTNAME137080" #And from our Brother, England
+	desc = "EVENTHIST137080"
+	#-#My lord, your brother-in-law, King Edward of England asks us to support him in his quest to recover Normandy from King Louis. We are surrounded by enemies and surely cannot spare the men to undertake yet another war of aggression. That said my lord, if we do not support England now she will surely leave us for dead when we need her most...
+
+	action_a = {
+		name = "ACTIONNAME137080A" #We dare not attack King Louis...
+		command = { type = relation which = FRA value = 25 }
+		command = { type = treasury value = 50 } #from Louis, for staying neutral
+		command = { type = badboy value = -5 }
+		command = { type = trigger which = 164251 } #ENG: Then who shall defend you now?
+	}
+	action_b = {
+		name = "ACTIONNAME137080B" #Rally the troops, the true King of France needs our help!
+		command = { type = alliance which = ENG }
+		command = { type = INF which = -2 value = 10000 }
+		command = { type = CAV which = -2 value = 5000 }
+		command = { type = casusbelli which = FRA value = 24 }
+		command = { type = relation which = ENG value = 50 }
+		command = { type = relation which = FRA value = -100 }
+		command = { type = stability value = -2 }
+		command = { type = treasury value = -100 }
+	}
+}
+
+#(1472) Purchase of Guelders
+event = {
+	id = 75004 #triggered by GEL_75003 A
+	random = no
+	country = BUR
+	name = "EVENTNAME75004" #Charles the Bold is offered Guelders
+	desc = "EVENTHIST75004"
+	#-#After several years of conflict between father and son in Guelders, Charles the Bold, the Duke of Burgundy, was asked to be arbitrarian. Charles decided that Adolf would become stateholder of Guelders and that Arnold would officially remain the Duke and receive a pension of 3000 Gulden. But Adolf did not accept this judgement and continued to fight until he was arrested by Charles. The old Duke was restored to the throne, yet could not consolidate his rule. Therefore he offered the Duchy to Charles the Bold for 300,000 Gulden.
+
+	action_a = {
+		name = "ACTIONNAME75004A" #Buy it
+		command = { type = treasury value = -200 }
+		command = { type = addcore which = 338 } #Geldre
+		command = { type = inherit which = GEL }
+		command = { type = sleepevent which = 75010 } #GEL: Death of Charles of Egmont
+	}
+	action_b = {
+		name = "ACTIONNAME75004B" #Reject it
+		command = { type = relation which = GEL value = -100 }
+		command = { type = sleepevent which = 75005 } #GEL: Death of Charles of Egmont
+		command = { type = sleepevent which = 75012 } #GEL: Death of Charles of Egmont
+		command = { type = sleepevent which = 173000 } #GEL: Karel of Egmont
+	}
+}
+
+#(1473-1476) Unrest in Alsace
+event = {
+	id = 20300
+	trigger = {
+		exists = HEL
+		owned = { province = 374 data = -1 } #Alsace
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME20300" #Unrest in Alsace
+	desc = "EVENTHIST20300"
+	#-#The Alsatians dared to overthrow our local governor!
+
+	date = { day = 1 month = august year = 1473 }
+	offset = 30
+	deathdate = { day = 1 month = august year = 1476 }
+
+	action_a = {
+		name = "ACTIONNAME20300A" #Well...
+		command = { type = revolt which = 374 } #Alsace
+		command = { type = trigger which = 20301 } #HEL: Grandson and Morat
+	}
+}
+
+#(1474-1476) Burgundy feels it safe enough to lay claim to alsace
+event = {
+	id = 137017 #triggered by HEL_184057 B
+	random = no
+	country = BUR
+	name = "EVENTNAME137017" #Burgundy Claim Alsace
+	desc = "EVENTHIST137017"
+	#-#Burgundy had always attempted to swap her Ducal hat for a Kings Crown but was always unsuccessful. However Charles the Bold of Burgundy had his eyes on linking his French possessions with his Dutch holdings and expanding his possessions southeastward into the Alps. It seems that the Swiss Confederation are not playing the same game as Austria or France. This could be to our advantage.
+
+	action_a = {
+		name = "ACTIONNAME137017A" #Claim Alsace
+		command = { type = addcore which = 374 } #Alsace
+		command = { type = casusbelli which = STR value = 24 }
+		command = { type = vp value = 1 }
+	}
+}
+
+#(1477) Duke Charles of Burgundy Is Dead
+event = {
+	id = 137310
+	random = no
+	country = BUR
+	name = "EVENTNAME137310" #Duke Charles of Burgundy Is Dead
+	desc = "EVENTHIST137310"
+	#-#Charles 'the Bold' Duke of Burgundy died unexpectedly at the age of 43. Leaving no male successors, Charles's departure plunged his Duchy into a lengthy period of instability. His only heir, Mary, a daughter from his first marriage with Isabella of Bourbon, was merely nineteen years of age when she assumed the command Burgundy, a Duchy on the verge of breaking apart. King Louis XI of France immediately claimed Burgundy's fiefdoms in the French realm.
+
+	date = { day = 5 month = january year = 1477 }
+
+	action_a = {
+		name = "ACTIONNAME137310A" #We will need allies...
+		command = { type = stability value = -3 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = province_revoltrisk which = 338 value = 10 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = 10 } #Holland
+		command = { type = province_revoltrisk which = 340 value = 10 } #Zeeland
+		command = { type = province_revoltrisk which = 378 value = 10 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = 10 } #Artois
+		command = { type = province_revoltrisk which = 380 value = 10 } #Flandern
+		command = { type = badboy value = -5 } #the Burgundian expansionism policy ends with the death of Charles the Bold
+		command = { type = trigger which = 170059 } #FRA: The French claim on Burgundian lands
+	}
+}
+
+#(1477) Louis's forces occupy Mary's French estates
+event = {
+	id = 137031
+	trigger = {
+		exists = FRA
+		flag = [Lowlands]
+		event = 170059 #FRA: The French claim on Burgundian lands
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME137031" #Louis's forces occupy Mary's French estates
+	desc = "EVENTHIST137031"
+	#-#King Louis XI argued that Burgundy's appanage had been granted with an exclusive clause that, in light of no legitimate male heirs, the Duchy of Burgundy would revert to the Crown. His legal argument was strongest for the case of Bourgogne, the current Duchy of Burgundy's ancestral lands. Nevertheless, King Louis extended his legal argument to include counties that the Dukes of Burgundy had inherited throughout their tenures.
+
+	date = { day = 5 month = january year = 1477 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1477 }
+
+	action_a = {
+		name = "ACTIONNAME137031A" #There is nothing we can do
+		command = { type = cedeprovince which = FRA value = 376 } #Champagne
+		command = { type = cedeprovince which = FRA value = 384 } #Caux
+		command = { type = cedeprovince which = FRA value = 385 } #Ile de France
+		command = { type = cedeprovince which = FRA value = 386 } #Nivernais
+		command = { type = cedeprovince which = FRA value = 407 } #Dauphiné
+		command = { type = cedeprovince which = FRA value = 408 } #Lyonnais
+		command = { type = cedeprovince which = FRA value = 409 } #Bourgogne
+		command = { type = cedeprovince which = FRA value = 410 } #Berri
+		command = { type = cedeprovince which = FRA value = 411 } #Orleanais
+		command = { type = cedeprovince which = FRA value = 412 } #Maine
+		command = { type = cedeprovince which = FRA value = 413 } #Normandie
+		command = { type = cedeprovince which = FRA value = 417 } #Vendée
+		command = { type = cedeprovince which = FRA value = 418 } #Poitou
+		command = { type = cedeprovince which = FRA value = 419 } #Limousin
+		command = { type = cedeprovince which = FRA value = 420 } #Auvergne
+		command = { type = cedeprovince which = FRA value = 421 } #Cévennes
+		command = { type = cedeprovince which = FRA value = 422 } #Languedoc
+		command = { type = cedeprovince which = FRA value = 423 } #Guyenne
+		command = { type = cedeprovince which = FRA value = 424 } #Gascogne
+		command = { type = cedeprovince which = FRA value = 425 } #Béarn
+	}
+}
+#(1477) Louis's forces occupy Mary's French estates (Dijon is BUR capital)
+event = {
+	id = 137032
+	trigger = {
+		exists = FRA
+		event = 170059 #FRA: The French claim on Burgundian lands
+		NOT = {
+			flag = [Lowlands]
+		}
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME137031" #Louis's forces occupy Mary's French estates
+	desc = "EVENTHIST137031"
+	#-#King Louis XI argued that Burgundy's appanage had been granted with an exclusive clause that, in light of no legitimate male heirs, the Duchy of Burgundy would revert to the Crown. His legal argument was strongest for the case of Bourgogne, the current Duchy of Burgundy's ancestral lands. Nevertheless, King Louis extended his legal argument to include counties that the Dukes of Burgundy had inherited throughout their tenures.
+
+	date = { day = 5 month = january year = 1477 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1477 }
+
+	action_a = {
+		name = "ACTIONNAME137031A" #There is nothing we can do
+		command = { type = cedeprovince which = FRA value = 376 } #Champagne
+		command = { type = cedeprovince which = FRA value = 384 } #Caux
+		command = { type = cedeprovince which = FRA value = 385 } #Ile de France
+		command = { type = cedeprovince which = FRA value = 386 } #Nivernais
+		command = { type = cedeprovince which = FRA value = 407 } #Dauphiné
+		command = { type = cedeprovince which = FRA value = 408 } #Lyonnais
+		command = { type = cedeprovince which = FRA value = 410 } #Berri
+		command = { type = cedeprovince which = FRA value = 411 } #Orleanais
+		command = { type = cedeprovince which = FRA value = 412 } #Maine
+		command = { type = cedeprovince which = FRA value = 413 } #Normandie
+		command = { type = cedeprovince which = FRA value = 417 } #Vendée
+		command = { type = cedeprovince which = FRA value = 418 } #Poitou
+		command = { type = cedeprovince which = FRA value = 419 } #Limousin
+		command = { type = cedeprovince which = FRA value = 420 } #Auvergne
+		command = { type = cedeprovince which = FRA value = 421 } #Cévennes
+		command = { type = cedeprovince which = FRA value = 422 } #Languedoc
+		command = { type = cedeprovince which = FRA value = 423 } #Guyenne
+		command = { type = cedeprovince which = FRA value = 424 } #Gascogne
+		command = { type = cedeprovince which = FRA value = 425 } #Béarn
+	}
+}
+
+#(1477) The Great Privilege
+event = {
+	id = 137311
+	trigger = {
+		flag = [Lowlands]
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME137311" #The Great Privilege
+	desc = "EVENTHIST137311"
+	#-#In the chaotic and volitile political environment that followed the demise of Burgundy's most aggressive ruler, Charles 'the Bold', Mary, Duchess of Burgundy and daughter of Charles, was inevitably forced by her disgruntled subjects in the lowlands to sign the 'Great Privilege' in order to obtain their assistance against the aggression of the King of France, Louis XI. The Charter of Rights obtained from Mary restored to the Flemish burghs all the local and communal rights which had been abolished by the arbitrary decrees of Mary's predecessors in their efforts to create a centralized state in the Low Countries. Declarations of war, peace treaties, and taxation, among other issues, were now subject to the consent of the Three Estates in the Low Countries.
+
+	date = { day = 1 month = february year = 1477 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1477 }
+
+	action_a = {
+		name = "ACTIONNAME137311A" #Abide in order to acquire assistance and defend the duchy
+		command = { type = stability value = 1 }
+		command = { type = badboy value = -10 }
+		command = { type = treasury value = 100 }
+		command = { type = INF which = -2 value = 10000 }
+		command = { type = CAV which = -2 value = 4000 }
+		command = { type = province_revoltrisk which = 338 value = -10 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = -10 } #Holland
+		command = { type = province_revoltrisk which = 340 value = -10 } #Zeeland
+		command = { type = province_revoltrisk which = 378 value = -10 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = -10 } #Artois
+		command = { type = province_revoltrisk which = 380 value = -10 } #Flandern
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = sleepevent which = 137312 } #BUR: The Lowland Rebellion Is Crushed
+	}
+	action_b = {
+		name = "ACTIONNAME137311B" #Refuse to relinquish any hold on the Low Countries...
+		command = { type = revolt which = -2 }
+		command = { type = revolt which = -2 }
+		command = { type = revolt which = -1 }
+		command = { type = sleepevent which = 137021 } #BUR: The new Archduke of Burgundy
+	}
+}
+
+#(1477) The Marriage of Mary of Burgundy
+event = {
+	id = 3597
+	trigger = {
+		exists = FRA
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME3597" #The Marriage of Mary of Burgundy
+	desc = "EVENTHIST3597"
+	#-#Mary of Valois was the only daughter of Charles le Téméraire (Charles the Bold) and so heiress of all the rich Burgundian domains from the Saone River up to the Low Countries. When her father died in 1477 at the age of 43, Mary was only nineteen and Louis XI of France seized the opportunity provided with his rival's death to take possession of the duchy of Burgundy and also of Franche-Comté, Picardie and Artois. He justified his military intervention with the fact that these lands had always been fiefs to the French crown and that with Charles' death, the last member of the French Valois dynasty they had 'de facto', according to the salic law, reverted to France. But the choice of which prince should marry the duchess would be of particular importance for the future political and economical stability of Western Europe, so he urged Mary to accept his son, the Dauphin Charles, as husband, in order to secure the inheritance of the Low Countries for his descendants too, even by force of arms if necessary. Mary, however, distrusted Louis and declined any French support and offer of marriage but, in order to be recognized as legitimate ruler over the Low Countries and to get financial and military help of Flemish cities against the French aggression, she made so great concessions as to reduce the Burgundian states effectively to a sort of federation of provinces. Satisfied that the country was sufficiently weakened and disorganized, Louis XI ordered his army into Artois and Hainault, but the imminence of danger seemed to revive in the Burgundian provinces a spirit of loyalty towards the Valois heiress and arrangements were made for the marriage of Mary with Maximilian of Habsburg, Archduke of Austria and son of the Holy Roman Emperor Frederick III. The alliance with the Empire was intended to save the inheritance of the young princess from the French hands. However it would result in thereafter making Low Countries direct dominions of the House of Habsburg. The marriage between Mary and Maximilian was hastily celebrated at Ghent on 18 August 1477.
+
+	date = { day = 18 month = August year = 1477 }
+
+	action_a = {
+		name = "ACTIONNAME3597A" #Marry the Archduke of Austria
+		trigger = { exists = HAB }
+		command = { 
+			trigger = {
+				NOT = { vassal = { country = HAB country = BUR } }
+			}
+			type = breakvassal which = -1
+		}
+		command = { type = stability value = 4 }
+		command = { type = dynastic which = HAB }
+		command = { type = setflag which = [Habsburg] }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = wakeleader which = 027303 } #Maximilian (BUR)
+		command = { type = independence which = FRI }
+		command = { type = independence which = KLE }
+		command = { type = independence which = HAN }
+		command = { type = independence which = KOL }
+		command = { type = independence which = PFA }
+		command = { type = independence which = OLD }
+		command = { type = independence which = BRE }
+		command = { type = independence which = BRG }
+		command = { type = independence which = LOR }
+		command = { type = independence which = HES }
+		command = { type = independence which = MAI }
+		command = { type = independence which = SAV }
+		command = { type = independence which = HEL }
+		command = { type = independence which = PRO }
+		command = { type = badboy value = -10 }
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = cedeprovince which = TYR value = 374 } #Sundgau returned to Sigismund of Tyrol #Alsace
+		command = { type = cedeprovince which = TYR value = 373 } #Baden returned to Sigismund of Tyrol #Baden
+		#just in case Savoy, Switzerland and Palatinate already exist, even if partially
+		command = { type = cedeprovince which = SAV value = 404 } #Piemonte
+		command = { type = cedeprovince which = SAV value = 405 } #Savoie
+		command = { type = cedeprovince which = HEL value = 388 } #Bern
+		command = { type = cedeprovince which = HEL value = 1612} #Schwyz
+		command = { type = cedeprovince which = PFA value = 345 } #Pfalz
+		command = { type = cedeprovince which = PFA value = 347 } #Würzburg
+		command = { type = removecore_national which = 374 } #Alsace to be changed to new Sundgau province as soon as new map appears
+		command = { type = sleepevent which = 3319 } #FRA: The Valois inheritance of Burgundy
+		command = { type = sleepevent which = 137046 } #BUR: The House of Kleve-Mark settles in Burgundy
+		command = { type = sleepevent which = 137044 } #BUR: The House of Wittelsbach settles in Burgundy
+		command = { type = sleepevent which = 322028 } #TYR: Reclaiming Vorlande
+		command = { type = sleepevent which = 179153 } #HAB: Reclaiming Vorlande
+	}
+	action_b = {
+		name = "ACTIONNAME3597B" #Marry the Dauphin of France (End Game)
+		command = { type = breakvassal which = -1 }
+		command = { type = dynastic which = FRA }
+		command = { type = independence which = GEL }
+		command = { type = independence which = FRI }
+		command = { type = independence which = KLE }
+		command = { type = independence which = HAN }
+		command = { type = independence which = KOL }
+		command = { type = independence which = LOR }
+		command = { type = independence which = PFA }
+		command = { type = independence which = BRG }
+		command = { type = independence which = HES }
+		command = { type = independence which = MAI }
+		command = { type = independence which = SAV }
+		command = { type = independence which = HEL }
+		command = { type = independence which = PRO }
+		command = { type = revolt which = 334 } #Münster
+		command = { type = revolt which = 334 } #Münster
+		command = { type = revolt which = 335 } #Oldenburg
+		command = { type = revolt which = 335 } #Oldenburg
+		command = { type = revolt which = 336 } #Bremen
+		command = { type = revolt which = 336 } #Bremen
+		command = { type = cedeprovince which = HAB value = 374 } #Alsace
+		command = { type = cedeprovince which = HAB value = 373 } #Baden
+		command = { type = cedeprovince which = HAB value = 387 } #Franche-Comté
+		#just in case Savoy, Switzerland and Palatinate already exist, even partially
+		command = { type = cedeprovince which = SAV value = 404 } #Piemonte
+		command = { type = cedeprovince which = SAV value = 405 } #Savoie
+		command = { type = cedeprovince which = HEL value = 388 } #Bern
+		command = { type = cedeprovince which = HEL value = 1612} #Schwyz
+		command = { type = cedeprovince which = PFA value = 345 } #Pfalz
+		command = { type = cedeprovince which = PFA value = 347 } #Würzburg
+		command = { type = sleepevent which = 3178 } #HAB: The Habsburg inheritance of Burgundy
+		command = { type = sleepevent which = 137046 } #BUR: The House of Kleve-Mark settles in Burgundy
+		command = { type = sleepevent which = 137044 } #BUR: The House of Wittelsbach settles in Burgundy
+		command = { type = trigger which = 3180 } #HAB: France inherits Burgundy
+	}
+	action_c = {
+		name = "ACTIONNAME3597C" #Marry another Prince instead
+		command = { type = stability value = 2 }
+		command = { type = setflag which = [German_suitor] }
+		command = { type = land value = 1000 }
+		command = { type = domestic which = ARISTOCRACY value = -1 }
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = domestic which = MERCANTILISM value = -2 }
+		command = { type = domestic which = QUALITY value = 1 }
+		command = { type = domestic which = SERFDOM value = -2 }
+		command = { type = relation which = ENG value = 50 }
+		command = { type = relation which = FRA value = -150 }
+		command = { type = relation which = HAB value = -150 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revoltrisk which = 48 value = 4 }
+		command = { type = sleepmonarch which = 027005 } #Philippe IV
+		command = { type = sleepmonarch which = 027006 } #Charles II
+		command = { type = sleepmonarch which = 027007 } #Philippe V °
+		command = { type = sleepmonarch which = 027008 } #Philippe VI °
+		command = { type = sleepmonarch which = 027009 } #Philippe VII °
+		command = { type = sleepmonarch which = 027010 } #Charles III °
+		command = { type = sleepmonarch which = 027011 } #Philippe VIII °
+		command = { type = sleepmonarch which = 027012 } #Ferdinand Ier °
+		command = { type = sleepmonarch which = 027013 } #Charles IV °
+		command = { type = sleepmonarch which = 027014 } #Charles V °
+		command = { type = sleepmonarch which = 027015 } #Ferdinand II °
+		command = { type = wakemonarch which = 027017 } #Philippe IV *
+		command = { type = wakemonarch which = 027018 } #Charles II *
+		command = { type = wakemonarch which = 027019 } #Jean II *
+		command = { type = wakemonarch which = 027020 } #Henri Ier *
+		command = { type = wakemonarch which = 027021 } #Charles III *
+		command = { type = wakemonarch which = 027022 } #Philippe V *
+		command = { type = wakemonarch which = 027023 } #Marie *
+		command = { type = wakemonarch which = 027024 } #Charles IV *
+		command = { type = wakemonarch which = 027025 } #Jean III *
+		command = { type = wakemonarch which = 027026 } #Henri II *
+		command = { type = sleepevent which = 3178 } #HAB: The Habsburg Inheritance of Burgundy
+		command = { type = sleepevent which = 3319 } #FRA: The Valois inheritance of Burgundy
+		command = { type = sleepevent which = 22007 } #MEI: The sale of Friesland
+		command = { type = sleepevent which = 273037 } #SAC: The sale of Friesland
+	}
+}
+#(1477) The Marriage of Mary of Burgundy (No France)
+#Created by Johnny Canuck
+event = {
+	id = 20047
+	trigger = {
+		event = 164180 #ENG: HYW-English Final Victory
+		NOT = {
+			exists = FRA
+			event = 20007 #FRA: The Glory of France is Reborn!
+			event = 137074 #BUR: The Throne of France
+			event = 20100 #BUR: The Crown of France
+		}
+		exists = ENG
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME3597" #The Marriage of Mary of Burgundy
+	desc = "EVENTHIST20047"
+	#-#Mary of Valois was the only daughter of Charles le Téméraire (Charles the Bold) and so heiress of all the rich Burgundian domains from the Saone River up to the Low Countries. When her father died in 1477 at the age of 43, Mary was only nineteen. The Duchy of Burgundy was one of the largest medieval states in Western Europe, covering most of the Low Countries (today's Belgium and Holland), Luxembourg and Franche-Comté. By marriage Mary would pass the lands of her father to Austria, but what would have happened if Charles the Bold would have survived the world will never know. We can only speculate...
+
+	date = { day = 18 month = August year = 1477 }
+
+	action_a = {
+		name = "ACTIONNAME3597A" #Marry the Archduke of Austria
+		trigger = { exists = HAB }
+		command = { type = breakvassal which = ENG } 
+		command = { 
+			trigger = {
+				NOT = { vassal = { country = HAB country = BUR } }
+			}
+			type = breakvassal which = -1 
+		}
+		command = { type = stability value = 2 }
+		command = { type = dynastic which = HAB }
+		command = { type = setflag which = [Habsburg] }
+		command = { type = wakeleader which = 027303 } #Maximilian (BUR)
+		command = { type = independence which = FRI }
+		command = { type = independence which = KLE }
+		command = { type = independence which = HAN }
+		command = { type = independence which = KOL }
+		command = { type = independence which = PFA }
+		command = { type = independence which = OLD }
+		command = { type = independence which = BRE }
+		command = { type = independence which = BRG }
+		command = { type = independence which = LOR }
+		command = { type = independence which = BRG }
+		command = { type = independence which = HES }
+		command = { type = independence which = MAI }
+		command = { type = independence which = SAV }
+		command = { type = independence which = HEL }
+		command = { type = independence which = PRO }
+		command = { type = revolt which = 338 } #Geldre
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = cedeprovince which = TYR value = 374 } #Sundgau returned to Sigismund of Tyrol #Alsace
+		command = { type = cedeprovince which = TYR value = 373 } #Baden returned to Sigismund of Tyrol #Baden
+		#just in case Savoy, Switzerland and Palatinate already exist, even if partially
+		command = { type = cedeprovince which = SAV value = 404 } #Piemonte
+		command = { type = cedeprovince which = SAV value = 405 } #Savoie
+		command = { type = cedeprovince which = HEL value = 388 } #Bern
+		command = { type = cedeprovince which = HEL value = 1612} #Schwyz
+		command = { type = cedeprovince which = PFA value = 345 } #Pfalz
+		command = { type = cedeprovince which = PFA value = 347 } #Würzburg
+		command = { type = removecore which = 374 } #Alsace to be changed to new Sundgau province as soon as new map appears
+		command = { type = sleepevent which = 137046 } #BUR: The House of Kleve-Mark settles in Burgundy
+		command = { type = sleepevent which = 137044 } #BUR: The House of Wittelsbach settles in Burgundy
+		command = { type = sleepevent which = 322028 } #TYR: Reclaiming Vorlande
+		command = { type = sleepevent which = 179153 } #HAB: Reclaiming Vorlande
+		command = { type = trigger which = 20048 } #ENG: The English claim on Burgundian lands
+	}
+	action_b = {
+		name = "ACTIONNAME3597C" #Marry another Prince instead
+		command = { type = stability value = 2 }
+		command = { type = setflag which = [German_suitor] }
+		command = { type = land value = 1000 }
+		command = { type = domestic which = ARISTOCRACY value = -1 }
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = domestic which = MERCANTILISM value = -2 }
+		command = { type = domestic which = QUALITY value = 1 }
+		command = { type = domestic which = SERFDOM value = -2 }
+		command = { type = relation which = ENG value = 50 }
+		command = { type = relation which = FRA value = -150 }
+		command = { type = relation which = HAB value = -150 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revoltrisk which = 48 value = 4 }
+		command = { type = sleepmonarch which = 027005 } #Philippe IV
+		command = { type = sleepmonarch which = 027006 } #Charles II
+		command = { type = sleepmonarch which = 027007 } #Philippe V °
+		command = { type = sleepmonarch which = 027008 } #Philippe VI °
+		command = { type = sleepmonarch which = 027009 } #Philippe VII °
+		command = { type = sleepmonarch which = 027010 } #Charles III °
+		command = { type = sleepmonarch which = 027011 } #Philippe VIII °
+		command = { type = sleepmonarch which = 027012 } #Ferdinand Ier °
+		command = { type = sleepmonarch which = 027013 } #Charles IV °
+		command = { type = sleepmonarch which = 027014 } #Charles V °
+		command = { type = sleepmonarch which = 027015 } #Ferdinand II °
+		command = { type = wakemonarch which = 027017 } #Philippe IV *
+		command = { type = wakemonarch which = 027018 } #Charles II *
+		command = { type = wakemonarch which = 027019 } #Jean II *
+		command = { type = wakemonarch which = 027020 } #Henri Ier *
+		command = { type = wakemonarch which = 027021 } #Charles III *
+		command = { type = wakemonarch which = 027022 } #Philippe V *
+		command = { type = wakemonarch which = 027023 } #Marie *
+		command = { type = wakemonarch which = 027024 } #Charles IV *
+		command = { type = wakemonarch which = 027025 } #Jean III *
+		command = { type = wakemonarch which = 027026 } #Henri II *
+		command = { type = sleepevent which = 3178 } #HAB: The Habsburg inheritance of Burgundy
+		command = { type = sleepevent which = 22007 } #MEI: The sale of Friesland
+		command = { type = sleepevent which = 273037 } #SAC: The sale of Friesland
+	}
+}
+
+#(1479-1480) The Lowland Rebellion Is Crushed
+event = {
+	id = 137312
+	trigger = {
+		event = 137311 #BUR: The Great Privilege
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME137312" #The Lowland Rebellion is Crushed
+	desc = "EVENTHIST137312"
+	#-#With the failure of the negotiations with the burghers of the Lowlands and Mary's subsequent temporary inability to enforce rule and stability, the disgruntled and suppressed had led a large revolt assisted by the King of France against what they considered a weak and illegitimate Burgundian claimant. After several months of bitter fighting, Duchess Mary of Burgundy and her Lieutenants had put to death the leaders of the movement, and had brutally repressed the populace whom had been subject to a terrible penance. The rebellion had failed.
+
+	date = { day = 1 month = january year = 1479 }
+	offset = 200
+	deathdate = { day = 29 month = december year = 1480 }
+
+	action_a = {
+		name = "GOOD"
+		command = { type = stability value = 1 }
+		command = { type = province_revoltrisk which = 338 value = -10 } #Geldre
+		command = { type = province_revoltrisk which = 339 value = -10 } #Holland
+		command = { type = province_revoltrisk which = 340 value = -10 } #Zeeland
+		command = { type = province_revoltrisk which = 378 value = -10 } #Brabant
+		command = { type = province_revoltrisk which = 379 value = -10 } #Artois
+		command = { type = province_revoltrisk which = 380 value = -10 } #Flandern
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#"Maximilian's regency" Sequence
+
+#(1482) The succession of Archduchess Mary
+#by Bordic
+event = {
+	id = 137018
+	trigger = {
+		owned = { province = 380 data = -1 } #Flandern
+		OR = {
+			flag = [Habsburg]
+			event = 3178 #HAB: The Habsburg inheritance of Burgundy (1477)
+		}
+		vassal = { country = HAB country = BUR }
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME137018" #The succession of Archduchess Mary
+	desc = "EVENTHIST137018"
+	#-#On 27 March 1482 the Duchess Marie incidentally fell from her horse while at hunting with a falcon in the surroundings of Bruges and died from injuries sustained. Her son, Philip, four years of age, was recognized as successor while Maximilian was recognized by the provinces as governor and Philip's ward, during the minority of his son. Flanders alone refused Maximilian's rule. The burghers, ever prompt in action, took personal possession of the child Philip, and carried on the government in his name and a commission of citizens and nobles thus maintained their authority against the son of the Holy Roman Emperor. A commission of citizens and nobles thus maintained their authority over Low Countries for several years against Maximilian's regency.
+
+	date = { day = 26 month = March year = 1482 }
+
+	action_a = {
+		name = "ACTIONNAME137018A" #The House of Habsburg won't reign over here
+		command = { type = breakvassal which = HAB }
+		command = { type = DIP which = -1 value = 84 }
+		command = { type = ADM which = 2 value = 84 }
+		command = { type = merchants value = 3 }
+		command = { type = domestic which = CENTRALIZATION value = -2 }
+		command = { type = domestic which = MERCANTILISM value = -1 }
+		command = { type = domestic which = ARISTOCRACY value = -2 }
+		command = { type = domestic which = SERFDOM value = -2 }
+		command = { type = relation which = HAB value = -30 }
+		command = { type = province_revoltrisk which = 380 value = 10 } #Flandern
+	}
+}
+#(1488) Negotiations at Bruges
+#by Bordic
+event = {
+	id = 137019
+	trigger = {
+		event = 137018 #BUR: The succession of Archduchess Mary
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME137019" #Negotiations at Bruges
+	desc = "EVENTHIST137019"
+	#-#In 1488, Maximilian, archduke of Austria and Burgundy's regent, now King of the Romans, with a small force of cavalry, attempted to take the rebelling city of Bruges, but he failed, being also captured and kept a prisoner with several councilors in a house on the market-place. In order to be set free he made a treaty with the people of Flanders in which it was stated that he was recognized as regent of the Low Countries except for Flanders, which was to be governed by his son Philip under guardianship of a council. Moreover, a congress of all the provinces was to be summoned annually, to provide for the general welfare. The treaty was signed on 16 May 1488 under Maximilian's promise to dismiss all foreign troops within a few days. Giving hostages for his fidelity, he was set at liberty but in the meanwhile, his father, Emperor Frederick III sent an army under the Duke of Saxony in the Low Countries to free his son. The struggle lasted a year and at the end Flanders was subdued.
+
+	date = { day = 15 month = May year = 1488 }
+
+	action_a = {
+		name = "ACTIONNAME137019A" #Let's impose our will to Maximilian
+		command = { type = stability value = -1 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = domestic which = ARISTOCRACY value = -1 }
+		command = { type = domestic which = SERFDOM value = -1 }
+		command = { type = DIP which = -2 value = 12 }
+		command = { type = MIL which = 2 value = 12 }
+		command = { type = ADM which = -2 value = 12 }
+		command = { type = diplomats value = 2 }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = province_revoltrisk which = 380 value = -10 } #Flandern
+	}
+}
+#(1489) The subjugation of the Low Countries
+#by Bordic
+event = {
+	id = 137020
+	trigger = {
+		NOT = {
+			vassal = { country = BUR country = HAB }
+			war = { country = BUR country = HAB }
+		}
+		event = 137018 #BUR: The succession of Archduchess Mary
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME137020" #The subjugation of the Low Countries
+	desc = "EVENTHIST137020"
+	#-#Frederick V (III) of Austria sent an army under the command of the Duke of Saxony in the Low Countries to repress the population of Flanders who dared to take his son Maximilian captive at Bruges and forced him to sign a treaty that granted large autonomy to the Flemish administration. The struggle lasted a year but at the end the people of Flanders was subdued. A new treaty was stipulated between Maximilian and the representatives of Flanders in October 1489. Maximilian obtained uncontrolled guardianship of his son, absolute dominion over Flanders and the other provinces. The rebelling burghers were severely punished for remembering that they had been freemen. The magistrates of the three largest Flemish cities of Ghent, Bruges and Ypres were compelled to implore the despot's forgiveness, and to pay a large sum of money in gold as its price. After this, for a brief season, order reigned in Flanders.
+
+	date = { day = 20 month = October year = 1489 }
+	offset = 30
+	deathdate = { day = 20 month = August year = 1493 }
+
+	action_a = {
+		name = "ACTIONNAME137020A" #Let's swear allegiance to the Empire
+		command = { type = stability value = 1 }
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = domestic which = ARISTOCRACY value = 2 }
+		command = { type = domestic which = SERFDOM value = 2 }
+		command = { type = ADM which = -2 value = 24 }
+		command = { type = DIP which = 2 value = 24 }
+		command = { type = MIL which = -2 value = 24 }
+		command = { type = revoltrisk which = 24 value = -3 }
+		command = { type = treasury value = 100 }
+		command = { type = trigger which = 179031 } #HAB: The Habsburgs rule in the Low Countries
+	}
+}
+#End of "Maximilian's regency" Sequence
+#-----------------------------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------------------------
+#"Cleves" Sequence - Ahistorical
+
+#(1477-1482) Mary's German suitors - Ahistorical
+#by Bordic
+event = {
+	id = 137038
+	trigger = {
+		flag = [Lowlands]
+		flag = [German_suitor]
+		OR = {
+			exists = KLE
+			exists = PFA
+		}
+		OR = {
+			NOT = { war = { country = BUR country = KLE } }
+			NOT = { war = { country = BUR country = PFA } }
+		}
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME137038" #Mary's German suitors
+	desc = "EVENTHIST137038"
+	#-#With the Great Privilege granted, the Flemish cities willingly raised a force of 34,000 men to resist the French invasion, and adequate means for carrying on the war. But the French aggression forced Archduchess Mary to make a decision about the choice of an husband capable to save the Burgundian dominions from the eager hands of Louis XI of France. She refused Louis XI' offer to marry the Dauphin and cancelled the promise of marriage previously made to Maximilian of Habsburg, as both solutions would mean the end of independence from France or the Empire. However arrangements for a marriage were to be hastened and for sure other suitors wouldn't miss the opportunity to get the Burgundian throne. Amongst Mary's suitors, 'Philipp der Edelmütige', a German noble member of the Palatine branch of the House of Wittesbach and Imperial Kurfürst (Elector Palatine) and 'Johann II Duke of Cleves-Mark', another German prince. Both of them would provide substantial diplomatic, military and other ressources nearby in order to support a free and still independent Burgundy against any French aggression. By marrying a local noble such as 'Filips van Kleef' (Philip of Cleves) Lord of Ravenstein (German born but Flemish grown up member of a noble and powerful family with blood relations to the Valois dynasty) Burgundy would wholly benefit from the allegiance of the Flemish cities. However she will be on her own.
+
+	date = { day = 19 month = August year = 1477 }
+	offset = 20
+	deathdate = { day = 26 month = March year = 1482 } #Mary's death
+
+	action_a = {
+		ai_chance = 49
+		name = "ACTIONNAME137038A" #Marry Johann von Kleve-Mark
+		trigger = {
+			exists = KLE
+			NOT = { war = { country = BUR country = KLE } }
+		}
+		command = { type = setflag which = [Kleve] }
+		command = { type = dynastic which = KLE }
+		command = { type = alliance which = KLE }
+		command = { type = sleepmonarch which = 027017 } #Philippe IV *
+		command = { type = sleepmonarch which = 027018 } #Charles II *
+		command = { type = sleepmonarch which = 027019 } #Jean II *
+		command = { type = sleepmonarch which = 027020 } #Henri Ier *
+		command = { type = sleepmonarch which = 027021 } #Charles III *
+		command = { type = sleepmonarch which = 027022 } #Philippe V *
+		command = { type = sleepmonarch which = 027023 } #Marie *
+		command = { type = sleepmonarch which = 027024 } #Charles IV *
+		command = { type = sleepmonarch which = 027025 } #Jean III *
+		command = { type = sleepmonarch which = 027026 } #Henri II *
+		#(from monarchs.kle)
+		command = { type = wakemonarch which = 027039 } #Jean II ° #(Johann II der Fromme)
+		command = { type = wakemonarch which = 027040 } #Jean III * #(Johann III der Friedliche)
+		command = { type = wakemonarch which = 027041 } #Guillaume Ier * #(Wilhelm V der Reiche)
+		command = { type = wakemonarch which = 027042 } #Jean Guillaume * #(Johann Wilhelm der Gute)
+		command = { type = wakemonarch which = 027043 } #Jean IV * #(Johann IV *)
+		command = { type = wakemonarch which = 027044 } #Adolphe Ier * #(Adolf III *)
+		command = { type = wakemonarch which = 027045 } #Jean Frédéric * #(Johann Friedrich *)
+		command = { type = wakemonarch which = 027046 } #Frédéric Guillaume * #(Friedrich Wilhelm *)
+		command = { type = wakemonarch which = 027047 } #Adolphe II * #(Adolf IV *)
+		command = { type = sleepevent which = 200013 } #KLE: Refugees from the Netherlands
+		command = { type = sleepevent which = 235008 } #BRG: The succession in Jülich-Berg
+		command = { type = trigger which = 200020 } #KLE: The marriage with Mary of Burgundy
+	}
+	action_b = {
+		ai_chance = 49
+		name = "ACTIONNAME137038B" #Marry the Palatine Kurfürst
+		trigger = {
+			exists = PFA
+			NOT = { war = { country = BUR country = PFA } }
+		}
+		command = { type = setflag which = [Palatine] }
+		command = { type = dynastic which = PFA }
+		command = { type = alliance which = PFA }
+		command = { type = sleepmonarch which = 027017 } #Philippe IV *
+		command = { type = sleepmonarch which = 027018 } #Charles II *
+		command = { type = sleepmonarch which = 027019 } #Jean II *
+		command = { type = sleepmonarch which = 027020 } #Henri Ier *
+		command = { type = sleepmonarch which = 027021 } #Charles III *
+		command = { type = sleepmonarch which = 027022 } #Philippe V *
+		command = { type = sleepmonarch which = 027023 } #Marie *
+		command = { type = sleepmonarch which = 027024 } #Charles IV *
+		command = { type = sleepmonarch which = 027025 } #Jean III *
+		command = { type = sleepmonarch which = 027026 } #Henri II *
+		#(from monarchs.pfa)
+		command = { type = wakemonarch which = 027027 } #Philippe IV ° #(Philipp der Edelmütige)
+		command = { type = wakemonarch which = 027028 } #Louis Ier ° #(Ludwig V)
+		command = { type = wakemonarch which = 027029 } #Frédéric Ier * #(Friedrich II der Weise)
+		command = { type = wakemonarch which = 027030 } #Othon Henri * #(Otto Heinrich)
+		command = { type = wakemonarch which = 027031 } #Frédéric II * #(Friedrich III der Fromme)
+		command = { type = wakemonarch which = 027032 } #Louis II * #(Ludwig VI)
+		command = { type = wakemonarch which = 027033 } #Frédéric III * #(Friedrich IV der Aufrechte)
+		command = { type = wakemonarch which = 027034 } #Frédéric IV * #(Friedrich V der Winterkönig)
+		command = { type = wakemonarch which = 027035 } #Maximilien Ier * #(Maximilian)
+		command = { type = wakemonarch which = 027036 } #Charles Louis * #(Karl I Ludwig)
+		command = { type = wakemonarch which = 027037 } #Charles II * #(Karl II)
+		command = { type = wakemonarch which = 027038 } #Philippe Guillaume * #(Philipp Wilhelm)
+		command = { type = wakemonarch which = 027048 } #Jean Guillaume * #(Johann Wilhelm)
+		command = { type = wakemonarch which = 027049 } #Charles Philippe * #(Karl III Philipp)
+		command = { type = wakemonarch which = 027050 } #Charles Théodore * #(Karl IV Theodor)
+		command = { type = wakemonarch which = 027051 } #Maximilien II * #(Maximilian IV of Bavaria)
+		command = { type = sleepevent which = 125006 } #BAY: War of Succession in Landshut
+		command = { type = sleepevent which = 179001 } #HAB: The rewards of mediation
+		command = { type = trigger which = 255010 } #PFA: The marriage with Mary of Burgundy
+	}
+	action_c = {
+		ai_chance = 2
+		name = "ACTIONNAME137038C" #Marry the Lord of Ravenstein
+		#(fantasy monarchs.bur)
+		command = { type = DIP which = -2 value = 6 }
+		command = { type = vp value = -5 }
+	}
+}
+
+#(1482) The succession of Archduchess Mary - Ahistorical
+event = {
+	id = 137041
+	trigger = {
+		flag = [Kleve]
+		exists = KLE
+		ai = yes
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME137018" #The succession of Archduchess Mary
+	desc = "EVENTHIST137041"
+	#-#On 27 March 1482 Archuchess Marie incidentally fell from her horse while at hunting with a falcon in the surroundings of Bruges and died from injuries sustained. Although before dying she managed to have her husband Johann be recognized from the cities in the Low Countries as legitimate successor to the throne of Burgundy, opposition was strong in the Valois ancestral lands of Bourgogne.
+
+	date = { day = 27 month = march year = 1482 }
+
+	action_a = {
+		name = "ACTIONNAME137041A" #Make Cleves the center of our dominions (End Game)
+		command = { type = revolt which = 379 } #Artois
+		command = { type = revolt which = 383 } #Picardie
+		command = { type = revolt which = 387 } #Franche-Comté
+		command = { type = revolt which = 409 } #Bourgogne
+		command = { type = independence which = GEL }
+		command = { type = independence which = FRI }
+		command = { type = independence which = HAN }
+		command = { type = independence which = KOL }
+		command = { type = independence which = PFA }
+		command = { type = independence which = OLD }
+		command = { type = independence which = BRE }
+		command = { type = independence which = BRG }
+		command = { type = independence which = LOR }
+		command = { type = independence which = HES }
+		command = { type = independence which = MAI }
+		command = { type = independence which = SAV }
+		command = { type = independence which = HEL }
+		command = { type = independence which = PRO }
+		command = { type = cedeprovince which = TYR value = 374 } #Sundgau returned to Sigismund of Tyrol #Alsace
+		command = { type = cedeprovince which = TYR value = 373 } #Baden returned to Sigismund of Tyrol #Baden
+		#just in case Savoy, Switzerland and Palatinate already exist, even if partially
+		command = { type = cedeprovince which = SAV value = 404 } #Piemonte
+		command = { type = cedeprovince which = SAV value = 405 } #Savoie
+		command = { type = cedeprovince which = HEL value = 388 } #Bern
+		command = { type = cedeprovince which = HEL value = 1612} #Schwyz
+		command = { type = cedeprovince which = PFA value = 345 } #Pfalz
+		command = { type = cedeprovince which = PFA value = 347 } #Würzburg
+		command = { type = removecore_national which = 374 } #Alsace to be changed to new Sundgau province as soon as new map appears
+		command = { type = trigger which = 200018 } #KLE: The Duke of Cleves-Mark inherits Burgundy
+	}
+}
+#(1482) The succession of Archduchess Mary - Ahistorical
+event = {
+	id = 137042
+	trigger = {
+		flag = [Kleve]
+		exists = KLE
+		ai = no
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME137018" #The succession of Archduchess Mary
+	desc = "EVENTHIST137041"
+	#-#On 27 March 1482 Archuchess Marie incidentally fell from her horse while at hunting with a falcon in the surroundings of Bruges and died from injuries sustained. Although before dying she managed to have her husband Johann be recognized from the cities in the Low Countries as legitimate successor to the throne of Burgundy, opposition was strong in the Valois ancestral lands of Bourgogne.
+
+	date = { day = 27 month = march year = 1482 }
+
+	action_a = {
+		name = "ACTIONNAME137041A" #Make Cleves the center of our dominions (End Game)
+		command = { type = revolt which = 379 } #Artois
+		command = { type = revolt which = 383 } #Picardie
+		command = { type = revolt which = 387 } #Franche-Comté
+		command = { type = revolt which = 409 } #Bourgogne
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = independence which = GEL }
+		command = { type = independence which = FRI }
+		command = { type = independence which = HAN }
+		command = { type = independence which = KOL }
+		command = { type = independence which = PFA }
+		command = { type = independence which = OLD }
+		command = { type = independence which = BRE }
+		command = { type = independence which = BRG }
+		command = { type = independence which = LOR }
+		command = { type = independence which = HES }
+		command = { type = independence which = MAI }
+		command = { type = independence which = SAV }
+		command = { type = independence which = HEL }
+		command = { type = independence which = PRO }
+		command = { type = cedeprovince which = TYR value = 374 } #Sundgau returned to Sigismund of Tyrol #Alsace
+		command = { type = cedeprovince which = TYR value = 373 } #Baden returned to Sigismund of Tyrol #Baden
+		#just in case Savoy, Switzerland and Palatinate already exist, even if partially
+		command = { type = cedeprovince which = SAV value = 404 } #Piemonte
+		command = { type = cedeprovince which = SAV value = 405 } #Savoie
+		command = { type = cedeprovince which = HEL value = 388 } #Bern
+		command = { type = cedeprovince which = HEL value = 1612} #Schwyz
+		command = { type = cedeprovince which = PFA value = 345 } #Pfalz
+		command = { type = cedeprovince which = PFA value = 347 } #Würzburg
+		command = { type = removecore_national which = 374 } #Alsace to be changed to new Sundgau province as soon as new map appears
+		command = { type = trigger which = 200018 } #KLE: The Duke of Cleves and Mark inherits Burgundy
+	}
+	action_b = {
+		name = "ACTIONNAME137042B" #Rule over Cleves and Mark from Burgundy
+		command = { type = stability value = -3 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = trigger which = 200019 } #KLE: The fate of Cleves and Mark
+	}
+}
+#(1482) Cleves unified with Burgundy - Ahistorical
+event = {
+	id = 137045 #triggered by KLE_200019 A
+	random = no
+	country = BUR
+	name = "EVENTNAME137045" #Cleves unified with Burgundy
+	desc = "EVENTHIST200019"
+	#-#On 27 March 1482 Archuchess Marie incidentally fell from her horse while at hunting with a falcon in the surroundings of Bruges and died from injuries sustained. Although before dying she managed to have her husband Johann be recognized from the cities in the Low Countries as legitimate successor to the throne of Burgundy, opposition was strong in the Valois ancestral lands of Bourgogne. But in order to keep his right to the Burgundian succession as new Archduke of Burgundy Johann of Kleve-Mark decided to annex Cleves.
+
+	action_a = {
+		name = "OK"
+		command = { type = addcore_national which = 334 } #Münster
+		command = { type = inherit which = KLE }
+	}
+}
+#(1482-1560) The House of Kleve-Mark settles in Burgundy - Ahistorical
+#by Bordic
+event = {
+	id = 137046
+	trigger = {
+		owned = { province = 334 data = -1 } #Münster
+		control = { province = 334 data = -1 } #Münster
+		NOT = { exists = KLE }
+		flag = [Kleve]
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME137046" #The House of Kleve-Mark settles in Burgundy
+	desc = "EVENTHIST137046"
+	#-#Aiming at having a stronger country to stop the French Kings from interefering in the Low Countries, the Emperor is favourably inclined to acknowledge the Duke of Kleve-Mark his claims to the Valois inheritance of Burgundy. Which imperial title should we apply for in the administration of the fiefs of Low Countries, Cleves and Mark?
+
+	date = { day = 29 month = March year = 1482 }
+	offset = 60
+	deathdate = { day = 0 month = january year = 1559 }
+
+	action_a = {
+		name = "ACTIONNAME137046A" #We will rule as Dukes of Kleve-Mark
+		command = { type = add_countryculture which = german }
+		command = { type = remove_countryculture which = dutch }
+		command = { type = remove_countryculture which = french }
+		command = { type = add_countryculture which = dutch } #to order them properly
+		command = { type = capital which = 334 } #Münster
+		command = { type = clrflag which = [Lowlands] }
+		command = { type = revolt which = 379 } #Artois
+		command = { type = revolt which = 383 } #Picardie
+		command = { type = revolt which = 387 } #Franche-Comté
+		command = { type = revolt which = 409 } #Bourgogne
+		command = { type = removecore_national which = 383 } #Picardie
+		command = { type = removecore_national which = 376 } #Champagne
+		command = { type = removecore_national which = 386 } #Nivernais
+		command = { type = removecore_national which = 387 } #Franche-Comté (no Dutch revolts)
+		command = { type = removecore_national which = 409 } #Bourgogne
+		command = { type = relation which = FRA value = -75 }
+		command = { type = flagname which = "" }
+		command = { type = country which = KLE }
+	}
+	action_b = {
+		name = "ACTIONNAME137046B" #We will rule as Archdukes of Burgundy
+		command = { type = vp value = -5 }
+		command = { type = revolt which = 334 } #Münster
+		command = { type = relation which = FRA value = -75 }
+		command = { type = wakeleader which = 027311 } #Jean II (BUR)
+	}
+}
+#End of "Cleves" Sequence
+#-----------------------------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------------------------
+#"Palatinate" Sequence - Ahistorical
+
+#(1482) The succession of Archduchess Mary - Ahistorical
+event = {
+	id = 137039
+	trigger = {
+		flag = [Palatine]
+		exists = PFA
+		ai = yes
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME137018" #The succession of Archduchess Mary
+	desc = "EVENTHIST137039"
+	#-#On 27 March 1482 Archuchess Marie incidentally fell from her horse while at hunting with a falcon in the surroundings of Bruges and died from injuries sustained. Although before dying she managed to have her husband Philipp be recognized from the cities in the Low Countries as legitimate successor to the throne of Burgundy, opposition was strong in the Valois ancestral lands of Bourgogne.
+
+	date = { day = 27 month = march year = 1482 }
+
+	action_a = {
+		name = "ACTIONNAME137039A" #Make Palatinate the center of our dominions (End Game)
+		command = { type = revolt which = 379 } #Artois
+		command = { type = revolt which = 383 } #Picardie
+		command = { type = revolt which = 387 } #Franche-Comté
+		command = { type = revolt which = 409 } #Bourgogne
+		command = { type = independence which = GEL }
+		command = { type = independence which = FRI }
+		command = { type = independence which = KLE }
+		command = { type = independence which = HAN }
+		command = { type = independence which = KOL }
+		command = { type = independence which = OLD }
+		command = { type = independence which = BRE }
+		command = { type = independence which = BRG }
+		command = { type = independence which = LOR }
+		command = { type = independence which = HES }
+		command = { type = independence which = MAI }
+		command = { type = independence which = SAV }
+		command = { type = independence which = HEL }
+		command = { type = independence which = PRO }
+		command = { type = cedeprovince which = PFA value = 345 } #Pfalz
+		command = { type = cedeprovince which = PFA value = 347 } #Würzburg
+		command = { type = cedeprovince which = TYR value = 374 } #Sundgau returned to Sigismund of Tyrol #Alsace
+		command = { type = cedeprovince which = TYR value = 373 } #Baden returned to Sigismund of Tyrol #Baden
+		#just in case Savoy, Switzerland already exist, even if partially
+		command = { type = cedeprovince which = SAV value = 404 } #Piemonte
+		command = { type = cedeprovince which = SAV value = 405 } #Savoie
+		command = { type = cedeprovince which = HEL value = 388 } #Bern
+		command = { type = cedeprovince which = HEL value = 1612} #Schwyz
+		command = { type = removecore_national which = 374 } #Alsace to be changed to new Sundgau province as soon as new map appears
+		command = { type = trigger which = 255011 } #PFA: The Elector Palatine inherits Burgundy
+	}
+}
+#(1482) The succession of Archduchess Mary - Ahistorical
+event = {
+	id = 137040
+	trigger = {
+		flag = [Palatine]
+		exists = PFA
+		ai = no
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME137018" #The succession of Archduchess Mary
+	desc = "EVENTHIST137039"
+	#-#On 27 March 1482 Archuchess Marie incidentally fell from her horse while at hunting with a falcon in the surroundings of Bruges and died from injuries sustained. Although before dying she managed to have her husband Philipp be recognized from the cities in the Low Countries as legitimate successor to the throne of Burgundy, opposition was strong in the Valois ancestral lands of Bourgogne.
+
+	date = { day = 27 month = march year = 1482 }
+
+	action_a = {
+		name = "ACTIONNAME137039A" #Make Palatinate the center of our dominions (End Game)
+		command = { type = revolt which = 379 } #Artois
+		command = { type = revolt which = 383 } #Picardie
+		command = { type = revolt which = 387 } #Franche-Comté
+		command = { type = revolt which = 409 } #Bourgogne
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = independence which = GEL }
+		command = { type = independence which = FRI }
+		command = { type = independence which = KLE }
+		command = { type = independence which = HAN }
+		command = { type = independence which = KOL }
+		command = { type = independence which = OLD }
+		command = { type = independence which = BRE }
+		command = { type = independence which = BRG }
+		command = { type = independence which = LOR }
+		command = { type = independence which = HES }
+		command = { type = independence which = MAI }
+		command = { type = independence which = SAV }
+		command = { type = independence which = HEL }
+		command = { type = independence which = PRO }
+		command = { type = cedeprovince which = PFA value = 345 } #Pfalz
+		command = { type = cedeprovince which = PFA value = 347 } #Würzburg
+		command = { type = cedeprovince which = TYR value = 374 } #Sundgau returned to Sigismund of Tyrol #Alsace
+		command = { type = cedeprovince which = TYR value = 373 } #Baden returned to Sigismund of Tyrol #Baden
+		#just in case Savoy, Switzerland already exist, even if partially
+		command = { type = cedeprovince which = SAV value = 404 } #Piemonte
+		command = { type = cedeprovince which = SAV value = 405 } #Savoie
+		command = { type = cedeprovince which = HEL value = 388 } #Bern
+		command = { type = cedeprovince which = HEL value = 1612} #Schwyz
+		command = { type = removecore_national which = 374 } #Alsace to be changed to new Sundgau province as soon as new map appears
+		command = { type = trigger which = 255011 } #PFA: The Elector Palatine inherits Burgundy
+	}
+	action_b = {
+		name = "ACTIONNAME137040B" #Rule over Palatinate from our court
+		command = { type = stability value = -3 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = trigger which = 255012 } #PFA: The fate of Rhineland
+	}
+}
+#(1482) Palatinate unified with Burgundy - Ahistorical
+event = {
+	id = 137043 #triggered by PFA_255012 A
+	random = no
+	country = BUR
+	name = "EVENTNAME137043" #Palatinate unified with Burgundy
+	desc = "EVENTHIST255012"
+	#-#On 27 March 1482 Archuchess Marie incidentally fell from her horse while at hunting with a falcon in the surroundings of Bruges and died from injuries sustained. Although before dying she managed to have her husband Philipp be recognized from the cities in the Low Countries as legitimate successor to the throne of Burgundy, opposition was strong in the Valois ancestral lands of Bourgogne. But in order to keep his right to the Burgundian succession Philipp of Wittelsbach decided to annex Palatinate as new Archduke of Burgundy.
+
+	action_a = {
+		name = "OK"
+		command = { type = addcore_national which = 345 } #Pfalz
+		command = { type = addcore_national which = 347 } #Würzburg
+		command = { type = inherit which = PFA }
+	}
+}
+#(1482-1560) The House of Wittelsbach settles in Burgundy - Ahistorical
+#by Bordic
+event = {
+	id = 137044
+	trigger = {
+		owned = { province = 345 data = -1 } #Pfalz
+		control = { province = 345 data = -1 } #Pfalz
+		NOT = { exists = PFA }
+		flag = [Palatine]
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME137044" #The House of Wittelsbach settles in Burgundy
+	desc = "EVENTHIST137044"
+	#-#Aiming at having a stronger country to stop the French Kings from interefering in the Low Countries, the Emperor is favourably inclined to acknowledge the Elector Palatine his claims to the Valois inheritance of Burgundy. Which imperial title should we apply for in the administration of the fiefs of Low Countries and Palatinate?
+
+	date = { day = 29 month = March year = 1482 }
+	offset = 60
+	deathdate = { day = 0 month = january year = 1559 }
+
+	action_a = {
+		name = "ACTIONNAME137044A" #We will rule as Elector Palatine
+		command = { type = add_countryculture which = german }
+		command = { type = remove_countryculture which = dutch }
+		command = { type = remove_countryculture which = french }
+		command = { type = add_countryculture which = dutch } #to order them properly
+		command = { type = capital which = 345 } #Pfalz
+		command = { type = clrflag which = [Lowlands] }
+		command = { type = revolt which = 379 } #Artois
+		command = { type = revolt which = 383 } #Picardie
+		command = { type = revolt which = 387 } #Franche-Comté
+		command = { type = revolt which = 409 } #Bourgogne
+		command = { type = removecore_national which = 383 } #Picardie
+		command = { type = removecore_national which = 376 } #Champagne
+		command = { type = removecore_national which = 386 } #Nivernais
+		command = { type = removecore_national which = 387 } #Franche-Comté (no Dutch revolts)
+		command = { type = removecore_national which = 409 } #Bourgogne
+		command = { type = relation which = BAY value = 75 }
+		command = { type = relation which = FRA value = -75 }
+		command = { type = flagname which = "" }
+		command = { type = country which = PFA }
+	}
+	action_b = {
+		name = "ACTIONNAME137044B" #We will rule as Archdukes of Burgundy
+		command = { type = vp value = -5 }
+		command = { type = revolt which = 345 } #Pfalz
+		command = { type = revolt which = 347 } #Würzburg
+		command = { type = relation which = BAY value = 75 }
+		command = { type = relation which = FRA value = -75 }
+		command = { type = wakeleader which = 027312 } #von Sickingen (BUR)
+		command = { type = wakeleader which = 027313 } #Martin Bucer (BUR)
+		command = { type = wakeleader which = 027314 } #Mansfeld (BUR)
+		command = { type = wakeleader which = 027315 } #von Riedesel (BUR)
+		command = { type = sleepevent which = 125034 } #BAY: The Palatine Wittelsbach settles in Munich
+	}
+}
+#End of "Palatinate" Sequence
+#-----------------------------------------------------------------------------------------------
+
+#(1482-1492) Settlement at Arras
+#by Bordic
+event = {
+	id = 137012
+	trigger = {
+		NOT = { war = { country = FRA country = BUR } }
+		OR = {
+			flag = [Habsburg]
+			event = 3178 #HAB: The Habsburg inheritance of Burgundy (1477)
+		}
+		flag = [Lowlands]
+		OR = {
+			owned = { province = 379 data = -1 } #Artois
+			owned = { province = 387 data = -1 } #Franche-Comté
+			owned = { province = 379 data = FRA } #Artois
+			owned = { province = 387 data = FRA } #Franche-Comté
+		}
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME137012" #Settlement at Arras
+	desc = "EVENTHIST137012"
+	#-#A peace treaty was stipulated in Arras between Louis XI of France and the local governments of Burgundian Low Countries since Mary, Duchess of Burgundy had died a few months before. The Treaty arose primarily as a means with which to secure the Low Countries from Louis's claims, and thus preserve the stability and status of Duke Philippe's lowland inheritance. The Treaty formally rendered to Louis provinces in his realm that he had claimed at the outset of the war, and also recognized and reaffirmed Flandern as fief of France. In order to solidify a lasting peace, the Treaty pledged Mary's daughter, Margaret, to Louis's son and heir, Charles. Thus, Louis's acquisitions were, in light of the treaty, dowry for Margaret's marriage. Maximilian, of course, would have to agree to the marriage.
+
+	date = { day = 23 month = December year = 1482 }
+	offset = 30
+	deathdate = { day = 23 month = December year = 1492 }
+
+	action_a = {
+		name = "ACTIONNAME137012A" #Preserve the lowlands
+		command = { type = cedeprovince which = FRA value = 385 } #Ile de France - just in case
+		command = { type = cedeprovince which = FRA value = 376 } #Nivernais
+		command = { type = cedeprovince which = FRA value = 379 } #Artois
+		command = { type = cedeprovince which = FRA value = 382 } #Calais
+		command = { type = cedeprovince which = FRA value = 383 } #Picardie
+		command = { type = cedeprovince which = FRA value = 386 } #Champagne
+		command = { type = cedeprovince which = FRA value = 387 } #Franche-Comté
+		command = { type = cedeprovince which = FRA value = 409 } #Bourgogne
+		command = { type = relation which = FRA value = 200 }
+		command = { type = removecore which = 376 } #Nivernais
+		command = { type = removecore which = 379 } #Artois
+		command = { type = removecore which = 383 } #Picardie
+		command = { type = removecore which = 386 } #Champagne
+		command = { type = removecore which = 387 } #Franche-Comté
+		command = { type = removecore which = 409 } #Bourgogne
+		command = { type = trigger which = 170061 } #FRA: Margarete's dowry
+	}
+	action_b = {
+		name = "ACTIONNAME137012B" #Let's defend them instead
+		command = { type = stability value = -2 }
+		command = { type = DIP which = -2 value = 24 }
+		command = { type = ADM which = -2 value = 24 }
+		command = { type = MIL which = -2 value = 24 }
+		command = { type = revolt which = 378 } #Brabant
+		command = { type = revolt which = 378 } #Brabant
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = revolt which = 380 } #Flandern
+		command = { type = relation which = HAB value = 25 }
+		command = { type = relation which = FRA value = -75 }
+		command = { type = sleepevent which = 170000 } #FRA: The Treaty of Senlis
+		command = { type = sleepevent which = 179062 } #HAB: Louis's Proposal
+	}
+}
+#(1482-1492) Maximilian ratifies the Treaty of Arras
+event = {
+	id = 137033 #triggered by HAB_179062 A
+	random = no
+	country = BUR
+	name = "EVENTNAME137033" #Maximilian ratifies the Treaty of Arras
+	desc = "EVENTHIST137033"
+	#-#Maximilian finally agreed to the Arras settlement negotiated and signed between King Louis XI and the lowlands government. Although Philip would not inherit the entirety of his grandfather's estates, the lowlands were secured, and the Burgundian war of succession was finally over.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = stability value = 1 }
+		command = { type = relation which = FRA value = 100 }
+		command = { type = sleepevent which = 137035 } #BUR: Philippe's Burgundian claims
+		command = { type = sleepevent which = 137036 } #BUR: Philippe's Burgundian claims (Nivernais and Champagne included)
+	}
+}
+#(1482-1492) Maximilian Refuses the Settlement at Arras
+event = {
+	id = 137034 #triggered by HAB_179062 B
+	random = no
+	country = BUR
+	name = "EVENTNAME137034" #Maximilian Refuses the Settlement at Arras
+	desc = "EVENTHIST137034"
+	#-#Maximilian refused to sign the settlement negotiated and signed between King Louis XI and the lowlands government. Maximilian's decision had demonstrated to the burghers his failure to preserve the interests of the lowlands, and served to reinforce their decision to remove Maximilian from government. Believing it to be in their best interest and in those of their young Duke Philippe, the nobles and burghers strengthened their hold on the government, and entreated with France to secure aid in case Maximilian took punitive action.
+
+	action_a = {
+		name = "ACTIONNAME137034A" #Reinforce Conciliar government
+		command = { type = stability value = -1 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = relation which = FRA value = 100 }
+		command = { type = relation which = HAB value = -100 }
+	}
+}
+
+#(1482-1486) Sigismund of Tyrol renounces claim on Vorlande - Ahistorical
+event = {
+	id = 137076 #triggered by TYR_322028 A
+	random = no
+	country = BUR
+	name = "EVENTNAME137076" #Sigismund of Tyrol renounces claim on Vorlande
+	desc = "EVENTHIST137076"
+	#-#As the new dynasty started settling into Brussels, it was time to determine the final fate of Vorlande. As expected, Sigismund was in no way capable of paying enough to get his lands back, and Vorlande was made part of Burgundy with his consent.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = addcore which = 373 } #Baden
+		command = { type = addcore which = 374 } #Alsace to be changed to new Sundgau province as soon as new map appears
+	}
+}
+#(1482-1486) Sigismund of Tyrol reclaims Vorlande - Ahistorical
+event = {
+	id = 137077 #triggered by TYR_322028 B
+	random = no
+	country = BUR
+	name = "EVENTNAME137077" #Sigismund of Tyrol reclaims Vorlande
+	desc = "EVENTHIST137077"
+	#-#As the new dynasty started settling into Brussels, they were surprised by that Sigismund of Tyrol was able to offer enough gold to rebuy the lands he sold to Charles the Bold.
+
+	action_a = {
+		name = "ACTIONNAME137077A" #We have no choice
+		command = { type = treasury value = 200 }
+		command = { type = cedeprovince which = TYR value = 373 } #Baden
+		command = { type = cedeprovince which = TYR value = 374 } #Alsace to be changed to new Sundgau province as soon as new map appears
+	}
+}
+
+#(1487-1820) Habsburgs reclaim Vorlande - Ahistorical
+event = {
+	id = 137078 #triggered by HAB_179153 A
+	random = no
+	country = BUR
+	name = "EVENTNAME137078" #Habsburgs reclaim Vorlande
+	desc = "EVENTHIST137078"
+	#-#As the new dynasty started settling into Brussels, an offer came from Austrian successors of Sigismund of Tyrol to reclaim the lands he mortgaged to Charles the Bold.
+
+	action_a = {
+		name = "ACTIONNAME137077A" #We have no choice
+		command = { type = treasury value = 200 }
+		command = { type = cedeprovince which = HAB value = 373 } #Baden
+		command = { type = cedeprovince which = HAB value = 374 } #Alsace to be changed to new Sundgau province as soon as new map appears
+	}
+}
+#(1487-1820) Habsburgs renounce claim on Vorlande - Ahistorical
+event = {
+	id = 137079 #triggered by HAB_179153 B
+	random = no
+	country = BUR
+	name = "EVENTNAME137079" #Habsburgs renounce claim on Vorlande
+	desc = "EVENTHIST137079"
+	#-#Sigismund of Tyrol failed to settle the issue of Vorlande with the new Burgindian dinasty before he was succeeded by the Austrian branch of Habsburgs. Since they can't afford to rebuy the lands either, Vorlande can now be incorporated into our realm with their consent.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = addcore which = 373 } #Baden
+		command = { type = addcore which = 374 } #Alsace to be changed to new Sundgau province as soon as new map appears
+	}
+}
+
+#(1492) Invasion of Guelders
+event = {
+	id = 137006 #triggered by FRA_170014 A
+	random = no
+	country = BUR
+	name = "EVENTNAME137006" #Karel of Egmont invades Guelders
+	desc = "EVENTHIST137006"
+	#-#Despite resistance from Adolf, the dethroned heir to the Duchy of Guelders, and his sister Catherine, Charles the Bold's son in law and successor Maximilian of Habsburg managed to definitely secure Guelders for himself and his wife in 1483. However, Adolf's son Karel did not surrender his claims and turned to Maximilian's archenemy, the King of France, for aid. With an army funded by Charles VIII, Karel succeeded in reconquering his hereditary lands in 1492 and 1493 and was a constant annoyance for the Habsburgs until his death in 1538.
+
+	action_a = {
+		name = "ACTIONNAME137006A" #Not amusing at all
+		command = { type = independence which = GEL }
+		command = { type = stability value = -2 }
+	}
+}
+
+#(1493) Artois and Franche-Comté released from France
+#by Bordic
+event = {
+	id = 137014 #triggered by FRA_170000 A
+	random = no
+	country = BUR
+	name = "EVENTNAME137014" #Artois and Franche-Comté released from France
+	desc = "EVENTHIST170000"
+	#-#In order to be able to marry Anne of Brittany and win Brittany for the French crown, Charles VIII dissolved his betrothal to Margarete of Austria, thus violating the terms of the Peace of Arras in 1482 that had assigned Artois and Franche-Comté to France as dowry of Margarete. Maximilian had managed to consolidate Habsburg rule and soon gained ground against France when the war recommenced. Since Charles was preparing a campaign in Italy, he admitted that he had lost his right to the dowry and ceded the provinces back to Burgundy in the Treaty of Senlis in 1493. Thus ended the great duel of war and intrigue between Louis XI and Charles the Bold. The struggle had taxed the strength of France, which had hardly yet recovered from the Hundred Years War. But the result was all or nearly all that could be wished.
+
+	action_a = {
+		name = "ACTIONNAME3421A" #Accept the treaty
+		command = { type = relation which = FRA value = 50 }
+		command = { type = addcore which = 379 } #Artois
+		command = { type = addcore which = 387 } #Franche-Comté
+		command = { type = hre which = 379 value = yes } #Artois as HRE fief
+		command = { type = hre which = 387 value = yes } #Franche-Comté HRE fief again
+		command = { type = DIP which = 2 value = 60 }
+	}
+}
+
+#(1494) The new Archduke of Burgundy
+#by Bordic
+event = {
+	id = 137021
+	trigger = {
+		OR = {
+			flag = [Habsburg]
+			event = 3178 #HAB: The Habsburg inheritance of Burgundy (1477)
+			event = 137012 #BUR: Settlement at Arras (1482-1492)
+		}
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME137021" #The new Archduke of Burgundy
+	desc = "EVENTHIST137021"
+	#-#In 1493, at the death of his father Frederick of Habsburg, Maximilian succeeded to the imperial throne retiring to his ancestral dominions in Austria. In the following year Maximilian's son, Philippe le Beau, now seventeen years of age and Flemish by birth, received the homage of the different states of the Burgundian Low Countries in becoming the new sovereign of the duchy. But he swore to maintain only the privileges granted before 1477, thus proclaiming null and void all those which might have been acquired since the death of his grandfather Charles the Rush. Holland, Zeland, and the other provinces accepted his rule upon these conditions, thus, without any struggle nor a protest, relinquishing the Great Privilege which the last Valois Archduchess Mary previously conceded, and all other similar charters.
+
+	date = { day = 0 month = January year = 1494 }
+	offset = 360
+	deathdate = { day = 0 month = January year = 1495 }
+
+	action_a = {
+		name = "ACTIONNAME137021A" #Let's pay homage to our new Archduke
+		command = { type = stability value = -1 }
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = revoltrisk which = 24 value = -5 }
+		command = { type = relation which = HAB value = 20 }
+	}
+}
+
+#(1495) The House of Habsburg settles in Spain
+#by Bordic
+event = {
+	id = 137022
+	trigger = {
+		event = 179025 #HAB: The Anti-French League of Venice
+		OR = {
+			flag = [Habsburg]
+			event = 3178 #HAB: The Habsburg inheritance of Burgundy (1477)
+			event = 137012 #BUR: Settlement at Arras (1482-1492)
+			event = 137021 #BUR: The new Archduke of Burgundy (1494)
+		}
+		exists = SPA
+		NOT = {
+			war = { country = BUR country = HAB }
+			war = { country = SPA country = HAB }
+			war = { country = SPA country = BUR }
+		}
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME137022" #The House of Habsburg settles in Spain
+	desc = "EVENTHIST137022"
+	#-#In 1494 Charles VIII invaded Italy. Maximilian of Habsburg, alarmed at the successful progress of Charles VIII in the Italian peninsula, signed the league of Venice with Spain, Venice and Milan to face the powerful French army in the Kingdom of Naples and in the imperial territories in Northern Italy and, in order to strengthen the ties with the new Spanish ally, at about the same time he arranged a marriage between his children, Marguerite and Philippe, and Juan and Juana, son and daughter of Ferdinand and Isabella, respectively King of Aragon and Queen of Castile.
+
+	date = { day = 29 month = March year = 1495 }
+	offset = 7
+	deathdate = { day = 0 month = January year = 1496 }
+
+	action_a = {
+		name = "ACTIONNAME137022A" #Let's bind our destiny to the Spanish Kings
+		command = { type = stability value = 1 }
+		command = { type = revoltrisk which = 60 value = -5 }
+		command = { type = DIP which = 2 value = 12 }
+		command = { type = relation which = SPA value = 300 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = trigger which = 285151 } #SPA: Political marriages with the Habsburgs
+		command = { type = trigger which = 179032 } #HAB: Political marriages with the Spanish royals
+	}
+}
+
+#(1499-1502) The Burgundian Court
+event = {
+	id = 137081
+	trigger = {
+		monarch = 027005 #Philippe IV
+		owned = { province = 380 data = -1 } #Flandern
+		control = { province = 380 data = -1 } #Flandern
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME137081" #The Burgundian Court
+	desc = "EVENTHIST137081"
+	#-#Philip the Handsome, having known that the Duchy of Burgundy moved its court often in its history, decided to set up his capital where he was born, and also in the same place as the very first Burgundian capital in the low countries. This decision was also justified in that the centre of economic and military strength for Burgundy came from Flanders. Having already married Joanna of Spain in Lier, Flanders in 1498, it became apparent that relations with Spain needed an avenue to the sea. Bruges and Flanders supported his ideas.
+
+	date = { day = 1 month = january year = 1499 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1503 }
+
+	action_a = {
+		name = "ACTIONNAME137081A" #Move to Bruges
+		command = { type = stability value = 2 }
+		command = { type = capital which = 380 } #Flandern
+		command = { type = addcore which = 380 } #Flandern
+		command = { type = setflag which = [Lowlands] }
+		command = { type = dynastic which = SPA }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME137081B" #Don't move the capital and gain French support
+		command = { type = relation which = SPA value = -50 }
+		command = { type = relation which = FRA value = 50 }
+	}
+}
+
+#(1500-1506) Philippe's Burgundian claims
+event = {
+	id = 137035
+	trigger = {
+		event = 137034 #BUR: Maximilian Refuses the Settlement at Arras
+		OR = { 
+			core_claim = { province = 389 data = FRA } #Lombardia
+			core_national = { province = 389 data = FRA } #Lombardia
+		}
+		NOT = {
+			event = 170288 #FRA: The Treaty of Troyes
+		}
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME137035" #Philippe's Burgundian claims
+	desc = "EVENTHIST137035"
+	#-#On 7 April 1498, upon King Charles VIII's death, the throne passed to his cousin Louis of Orléans who reigned as Louis XII of France. On his accession, he took the titles of Duke of Milan and King of Sicily, sending a shrounding chill through Italy. No one was more alarmed than Ludovico Sforza, who had seized Milan from his nephew Gian Galeazzo and had subsequently seen his claim legitimized by Maximilian King of the Romans. Now, French imperliastic designs had directly challenged Philippe's father, Maximilan. Duke Philippe's interest in the matter sparked from claims to his ancestral domains in France, which had for some time now been ignored. Years before, Maximilian had refused to sign the Treaty of Arras. With the preserved the claim, Philippe, now a grown man, could repudiate the decision reached by the lowland government during his minority. He had been, afterall, a virtual prisoner of the Regency during that shaky period. Now, French imperliastic designs had directly challenged his father, Maximilan. Thus, Philippe laid claim to the counties his government had given away many years before.
+
+	date = { day = 1 month = january year = 1500 }
+	offset = 600
+	deathdate = { day = 29 month = july year = 1506 }
+
+	action_a = {
+		name = "ACTIONNAME137035A" #Leave it be
+		command = { type = relation which = FRA value = 25 }
+		command = { type = relation which = HAB value = -25 }
+		command = { }
+	}
+	action_b = {
+		name = "ACTIONNAME137035B" #Lay claim to the old Duchy estates!
+		command = { type = addcore which = 379 } #Artois
+		command = { type = addcore which = 383 } #Picardie
+		command = { type = addcore which = 387 } #Franche Comte
+		command = { type = addcore which = 409 } #Bourgogne
+		command = { type = relation which = FRA value = -100 }
+		command = { type = relation which = HAB value = 100 }
+	}
+}
+#(1500-1506) Philippe's Burgundian claims (Nivernais and Champagne included)
+event = {
+	id = 137036
+	trigger = {
+		event = 170288 #FRA: The Treaty of Troyes
+		event = 137034 #BUR: Maximilian Refuses the Settlement at Arras
+		OR = { 
+			core_claim = { province = 389 data = FRA } #Lombardia
+			core_national = { province = 389 data = FRA } #Lombardia
+		}
+		NOT = {
+			event = 137073 #BUR: Treaty of Arras
+		}
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME137035" #Philippe's Burgundian claims
+	desc = "EVENTHIST137035"
+	#-#On 7 April 1498, upon King Charles VIII's death, the throne passed to his cousin Louis of Orléans who reigned as Louis XII of France. On his accession, he took the titles of Duke of Milan and King of Sicily, sending a shrounding chill through Italy. No one was more alarmed than Ludovico Sforza, who had seized Milan from his nephew Gian Galeazzo and had subsequently seen his claim legitimized by Maximilian King of the Romans. Now, French imperliastic designs had directly challenged Philippe's father, Maximilan. Duke Philippe's interest in the matter sparked from claims to his ancestral domains in France, which had for some time now been ignored. Years before, Maximilian had refused to sign the Treaty of Arras. With the preserved the claim, Philippe, now a grown man, could repudiate the decision reached by the lowland government during his minority. He had been, afterall, a virtual prisoner of the Regency during that shaky period. Now, French imperliastic designs had directly challenged his father, Maximilan. Thus, Philippe laid claim to the counties his government had given away many years before.
+
+	date = { day = 1 month = january year = 1494 }
+	offset = 600
+	deathdate = { day = 29 month = july year = 1506 }
+
+	action_a = {
+		name = "ACTIONNAME137035A" #Leave it be
+		command = { type = relation which = FRA value = 25 }
+		command = { type = relation which = HAB value = -25 }
+		command = { }
+	}
+	action_b = {
+		name = "ACTIONNAME137035B" #Lay claim to the old Duchy estates!
+		command = { type = addcore which = 376 } #Nivernais
+		command = { type = addcore which = 379 } #Artois
+		command = { type = addcore which = 383 } #Picardie
+		command = { type = addcore which = 386 } #Champagne
+		command = { type = addcore which = 387 } #Franche Comte
+		command = { type = addcore which = 409 } #Bourgogne
+		command = { type = relation which = FRA value = -100 }
+		command = { type = relation which = HAB value = 100 }
+	}
+}
+
+#(1513-1515) The claim to Franche-Comté
+#by Bordic
+event = {
+	id = 137037
+	trigger = {
+		NOT = { war = { country = FRA country = BUR } }
+		OR = {
+			flag = [Habsburg]
+			event = 3178 #HAB: The Habsburg inheritance of Burgundy (1477)
+			event = 137012 #BUR: Settlement at Arras (1482-1492)
+			event = 137021 #BUR: The new Archduke of Burgundy (1494)
+		}
+		OR = {
+			event = 228029 #MLO: Sforza restored in Milan
+			AND = {
+				NOT = { owned = { province = 389 data = FRA } } #Lombardia
+				OR = { 
+					core_claim = { province = 389 data = FRA } #Lombardia
+					core_national = { province = 389 data = FRA } #Lombardia
+				}
+			}
+		}
+		OR = {
+			core = { province = 387 data = -1 } #Franche-Comté
+			AND = {
+				owned = { province = 387 data = FRA }
+				NOT = { event = 170000 } #FRA: The Treaty of Senlis
+			}
+		}
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME137037" #The claim to Franche-Comté
+	desc = "EVENTHIST137037"
+	#-#In 1506 Philippe le Beau, Archduke of Burgundy and King of Castile as Felipe I, died leaving his children still in minor age. His father Maximilian of Habsburg, Archduke of Autria and King of the Romans, assigned the administration of the Burgundian territories to his daughter Margarete during the minority of Charles, the designated Archduke of Burgundy. In the administration of the County of Burgundy (Franche-Comté) Margarete of Austria could rely upon the support of the Savoyard Mercurino da Gattinara, soon to be personal advisor of Charles V. In 1512 when the French troops were routed from Italy by the Swiss mercenaries in their retaking of Milan, Mercurino managed to stipulate an agreement with Louis XII, King of France, with which the county of Burgundy was to be considered as Burgundian imperial fief and 'neutralized territory' during war times. The treaty, whose terms were guaranteed by the Swiss, was reconfirmed by the new French King François Ier in 1522, thus avoiding Franche-Comté from being ravaged during the Italian Wars.
+
+	date = { day = 7 month = April year = 1513 }
+	offset = 30
+	deathdate = { day = 1 month = January year = 1522 }
+
+	action_a = {
+		name = "ACTIONNAME137037A" #Offer neutrality to France
+		command = { type = stability value = 1 }
+		command = { type = DIP which = 2 value = 24 }
+		command = { type = treasury value = -50 }
+		command = { type = addcore which = 387 } #Franche-Comté
+		command = { type = relation which = HEL value = 50 }
+		command = { type = relation which = HAB value = -25 }
+		command = { type = relation which = SPA value = -25 }
+		command = { type = trigger which = 170159 } #FRA: The neutrality of Franche-Comté
+	}
+	action_b = {
+		name = "ACTIONNAME137037B" #No deal with the French Kings
+		command = { type = stability value = -1 }
+		command = { type = ADM which = -2 value = 60 }
+		command = { type = relation which = HEL value = -25 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = SPA value = 50 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Friesland events by TheF, modified by Twoflower
+
+#(1514-1516) The vassalation of Friesland
+event = {
+	id = 22024 #triggered by FRI_22022 B / GEL_22023 B
+	trigger = {
+		monarch = 027006 #Charles II
+		exists = FRI
+		NOT = {
+			vassal = { country = BUR country = FRI }
+			vassal = { country = FRI country = BUR }
+			war = { country = FRI country = BUR }
+		}
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME22024" #The vassalation of Friesland
+	desc = "EVENTHIST22024"
+	#-#Finally, Friesland is under our control.
+
+	action_a = {
+		name = "SPLENDID"
+		command = { type = vassal which = FRI }
+		command = { }
+	}
+}
+#(1515) The sale of Friesland
+event = {
+	id = 22008 #triggered by MEI_22007 A / SAC_273037 A
+	trigger = {
+		monarch = 027006 #Charles II
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME22007" #The sale of Friesland
+	desc = "EVENTHIST22007"
+	#-#In 1515, Georg had become so disappointed with being unable to control Friesland that he sold it to Charles II of Burgundy, who was trying to unite the Netherlands.
+
+	action_a = {
+		name = "ACTIONNAME22008A" #Buy it!
+		command = { type = treasury value = -200 }
+		command = { type = trigger which = 22009 } #MEI: Charles II bought Friesland
+		command = { type = trigger which = 273038 } #SAC: Charles II bought Friesland
+		command = { type = addcore which = 337 } #Friesen
+	}
+	action_b = {
+		name = "ACTIONNAME22008B" #Reject the offer
+		command = { type = relation which = MEI value = -75 }
+		command = { type = relation which = SAC value = -75 }
+	}
+}
+#(1515) Effect of the sale of Friesland
+event = {
+	id = 137050 #triggered by FRI_22025 A
+	trigger = {
+		monarch = 027006 #Charles II
+		exists = FRI
+		NOT = {
+			vassal = { country = BUR country = FRI }
+			vassal = { country = FRI country = BUR }
+			war = { country = FRI country = BUR }
+		}
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME137050" #Effect of the sale of Friesland
+	desc = "EVENTHIST137050"
+	#-#After the sale of the duchy, Friesland is under our control.
+
+	action_a = {
+		name = "SPLENDID"
+		command = { type = vassal which = FRI }
+		command = { }
+	}
+}
+#-----------------------------------------------------------------------------------------------
+
+#(1517) Charles ascends the Spanish throne
+event = {
+	id = 137003
+	trigger = {
+		OR = {
+			flag = [Habsburg]
+			event = 3178 #HAB: The Habsburg inheritance of Burgundy (1477)
+			event = 137012 #BUR: Settlement at Arras (1482-1492)
+			event = 137021 #BUR: The new Archduke of Burgundy (1494)
+		}
+		exists = SPA
+		ai = no
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME137003" #Charles ascends the Spanish throne
+	desc = "EVENTHIST137003"
+	#-#When Fernando of Aragon died in 1516, Charles who had already inherited Burgundy from his father Philip the Fair in 1506, was heir to the thrones of Castile and Aragon. He set sail for his coronation as King of Spain on September 18th, 1517. Although in the first years of his reign the Dutch influence in his empire remained strong, his united possessions became known as Spain.
+
+	date = { day = 18 month = september year = 1517 }
+
+	action_a = {
+		name = "ACTIONNAME137003A" #Make Spain the center of our empire (End Game)
+		command = { type = cedeprovince which = SPA value = 377 } #Luxembourg
+		#command = { type = cedeprovince which = SPA value = 378 } #Brabant (if capital, CTD)
+		command = { type = cedeprovince which = SPA value = 380 } #Flandern
+		command = { type = cedeprovince which = SPA value = 339 } #Holland
+		command = { type = cedeprovince which = SPA value = 340 } #Zeeland
+		command = { type = cedeprovince which = SPA value = 387 } #Franche-Comté
+		#command = { type = cedeprovince which = SPA value = 409 } #Bourgogne (if capital, CTD)
+		command = { type = cedeprovince which = SPA value = 379 } #Artois
+		command = { type = trigger which = 285100 } #SPA: The Burgundian inheritance
+	}
+	action_b = {
+		name = "ACTIONNAME137003B" #Rule the empire from Brussels
+		command = { type = stability value = -3 }
+		command = { type = trigger which = 285101 } #SPA: Charles of Burgundy inherits Spain
+	}
+}
+#(1517) Spain unified with Burgundy
+event = {
+	id = 137004 #triggered by SPA_285101 A
+	random = no
+	country = BUR
+	name = "EVENTNAME137004" #Spain unified with Burgundy
+	desc = "EVENTHIST137004"
+	#-#The Cortes of Spain have humbly accepted Charles' decision to rule his globe-spanning empire under the Burgundian rule.
+
+	action_a = {
+		name = "ACTIONNAME137004A" #Charles is master of the world
+		command = { type = addcore which = 427 } #Gerona
+		command = { type = addcore which = 429 } #Catalonia
+		command = { type = addcore which = 430 } #Aragon
+		command = { type = addcore which = 431 } #Cantabria
+		command = { type = addcore which = 432 } #Asturias
+		command = { type = addcore which = 433 } #Galicia
+		command = { type = addcore which = 435 } #Leon
+		command = { type = addcore which = 436 } #Castilla
+		command = { type = addcore which = 437 } #Valencia
+		command = { type = addcore which = 438 } #Murcia
+		command = { type = addcore which = 439 } #Toledo
+		command = { type = addcore which = 440 } #Estramadura
+		command = { type = addcore which = 443 } #Andalusia
+		command = { type = addcore which = 444 } #Granada
+		command = { type = addcore which = 445 } #Gibraltar
+		command = { type = addcore which = 817 } #The Canary Islands
+		command = { type = addcore which = 821 } #The Baleares
+		command = { type = addcore which = 393 } #Napoli
+		command = { type = addcore which = 394 } #Apulia
+		command = { type = addcore which = 395 } #Messina
+		command = { type = addcore which = 396 } #Sicily
+		command = { type = addcore which = 397 } #Sardinia
+		command = { type = addcore which = 426 } #Roussillon
+		command = { type = addcore which = 428 } #Navarra
+		command = { type = inherit which = SPA }
+	}
+}
+
+#(1517-1556) Charles' residence and insignia
+#by Bordic
+event = {
+	id = 137016
+	trigger = {
+		event = 137004 #BUR: Spain unified with Burgundy
+		owned = { province = 439 data = -1 } #Toledo
+		control = { province = 439 data = -1 } #Toledo
+		NOT = { exists = SPA }
+		ai = no
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME137016" #Charles' residence and insignia
+	desc = "EVENTHIST137016"
+	#-#Now that also The Cortes of Spain have recognized our right to rule over Spain and Italy, the unification of all those different territories raises the question about the insignia under which we should rule and most of all about where the Royal residence of the new realm should be. The heart of the Iberian peninsula seems to be a good point where to receive in time despatches from the farthest corners of our realms, but also our rich ducal cities in Bourgogne or in the Low Countries could meet our needs and would also permit a better control over the neighbouring countries...
+
+	date = { day = 20 month = september year = 1517 }
+	offset = 30
+	deathdate = { day = 0 month = january year = 1556 }
+
+	action_a = {
+		name = "ACTIONNAME137016A" #Reside in Spain under Spanish insignia
+		command = { type = population which = 378 value = -500 } #Brabant
+		command = { type = population which = 409 value = -500 } #Bourgogne
+		command = { type = population which = 439 value = 1000 } #Toledo
+		command = { type = capital which = 439 } #Toledo
+		command = { type = clrflag which = [Lowlands] }
+		command = { type = treasury value = -50 }
+		command = { type = add_countryculture which = castilian }
+		command = { type = remove_countryculture which = french }
+		command = { type = remove_countryculture which = dutch }
+		command = { type = add_countryculture which = catalan }
+		command = { type = add_countryculture which = italian }
+		command = { type = add_countryculture which = basque }
+		command = { type = add_countryculture which = dutch } #to order them properly
+		command = { type = domestic which = CENTRALIZATION value = -2 }
+		command = { type = domestic which = MERCANTILISM value = 2 }
+		command = { type = domestic which = INNOVATIVE value = -5 }
+		command = { type = domestic which = LAND value = -2 }
+		#Charles V's claims to Burgundian lands ceded with the treaty of Arras 1482
+		command = { type = addcore which = 379 } #Artois
+		command = { type = addcore which = 387 } #Franche-Comté
+		command = { type = country which = SPA }
+	}
+	action_b = {
+		name = "ACTIONNAME137016B" #Reside in Burgundy under Burgundian insignia
+		command = { type = setflag which = [Spain_inherited] } #needed as trigger for all fantasy BUR events
+		command = { type = population which = 378 value = 1000 } #Brabant
+		command = { type = population which = 409 value = 1000 } #Bourgogne
+		command = { type = population which = 439 value = -3000 } #Toledo
+		command = { type = provincetax which = 439 value = -1 } #Toledo
+		command = { type = province_revoltrisk which = 426 value = 5 } #Roussillon
+		command = { type = province_revoltrisk which = 427 value = 5 } #Gerona
+		command = { type = province_revoltrisk which = 429 value = 5 } #Catalonia
+		command = { type = province_revoltrisk which = 430 value = 5 } #Aragon
+		command = { type = province_revoltrisk which = 431 value = 5 } #Cantabria
+		command = { type = province_revoltrisk which = 432 value = 5 } #Asturias
+		command = { type = province_revoltrisk which = 433 value = 5 } #Galicia
+		command = { type = province_revoltrisk which = 435 value = 5 } #Leon
+		command = { type = province_revoltrisk which = 436 value = 5 } #Castilla
+		command = { type = province_revoltrisk which = 437 value = 5 } #Valencia
+		command = { type = province_revoltrisk which = 438 value = 5 } #Murcia
+		command = { type = province_revoltrisk which = 439 value = 5 } #Toledo
+		command = { type = province_revoltrisk which = 440 value = 5 } #Estramadura
+		command = { type = province_revoltrisk which = 443 value = 5 } #Andalusia
+		command = { type = province_revoltrisk which = 444 value = 5 } #Granada
+		command = { type = province_revoltrisk which = 445 value = 5 } #Gibraltar
+		command = { type = province_revoltrisk which = 817 value = 5 } #The Canary Islands
+		command = { type = province_revoltrisk which = 821 value = 5 } #Baleares
+		command = { type = ADM which = -2 value = 60 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		#Charles V's claims to Burgundian lands ceded with the treaty of Arras 1482
+		command = { type = addcore which = 379 } #Artois
+		command = { type = addcore which = 387 } #Franche-Comté
+		command = { type = addcore which = 409 } #Bourgogne
+	}
+}
+
+#(1517) Charles ascends the Spanish throne
+event = {
+	id = 137005
+	trigger = {
+		OR = {
+			flag = [Habsburg]
+			event = 3178 #HAB: The Habsburg inheritance of Burgundy (1477)
+			event = 137012 #BUR: Settlement at Arras (1482-1492)
+			event = 137021 #BUR: The new Archduke of Burgundy (1494)
+		}
+		exists = SPA
+		ai = yes
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME137005" #Charles ascends the Spanish throne
+	desc = "EVENTHIST137005"
+	#-#When Fernando of Aragon died in 1516, Charles who had already inherited Burgundy from his father Philip the Fair in 1506, was heir to the thrones of Castile and Aragon. He set sail for his coronation as King of Spain on September 18th, 1517. Although in the first years of his reign the Dutch influence in his empire remained strong, his united possessions became known as Spain.
+
+	date = { day = 18 month = september year = 1517 }
+
+	action_a = {
+		name = "ACTIONNAME137005A" #Make Spain the center of our empire (End Game)
+		command = { type = cedeprovince which = SPA value = 377 } #Luxembourg
+		#command = { type = cedeprovince which = SPA value = 378 } #Brabant capital
+		command = { type = cedeprovince which = SPA value = 380 } #Flandern
+		command = { type = cedeprovince which = SPA value = 339 } #Holland
+		command = { type = cedeprovince which = SPA value = 340 } #Zeeland
+		command = { type = cedeprovince which = SPA value = 387 } #Franche-Comté
+		#command = { type = cedeprovince which = SPA value = 409 } #Bourgogne alt_capital
+		command = { type = cedeprovince which = SPA value = 379 } #Artois
+		command = { type = trigger which = 285100 } #SPA: The Burgundian inheritance
+	}
+}
+
+#(1648-1649) The Restoration in the Iberian peninsula
+#patch event to end province RR in Spanish territories still held by Burgundy
+#by Bordic
+event = {
+	id = 137023
+	trigger = {
+		flag = [Spain_inherited]
+		OR = {
+			owned = { province = 426 data = -1 } #Roussillon
+			owned = { province = 427 data = -1 } #Gerona
+			owned = { province = 429 data = -1 } #Catalonia
+			owned = { province = 430 data = -1 } #Aragon
+			owned = { province = 431 data = -1 } #Cantabria
+			owned = { province = 432 data = -1 } #Asturias
+			owned = { province = 433 data = -1 } #Galicia
+			owned = { province = 435 data = -1 } #Leon
+			owned = { province = 436 data = -1 } #Castilla
+			owned = { province = 437 data = -1 } #Valencia
+			owned = { province = 438 data = -1 } #Murcia
+			owned = { province = 439 data = -1 } #Toledo
+			owned = { province = 440 data = -1 } #Estramadura
+			owned = { province = 443 data = -1 } #Andalusia
+			owned = { province = 444 data = -1 } #Granada
+			owned = { province = 445 data = -1 } #Gibraltar
+			owned = { province = 817 data = -1 } #The Canary Islands
+			owned = { province = 821 data = -1 } #Baleares
+		}
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME137023" #The Restoration in the Iberian peninsula
+	desc = "EVENTHIST137023"
+	#-#After years of revolts and continuous guerrilla warfare both in the Iberian peninsula and most of all in the Low Countries, where they led to the struggle for independence of the United Dutch Provinces born from the former Union of Utrecht, the people of Spain have finally recognized the rule of the Burgundians over the territories they still held there and which the Kings of Aragon and Castile had previously bequeathed to Charles II, Archduke of Burgundy of the House of Habsburg. But their allegiance was to be given on condition that they would be more autonomous and the Archduke would acknowledge their traditional institutions.
+
+	date = { day = 0 month = May year = 1648 }
+	offset = 360
+	deathdate = { day = 0 month = May year = 1649 }
+
+	action_a = {
+		name = "ACTIONNAME137023A" #The Spaniards have finally recognized our rule
+		command = { type = stability value = 2 }
+		command = { type = domestic which = CENTRALIZATION value = -3 }
+		command = { type = domestic which = INNOVATIVE value = -3 }
+		command = { type = domestic which = SERFDOM value = -1 }
+		command = { type = domestic which = ARISTOCRACY value = 3 }
+		command = { type = province_revoltrisk which = 426 value = -5 } #Roussillon
+		command = { type = province_revoltrisk which = 427 value = -5 } #Gerona
+		command = { type = province_revoltrisk which = 429 value = -5 } #Catalonia
+		command = { type = province_revoltrisk which = 430 value = -5 } #Aragon
+		command = { type = province_revoltrisk which = 431 value = -5 } #Cantabria
+		command = { type = province_revoltrisk which = 432 value = -5 } #Asturias
+		command = { type = province_revoltrisk which = 433 value = -5 } #Galicia
+		command = { type = province_revoltrisk which = 435 value = -5 } #Leon
+		command = { type = province_revoltrisk which = 436 value = -5 } #Castilla
+		command = { type = province_revoltrisk which = 437 value = -5 } #Valencia
+		command = { type = province_revoltrisk which = 438 value = -5 } #Murcia
+		command = { type = province_revoltrisk which = 439 value = -5 } #Toledo
+		command = { type = province_revoltrisk which = 440 value = -5 } #Estramadura
+		command = { type = province_revoltrisk which = 443 value = -5 } #Andalusia
+		command = { type = province_revoltrisk which = 444 value = -5 } #Granada
+		command = { type = province_revoltrisk which = 445 value = -5 } #Gibraltar
+		command = { type = province_revoltrisk which = 817 value = -5 } #The Canary Islands
+		command = { type = province_revoltrisk which = 821 value = -5 } #Baleares
+	}
+}
+
+#(1648-1661) Peace Treaty of Münster
+event = {
+	id = 137007
+	trigger = {
+		event = 3900 #HOL: Dutch Independence
+		flag = [DutGenEst] #BUR had one of the revolt events
+		core = { province = 339 data = BUR } #No cores then no event
+		NOT = {
+			owned = { province = 337 data = -1 } #Friesen
+			owned = { province = 338 data = -1 } #Geldre
+			owned = { province = 339 data = -1 } #Holland
+			owned = { province = 340 data = -1 } #Zeeland
+		} #If Burgundy holds no provinces in the Northern Netherlands by 1648, she loses all claims
+		OR = { #if they don't have the cores they don't need the event
+			core = { province = 337 data = -1 } #Friesen
+			core = { province = 338 data = -1 } #Geldre
+			core = { province = 339 data = -1 } #Holland
+			core = { province = 340 data = -1 } #Zeeland
+		}
+		NOT = { 
+			war = { country = HOL country = BUR }
+		}
+	}
+	random = no
+	country = BUR
+	name = "EVENTNAME137007" #The peace treaty of Münster
+	desc = "EVENTHIST137007"
+	#-#In 1648 the peace of Münster was signed between Burgundy and the Netherlands ending the 80 Years War. In the treaty Burgundy acknowledged the republic of United Provinces as a free and independent state and affirmed the status quo that had been in existence for the past decade. This meant that Burgundy accepted the loss of ownership over the northern Netherlands.
+
+	date = { day = 15 month = may year = 1648 }
+	offset = 23
+	deathdate = { day = 1 month = march year = 1661 }
+
+	action_a = {
+		name = "ACTIONNAME137007A" #We acknowledge the Dutch Republic
+		command = { type = removecore which = 337 } #Friesen
+		command = { type = removecore which = 338 } #Geldre
+		command = { type = removecore which = 339 } #Holland
+		command = { type = removecore which = 340 } #Zeeland
+		command = { type = remove_countryculture which = Dutch }
+		command = { type = relation which = HOL value = 50 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 137047 then 137083

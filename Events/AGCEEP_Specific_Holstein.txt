@@ -1,0 +1,368 @@
+#Holstein (SHL)
+
+#See AGCEEP_Alt_Germany.txt for KoG Alternative events
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1429) Friesland still supports the pirates - Ahistorical
+event = {
+	id = 279006 #triggered by FRI_171005 B
+	trigger = {
+		NOT = {
+			war = { country = FRI country = SHL }
+		}
+	}
+	random = no
+	country = SHL
+	name = "EVENTNAME222002" #Friesland still supports the pirates
+	desc = "EVENTHIST222002"
+	#We cannot tolerate such activities...
+
+	action_a = {
+		name = "ACTIONNAME222002A" #Act, but not at once
+		command = { type = casusbelli which = FRI value = 72 }
+	}
+	action_b = {
+		name = "WAR"
+		command = { type = war which = FRI }
+		command = { type = relation which = DAN value = 5 }
+		command = { type = relation which = BRE value = 15 }
+		command = { type = relation which = MEC value = 25 }
+		command = { type = relation which = OLD value = 5 }
+	}
+}
+
+#(1460-1481) Death of the last Schauenburg -I-
+event = {
+	id = 279003
+	trigger = {
+		exists = DAN
+		NOT = { event = 279004 } #SHL: Death of the last Schauenburg
+	}
+	random = no
+	country = SHL
+	name = "EVENTNAME279003" #Death of the last Schauenburg
+	desc = "EVENTHIST279003"
+	#-#As expected long before, Adolf VIII Duke of Schleswig and Count of Holstein died childlessly in 1459. His closest male relative was his nephew, Christian of Oldenburg, who had become King of Denmark in 1448. Christian was proclaimed Duke of Schleswig and Count of Holstein after swearing that both territories would remain 'up ewig ungedelt' (eternally undivided) and granting privileges to the estates in a charter signed in Riben on March 5th 1460.
+
+	date = { day = 5 month = march year = 1460 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1481 }
+
+	action_a = {
+		name = "ACTIONNAME279003A" #Let Christian of Oldenburg inherit Schleswig and Holstein (End Game)
+		command = { type = trigger which = 159034 } #DAN: Denmark inherits Holstein
+	}
+	action_b = {
+		name = "ACTIONNAME279003B" #Christian becomes duke and count, but both territories remain separate
+		command = { type = trigger which = 159035 } #DAN: Christian of Oldenburg is elected Duke of Schleswig and Count of Holstein
+		command = { type = stability value = -2 }
+	}
+}
+#(1460-1481) Death of the last Schauenburg -II-
+event = {
+	id = 279004
+	trigger = {
+		exists = OLD
+		NOT = { event = 279003 } #SHL: Death of the last Schauenburg
+		NOT = { exists = DAN }
+	}
+	random = no
+	country = SHL
+	name = "EVENTNAME279004" #Death of the last Schauenburg
+	desc = "EVENTHIST279004"
+	#-#As expected long before, Adolf VIII Duke of Schleswig and Count of Holstein died childlessly in 1459. His closest male relative was his nephew, Christian of Oldenburg. Christian was proclaimed Duke of Schleswig and Count of Holstein after swearing that both territories would remain 'up ewig, ungedelt' (eternally undivided) and granting privileges to the estates in a charter signed in Riben on March 5th 1460.
+
+	date = { day = 6 month = march year = 1460 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1481 }
+
+	action_a = {
+		name = "ACTIONNAME279004A" #Let Christian of Oldenburg inherit Schleswig and Holstein (End Game)
+		command = { type = trigger which = 247002 } #OLD: Oldenburg inherits Holstein.
+	}
+	action_b = {
+		name = "ACTIONNAME279004B" #Christian becomes duke and count, but both territories remain separate
+		command = { type = trigger which = 247003 } #OLD: Christian of Oldenburg is elected Duke of Schleswig and Count oHolstein.
+		command = { type = trigger which = 247009 } #OLD: Christian of Oldenburg is elected Duke of Schleswig and Count of Holstein.
+		command = { type = stability value = -2 }
+	}
+}
+
+#(1494-1513) The fate of Norway - Ahistorical
+event = {
+	id = 279000
+	trigger = {
+		event = 244004 #NOR: The fate of the Kingdom
+		exists = NOR
+		NOT = {
+			vassal = { country = NOR country = SHL }
+		}
+	}
+	random = no
+	country = SHL
+	name = "EVENTNAME279000" #The fate of Norway
+	desc = "EVENTHIST279000"
+	#-#While Hans ruled Denmark and Norway, his mother Dorothea tried to convince him that he should share his Kingdoms with his younger brother, Frederik. Hans gave in to his mothers requests and gave the Kingdom of Norway to his brother Duke Frederik of Holstein.
+
+	date = { day = 1 month = january year = 1494 }
+	offset = 90
+	deathdate = { day = 1 month = january year = 1513 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = relation which = DAN value = 200 }
+		command = { type = vassal which = NOR }
+		command = { type = alliance which = NOR }
+	}
+}
+
+#(1501-1513) The defeat at Ditmarsken
+event = {
+	id = 279001 #triggered by the DAN_159019
+	random = no
+	country = SHL
+	name = "EVENTNAME279001" #The defeat at Ditmarsken
+	desc = "EVENTHIST279001"
+	#-#Following his victory at Stockholm King Hans allied with his brother Frederik of Holstein and attacked the minor peasant republic, Ditmarsken. The result was a humiliating defeat and while both Hans and Frederik managed to escape capture they lost their entire army. This was primarily due to the fact that the weather turned the roads into mud. This, combined with the fact that their heavy cavalry wasn't designed for fighting on the narrow roads, made the army useless.
+
+	action_a = {
+		name = "DAMN"
+		command = { type = stability value = -1 }
+		command = { type = revolt which = 306 } #Holstein
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = desertion which = -1 value = 2500 }
+		command = { type = desertion which = -1 value = 2500 }
+		command = { type = desertion which = -1 value = 2500 }
+		command = { type = MIL which = -2 value = 18 }
+	}
+}
+
+#(1501-1513) The subjugation of Holstein
+event = {
+	id = 279002 #triggered by the DAN_159021
+	random = no
+	country = SHL
+	name = "EVENTNAME279002" #The subjugation of Holstein
+	desc = "EVENTHIST279002"
+	#-#Following his victory at Stockholm King Hans of Denmark lent a part of his army to his brother Frederik. Frederik had always wanted to rule part of Hans's realm, which of course didn't sit well with Hans. So to appease his brother, King Hans decided to help him conquer Holstein. This was to a large extend successful, but at a battle against the peasant republic Ditmarsken, Hans's army were defeated. The end result was the vassalisation of Holstein, but a loss of respect of the Danish army.
+
+	action_a = {
+		name = "DAMN"
+		command = { type = stability value = -4 }
+		command = { type = relation which = DAN value = 200 }
+		command = { type = revolt which = 306 } #Holstein
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = MIL which = -2 value = 18 }
+	}
+}
+
+#(1585-1596) Johann Adolf of Holstein, Archbishop of Bremen
+event = {
+	id = 279009 #triggered by BRE_133005
+	trigger = {
+		NOT = {
+			vassal = { country = BRE country = SHL }
+		}
+	}
+	random = no
+	country = SHL
+	name = "EVENTNAME279009" #Johann Adolf of Holstein-Gottorp is elected Archbishop of Bremen
+	desc = "EVENTHIST133005"
+	#-#In 1585 Johann Adolf, successor to the Duchy of Holstein-Gottorp was elected Archbishop of Bremen. Six years after becoming Duke, in 1596, he let the Archbishopric to his son Johann Friedrich. Both pursued a policy in the interest of Holstein-Gottorp and its Danish relatives.
+
+	action_a = {
+		name = "OK"
+		command = { type = relation which = BRE value = 50 }
+		command = { type = vassal which = BRE }
+		command = { type = alliance which = BRE }
+	}
+}
+
+#(1605-1609) The Evangelic Union
+event = {
+	id = 3629
+	trigger = {
+		 OR = {
+			religion = protestant
+			religion = reformed
+		}
+	}
+	random = no
+	country = SHL
+	name = "EVENTNAME3634" #The Evangelic Union
+	desc = "EVENTHIST3634"
+	#-#The Holy Roman Empire had a fragile balance, split between 10 major and nearly 400 minor states and principalities, as well as two opposing religions. The power of the Emperor was quite limited beyond his direct domains and the erratic and inconsistent behavior of some of them as Rudolph II, such increased frictions. In 1608, the Protestant city of Donauwerth refused Catholics the right to practice their cult and was banned from the Empire. As a reaction, most German Protestant states formed the Evangelic Union to defend their freedom.
+
+	date = { day = 1 month = january year = 1605 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1609 }
+
+	action_a = {
+		name = "ACTIONNAME3634A" #Prepare to Join
+		command = { type = relation which = FRA value = 100 }
+		command = { type = relation which = BRA value = 150 }
+		command = { type = relation which = HAN value = 150 }
+		command = { type = relation which = HES value = 150 }
+		command = { type = relation which = PFA value = 150 }
+		command = { type = relation which = SAC value = 150 }
+		#command = { type = relation which = THU value = 150 } #Bayreuth
+		command = { type = relation which = BAD value = 150 }
+		command = { type = relation which = KLE value = 100 }
+		command = { type = relation which = KOL value = 50 }
+		command = { type = relation which = BAY value = 50 }
+		command = { type = relation which = PAP value = -100 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = relation which = HAB value = -150 }
+	}
+	action_b = {
+		name = "ACTIONNAME3634B" #Stay Neutral
+		command = { type = relation which = BRA value = -100 }
+		command = { type = relation which = HAN value = -100 }
+		command = { type = relation which = HES value = -100 }
+		command = { type = relation which = PFA value = -100 }
+		command = { type = relation which = SAC value = -100 }
+		#command = { type = relation which = THU value = -100 } #Bayreuth
+		command = { type = relation which = HAB value = 50 }
+	}
+}
+
+#(1607-1609) The Catholic League
+event = {
+	id = 3630
+	trigger = {
+		 OR = {
+			religion = catholic
+			religion = counterreform
+		}
+	}
+	random = no
+	country = SHL
+	name = "EVENTNAME3192" #The Catholic League
+	desc = "EVENTHIST3192"
+	#-#The German Catholic states felt threatened by the 1608 creation of the Evangelic Union of their northern Protestant neighbors, following the Donauwerth exclusion from the Empire. Feeling the urge to unite, they regrouped into a Catholic League that same year. The stage was set for the Thirty Years War.
+
+	date = { day = 1 month = january year = 1607 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1609 }
+
+	action_a = {
+		name = "ACTIONNAME3192A" #Prepare to Join
+		command = { type = relation which = FRA value = -100 }
+		command = { type = relation which = BRA value = -150 }
+		command = { type = relation which = HAN value = -150 }
+		command = { type = relation which = HES value = -150 }
+		command = { type = relation which = PFA value = -150 }
+		command = { type = relation which = SAC value = -150 }
+		#command = { type = relation which = THU value = -150 } #Bayreuth
+		command = { type = relation which = BAD value = -150 }
+		command = { type = relation which = KLE value = 50 }
+		command = { type = relation which = KOL value = 100 }
+		command = { type = relation which = BAY value = 100 }
+		command = { type = relation which = PAP value = 100 }
+		command = { type = relation which = SPA value = 100 }
+		command = { type = relation which = HAB value = 150 }
+	}
+	action_b = {
+		name = "ACTIONNAME3192B" #Stay Neutral
+		command = { type = relation which = BRA value = 50 }
+		command = { type = relation which = HAN value = 50 }
+		command = { type = relation which = HES value = 50 }
+		command = { type = relation which = PFA value = 50 }
+		command = { type = relation which = SAC value = 50 }
+		#command = { type = relation which = THU value = 50 } #Bayreuth
+		command = { type = relation which = BAY value = -50 }
+		command = { type = relation which = KLE value = -50 }
+		command = { type = relation which = KOL value = -50 }
+		command = { type = relation which = HAB value = -100 }
+	}
+}
+
+#(1634) Death of Johann Friedrich I of Holstein-Gottorp
+event = {
+	id = 279005
+	trigger = {
+		vassal = { country = PFA country = KOL }
+	}
+	random = no
+	country = SHL
+	name = "EVENTNAME279005" #Death of Johann Friedrich I of Holstein-Gottorp
+	desc = "EVENTHIST279005"
+	#-#With the death of Ruprecht of Holstein-Gottorp, any influence of Holstein over Cologne has been lost.
+
+	date = { day = 2 month = september year = 1634 }
+
+	action_a = {
+		name = "OH_WELL"
+		command = { type = breakvassal which = SHL }
+		command = { type = stability value = -3 }
+	}
+}
+
+#(1667) Inheritance of Oldenburg
+event = {
+	id = 279010 #triggered by OLD_247006 B
+	random = no
+	country = SHL
+	name = "EVENTNAME279010" #Holstein inherits Oldenburg
+	desc = "EVENTHIST279010"
+	#-#In 1667 Count Anton Günther of Oldenburg died without a direct successor. The Count's closest relatives and potential heirs, Frederik III., King of Denmark, and Christian Albert of Holstein-Gottorp, had achieved a compact in 1649 giving the biggest part of Oldenburg to Denmark. However, it was Anton Günther's last wish to give Oldenburg to the dukes of Holstein-Gottorp.
+
+	action_a = {
+		name = "WONDERFUL"
+		command = { type = addcore which = 335 } #Oldenburg
+		command = { type = inherit which = OLD }
+		command = { type = relation which = DAN value = -100 }
+	}
+}
+
+#(1697-1700) The Great Northern Conflict
+event = {
+	id = 3631
+	trigger = {
+		exists = DAN
+		exists = SWE
+	}
+	random = no
+	country = SHL
+	name = "EVENTNAME3631" #The Great Northern Conflict
+	desc = "EVENTHIST3631"
+	#-#In 1697, the 15 years old Charles XII ascended the Swedish throne. Seeing the opportunity, the Russian Czar Peter I allied with Denmark and Poland-Saxony in 1699. However, with British and Dutch naval assistance, Charles XII landed on Zealand and promptly defeated the Danes, then moved to Estland where his badly outnumbered Swedes (1 to 5) won a crushing victory over the Russians. Instead of finishing the Russians, Charles moved against August II of Poland-Saxony and drove him out of Poland in 1704 (having the pro-Swedish Stanislaw Leszczynski elected King), then subjugating Saxony in 1706. While the Russians started the construction of St-Petersburg (1703) and rebuilt their armies, they also took parts of Estland (1704-1706). Charles then decided to march to Moscow via the Ukraine where the Cossacks under Mazeppa had again risen in revolt (1708). The harsh winter and Russian raids decimated his army and he was finally beaten at the battle of Poltava in 1709. The wounded King escaped to the Ottomans. The Russians were encircled by the Ottomans on the Prut River, but Peter succeeded through bribery to obtain a safe conduct in exchange for Azov. While Charles was still exiled in Turkey, Russian, Danish, Hanoverian and even Prussian troops captured most of the Swedish territory around the Baltic. Having emerged from Turkish internment, Charles got killed in 1718 in front of the Norwegian fortress of Frederickshald. The peace treaties that followed Sweden lost most of her Baltic empire.
+
+	date = { day = 15 month = june year = 1697 }
+	offset = 10
+	deathdate = { day = 1 month = april year = 1700 }
+
+	action_a = {
+		name = "ACTIONNAME3631A" #Mobilize Defenses
+		command = { type = INF which = -2 value = 8000 }
+		command = { type = CAV which = -2 value = 3000 }
+		command = { type = ART which = -2 value = 10 }
+		command = { type = stability value = -1 }
+		command = { type = relation which = DAN value = -200 }
+		command = { type = relation which = SWE value = 150 }
+		command = { type = relation which = ENG value = 100 }
+		command = { type = relation which = HOL value = 100 }
+	}
+	action_b = {
+		name = "ACTIONNAME3631B" #Diplomatic Effort
+		command = { type = stability value = 1 }
+		command = { type = relation which = DAN value = -150 }
+		command = { type = relation which = SWE value = 100 }
+		command = { type = relation which = ENG value = 150 }
+		command = { type = relation which = HOL value = 150 }
+		command = { type = relation which = PRU value = 100 }
+		command = { type = relation which = HES value = 100 }
+		command = { type = relation which = HAN value = 100 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = diplomats value = 6 }
+		command = { type = treasury value = 200 }
+
+
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 279007-279008 - next: 279011

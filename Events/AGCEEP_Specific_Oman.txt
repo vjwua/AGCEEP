@@ -1,0 +1,876 @@
+#Oman (OMA)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1640-1650) The Omani revolts - Ahistorical
+event = {
+	id = 248008 #triggered by POR_260093 B
+	random = no
+	country = OMA
+	name = "EVENTNAME260093" #The Omani revolts
+	desc = "EVENTHIST248008"
+	#-#By 1640, Imam Nasr al-Yarubi has conquered all internal rivals in the interior and the Portuguese decided to leave the coast.
+
+	action_a = {
+		name = "GOOD"
+		command = { type = breakvassal which = POR }
+		command = { type = relation which = POR value = -300 }
+	}
+}
+
+#(1640-1660) Theft of Portuguese ships
+event = {
+	id = 248002
+	trigger = {
+		event = 260093 #POR: The Omani Revolts
+	}
+	random = no
+	country = OMA
+	name = "EVENTNAME248002" #Theft of Portuguese ships
+	desc = "EVENTHIST248002"
+	#-#Having reclaimed the coastline, abandoned Portuguese vessels make up much of the nascent Omani navy.
+
+	date = { day = 1 month = january year = 1640 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1660 }
+
+	action_a = {
+		name = "ACTIONNAME248002A" #Let us turn the infidel's weapons against them
+		command = { type = warships which = -1 value = 20 }
+		command = { type = transports which = -1 value = 10 }
+		command = { type = domestic which = land value = -1 }
+	}
+}
+
+#(1640-1680) Covert aid from the West
+event = {
+	id = 248004
+	trigger = {
+		OR = {
+			exists = ENG
+			exists = HOL
+		}
+		war = { country = POR country = OMA }
+	}
+	random = no
+	country = OMA
+	name = "EVENTNAME248004" #Covert aid from the West
+	desc = "EVENTHIST248004"
+	#-#Seeing an opportunity to weaken Portugal's position in the Indian Ocean, the English and the Dutch subsidize the Omani War Effort.
+
+	date = { day = 1 month = january year = 1640 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1680 }
+
+	action_a = {
+		name = "ACTIONNAME248004A" #Let's take all the help we can get
+		command = { type = land value = 1000 }
+		command = { type = naval value = 1000 }
+		command = { type = relation which = POR value = -300 }
+		command = { type = relation which = ENG value = 150 }
+		command = { type = relation which = HOL value = 150 }
+		command = { type = treasury value = 200 }
+	}
+	action_b = {
+		name = "ACTIONNAME248004B" #Refuse the corrupting aid of infidels
+		command = { type = relation which = ENG value = -100 }
+		command = { type = relation which = HOL value = -100 }
+		command = { type = stability value = -2 }
+	}
+}
+
+#(1652-1660) Swahilis seek aid
+event = {
+	id = 248003
+	trigger = {
+		OR = {
+			owned = { province = 765 data = POR } #Zanzibar
+			owned = { province = 766 data = POR } #Rufiji
+			owned = { province = 763 data = POR } #Mombasa
+			owned = { province = 762 data = POR } #Kenya
+			owned = { province = 761 data = POR } #Malindi
+			owned = { province = 764 data = POR } #Tanga trigger expanded to ensure the event fires unless Portugal completely botches the conquest of the Swahili coast
+		}
+	}
+	random = no
+	country = OMA
+	name = "EVENTNAME248003" #Swahilis seek aid
+	desc = "EVENTHIST248003"
+	#-#Inspired by Oman's successful revolt against the Portuguese, the peoples of the Swahili Coast seek Omani aid in driving out their hated Portuguese overlords.
+
+	date = { day = 1 month = january year = 1652 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1660 }
+
+	action_a = {
+		name = "ACTIONNAME248003A" #We will aid them
+		command = { type = add_countryculture which = Swahili }
+		command = { type = add_countryculture which = Somali }
+		command = { type = addcore which = 760 } #Mogadiscio
+		command = { type = addcore which = 761 } #Malindi
+		command = { type = addcore which = 762 } #Kenya
+		command = { type = addcore which = 763 } #Mombasa
+		command = { type = addcore which = 764 } #Tanga
+		command = { type = addcore which = 765 } #Zanzibar
+		command = { type = addcore which = 766 } #Rufiji
+		command = { type = relation which = POR value = -300 }
+		command = { type = relation which = ADA value = 200 }
+		command = { type = relation which = MGU value = 200 }
+		command = { type = relation which = MLI value = 200 }
+		command = { type = relation which = KIL value = 200 }
+		command = { type = relation which = ZAN value = 200 }
+		command = { type = relation which = MOM value = 200 } #any other East African States to be included would also get the relation bonus
+	}
+	action_b = {
+		name = "ACTIONNAME248003B" #It's not our fight
+		command = { type = relation which = ADA value = -100 }
+		command = { type = relation which = MGU value = -100 }
+		command = { type = relation which = MLI value = -100 }
+		command = { type = relation which = KIL value = -100 }
+		command = { type = relation which = ZAN value = -100 }
+		command = { type = relation which = MOM value = -100 } #Again, these effects to be duplicated for all new East African states
+		command = { type = stability value = -2 }
+	}
+}
+
+#(1652-1680) Raid on Zanzibar
+#by sturmvogel
+event = {
+	id = 248015
+	trigger = {
+		event = 248003 #OMA: Swahilis seek aid
+		event = 248002 #OMA: Theft of Portuguese ships
+		NOT = {
+			relation = { country = POR data = 0 }
+			alliance = { country = POR country = OMA }
+			vassal = { country = POR country = OMA }
+		}
+		vassal = { country = POR country = ZAN }
+	}
+	random = no
+	country = OMA
+	name = "EVENTNAME248015" #Raid on Zanzibar
+	desc = "EVENTHIST248015"
+	#-#In 1652 Oman sacked Zanzibar, destroyed the Portuguese feitoria there and forced the submission of Zanzibar.
+
+	date = { day = 1 month = january year = 1652 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1680 }
+
+	action_a = {
+		name = "ACTIONNAME248014A" #We must keep the Portuguese on the run
+		command = { type = relation which = POR value = -50 }
+		command = { type = trigger which = 373004 } #ZAN: Raid on Zanzibar
+		command = { type = trigger which = 260121 } #POR: Raid on Zanzibar
+		command = { type = treasury value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME248014B" #Leave them well enough alone
+		command = { }
+	}
+}
+#(1652-1680) Submission of Zanzibar
+event = {
+	id = 248028 #triggered by ZAN_373004 A
+	random = no
+	country = OMA
+	name = "EVENTNAME248028" #Submission of Zanzibar
+	desc = "EVENTHIST248028"
+	#-#After the raid, Queen Mwana Mwema pledged submission to the Sultan of Oman in the face of overwhelming power.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = vassal which = ZAN }
+	}
+}
+#(1652-1680) Zanzibar refuses to submit
+#by sturmvogel
+event = {
+	id = 248016 #triggered by ZAN_373004 B / C
+	random = no
+	country = OMA
+	name = "EVENTNAME248016" #Zanzibar refuses to submit
+	desc = "EVENTHIST260123"
+	#-#Zanzibar refuses to have anything more to do with us. Shall we persuade them of the errors of their ways?
+
+	action_a = {
+		name = "ACTIONNAME248016A" #How dare they!
+		command = { type = casusbelli which = ZAN value = 60 }
+		command = { type = relation which = ZAN value = -100 }
+	}
+	action_b = {
+		name = "ACTIONNAME248014B" #Leave them well enough alone
+		command = { }
+	}
+}
+
+#(1652-1680) Capture of Zanzibar
+event = {
+	id = 248017
+	trigger = {
+		control = { province = 765 data = -1 } #Zanzibar
+		event = 248016 #OMA: Zanzibar refuses to submit
+		exists = ZAN
+	}
+	random = no
+	country = POR
+	name = "EVENTNAME260124" #Capture of Zanzibar
+	desc = "EVENTHIST260124"
+	#-#We have captured Zanzibar. What shall we do now?
+
+	date = { day = 1 month = january year = 1652 }
+	offset = 180
+	deathdate = { day = 1 month = january year = 1680 }
+
+	action_a = {
+		name = "ACTIONNAME260124A" #We must hold Zanzibar for ourselves
+		command = { type = inherit which = ZAN }
+		command = { type = treasury value = 25 }
+	}
+	action_b = {
+		name = "ACTIONNAME260116C" #We will rule through a native puppet
+		command = { type = vassal which = ZAN }
+		command = { type = treasury value = 25 }
+	}
+}
+
+#(1660-1690) The submission of Mogadishu
+#by zacharym87 - modified by sturmvogel
+event = {
+	id = 248010 #triggered by MGU_160001 A
+	random = no
+	country = OMA
+	name = "EVENTNAME248010" #The submission of Mogadishu
+	desc = "EVENTHIST248010"
+	#-#Mogadishu opts for Omani takeover in preference to conquest by Europeans.
+
+	action_a = {
+		name = "ACTIONNAME248010A" #Let us bind them to us
+		command = { type = inherit which = MGU }
+	}
+	action_b = {
+		name = "ACTIONNAME248010A" #We will rule loosely
+		command = { type = vassal which = MGU }
+	}
+}
+
+#(1661-1680) Raid on Bombay
+#by sturmvogel
+event = {
+	id = 248021
+	trigger = {
+		event = 248003 #OMA: Swahilis seek aid
+		event = 248002 #OMA: Theft of Portuguese ships
+		NOT = {
+			relation = { country = POR data = 0 }
+			alliance = { country = POR country = OMA }
+			vassal = { country = POR country = OMA }
+		}
+		owned = { province = 548 data = POR } #Bombay
+	}
+	random = no
+	country = OMA
+	name = "EVENTNAME248021" #Raid on Bombay
+	desc = "EVENTHIST248021"
+	#-#In 1661-2 Omani forces attacked Bombay.
+
+	date = { day = 1 month = january year = 1661 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1680 }
+
+	action_a = {
+		name = "ACTIONNAME248014A" #We must keep the Portuguese on the run
+		command = { type = relation which = POR value = -50 }
+		command = { type = trigger which = 260128 } #POR: Raid on Bombay
+		command = { type = treasury value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME248014B" #Leave them well enough alone
+		command = { }
+	}
+}
+
+#(1661-1680) Raid on Mombasa
+#by sturmvogel
+event = {
+	id = 248014
+	trigger = {
+		event = 248003 #OMA: Swahilis seek aid
+		event = 248002 #OMA: Theft of Portuguese ships
+		NOT = {
+			relation = { country = POR data = 0 }
+			alliance = { country = POR country = OMA }
+			vassal = { country = POR country = OMA }
+		}
+		owned = { province = 763 data = POR } #Mombasa
+	}
+	random = no
+	country = OMA
+	name = "EVENTNAME248014" #Raid on Mombasa
+	desc = "EVENTHIST248014"
+	#-#In February 1661 Oman sacked Mombasa town, but made no attempt to besiege Fort Jesus.
+
+	date = { day = 1 month = february year = 1661 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1680 }
+
+	action_a = {
+		name = "ACTIONNAME248014A" #We must keep the Portuguese on the run
+		command = { type = relation which = POR value = -50 }
+		command = { type = trigger which = 260120 } #POR: Mombasa sacked by the Omanis
+		command = { type = treasury value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME248014B" #Leave them well enough alone
+		command = { }
+	}
+}
+
+#(1668-1675) First raid on Diu
+#by sturmvogel
+event = {
+	id = 248019
+	trigger = {
+		event = 248003 #OMA: Swahilis seek aid
+		event = 248002 #OMA: Theft of Portuguese ships
+		NOT = {
+			relation = { country = POR data = 0 }
+			alliance = { country = POR country = OMA }
+			vassal = { country = POR country = OMA }
+		}
+		OR = {
+			owned = { province = 549 data = POR } #Goa
+			owned = { province = 548 data = POR } #Bombay
+			owned = { province = 547 data = POR } #Gujarat
+			owned = { province = 541 data = POR } #"Kutch" - Gujarat
+		}
+	}
+	random = no
+	country = OMA
+	name = "EVENTNAME248019" #First raid on Diu
+	desc = "EVENTHIST248019"
+	#-#In December 1668 Omani forces sacked Diu, as related by this contemporary report: ''The Arabian enemy entered the city of Dio, which he sacked, and burnt the vessels he found in the port, imprisoning all the people who were in their house with all that they possessed, of which they were despoilt and many of them killed, on account of which that land and its settlers were finished and the fortress which the enemy is besieging remained in distress.''
+
+	date = { day = 1 month = november year = 1668 }
+	offset = 60
+	deathdate = { day = 1 month = january year = 1675 }
+
+	action_a = {
+		name = "ACTIONNAME248014A" #We must keep the Portuguese on the run
+		command = { type = relation which = POR value = -50 }
+		command = { type = trigger which = 260126 } #POR: First raid on Diu
+		command = { type = treasury value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME248014B" #Leave them well enough alone
+		command = { }
+	}
+}
+
+#(1670-1700) The Dutch factory at Mascate
+#by zacharym87 - modified by sturmvogel
+event = {
+	id = 248009
+	trigger = {
+		NOT = { war = { country = HOL country = OMA } }
+		relation = { country = HOL data = 50 }
+	}
+	random = no
+	country = OMA
+	name = "EVENTNAME248009" #The Dutch factory at Mascate
+	desc = "EVENTHIST248009"
+	#-#In 1670 the Netherlands signed a trade agreement with the Imamate of Oman.
+
+	date = { day = 1 month = january year = 1670 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1700 }
+
+	action_a = {
+		name = "ACTIONNAME248009A" #Sign the agreement
+		command = { type = relation which = HOL value = 50 }
+		command = { type = treasury value = 50 }
+		command = { type = trade value = 500 }
+		command = { type = trigger which = 186084 } #HOL: Commercial agreement with Oman
+		command = { type = merchants value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME248009B" #Refuse the agreement
+		command = { type = relation which = HOL value = -100 }
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1671-1680) Raid on Moçambique
+#by sturmvogel
+event = {
+	id = 248018
+	trigger = {
+		event = 248003 #OMA: Swahilis seek aid
+		event = 248002 #OMA: Theft of Portuguese ships
+		NOT = {
+			relation = { country = POR data = 0 }
+			alliance = { country = POR country = OMA }
+			vassal = { country = POR country = OMA }
+		}
+		owned = { province = 768 data = POR } #Mtawa
+	}
+	random = no
+	country = OMA
+	name = "EVENTNAME248018" #Raid on Moçambique
+	desc = "EVENTHIST248018"
+	#-#In 1671 Oman sacked Moçambique town, but made no attempt to besiege Fort São Sebastião.
+
+	date = { day = 1 month = january year = 1671 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1680 }
+
+	action_a = {
+		name = "ACTIONNAME248014A" #We must keep the Portuguese on the run
+		command = { type = relation which = POR value = -50 }
+		command = { type = trigger which = 260125 } #POR: Raid on Moçambique
+		command = { type = treasury value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME248014B" #Leave them well enough alone
+		command = { }
+	}
+}
+
+#(1676-1690) Second raid on Diu
+#by sturmvogel
+event = {
+	id = 248020
+	trigger = {
+		event = 248003 #OMA: Swahilis seek aid
+		event = 248002 #OMA: Theft of Portuguese ships
+		NOT = {
+			relation = { country = POR data = 0 }
+			alliance = { country = POR country = OMA }
+			vassal = { country = POR country = OMA }
+		}
+		OR = {
+			owned = { province = 549 data = POR } #Goa
+			owned = { province = 548 data = POR } #Bombay
+			owned = { province = 547 data = POR } #Gujarat
+			owned = { province = 541 data = POR } #"Kutch" - Gujarat
+		}
+	}
+	random = no
+	country = OMA
+	name = "EVENTNAME248020" #Second raid on Diu
+	desc = "EVENTHIST248020"
+	#-#After a first raid in December 1668, Omani forces sacked Diu again in January 1676.
+
+	date = { day = 1 month = january year = 1676 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1690 }
+
+	action_a = {
+		name = "ACTIONNAME248014A" #We must keep the Portuguese on the run
+		command = { type = relation which = POR value = -50 }
+		command = { type = trigger which = 260127 } #POR: Second raid on Diu
+		command = { type = treasury value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME248014B" #Leave them well enough alone
+		command = { }
+	}
+}
+
+#(1690-1720) The submission of Zanzibar
+#by sturmvogel
+event = {
+	id = 248011 #triggered by ZAN_373003 A
+	random = no
+	country = OMA
+	name = "EVENTNAME248011" #The submission of Zanzibar
+	desc = "EVENTHIST248011"
+	#-#Zanzibar submits to Oman in recognition of its control over the Swahili Coast.
+
+	action_a = {
+		name = "ACTIONNAME248010B" #We will rule loosely
+		command = { type = vassal which = ZAN }
+	}
+	action_b = {
+		name = "ACTIONNAME248011B" #We have no need of foreign entanglements
+		command = { }
+	}
+}
+
+#(1690-1720) The submission of Kilwa
+#by sturmvogel
+event = {
+	id = 248012 #triggered by KIL_333001 A
+	random = no
+	country = OMA
+	name = "EVENTNAME248012" #The submission of Kilwa
+	desc = "EVENTHIST248012"
+	#-#Kilwa submits to Oman in recognition of its control over the Swahili Coast.
+
+	action_a = {
+		name = "ACTIONNAME248010B" #We will rule loosely
+		command = { type = vassal which = KIL }
+	}
+	action_b = {
+		name = "ACTIONNAME248011B" #We have no need of foreign entanglements
+		command = { }
+	}
+}
+
+#(1690-1720) The submission of Malindi
+#by sturmvogel
+event = {
+	id = 248013 #triggered by MLI_113001 A
+	random = no
+	country = OMA
+	name = "EVENTNAME248013" #The submission of Malindi
+	desc = "EVENTHIST248013"
+	#-#Malindi submits to Oman in recognition of its control over the Swahili Coast.
+
+	action_a = {
+		name = "ACTIONNAME248010B" #We will rule loosely
+		command = { type = vassal which = MLI }
+	}
+	action_b = {
+		name = "ACTIONNAME248011B" #We have no need of foreign entanglements
+		command = { }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Omani civil war Sequence
+
+#(1722) The War begins
+event = {
+	id = 248006
+	random = no
+	country = OMA
+	name = "EVENTNAME248006" #Bilarab al-Yarubi assumes the Imamate
+	desc = "EVENTHIST248006"
+	#-#Bilarab al-Yarubi illegimately took power as Regent in Oman in 1720 after the treacherous murder of his rival Muhanna. Popular sentiment was moved by the fate of the unpopular Muhanna, but the Bialarab's deposition of his young charge Sayyif Sultan as Imam proved the last straw.
+
+	date = { day = 1 month = january year = 1722 }
+	offset = 90
+	deathdate = { day = 29 month = december year = 1722 }
+
+	action_a = {
+		name = "ACTIONNAME248006A" #Bad timing
+		command = { type = revolt which = -1 }
+		command = { type = revoltrisk which = 120 value = 12 }
+	}
+}
+#(1750-1755) The victory of Sayyid Ahmad
+event = {
+	id = 248007
+	trigger = {
+		NOT = {
+			vassal = { country = GHR country = OMA }
+		}
+		OR = {
+			AND = { #both provinces owned
+				owned = { province = 504 data = -1 } #Mascate
+				control = { province = 504 data = -1 } #Mascate
+				owned = { province = 505 data = -1 } #Al Kharam
+				control = { province = 505 data = -1 } #Al Kharam
+			}
+			AND = { #only Mascate
+				owned = { province = 504 data = -1 } #Mascate
+				control = { province = 504 data = -1 } #Mascate
+				NOT = {
+					owned = { province = 505 data = -1 } #Al Kharam
+				}
+			}
+			AND = { #only Al Kharam
+				NOT = {
+					owned = { province = 504 data = -1 } #Mascate
+				}
+				owned = { province = 505 data = -1 } #Al Kharam
+				control = { province = 505 data = -1 } #Al Kharam
+			}
+		}
+	}
+	random = no
+	country = OMA
+	name = "EVENTNAME248007" #The victory of Sayyid Ahmad
+	desc = "EVENTHIST248007"
+	#-#With the defeat of the Ghafir faction at Farq in 1749, Imam Sayyid Ahmad finally ended a dark period of Civil War in Oman.
+
+	date = { day = 1 month = january year = 1750 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1755 }
+
+	action_a = {
+		name = "ACTIONNAME248007A" #Victory at last!
+		command = { type = stability value = 6 }
+		command = { type = trigger which = 248027 } #OMA: The defeat of the Ghafir
+	}
+}
+#(1750-1755) The defeat of the Ghafir
+event = {
+	id = 248027
+	trigger = {
+		OR = {
+			neighbour = GHR
+			AND = {
+				owned = { province = 504 data = -1 } #Mascate
+				exists = GHR
+			}
+			owned = { province = 503 data = -1 } #Masirah
+		}
+	}
+	random = no
+	country = OMA
+	name = "EVENTNAME422001" #The Defeat of the Ghafir
+	desc = "EVENTHIST422001"
+	#-#Having evicted the Persians from Oman, Sayyid Ahmad completed the pacification of Oman by routing the Ghafir at Farq in 1749.
+
+	date = { day = 1 month = january year = 1750 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1755 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = vassal which = GHR }
+		command = { type = addcore which = 503 } #Masirah
+		command = { type = trigger which = 422001 } #GHR: The defeat of the Ghafir
+	}
+}
+#End of Omani civil war Sequence
+#-----------------------------------------------------------------------------------------------
+
+#(1740-1770) Omani independence
+event = {
+	id = 248000 #triggered by TUR_301016 A
+	random = no
+	country = OMA
+	name = "EVENTNAME248000" #Ahmad ibn Said seizes power
+	desc = "EVENTHIST248000"
+	#-#The Ottoman rule in Oman was ended when Ahmad ibn Said of Yemen expelled them and restored the independent Omani Sultanate in 1741. Until the end of the century, Oman developed into the most powerful state in Arabia, controlling Zanzibar and parts of the Persian and Baluchi coast.
+
+	action_a = {
+		name = "ACTIONNAME248000A" #Blessed be Allah
+		command = { type = breakvassal which = TUR }
+		command = { type = relation which = TUR value = -300 }
+		command = { type = stability value = 6 }
+		command = { type = CAV which = -2 value = 10000 }
+		command = { type = INF which = -2 value = 10000 }
+		command = { type = addcore which = 765 } #Zanzibar
+		command = { type = addcore which = 535 } #Hormouz
+		command = { type = addcore which = 536 } #Mekran
+		command = { type = addcore which = 537 } #Baluchistan
+	}
+}
+
+#(1741-1820) The rebellion of Mombasa
+event = {
+	id = 248024
+	trigger = {
+		owned = { province = 763 data = -1 } #Mombasa
+		control = { province = 763 data = -1 } #Mombasa
+	}
+	random = no
+	country = OMA
+	name = "EVENTNAME248024" #The rebellion of Mombasa
+	desc = "EVENTHIST248024"
+	#-#The wâlî of Mombasa, Uthman al-Mazrui, took advantage of the Omani Civil War to proclaim Mombasa independent. The Omanis made no attempt to regain control until after the British had established a protectorate over Mombasa in 1824.
+
+	date = { day = 1 month = january year = 1741 }
+	offset = 360
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME248024A" #We cannot afford to fight to keep them
+		command = { type = independence which = MOM }
+		command = { type = removecore which = 763 }
+		command = { type = trigger which = 336005 } #MOM: Al-Mazrui leads us to freedom
+		command = { type = treasury value = -25 }
+		command = { type = trade value = -100 }
+	}
+	action_b = {
+		name = "ACTIONNAME248024B" #We will fight for what is rightfully ours
+		command = { type = stability value = -1 }
+		command = { type = revolt which = 763 }
+		command = { type = revolt which = 763 }
+		command = { type = relation which = MOM value = -200 }
+		command = { type = treasury value = -50 }
+		command = { type = trade value = -500 }
+		command = { type = province_revoltrisk which = 763 value = 2 } #eternal
+	}
+}
+
+#(1784-1786) Event to shift Oman's capital to Muscat from Ormuz/Nizwa/Rustak
+event = {
+	id = 248005
+	trigger = {
+		owned = { province = 504 data = -1 } #Mascate
+		control = { province = 504 data = -1 }
+	}
+	random = no
+	country = OMA
+	name = "EVENTNAME248005" #The usurpation of Hamad
+	desc = "EVENTHIST248005"
+	#-#Hamd al-Sayyid usurps the throne from the inept Imam Sayyid I, setting up his new capital at Muscat.
+
+	date = { day = 1 month = january year = 1784 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1786 }
+
+	action_a = {
+		name = "ACTIONNAME248005A" #Accept the new Sultan
+		command = { type = capital which = 504 } #Mascate
+		command = { type = domestic which = centralization value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME248005B" #Keep the old capital
+		command = { }
+	}
+}
+
+#(1785-1820) Conquest of Kilwa
+event = {
+	id = 248022
+	trigger = {
+		exists = KIL
+		NOT = {
+			war = { country = OMA country = KIL }
+			vassal = { country = OMA country = KIL }
+			vassal = { country = KIL country = OMA }
+		}
+	}
+	random = no
+	country = OMA
+	name = "EVENTNAME248022" #Conquest of Kilwa
+	desc = "EVENTHIST248022"
+	#-#The new iman, Sayyid Said I, wasn't content to ignore Kilwa's rejection of Omani suzerainty and sent an expedition to force the Sultan of Kilwa to submit to Oman.
+
+	date = { day = 1 month = january year = 1785 }
+	offset = 360
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME248022A" #Send the expedition
+		command = { type = casusbelli which = KIL value = 400 }
+	}
+}
+
+#(1785-1820) The subjugation of Kilwa
+event = {
+	id = 248023
+	trigger = {
+		control = { province = 766 data = -1 } #Rufiji
+		exists = KIL
+		NOT = {
+			vassal = { country = OMA country = KIL }
+		}
+	}
+	random = no
+	country = OMA
+	name = "EVENTNAME248023" #The subjugation of Kilwa
+	desc = "EVENTHIST248023"
+	#-#The Sultan of Kilwa submitted to the Omanis once his capital had been taken. He was allowed to retain his title and one fifth of the customs revenues.
+
+	date = { day = 1 month = january year = 1785 }
+	offset = 10
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME248023A" #Make them our vassals
+		command = { type = vassal which = KIL }
+	}
+	action_b = {
+		name = "ACTIONNAME248023B" #We will not be betrayed again
+		command = { }
+	}
+}
+
+#(1798-1801) Treaty of friendship with Great Britain
+event = {
+	id = 248001
+	trigger = {
+		exists = ENG
+		event = 3045 #ENG: The East India Company
+	}
+	random = no
+	country = OMA
+	name = "EVENTNAME248001" #Treaty of friendship and protection with Great Britain
+	desc = "EVENTHIST248001"
+	#-#Since 1646 there were economic relations between the British East India Company and Oman. When Napoléon sought to challenge British commercial and political activities around the Indian ocean by his Egyptian campaign, the British government reacted to the threat by offering the Omani Sultan Sâîd I a closer cooperation. Sâîd agreed, and in 1798 and 1800 two treaties were signed. Oman became an important base for the Royal Navy and came under effective political domination of Britain, although formally being no protectorate or in some kind of unequal relation. Under the sovereignty of Great Britain, Omani trade and colonization flourished and it was the wealthiest and most powerful Arabian country.
+
+	date = { day = 1 month = january year = 1798 }
+	offset = 500
+	deathdate = { day = 1 month = january year = 1801 }
+
+	action_a = {
+		name = "ACTIONNAME248001A" #Accept British protection
+		command = { type = trigger which = 164000 } #ENG: British influence in Oman
+		command = { type = trade value = 1000 }
+		command = { type = domestic which = mercantilism value = -3 }
+		command = { type = colonists value = 4 }
+		command = { type = naval value = 500 }
+		command = { type = explorer which = -1 }
+		command = { type = relation which = ENG value = 100 }
+		command = { type = relation which = FRA value = -100 }
+		command = { type = stability value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME248001B" #Reject the treaty
+		command = { type = relation which = ENG value = -100 }
+		command = { type = domestic which = mercantilism value = 1 }
+	}
+}
+
+#(1799-1803) Fight for Bahrein
+event = {
+	id = 248025
+	trigger = {
+		NOT = {
+			owned = { province = 509 data = -1 } #Bahrein
+			control = { province = 509 data = -1 } #Bahrein
+		}
+	}
+	random = no
+	country = OMA
+	name = "EVENTNAME248025" #Fight for Bahrein
+	desc = "EVENTHIST248025"
+	#-#The Sultan of Oman believed that he needed to control Bahrein to fully control the maritime trade of the Persian Gulf states. He sent three expeditions to the island between 1798 and 1802.
+
+	date = { day = 1 month = january year = 1799 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1803 }
+
+	action_a = {
+		name = "ACTIONNAME248025A" #We need Bahrein
+		command = { type = addcore which = 509 } #Bahrein
+		command = { type = treasury value = -25 }
+		command = { type = trade value = -100 }
+	}
+}
+
+#(1804-1820) We cannot hold Bahrein
+event = {
+	id = 248026
+	trigger = {
+		core = { province = 509 data = -1 } #Bahrein
+		NOT = {
+			owned = { province = 509 data = -1 } #Bahrein
+			control = { province = 509 data = -1 } #Bahrein
+		}
+	}
+	random = no
+	country = OMA
+	name = "EVENTNAME248026" #We cannot hold Bahrein
+	desc = "EVENTHIST248026"
+	#-#The Wahhabi threat to Al-Kharam diverted attentions from Bahrein.
+
+	date = { day = 1 month = january year = 1804 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "DAMN"
+		command = { type = removecore which = 509 }
+	}
+}
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 248029

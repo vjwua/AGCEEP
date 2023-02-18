@@ -4,7 +4,7 @@
 
 country = {
 	tag = GUJ
-	ai = "SmallTrade3.ai"
+	ai = "SmallTrade3.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -18,7 +18,7 @@ country = {
 	culture = { type = gujarati }
 	diplomacy = {
 		relation = { tag = DLH value = -100 }
-		relation = { tag = MES value = 100 }
+		relation = { tag = SIN value = 100 }
 	}
 	knownprovinces = {
 		441 504 505 533 534 535 536 537 538 539 540 541 542 543 544 545 546 547 548 549 550 

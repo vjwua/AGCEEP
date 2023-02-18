@@ -1,0 +1,635 @@
+#Bahmanid Empire (BMD)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1422) Firuz Shah is murdered
+event = {
+	id = 410001
+	random = no
+	country = BMD
+	name = "EVENTNAME410001" #Firuz Shah is murdered
+	desc = "EVENTHIST410001"
+	#-#After invading Vijayanagar in the War of the Goldsmith's Daughter (1406-7), Firuz Shah won a Vijayanagari princess as his bride, ending the constant wars between the two nations. A scholar, the remainder of his reign was spent indulging in the pleasures of his harem while letting the political and military situation deteriorate. This situation came to an end in 1422 when Firuz was murdered by his brother Ahmad, a much more militant ruler.
+
+	date = { day = 14 month = september year = 1422 }
+
+	action_a = {
+		name = "ACTIONNAME410001A" #Long live Ahmad Shah!
+		command = { type = stability value = -1 }
+		command = { type = breakdynastic which = VIJ } #Doesn't work
+		command = { type = relation which = VIJ value = -25 }
+		command = { type = domestic which = centralization value = 1 }
+	}
+}
+
+#(1422-1423) Ahmad Shah's Capital
+event = {
+	id = 410002
+	random = no
+	country = BMD
+	name = "EVENTNAME410002" #Ahmad Shah's Capital
+	desc = "EVENTHIST410002"
+	#-#Ruling as much from the saddle as from his throne, Ahmad Shah moved the Bahmanid capital from Gulbarga to Bidar, closer to the southeastern frontier where Ahmad was campaigning against the Hindu chiefs. This move was designed primarily for defense, built 2,500 feet above sea level, but was also an administrative move, since the area around Gulbarga was proving resistant to Bahmanid administration.
+
+	date = { day = 22 month = september year = 1422 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1423 }
+
+	action_a = {
+		name = "ACTIONNAME410002A" #Move the capital to Bidar
+		command = { type = stability value = 1 }
+		command = { type = fortress which = -2 value = 1 } #Bidar and Gulbarga are both in Hyderabad province
+	}
+	action_b = {
+		name = "ACTIONNAME410002B" #Stay in Gulbarga and reform the administration
+		command = { type = stability value = -1 }
+		command = { type = domestic which = centralization value = 1 }
+	}
+}
+
+#(1423-1425) A Prime Minister
+event = {
+	id = 410050
+	random = no
+	country = BMD
+	trigger = { event = 410002 }
+	name = "EVENTNAME410050" #A Prime Minister
+	desc = "EVENTHIST410050"
+	#-#The Bahmani Empire was founded with the help of both native Deccanis and foreign nobles. By the end of the 14th century, the Deccanis had begun to realize that they were being blocked from positions of power by the Foreigners. As a result the Deccani faction began resenting foreign influence and began to plot their downfall. After his accession, Ahmad Shah needed to choose a prime minister. A likely candidate was his old friend, Khalaf Hasan Bashari, a member of the Foreigner faction. However, such a choice would alienate the Deccani faction.
+
+	date = { day = 1 month = january year = 1423 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1425 }
+
+	action_a = {
+		name = "ACTIONNAME410050A" #Appoint Khalaf Hasan Bashari
+		command = { type = stability value = -1 }
+		command = { type = MIL which = 1 value = 12 }
+	}
+	action_b = {
+		name = "ACTIONNAME410050B" #Appoint a Deccani Noble
+		command = { type = stability value = -1 }
+		command = { type = DIP which = 1 value = 12 }
+		command = { type = sleepevent which = 30348 } #BMD: Conflict between the Deccani and the Foreigners
+	}
+}
+
+#(1423) Famine in the Deccan
+event = {
+	id = 410004
+	random = no
+	country = BMD
+	name = "EVENTNAME410004" #Famine in the Deccan
+	desc = "EVENTHIST410004"
+	#-#The two years following the ascession of Ahmad Shah to the throne were ones of no rain and poor harvests. The terrible conditions drove the people to sedition, but the Sultan actually took advantage of the abnormally dry conditions to traverse the cotton plains lying between Vijayanagar and Kulbarga, normally impassable for troops in wet weather.
+
+	date = { day = 1 month = january year = 1423 }
+	offset = 180
+	deathdate = { day = 1 month = january year = 1424 }
+
+	action_a = {
+		name = "ACTIONNAME410004A" #Take advantage of the dry season to attack our foes
+		command = { type = revoltrisk which = 24 value = 3 }
+		command = { type = ADM which = -2 value = 12 }
+		command = { type = MIL which = 2 value = 24 }
+		command = { type = casusbelli which = VIJ value = 24 }
+		command = { type = casusbelli which = ORI value = 24 }
+		command = { type = population which = -2 value = -2000 }
+		command = { type = population which = -1 value = -2000 }
+		command = { type = population which = -1 value = -2000 }
+	}
+	action_b = {
+		name = "ACTIONNAME410004B" #Do what we can for the people
+		command = { type = revoltrisk which = 18 value = 1 }
+		command = { type = treasury value = -25 }
+		command = { type = ADM which = 2 value = 24 }
+		command = { type = MIL which = -2 value = 12 }
+		command = { type = population which = -2 value = -1000 }
+		command = { type = population which = -1 value = -1000 }
+		command = { type = population which = -1 value = -1000 }
+		command = { type = sleepevent which = 410005 } #BMD: Conquest of Warangal
+	}
+}
+
+#(1425-1427) Conquest of Warangal
+event = {
+	id = 410005
+	trigger = {
+		owned = { province = 563 data = -1 } #Bastar
+	}
+	random = no
+	country = BMD
+	name = "EVENTNAME410005" #Conquest of Warangal
+	desc = "EVENTHIST410005"
+	#-#Although the Hindu empires of Vijayanagar and Orissa bordered the Bahmani Sultanate, they were not the only enemies of the Sultan. Ahmad Shah captured the Hindu Kingdom of Warangal in 1425 in a lightning campaign that lasted only a few short months, completely wiping out the Hindu Kingdom.
+
+	date = { day = 1 month = january year = 1425 }
+	offset = 180
+	deathdate = { day = 1 month = january year = 1427 }
+
+	action_a = {
+		name = "ACTIONNAME410005A" #It is ours!
+		command = { type = provincetax which = 563 value = 1 } #Bastar
+		command = { type = relation which = ORI value = -25 }
+		command = { type = relation which = VIJ value = -25 }
+		command = { type = fortress which = 563 value = -1 } #Bastar
+		command = { type = fortress which = 563 value = 1 } #only +1 if no fortress before #Bastar
+		command = { type = addcore which = 563 } #Bastar
+	}
+}
+
+#(1430) Conflict between the Deccani and the Foreigners
+event = {
+	id = 30348
+	random = no
+	country = BMD
+	name = "EVENTNAME30348" #Newcomers spout treachery
+	desc = "EVENTHIST30348"
+	#-#Some of the new immigrants from across the ocean claim to have evidence that treachery contributed to our defeat in one of the skirmishes against the northern Gujarat hordes. Shall we believe them?
+
+	date = { day = 1 month = january year = 1430 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1430 }
+
+	action_a = {
+		name = "ACTIONNAME30348A" #Believe their story
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = DIP which = 1 value = 12 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME30348B" #Ignore their evidence
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = MIL which = -2 value = 6 }
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1436-1438) Ala ud-Din's Consideration of the Factions
+event = {
+	id = 410051
+	trigger = { monarch = 0134002 } #Ala ud-Din Ahmad Shah II
+	random = no
+	country = BMD
+	name = "EVENTNAME410051" #Ala ud-Din's Consideration of the Factions
+	desc = "EVENTHIST410051"
+	#-#Upon his rise to power, Ala ud-Din reverted to the policy of favoring the Foreigner faction, with many marrying into the royal house. The support of the Foreigners, afforded Ala ud-Din a great victory over the Sultan of Khandesh.
+
+	date = { day = 1 month = january year = 1436 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1438 }
+
+	action_a = {
+		name = "ACTIONNAME410051A" #Favor the Foreigners
+		command = { type = MIL which = 1 value = 12 }
+		command = { type = revoltrisk which = 60 value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME410051B" #Favor the Deccanis
+		command = { type = DIP which = 1 value = 12 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = sleepevent which = 30349 } #BMD: The Troublesome Deccani
+	}
+}
+
+#(1437) Ala-ud-din's first act
+event = {
+	id = 410006
+	trigger = {
+		NOT = { vassal = { country = BMD country = VIJ } }
+	}
+	random = no
+	country = BMD
+	name = "EVENTNAME410006" #Ala-ud-din's first act
+	desc = "EVENTHIST410006"
+	#-#Although he had promised to send annual tribute to the Sultan, the King of Vijayanagar began withholding his payments in 1430. When he became sultan, Ala-ud-din's first act was to send an enormous army led by his brother Muhammad to invade Vijayanagar.
+
+	date = { day = 27 month = february year = 1437 }
+	offset = 15
+	deathdate = { day = 1 month = january year = 1438 }
+
+	action_a = {
+		name = "ACTIONNAME410006A" #Take the arrears back by force
+		command = { type = casusbelli which = VIJ value = 24 }
+		command = { type = relation which = VIJ value = -25 }
+		command = { type = CAV which = -2 value = 5000 }
+	}
+	action_b = {
+		name = "ACTIONNAME410006B" #Let Vijyanagar regain its freedom
+		command = { type = relation which = VIJ value = 25 }
+		command = { type = badboy value = -2 }
+		command = { type = sleepevent which = 328061 } #Devaraya II pays tribute #VIJ: Bahmanid Victory
+	}
+}
+
+#(1437-1444) Devaraya II pays tribute
+event = {
+	id = 410007 #triggered by VIJ_328061 A
+	random = no
+	country = BMD
+	name = "EVENTNAME410007" #Devaraya II pays tribute
+	desc = "EVENTHIST410007"
+	#-#After a short campaign against Vijayanagar, the Muslim armies proved superior to the Hindu forces and the Hindu King Devaraya II secured peace with the Sultan by giving him a present of twenty elephants, two hundred slaves and a vast amount of money.
+
+	action_a = {
+		name = "ACTIONNAME410007A" #Our victory is complete
+		command = { type = treasury value = 100 }
+	}
+}
+
+#(1440-1458) Mohammad Khan's rebellion
+event = {
+	id = 410008
+	trigger = {
+		event = 410007 #BMD: Devaraya II pays tribute
+	}
+	random = no
+	country = BMD
+	name = "EVENTNAME410008" #Mohammad Khan's rebellion
+	desc = "EVENTHIST410008"
+	#-#Heady with success over the Hindus, the victorious Mohammad Khan turned his returning armies against his brother and began a civil war. He soon took Mudkal, Raichur, Sholapur, Bijapur, and Naldirak from the Sultan's governors but was eventually defeated in a pitched battle. Rather than executing him, Ala-ud-din forgave him and made him governor of Raichur, a prestigious post.
+
+	date = { day = 1 month = january year = 1440 }
+	offset = 360
+	deathdate = { day = 6 month = may year = 1458 }
+
+	action_a = {
+		name = "ACTIONNAME410008A" #Forgive him for his treachery
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 12 value = 10 }
+		command = { type = revolt which = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME410008B" #Execute the traitor
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 12 value = 10 }
+		command = { type = revolt which = -3 }
+	}
+}
+
+#(1447) The Troublesome Deccani
+event = {
+	id = 30349
+	random = no
+	country = BMD
+	name = "EVENTNAME30349" #Massacre of the newcomers
+	desc = "EVENTHIST30349"
+	#-#Deccani (the old nobility) massacred many of the newcomers in retaliation for their gaining influence at their expense with the Sultan.
+
+	date = { day = 1 month = january year = 1447 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1447 }
+
+	action_a = {
+		name = "ACTIONNAME30349A" #Punish the Decanni!
+		command = { type = stability value = -1 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = population which = -2 value = -1000 }
+	}
+	action_b = {
+		name = "ACTIONNAME30349B" #Ignore the massacre
+		command = { type = stability value = -3 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = population which = -2 value = -500 }
+	}
+}
+
+#(1458-1461) The Kingdoms of the Velama
+event = {
+	id = 410000
+	trigger = {
+		owned = { province = 566 data = -1 } #Hyderabad
+	}
+	random = no
+	country = BMD
+	name = "EVENTNAME410000" #The Kingdoms of the Velama
+	desc = "EVENTHIST410000"
+	#-#Several independent states existed on the fringes of the Deccan, including two Hindu Kingdoms called Rajahkonda and Debarkonda. These Velama states were small but fierce and caused many problems for the Sultanate, playing the great powers against each other and taking opportunities to invade and expand their lands. When Humayun Shah rose to power he decided to rid himself of this threat and increase the size of his empire at the same time.
+
+	date = { day = 2 month = april year = 1458 }
+	offset = 360
+	deathdate = { day = 3 month = september year = 1461 }
+
+	action_a = {
+		name = "ACTIONNAME410000A" #Let us rid ourselves of these pests
+		command = { type = domestic which = offensive value = 1 }
+		command = { type = treasury value = -25 }
+		command = { type = relation which = ORI value = -25 }
+		command = { type = trigger which = 249007 } #ORI: The Bahmanids invade Debarkonda
+	}
+	action_b = {
+		name = "ACTIONNAME410000B" #They make useful buffer states
+		command = { type = stability value = -1 }
+		command = { type = relation which = ORI value = 25 }
+	}
+}
+
+#(1467) Premiership of Mahmud Gawan
+event = {
+	id = 30334
+	random = no
+	country = BMD
+	name = "EVENTNAME30334" #Prime Minister Mahmud Gawan
+	desc = "EVENTHIST30334"
+	#-#Mahmud Gawan was made the Prime Minister in 1467, and his rule saw the Bahmani state attaining greatness unequalled in its entire history. During this period Parenda Fort, the Great College of Bidar and Medresa at Bidar were constructed. Kapileswar of Orissa was defeated and Goa was annexed in 1470. The boundaries of the Bahmani Kingdom now stretched from the Bay of Bengal in the east to the Arabian Sea in the west. Mahmud Gawan was one of the first ministers in Medieval India to order a systematic measurement of land, establishing the boundaries of villages and towns and making a thorough assessment of sourves of revenue.
+
+	date = { day = 1 month = january year = 1467 }
+
+	action_a = {
+		name = "ACTIONNAME30334A" #Appoint Mahmud Gawan
+		command = { type = casusbelli which = ORI value = 60 }
+		command = { type = casusbelli which = VIJ value = 100 }
+		command = { type = addcore which = 549 } #Goa
+		command = { type = stability value = 1 }
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = domestic which = offensive value = 2 }
+		command = { type = domestic which = quality value = 1 }
+		command = { type = domestic which = serfdom value = 1 }
+		command = { type = infra value = 800 }
+		command = { type = trade value = 800 }
+		command = { type = land value = 500 }
+		command = { type = treasury value = 200 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = ADM which = 4 value = 164 }
+		command = { type = MIL which = 4 value = 164 }
+		command = { type = DIP which = 4 value = 164 }
+	}
+}
+
+#(1471) Timma Bhat, A Rising Star
+event = {
+	id = 30347
+	random = no
+	country = BMD
+	name = "EVENTNAME30347" #Nobles Rebellion
+	desc = "EVENTHIST30347"
+	#-#Nearing his death, Ahmad I gave the throne to his son, Ahmad II. He split the Kingdom into regions giving his other sons rule over them in exchange for their word they would follow Ahmad II. After his death, all but one kept their word.
+
+	date = { day = 1 month = january year = 1471 }
+
+	action_a = {
+		name = "ACTIONNAME30347A" #Kill that Traitor!
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = DIP which = -2 value = 6 }
+	}
+}
+
+#(1472-1474) Kondavidu and Rajahmundry
+event = {
+	id = 410003 #triggered by ORI_249011-14 A
+	random = no
+	country = BMD
+	name = "EVENTNAME410003" #Kondavidu and Rajahmundry
+	desc = "EVENTHIST410003"
+	#-#The expedition to Orissa was a success. Keeping his promise, the new King of Orissa gave the Sultan the border lands of Kondavidu and Rajahmundry, the Reddy Kingdoms of the south.
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = relation which = ORI value = 100 }
+	}
+}
+
+#(1480) Revolt in Kondavidu
+event = {
+	id = 410053
+	random = no
+	country = BMD
+	name = "EVENTNAME410053" #Revolt in Kondavidu
+	desc = "EVENTHIST410053"
+	#-#In 1480, the army garrisoned in Kondavidu mutinied and declared allegiance to Narsimha, the virtual ruler of Vijayanagar. After crushing the rebels, the Sultan accorded Malik Hasan with extra titles. Mahmud Gawan attempted to limit Hasan's influence by getting the Sultan to appoint Hasan, governoer of the province. However, the plan backfired when Hasan's son was ultimately given the post.
+
+	date = { day = 1 month = january year = 1480 }
+	action_a = {
+		name = "ACTIONNAME410053A" #Pesky brutes!
+		command = { type = revolt which = -1 }
+		command = { type = relation which = VIJ value = -25 }
+	}
+}
+
+#(1481) Death of Mahmud Gawan
+event = {
+	id = 30335
+	random = no
+	country = BMD
+	name = "EVENTNAME30335" #Execution of Mahmud Gawan
+	desc = "EVENTHIST30335"
+	#-#In 1481 the nobles, afraid of the growing influence of Mahmud Gawan, conspired against him, and prepared a false document on his behalf saying that he wanted the Bahmani State to be partitioned between him and Purushottum of Orissa. The Sultan was furious and sentenced the Prime Minister to death at the age of 73. Later on, the Sultan learned of Mahmud Gawan's innocence, but there was nothing he could do.
+
+	date = { day = 4 month = september year = 1481 }
+
+	action_a = {
+		name = "ACTIONNAME30335A" #Execute him and appease the nobles
+		command = { type = stability value = 1 }
+		command = { type = domestic which = centralization value = -3 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = offensive value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME30335B" #Retain his services
+		command = { type = stability value = -2 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = revoltrisk which = 48 value = 5 }
+		command = { type = ADM which = 2 value = 12 }
+		command = { type = MIL which = 2 value = 12 }
+		command = { type = DIP which = 2 value = 12 }
+	}
+}
+
+#(1482) Premiership of Malik Hasan
+event = {
+	id = 410054
+	random = no
+	country = BMD
+	name = "EVENTNAME410054" #Premiership of Malik Hasan
+	desc = "EVENTHIST410054"
+	#-#With the death of his main opponent, Malik Hasan found himself appointed prime minister of the Bahmanid Empire. When Muhammad III died of alcoholism or a sexually transmitted disease, Malik Hasan found himself ruling as regent for Mahmud, then in his minority. Although he was to rule successfully and efficently for the next 4 years of the Sultan's minority, Hasan also took the opportunity to strike blows to the Foreigners. In particular, Hasan was out to destroy the then leader of the rival faction, Yusuf Adil Khan, govenor of Bijapur. Turning the Sultan against the Foreigner faction, orders were sent out to punish the foreigners for their insolence. The gates of the city were closed and for the next 20 days bloody conflict ensued that ended with over 8,000 dead. Shortly after, Yusuf Adil Khan fled back to his governership, leaving free reign of the government to Malik Hasan.
+
+	date = { day = 1 month = june year = 1482 }
+
+	action_a = {
+		name = "ACTIONNAME410054A" #Pesky brutes!
+		command = { type = revolt which = -2 }
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = population which = -2 value = -4000 }
+		command = { type = ADM which = 3 value = 48 }
+		command = { type = MIL which = 2 value = 48 }
+		command = { type = DIP which = -2 value = 24 }
+	}
+}
+
+#(1486) Twilight of the Bahmanid Empire
+event = {
+	id = 410052
+	random = no
+	country = BMD
+	name = "EVENTNAME410052" #Twilight of the Bahmanid Empire
+	desc = "EVENTHIST410052"
+	#-#By the 1480's, the Bahmanid Empire existed largely only in name. The various provincial governors were virtually independent but maintained the fiction of a unified empire to prevent foreign encroachments. This status quo was destroyed in 1486, when the governor of Warangal died and Qiwam-ul-Mulk, then governor of Rajamundari annexed the entire Telingana region. While the Prime Minister's son, Malik Ahmad, was off combating the rebellious governor, provincial governor, Yusuf Adil abetted rebels in uprisings in Dabul, Kolhapur and Goa which largely undermined the authority of Malik Hasan. As a result, the prime minister's friends turned against him, taking his life by chopping off his head. His death provoked a series of battles between the Decanni and Foreigner parties, ending in many Decannis being put to the sword or fleeing into the countryside. All of these events suggested to the provincial governors that the end was near and thus they began to assert their autonomy in their respective jurisdictions.
+
+	date = { day = 1 month = january year = 1486 }
+
+	action_a = {
+		name = "ACTIONNAME410052A" #It always gets dark, right before it gets darker
+		command = { type = stability value = -2 }
+		command = { type = revolt which = 549 } #Goa
+		command = { type = revolt which = 563 } #Bastar
+		command = { type = revolt which = 565 } #Yanam
+		command = { type = population which = 551 value = 200 } #Khandesh
+		command = { type = population which = 550 value = 200 } #Maharashtra
+		command = { type = population which = 549 value = 200 } #Goa
+		command = { type = population which = 566 value = -2000 } #Hyderabad
+		command = { type = domestic which = centralization value = -3 }
+		command = { type = revoltrisk which = 48 value = 3 }
+	}
+}
+
+#(1487) Malik Ahmad's Ambition
+event = {
+	id = 410056
+	random = no
+	country = BMD
+	name = "EVENTNAME410056" #Malik Ahmad's Ambition
+	desc = "EVENTHIST410056"
+	#-#While serving as Prime Minister, Malik Hasan envisioned that one day he would carve out his own independent principality. To that end, he encouraged his son to directed his son, Malik Ahmad, to conquer various hillforts held by Marathas in the Konkan region. After his father's untimely death, Ahmad retreated to the region and began to increase his power base. His father's dream now became his own. However for the time being, Ahmad would continue to profess a loyalty to the Bahmanid house while acting as he wished. Despite his supposed loyalty, the current Prime Minister dispatched several armies to crush him.
+
+	date = { day = 1 month = january year = 1487 }
+
+	action_a = {
+		name = "ACTIONNAME30334A" #Appoint Mahmud Gawan
+		command = { type = revolt which = 551 } #Khandesh
+		command = { type = revolt which = 551 } #Khandesh
+		command = { type = revolt which = 548 } #Bombay
+		command = { type = stability value = -1 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = provincetax which = 548 value = -1 } #Bombay
+		command = { type = provincetax which = 551 value = -1 } #Khandesh
+	}
+}
+
+#(1488) The Bahmanid Sultan, A Figurehead
+event = {
+	id = 410055
+	random = no
+	country = BMD
+	name = "EVENTNAME410055" #The Bahmanid Sultan, A Figurehead
+	desc = "EVENTHIST410055"
+	#-#Shortly after the slaughtering of the Deccani in the capital, Qasim Barid, an important Deccani noble declared his independence. After defeating the forces of the Sultan, he marched into the empire and forced the Sultan to name him prime minister. Barid was later pushed out of the capital but then managed to return, and would effectively rule the empire in the Sultan's name till the empire's collapse. The Bahmanid Sultan was no longer anything more than a figurehead.
+
+	date = { day = 1 month = january year = 1488 }
+
+	action_a = {
+		name = "ACTIONNAME410055A" #The Deccanis win the sinking ship
+		command = { type = domestic which = aristocracy value = 2 }
+	}
+}
+
+#(1489-1520) The Disintegration of Bahmanid Empire
+event = {
+	id = 30332
+	trigger = {
+		OR = {
+			owned = { province = 550 data = -1 } #Maharashtra
+			owned = { province = 551 data = -1 } #Khandesh
+		}
+	}
+	random = no
+	country = BMD
+	name = "EVENTNAME30332" #Disintegration of the Bahmani Sultanate
+	desc = "EVENTHIST30332"
+	#-#After the false accusation and execution of Mahmud Gawan, the Bahmani Sultanate slowly fell into decline. In 1489-90 the governors of Ahmadnagar and Bijapur declared their independence, and Bidar followed up soon after. The ruler of the Bahmani Sultanate became a mere figurehead in the hands of the cunning Qasim Barid. The last sultan disappeared on his way to Mekkah, and with him the Bahmani dynasty came to an end.
+
+	date = { day = 1 month = january year = 1489 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1520 }
+
+	action_a = {
+		name = "ACTIONNAME30332A" #Let's the Empire fall apart and depose the ruler
+		command = { type = independence which = AHM }
+		command = { type = independence which = BIJ }
+		command = { type = stability value = -3 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = domestic which = centralization value = -3 }
+		command = { type = domestic which = offensive value = -2 }
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = domestic which = serfdom value = 1 }
+		command = { type = inflation value = 5 }
+		command = { type = infra value = -300 }
+		command = { type = treasury value = -100 }
+		command = { type = trigger which = 30333 } #AHM: The Sultanate of Ahmadnagar
+		command = { type = trigger which = 360000 } #BIJ: The Sultanate of Bijapur
+	}
+}
+#(1489-1520) The Sultanate of Bijapur
+event = {
+	id = 410057 #triggered by BIJ_360000
+	random = no
+	country = BMD
+	name = "EVENTNAME410057" #The Sultanate of Bijapur
+	desc = "EVENTHIST410057"
+	#-#In 1489, Yusuf Adil Shah proclaimed a new sultanate in Maharashtra. Goa promptly recognized Bijapur's suzerainity as legitimate.
+
+	action_a = {
+		name = "CURSES"
+		command = { type = cedeprovince which = BIJ value = 549 } #Goa
+		command = { type = relation which = BIJ value = -10 }
+	}
+}
+#(1489-1520) The Sultanate of Ahmadnagar
+event = {
+	id = 410058 #triggered by AHM_30333
+	random = no
+	country = BMD
+	name = "EVENTNAME410058" #The Sultanate of Ahmadnagar
+	desc = "EVENTHIST410058"
+	#-#The son of Malik Hasan quickly capture up Bahmanid territory in the northwestern portion of the former empire.
+
+	action_a = {
+		name = "CURSES"
+		command = { type = relation which = AHM value = -10 }
+		command = { type = cedeprovince which = AHM value = 548 } #Bombay
+	}
+}
+
+#(1526) The End of the Bahmanid Empire
+event = {
+	id = 30346
+	trigger = {
+		NOT = {
+			exists = GOL
+			countrysize = 30
+		}
+	}
+	random = no
+	country = BMD
+	name = "EVENTNAME30346" #Death of the last ruler
+	desc = "EVENTHIST30346"
+	#-#After the death of Shams ud-Din Muhammad, Bahmani Sultanate quickly fell into chaos and disintegrated into 3 smaller states. The last 3 sultans were kept in prison, and their Kwajas ruled for them. After Kalim ul-Lah went in exile and died disaffected, and his son disappeared on his way to Mekkah, the Bahmani dynasty came to an end.
+
+	date = { day = 1 month = december year = 1526 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1526 }
+
+	action_a = {
+		name = "ACTIONNAME30346A" #Rule from Golconda
+		command = { type = flagname which = "" }
+		command = { type = country which = GOL }
+		command = { type = stability value = 1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = land value = 1 }
+		command = { type = domestic which = quality value = 1 }
+		command = { type = infra value = 250 }
+		command = { type = remove_countryculture which = marathi }
+		command = { type = religion which = shia }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 410009-410049 - next: 410059

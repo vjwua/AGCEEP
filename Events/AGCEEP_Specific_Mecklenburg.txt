@@ -1,0 +1,121 @@
+#Mecklenburg (MEC)
+
+#See AGCEEP_Alt_Germany.txt for KoG Alternative events
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1428) Edo Wiemken's support of pirates
+event = {
+	id = 222001
+	trigger = {
+		exists = FRI
+		event = 171004 #FRI: Edo Wiemken's support of pirates
+	}
+	random = no
+	country = MEC
+	name = "EVENTNAME171004" #Edo Wiemken's support of pirates
+	desc = "EVENTHIST222001"
+	#-#The Hanse could not tolerate Edo Wiemken supporting pirates and began to pressure Friesland for such activities.
+
+	date = { day = 2 month = january year = 1419 }
+	offset = 100
+	deathdate = { day = 29 month = january year = 1428 }
+
+	action_a = {
+		name = "ACTIONNAME222001A" #Force Edo Wiemken
+		command = { type = relation which = FRI value = -30 }
+		command = { type = relation which = DAN value = 5 }
+		command = { type = relation which = BRE value = 10 }
+		command = { type = relation which = SHL value = 10 }
+		command = { type = relation which = OLD value = 5 }
+		command = { type = trigger which = 171005 } #FRI: Pressure of the Hanse
+	}
+	action_b = {
+		name = "ACTIONNAME222001B" #Who cares?
+		command = { type = naval value = -100 }
+		command = { type = treasury value = -25 }
+		command = { type = relation which = FRI value = 20 }
+		command = { type = relation which = DAN value = -5 }
+		command = { type = relation which = BRE value = -15 }
+		command = { type = relation which = SHL value = -15 }
+		command = { type = relation which = OLD value = -5 }
+	}
+}
+#(1419-1429) Friesland still supports the pirates - Ahistorical
+event = {
+	id = 222002 #triggered by FRI_171005 B
+	trigger = {
+		NOT = {
+			war = { country = FRI country = MEC }
+		}
+	}
+	random = no
+	country = MEC
+	name = "EVENTNAME222002" #Friesland still supports the pirates
+	desc = "EVENTHIST222002"
+	#We cannot tolerate such activities...
+
+	action_a = {
+		name = "ACTIONNAME222002A" #Act, but not at once
+		command = { type = casusbelli which = FRI value = 72 }
+	}
+	action_b = {
+		name = "WAR"
+		command = { type = war which = FRI }
+		command = { type = relation which = DAN value = 5 }
+		command = { type = relation which = BRE value = 15 }
+		command = { type = relation which = SHL value = 15 }
+		command = { type = relation which = OLD value = 5 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Erik VII Sequence
+
+#(1426-1459) The Counts of Holstein is in need of help
+event = {
+	id = 222000
+	trigger = {
+		war = { country = SHL country = DAN }
+		NOT = { vassal = { country = DAN country = MEC } }
+		NOT = { vassal = { country = MEC country = DAN } }
+		NOT = { alliance = { country = DAN country = MEC } }
+		NOT = { alliance = { country = SHL country = MEC } }
+	}
+	random = no
+	country = MEC
+	name = "EVENTNAME222000" #The Counts of Holstein is in need of help
+	desc = "EVENTHIST222000"
+	#-#Like most of the Danish Kings before him Erik wanted to add Slesvig and Holstein to the list of their possessions, so in July 1413 he held a 'Danehof' which was to decide if Slesvig and Holstein was rightfully his. Since the 'Danehof' was a legal assembly used to solve territorial disputes within Denmark, and the counts of Holstein had waged war against the Danish crown in the past, the court ruled in favor of their monarch. The counts of Holstein rejected the ruling as they didn't view themselves as part of the Kingdom and the 'Danehof' had no right to pass judgement over them. King Erik was prepared for this response and used it to portray the counts as traitors. The following war ended in favor of the counts, but the Holy Roman Emperor (Eriks cousin) forced the counts accept a truce in which they were to leave all occupied territory. The counts however didn't pull back their troops as ordered and in 1426 the war between Denmark and Holstein erupted again. This time the counts had the support of the Hansa League.
+
+	date = { day = 1 month = january year = 1426 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1459 }
+
+	action_a = {
+		name = "ACTIONNAME222000A" #Support the counts of Holstein
+		command = { type = stability value = 1 } #The Hansa puts aside other demands on the government for the time being
+		command = { type = manpower value = 5 } #Hansa mercenaries
+		command = { type = domestic which = aristocracy value = -1 } #Increased influence for the Hansa League
+		command = { type = alliance which = SHL }
+		command = { type = relation which = SHL value = 100 }
+		command = { type = war which = DAN }
+		command = { type = relation which = DAN value = -100 }
+		command = { type = relation which = HAB value = -50 } #Going against the wishes of the emperor.
+	}
+	action_b = {
+		name = "ACTIONNAME222000B" #This is none of our business
+		command = { type = stability value = -1 } #The Hansa League battles the government.
+		command = { type = revoltrisk which = 24 value = 3 } #The Hansa League battles the government.
+		command = { type = ADM which = -3 value = 24 } #The Hansa League battles the government.
+		command = { type = merchants value = -6 } #The Hansa League battles the government.
+		command = { type = domestic which = aristocracy value = 1 } #Decreased influence for the Hansa League.
+		command = { type = relation which = DAN value = 50 }
+		command = { type = relation which = HAB value = 25 }
+		command = { type = relation which = SHL value = -50 }
+	}
+}
+#End of Erik VII Sequence
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 222003

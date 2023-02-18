@@ -4,7 +4,7 @@
 
 country = {
 	tag = CHA
-	ai = "SmallTrade1.ai"
+	ai = "SmallTrade1.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -14,10 +14,10 @@ country = {
 	treasury = 200
 	inflation = 0
 	merchants = 0
-	religion = { type = hinduism }
-	culture = { type = laotian } #Cham
+	religion = { type = hindu }
+	culture = { type = cham }
 	diplomacy = {
-		relation = { tag = KHM value = 75 }
+		relation = { tag = LNA value = 75 }
 		relation = { tag = DAI value = 75 }
 		relation = { tag = CAM value = 75 }
 	}

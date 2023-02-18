@@ -4,7 +4,7 @@
 
 country = {
 	tag = MOG
-	ai = "MOG_1605_India.ai"
+	ai = "MOG_1605_India.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -16,19 +16,19 @@ country = {
 	merchants = 0.083333
 	religion = { type = sunni }
 	culture = {
-		type = hawaiian
-		type = canary
+		type = uighur
+		type = turkoman
 		type = afghani
-		type = aleutian
+		type = rajput
 		type = hindi
 	}
 	diplomacy = {
 		relation = { tag = ENG value = 50 }
 		relation = { tag = HOL value = 20 }
 		relation = { tag = POR value = 150 }
-		relation = { tag = JAI value = 120 }
+		relation = { tag = RAJ value = 120 }
 		relation = { tag = PER value = -100 }
-		relation = { tag = HYD value = 130 }
+		relation = { tag = GOL value = 130 }
 	}
 	knownprovinces = {
 		270 272 274 275 276 277 278 279 280 281 282 283 284 285 286 287 288 289 290 291 292 

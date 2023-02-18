@@ -3,7 +3,7 @@
 
 All AI files that apply to mainly one state should be called
 
-tag_startyear_name.ai,
+tag_startyear_name.txt,
 
 where "name" can be anything helping the modders remember what it is for.
 Generic AI files used by many countries go just by name.

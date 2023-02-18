@@ -4,7 +4,7 @@
 
 country = {
 	tag = BRI
-	ai = "SmallTrade1.ai"
+	ai = "SmallTrade1.txt"
 	colonialattempts = 0
 	colonialnation = yes
 	major = no
@@ -16,7 +16,7 @@ country = {
 	merchants = 1.083333
 	religion = { type = catholic }
 	culture = {
-		type = gaelic
+		type = celtic
 		type = french
 	}
 	knownprovinces = {

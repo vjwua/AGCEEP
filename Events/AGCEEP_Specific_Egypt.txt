@@ -1,0 +1,155 @@
+#Egypt (EGY)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1768-1797) The Independence of the Mamluks in Egypt
+#by RepublicofGenoa
+event = {
+	id = 24059 #triggered by TUR_3398 A
+	trigger = {
+		event = 3398 #TUR: The Independence of the Mamluks in Egypt
+	}
+	random = no
+	country = EGY
+	name = "EVENTNAME3398" #The Independence of the Mamluks in Egypt
+	desc = "EVENTHIST24059"
+	#-#Egypt has gained autonomy from the Ottomans.
+
+	action_a = {
+		name = "ACTIONNAME24059A" #Egypt controls it's own destiny
+		command = { type = addcore which = 748 } #Batn al Hajar
+		command = { type = addcore which = 749 } #Nubia
+		command = { type = INF which = 746 value = 5000 } #Egypt
+		command = { type = CAV which = 746 value = 1000 } #Egypt
+		command = { type = ART which = 746 value = 30 } #Egypt
+		command = { type = breakvassal which = TUR }
+		command = { type = relation which = TUR value = -150 } #don't want reannexed
+		command = { type = flagname which = "Mamluks" }
+	}
+}
+
+#(1798-1805) Napoléon in Egypt
+#by Bordic
+event = {
+	id = 363000
+	trigger = {
+		event = 170124 #FRA: The military expedition in Egypt
+		OR = {
+			vassal = { country = FRA country = EGY }
+			control = { province = 744 data = FRA } #Alexandria
+			control = { province = 745 data = FRA } #Delta
+			control = { province = 746 data = FRA } #Egypt
+		}
+		OR = {
+			owned = { province = 744 data = -1 }
+			owned = { province = 745 data = -1 }
+			owned = { province = 746 data = -1 }
+		}
+	}
+	random = no
+	country = EGY
+	name = "EVENTNAME363000" #Napoléon in Egypt
+	desc = "EVENTHIST363000"
+	#-#In 1798, General Bonaparte proposed an expedition to seize Egypt as a good way to protect French trade interests and undermine Britain's access to India. Although troubled by the scope and cost of the enterprise, the Directory readily agreed to the plan and a large number of troops commanded by General Bonaparte set sail from Toulon, via Malta, towards Alexandria where the French troops, together with a large group of scientists, eventually disembarked in their way to Cairo.
+
+	date = { day = 0 month = january year = 1798 }
+	offset = 15
+	deathdate = { day = 0 month = january year = 1805 }
+
+	action_a = {
+		name = "ACTIONNAME363000A" #The French are at the Pyramids
+		command = { type = stability value = -2 }
+		command = { type = wakemonarch which = 045003 } #French Occupation
+		command = { type = sleepmonarch which = 045002 } #Murad and Ibrahim Bey
+		command = { type = sleepmonarch which = 045005 } #Muhammad Ali
+		command = { type = relation which = TUR value = -50 }
+	}
+}
+
+#(1801-1820) French troops abandon Egypt
+#by Bordic
+event = {
+	id = 363001 #triggered by FRA_170125 A
+	random = no
+	country = EGY
+	name = "EVENTNAME363001" #French troops abandon Egypt
+	desc = "EVENTHIST363001"
+	#-#In their marching to Cairo the French troops had to fight against the Mamluks which were easily tamed in the socalled 'battle of the Pyramids' but a terrible defeat at the bay of Abu Qir by means of the British Navy skillfully commanded by Admiral Nelson cut the French supply lines. Bonaparte continued his military campaign by attacking the Turks in Syria but both desease and short supplies which weakened his soldiers and the bad news coming from France forced him to leave Egypt abandoning there his troops. Successfully dodging the British fleet constantly patrolling the Mediterranean in search of French presence, he managed to make return to France. Letting alone and without command and precise orders, the French troops found themselves at the mercy of the British troops better fitted and supplied. Even if they managed to win some battles they eventually surrendered to the British, however they were taken home by means of the British navy itself. The Napoléon's expedition in Egypt, even if a complete failure under the military aspect, was a huge worldwide success under the cultural historical aspect: with the French occupation the egyptology, the study of ancient Egypt, was born!
+
+	action_a = {
+		name = "ACTIONNAME363001A" #We gained our independence again
+		command = { type = breakvassal which = FRA }
+		command = { type = stability value = 2 }
+		command = { type = relation which = TUR value = 50 }
+		command = { type = relation which = ENG value = 150 }
+		command = { type = sleepmonarch which = 045003 } #French Occupation
+		command = { type = wakemonarch which = 045004 } #Ottoman Administration
+		command = { type = wakemonarch which = 045005 } #Muhammad Ali
+		command = { type = treasury value = 300 }
+		command = { type = infra value = 500 } #Champollion's egyptology
+	}
+}
+
+#(1805-1820) Reign of Muhammad Ali Pasha
+event = {
+	id = 363002
+	trigger = {
+		monarch = 045005 #Muhammad Ali
+		atwar = no
+	}
+	random = no
+	country = EGY
+	name = "EVENTNAME363002" #Reign of Muhammad Ali Pasha
+	desc = "EVENTHIST363002"
+	#-#Muhammad Ali was born in Kavala, a town in Greece, as a son of a merchant from Albania. He joined the army and served as second-in-command in an expedition to expel the French from Egypt. After the success of the mission, he established a power base in the region and the Ottoman Porte had no other choice than to recognize him as an indepedent Pasha of Egypt. He spent the first five years of his reign fighting Mamluk nobels in order to centralize his rule. He tricked an killed them all in 1811. After his success against Mamluks, Muhammad Ali turned to reforms and external enemies. He reoriented the agriculture of Egypt towards cotton and turned cotton export into his personal monopoly. He founded educational institutions, military factories and event a shipbuilding foundry in Alexandria. Overall, he turned Egypt into the most modern non-European country of his time.
+
+	date = { day = 1 month = january year = 1805 }
+	offset = 100
+	deathdate = { day = 29 month = december year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME363002A" #Reform Egypt
+		command = { type = stability value = -2 } #forced conscriptions
+		command = { type = revoltrisk which = 60 value = 5 } #five years of struggle with Mamluks
+		command = { type = treasury value = -300 }
+		command = { type = remove_countryculture which = arabic } #just in case
+		command = { type = add_countryculture which = arabic }
+		command = { type = add_countryculture which = nubian }
+		command = { type = remove_countryculture which = caucasian } #elimination of Mamluks
+		command = { type = land value = 1000 } #military factories
+		command = { type = infra value = 1000 } #building roads and canals
+		command = { type = trade value = 1000 } #cotton export
+		command = { type = domestic which = mercantilism value = 1 } #personal monopoly
+		command = { type = domestic which = centralization value = 3 } #elimination of Mamluks
+		command = { type = domestic which = aristocracy value = -2 } #elimination of Mamluks
+		command = { type = domestic which = innovative value = 3 } #modernization
+		command = { type = domestic which = serfdom value = 2 } #forced conscriptions (both for army and work)
+		command = { type = gainmanufactory which = 744 value = navalequipment } #shipbuilding foundry
+		command = { type = gainbuilding which = -2 value = barrack } #forced conscription center in the capital
+		command = { type = manpower value = 20 } #forced conscription
+		command = { type = population which = 740 value = -1000 } #Tripolitania
+		command = { type = population which = 741 value = -1000 } #Cyrenaica
+		command = { type = population which = 742 value = -1000 } #Quattara
+		command = { type = population which = 743 value = -1000 } #Cataract
+		command = { type = population which = 744 value = -1000 } #Alexandria
+		command = { type = population which = 745 value = -1000 } #Delta
+		command = { type = population which = 746 value = -1000 } #Egypt
+		command = { type = population which = 747 value = -1000 } #Nile
+		command = { type = population which = 748 value = -1000 } #Batn al Hajar
+		command = { type = population which = 749 value = -1000 } #Nubia
+		command = { type = flagname which = "" } #Modern default gfx
+	}
+	action_b = {
+		name = "ACTIONNAME363002B" #Don't reform
+		command = { type = remove_countryculture which = arabic } #just in case
+		command = { type = add_countryculture which = arabic }
+		command = { type = remove_countryculture which = caucasian } #elimination of Mamluks
+		command = { type = stability value = -1 } #Mamluks still cause trouble
+		command = { type = vp value = -50 }
+		command = { type = flagname which = "" } #Modern default gfx
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 363003

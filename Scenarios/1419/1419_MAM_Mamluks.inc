@@ -4,7 +4,7 @@
 
 country = {
 	tag = MAM
-	ai = "MAM_1419_Default.ai"
+	ai = "MAM_1419_Default.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -15,7 +15,7 @@ country = {
 	inflation = 0
 	merchants = 1
 	religion = { type = sunni }
-	culture = { type = patagonian }
+	culture = { type = caucasian }
 	diplomacy = {
 		relation = { tag = KNI value = -50 }
 		relation = { tag = TUR value = 75 }
@@ -25,7 +25,7 @@ country = {
 		relation = { tag = YEM value = 170 }
 		relation = { tag = QAR value = -100 }
 		relation = { tag = DUL value = 150 }
-		relation = { tag = RAG value = 150 }
+		relation = { tag = RAM value = 150 }
 	}
 	knownprovinces = {
 		231 232 233 234 235 236 237 238 239 240 241 242 243 244 245 246 247 248 249 250 251 252

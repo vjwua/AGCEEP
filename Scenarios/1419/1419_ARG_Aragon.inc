@@ -4,7 +4,7 @@
 
 country = {
 	tag = ARG
-	ai = "SmallTrade2.ai"
+	ai = "SmallTrade2.txt"
 	colonialattempts = 0
 	colonialnation = yes
 	major = no
@@ -16,7 +16,7 @@ country = {
 	merchants = 4.083333
 	religion = { type = catholic }
 	culture = {
-		type = amazonian
+		type = catalan
 		type = italian
 		type = maltese
 	}
@@ -26,10 +26,10 @@ country = {
 		relation = { tag = NAV value = 150 }
 		relation = { tag = GRA value = 165 }
 		relation = { tag = MOR value = -200 }
-		relation = { tag = XHO value = -200 }
+		relation = { tag = TLE value = -200 }
 		relation = { tag = FRA value = 175 }
 		relation = { tag = KNI value = 175 }
-		relation = { tag = BEA value = 150 }
+		relation = { tag = FOI value = 150 }
 	}
 	knownprovinces = {
 		1614 #Pope

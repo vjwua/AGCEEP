@@ -4,7 +4,7 @@
 
 country = {
 	tag = ARK
-	ai = "SmallTrade1.ai"
+	ai = "SmallTrade1.txt"
 	policy = {
 		aristocracy = 7
 		centralization = 2

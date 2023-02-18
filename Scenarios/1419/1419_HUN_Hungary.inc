@@ -4,7 +4,7 @@
 
 country = {
 	tag = HUN
-	ai = "HUN_1419.ai"
+	ai = "HUN_1419.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -18,7 +18,7 @@ country = {
 	culture = {
 		type = magyar
 		type = slovak
-		type = syrian
+		type = dalmatian
 	}
 	diplomacy = {
 		relation = { tag = BOH value = 175 }

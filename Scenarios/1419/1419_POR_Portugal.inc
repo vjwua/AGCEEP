@@ -4,7 +4,7 @@
 
 country = {
 	tag = POR
-	ai = "POR_1419_JoaoI.ai"
+	ai = "POR_1419_JoaoI.txt"
 	flagname = "Joao_I"
 	colonialattempts = 10
 	colonialnation = yes
@@ -16,13 +16,13 @@ country = {
 	inflation = 0
 	merchants = 1.083333
 	religion = { type = catholic }
-	culture = { type = mississippian }
+	culture = { type = portuguese }
 	diplomacy = {
 		relation = { tag = ARG value = 150 }
 		relation = { tag = CAS value = 100 }
 		relation = { tag = GRA value = 80 }
 		relation = { tag = MOR value = -200 }
-		relation = { tag = XHO value = -200 }
+		relation = { tag = TLE value = -200 }
 		relation = { tag = KNI value = 170 }
 		relation = { tag = ENG value = 200 }
 	}

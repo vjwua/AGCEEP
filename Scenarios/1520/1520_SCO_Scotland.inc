@@ -4,7 +4,7 @@
 
 country = {
 	tag = SCO
-	ai = "SmallTrade1.ai"
+	ai = "SmallTrade1.txt"
 	flagname = "Ancient"
 	policy = {
 		aristocracy = 5
@@ -26,7 +26,7 @@ country = {
 	inflation = 0
 	merchants = 0.083333
 	religion = { type = catholic }
-	culture = { type = gaelic }
+	culture = { type = celtic }
 	diplomacy = {
 		relation = { tag = ENG value = -150 }
 		relation = { tag = FRA value = 100 }

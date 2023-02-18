@@ -4,7 +4,7 @@
 
 country = {
 	tag = MOG
-	ai = "MOG_1515_Hindustan.ai"
+	ai = "MOG_1515_Hindustan.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -16,8 +16,8 @@ country = {
 	merchants = 0.083333
 	religion = { type = sunni }
 	culture = {
-		type = hawaiian
-		type = canary
+		type = uighur
+		type = turkoman
 		type = afghani
 		type = hindi
 	}

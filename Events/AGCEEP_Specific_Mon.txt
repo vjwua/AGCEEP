@@ -1,0 +1,83 @@
+#Mon (MON)
+
+#Direct Citations
+# http://www.mrcusa.org/yangon.htm
+
+#-----------------------------------------------------------------------------------------------
+
+#(1740) Mon Independence
+event = {
+	id = 253000 #triggered by BRM_136012 A
+	random = no
+	country = MON
+	name = "EVENTNAME253000" #Mon Independence
+	desc = "EVENTHIST253000"
+	#-#The revolt has successfully brought us independence from Burma. Now we can administrate our territories without any external interference. To avoid surprises from our previous suzerains and in order to defend our new boundaries we need also to form a big national army.
+
+	action_a = {
+		name = "ACTIONNAME253000A" #Seize the day!
+		command = { type = breakvassal which = BRM }
+		command = { type = domestic which = LAND value = 3 }
+		command = { type = domestic which = OFFENSIVE value = 3 }
+		command = { type = domestic which = QUALITY value = 2 }
+		command = { type = land value = 1000 }
+		command = { type = inf which = -2 value = 10000 }
+		command = { type = cav which = -2 value = 6000 }
+	}
+}
+
+#(1747-1752) Fall of Second Burmese Empire
+event = {
+	id = 253001
+	trigger = {
+		exists = BRM
+	}
+	random = no
+	country = MON
+	name = "EVENTNAME253001" #Fall of Second Burmese Empire
+	desc = "EVENTHIST253001"
+	#-#Smim Htaw Buddhaketi was not the type to lead his people in wars, and in 1747 he abandoned the throne, which was held for eighteen days by a monk, Nai Caran Khuin, who was then replaced by a Mon lord, Binnya Dala, who had formerly served the Burmese King as Master of the Elephant Stables at Pegu and was Smim Htaw Buddhaketi's father-in-law. The Mons under the leadership of Binnya Dala continued their raids on Ava. In 1751, Binnya Dala raised a large army for the conquest of northern Myanmar, capturing Ava in April 1752. Two years later he executed the last King of the Taungu dynasty, which had been founded in 1486.
+
+	date = { day = 1 month = january year = 1747 }
+	offset = 90
+	deathdate = { day = 1 month = january year = 1752 }
+
+	action_a = {
+		name = "ACTIONNAME253001A" #They shall submit!
+		command = { type = addcore which = 1547 } #Mandalay
+		command = { type = war which = BRM }
+		command = { type = treasury value = 75 }
+		command = { type = inf which = -2 value = 20000 }
+		command = { type = cav which = -2 value = 8000 }
+	}
+	action_b = {
+		name = "ACTIONNAME253001B" #We are cowards!
+		command = { type = stability value = 1 }
+		command = { type = relation which = BRM value = 50 }
+	}
+
+}
+
+#-----------------------------------------------------------------------------------------------
+#Random Events
+#-----------------------------------------------------------------------------------------------
+
+#White Elephants
+event = {
+	id = 253002
+	random = yes
+	country = MON
+	name = "EVENTNAME253002" #White Elephants
+	desc = "EVENTHIST253002"
+	#-#The Buddhist Kings of Southeast Asia have always treasured the possession of white elephants, enhancing royal prestige and ensuring the country's prosperity.
+
+	action_a = {
+		name = "SPLENDID"
+		command = { type = stability value = 1 }
+		command = { type = revoltrisk which = 12 value = -3 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 253003

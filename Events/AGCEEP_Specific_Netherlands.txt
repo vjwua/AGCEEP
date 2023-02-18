@@ -1,0 +1,4416 @@
+#Netherlands (HOL)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1559-1648) Creation of the Dutch Republic
+event = {
+	id = 3900
+	trigger = {
+		owned = { province = 339 data = -1 } #Holland
+		control = { province = 339 data = -1 } #Holland
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME3900" #Creation of the Dutch Republic
+	desc = "EVENTHIST3900"
+	#-#A united Dutch Republic has broken free from the oppressors. This is a chance to unite the Netherlands at last...
+
+	date = { day = 1 month = january year = 1559 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1648 }
+
+	action_a = {
+		name = "MARVELLOUS"
+		command = { type = flagname which = "Princevlag" }
+		command = { type = setflag which = [Princevlag] }
+		command = { type = addcore which = 337 } #Friesen
+		command = { type = addcore which = 338 } #Geldre
+		command = { type = addcore which = 339 } #Holland
+		command = { type = addcore which = 340 } #Zeeland
+		command = { type = addcore which = 378 } #Brabant
+		command = { type = addcore which = 380 } #Flandern
+		command = { type = capital which = 339 } #Holland
+		command = { type = INF which = 339 value = 25000 }
+		command = { type = CAV which = 339 value = 10000 }
+		command = { type = ART which = 339 value = 50 }
+		command = { type = trigger which = 3808 } #FRI: The Dutch Republic
+		command = { type = trigger which = 3806 } #GEL: The Dutch Republic
+		command = { type = trigger which = 3812 } #HAU: The Dutch Republic
+		command = { type = treasury value = 200 }
+		command = { type = merchants value = 4 }
+		command = { type = trade value = 300 }
+	}
+}
+#(1559-1648) Guelders joins the Republic
+event = {
+	id = 3807 #triggered by GEL_3806 A
+	random = no
+	country = HOL
+	name = "EVENTNAME3807" #Guelders joins the Republic
+	desc = "EVENTHIST3807"
+	#-#Seeing the success of the revolt in the core provinces of the Low Countries, other Dutch principalities are rushing to join the greater Dutch Republic. Today, our brothers in Guelders have decided to join us!
+
+	action_a = {
+		name = "MARVELLOUS"
+		command = { type = inherit which = GEL }
+	}
+}
+#(1559-1648) Friesland joins the Republic
+event = {
+	id = 3809 #triggered by FRI_3808 A
+	random = no
+	country = HOL
+	name = "EVENTNAME3809" #Friesland joins the Republic
+	desc = "EVENTHIST3809"
+	#-#Seeing the success of the revolt in the core provinces of the Low Countries, other Dutch principalities are rushing to join the greater Dutch Republic. Today, our brothers in Friesland have decided to join us!
+
+	action_a = {
+		name = "MARVELLOUS"
+		command = { type = inherit which = FRI }
+	}
+}
+#(1559-1648) Brabant joins the Republic
+event = {
+	id = 3813 #triggered by HAU_3812 A
+	random = no
+	country = HOL
+	name = "EVENTNAME3813" #Brabant joins the Republic
+	desc = "EVENTHIST3813"
+	#-#Seeing the success of the revolt in the core provinces of the Low Countries, other Dutch principalities are rushing to join the greater Dutch Republic. Today, our brothers in Brabant have decided to join us!
+
+	action_a = {
+		name = "MARVELLOUS"
+		command = { type = inherit which = HAU }
+	}
+}
+
+#(1559-1648) events to prevent double ceding of provinces after HOL first becomes independent
+#Friesen
+event = {
+	id = 186009
+	trigger = {
+		owned = { province = 337 data = HOL } #Friesen - if they ever own Friesen they never will have it ceded to them
+		event = 3900 #Creation of Dutch Republic - this event should not happen if someone becomes HOL.
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186009" #Wartime devastation of Friesen
+	desc = "EVENTHIST186009"
+	#-#The Dutch revolts involved many sieges, all of which were devastating to the urban populace of the Low Countries.
+
+	date = { day = 1 month = january year = 1559 }
+	offset = 5
+	deathdate = { day = 1 month = january year = 1648 }
+
+	action_a = {
+		name = "ALAS"
+		command = { type = population which = 337 value = -1000 } #Friesen
+		command = { type = sleepevent which = 337044 } #DutchRevolts_337: The Dutch Independence
+	}
+}
+#Geldre
+event = {
+	id = 186010
+	trigger = {
+		owned = { province = 338 data = HOL } #Geldre - if they ever own Geldre they never will have it ceded to them
+		event = 3900 #Creation of Dutch Republic - this event should not happen if someone becomes HOL.
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186010" #Wartime devastation of Geldre
+	desc = "EVENTHIST186010"
+	#-#The Dutch revolts involved many sieges, all of which were devastating to the urban populace of the Low Countries.
+
+	date = { day = 1 month = january year = 1559 }
+	offset = 5
+	deathdate = { day = 1 month = january year = 1648 }
+
+	action_a = {
+		name = "ALAS"
+		command = { type = population which = 338 value = -1000 } #Geldre
+		command = { type = sleepevent which = 337045 } #DutchRevolts_338: The Dutch Independence
+	}
+}
+#Holland
+event = {
+	id = 186011
+	trigger = {
+		owned = { province = 339 data = HOL } #Holland - if they ever own Holland they never will have it ceded to them
+		event = 3900 #Creation of Dutch Republic - this event should not happen if someone becomes HOL.
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186011" #Wartime devastation of Holland
+	desc = "EVENTHIST186011"
+	#-#The Dutch revolts involved many sieges, all of which were devastating to the urban populace of the Low Countries.
+
+	date = { day = 1 month = january year = 1559 }
+	offset = 5
+	deathdate = { day = 1 month = january year = 1648 }
+
+	action_a = {
+		name = "ALAS"
+		command = { type = population which = 339 value = -10000 } #Holland
+		command = { type = sleepevent which = 337046 } #DutchRevolts_339: The Dutch Independence
+	}
+}
+#Zeeland
+event = {
+	id = 186012
+	trigger = {
+		owned = { province = 340 data = HOL } #Zeeland - if they ever own Zeeland they never will have it ceded to them
+		event = 3900 #Creation of Dutch Republic - this event should not happen if someone becomes HOL.
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186012" #Wartime devastation of Zeeland
+	desc = "EVENTHIST186012"
+	#-#The Dutch revolts involved many sieges, all of which were devastating to the urban populace of the Low Countries.
+
+	date = { day = 1 month = january year = 1559 }
+	offset = 5
+	deathdate = { day = 1 month = january year = 1648 }
+
+	action_a = {
+		name = "ALAS"
+		command = { type = population which = 340 value = -5000 } #Zeeland
+		command = { type = sleepevent which = 337047 } #DutchRevolts_340: The Dutch Independence
+	}
+}
+
+#(1559-1648) Reformers in Holland
+event = {
+	id = 186008
+	trigger = {
+		OR = {
+			religion = catholic
+			religion = counterreform
+		}
+		provincereligion = { province = 339 data = reformed } #Holland
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186008" #Reformers in Holland
+	desc = "EVENTHIST186008"
+	#-#Although its rulers were initially dutiful papal subjects, there was great pressure from the people of Holland to adopt the reformed faith.
+
+	date = { day = 1 month = january year = 1559 }
+	offset = 90
+	deathdate = { day = 2 month = june year = 1648 }
+
+	action_a = {
+		name = "ACTIONNAME186008A" #It is the will of the people!
+		command = { type = religion which = reformed }
+	}
+	action_b = {
+		name = "ACTIONNAME186008B" #Such heresy cannot be allowed!
+		command = { type = religion which = counterreform }
+		command = { type = religiousrevolt which = -1 }
+		command = { type = religiousrevolt which = -1 }
+		command = { type = domestic which = innovative value = -1 }
+	}
+}
+
+#(1560-1572) The Geuses
+#The Netherlands should start with an army
+event = {
+	id = 186006
+	trigger = {
+		event = 3900 #Formed from Revolt
+		atwar = yes #The Netherlands are bound to be at war with one of the above nations at that time
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186006" #De Geuzen
+	desc = "EVENTHIST186006"
+	#-#The Geuses were a group of dutch nobles who asked for the General Estates, they were 'Ce ne sont que des gueux', 'They are just beggars' was the comment they received at the Habsburg court in Brussels. The term gueux was adapted by them as Geuses as a name of honour. The watergeuses formed the most effective force in the early rebellion with a fleet of 30 warships they raided southern Netherlands from the English channel ports and the German port of Emden. In 1572 the Watergeuses managed to conquer the town of Den Briel, which was seen as an important victory in the early years of the rebellion. Willem of Orange, the main leader of the rebellion, attempted to form the Geuses into a disciplined army and fleet for the young republic.
+
+	date = { day = 1 month = january year = 1560 }
+	offset = 1
+	deathdate = { day = 1 month = january year = 1572 }
+
+	action_a = {
+		name = "ACTIONNAME186006A" #Let us form an army and a fleet
+		command = { type = revoltrisk which = 12 value = 3 } #The geuses were largely pirates and rebels and unruly to a certain degree
+		command = { type = INF which = -2 value = 8000 }
+		command = { type = CAV which = -2 value = 2000 }
+		command = { type = ART which = -2 value = 30 }
+		command = { type = land value = 300 }
+		command = { type = naval value = 300 }
+		command = { type = warships which = 339 value = 25 } #The Watergeuses aka Sea Beggars, were the most effective and had 30 warships
+		command = { type = transports which = 339 value = 5 }
+		command = { type = treasury value = 300 } #Funds being raised for the war effort
+		command = { type = relation which = ENG value = -50 } #The English were rather unhappy with the watergeuses
+	}
+}
+
+#(1560-1600) England Aids the Dutch Against Spain
+event = {
+	id = 21048 #triggered by ENG_21047 A
+	random = no
+	country = HOL
+	name = "EVENTNAME21048" #England Aids the Dutch Against Spain
+	desc = "EVENTHIST21048"
+	#-#With the now-independent United Provinces at war against their Spanish oppressors, English proves of great importance in our desperate struggle.
+
+	action_a = {
+		name = "ACTIONNAME21048A" #Welcome English Support
+		command = { type = relation which = ENG value = 75 }
+		command = { type = INF which = -1 value = 8000 }
+		command = { type = CAV which = -3 value = 2000 }
+		command = { type = treasury value = 150 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1568-1570) Mercator - Flavor
+#by Johan Andersson
+event = {
+	id = 1506
+	random = no
+	country = HOL
+	name = "EVENTNAME1506" #Gerard Mercator de Kremer
+	desc = "EVENTHIST1506"
+	#-#Flemish geographer mathematician and cartographer. He studied in Louvain where he had a geographical establishment (1534). From 1537 to 1540 he surveyed and mapped Flanders. In 1538 he produced his first map of the world (based on Ptolemy's map)
+
+	date = { day = 0 month = january year = 1568 }
+	offset = 720
+	deathdate = { day = 0 month = january year = 1570 }
+
+	action_a = {
+		name = "OK"
+		command = { type = naval value = 500 }
+	}
+}
+
+#(1575) Founding of the university of Leiden
+event = {
+	trigger = {
+		owned = { province = 339 data = -1 } #Holland
+	}
+	id = 186023
+	random = no
+	country = HOL
+	name = "EVENTNAME186023" #Foundation of the university of Leiden
+	desc = "EVENTHIST186023"
+	#-#In order to train the nobility, educate office-holders for the government and provide preachers for the public church, but also to provide a major center of learning in the humanist arts a university was needed. In February 1675 at Leiden the university was founded. This was the first university in the Netherlands north of the rivers and would become one of the major center of learning in Europe during the 17th century attracting renowned scholars and scientist.
+
+	date = { day = 1 month = february year = 1575 }
+	offset = 10
+	deathdate = { day = 28 month = february year = 1575 }
+
+	action_a = {
+		name = "ACTIONNAME186023A" #Found the university
+		command = { type = treasury value = -100 }
+		command = { type = diplomats value = 3 }
+		command = { type = missionaries value = 3 }
+		command = { type = infra value = 250 }
+		command = { type = vp value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME186023B" #No, we need the funds for more urgent affairs
+		command = { type = infra value = -250 }
+		command = { type = vp value = -50 }
+	}
+}
+
+#(1580-1621) Constitutionalism and the General Estates
+event = {
+	id = 3502
+	random = no
+	country = HOL
+	name = "EVENTNAME3502" #Constitutionalism and the General Estates
+	desc = "EVENTHIST3502"
+	#-#In the early 17th century when the northern part of the Netherlands had managed to hold the Spaniards at bay a political conflict started over which type of government the new country should have. Mauritz of Oranien wanted a monarchy while Oldenbarnefeldt wanted a confederacy. The conflict ended with e confederacy of semi-autonomous provinces, hence its name, the United Provinces. Still a spark of monarchism was kept which later evolved into something more and lasting.
+
+	date = { day = 1 month = january year = 1580 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1621 }
+
+	action_a = {
+		name = "ACTIONNAME3502A" #Confederacy with traces of Monarchism
+		command = { type = domestic which = CENTRALIZATION value = -2 }
+		command = { type = domestic which = ARISTOCRACY value = -2 }
+		command = { type = domestic which = SERFDOM value = -2 }
+		command = { type = domestic which = MERCANTILISM value = -2 }
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = trade value = 500 }
+		command = { type = infra value = 1000 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3502B" #Confederacy on Republican Model
+		command = { type = domestic which = CENTRALIZATION value = -3 }
+		command = { type = domestic which = ARISTOCRACY value = -3 }
+		command = { type = domestic which = SERFDOM value = -3 }
+		command = { type = domestic which = MERCANTILISM value = -3 }
+		command = { type = domestic which = INNOVATIVE value = 2 }
+		command = { type = trade value = 500 }
+		command = { type = infra value = 500 }
+		command = { type = stability value = -1 }
+	}
+	action_c = {
+		name = "ACTIONNAME3502C" #Centralized Monarchy
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = domestic which = SERFDOM value = 1 }
+		command = { type = domestic which = MERCANTILISM value = 1 }
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = land value = 500 }
+		command = { type = infra value = 500 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1580-1621) Creation of the Amsterdam Stock Exchange
+event = {
+	id = 3504
+	trigger = {
+		owned = { province = 339 data = -1 } #Holland
+		control = { province = 339 data = -1 } #Holland
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME3504" #Creation of the Amsterdam Stock Exchange
+	desc = "EVENTHIST3504"
+	#-#In the wake of the creation of the Bank of Amsterdam (1609), the city's stock exchange had become more and more active. Having taken over from Antwerp the role of leading financial place, the stock exchanged flourished. Funds from all over Europe would become available and loans were easily accessible, at rates unmatched anywhere else. This was enhanced by the capitalistic success of the Dutch East India Company (1602) and even of the less successful West India Trade Company (1621).
+
+	date = { day = 1 month = january year = 1580 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1621 }
+
+	action_a = {
+		name = "ACTIONNAME3504A" #Expand Loan Market
+		command = { type = loansize which = 400 }
+		command = { type = gainmanufactory which = -1 value = refinery }
+		command = { type = inflation value = 8 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3504B" #Issue Strict Control
+		command = { type = gainmanufactory which = -1 value = refinery }
+		command = { type = inflation value = -5 }
+		command = { type = stability value = 2 }
+	}
+}
+
+#(1581-1648) The Oath of Abjuration
+event = {
+	id = 186057 #triggered by SPA_285281
+	random = no
+	country = HOL
+	name = "EVENTNAME285281" #The Oath of Abjuration
+	desc = "EVENTHIST285281"
+	#-#The Oath of Abjuration or Plakkaat van Verlatinghe, signed on July 26, 1581, was the formal declaration of independence of the northern Low Countries from the Spanish King, Philip II. This act followed the Union of Utrecht. The Oath of Abjuration meant a climax in the Dutch Revolt, a point of no return, in which the Low Countries asserted they were no longer loyal to their King. Sometimes, the oath is interpreted as an act of secession from Spain, but this is strictly speaking incorrect, as the provinces were never legally incorporated into the Spanish Kingdoms, but were only bound to them by the looser tie of personal union. Legally, the oath deposed the provinces' current ruler, Philip of Habsburg - who, by dynastic coincidence, was also King of Spain. Philip's attempts to unify his various realms under a more centralized government based in Madrid were the major drivers behind the oath. Philip used troops from Spain and other areas loyal to him (such as Wallonia and Italy) to fight the rebels. In the Oath, the Staten-Generaal (the General Estates, a sort of federal parliament) assert that a King is a servant of his people and should respect their laws and traditions. When he no longer does this, the people have the right to choose another ruler.
+
+	action_a = {
+		name = "ACTIONNAME285281A" #The Spanish lose Dutch sovereignty
+		command = { type = flagname which = "Princevlag" }
+		command = { type = setflag which = [Princevlag] }
+		command = { type = breakvassal which = SPA }
+		command = { type = relation which = SPA value = -100 }
+		#Southern provinces are not involved
+		command = { type = cedeprovince which = SPA value = 378 } #Brabant
+		command = { type = cedeprovince which = SPA value = 380 } #Flandern
+	}
+}
+
+#(1584) Assassination of Willem of Orange
+event = {
+	id = 186002
+	random = no
+	country = HOL
+	name = "EVENTNAME186002" #The assassination of Willem of Orange
+	desc = "EVENTHIST186002"
+	#-#In a response to the dutch rebellion, King Philipe II of Spain put a price of 25.000 crowns on the head of the leader of the rebellion, Willem of Orange. The assassination was finally carried out succesfully by Balthasar Gerards at the Princenhof in Delft on July 10th 1584 at around 2 in the afternoon.
+
+	date = { day = 9 month = july year = 1584 }
+
+	action_a = {
+		name = "ACTIONNAME186002A" #(His last words) #My God, my God, have mercy on mine and Your poor people.
+		command = { type = stability value = -1 }
+		command = { type = casusbelli which = SPA value = 60 }
+		command = { type = relation which = SPA value = -200 }
+		command = { type = casusbelli which = FUC value = 60 } #Balthasar Gerards was a French Ultra Catholic
+		command = { type = relation which = FUC value = -200 }
+	}
+}
+
+#(1585-1820) Economic Growth of Amsterdam by Archeolooginspe (adds CoT in Holland)
+event = {
+	id = 186320
+	trigger = {
+		owned = { province = 339 data = -1 } #Holland
+		control = { province = 339 data = -1 } #Holland
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186320" #The Economic Growth of Amsterdam
+	desc = "EVENTHIST186320"
+	#-#Due to the fall of Antwerp and the closure of the Scheldt many, merchants emigrated to the north and brought with them money and know-how, which started the Dutch golden age and made Amsterdam the biggest economic, centre in Europe for some 50 years.
+
+	date = { day = 1 month = january year = 1585 }
+	offset = 10
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "WONDERFUL"
+		command = { type = removecot which = 380 } #Flandern
+		command = { type = cot which = 339 } #Holland
+		command = { type = merchants value = 4 }
+		command = { type = capital which = 339 } #backup #Holland
+	}
+}
+
+#(1585) Founding of the university at Franeker
+event = {
+	trigger = {
+		owned = { province = 337 data = -1 } #Friesland
+	}
+	id = 186024
+	random = no
+	country = HOL
+	name = "EVENTNAME186024" #Foundation of the university at Franeker
+	desc = "EVENTHIST186024"
+	#-#In 1585 it was decided that another university was needed. The site for this second university was the Frisian town of Franeker, where they started teaching in 1585. Despite a slow start in the first years the university gained momentum in the last decade of the 16th century. The university remained second to Leiden in the Netherlands, but still had many eminant professors including the great physician Boerhaave.
+
+	date = { day = 1 month = january year = 1585 }
+	offset = 10
+	deathdate = { day = 29 month = january year = 1585 }
+
+	action_a = {
+		name = "ACTIONNAME186024A" #Found the university
+		command = { type = treasury value = -75 }
+		command = { type = diplomats value = 2 }
+		command = { type = missionaries value = 2 }
+		command = { type = infra value = 200 }
+		command = { type = vp value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME186024B" #No, we need the funds for more urgent affairs
+		command = { type = infra value = -200 }
+		command = { type = vp value = -50 }
+	}
+}
+
+#(1586-1588) Oldenbarneveldt
+event = {
+	id = 186017
+	random = no
+	country = HOL
+	name = "EVENTNAME186017" #Oldenbarneveldt
+	desc = "EVENTHIST186017"
+	#-#Johan van Oldenbarneveldt held the post of state pensionary of Holland and was after the death of Willem of Orange the most skilled politician in the republic. Oldenbarneveldt was the main leader of the States of Holland and became the greatest political opponent of the stadholder Maurits. Oldenbarneveldt negotiated several alliances and treaties with the other European powers to secure the position of the republic. From 1600 onwards however relations between Oldenbarneveldt and Maurits started to deteriorate and worsened due to both taking opposite sides in the religious conflict between Arminians and Gomarists that swept through the republic from 1609. In 1618 Maurits managed to successfully charge Oldenbarneveldt with treason and had him executed.
+
+	date = { day = 1 month = january year = 1586 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1588 }
+
+	action_a = {
+		name = "ACTIONNAME186017A" #An excellent minister
+		command = { type = DIP which = 3 value = 360 }
+		command = { type = ADM which = 2 value = 360 }
+		command = { type = MIL which = 2 value = 360 }
+		command = { type = stability value = 2 }
+	}
+}
+
+#(1589-1649) Creation of the Waterline
+event = {
+	id = 186000
+	trigger = {
+		atwar = yes #Because inundation was only done in times of war and because it damages the economy,
+		NOT = { control = { province = 380 data = HOL } } #added the loss of control of Flandres making the capital more vurnerable, idea by Isaac Brock##
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186000" #The creation of the waterlinie
+	desc = "EVENTHIST186000"
+	#-#In 1589 for the first time the idea emerged to defend large areas of Holland simultaneously instead of focussing the defences per city and fortress. This was achieved by inundation, flooding strips of land with about 1 feet of water. The water was to shallow to sail accros, but could neither be waded through because ditches and other depths were invisible. The whole system of ditches, sluices and canals allowed for a cheap defence needing relatively few soldiers to defend a large area succesfully. The inundation of land proved to be very usefull against the Spanish during the 80 years war and the waterlinie protected Holland from Louis XIV's invasion in 1672. However the farmers were not very happy with it.
+
+	date = { day = 1 month = january year = 1589 }
+	offset = 230
+	deathdate = { day = 1 month = january year = 1649 }
+
+	action_a = {
+		name = "ACTIONNAME186000A" #Let's flood those bastards!
+		command = { type = fortress which = 338 value = 1 } #Geldre
+		command = { type = provincetax which = 338 value = -1 } #loss of tax income due to harvests being ruined #Geldre
+		command = { type = fortress which = 339 value = 1 } #Holland
+		command = { type = provincetax which = 339 value = -1 } #Holland
+		command = { type = fortress which = 340 value = 1 } #Zeeland
+		command = { type = provincetax which = 340 value = -1 } #Zeeland
+		command = { type = domestic which = offensive value = -2 } #Focus on defensive strategies
+	}
+	action_b = {
+		name = "ACTIONNAME186000B" #Offence is the best defence
+		command = { type = domestic which = offensive value = 2 } #For those who just want to go and storm ahead
+	}
+}
+
+#(1590-1601) Military reforms
+event = {
+	id = 186016
+	random = no
+	country = HOL
+	name = "EVENTNAME186016" #Reforms of the Military
+	desc = "EVENTHIST186016"
+	#-#In the 1590's the Dutch economy and military were restructered greatly improving the discipline and quality of the army and navy and expanding their size. The war had stimulated the development of siege techniques and improvements of fortifications by engineers such Adriaen Anthonisz, Johan van Rijswijck and Simon Stevin. Maurits founded the first military acadamy for the training of gentlemen in the arts war in Europe. The republic launched a series of major succesfully offensives over the decade under the command of Maurits and Willem Lodewijk. During these offensives newly devised transports and siege methods were put to use involving the use large amounts of artillery for heavy bombardments.
+
+	date = { day = 1 month = january year = 1590 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1601 }
+
+	action_a = {
+		name = "ACTIONNAME186016A" #Let us reform the army and improve our siege techniques
+		command = { type = domestic which = offensive value = -2 }
+		command = { type = domestic which = quality value = 1 }
+		command = { type = gainbuilding which = -2 value = barrack }
+		command = { type = fortress which = 337 value = 1 } #Friesen
+		command = { type = fortress which = 338 value = 1 } #Geldre
+		command = { type = fortress which = 340 value = 1 } #Zeeland
+		command = { type = manpower value = 10 }
+		command = { type = infra value = 750 }
+		command = { type = land value = 750 }
+		command = { type = naval value = 750 }
+	}
+}
+
+#(1590-1648) Capture of the Spanish treasure fleet
+#by Malatesta and Fodoron with the help of the Spanish forum
+event = {
+	id = 186027
+	trigger = { war = { country = HOL country = SPA } }
+	random = no
+	country = HOL
+	name = "EVENTNAME186027" #Piet Heyn captures the Spanish treasure fleet
+	desc = "EVENTHIST186027"
+	#-#The Netherlands used the twelve years truce with Spain to strenghen their naval supremacy and expand their colonial empire at the expense of Spain and Portugal. A few years after the renewal of hostilities, in 1628, Vice-Admiral Piet Heyn at the service of the Dutch West Indies Company, commanded the fleet that captured the Spanish treasure fleet at Matanzas, Cuba. It was the only time in 300 years of yearly shipments of silver and luxury goods, that the treasure fleet was lost with all its cargo, and it meant the loss of a significant part of the Spanish Crown income at a difficult time. Piet Heyn was made Liutenant-Admiral of the Dutch navy, but he died the following year fighting the Spanish corsairs with base in Dunkirk.
+
+	date = { day = 1 month = january year = 1590 }
+	offset = 200
+	deathdate = { day = 29 month = december year = 1648 }
+
+	action_a = {
+		name = "ACTIONNAME186027A" #We will use their money against them
+		command = { type = treasury value = 300 }
+		command = { type = trigger which = 285068 } #SPA: Piet Heyn captures the Spanish treasure fleet
+	}
+}
+
+#(1595-1596) Wind powered sawmills in Holland - Flavor
+#by Isaac brock
+event = {
+	id = 5123
+	trigger = {
+		owned = { province = 339 data = -1 } #Holland
+		control = { province = 339 data = -1 } #Holland
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME5123" #The first wind powered sawmills
+	desc = "EVENTHIST5123"
+	#-#In 1595 Cornelis Corneliszoon built the first wind powered sawmill. The effect this would have on shipbuilding was aparrent to everyone. The sawyers guild of Amsterdam, whose members earned more than any other semi-skilled laborers, kept the innovation from being introduced to Amsterdam. Instead, the first mill was built in Zaandam, across the harbour. By 1630 there were 53 windmills cutting wood for the Zaandam shipyards, and the collapse of wages had led to the dissolution of the Amsterdam sawyers guild. By the end of the century Zaandam was world renowned for ship design and construction, building as many as 350 ships a year, and with the ability to build an entire ship in 5 weeks.
+
+	date = { day = 1 month = january year = 1595 }
+	offset = 720
+	deathdate = { day = 29 month = december year = 1596 }
+
+	action_a = {
+		name = "ACTIONNAME5123A" #Ban sawmills from Amsterdam
+		command = { type = population which = 339 value = -10000 } #Holland
+		command = { type = provincetax which = 339 value = 1 } #Holland
+		command = { type = trade value = 250 }
+		command = { type = naval value = 250 }
+	}
+	action_b = {
+		name = "ACTIONNAME5123B" #Defy the Amsterdam Sawyers Guild
+		command = { type = provincetax which = 339 value = 1 } #Holland
+		command = { type = domestic which = mercantilism value = -1 }
+		command = { type = trade value = 250 }
+		command = { type = naval value = 250 }
+		command = { type = revolt which = 339 } #Holland
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1597-1800) Spice from Indonesia
+event = {
+	id = 186405
+	trigger = {
+		OR = {
+			discovered = 679 #Ajeh
+			discovered = 680 #Riau
+			discovered = 681 #Jambi
+			discovered = 682 #Palembang
+			discovered = 701 #Sunda
+			discovered = 702 #Jakarta
+			discovered = 703 #Bandung
+			discovered = 704 #Surabaja
+			discovered = 705 #Bali
+			discovered = 710 #Sumbawa
+			discovered = 711 #Flores
+			discovered = 712 #Timor
+			discovered = 713 #Tindore
+			discovered = 714 #Buru
+			discovered = 715 #Ceram
+		}
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186405" #Spice from Indonesia
+	desc = "EVENTHIST186405"
+	#-#In 1597 remnants of the De Houtman expedition (89 of an original 248 sailors) returned to Holland with spices. The De Houtman voyage was actually not profitable, (partly due to de Houtman's own poor judgment and general recklessness) but the businessmen of the Netherlands could see the future potential in the spice trade, and dozens of new voyages were planned to follow its path. This period of is sometimes called the 'wilde vaart'.
+
+	date = { day = 1 month = january year = 1597 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1800 }
+
+	action_a = {
+		name = "ACTIONNAME186405A" #Set sail to spice land!
+		command = { type = domestic which = land value = -2 }
+		command = { type = domestic which = mercantilism value = -2 }
+		command = { type = merchants value = 3 }
+		command = { type = colonists value = 3 }
+		command = { type = warships which = -1 value = 3 }
+		command = { type = treasury value = -250 }
+	}
+	action_b = {
+		name = "ACTIONNAME186405B" #Local industry is our first priority
+		command = { type = domestic which = land value = 1 }
+		command = { type = domestic which = mercantilism value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = sleepevent which = 186072 } #HOL: Profit from the East
+	}
+}
+
+#(1597-1800) Profit from the East
+event = {
+	id = 186072
+	trigger = {
+		event = 186405 #HOL: Spice from Indonesia
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186072" #Profit from the East
+	desc = "EVENTHIST186072"
+	#-#Early Dutch voyages to the east were to prove very profitable. It is calculated that between 1599 and 1600, Dutch businessmen saw a four hundred percent return on their investments. Interest in Indonesia was on the rise.
+
+	date = { day = 1 month = january year = 1597 }
+	offset = 300
+	deathdate = { day = 1 month = january year = 1800 }
+
+	action_a = {
+		name = "MARVELLOUS"
+		command = { type = merchants value = 3 }
+		command = { type = colonists value = 3 }
+		command = { type = trade value = 300 }
+		command = { type = treasury value = 700 }
+	}
+}
+
+#(1600-1700) Vereenigde Oostindische Compagnie (Veerinigte Oostindische Companie)
+event = {
+	id = 3503
+	random = no
+	country = HOL
+	name = "EVENTNAME3503" #Vereenigde Oostindische Compagnie
+	desc = "EVENTHIST3503"
+	#-#The first voyages of Dutch traders to the Sunda Islands and the Moluccas had been forced upon the United Provinces by the closure of the spice market in Lisbon, when Portugal fell under Spanish control. In 1602, the Vereenigde Oostindische Compagnie (United East India Company) was created, with a capital of 6 million guilders, divided into 2000 shares. The company was ruled by a council of 17 members (the Heeren XVII) and established its Asian headquarters in the city of Batavia, founded in 1619 on the Indonesian island of Java. By the end of the 18th century, the company territory extended to most of Southeast Asia, China, Formosa and Japan. Dividends were regularly served, from 25 to 75 percent. It would last till the 19th century and would outlive all other trading companies but the English one.
+
+	date = { day = 1 month = january year = 1600 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1700 }
+
+	action_a = {
+		name = "ACTIONNAME3503A" #We will exploit this!
+		command = { type = trade value = 1000 }
+		command = { type = gainmanufactory which = -1 value = refinery }
+		command = { type = gainbuilding which = 339 value = shipyard } #Holland
+		command = { type = merchants value = 6 }
+		command = { type = treasury value = 200 }
+		command = { type = stability value = 1 }
+		command = { type = setflag which = [VOC] }
+	}
+}
+
+#(1600-1616) Creation of the Bank of Amsterdam
+event = {
+	id = 3505
+	trigger = {
+		owned = { province = 339 data = -1 } #Holland
+		control = { province = 339 data = -1 } #Holland
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME3505" #Creation of the Bank of Amsterdam
+	desc = "EVENTHIST3505"
+	#-#Amsterdam had become the world's warehouse, with goods flowing in from Europe, the East, Asia and America. Stocks were kept for as long as market prices were not satisfactory and released when appropriate: the Dutch were the masters of the market, and thus of prices. This led in 1609 to the creation of the Bank of Amsterdam, to build and stable and widely accepted currency. With money pouring into its coffers, the city had grown into the world largest financial center.
+
+	date = { day = 1 month = january year = 1600 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1616 }
+
+	action_a = {
+		name = "ACTIONNAME3505A" #National Loans at 500 ducats
+		command = { type = gainmanufactory which = -2 value = luxury }
+		command = { type = loansize which = 500 }
+		command = { type = inflation value = -5 }
+		command = { type = stability value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME3505B" #National Loans at 200 ducats
+		command = { type = gainmanufactory which = -2 value = luxury }
+		command = { type = loansize which = 200 }
+		command = { type = inflation value = -10 }
+		command = { type = stability value = 2 }
+	}
+	action_c = {
+		name = "ACTIONNAME3505C" #National Loans at 800 ducats
+		command = { type = gainmanufactory which = -2 value = luxury }
+		command = { type = loansize which = 800 }
+		command = { type = inflation value = 5 }
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1600-1607) Impoldering
+event = {
+	id = 186003
+	random = no
+	country = HOL
+	name = "EVENTNAME186003" #Impoldering
+	desc = "EVENTHIST186003"
+	#-#Ever since the Middle Ages people in the Netherlands have been trying to reclaim land from the numerous bodies of water and swamps. By the early 17th century the engineer Jan Adrieanszoon Leeghwater had developed a technique by using series of windmills to reclaim large stretches of land. Many large investors in Amsterdam have now been found available to provide funding for a major impoldering project, the reclaiming of the Beemster lake. However they will need the support of the States General to start reclaiming land and the risks of failure are great. What shall we do?
+
+	date = { day = 1 month = january year = 1600 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1607 }
+
+	action_a = {
+		name = "ACTIONNAME186003A" #Let's start claiming back what is rightfully ours!
+		command = { type = treasury value = -150 }
+		command = { type = domestic which = innovative value = 2 } #focus on development
+	}
+	action_b = {
+		name = "ACTIONNAME186003B" #No the risk is to great!
+		command = { type = domestic which = innovative value = -2 } #For those who want to follow a more narrowminded path
+		command = { type = stability value = 1 }
+		command = { type = sleepevent which = 186004 } #HOL: Flooding of the Beemster Polder
+		command = { type = sleepevent which = 186005 } #HOL: Impoldering in Holland complete
+	}
+}
+
+#(1600-1620) The first microscope - Flavor
+#by Pietercornelis
+event = {
+	id = 186035
+	trigger = {
+		atwar = no
+		stability = -1
+		domestic = { type = innovative value = 2 }
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186035" #The first microscope
+	desc = "EVENTHIST186035"
+	#-#A microscope is an instrument for viewing objects that are too small to be seen by the naked or unaided eye. The science of investigating small objects using such an instrument is called microscopy. The term microscopic means minute or very small, not visible with the eye unless aided by a microscope. The microscopes used in schools and homes trace their history back almost 400 years. \n \nThe first useful microscope was developed in the Netherlands in the early 1600s.There is almost as much confusion about the inventor as about the dates. Three different eyeglass makers have been given credit for the invention: Hans Lippershey (who also developed the first real telescope), Hans Janssen, and his son, Zacharias. \n \nThe most common type of microscope—and the first to be invented—is the optical microscope. This is an optical instrument containing one or more lenses that produce an enlarged image of an object placed in the focal plane of the lens(es). There are, however, many other microscope designs.
+
+	date = { day = 1 month = january year = 1600 }
+	offset = 1800
+	deathdate = { day = 29 month = december year = 1620 }
+
+	action_a = {
+		name = "ACTIONNAME186035A" #This might be a useful instrument!
+		command = { type = infra value = 50 }
+	}
+}
+
+#(1601-1626) Dutch Military Reforms
+event = {
+	id = 3507
+	random = no
+	country = HOL
+	name = "EVENTNAME3507" #Dutch Military Reforms
+	desc = "EVENTHIST3507"
+	#-#Johann, Count of Nassau-Siegen a long with his cousin Prince Maurits and brother Willem were at the heart of the Dutch reforms. Relearning the lost skills of Classical armies from translation of Roman military manuals, they reorganized battle formations to make them more flexible and to increase firepower. It was Johann who was the brains behind the most famous of all drill manuals, de Gheyn's Wapenhandelinghe, and the founder of one of the first military academies at Siegen in Germany.
+
+	date = { day = 1 month = january year = 1601 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1626 }
+
+	action_a = {
+		name = "ACTIONNAME3507A" #Reform Army and Navy
+		command = { type = domestic which = QUALITY value = 1 }
+		command = { type = domestic which = MERCANTILISM value = 1 }
+		command = { type = domestic which = ARISTOCRACY value = -1 }
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = land value = 800 }
+		command = { type = naval value = 800 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3507B" #Reform Army
+		command = { type = domestic which = LAND value = 3 }
+		command = { type = domestic which = QUALITY value = 1 }
+		command = { type = domestic which = ARISTOCRACY value = -2 }
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = land value = 1500 }
+	}
+	action_c = {
+		name = "ACTIONNAME3507C" #Reform Navy
+		command = { type = domestic which = LAND value = -3 }
+		command = { type = domestic which = QUALITY value = 1 }
+		command = { type = domestic which = MERCANTILISM value = 2 }
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = naval value = 1500 }
+	}
+}
+
+#(1606) VOC attacks Portuguese Malacca
+#Entries in text.csv to be restored when event will be reactivated
+#event = {
+#	id = 186406
+#	trigger = {
+#		owned = { province = 677 data = POR }
+#		NOT = { war = { country = HOL country = POR } }
+#		flag = [VOC]
+#	}
+#	random = no
+#	country = HOL
+#	name = "EVENTNAME186406" #VOC attacks Portuguese Malacca
+#	desc = "EVENTHIST186406"
+#	#-#In 1606 VOC made unsuccessful attack on Portuguese Malacca.
+#
+#	date = { day = 1 month = january year = 1606 }
+#	offset = 30
+#	deathdate = { day = 1 month = january year = 1607 }
+#
+#	action_a = {
+#		name = "ACTIONNAME186406A" #Attack them!
+#		command = { type = domestic which = offensive value = 1 }
+#		command = { type = relation which = POR value = -200 }
+#		command = { type = war which = POR }
+#	}
+#	action_b = {
+#		name = "ACTIONNAME186406B" #Don't bother them
+#		command = { type = relation which = POR value = 50 }
+#	}
+#}
+
+#(1609) Flooding of the Beemster Polder
+event = {
+	id = 186004
+	trigger = { event = 186003 } #HOL: Impoldering
+	random = no
+	country = HOL
+	name = "EVENTNAME186004" #Flooding of the Beemster Polder
+	desc = "EVENTHIST186004"
+	#-#In 1607 the first major impoldering project was started with the reclaiming of land from the Beemster lake. However in 1609 just after the Beemster lake had fallen dry, a storm flood occurred breaking the dikes and causing the polder to fill again with water.
+
+	date = { day = 1 month = january year = 1609 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1609 }
+
+	action_a = {
+		name = "ACTIONNAME186004A" #Let us continue to reclaim land
+		command = { type = treasury value = -50 } #More funding is required
+		command = { type = stability value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME186004B" #No this project has cost us to much already
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = sleepevent which = 186005 } #HOL: Impoldering in Holland complete
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#"New Netherland" Sequence
+
+#(1609-1620) Discovery of New Netherland
+event = {
+	id = 186066
+	trigger = {
+		flag = [VOC]
+		OR = {
+			discovered = 87 #Manhattan
+			discovered = 862 #Cheasapeake Bay
+		}
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186066" #Discovery of New Netherland
+	desc = "EVENTHIST186066"
+	#-#On the 3rd of September 1609, English explorer, Henry Hudson discovered the area now known on as New York while attempting to find a northwest passage to the East Indies. Traveling up the Husdon River, he went as far as modern-day Albany and claimed all lands for his employer the VOC.
+
+	date = { day = 1 month = january year = 1609 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1620 }
+
+	action_a = {
+		name = "GOOD"
+		command = { type = addcore_claim which = 87 } #Manhattan
+		command = { type = addcore_claim which = 88 } #Catskill
+		command = { }
+	}
+}
+#(1623-1660) Formation of New Netherland
+event = {
+	id = 186067
+	trigger = {
+		flag = [WIC]
+		owned = { province = 87 data = -1 } #Manhattan
+		OR = {
+			owned = { province = 86 data = -1 } #Delaware
+			owned = { province = 88 data = -1 } #Catskill
+			owned = { province = 102 data = -1 } #Connecticut
+		}
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186067" #Formation of New Netherland
+	desc = "EVENTHIST186067"
+	#-#Following the discovery of New Netherland, Fort Oranje was erected, near modern-day Albany, to protect Dutch trading with the Indians for furs. In 1621, the States General of the United Provinces granted the newly incorporated Westindische Compagnie (WIC) a 24 year trading monopoly in America and Africa. By 1623, New Netherland would be granted provincial status and the WIC began organizing permanent Dutch settlement.
+
+	date = { day = 1 month = january year = 1623 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1660 }
+
+	action_a = {
+		name = "GOOD"
+		command = { type = addcore_claim which = 86 } #Delaware
+		command = { type = addcore_claim which = 87 } #Manhattan
+		command = { type = addcore_claim which = 88 } #Catskill
+		command = { type = addcore_claim which = 102 } #Connecticut
+	}
+}
+#(1660-1820) Loss of New Netherland
+event = {
+	id = 186068
+	trigger = {
+		OR = {
+			core = { province = 86 data = -1 } #Delaware
+			core = { province = 87 data = -1 } #Manhattan
+			core = { province = 88 data = -1 } #Catskill
+			core = { province = 102 data = -1 } #Connecticut
+		}
+		OR = {
+			AND = {
+				war = { country = ENG country = HOL }
+				control = { province = 87 data = ENG } #Manhattan
+				OR = {
+					control = { province = 86 data = ENG } #Delaware
+					control = { province = 88 data = ENG } #Catskill
+					control = { province = 102 data = ENG } #Connecticut
+				}
+			}
+			AND = {
+				owned = { province = 87 data = ENG } #Manhattan
+				OR = {
+					owned = { province = 86 data = ENG } #Delaware
+					owned = { province = 88 data = ENG } #Catskill
+					owned = { province = 102 data = ENG } #Connecticut
+				}
+			}
+			AND = {
+				owned = { province = 88 data = ENG } #Catskill
+				OR = {
+					owned = { province = 86 data = ENG } #Delaware
+					owned = { province = 102 data = ENG } #Connecticut
+				}
+			}
+			AND = {
+				owned = { province = 86 data = ENG } #Delaware
+				owned = { province = 102 data = ENG } #Connecticut
+			}
+			exists = USA
+		}
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186068" #Loss of New Netherland
+	desc = "EVENTHIST186068"
+	#-#Although an initially promising venture, the province of New Netherland was difficult to maintain and protect. Coveted by many, very few heeded the Dutch claim to the territory.
+
+	date = { day = 1 month = january year = 1660 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1820 }
+
+	action_a = {
+		name = "DRATS"
+		command = { type = removecore which = 86 } #Delaware
+		command = { type = removecore which = 87 } #Manhattan
+		command = { type = removecore which = 88 } #Catskill
+		command = { type = removecore which = 102 } #Connecticut
+	}
+}
+#End of "New Netherland" Sequence
+#-----------------------------------------------------------------------------------------------
+
+#(1610-1690) Dutch Conflict with Portugal
+event = {
+	id = 18019
+	trigger = {
+		flag = [VOC]
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME18019" #Dutch Conflict with Portugal
+	desc = "EVENTHIST18019"
+	#-#When Portugal had decided to develop sugar plantations in Brazil, this project was partially financed by Holland (while under Spanish rule). The production and trade progressed very well, with Portugal and Holland making huge profits. However, following the independence of Holland and subsequent Spanish hostility, Portugal has been swayed to restrict our trading rights. We also have an opportunity to attack Portuguese possessions in the Indian Ocean and the Spice Islands. How shall we react?
+
+	date = { day = 1 month = january year = 1610 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1690 }
+
+	action_a = {
+		name = "ACTIONNAME18019A" #Use Force to Secure Trade
+		command = { type = relation which = POR value = -400 }
+		command = { type = addcore_claim which = 205 } #Pernambuc
+		command = { type = addcore_claim which = 576 } #Colombo
+		command = { type = addcore_claim which = 677 } #Malacca
+		command = { type = addcore_claim which = 701 } #Sunda
+		command = { type = addcore_claim which = 702 } #Jakarta
+		command = { type = addcore_claim which = 795 } #Leone
+	}
+	action_b = {
+		name = "ACTIONNAME18019B" #Avoid Open Conflict
+		command = { type = relation which = POR value = 50 }
+		command = { type = sleepevent which = 18020 } #HOL: Dutch Ambitions Realized
+		command = { type = sleepevent which = 413004 } #LNK: Alliance with the Dutch
+	}
+}
+#(1610-1720) Dutch Ambitions Realized
+event = {
+	id = 18020
+	trigger = {
+		event = 18019 #HOL: Dutch Conflict with Portugal
+		OR = {
+			owned = { province = 205 data = -1 }
+			owned = { province = 701 data = -1 }
+			owned = { province = 702 data = -1 }
+			owned = { province = 677 data = -1 }
+		}
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME18020" #Dutch Ambitions Realized
+	desc = "EVENTHIST18020"
+	#-#We have, to a certain extent, secured a foothold and planted the seeds of a flourishing overseas trading empire. However, this foothold may be tenuous as the majority of the colonists in place are still Portuguese moradores with a different religion and language. They always seem ready to revolt against Dutch Protestant 'heretics'.
+
+	date = { day = 1 month = january year = 1610 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1720 }
+
+	action_a = {
+		name = "ACTIONNAME18020A" #Well, they still speak Portuguese...
+		command = { type = removecore which = 205 } #Pernambuc
+		command = { type = removecore which = 677 } #Malacca
+		command = { type = removecore which = 701 } #Sunda
+		command = { type = removecore which = 702 } #Jakarta
+	}
+}
+
+#(1612) Impoldering in Holland complete
+event = {
+	id = 186005
+	trigger = {
+		event = 186003 #HOL: Impoldering
+		event = 186004 #HOL: Flooding of the Beemster Polder
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186005" #Impoldering in Holland complete
+	desc = "EVENTHIST186005"
+	#-# Finally in 1612 the Beemster polder was completed yielding about 18000 acres of extremely fertile land. After the succes with reclaiming of the Beemster many more bodies of water followed throughout the 17th century.
+
+	date = { day = 19 month = may year = 1612 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = stability value = 2 }
+		command = { type = treasury value = 50 } #Revenues from selling reclaimed land
+		command = { type = infra value = 1500 } #Reclaiming of land is a major improvement in infrastructure
+		command = { type = provincetax which = 337 value = 1 } #Friesen, impoldering caused a surge in foodproduction, population and welfare growth #Friesen
+		command = { type = provincemanpower which = 337 value = 1 } #Friesen
+		command = { type = population which = 337 value = 5000 } #Friesen
+		command = { type = provincetax which = 338 value = 1 } #Geldre
+		command = { type = provincemanpower which = 338 value = 1 } #Geldre
+		command = { type = population which = 338 value = 5000 } #Geldre
+		command = { type = provincetax which = 339 value = 3 } #Holland was the province with the most reclaimed land and holding the Beemsterpolder #Holland
+		command = { type = provincemanpower which = 339 value = 3 } #Holland
+		command = { type = population which = 339 value = 15000 } #Holland
+		command = { type = provincetax which = 340 value = 1 } #Zeeland
+		command = { type = provincemanpower which = 340 value = 1 } #Zeeland
+		command = { type = population which = 340 value = 5000 } #Zeeland
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Submission of Jakarta Sequence
+
+#(1615-1700) Dutch sailors reach Indonesia
+event = {
+	id = 186052
+	trigger = {
+		NOT = { owned = { province = 702 data = HOL } } #Jakarta
+		discovered = 702
+		flag = [VOC]
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186052" #Dutch sailors reach Indonesia
+	desc = "EVENTHIST186052"
+	#-#Verenigde Oost-Indische Compagnie (Dutch East India Company or VOC) was founded, with the goal of sharing the costs of the exploration of the East Indies and ultimately re-establishing the spice trade, a vital source of income to the new Republic of the Seven United Provinces. The first expeditions were successful in bypassing Portuguese dominion of the Cape of Good Hope and the Indian Ocean in general. The Dutch also managed to break the Portuguese monopoly of the spice trade.
+
+	date = { day = 1 month = january year = 1615 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1700 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = vp value = 1 }
+	}
+}
+#(1615-1720) Capture of Jakarta
+event = {
+	id = 186053
+	trigger = {
+		event = 338193 #ProvinceSpec*702: Dutch sailors reach Indonesia
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186053" #Capture of Jakarta
+	desc = "EVENTHIST186053"
+	#-#As the Dutch fleets grew in size, so did their interference with Portuguese trade, and the first skirmishes took place. By 1619, the Dutch conquered Jayakarta which they rename Batavia and make it their EastIndies capital. For the next twenty years the two cities of Goa and Batavia would fight each other relentlessly, since they stood as the capital of the Portuguese India State (or the Indian Vice-Royalty) and the Dutch EastIndia Company's base of operations.
+
+	date = { day = 1 month = january year = 1615 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1720 }
+
+	action_a = {
+		name = "ACTIONNAME186053A" #Make an offer
+		command = { type = treasury value = -50 }
+	}
+}
+#(1615-1720) Submission of Jakarta
+event = {
+	id = 186054 #triggered by ProvinceSpec_338194 A
+	random = no
+	country = HOL
+	name = "EVENTNAME186054" #The infidel yield to our demands
+	desc = "EVENTHIST186054"
+	#-#The heathen ruler of Jakarta has submitted to us and cedes the city of Jakarta. This can be our key to the wealth of Indonesia.
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = treasury value = 100 }
+		command = { type = inf which = 702 value = 5000 } #Jakarta
+		command = { type = cav which = -3 value = 5000 }
+		command = { type = addcore_claim which = 702 } #Jakarta
+	}
+}
+#(1615-1720) Submission of Jakarta
+event = {
+	id = 186055 #triggered by ProvinceSpec_338194 B
+	random = no
+	country = HOL
+	name = "EVENTNAME186055" #The infidel refuses our offer
+	desc = "EVENTHIST186055"
+	#-#The heathen ruler of Jakarta has dared to reject our generous offer and attacked our army. He will regret this.
+
+	action_a = {
+		name = "ACTIONNAME18034A" #Let's teach them a lesson
+		command = { type = inf which = -1 value = 10000 }
+		command = { type = cav which = -3 value = 7000 }
+		command = { type = treasury value = -50 }
+		command = { type = addcore_claim which = 702 } #Jakarta
+	}
+}
+#End of Submission of Jakarta Sequence
+#-----------------------------------------------------------------------------------------------
+
+#(1616-1700) Veerinigte Westindische Companie
+event = {
+	id = 3506
+	random = no
+	country = HOL
+	name = "EVENTNAME3506" #Veerinigte Westindische Compagnie
+	desc = "EVENTHIST3506"
+	#-#In 1621, at the end of the 12 year peace treaty with Spain, the Geoctroyeerde Westindische Compagnie was founded which mainly focused on privateering against the Spanish fleets. Apart from privateering, the objective was to establish as many colonies as possible in the Americas and conquer as much territory. Famous exploits include Manhattan and Piet Heyn raiding the Spanish silver fleet.
+
+	date = { day = 1 month = january year = 1616 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1700 }
+
+	action_a = {
+		name = "ACTIONNAME3506A" #We will exploit this!
+		command = { type = trade value = 500 }
+		command = { type = gainmanufactory which = -1 value = goods }
+		command = { type = merchants value = 6 }
+		command = { type = treasury value = 100 }
+		command = { type = stability value = 1 }
+		command = { type = setflag which = [WIC] }
+	}
+}
+
+#(1618) Calvinism in the Netherlands
+event = {
+	id = 3508
+	random = no
+	country = HOL
+	name = "EVENTNAME3508" #Calvinism in the Netherlands
+	desc = "EVENTHIST3508"
+	#-#In a clerical meeting in Dordrecht (1618-1619) hard-line Calvinism was made State-religion. This was the end of a long struggle between a pluralistic and humanitarian faction, the Arminians, and a dogmatic, narrow-minded 'True Calvinistic' faction, the Gormarists. Moritz of Oranien supported the Gormarists, composed mainly of petty bourgeois and farmers, while Oldenbarneveld supported the Arminians composed of intellectuals and rich bourgeois.
+
+	date = { day = 1 month = january year = 1618 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1619 }
+
+	action_a = {
+		name = "ACTIONNAME3508A" #Gormarism
+		command = { type = domestic which = INNOVATIVE value = -3 }
+		command = { type = domestic which = QUALITY value = 1 }
+		command = { type = revoltrisk which = 12 value = 3 }
+		command = { type = stability value = -1 }
+		command = { type = trigger which = 186018 } #HOL: The fall of the Oldenbarneveldt regime
+	}
+	action_b = {
+		name = "ACTIONNAME3508B" #Arminianism
+		command = { type = domestic which = INNOVATIVE value = 2 }
+		command = { type = domestic which = QUALITY value = -1 }
+		command = { type = revoltrisk which = 12 value = 3 }
+		command = { type = stability value = -1 }
+	}
+}
+#(1618) The fall of the Oldenbarneveldt regime
+event = {
+	id = 186018 #triggered by HOL_3508 A
+	random = no
+	country = HOL
+	name = "EVENTNAME186018" #The fall of the Oldenbarneveldt regime
+	desc = "EVENTHIST186018"
+	#-#Oldenbarneveldts political position had become severely weakened over the past few years, when he sided with the Arminian religious faction. In 1618 the conflict between Arminians and Gomarists had reached such a height that Oldenbarneveldt decided to intervene with armed force. Maurits however managed to gain the support from the majority of the provinces, except for Holland and Zeeland, and succeeded in thwarting Oldenbarneveldt. Maurits had Oldenbarneveldt arrested and charged with treason and had him executed afterwards.
+
+	action_a = {
+		name = "ACTIONNAME186018A" #Have him executed
+		command = { type = DIP which = -3 value = 60 }
+		command = { type = ADM which = -2 value = 60 }
+		command = { type = stability value = -1 }
+		command = { type = domestic which = centralization value = 1 } #Maurits managed to expand the power of the Stadholderate
+		command = { type = revoltrisk which = 24 value = 3 }
+		command = { type = relation which = FRA value = -50 } #The French were not happy with Oldenbarneveldt's execution
+	}
+	action_b = {
+		name = "ACTIONNAME186018B" #Have him only imprisoned
+		command = { type = DIP which = -3 value = 60 }
+		command = { type = ADM which = -2 value = 60 }
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 24 value = 3 }
+	}
+}
+
+#(1618) Sultan Agung bans the sale of rice to the VOC (Netherland's part)
+event = {
+	id = 186400 #triggered by MTR_234200 A
+	random = no
+	country = HOL
+	name = "EVENTNAME186400" #Sultan Agung banned the sale of rice to the VOC
+	desc = "EVENTHIST186400"
+	#-#Sultan Agung banned the sale of rice to the VOC. Agung's governor of Jepara attacked the VOC post there; Dutch burnt down much of Jepara in retaliation.
+
+	action_a = {
+		name = "DARN"
+		command = { type = casusbelli which = MTR value = 6 }
+	}
+}
+
+#(1619-1620) Dutch involvement in the 30 years war
+event = {
+	id = 186020
+	trigger = {
+		event = 3665 #PFA: The Winterking of Prague
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186020" #Dutch assistance for German protestants
+	desc = "EVENTHIST186020"
+	#-#In 1620 the Netherlands sent aid to the Palatinate and Bohemia in order to help the militant protestants in the 30 years war and to divert attention away from the Netherlands.
+
+	date = { day = 1 month = june year = 1619 }
+	offset = 30
+	deathdate = { day = 1 month = july year = 1620 }
+
+	action_a = {
+		name = "ACTIONNAME186020A" #Send aid
+		command = { type = desertion which = -1 value = 10000 }
+		command = { type = treasury value = -100 }
+		command = { type = relation which = PFA value = 100 }
+		command = { type = relation which = BOH value = 100 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = trigger which = 255006 } #PFA: Assistance from the Netherlands
+		command = { type = trigger which = 129100 } #BOH: Assistance from the Netherlands
+		command = { type = casusbelli which = HAB value = 12 }
+	}
+	action_b = {
+		name = "ACTIONNAME186020B" #Do not send aid
+		command = { type = relation which = PFA value = -100 }
+		command = { type = relation which = BOH value = -100 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = SPA value = 50 }
+	}
+}
+
+#(1619) VOC builds Jakarta
+event = {
+	id = 186407
+	trigger = {
+		owned = { province = 702 data = -1 } #Jakarta
+		flag = [VOC]
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186407" #VOC builds Jakarta
+	desc = "EVENTHIST186407"
+	#-#On May 28 1619 Coen arrived at Jayakarta, and burned down the original town of Jayakarta, leaving only the Dutch post of Batavia remaining to become VOC headquarters. On August 1619 VOC began building city at Batavia.
+
+	date = { day = 1 month = august year = 1619 }
+	offset = 14
+	deathdate = { day = 1 month = january year = 1620 }
+
+	action_a = {
+		name = "ACTIONNAME186407A" #Build Jakarta
+		command = { type = population which = 702 value = 1000 } #Jakarta
+		command = { type = provincetax which = 702 value = 1 } #Jakarta
+		command = { type = provincemanpower which = 702 value = 1 } #Jakarta
+		command = { type = gainbuilding which = 702 value = cityrights } #Jakarta
+		command = { type = treasury value = -200 }
+	}
+	action_b = {
+		name = "ACTIONNAME186407B" #We don't have money
+		command = { type = population which = 702 value = -1000 } #Jakarta
+		command = { type = provincetax which = 702 value = -1 } #Jakarta
+		command = { type = provincemanpower which = 702 value = -1 } #Jakarta
+	}
+}
+
+#(1620) VOC prevents smuggling in Banda
+event = {
+	id = 186408
+	trigger = {
+		owned = { province = 715 data = -1 }
+		flag = [VOC]
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186408" #VOC prevents smuggling in Banda
+	desc = "EVENTHIST186408"
+	#-#VOC under Coen almost exterminated population of Banda to prevent 'smuggling'. Survivors settled on small islands near Seram.
+
+	date = { day = 1 month = january year = 1620 }
+	offset = 359
+	deathdate = { day = 1 month = january year = 1621 }
+
+	action_a = {
+		name = "ACTIONNAME186408A" #Prevent smuggling!
+		command = { type = population which = 715 value = -3000 } #Ceram
+		command = { type = provincetax which = 715 value = -2 } #Ceram
+		command = { type = provincemanpower which = 715 value = -2 } #Ceram
+		command = { type = domestic which = mercantilism value = 1 }
+	}
+}
+
+#(1623) English conspiracy in Ambon
+event = {
+	id = 186409
+	trigger = {
+		discovered = 714
+		exists = ENG
+		flag = [VOC]
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186409" #English conspiracy in Ambon
+	desc = "EVENTHIST186409"
+	#-#VOC agents in Ambon arrested, tortured and executed English agents on charges of conspiracy.
+
+	date = { day = 1 month = january year = 1623 }
+	offset = 359
+	deathdate = { day = 1 month = january year = 1624 }
+
+	action_a = {
+		name = "ACTIONNAME186409A" #Execute him!
+		command = { type = relation which = ENG value = -25 }
+	}
+	action_b = {
+		name = "ACTIONNAME186409B" #Release him
+		command = { type = relation which = ENG value = 25 }
+	}
+}
+
+#(1623-1800) VOC takes nominal claim to Aru Islands
+event = {
+	id = 186410
+	trigger = {
+		discovered = 716
+		flag = [VOC]
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186410" #VOC takes nominal claim to Aru Islands
+	desc = "EVENTHIST186410"
+	#-#In 1623 VOC took nominal claim to Aru Islands
+
+	date = { day = 1 month = january year = 1623 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1800 }
+
+	action_a = {
+		name = "ACTIONNAME186410A" #That area is ours!
+		command = { type = addcore_claim which = 716 } #Sorong
+	}
+}
+
+#(1624-1661) Fort Zeelandia
+event = {
+	id = 186074
+	trigger = {
+		owned = { province = 689 data = -1 } #Taiwan
+		control = { province = 689 data = -1 }
+		NOT = { provincereligion = { province = 768 data = pagan } } #not a TP
+		ai = yes
+	}
+	random = no
+	country = HOL
+	name = "AI_EVENT"
+	desc = ""
+	#-#Fort Zeelandia
+
+	date = { day = 1 month = august year = 1624 }
+	offset = 10
+	deathdate = { day = 4 month = may year = 1661 }
+
+	action_a = {
+		name = "OK"
+		command = { type = fortress which = 689 value = -1 } #Taiwan
+		command = { type = fortress which = 689 value = 1 } #Taiwan
+	}
+}
+
+#(1625) Hugo Grotius - Flavor
+event = {
+	id = 5121
+	random = no
+	country = HOL
+	name = "EVENTNAME5121" #Hugo Grotius
+	desc = "EVENTHIST5121"
+	#-#Hugo Grotius was a Dutch scholar and lawyer. His best known book 'De Jure Belli ac Pacis' published in 1625 was a legal masterpiece and lay the groundwork for modern international law. He is also famous for his celebrated escape from prison (where he was incarcerated due to political and religious conflicts) in a bookchest! He also wrote other legal works religious works and poetry.
+
+	date = { day = 1 month = january year = 1625 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1625 }
+
+	action_a = {
+		name = "OK"
+		command = { type = infra value = 100 }
+		command = { type = diplomats value = 3 }
+		command = { type = relation which = ENG value = 30 }
+		command = { type = relation which = FRA value = 30 }
+		command = { type = relation which = SWE value = 30 }
+		command = { type = relation which = DAN value = 30 }
+		command = { type = relation which = -1 value = 10 }
+		command = { type = relation which = -1 value = 10 }
+	}
+}
+
+#(1626-1635) Monopoly in Taiwan
+event = {
+	id = 186075
+	trigger = {
+		control = { province = 689 data = -1 } #Taiwan
+		owned = { province = 689 data = -1 }
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186075" #Monopoly in Taiwan
+	desc = "EVENTHIST186075"
+	#-#Taiwan had long acted as a transhipping point between China and Japan and the VOC was determined to gain control of this trade. It therefore forbid the Japanese to buy any goods from anyone in Taiwan other than the company. Local officials even forbade the Japanese merchants to travel to China themselves to buy silk. Naturally this didn't go over well with the Japanese, who were forced to winter over in Taiwan without profit through the lengthy negotiation process. When they returned to Japan they smuggled aboard some local villagers to form a delegation to see the Shogun and appeal for redress against the Dutch.
+
+	date = { day = 1 month = january year = 1626 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1635 }
+
+	action_a = {
+		name = "ACTIONNAME186075A" #We control all trade in Taiwan
+		command = { type = treasury value = -10 }
+		command = { type = relation which = NIP value = -100 }
+		command = { type = trade value = -250 }
+		command = { type = merchants value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME186075B" #We can all make money here
+		command = { type = relation which = NIP value = 100 }
+		command = { type = merchants value = 2 }
+		command = { type = sleepevent which = 242036 } #NIP: Appeal for redress in Taiwan -I-
+		command = { type = sleepevent which = 242052 } #NIP: Appeal for redress in Taiwan -II-
+	}
+}
+
+#(1628-1635) Fight or Flight over Taiwan - Ahistorical
+event = {
+	id = 186076 #triggered by NIP_242036 B
+	random = no
+	country = HOL
+	name = "EVENTNAME186076" #Fight or Flight over Taiwan
+	desc = "EVENTHIST186076"
+	#-#The Shogun has declared that Taiwan belongs to Japan. He has frozen our trade in Japan already, costing us millions. Now he has sent his soldiers to Taiwan to enforce his edict. What shall we do?
+
+	action_a = {
+		name = "ACTIONNAME186076A" #A temporary setback, maybe we can restore our trade in Japan itself
+		command = { type = cedeprovince which = NIP value = 689 } #Taiwan
+		command = { type = relation which = NIP value = 50 }
+		command = { type = trade value = -250 }
+		command = { type = merchants value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME186076B" #We own Taiwan by right of occupation
+		command = { type = relation which = NIP value = -200 }
+		command = { type = merchants value = -3 } #traders captured in Japan
+		command = { type = casusbelli which = NIP value = 100 }
+		command = { type = trade value = -1000 }
+	}
+}
+#(1628-1635) The exchange of Taiwan and Luzon - Ahistorical
+#by waishi
+event = {
+	id = 186087 #triggered by NIP_242052 C
+	random = no
+	country = HOL
+	name = "EVENTNAME186087" #The exchange of Taiwan and Luzon
+	desc = "EVENTHIST186087"
+	#-#The Shogun has offered a compromise in which we were to exchange Taiwan for Luzon. He has frozen our trade in Japan already, costing us millions. Luzon is less suitable for a transshipping point than Taiwan but declining his offer will let him to declare that Taiwan belongs to Japan and he will send his soldiers to Taiwan. What should we do?
+
+	action_a = {
+		name = "ACTIONNAME186087A" #It will be a small price to pay for our trade in Japan
+		command = { type = relation which = NIP value = -50 }
+		command = { type = cedeprovince which = NIP value = 689 } #Taiwan
+		command = { type = trade value = -200 }
+		command = { type = merchants value = -1 }
+		command = { type = trigger which = 242053 } #NIP: The VOC accepted the exchange
+	}
+
+	action_b = {
+		name = "ACTIONNAME186076B" #We own Taiwan by right of occupation
+		command = { type = relation which = NIP value = -200 }
+		command = { type = merchants value = -3 } #traders captured in Japan
+		command = { type = casusbelli which = NIP value = 100 }
+		command = { type = trade value = -1000 }
+		command = { type = trigger which = 242054 } #NIP: The VOC rejected the exchange
+	}
+}
+
+#(1630-1670) Dutch Golden Age
+#by Pietercornelis
+event = {
+	id = 186056
+	trigger = {
+		atwar = no
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186056" #Dutch Golden Age
+	desc = "EVENTHIST186056"
+	#-#Dutch artists had quite different customers from their colleagues in other European countries, where church and nobility were major patrons. This had an influence on the themes they depicted and their pictorial style. Also many paintings were not produced for commission and found their way to auctions and art traders. This fostered specialization, by which less than brilliant painters could dedicate themselves to themes of their own choosing and still excel in a particular genre. The most famous Dutch artists from this age are Rembrandt van Rijn, Jan Steen, Johannes Vermeer and Pieter Breughel, but hundreds of others worked in the same period. \n \nDutch architecture was also taken to a new height in the Golden Age. Due to the thriving economy cities expanded greatly. New town halls, weighhouses and storehouses were built. Merchants that had gained a fortune ordered a new house built along one of the many new canals that were dug out in and around many cities (for defense and transport purposes), a house with an ornamented façade that befitted their new status. In the countryside, many new castles and stately homes were built. Alas, most of them have not survived. \nEarly in the 17th century late Gothic elements still prevailed, combined with Renaissance motives. After a few decades French classicism gained prominence: vertical elements were stressed, less ornamentation was used, natural stone was preferred above bricks. In the last decades of the century this trend towards sobriety intensified. From around 1670 the most prominent features of a housefront were its entrance, with pillars on each side and possibly a balcony above it, but no further decoration. \nStarting at 1595 Reformed churches were commissioned, many of which are still landmarks today. \nThe most famous Dutch architects of the 17th century were: Jacob van Campen, Pieter and Maurits Post, Pieter Vingbooms, Lieven de Key, Hendrick de Keyser.
+
+	date = { day = 1 month = january year = 1630 }
+	offset = 3600
+	deathdate = { day = 1 month = january year = 1670 }
+
+	action_a = {
+		name = "ACTIONNAME186056A" #We are a nation of great artists!
+		command = { type = stability value = 1 }
+		command = { type = infra value = 250 }
+	}
+}
+
+#(1632-1635) Appease the Shogun
+event = {
+	id = 186077
+	trigger = {
+		event = 242036 #NIP: Appeal for redress in Taiwan
+		control = { province = 689 data = -1 } #Taiwan
+		owned = { province = 689 data = -1 }
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186077" #Appease the Shogun
+	desc = "EVENTHIST186077"
+	#-#Suetsugu sent soldiers along on his next trading mission to Taiwan and they fought a battle with the resident Dutch. It ended in a negotiated settlement where both sides would keep hostages. The Japanese eventually sent the captured Governor of Taiwan, Pieter Nuyts, to Japan to act as an emissary to the Shogun after the death of Suetsugu in June of 1630. He was successful in getting the Shogun to relent and allow the Dutch to trade in Japan. Little did he know that this would be only a temporary success.
+
+	date = { day = 1 month = june year = 1632 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1635 }
+
+	action_a = {
+		name = "ACTIONNAME186077A" #Pieter Nuyts negotiates a settlement
+		command = { type = relation which = NIP value = 100 }
+		command = { type = merchants value = 1 }
+		command = { type = treasury value = -25 } #bribes and presents for the court
+		command = { type = trigger which = 242037 } #NIP: Allow the Dutch to trade again
+	}
+}
+
+#(1632-1661) Encourage immigration from China
+#by sturmvogel
+event = {
+	id = 186078
+	trigger = {
+		event = 186075 #HOL: Monopoly in Taiwan
+		owned = { province = 689 data = -1 } #Taiwan
+		control = { province = 689 data = -1 }
+		NOT = { provincereligion = { province = 689 data = pagan } } #not a TP
+		NOT = {
+			war = { country = HOL country = CHI }
+			event = 186076 #HOL: Fight or Flight over Taiwan
+		}
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186078" #Encourage immigration from China
+	desc = "EVENTHIST186078"
+	#-#Not wanting to import labor from the Netherlands or the East Indies the Dutch offered land and subsidies of various kinds to Chinese peasants willing to immigrate to Taiwan. Within short order they began to convert the fields and meadows used by the aborigines for hunting into productive farms and plantations.
+
+	date = { day = 1 month = january year = 1632 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1661 }
+
+	action_a = {
+		name = "ACTIONNAME186078A" #Settle the island
+		command = { type = provincetax which = 689 value = 2 }
+		command = { type = population which = 689 value = 2000 } #Taiwan
+		command = { type = provincereligion which = 689 value = confucian }
+		command = { type = provinceculture which = 689 value = han }
+	}
+	action_b = {
+		name = "ACTIONNAME186078A" #We will settle it with good, solid burghers from the Netherlands
+		command = { type = provincetax which = 689 value = 2 }
+		command = { type = sleepevent which = 186079 } #HOL: Chinese revolt in Taiwan
+		command = { type = sleepevent which = 186080 } #HOL: Revolt in Taiwan
+	}
+}
+
+#(1633-1636) Corruption under Frederik Hendrik
+event = {
+	id = 186019
+	random = no
+	country = HOL
+	name = "EVENTNAME186019" #The appointment of key functionaries
+	desc = "EVENTHIST186019"
+	#-#In the 1630s the stadholder Frederik Hendrik secured his position by installing friends on key positions in the Netherlands and forming secret commitees to negotiate with foreign powers. However they were proven to be highly corrupt and suspectible to bribery from foreign powers. What shall we do about this?
+
+	date = { day = 1 month = january year = 1633 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1636 }
+
+	action_a = {
+		name = "ACTIONNAME186019A" #Install them
+		command = { type = stability value = 2 }
+		command = { type = inflation value = 5 }
+		command = { type = DIP which = 2 value = 180 }
+		command = { type = ADM which = -2 value = 180 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = relation which = FRA value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME186019B" #No such corruption would ruin us in the long run
+		command = { type = stability value = -2 }
+		command = { type = DIP which = -2 value = 180 }
+		command = { type = ADM which = 2 value = 180 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = relation which = FRA value = -50 }
+	}
+}
+
+#(1634-1820) Settlement of Curaçao
+event = {
+	id = 186088
+	trigger = {
+		owned = { province = 153 data = -1 }
+		control = { province = 153 data = -1 }
+		NOT = { provincereligion = { province = 153 data = pagan } } #not a TP
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186088" #Settlement of Curaçao
+	desc = "EVENTHIST285314"
+	#-#The first colonists have arrived.
+
+	date = { day = 8 month = january year = 1634 }
+	offset = 360
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = addcore_claim which = 153 } #Curacao
+	}
+}
+
+#(1636) VOC bans all private correspondence
+event = {
+	id = 186411
+	trigger = { flag = [VOC] }
+	random = no
+	country = HOL
+	name = "EVENTNAME186411" #VOC bans all private correspondence
+	desc = "EVENTHIST186411"
+	#-#VOC banned all private correspondence
+
+	date = { day = 1 month = january year = 1636 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1701 }
+
+	action_a = {
+		name = "ACTIONNAME186411A" #Ban correspondence!
+		command = { type = domestic which = serfdom value = 1 }
+	}
+}
+
+#(1637) VOC attacks Ternate
+#Entries in text.csv to be restored when event will be reactivated
+#event = {
+#	id = 186412
+#	trigger = {
+#		NOT = { war = { country = HOL country = TER } }
+#		owned = { province = 713 data = TER } #Tindore
+#		discovered = 713
+#		flag = [VOC]
+#	}
+#	random = no
+#	country = HOL
+#	name = "EVENTNAME186412" #VOC attacks Ternate
+#	desc = "EVENTHIST186412"
+#	#-#In 1637 VOC attacked Ternate.
+#
+#	date = { day = 1 month = january year = 1637 }
+#	offset = 30
+#	deathdate = { day = 1 month = january year = 1638 }
+#
+#	action_a = {
+#		name = "ACTIONNAME186412A" #Take Ternate!
+#		command = { type = domestic which = offensive value = 1 }
+#		command = { type = warships which = -1 value = 2 }
+#		command = { type = INF which = -1 value = 5000 }
+#		command = { type = relation which = TER value = -200 }
+#		command = { type = war which = TER }
+#	}
+#	action_b = {
+#		name = "ACTIONNAME186412B" #Just trade with them
+#		command = { type = domestic which = mercantilism value = -1 }
+#		command = { type = merchants value = 3 }
+#		command = { type = relation which = TER value = 50 }
+#	}
+#}
+
+#(1637) Refugee from Batavia (Netherland's part)
+event = {
+	id = 186403 #triggered by MTR_234204
+	random = no
+	country = HOL
+	name = "EVENTNAME186403" #Refugee from Batavia
+	desc = "EVENTHIST186403"
+	#-#Sultan Agung gave permission for Portuguese and Catholic refugees from Batavia to settle around Jepara.
+
+	action_a = {
+		name = "ACTIONNAME186403A" #Let them leave!
+		command = { type = population which = 702 value = -500 } #Jakarta
+		command = { type = provincetax which = 702 value = -1 } #Jakarta
+	}
+}
+
+#(1638-1662) Lanka offers an alliance
+#by sturmvogel
+event = {
+	id = 186062 #triggered by LNK_413004 A
+	random = no
+	country = HOL
+	name = "EVENTNAME186062" #Lanka offers an alliance
+	desc = "EVENTHIST186062"
+	#-#Rajahsinha II, King of Kandy, offered the Dutch a monopoly of spices and to pay their expenses if they'd join him in attacking the Portuguese.
+
+	action_a = {
+		name = "ACTIONNAME186062A" #Let us destroy the Portuguese together!
+		command = { type = alliance which = LNK }
+		command = { type = relation which = LNK value = 100 }
+		command = { type = relation which = POR value = -100 }
+		command = { type = casusbelli which = POR value = 360 }
+	}
+	action_b = {
+		name = "ACTIONNAME186062B" #We have no quarrel with the Portuguese
+		command = { type = relation which = LNK value = -100 }
+		command = { type = relation which = POR value = 100 }
+		command = { type = sleepevent which = 260098 } #POR: The loss of Colombo
+	}
+}
+
+#(1641) VOC takes Malacca
+event = {
+	id = 186413
+	trigger = {
+		NOT = { war = { country = POR country = HOL } }
+		discovered = 677
+		owned = { province = 677 data = POR }
+		flag = [VOC]
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186413" #VOC takes Malacca
+	desc = "EVENTHIST186413"
+	#-#In 1641 VOC took Malacca from Portuguese, with help from the Sultan of Johor.
+
+	date = { day = 1 month = january year = 1641 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1642 }
+
+	action_a = {
+		name = "ACTIONNAME186413A" #Take Malacca!
+		command = { type = domestic which = offensive value = 1 }
+		command = { type = warships which = -1 value = 2 }
+		command = { type = INF which = -1 value = 5000 }
+		command = { type = relation which = POR value = -200 }
+		command = { type = war which = POR }
+	}
+	action_b = {
+		name = "ACTIONNAME186413B" #Just trade with them
+		command = { type = domestic which = mercantilism value = -1 }
+		command = { type = merchants value = 3 }
+		command = { type = relation which = POR value = 50 }
+	}
+}
+
+#(1641) Kakiali and Hitu attack VOC on Ambon
+#Entries in text.csv to be restored when event will be reactivated
+#event = {
+#	id = 186414
+#	trigger = {
+#		owned = { province = 715 data = -1 }
+#		flag = [VOC]
+#	}
+#	random = no
+#	country = HOL
+#	name = "EVENTNAME186414" #Kakiali and Hitu attack VOC on Ambon
+#	desc = "EVENTHIST186414"
+#	#-#In 1641 Kakiali and Hitu attack VOC on Ambon
+#
+#	date = { day = 1 month = january year = 1641 }
+#	offset = 30
+#	deathdate = { day = 2 month = may year = 1642 }
+#
+#	action_a = {
+#		name = "DARN"
+#		command = { type = revolt which = 715 } #Ceram
+#	}
+#}
+
+#(1642) Statutes of Batavia
+event = {
+	id = 9315
+	trigger = {
+		owned = { province = 702 data = -1 } #Jakarta
+		flag = [VOC]
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME9315" #Statutes of Batavia
+	desc = "EVENTHIST9315"
+	#-#'Statutes of Batavia', based on Roman law, were introduced as a legal code for VOC territories.
+
+	date = { day = 1 month = october year = 1642 }
+	offset = 30
+	deathdate = { day = 2 month = may year = 1643 }
+
+	action_a = {
+		name = "ACTIONNAME9315A" #Introduce that law
+		command = { type = infra value = 100 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = gainbuilding which = 702 value = courthouse } #Jakarta
+	}
+}
+
+#(1643-1740) English mediation in conflict with Portugal
+event = {
+	id = 186086
+	trigger = {
+		owned = { province = 576 data = -1 } #Colombo
+		control = { province = 576 data = -1 } #Colombo
+		owned = { province = 577 data = -1 } #Jaffna
+		control = { province = 577 data = -1 } #Jaffna
+		owned = { province = 207 data = POR } #Diamentina
+		control = { province = 207 data = POR } #Diamentina
+		owned = { province = 209 data = POR } #Salvador
+		control = { province = 209 data = POR } #Salvador
+		owned = { province = 210 data = POR } #Itaimas
+		control = { province = 210 data = POR } #Itaimas
+		OR = { #Portugal is either a vassal of England through normal gameplay, through an event or Catherine's dowry took place
+			vassal = { country = ENG country = POR }
+			event = 21079 #POR: The Dowry of Catherine of Bragança -I-
+			event = 21080 #POR: The Dowry of Catherine of Bragança -II - (No Territory)
+		}
+		NOT = { #All sides are at peace with each other
+			war = { country = ENG country = POR }
+			war = { country = ENG country = HOL }
+			war = { country = HOL country = POR }
+		}
+		exists = ENG
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186086" #English mediation in conflict with Portugal
+	desc = "EVENTHIST186086"
+	#-#Using their great influence on both sides, the English mediated in colonial conflict between the rising Dutch and shrinking Portuguese. In 1661, after the fall of Sri Lanka to Dutch forces and failed invasion of Brazil, Netherlands akcnowledged the Portuguese rule in Brazil in exchange for uncontested control of Sri Lanka.
+
+	date = { day = 21 month = august year = 1643 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1740 }
+
+	action_a = {
+		name = "ACTIONNAME186086A" #Accept the English suggestion
+		command = { type = stability value = 1 }
+		command = { type = relation which = ENG value = 100 }
+		command = { type = addcore_claim which = 576 } #Colombo (just in case)
+		command = { type = cedeprovince which = POR value = 205 } #Pernambuc
+		command = { type = removecore which = 205 } #Pernambuc (this is the only removecore really needed at the moment)
+		command = { type = cedeprovince which = POR value = 203 } #Recife
+		command = { type = removecore which = 203 } #Recife
+		command = { type = removecore which = 207 } #Diamentina
+		command = { type = cedeprovince which = POR value = 206 } #Alagoas
+		command = { type = removecore which = 206 } #Alagoas
+		command = { type = cedeprovince which = POR value = 208 } #Minas Gerais
+		command = { type = removecore which = 208 } #Minas Gerais
+		command = { type = removecore which = 209 } #Salvador
+		command = { type = removecore which = 210 } #Itaimas
+		command = { type = cedeprovince which = POR value = 211 } #Niteroi
+		command = { type = removecore which = 211 } #Niteroi
+		command = { type = cedeprovince which = POR value = 212 } #Araxa
+		command = { type = removecore which = 212 } #Araxa
+		command = { type = cedeprovince which = POR value = 213 } #Curitiba
+		command = { type = removecore which = 213 } #Curitiba
+		command = { type = cedeprovince which = POR value = 214 } #Cangucu
+		command = { type = removecore which = 214 } #Cangucu
+		command = { type = trigger which = 260149 } #POR: English mediation in conflict with Netherlands
+	}
+	action_b = {
+		name = "ACTIONNAME186086B" #We will have it all!
+		command = { type = stability value = -1 }
+		command = { type = relation which = ENG value = -100 }
+		command = { type = relation which = POR value = -200 }
+	}
+}
+
+#(1648-1661) Peace of Westphalia
+event = {
+	id = 186015
+	trigger = {
+		OR = {
+			event = 285008 #SPA: Peace treaty of Münster
+			event = 170016 #FRA: Peace treaty of Münster
+			event = 137007 #BUR: Peace treaty of Münster
+		}
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186015" #The peace treaty of Munster
+	desc = "EVENTHIST186015"
+	#-#On may 15th 1648 the struggle for independence finally comes to an end for the Republic of the United Provinces. With no major battles having been fought over the past decade and with our former oppressors getting tired of the war they are ready to reconcile and accept the status quo. This was confirmed int the peace treaty of Munster.
+
+	date = { day = 15 month = may year = 1648 }
+	offset = 20
+	deathdate = { day = 1 month = april year = 1661 }
+
+	action_a = {
+		name = "ACTIONNAME186015A" #Peace confirmed at last
+		command = { type = vp value = 300 } #Some victory points for winning are appropriate
+		command = { type = stability value = 3 } #The Dutch should get some event and reward for winning after all?
+		command = { type = desertion which = -1 value = 10000 } #After the peace treaty of Munster the army of the Republic is reduced
+		command = { type = relation which = ENG value = 50 } #Perhaps they should get improved relations with more (protestant/reformed) nations because of increased standing due to the dutch victory?
+		command = { type = domestic which = centralization value = -3 } #With peace now finally confirmed there is now less reason for unity among the provinces
+		command = { type = treasury value = 100 } #Reducing the army and fleet makes funds available for other purposes
+		command = { type = inflation value = -5 } #With the war being over the economy should return to a more stable peacesetting
+		command = { type = losebuilding which = -2 value = barrack }
+	}
+}
+
+#(1650) The 1650 Political Crisis
+event = {
+	id = 186026
+	random = no
+	country = HOL
+	name = "EVENTNAME186026" #The 1650 political crisis
+	desc = "EVENTHIST186026"
+	#-#Throughout the 17th and 18th century, the political field in the Netherlands was dominated by 2 rivalling factions, the Orangists, who supported the idea of a strong centralized leadership and strived for a republican monarchy, they were lead by the stadholders. They were opposed by the States party faction, who were lead by the state pensionaries and strived for a real republic in which the general estates held most of the power. Each system had its own advantages and disadvantages. Initially the Orangists gained the upperhand after the fall of Oldenbarneveldt, but they gradually lost power throughout the 1630s and '40s. In 1650 under the stadholderate of Willem II the conflict flared up again, due to a series of failed harvests and epidemics. Willem II staged a succesfull military coup, but he died of smallpox the same year and with his succesor being only an infant his supporters failed to achieve victory. This lead to the start of the first stadholderless age under the De Wit regency. However of course we can choose to let the orangist party take over and have Willem III's guardians serving as regents.
+
+	date = { day = 6 month = november year = 1650 }
+
+	action_a = {
+		name = "ACTIONNAME186026A" #Support the states party
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 60 value = 3 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = innovative value = 1 } #The states party followed a religious tolerance policy
+		command = { type = domestic which = mercantilism value = -1 } #Higher tendency to promote a businessfriendly environment
+		command = { type = domestic which = land value = -2 } #The states party was more naval oriented
+		command = { type = domestic which = quality value = -3 } #The army deterioted severely at the end of the regency
+		command = { type = domestic which = serFdom value = -1 }
+		command = { type = inflation value = -5 } #De Witt regency was less corrupt
+		command = { type = relation which = ENG value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME186026B" #Support the orangist party
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 60 value = 3 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = domestic which = mercantilism value = 1 }
+		command = { type = domestic which = land value = 2 }
+		command = { type = domestic which = quality value = 3 }
+		command = { type = domestic which = serfdom value = 1 }
+		command = { type = inflation value = 5 } #Additional corruption with the orangist party
+		command = { type = relation which = ENG value = -50 }
+		command = { type = sleepmonarch which = 060005 } #Jan de Witt
+		command = { type = wakemonarch which = 060016 } #Maria Henriëtte Stuart (Willem III) °
+		command = { type = wakemonarch which = 060017 } #Karel Stuart (Willem III) °
+	}
+}
+
+#(1651) Dutch reaction to the Act of Navigation
+event = {
+	id = 186001 #triggered by ENG_3027 A
+	random = no
+	country = HOL
+	name = "EVENTNAME186001" #The Dutch reaction on the English Act of Navigation
+	desc = "EVENTHIST186001"
+	#-#In 1651 the English under Cromwell passed the Act of Navigation, severely hurting Dutch trade. Diplomatic attempts by Dutch to get the Act withdrawn failed and war seemed inevitable. The States General decided to equip 150 warships in preparation for war.
+
+	action_a = {
+		name = "ACTIONNAME186001A" #This means war!
+		command = { type = casusbelli which = ENG value = 192 } #The Dutch should get a cb till the peace of Breda in 1676
+		command = { type = warships which = 339 value = 25 } #You should get a decent fleet, but 150 would be too much to maintain
+		command = { type = treasury value = -250 } #Funds used to finance the fleet and war effort
+		command = { type = relation which = ENG value = -200 }
+	}
+	action_b = {
+		name = "ACTIONNAME186001B" #Do nothing
+		command = { type = merchants value = -6 } #Trading hindered by the English
+		command = { type = colonists value = -6 } #Colonisation hindered by the English
+		command = { type = domestic which = land value = 5 } #Abandoning naval ambitions
+		command = { type = relation which = ENG value = 50 }
+	}
+}
+
+#(1652-1655) De Witt
+event = {
+	id = 3713
+	random = no
+	country = HOL
+	name = "EVENTNAME3713" #De Witt
+	desc = "EVENTHIST3713"
+	#-#Jan De Witt had been Raad Pensionaris (Great Pensioner) in 1653. Holland enjoyed under his guidance some of its most brilliant years. He also spent his life fighting the influence of the house of Orange, the traditionally Stadhouder (military affairs) and managed to have the Act of Exclusion voted against them in 1667. However, the defeats in 1672 against France and England made the Orange party come back and have him imprisoned. On 20th August, 1672, he and his brother Cornelis were slaughtered by a mob excited by his political opponents.
+
+	date = { day = 1 month = january year = 1652 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1655 }
+
+	action_a = {
+		name = "ACTIONNAME3713A" #An Excellent Minister!
+		command = { type = DIP which = 3 value = 240 }
+		command = { type = ADM which = 2 value = 240 }
+		command = { type = MIL which = 2 value = 240 }
+		command = { type = stability value = 2 }
+	}
+}
+
+#(1652-1674) Raid on the Medway
+#By Pietercornelis
+event = {
+	id = 186032
+	trigger = {
+		war = { country = HOL country = ENG }
+		owned = { province = 248 data = ENG } #Kent
+		NOT = {	domestic = { type = land value = 7 } } #Dutch choose to react on Act of Navigation
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186032" #Preparation of the raid on the Medway
+	desc = "EVENTHIST186032"
+	#-#Sir, in our war with England we may attempt to raid their docks in Chatham and burn their ships!
+
+	date = { day = 1 month = january year = 1652 }
+	offset = 100
+	deathdate = { day = 29 month = december year = 1674 }
+
+	action_a = {
+		name = "ACTIONNAME186032A" #Set sail to Chatham
+		command = { type = treasury value = -100 }
+		command = { type = domestic which = land value = -2 }
+		command = { type = warships which = 339 value = 10 } #Holland
+	}
+	action_b = {
+		name = "ACTIONNAME186032B" #Remain in port
+		command = { type = domestic which = land value = 2 }
+		command = { type = sleepevent which = 164106 } #ENG: Raid on the Medway -I-
+		command = { type = sleepevent which = 164107 } #ENG: Raid on the Medway -II-
+	}
+}
+#(1652-1674) Raid on the Medway -I-
+#by Pietercornelis
+event = {
+	id = 186033 #triggered by ENG_164106 A / ENG_164107 B
+	random = no
+	country = HOL
+	name = "EVENTNAME164106" #Raid on the Medway
+	desc = "EVENTHIST186033"
+	#-#Our victorious fleet returns from their raid on the Medway. The Dutch, under nominal command of Lieutenant-Admiral Michiel de Ruyter, bombarded and captured Sheerness, went up the River Thames to Gravesend, then up the River Medway to Chatham, where they burnt three capital ships and ten lesser naval vessels and towed away the Unity and the Royal Charles, pride and normal flagship of the English fleet. It is generally considered the largest Dutch naval victory in history and the worst English naval defeat. The raid led to a quick end to the war and a favourable peace for the Dutch.
+
+	action_a = {
+		name = "ACTIONNAME186033A" #A great victory in a just war in self-defence
+		command = { type = treasury value = 250 } #Pillage
+		command = { type = naval value = 500 } #New tactics developed
+		command = { type = vp value = 20 }
+		command = { type = trigger which = 164108 }
+	}
+}
+#(1652-1674) Raid on the Medway -II-
+#by Pietercornelis
+event = {
+	id = 186034 #triggered by ENG_164107 A / ENG_164106 B
+	random = no
+	country = HOL
+	name = "EVENTNAME164106" #Raid on the Medway
+	desc = "EVENTHIST186034"
+	#-#Our fleet returns in ruins from their failed raid on Chatham. Alas! It will cost us a lot to refit all the ships!
+
+	action_a = {
+		name = "ALAS"
+		command = { type = treasury value = -250 }
+		command = { type = vp value = -20 }
+		command = { type = trigger which = 164109 }
+	}
+}
+
+#(1652-1814) Replenishment Station at the Cape of Good Hope
+event = {
+	id = 186061
+	trigger = {
+		flag = [VOC]
+		OR = {
+			discovered = 778 #Table
+			discovered = 1329 #Table Bay
+		}
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186061" #Replenishment Station at the Cape of Good Hope
+	desc = "EVENTHIST186061"
+	#-#The expanding Dutch traffic to service their colonies in the Spice Islands caused them to place a settlement at the Cape of Good Hope to resupply the ships of the VOC on their voyages.
+
+	date = { day = 1 month = february year = 1652 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1814 }
+
+	action_a = {
+		name = "ACTIONNAME186061A" #Plant the Flag!
+		command = { type = addcore_claim which = 778 } #Table
+	}
+}
+
+#(1652-1679) First Fort on the Cape
+event = {
+	id = 186058
+	trigger = {
+		owned = { province = 778 data = -1 } #Table
+		control = { province = 778 data = -1 }
+		NOT = { provincereligion = { province = 778 data = pagan } } #not a TP
+		ai = yes
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186058" #First Fort on the Cape
+	desc = "EVENTHIST186058"
+	#-#Commander Jan van Riebeeck, founder of the Dutch replenishment station at the Cape of Good Hope built a small clay and timber fort in 1652. It was replaced by a modern star-shaped stone fortress from 1665 as the fears of an English attack on the colony increased.
+
+	date = { day = 6 month = april year = 1652 }
+	offset = 8000
+	deathdate = { day = 26 month = april year = 1679 }
+
+	action_a = {
+		name = "ACTIONNAME260954A" #Build fort
+		command = { type = fortress which = 778 value = -1 } #Table
+		command = { type = fortress which = 778 value = 1 } #Table
+	}
+}
+
+#(1652-1700) Chinese revolt in Taiwan
+#by sturmvogel
+event = {
+	id = 186079
+	trigger = {
+		event = 186078 #HOL: Encourage immigration from China
+		owned = { province = 689 data = -1 } #Taiwan
+		control = { province = 689 data = -1 }
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186079" #Chinese revolt in Taiwan
+	desc = "EVENTHIST186079"
+	#-#Angered by heavy taxes collected by the Dutch many of the Chinese living in Taiwan revolted, led by merchants who owed the Dutch large amounts on unpaid village lease-holds.
+
+	date = { day = 1 month = august year = 1652 }
+	offset = 80
+	deathdate = { day = 1 month = january year = 1700 }
+
+	action_a = {
+		name = "ACTIONNAME186079A" #Suppress the infamous dogs
+		command = { type = revolt which = 689 }
+		command = { }
+	}
+}
+
+#(1652-1660) Revolt in Taiwan
+event = {
+	id = 186080
+	trigger = {
+		event = 186078 #HOL: Encourage immigration from China
+		exists = SMI
+		owned = { province = 689 data = -1 } #Taiwan
+		OR = {
+			control = { province = 689 data = REB }
+			control = { province = 689 data = SMI }
+		}
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186080" #Revolt in Taiwan
+	desc = "EVENTHIST186080"
+	#-#Taiwan became difficult to rule when the large number of Chinese immigrants grew tired of the strict economic control the Dutch exercised over the island.
+
+	date = { day = 0 month = september year = 1652 }
+	offset = 720
+	deathdate = { day = 1 month = january year = 1660 }
+
+	action_a ={
+		name = "DAMN"
+		command = { type = revolt which = 689 } #Taiwan
+	}
+}
+
+#(1655-1662) Koxinga claims sovereignty over Taiwan and disrupts trade
+#by sturmvogel
+event = {
+	id = 186081 #triggered by SMI_317003 A
+	random = no
+	country = HOL
+	name = "EVENTNAME186081" #Koxinga claims sovereignty over Taiwan and disrupts trade
+	desc = "EVENTHIST186081"
+	#-#By 1655 Zheng Chenggong, known as Koxinga in the West from his title of Guoxingye (Lord of the Imperial Surname), which was pronounced ''Kok seng ia'' in southern Fujianese, had become predominant in the Ming court and he was determined to prevent the Western powers from interfering with Ming trade and to assert sovereignty over Taiwan's native inhabitants. He sent a letter to the VOC's Governor of Taiwan in August 1655. The Spanish, wrote Chenggong, had been mistreating his sailors, and he had therefore issued an edict that forbade Chinese to sail to Manila on pain of death. He enclosed a copy of the edict and requested that the Governor propagate it in Formosa and enforce it by confiscating the junks and property of any who disobeyed. But the language of the edict raised the hackles of the VOC. First, it said that the Dutch ''behave more like animals than Christians.'' Second, it referred to Chinese who lived in the Dutch colony as Chenggong's subjects. Third, and most important, it threatened punishment not only for Chinese but also for ''anyone outside of our nation who extends money for trade with Manila.'' If company officials did as Chenggong asked and published the edict, they would be admitting that Chenggong had sovereignty over the Chinese colonists in Formosa. The Governor and the council decided they must refuse Chenggong's request to preserve ''the sovereignty of the Netherlanders.'' They replied with a ''compliment letter,'' which politely declined his request. The VOC also sent a small fleet to the coast of China, but they found no sign of preparations for invasion. However, Zheng seems to have intimidated many of the Chinese merchants who normally came to trade in Taiwan because very few would brave his displeasure over the next few years.
+
+	action_a = {
+		name = "ACTIONNAME186081A" #Trade has been disrupted
+		command = { type = merchants value = -1 }
+		command = { type = trade value = -100 }
+		command = { type = provincetax which = 689 value = -2 } #Taiwan
+		command = { type = relation which = SMI value = -25 }
+	}
+}
+
+#(1656) VOC deports population of Hoamoal near Ternate to Ambon
+#Entries in text.csv to be restored when event will be reactivated
+#event = {
+#	id = 186417
+#	trigger = {
+#		owned = { province = 713 data = -1 } #Tindore
+#		owned = { province = 715 data = -1 } #Ceram
+#		flag = [VOC]
+#	}
+#	random = no
+#	country = HOL
+#	name = "EVENTNAME186417" #VOC deports population of Hoamoal near Ternate to Ambon
+#	desc = "EVENTHIST186417"
+#	#-#In 1656 VOC deported population of Hoamoal near Ternate to Ambon.
+#
+#	date = { day = 1 month = january year = 1656 }
+#	offset = 30
+#	deathdate = { day = 1 month = january year = 1657 }
+#
+#	action_a = {
+#		name = "ACTIONNAME186417A" #Deport them
+#		command = { type = population which = 713 value = -1000 } #Tindore
+#		command = { type = population which = 715 value = 1000 } #Ceram
+#	}
+#}
+
+#(1658) VOC attacks Palembang
+#Entries in text.csv to be restored when event will be reactivated
+#event = {
+#	id = 186418
+#	trigger = {
+#		discovered = 682
+#		NOT = { war = { country = HOL country = PAL } }
+#		owned = { province = 682 data = PAL }
+#		flag = [VOC]
+#	}
+#	random = no
+#	country = HOL
+#	name = "EVENTNAME186418" #VOC attacks Palembang
+#	desc = "EVENTHIST186418"
+#	#-#In 1658 VOC attacked Palembang
+#
+#	date = { day = 1 month = january year = 1658 }
+#	offset = 30
+#	deathdate = { day = 29 month = december year = 1658 }
+#
+#	action_a = {
+#		name = "ACTIONNAME186418A" #Take Palembang!
+#		command = { type = domestic which = offensive value = 1 }
+#		command = { type = INF which = -1 value = 5000 }
+#		command = { type = relation which = PAL value = -200 }
+#		command = { type = war which = PAL }
+#	}
+#	action_b = {
+#		name = "ACTIONNAME186418B" #Just trade with them
+#		command = { type = domestic which = mercantilism value = -1 }
+#		command = { type = merchants value = 3 }
+#		command = { type = relation which = PAL value = 50 }
+#	}
+#}
+
+#(1658-1664) Succession Dispute in Cochin
+event = {
+	id = 186036
+	trigger = {
+		owned = { province = 573 data = POR } #Cochin
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186036" #Succession Dispute in Cochin
+	desc = "EVENTHIST186036"
+	#-#In their ongoing struggle with Portugal for colonial supremacy, the Dutch use a disputed succession in Portugal's Indian dependency of Cochin to make a power play in India.
+
+	date = { day = 1 month = january year = 1658 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1664 }
+
+	action_a = {
+		name = "ACTIONNAME186036A" #To India!
+		command = { type = relation which = POR value = -100 }
+		command = { type = addcore_claim which = 573 } #Cochin
+		command = { type = casusbelli which = POR value = 120 }
+	}
+}
+
+#(1658-1740) Ascendancy in Malabar
+event = {
+	id = 186037
+	trigger = {
+		OR = {
+			AND = {
+				owned = { province = 573 data = -1 } #Cochin
+				control = { province = 573 data = -1 }
+			}
+			AND = {
+				owned = { province = 573 data = CLC } #Cochin
+				control = { province = 573 data = -1 }
+			}
+			event = 260225 #POR: #The Loss of Cochin
+		}
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186037" #Ascendancy in Malabar
+	desc = "EVENTHIST186037"
+	#-#With the Conquest of Cochin, the Dutch now enjoy overlorship over the Malabar coast.
+
+	date = { day = 1 month = january year = 1658 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1740 }
+
+	action_a = {
+		name = "ACTIONNAME186037A" #We Expect Great Profits
+		command = { type = relation which = CLC value = 100 }
+		command = { type = vassal which = CLC }
+		command = { type = gainbuilding which = 573 value = courthouse } #Cochin
+		command = { type = sleepevent which = 260225 } #POR: The Loss of Cochin
+	}
+}
+
+#(1658-1740) The VOC retains its conquests in payment of debts
+#by sturmvogel
+event = {
+	id = 186063
+	trigger = {
+		flag = [VOC]
+		exists = LNK
+		owned = { province = 576 data = -1 } #Colombo
+		control = { province = 576 data = -1 } #Colombo
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186063" #The VOC retains its conquests in payment of debts
+	desc = "EVENTHIST186063"
+	#-#The Treaty between Rajahsinha II and the Dutch specified that he was to reimburse them for all their expenses fighting the Portuguese. They refused to turn over any of their conquests until payment was made in full.
+
+	date = { day = 0 month = january year = 1658 }
+	offset = 360
+	deathdate = { day = 0 month = january year = 1740 }
+
+	action_a = {
+		name = "ACTIONNAME186063A" #Retain our hard-earned conquests
+		command = { type = relation which = LNK value = -100 }
+		command = { type = province_revoltrisk which = 576 value = 2 } #Colombo - eternal revolt risk
+		command = { type = trigger which = 413005 } #LNK: Debt to the Dutch
+	}
+	action_b = {
+		name = "ACTIONNAME186063B" #Turn them over to Lanka
+		command = { type = relation which = LNK value = 200 }
+		command = { type = trade value = 200 }
+		command = { type = cedeprovince which = LNK value = 576 } #Colombo
+		command = { type = removecore which = 576 } #Colombo
+	}
+}
+#(1658-1740) Payment made in full
+#by sturmvogel
+event = {
+	id = 186064 #triggered by LNK_413005 C
+	random = no
+	country = HOL
+	name = "EVENTNAME186064" #Payment made in full
+	desc = "EVENTHIST186064"
+	#-#Rajahsinha has paid all that he owes. We must turn over our conquests to him.
+
+	action_a = {
+		name = "ACTIONNAME186063A" #Turn them over to Lanka
+		command = { type = relation which = LNK value = 200 }
+		command = { type = trade value = 200 }
+		command = { type = cedeprovince which = LNK value = 576 } #Colombo
+		command = { type = removecore which = 576 } #Colombo
+	}
+}
+
+#(1658-1790) The Southern Low Countries abandon the Empire (ahistorical for the Southern Low Countries until 1815)
+event = {
+	id = 186092
+	trigger = {
+		event = 103 #HugeEvent: Edict of Tolerance
+		event = 186015 #HOL: The peace treaty of Münster
+		OR = {
+			event = 285009 #SPA: Peace treaty of Münster
+			event = 170016 #FRA: Peace treaty of Münster
+		}
+		atwar = no
+		owned = { province = 377 data = -1 } #Luxembourg
+		owned = { province = 378 data = -1 } #Brabant
+		owned = { province = 379 data = -1 } #Artois
+		owned = { province = 380 data = -1 } #Flandres
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186092" #The Southern Low Countries abandon the Empire
+	desc = "EVENTHIST186092"
+	#-#After having acknowledged our independence in the North, the enemy forces have relized at last that they couldn't subjogate our brothers in the South for so a long time. Now they are forced to abandon their claims on those regions as well. The Emperor also acknoledged our desire of independence from the HRE.
+
+	date = { day = 3 month = january year = 1658 }
+	offset = 360
+	deathdate = { day = 1 month = march year = 1790 }
+
+	action_a = {
+		name = "ACTIONNAME186092A" #Welcome to our brothers from the South!
+		command = { type = vp value = 200 } #Some victory points for winning are appropriate
+		command = { type = hre which = 377 value = no } #Luxembourg
+		command = { type = hre which = 378 value = no } #Brabant
+		command = { type = hre which = 379 value = no } #Artois
+		command = { type = hre which = 380 value = no } #Flanders
+		command = { type = domestic which = centralization value = -1 } #still, the Southernmost part...
+		command = { type = merchants value = 2 } #trade increased
+		command = { type = diplomats value = 2 } #international relations improved
+		command = { type = relation which = -6 value = 75 } #relations to the HRE improved
+	}
+}
+
+#(1658-1793) Dutch Improved Fortifications in Colombo
+event = {
+	id = 186059
+	trigger = {
+		owned = { province = 576 data = -1 } #Colombo
+		NOT = { provincereligion = { province = 576 data = pagan } }
+		control = { province = 576 data = -1 }
+		ai = yes
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186059" #Dutch Improved Fortifications in Colombo
+	desc = "EVENTHIST186059"
+	#-#After the Dutch conquered Colombo, they refortified the city of Colombo and greatly reinforced the pre-existing Portuguese fortifications.
+
+	date = { day = 1 month = january year = 1658 }
+	offset = 8000
+	deathdate = { day = 1 month = january year = 1793 }
+
+	action_a = {
+		name = "ACTIONNAME260954A" #Build fort
+		command = { type = treasury value = -300 }
+		command = { type = fortress which = 576 value = -2 } #Colombo
+		#Colombo fortress +2
+		command = { type = fortress which = 576 value = 1 } #Colombo
+		command = { type = fortress which = 576 value = 1 } #Colombo
+	}
+	action_b = {
+		name = "ACTIONNAME260954B" #We don't have money
+		command = { }
+	}
+}
+
+#(1658-1793) Dutch Improved Fortifications in Jaffna
+event = {
+	id = 186060
+	trigger = {
+		owned = { province = 577 data = -1 } #Jaffna
+		NOT = { provincereligion = { province = 577 data = pagan } }
+		control = { province = 577 data = -1 }
+		ai = yes
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186060" #Dutch Improved Fortifications in Jaffna
+	desc = "EVENTHIST186060"
+	#-#After the Dutch conquered Jaffna, they refortified the city of Jaffna and greatly reinforced the pre-existing Portuguese fortifications.
+
+	date = { day = 1 month = january year = 1658 }
+	offset = 8000
+	deathdate = { day = 1 month = january year = 1793 }
+
+	action_a = {
+		name = "ACTIONNAME260954A" #Build fort
+		command = { type = treasury value = -300 }
+		command = { type = fortress which = 577 value = -2 } #Jaffna
+		#Jaffna fortress +2
+		command = { type = fortress which = 577 value = 1 } #Jaffna
+		command = { type = fortress which = 577 value = 1 } #Jaffna
+	}
+	action_b = {
+		name = "ACTIONNAME260954B" #We don't have money
+		command = { }
+	}
+}
+
+#(1659-1740) Secure the cinnamon territories
+#by sturmvogel
+event = {
+	id = 186065
+	trigger = {
+		event = 413005 #LNK: Debt to the Dutch
+		control = { province = 576 data = -1 } #Colombo
+		owned = { province = 576 data = -1 } #Colombo
+		flag = [VOC]
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186443" #Secure the cinnamon territories
+	desc = "EVENTHIST186443"
+	#-#The return of the expansionist Admiral Rijkloff Van Goens from Malabar in early 1659 caused the Dutch to enlarge their holdings in Ceylon to better secure the prime cinnamon-growing areas in Western Ceylon and make their holdings self-sufficient in food. This grab for territory came at the expense of Raja Sinha who was not willing to stand by passively and let the Dutch have their way. He avoided open fights that he could not hope to win, but successfully devastated their holdings and forcibly removed people from Dutch territory to weaken their ability to profit from their greediness.
+
+	date = { day = 1 month = february year = 1659 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1740 }
+
+	action_a = {
+		name = "ACTIONNAME186065A" #Secure the cinnamon territories
+		command = { type = casusbelli which = LNK value = 12 }
+		command = { type = relation which = LNK value = -100 }
+		command = { type = population which = 576 value = -2000 } #Colombo
+		command = { type = provincetax which = 576 value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME186065B" #We can work with the Lankans
+		command = { type = relation which = LNK value = 100 }
+	}
+}
+
+#(1660-1680) Princevlag becomes rare
+event = {
+	id = 186085
+	trigger = {
+		flag = [Princevlag]
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186085" #Princevlag becomes rare
+	desc = "EVENTHIST186085"
+	#-#In 1572 the orange-white-blue flag (Princevlag) was first mentioned when the town of Den Briel was liberated. The red-white-blue flag was first mentioned in 1596. Around 1630 more flags with a red stripe were used, and after 1660 the version with the orange stripe became very rare. It's still unknown why the orange stripe was changed to red, but there are two main theories:\n 1. a new method of producing orange paint resulted in a darker shade, almost red.\n 2. the House of Orange became less popular.\n \n The colours were however never laid down officially until 1937.
+
+	date = { day = 1 month = january year = 1660 }
+	offset = 7000
+	deathdate = { day = 1 month = january year = 1680 }
+
+	action_a = {
+		name = "OK"
+		command = { type = flagname which = "" }
+		command = { type = clrflag which = [Princevlag] }
+	}
+}
+
+#(1660) VOC attacks Gowa
+#Entries in text.csv to be restored when event will be reactivated
+#event = {
+#	id = 186419
+#	trigger = {
+#		discovered = 708 #Makassar
+#		NOT = { war = { country = HOL country = MKS } }
+#		owned = { province = 708 data = MKS }
+#		flag = [VOC]
+#	}
+#	random = no
+#	country = HOL
+#	name = "EVENTNAME186419" #VOC attacks Gowa
+#	desc = "EVENTHIST186419"
+#	#-#In 1660 VOC attacked Gowa, destroyed Portuguese ships in harbor, and forced peace treaty on Sultan Hasanuddin of Gowa.
+#
+#	date = { day = 1 month = january year = 1660 }
+#	offset = 30
+#	deathdate = { day = 1 month = january year = 1661 }
+#
+#	action_a = {
+#		name = "ACTIONNAME186419A" #Take Gowa!
+#		command = { type = domestic which = offensive value = 1 }
+#		command = { type = INF which = -1 value = 5000 }
+#		command = { type = relation which = MKS value = -200 }
+#		command = { type = relation which = POR value = -25 }
+#		command = { type = war which = MKS }
+#	}
+#	action_b = {
+#		name = "ACTIONNAME186419B" #Just trade with them
+#		command = { type = domestic which = mercantilism value = -1 }
+#		command = { type = merchants value = 3 }
+#		command = { type = relation which = MKS value = 50 }
+#	}
+#}
+
+#(1651) VOC takes Kupang
+#Entries in text.csv to be restored when event will be reactivated
+#event = {
+#	id = 186416
+#	trigger = {
+#		discovered = 712 #Timor
+#		NOT = { war = { country = POR country = HOL } }
+#		owned = { province = 712 data = POR }
+#		flag = [VOC]
+#	}
+#	random = no
+#	country = HOL
+#	name = "EVENTNAME186416" #VOC takes Kupang
+#	desc = "EVENTHIST186416"
+#	#-#In 1651 VOC took Kupang on western Timor; Portuguese moved to Lifau, in what is now East Timor.
+#
+#	date = { day = 1 month = january year = 1651 }
+#	offset = 30
+#	deathdate = { day = 1 month = january year = 1652 }
+#
+#	action_a = {
+#		name = "ACTIONNAME186416A" #Take Kupang!
+#		command = { type = domestic which = offensive value = 1 }
+#		command = { type = warships which = -1 value = 2 }
+#		command = { type = INF which = -1 value = 5000 }
+#		command = { type = relation which = POR value = -200 }
+#		command = { type = war which = POR }
+#	}
+#	action_b = {
+#		name = "ACTIONNAME186416B" #Just trade with them
+#		command = { type = domestic which = mercantilism value = -1 }
+#		command = { type = merchants value = 3 }
+#		command = { type = relation which = POR value = 50 }
+#	}
+#}
+
+#(1661-1667) Koxinga attacks Taiwan
+event = {
+	id = 186082 #triggered by SMI_317018 A
+	random = no
+	country = HOL
+	name = "EVENTNAME186082" #Koxinga attacks Taiwan
+	desc = "EVENTHIST186082"
+	#-#The VOC dispatched Balthasar Bort to retake the island. Although he was able to capture the islands of Amoy and Matsu from the Southern Ming and occupied Keelung in northern Taiwan, he was not able to evict the Ming from the rest of the island.
+
+	action_a = {
+		name = "ACTIONNAME186082A" #We must fight to retain what is ours!
+		command = { type = relation which = SMI value = -200 }
+		command = { type = casusbelli which = SMI value = 84 }
+		command = { type = merchants value = -2 }
+		command = { type = trade value = -250 }
+	}
+	action_b = {
+		name = "ACTIONNAME186082B" #It is too difficult to hold
+		command = { type = relation which = SMI value = -100 }
+		command = { type = cedeprovince which = SMI value = 689 }
+		command = { type = merchants value = -2 }
+		command = { type = trade value = -250 }
+		command = { type = sleepevent which = 186083 } #HOL: The loss of Taiwan
+	}
+}
+
+#(1662-1668) The loss of Taiwan
+event = {
+	id = 186083
+	trigger = {
+		event = 186082 #HOL: Koxinga invadea Taiwan
+		owned = { province = 689 data = -1 } #Taiwan
+		control = { province = 689 data = SMI }
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186083" #The loss of Taiwan
+	desc = "EVENTHIST186083"
+	#-#Admiral Bort had taken the islands of Amoy and Matsu from the Southern Ming and occupied Keelung in northern Taiwan, but had not been able to evict the Ming from the rest of the island. In May 1668 the VOC ordered him home as the prospects for success didn't match the expense of keeping him and his men on active service.
+
+	date = { day = 1 month = april year = 1662 }
+	offset = 360
+	deathdate = { day = 1 month = may year = 1668 }
+
+	action_a ={
+		name = "ACTIONNAME186082B" #It is too difficult to hold
+		command = { type = cedeprovince which = SMI value = 689 }
+	}
+}
+
+#(1665-1685) Expand our holdings in Kandy
+#by sturmvogel
+event = {
+	id = 186069
+	trigger = {
+		event = 413007 #LNK: Palace coup in Kandy
+		control = { province = 576 data = HOL } #Colombo
+		owned = { province = 576 data = HOL } #Colombo
+		flag = [VOC]
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186069" #Expand our holdings in Kandy
+	desc = "EVENTHIST186069"
+	#-#The garbled news of the attempted coup against Raja Sinha II and his letter requesting assistance from the Dutch led Admiral Rijkloff Van Goens to believe that he was now helpless to resist any efforts to provide a buffer against any more raids from Kandy or expeditions to occupy the ports on the east coast. Raja Sinha proved Van Goens correct as he failed to mount any serious resistance to the Dutch occupation of the ports of Trincomalee, Kottiar and Batticaloa. However his expectations of increased revenue by doing so were disappointed by the general decrease in trade caused by Dutch monopolistic trade practices and discrimination against Muslim merchants. He was, however, quite successful in moving people from Kandy onto Dutch territory.
+
+	date = { day = 0 month = april year = 1665 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1685 }
+
+	action_a = {
+		name = "ACTIONNAME186069A" #Now is our chance to secure all the ports of Ceylon
+		command = { type = casusbelli which = LNK value = 60 }
+		command = { type = relation which = LNK value = -100 }
+		command = { type = population which = 576 value = 2000 } #Colombo
+		command = { type = provincetax which = 576 value = 1 }
+		command = { type = provincetax which = 577 value = -1 } #Jaffna
+	}
+	action_b = {
+		name = "ACTIONNAME186069B" #Our focus is trade, not territory
+		command = { type = relation which = LNK value = 100 }
+		command = { type = sleepevent which = 413008 } #LNK: Diminution of trade
+		command = { type = sleepevent which = 413009 } #LNK: Let them have what they want
+	}
+}
+
+#(1666) Admiral Cornelis Speelman is sent to Gowa
+event = {
+	id = 186420
+	trigger = {
+		war = { country = HOL country = MKS }
+		flag = [VOC]
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186420" #Admiral Cornelis Speelman is sent to Gowa
+	desc = "EVENTHIST186420"
+	#-#In 1666 VOC sent out a fleet under Admiral Cornelis Speelman, with Bugis soldiers under Arung Palakka and Ambonese soldiers under 'Captain Jonker', to settle issues in Gowa and Maluku.
+
+	date = { day = 1 month = january year = 1666 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1666 }
+
+	action_a = {
+		name = "ACTIONNAME186420A" #Send Cornelis Speelman
+		command = { type = warships which = -1 value = 5 }
+		command = { type = INF which = -1 value = 5000 }
+		command = { type = treasury value = -100 }
+	}
+	action_b = {
+		name = "ACTIONNAME186420B" #We don't need more troops
+		command = { type = domestic which = offensive value = -1 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Division and cession of Guiana sequence
+
+#(1667-1820) Division of Guiana
+#by sturmvogel
+event = {
+	id = 186089
+	trigger = {
+		owned = { province = 181 data = -1 } #Surinam
+		control = { province = 181 data = -1 } #Surinam
+		NOT = { core = { province = 181 data = -1 } }
+		NOT = { provincereligion = { province = 181 data = pagan } } #not a TP
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME170331" #Division of Guiana
+	desc = "EVENTHIST170331"
+	#-#The Treaty of Breda formally divided Guiana between the Dutch and French.
+
+	date = { day = 29 month = july year = 1667 }
+	offset = 10
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = addcore_claim which = 181 } #Surinam
+	}
+}
+#(1667-1820) Division of Guiana
+#by sturmvogel
+event = {
+	id = 186090
+	trigger = {
+		owned = { province = 180 data = -1 } #Guyana
+		control = { province = 180 data = -1 } #Guyana
+		NOT = { core = { province = 180 data = -1 } }
+		NOT = { provincereligion = { province = 180 data = pagan } } #not a TP
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME170331" #Division of Guiana
+	desc = "EVENTHIST170331"
+	#-#The Treaty of Breda formally divided Guiana between the Dutch and French.
+
+	date = { day = 29 month = july year = 1667 }
+	offset = 10
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = addcore_claim which = 180 } #Guyana
+	}
+}
+#(1814-1820) Cession of Guyana
+#by sturmvogel
+event = {
+	id = 186091
+	trigger = {
+		owned = { province = 180 data = -1 } #Guyana
+		control = { province = 180 data = ENG } #Guyana
+		core = { province = 180 data = -1 }
+		NOT = { provincereligion = { province = 180 data = pagan } } #not a TP
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186091" #Cession of Guyana
+	desc = "EVENTHIST186091"
+	#-#The Anglo-Dutch Treaty of 1814 confirmed Britain in its control of Guyana.
+
+	date = { day = 13 month = august year = 1814 }
+	offset = 10
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = removecore which = 180 } #Guyana
+		command = { type = trigger which = 164272 } #ENG: Cession of Guyana
+	}
+}
+#End of Division and cession of Guiana sequence
+#-----------------------------------------------------------------------------------------------
+
+#(1667) Tidore submits to VOC (Netherland's part)
+event = {
+	id = 186421 #triggered by TER_308002 A
+	random = no
+	country = HOL
+	name = "EVENTNAME186421" #Tidore submits to VOC
+	desc = "EVENTHIST186421"
+	#-#Speelman expedition forced the Sultan of Tidore (now free of Spanish presence) to submit to the VOC. A peace treaty was signed between Ternate and Tidore, now both under VOC control.
+
+	action_a = {
+		name = "ACTIONNAME186421A" #Now we have Tidore
+		command = { type = inherit which = TER }
+	}
+}
+
+#(1668-1685) Revolt in the newly-conquered territories in Ceylon
+event = {
+	id = 186070
+	trigger = {
+		event = 186069 #LNK: Expand our holdings in Kandy
+		control = { province = 576 data = HOL }
+		owned = { province = 576 data = HOL }
+		flag = [VOC]
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186070" #Revolt in the newly-conquered territories in Ceylon
+	desc = "EVENTHIST186070"
+	#-#In September 1668 the populace of the newly-conquered territories rose in revolt against their new masters. Denied of support from Raja Sinha and lacking organized leadership the Dutch had few problems in putting it down.
+
+	date = { day = 0 month = september year = 1668 }
+	offset = 130
+	deathdate = { day = 29 month = december year = 1685 }
+
+	action_a = {
+		name = "DAMN"
+		command = { type = revolt which = 576 } #Colombo
+	}
+}
+
+#(1668-1670) Treaty of Bungaya (Netherland's part)
+event = {
+	id = 186422 #triggered by MKS_226000 A
+	random = no
+	country = HOL
+	name = "EVENTNAME186422" #Treaty of Bungaya
+	desc = "EVENTHIST186422"
+	#-#Gowa submit to VOC control, and Sultan Hasanuddin had no influence outside the general area of the city of Makassar.
+
+	action_a = {
+		name = "ACTIONNAME186422A" #Now we have Gowa
+		command = { type = inherit which = MKS }
+	}
+}
+
+#(1668-1670) Claim to Sumbawa and Flores
+event = {
+	id = 186423
+	trigger = {
+		owned = { province = 708 data = -1 } #Makassar
+		flag = [VOC]
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186423" #Claim to Sumbawa and Flores
+	desc = "EVENTHIST186423"
+	#-#VOC extended claims to Sumbawa and Flores after the defeat of Gowa.
+
+	date = { day = 18 month = november year = 1668 }
+	offset = 40
+	deathdate = { day = 2 month = may year = 1670 }
+
+	action_a = {
+		name = "ACTIONNAME186423A" #Those areas are ours!
+		command = { type = addcore_claim which = 710 } #Sumbawa
+		command = { type = addcore_claim which = 711 } #Flores
+	}
+}
+
+#(1669) Introduction of street lighting
+event = {
+	id = 186022
+	random = no
+	country = HOL
+	name = "EVENTNAME186022" #Street lighting
+	desc = "EVENTHIST186022"
+	#-#The Amsterdam artist-inventor Jan van der Heyden invented a streetlamp manufactored of glass and metal, with shielded air-holes, capable of letting out the smoke, without letting in the wind. The city council of Amsterdam adopted the plan to have fixed lamps installed in 1669. By January 1670 the entire city was lit up by 1800 public lanterns. The system was a great succes on providing increased street security at night and was soon adopted by other Dutch and German cities.
+
+	date = { day = 1 month = january year = 1669 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1670 }
+
+	action_a = {
+		name = "ACTIONNAME186022A" #Install street lanterns
+		command = { type = treasury value = -25 }
+		command = { type = infra value = 100 }
+	}
+}
+
+#(1670-1676) Statholder office is made Hereditary in Oranien Dynasty
+event = {
+	id = 3513
+	random = no
+	country = HOL
+	name = "EVENTNAME3513" #Statholder office is made Hereditary in Oranien Dynasty
+	desc = "EVENTHIST3513"
+	#-#Willem III came to the forefront of Dutch politics, eclipsing the brothers de Witt, amidst a growing support of the Orange dynasty amongst the Dutch people. After being named stadholder, the brothers de Witt resigned and were killed by an unruly mob because of high treason and anti Orangistic ideas. Building on the growing support for them the Oranges in August 1674 were declared hereditary in the stadholder office by the states of Holland and Zeela
+
+	date = { day = 1 month = january year = 1670 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1676 }
+
+	action_a = {
+		name = "ACTIONNAME3513A" #Yes we need Order!
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = domestic which = ARISTOCRACY value = 3 }
+		command = { type = domestic which = SERFDOM value = 1 }
+		command = { type = relation which = FRA value = -100 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3513B" #No, we need Freedom!
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = domestic which = ARISTOCRACY value = -2 }
+		command = { type = domestic which = SERFDOM value = -2 }
+		command = { type = relation which = FRA value = 100 }
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1670-1680) Re-establishment of the Veerinigte Westindische Companie
+event = {
+	id = 186030
+	trigger = {
+		flag = [WIC]
+		NOT = {
+			owned = { province = 62 data = -1 } #Carolina
+			owned = { province = 63 data = -1 } #Santeeo
+			owned = { province = 64 data = -1 } #Roanoke
+			owned = { province = 68 data = -1 } #Chesapeake
+			owned = { province = 86 data = -1 } #Delaware
+			owned = { province = 87 data = -1 } #Manhattan
+			owned = { province = 102 data = -1 } #Connecticut
+			owned = { province = 103 data = -1 } #Massachusetts. To make sure no large colonization of NA has taken place.
+		}
+		domestic = { type = serfdom value = 6 } #Only if Patroon system is there
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186030" #Re-establishment of the Veerinigte Westindische Companie
+	desc = "EVENTHIST186030"
+	#-#The successes of the Veerinigte Westindische Companie quickly ended. New Holland was lost to Portuguese Brazil in 1654, after a long war, and many other trading posts were also destroyed or captured by rivaling European nations. The New Netherland colonization effort did not spread further either, in part due to a fierce rivalry with the English, who conquered New Netherland in 1664, and in part due to the difficulty of attracting settlers under the company's initial policy of the Patroon system, which granted vast power over settlers to the men who brought them to the colony. \n \nAfter years of debts, the original WIC folded in 1674, and a new, reorganised company was formed. Piracy was abandoned, and it concentrated primarily on the African slave trade and remaining possessions in Suriname and the Antilles.
+
+	date = { day = 1 month = january year = 1670 }
+	offset = 3000
+	deathdate = { day = 1 month = january year = 1680 }
+
+	action_a = {
+		name = "ACTIONNAME186030A" #Make policy changes!
+		command = { type = trade value = -250 }
+		command = { type = treasury value = -250 }
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1670-1700) Commercial agreement with Oman
+#by Zachrym87, modified by sturmvogel
+event = {
+	id = 186084 #triggered by OMA_248009 A
+	random = no
+	country = HOL
+	name = "EVENTNAME186084" #Commercial agreement with Oman
+	desc = "EVENTHIST186084"
+	#-#The good relations of Oman and the Netherlands are fostered by the signing of a new trade treaty granting the Dutch a factory at Mascate.
+
+	action_a = {
+	name = "ACTIONNAME186084A" #Our proposal is accepted
+		command = { type = relation which = OMA value = 50 }
+		command = { type = trade value = 500 }
+		command = { type = merchants value = 1 }
+	}
+}
+
+#(1672-1685) Raja Sinha's revenge
+#by sturmvogel
+event = {
+	id = 186071 #triggered by LNK_413009 A
+	random = no
+	country = HOL
+	name = "EVENTNAME186071" #Raja Sinha's revenge
+	desc = "EVENTHIST186071"
+	#-#Preoccupied by the outbreak of the Franco-Dutch War the Dutch had drawn down their forces in Ceylon as Raja Sinha's earlier passivity led them to conclude that they were unneeded. His counterattack was very effective as he retook virtually all of the territory he'd lost years earlier, although the command of the sea allowed the Dutch to retain Trincomalee and the other ports on the eastern coast. He throughly devastated Dutch Ceylon and many people returned to the lands that they'd earlier been 'persuaded' to leave.
+
+	action_a = {
+		name = "ACTIONNAME186071A" #Damn you, Raja Sinha!
+		command = { type = relation which = LNK value = -100 }
+		command = { type = population which = 576 value = -2000 } #Colombo
+		command = { type = provincetax which = 576 value = -1 }
+	}
+}
+
+#(1676-1681) The League of Augsburg
+event = {
+	id = 3510 #triggered by FRA_3127 A
+	random = no
+	country = HOL
+	name = "EVENTNAME3198" #The League of Augsburg
+	desc = "EVENTHIST3198"
+	#-#The reunion policy of Louis XIV had been forced upon by the Empire in the 1684 by the Truce of Regensburg, mostly because the Emperor was preoccupied by the Turkish menace (siege of Vienna in 1683). The continued French claims and expansion to the detriment of the Habsburg possessions and the German states of the Empire led to the creation of the anti-French League of Augsburg (1686).
+
+	action_a = {
+		name = "ACTIONNAME3198A" #Defy French claims
+		command = { type = casusbelli which = FRA value = 72 }
+		command = { type = relation which = FRA value = -150 }
+		command = { type = relation which = ENG value = 150 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = BRA value = 150 }
+		command = { type = relation which = SPA value = 150 }
+		command = { type = relation which = HAN value = 100 }
+		command = { type = relation which = BAD value = 100 }
+		command = { type = relation which = HES value = 100 }
+		command = { type = relation which = KLE value = 100 }
+		command = { type = relation which = KOL value = 100 }
+		command = { type = relation which = PFA value = 100 }
+		#command = { type = relation which = THU value = 100 } #Bayreuth
+	}
+	action_b = {
+		name = "ACTIONNAME3198B" #Ignore it
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = ENG value = -100 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = BRA value = -100 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = relation which = HAN value = -50 }
+		command = { type = relation which = BAD value = -50 }
+		command = { type = relation which = HES value = -50 }
+		command = { type = relation which = KLE value = -50 }
+		command = { type = relation which = KOL value = -50 }
+		command = { type = relation which = PFA value = -50 }
+		#command = { type = relation which = THU value = -50 } #Bayreuth
+	}
+}
+
+#(1678) Baruch Spinoza (1632-77)
+#text lifted from http://www.philosophypages.com/ph/spin.htm
+#by Garth Kemerling and from the Columbia Encyclopedia
+#with some interpolation by myself.
+event = {
+	id = 186007
+	random = no
+	country = HOL
+	name = "EVENTNAME186007" #Baruch Spinoza
+	desc = "EVENTHIST186007"
+	#-#Baruch Spinza (1632-77) was born to Portuguese Jews who had emigrated to the Netherlands in order to escape the Inquisition. His early education was Talmudic, but he was excommunicated from the synagogue at Amsterdam for defending heretical ideas in 1656. At about that time he abandoned the Hebrew form of his name, Baruch, for its Latin equivalent, Benedict. Writing and studying in private, Spinoza supported himself through a series of grants, pensions and bequests. He was also a lens grinder of great skill, an occupation which he probably pursued out of scientific interest and which probably led to his death by consumption. Private circulation of his philosophical treatises soon garnered him a reputation throughout Europe and, in 1673, he was offered a post at Heidelberg. Spinoza, however, turned the job down, preferring to work alone. Spinoza's first serious work was The Principles of Descartes' Philosophy (1663). It presented Descartes' thoughts with suggestions for its improvement. In 1670, Spinoza published A Theologico-Political Treatise, (the only work he published in his lifetime) which criticized the House of Orange's militant Protestantism, defended religious toleration, and argued that the anthropomorphic conception of God was logically and theologically unsound. He proposed historical-critical methods for biblical interpretation. In the year of his death, 1677, his Ethics came out. It argued in an Euclidean fashion that the world was a monad - an ancient sophist position defended most famously by Zeno and derided most famously by Aristotle - and that that monad was God, thus paving the way for the transcendentalism of the Romantic period. His 'pantheism', however, was regarded as heresy in his day, which is probably why he only published once in his lifetime.
+
+	date = { day = 1 month = january year = 1678 }
+
+	action_a = {
+		name = "OK"
+		command = { type = infra value = 50 }
+	}
+}
+
+#(1681-1688) Protestants expelled from France
+event = {
+	id = 3509 #triggered by FRA_3128 A
+	random = no
+	country = HOL
+	name = "EVENTNAME3509" #Protestants expelled from France
+	desc = "EVENTHIST3509"
+	#-#In April 13 1598 Henry IV of France announced a new law called Édit De Nantes which granted the Huguenots a large portion of religious and civil rights. Almost a hundred years later his grandson, Louis XIV, striving for unity and stability in the realm, views the co-existence of the two churches as a potential source of disturbances. Having already allowed the persecution of Protestants and the burning of their churches, he in 1785 revokes the Édit De Nantes. Within a few years, more than 400,000 Huguenots emigrated to England, Prussia, Holland, and America - depriving France of its most industrious commercial class.
+
+	action_a = {
+		name = "ACTIONNAME3509A" #We welcome them with open arms
+		command = { type = population which = -1 value = 5000 }
+		command = { type = provincetax which = -3 value = 1 }
+		command = { type = population which = -1 value = 5000 }
+		command = { type = provincetax which = -3 value = 1 }
+		command = { type = population which = -1 value = 5000 }
+		command = { type = provincetax which = -3 value = 1 }
+		command = { type = population which = -1 value = 5000 }
+		command = { type = provincetax which = -3 value = 1 }
+		command = { type = population which = -1 value = 5000 }
+		command = { type = provincetax which = -3 value = 1 }
+		command = { type = population which = -1 value = 5000 }
+		command = { type = provincetax which = -3 value = 1 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1681-1687) Change in Ceylonese policy
+#by sturmvogel
+event = {
+	id = 186073 #triggered by LNK_413010 A
+	random = no
+	country = HOL
+	name = "EVENTNAME186073" #Change in Ceylonese policy
+	desc = "EVENTHIST186073"
+	#-#The resignation of the elder Van Goens as Governor-General of the VOC and the replacement of the younger Van Goens by the more moderate Laurence Pyl, coupled with the tremendous losses incurred by the conflict in Ceylon, persuaded the Council of India, sitting in Batavia, that peace was in their best interests if they wanted to make a profit from their current holdings in Ceylon.
+
+	action_a = {
+		name = "ACTIONNAME186073A" #Peace breaks out
+		command = { type = relation which = LNK value = 200 }
+		command = { type = merchants value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME186073B" #No, we can conquer all of Ceylon
+		command = { type = treasury value = -100 }
+		command = { type = merchants value = -1 }
+	}
+}
+
+#(1688-1700) Personal Union with England
+event = {
+	id = 186014 #triggered by ENG_3033
+	random = no
+	country = HOL
+	name = "EVENTNAME186014" #Personal union with England
+	desc = "EVENTHIST186014"
+	#-#In 1688 the English Parliament called for Willem III of Orange-Nassau, stadholder of the Netherlands, to become joint ruler of England together with his wife Mary, who was the Protestant daughter of James II. The marriage paved the way for the throne but also the fact that he was the son of the daughter of Charles I. William III brought 15,000 men but no blood was shed in the Glorious Revolution. This effectively put William, one of the foremost Protestants of his time, in charge of both England and Holland under a personal union.
+
+	action_a = {
+		name = "OK"
+		command = { type = stability value = 1 }
+		command = { type = alliance which = ENG }
+		command = { type = relation which = ENG value = 150 }
+		command = { type = DIP which = 1 value = 120 }
+	}
+}
+#(1688-1700) The House of Orange settles in England (No ENG Glorious Revolution)
+#by Bordic
+event = {
+	id = 186029
+	trigger = {
+		exists = ENG
+		NOT = { war = { country = HOL country = ENG } }
+		event = 164117 #ENG: The Restoration of the Monarchy
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186029" #The House of Orange settles in England
+	desc = "EVENTHIST186029"
+	#-#In 1688 the English Parliament called for Willem III of Orange-Nassau, stadholder of the Netherlands, to become joint ruler of England together with his wife Mary, who was the Protestant daughter of James VII of Scotland. The marriage paved the way for the throne but also the fact that he was the son of the daughter of Charles I, the last Stuart King to rule over England. William III brought 15,000 men but no blood was shed in the Restoration of the Monarchy. This effectively put William, one of the foremost Protestants of his time, in charge of both England and Holland under a personal union.
+
+	date = { day = 15 month = february year = 1688 }
+	offset = 10
+	deathdate = { day = 1 month = January year = 1700 }
+
+	action_a = {
+		name = "ACTIONNAME186029A" #A personal union of the crowns
+		command = { type = stability value = 1 }
+		command = { type = dynastic which = ENG }
+		command = { type = alliance which = ENG }
+		command = { type = relation which = ENG value = 150 }
+	}
+}
+
+#(1688) Heinsius
+event = {
+	id = 3714
+	random = no
+	country = HOL
+	name = "EVENTNAME3714" #Hensius
+	desc = "EVENTHIST3714"
+	#-#Born in 1640, Anthony Hensius had enjoyed the confidence of William III of Orange all his life. Sent to Versailles after the peace of Nijmegen to supervise the execution of its clauses, he became Raad Pensionaris in 1688 after William moved to England. A tough negotiator and obstinate opponent of France, he his at the core of all anti-French coalitions that are set up in all the wars of the late 17th century. He dies in 1720.
+
+	date = { day = 1 month = july year = 1688 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1688 }
+
+	action_a = {
+		name = "ACTIONNAME3714A" #An Excellent Minister!
+		command = { type = DIP which = 3 value = 240 }
+		command = { type = ADM which = 2 value = 240 }
+		command = { type = MIL which = 2 value = 240 }
+		command = { type = stability value = 2 }
+	}
+}
+
+#(1689) Plot against VOC in Batavia
+#Entries in text.csv to be restored when event will be reactivated
+#event = {
+#	id = 186424
+#	trigger = {
+#		owned = { province = 702 data = -1 } #Jakarta
+#		flag = [VOC]
+#	}
+#	random = no
+#	country = HOL
+#	name = "EVENTNAME186424" #Plot against VOC in Batavia
+#	desc = "EVENTHIST186424"
+#	#-#In 1689 plot against VOC in Batavia failed, rebels fled to Kartasura.
+#
+#	date = { day = 1 month = january year = 1689 }
+#	offset = 30
+#	deathdate = { day = 1 month = january year = 1690 }
+#
+#	action_a = {
+#		name = "DARN"
+#		command = { type = revolt which = 702 } #Jakarta
+#		command = { type = relation which = MTR value = -25 }
+#	}
+#}
+
+#(1690-1695) Christiaan Huygens - Flavor
+#by mfigueras
+event = {
+	id = 5122
+	trigger = { domestic = { type = innovative value = 2 } }
+	random = no
+	country = HOL
+	name = "EVENTNAME5122" #Cristiaan Huygens
+	desc = "EVENTHIST5122"
+	#-#Huygens was a Dutch mathematician astronomer and physicist who founded the wave theory of light discovered the true shape of the rings of Saturn and made original contributions to the science of dynamics - the study of the action of forces on bodies. Forgotten until the early 19th century his theories on light appear today as one of the most brilliant and original contributions to modern science and will always be remembered by the principle bearing his name.
+
+	date = { day = 1 month = march year = 1690 }
+	offset = 120
+	deathdate = { day = 1 month = march year = 1698 }
+
+	action_a = {
+		name = "OK"
+		command = { type = infra value = 50 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#(1701-1720) Barrier Treaty by archeolooginspe
+event = {
+	id = 186321
+	trigger = {
+		exists = FRA
+		alliance = { country = HAB country = HOL }
+		NOT = {
+			alliance = { country = FRA country = HOL }
+			alliance = { country = FRA country = HAB }
+			war = { country = FRA country = HOL }
+			war = { country = FRA country = HAB }
+		}
+		OR = {
+			Owned = { province = 380 data = HAB }
+			owned = { province = 378 data = HAB }
+			owned = { province = 377 data = HAB }
+		}
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186321" #Barrier treaty
+	desc = "EVENTHIST186321"
+	#-#After the Spanish succesion war Austria gained the Southern Netherlands. But before they fully could assert power they had to sign a treaty with the Dutch which stipulated the further closure of the Schelt and the right for the Dutch to place troops allong the French border. These troops got their own Protestant churches and were fed by the Austrians.
+
+	date = { day = 1 month = january year = 1701 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1720 }
+
+	action_a = {
+		name = "ACTIONNAME186321A" #Suggest that the Scheldt stays closed and settle troops in the South
+		command = { type = trigger which = 179305 } #HAB: Barrier treaty
+	}
+	action_b = {
+		name = "ACTIONNAME186321B" #Suggest that the Scheldt stays closed
+		command = { type = trigger which = 179306 } #HAB: Barrier treaty
+	}
+	action_c = {
+		name = "ACTIONNAME186321C" #Settle troops in the South
+		command = { type = trigger which = 179307 } #HAB: Barrier treaty
+	}
+}
+event = {
+	id = 186322 #triggered by HAB_179305 B / HAB_179306 B / HAB_179307 B
+	random = no
+	country = HOL
+	name = "EVENTNAME186322" #Reaction on the refusal
+	desc = "EVENTHIST186322"
+	#-#Of course the Dutch weren't happy with the refusal of the Austrians to sign the treaty. They decided to keep the Scheldt closed manu militari and issued a protest by diplomatic means in Vienna.
+
+	action_a = {
+		name = "ACTIONNAME186322A" #Issue diplomatic protest
+		command = { type = relation which = HAB value = -100 }
+		command = { type = breakdynastic which = HAB }
+		command = { type = breakvassal which = HAB }
+		command = { type = stability value = 1 }
+		command = { type = treasury value = -75 }
+		command = { type = diplomats value = 2 }
+		command = { type = DIP which = 1 value = 36 }
+	}
+	action_b = {
+		name = "ACTIONNAME186322B" #Let the navy patrol the Scheldt and also blockade Ostende
+		command = { type = relation which = HAB value = -200 }
+		command = { type = breakdynastic which = HAB }
+		command = { type = breakvassal which = HAB }
+		command = { type = stability value = 2 }
+		command = { type = casusbelli which = HAB value = 36 }
+		command = { type = MIL which = 1 value = 36 }
+	}
+	action_c = {
+		name = "ACTIONNAME186322C" #Forget about it
+		command = { type = relation which = HAB value = 25 }
+		command = { type = relation which = -1 value = 25 }
+		command = { type = relation which = -1 value = 25 }
+	}
+}
+#-----------------------------------------------------------------------------------------------
+
+#(1701) Confusion in VOC
+event = {
+	id = 186429
+	trigger = { flag = [VOC] }
+	random = no
+	country = HOL
+	name = "EVENTNAME186429" #Confusion in VOC
+	desc = "EVENTHIST186429"
+	#-#Three years of confusion in the VOC ensued over the post of Governor-General.
+
+	date = { day = 1 month = january year = 1701 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1702 }
+
+	action_a = {
+		name = "ACTIONNAME186429A" #Who's Governor General?
+		command = { type = ADM which = -2 value = 18 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#"War of Spanish succession" Sequence
+
+#(1701) The Grand alliance (Spanish war of succession Netherlands version)
+#by Fodoron
+event = {
+	id = 186050 #triggered by FRA_170053 A / FRA_170192 A
+	random = no
+	country = HOL
+	name = "EVENTNAME186050" #The Grand Alliance
+	desc = "EVENTHIST186050"
+	#-#For years Europe has been preparing for the death of childless Carlos II of Spain. He was related to several royal families in Europe, but after the death of the designated heir, Joseph Ferdinand Wittelbach of Bavaria, at the age of six, the royal houses of Austria and France had a similar claim. But both were too powerful, and the addition of the Spanish empire would make any of them unstoppable, and so candidates not destined to their thrones, Philip of Anjou and Charles Habsburg, were discussed as heirs to Carlos, and several partition agreements were negotiated. That is precisely what everybody wanted to prevent in Spain. Despite the bigger influence from the Austracist party led by the mother of Carlos, there was an indisputable fact: France had 300,000 soldiers next to Spain and the Spanish Netherlands, and so represented the only opportunity, albeit small, to keep the empire together. A will was redacted and the agonizing Carlos signed it. It bequeathed the Kingdom to Philip Anjou, but it contained two crucial clauses, the condition that the crowns of France and Spain should never be held by the same person and that the Spanish possessions could not be divided. Austria, of course, rejected it, but the rest of Europe seemed to agree, as the equilibrium was not broken. But Louis misjudged the uneasiness that the rest of Europe displayed for the French expansionism, and made several mistakes after the Spanish succession. He closed the Spanish-American commerce to the English and the Dutch, and French troops occupied the fortresses in Spanish Netherlands. In February, the French States had ratified the right of Philip of Anjou to the crown of France, violating the will of Carlos II. The maritime powers had the motive and the excuse, and Austria discovered that now she had allies for the war of Spanish succession.
+
+	action_a = {
+		name = "ACTIONNAME186050A" #Support Habsburg succession to the Spanish throne
+		command = { type = casusbelli which = FRA value = 120 }
+		command = { type = casusbelli which = SPA value = 120 }
+		command = { type = relation which = SPA value = -75 }
+		command = { type = relation which = FRA value = -75 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = ENG value = 75 }
+	}
+	action_b = {
+		name = "ACTIONNAME186050B" #We don't care who inherits Spain
+		command = { type = relation which = SPA value = 25 }
+		command = { type = relation which = FRA value = 25 }
+		command = { type = relation which = HAB value = -75 }
+		command = { type = relation which = ENG value = -25 }
+	}
+}
+#(1711) Charles VI elected Emperor of the Romans (HOL version)
+#by Fodoron
+event = {
+	id = 186051 #triggered by HAB_179082
+	random = no
+	country = HOL
+	name = "EVENTNAME179082" #Charles VI elected Emperor of the Romans
+	desc = "EVENTHIST179082"
+	#-#The war of Spanish succession seemed about to be won by the Grand Alliance in 1709, with France completely defeated in all fronts. Only the war in Spain seemed favorable to the Bourbons, but Louis XIV was ready to abandon his grandson in exchange for peace. But the allies were frustrated by their inability to impose the Archduke on the Spaniards, and surprised by their stern resistance, and went too far in their conditions demanding that Louis should remove his own grandson from the throne of Spain by force. This was a humiliation too big to endure, and Louis understood that he was negotiating from a position of weakness and decided to break the negotiations and renew the fight. Time would prove him right, as dissensions were already dividing the allies as the French threat receded. The Dutch and the Austrians were already at odds over the Spanish Netherlands, and the Austrians were seeing as not doing their part, occupied with the Hungarian revolt. The turning point was the unexpected death of Emperor Joseph I, at 33 years of age in April 1711. While Charles left Spain and went to Vienna to be elected emperor, the allies were not ready to reconstruct the empire of Charles V, and England immediately started peace negotiations with France without informing the Dutch or Austria.
+
+	action_a = {
+		name = "ACTIONNAME186051A" #Let's look for a way out of this mess
+		command = { type = relation which = HAB value = -50 }
+		command = { type = relation which = FRA value = 150 }
+		command = { type = relation which = SPA value = 100 }
+	}
+}
+#End of "War of Spanish succession" Sequence
+#-----------------------------------------------------------------------------------------------
+
+#(1705) Mataram becomes VOC's protectorate (Netherland's part)
+event = {
+	id = 186404 #triggered by MTR_234210 A
+	random = no
+	country = HOL
+	name = "EVENTNAME186404" #Mataram becomes VOC's protectorate
+	desc = "EVENTHIST186404"
+	#-#Pakubuwono I made a deal with the VOC: Mataram debts to VOC were wiped out; East Madura went to VOC control; Semarang was officially a VOC city after years of occupation; Cirebon was officially a VOC protectorate; VOC got extensive trade rights; Javanese sailors must stick to their home waters; Mataram must deliver rice on demand to the VOC at a price set by the VOC. In addition, the two sides agreed that no other European nation will be allowed to build factories or fortifications anywhere on Java.
+
+	action_a = {
+		name = "GOOD"
+		command = { type = vassal which = MTR }
+		command = { type = merchants value = 3 }
+		command = { type = trade value = 200 }
+	}
+}
+
+#(1721) Peter Erberfelt's conspiracy
+#Entries in text.csv to be restored when event will be reactivated
+#event = {
+#	id = 186425
+#	trigger = {
+#		owned = { province = 702 data = -1 } #Jakarta
+#		flag = [VOC]
+#	}
+#	random = no
+#	country = HOL
+#	name = "EVENTNAME186425" #Peter Erberfelt's conspiracy
+#	desc = "EVENTHIST186425"
+#	#-#Rumors of a conspiracy against the VOC spread in Batavia. Peter Erberfelt and several others were tried and executed.
+#
+#	date = { day = 1 month = january year = 1721 }
+#	offset = 30
+#	deathdate = { day = 1 month = january year = 1722 }
+#
+#	action_a = {
+#		name = "ACTIONNAME186425A" #Execute the traitors!
+#		command = { type = revolt which = 702 } #Jakarta
+#	}
+#}
+
+#(1740) Chinese massacre in Batavia
+event = {
+	id =186426
+	trigger = {
+		owned = { province = 702 data = -1 } #Jakarta
+		flag = [VOC]
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186426" #Chinese massacre in Batavia
+	desc = "EVENTHIST186426"
+	#-#VOC began a campaign to have 'superfluous Chinese' deported to Ceylon (Sri Lanka) or South Africa. Rumors spread that the Chinese, once aboard ship, will be killed at sea. Some Chinese began arming themselves to resist. Anti-Chinese riots broke out in Batavia in response to the perceived rebellion. 10,000 or more Chinese were killed, and the Chinese district was burnt down.
+
+	date = { day = 1 month = january year = 1740 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1741 }
+
+	action_a = {
+		name = "ACTIONNAME186426A" #Massacre the Chinese!
+		command = { type = revolt which = 702 } #Jakarta
+		command = { type = population which = 702 value = -2000 } #Jakarta
+		command = { type = provincetax which = 702 value = -1 } #Jakarta
+		command = { type = provincemanpower which = 702 value = -1 } #Jakarta
+	}
+}
+
+#(1741) Struggle in VOC
+event = {
+	id = 186427
+	trigger = { flag = [VOC] }
+	random = no
+	country = HOL
+	name = "EVENTNAME186427" #Struggle in VOC
+	desc = "EVENTHIST186427"
+	#-#Rival Governor-Generals of the VOC struggled in Batavia: Valckenier arrested Van Imhoff and sent him back to Europe. The Heeren XVII in the Netherlands named Van Imhoff as Governor-General. Valckenier was himself eventually arrested and jailed.
+
+	date = { day = 1 month = january year = 1741 }
+	offset = 3
+	deathdate = { day = 1 month = january year = 1742 }
+
+	action_a = {
+		name = "ACTIONNAME186427A" #Jail Valcknier!
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1742-1745) The Effects of the Pragmatic Sanction
+event = {
+	id = 3514
+	trigger = {
+		exists = HAB
+		OR = {
+			event = 3527 #PRU: The Effects of the Pragmatic Sanction
+			event = 3616 #BAY: The Effects of the Pragmatic Sanction
+		}
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME3205" #The Effects of the Pragmatic Sanction
+	desc = "EVENTHIST3205"
+	#-#The Pragmatic Sanction, solemnly rendered by Emperor Charles VI on 19th April 1713, established the indivisibility of the Habsburg patrimony, and ruled the order of succession by order of first born child, even to a woman. This made Maria-Theresa, born in 1717, the heir of the Empire. The Pragmatic Sanction was recognized by Spain in 1725 (confirmed in 1731), Russia in 1726, Prussia in 1728, the United Provinces in 1731, Hanover in 1732, the Heiliges Reich (except Bavaria) in 1732 and France in 1738 only. Bavarian refusal would lead to the War of the Austrian Succession.
+
+	date = { day = 1 month = september year = 1742 }
+	offset = 10
+	deathdate = { day = 1 month = april year = 1745 }
+
+	action_a = {
+		name = "ACTIONNAME3616C" #Pro-Habsburg
+		command = { type = stability value = 2 }
+		command = { type = casusbelli which = FRA value = 36 }
+		command = { type = relation which = BAY value = -150 }
+		command = { type = relation which = SAC value = -150 }
+		command = { type = relation which = GEN value = -50 }
+		command = { type = relation which = PRU value = -150 }
+		command = { type = relation which = FRA value = -150 }
+		command = { type = relation which = ENG value = 150 }
+		command = { type = relation which = POR value = 150 }
+		command = { type = relation which = RUS value = 100 }
+		command = { type = relation which = HES value = 100 }
+		command = { type = relation which = HAN value = 100 }
+		command = { type = relation which = HAB value = 150 }
+	}
+	action_b = {
+		name = "ACTIONNAME3616B" #Neutral
+		command = { type = stability value = -1 }
+		command = { type = relation which = BAY value = 50 }
+		command = { type = relation which = SAC value = 50 }
+		command = { type = relation which = GEN value = 50 }
+		command = { type = relation which = PRU value = 50 }
+		command = { type = relation which = FRA value = -100 }
+		command = { type = relation which = ENG value = -100 }
+		command = { type = relation which = POR value = -100 }
+		command = { type = relation which = RUS value = 50 }
+		command = { type = relation which = HES value = -50 }
+		command = { type = relation which = HAN value = -50 }
+		command = { type = relation which = HAB value = -100 }
+	}
+	action_c = {
+		name = "ACTIONNAME3616A" #Anti-Habsburg
+		command = { type = casusbelli which = HAB value = 36 }
+		command = { type = stability value = -2 }
+		command = { type = relation which = BAY value = 100 }
+		command = { type = relation which = SAC value = 100 }
+		command = { type = relation which = GEN value = 100 }
+		command = { type = relation which = PRU value = 100 }
+		command = { type = relation which = FRA value = 150 }
+		command = { type = relation which = ENG value = -150 }
+		command = { type = relation which = POR value = -150 }
+		command = { type = relation which = RUS value = -50 }
+		command = { type = relation which = HES value = -100 }
+		command = { type = relation which = HAN value = -100 }
+		command = { type = relation which = HAB value = -150 }
+	}
+}
+
+#(1745) Van Imhoff founds Buitenzorg
+event = {
+	id = 186428
+	trigger = {
+		owned = { province = 701 data = -1 } #Sunda
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186428" #Van Imhoff founds Buitenzorg
+	desc = "EVENTHIST186428"
+	#-#In 1745 Gov-Gen Van Imhoff founded Buitenzorg (today's Bogor).
+
+	date = { day = 0 month = january year = 1745 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1819 }
+
+	action_a = {
+		name = "ACTIONNAME186428A" #Found the city
+		command = { type = population which = 701 value = 1000 } #Sunda
+		command = { type = provincetax which = 701 value = 1 } #Sunda
+		command = { type = provincemanpower which = 701 value = 1 } #Sunda
+		command = { type = addcore_claim which = 701 } #Sunda
+		command = { type = treasury value = -100 }
+	}
+	action_b = {
+		name = "ACTIONNAME186428B" #We don't have money
+		command = { type = vp value = -20 }
+	}
+}
+
+#(1746) First VOC Post Office
+#Entries in text.csv to be restored when event will be reactivated
+#event = {
+#	id = 186430
+#	trigger = {
+#		owned = { province = 702 data = -1 } #Jakarta
+#		flag = [VOC]
+#	}
+#	random = no
+#	country = HOL
+#	name = "EVENTNAME186430" #First VOC Post Office
+#	desc = "EVENTHIST186430"
+#	#-#First VOC Post Office opened in Jakarta at August 26, 1746.
+#
+#	date = { day = 26 month = august year = 1746 }
+#
+#	action_a = {
+#		name = "GOOD"
+#		command = { type = infra value = 200 }
+#	}
+#}
+
+#(1746-1800) Bank van Leening
+event = {
+	id = 186431
+	trigger = { flag = [VOC] }
+	random = no
+	country = HOL
+	name = "EVENTNAME186431" #Bank van Leening
+	desc = "EVENTHIST186431"
+	#-#Bank van Leening founded by VOC to support trade.
+
+	date = { day = 1 month = january year = 1746 }
+	offset = 72
+	deathdate = { day = 1 month = january year = 1800 }
+
+	action_a = {
+		name = "ACTIONNAME186431A" #Found the bank
+		command = { type = loansize which = 1000 }
+		command = { type = inflation value = 10 }
+	}
+	action_b = {
+		name = "ACTIONNAME186431B" #No more bank
+		command = { type = trade value = -500 }
+		command = { type = inflation value = -5 }
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1747-1800) Native law
+event = {
+	id = 186432
+	trigger = {
+		owned = { province = 702 data = -1 } #Jakarta
+		flag = [VOC]
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186432" #Native law
+	desc = "EVENTHIST186432"
+	#-#VOC decress that native law ('adat') will be in force in areas under its control outside of Batavia.
+
+	date = { day = 1 month = january year = 1747 }
+	offset = 72
+	deathdate = { day = 1 month = january year = 1800 }
+
+	action_a = {
+		name = "ACTIONNAME186432A" #Use native law outside of Batavia
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME186432B" #Use Statute of Batavia outside of Batavia
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1769-1800) French breaks VOC monopoly
+event = {
+	id = 186433
+	trigger = {
+		owned = { province = 715 data = -1 } #Ceram
+		exists = FRA
+		event = 3503 #HOL: Vereenigde Oostindische Compagnie
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186433" #French breaks VOC monopoly
+	desc = "EVENTHIST186433"
+	#-#French expedition stole clove and nutmeg plants from Ambon, breaking the VOC monopoly.
+
+	date = { day = 1 month = january year = 1769 }
+	offset = 72
+	deathdate = { day = 1 month = january year = 1800 }
+
+	action_a = {
+		name = "DARN"
+		command = { type = provincetax which = 715 value = -1 } #Ceram
+		command = { type = relation which = FRA value = -50 }
+	}
+}
+
+#(1778-1800) The Bataviaasch Genootschap van Kunsten en Wetenschappen
+event = {
+	id = 186434
+	trigger = {
+		owned = { province = 702 data = -1 } #Jakarta
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186434" #The Bataviaasch Genootschap van Kunsten en Wetenschappen
+	desc = "EVENTHIST186434"
+	#-#The Bataviaasch Genootschap van Kunsten en Wetenschappen was founded. (Its collections would later form the basis of the National Museum and National Library.)
+
+	date = { day = 1 month = january year = 1778 }
+	offset = 72
+	deathdate = { day = 1 month = january year = 1800 }
+
+	action_a = {
+		name = "GOOD"
+		command = { type = infra value = 300 }
+	}
+}
+
+#(1780-1783) The American Revolution
+#by Bordic
+event = {
+	id = 186028
+	trigger = {
+		exists = USA
+		war = { country = USA country = ENG }
+		war = { country = FRA country = ENG }
+		NOT = {
+			war = { country = USA country = HOL }
+			event = 4983 #ENG: The Treaty of Paris (USA has won)
+			event = 4984 #ENG: The Treaty of Paris (ENG has lost territories)
+			event = 4985 #ENG: The Destruction of the Tax Revolt (ENG has won, no USA)
+			event = 3052 #ENG: The North American Union (no USA, FRA radical republic)
+			event = 4987 #ENG: Colonial dissatisfaction cools (no USA, patch event reducing RR)
+			neighbour = USA #The Netherlands shouldn't own any of the potentially rebelling provinces
+		}
+		event = 3049 #ENG: The American Revolution
+		event = 12099 #FRA: The American Revolution
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME12099" #The American Revolution
+	desc = "EVENTHIST186028"
+	#-#The United States of America declared their independence from Britain in 1776. In 1780, the British struck against the United Provinces of the Netherlands in order to preempt Dutch involvement in the League of Armed Neutrality, a declaration of several European powers granting neutral trade during the war. Great Britain was not willing to allow the Netherlands to openly give aid to the American rebels. Agitation by Dutch radicals and a friendly attitude towards the United States by the Dutch government — both influenced by the American Revolution — also encouraged the British to attack. The Dutch decided to side with France in supporting them with financial an military aid, most of all naval support, in an attempt to further weaken the British.
+
+	date = { day = 1 month = january year = 1780 }
+	offset = 30
+	deathdate = { day = 2 month = september year = 1783 }
+
+	action_a = {
+		name = "ACTIONNAME12099A" #Support the United States
+		command = { type = treasury value = -200 }
+		command = { type = relation which = USA value = 150 }
+		command = { type = relation which = ENG value = -150 }
+		command = { type = warships which = -1016 value = 10 } #North America (region 16)
+		command = { type = setflag which = [support_US] }
+		command = { type = province_revoltrisk which = 54 value = -70 } #Savannah
+		command = { type = province_revoltrisk which = 62 value = -70 } #Carolina
+		command = { type = province_revoltrisk which = 63 value = -70 } #Santee
+		command = { type = province_revoltrisk which = 64 value = -70 } #Roanoke
+		command = { type = province_revoltrisk which = 68 value = -70 } #Chesapeake
+		command = { type = province_revoltrisk which = 85 value = -70 } #Susquehanna
+		command = { type = province_revoltrisk which = 86 value = -70 } #Delaware
+		command = { type = province_revoltrisk which = 87 value = -70 } #Manhattan
+		command = { type = province_revoltrisk which = 88 value = -70 } #Catskill
+		command = { type = province_revoltrisk which = 100 value = -70 } #Adirondak
+		command = { type = province_revoltrisk which = 101 value = -70 } #Sebago
+		command = { type = province_revoltrisk which = 102 value = -70 } #Connecticut
+		command = { type = province_revoltrisk which = 103 value = -70 } #Massachusetts
+		command = { type = province_revoltrisk which = 104 value = -70 } #Penobscot
+		command = { type = trigger which = 324004 } #USA: Dutch Assistance
+	}
+	action_b = {
+		name = "ACTIONNAME12099B" #Live and Let Die
+		command = { type = relation which = USA value = -100 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = relation which = ENG value = 50 }
+	}
+}
+
+#(1783-1800) VOC asks for financial assistance
+event = {
+	id = 186435
+	trigger = { flag = [VOC] }
+	random = no
+	country = HOL
+	name = "EVENTNAME186435" #VOC asks for financial assistance
+	desc = "EVENTHIST186435"
+	#-#The VOC, short of cash, asked the Netherlands States-General for financial assistance.
+
+	date = { day = 1 month = january year = 1783 }
+	offset = 36
+	deathdate = { day = 1 month = january year = 1800 }
+
+	action_a = {
+		name = "ACTIONNAME186435A" #Help VOC
+		command = { type = treasury value = 500 }
+		command = { type = inflation value = 5 }
+	}
+	action_b = {
+		name = "ACTIONNAME186435B" #Ignore them
+		command = { type = stability value = -1 }
+		command = { type = trade value = -500 }
+	}
+}
+
+#(1784) VOC takes Johor
+#Entries in text.csv to be restored when event will be reactivated
+#event = {
+#	id = 186436
+#	trigger = {
+#		NOT = { war = { country = HOL country = MLC } }
+#		owned = { province = 678 data = MLC } #Johor
+#		discovered = 678
+#		flag = [VOC]
+#	}
+#	random = no
+#	country = HOL
+#	name = "EVENTNAME186436" #VOC takes Johor
+#	desc = "EVENTHIST186436"
+#	#-#In 1784 VOC took complete control of Johor.
+#
+#	date = { day = 1 month = january year = 1784 }
+#	offset = 30
+#	deathdate = { day = 1 month = january year = 1785 }
+#
+#	action_a = {
+#		name = "ACTIONNAME186436A" #Take Johor!
+#		command = { type = domestic which = offensive value = 1 }
+#		command = { type = warships which = -1 value = 2 }
+#		command = { type = INF which = -1 value = 5000 }
+#		command = { type = relation which = MLC value = -200 }
+#		command = { type = war which = MLC }
+#	}
+#	action_b = {
+#		name = "ACTIONNAME186436B" #Just trade with them
+#		command = { type = domestic which = mercantilism value = -1 }
+#		command = { type = merchants value = 3 }
+#		command = { type = relation which = MLC value = 50 }
+#	}
+#}
+
+#(1784-1800) Free trade on Indies
+event = {
+	id = 186437
+	trigger = {
+		NOT = { war = { country = HOL country = ENG } }
+		flag = [VOC]
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186437" #Free trade on Indies
+	desc = "EVENTHIST186437"
+	#-#Treaty of Paris ended the war with Britain, and opened the VOC controlled Indies to free trade.
+
+	date = { day = 1 month = january year = 1784 }
+	offset = 72
+	deathdate = { day = 1 month = january year = 1800 }
+
+	action_a = {
+		name = "ACTIONNAME186437A" #Free trade!
+		command = { type = domestic which = mercantilism value = -1 }
+		command = { type = relation which = ENG value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME186437B" #Keep mercantilism!
+		command = { type = domestic which = mercantilism value = 1 }
+		command = { type = relation which = ENG value = -50 }
+		command = { type = trade value = -500 }
+	}
+}
+
+#(1785-1791) The Revolution in Holland, edited by BAWM
+event = {
+	id = 3515
+	random = no
+	country = HOL
+	name = "EVENTNAME3515" #The Revolution in Holland
+	desc = "EVENTHIST3515"
+	#-#In June 1787, the secular conflict in the United Provinces between the supporters of the Stadhouder William V (grandson of the King of England George II) and the Republicans (supported by France) led to a diplomatic incident when the city officials of The Hague refused entrance to the Stadhouder wife, the niece of Frederick II of Prussia (died in 1786 and was replaced by Frederick-William II, very hostile to France). Rapidly, Prussia intervened militarily to restore the Stadhouder power and was not countered by France which was suffering a serious financial crisis. French influence nearly disappeared and Prussia triumphed.
+
+	date = { day = 1 month = january year = 1785 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1791 }
+
+	action_a = {
+		name = "ACTIONNAME3515A" #Let the Prussians intervene!
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = domestic which = SERFDOM value = 1 }
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = relation which = PRU value = 150 }
+		command = { type = relation which = FRA value = -150 }
+		command = { type = stability value = -1 }
+		command = { type = INF which = -2 value = 15000 }
+		command = { type = CAV which = -2 value = 3000 }
+		command = { type = ART which = -2 value = 30 }
+		command = { type = population which = -2 value = -10000 }
+	}
+	action_b = {
+		name = "ACTIONNAME3515B" #Risk the Revolution!
+		command = { type = domestic which = SERFDOM value = -1 }
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = relation which = PRU value = -150 }
+		command = { type = relation which = FRA value = 150 }
+		command = { type = revoltrisk which = 156 value = 3 }
+		command = { type = stability value = -2 }
+		command = { type = trigger which = 186100 } #HOL: Batavian Republic
+	}
+}
+#(1785-1791) Foundation of the Batavian Republic
+event = {
+	id = 186100 #triggered by HOL_3515 B
+	random = no
+	country = HOL
+	name = "EVENTNAME186100" #Batavian Republic
+	desc = "EVENTHIST186100"
+	#-#The revolt against the corrupt regime of Willem V led to a civil war between groups of Patriotten and Prinsgezinden. After some years the Patriotten managed to gain control of the goverment. Willem V fled to England and the Patriotten had to try and form a new, more democratic, goverment. The name of the country was changed into 'Bataafsche Republiek' to show a new era in Dutch history had begun!
+
+	action_a = {
+		name = "ACTIONNAME186100A" #Found Batavian Republic
+		command = { type = stability value = 1 }
+		command = { type = domestic which = ARISTOCRACY value = -2 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = wakemonarch which = 060011 } #Bataafsche Republiek
+		command = { type = sleepmonarch which = 060009 } #Willem V
+		command = { type = sleepmonarch which = 060010 } #Willem VI
+		command = { type = domestic which = innovative value = 2 }
+		command = { type = domestic which = serfdom value = -2 }
+	}
+}
+
+#(1787-1791) Veerinigte Westindische Companie is fully bankrupt
+event = {
+	id = 186031
+	random = no
+	trigger = {
+		flag = [WIC]
+		NOT = {
+			owned = { province = 62 data = -1 } #Carolina
+			owned = { province = 63 data = -1 } #Santeeo
+			owned = { province = 64 data = -1 } #Roanoke
+			owned = { province = 68 data = -1 } #Chesapeake
+			owned = { province = 86 data = -1 } #Delaware
+			owned = { province = 87 data = -1 } #Manhattan
+			owned = { province = 102 data = -1 } #Connecticut
+			owned = { province = 103 data = -1 } #Massachusetts. To make sure no large colonization of NA has taken place.
+		}
+		domestic = { type = serfdom value = 6 } #Only if Patroon system is there
+	}
+	country = HOL
+	name = "EVENTNAME186031" #Veerinigte Westindische Companie is fully bankrupt
+	desc = "EVENTHIST186031"
+	#-#After the English took control of Suriname for several years in the 1780s, the WIC appeared unable to recover from this, and in 1791, the stocks of the company were bought by the Dutch government, and the territories were placed under its control.
+
+	date = { day = 1 month = january year = 1787 }
+	offset = 1400
+	deathdate = { day = 1 month = january year = 1791 }
+
+	action_a = {
+		name = "ACTIONNAME186031A" #WIC is no more!
+		command = { type = domestic which = mercantilism value = -1 }
+		command = { type = trade value = -200 }
+		command = { type = inflation value = 2 }
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1791-1806) Foundation of the Batavian Republic by French Revolutionaries
+event = {
+	id = 186101 #triggered by FRA_170025
+	random = no
+	country = HOL
+	name = "EVENTNAME186101" #Batavian Republic
+	desc = "EVENTHIST186101"
+	#-#In 1795, incited by Revolutionary France the Dutch formed a new country out of the old Republic. From then on it would be known as 'Bataafsche Republiek'.
+
+	action_a = {
+		name = "ACTIONNAME186101A" #Found Batavian Republic
+		command = { type = flagname which = "Republic" }
+		command = { type = stability value = -1 }
+		command = { type = domestic which = ARISTOCRACY value = -2 }
+		command = { type = domestic which = innovative value = 2 }
+		command = { type = domestic which = serfdom value = -2 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = wakemonarch which = 060012 } #Bataafsche Republiek
+		command = { type = wakemonarch which = 060013 } #Rutger Jan Schimmelpenninck
+		command = { type = sleepmonarch which = 060009 } #Willem V
+		command = { type = sleepmonarch which = 060010 } #Willem VI
+		command = { type = relation which = FRA value = 150 }
+		command = { type = population which = -2 value = 5000 }
+	}
+}
+
+#(1792) The French Revolutionary Wars
+event = {
+	id = 186013 #triggered by FRA_12114 A
+	trigger = {
+		NOT = {
+			event = 186100 #HOL: Batavian Republic
+			event = 170025 #FRA: French troops conquer Amsterdam
+		}
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME12114" #The French Revolutionary Wars
+	desc = "EVENTHIST12114"
+	#-#With the creation of a Legislative Assembly to limit the monarchic power, several reasons pushed France towards war in 1792. Internally, the republican party of the Girondins were calling for a war to rid Europe of monarchy and despotism but also to rid France of any internal reactions. Externally, the nobility, the socalled emigrés, fleeing to Austria and Prussia requested that those powers intervene to restore the French monarchy. Louis XVI, King of the French, saw in a war failure the possibility to restore absolutism. But the dissolution of the Ancien Régime in France alarmed all the European royal courts fearing that the French Jacobinism would have spread in the whole continent and provoked deep destabilization inside their own absolutist government systems.
+
+	action_a = {
+		name = "ACTIONNAME12114A" #Rattle Our Sabres
+		command = { type = casusbelli which = FRA value = 80 }
+		command = { type = relation which = FRA value = -200 }
+		command = { type = relation which = SWE value = 150 }
+		command = { type = relation which = ENG value = 150 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = SPA value = 150 }
+		command = { type = relation which = PRU value = 150 }
+		command = { type = relation which = SAV value = 150 }
+		command = { type = relation which = RUS value = 150 }
+	}
+	action_b = {
+		name = "ACTIONNAME12114B" #Temporize
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1795) VOC surrenders Malacca to the British East India Company
+#Entries in text.csv to be restored when event will be reactivated
+#event = {
+#	id = 186438
+#	trigger = {
+#		exists = ENG
+#		owned = { province = 677 data = -1 } #Malacca
+#		flag = [VOC]
+#	}
+#	random = no
+#	country = HOL
+#	name = "EVENTNAME186438" #VOC surrenders Malacca to the British East India Company
+#	desc = "EVENTHIST186438"
+#	#-#In August 1795 VOC surrendered Malacca to the British East India Company.
+#
+#	date = { day = 1 month = august year = 1795 }
+#	offset = 29
+#	deathdate = { day = 1 month = september year = 1795 }
+#
+#	action_a = {
+#		name = "ACTIONNAME186438A" #Surrender Malacca
+#		command = { type = cedeprovince which = ENG value = 677 } #Malacca
+#		command = { type = removecore which = 677 } #Malacca
+#		command = { type = relation which = ENG value = 50 }
+#	}
+#	action_b = {
+#		name = "ACTIONNAME186438B" #No, Malacca is ours!
+#		command = { type = relation which = ENG value = -100 }
+#	}
+#}
+
+#(1796) British occupy Ambon
+event = {
+	id = 186439
+	trigger = {
+		war = { country = HOL country = ENG }
+		control = { province = 715 data = ENG } #Ceram
+		flag = [VOC]
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186439" #British occupy Ambon
+	desc = "EVENTHIST186439"
+	#-#British occupied Ambon. Riots break out in Maluku between villages. VOC fortress at Ternate refused to surrender.
+
+	date = { day = 1 month = january year = 1796 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1797 }
+
+	action_a = {
+		name = "ACTIONNAME186439A" #Surrender Ambon to British
+		command = { type = cedeprovince which = ENG value = 715 } #Ceram
+		command = { type = relation which = ENG value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME186439B" #Keep fighting!
+		command = { type = relation which = ENG value = -50 }
+		command = { type = revolt which = 715 } #Ceram
+		command = { type = desertion which = 715 value = 3000 } #Ceram
+	}
+}
+
+#(1797-1800) VOC is fully bankrupt
+event = {
+	id = 186441
+	trigger = { flag = [VOC] }
+	random = no
+	country = HOL
+	name = "EVENTNAME186441" #VOC is fully bankrupt
+	desc = "EVENTHIST186441"
+	#-#Napoleonic Dutch government revokes charter of VOC, assumes its debts and assets. The VOC was losing money to corruption and political intrigues. By the end of the 1700s, it was fully bankrupt. On January 1st, 1800, it ceased to exist.
+
+	date = { day = 1 month = january year = 1797 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1800 }
+
+	action_a = {
+		name = "ACTIONNAME186441A" #VOC is no more!
+		command = { type = domestic which = mercantilism value = -1 }
+		command = { type = trade value = -1000 }
+		command = { type = loansize which = 200 }
+		command = { type = inflation value = 10 }
+		command = { type = stability value = -1 }
+		command = { type = clrflag which = [VOC] }
+	}
+}
+
+#(1797) Nederlands Zendelinggenootschap
+event = {
+	id = 186440
+	random = no
+	country = HOL
+	name = "EVENTNAME186440" #Nederlands Zendelinggenootschap
+	desc = "EVENTHIST186440"
+	#-#Nederlands Zendelinggenootschap or Dutch Missionary Society was founded in 1797. This was the beginning of heavy activity by Dutch Protestant missionaries in Indonesia, not only to Java and Sumatra but also to very remote areas, eventually even to Irian Jaya.
+
+	date = { day = 1 month = january year = 1797 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1798 }
+
+	action_a = {
+		name = "ACTIONNAME186440A" #Convert the heathens
+		command = { type = missionaries value = 3 }
+		command = { type = conversion which = -1 }
+		command = { type = conversion which = -1 }
+	}
+}
+
+#(1799) Dutch lose Ternate to British
+event = {
+	id = 186443
+	trigger = {
+		war = { country = HOL country = ENG }
+		control = { province = 713 data = ENG } #Tindore
+	}
+	random = no
+	country = HOL
+	name = "EVENTNAME186443" #Dutch lose Ternate to British
+	desc = "EVENTHIST186443"
+	#-#Dutch officers under siege at Ternate mutiny and surrender to the British.
+
+	date = { day = 1 month = january year = 1799 }
+	offset = 359
+	deathdate = { day = 1 month = january year = 1800 }
+
+	action_a = {
+		name = "ACTIONNAME186443A" #Surrender Ternate to British
+		command = { type = cedeprovince which = ENG value = 713 } #Tindore
+		command = { type = relation which = ENG value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME186443B" #Keep fighting!
+		command = { type = relation which = ENG value = -50 }
+		command = { type = desertion which = 713 value = 3000 } #Tindore
+	}
+}
+
+#(1799) Revolutionary ideas is not for Indies
+event = {
+	id = 186442
+	random = no
+	country = HOL
+	name = "EVENTNAME186442" #Revolutionary ideas is not for Indies
+	desc = "EVENTHIST186442"
+	#-#Committee for East Indian Affairs sent a letter of instructions to Batavia, stating that the revolutionary ideas of the Republic (liberty and equality) could not be applied to the Indies.
+
+	date = { day = 27 month = april year = 1799 }
+
+	action_a = {
+		name = "ACTIONNAME186442A" #Agree to that letter
+		command = { type = stability value = 1 }
+		command = { type = colonialrevolt which = -1 }
+		command = { type = colonialrevolt which = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME186442B" #Don't agree to that letter
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1806-1810) Louis Bonaparte appointed as King, Dutch version
+event = {
+	id = 186102 #triggered by FRA_170026
+	random = no
+	country = HOL
+	name = "EVENTNAME170026" #The Kingdom of Holland
+	desc = "EVENTHIST186102"
+	#-#In 1806 Napoléon decided he wanted to strengthen his hold on the Dutch. To achieve this he created the Kingdom of Holland with his brother Lodewijk as King.
+
+	action_a = {
+		name = "ACTIONNAME186102A" #Bien
+		command = { type = flagname which = "Bonaparte" }
+		command = { type = wakemonarch which = 060014 } #Lodewijk Bonaparte
+		command = { type = add_countryculture which = french }
+		command = { type = remove_countryculture which = dutch }
+		command = { type = sleepmonarch which = 060013 } #Rutger Jan Schimmelpenninck
+		command = { type = sleepmonarch which = 060011 } #Bataafsche Republiek
+		command = { type = cedeprovince which = FRA value = 378 } #Brabant
+		command = { type = cedeprovince which = FRA value = 380 } #Flandern
+		command = { type = removecore which = 378 } #Brabant
+		command = { type = removecore which = 380 } #Flandern
+		command = { type = relation which = FRA value = 200 }
+	}
+}
+
+#(1807-1809) Louis' reforms
+#by BAWM
+event = {
+	id = 186103
+	trigger = { monarch = 060014 } #Lodewijk Bonaparte
+	random = no
+	country = HOL
+	name = "EVENTNAME186103" #Louis Bonaparte's reforms
+	desc = "EVENTHIST186103"
+	#-#From the moment Lodewijk Bonaparte accepted the Dutch throne, he tried to be true Dutch King. He slowly managed to be a accepted as such, which was helped by his attempt to learn Dutch, his action after two national dissasters and the foundation of national institutes. He also tried to restructure the economy and took measures to make Holland a more centralized country. One of these was making Amsterdam the official capital in stead of the Hague.
+
+	date = { day = 1 month = march year = 1807 }
+	offset = 100
+	deathdate = { day = 1 month = march year = 1809 }
+
+	action_a = {
+		name = "ACTIONNAME186103A" #Geweldig!
+		command = { type = domestic which = centralization value = 3 }
+		command = { type = domestic which = innovative value = 1 }
+	}
+}
+
+#(1809-1820) The Restoration of the Orange Dynasty, Dutch version
+event = {
+	id = 186104 #triggered by FRA_170027
+	random = no
+	country = HOL
+	name = "EVENTNAME186104" #Verenigd Koninkrijk der Nederlanden
+	desc = "EVENTHIST170027"
+	#-#After the coalition troups reinstated the French monarchy, they decided to form a new country out of the northern and the southern Netherlands, the United Kingdom of the Netherlands, as a buffer state against France with Stadtholder Willem V's son as King Willem I.
+
+	action_a = {
+		name = "ACTIONNAME186104A" #Geweldig!
+		command = { type = flagname which = "" }
+		command = { type = add_countryculture which = dutch }
+		command = { type = remove_countryculture which = french } #if still existant
+		command = { type = wakemonarch which = 060015 } #Willem I
+		command = { type = sleepmonarch which = 060010 } #Willem VI
+		command = { type = sleepmonarch which = 060011 } #Bataafsche Republiek
+		command = { type = sleepmonarch which = 060014 } #Lodewijk Bonaparte
+		command = { type = addcore which = 378 } #Brabant
+		command = { type = addcore which = 380 } #Flandern
+		command = { type = addcore which = 377 } #Luxembourg
+		command = { type = breakvassal which = FRA }
+		command = { type = relation which = FRA value = -200 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Random Events
+#-----------------------------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------------------------
+#Immigration to the Netherlands by Alkar
+
+#(1585-1709) Immigration
+event = {
+	id = 186021
+	trigger = {
+		domestic = { type = innovative value = 6 }
+		year = 1585
+		NOT = { year = 1709 }
+	}
+	random = yes
+	country = HOL
+	name = "EVENTNAME186021" #Immigration
+	desc = "EVENTHIST186021"
+	#-#Throughout the seventeenth century, also called the Dutch Golden Age, the Netherlands formed a safe haven of tolerance and freedom in Europe. Combined with economic booms from the era, merchants, artisans, entrepeneurs and persecuted religious minorities settled in the Netherlands bringing with them capital and great number of rare and useful, skills.
+
+	action_a = {
+		name = "ACTIONNAME186021A" #We welcome them with open arms
+		command = { type = infra value = 250 }
+		command = { type = population which = -1 value = 1000 }
+		command = { type = provincetax which = -3 value = 1 }
+	}
+}
+
+#(1588-1709) Foreign artisans
+event = {
+	id = 186025
+	trigger = {
+		domestic = { type = innovative value = 6 }
+		year = 1588
+		NOT = { year = 1709 }
+	}
+	random = yes
+	country = HOL
+	name = "EVENTNAME186025" #Foreign artisans
+	desc = "EVENTHIST186025"
+	#-#The high freedom and tolerance in the Netherlands during its Golden Age attracted many artisans and merchants from abroad founding all sorts of manufactories.
+
+	action_a = {
+		name = "WELCOME"
+		command = { type = gainmanufactory which = -1 value = -1 }
+		command = { type = population which = -3 value = 1000 }
+		command = { type = provincetax which = -3 value = 1 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 186093-186099 - next: 186105

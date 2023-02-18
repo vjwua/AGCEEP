@@ -4,7 +4,7 @@
 
 country = {
 	tag = AKK
-	ai = "AKK_1419.ai"
+	ai = "AKK_1419.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no

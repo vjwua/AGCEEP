@@ -1,0 +1,490 @@
+#Romanists (ROM)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419) The Hussite Wars
+event = {
+	id = 398000 #triggered by BOH_129001 B
+	random = no
+	country = ROM
+	name = "EVENTNAME188600" #The Hussite Wars
+	desc = "EVENTHIST188600"
+	#-#The Czech priest and professor Jan Hus developed radical reformatory demands on the base of the teachings of John Wyclif. Despite a guarantee of safe-conduct by Emperor Sigismund, he was executed at the stake for heresy at the Council of Constance in 1415. This could however not stop the Hussite movement in Bohemia. Hus' followers were rapidly growing, and when King Vaclav IV of Bohemia died and his brother Sigismund, already Emperor and King of Hungary was to succeed him, they, unwilling to forgive him the betrayal of Hus and afraid that he would suppress them, refused to acknowledge him and gained control of most of Bohemia proper - while the lands of the Bohemian crown and the catholic part of Bohemia accepted Sigismund. Due to its radical anti-clerical and anti-feudal tendencies Hussitism posed a big threat to the church and nobility in the countries adjacent to Bohemia. Several German and European princes therefore decided to oppose the Hussites and to support Sigismund in his struggle with them that lasted for almost two decades. Should we decide to fight these heretics, we should be aware that this would be internationally regarded as an intervention in favour of Sigismund as rightful King of Bohemia rather than a war of conquest, and that therefore, if Sigismund prevails and manages to restore royal authority, we would be expected to turn over any conquests in Bohemia to the Kingdom of Bohemia.
+
+	action_a = {
+		name = "OK"
+		command = { type = breakvassal which = HUS }
+		command = { type = relation which = HUS value = -400 }
+		command = { type = relation which = HUN value = 100 }
+		command = { type = relation which = PAP value = 50 }
+		command = { type = relation which = HAB value = 75 }
+		command = { type = relation which = LAT value = 50 }
+		command = { type = relation which = BRA value = 50 }
+		command = { type = relation which = MEI value = 50 }
+		command = { type = relation which = LUX value = 50 }
+		command = { type = relation which = BAY value = 50 }
+		command = { type = treasury value = 150 }
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = CAV which = -2 value = 10000 }
+		command = { type = add_countryculture which = german }
+		command = { type = province_revoltrisk which = 315 value = 4 } #Moravia
+		command = { type = province_revoltrisk which = 330 value = 4 } #Sudeten
+		command = { type = stability value = -3 }
+		command = { type = trigger which = 179600 } #HAB: The Hussite Wars
+		command = { type = trigger which = 125600 } #BAY: The Hussite Wars
+		command = { type = trigger which = 132600 } #BRA: The Hussite Wars
+		command = { type = trigger which = 213600 } #LUX: The Hussite Wars
+		command = { type = trigger which = 319600 } #MEI: The Hussite Wars
+		command = { type = trigger which = 255600 } #PFA: The Hussite Wars
+		command = { type = trigger which = 258600 } #POL: The Hussite Wars
+		command = { type = trigger which = 273600 } #SAC: The Hussite Wars
+		command = { type = trigger which = 209600 } #LAT: The Hussite Wars
+		command = { type = trigger which = 188600 } #HUN: The Hussite Wars
+	}
+}
+
+#(1419-1820) Ostmarch and Habsburgs Hereditary Lands
+event = {
+	id = 398020 #triggered by HAB_179141
+	random = no
+	country = ROM
+	name = "EVENTNAME129048" #Ostmarch and Habsburgs Hereditary Lands
+	desc = "EVENTHIST129048"
+	#-#In 976, the march ruled by the Babenberg family was described as regione vulgari vocabulo Ostarrîchi, that is, the region called 'Ostarrîchi' (the Eastern Realm) in the vernacular. The term Ostarrîchi is linguistic ancestor of the German name for Austria, Österreich. Under Ernest the Brave (1055–1075), the colonisation of the Waldviertel was begun and the Bohemian and Hungarian marches were united to Austria.
+
+	action_a = {
+		name = "ACTIONNAME129048A" #Ostmarch belongs to Austria
+		command = { type = removecore which = 327 } #Ostmarch
+	}
+}
+
+#(1420) Crusades against the Hussites
+event = {
+	id = 398001
+	trigger = { exists = HUS }
+	random = no
+	country = ROM
+	name = "EVENTNAME398001" #Crusades against the Hussites
+	desc = "EVENTHIST398001"
+	#-#Emperor Zikmund made several attempts to subdue the Hussites by military force and had these campaigns declared 'crusades' by the Pope. The first and biggest 'Hussite crusade' was called for on March 17th 1420. Although there were some men from as far as Castile, England and France in the armies, the crusading armies consisted mostly of Hungarians, Bohemians and Germans, i.e. subjects of Zikmund and his allies among the German princes. Morale and organization were usually bad, and one defeat, at one occasion even only the terrifying effect of a disciplined Hussite army singing its war songs, sufficed to scatter the army and end the campaign; therefore all these attempts eventually failed. The 'crusaders' were often given permission to loot and rob in Bohemia, no matter if they were crossing Catholic or Hussite lands, which attracted all sorts of criminals and adventurers to the crusades and caused much dissent among the populace.
+
+	date = { day = 16 month = march year = 1420 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1420 }
+
+	action_a = {
+		name = "ACTIONNAME398001A" #Attempt to subdue the heretics by crusades
+		command = { type = war which = HUS }
+		command = { type = ai which = ROM_1419_Romanist.ai }
+		command = { type = INF which = 315 value = 15000 } #Moravia
+		command = { type = CAV which = 315 value = 10000 } #Moravia
+		command = { type = wakeleader which = 0116302 } #Vitzthum (ROM)
+		command = { type = wakeleader which = 0116303 } #Beaufort (ROM)
+		command = { type = domestic which = quality value = -3 }
+		command = { type = domestic which = offensive value = -1 }
+		command = { type = province_revoltrisk which = 315 value = 10 } #Moravia
+		command = { type = province_revoltrisk which = 329 value = 6 } #Erz
+		command = { type = province_revoltrisk which = 330 value = 8 } #Sudeten
+	}
+	action_b = {
+		name = "ACTIONNAME398001B" #Rely on support from the Bohemian Romanists
+		command = { type = war which = HUS }
+		command = { type = ai which = ROM_1419_Romanist.ai }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1424-1427) Hussites offer settlement, AI Hussites version
+event = {
+	id = 398004 #triggered by HUS_401004 B
+	random = no
+	country = ROM
+	name = "EVENTNAME398004" #Hussites offer settlement
+	desc = "EVENTHIST398004"
+	#-#Exhausted by the devastating war and having suppressed the most radical forces, the heretic Hussite rebels, have offered us a settlement. This would allow our King Sigismund to finally come to rule all of Bohemia, however at the, price of some concessions to this movement, which might cause us some prestige in the catholic world.
+
+	action_a = {
+		name = "ACTIONNAME398004A" #Accept their terms and reunite Bohemia
+		command = { type = inherit which = HUS }
+		command = { type = setflag which = [settlement] }
+		command = { type = capital which = 328 } #Bohemia
+		command = { type = domestic which = aristocracy value = -3 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = innovative value = 3 }
+		command = { type = domestic which = mercantilism value = -2 }
+		command = { type = domestic which = offensive value = 2 }
+		command = { type = domestic which = land value = 1 }
+		command = { type = domestic which = quality value = 4 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = relation which = PAP value = -150 }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = relation which = LAT value = -50 }
+		command = { type = relation which = BRA value = -50 }
+		command = { type = relation which = MEI value = -50 }
+		command = { type = relation which = LUX value = -50 }
+		command = { type = relation which = BAY value = -50 }
+		command = { type = province_revoltrisk which = 315 value = -14 } #Moravia
+		command = { type = province_revoltrisk which = 327 value = -4 } #Ostmarch
+		command = { type = province_revoltrisk which = 328 value = -4 } #Bohemia
+		command = { type = province_revoltrisk which = 329 value = -6 } #Erz
+		command = { type = province_revoltrisk which = 330 value = -12 } #Sudeten
+		command = { type = stability value = -2 }
+		command = { type = vp value = -50 }
+		#command = { type = ai which = peaceful.ai }
+	}
+	action_b = {
+		name = "ACTIONNAME398004B" #Reject a compromise
+		command = { type = stability value = 1 }
+	}
+}
+#(1424-1427) Hussites offer settlement, Human Hussites version
+event = {
+	id = 398005 #triggered by HUS_401005 B
+	random = no
+	country = ROM
+	name = "EVENTNAME398005" #Hussites offer settlement
+	desc = "EVENTHIST398005"
+	#-#Exhausted by the devastating war and having suppressed the most radical forces, the heretic Hussite rebels, have offered us a settlement. This would allow our King Sigismund to finally come to rule all of Bohemia, however at the, price of some concessions to this movement, which might cause us some prestige in the catholic world.
+
+	action_a = {
+		name = "ACTIONNAME398005A" #Accept their terms (End Game)
+		command = { type = province_revoltrisk which = 315 value = -4 } #Moravia
+		command = { type = province_revoltrisk which = 327 value = -4 } #Ostmarch
+		command = { type = province_revoltrisk which = 328 value = -4 } #Bohemia
+		command = { type = province_revoltrisk which = 330 value = -4 } #Sudeten
+		command = { type = trigger which = 401006 } #HUS: Romanists accept
+	}
+	action_b = {
+		name = "ACTIONNAME398005B" #Reject a compromise
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1426-1431) Economic consequences of endless warfare
+event = {
+	id = 398007
+	trigger = { atwar = yes }
+	random = no
+	country = ROM
+	name = "EVENTNAME398007" #Economic consequences of endless warfare
+	desc = "EVENTHIST398007"
+	#-#The Hussite wars had a devastating effect on Bohemia's economy. Large areas were depopulated, German merchants were thrown out, trade activity virtually ceased and the peasantry was fighting in Hussite armies. Even after the end of the conflict, Bohemia could not recover completely from this.
+
+	date = { day = 1 month = january year = 1426 }
+	offset = 900
+	deathdate = { day = 29 month = december year = 1431 }
+
+	action_a = {
+		name = "ACTIONNAME398007A" #How terrible
+		command = { type = population which = 328 value = -8000 } #Bohemia
+		command = { type = population which = 327 value = -4000 } #Ostmarch
+		command = { type = population which = 330 value = -4000 } #Sudeten
+		command = { type = population which = 315 value = -3000 } #Moravia
+		command = { type = population which = 314 value = -3000 } #Silesia
+		command = { type = population which = 329 value = -3000 } #Erz
+		command = { type = provincetax which = 328 value = -2 } #Bohemia
+		command = { type = provincetax which = 327 value = -1 } #Ostmarch
+		command = { type = provincetax which = 330 value = -1 } #Sudeten
+		command = { type = provincetax which = 315 value = -1 } #Moravia
+		command = { type = provincetax which = 314 value = -1 } #Silesia
+		command = { type = provincetax which = 329 value = -1 } #Erz
+	}
+}
+
+#(1436) Hussites accept Sigismund
+event = {
+	id = 398010 #triggered by HUS_401011 A
+	random = no
+	country = ROM
+	name = "EVENTNAME398010" #Hussites accept Sigismund
+	desc = "EVENTHIST398010"
+	#-#After the victory of the Utraquists and the elimination of the influence of radical Hussites who had before prevented a settlement with Zikmund and the Church, negotiations on the exact terms of a compromise, referring to both political and religious questions, continued for two years, and the differences were eventually resolved. On July 5th a Bohemian diet assembled at the Moravian town of Jihlava (or Iglau) accepted the 'compactata', four articles containing concessions to the religious demands of the Hussites that had found the consent of the Council of Basel, subjected themselves to the authority of the council and the Church and acknowledged Zikmund as King of Bohemia. This finally restored peace in Bohemia and relieved the Utraquists from excommunication. Zikmund entered Bohemia and assumed the rule of the Kingdom in Prague on August 23rd 1436.
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = inherit which = HUS }
+		command = { type = setflag which = [settlement] }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = innovative value = 2 }
+		command = { type = domestic which = offensive value = 2 }
+		command = { type = domestic which = land value = 1 }
+		command = { type = domestic which = quality value = 2 }
+		command = { type = domestic which = serfdom value = -3 }
+		command = { type = relation which = PAP value = -100 }
+		command = { type = relation which = HAB value = -25 }
+		command = { type = relation which = LAT value = -25 }
+		command = { type = relation which = BRA value = -25 }
+		command = { type = relation which = SAC value = -25 }
+		command = { type = relation which = LUX value = -25 }
+		command = { type = relation which = BAY value = -25 }
+		command = { type = province_revoltrisk which = 315 value = -14 } #Moravia
+		command = { type = province_revoltrisk which = 327 value = -4 } #Ostmarch
+		command = { type = province_revoltrisk which = 328 value = -4 } #Bohemia
+		command = { type = province_revoltrisk which = 329 value = -6 } #Erz
+		command = { type = province_revoltrisk which = 330 value = -14 } #Sudeten
+		command = { type = breakvassal which = HUN }
+		command = { type = religion which = catholic }
+		#command = { type = ai which = peaceful.ai }
+	}
+}
+
+#(1419-1499) Hussites defeated
+event = {
+	id = 398011 #triggered by HUS_401013 A
+	random = no
+	country = ROM
+	name = "EVENTNAME398011" #Victory against the Hussites
+	desc = "EVENTHIST398011"
+	#-#We have succeeded in breaking the resistance of the heretic Hussites. The Kingdom of Bohemia can finally be united again as a loyal child of the Roman Church.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = inherit which = HUS }
+		command = { type = inherit which = BOH } #just in case
+		command = { type = vp value = 200 }
+		command = { type = province_revoltrisk which = 315 value = -14 } #Moravia
+		command = { type = province_revoltrisk which = 327 value = -4 } #Ostmarch
+		command = { type = province_revoltrisk which = 328 value = -4 } #Bohemia
+		command = { type = province_revoltrisk which = 329 value = -6 } #Erz
+		command = { type = province_revoltrisk which = 330 value = -14 } #Sudeten
+		#command = { type = ai which = peaceful.ai }
+	}
+}
+
+#(1419-1499) Catholicism prevails
+event = {
+	id = 398012
+	trigger = {
+		NOT = { exists = HUS }
+		NOT = { event = 398011 } #ROM: Victory against the Hussites
+		NOT = { flag = [settlement] }
+	}
+	random = no
+	country = ROM
+	name = "EVENTNAME398012" #Catholicism prevails
+	desc = "EVENTHIST398012"
+	#-#Since the Hussite rebels have lost their last strongholds to their catholic opponents, the Kingdom of Bohemia can finally be united again as a loyal child of the Roman Church.
+
+	date = { day = 18 month = august year = 1419 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1499 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = inherit which = BOH } #just in case
+		command = { type = province_revoltrisk which = 315 value = -14 } #Moravia
+		command = { type = province_revoltrisk which = 327 value = -4 } #Ostmarch
+		command = { type = province_revoltrisk which = 328 value = -4 } #Bohemia
+		command = { type = province_revoltrisk which = 329 value = -6 } #Erz
+		command = { type = province_revoltrisk which = 330 value = -12 } #Sudeten
+		#command = { type = ai which = peaceful.ai }
+	}
+}
+
+#(1457) Death of Ladislaus Postumus
+event = {
+	id = 398013
+	trigger = {
+		NOT = {
+			flag = [settlement]
+			flag = [Hussites_suppressed]
+		}
+		exists = HAB
+	}
+	random = no
+	country = ROM
+	name = "EVENTNAME398013" #Death of Ladislaus Postumus
+	desc = "EVENTHIST398013"
+	#-#After the premature death of the youthful Ladislaus Postumus, son of Albrecht of Habsburg, who was considered legitimate King of Bohemia by the Romanists and ruled the territories under catholic domination, conflict over his succession arises because he lacks a direct successor. Recognizing the late King's relative, Emperor Frederick III, as heir to the Bohemian throne and thus establishing a hereditary Habsburg succession would allow hoping on more support from Austria and the Empire for the Romanist cause against the Hussites. On the other hand, the powerful leader of the Bohemian Romanists, Oldrich z Rozmberka, who has already reigned Bohemia while Ladislaus was a minor, is now seeing his chance to secure his power and obtain the Bohemian throne for his dynasty.
+
+	date = { day = 23 month = november year = 1457 }
+
+	action_a = {
+		name = "ACTIONNAME398013A" #Emperor Frederick shall be King (End Game)
+		command = { type = trigger which = 179602 } #HAB: The Bohemian throne
+	}
+	action_b = {
+		name = "ACTIONNAME398013B" #Oldrich z Rozmberka shall be King
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = SEI value = -100 }
+		command = { type = stability value = -2 }
+	}
+}
+
+#(1419-1436) Unacceptable Peace Treaty - Ahistorical
+event = {
+	id = 398019
+	trigger = {
+		vassal = { country = HUS country = ROM }
+		war = { country = HUS country = HUN }
+		countrysize = 1
+	}
+	random = no
+	country = ROM
+	name = "EVENTNAME398015" #Unacceptable Peace Treaty
+	desc = "EVENTHIST398015"
+	#-#Forced peace with Hussites was unacceptable. With the help of Hungarians, Romanists continue the fight.
+
+	date = { day = 18 month = august year = 1419 }
+	offset = 1
+	deathdate = { day = 4 month = july year = 1436 }
+
+	action_a = {
+		name = "ACTIONNAME401013B" #We will never give in!
+		command = { type = breakvassal which = HUS }
+		command = { type = stability value = 3 }
+	}
+}
+#(1419-1436) Unacceptable Peace Treaty - Ahistorical
+event = {
+	id = 398015
+	trigger = {
+		vassal = { country = HUS country = ROM }
+		war = { country = HUS country = HUN }
+		countrysize = 2
+	}
+	random = no
+	country = ROM
+	name = "EVENTNAME398015" #Unacceptable Peace Treaty
+	desc = "EVENTHIST398015"
+	#-#Forced peace with Hussites was unacceptable. With the help of Hungarians, Romanists continue the fight.
+
+	date = { day = 18 month = august year = 1419 }
+	offset = 1
+	deathdate = { day = 4 month = july year = 1436 }
+
+	action_a = {
+		name = "ACTIONNAME401013B" #We will never give in!
+		command = { type = breakvassal which = HUS }
+		command = { type = stability value = 3 }
+		command = { type = INF which = -1 value = 8000 }
+		command = { type = alliance which = HUN } #if possible
+		command = { type = war which = HUS }
+	}
+}
+#(1419-1436) Unacceptable Peace Treaty - Ahistorical (safety)
+event = {
+	id = 398016
+	trigger = {
+		vassal = { country = HUS country = ROM }
+		war = { country = HUS country = HUN }
+		countrysize = 2
+		event = 398015 #ROM: Unacceptable Peace Treaty
+	}
+	random = no
+	country = ROM
+	name = "EVENTNAME398015" #Unacceptable Peace Treaty
+	desc = "EVENTHIST398015"
+	#-#Forced peace with Hussites was unacceptable. With the help of Hungarians, Romanists continue the fight.
+
+	date = { day = 18 month = august year = 1419 }
+	offset = 1
+	deathdate = { day = 4 month = july year = 1436 }
+
+	action_a = {
+		name = "ACTIONNAME401013B" #We will never give in!
+		command = { type = breakvassal which = HUS }
+		command = { type = stability value = 3 }
+		command = { type = INF which = -1 value = 8000 }
+		command = { type = alliance which = HUN } #if possible
+		command = { type = war which = HUS }
+	}
+}
+#(1419-1436) Unacceptable Peace Treaty - Ahistorical
+event = {
+	id = 398017
+	trigger = {
+		ai = yes
+		NOT = { vassal = { country = HUS country = ROM } }
+		war = { country = HUS country = HUN }
+		NOT = { war = { country = HUS country = ROM } }
+		countrysize = 2
+	}
+	random = no
+	country = ROM
+	name = "EVENTNAME398015" #Unacceptable Peace Treaty
+	desc = "EVENTHIST398015"
+	#-#Forced peace with Hussites was unacceptable. With the help of Hungarians, Romanists continue the fight.
+
+	date = { day = 18 month = august year = 1419 }
+	offset = 1
+	deathdate = { day = 4 month = july year = 1436 }
+
+	action_a = {
+		name = "ACTIONNAME401013B" #We will never give in!
+		command = { type = INF which = -1 value = 8000 }
+		command = { type = alliance which = HUN } #if possible
+		command = { type = war which = HUS }
+	}
+}
+#(1419-1436) Unacceptable Peace Treaty - Ahistorical (safety)
+event = {
+	id = 398018
+	trigger = {
+		ai = yes
+		NOT = { vassal = { country = HUS country = ROM } }
+		war = { country = HUS country = HUN }
+		NOT = { war = { country = HUS country = ROM } }
+		countrysize = 2
+		event = 398017 #ROM: Unacceptable Peace Treaty
+	}
+	random = no
+	country = ROM
+	name = "EVENTNAME398015" #Unacceptable Peace Treaty
+	desc = "EVENTHIST398015"
+	#-#Forced peace with Hussites was unacceptable. With the help of Hungarians, Romanists continue the fight.
+
+	date = { day = 18 month = august year = 1419 }
+	offset = 1
+	deathdate = { day = 4 month = july year = 1436 }
+
+	action_a = {
+		name = "ACTIONNAME401013B" #We will never give in!
+		command = { type = INF which = -1 value = 8000 }
+		command = { type = alliance which = HUN } #if possible
+		command = { type = war which = HUS }
+	}
+}
+
+#(1419-1450) Coronation in Prague
+event = {
+	id = 398014
+	trigger = {
+		OR = {
+			event = 398004 #ROM: Early settlement
+			event = 398010 #ROM: Compactates of Jihlava
+			event = 398011 #ROM: Victory against the Hussites
+			event = 398012 #ROM: Catholicism prevails
+		}
+		owned = { province = 328 data = -1 } #Bohemia
+		control = { province = 328 data = -1 } #Bohemia
+		NOT = { exists = BOH } #to be sure
+	}
+	random = no
+	country = ROM
+	name = "EVENTNAME398014" #Coronation in Prague
+	desc = "EVENTHIST398014"
+	#-#Since the division of our Kingdom and the struggle between the faiths has finally ended, everything is ready for the coronation of the King of all of Bohemia in Prague with the crown of St. Wenceslas now.
+
+	date = { day = 18 month = august year = 1419 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1450 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = flagname which = "" }
+		command = { type = country which = BOH }
+		command = { type = capital which = 328 } #Bohemia
+		command = { type = stability value = 1 }
+		command = { type = trigger which = 338057 } #ProvinceSpec*315 : Crusade against the Hussites is successful
+		command = { type = trigger which = 338058 } #ProvinceSpec*327 : Crusade against the Hussites is successful
+		command = { type = trigger which = 338060 } #ProvinceSpec*329 : Crusade against the Hussites is successful
+		command = { type = trigger which = 338061 } #ProvinceSpec*330 : Crusade against the Hussites is successful
+		command = { type = trigger which = 129048 } #BOH: Ostmarch and Habsburgs Hereditary Lands
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 398021

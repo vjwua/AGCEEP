@@ -1,0 +1,101 @@
+#Golconda (GOL)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1470-1472) Oriya Civil War
+event = {
+	id = 190000
+	trigger = {
+		NOT = { vassal = { country = ORI country = GOL } }
+	}
+	random = no
+	country = GOL
+	name = "EVENTNAME190000" #Oriya Civil War
+	desc = "EVENTHIST190000"
+	#-#In 1468 the Oriya priest-king Kapilendra Deva died, leaving the country to his younger son. The eldest son refused to accept the decision and began a rebellion that consumed the Kingdom until 1470 when the loser fled to the Bahmani Sultanate where he sought the help of the Sultan in retaking his throne in return for promises of coastal lands when the new King seized power.
+
+	date = { day = 1 month = january year = 1470 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1472 }
+
+	action_a = {
+		name = "ACTIONNAME190000A" #Support the pretender
+		command = { type = relation which = ORI value = -50 }
+		command = { type = treasury value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME190000B" #Remain neutral
+		command = { type = relation which = ORI value = 25 }
+		command = { type = sleepevent which = 249011 } #ORI: Return of the Prince
+	}
+}
+
+#(1597-1599) Akbar demands the fealty of Ahmadnagar
+event = {
+	id = 190001
+	trigger = {
+		exists = MOG
+		NOT = { event = 305000 } #AHM: Akbar demands the fealty of Ahmadnagar
+		owned = { province = 551 data = -1 } #Khandesh
+	}
+	random = no
+	country = GOL
+	name = "EVENTNAME305000" #Akbar demands the fealty of Ahmadnagar
+	desc = "EVENTHIST305000"
+	#-#In 1597 the Great Mughal asked the breakaway Kingdom of Ahmadnagar to swear fealty to him. With Ahmadnagar ruled by the infant King Bahadur, the real power lay in the hands of the dowager Queen Chand Bibi. Bibi refused to submit to Mughal rule and Akbar responded by invading, sending one army from Malwa led by Khan Khanan and another from Gujarat led by his son, Murad.
+
+	date = { day = 1 month = january year = 1597 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1599 }
+
+	action_a = {
+		name = "ACTIONNAME305000A" #Refuse to submit
+		command = { type = relation which = MOG value = -50 }
+		command = { type = trigger which = 230008 } #MOG: Ahmadnagar's Defiance
+	}
+	action_b = {
+		name = "ACTIONNAME190001B" #Ahmadnagar shall become part of the Mughal empire
+		command = { type = cedeprovince which = MOG value = 551 } #Ahmadnagar is probably Khandesh province #Khandesh
+		command = { type = trigger which = 230009 } #Ahmadnagar becomes a vassal state #MOG: Ahmadnagar's Submission
+	}
+}
+
+#(1597-1605) Chand Bibi's Betrayal
+event = {
+	id = 190002
+	trigger = {
+		exists = MOG
+		NOT = { event = 305001 } #GOL: Chand Bibi's Betrayal
+		owned = { province = 551 data = -1 } #Khandesh
+		control = { province = 551 data = MOG } #Khandesh
+	}
+	random = no
+	country = GOL
+	name = "EVENTNAME305001" #Chand Bibi's Betrayal
+	desc = "EVENTHIST305001"
+	#-#Imperial troops laid siege to Ahmadnagar. Although the defenders fought fiercely, no help was coming and it could only be a matter of time. Sultan Murad, the enemy commander, sent an offer to raise the siege in return for the cession of Berar. Although the dowager Queen had fought valiantly, she lost heart when faced with the superior imperial forces. Facing famine in the city she agreed to the deal and gave away Berar. Upon hearing the news, her confidant and eunuch Jita Khan rushed from the palace crying that Chand Bibi had turned traitor. Bibi was murdered by a mob and without her rule, Ahmadnagar fell soon after.
+
+	date = { day = 1 month = january year = 1597 }
+	offset = 30
+	deathdate = { day = 25 month = october year = 1605 }
+
+	action_a = {
+		name = "ACTIONNAME190002A" #Cede Berar to gain time
+		command = { type = revolt which = 551 } #Khandesh
+		command = { type = revolt which = 551 } #Khandesh
+		command = { type = cedeprovince which = MOG value = 551 } #Khandesh
+		command = { type = relation which = MOG value = 50 }
+		command = { type = diplomats value = 1 }
+		command = { type = stability value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME305001B" #Fight to the bitter end
+		command = { type = population which = 551 value = -5000 } #Khandesh (Famine)
+		command = { type = desertion which = -1 value = 1000 } #Famine
+		command = { type = stability value = -1 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 190003

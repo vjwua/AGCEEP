@@ -4,7 +4,7 @@
 
 country = {
 	tag = MCH
-	ai = "Large.ai"
+	ai = "Large.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -14,7 +14,7 @@ country = {
 	treasury = 200
 	inflation = 0
 	merchants = 0
-	religion = { type = confucianism }
+	religion = { type = confucian }
 	culture = {
 		type = manchu
 	}

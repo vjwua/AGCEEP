@@ -1,0 +1,476 @@
+#Hesse (HES)
+
+#See AGCEEP_Alt_Germany.txt for KoG Alternative events
+
+#-----------------------------------------------------------------------------------------------
+
+#(1480-1508) Hermann of Hessen, Archbishop of Cologne
+event = {
+	id = 185002 #triggered by KOL_202004
+	random = no
+	country = HES
+	name = "EVENTNAME185002" #Hermann of Hessen is elected Archbishop-Elector of Cologne
+	desc = "EVENTHIST202004"
+	#-#After the death of Ruprecht von der Pfalz the cathedral chapter of Cologne elected Hermann IV, a a younger brother of the Landgrave of Hessen. Hermann cooperated closely with his relatives in Hessen and was keen on using his high office in the interest of his family.
+
+	action_a = {
+		name = "OK"
+		command = { type = relation which = KOL value = 50 }
+		command = { type = alliance which = KOL }
+	}
+}
+
+#(1526) The Synod of Homberg
+event = {
+	id = 185013
+	trigger = { religion = catholic }
+	random = no
+	country = HES
+	name = "EVENTNAME185013" #The synod of Homberg
+	desc = "EVENTHIST185013"
+	#-#On october 26th 1526 the synod of Homberg accepted the Landgrave's proposal for the introduction of the reformation in Hessen. The Landgrave was declared head of the country's church, clerical property was confiscated and the teachings of Martin Luther implemented. Besides the Elector of Saxony, Philipp of Hessen became the most important and powerful protestant prince in the early years of the Reformation. Together with Electoral Saxony, Hessen initiated and headed the League of Schmalkalden and constantly opposed the Emperor. Philipp always had a great interest in keeping the Reformation united and thus tried to mediate between Luther and Zwingli and their followers.
+
+	date = { day = 25 month = october year = 1526 }
+
+	action_a = {
+		name = "ACTIONNAME185013A" #Enact the reformation
+		command = { type = religion which = protestant }
+		command = { type = provincereligion which = -2 value = protestant }
+		command = { type = treasury value = 100 }
+		command = { type = stability value = -2 }
+		command = { type = provincetax which = -2 value = 2 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = breakdynastic which = POL }
+		command = { type = relation which = POL value = -100 }
+		command = { type = breakdynastic which = HAB }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = breakdynastic which = SPA }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = breakdynastic which = POR }
+		command = { type = relation which = POR value = -100 }
+		command = { type = breakdynastic which = PAP }
+		command = { type = relation which = PAP value = -100 }
+	}
+	action_b = {
+		name = "ACTIONNAME185013B" #Stay true to catholicism
+		command = { type = stability value = 2 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = revoltrisk which = 120 value = 6 }
+	}
+}
+
+#(1527-1529) The League of Schmalkalden
+event = {
+	id = 3685
+	trigger = {
+		exists = HAB
+		OR = {
+			religion = protestant
+			religion = reformed
+		}
+	}
+	random = no
+	country = HES
+	name = "EVENTNAME3109" #The League of Schmalkalden
+	desc = "EVENTHIST3109"
+	#-#After Emperor Charles V had rejected the Protestants' confessional positions at the Imperial Parliament of Augsburg (1529-1530), the North German Protestant Imperial estates formed the League of Schmalkalden, with a joint army and treasury and seeking ties abroad (France). The League enjoyed early successes in the years 1532-1540 as the Emperor was threaten by Turkish danger and forced to conclude Religious peace settlements in Nuremberg (1532) and Kaaden (1534).
+
+	date = { day = 1 month = january year = 1527 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1529 }
+
+	action_a = {
+		name = "ACTIONNAME3109A" #Give it our support
+		command = { type = relation which = FRA value = 100 }
+		command = { type = relation which = ENG value = 100 }
+		command = { type = relation which = BRA value = 150 }
+		command = { type = relation which = HAN value = 150 }
+		command = { type = relation which = BAD value = 150 }
+		command = { type = relation which = PFA value = 150 }
+		command = { type = relation which = SAC value = 150 }
+		#command = { type = relation which = THU value = 150 } #Bayreuth
+		command = { type = relation which = KLE value = 100 }
+		command = { type = relation which = KOL value = 50 }
+		command = { type = relation which = BAY value = 50 }
+		command = { type = relation which = PAP value = -100 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = relation which = HAB value = -150 }
+		command = { type = relation which = STR value = 150 }
+	}
+	action_b = {
+		name = "ACTIONNAME3109B" #Ignore it
+		command = { type = relation which = BRA value = -100 }
+		command = { type = relation which = HAN value = -100 }
+		command = { type = relation which = BAD value = -100 }
+		command = { type = relation which = PFA value = -100 }
+		command = { type = relation which = SAC value = -100 }
+		#command = { type = relation which = THU value = -100 } #Bayreuth
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = STR value = -100 }
+	}
+}
+
+#(1534-1550) Hessen helps Ulrich of Wirtemberg
+event = {
+	id = 185000
+	trigger = {
+		event = 179004 #HAB: Purchase of Wirtemberg
+		owned = { province = 372 data = HAB }
+		OR = {
+			religion = protestant
+			religion = reformed
+		}
+		atwar = no
+	}
+	random = no
+	country = HES
+	name = "EVENTNAME185000" #Ulrich of Wirtemberg
+	desc = "EVENTHIST185000"
+	#-#Ulrich, former duke of Wirtemberg - his country had been sold to the Habsburgs - fled to Hessen. In his exile he became a protestant and convinced Philipp of Hessen to help him recover his possession for the sake of protestantism. Philipp occupied Wirtemberg with his troops and demanded the restoration of the independent duchy. Eventually the Habsburgs gave in to the protestant's pressure and returned Wirtemberg to Ulrich.
+
+	date = { day = 1 month = january year = 1534 }
+	offset = 200
+	deathdate = { day = 29 month = december year = 1550 }
+
+	action_a = {
+		name = "ACTIONNAME185000A" #Protestantism must be promoted everywhere!
+		command = { type = relation which = HAB value = -50 }
+		command = { type = treasury value = -100 }
+		command = { type = stability value = 1 }
+		command = { type = trigger which = 179005 } #HAB: The loss of Wirtemberg
+	}
+	action_b = {
+		name = "ACTIONNAME185000B" #We don't care for Wirtemberg
+		command = { type = stability value = -2 }
+		command = { type = vp value = -20 }
+		command = { type = relation which = HAB value = 30 }
+	}
+}
+
+#(1534-1549) Liberation of Wirtemberg
+event = {
+	id = 185001
+	trigger = {
+		event = 179005 #HAB: Loss of Wirtemberg (Hessen)
+		owned = { province = 372 data = -1 }
+	}
+	random = no
+	country = HES
+	name = "EVENTNAME185001" #Liberation of Wirtemberg
+	desc = "EVENTHIST185001"
+	#-#Hessen has managed to defeat the Habsburgs and to free Wirtemberg. Its rightful duke Ulrich now asks us to give it to him as promised.
+
+	date = { day = 1 month = january year = 1534 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1549 }
+
+	action_a = {
+		name = "ACTIONNAME185001A" #Return Wirtemberg to Ulrich
+		command = { type = independence which = WUR }
+		command = { type = vp value = 25 }
+		command = { type = stability value = 1 }
+		command = { type = relation which = SAC value = 50 } #likely German protestants
+		command = { type = relation which = PFA value = 50 }
+		command = { type = relation which = BRA value = 50 }
+		command = { type = relation which = KLE value = 50 }
+		command = { type = relation which = SHL value = 50 }
+		command = { type = relation which = BRE value = 50 }
+		command = { type = relation which = OLD value = 50 }
+		command = { type = relation which = MEC value = 50 }
+		command = { type = relation which = POM value = 50 }
+		command = { type = province_revoltrisk which = 372 value = -5 } #Württemberg
+	}
+	action_b = {
+		name = "ACTIONNAME185001B" #Why bother? We'll keep Wirtemberg ourselves!
+		command = { type = stability value = -1 }
+		command = { type = relation which = SAC value = -50 } #likely German protestants
+		command = { type = relation which = PFA value = -50 }
+		command = { type = relation which = BRA value = -50 }
+		command = { type = relation which = KLE value = -50 }
+		command = { type = relation which = SHL value = -50 }
+		command = { type = relation which = BRE value = -50 }
+		command = { type = relation which = OLD value = -50 }
+		command = { type = relation which = MEC value = -50 }
+		command = { type = relation which = POM value = -50 }
+		command = { type = revolt which = 372 } #Württemberg
+	}
+}
+
+#(1605) Conversion to Calvinism
+event = {
+	id = 185014
+	trigger = { religion = protestant }
+	random = no
+	country = HES
+	name = "EVENTNAME185014" #Measures of Amelioration
+	desc = "EVENTHIST185014"
+	#-#Shortly after his ascension, Landgrave Moritz issued several changes to Hessen-Kassel's church constitution, called 'measures of amelioration'. Thereby he intended effectively the introduction of Calvinism that he had adapted personally under the influence of his Nassau relatives and hoping for support from the Netherlands. This provoked a conflict with the branch of Hessen-Darmstadt that remained lutheran and hoped to obtain the valuable Marburg inheritance by getting the Empire to outlaw Hessen-Kassel for converting to Calvinism that was still no officially tolerated confession - only Catholics and Lutherans were given legitimacy by the Religious Peace of Augsburg.
+
+	date = { day = 1 month = january year = 1605 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1605 }
+
+	action_a = {
+		name = "ACTIONNAME185014A" #Adapt Calvinism
+		command = { type = religion which = reformed }
+		command = { type = stability value = 3 }
+		command = { type = provincereligion which = -2 value = reformed }
+		command = { type = relation which = PFA value = 100 }
+		command = { type = relation which = HOL value = 100 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = relation which = PAP value = -100 }
+		command = { type = relation which = BAY value = -100 }
+		command = { type = revoltrisk which = 60 value = 4 }
+	}
+	action_b = {
+		name = "ACTIONNAME185014B" #Remain Lutheran
+		command = { type = stability value = -2 } #the Landgraves authority suffers greatly by ruling a lutheran country as a calvinist
+		command = { type = domestic which = centralization value = -2 }
+	}
+}
+
+#(1605-1609) The Evangelic Union
+event = {
+	id = 3686
+	trigger = {
+		 OR = {
+			religion = protestant
+			religion = reformed
+		}
+	}
+	random = no
+	country = HES
+	name = "EVENTNAME3634" #The Evangelic Union
+	desc = "EVENTHIST3634"
+	#-#The Holy Roman Empire had a fragile balance, split between 10 major and nearly 400 minor states and principalities, as well as two opposing religions. The power of the Emperor was quite limited beyond his direct domains and the erratic and inconsistent behavior of some of them as Rudolph II, such increased frictions. In 1608, the Protestant city of Donauwerth refused Catholics the right to practice their cult and was banned from the Empire. As a reaction, most German Protestant states formed the Evangelic Union to defend their freedom.
+
+	date = { day = 1 month = january year = 1605 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1609 }
+
+	action_a = {
+		name = "ACTIONNAME3634A" #Prepare to Join
+		command = { type = relation which = FRA value = 100 }
+		command = { type = relation which = BRA value = 150 }
+		command = { type = relation which = HAN value = 150 }
+		command = { type = relation which = BAD value = 150 }
+		command = { type = relation which = PFA value = 150 }
+		command = { type = relation which = SAC value = 150 }
+		#command = { type = relation which = THU value = 150 } #Bayreuth
+		command = { type = relation which = SHL value = 150 }
+		command = { type = relation which = KLE value = 100 }
+		command = { type = relation which = KOL value = 50 }
+		command = { type = relation which = BAY value = 50 }
+		command = { type = relation which = PAP value = -100 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = relation which = HAB value = -150 }
+	}
+	action_b = {
+		name = "ACTIONNAME3634B" #Stay Neutral
+		command = { type = relation which = BRA value = -100 }
+		command = { type = relation which = HAN value = -100 }
+		command = { type = relation which = BAD value = -100 }
+		command = { type = relation which = PFA value = -100 }
+		command = { type = relation which = SAC value = -100 }
+		#command = { type = relation which = THU value = -100 } #Bayreuth
+		command = { type = relation which = HAB value = 50 }
+	}
+}
+
+#(1607-1609) The Catholic League
+event = {
+	id = 3687
+	trigger = {
+		OR = {
+			religion = catholic
+			religion = counterreform
+		}
+	}
+	random = no
+	country = HES
+	name = "EVENTNAME3192" #The Catholic League
+	desc = "EVENTHIST3192"
+	#-#The German Catholic states felt threatened by the 1608 creation of the Evangelic Union of their northern Protestant neighbors, following the Donauwerth exclusion from the Empire. Feeling the urge to unite, they regrouped into a Catholic League that same year. The stage was set for the Thirty Years War.
+
+	date = { day = 1 month = january year = 1607 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1609 }
+
+	action_a = {
+		name = "ACTIONNAME3192A" #Prepare to Join
+		command = { type = relation which = FRA value = -100 }
+		command = { type = relation which = BRA value = -150 }
+		command = { type = relation which = HAN value = -150 }
+		command = { type = relation which = BAD value = -150 }
+		command = { type = relation which = PFA value = -150 }
+		command = { type = relation which = SAC value = -150 }
+		#command = { type = relation which = THU value = -150 } #Bayreuth
+		command = { type = relation which = SHL value = -150 }
+		command = { type = relation which = KLE value = 50 }
+		command = { type = relation which = KOL value = 100 }
+		command = { type = relation which = BAY value = 100 }
+		command = { type = relation which = PAP value = 100 }
+		command = { type = relation which = SPA value = 100 }
+		command = { type = relation which = HAB value = 150 }
+	}
+	action_b = {
+		name = "ACTIONNAME3192B" #Stay Neutral
+		command = { type = relation which = BRA value = 50 }
+		command = { type = relation which = HAN value = 50 }
+		command = { type = relation which = BAD value = 50 }
+		command = { type = relation which = PFA value = 50 }
+		command = { type = relation which = SAC value = 50 }
+		#command = { type = relation which = THU value = 50 } #Bayreuth
+		command = { type = relation which = BAY value = -50 }
+		command = { type = relation which = KLE value = -50 }
+		command = { type = relation which = KOL value = -50 }
+		command = { type = relation which = HAB value = -100 }
+	}
+}
+
+#(1676-1681) The League of Augsburg
+event = {
+	id = 3684 #triggered by FRA_3127 A
+	random = no
+	country = HES
+	name = "EVENTNAME3198" #The League of Augsburg
+	desc = "EVENTHIST3198"
+	#-#The reunion policy of Louis XIV had been forced upon by the Empire in the 1684 by the Truce of Regensburg, mostly because the Emperor was preoccupied by the Turkish menace (siege of Vienna in 1683). The continued French claims and expansion to the detriment of the Habsburg possessions and the German states of the Empire led to the creation of the anti-French League of Augsburg (1686).
+
+	action_a = {
+		name = "ACTIONNAME3198A" #Defy French claims
+		command = { type = relation which = FRA value = -150 }
+		command = { type = relation which = ENG value = 150 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = BRA value = 150 }
+		command = { type = relation which = HOL value = 150 }
+		command = { type = relation which = HAN value = 100 }
+		command = { type = relation which = SPA value = 100 }
+		command = { type = relation which = BAD value = 100 }
+		command = { type = relation which = KLE value = 100 }
+		command = { type = relation which = KOL value = 100 }
+		command = { type = relation which = PFA value = 100 }
+		#command = { type = relation which = THU value = 100 } #Bayreuth
+	}
+	action_b = {
+		name = "ACTIONNAME3198B" #Ignore it
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = ENG value = -100 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = BRA value = -100 }
+		command = { type = relation which = HOL value = -100 }
+		command = { type = relation which = HAN value = -50 }
+		command = { type = relation which = SPA value = -50 }
+		command = { type = relation which = BAD value = -50 }
+		command = { type = relation which = KLE value = -50 }
+		command = { type = relation which = KOL value = -50 }
+		command = { type = relation which = PFA value = -50 }
+		#command = { type = relation which = THU value = -50 } #Bayreuth
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#"Hessians in America" Sequence
+
+#(1776-1820) Hessians in America
+event = {
+	id = 185003
+	trigger = {
+		war = { country = ENG country = USA }
+		OR = {
+			event = 3044 #ENG: William Pitt the Elder (true if Hanovers are ruling Great Britain)
+			vassal = { country = ENG country = HAN }
+			owned = { province = 310 data = ENG } #Hannover
+			vassal = { country = ENG country = HES }
+			vassal = { country = HES country = ENG } #just in case
+			vassal = { country = HAN country = ENG } #just in case
+		}
+	}
+	random = no
+	country = HES
+	name = "EVENTNAME185003" #Hessians in America
+	desc = "EVENTHIST185003"
+	#-#Through his influence in Hanover, King of England, historically George III, acquired military aid of several German leaders in his war against the American colonists. About 30000 soldiers, mostly fresh conscripts, debtors, criminals and veterans of European wars, were sold into service by German monarchs, and they came to be called Hessians because more than half of this number were from Landgraviate of Hesse-Kassel. Since Hesse-Kassel committed all its soldiers except the Landgrave's guard and its cavalry, the treaty also included a defensive alliance between England and Hesse-Kassel to ensure safety of the latter from its French neighbors.
+
+	date = { day = 1 month = january year = 1776 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME185003A" #Offer our aid to the English king
+		command = { type = relation which = ENG value = 100 }
+		command = { type = relation which = HAN value = 100 }
+		command = { type = relation which = USA value = -100 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = relation which = SPA value = -50 }
+		command = { type = trigger which = 164240 } #ENG: Hessians in America
+	}
+	action_b = {
+		name = "ACTIONNAME185003B" #No need to get involved
+		command = { type = relation which = ENG value = -50 }
+		command = { type = relation which = HAN value = -50 }
+		command = { type = stability value = 1 } #peace
+		command = { type = vp value = -10 }
+	}
+}
+#(1776-1820) Hessians depart to America
+event = {
+	id = 185004 #triggered by ENG_185004 A
+	random = no
+	country = HES
+	name = "EVENTNAME185004" #Hessians depart to America
+	desc = "EVENTHIST185004"
+	#-#Shipping of Hessian soldiers to aid the suppression of rebellion in English colonies in North America is probably the best known of Subsidien contracts which small German monarchies of the Holy Roman Empire signed to rent out their troops in order to maintain their disproportionately large armies. The original contract obliged Landgrave Friedrich II to sent 15 infantry regiments, 4 grenadier batallions and 2 jaeger companies, each accompanied by two light cannons, which made about 12500 soldiers in total. The contract assured that Hessian troops in English service could be used only in Europe and North America. After less than a year of engagements in North American colonies, the British were impressed with performance of Hessian jaegers, so the signed an extension of the contract with enlarged the forces rented out by Hesse-Kassel by 4 jaeger foot companies and one mounted company. The payment from this Subsidien came as a great relief to economy of Hesse-Kassel. The taxes were lowered substantially and the Landgraviate completely recovered from the Seven Years War and French occupation. The recruitment of troops provided a great demand for many goods, especially the textile industry.
+
+	action_a = {
+		name = "ACTIONNAME185004A" #Compensate the families of the soldiers with part of the payment
+		command = { type = desertion which = -1 value = 1000 } #regular soldiers
+		command = { type = desertion which = -1 value = 1000 }
+		command = { type = desertion which = -1 value = 1000 }
+		command = { type = desertion which = -1 value = 1000 }
+		command = { type = desertion which = -1 value = 1000 }
+		command = { type = desertion which = -1 value = 1000 }
+		command = { type = desertion which = -1 value = 1000 }
+		command = { type = desertion which = -1 value = 1000 }
+		command = { type = manpower value = -10 } #recruits
+		command = { type = treasury value = 250 }
+		command = { type = domestic which = QUALITY value = -1 } #departure of SYW veterans
+		command = { type = provincetax which = -2 value = 1 } #economic boost
+	}
+	action_b = {
+		name = "ACTIONNAME185004B" #We need the whole payment for our lavish lifestyle
+		command = { type = desertion which = -1 value = 1000 } #regular soldiers
+		command = { type = desertion which = -1 value = 1000 }
+		command = { type = desertion which = -1 value = 1000 }
+		command = { type = desertion which = -1 value = 1000 }
+		command = { type = desertion which = -1 value = 1000 }
+		command = { type = desertion which = -1 value = 1000 }
+		command = { type = desertion which = -1 value = 1000 }
+		command = { type = desertion which = -1 value = 1000 }
+		command = { type = manpower value = -10 } #recruits
+		command = { type = treasury value = 300 }
+		command = { type = domestic which = QUALITY value = -1 } #departure of SYW veterans
+		command = { type = provincetax which = -2 value = -1 } #families left without or with fewer males
+	}
+	action_c = {
+		name = "ACTIONNAME185004C" #Compensate the families and invest the rest into economy
+		command = { type = desertion which = -1 value = 1000 } #regular soldiers
+		command = { type = desertion which = -1 value = 1000 }
+		command = { type = desertion which = -1 value = 1000 }
+		command = { type = desertion which = -1 value = 1000 }
+		command = { type = desertion which = -1 value = 1000 }
+		command = { type = desertion which = -1 value = 1000 }
+		command = { type = desertion which = -1 value = 1000 }
+		command = { type = desertion which = -1 value = 1000 }
+		command = { type = manpower value = -10 } #recruits
+		command = { type = domestic which = QUALITY value = -1 } #departure of SYW veterans
+		command = { type = provincetax which = -2 value = 2 } #double economic boost
+		command = { type = gainmanufactory which = -2  value = goods } #the state makes use of incresed textiles demand
+	}
+}
+#End of "Hessians in America" Sequence
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 185005-185012 - next: 185015

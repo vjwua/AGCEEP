@@ -1,0 +1,996 @@
+#Modena (MOD)
+
+#See AGCEEP_Alt_Italy.txt for KoI Alternative events
+
+#-----------------------------------------------------------------------------------------------
+
+#(1425) Curse of Malatesta
+#by Aylo1
+event = {
+	id = 252035
+	random = no
+	country = MOD
+	name = "EVENTNAME252035" #Curse of Malatesta
+	desc = "EVENTHIST252035"
+	#-#An alleged affair between Niccolò III's wife Parisina Malatesta and his illegitimate son Ugo d'Este led to charges of adultery & the execution of the culprits. This mirrored an incident with Malatesta's ancestor Giovanni who killed his wife Francesca da Polenta for an affair with his brother Paolo - famously recorded in 'Dante's Inferno'.
+
+	date = { day = 21 month = May year = 1425 }
+
+	action_a = {
+		name = "ACTIONNAME252035A" #Scandalous!
+		command = { type = stability value = -1 }
+		command = { }
+	}
+}
+
+#(1425-1441 or 1426-1441) The League against Milan
+#by Bordic
+event = {
+	id = 252019	#triggered by VEN_326054 A or VEN_326062 A
+	random = no
+	country = MOD
+	name = "EVENTNAME297034" #The League against Milan
+	desc = "EVENTHIST297034"
+	#-#Because of having established control over Lombardy and submitted Genoa, Filippo Maria Visconti clearly showed his intention to continue with the ambitious plan which his father Giangaleazzo once pursued: the unification of the whole Northern Italy under the Visconti's blazon. Romagna should have been Visconti's next step in his threatening hegemonic plan. But Invading Romagna, the duke of Milan would break the 1420 peace treaty stipulated with the Florentine Republic as to guarantee 10 years of non-belligerence. That treaty notably forbade Visconti from intervening in the lands beyond Panaro-Magra Rivers and so in Romagna and Tuscany, territories in which Florence directly exercised her influence. Florentine army alone was not enough powerful to face the Milanese well paid Mercenari. A League against Visconti urged immediately.
+
+	action_a = {
+		name = "ACTIONNAME252019A" #Visconti threatens the balance
+		command = { type = relation which = MLO value = -50 }
+		command = { type = relation which = VEN value = 25 }
+		command = { type = relation which = TOS value = 25 }
+		command = { type = casusbelli which = MLO value = 36 }
+	}
+	action_b = {
+		name = "ACTIONNAME326054B" #Grant neutrality and avoid expensive wars
+		command = { type = relation which = VEN value = -25 }
+		command = { type = relation which = TOS value = -25 }
+		command = { type = DIP which = -2 value = 24 }
+	}
+}
+
+#(1441-1450) Seeds are sown
+#by Aylo1
+event = {
+	id = 252020
+	random = no
+	country = MOD
+	name = "EVENTNAME252020" #Seeds are sown
+	desc = "EVENTHIST252020"
+	#-#Remembered as a man of culture, Leonello (r.1441-50) commissioned Leon Battista Alberti to write his 'De Re Aedificatoria' while employing artists such as Pisanello, Iacopo Bellini, Andrea Mantegna, Piero della Francesca and Roger van der Weyden at the Ferraese Court. Additionally he revitalized the University of Ferrara & helped erect the Hospital of Santa Anna. Henceforth the d'Este dynasty became known as Renaissance Patrons.
+
+	date = { day = 1 month = January year = 1441 }
+	offset = 1000
+	deathdate = { day = 0 month = january year = 1450 }
+
+	action_a = {
+		name = "OK"
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = treasury value = -50 }
+		command = { type = infra value = 100 }
+	}
+}
+
+#(1452) The Duchy of Modena
+event = {
+	id = 17434
+	random = no
+	country = MOD
+	name = "EVENTNAME17434" #The Duchy of Modena
+	desc = "EVENTHIST17434"
+	#-#On May 18 1452, Holy Roman Emperor Frederick III formalized the Estes' rule by investing Borso d'Este with the title 'Duke of Modena'. He later obtained the Duchy of Ferrara from Pope Paul II (1471).
+
+	date = { day = 17 month = may year = 1452 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1460 }
+
+	action_a = {
+		name = "ACTIONNAME17434A" #Accept the title from the Emperor
+		command = { type = relation which = HAB value = 20 }
+		command = { type = relation which = PAP value = -30 }
+		command = { type = alliance which = VEN }
+		command = { type = relation which = VEN value = 30 } 
+		command = { type = relation which = MLO value = -30 }
+		command = { type = relation which = TOS value = -30 }
+		command = { type = treasury value = -50 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1454) The Peace of Lodi
+#by Bordic
+event = {
+	id = 252010
+	trigger = {
+		exists = VEN
+		exists = MLO
+		exists = TOS
+		exists = PAP
+		OR = {
+			event = 239022 #NAP: The Peace of Lodi
+			event = 111018 #ARG: The Peace of Lodi
+		}
+		atwar = no
+	}
+	random = no
+	country = MOD
+	name = "EVENTNAME228034" #The Peace of Lodi
+	desc = "EVENTHIST326038"
+	#-#During the war of succession in Milan, all the belligerent nations were brought to exhaustion of money and troops. Francesco Sforza, ruler of Milan and Venice, the chief state of the league confederates, who was more and more threatened by the advancing Ottomans in her eastern Mediterranean territories, convened a cease-fire while a bilateral treaty was hastily signed in Lodi on 7 April 1454. With that treaty Sforza was legitimated Duke of Milan. Without even being called for, Florence and the Pope had no choice then to endorse the treaty. The King of Naples, being a rightful claimant on the ducal throne reluctantly joined the alliance under the condition to keep Genoa out of it. Intended 'infra terminos italicos', that treaty showed the objective impossibility for all the Italian major powers (specifically Milan, Tuscany, Venice, Naples and Papal States) to prevail upon each other in the struggle for the hegemony in Italy and that the better solution was to come to terms with each other. That would have also avoided the practice of very expensive and pointless wars in the next future. Although the treaty actually played a minor part in Italian balance of powers and so won't be able to avoid future wars of aggression from inside as well from outside Italy, the post-Lodi era historically represented a period of relative peace in which the figurative arts definitively flourished in the whole Italian peninsula, as well as economy and trade and, last but not the least, the skills and tricks of the art of diplomacy.
+
+	date = { day = 7 month = April year = 1454 }
+	offset = 30
+	deathdate = { day = 9 month = March year = 1466 }
+
+	action_a = {
+		name = "ACTIONNAME111018A" #Yes, peace
+		command = { type = relation which = VEN value = 50 }
+		command = { type = relation which = TOS value = 50 }
+		command = { type = relation which = MLO value = 50 }
+		command = { type = relation which = NAP value = 50 }
+		command = { type = relation which = PAP value = 20 }
+		command = { type = stability value = 1 }
+		command = { type = diplomats value = 4 }
+		command = { type = merchants value = 3 }
+	}
+}
+
+#(1460-1560) Ferrara School of Art
+#by Aylo1
+event = {
+	id = 252021
+	trigger = {
+		event = 252020 #MOD: Seeds are sown
+	}
+	random = no
+	country = MOD
+	name = "EVENTNAME252021" #Ferrara School of Art
+	desc = "EVENTHIST252021"
+	#-#From the time of Borso (r.1450-71) till Alfonso II (r.1559-97), the Ferraese Court was center to an artistic movement dubbed the 'School of Ferrara'. Unsurprisingly, its Masters evolved several styles of painting that combined elements from the Mantovan, Venetian, Lombardian, Bolognese and Florentine Schools whose pieces were proudly displayed in the Gonzaga and Este Collections. The School also dabbled in engraving, frescos and sculptures.
+
+	date = { day = 1 month = january year = 1460 }
+	offset = 3600
+	deathdate = { day = 0 month = january year = 1560 }
+
+	action_a = {
+		name = "ACTIONNAME252021A" #Paint, I need paint!
+		command = { type = infra value = 250 } #rep 2 centuries work
+	}
+}
+
+#(1471-1534) The Sound of Music
+event = {
+	id = 252011
+	trigger = {
+		OR = {
+			monarch = 0102503 #Ercole I
+			monarch = 0102504 #Alfonso I
+		}
+	}
+	random = no
+	country = MOD
+	name = "EVENTNAME252011" #The Sound of Music
+	desc = "EVENTHIST252011"
+	#-#Ercole I and his son Alfonso I were major patrons of the arts during the late 15th and early 16th century. Under their sway Ferrara grew to become Europe's prime cultural centre for music, attracting many talented composers, instrumentalists and singers, particularly Franco-Flemish musicians from northern Europe into Italy. Names such as Alexander Agricola, Jacob Olbrecht, Heinrich Isaac, Adrian Willaert and Josquin Desprez had at some stage worked in Ferrara.
+
+	date = { day = 20 month = august year = 1471 }
+	offset = 20000
+	deathdate = { day = 1 month = january year = 1534 }
+
+	action_a = {
+		name = "ACTIONNAME252011A" #The hills are alive...
+		command = { type = domestic which = innovative value = 2 }
+		command = { type = infra value = 300 }
+		command = { type = trade value = 200 }
+		command = { type = treasury value = -100 }
+		command = { type = vp value = 10 }
+		command = { type = relation which = -1 value = 25 }
+		command = { type = relation which = -1 value = 25 }
+		command = { type = relation which = -1 value = 25 }
+	}
+}
+
+#(1482-1484) War of Ferrara
+#by Aylo1
+event = {
+	id = 252022
+	trigger = {
+		event = 17320 #TOS: Needle of the Italian Compass
+		event = 326023 #VEN: The Polesine
+	}
+	random = no
+	country = MOD
+	name = "EVENTNAME252022" #War of Ferrara
+	desc = "EVENTHIST252022"
+	#-#Papal and Venetian ambition on the Italian mainland brought them into conflict with Ercole I (r.1471-1505) of Ferrara and his allies Urbino, Naples, Milan, Mantova, Bologna and Florence. Arrayed against them were contingents from Genova and Montferrato who led by Roberto Sanseverino overran the valuable saltmarshes at Comacchio, attacked Adria, Argenta, Ficarolo and Rovigo, and besieged Ferrara itself. Meanwhile Papal forces under Roberto Malatesta routed Alfonso's Neapolitans at Campomorto (1482). Alarmed by Venice's success, Pope Sixtus IV turned on his erstwhile ally, eventually making peace at Bagnolo (1484) - whereby Ercole ceded territory in the Polesine to the Serenissima.
+
+	date = { day = 1 month = january year = 1482 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1484 }
+
+	action_a = {
+		name = "ACTIONNAME252022A" #Defend the Terra Firma
+		command = { type = casusbelli which = VEN value = 24 }
+		command = { type = casusbelli which = PAP value = 24 }
+		command = { type = relation which = VEN value = -150 }
+		command = { type = relation which = PAP value = -150 }
+		command = { type = relation which = NAP value = 75 }
+		command = { type = relation which = MLO value = 75 }
+		command = { type = relation which = MAN value = 75 }
+		command = { type = relation which = TOS value = 75 }
+		command = { type = INF which = -2 value = 2000 } #Rep Urbino and Bologna
+		command = { type = alliance which = NAP } #OR just rel?
+		command = { type = stability value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME252022B" #Satisfy their ambitions
+		command = { type = relation which = VEN value = 25 }
+		command = { type = relation which = PAP value = 25 }
+		command = { type = provincetax which = -2 value = -1 }
+		command = { type = manpower value = -1 }
+		command = { type = trade value = -150 }
+		command = { type = infra value = -50 }
+	}
+}
+
+#(1490-1497) Daughters of the Renaissance
+event = {
+	id = 252012
+	random = no
+	country = MOD
+	name = "EVENTNAME252012" #Daughters of the Renaissance
+	desc = "EVENTHIST252012"
+	#-#Two leading women of the Italian Renaissance were Isabella and Beatrice d'Este - daughters of Duke Ercole I of Modena-Ferrara. Educated in the ideals of the age, both presided over splendid courts in Italy - attracting poets, artists, musicians and scholars among others. The elder Isabella married Francesco II Gonzaga - Marquis of Mantova where under her auspices became one of the most cultured courts in Europe. A collector of antiquities, she was also a musician and poet as well as patron to the likes of Ariosto, Guilio Romano and Raphael. After her husband's death, she governed on her son's behalf earning him a ducal title and a Cardinalate for her younger son. Her sister Beatrice was consort of Ludovico 'il Moro' Sforza - patron of Bramante and da Vinci. Leading a brief but brilliant political career she helped her husband to become Duke of Milan and was present at the Congress of Vercelli between Charles VIII of France and the Italian Princes before dying in childbirth at the age of 22.
+
+	date = { day = 1 month = january year = 1490 }
+	offset = 2500
+	deathdate = { day = 1 month = january year = 1497 }
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = infra value = 100 }
+	}
+}
+
+#(1492-1502) Biagio Rossetti
+#by Aylo1
+event = {
+	id = 252023
+	trigger = {
+		atwar = no
+	}
+	random = no
+	country = MOD
+	name = "EVENTNAME252023" #Biagio Rossetti (1447-1516)
+	desc = "EVENTHIST252023"
+	#-#Architect, Urbanist and Military Engineer in Este service, Rossetti designed and executed one of the earliest attempts at urban planning at Ferrara. Making use of modern methods, he balanced the humanistic principles of architecture with the needs of the populace and local traditions to create one of Europe's leading cities. Enclosing it in a defensive wall the 'Ercolean Addition' doubled Ferrara's population. Cardinal Ippolito d'Este later commissioned Rossetti to build many notable palazzi and churches.
+
+	date = { day = 1 month = january year = 1492 }
+	offset = 730
+	deathdate = { day = 0 month = january year = 1502 }
+
+	action_a = {
+		name = "ACTIONNAME252023A" #Commission Rossetti
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = domestic which = offensive value = -1 }
+		command = { type = population which = 391 value = 2500 } #Romagna
+		command = { type = provincetax which = 391 value = 1 } #Romagna
+		command = { type = fortress which = 391 value = 1 } #Romagna
+		command = { type = treasury value = -200 }
+		command = { type = infra value = 200 }
+	}
+	action_b = {
+		name = "ACTIONNAME252023B" #Decline his services
+		command = { type = revoltrisk which = 12 value = 1 } #overpopulation
+		command = { type = treasury value = 25 }
+		command = { type = infra value = -50 }
+	}
+}
+
+#(1505-1534) Duke Alfonso's Artillery
+event = {
+	id = 252013
+	trigger = {
+		OR = {
+			event = 12024 #FRA: The Orléanais inheritance of Milan
+			event = 228027 #MLO: Louis XII presses claim on Milan
+		}
+		event = 17024 #PAP: Holy League 1510
+	}
+	random = no
+	country = MOD
+	name = "EVENTNAME252013" #Duke Alfonso's Artillery
+	desc = "EVENTHIST252013"
+	#-#A gifted soldier and engineer, Alfonso I d'Este's artillery were world-renown. Made Supreme-Commander of the League of Cambrai's troops, he won several battles against the Serenissima. On refusal of joining Pope Julius II's 'Holy League' against France, d'Este was excommunicated and his lands forfeit to the Church. He fought alongside Louis XII defeating Papal and Venetian troops at the Battle of Ravenna (1512). The Duke's talents were employed again by Holy Roman Emperor Charles V against Pope Clement VII who after the sack of Rome (1527) was obliged to recognise d'Este as Duke of Modena-Ferrara - returning Modena and Reggio to him.
+
+	date = { day = 1 month = january year = 1505 }
+	offset = 7300
+	deathdate = { day = 1 month = february year = 1534 }
+
+	action_a = {
+		name = "OK"
+		command = { type = domestic which = offensive value = -2 }
+		command = { type = ART which = -2 value = 10 }
+		command = { type = land value = 150 }
+		command = { type = relation which = PAP value = -25 }
+		command = { type = relation which = VEN value = -25 }
+	}
+}
+
+#(1508-1509) The League of Cambrai
+#adapted by Isaac Brock
+#added by Bordic
+event = {
+	id = 252009
+	trigger = {
+		exists = VEN
+		event = 17017 #VEN: Seeing a Chance in Romagna
+		OR = {
+			event = 3107 #FRA: The League of Cambrai
+			event = 17023 #FRA: The League of Cambrai (HAB doesn't exists)
+		}
+	}
+	random = no
+	country = MOD
+	name = "EVENTNAME3107" #The League of Cambrai
+	desc = "EVENTHIST3107"
+	#-#Since 1495, Venice had been holding the main ports of Apulia despite Aragonese claims to have them back. With the French invasion of Milan, Venice had acquired Milanese territories east of the Adda River, and upon the fall of Cesare Borgia had also acquired Rimini, Faenza and Ravenna, against the will of Pope Julius II. The Venetians also held Veneto and Friuli, on which Maximilian of Habsburg had imperial claims. In late 1507 Maximilian announced his intention to travel to Italy to receive the imperial investiture from the Pope himself, and in early 1508 he assembled a big army to escort him down to Rome. He requested free passage through Venetian territories, but was told that he would be allowed passage only without his army. Enraged at the answer, Maximilian attacked Venice, but this decision proved unwise: Venice not only routed the imperial army but also seized the imperial cities of Trieste, Gorz and Fiume. A second assault by a Tyrolean force several weeks later was an even greater failure, forcing Maximilian to conclude a humiliating three-year truce. With Pope Julius II's assent, Maximilian took the title of 'Emperor-elect', thus breaking the century-old custom that the Holy Roman Emperor had to be crowned by the Pope. Shortly afterward, Venice provided a pretext for war by appointing her own candidate to the vacant bishopric of Vicenza. The Emperor, the King of France and Ferdinand of Aragon gathered in Cambrai in December 1508 to sign a treaty which seemed to be a defensive alliance against the Turk. In reality they meant to form a league to attack Venice and deprive the Serenissima of most of her mainland territories. Pope Julius II, after a renewed Venetian refusal to give the Romagna lands back to the Papacy, ratified the treaty and at the same time proceeded to excommunicate all Venetian citizens. Ferrara and Mantua, each with separate claims to territories held by Venice, joined the league as well. In April 1509 military operations started, and a month later French troops decimated one of the two Venetian armies at the battle of Agnadello. Even though in August 1509 Venice managed to eliminate Mantua from the war, she still faced the collapse of her strategic position and had by February 24, 1510 to accept the papal demands on the cities she had occupied in Romagna. However, Pope Julius II was still not satisfied and demanded that the war be prosecuted until Venice conceded control over their church to the Pope and compensated him for his expenses. The Council of Ten had privately resolved that the terms had been accepted under duress and were therefore invalid, and that Venice should violate them at the earliest opportunity. This opportunity presented itself shortly afterward.
+
+	date = { day = 10 month = December year = 1508 }
+	offset = 10
+	deathdate = { day = 1 month = April year = 1509 }
+
+	action_a = {
+		name = "ACTIONNAME3107A" #Express Support
+		command = { type = casusbelli which = VEN value = 60 } #Ferrara/Modena didn't join the Holy League
+		command = { type = relation which = VEN value = -150 }
+		command = { type = relation which = FRA value = 150 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = ARG value = 150 }
+	}
+	action_b = {
+		name = "ACTIONNAME3107B" #Ignore
+		command = { type = relation which = VEN value = 50 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = relation which = ARG value = -50 }
+	}
+	action_c = {
+		name = "ACTIONNAME3107C" #Express Hostility
+		command = { type = relation which = VEN value = 150 }
+		command = { type = relation which = FRA value = -150 }
+		command = { type = relation which = HAB value = -150 }
+		command = { type = relation which = ARG value = -150 }
+	}
+}
+
+#(1510-1512) Holy League of 1510 Modena Version
+event = {
+	id = 252016 #triggered by PAP_17024 A / MUS_236006 A
+	random = no
+	country = MOD
+	name = "EVENTNAME17024" #The Holy League against France
+	desc = "EVENTHIST17024"
+	#-#In 1510 Venice submitted to the Pope, thus lessening the league of Cambrai. Conditions were hard for Venice, the Republic had to renounce her traditional power to appoint bishops as well as all jurisdiction over Papal subjects in Venetian territory and was to compensate Pope Julius II for his war expenses needed to recapture the Papal holdings in Romagna, while the Pope accepted the humble request of the Republic for pardon, cancelling the interdict. But the reconciliation between Venice and the Pope did not stop the French to continue the war against Venice with attacks to her cities in Terraferma. Julius II, in the meanwhile, had become increasingly concerned by the growing French presence in Italy and formulated plans, both to chase the French out of the Po Valley and to seize the Duchy of Ferrara, a French ally, with the intention to add the territories of Modena, Reggio and Ferrara to the Papal States. In realizing his plan the Pope immediately excommunicated Alfonso d'Este, Duke of Ferrara, declaring his fief forfeited for his remaining loyal to France, then he gained the military support of Venice, eager to recover her territories lost to the French a armies and hired an army of Swiss mercenaries to attack Milan as to isolate the French armies in Italy. However his plans failed as the French army managed to invade Romagna and occupy the cities of Bologna and Ravenna, supported by the powerful and celebrated artillery of Duke Alfonso d'Este. In addition, in response to Pope's switching sides, Louis XII of France convoked a Schismatic Council at Pisa as to have the 'Warrior Pope' deposed. Pope Julius II, having unsuccessfully pressed the Republic of Florence to refuse hosting the schismatic cardinals, proclaimed the Holy League against France and convoked a Council of his own to meet at the Lateran in Rome. The promise of territorial gains at French expense caused Ferdinand II of Aragon and Emperor Maximilian I to abandon their alliance with the French, and in October 1511, they joined the newly-formed Holy League together with Julius II and the Republic of Venice. In November, Henry VIII of England and the Swiss confederation joined as well.
+
+	action_a = {
+		name = "ACTIONNAME17024C" #Express Hostility
+		command = { type = casusbelli which = PAP value = 36 }
+		command = { type = relation which = FRA value = 100 }
+		command = { type = relation which = VEN value = -75 }
+		command = { type = relation which = HAB value = -75 }
+		command = { type = relation which = ARG value = -75 }
+		command = { type = relation which = SPA value = -75 }
+		command = { type = relation which = PAP value = -75 }
+		command = { type = relation which = ENG value = -75 }
+	}
+	action_b = {
+		name = "ACTIONNAME17024B" #Stay neutral
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = VEN value = -25 }
+		command = { type = relation which = HAB value = -25 }
+		command = { type = relation which = ARG value = -25 }
+		command = { type = relation which = SPA value = -25 }
+		command = { type = relation which = PAP value = -25 }
+		command = { type = relation which = ENG value = -25 }
+	}
+	action_c = {
+		name = "ACTIONNAME17024A" #Express Support
+		command = { type = casusbelli which = FRA value = 36 }
+		command = { type = relation which = FRA value = -75 }
+		command = { type = relation which = HAB value = 75 }
+		command = { type = relation which = VEN value = 75 }
+		command = { type = relation which = ARG value = 75 }
+		command = { type = relation which = SPA value = 75 }
+		command = { type = relation which = PAP value = 75 }
+		command = { type = relation which = ENG value = 75 }
+		command = { type = sleepevent which = 252013 } #MOD: Duke Alfonso's Artillery
+	}
+}
+
+#(1511-1529) Alabaster Chamber
+#by Aylo1
+event = {
+	id = 252024
+	trigger = {
+		event = 252020 #MOD: Seeds are sown
+		event = 252021 #MOD: Ferrara School of Art
+	}
+	random = no
+	country = MOD
+	name = "EVENTNAME252024" #Camerino d'Alabastro
+	desc = "EVENTHIST252024"
+	#-#An arts patron, Alfonso commissioned the construction of a gallery to better display his works of art 'against white marble-veneered walls under a gilded ceiling'. A series of paintings by Titian including 'The Worship of Venus', 'The Bacchanal of the Andrians' and 'Bacchus and Ariadne' were added. Dosso Dossi further embellished the gallery with ceiling decorations and a painted frieze depicting scenes from the Aeneid. The collection was dispersed lost with the loss of Ferrara (1597).
+
+	date = { day = 1 month = january year = 1511 }
+	offset = 1460
+	deathdate = { day = 0 month = january year = 1529 }
+
+	action_a = {
+		name = "OK"
+		command = { type = infra value = 50 }
+		command = { type = treasury value = -25 }
+	}
+}
+
+#(1516-1533) Orlando Furusio
+event = {
+	id = 252014
+	random = no
+	country = MOD
+	name = "EVENTNAME252014" #Orlando Furioso
+	desc = "EVENTHIST252014"
+	#-#An epic poem by Ludovico Ariosto (1474-1533), it was dedicated to his patron Cardinal Ippolito d'Este. An extension of Matteo Maria Boiardo's 'Orlando Innamorato' the piece followed Duke Namo's defeat in Charlemagne's war where Angelica escapes to find Rinaldo, who sought his horse Bayardo. She evades Rinaldo and meets Ferrau. Rinaldo and Ferrau fight, then make a truce and share a horse to seek Angelica. Ferrau seeks his helmet and encounters the ghost of Angelica. She flees and falls asleep in a grove until awakened by a lamenting knight, Sacripante. Angelica manipulates Sacripante while he tries to seduce her. Angelica and the embarrassed Sacripante share her horse and encounter Bayardo. Noted for its many allegories and metaphors, it illustrated the fallacy of human sense and judgement over the ideals of knight errantry. Widely popular it became the basis of several Baroque operas by Antonio Vivaldi and George Frideric Handel.
+
+	date = { day = 1 month = january year = 1516 }
+	offset = 3600
+	deathdate = { day = 6 month = july year = 1533 }
+
+	action_a = {
+		name = "OK"
+		command = { type = infra value = 50 }
+	}
+}
+
+#(1535-1555) French Dismissals
+#by Aylo1
+event = {
+	id = 252025
+	trigger = {
+		atwar = no
+		religion = catholic
+		OR = {
+			dynastic = { country = FRA country = MOD }
+			alliance = { country = FRA country = MOD }
+		}
+	}
+	random = no
+	country = MOD
+	name = "EVENTNAME252025" #French Dismissals
+	desc = "EVENTHIST252025"
+	#-#Favouring France, Alfonso I had his son wed Renee de France (daughter of Louis XII). Consequently this made the French far too influential for Ercole II's liking. Subsequently the Duke procured their dismissal by direct and indirect means. Relations were further soured with allegations of Renee's Protestant leanings (starting with a visit from John Calvin). In collusion with the Papal Curia and its Inquisition, the Duchess was arrested and made to repent (1554). However she returned to her Protestant faith after Ercole's death (1559) and was known to offer protection to her brethren on her French estates.
+
+	date = { day = 1 month = january year = 1535 }
+	offset = 1825
+	deathdate = { day = 0 month = january year = 1555 }
+
+	action_a = {
+		name = "ACTIONNAME252025A" #Neutralise their faction
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = relation which = PAP value = 25 }
+		command = { type = DIP which = -1 value = 36 }
+		command = { type = stability value = -2 } #Inquisition
+	}
+	action_b = {
+		name = "ACTIONNAME252025B" #Don't antagonize our in-laws
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = relation which = FRA value = 25 }
+		command = { type = relation which = PAP value = -50 }
+		command = { type = dynastic which = FRA }
+	}
+}
+
+#(1580-97) Concerto delle donne
+#by Aylo1
+event = {
+	id = 252026
+	random = no
+	country = MOD
+	name = "EVENTNAME252026" #Concerto delle donne
+	desc = "EVENTHIST252026"
+	#-#The Concerto delle donne (consort of ladies) was a group of professional female singers, known for their technical and artistic genius. Beginning as an amateur group of courtiers who performed for Alfonso II's 'musica secreta' in the 1570s, it evolved into an all female ensemble by 1581. Viewed as 'an extraordinary and novel phenomnenon' the 'Concerto delle donne' revolutionised the role of women in music - sparking a series of imitators throughout Italy. Considered the most important achievement in XVI century Italian secular music, the innovations adapted by this group would contribute to the development of the madrigal and seconda pratica.
+
+	date = { day = 1 month = january year = 1580 }
+	offset = 1800
+	deathdate = { day = 0 month = january year = 1597 }
+
+	action_a = {
+		name = "ACTIONNAME252026A" #a uno, e'doi, e'tre'
+		command = { type = domestic which = innovative value = 1 }
+ 		command = { type = infra value = 50 }
+		command = { type = relation which = MAN value = 25 }
+		command = { type = relation which = PAR value = 25 }
+		command = { type = relation which = TOS value = 25 }
+		command = { type = relation which = VEN value = 25 }
+		command = { type = relation which = GEN value = 25 }
+	}
+}
+
+#(1597-1605) The loss of Ferrara
+#NOTE: in the new map with Modena and Ferrara as separate provinces, Ferrara is to be ceded to PAP
+event = {
+	id = 17435
+	trigger = {
+		neighbour = PAP
+		owned = { province = 391 data = -1 } #Romagna
+	}
+	random = no
+	country = MOD
+	name = "EVENTNAME17435" #The loss of Ferrara
+	desc = "EVENTHIST17435"
+	#-#In 1598 the legitimate line of the Este family died out. Duke Alfonso II willed his realm to his illegitimate son Cesare. While Emperor Rudolf II, as liege of Modena, was willing to accept Cesare's succession to that Duchy, Pope Clement VIII refused to accept his claims to the duchy of Ferrara, which was held in fief from the papacy. Ferrara was incorporated into the Papal states, and the court of the Este moved from Ferrara to Modena. While this court was no longer at the apex of culture, as it had been during the Renaissance, Modena benefited from the cultivation of arts and letters that did take place.
+
+	date = { day = 27 month = october year = 1597 }
+	offset = 20
+	deathdate = { day = 5 month = march year = 1605 }
+
+	action_a = {
+		name = "OH_WELL"
+		command = { type = infra value = 500 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = provincetax which = 391 value = -2 } #Romagna
+		command = { type = provincemanpower which = 391 value = -1 } #Romagna
+		command = { type = relation which = PAP value = -100 }
+	}
+
+}
+
+#(1629) Italian Leaders abandon Austria
+event = {
+	id = 252101
+	trigger = {
+		NOT = { exists = HAB }
+		NOT = { event = 179035 }#HAB event to wake/sleep leaders
+	}
+	random = no
+	country = MOD
+	name = "EVENTNAME252101" #Italian Leaders abandon Austria
+	desc = "EVENTHIST252101"
+	#-#Because Austria has been destroyed leaders who might have served Austria will now serve Modena.
+
+	date = { day = 0 month = january year = 1629 }
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = sleepleader which = 055811 } #Montecuccoli (HAB)
+		command = { type = wakeleader which = 0102803 } #Montecuccoli (MOD)
+	}
+}
+
+#(1632-1670) The Economic Crisis
+#by Bordic
+event = {
+	id = 252017 #triggered by ProvinceSpec_338235
+	trigger = {
+		owned = { province = 391 data = -1 } #Romagna (Modena in NM)
+	}
+	random = no
+	country = MOD
+	name = "EVENTNAME220013" #The Economic Crisis
+	desc = "EVENTHIST220013"
+	#-#The Spanish hegemony in the Italian peninsula was exercised by means of heavy bureaucracy and harsh taxation directly in the Habsburg dominions of Milan and Naples and indirectly in the rest of the peninsula by forcing the other minor Italian states to respect Spanish economic and diplomatic directives. The vassalage to Spain, which granted to some extent an enduring peace in Italy afer the Italian Wars, which the historians would call 'the pax hispanica', together with the disuse of the Mediterranean sea as international trade route towards the East Indies brought the Italian economic system to eventually collapse. As a result of this agriculture will become the prevailing economic activity in Italy until the end of XIXth century. That meant the coming back to power of the landowning aristocracy.
+
+	action_a = {
+		name = "ACTIONNAME220013A" #We hope for better times!
+		command = { type = stability value = -2 }
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = domestic which = MERCANTILISM value = 1 }
+		command = { type = domestic which = SERFDOM value = 1 }
+		command = { type = domestic which = LAND value = 1 }
+		command = { type = trade value = -500 }
+		command = { type = infra value = -500 }
+		command = { type = naval value = -500 }
+	}
+}
+
+#(1635-1655) Francesco's Ambitions
+#by Aylo1
+event = {
+	id = 252027
+	trigger = {
+		exists = FRA
+		exists = SPA
+		event = 12062 #FRA: French Encirclement by the Habsburgs
+		OR = {
+			event = 251051 #PAP: The Castro Wars
+			event = 390023 #PAR: The Castro Wars
+			event = 17436 #MOD: The Castro Wars
+		}
+	}
+	random = no
+	country = MOD
+	name = "EVENTNAME252027" #Francesco's Ambitions
+	desc = "EVENTHIST252027"
+	#-#Seeking to enlarge his lands, Francesco I alternated allegiances throughout the Thirty Years War (1618-48). Initially with Spain he invaded Parma but received nothing from Madrid for his initiative. Involvement in the Castro Wars (1641-9) were equally fruitless. Frustrated, Este turned to France - making his name at Cremona (1648). Spanish ascendancy gave Francesco a change of heart but the marriage of his son Alfonso (IV) to Mazarin's niece Laura Martinozzi (1655) had him firmly in the Bourbon camp. With his ally, Este conquered Alessandria & Valenza (1656-7) aswell as Mortara (1658) before being struck down by malaria.
+
+	date = { day = 1 month = january year = 1635 }
+	offset = 1825
+	deathdate = { day = 0 month = january year = 1655 }
+
+	action_a = {
+		name = "ACTIONNAME252027A" #Side with Habsburg-Spain
+		command = { type = casusbelli which = FRA value = 48 }
+		command = { type = casusbelli which = PAR value = 48 }
+		command = { type = relation which = FRA value = -100 }
+		command = { type = relation which = PAR value = -100 }
+		command = { type = relation which = SPA value = 100 }
+		command = { type = relation which = HAB value = 75 }
+		command = { type = relation which = BAY value = 75 }
+ 		command = { type = treasury value = -75 } #no support
+	}
+	action_b = {
+		name = "ACTIONNAME252027B" #Side with Bourbon-France
+		command = { type = casusbelli which = SPA value = 48 }
+		command = { type = casusbelli which = HAB value = 48 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = BAY value = -100 }
+		command = { type = relation which = FRA value = 100 }
+		command = { type = relation which = PAR value = 75 }
+		command = { type = dynastic which = FRA } #Alfonso IV & Laura Martinozzi
+ 		command = { type = INF which = -2 value = 3000 } #received support
+ 		command = { type = land value = 100 }
+	}
+}
+
+#(1639-1641) Castro War - Modena
+event = {
+	id = 17436 #triggered by PAR_390023 A
+	random = no
+	country = MOD
+	name = "EVENTNAME251051" #The Castro Wars (1641-1649)
+	desc = "EVENTHIST390023"
+	#-#Fought against the expansionist policies of the Papacy, it began with the Papal seizure of Ferrara when the legitimate d'Este line ended in 1598. They also absorbed Urbino when its ruling family, the della Rovere died out in 1631. Moreover the Pope insisted on papal primacy, making every bishop in northern Italy a petty tyrant and straining relations with the local ruling princes. When Pope Urban VIII banned Parmesan grain imports then occupied Farnese Castro for failing to repay Roman creditors, Duke Odoardo Farnese responded with his own military expedition with his allies Modena, Tuscany and Venice (who all lost lands to the Pope). After a crushing the Papal Army at Lagoscuro in 1644 the ban was lifted and Farnese compelled to continue repaying his debt. The conflict was renewed in 1649 by Odoardo's successor Ranuccio II who discontinued the payments rendered by his father to the Roman creditors. In response Pope Innocent X reoccupied Castro and razed the city, compelling Farnese to cede Castro and its nearby territories to the Papacy.
+
+	action_a = {
+		name = "ACTIONNAME17436A" #Support Farnese
+		command = { type = casusbelli which = PAP value = 72 }
+		command = { type = relation which = PAP value = -75 }
+		command = { type = relation which = TOS value = 50 }
+		command = { type = relation which = VEN value = 50 }
+		command = { type = relation which = PAR value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME17436B" #Support the Pope
+		command = { type = relation which = PAP value = 75 }
+		command = { type = relation which = TOS value = -50 }
+		command = { type = relation which = VEN value = -50 }
+		command = { type = relation which = PAR value = -50 }
+	}
+}
+
+#(1662-72) Martinozzi's Regency
+#by Aylo1
+event = {
+	id = 252028
+	trigger = {
+		event = 252017 #MOD: Economic Crisis
+	}
+	random = no
+	country = MOD
+	name = "EVENTNAME252028" #Martinozzi's Regency
+	desc = "EVENTHIST252028"
+	#-#The deaths of her husband and uncle along with the birth of a daughter at first overwhelmed Regent Laura Martinozzi (r.1662-74). Rebellious vassals and brigands exploited the situation but with the help of her Jesuit confessor Father Garimberti and brother-in-law Cardinal Rinaldo (III) d'Este, public order was restored. Henceforth Modena's administration was dominated by clergymen who saved the Duchy from bankruptcy through stringent financial policy. Ever pious and meticulous, she also engaged in charitable works. However her conservative nature neglected of the Este tradition of cultural patronage - creating a strong, if dull regime.
+
+	date = { day = 1 month = january year = 1662 }
+	offset = 360
+	deathdate = { day = 0 month = january year = 1672 }
+
+	action_a = {
+		name = "ACTIONNAME252028A" #Appoint the Clergy
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = innovative value = -2 } #clergy govt
+		command = { type = relation which = PAP value = 20 }
+		command = { type = DIP which = -1 value = 120 }
+		command = { type = ADM which = 1 value = 120 }
+ 		command = { type = treasury value = 75 } #tax reform
+ 		command = { type = stability value = 2 }
+ 		command = { type = infra value = -150 }
+	}
+	action_b = {
+		name = "ACTIONNAME252028B" #Appoint the Nobility
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = revoltrisk which = 120 value = 4 }
+		command = { type = MIL which = 1 value = 120 }
+ 		command = { type = land value = 100 }
+		command = { type = sleepevent which = 252029 } #MOD: Thank You for the Music
+	}
+}
+
+#(1673) Mary of Modena and the Catholic Wedding
+event = {
+	id = 252015 #triggered by ENG_164020 A
+	random = no
+	country = MOD
+	name = "EVENTNAME252015" #Maria-Beatrice and the English Wedding
+	desc = "EVENTHIST252015"
+	#-#Daughter of Alfonso IV, Maria-Beatrice (1658-1718) was Louis XIV and Pope Clement X's choice of bride for Heir presumptive of England, James (II) Stuart. Married by proxy in 1673, she became Queen of England upon her husband's ascension (1685). Although beautiful and charming the English detested her for being Catholic and an advocate of absolutism along French lines. When she gave birth to the future 'Old Pretender', a hearing was held to establish his legitimacy. Soon after Whig aristocrats deposed James II and Maria in favour of James's Protestant daughter Mary and her husband William (III) of Orange in the 'Glorious Revolution'. The royal couple fled to France where they lived in exile. Upon her husband's death, she induced Louis XIV to recognise her son as King of England and supported the Jacobite cause to the best of her ability.
+
+	action_a = {
+		name = "ACTIONNAME252015A" #Bless their union
+		command = { type = dynastic which = ENG }
+		command = { type = relation which = ENG value = -25 } #Protestant faction
+		command = { type = relation which = FRA value = 25 }
+		command = { type = relation which = PAP value = 25 }
+	}
+}
+
+#(1674-1694) Thank You for the Music
+#by Aylo1
+event = {
+	id = 252029
+	trigger = {
+		event = 252028 #MOD: Martinozzi's Regency
+	}
+	random = no
+	country = MOD
+	name = "EVENTNAME252029" #Thank You for the Music
+	desc = "EVENTHIST252029"
+	#-#In contrast to his mother's religious and& austere attitude, Francesco II proved a lavish and discerning patron of music. Entrusting administration of the Duchy to his cousin Cesare Ignazio d'Este, he revived the Court Orchestra under violinist Giovanni Maria Bononcini (who had taught him to play the violin). The University of Modena was enlarged (1686) along with Este's Palazzo Ducale and his library - the Biblioteca Estense.
+
+	date = { day = 1 month = january year = 1674 }
+	offset = 1800
+	deathdate = { day = 0 month = january year = 1694 }
+
+	action_a = {
+		name = "OK"
+		command = { type = domestic which = innovative value = 1 }
+ 		command = { type = infra value = 75 }
+	}
+}
+
+#(1675-1715) Economic and Social Decadence
+#by Bordic
+event = {
+	id = 252018
+	trigger = {
+		NOT = {
+			countrysize = 10
+			domestic = { type = innovative value = 9 }
+			domestic = { type = serfdom value = 3 }
+			domestic = { type = aristocracy value = 1 }
+			event = 338232 #ProvinceSpec*389: The plague in Milan
+		}
+	}
+	random = no
+	country = MOD
+	name = "EVENTNAME251066" #Economic and Social Decadence
+	desc = "EVENTHIST251066"
+	#-#In the late XVIIth century, the disuse of the Mediterranean sea as the main international trade junction between Europa and the East Indies brought the Italian economic system to collapse. Italy became more removed from the mainstream of European development and each local administration along the peninsula lagged behind that of any other European contemporary. The practice of agriculture as prevailing economic activity meant the coming back to power of the most conservative landowning aristocracy. That economic backwardness associated with the effects of Counterreform deeply affected Italian social life too, now less and less inclined to accept innovation and to develop some entrepreneurial attitude.
+
+	date = { day = 16 month = january year = 1675 }
+	offset = 60
+	deathdate = { day = 0 month = january year = 1715 }
+
+	action_a = {
+		name = "ALAS"
+		command = { type = stability value = -1 }
+		command = { type = provincetax which = -2 value = -2 }
+		command = { type = provincemanpower which = -2 value = -1 }
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = domestic which = MERCANTILISM value = 1 }
+		command = { type = domestic which = SERFDOM value = 1 }
+		command = { type = domestic which = LAND value = 1 }
+		command = { type = trade value = -500 }
+		command = { type = infra value = -500 }
+		command = { type = naval value = -500 }
+	}
+}
+
+#(1696) Welf Reunion
+#by Aylo1
+event = {
+	id = 252030
+	trigger = {
+		exists = HAN
+	}
+	random = no
+	country = MOD
+	name = "EVENTNAME252030" #Welf Reunion
+	desc = "EVENTHIST252030"
+	#-#Descending from an old Lombard family, Margrave Alberto-Azzo II d'Este's (1018-97) two marriages created Welf and Este lines. Rinaldo III's marriage to Charlotte of Braunschweig-Lüneburg (niece to the Elector of Hanover) reunited the ancient houses, whilst allying him to German dynasts.
+
+	date = { day = 1 month = january year = 1696 }
+	offset = 41
+	deathdate = { day = 0 month = january year = 1697 }
+
+	action_a = {
+		name = "OK"
+		command = { type = relation which = HAB value = 50 } #brother-in-law
+		command = { type = relation which = HAN value = 50 }
+ 		command = { type = dynastic which = HAN }
+	}
+}
+
+#(1700-1735) Fortune is fickle
+#by Aylo1
+event = {
+	id = 252031
+	trigger = {
+		exists = PAR
+		OR = {
+			event = 285210 #SPA: #The Will of Carlos II -I-
+			event = 285284 #SPA: #The Will of Carlos II -II-
+		}
+		OR = {
+			event = 252017 #MOD: Economic Crisis
+			event = 252018 #MOD: Economic and Social Decadence
+			event = 3495 #POL: The Polish Succession of 1733 -I-
+			event = 258086 #POL: The Polish Succession of 1733 -II-
+		}
+	}
+	random = no
+	country = MOD
+	name = "EVENTNAME252031" #Fortune is fickle
+	desc = "EVENTHIST252031"
+	#-#Inheriting a duchy in decline, Rinaldo introduced measures to control the grain market, standardized taxation and arrested abusive landowners - improving both living standards and (temporarily) Modena's economy. Alas his reign coincided with the Wars of Spanish (1701-14) and Polish (1733-8) Succession. Declarations of neutrality didn't keep France from occupying Modena - twice obliging Rinaldo to flee. Luckily he aquired the Duchy of Mirandola for Comacchio (1707) from the Spanish conflict, whilst gaining in compensation the Counties in Novellara and Bagnolo for the Polish struggle (1736). In between, Rinaldo married his son Francesco (III) to Charlotte-Aglae d'Orléans (1720) and his daughter Enrichetta to Antonio Farnese (1728) but neither alliance proved fruitful as Francesco and d'Orléans were soon enstranged and a childess Farnese passed his patrimony to the House of Bourbon.
+
+	date = { day = 1 month = january year = 1700 }
+	offset = 1800
+	deathdate = { day = 0 month = january year = 1735 }
+
+	action_a = {
+		name = "ACTIONNAME252031A" #Better living conditions
+		command = { type = domestic which = aristocracy value = -1 } #nobles muzzled
+		command = { type = provincetax which = 391 value = 1 } #tax reform
+		command = { type = revoltrisk which = 48 value = -2 } #happier peasants
+ 		command = { type = treasury value = -100 }
+ 		command = { type = inflation value = -5 } #lowered grain prices
+	}
+	action_b = {
+		name = "ACTIONNAME252031B" #Pursue dynastic goals
+		command = { type = casusbelli which = PAR value = 6 } #tried claiming Parma
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = PAR value = 50 }
+		command = { type = DIP which = 1 value = 72 }
+ 		command = { type = dynastic which = FRA } #Charlotte-Aglae d'Orléans
+ 		command = { type = dynastic which = PAR } #Antonio Farnese
+ 		command = { type = treasury value = 180 } #d'Orléans dowry
+	}
+	action_c = {
+		name = "ACTIONNAME252031C" #Intervene in European wars
+		command = { type = domestic which = offensive value = 1 }
+		command = { type = casusbelli which = FRA value = 240 }
+		command = { type = relation which = HAB value = 100 } #allied with HRE in both
+		command = { type = MIL which = 1 value = 96 }
+	}
+}
+
+#(1740-1750) Sale of Estenese Gallery
+#by Aylo1
+event = {
+	id = 252032
+	trigger = {
+		OR = {
+			event = 285210 #SPA: #The Will of Carlos II -I-
+			event = 285284 #SPA: #The Will of Carlos II -II-
+		}
+		event = 3495 #POL: Polish Succession of 1733
+		OR = {
+			exists = POL
+			exists = SAC
+		}
+	}
+	random = no
+	country = MOD
+	name = "EVENTNAME252032" #Sale of Estenese Collection
+	desc = "EVENTHIST252032"
+	#-#To ease financial restraints caused by the late successional wars (1701-38), Francesco III sold parts of the priceless Estenese Collection to Augustus III of Poland and II of Saxony for an estimated 100,000 ducats. The pieces were relocated to Dresden.
+
+	date = { day = 1 month = january year = 1740 }
+	offset = 720
+	deathdate = { day = 0 month = january year = 1750 }
+
+	action_a = {
+		name = "OK"
+		command = { type = relation which = POL value = 40 }
+		command = { type = relation which = SAC value = 40 }
+ 		command = { type = treasury value = 100 }
+ 		command = { type = infra value = -200 }
+	}
+}
+
+#(1741-1771) Wedding Bells
+#by Aylo1 (inspired by nightmorphis's 11005 Modena event)
+event = {
+	id = 252033
+	trigger = {
+		neighbour = HAB
+		NOT = { dynastic = { country = MOD country = HAB } }
+	}
+	random = no
+	country = MOD
+	name = "EVENTNAME252033" #Wedding Bells
+	desc = "EVENTHIST252033"
+	#-#In 1741 Francesco III arranged for his son Ercole (III) to wed Maria Teresa Cybo-Malaspina - Duchessa di Massa e Carrara. Her lands became part of the Este patrimony giving Modena an outlet to the sea. With the dynasty at risk of dying out, their daughter Maria Beatrice married Maria Theresa's son, the Archduke Ferdinand in exchange for Imperial guarantee of Modena's autonomy along with the office Governor-General of Lombardy til the Archduke reached his majority. Their descendants were the House of Austria-Este.
+
+	date = { day = 1 month = january year = 1741 }
+	offset = 3600
+	deathdate = { day = 0 month = january year = 1771 }
+
+	action_a = {
+		name = "ACTIONNAME252033A" #Arciduca Ferdinando
+		command = { type = relation which = HAB value = 60 }
+ 		command = { type = dynastic which = HAB }
+ 		command = { type = stability value = 3 }
+ 		command = { type = trade value = 150 } #income from Lombardy
+	}
+	action_b = {
+		name = "ACTIONNAME252033B" #Duchessa di Massa e Carrara
+		command = { type = population which = 391 value = 3500 }
+		command = { type = provincetax which = 391 value = 1 }
+ 		command = { type = naval value = 250 }
+ 		command = { type = sleepevent which = 17439 } #MOD Francesco IV
+	}
+}
+
+#(1760-1790) Enlightened Reforms
+#by Aylo1
+event = {
+	id = 252034
+	random = no
+	country = MOD
+	name = "EVENTNAME252034" #Enlightened Reforms
+	desc = "EVENTHIST252034"
+	#-#Under Francesco III (r.1737-80) and Ercole III (r.1780-97) Modena underwent much urban renovation. The father introduced numeration to housing, engaged in public works (in particular the 'Via Vandelli' that connected Modena to Tuscany) and revised the law. Ercole continued his work by contructing bridges at Rubiera and St.Ambrogio along the Via Emilia and more road works connecting Modena to its neighbours. In 1785 he founded the Atestina Academy of Fine Arts which encouraged artistic and cultural development - discovering the likes of Lazzaro Spallanzani, Gaimbattista Venturi, Girolamo Tiraboschi and Lodovico Ricci.
+
+	date = { day = 1 month = january year = 1760 }
+	offset = 3600
+	deathdate = { day = 0 month = january year = 1790 }
+
+	action_a = {
+		name = "ACTIONNAME252034A" #Modena's Infrastructure
+ 		command = { type = treasury value = -150 }
+ 		command = { type = stability value = 2 }
+		command = { type = manpower value = 10 } #more accessable
+ 		command = { type = infra value = 200 } #public works
+ 		command = { type = trade value = 300 } #from roads
+	}
+	action_b = {
+		name = "ACTIONNAME252034B" #Modena's Cultural Development
+		command = { type = gainmanufactory which = 391 value = luxury }
+		command = { type = domestic which = innovative value = 1 }
+ 		command = { type = treasury value = -200 }
+ 		command = { type = infra value = 100 }
+	}
+}
+
+#(1806) Francesco IV
+event = {
+	id = 17439
+	trigger = {
+		exists = HAB
+		NOT = { war = { country = MOD country = HAB } }
+	}
+	random = no
+	country = MOD
+	name = "EVENTNAME17439" #Francesco IV
+	desc = "EVENTHIST17439"
+	#-#Francesco IV was the son of the Emperor Franz I - as the husband of Maria d'Este he achieved the title of Duke of Modena when her father Ercole III died in 1806. Under his reign Modena became more firmly attached to the Habsburg dynasty then ever.
+
+	date = { day = 24 month = december year = 1806 }
+
+	action_a = {
+		name = "OK"
+		command = { type = relation which = HAB value = 100 }
+		command = { type = trigger which = 17440 } #HAB: Francesco IV Duke of Modena
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 252036

@@ -1,0 +1,1122 @@
+#Muscovy (MOS)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1422) Strigolniks
+event = {
+	id = 40069
+	random = no
+	country = MOS
+	name = "EVENTNAME40069" #The Strigolnik Heresy
+	desc = "EVENTHIST40069"
+	#-#In the late 14th century a movement of Strigolniks ('barbers') arose in Russian lands. The Strigolniks believed that the fees charged by the Church for ordination and by the priests for the sacraments were contrary to the practice of the primitive Church. They held that the official church, with its wealth and formalism, was apostate. They formed congregations led by laymen who refused financial remuneration, taught the Bible to their flocks, and set an example of humble, earnest living. The Strigolniks were persecuted by the bishops and clergy and were either stamped out or driven underground.
+
+	date = { day = 1 month = january year = 1422 }
+	offset = 300
+	deathdate = { day = 1 month = january year = 1423 }
+
+	action_a = {
+		name = "ACTIONNAME40069A" #Crush the Heretics
+		command = { type = revolt which = -1 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME40069B" #Ignore the Heresy
+		command = { type = stability value = -2 }
+	}
+}
+
+#(1425-1434) If Yury takes Moscow...
+event = {
+	id = 233008
+	trigger = {
+		monarch = 091501 #Vasily II
+		control = { province = 279 data = REB }
+	}
+	random = no
+	country = MOS
+	name = "EVENTNAME233008" #Yury takes Moscow
+	desc = "EVENTHIST233008"
+	#-#Jubiliant, the troops of duke Yury enter the city of Moscow. While duke Vasily II. flees, Yury assumes the title of the grand duke. He is not vengeful towards his nephew and gives him some cities as personal property, but after the latter starts gathering troops, Yury decides to ban him out of the realms of Muscovy. Vasily finds shelter in Novgorod, and waits for an occasion to regain his throne.
+
+	date = { day = 0 month = january year = 1425 }
+	offset = 5
+	deathdate = { day = 5 month = june year = 1434 }
+
+	action_a = {
+		name = "ACTIONNAME233008A" #Long live Grand Duke Yury!
+		command = { type = sleepmonarch which = 091501 } #Vasily II
+		command = { type = wakemonarch which = 091502 } #Yury IV
+		command = { type = CAV which = -2 value = 4000 }
+		command = { type = INF which = -2 value = 4000 }
+		command = { type = stability value = 2 }
+		command = { type = vp value = -15 }
+	}
+}
+
+#(1425) Succession conflict
+event = {
+	id = 233003
+	trigger = {
+		monarch = 091501 #Vasily II
+	}
+	random = no
+	country = MOS
+	name = "EVENTNAME233003" #Succession crisis
+	desc = "EVENTHIST233003"
+	#-#After the death of Vasily I Dmitrievich, Yury Dmitrievich, his brother, refused to acknowledge the ascension of duke's son Vasily II Vasilievich, a child, ten years of age. Residing in Galich, a town in the north of the Muscovite realm, he claimed the throne for himself, mobilized a large army, and prepared for war. Vytautas of Lithuania, the Duke's grandfather, and the boyars of Moscow convinced Vasily to send the Metropolite of Moscow as an envoy who would negotiate peace with Yury. The latter agreed to a cease fire, according to which the Khan of the Golden Horde would decide who would become the Duke of Muscovy, while in the meantime, both opponents would keep their current posessions.
+
+	date = { day = 7 month = february year = 1425 }
+	offset = 20
+	deathdate = { day = 29 month = december year = 1425 }
+
+	action_a = {
+		name = "ACTIONNAME233003A" #Let us make peace with uncle Yury
+		command = { type = stability value = 1 }
+		command = { type = ADM which = -2 value = 24 }
+		command = { type = MIL which = -2 value = 24 }
+		command = { type = relation which = LIT value = 50 }
+		command = { type = relation which = STE value = 25 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = revoltrisk value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME233003B" #Let us accept Yury's right and resign
+		command = { type = sleepmonarch which = 091501 } #Vasily II
+		command = { type = wakemonarch which = 091502 } #Yury IV
+		command = { type = relation which = LIT value = -50 }
+		command = { type = stability value = -2 }
+		command = { type = vp value = -15 }
+		command = { type = sleepevent which = 287006 } #STE: Succession conflict in Muscovy
+	}
+	action_c = {
+		name = "ACTIONNAME233003C" #Let us crush this traitor
+		command = { type = stability value = -4 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = desertion which = -1 value = 7500 }
+		command = { type = desertion which = -1 value = 7500 }
+		command = { type = revolt which = 268 } #Vologda
+		command = { type = revolt which = 268 } #Vologda
+		command = { type = revolt which = 270 } #Moscow
+		command = { type = revolt which = 270 } #Moscow
+		command = { type = revolt which = 270 } #Moscow
+		command = { type = revolt which = 279 } #Tula
+		command = { type = revolt which = 448 } #Ryazan
+		command = { type = revolt which = 448 } #Ryazan
+		command = { type = revolt which = 448 } #Ryazan
+		command = { type = revoltrisk value = 15 }
+		command = { type = relation which = LIT value = -10 }
+		command = { type = sleepevent which = 287006 } #Khan decides #STE: Succession conflict in Muscovy
+		command = { type = sleepevent which = 233007 } #dinner conflict #MOS: Grand Duke Vasily's wedding
+	}
+}
+
+#(1425) Tribute to the Golden Horde
+event = {
+	id = 233000
+	trigger = {
+		exists = STE
+		NOT = { war = { country = MOS country = STE } }
+	}
+	random = no
+	country = MOS
+	name = "EVENTNAME233000" #Tribute to the Golden Horde
+	desc = "EVENTHIST233000"
+	#-#During most of the fifteenth century, the principalities of Moscow and Ryazan continued to give tribute to the Khanate of the Golden Horde.
+
+	date = { day = 0 month = march year = 1425 }
+
+	action_a = {
+		name = "ACTIONNAME233000A" #We remain loyal
+		command = { type = dynastic which = STE }
+		command = { type = relation which = STE value = 25 }
+		command = { type = treasury value = -40 }
+		command = { type = trigger which = 287010 } #STE: Tribute from Moscow
+	}
+	action_b = {
+		name = "ACTIONNAME233000B" #Throw off the Tatar yoke
+		command = { type = breakdynastic which = STE }
+		command = { type = relation which = STE value = -100 }
+		command = { type = stability value = -2 }
+		command = { type = trigger which = 287012 } #STE: Moscow throws off the yoke
+		command = { type = sleepevent which = 233001 } #MOS: Tribute to the Golden Horde
+		command = { type = sleepevent which = 233002 } #MOS: Great standing on the Ugra river
+	}
+}
+
+#(1428-1433) Khan chose Vasily
+event = {
+	id = 233006 #triggered by STE_287006 A
+	random = no
+	country = MOS
+	name = "EVENTNAME233006" #The Khan accepts Vasily as the grand duke
+	desc = "EVENTHIST233006"
+	#-#In 1428, three years after the feud in Muscovy stopped, Vasily still hesitated to travel to the Khan and ask him to decide who would become Vasily I's heir. Yury however threatened to resort to arms, and finally, both Dukes went to the Khan's court. While Yury had formally more rights on the throne, since Dmitry Donskoi in his testament said that Yury shall follow Vasily I on the throne, and since it also was in accordance to the old Russian inheritance tradition, young Vasily was supported by the majority of the Muscovite and Tatar nobility, which was why the Khan finally decided in his favour.
+
+	action_a = {
+		name = "ACTIONNAME233006A" #Our rights are confirmed!
+		command = { type = stability value = 2 }
+		command = { type = relation which = STE value = 25 }
+	}
+}
+#(1428-1433) Khan voted for Yury
+event = {
+	id = 233005 #triggered by STE_287006 B
+	random = no
+	country = MOS
+	name = "EVENTNAME233005" #The Khan puts Yury on the throne
+	desc = "EVENTHIST233005"
+	#-#The Khan has decided to give the grand ducal title to Yury, thus confirming the old Russian horizontal succession way, according to which the eldest brother or the eldest nephew, not the son of the Duke inherited the throne. In such a situation, Vasily would have no choice but to accept, and wait for his turn for a couple of years.
+
+	action_a = {
+		name = "ACTIONNAME233005A" #We can't fight the khan
+		command = { type = stability value = 1 }
+		command = { type = relation which = LIT value = -50 }
+		command = { type = relation which = STE value = 25 }
+		command = { type = sleepmonarch which = 091501 } #Vasily II
+		command = { type = wakemonarch which = 091502 } #Yury IV
+	}
+	action_b = {
+		name = "ACTIONNAME233005B" #Whatever the khan says, I'll fight for my throne
+		command = { type = stability value = -4 }
+		command = { type = desertion which = -1 value = 2500 }
+		command = { type = desertion which = -1 value = 2500 }
+		command = { type = revoltrisk value = 15 }
+		command = { type = revolt which = 268 } #Vologda
+		command = { type = revolt which = 268 } #Vologda
+		command = { type = revolt which = 270 } #Moscow
+		command = { type = revolt which = 270 } #Moscow
+		command = { type = revolt which = 270 } #Moscow
+		command = { type = revolt which = 279 } #Tula
+		command = { type = revolt which = 448 } #Ryazan
+		command = { type = revolt which = 448 } #Ryazan
+		command = { type = revolt which = 448 } #Ryazan
+		command = { type = relation which = LIT value = 20 }
+		command = { type = relation which = STE value = -75 }
+	}
+}
+
+#(1433-1434) The affront at the wedding
+event = {
+	id = 233007
+	trigger = {
+		monarch = 091501 #Vasily II
+	}
+	random = no
+	country = MOS
+	name = "EVENTNAME233007" #Grand Duke Vasily's wedding
+	desc = "EVENTHIST233007"
+	#-#It seemed first that Muscovy was in peace. The Grand Duke Vasily celebrated his wedding, and invited his cousins, Vasily Kosoi, and Dmitry Shemiaka, sons of Yury. There, however, Sofia Vitovtovna, the Grand Duke's mother, ordered to strip Kosoi of the jewelry he was wearing, as it was rumored to be stolen from Dmitry Donskoi many years ago. Enraged, both young dukes left the celebration, while their father had the casus belli he was looking for.
+
+	date = { day = 8 month = february year = 1433 }
+	offset = 60
+	deathdate = { day = 5 month = june year = 1434 }
+
+	action_a = {
+		name = "ACTIONNAME233007A" #Prepare for war!
+		command = { type = stability value = -2 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = revoltrisk value = 15 }
+		command = { type = revolt which = 268 } #Vologda
+		command = { type = revolt which = 270 } #Moscow
+		command = { type = revolt which = 270 } #Moscow
+		command = { type = revolt which = 279 } #Tula
+		command = { type = revolt which = 448 } #Ryazan
+	}
+	action_b = {
+		name = "ACTIONNAME233007B" #Surrender to duke Yury
+		command = { type = stability value = 1 }
+		command = { type = sleepmonarch which = 091501 } #Vasily II
+		command = { type = wakemonarch which = 091502 } #Yury IV
+		command = { type = vp value = -15 }
+	}
+}
+
+#(1434) Vasily reinstalled
+event = {
+	id = 233009
+	trigger = {
+		monarch = 091502 #Yury IV
+	}
+	random = no
+	country = MOS
+	name = "EVENTNAME233009" #Death of Yury Dmitrievich
+	desc = "EVENTHIST233009"
+	#-#Surprisingly soon after finally beating Vasily and securing the throne, duke Yury dies. His testament, written a long time ago, detached only his personal posessions amongst his sons, without appointing a heir for the grand duchy, but warning his sons to pay taxes to the 'grand duke'. This statement was taken as assumption that Vasily would again become Duke, and as Yury and his children had no real support amongst the nobles, Vasily easily regained his throne. Vasily Kosoi, Yury's eldest son, did not accept this, and started gathering troops. As not even his brothers, Dmitry Krasny and Dmitry Shemiaka, were ready to support Kosoi, his fight was doomed, and he ended up leading a band pillaging the Vyatka region.
+
+	date = { day = 4 month = june year = 1434 }
+
+	action_a = {
+		name = "ACTIONNAME233009A" #He'll regret this
+		command = { type = wakemonarch which = 091503 } #Vasily II Temny
+		command = { type = revolt which = 271 } #Vladimir
+	}
+}
+
+#(1434-1445) Kosoi captured
+event = {
+	id = 233010
+	trigger = {
+		event = 233009 #MOS: Death of Yury Dmitrievich
+		NOT = { control = { province = 271 data = REB } }
+	}
+	random = no
+	country = MOS
+	name = "EVENTNAME233010" #Kosoi is defeated
+	desc = "EVENTHIST233010"
+	#-#Soon the last of Vasily Kosoi's bands were beaten by ducal troops, which vastly outnumbered them. Grand Duke Vasily II Vasilievich, being tired of the eternal questioning of his rights, decided to statuate an example not soon to be forgotten. He blinded Kosoi, and sent him to a remote monastery where the unlucky usurper died a few years later, while the lands he owned were given to his brother, Dmitry Shemiaka. This act of barbaric cruelity was practiced on a duke only three times in russian history.
+
+	date = { day = 1 month = july year = 1434 }
+	offset = 1
+	deathdate = { day = 1 month = april year = 1445 }
+
+	action_a = {
+		name = "ACTIONNAME233010A" #Blind him and send him to a monastery
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = stability value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME233010B" #Forgive him and give him a minor estate
+		command = { type = stability value = -3 }
+		command = { type = ADM which = -2 value = 48 }
+	}
+}
+
+#(1440-1442) Isidore and the Council of Florence
+event = {
+	id = 40093
+	trigger = {
+		OR = {
+			event = 3833 #BYZ: The Council of Florence and the Union of the Churches -I-
+			event = 23020 #BYZ: The Council of Florence and the Union of the Churches -II-
+		}
+	}
+	random = no
+	country = MOS
+	name = "EVENTNAME40093" #Metropolitan Isidore Accepts the Council of Florence
+	desc = "EVENTHIST40093"
+	#-#After the Byzantine Empire accepted the Council of Florence, the metropolitan Isidore, who was heavily involved in the negotiations with the Pope, returned to Moscow, attempting to enforce the union. However, the union was not accepted by the Muscovite government, and Isidore was deposed and imprisoned.
+
+	date = { day = 1 month = january year = 1440 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1442 }
+
+	action_a = {
+		name = "ACTIONNAME40093A" #The Orthodox Church shall never bow to the Pope!
+		command = { type = relation which = BYZ value = -50 }
+		command = { type = relation which = PAP value = -50 }
+		command = { type = relation which = POL value = -50 }
+		command = { type = relation which = LIT value = -50 }
+		command = { type = relation which = PSK value = 25 }
+		command = { type = relation which = RYA value = 25 }
+		#command = { type = relation which = SUZ value = 25 } #Suzdal
+		command = { type = relation which = NVG value = 25 }
+		command = { type = relation which = TVE value = 25 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1445) Vasily II captured by Tartars
+event = {
+	id = 40005
+	trigger = {
+		OR = {
+			monarch = 091501 #Vasily II
+			monarch = 091503 #Vasily II Temny
+		}
+		OR = {
+			exists = KAZ
+			exists = STE
+		}
+	}
+	random = no
+	country = MOS
+	name = "EVENTNAME40005" #Vasily II has been captured by Tartars
+	desc = "EVENTHIST40005"
+	#-#During the winter of 1445 a raiding party of Tartars under the command of Mahmudek were encountered by a small detachment commanded by Vasily II himself. After a short fight, Tartars were victorious, and Vasily II was captured. Later on he was released for a hefty ransom.
+
+	date = { day = 1 month = april year = 1445 }
+	offset = 8
+	deathdate = { day = 15 month = april year = 1445 }
+
+	action_a = {
+		name = "ACTIONNAME40005A" #Pay the ransom
+		command = { type = stability value = -2 }
+		command = { type = casusbelli which = KAZ value = 48 }
+		command = { type = casusbelli which = STE value = 48 }
+		command = { type = relation which = KAZ value = -50 }
+		command = { type = relation which = STE value = -50 }
+		command = { type = treasury value = -200 }
+	}
+}
+
+#(1448) Russian Church Autonomy
+event = {
+	id = 40094
+	trigger = {
+		event = 40093 #MOS: Metropolitan Isidore Accepts the Council of Florence
+		OR = {
+			exists = BYZ
+			NOT = { owned = { province = 357 data = TUR } } #Thrace
+			event = 3750 #TUR: Fate of the Patriarchate
+		}
+		NOT = { event = 233004 } #MOS: Elections of the New Metropolitan -II-
+	}
+	random = no
+	country = MOS
+	name = "EVENTNAME40094" #Elections of the New Metropolitan
+	desc = "EVENTHIST40094"
+	#-#In 1448 the synod of Russian bishops elected bishop Jonah as Metropolitan of Moscow. For the first time in the history of the Russian Church, the Metropolitan was elected locally, rather than appointed by the Patriarch of Constantinople.
+
+	date = { day = 1 month = january year = 1448 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1448 }
+
+	action_a = {
+		name = "ACTIONNAME40094A" #Let the Russians elect their own Metropolitan
+		command = { type = relation which = BYZ value = -50 }
+		command = { type = relation which = PSK value = 25 }
+		command = { type = relation which = RYA value = 25 }
+		#command = { type = relation which = SUZ value = 25 } #Suzdal
+		command = { type = relation which = NVG value = 25 }
+		command = { type = relation which = TVE value = 25 }
+		command = { type = stability value = 1 }
+		command = { type = sleepevent which = 233004 } #MOS: Elections of the New Metropolitan -II-
+	}
+	action_b = {
+		name = "ACTIONNAME40094B" #Let Constantinople appoint the patriarch
+		command = { type = relation which = BYZ value = 50 }
+		command = { type = relation which = PSK value = -25 }
+		command = { type = relation which = RYA value = -25 }
+		#command = { type = relation which = SUZ value = -25 } #Suzdal
+		command = { type = relation which = NVG value = -25 }
+		command = { type = relation which = TVE value = -25 }
+		command = { type = stability value = -1 }
+		command = { type = sleepevent which = 233004 } #MOS: Elections of the New Metropolitan -II-
+	}
+}
+#(1448) Russian Church Autonomy -II-
+event = {
+	id = 233004
+	trigger = {
+		event = 40093 #MOS: Metropolitan Isidore Accepts the Council of Florence
+		NOT = {
+			exists = BYZ
+			NOT = { owned = { province = 357 data = TUR } } #Thrace
+			event = 3750 #TUR: Fate of the Patriarchate
+		}
+		NOT = { event = 40094 } #MOS: Elections of the New Metropolitan -I-
+	}
+	random = no
+	country = MOS
+	name = "EVENTNAME40094" #Elections of the New Metropolitan
+	desc = "EVENTHIST40094"
+	#-#In 1448 the synod of Russian bishops elected bishop Jonah as Metropolitan of Moscow. For the first time in the history of the Russian Church, the Metropolitan was elected locally, rather than appointed by the Patriarch of Constantinople.
+
+	date = { day = 1 month = january year = 1448 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1448 }
+
+	action_a = {
+		name = "ACTIONNAME40094A" #Let the Russians elect their own Metropolitan
+		command = { type = relation which = BYZ value = -50 }
+		command = { type = relation which = PSK value = 25 }
+		command = { type = relation which = RYA value = 25 }
+		#command = { type = relation which = SUZ value = 25 } #Suzdal
+		command = { type = relation which = NVG value = 25 }
+		command = { type = relation which = TVE value = 25 }
+		command = { type = stability value = 1 }
+		command = { type = sleepevent which = 40094 } #MOS: Elections of the New Metropolitan -I-
+	}
+}
+
+#(1449) Co-rule of Vasily II and his son Ivan
+event = {
+	id = 40008
+	trigger = { #if not reinstalled
+		monarch = 091501 #Vasily II
+	}
+	random = no
+	country = MOS
+	name = "EVENTNAME40008" #Vasily II appoints his son Ivan co-ruler
+	desc = "EVENTHIST40008"
+	#-#Vasily II was not a very bright and talented man like his father, something which was clearly visible during the first part of his reign. But everything suddenly changed after he was blinded. The change was due to him being surrounded by wise, experienced people, who, with their ruler being blind, took charge in state affairs and ruled on his behalf. Vasily's son Ivan was among them, and was made a co-ruler in 1449.
+
+	date = { day = 1 month = january year = 1449 }
+	offset = 30
+	deathdate = { day = 1 month = july year = 1449 }
+
+	action_a = {
+		name = "ACTIONNAME40008A" #Make Ivan a co-ruler
+		command = { type = DIP which = 3 value = 157 }
+		command = { type = ADM which = 4 value = 157 }
+		command = { type = MIL which = 3 value = 157 }
+		command = { type = provincetax which = -2 value = 1 }
+	}
+}
+
+#(1450-1475) Novgorod
+event = {
+	id = 40087
+	trigger = {
+		exists = NVG
+		#NOT = { exists = SUZ }
+		owned = { province = 271 data = -1 } #Vladimir
+		owned = { province = 274 data = NVG } #Novgorod
+		control = { province = 274 data = -1 } #Novgorod
+	}
+	random = no
+	country = MOS
+	name = "EVENTNAME40087" #Submission of Novgorod
+	desc = "EVENTHIST40087"
+	#-#In 1450s, a lengthy bickering over the ownership of the lands being bought by Novgorodian boyars in (formally) Muscovy-controlled areas arose between Muscovy and Novgorod. On the other hand, Muscovites were still bitter over the heartily welcome given to Shemiaka by Novgorodians, as well as their refusal to pay 8,000 rubles tribute to Muscovy. Vasily II declared war on Novgorod in 1456, after the matter couldn't be resolved peacefully. Muscovy troops defeated Novgorodians and threatened to capture the city. The ensuing peace made Novgorod pay additional 8,500 rubles, return all the lands bought by Novgorodian boyars to Muscovy crown, pay yearly tribute to Muscovy Grand Prince, and agreed to write all laws in the name of Vasily II, and not veche, thus ending the independence of Novgorodian Republic.
+
+	date = { day = 1 month = january year = 1450 }
+	offset = 5
+	deathdate = { day = 1 month = january year = 1475 }
+
+	action_a = {
+		name = "ACTIONNAME40079A" #Demand submission
+		command = { type = trigger which = 40088 } #NVG: Submission to Muscovy
+	}
+	action_b = {
+		name = "ACTIONNAME40079B" #Why bother?
+		command = { type = stability value = -1 }
+		command = { type = relation which = NVG value = 30 }
+	}
+}
+#(1450-1475) Novgorod
+event = {
+	id = 40089 #triggered by NVG_40088 A
+	random = no
+	country = MOS
+	name = "EVENTNAME40089" #Novgorod agrees to submit to Muscovy
+	desc = "EVENTHIST40089"
+	#-#Novgorod has agreed to our demands.
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = relation which = NVG value = 90 }
+		command = { type = vassal which = NVG }
+		command = { type = stability value = 1 }
+		command = { type = treasury value = 100 }
+		command = { type = provincetax which = -1 value = 1 }
+	}
+}
+#(1450-1475) Novgorod
+event = {
+	id = 40090 #triggered by NVG_40088 B
+	random = no
+	country = MOS
+	name = "EVENTNAME40090" #Novgorod refuses to become Muscovy's vassal
+	desc = "EVENTHIST40090"
+	#-#Novgorod has refused our demands.
+
+	action_a = {
+		name = "DAMN"
+		command = { type = casusbelli which = NVG value = 240 }
+		command = { type = relation which = NVG value = -150 }
+	}
+}
+
+#(1450-1475) Pskov
+event = {
+	id = 40015
+	trigger = { event = 40011 }
+	random = no
+	country = MOS
+	name = "EVENTNAME40015" #Pskov asks for protection
+	desc = "EVENTHIST40015"
+	#-#In light of our overwhelming victory over Novgorod, Pskov decided to ask us for protection.
+
+	date = { day = 1 month = january year = 1450 }
+	offset = 40
+	deathdate = { day = 1 month = january year = 1475 }
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = alliance which = PSK }
+		command = { type = relation which = PSK value = 100 }
+		command = { type = vassal which = PSK }
+		command = { type = stability value = 1 }
+		command = { type = trigger which = 233015 } #MOS: Consequence of the agreement between Pskov and Muscovy
+	}
+}
+#Safety event for vassalization + alliance
+event = {
+	id = 233015 #triggered by MOS_40015
+	trigger = {
+		OR = {
+			NOT = { vassal = { country = MOS country = PSK } }
+			NOT = { alliance = { country = MOS country = PSK } }
+		}
+	}
+	random = no
+	country = MOS
+	name = "EVENTNAME233015" #Consequence of the agreement between Pskov and Muscovy
+	desc = "EVENTHIST40015"
+	#-#Pskov has agreed to our demands.
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = vassal which = PSK }
+		command = { type = alliance which = PSK }
+		command = { type = trigger which = 233016 } #MOS: Alliance with Pskov
+	}
+}
+#Safety event for alliance
+event = {
+	id = 233016 #triggered by MOS_233015
+	trigger = {
+		vassal = { country = MOS country = PSK }
+		NOT = { alliance = { country = MOS country = PSK } }
+	}
+	random = no
+	country = MOS
+	name = "EVENTNAME233016" #Alliance with Pskov
+	desc = "EVENTHIST40015"
+	#-#Pskov has agreed to our demands.
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = alliance which = PSK }
+		command = { }
+	}
+}
+#(1450-1475) Pskov
+event = {
+	id = 40013
+	trigger = { event = 40011 }
+	random = no
+	country = MOS
+	name = "EVENTNAME40013" #Pskov decided to remain independent
+	desc = "EVENTHIST40013"
+	#-#Despite our overwhelming victory over Novgorod, Pskov decided to remain staunchly independent.
+
+	date = { day = 1 month = january year = 1450 }
+	offset = 40
+	deathdate = { day = 1 month = january year = 1475 }
+
+	action_a = {
+		name = "ACTIONNAME40013A" #Bad decision
+		command = { type = casusbelli which = PSK value = 60 }
+		command = { type = relation which = PSK value = -100 }
+	}
+}
+
+#(1450) Tribute to the Golden Horde
+event = {
+	id = 233001
+	trigger = {
+		exists = STE
+		NOT = { war = { country = MOS country = STE } }
+	}
+	random = no
+	country = MOS
+	name = "EVENTNAME233001" #Tribute to the Golden Horde
+	desc = "EVENTHIST233001"
+	#-#During most of the fifteenth century, the principalities of Moscow and Ryazan continued to give tribute to the Khanate of the Golden Horde.
+
+	date = { day = 0 month = march year = 1450 }
+
+	action_a = {
+		name = "ACTIONNAME233001A" #We remain loyal to our old arrangements
+		command = { type = dynastic which = STE }
+		command = { type = relation which = STE value = 25 }
+		command = { type = treasury value = -40 }
+		command = { type = trigger which = 287011 } #STE: Tribute from Moscow
+	}
+	action_b = {
+		name = "ACTIONNAME233001B" #We shall throw off the Tatar yoke!
+		command = { type = breakdynastic which = STE }
+		command = { type = relation which = STE value = -100 }
+		command = { type = stability value = -2 }
+		command = { type = trigger which = 287012 } #STE: Moscow throws off the yoke
+		command = { type = sleepevent which = 233002 } #MOS: Great standing on the Ugra river
+	}
+}
+
+#(1452-1454) Tver
+event = {
+	id = 40079
+	trigger = {
+		exists = TVE
+		#NOT = { exists = SUZ }
+		owned = { province = 271 data = -1 } #Vladimir
+		NOT = { vassal = { country = MOS country = TVE } }
+		NOT = { vassal = { country = TVE country = MOS } }
+	}
+	random = no
+	country = MOS
+	name = "EVENTNAME40079" #Submission of Tver
+	desc = "EVENTHIST40079"
+	#-#After defeating Shemiaka and finally disposing of him in 1453, Vasily II turned his attention to principalities of Ryazan and Tver. Grand Prince of Tver submitted without much urging, by marrying his daugther to future Russian czar Ivan III and recognizing Muscovy Grand Duke as his suzerene. Grand Prince of Ryazan sent his 8 year old son to be brought up at Muscovy court, while Muscovian governors were sent to rule Ryazan in his place in 1456.
+
+	date = { day = 1 month = january year = 1452 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1454 }
+
+	action_a = {
+		name = "ACTIONNAME40079A" #Demand submission
+		command = { type = trigger which = 40080 } #TVE: Submission of Tver
+	}
+	action_b = {
+		name = "ACTIONNAME40079B" #Why bother?
+		command = { type = stability value = -1 }
+		command = { type = relation which = LIT value = 35 }
+	}
+}
+#(1452-1460) Tver
+event = {
+	id = 40081 #triggered by TVE_40080 A
+	random = no
+	country = MOS
+	name = "EVENTNAME40081" #Tver agrees to become Muscovy's vassal
+	desc = "EVENTHIST40081"
+	#-#Tver has agreed to our demands.
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = vassal which = TVE }
+		command = { type = alliance which = TVE }
+		command = { type = relation which = TVE value = 100 }
+		command = { type = trigger which = 233011 } #MOS: Consequence of the agreement between Tver and Muscovy
+	}
+}
+#Safety event for vassalization + alliance
+event = {
+	id = 233011 #triggered by MOS_40081
+	trigger = {
+		OR = {
+			NOT = { vassal = { country = MOS country = TVE } }
+			NOT = { alliance = { country = MOS country = TVE } }
+		}
+	}
+	random = no
+	country = MOS
+	name = "EVENTNAME233011" #Consequence of the agreement between Tver and Muscovy
+	desc = "EVENTHIST40081"
+	#-#Tver has agreed to our demands.
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = vassal which = TVE }
+		command = { type = alliance which = TVE }
+		command = { type = trigger which = 233012 } #MOS: Alliance with Tver
+	}
+}
+#Safety event for alliance
+event = {
+	id = 233012 #triggered by MOS_233011
+	trigger = {
+		vassal = { country = MOS country = TVE }
+		NOT = { alliance = { country = MOS country = TVE } }
+	}
+	random = no
+	country = MOS
+	name = "EVENTNAME233012" #Alliance with Tver
+	desc = "EVENTHIST40081"
+	#-#Tver has agreed to our demands.
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = alliance which = TVE }
+		command = { }
+	}
+}
+#(1452-1460) Tver
+event = {
+	id = 40082 #triggered by TVE_40080 B
+	random = no
+	country = MOS
+	name = "EVENTNAME40082" #Tver refuses to become Muscovy's vassal
+	desc = "EVENTHIST40082"
+	#-#Tver has refused our demands.
+
+	action_a = {
+		name = "DAMN"
+		command = { type = casusbelli which = TVE value = 240 }
+		command = { type = relation which = TVE value = -150 }
+	}
+}
+
+#(1455-1457) Ryazan
+event = {
+	id = 40083
+	trigger = {
+		exists = RYA
+		#NOT = { exists = SUZ }
+		owned = { province = 271 data = -1 } #Vladimir
+		NOT = { vassal = { country = MOS country = RYA } }
+		NOT = { vassal = { country = RYA country = MOS } }
+	}
+	random = no
+	country = MOS
+	name = "EVENTNAME40083" #Submission of Ryazan
+	desc = "EVENTHIST40079"
+	#-#After defeating Shemiaka and finally disposing of him in 1453, Vasily II turned his attention to principalities of Ryazan and Tver. Grand Prince of Tver submitted without much urging, by marrying his daugther to future Russian czar Ivan III and recognizing Muscovy Grand Duke as his suzerene. Grand Prince of Ryazan sent his 8 year old son to be brought up at Muscovy court, while Muscovian governors were sent to rule Ryazan in his place in 1456.
+
+	date = { day = 1 month = january year = 1455 }
+	offset = 400
+	deathdate = { day = 1 month = january year = 1457 }
+
+	action_a = {
+		name = "ACTIONNAME40079A" #Demand submission
+		command = { type = trigger which = 40084 } #RYA: Submission of Ryazan
+	}
+	action_b = {
+		name = "ACTIONNAME40079B" #Why bother?
+		command = { type = stability value = -1 }
+		command = { type = relation which = LIT value = 35 }
+	}
+}
+#(1455-1457) Ryazan
+event = {
+	id = 40085 #triggered by RYA_40084 A
+	random = no
+	country = MOS
+	name = "EVENTNAME40085" #Ryazan agrees to become Muscovy's vassal
+	desc = "EVENTHIST40085"
+	#-#Ryazan has agreed to our demands.
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = alliance which = RYA }
+		command = { type = relation which = RYA value = 100 }
+		command = { type = vassal which = RYA }
+		command = { type = stability value = 1 }
+		command = { type = trigger which = 233013 } #MOS: Consequence of the agreement between Ryazan and Muscovy
+	}
+}
+
+
+#Safety event for vassalization + alliance
+event = {
+	id = 233013 #triggered by MOS_40085
+	trigger = {
+		OR = {
+			NOT = { vassal = { country = MOS country = RYA} }
+			NOT = { alliance = { country = MOS country = RYA } }
+		}
+	}
+	random = no
+	country = MOS
+	name = "EVENTNAME233013" #Consequence of the agreement between Ryazan and Muscovy
+	desc = "EVENTHIST40085"
+	#-#Ryazan has agreed to our demands.
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = vassal which = RYA }
+		command = { type = alliance which = RYA }
+		command = { type = trigger which = 233014 } #MOS: Alliance with Ryazan
+	}
+}
+#Safety event for alliance
+event = {
+	id = 233014 #triggered by MOS_233013
+	trigger = {
+		vassal = { country = MOS country = RYA }
+		NOT = { alliance = { country = MOS country = RYA } }
+	}
+	random = no
+	country = MOS
+	name = "EVENTNAME233014" #Alliance with Ryazan
+	desc = "EVENTHIST40085"
+	#-#Ryazan has agreed to our demands.
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = alliance which = RYA }
+		command = { }
+	}
+}
+#(1455-1457) Ryazan
+event = {
+	id = 40086 #triggered by RYA_40084 B
+	random = no
+	country = MOS
+	name = "EVENTNAME40086" #Ryazan refuses to become Muscovy's vassal
+	desc = "EVENTHIST40086"
+	#-#Ryazan has refused our demands.
+
+	action_a = {
+		name = "DAMN"
+		command = { type = casusbelli which = RYA value = 240 }
+		command = { type = relation which = RYA value = -150 }
+	}
+}
+
+#(1460-1820) The Pomjestija Reform
+event = {
+	id = 3401
+	trigger = { owned = { province = 274 data = -1 } } #Novgorod
+	random = no
+	country = MOS
+	name = "EVENTNAME3401" #The Pomjestija Reform
+	desc = "EVENTHIST3401"
+	#-#After Muscovites invaded Novgorod in 1471 and Lithuania failed to come to Novgorod's assistance, Novgorod was forced to accept the Korostyn' Treaty, which further limited its independence. Ivan III, still wary of uprisings because of what happened to his father, deported many of the citizens of Novgorod. He also replaced leaders of the Novgorodian church with Russian Orthodox leaders. Lands were taken from the natives and given to cavalrymen in return for military service. After establishing the reform of land management, called the pomestie system, there, he introduced it into Muscovite. By seizing the local nobles', called boyars, estates and giving it to his army, he helped bolster and centralize his power (remember during this time, land is power) and create loyalty in his army and other servants. By 1489, Novgorod was a shell of its former self and now part of the ever-growing Russian state
+
+	date = { day = 1 month = january year = 1460 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME3401A" #Let us reform
+		command = { type = domestic which = Aristocracy value = 1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = LAND value = 1 }
+		command = { type = land value = 800 }
+		command = { type = CAV which = -1 value = 10000 }
+		command = { type = CAV which = -1 value = 5000 }
+		command = { type = domestic which = quality value = 1 }
+		command = { type = gainbuilding which = -2 value = barrack }
+	}
+	action_b = {
+		name = "ACTIONNAME3401B" #Let us become like Novgorod
+		command = { type = domestic which = CENTRALIZATION value = -2 }
+		command = { type = trade value = 1000 }
+		command = { type = domestic which = LAND value = -2 }
+		command = { type = merchants value = 6 }
+		command = { type = domestic which = quality value = -2 }
+		command = { type = domestic which = serfdom value = -1 }
+	}
+}
+
+#(1474-1520) Vodka Monopoly
+event = {
+	id = 40068
+	trigger = {
+		owned = { province = 272 data = -1 } #Nizhgorod
+		NOT = { event = 40017 }
+	}
+	random = no
+	country = MOS
+	name = "EVENTNAME40068" #Vodka Monopoly
+	desc = "EVENTHIST40068"
+	#-#Vodka, a national Russian alcoholic beverage, was first brewed in 1448 in Chudov Monastery of Moscow Kremlin. From then on, vodka was sold and brewed freely until late 1470s, when Ivan III instituted the first royal monopoly on production and sale of wheat wine (vodka), beer and honey. This monopoly brought a significant flow of revenue into Muscovy's treasury, and allowed her to finance military operations against Sweden and Lithuania.
+
+	date = { day = 1 month = january year = 1474 }
+	offset = 900
+	deathdate = { day = 1 month = january year = 1520 }
+
+	action_a = {
+		name = "ACTIONNAME40068A" #Institute the monopoly
+		command = { type = provincetax which = -2 value = 5 }
+		command = { type = stability value = 1 }
+		command = { type = domestic which = serfdom value = 1 }
+		command = { type = gainmanufactory which = 272 value = refinery } #Nizhgorod
+		command = { type = provincemanpower which = 272 value = 2 } #Nizhgorod
+		command = { type = sleepevent which = 40017 } #MOS: Vodka Monopoly
+	}
+}
+#(1474-1520) Vodka Monopoly
+event = {
+	id = 40017
+	trigger = {
+		NOT = { owned = { province = 272 data = -1 } }
+		NOT = { event = 40068 }
+	}
+	random = no
+	country = MOS
+	name = "EVENTNAME40068" #Vodka Monopoly
+	desc = "EVENTHIST40068"
+	#-#Vodka, a national Russian alcoholic beverage, was first brewed in 1448 in Chudov Monastery of Moscow Kremlin. From then on, vodka was sold and brewed freely until late 1470s, when Ivan III instituted the first royal monopoly on production and sale of wheat wine (vodka), beer and honey. This monopoly brought a significant flow of revenue into Muscovy's treasury, and allowed her to finance military operations against Sweden and Lithuania.
+
+	date = { day = 1 month = january year = 1474 }
+	offset = 900
+	deathdate = { day = 1 month = january year = 1520 }
+
+	action_a = {
+		name = "ACTIONNAME40068A" #Institute the monopoly
+		command = { type = provincetax which = -2 value = 5 }
+		command = { type = stability value = 1 }
+		command = { type = domestic which = serfdom value = 1 }
+		command = { type = gainmanufactory which = -1 value = refinery }
+		command = { type = provincemanpower which = -3 value = 2 }
+		command = { type = sleepevent which = 40068 } #MOS: Vodka Monopoly
+	}
+}
+
+#(1480-1820) The Empire of Russia
+event = {
+	id = 40010
+	trigger = {
+		owned = { province = 279 data = -1 } #Moscow/Tula
+		control = { province = 279 data = -1 } #Moscow/Tula
+		OR = {
+			AND = {
+				owned = { province = 271 data = -1 } #Vladimir
+				owned = { province = 268 data = -1 } #Vologda
+			}
+			countrysize = 10
+		}
+		OR = {
+			owned = { province = 274 data = -1 } #Novgorod
+			owned = { province = 278 data = -1 } #Tver
+			owned = { province = 448 data = -1 } #Ryazan
+		}
+		NOT = { 
+				exists = RUS 
+		}
+		OR = { 
+			NOT = { exists = BYZ } #historical situation
+			AND = {
+				OR = { 
+					dynastic = { country = MOS country = BYZ }
+					vassal = { country = MOS country = BYZ }
+				}
+				AND = {
+					countrysize = 20 #way out for an ahistorically strong Muscovy
+					relation = { country = BYZ data = 190 }
+					BYZ = { 
+						OR = {
+							flag = [Fantasy_BYZ] 
+							NOT = { countrysize = 2 } 
+						}
+					} 
+				}
+			}
+		}
+		atwar = no
+		isvassal = no
+	}
+	random = no
+	country = MOS
+	name = "EVENTNAME40010" #The Empire of Russia
+	desc = "EVENTHIST40010"
+	#-#Historically, following his marriage to Zoe Paleologus in 1472 and throwing off the Mongol yoke in 1480, Ivan III proclaimed himself czar of all Russians shortly thereafter.
+
+	date = { day = 1 month = january year = 1480 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME40010A" #Become the Third Rome
+		command = { type = vp value = 200 }
+		command = { type = stability value = 2 }
+		command = { type = capital which = 279 } #Tula
+		command = { type = population which = 279 value = 3000 } #Tula
+		command = { type = flagname which = "" }
+		command = { type = country which = RUS }
+		#command = { type = AI which = "russia1.ai" }
+	}
+}
+
+#(1480) Great standing on the Ugra river
+event = {
+	id = 233002
+	trigger = {
+		exists = STE
+		NOT = { war = { country = MOS country = STE } }
+	}
+	random = no
+	country = MOS
+	name = "EVENTNAME233002" #Great standing on the Ugra river
+	desc = "EVENTHIST233002"
+	#-#In 1480, Ivan III famously threw off the yoke of Tatar overlordship. The Golden Horde was no longer strong enough to dominate Muscovy. There was a famous standoff at the Ugra river, where the Mongol army withdrew rather than force Muscovy to pay tribute. The time for Russia to emerge was nigh.
+
+	date = { day = 0 month = march year = 1480 }
+
+	action_a = {
+		name = "ACTIONNAME233002A" #We shall throw off the Tatar yoke!
+		command = { type = breakdynastic which = STE }
+		command = { type = relation which = STE value = -50 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = trigger which = 287012 } #STE: Moscow throws off the yoke
+	}
+	action_b = {
+		name = "ACTIONNAME233002B" #We remain loyal to our old arrangements
+		command = { type = dynastic which = STE }
+		command = { type = relation which = STE value = 25 }
+	}
+}
+
+#(1484-1540) Expulsion of Hansa merchants
+event = {
+	id = 40044
+	trigger = {
+		owned = { province = 274 data = -1 } #Novgorod
+		owned = { province = 279 data = -1 } #Tula
+		control = { province = 279 data = -1 } #Tula
+		NOT = { event = 40045 } #RUS: Closing of Novgorod to Hansa merchants
+	}
+	random = no
+	country = MOS
+	name = "EVENTNAME40044" #Closing of Novgorod to Hansa merchants
+	desc = "EVENTHIST40044"
+	#-#In 1484 Ivan III, following his annexation of Novgorod, has closed Hansa's office in Novgorod. This was a direct continuation of his policy to reduce Novgorod's significance to a second-degree city in a growing Muscovite state.
+
+	date = { day = 1 month = january year = 1484 }
+	offset = 160
+	deathdate = { day = 1 month = january year = 1540 }
+
+	action_a = {
+		name = "ACTIONNAME40044A" #Kick them out and destroy Novgorod
+		command = { type = treasury value = 100 }
+		command = { type = merchants value = 3 }
+		command = { type = trade value = -500 }
+		command = { type = domestic which = mercantilism value = 1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = relation which = MEC value = -100 }
+		command = { type = relation which = BRE value = -100 }
+		command = { type = relation which = SHL value = -100 }
+		command = { type = relation which = POM value = -100 }
+		command = { type = relation which = DAN value = 100 }
+		command = { type = population which = 274 value = -35000 } #Novgorod
+		command = { type = sleepevent which = 40045 } #RUS: Closing of Novgorod to Hansa merchants
+		command = { type = provincetax which = 274 value = -2 } #Novgorod
+		command = { type = removecot which = 274 } #Novgorod
+		command = { type = cot which = 279 } #Tula
+		command = { type = capital which = 279 } #Tula
+	}
+	action_b = {
+		name = "ACTIONNAME40044B" #Let them stay
+		command = { type = domestic which = mercantilism value = -1 }
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = stability value = -1 }
+		command = { type = relation which = MEC value = 50 }
+		command = { type = relation which = BRE value = 50 }
+		command = { type = relation which = SHL value = 50 }
+		command = { type = relation which = POM value = 50 }
+		command = { type = relation which = DAN value = -50 }
+		command = { type = capital which = 279 } #Tula
+		command = { type = sleepevent which = 40092 } #RUS: Hansa Back in Novgorod
+		command = { type = sleepevent which = 40045 } #RUS: Closing of Novgorod to Hansa merchants
+	}
+}
+
+#(1495-1501) The Subednik Laws
+event = {
+	id = 3402
+	random = no
+	country = MOS
+	name = "EVENTNAME3402" #The Subednik Laws
+	desc = "EVENTHIST3402"
+	#-#In the year 1497, in the month of September, the Grand Prince of all Rus' Ivan Vasilievic, with his children and boyars, compiled a code of law on how boyars and major-domos (okolnichii) are to administer justice.
+
+	date = { day = 1 month = january year = 1495 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1501 }
+
+	action_a = {
+		name = "ACTIONNAME3402A" #Introduce it
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = stability value = 1 }
+		command = { type = infra value = 800 }
+		command = { type = gainmanufactory which = -2 value = luxury }
+	}
+	action_b = {
+		name = "ACTIONNAME3402B" #Encourage a Free Peasantry
+		command = { type = domestic which = ARISTOCRACY value = -2 }
+		command = { type = domestic which = SERFDOM value = -1 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = stability value = -4 }
+		command = { type = revoltrisk which = 60 value = 8 }
+		command = { type = manpower value = 2 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 233017

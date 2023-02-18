@@ -1,0 +1,838 @@
+#Friesland (FRI)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1425) Pirates support
+event = {
+	id = 171004
+	random = no
+	country = FRI
+	name = "EVENTNAME171004" #Edo Wiemken's support of pirates
+	desc = "EVENTHIST171004"
+	#-#Edo Wiemken began to support pirates including the Victual Brothers, and earned a lot of money for his support.
+
+	date = { day = 2 month = january year = 1419 }
+	offset = 1000
+	deathdate = { day = 29 month = january year = 1425 }
+
+	action_a = {
+		name = "ACTIONNAME171004A" #Support the pirates
+		command = { type = stability value = -1 }
+		command = { type = provincetax which = 337 value = 1 } #Friesland
+		command = { type = treasury value = 25 }
+		command = { type = naval value = 75 }
+		command = { type = badboy value = 1 }
+		command = { type = DIP which = -2 value = 12 }
+		command = { type = relation which = MEC value = -50 }
+		command = { type = relation which = DAN value = -20 }
+		command = { type = relation which = BRE value = -20 }
+		command = { type = relation which = SHL value = -20 }
+		command = { type = relation which = OLD value = -15 }
+	}
+	action_b = {
+		name = "ACTIONNAME171004B" #Better not
+		command = { type = naval value = -10 }
+		command = { type = relation which = MEC value = 20 }
+		command = { type = relation which = DAN value = 15 }
+		command = { type = relation which = BRE value = 15 }
+		command = { type = relation which = SHL value = 15 }
+		command = { type = relation which = OLD value = 5 }
+		command = { type = sleepevent which = 222001 } #MEC: Edo Wiemken's support of pirates
+	}
+}
+
+#(1419-1428) Pressure of the Hanse
+event = {
+	id = 171005 #triggered by MEC_222001 A
+	random = no
+	country = FRI
+	name = "EVENTNAME171005" #Pressure of the Hanse
+	desc = "EVENTHIST171005"
+	#-#Edo Wiemken stopped supporting the pirates under the pressure of the Hanse.
+
+	action_a = {
+		name = "ACTIONNAME171005A" #Stop supporting the pirates
+		command = { type = provincetax which = 337 value = -1 } #Friesland
+		command = { type = naval value = -50 }
+		command = { type = relation which = MEC value = 15 }
+		command = { type = relation which = DAN value = 5 }
+		command = { type = relation which = BRE value = 10 }
+		command = { type = relation which = SHL value = 10 }
+		command = { type = relation which = OLD value = 5 }
+		command = { type = badboy value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME171005B" #No, it's too rewarding...
+		command = { type = naval value = 25 }
+		command = { type = treasury value = 5 }
+		command = { type = badboy value = 3 }
+		command = { type = trigger which = 222002 } #MEC: Friesland still supports the pirates
+		command = { type = trigger which = 159053 } #DAN: Friesland still supports the pirates
+		command = { type = trigger which = 279006 } #SHL: Friesland still supports the pirates
+		command = { type = trigger which = 247011 } #OLD: Friesland still supports the pirates
+		command = { type = trigger which = 133010 } #BRE: Friesland still supports the pirates
+	}
+}
+
+#(1419-1498) Schieringers and Vetkopers
+event = {
+	id = 22010
+	random = no
+	country = FRI
+	name = "EVENTNAME22010" #Schieringers and Vetkopers
+	desc = "EVENTHIST22010"
+	#-#From 1392 to 1498, civil war raged between two parties, dominated by fighting between competing noble families. The cause of the fighting, aligned along two monastical orders, the Schieringers and Vetkopers, was due to complex family relations in which family loyalty, honour and blood revenge played an important role. In particular the fighting took place between important noble families and the influential monasteries. The Schieringers had their largest group of followers in Westergo. The Vetkopers had their power base in the east of the province.
+
+	date = { day = 2 month = january year = 1419 }
+	offset = 10
+	deathdate = { day = 29 month = january year = 1498 }
+
+	action_a = {
+		name = "ACTIONNAME22010A" #Well, we will have to make do...
+		command = { type = stability value = -6 }
+		command = { type = province_revoltrisk which = 337 value = 10 } #Friesen
+	}
+}
+
+#(1420-1550) Chieftains quarrel in Frisia -I-
+event = {
+	id = 171006
+	trigger = {
+		owned = { province = 335 data = -1 } #Oldenburg
+		NOT = {
+			core = { province = 335 data = -1 } #Oldenburg
+		}
+		atwar = no
+	}
+	random = no
+	country = FRI
+	name = "EVENTNAME171006" #Frisian quarrels
+	desc = "EVENTHIST171006"
+	#-#Despite efforts to unite the Frisian people, the various powerful chiefs could not agree on a single all powerful ruler for greater Friesland.
+
+	date = { day = 4 month = january year = 1420 }
+	offset = 90
+	deathdate = { day = 14 month = november year = 1550 }
+
+	action_a = {
+		name = "ACTIONNAME171006A" #Frisian quarrels
+		command = { type = stability value = -1 }
+		command = { type = independence which = OLD }
+		command = { type = sleepevent which = 171009 } #FRI: Chieftains quarrel in Frisia -II-
+	}
+}
+#(1420-1550) Chieftains quarrel in Frisia -II-
+event = {
+	id = 171009
+	trigger = {
+		owned = { province = 335 data = -1 } #Oldenburg
+		core = { province = 335 data = -1 }
+		NOT = {
+			domestic = { type = centralization value = 4 }
+		}
+		atwar = no
+	}
+	random = no
+	country = FRI
+	name = "EVENTNAME171006" #Frisian quarrels
+	desc = "EVENTHIST171006"
+	#-#Despite efforts to unite the Frisian people, the various powerful chiefs could not agree on a single all powerful ruler for greater Friesland.
+
+	date = { day = 4 month = january year = 1420 }
+	offset = 90
+	deathdate = { day = 14 month = november year = 1550 }
+
+	action_a = {
+		name = "ACTIONNAME171006A" #Frisian quarrels
+		command = { type = stability value = -1 }
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = sleepevent which = 171006 } #FRI: Chieftains quarrel in Frisia -I-
+	}
+}
+
+#(1420-1820) Frisia finally united - Ahistorical
+event = {
+	id = 171010
+	trigger = {
+		core = { province = 335 data = -1 } #Oldenburg
+		owned = { province = 335 data = -1 } #Oldenburg
+		control = { province = 335 data = -1 } #Oldenburg
+		core = { province = 377 data = -1 } #Friesen
+		owned = { province = 377 data = -1 } #Friesen
+		control = { province = 377 data = -1 } #Friesen
+		core = { province = 339 data = -1 } #Holland
+		owned = { province = 339 data = -1 } #Holland
+		control = { province = 339 data = -1 } #Holland
+		OR = {
+			event = 171006 #FRI: Chieftains quarrel in Frisia -I-
+			event = 171009 #FRI: Chieftains quarrel in Frisia -II-
+			domestic = { type = centralization value = 4 }
+		}
+		atwar = no
+	}
+	random = no
+	country = FRI
+	name = "EVENTNAME171010" #Frisia finally united
+	desc = "EVENTHIST171010"
+	#-#As promised when 'Coronike van Vrieslant' was published, we have united the Greater Frisia despite the quarrelsome nature of our people.
+
+	date = { day = 4 month = january year = 1420 }
+	offset = 300
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = vp value = 50 }
+		command = { type = stability value = 1 }
+		command = { type = sleepevent which = 171006 } #FRI: Chieftains quarrel in Frisia -I-
+		command = { type = sleepevent which = 171009 } #FRI: Chieftains quarrel in Frisia -II-
+	}
+}
+
+#(1420) Reconciliation effort of the Schieringers
+event = {
+	id = 22011 #triggered by LUX_213003 A
+	random = no
+	country = FRI
+	name = "EVENTNAME22011" #Reconciliation effort of the Schieringers
+	desc = "EVENTHIST22011"
+	#-#When Jan of Bavaria refused to support the Schieringers in june 1420, the Schieringers tried to reconcile with the Vetkopers.
+
+	action_a = {
+		name = "ACTIONNAME22011A" #A blessing
+		command = { type = stability value = 1 }
+		command = { type = revoltrisk which = 337 value = -5 }
+	}
+}
+#(1420) Vetkoper reaction
+event = {
+	id = 22012 #triggered by LUX_213003 B / LUX_213004 A
+	random = no
+	country = FRI
+	name = "EVENTNAME22012" #Vetkoper reaction to the Schieringer pact with Jan VI
+	desc = "EVENTHIST22012"
+	#-#In june 1420, the Schieringers asked Jan of Bavaria to aid them in their civil war against the Vetkopers.
+
+	action_a = {
+		name = "DAMN"
+		command = { type = stability value = -1 }
+		command = { type = INF which = 337 value = 4000 } #Friesen
+	}
+}
+
+#(1420) Reaction to Jan becoming lord of Frisia
+event = {
+	id = 22013
+	trigger = {
+		vassal = { country = LUX country = FRI }
+	}
+	random = no
+	country = FRI
+	name = "EVENTNAME22013" #Jan of Bavaria becomes lord of Frisia
+	desc = "EVENTHIST22013"
+	#-#Despite their previous reconciliation effort, the Schieringers came to Jan once more, this time Jan accepted and became lord over Friesland.
+
+	date = { day = 4 month = october year = 1420 }
+	offset = 10
+	deathdate = { day = 4 month = november year = 1420 }
+
+	action_a = {
+		name = "DAMN"
+		command = { type = stability value = -1 }
+		command = { type = revolt which = 337 } #Friesen
+	}
+}
+
+#(1421) Jan institutes a 'rentmeester'
+event = {
+	id = 22014
+	trigger = {
+		event = 22013 #FRI: Jan of Bavaria becomes lord of Frisia
+		vassal = { country = LUX country = FRI }
+	}
+	random = no
+	country = FRI
+	name = "EVENTNAME22014" #Jan appoints a rentmeester
+	desc = "EVENTHIST22014"
+	#-#After consolidating his lordship over Friesland, Jan appointed a 'rentmeester' to look after his incomes from Friesland.
+
+	date = { day = 1 month = april year = 1421 }
+	offset = 10
+	deathdate = { day = 29 month = april year = 1421 }
+
+	action_a = {
+		name = "ACTIONNAME22014A" #Tolerate him
+		command = { type = gainbuilding which = 337 value = bailiff } #Friesen
+		command = { type = treasury value = -25 }
+	}
+	action_b = {
+		name = "ACTIONNAME22014B" #Don't tolerate him
+		command = { type = treasury value = 25 }
+		command = { type = relation which = LUX value = -100 }
+	}
+}
+
+#(1422) Breaking the vassalization
+event = {
+	id = 22015 #triggered by HLL_88018LUX_213005 A / LUX_213006
+	trigger = {
+		vassal = { country = LUX country = FRI }
+	}
+	random = no
+	country = FRI
+	name = "EVENTNAME213005" #Jan loses control of the Schieringers
+	desc = "EVENTHIST213005"
+	#-#After stepping on the Shieringers' toes once too many, Jan lost control of the Schieringers. After losing Dokkum, his last foothold in Friesland, on the 29th of May 1422, the treaty ending his Frisian adventure was signed on the 17th of August.
+
+	action_a = {
+		name = "FREEDOM"
+		command = { type = breakvassal which = HAU }
+	}
+}
+
+#(1439-1498) Vetkopers and Schieringers
+event = {
+	id = 171002
+	trigger = {
+		neighbour = BUR
+		neighbour = OLD
+		neighbour = GEL
+		NOT = { countrysize = 2 }
+	}
+	random = no
+	country = FRI
+	name = "EVENTNAME171002" #Vetkopers and Schieringers
+	desc = "EVENTHIST171002"
+	#-#In 1439 the factionalism which had abated for some years started once again in Gaasterland, the Vetkoper under Galamas against the Schieringer under Harinxmas. A violent conflict that continued until 1456. The dispute in Oostergo (1441–1444) was settled through a court of law under the influence of Groningen. Shortly thereafter the Donia War (1458-1463) began, followed by an explosion of other disputes, the towns Sneek now played a large role, some actively, some passively, Dokkum 1470, Leeuwarden in 1487. Attempts by the Emperor to settle the dispute proved fruitless.
+
+	date = { day = 12 month = july year = 1439 }
+	offset = 40
+	deathdate = { day = 29 month = january year = 1498 }
+
+	action_a = {
+		name = "ACTIONNAME171002A" #Stalemate
+		command = { type = stability value = -6 }
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = revolt which = 337 } #Friesen
+	}
+}
+
+#(1447 or 1463) Burgundian Claims on Friesen - Ahistorical
+event = {
+	id = 171001 #triggered by BUR_28006
+	random = no
+	country = FRI
+	name = "EVENTNAME171001" #Burgundian Claims on Friesen
+	desc = "EVENTHIST20313"
+	#-#The Emperor has made Philip the Good of Burgundy King of Lotharingia, reviving the ninth century Kingdom of Lothar. The emperor has granted some of our lands to Burgundy!
+
+	action_a = {
+		name = "DAMN"
+		command = { type = casusbelli which = BUR value = 2500 }
+		command = { type = CAV which = -2 value = 6000 }
+		command = { type = relation which = HAB value = -50 }
+	}
+}
+
+#(1464) CB's on Holland and Oldenburg
+event = {
+	id = 22016
+	random = no
+	country = FRI
+	name = "EVENTNAME22016" #Publication of the 'Coronike van Vrieslant'
+	desc = "EVENTHIST22016"
+	#-#In 1464 the 'Coronike van Vrieslant' was published in which the history of Friesland was greatly glorified and exagerated.
+
+	date = { day = 1 month = january year = 1464 }
+	offset = 300
+	deathdate = { day = 1 month = january year = 1465 }
+
+	action_a = {
+		name = "ACTIONNAME22016A" #We have no interest in ancient history
+		command = { type = relation which = BUR value = 75 }
+		command = { type = relation which = OLD value = 75 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME22016B" #Reclaim Ostfriesland and Westfriesland
+		command = { type = relation which = BUR value = -50 }
+		command = { type = relation which = OLD value = -50 }
+		command = { type = addcore which = 335 } #Oldenburg
+		command = { type = addcore which = 339 } #Holland
+		command = { type = stability value = -1 }
+		command = { type = setflag which = [HollandClaim] }
+	}
+}
+
+#(1476-1492) Powerful Citystate
+event = {
+	id = 171003
+	random = no
+	country = FRI
+	name = "EVENTNAME171003" #Groningen and the Ommelanden
+	desc = "EVENTHIST171003"
+	#-#The province of Groningen consists of two historical parts, the (Saxon) city of Groningen and the (Frisian) Ommelanden. They were united exactly 355 years. During the 15th century Groningen consolidated it's power in the Ommelanden, and there were continuous struggles with foreign threats. Holland, which was ruled by the Bavarian House by now, tried to get hold of Friesland and Groningen. The Bishop of Utrecht tried to effectuate his rights on Groningen and Drente. And a powerfull count in Oost-Friesland tried to conquer the Ommelanden. In the end all these attacks were repulsed, and Groningen became effectively an independent citystate. She had direct rule over the Gorecht and the Oldambts, and a strong treaty with the Ommelanden that gave her political and economic preponderance. Westerwolde was in pledge from the Bishop of Munster, and she had garrisons along the Eastern border. Large parts of Friesland were subordinate to her and in several cities in Friesland she had blockhouses with garrisons. Her coat of arms was a double imperial eagle, sign of an free imperial city. The sovereignty of the Bishop had become a hollow formality. In 1490, Groningen lost its major seaport of Delfzijl, this loss slowly ebbed the demise as Emden which lies on the opposite side of the river gained in precedence, Emden was now controlled by the Cirksena dynasty, counts of east Frisia.
+
+	date = { day = 22 month = july year = 1476 }
+	offset = 30
+	deathdate = { day = 29 month = january year = 1492 }
+
+	action_a = {
+		name = "ACTIONNAME171003A" #Hail free Frisians
+		command = { type = stability value = -1 }
+		command = { type = flagname which = "Groningen" }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = relation which = OLD value = -50 }
+		command = { type = relation which = GEL value = 20 }
+		command = { type = relation which = KLE value = 20 }
+		command = { type = provincetax which = 337 value = 1 } #Frisia
+	}
+}
+
+#(1493) Ratification of the Charlemagne-privilege
+event = {
+	id = 22017
+	random = no
+	country = FRI
+	name = "EVENTNAME22017" #Ratification of the Charlemagne-privilege
+	desc = "EVENTHIST22017"
+	#-#The legal basis for Friesland's lordlessness in this period was sought in the so-called 'Charlemagne-privilege'. In this now believed to be faked document, Charlemagne gives the Frisians the freedom to appoint their own lord. Emperor Maximilian ratified the document in 1493.
+
+	date = { day = 1 month = january year = 1493 }
+	offset = 300
+	deathdate = { day = 1 month = january year = 1494 }
+
+	action_a = {
+		name = "SPLENDID"
+		command = { type = stability value = 1 }
+		command = { type = flagname which = "" }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = provincetax which = 337 value = -1 } #Frisia
+	}
+}
+
+#(1498) Albrecht von Sachsen
+event = {
+	id = 22006 #triggered by MEI_22005 A / SAC_273036 A
+	random = no
+	country = FRI
+	name = "EVENTNAME22006" #Albrecht von Sachsen
+	desc = "EVENTHIST22006"
+	#-#In 1498 the civil war had grown to unacceptable proportions, prompting the Emperor to send in his loyal subject, Albrecht von Sachsen, to govern Friesland. He built a fortress in Leeuwarden when he consolidated his rule.
+
+	action_a = {
+		name = "ACTIONNAME22006A" #Accept him
+		command = { type = domestic which = centralization value = 2 } #reforms
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = serfdom value = 1 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = domestic which = mercantilism value = 1 }
+		command = { type = stability value = 1 }
+		command = { type = relation which = MEI value = 100 }
+		command = { type = wakemonarch which = 050501 } #Willebrord van Schaumburg
+		command = { type = wakemonarch which = 050502 } #Albrecht von Sachsen
+		command = { type = wakemonarch which = 050503 } #Hugo van Leijsenach
+		command = { type = wakemonarch which = 050504 } #Georg von Sachsen
+		command = { type = wakemonarch which = 050505 } #Hendrik van Stolberg
+		command = { type = wakemonarch which = 050506 } #Everwijn van Benthem
+		command = { type = province_revoltrisk which = 337 value = -5 } #The civil war lessened #Friesen
+		command = { type = sleepevent which = 22018 } #FRI: Albrecht von Sachsen
+	}
+}
+#(1498) If MEI and SAC don't exist - Ahistorical
+event = {
+	id = 22018
+	trigger = {
+		NOT = { exists = MEI }
+		NOT = { exists = SAC }
+	}
+	random = no
+	country = FRI
+	name = "EVENTNAME22006" #Albrecht von Sachsen
+	desc = "EVENTHIST22006"
+	#-#In 1498 the civil war had grown to unacceptable proportions, prompting the Emperor to send in his loyal subject, Albrecht von Sachsen, to govern Friesland. He built a fortress in Leeuwarden when he consolidated his rule.
+
+	date = { day = 1 month = january year = 1498 }
+	offset = 350
+	deathdate = { day = 29 month = december year = 1498 }
+
+	action_a = {
+		name = "ACTIONNAME22006A" #Accept him
+		command = { type = domestic which = centralization value = 2 } #reforms
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = serfdom value = 1 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = domestic which = mercantilism value = 1 }
+		command = { type = stability value = 1 }
+		command = { type = wakemonarch which = 050501 } #Willebrord van Schaumburg
+		command = { type = wakemonarch which = 050502 } #Albrecht von Sachsen
+		command = { type = wakemonarch which = 050503 } #Hugo van Leijsenach
+		command = { type = wakemonarch which = 050504 } #Georg von Sachsen
+		command = { type = wakemonarch which = 050505 } #Hendrik van Stolberg
+		command = { type = wakemonarch which = 050506 } #Everwijn van Benthem
+		command = { type = province_revoltrisk which = 337 value = -5 } #The civil war lessened #Friesen
+		command = { type = sleepevent which = 22005 } #MEI: The lordship of Friesland
+		command = { type = sleepevent which = 273036 } #SAC: The lordship of Friesland
+	}
+}
+
+#(1498-1580) Change of Language
+event = {
+	id = 171007
+	trigger = {
+		OR = {
+			vassal = { country = BUR country = FRI }
+			vassal = { country = SAC country = FRI }
+			vassal = { country = GEL country = FRI }
+			vassal = { country = MEI country = FRI }
+		}
+	}
+	random = no
+	country = FRI
+	name = "EVENTNAME171007" #Change of Language
+	desc = "EVENTHIST171007"
+	#-#Up until the fifteenth century Frisian was a language widely spoken and written in Frisia, but from 1500 onwards it became an almost exclusively oral language, mainly used in rural areas. This was in part due to the occupation of its stronghold, in 1498, by Duke Albert of Saxony, who replaced Frisian as the language of government with Dutch.
+
+	date = { day = 1 month = january year = 1498 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1580 }
+
+	action_a = {
+		name = "ACTIONNAME171007A" #Change of Linguistic status
+		command = { type = add_countryculture which = dutch }
+		command = { type = remove_countryculture which = german }
+	}
+}
+
+
+#(1500) Revolt
+event = {
+	id = 22019
+	trigger = {
+		monarch = 050502 #Albrecht von Sachsen
+	}
+	random = no
+	country = FRI
+	name = "EVENTNAME22019" #The revolt of 1500
+	desc = "EVENTHIST22019"
+	#-#In 1500 as many as 16,000 Frisians revolted against the rule of the duke of Saxony because of the carelessness of his son Heinrich. The revolt was too disorganized to accomplish anything substantial, Albrecht himself defeated the rebels.
+
+	date = { day = 1 month = january year = 1500 }
+	offset = 200
+	deathdate = { day = 12 month = september year = 1500 }
+
+	action_a = {
+		name = "OK"
+		command = { type = revolt which = 337 } #Friesen
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1504) Georg returns and imposes the Ordinance of Saksen
+event = {
+	id = 22020
+	trigger = {
+		monarch = 050504 #Georg von Sachsen
+	}
+	random = no
+	country = FRI
+	name = "EVENTNAME22020" #Georg and the 'Ordonnantie van Saksen'
+	desc = "EVENTHIST22020"
+	#-#In 1504 duke Georg came to Friesland to reform the government, to this end he enacted the 'Ordonnantie van Saksen' (Ordinance of Saxony). The Ordinance included extensive standards on how judicial and civil government should be handled, he appointed a highest Court seated in Leeuwarden to oversee the implementation of the Ordinance. Furthermore, he founded a mint and improved the infrastructure of the province. He also reformed the taxation system.
+
+	date = { day = 2 month = july year = 1504 }
+
+	action_a = {
+		name = "ACTIONNAME22020A" #Reform everything
+		command = { type = gainbuilding which = -2 value = courthouse }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = treasury value = -25 }
+		command = { type = stability value = -1 }
+		command = { type = infra value = 300 }
+		command = { type = loansize which = 250 }
+		command = { type = provincetax which = -2 value = 2 }
+		command = { type = revoltrisk which = 240 value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME22020B" #Reform everything but the judical system
+		command = { type = treasury value = 100 }
+		command = { type = stability value = -1 }
+		command = { type = infra value = 200 }
+		command = { type = loansize which = 250 }
+		command = { type = provincetax which = -2 value = 1 }
+		command = { type = revoltrisk which = 240 value = 3 }
+	}
+	action_c = {
+		name = "ACTIONNAME22020C" #Reform everything but the taxation system
+		command = { type = gainbuilding which = -2 value = courthouse }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = treasury value = -100 }
+		command = { type = infra value = 300 }
+		command = { type = loansize which = 250 }
+	}
+	action_d = {
+		name = "ACTIONNAME22020D" #Do not reform
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1512) The execution of Mockema and Herjuwsma
+event = {
+	id = 22021
+	trigger = {
+		monarch = 050506 #Everwijn van Benthem
+		OR = {
+			vassal = { country = MEI country = FRI }
+			vassal = { country = SAC country = FRI }
+		}
+	}
+	random = no
+	country = FRI
+	name = "EVENTNAME22021" #The execution of Mockema and Herjuwsma
+	desc = "EVENTHIST22021"
+	#-#In 1512 Everwijn van Benthem executed two prominent Frisian nobles by the names of Gerbrand Mockema and Jemme Herjuwsma because they supposedly had connections with the count of Ostfriesland. This execution made many Frisians lose their love for the Saxon government.
+
+	date = { day = 1 month = january year = 1512 }
+	offset = 350
+	deathdate = { day = 29 month = december year = 1512 }
+
+	action_a = {
+		name = "ACTIONNAME22021A" #Guilty!
+		command = { type = relation which = MEI value = -50 }
+		command = { type = relation which = SAC value = -50 }
+		command = { type = stability value = 1 }
+		command = { type = revoltrisk which = 34 value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME22021B" #Not guilty!
+		command = { type = stability value = -6 }
+	}
+}
+
+#(1514-1516) The sale of Friesland
+event = {
+	id = 22022
+	trigger = {
+		exists = GEL
+		OR = {
+			event = 22006 #FRI: Albrecht von Sachsen
+			event = 22018 #FRI: Albrecht von Sachsen
+		}
+	}
+	random = no
+	country = FRI
+	name = "EVENTNAME22007" #The sale of Friesland
+	desc = "EVENTHIST22022"
+	#-#Friesland agreed to be subjugated by Charles of Egmond, Duke of Guelders in October 1514. Heindrich sold his portion of West Friesland to his brother Georg, who sold it in May 1515, to Charles II of Burgundy. The Frisians were so outraged that their land had been sold to the count of Holland (their enemy-by-inheritance) that they called upon Charles of Egmond.
+
+	date = { day = 2 month = october year = 1514 }
+	offset = 25
+	deathdate = { day = 2 month = february year = 1516 }
+
+	action_a = {
+		name = "ACTIONNAME22022A" #Call upon Charles of Egmond (End Game)
+		command = { type = wakeleader which = 050800 } #Greate Pier (FRI)
+		command = { type = wakeleader which = 050801 } #Wijerd Jelckama (FRI)
+		command = { type = trigger which = 22023 } #GEL: The Frisians call upon us to assist them
+	}
+	action_b = {
+		name = "ACTIONNAME22022B" #Submit to Charles II
+		command = { type = trigger which = 22024 } #BUR: The vassalation of Friesland
+	}
+	action_c = {
+		name = "ACTIONNAME22022C" #Be free
+		command = { type = domestic which = innovative value = 2 }
+		command = { type = domestic which = centralization value = -3 }
+		command = { type = domestic which = serfdom value = -2 }
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = CAV which = -2 value = 1000 }
+		command = { type = war which = BUR }
+		command = { type = relation which = BUR value = -200 }
+		command = { type = relation which = GEL value = 50 }
+		command = { type = relation which = OLD value = 50 }
+		command = { type = wakemonarch which = 050515 } #Frisian Council *
+		command = { type = wakeleader which = 050800 } #Greate Pier (FRI)
+		command = { type = wakeleader which = 050801 } #Wijerd Jelckama (FRI)
+	}
+}
+#(1515) The sale of Friesland
+event = {
+	id = 22025 #triggered by MEI_22009 / SAC_273038
+	trigger = {
+		NOT = { exists = GEL }
+	}
+	random = no
+	country = FRI
+	name = "EVENTNAME22007" #The sale of Friesland
+	desc = "EVENTHIST22007"
+	#-#In 1515, Georg had become so dissapointed with being unable to control Friesland that he sold it to Charles II of Burgundy, who was trying to unite the Netherlands.
+
+	action_a = {
+		name = "ACTIONNAME22022B" #Submit to Charles II
+		command = { type = trigger which = 137050 } #BUR: Effect of the sale of Friesland
+	}
+	action_b = {
+		name = "ACTIONNAME22022C" #Be free
+		command = { type = domestic which = innovative value = 2 }
+		command = { type = domestic which = centralization value = -3 }
+		command = { type = domestic which = serfdom value = -2 }
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = CAV which = -2 value = 1000 }
+		command = { type = war which = BUR }
+		command = { type = relation which = BUR value = -200 }
+		command = { type = relation which = GEL value = 50 }
+		command = { type = relation which = OLD value = 50 }
+		command = { type = wakemonarch which = 050515 } #Frisian Council *
+		command = { type = wakeleader which = 050800 } #Greate Pier (FRI)
+		command = { type = wakeleader which = 050801 } #Wijerd Jelckama (FRI)
+	}
+}
+
+#(1550-1630) Province Language status
+event = {
+	id = 171008
+	trigger = {
+		OR = { #Edict of Blood
+			event = 337028
+			event = 337029
+			event = 337030
+			event = 337031
+		}
+	}
+	random = no
+	country = FRI
+	name = "EVENTNAME171008" #Province Language status
+	desc = "EVENTHIST171008"
+	#-#When the Netherlands became independent, in 1585, the Frisian language did not regain its former status, the process of language reform to dutch had already started 30 years previously. The reason for this was the rise of Holland as the dominant part of the Netherlands, and its language, Dutch, as the dominant language in judicial, administrative and religious affairs.
+
+	date = { day = 1 month = january year = 1550 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1630 }
+
+	action_a = {
+		name = "ACTIONNAME171008A" #Change of Province status
+		command = { type = provinceculture which = 337 value = dutch }
+		command = { type = sleepevent which = 338490 } #ProvinceSpec*337: Frisian province change
+	}
+}
+
+#(1559-1648) Creation of the Dutch Republic
+event = {
+	id = 28001
+	trigger = {
+		owned = { province = 337 data = -1 }
+		owned = { province = 338 data = -1 }
+		owned = { province = 339 data = -1 }
+		control = { province = 339 data = -1 }
+		owned = { province = 340 data = -1 }
+		NOT = { exists = HOL }
+	}
+	random = no
+	country = FRI
+	name = "EVENTNAME3900" #Creation of the Dutch Republic
+	desc = "EVENTHIST28001"
+	#-#The monopoly on positions of authority by those born in Friesen, many of whom abused their positions for personal profit, has become a source of resentment in the remainder of the low countries. Demands for power to be devolved to the cities were presented by the burghers of Amsterdam, Haarlem and Delft. Most of the remaining cities outside Friesen and some of the rural nobility soon signed up to this League of Holland. We have two courses of action to choose between. Firstly, we could replace some of our officials with wavering individuals from within the League, thus dividing the League, removing one of their key grievances and cleansing our bureaucracy of graft. Alternatively, we might have to accede to the League's demand to share power.
+
+	date = { day = 1 month = january year = 1559 }
+	offset = 3600
+	deathdate = { day = 1 month = january year = 1648 }
+
+	action_a = {
+		name = "ACTIONNAME28002A" #Become Holland
+		command = { type = inflation value = 10 }
+		command = { type = stability value = -1 }
+		command = { type = flagname which = "" }
+		command = { type = country which = HOL }
+		command = { type = add_countryculture which = dutch } #just in case
+		command = { type = remove_countryculture which = german }
+		command = { type = flagname which = "Princevlag" }
+		command = { type = setflag which = [Princevlag] }
+		command = { type = capital which = 339 } #Holland
+		command = { type = sleepevent which = 3900 } #HOL: Creation of the Dutch Republic
+		command = { type = domestic which = CENTRALIZATION value = -5 }
+		command = { type = domestic which = ARISTOCRACY value = -3 }
+		command = { type = domestic which = SERFDOM value = -2 }
+		command = { type = domestic which = MERCANTILISM value = -2 }
+		command = { type = domestic which = INNOVATIVE value = 2 }
+		command = { type = domestic which = QUALITY value = -3 }
+		command = { type = addcore which = 337 } #Friesen
+		command = { type = addcore which = 338 } #Geldre
+		command = { type = addcore which = 339 } #Holland
+		command = { type = addcore which = 340 } #Zeeland
+		command = { type = addcore which = 378 } #Brabant
+		command = { type = addcore which = 380 } #Flandern
+	}
+	action_b = {
+		name = "ACTIONNAME28001B" #Remain as Friesland
+		command = { type = vp value = 200 }
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 48 value = 8 }
+		command = { type = domestic which = CENTRALIZATION value = 3 }
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = domestic which = SERFDOM value = 1 }
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = gainbuilding which = -1 value = bailiff }
+		command = { type = gainbuilding which = -1 value = bailiff }
+		command = { type = gainbuilding which = -1 value = bailiff }
+		command = { type = gainbuilding which = -1 value = bailiff }
+		command = { type = gainbuilding which = -1 value = courthouse }
+		command = { type = gainbuilding which = -1 value = courthouse }
+	}
+}
+
+#(1559-1648) The Dutch Republic
+event = {
+	id = 3808 #triggered by HOL_3900
+	random = no
+	country = FRI
+	name = "EVENTNAME3806" #The Dutch Republic
+	desc = "EVENTHIST3806"
+	#-#A united Dutch Republic has broken free from the oppressors. This is a chance to unite the Netherlands at last... Shall we join our brothers and sisters in the republic?
+
+	action_a = {
+		name = "ACTIONNAME3806A" #Join the new Republic (End Game)
+		command = { type = trigger which = 3809 } #HOL: Friesland joins the Republic
+	}
+	action_b = {
+		name = "ACTIONNAME3806B" #Walk our own path
+		command = { type = relation which = HOL value = -100 }
+		command = { type = stability value = -2 }
+	}
+}
+
+#(1575-1578) The future of Frisia
+event = {
+	id = 171000
+	trigger = {
+		exists = OLD
+	}
+	random = no
+	country = FRI
+	name = "EVENTNAME171000" #Frisian future
+	desc = "EVENTHIST171000"
+	#-#The last ruler of Friesland was Maria of Jever, who ruled until 1575. After her death, Friesland became a part of Oldenburg, as per her instructions which where initiated by Hero Oomkens von Esens who was a Frisian nobleman of Wittmund. Hero arranged in 1489 by his marriage to Armgard Countess of Oldenburg a set of instructions that upon the lack of heirs within the old Frisian aristocracy, that Frisia lands would become a part of Oldenburg.
+
+	date = { day = 18 month = august year = 1575 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1578 }
+
+	action_a = {
+		name = "ACTIONNAME171000A" #Frisian aristocracy is no more (End Game)
+		command = { type = revolt which = 337 } #populace worries #Friesen
+		command = { type = trigger which = 247008 } #OLD: Inherit Frisia
+	}
+	action_b = {
+		name = "ACTIONNAME171000B" #Remain free
+		command = { type = relation which = OLD value = -100 }
+		command = { type = stability value = -3 }
+		command = { type = treasury value = -300 } #reforming a new government
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 171011

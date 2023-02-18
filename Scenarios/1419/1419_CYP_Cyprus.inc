@@ -4,7 +4,7 @@
 
 country = {
 	tag = CYP
-	ai = "SmallTrade1.ai"
+	ai = "SmallTrade1.txt"
 	flagname = "Lusignan"
 	colonialattempts = 0
 	colonialnation = no

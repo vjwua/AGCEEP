@@ -4,7 +4,7 @@
 
 country = {
 	tag = VIJ
-	ai = "SmallTrade1.ai"
+	ai = "SmallTrade1.txt"
 	policy = {
 		aristocracy = 7
 		centralization = 5
@@ -24,16 +24,16 @@ country = {
 	treasury = 154
 	inflation = 0
 	merchants = 0.083333
-	religion = { type = hinduism }
+	religion = { type = hindu }
 	culture = {
-		type = dravidian
-		type = cambodian
-		type = lithuanian
+		type = kannada
+		type = telugu
+		type = tamil
 	}
 	diplomacy = {
-		relation = { tag = HYD value = -100 }
+		relation = { tag = GOL value = -100 }
 		relation = { tag = AHM value = -100 }
-		relation = { tag = DAM value = -100 }
+		relation = { tag = BIJ value = -100 }
 		relation = { tag = POR value = 50 }
 	}
 	knownprovinces = {

@@ -4,7 +4,7 @@
 
 country = {
 	tag = PAP
-	ai = "SmallCRC0.ai"
+	ai = "SmallCRC0.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -17,7 +17,7 @@ country = {
 	religion = { type = counterreform }
 	culture = { type = italian }
 	diplomacy = {
-		relation = { tag = PAM value = 50 }
+		relation = { tag = MOD value = 50 }
 		relation = { tag = SPA value = 50 }
 		relation = { tag = HAB value = 50 }
 		relation = { tag = POL value = 100 }

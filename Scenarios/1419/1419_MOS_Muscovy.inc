@@ -4,7 +4,7 @@
 
 country = {
 	tag = MOS
-	ai = "MOS_1419_Standard.ai"
+	ai = "MOS_1419_Standard.txt"
 	colonialattempts = 0
 	colonialnation = yes
 	major = no
@@ -17,7 +17,7 @@ country = {
 	religion = { type = orthodox }
 	culture = {
 		type = russian
-		type = naskapi
+		type = tatar
 	}
 	diplomacy = {
 		relation = { tag = STE value = 120 refusetrade = no access = yes }

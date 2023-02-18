@@ -1,0 +1,107 @@
+#Khiva (KHI)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1500) The Uzbek Offensive
+#by Garbon
+event = {
+	id = 303001
+	trigger = {
+		OR = {
+			event = 325017
+			event = 325018
+		}
+		OR = {
+			control = { province = 1533 data = UZB } #Khiva
+			control = { province = 1533 data = REB } #Khiva
+		}
+	}
+	random = no
+	country = KHI
+	name = "EVENTNAME303001" #The Uzbek Offensive
+	desc = "EVENTHIST303001"
+	#-#In 1431, Abul Khayr of the Uzbeks launched an offensive on the city of Khwarizm. With its capture he established Uzbek control over the region.
+
+	date = { day = 1 month = march year = 1419 }
+	offset = 1
+	deathdate = { day = 1 month = march year = 1500 }
+
+	action_a = {
+		name = "ACTIONNAME303001A" #Our days of freedom are over (End Game)
+		command = { type = cedeprovince which = UZB value = 521 } #Karabogaz
+		command = { type = cedeprovince which = UZB value = 522 } #Khwarizm
+		command = { type = trigger which = 325019 } #UZB: The Uzbek Offensive
+	}
+}
+
+#(1510-1820) The Khiva Khanate
+#by Garbon
+event = {
+	id = 303000 #triggered by UZB_325000
+	random = no
+	country = KHI
+	name = "EVENTNAME303000" #The Khiva Khanate
+	desc = "EVENTHIST303000"
+	#-#While Shaibani Khan was busy conquering the Timurid states of Central Asia and Khorasan, the nomadic Uzbeks in the west became restless. In 1511, the two sultans, Ilbars and Balbars conquered the Khwarazm region and founded the Khiva Khanate. Unsurprisingly, this Khanate would become a thorn in the side of the late Bukhara Khanate and was frequently at odds with it.
+
+	action_a = {
+		name = "ACTIONNAME303000A" #We are free!
+		command = { type = remove_countryculture which = turkoman }
+		command = { type = add_countryculture which = uzbek }
+		command = { type = add_countryculture which = turkoman }
+		command = { type = CAV which = -2 value = 10000 }
+		command = { type = breakvassal which = UZB }
+		command = { type = trigger which = 325001 } #UZB: Khiva and The Western Provinces
+		command = { type = relation which = BUK value = -300 }
+		command = { type = relation which = UZB value = -300 }
+		command = { type = relation which = PER value = 200 }
+		command = { type = treasury value = 50 }
+	}
+}
+
+#(1511-1820 or 1561-1820) Prepare to defend
+#by Garbon
+event = {
+	id = 65024 #triggered by UZB_65023 B or BUK_352002 B
+	random = no
+	country = KHI
+	name = "EVENTNAME65024" #Prepare to defend
+	desc = "EVENTHIST65023"
+	#-#People of Khiva were always openly hostile to rulers of Bukhara. This hostility goes back to the times of Abu'l Khayr, when part of the tribes refused to follow him, and remained settled in the areas around Khiva and Urganj. Subsequently the area was reconquered by Muhammad Shaibani, and later on Ubaid'Allah, which didn't bring much popularity to the Bukharan rulers. The latter, however, never staked any claims to these lands, and used their military supremacy to keep Khiva vassalized, and protect the trade with Muscovy.
+
+	action_a = {
+		name = "ACTIONNAME65024A" #Raise the Army
+		command = { type = inf which = -1 value = 5000 }
+		command = { type = cav which = -3 value = 8000 }
+		command = { type = domestic which = centralization value = 1 }
+	}
+}
+
+#(1561-1820) The Khiva Khanate - Ahistorical
+#by Garbon
+event = {
+	id = 303002 #triggered by BUK_352000
+	random = no
+	country = KHI
+	name = "EVENTNAME303000" #The Khiva Khanate
+	desc = "EVENTHIST303000"
+	#-#While Shaibani Khan was busy conquering the Timurid states of Central Asia and Khorasan, the nomadic Uzbeks in the west became restless. In 1511, the two sultans, Ilbars and Balbars conquered the Khwarazm region and founded the Khiva Khanate. Unsurprisingly, this Khanate would become a thorn in the side of the late Bukhara Khanate and was frequently at odds with it.
+
+	action_a = {
+		name = "ACTIONNAME303000A" #We are free!
+		command = { type = remove_countryculture which = turkoman }
+		command = { type = add_countryculture which = uzbek }
+		command = { type = add_countryculture which = turkoman }
+		command = { type = CAV which = -2 value = 10000 }
+		command = { type = breakvassal which = BUK }
+		command = { type = trigger which = 352001 } #BUK: Khiva and The Western Provinces
+		command = { type = relation which = BUK value = -300 }
+		command = { type = relation which = UZB value = -300 }
+		command = { type = relation which = PER value = 200 }
+		command = { type = treasury value = 50 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 303003

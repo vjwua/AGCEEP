@@ -3,7 +3,7 @@ Bundled version with "For the Glory"
 
 #-----------------------------------------------------------------------------------------------
 
-We are trying to make the best mod we can focusing on History, alternative history and gameplay...not necessarily in that order.
+We are trying to make the best mod we can focusing on History, alternative history and gameplay... not necessarily in that order.
 
 Options:
 
@@ -16,6 +16,24 @@ Use Random events:
 
 Alternative Events:
   If clicked YES, then certain Fantasy events will be enabled that will allow the formation of the Kingdom of Germany, the formation of the Kingdom of Italy, an Independent Wales, and a new crusade by the Order of St. John and England.
+
+#-----------------------------------------------------------------------------------------------
+
+The High Council are the users designated with compiling and curating the AGCEEP. They are: 
+
+Twoflower
+doktarr
+Mad King James
+ribbon22
+Garbon
+Sun_Zi_36
+Norrefeldt
+dharper
+YodaMaster
+Fodoron
+mandead
+
+Additional HC members may be voted in by consensus of current active members.
 
 #-----------------------------------------------------------------------------------------------
 
@@ -32,4 +50,4 @@ John_Keats, Ryoken69, Johnny Canuck, Steph, Jessums, Artemis667, Third Angel, Pr
 Dracleath, Aetius, Neuromancer, Suleyman, Aylo1, Laur, Wido, Bordic, Alkar, Yarovit, Greebo, Emre Yigit,
 Malodini, Chimera, btg, nelly664, George Borges, Raudex, Wiande, Aegnor, Solmyr, BarristerBoy, Andravius,
 Toio, Todor, Yacine Gouaref (cpt frakas), Kasperus, George Borges, Zius, zBla, Txini, Maulet, Chema_Cagi,
-Moragues, Xaloc, Sulayman, Barbalele, Jan Zamojsky, Jester, others and all HC members!
+Moragues, Xaloc, Sulayman, Barbalele, Jan Zamojsky, Jester, ConjurerDragon, Ayeshteni, vjwua, others and all HC members!

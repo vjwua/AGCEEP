@@ -1,0 +1,281 @@
+#Bremen (BRE)
+
+#See AGCEEP_Alt_Germany.txt for KoG Alternative events
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1429) Friesland still supports the pirates - Ahistorical
+event = {
+	id = 133010 #triggered by FRI_171005 B
+	trigger = {
+		NOT = {
+			war = { country = FRI country = BRE }
+		}
+	}
+	random = no
+	country = BRE
+	name = "EVENTNAME222002" #Friesland still supports the pirates
+	desc = "EVENTHIST222002"
+	#We cannot tolerate such activities...
+
+	action_a = {
+		name = "ACTIONNAME222002A" #Act, but not at once
+		command = { type = casusbelli which = FRI value = 72 }
+	}
+	action_b = {
+		name = "WAR"
+		command = { type = war which = FRI }
+		command = { type = relation which = DAN value = 5 }
+		command = { type = relation which = MEC value = 25 }
+		command = { type = relation which = SHL value = 15 }
+		command = { type = relation which = OLD value = 5 }
+	}
+}
+
+#(1466) Archbishop Heinrich II Elected Bishop of Münster
+event = {
+	id = 133000
+	#trigger = {
+		#exists = BRG
+		#NOT = { war = { country = BRG country = BRE } }
+	#}
+	random = no
+	country = BRE
+	name = "EVENTNAME133000" #Archishop Heinrich II becomes Bishop of Münster
+	desc = "EVENTHIST133000"
+	#-#In 1466 archbishop Heinrich II of Bremen became Bishop of Münster. He resided in Münster and neglected Bremen for the bishopric of Münster.
+
+	date = { day = 1 month = january year = 1466 }
+	offset = 300
+	deathdate = { day = 1 month = january year = 1466 }
+
+	action_a = {
+		name = "OK"
+		#command = { type = relation which = BRG value = 50 }
+		#command = { type = trigger which = 235001 } #BRG: Bishop Heinrich, Archbishop of Bremen
+		command = { type = vp value = 50 }
+	}
+}
+
+#Archbishop Heinrich II - part II
+#event = {
+#	id = 133001
+#	trigger = {
+#		event = 235001 #BRG: Bishop Heinrich, Archbishop of Bremen
+#		NOT = { alliance = { country = BRG country = BRE }}
+#	}
+#	random = no
+#	country = BRE
+#	name = "Archbishop Heinrich."
+#	desc = "With his new throne Heinrich brought Münster into Bremen's alliance."
+#
+#	date = { day = 1 month = january year = 1467 }
+#
+#	action_a = {
+#		name = "OK"
+#		command = { type = alliance which = BRG }
+#	}
+#}
+
+#(1511-1558) Brunswick-Lüneburg archbishops of Bremen
+event = {
+	id = 133002
+	trigger = {
+		exists = HAN
+		NOT = { war = { country = BRE country = HAN } }
+	}
+	random = no
+	country = BRE
+	name = "EVENTNAME133002" #The Brunswick-Lüneburg archbishops
+	desc = "EVENTHIST133002"
+	#-#In 1511 Christoph of Brunswick-Lüneburg, a brother of the Duke, was elected Archbishop of Bremen. His successor Georg, elected in 1558, was a relative of him. Thereby, Bremen came under the influence of the Welfs.
+
+	date = { day = 4 month = december year = 1511 }
+	offset = 30
+	deathdate = { day = 21 month = january year = 1558 }
+
+	action_a = {
+		name = "OK"
+		#command = { type = breakvassal which = BRG } #BRG is currently Berg...
+		command = { type = relation which = HAN value = 50 }
+		command = { type = dynastic which = HAN }
+		command = { type = trigger which = 181002 } #HAN: Christoph of Brunswick-Lüneburg is elected Archbishop of Bremen
+	}
+}
+
+#(1511-1558) Christoph of Brunswick-Lüneburg is elected Archbishop of Bremen
+event = {
+	id = 133003
+	trigger = {
+		event = 133002 #BRE: The Brunswick-Lüneburg archbishops
+		NOT = {
+			event = 181002 #HAN: Brunswick Archbishops in Bremen
+			alliance = { country = BRE country = HAN }
+			war = { country = BRE country = HAN }
+		}
+	}
+	random = no
+	country = BRE
+	name = "EVENTNAME133003" #Christoph of Brunswick-Lüneburg is elected Archbishop of Bremen
+	desc = "EVENTHIST133003"
+	#-#With his new throne Christoph brought Brunswick into Bremen's alliance
+
+	date = { day = 29 month = december year = 1511 }
+	offset = 20
+	deathdate = { day = 21 month = january year = 1558 }
+
+	action_a = {
+		name = "VIVAT"
+		command = { type = alliance which = HAN }
+		command = { type = DIP which = 2 value = 12 }
+	}
+}
+
+#(1518-1520) Response of the Papacy to Luther
+event = {
+	id = 133009 #triggered by 102
+	random = no
+	country = BRE
+	name = "EVENTNAME251074" #Response of the Papacy to Luther
+	desc = "EVENTHIST251074"
+	#-#After receiving checked for heresy and forwarded Luther's letter, Leo X responded over the next three years, ''with great care as is proper,'' by deploying a series of papal theologians and envoys against Luther. Perhaps he hoped the matter would die down of its own accord, because in 1518 he dismissed Luther as ''a drunken German'' who ''when sober will change his mind''.
+
+	action_a = {
+		name = "ACTIONNAME251074A" #Luther will change his mind...
+		command = { type = religion which = counterreform }
+	}
+}
+
+#(1566) Heinrich of Saxony-Lauenburg, Archbishop of Bremen
+event = {
+	id = 133004
+	trigger = {
+		vassal = { country = HAN country = BRE }
+	}
+	random = no
+	country = BRE
+	name = "EVENTNAME133004" #Heinrich of Saxony-Lauenburg, Archbishop of Bremen
+	desc = "EVENTHIST133004"
+	#-#With the election of the Askanian Heinrich of Saxony-Lauenburg as administrator of the protestant archbishopric, the Welfs lost their influence in Bremen.
+
+	date = { day = 4 month = december year = 1566 }
+
+	action_a = {
+		name = "OK"
+		command = { type = breakvassal which = HAN }
+		command = { type = breakdynastic which = HAN }
+		command = { type = relation which = HAN value = -70 }
+	}
+}
+
+#(1585-1596) Archbishops of Bremen from Holstein-Gottorp
+event = {
+	id = 133005
+	trigger = {
+		exists = SHL
+		NOT = { war = { country = BRE country = SHL } }
+	}
+	random = no
+	country = BRE
+	name = "EVENTNAME133005" #Archbishops from Holstein-Gottorp
+	desc = "EVENTHIST133005"
+	#-#In 1585 Johann Adolf, successor to the Duchy of Holstein-Gottorp was elected Archbishop of Bremen. Six years after becoming Duke, in 1596, he let the Archbishopric to his son Johann Friedrich. Both pursued a policy in the interest of Holstein-Gottorp and its Danish relatives.
+
+	date = { day = 28 month = april year = 1585 }
+	offset = 20
+	deathdate = { day = 28 month = august year = 1596 }
+
+	action_a = {
+		name = "OK"
+		command = { type = dynastic which = DAN }
+		command = { type = relation which = DAN value = 50 }
+		command = { type = dynastic which = SHL }
+		command = { type = relation which = SHL value = 50 }
+		command = { type = trigger which = 279009 } #SHL: Johann Adolf of Holstein-Gottorp is elected Archbishop of Bremen
+	}
+}
+
+#(1585-1596) Johann Adolf of Holstein-Gottorp is elected Archbishop of Bremen
+event = {
+	id = 133006
+	trigger = {
+		event = 133005 #BRE: Archbishops from Holstein-Gottorp
+		NOT = {
+			event = 279009 #SHL: Johann Adolf of Holstein, Archbishop of Bremen
+			alliance = { country = BRE country = SHL }
+			war = { country = BRE country = SHL }
+		}
+	}
+	random = no
+	country = BRE
+	name = "EVENTNAME133006" #Johann Adolf of Holstein-Gottorp is elected Archbishop of Bremen
+	desc = "EVENTHIST133006"
+	#-#With his new throne Johann Adolf brought Holstein-Gottorp into Bremen's alliance
+
+	date = { day = 29 month = april year = 1585 }
+	offset = 20
+	deathdate = { day = 28 month = august year = 1596 }
+
+	action_a = {
+		name = "VIVAT"
+		command = { type = alliance which = SHL }
+		command = { type = DIP which = 2 value = 12 }
+	}
+}
+
+#(1634-1648) Fredrik of Denmark elected Archbishop
+event = {
+	id = 133007
+	trigger = {
+		exists = DAN
+		NOT = { war = { country = BRE country = DAN } }
+	}
+	random = no
+	country = BRE
+	name = "EVENTNAME133007" #Fredrik III of Denmark, the last Archbishop of Bremen
+	desc = "EVENTHIST133007"
+	#-#In 1634, the future King Fredrik III of Denmark was chosen as Archbishop of Bremen. He did however not have much control over his new possession that was devastated by the Thirty Years War and occupied by pillaging mercenary troops.
+
+	date = { day = 3 month = september year = 1634 }
+	offset = 20
+	deathdate = { day = 9 month = april year = 1648 }
+
+	action_a = {
+		name = "OK"
+		command = { type = revolt which = -2 }
+		command = { type = relation which = DAN value = 50 }
+		command = { type = trigger which = 159100 } #DAN: Fredrik of Denmark is elected Archbishop of Bremen
+	}
+}
+
+#(1634-1648) Fredrik of Denmark is elected Archbishop of Bremen
+event = {
+	id = 133008
+	trigger = {
+		event = 133007 #BRE: Fredrik III of Denmark, the last Archbishop of Bremen
+		NOT = {
+			event = 159100 #DAN: Fredrik III of Denmark, Archbishop of Bremen
+			alliance = { country = BRE country = DAN }
+			war = { country = BRE country = DAN }
+		}
+	}
+	random = no
+	country = BRE
+	name = "EVENTNAME133008" #Fredrik of Denmark is elected Archbishop of Bremen
+	desc = "EVENTHIST133008"
+	#-#With his new throne Fredrik brought Denmark into Bremen's alliance
+
+	date = { day = 29 month = september year = 1634 }
+	offset = 20
+	deathdate = { day = 9 month = april year = 1648 }
+
+	action_a = {
+		name = "VIVAT"
+		command = { type = alliance which = DAN }
+		command = { type = DIP which = 2 value = 12 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 133011

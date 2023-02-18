@@ -4,7 +4,7 @@
 
 country = {
 	tag = PER
-	ai = "PER_1587_Abbas.ai"
+	ai = "PER_1587_Abbas.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -14,7 +14,7 @@ country = {
 	treasury = 200
 	inflation = 0
 	merchants = 0
-	religion = { type = shiite }
+	religion = { type = shia }
 	culture = {
 		type = turkish
 		type = persian

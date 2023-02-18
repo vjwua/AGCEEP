@@ -1,0 +1,91 @@
+#Brunei (BEI)
+
+#See AGCEEP_Alt_Iberia.txt for Alternative events involving Portugal
+
+#-----------------------------------------------------------------------------------------------
+
+#(1478-1820) The End of the Majapahit Empire
+event = {
+	id = 126000 #triggered by MTR_234000 A
+	trigger = {
+		vassal = { country = MTR country = BEI }
+	}
+	country = BEI
+	random = no
+	name = "EVENTNAME80707" #The End of the Majapahit Empire
+	desc = "EVENTHIST80707"
+	#-#The Majapahit Empire is dead. We owe their successors nothing.
+
+	action_a = {
+		name = "ACTIONNAME80707A" #We shall rule ourselves
+		command = { type = breakvassal which = MTR }
+	}
+}
+
+#(1578-1820) The loss of Palawan
+#by Fodoron
+event = {
+	id = 126001
+	trigger = {
+		owned = { province = 694 data = -1 } #Palawan
+		control = { province = 694 data = SPA } #Palawan
+		event = 285165 #SPA: War on Islam at Philippines
+	}
+	random = no
+	country = BEI
+	name = "EVENTNAME126001" #The loss of Palawan
+	desc = "EVENTHIST126001"
+	#-#At the height of his power, the authority of the sultan of Brunei had been recognized at the island of Palawan in the Philippines. With the arrival of the Spaniards, these had started attacking the island, and installed themselves in the Northern part of the island. In 1578 Francisco de Sande invaded Brunei and conquered the capital after destroying the fleet, although he then had to leave due to a beriberi outbreak that decimated his army. The Spanish advances in Palawan over the next decades, and the lack of help from Brunei, ended the authority of the sultan there. In 1749, the sultanate of Brunei formally recognized what had been a fact for a long time, and ceded Palawan to Spain.
+
+	date = { day = 0 month = january year = 1578 }
+	offset = 100
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME126001A" #Damn Christians
+		command = { type = cedeprovince which = SPA value = 694 } #Palawan
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1668-1820) Seek help from Sulu
+#MKJ(?)
+event = {
+	id = 80713
+	trigger = {
+		owned = { province = 695 data = -1 }
+		owned = { province = 694 data = -1 }
+	}
+	country = BEI
+	random = no
+	name = "EVENTNAME80713" #Seek help from Sulu
+	desc = "EVENTHIST80713"
+	#-#In 1668 problems with the succession in Brunei required assistance from Sulu. We can avert civil war if we divide the Kingdom with the rival heir becoming part of Sulu.
+
+	date = { day = 1 month = january year = 1668 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME80713A" #Yes, avoid civil war
+		command = { type = stability value = 3 }
+		command = { type = independence which = SUL }
+		command = { type = removecore which = 694 } #Palawan
+		command = { type = removecore which = 695 } #Sabah
+	}
+	action_b = {
+		name = "ACTIONNAME80713B" #We shall settle this through arms!
+		command = { type = stability value = -6 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revoltrisk which = 60 value = 10 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 126002

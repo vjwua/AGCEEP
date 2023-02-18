@@ -1,0 +1,392 @@
+#Kakheti (KAK)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1464-1466) Split - if Kakheti is the break-away state
+event = {
+	id = 349000 #triggered by GEO_175005 B
+	random = no
+	country = KAK
+	name = "EVENTNAME349000" #Georgia falls apart
+	desc = "EVENTHIST349000"
+	#-#That is something only the ai is going to see.
+
+	action_a = { name = "OK"
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = CAV which = -2 value = 2500 }
+		command = { type = relation which = IMR value = -150 }
+		command = { type = breakvassal which = IMR }
+	}
+}
+
+#(1584-1600) Georgia threatened
+event = {
+	id = 349008
+	trigger = {
+		exists = PER
+		exists = TUR
+		exists = RUS
+		owned = { province = 457 data = RUS } #Russia has Astrakhan
+		NOT = {
+			exists = BYZ #no threat for the faith
+			exists = TRE
+			countrysize = 5 #too strong
+		}
+	}
+	random = no
+	country = KAK
+	name = "EVENTNAME349008" #Georgia threatened
+	desc = "EVENTHIST349008"
+	#-#For centuries Georgia was an enclave of Christianity in the Caucasian mountains. As the last Byzantine states succumbed, the country became isolated from the rest of the world, surrounded by potential enemies and fighting feudal quarrels. As Persia emerged in the east and the Osman power grew in the west, Georgia was plunged into the front lines between the two titans. In the meantime Russia grew in strengh, having reached as far as Caspian Sea. Hoping to receive substantial aid and save his faith, Alexander, King of the still independent Kakheti, asked the tsar to become the overlord of Georgia.
+
+	date = { day = 1 month = march year = 1584 }
+	offset = 36
+	deathdate = { day = 1 month = january year = 1600 }
+
+	action_a = {
+		name = "ACTIONNAME349008A" #Submit to Russia
+		command = { type = stability value = -1 }
+		command = { type = relation which = RUS value = 50 }
+		command = { type = relation which = TUR value = -50 }
+		command = { type = relation which = PER value = -25 }
+		command = { type = breakvassal which = TUR }
+		command = { type = breakvassal which = PER }
+		command = { type = breakvassal which = CRI }
+		command = { type = breakvassal which = IMR }
+		command = { type = trigger which = 271001 } #RUS: Georgians ask our protection
+	}
+	action_b = {
+		name = "ACTIONNAME349008B" #Rely on our strengh
+		command = { type = stability value = 2 }
+		command = { type = treasury value = -50 }
+		command = { type = INF which = -2 value = 2500 }
+		command = { type = CAV which = -2 value = 7500 }
+		command = { type = relation which = TUR value = -25 }
+		command = { type = relation which = PER value = -25 }
+		command = { type = domestic which = OFFENSIVE value = 2 }
+		command = { type = domestic which = INNOVATIVE value = -1 }
+	}
+	action_c = {
+		name = "ACTIONNAME349008C" #Appease the infidels
+		command = { type = stability value = -2 }
+		command = { type = relation which = TUR value = 50 }
+		command = { type = relation which = PER value = 50 }
+		command = { type = treasury value = -100 }
+	}
+}
+#(1584-1600) Kakheti benefits from vassalization
+event = {
+	id = 349011 #triggered by RUS_271001 A
+	random = no
+	country = KAK
+	name = "EVENTNAME349011" #Russian aid arrives
+	desc = "EVENTHIST349011"
+	#-#Unlike his successors, Feodor kept his word and sent aid to the King.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = stability value = 3 }
+		command = { type = domestic which = INNOVATIVE value = 1 } #cultural contact
+		command = { type = domestic which = OFFENSIVE value = -1 }
+		command = { type = relation which = RUS value = 150 }
+		command = { type = fortress which = -1 value = 1 }
+		command = { type = INF which = -2 value = 2500 }
+		command = { type = ART which = -2 value = 15 }
+		command = { type = land value = 250 }
+		command = { type = infra value = 500 }
+		command = { type = treasury value = 100 }
+	}
+}
+#(1584-1600) Russians reject
+event = {
+	id = 349012 #triggered by RUS_271001 B
+	random = no
+	country = KAK
+	name = "EVENTNAME349012" #Russia rejects the vassalization of Kakheti
+	desc = "EVENTHIST349012"
+	#-#Struggling itself and fearing to anger the mighty Turks, the 'Third Rome' didn't come to Georgia's aid. The Kingdom was left to find a more pragmatic way to survive.
+
+	action_a = {
+		name = "ACTIONNAME349012A" #We shall withstand the storm alone!
+		command = { type = stability value = -1 }
+		command = { type = domestic which = OFFENSIVE value = 1 }
+		command = { type = land value = 200 }
+	}
+}
+
+#(1602-1610) Kakheti Regicide
+event = {
+	id = 349013
+	trigger = {
+		event = 349011 #Georgia is a russian vassal
+		owned = { province = 487 data = PER } #Persia has Azerbaijan
+		owned = { province = 473 data = PER } #Persia has vanilla Kurdistan
+		control = { province = 487 data = PER }
+		control = { province = 473 data = PER }
+	}
+	random = no
+	country = KAK
+	name = "EVENTNAME349013" #Regicide in Kakheti
+	desc = "EVENTHIST349013"
+	#-#As Persia regained its strength it set an eye on its northern borderlands once again, into regions where Russia had expanded. Prince Konstantin, the son of Alexander of Kakheti, had been educated at the Persian court since he was young and converted to Shi'ite Islam. Shah Abbas ordered him to seize the throne and sent an army into Georgia to help fighting the Turks. Having a garrison of only forty russian soldiers Alexander could not dare to offend Abbas, whose Persians soon killed him along with his son Giorgi in order to enthrone Konstantin the very same day. Russia could not really interfere as it slowly but surely went into a civil war over its own throne.
+
+	date = { day = 1 month = january year = 1602 }
+	offset = 36
+	deathdate = { day = 1 month = january year = 1606 }
+
+	action_a = {
+		name = "ACTIONNAME349013A" #Konstantin becomes King
+		command = { type = breakvassal which = RUS }
+		command = { type = relation which = RUS value = -50 }
+		command = { type = relation which = PER value = 50 }
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = trigger which = 349100 } #KAK: Konstantin becomes King
+		command = { type = trigger which = 271002 } #RUS: Konstantin is King of Georgia
+	}
+	action_b = {
+		name = "ACTIONNAME349013B" #Alexander defies Abbas
+		command = { type = relation which = PER value = -250 }
+		command = { type = trigger which = 254013 } #PER: Persia claims Kakheti
+	}
+}
+#(1602-1610) Konstantin becomes King
+#Dummy KAK event to ensure they get vassalized to PER
+#You can't break a vassalization and vassalize the nation to another country in a direct followup event
+event = {
+	id = 349100 #triggered by KAK_349013 A
+	random = no
+	country = KAK
+	name = "EVENTNAME349100" #Konstantin becomes King
+	desc = "EVENTHIST349100"
+	#-#As Konstantin eliminated his opponents, he soon accepted Abbas of Persia as his overlord.
+
+	action_a = {
+		name = "ACTIONNAME349100A" #Konstantin becomes King
+		command = { type = trigger which = 254012 } #PER: Konstantin is King of Georgia
+	}
+}
+
+#(1610-1614) Persian invasions
+#do we need a third, less radical option?
+event = {
+	id = 349017
+	trigger = {
+		vassal = { country = PER country = KAK }
+		owned = { province = 487 data = PER } #Azerbaijan
+		owned = { province = 473 data = PER } #Kurdistan
+	}
+	random = no
+	country = KAK
+	name = "EVENTNAME349017" #Teimuraz breaks with Abbas
+	desc = "EVENTHIST349017"
+	#-#Teimuraz I, another Christian King of Kakhetia, became King in 1606, and kept himself quite independent. Therefore, Shah Abbas of Persia invited him and Luarsab II of Kartli to a royal hunt. Keeping the fate of murdered King Alexander of Kakheti in mind Teimuraz refused. Infuriated, the shah gathered armies and moved towards Georgia. Teimuraz sent two of his sons to Abbas but the latter could not be appeased. Still refusing to arrive at the shah's camp personally he had to prepare for a war...
+
+	date = { day = 1 month = january year = 1610 }
+	offset = 36
+	deathdate = { day = 1 month = january year = 1614 }
+
+	action_a = {
+		name = "ACTIONNAME349017A" #Possible End Game #Teimuraz backs down and meets Abbas
+		command = { type = trigger which = 254014 } #Abbas decides what to do #PER: Georgia is on it's knees
+		command = { type = stability value = -2 }
+	}
+	action_b = {
+		name = "ACTIONNAME349017B" #Abbas invades Georgia
+		command = { type = breakvassal which = PER }
+		command = { type = war which = PER }
+		command = { type = relation which = PER value = -250 }
+	}
+}
+#(1610-1614) Persia demands tribute
+event = {
+	id = 349019 #triggered by PER_254014 B
+	random = no
+	country = KAK
+	name = "EVENTNAME349019" #Persia demands tribute
+	desc = "EVENTHIST349019"
+	#-#When the Kings of Kakheti and Kartli were 'visiting' Abbas of Persia, they had no choice but to accept any humiliation the latter demanded. Luckily Abbas demanded a high, but not unbearable tribute as ransom for their Kingdoms.
+
+	action_a = {
+		name = "ACTIONNAME349019A" #We have to pay...
+		command = { type = treasury value = -100 }
+	}
+}
+
+#(1615-1616) Revolt of Jandieri
+event = {
+	id = 349021
+	trigger = {
+		event = 254015 #PER: Revolt of David Jandieri
+	}
+	random = no
+	country = KAK
+	name = "EVENTNAME349021" #Revolt of David Jandieri
+	desc = "EVENTHIST349021"
+	#-#When the Kakhetine people had had enough of the Persian yoke a revolt started under David Jandieri. After its success King Teimuraz, who had been living in exile since Abbas annexed Kakheti, returned to the throne and joined the battle against Persia. Alas, in 1617 Abbas returned, even more determined than before. When Teimuraz fled once again Jandieri organized the nation's defense. There was not a single castle that capitulated without being taken by surprise.
+
+	date = { day = 1 month = january year = 1615 }
+	offset = 10
+	deathdate = { day = 1 month = march year = 1616 }
+
+	action_a = {
+		name = "ACTIONNAME349021A" #Let us die as free men!
+		command = { type = breakvassal which = PER }
+		command = { type = war which = PER }
+		command = { type = relation which = PER value = -300 }
+		command = { type = land value = 500 }
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = CAV which = -2 value = 5000 } #perhaps also waking a sleeping Jandieri?
+	}
+}
+
+#(1615-1625) Abbas' revenge
+event = {
+	id = 349022
+	trigger = {
+		control = { province = 472 data = PER } #Georgia
+		event = 254015 #PER: Revolt of David Jandieri
+	}
+	random = no
+	country = KAK
+	name = "EVENTNAME349022" #Abbas' revenge
+	desc = "EVENTHIST349022"
+	#-#When Abbas conquered Georgia after the revolts he did not show any mercy to the population. The rebels did not capitulate and Abbas took terrible revenge on them. Whole villages were burned and many people were deliberately killed. About 100,000 georgians were reported to have been killed while another 200,000 were deported far into Persia into Mazandaran and Hamadan, where their Islamizied descendants live today.
+
+	date = { day = 1 month = january year = 1615 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1625 }
+
+	action_a = {
+		name = "ACTIONNAME349022A" #Woe upon Georgia!
+		command = { type = revolt which = 472 } #Iveria
+		command = { type = revolt which = 472 } #Iveria
+		command = { type = provincetax which = 472 value = -2 } #Iveria
+		command = { type = population which = 472 value = -2000 } #Iveria
+	}
+}
+
+#(1632-1655) Rostom, the Muslim King
+event = {
+	id = 349050
+	trigger = {
+		NOT = { vassal = { country = RUS country = KAK } }
+		NOT = { vassal = { country = TUR country = KAK } }
+		neighbour = PER
+	}
+	random = no
+	country = KAK
+	name = "EVENTNAME349050" #Rostom, the Muslim King
+	desc = "EVENTHIST349050"
+	#-#Teimuraz made peace with Abbas, being accepted as the sole King of Kartli and Kakheti. When the shah died, though, Teimuraz was more than unsure if the new shah would also recognize him. Therefore he tried to help one of the candidates to become shah to ensure his gratitude. Sadly for him he chose the wrong one while Rostom, a descendant of a Kartlian Bagrationi subline living at the Persian court intrigued in favour of Safi, became the winning candidate. As he also was Muslim he seemed to be a perfect candidate in the eyes of the new shah to replace Teimuraz, who turned out to be a traitor. Thus an age of 'islamized' Kings of Georgia started, although they were wise enough not to try to enforce the new religion on the population.
+
+	date = { day = 1 month = january year = 1632 }
+	offset = 200 #because he gradually took GEO
+	deathdate = { day = 1 month = january year = 1655 }
+
+	action_a = {
+		name = "ACTIONNAME349050A" #Let the people believe what they want
+		command = { type = stability value = 1 }
+		command = { type = relation which = PER value = 50 }
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = trigger which = 254016 } #vassalization #PER: Muslim Kings in Kartli and Kakheti
+	}
+	action_b = {
+		name = "ACTIONNAME349050B" #Let us praise Allah
+		command = { type = stability value = -3 }
+		command = { type = religion which = shia }
+		command = { type = technology which = Muslim }
+		command = { type = domestic which = INNOVATIVE value = -2 }
+		command = { type = add_countryculture which = persian }
+		command = { type = remove_countryculture which = georgian } #avoiding an easy conversion
+		command = { type = breakvassal which = PER }
+		command = { type = breakvassal which = RUS }
+		command = { type = breakvassal which = TUR }
+		command = { type = relation which = PER value = 100 }
+		command = { type = relation which = RUS value = -100 }
+		command = { type = relation which = BYZ value = -100 } #If it existed...
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = trigger which = 254016 } #vassalization #PER: Muslim Kings in Kartli and Kakheti
+	}
+	action_c = {
+		name = "ACTIONNAME349050C" #Let us reconvert and expel the oppressor
+		command = { type = stability value = -1 }
+		command = { type = casusbelli which = PER value = 36 }
+		command = { type = relation which = PER value = -250 }
+		command = { type = relation which = RUS value = 50 }
+		command = { type = relation which = BYZ value = 50 }
+	}
+}
+
+#(1732-1795) Teimuraz and Irakli
+event = {
+	id = 349052
+	trigger = { religion = shia }
+	random = no
+	country = KAK
+	name = "EVENTNAME349052" #Teimuraz and Irakli
+	desc = "EVENTHIST349052"
+	#-#In 1732 the shah appointed Teimuraz II as the King of Kartli, while his nephew Irakli became the King of Kakheti, causing the defacto unification of the two Kingdoms. Another remarkable thing was that both were crowned in Christian ritual, which made them the first Christian Kings in Kartli and Kakheti since Rostom's times.
+
+	date = { day = 1 month = january year = 1732 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1795 }
+
+	action_a = {
+		name = "ACTIONNAME349052A" #A century of Islam is over
+		command = { type = stability value = 2 }
+		command = { type = relation which = PER value = -50 }
+		command = { type = relation which = RUS value = 100 }
+		command = { type = religion which = orthodox }
+		command = { type = technology which = orthodox }
+		command = { type = conversion which = -1 }
+		command = { type = add_countryculture which = georgian }
+		command = { type = remove_countryculture which = persian }
+		command = { type = domestic which = INNOVATIVE value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME349052B" #Christianity is dead in Georgia
+		command = { type = add_countryculture which = georgian }
+		command = { type = remove_countryculture which = persian }
+		command = { type = relation which = PER value = 100 }
+		command = { type = domestic which = INNOVATIVE value = -1 }
+	}
+}
+
+#(1762-1798) Unification
+event = {
+	id = 349053
+	random = no
+	country = KAK
+	name = "EVENTNAME349053" #Kartli and Kakheti united
+	desc = "EVENTHIST349053"
+	#-#In 1762, Teimuraz II. of Kartli died. His nephew, Irakli II. of Kakheti finally could unite both east-Georgian Kingdoms into one realm, which once again became known as Georgia. Irakli pursued a strict policy of limiting the local feudals' power, tried to turn Georgia into an absolutist state and seeked contact with Russia and Imereti to fight off persian hegemony.
+
+	date = { day = 1 month = january year = 1762 }
+	offset = 10
+	deathdate = { day = 11 month = january year = 1798 }
+
+	action_a = {
+		name = "ACTIONNAME349053A" #Proclaim an united Georgia
+		command = { type = stability value = 1 }
+		command = { type = flagname which = "" }
+		command = { type = country which = GEO }
+		command = { type = relation which = RUS value = 70 }
+		command = { type = relation which = IMR value = 70 }
+		command = { type = domestic which = ARISTOCRACY value = -3 }
+		command = { type = domestic which = CENTRALIZATION value = 4 }
+		command = { type = domestic which = INNOVATIVE value = 2 }
+		command = { type = addcore which = 470 } #Kolkhis
+	}
+	action_b = {
+		name = "ACTIONNAME349053B" #Rule Kartli-Kakheti in personal union
+		command = { type = stability value = 2 }
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 349001-349007 - 349009-349010 - 349014-349016 - 349018 - 349020 - 349023-349049 - 349051 - 349054-349099 - next: 349101

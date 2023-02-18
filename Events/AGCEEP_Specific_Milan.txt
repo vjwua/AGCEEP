@@ -1,0 +1,1705 @@
+#Milan (MLO)
+
+#See AGCEEP_Alt_Italy.txt for KoI Alternative events
+
+#-----------------------------------------------------------------------------------------------
+
+#(1421) Milan decides whether to accept Genoa's submission, by Isaac Brock
+event = {
+	id = 228000 #triggered by GEN_174005 A
+	random = no
+	country = MLO
+	name = "EVENTNAME228000" #Genoa submits to Milan
+	desc = "EVENTHIST228000"
+	#-#In 1421 Genoa faced threats on two fronts. Aragon was controlling Corsica except for the two genoese cities of Calvi and Bonifacio, while at the same time Milan resumed its support of Genoese exiles who promised to submit to Milanese rule. As a large army under the famous general Carmagnola approached the Genoese border the situation of the city looked hopeless. In order to extract themselves from this predicament the Genoese offered to submit to Milan. Under Milanese rule order was maintained in Genoa and a loose control was maintained over the Genoese cities in Corsica. What should we do?
+
+	action_a = {
+		name = "ACTIONNAME228000A" #Accept their submission
+		command = { type = stability value = 1 }
+		command = { type = vassal which = GEN }
+		command = { type = trigger which = 228054 } #MLO: Visconti's Lordship over Genoa
+	}
+	action_b = {
+		name = "ACTIONNAME228000B" #Refuse their submission
+		command = { type = relation which = GEN value = -25 }
+		command = { type = trigger which = 174024 } #GEN: Milan refuses our offer
+	}
+}
+#(1421) Visconti's Lordship over Genoa
+event = {
+	id = 228054 #triggered by MLO_228000 A
+	random = no
+	country = MLO
+	name = "EVENTNAME228054" #Visconti's Lordship over Genoa
+	desc = "EVENTHIST228054"
+	#-#Faced with a Milanese army and an Aragonese complete takeover of Corsica, Genoa offered her Lordship to Duke Filippo Maria in the hope to save Corsica.
+
+	action_a = {
+		name = "OK"
+		command = { type = alliance which = GEN }
+		command = { type = ADM which = 2 value = 12 }
+		command = { type = trigger which = 111000 } #ARG: Genoa Submits to Milan
+	}
+}
+
+#(1421) Milan response if Genoa defies Milan, by Isaac Brock
+event = {
+	id = 228001 #triggered by GEN_174005 B
+	random = no
+	country = MLO
+	name = "EVENTNAME228001" #Genoa defies Milan
+	desc = "EVENTHIST228001"
+	#-#In 1421, since Aragon was asserting her longstanding claim to Corsica and Milan, with the support of Genoese exiles, wanted to gain control over Liguria and the Genoese fleet, an alliance against Genoa was made.
+
+	action_a = {
+		name = "ACTIONNAME228001A" #Genoa is encircled and we have the means to fight them!
+		command = { type = casusbelli which = GEN value = 24 }
+		command = { type = relation which = ARG value = 50 }
+		command = { type = alliance which = ARG }
+		command = { type = INF which = -2 value = 5000 } #Carmagnola's army
+		command = { type = CAV which = -2 value = 5000 } #Carmagnola's army
+	}
+}
+
+#(1423-1441) The plan for a Lombard hegemony in Italy
+#by Bordic
+event = {
+	id = 228049
+	trigger = {
+		vassal = { country = MLO country = GEN }
+		owned = { province = 389 data = -1 } #Lombardia
+		owned = { province = 402 data = -1 } #Emilia
+		control = { province = 389 data = -1 } #Lombardia
+		control = { province = 402 data = -1 } #Emilia
+		NOT = {
+			war = { country = MLO country = HEL }
+			alliance = { country = PAP country = MLO }
+		}
+	}
+	random = no
+	country = MLO
+	name = "EVENTNAME228049" #The Lombard hegemony
+	desc = "EVENTHIST228049"
+	#-#After having established the Signoria over Genoa, Filippo Maria Visconti restored the political control over Lombardy also recovering the Alpine territories of Domodossola and Bellinzona as consequence of the battle of Arbedo (1422) in which Carmagnola successfully led the Milanese troops against the Swiss pikemen. Not appeased by those political successes Visconti turned his greedy ambitions on central Italy, prosecuting interrupted family's ambitious policies to expand the duchy under River Po towards Romagna. In fact, his father Gian Galeazzo, obsessed by the dream of a reborn Lombard Kingdom, spent the whole life in trying to conquer all the Italian Imperial lands to be united under the same Milanese rule. Only death dissuaded him from accomplishing his proposed task. A newly presented favourable chance was the death of Giorgio degli Ordelaffi, Lord of Forlì in Romagna : Visconti gained the support of the local nobles in establishing his own Lordship as ward of Tebaldo, Giorgio's son. That of course displeased the neighbouring cities and above all Florence, with which Milan stipulated a peace treaty in 1420 as to guarantee 10 years of non-belligerence.
+
+	date = { day = 13 month = May year = 1423 }
+	offset = 30
+	deathdate = { day = 15 month = November year = 1441 }
+
+	action_a ={
+		name = "ACTIONNAME228049A" #Interfere in lower Po valley
+		command = { type = addcore which = 391 } #Romagna (proper Romagna in new map)
+		command = { type = relation which = TOS value = -25 } #peace treaties will be broken
+		command = { type = relation which = VEN value = -25 }
+		command = { type = relation which = PAP value = -25 } #Romagna is a Papal feud
+		command = { type = relation which = SAV value = -25 }
+		command = { type = relation which = MOD value = -25 }
+		command = { type = relation which = MAN value = -25 }
+	}
+	action_b = {
+		name = "ACTIONNAME228049B" #Respect the truce
+		command = { type = vp value = -5 }
+		command = { type = relation which = TOS value = 25 }
+	}
+}
+
+#(1423-1424) Aragon threatens the balance
+#by Bordic
+event = {
+	id = 228019
+	trigger = {
+		event = 239011 #NAP: The Queen's choice
+		vassal = { country = MLO country = GEN }
+	}
+	random = no
+	country = MLO
+	name = "EVENTNAME228019" #Aragon threatens the balance
+	desc = "EVENTHIST239011"
+	#-#Alfons of Aragon, after being adopted by Giovanna of Anjou-Durazzo, arrived at the Kingdom of Naples with the intention of being recognised as its legitimate ruler, due mainly to his descent from the last Hohenstaufen King of Sicily, and not due to the will of a member of an usurping dynasty, the House of Anjou. He wanted to take control of Naples immediately without waiting for the Queen's death. He soon imprisoned Caracciolo, Giovanna's lover, but he failed to capture the Queen. Muzio Attendolo Sforza, the Neapolitan condottiero in the service of the Pope, informed that Giovanna was in great danger, went hastily to Naples and rescued her. It was then easy for the Pope to convince the Queen to adopt Louis III of Anjou, Count of Provence, instead of Alfons of Aragon. Taking advantage of the absence of Alfons due to his problems in Aragon, and with the military help of Visconti, Duke of Milan and Signore of Genoa, the Aragonese were expelled from Naples, and Giovanna appointed Louis as Duke of Calabria, the heir's title. Louis moved his court to Cosenza to arrange his stay in Italy.
+
+	date = { day = 29 month = May year = 1423 }
+	offset = 30
+	deathdate = { day = 29 month = December year = 1424 }
+
+	action_a = {
+		name = "ACTIONNAME228019A" #Support the Angevins in Naples
+		command = { type = relation which = PAP value = 25 }
+		command = { type = relation which = ARG value = -50 }
+		command = { type = casusbelli which = ARG value = 36 }
+		command = { type = treasury value = -30 }
+		command = { type = trigger which = 174026 } #GEN: Aragon threatens the sea trade
+	}
+	action_b = {
+		name = "ACTIONNAME3192B" #Stay neutral
+		command = { type = relation which = PAP value = -25 }
+	}
+}
+
+#(1425) Carmagnola's Threat by Bordic
+event = {
+	id = 228015
+	random = no
+	country = MLO
+	name = "EVENTNAME228015" #Carmagnola's Threat
+	desc = "EVENTHIST228015"
+	#-#The continuous victories of Carmagnola in the recovery of the Duchy of Milan for Filippo Maria Visconti did not gain him the appreciation of the court nobles and made also the rest of the condottieri jealous of him. The Duke rewarded him lavishly, but on advise of his nobles and also convinced that Carmagnola could become a danger to his rule, gave the army command to more trusted capitani and retired Carmagnola as governor of Genoa. The triumphant condottiero felt greatly aggrieved and most of all betrayed. After a harsh dispute with the Duke, he failed to obtain a personal interview with him. So, fearing for his life and seeking revenge on Visconti he managed to flee to Savoy and then to Venice, Milan's arch-enemy, where he offered his services.
+
+	date = { day = 15 month = january year = 1425 }
+
+	action_a = {
+		name = "ACTIONNAME228015A" #We have lost confidence on him
+		command = { type = treasury value = 50 } # unpaid loans and confiscated estates
+		command = { type = desertion which = -2 value = 2000 }
+		command = { type = domestic which = quality value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME228015B" #We will reinstate his command
+		command = { type = treasury value = -150 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = stability value = -1 } #Nobles' resentments
+		command = { type = wakeleader which = 089317 } #Carmagnola (MLO)
+		command = { type = sleepevent which = 17001 } #VEN: Carmagnola
+		command = { type = sleepevent which = 17002 } #VEN: Carmagnola's Trial
+	}
+	action_c = {
+		name = "ACTIONNAME228015C" #Appoint Carmagnola Governor of Genoa #We will ensure his loyalty with a title and estates
+		command = { type = treasury value = -100 }
+		command = { type = stability value = -2 } # deeper Nobles' resentments
+		command = { type = sleepevent which = 17001 } #VEN: Carmagnola
+		command = { type = sleepevent which = 17002 } #VEN: Carmagnola's Trial
+		command = { type = trigger which = 174025 } #GEN: Carmagnola Governor of Genoa
+	}
+}
+
+#(1425-1432) Carmagnola's Trick by Bordic (MLO version)
+event = {
+	id = 228017
+	trigger = {
+		leader = 0163301 #Carmagnola (VEN)
+		war = { country = MLO country = VEN }
+	}
+	random = no
+	country = MLO
+	name = "EVENTNAME228017" #Carmagnola's Trick
+	desc = "EVENTHIST228017"
+	#-#Carmagnola escaped from Milan and arrived in Venice to offer his services there. At first, he wasn't well received in Venice, for he was the most famous of Milanese condottieri and a real threat to the Republic. But as soon as the Venetians knew that Visconti imprisoned his family and confiscated all of his estates and that conspirators at the service of Visconti attempted to poison him, Carmagnola was appointed captain-general of St Mark in 1426 and the Antivisconti league-confederates declared war on Milan. Carmagnola's most important success was the battle of Maclodio (1427), but he did not follow it up. The Republic, impatient of his dilatoriness, raised his emoluments and promised him immense fiefs including the lordship of Milan, so as to increase his ardour, but in vain. At the same time Carmagnola was perpetually receiving messengers from Visconti, who offered him great rewards if he would abandon the Venetians.The general trifled with his past as with his present employers, believing in his foolish vanity that he held the fate of both in his hand. But the Venetians were dangerous masters to trifle with and their patience was soon to be lost...
+
+	date = { day = 1 month = february year = 1425 }
+	offset = 30
+	deathdate = { day = 7 month = april year = 1432 }
+
+	action_a = {
+		name = "ACTIONNAME228017A" #Carmagnola is corruptible #Deal with Carmagnola
+		command = { type = treasury value = -50 } #cost of messengers
+		command = { type = DIP which = 2 value = 6 }
+		command = { type = MIL which = 2 value = 6 }
+		command = { type = relation which = SAV value = 50 } # Savoyard messengers used
+		command = { type = trigger which = 326007 } #VEN: Carmagnola's Trick
+	}
+}
+
+#(1427-1435) A pact with Savoy
+#by Bordic
+event = {
+	id = 228050
+	trigger = {
+		exists = SAV
+		event = 275023 #SAV: The League against Milan
+		NOT = { war = { country = MLO country = SAV } }
+		owned = { province = 404 data = SAV } #Piemonte
+		control = { province = 404 data = SAV } #Piemonte
+	}
+	random = no
+	country = MLO
+	name = "EVENTNAME228050" #A pact with Savoy
+	desc = "EVENTHIST228050"
+	#-#During the fights between Milan and the League, Visconti managed to sign a separate peace treaty with Savoy. With that treaty the Savoyard neutrality was granted in exchange for the cession of Vercelli. A marriage was also celebrated between the duke of Milan, Filippo Maria Visconti and Marie of Savoy, duke Amédée VIII's daughter.
+
+	date = { day = 10 month = october year = 1427 }
+ 	offset = 30
+ 	deathdate = { day = 26 month = april year = 1435 }
+
+	action_a = {
+		name = "ACTIONNAME228050A" #Cede Vercelli in exchange for neutrality
+		command = { type = population which = 389 value = -2000 }
+		command = { type = provincetax which = 389 value = -1 }
+		command = { type = dynastic which = SAV } #Maria of Savoy as Visconti's wife
+		command = { type = trigger which = 275024 } #SAV: The bargain with Milan
+	}
+	action_b = {
+		name = "ACTIONNAME228050B" #No bargain with Savoy
+		command = { type = DIP which = -2 value = 24 }
+		command = { type = relation which = SAV value = -25 }
+		command = { type = sleepevent which = 275016 } #SAV: The Savoyard claim to Milan (no marriage, no claim)
+	}
+}
+
+#(1431-1435) The Mercenary Wars
+#by Bordic
+event = {
+	id = 228051
+	trigger = {
+		event = 228049 #MLO: The Lombard hegemony
+		OR = {
+			event = 297034 #TOS: The League against Milan
+			event = 326062 #VEN: The League against Milan (if Florence doesn't exist)
+		}
+		owned = { province = 402 data = -1 } #Emilia
+		control = { province = 402 data = -1 } #Emilia
+		exists = VEN
+		exists = PAP
+		NOT = {
+			alliance = { country = VEN country = MLO }
+			alliance = { country = PAP country = MLO }
+		}
+	}
+	random = no
+	country = MLO
+	name = "EVENTNAME228051" #The Mercenary Wars
+	desc = "EVENTHIST228051"
+	#-#For more then ten years Northern Italy was the war theater of 'Mercenari' at disposal of the best offerer between Milan and the other Italian states united in a League originally formed by Venice and Florence. It was to the interest of all soldiers of fortune of both sides to make the operations last as long as possible, to avoid decisive operations and to liberate all prisoners quickly. Consequently the campaign were very exhausting and dragged on interminably, some battles were won and others lost, truces and peace treaties were made only to be broken, and no definite result was achieved. A peace treaty was also stipulated in Ferrara in 1428 in which at first Visconti stated to renounce claims to territories lying beyond the Panaro-Magra Rivers, but refused to concede the territories of Bergamo and Brescia to Venice, which was still occupying with her troops. Political and economic interests of both sides were conflicting and when the new Pope, Eugenius IV, was being suspected of involvement with the League to damage Milan, Visconti retaliated sending his troops to invade the Papal States. That represented a violation of the peace treaty and subsequently a new Antivisconti League was formed to wage war against Milan.
+
+	date = { day = 10 month = october year = 1431 }
+ 	offset = 30
+ 	deathdate = { day = 26 month = april year = 1435 }
+
+	action_a = {
+		name = "ACTIONNAME228051A" #We pursue our plans
+		command = { type = addcore which = 391 } #Romagna
+		command = { type = addcore which = 392 } #Marche
+		command = { type = treasury value = -75 } #to hire mercenaries
+		command = { type = relation which = MOD value = -25 }
+		command = { type = relation which = VEN value = -25 }
+		command = { type = relation which = TOS value = -25 }
+		command = { type = relation which = PAP value = -25 }
+		command = { type = casusbelli which = VEN value = 60 }
+		command = { type = casusbelli which = PAP value = 60 } #the Pope plots with the League
+		command = { type = trigger which = 220016 } #MAN: The Alliance with Milan
+		command = { type = trigger which = 326063 } #VEN: Another league against Milan
+		command = { type = trigger which = 297035 } #TOS: Another league against Milan
+		command = { type = trigger which = 251069 } #PAP: Another league against Milan
+	}
+	action_b = {
+		name = "ACTIONNAME228051B" #We abandon own plans
+		command = { type = removecore which = 391 } #Romagna
+		command = { type = independence which = TOS }
+		command = { type = independence which = MOD }
+		command = { type = independence which = SIE }
+		command = { type = independence which = MAN }
+		command = { type = independence which = SIE }
+		command = { type = cedeprovince which = PAP value = 392 } #Marche (Sforza's aborted mission)
+		command = { type = badboy value = -5 }
+		command = { type = relation which = TOS value = 50 }
+		command = { type = relation which = VEN value = 50 }
+		command = { type = relation which = PAP value = 50 }
+		command = { type = relation which = MOD value = 50 }
+		command = { type = sleepevent which = 228052 } #MLO: The Treaty of Cremona
+	}
+}
+
+#(1432) Carmagnola's Trial
+event = {
+	id = 17014 #triggered by VEN_17002 C
+	random = no
+	country = MLO
+	name = "EVENTNAME17014" #Carmagnola's acquitted
+	desc = "EVENTHIST17002"
+	#-#Carmagnola suffered from ill health due to wounds received in the service of Milan. However, this fact may not be sufficient to explain the dilatory way in which he conducted warfare while serving Venice. Furthermore, Carmagnola was suspected of treason due to the regular and frequent communications he had with his former employer, Filippo Maria Visconti, Duke of Milan. In 1432, Carmagnola was tricked into coming to Venice, and then put on trial for his life...
+
+	action_a = {
+		name = "ACTIONNAME17014A" #They should pay for that
+		command = { type = casusbelli which = VEN value = 24 }
+	}
+}
+
+#(1435-1436) The Visconti's about-face
+#by Bordic
+event = {
+	id = 228020
+	trigger = {
+		exists = ARG
+		event = 239007 #NAP: The Angevin Inheritance of Naples
+		OR = {
+			alliance = { country = MLO country = GEN }
+			vassal = { country = MLO country = GEN }
+			AND = {
+				NOT = { exists = GEN }
+				owned = { province = 403 data = -1 } #Liguria
+			}
+		}
+	}
+	random = no
+	country = MLO
+	name = "EVENTNAME228020" #The Visconti's about-face
+	desc = "EVENTHIST228020"
+	#-#After the death of Giovanna of Anjou without natural heirs, a war of succession for the Kingdom of Naples broke out between the two claimants, René of Anjou and Alfons of Aragon, both designated heirs in two different times by Giovanna. Filippo Maria Visconti of Milan, also Signore of Genoa, preoccupied with the increasing Aragonese influence in the Mediterranean sea trade routes as much as in the Italian peninsula, decided to support the Angevins. Alfons of Aragon was defeated and captured by a Genovese fleet at the battle of Ponza in 1435. Transferred to Milan, Alfons succeeded in gaining Visconti's favour to his cause against the French Angevins. He convinced Filippo Maria that a French presence in Italy could be against the interests of Milan since the House of Orléans had never hidden its dynastic claims on the Duchy of Milan. But Genoa, a bitter rival of Aragon during centuries of dispute over Sardinia, Corsica, and the control of the Western Mediterranean trade, was appalled by Visconti's sudden change of sides, and immediately asked for admission in the Venetian-Florentine league against her former suzerain.
+
+	date = { day = 27 month = November year = 1435 }
+	offset = 30
+	deathdate = { day = 27 month = January year = 1436 }
+
+	action_a = {
+		name = "ACTIONNAME228020A" #Support Alfonso
+		command = { type = independence which = GEN }
+		command = { type = relation which = PRO value = -25 }
+		command = { type = relation which = PAP value = -25 }
+		command = { 
+			trigger = {
+				vassal = { country = MLO country = GEN }
+			}
+			type = trigger which = 174027  #GEN: The betrayal of Visconti
+		}
+		command = { 
+			trigger = {
+				NOT = {
+					vassal = { country = ARG country = MLO }
+				}
+			}	
+			type = trigger which = 111013  #ARG: Visconti supports the Aragonese cause
+		}
+	}
+}
+
+#(1435-1436) The secret alliance with Aragon
+#by Bordic
+event = {
+	id = 228057 #triggered by ARG_111064
+	random = no
+	country = MLO
+	name = "EVENTNAME228057" #The secret alliance with Aragon
+	desc = "EVENTHIST228057"
+	#-#While Genoa was breaking her allegiance to Visconti, Alfons of Aragon and Visconti secretly planned a hegemonic division of Italy in two zones of influence at the expenses of the other Italian States, with the Southern part for Alfonso, and the Northern part for Filippo Maria.
+
+	action_a = {
+		name = "OK"
+		command = { type = cedeprovince which = GEN value = 398 } #Corsica
+		command = { type = cedeprovince which = GEN value = 465 } #Kerch
+		command = { type = breakvassal which = ARG }
+		command = { type = dynastic which = ARG }
+		command = { type = stability value = 3 }
+		command = { type = relation which = ARG value = 75 } 
+	}
+}
+
+#(1441-1447) The Treaty of Cremona
+#by Bordic
+event = {
+	id = 228052
+	trigger = {
+		exists = VEN
+		atwar = no
+		OR = {
+			event = 297034 #TOS: Another league against Milan
+			event = 326062 #VEN: Another league against Milan
+			event = 228051 #MLO: The Mercenary Wars
+		}
+		OR = {
+			NOT = {	owned = { province = 402 data = -1 } } #Emilia
+			NOT = { owned = { province = 401 data = -1 } } #Firenze
+			NOT = { owned = { province = 391 data = -1 } } #Romagna
+			NOT = { owned = { province = 392 data = -1 } } #Marche
+			NOT = { owned = { province = 400 data = -1 } } #Siena
+		}
+	}
+	random = no
+	country = MLO
+	name = "EVENTNAME228052" #The Treaty of Cremona
+	desc = "EVENTHIST228052"
+	#-#Several peace treaties were stipulated between Visconti and the other Italian states, amongst them Venice and Florence, forming the anti-Visconti League: as main condition the Milanese Duke had to abandon his ambitions to rule in Northern Italy. But war actually didn't and couldn't stop, Visconti soon invaded Papal States with the intention to punish the Pope Eugenius V, former Venetian Cardinal, for plotting with the League against him. Facing a new and stronger League, whose troops were commanded by Francesco Sforza, Filippo Maria succeeded in asking the condottiero to mediate with the League-confederates for an immediate peace. In exchange for that service, Sforza married Visconti's daughter Bianca Maria. Since Visconti hadn't yet any direct male heir, Sforza would be in condition to claim the throne at Visconti's death. In the treaty signed in Cremona in 1441 Venice obtained the suzerainty over the cities of Brescia, Bergamo and Ravenna while Visconti had to confirm the independence of Genoa and to give up definitely his ambitious plan of a reborn Lombard Kingdom in Northern Italy.
+
+	date = { day = 18 month = november year = 1441 }
+ 	offset = 30
+ 	deathdate = { day = 15 month = august year = 1447 }
+
+	action_a = {
+		name = "ACTIONNAME228052A" #Our dreams can't be realized
+		command = { type = removecore which = 391 } #Romagna (also Brescia in a new map)
+		command = { type = removecore which = 392 } #Marche
+		command = { type = relation which = VEN value = 50 }
+		command = { type = relation which = GEN value = 100 }
+		command = { type = relation which = TOS value = 100 }
+		command = { type = relation which = PAP value = 50 }
+		command = { type = independence which = TOS }
+		command = { type = independence which = MOD }
+		command = { type = independence which = SIE }
+		command = { type = independence which = MAN }
+		command = { type = independence which = PAP }
+		command = { type = trigger which = 228053 } #MLO: Effects of the Treaty of Cremona
+	}
+	action_b = {
+		name = "ACTIONNAME228052B" #Italy is ours
+		command = { type = stability value = -2 }
+		command = { type = badboy value = 5 }
+		command = { type = relation which = TOS value = -50 }
+		command = { type = relation which = VEN value = -50 }
+		command = { type = relation which = PAP value = -50 }
+		command = { type = relation which = GEN value = -50 }
+		command = { type = relation which = MOD value = -50 }
+		command = { type = relation which = MAN value = -50 }
+		command = { type = relation which = SIE value = -50 }
+		command = { type = sleepevent which = 326064 } #VEN: The Peace of Cremona
+		command = { type = sleepevent which = 297037 } #TOS: The Peace of Cremona
+	}
+}
+#(1441-1447) Effects of the Treaty of Cremona
+event = {
+	id = 228053 #triggered by MLO_228052 A
+	trigger = {
+		OR = {
+			AND = {
+				owned = { province = 404 data = -1 } #Piemonte
+				exists = SAV
+			}
+			AND = {
+				owned = { province = 392 data = -1 } #Marche
+				exists = PAP
+			}
+		}
+	}
+	random = no
+	country = MLO
+	name = "EVENTNAME228053" #Effects of the Treaty of Cremona
+	desc = "EVENTHIST228053"
+	#-#With that treaty Milan had to renounce claims to Lower Po Valley and cede the territories beyond the Adda River to Venice.
+
+	action_a = {
+		name = "OK"
+		command = { type = cedeprovince which = SAV value = 404 } #Piemonte
+		command = { type = cedeprovince which = PAP value = 392 } #Marche
+	}
+}
+
+#(1442) René of Anjou took Naples
+#by Bordic
+event = {
+	id = 228022 #triggered by NAP_239009 B / NAP_239036 A
+	trigger = {
+		event = 228020 #MLO: The Visconti's about-face
+	}
+	random = no
+	country = MLO
+	name = "EVENTNAME228022" #René of Anjou took Naples
+	desc = "EVENTHIST262006"
+	#-#After his release from Milan, Alfons of Aragon returned to Naples, where his brother Pedro had conquered Gaeta. Naples was defended by Isabelle of Lorraine with the support of Pope Eugenius IV. For three years Alfons conducted as much a diplomatic war as a military one, gaining allies to his cause from the Neapolitan nobles. In 1438, René of Anjou paid a huge ransom to Burgundy for his release, and arrived in the Kingdom, but since he had exhausted his funds his allies abandoned him and he had to retreat to Naples. A long siege was then established, during which the Infante Don Pedro was killed by a chance shot to the great grief of his brother. The support of the Genoese fleet allowed René to sustain the besieged capital with success until 1 June 1442, when 300 Aragonese well-armed men entered the town through an open drain accessible during the dry season, revealed to Alfons' son Ferrante by some prisoners. After several hours of fighting and in spite of the stealthy move inside the city walls, Naples withstood the Aragonese and Alfons was forced to retreat to Sicily. After recovering the rest of the Kingdom, René entered the capital in triumph the year after. Pope Eugenius IV, very happy for the Angevin success, invested René as King of Naples and Sicily thus declaring Alfons of Aragon in unlawful possession of the Sicilian island.
+
+	action_a = {
+		name = "CURSES"
+		command = { type = stability value = -1 }
+		command = { type = relation which = ARG value = 50 }
+		command = { type = relation which = NAP value = -50 }
+		command = { type = relation which = PRO value = -50 }
+		command = { type = relation which = VEN value = -25 }
+		command = { type = relation which = GEN value = -25 }
+	}
+}
+#(1442-1447) Alfons of Aragon took Naples
+#by Bordic
+event = {
+	id = 228021
+	trigger = {
+		event = 228020 #MLO: The Visconti's about-face
+		event = 111014 #ARG: The Aragonese Kingdom of Naples
+		NOT = { war = { country = MLO country = NAP } }
+	}
+	random = no
+	country = MLO
+	name = "EVENTNAME228021" #Alfons of Aragon took Naples
+	desc = "EVENTHIST239009"
+	#-#After his release from Milan, Alfons returned to Naples, where his brother Pedro had conquered Gaeta. Naples was defended by Isabelle of Lorraine with the support of Pope Eugenius IV. For three years Alfonso conducted as much a diplomatic war as a military one, gaining allies to his cause from the Neapolitan nobles. In 1438, René of Anjou paid a huge ransom to Burgundy for his release, and arrived in the Kingdom, but since he had exhausted his funds his allies abandoned him and he had to retreat to Naples. A long siege was then established, during which the Infante Don Pedro was killed by a chance shot to the great grief of his brother. The support of the Genoese fleet allowed René to sustain the besieged capital, but finally on June 1, 1442, 300 well-armed men entered the town through an open drain accesible during the dry season, revealed to Alfons' son Ferrante by some prisoners. After several hours of fighting, Naples was conquered and René escaped to Florence. After conquering the rest of the Kingdom, Alfons entered the capital in triumph on February 23, 1443. Pope Eugenius refused to invest Alfons as King of Naples and threatened to declare him in unlawful possession of Naples, Sicily, Corsica and Sardinia. Alfons threatened back with his support for an anti-Pope, Felix V, chosen at the Council of Basel, and Eugenius accepted to invest him in exchange for his support as the genuine Pope and help against the Turks that never materialized. Ferrante was named Prince of Calabria, and the Neapolitans were pleased that their Kingdom was not going to be incorporated to Aragon. Alfons, who as a Castilian had always felt a foreigner in Barcelona, never returned to Aragon, and his court in Naples was filled with the splendor of the Renaissance. Alfons soon gained the nickname of the Magnanimous.
+
+	date = { day = 12 month = August year = 1442 }
+ 	offset = 30
+ 	deathdate = { day = 12 month = August year = 1447 } #Visconti's death
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = relation which = NAP value = 50 }
+		command = { type = relation which = ARG value = 50 }
+		command = { type = alliance which = NAP } #ratification of the 1435 secret agreement
+		command = { type = relation which = TOS value = -25 }
+		command = { type = relation which = VEN value = -25 }
+		command = { type = relation which = GEN value = -25 }
+	}
+}
+
+#(1447) The Ambrosian Republic
+#by ejs5 - choice B by Isaac Brock
+event = {
+	id = 228003
+	random = no
+	country = MLO
+	name = "EVENTNAME228003" #The Ambrosian Republic
+	desc = "EVENTHIST228003"
+	#-#On the night of August 13, 1447, as the Duke of Milan, Filippo Maria Visconti, lay dying, the absence of a Visconti heir rendered the question of a successor enormously uncertain. ... The all-night meeting of Milanese notables issued the next day... a republic named after the city's patron saint, the Republic of St. Ambrose. It lasted for two-and-one-half years, to be overwhelmed finally, in February 1450, by starvation and the troops of the condottiere Francesco Sforza. -Lauro Martines, Power and Imagination: City-States in Renaissance Italy.
+
+	date = { day = 12 month = august year = 1447 }
+
+	action_a = {
+		name = "ACTIONNAME228003A" #Cry Republic!
+		command = { type = removecore which = 391 } #Romagna
+		command = { type = removecore which = 392 } #Marche
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = domestic which = ARISTOCRACY value = -2 }
+		command = { type = domestic which = SERFDOM value = -2 }
+		command = { type = domestic which = OFFENSIVE value = -1 }
+		command = { type = domestic which = QUALITY value = -2 }
+		command = { type = revoltrisk which = 30 value = 5 }#reduced by IB
+		command = { type = stability value = -3 }
+		command = { type = merchants value = 2 } #added IB
+		command = { type = sleepevent which = 228006 } #Milan Acquiesces #MLO: Milan accepts Sforza
+	}
+	action_b = {
+		name = "ACTIONNAME228003B" #Support Sforza against the Republic
+		command = { type = removecore which = 391 } #Romagna
+		command = { type = removecore which = 392 } #Marche
+		command = { type = wakemonarch which = 089009 } #Francesco Sforza °
+		command = { type = wakeleader which = 089319 } #Francesco Sforza, early monarch (MLO)
+		command = { type = sleepmonarch which = 089001 } #Aurea Repubblica Ambrosiana
+		command = { type = sleepmonarch which = 089002 } #Francesco Sforza
+		command = { type = sleepleader which = 089309 } #Francesco Sforza, general (MLO)
+		command = { type = sleepleader which = 089302 } #Francesco Sforza, historical monarch (MLO)
+		command = { type = ADM which = -3 value = 30 } #well it's a crisis he doesn't have much legitimacy
+		command = { type = DIP which = -3 value = 30 } #ditto
+		command = { type = province_revoltrisk which = 389 value = 8 } #Milan citizens unhappy #Lombardia
+		command = { type = revolt which = 389 } #He'll have to fight to take the city! #Lombardia
+		command = { type = revolt which = 389 } #Lombardia
+		command = { type = revolt which = 389 } #Lombardia
+		command = { type = stability value = -2 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = sleepevent which = 228004 } #MLO: Francesco Sforza Takes Milan
+	}
+}
+#Frederick III claimed as lapsed fief, Alfonso of Aragon/Naples was
+#named heir and had troops in the Citadel, Charles of Orleans nephew of
+#Filipo Maria, Sforza son in law
+
+#(1448-1466) Milan accepts Sforza
+#by Isaac Brock
+event = {
+	id = 228006
+	trigger = {
+		event = 228003 #Ambrosian Republic
+		control = { province = 389 data = MLO } #Controls Milan
+	}
+	random = no
+	country = MLO
+	name = "EVENTNAME228006" #Milan accepts Sforza
+	desc = "EVENTHIST228006"
+	#-#After over a year of unrest the Milanese populace has accepted the rule of Francesco Sforza.
+
+	date = { day = 1 month = october year = 1448 }
+	offset = 10
+	deathdate = { day = 7 month = march year = 1466 }
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = province_revoltrisk which = 389 value = -8 } #Lombardia
+	}
+}
+
+#(1450-1466) The Sforza
+#by ejs5
+event = {
+	id = 228004
+	trigger = {
+		event = 228003 #MLO: The Ambrosian Republic
+	}
+	random = no
+	country = MLO
+	name = "EVENTNAME228004" #Francesco Sforza Takes Milan
+	desc = "EVENTHIST228004"
+	#-#On March 25, 1450 Francesco Sforza marched through the gates of Milan and established himself as Duke. Though he had spent his life as a condottiere Sforza achieved an armed peace during his reign. Sforza also abandoned his long support of the Angevin pretenders to Naples and also aimed to conquer Genoa.
+
+	date = { day = 24 month = march year = 1450 }
+	offset = 10
+	deathdate = { day = 7 month = march year = 1466 }
+
+	action_a = {
+		name = "ACTIONNAME228004A" #A Strongman can end the Chaos
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = domestic which = ARISTOCRACY value = 2 }
+		command = { type = domestic which = OFFENSIVE value = 1 }
+		command = { type = domestic which = QUALITY value = 2 }
+		command = { type = stability value = 3 }
+		command = { type = relation which = GEN value = -30 }
+	}
+}
+
+#(1450-1454) The Battle over Milan
+#by Bordic
+event = {
+	id = 228033
+	trigger = {
+		exists = TOS
+		exists = VEN
+		exists = FRA
+		event = 239021 #NAP: The Trastamara claim to Milan
+		OR = {
+			event = 297019 #TOS: The Venetian Danger -I-
+			event = 297030 #TOS: The Venetian Danger -II-
+		}
+		NOT = {
+			war = { country = FRA country = MLO }
+		}
+	}
+	random = no
+	country = MLO
+	name = "EVENTNAME228033" #The Battle over Milan
+	desc = "EVENTHIST228033"
+	#-#As soon as Sforza proclaimed himself successor of Visconti to the throne of Milan and the Holy Roman Emperor didn't acknowledge him the ducal investiture, the war of succession inevitably began. All legitimated or self-proclaimed claimants of the Milanese throne, took arms against him. Charles of Orléans and Louis of Savoy because of their family ties with the House of Visconti, Alfons of Aragon because of an alleged secret agreement with the last Visconti Duke which would have entitled him to the duchy of Milan. Encouraged by that and as to continued her war of conquest Venice tried to renew her old alliance with Florence. But Florence was now ruled by Cosimo de Medici, a Sforza's friend, who instead resolved to support the condottiero in order to check Venice and her expansionist policy in Terraferma. The traditionally good relations Florence held with France allowed Sforza to receive Charles VII's military support in his fight against their common enemy Alfons of Aragon who was ruling over Naples at the expenses of Angevin claims. Sforza's good relations with the French King, and consequently with the Houses of Orléans and Anjou, induced the duke of Savoy to make peace with the condottiero and to acknowledge him as the new master of Milan. Only Venice and Naples persevered in their fight against Sforza.
+
+	date = { day = 0 month = april year = 1450 }
+	offset = 20
+	deathdate = { day = 7 month = april year = 1454 }
+
+	action_a = {
+		name = "ACTIONNAME228033A" #We will defend our legitimacy
+		command = { type = stability value = -1 }
+		command = { type = relation which = TOS value = 75 }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = PRO value = 50 } #René d'Anjou helping against Alfons
+		command = { type = relation which = SAV value = 20 }
+		command = { type = alliance which = TOS }
+	}
+}
+
+#(1450-1466) The Reconstruction of Castello Sforzesco by Bordic
+event = {
+	id = 228016
+	trigger = {
+		OR = {
+			event = 228004 #The Sforza for MLO
+			event = 228006 #Milan accepts Sforza for MLO
+		}
+		atwar = no
+	}
+	random = no
+	country = MLO
+	name = "EVENTNAME228016" #Castello Sforzesco
+	desc = "EVENTHIST228016"
+	#-#The XIV-century Visconti's castle of Porta Giovia in Milan was demolished during the Golden Ambrosian Republic (1447-1450), and Francesco Sforza, the condottiero that raised to Duke of Milan immediately afterwards, ordered its reconstruction. The new castle was a luxurious palace as much as an impressive fortress with four strong towers and two massive keeps. Galeazzo Maria Sforza transferred Milan's court inside the castle in 1466. Ludovico Sforza -the Moor- continued the fortification of Milan's castle, while embellishing it with the works of his Renaissance court artists, including Leonardo da Vinci, until the first fall of the Sforza dynasty when the the French occupied Milan in 1499. The castle played an essential role in the wars of Milan afterwards, as its possession was necessary for the control of the Duchy.
+
+	date = { day = 6 month = june year = 1450 }
+	offset = 20
+	deathdate = { day = 1 month = march year = 1466 }
+
+	action_a = {
+		name = "ACTIONNAME228016A" #We need a better fortress for our court
+		command = { type = treasury value = -150 }
+		command = { type = fortress which = 389 value = 1 } #Lombardia
+		command = { type = land value = 500 }
+	}
+	action_b = {
+		name = "ACTIONNAME228016B" #No need to build castles yet...
+		command = { type = vp value = -5 }
+		command = { type = domestic which = offensive value = 1 }
+	}
+}
+
+#(1454-1466) The Peace of Lodi
+#by Bordic
+event = {
+	id = 228034 #triggered by VEN_326038 A
+	random = no
+	country = MLO
+	name = "EVENTNAME228034" #The Peace of Lodi
+	desc = "EVENTHIST326038"
+	#-#During the war of succession in Milan, all the belligerent nations were brought to exhaustion of money and troops. Francesco Sforza, ruler of Milan and Venice, the chief state of the league confederates, who was more and more threatened by the advancing Ottomans in her eastern Mediterranean territories, convened a cease-fire while a bilateral treaty was hastily signed in Lodi on 7 April 1454. With that treaty Sforza was legitimated Duke of Milan. Without even being called for, Florence and the Pope had no choice then to endorse the treaty. The King of Naples, being a rightful claimant on the ducal throne reluctantly joined the alliance under the condition to keep Genoa out of it. Intended 'infra terminos italicos', that treaty showed the objective impossibility for all the Italian major powers (specifically Milan, Tuscany, Venice, Naples and Papal States) to prevail upon each other in the struggle for the hegemony in Italy and that the better solution was to come to terms with each other. That would have also avoided the practice of very expensive and pointless wars in the next future. Although the treaty actually played a minor part in Italian balance of powers and so won't be able to avoid future wars of aggression from inside as well from outside Italy, the post-Lodi era historically represented a period of relative peace in which the figurative arts definitively flourished in the whole Italian peninsula, as well as economy and trade and, last but not the least, the skills and tricks of the art of diplomacy.
+
+	action_a = {
+		name = "ACTIONNAME228034A" #We are now legitimate Duke of Milan
+		command = { type = stability value = 2 }
+		command = { type = diplomats value = 5 }
+		command = { type = merchants value = 4 }
+	}
+}
+
+#(1463-1464) Genoa submits to Milan
+#by Bordic
+event = {
+	id = 228023
+	trigger = { event = 174029 } #GEN: The Milanese suzerainty
+	random = no
+	country = MLO
+	name = "EVENTNAME228000" #Genoa submits to Milan
+	desc = "EVENTHIST174029"
+	#-#The French governors were imposing on the Republic so harsh tributes for continuing the war against Naples that they provoked big resentment in the Genoese population as much as to refuse a French suzerainty. Since the military expedition led by Jean d'Anjou to conquer the Kingdom of Naples failed and the rebelling Neapolitan barons eventually agreed to recognize Ferdinando as their King, Louis XI of France decide to abandon his plan to control the Genoese Republic granting his friend and ally Francesco Sforza, Duke of Milan, ownership's rights to the city of Genoa. Sforza soon sent an army led by Giacomo Vimercate to submit the city. As soon as Genoa fell under the Milanese troops and the despotic doge Paolo Fregoso fled with his fleet away, a delegation of the citizenship of Genoa went to Milan to swear allegiance to the new ruler.
+
+	date = { day = 1 month = April year = 1463 }
+	offset = 20
+	deathdate = { day = 1 month = April year = 1464 }
+
+	action_a = {
+		name = "ACTIONNAME228000A" #Accept their submission
+		command = { type = vassal which = GEN }
+		command = { type = relation which = FRA value = 25 }
+		command = { type = relation which = PRO value = 25 }
+	}
+}
+
+#(1464) Milan receives Corsica
+event = {
+	id = 228037 #triggered by GEN_174045
+	random = no
+	country = MLO
+	name = "EVENTNAME228037" #Milan is offered Corsica
+	desc = "EVENTHIST228037"
+	#-#Facing unnumberable revolts in the island, the Bank of St. George just decided to give it to us so that we may reestablish order. So far the population is waiting for us in the same hope. Only a handful of anachronical feudal lords may still be a problem. The leader of the rebels, Tomassino da Campofregoso, has collected all the taxes he could and is already on the leave.
+
+	action_a = {
+		name = "ACTIONNAME228037A" #Things are gonna change
+		command = { type = stability value = 1 }
+		command = { type = trigger which = 174046 } #GEN: Sforza accepted
+	}
+	action_b = {
+		name = "ACTIONNAME228037B" #This island is too far away
+		command = { type = domestic which = land value = 1 }
+		command = { type = trigger which = 174047 } #GEN: Sforza refused
+	}
+}
+
+#(1469-1472) Generalized civil war
+event = {
+	id = 228038
+	trigger = {
+		owned = { province = 398 data = -1 } #Corsica
+	}
+	random = no
+	country = MLO
+	name = "EVENTNAME228038" #From localized vindetta to civil war
+	desc = "EVENTHIST228038"
+	#-#It all began three years ago as a vindetta between two branches of the della Casabianca, a powerful family of oligarchs. Our governor unwisely decided to side with one faction. Then some people, obviously waiting only for an occasion to rebel against us, supported the other party. Our forces eventually got the upper hand but the situation is still very confused. Alliances are constantly shifting and unlike the Genoese we don't know much about this island's history and past feuds, and moreover we have no natural allies. In order to bribe some of the local nobles and oligarchs to our cause, our governors will need more money and troops.
+
+	date = { day = 1 month = january year = 1469 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1472 }
+
+	action_a = {
+		name = "ACTIONNAME228038A" #Let them fight
+		command = { type = province_revoltrisk which = 398 value = 15 } #Corsica
+		command = { type = sleepevent which = 228040 } #MLO: Getting even more involved
+	}
+	action_b = {
+		name = "ACTIONNAME228038B" #Let's get more involved
+		command = { type = revolt which = 398 } #Corsica
+		command = { type = province_revoltrisk which = 398 value = 5 } #Corsica
+		command = { type = provincetax which = 398 value = 1 } #Corsica
+		command = { type = treasury value = -75 }
+	}
+}
+
+#(1475) Carlu della Rocca
+event = {
+	id = 228039
+	trigger = {
+		owned = { province = 398 data = -1 } #Corsica
+		event = 228038 #MLO: From localized vindetta to civil war
+	}
+	random = no
+	country = MLO
+	name = "EVENTNAME228039" #Carlu della Rocca
+	desc = "EVENTHIST228039"
+	#-#Most powerful lord of the moment, former Count Paulu's grandson, he was also in control of the Communes through his uncle Vinciguerra. In 1475 he endeavoured to submit the other lords to his rule, beginning of course with the di Leca who were ferociously fighting each other at this time. Eventually they had to cease their quarrels to fight the would-be Count of Corsica and found support in his cousin Colombanu, former leader of the Communes.
+
+	date = { day = 1 month = january year = 1475 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1475 }
+
+	action_a = {
+		name = "ACTIONNAME228039A" #Crush him
+		command = { type = revolt which = 398 } #Corsica
+		command = { type = revolt which = 398 } #Corsica
+	}
+}
+
+#(1475-1504) Desprez for MLO - Flavor
+#by Marc Figueras
+#Text from the Grove Concise Dictionary of Music
+event = {
+	id = 228032
+	random = no
+	trigger = { stability = -1 }
+	country = MLO
+	name = "EVENTNAME228032" #Josquin Desprez
+	desc = "EVENTHIST228032"
+	#-#Perhaps a native of the Vermandois region of Picardy, Josquin Desprez was a singer at Milan Cathedral in 1459, remaining there until December 1472. By July 1474 he was one of the 'cantori di capella' in the chapel of Galeazzo Maria Sforza. Between 1476 and 1504 he passed into the service of Cardinal Ascanio Sforza, whom he probably accompanied in Rome in 1484. He then went to France and probably served Louis XII's court. Josquin's works gradually became known throughout western Europe and were regarded as models by many composers and theorists. Josquin was the greatest composer of the high Renaissance, the most varied in invention and the most profound in expression.
+
+	date = { day = 1 month = march year = 1475 }
+	offset = 90
+	deathdate = { day = 29 month = october year = 1504 }
+
+	action_a = {
+		name = "ACTIONNAME228032A" #A great composer!
+		command = { type = vp value = 5 }
+		command = { type = infra value = 25 }
+	}
+}
+
+#(1477-1483) The rebellion of Genoa
+#by Bordic
+event = {
+	id = 228055
+	trigger = {
+		event = 228023 #MLO: Genoa submits to Milan
+		OR = {
+			vassal = { country = MLO country = GEN }
+			AND = {
+				NOT = { exists = GEN }
+				owned = { province = 403 data = -1 } #Liguria
+			}
+		}
+	}
+	random = no
+	country = MLO
+	name = "EVENTNAME228055" #The rebellion of Genoa
+	desc = "EVENTHIST228055"
+	#-#Since Galeazzo Maria openly ruled his duchy as a tyrant he made many enemies amongst the Milanese noble families. On 26th december 1476 he was assassinated in Saint Stephen's church during religious mass. hand Cicco Simonetta, Sforza's secretary of State, managed to have Galeazzo's son, Gian Galeazzo, being proclaimed Duke while his mother Bona of Savoy being acknowledged as regent until Duke's minority. That provoked resentment in the brothers of the assassinated duke, also aming at the regency title, but negotiations were successfully conducted by Simonetta. If in Milan calm was restored an uprise broke in Genoa against the Milanese Governor Pallavicini led by members of the Fieschi and Campofregoso families united togetheragainst the Sforza rule. Cicco Simonetta gained the favour of Prospero Adorno, once opposer to Galeazzo's rule thus releasing him from prison, with the promise to crush the revolt and reeastablish the Milanese rule over Genoa. Adorno occupied Genoa and became Governor for Milan. But Adorno started to have contacts with foreing rulers seemingly as to get independence from the duke of Milan and that represented a clear sign of rebellion. Battista Fregoso, member of the Campofregoso family, which gave several doges to the city, was asked to intervene in crushing the rebellion in order to restore the Sforza lordship over the Republic. Battista Fregoso managed to chase Adorno away and to proclaim himself Doge of the Republic.
+
+	date = { day = 0 month = February year = 1477 }
+	offset = 50
+	deathdate = { day = 25 month = November year = 1483 }
+
+	action_a = {
+		name = "OH_NO"
+		command = { type = revolt which = 403 } #Liguria
+		command = { type = independence which = GEN }
+		command = { type = stability value = -1 }
+		command = { type = ADM which = -2 value = 24 }
+		command = { type = trigger which = 174068 } #GEN: The return of Campofregoso family
+	}
+}
+#(1477-1483) Genoa gained full independence
+event = {
+	id = 228056 #triggered by GEN_174068
+	trigger = {
+		OR = {
+			owned = { province = 465 data = -1 } #Kerch
+			AND = {
+				owned = { province = 398 data = -1 } #Corsica
+				NOT = { event = 228038 } #MLO: From localized vindetta to civil war
+			}
+		}
+	}
+	random = no
+	country = MLO
+	name = "EVENTNAME228056" #Genoa gained full independence
+	desc = "EVENTHIST228056"
+	#-#Milan didn't solve the problems with the administration of Genoa as the new doge didn't seem to acknowledge Sforza's lordship over Genoa, instead he followed a policy of partnership with Milan without acknowledging the Duke as suzerain.
+
+	action_a = {
+		name = "ALAS"
+		command = { type = cedeprovince which = GEN value = 398 } #Corsica
+		command = { type = cedeprovince which = GEN value = 465 } #Kerch
+	}
+}
+
+#(1477-1478) Getting more involved - Ahistorical
+event = {
+	id = 228040
+	trigger = {
+		owned = { province = 398 data = -1 } #Corsica
+	}
+	random = no
+	country = MLO
+	name = "EVENTNAME228040" #Getting even more involved
+	desc = "EVENTHIST228040"
+	#-#Carlu della Rocca has just been murdered by some of his many foes. Things seem to be calming down a bit and some of the potentates are still looking towards us to reestablish some kind of authority over there. Now may be our last opportunity.
+
+	date = { day = 1 month = june year = 1477 }
+	offset = 30
+	deathdate = { day = 29 month = august year = 1478 }
+
+	action_a = {
+		name = "ACTIONNAME228040A" #We don't have more money to waste
+		command = { type = province_revoltrisk which = 398 value = 10 } #Corsica
+		command = { type = provincetax which = 398 value = -1 } #Corsica
+	}
+	action_b = {
+		name = "ACTIONNAME228040B" #This island is important to us
+		command = { type = treasury value = -150 }
+		command = { type = province_revoltrisk which = 398 value = -5 } #Corsica
+		command = { type = addcore which = 398 } #Corsica
+		command = { type = domestic which = land value = -1 }
+		command = { type = provincetax which = 398 value = 1 } #Corsica
+		command = { type = sleepevent which = 228041 } #MLO: Tomassino da Campofregoso
+	}
+}
+
+#(1478) Tomassino da Campofregoso
+event = {
+	id = 228041
+	trigger = {
+		owned = { province = 398 data = -1 } #Corsica
+		event = 228038 #MLO: From localized vindetta to civil war
+	}
+	random = no
+	country = MLO
+	name = "EVENTNAME228041" #Tomassino da Campofregoso
+	desc = "EVENTHIST228041"
+	#-#Once our most dreaded enemy in Corsica, the Fregosi scion now seems to be our only hope. Half-Corsican himself, his mother's family naturally supports him and he has many allies among the feudal aristocracy as he was once the leader of a conspiracy to outthrow the Genoans. The situation has grown unbearable, we have no real choice.
+
+	date = { day = 17 month = september year = 1478 }
+
+	action_a = {
+		name = "ACTIONNAME228041A" #Make him our governor
+		command = { type = province_revoltrisk which = 398 value = -10 } #Corsica
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = relation which = GEN value = -50 }
+	}
+}
+
+#(1480) Ludovico tries to sieze power
+#by mnorrefeldt adapted from idea by mcmaus
+event = {
+	id = 228005
+	random = no
+	country = MLO
+	name = "EVENTNAME228005" #Ludovico tries to sieze power
+	desc = "EVENTHIST228005"
+	#-#Duke Galeazzo Maria was assassinated in the Church of Santo Stefano in 1476, leaving a young son, Gian Galeazzo, then about eight years old. The government was carried on by his mother, Bona of Savoy, in the name of the infant and in her own. But dissensions soon arose between the regent and her brothers-in-law. In the first encounter Bona and her chief counsellor, Cicco Simonetta, were victorious and the brothers of Galeazzo Maria were obliged to leave the city. But before long Ludovico, the ablest of the sons of Francesco Sforza procured his own readmission. The fall and execution of Simonetta followed and from 1479 the real government of Milan lay in the hands of Ludovico, whose power was further secured in 1480 when he seized the person of the young duke and the duchess was obliged to leave Milan. Henceforward the rule of Ludovico was not seriously challenged. The young duke was a prisoner and Ludovico managed everything in his name.
+
+	date = { day = 1 month = january year = 1480 }
+	offset = 300
+	deathdate = { day = 1 month = january year = 1481 }
+
+	action_a = {
+		name = "ACTIONNAME228005A" #Let Ludovico execute Simonetta and sieze power
+		command = { type = relation which = SAV value = -30 } #Bona of Savoy
+		command = { type = infra value = -200 } #executing chief counsellor
+		command = { type = stability value = -1 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = MIL which = 1 value = 180 } #until end of Gian Galeazzo rule
+	}
+	action_b = {
+		name = "ACTIONNAME228005B" #Gian Galeazzo is our ruler
+		command = { type = stability value = 1 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = dynastic which = SAV }
+		command = { type = ADM which = -2 value = 15 }
+	}
+}
+
+#(1483) Sale of Corsica
+event = {
+	id = 228042
+	trigger = {
+		owned = { province = 398 data = -1 } #Corsica
+		event = 228041 #MLO: Tomassino da Campofregoso
+		exists = GEN
+	}
+	random = no
+	country = MLO
+	name = "EVENTNAME228042" #The Fregoso sold Corsica
+	desc = "EVENTHIST228042"
+	#-#Still as unreliable as ever, Tomassino da Campofregoso put himself in serious troubles. Deprived of allies and money, the troublesome Genoese nobleman managed to sell Corsica to the Bank of Saint George for a nice sum of money before promptly leaving the island.
+
+	date = { day = 23 month = july year = 1483 }
+
+	action_a = {
+		name = "ACTIONNAME228042A" #We have no choice
+		command = { type = cedeprovince which = GEN value = 398 } #Corsica
+		command = { type = relation which = GEN value = -50 }
+		command = { type = casusbelli which = GEN value = 24 }
+		command = { type = trigger which = 174048 } #GEN: Corsica is returned
+	}
+}
+
+#(1486-1499) The Silk Industry
+#by Bordic
+event = {
+	id = 228036
+	trigger = {
+		owned = { province = 389 data = -1 } #Lombardia
+		atwar = no
+	}
+	random = no
+	country = MLO
+	name = "EVENTNAME228036" #The Silk Industry
+	desc = "EVENTHIST228036"
+	#-#During the 14th century, the duchy of Milan was the most important producer of woollen and cotton fabrics in the Italian peninsula, and was competing with wool factories in Tuscany and other European regions: amongst them Provence, Catalonia, Flanders and England. Silk, already regarded as an oriental product, became more generally used during the 1440s when Filippo Maria Visconti brought in craftsmen from Lucca, Florence and Genoa, specialised in making high-quality velvets and gold and silver brocades. It did not take long for the new craft to become a leader in Milan especially for 'auroserici' fabrics (using metallised thread, spinning gold and silver together with silk) that became famous throughout Europe. The splendour of the Visconti and Sforza courts was a powerful incentive for the silk factories. In 1461 The Art of Silk was improved with the approval of the Statutes of Weavers and Merchants and in 1470 several decrees were issued to facilitate the mulberry growing in the duchy of Milan. In 1486 Ludovico il Moro ordered the construction of 'La Sforzesca', a farm near the city of Vigevano used for growing mulberries and silkworms.
+
+	date = { day = 5 month = January year = 1486 }
+	offset = 30
+	deathdate = { day = 5 month = September year = 1499 } #French troops in Milan
+
+	action_a = {
+		name = "ACTIONNAME228036A" #Build the 'Sforzesca'
+		command = { type = treasury value = -300 }
+		command = { type = provincetax which = 389 value = 2 } #Lombardia
+		command = { type = population which = 389 value = 2000 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = gainmanufactory which = 389 value = goods }
+	}
+	action_b = {
+		name = "ACTIONNAME228036B" #Let's improve what we have
+		command = { type = treasury value = -75 }
+		command = { type = infra value = 250 }
+		command = { type = trade value = 250 }
+		command = { type = land value = 250 }
+		command = { type = naval value = 250 } #fluvial connections
+		command = { type = ADM which = 2 value = 60 }
+	}
+}
+
+#(1488-1494) Gian Galeazzo's marriage in Naples
+#by Bordic
+event = {
+	id = 228024
+	trigger = {
+		atwar = no
+		exists = NAP
+		event = 239020 #NAP: The Conspiracy of the Barons
+	}
+	random = no
+	country = MLO
+	name = "EVENTNAME228024" #Gian Galeazzo's marriage in Naples
+	desc = "EVENTHIST228024"
+	#-#In 1480, at the end of the war that ensued the Pazzi conspiracy between Florence, Milan and Venice against Papal States and Naples and at an attempt of the Turks to invade southern Italy with the troops' landing at Otranto, peace was soon agreed with. In order to enforce peace, Ludovico Sforza, regent of the duchy followed the traditional Milanese attitude to stipulate political marriages, which his father Francesco begun with the 1454 treaty of Lodi. A political marriage was arranged to strengthen the relations between the ducal court of Milan and the royal court of Naples between the Duke of Milan, Gian Galeazzo and Isabella d'Aragona, granddaughet of Ferrante, King of Naples. The ceremony took place in 1488 in Naples but the wedding was confirmed in Milan only the following year.
+
+	date = { day = 21 month = November year = 1488 }
+	offset = 60
+	deathdate = { day = 21 month = December year = 1494 }
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = relation which = NAP value = 25 }
+		command = { type = dynastic which = NAP } #Gian Galeazzo and Isabella d'Aragona
+		command = { type = DIP which = 2 value = 12 }
+		command = { type = trigger which = 239013 } #NAP: Isabella's marriage in Milan
+	}
+}
+
+#(1491) Beatrice d'Este
+#by Aylo1
+event = {
+	id = 228035
+	random = no
+	country = MLO
+	name = "EVENTNAME228035" #Beatrice d'Este (1475-97)
+	desc = "EVENTHIST228035"
+	#-#Known as one of the most beautiful and accomplished Princesses of the Italian Renaissance, Beatrice was the daughter of Ercole I - Duke of Modena-Ferrara and sister of the equally famous Isabella d'Este. Becoming consort to Ludovico 'il Moro' Sforza in 1491 she led a brief but brilliant political career. Beatrice helped her husband to become Duke of Milan and was present at the Congress of Vercelli between Charles VIII of France and the Italian Princes before dying during childbirth. Her patronage of learned men, artists and poets such as Castiglione, Bramante and da Vinci, made Milan one of the most splendid Courts in Italy.
+
+	date = { day = 1 month = january year = 1491 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1491 }
+
+	action_a = {
+		name = "OK"
+		command = { type = DIP which = 2 value = 60 } #political influence
+		command = { type = ADM which = 1 value = 60 } #embellisment of Castellos
+		command = { type = infra value = 50 } #short life
+		command = { type = dynastic which = MOD }
+		command = { type = relation which = MOD value = 50 }
+	}
+}
+
+#(1493-1494) Il Moro sends for Charles VIII
+#by Bordic
+event = {
+	id = 228025
+	trigger = {
+		event = 239016 #NAP: Isabella's complaints
+		exists = FRA
+		NOT = { war = { country = MLO country = FRA } }
+	}
+	random = no
+	country = MLO
+	name = "EVENTNAME228025" #Il Moro sends for Charles VIII
+	desc = "EVENTHIST228025"
+	#-#After the death of Lorenzo de' Medici, occurred on 8 April 1492, no Italian prince seemed to be able to keep on pursuing a constant balance of powers between the major Italian states. Florence, ruled by a foolish Piero de' Medici, was shifting his political attitude towards Naples at the expenses of Milan, so that Ludovico Sforza, Duke of Milan, quite paranoiac, abandoned the old league formed with strain by il Magnifico between Florence, Naples and Milan as to counterbalance Venice and Rome and signed on 22 April 1493 an Act of Confederation with the new Pope Alexander VI inviting Venice to join in. Ferrante I of Naples replied officially pressing Ludovico to resign from his regency of Milan since Gian Galeazzo Sforza, il Moro's nephew and Duke of Milan had already come of age and able to rule the duchy alone. Ferrante threatened to declare Ludovico usurper, and Ludovico decided to bring a bigger threat over Ferrante's head. Charles' ambitions to claim the Angevin throne of Naples were well known to Ludovico Sforza who, convinced to definitely solve his problems with the King of Naples, sent his ambassadors, the Count of Belgioioso and the Count of Caiazzo, to speak to the great lords of the Royal Council of France convincing them of the legality of Charles VIII's claim to the Kingdom of Naples, of the weakness of the Neapolitan armies, and of the glory the conquest of Naples would bring to France, once a crusade to liberate the Holy Land was in planning. At the same time, some Neapolitan exiles in France, amongst them Antonello Sanseverino, who escaped the baronal persecutions in Naples in 1487, assured that the Neapolitan people would have agreed on a French intervention. Most of the great lords of the Royal Council were against an attack on Naples, seeing it as very expensive and very dangerous and most of all senseless. But the young Charles VIII, who was carried away by a thirst for glory and a desire to conquer the Kingdom of Naples, paid very little attention to their arguments and heard instead the advice of his own advisors, many of them already corrupted by the money and promises of il Moro's emissaries with the lure of getting land and estates in the Kingdom of Naples and ecclesiastical positions from the Pope. Finally, after several days' debate, Charles VIII signed a secret agreement with il Moro's ambassadors, by which it was agreed that Charles VIII would send an army to invade the Kingdom of Naples and Milan would provide troops, money and free passage.
+
+	date = { day = 22 month = March year = 1493 }
+	offset = 30
+	deathdate = { day = 22 month = December year = 1494 }
+
+	action_a = {
+		name = "ACTIONNAME228025A" #Naples should mind its own business
+		command = { type = relation which = FRA value = 75 }
+		command = { type = relation which = MAN value = 25 }
+		command = { type = relation which = MOD value = 25 }
+		command = { type = relation which = HAB value = -25 }
+		command = { type = relation which = PAP value = -25 }
+		command = { type = relation which = VEN value = -25 }
+		command = { type = relation which = TOS value = -25 }
+		command = { type = relation which = NAP value = -50 }
+		command = { type = DIP which = 1 value = 12 }
+	}
+}
+
+#(1494-1499) The imperial investiture (MLO event replacing vanilla MLO_3706)
+event = {
+	id = 228018
+	trigger = {
+		exists = HAB
+		NOT = { war = { country = MLO country = HAB } }
+	}
+	random = no
+	country = MLO
+	name = "EVENTNAME228018" #The imperial investiture of the duchy
+	desc = "EVENTHIST228018"
+	#-#In order to strengthen his position against any claims to the throne which could have been pressed from Ferdinando I of Naples or from Charles VIII King of France, Ludovico il Moro begun intensive diplomatic handlings with Emperor Friedrich III's son Maximilian. On 16 March 1493 a wedding promise was agreed between the King of the Romans Maximilian and il Moro's daughter Bianca Maria to be celebrated at the end of the year and on 24 June 1493 a first agreement on the Sforza's imperial investiture was reached. The agreement and the investiture of the duchy will remain secret until Duke Gian Galeazzo's death, because based upon the formal reason that Galeazzo Maria, il Moro's brother and Gian Galeazzo's father, who died assassinated in 1476, was already born when Francesco Sforza still had to proclaim himself Duke of Milan.
+
+	date = { day = 26 month = september year = 1494 }
+	offset = 30
+	deathdate = { day = 26 month = march year = 1499 }
+
+	action_a = {
+		name = "ACTIONNAME228018A" #Ask for ducal title
+		command = { type = treasury value = -75 }
+		command = { type = diplomats value = 2 }
+		command = { type = trigger which = 179024 } #HAB: Milan renews its allegiance to the Empire
+	}
+	action_b = {
+		name = "ACTIONNAME228018B" #Milan has no suzerain
+		command = { type = DIP which = -2 value = 60 }
+		command = { type = ADM which = -2 value = 30 }
+		command = { type = MIL which = -2 value = 30 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = relation which = SPA value = -50 }
+		command = { type = relation which = VEN value = -50 }
+		command = { type = relation which = NAP value = -25 }
+		command = { type = revoltrisk which = 60 value = 5 }
+	}
+}
+#(1494-1499) Il Moro duke of Milan
+event = {
+	id = 228044
+	trigger = {
+		event = 179024 #HAB: Milan renews its allegiance to the Empire
+		NOT = {
+			event = 228045 #MLO: Il Moro duke of Milan
+			vassal = { country = FRA country = MLO }
+		}
+	}
+	random = no
+	country = MLO
+	name = "EVENTNAME228044" #Il Moro duke of Milan
+	desc = "EVENTHIST228044"
+	#-#On 20 October 1494, soon after Gian Galeazzo died in his 'golden prison' in Pavia in mysterious circumstances (allegedly poisoned!), Ludovico il Moro, as the new proclaimed Duke of Milan by acclamation, revealed to have already obtained the imperial investiture of the duchy, a title which was never conceded to the Sforza family since his father Francesco seized power in Milan in 1450. But the main reasons for the concession were to be found in Maximilian's desperate need of money in order to keep the imperial lands under his control.
+
+	date = { day = 26 month = september year = 1494 }
+	offset = 20
+	deathdate = { day = 26 month = march year = 1499 }
+
+	action_a = {
+		name = "ACTIONNAME228044A" #The emperor accepted our offer
+		command = { type = stability value = 1 }
+		command = { type = DIP which = 2 value = 24 }
+		command = { type = ADM which = -2 value = 24 }
+		command = { type = treasury value = -50 }
+		command = { type = trigger which = 170039 } #FRA: The Emperor entitled Sforza Duke of Milan
+	}
+}
+#(1494-1499) Il Moro duke of Milan (French vassal)
+event = {
+	id = 228045
+	trigger = {
+		NOT = { event = 228044 } #MLO: Il Moro duke of Milan
+		event = 179024 #HAB: Milan renews its allegiance to the Empire
+		vassal = { country = FRA country = MLO }
+	}
+	random = no
+	country = MLO
+	name = "EVENTNAME228044" #Il Moro duke of Milan
+	desc = "EVENTHIST228044"
+	#-#On 20 October 1494, soon after Gian Galeazzo died in his 'golden prison' in Pavia in mysterious circumstances (allegedly poisoned!), Ludovico il Moro, as the new proclaimed Duke of Milan by acclamation, revealed to have already obtained the imperial investiture of the duchy, a title which was never conceded to the Sforza family since his father Francesco seized power in Milan in 1450. But the main reasons for the concession were to be found in Maximilian's desperate need of money in order to keep the imperial lands under his control.
+
+	date = { day = 26 month = september year = 1494 }
+	offset = 20
+	deathdate = { day = 26 month = march year = 1499 }
+
+	action_a = {
+		name = "ACTIONNAME228044A" #The emperor accepted our offer
+		command = { type = breakvassal which = FRA }
+		command = { type = stability value = 2 }
+		command = { type = DIP which = -2 value = 24 }
+		command = { type = ADM which = 2 value = 24 }
+		command = { type = treasury value = -50 }
+		command = { type = trigger which = 170039 } #FRA: The Emperor entitled Sforza Duke of Milan
+	}
+}
+
+#(1495-1498) The Anti-French League of Venice
+#by Bordic
+event = {
+	id = 228026
+	trigger = { event = 326035 } #VEN: The Anti-French League of Venice
+	random = no
+	country = MLO
+	name = "EVENTNAME326035" #The Anti-French League of Venice
+	desc = "EVENTHIST170040"
+	#-#The presence of Charles VIII of France in the Kingdom of Naples scared the Italian princes, who had in a certain way permitted the French King to achieve his goal of settling there almost undisturbed. Venice and Florence were worried about a French hegemony in the peninsula. French military presence wasn't limited to Southern Italy but also to villages of Tuscany and the Papal States, which previously surrendered to Charles VIII in his march towards Naples, strategically located to grant the French military supply line. The Pope, who previously granted the French King military access through the Papal territories and consented his stay in Rome, felt in jeopardy as much as to refuse Charles VIII being proclaimed King of Naples. Also King Ferdinand of Aragon couldn't accept the French presence in a Kingdom where he instead, in spite of Alfons V's testament which assigned Naples to the other Trastamara branch, could be the one to have claims there. The position of Naples was also important for the Aragonese trading in the Mediterranean. The Duke of Milan, who decisively affected Charles VIII's decision to settle in Naples, was now alarmed by the presence of French reserve troops deployed in the county of Asti, very close to Milan and at the order of the Duke of Orléans, who had dynastical claims to the Milanese throne. So Venice, Milan, the Pope, Spain and even the Holy Roman Empire (so firmly opposed to the French expansionism in Italy as to join any Anti-French alliance available) consequently formed the Anti-French league in Venice on 31 March 1495. Florence preferred to stay out because of her internal problems caused by Charles VIII's passage and decided to support France instead. Having heard about those arrangements and fearing that the confederates would isolate his army in Italy, Charles VIII decided to return to France for reinforcements leaving his regent in Naples. He had to move his army quickly through the Apennines as to reach the Alps and then safety, but the presence of heavy artilleries and carriages transporting the big loot he accumulated across Italy, slowed his march down. Only at Fornovo on the Taro River, in the Po Valley, Charles VIII finally faced the army of the confederates. Despite having lost all the carriages, he managed to reach the Alps gaining from his expedition to Italy nothing but his army decimated by epidemies.
+
+	date = { day = 0 month = January year = 1495 }
+	offset = 20
+	deathdate = { day = 0 month = April year = 1498 }
+
+	action_a = {
+		name = "ACTIONNAME228026A" #We shall withstand the Orléanist claims
+		command = { type = casusbelli which = FRA value = 36 }
+		command = { type = relation which = FRA value = -100 }
+		command = { type = relation which = ARG value = 50 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = VEN value = 25 }
+		command = { type = relation which = PAP value = 50 }
+		command = { type = relation which = TOS value = -25 }
+	}
+	action_b = {
+		name = "ACTIONNAME228026B" #We cannot betray the French Ally
+		command = { type = stability value = -1 }
+		command = { type = relation which = FRA value = 25 }
+		command = { type = relation which = ARG value = -25 }
+		command = { type = relation which = HAB value = -25 }
+		command = { type = relation which = VEN value = -50 }
+		command = { type = relation which = PAP value = -50 }
+	}
+	action_c = {
+		name = "ACTIONNAME228026C" #We will support our French Ally
+		command = { type = stability value = -2 }
+		command = { type = relation which = FRA value = 75 }
+		command = { type = relation which = ARG value = -50 }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = relation which = VEN value = -75 }
+		command = { type = relation which = PAP value = -75 }
+	}
+}
+
+#(1497) Leonardo da Vinci - Flavor
+event = {
+	id = 5240
+	random = no
+	country = MLO
+	name = "EVENTNAME5240" #Leonardo da Vinci
+	desc = "EVENTHIST5240"
+	#-#Da Vinci was an Italian painter draftsman sculptor architect and engineer whose genius perhaps more than that of any figure epitomized the Renaissance humanist ideal. His 'Last Supper' and 'Mona Lisa' are among the most widely popular and influential paintings of the Renaissance. His notebooks reveal a spirit of scientific inquiry and a mechanical inventiveness that were centuries ahead of their time.
+
+	date = { day = 1 month = june year = 1497 }
+
+	action_a = {
+		name = "OK"
+		command = { type = stability value = 1 }
+		command = { type = infra value = 250 }
+		command = { type = domestic which = INNOVATIVE value = 1 }
+	}
+}
+
+#(1499-1504) Louis XII presses claims on Milan
+#by Bordic
+event = {
+	id = 228027 #triggered by FRA_12024 A
+	random = no
+	country = MLO
+	name = "EVENTNAME228027" #Louis XII presses claims on Milan
+	desc = "EVENTHIST12024"
+	#-#On 7 April 1498, upon Charles VIII's death at Amboise (he knocked his head while passing through a doorway in his going to see a game of real tennis), the throne passed to his cousin Louis of Orléans, who reigned as Louis XII of France. On his accession, he took the titles of Duke of Milan and King of Sicily, sending a shrounding chill through Italy, especially to Ludovico Sforza, who had seized Milan from his nephew Gian Galeazzo, and that upon his death, had seen his claim legitimized by Maximilian King of the Romans. Louis XII came to throne in France with the clear idea of avenging his previous defeat by Ludovico and make good his claim to Milan from his Visconti grandmother. Milan and her dependency, Genoa, were seen as the key to Italy. So Louis XII, preparing to make good his claim on Milan, wanted to enlist the help of the main Italian powers, to avoid the mistakes of his cousin Charles VIII. In the meanwhile the anti-Venetian sentiment had been running high, attempts were made by Italian ambassadors to poison the relationships between Venice and the Ottoman Empire and try to induce the latter to declare war to the former. It was clear that Venice could very well side with the French and that occurred with the stipulation of the treaty of Blois, where Venice would recognize French claims to Milan and in exchange for military support and money would receive the Milanese territories east of the Adda river. Louis then stipulated a peace treaty with Ferdinand of Spain and enforced the truce with Maximilian of Habsburg. He made also a pact with Pope Alexander VI: in exchange for a papal bull to annul his marriage to the crippled sister of late Charles VIII and marry Charles' widow, Anne of Brittany, the Pope's son, Cesare Borgia, received the duchy of Valentinois with the hand of Charlotte d'Albret, sister to the King of Navarre and a promise of French military support to form his own duchy in Romagna. After having secured his friendship with Philibert II of Savoy Louis XII crossed the Alps and assembled his powerful army in Asti, a small county in Piedmont that belonged to the House of Orléans as marriage dowry of Valentina Visconti, his grandmother. In the summer of 1499, the French army led by Gian Giacomo Trivulzio, a Milanese noble, invaded the duchy of Milan from West, in the meanwhile, a Venetian army attacked from East. Town after town surrendered and the Milanese armies disappeared. As soon as a revolt broke out in Milan, Ludovico left the city together with his family and his treasure. By September 1499 the French troops made their entrance in Milan warmly welcome by the population.
+
+	action_a = {
+		name = "ACTIONNAME228027A" #Hire some mercenaries and defend the duchy
+		command = { type = treasury value = -75 }
+		command = { type = provincetax which = -2 value = -1 } #reduced taxes
+		command = { type = casusbelli which = FRA value = 24 }
+		command = { type = relation which = TOS value = 25 }
+		command = { type = relation which = NAP value = 25 }
+		command = { type = relation which = TUR value = 25 }
+		command = { type = MIL which = 2 value = 12 }
+		command = { type = DIP which = -2 value = 12 }
+		command = { type = ADM which = -2 value = 12 }
+		command = { type = revoltrisk which = 24 value = 6 }
+		command = { type = INF which = -2 value = 8000 } #Sforza's Swiss mercenaries
+	}
+	action_b = {
+		name = "ACTIONNAME228027B" #Leave the duchy and flee to Innsbruck (End Game)
+		command = { type = revolt which = 389 } #Lombardia
+		command = { type = revolt which = 402 } #Emilia
+		command = { type = independence which = MAN }
+		command = { type = independence which = VEN }
+		command = { type = independence which = MOD }
+		command = { type = independence which = HEL }
+		command = { type = independence which = SAV }
+		command = { type = independence which = SIE }
+		command = { type = independence which = TOS }
+		command = { type = independence which = PAP }
+		command = { type = cedeprovince which = PAP value = 392 } #marche
+		command = { type = cedeprovince which = SAV value = 404 } #Piemonte
+		command = { type = cedeprovince which = HAB value = 371 } #tyrol
+		command = { type = cedeprovince which = HEL value = 1612} #schwyz
+		command = { type = cedeprovince which = HEL value = 388 } #bern
+		command = { type = trigger which = 170041 } #FRA: The French King in Milan
+		command = { type = sleepevent which = 170042 } #FRA: The destiny of Ludovico Sforza
+	}
+}
+
+#(1500-1507) Il Moro captured
+#by Bordic
+event = {
+	id = 228028 #triggered by FRA_170042 A
+	random = no
+	country = MLO
+	name = "EVENTNAME228028" #Il Moro captured
+	desc = "EVENTHIST228028"
+	#-#When in 1499 the French troops invaded Milan, Ludovico il Moro escaped to Innsbruck in Austria at the court of Maximilian I to ask his protection. Louis XII remained in Milan only a couple of months, then he made return to France and left Trivulzio there as his viceroy. But Trivulzio's way to administrate provoked deep Milanese resentments as much as to long for a Sforza's return and in January 1500, hearing that Sforza was assemblying troops to conquer Milan, an Anti-French revolt broke out in the city, the french troops were forced to abandon Milan except the garrison in Castello Sforzesco. In facts, with the gold he brought with, il Moro could hire mercenary troops and by February 1500 he made his entrance in Milan. After Milan, Sforza retook all the cities in the duchy and beyond Ticino River, where in Novara he had to face a French counterattack led by La Trémouille, also hiring Swiss mercenaries. The Swiss troops hired by il Moro, probably lured by the French gold and incited by their fellow-countrymen in the opposite camp refused to fight. 'The Duke's forces were composed of different races: German 'landsknechte', Burgundians who were commanded by the same Claude de Vauldray who had fought with the Good Knight in his first tournament, and Swiss mercenaries. There were bands of Swiss fighting on the side of the French, and those within the city declared that they would not fight against their fellow-countrymen in the other camp. They laid down their arms, and neither threat nor promise availed. Soon it was discovered that one of the gates of Novara had been opened by treachery, and that the French were entering the city. Then, as a last hope, Ludovico and his companions put on the dress of common soldiers and mixed with them in the ranks. But the unfortunate Duke was betrayed by one of the Swiss captains, who was put to death later by his own countrymen as a traitor.'(Bayard: The Good Knight Without Fear And Without Reproach, e-book by Christopher Hare) Ludovico Sforza was recognised and captured, then sent as prisoner to France where he miserably died, some years later, in the Castle of Loches, in Turenne. On 15 April 1500 The French troops made their second entrance in Milan.
+
+	action_a = {
+		name = "ACTIONNAME4982A" #Treason!
+		command = { type = stability value = -3}
+		command = { type = MIL which = -2 value = 24 }
+		command = { type = relation which = HEL value = -25 }
+	}
+}
+
+#(1512-1515) Sforza restored in Milan
+#by Bordic
+event = {
+	id = 228029 #triggered by FRA_12025 A
+	random = no
+	country = MLO
+	name = "EVENTNAME228029" #Sforza restored in Milan
+	desc = "EVENTHIST12025"
+	#-#In spite of their victories in Northern Italy, the French troops were forced to abandon the battlefield both because of financial reasons and because after the successful battle of Ravenna the Emperor was withdrawing troops and would have joined the holy league formed by Papal States, Spain, England and Venice with the help of Swiss troops hired by Pope Julius II himself and led into war by the Bishop of Sion, Mathias Schiner. Thence the decision to withdraw from Milan. Julius II recovered Ravenna, Bologna and the rest of the Romagna, while his commander, the Duke of Urbino, easily occupied Reggio and Modena, though Alfonso d'Este refused any settlement that would deprive him of Ferrara. After having chased out the French from Italy, the congress of allies which met at Mantua in August made over to the Pope Parma and Piacenza, to which he had at best a shadowy claim. The Emperor and Fernando would have been glad to give Milan to their grandson Charles but the Swiss were in possession and, supported by the Pope, made their will good. The duchy was given to Ercole Massimiliano Sforza, the elder son of Ludovico. The Venetian claims were left unsettled with Brescia still held out and the Swiss claiming Cremona and the Ghiara d'Adda for the duchy. And more, the Emperor demanded Vicenza and Verona. Florence, who in 1509 had ended her long war by the recovery of Pisa, was punished for her support of France by the restoration of the Medici. Entering Milan, Ercole Massimiliano Sforza received the keys to the city from the Swiss soldiers, who promised to protect the duchy of Milan and to help the Duke in sending to him all the troops he would need. The Duke granted them the acquisition of the ducal territories Ticino and Valtellina, the most important accesses to the Alpine passes. Genoa drew back its allegiance to the French King, who in 1506 harshly repressed a local rebellion that broke out owing to the decision taken by the French governor to grant privileges to the nobilty. But Julius II made also a treaty with his late ally, Maximilian, against Venice. The emperor was to support the Lateran council to oppose that one proclaimed by Louis XII in Pisa and to hand over Modena to the Pope, while Julius II was to join in compelling Venice to give up the fiefs which the Emperor claimed since Cambrai and to use on behalf of his new ally also the always convincing 'spiritual weapons'. When this treaty was made public, it had only the effect to drive Venice to side with France.
+
+	action_a = {
+		name = "ACTIONNAME228029A" #Ercole Massimiliano is appointed Duke
+		command = { type = breakvassal which = FRA }
+		command = { type = stability value = 2 }
+		command = { type = relation which = FRA value = -100 }
+		command = { type = relation which = HEL value = 25 }
+		command = { type = treasury value = -80 } #for hiring troops
+		command = { type = population which = -2 value = -2000 } #the Swiss acquiring territories
+		command = { type = INF which = -2 value = 10000 } #the Swiss garrisoning the city
+		command = { type = revoltrisk which = 36 value = 5 } #Swiss protectorate
+	}
+}
+
+#(1519-1522) The allegiance to the Emperor
+#by Bordic
+event = {
+	id = 228030
+	trigger = {
+		OR = {
+			event = 179026 #HAB: The Question of Milan
+			event = 285221 #SPA: The Question of Milan
+		}
+		NOT = {
+			vassal = { country = MLO country = SPA }
+		}
+		isvassal = yes
+	}
+	random = no
+	country = MLO
+	name = "EVENTNAME228030" #The allegiance to the Emperor
+	desc = "EVENTHIST228030"
+	#-#On 28 June 1519 after the death of his grand-father, the Emperor Maximilian I of Habsburg, Charles, King of Spain and Duke of Burgundy, became Holy Roman Emperor thanks to the money of his bankers (Fuggers and Welsers mainly) in a very expensive struggle with François Ier King of France. Having proclaimed himself as the only legitimate heir of Charlemagne, the first Emperor of Frankish dynasty, François Ier had announced his candidature to the imperial election. As a matter of facts all the electors were heavily bribed in order to obtain the much desired vote, and that was standard practice at those times. Charles 'bought' the Imperial title paying the Great Electors and their emissaries the huge sum of 850,000 golden florins (equal to a value of Kg 2,100 of gold). That money came mainly from the Castilian rents as the New World still didn't provide with much income. Charles's election was also eased by the Army of the Svevian league, which impressed the doubtful electors when chasing the Duke of Wirtemberg, chief of the pro-French party, out of his duchy. That denied the last remote chance for François to win the election. Being elected Holy Roman Emperor as Charles V, Charles (Karl in the German world or Carlos in Spain) of the House of Habsburg obtained the rights of suzerainty over all the fiefs in the Holy Roman Empire. Amongst them the Duchy of Milan together with its sovereignty of the Republic of Genoa represented an important junction in the Habsburg's dominions, the socalled 'Spanish road'.
+
+	date = { day = 26 month = June year = 1519 }
+	offset = 30
+	deathdate = { day = 26 month = April year = 1522 }
+
+	action_a = {
+		name = "ACTIONNAME228030A" #Swear allegiance to the newly elected Emperor
+		command = { 
+			trigger = { 
+				NOT = { vassal = { country = SPA country = MLO } }
+			}
+			type = breakvassal which = -1 #any liege except Charles V's Spain
+		}
+		command = { type = giveaccess which = HAB } #SPA would get MLO as vassal
+		command = { type = stability value = 2 }
+		command = { type = relation which = FRA value = -25 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = HEL value = 25 }
+		command = { type = relation which = SPA value = 50 }
+		command = { type = casusbelli which = FRA value = 48 }
+	}
+}
+
+#(1525-1527) The League of Cognac
+#by Bordic
+event = {
+	id = 228043 #triggered by FRA_12027 A
+	trigger = {
+		vassal = { country = SPA country = MLO }
+		NOT = { war = { country = FRA country = MLO } }
+	}
+	random = no
+	country = MLO
+	name = "EVENTNAME251047" #The League of Cognac
+	desc = "EVENTHIST12027"
+	#-#On the 24 of February 1525, in the battle of Pavia, the imperial armies led by Ferdinando Francesco d'Avalos, Marquis of Pescara (also winner at Bicocca in 1522), decimated the French troops led by King François Ier. Many French leaders died on the battlefield, such as De la Tremoille, La Palice and Bonnivet. King François Ier, instead, fell from his horse shot out under him, and taken captive. Since 24 February was Charles V's 25th birthday, the Valois was the biggest gift he could ever receive. François was carted off to Madrid, where he was held six months in prison for ransom, and pressed to renounce his claims in Italy and Flanders, to give Bourgogne back to the Empire and to concede the county of Provence to Charles, Connétable de Bourbon, and now leader of the imperial troops. The Emperor believed that the peace with France had finally been achieved after François Ier, agreeing to renounce his claims in Italy, was freed and retaken to France, leaving his sons there as hostages and guarantees for the respect of the treaty. But within two months of his release and in spite of his sons taken as hostages in Spain, François Ier got the Parliament of Paris to void all the terms of the Treaty of Madrid because accepted under duress and in 1526 at Cognac he stipulated a holy league bringing into it Pope Clement VII together with Florence, Venice, Henry VIII of England and also the Duke of Milan, who even if previously restored to the throne by Charles V himself, voluntarily joined the alliance made to stop the Spanish hegemony over Italy.
+
+	action_a = {
+		name = "ACTIONNAME228043A" #Reject Spanish suzerainty
+		command = { type = breakvassal which = SPA }
+		command = { type = casusbelli which = SPA value = 24 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = relation which = FRA value = 175 }
+		command = { type = relation which = PAP value = 25 }
+		command = { type = relation which = TOS value = 25 }
+		command = { type = relation which = VEN value = 25 }
+	}
+	action_b = {
+		name = "ACTIONNAME228043B" #Submit to Spanish rule
+		command = { type = stability value = -1 }
+		command = { type = DIP which = -2 value = 60 }
+		command = { type = MIL which = -2 value = 60 }
+		command = { type = ADM which = -4 value = 60 }
+	}
+}
+
+#(1535) The Fate of the Duchy -I- (SPA or HAB emperors)
+#by Bordic
+#graphics by kolmy from GRT
+event = {
+	id = 228031
+	trigger = {
+		OR = {
+			event = 179074 #HAB: The lapsed fief of Milan
+			event = 285222 #SPA: The lapsed fief of Milan
+		}
+		exists = SPA
+	}
+	random = no
+	country = MLO
+	name = "EVENTNAME228031" #The Fate of the Duchy
+	desc = "EVENTHIST228031"
+	#-#In 1530 during the congress of Bologna Pope Clement VII consecrated Charles V Holy Roman Emperor and convinced him to forgive the misbehaviour of Francesco II Sforza who joined the League of Cognac, as the Pope himself did. The Pope managed to have the Emperor grant Sforza the ducal title on the throne of Milan again, but under the firm condition that, on Sforza's death, the Duchy would have returned definitely to the Empire. A marriage was also agreed between Sforza and Charles V's niece Christine of Denmark. On 2 November 1535 Duke Francesco II died childless and, according to previous agreements made during the Congress of Bologna in 1530, the Duchy of Milan reverted to the Empire. As suzerain of those fiefs, Charles V had it administrated by means of life-governors whom he himself appointed. The Emperor's decision strongly displeased François Ier of France, whose younger son Charles, in possession of the title of Duke of Orléans and thus with dynastical claims to the Milanese throne, had his candidature rejected, in spite of his assurances of allegiance to the Empire.
+
+	date = { day = 0 month = November year = 1535 }
+
+	action_a = {
+		name = "ACTIONNAME228031A" #We accept our Emperor's will (End Game)
+		command = { 
+			trigger = { 
+				NOT = { vassal = { country = SPA country = MLO } }
+			}
+			type = breakvassal which = -1 #any liege except Charles V's Spain
+		}
+		command = { type = independence which = MAN }
+		command = { type = independence which = VEN }
+		command = { type = independence which = MOD }
+		command = { type = independence which = TOS }
+		command = { type = independence which = PAP }
+		command = { type = independence which = GEN }
+		command = { type = cedeprovince which = HAB value = 371 } #Tyrol
+		#if HEL doesn't exist, it'll be released
+		command = { type = independence which = HEL }
+		#if HEL exists, it'll receive all its core provinces
+		command = { type = cedeprovince which = HEL value = 388 } #Bern
+		command = { type = cedeprovince which = HEL value = 1612} #Schwyz
+		command = { type = cedeprovince which = SPA value = 398 } #Corsica
+		command = { type = cedeprovince which = SPA value = 392 } #Marche
+		command = { type = cedeprovince which = SPA value = 402 } #Emilia
+		command = { type = cedeprovince which = SPA value = 400 } #Siena
+		command = { type = trigger which = 285108 } #SPA: The Reversion of Milan
+		command = { type = trigger which = 170049 } #FRA: The Habsburgs in Milan
+		command = { type = sleepevent which = 170050 } #FRA: A French dynasty in Milan
+	}
+	action_b = {
+		name = "ACTIONNAME228031B" #Support the Visconti-Orléans dynasty
+		trigger = { 
+			ai = no
+			exists = FRA 
+		} 
+		command = { type = flagname which = "Orleans" } #quartered Orléans/Milan
+		command = { type = setflag which = [Visconti-Orleans] }
+		command = { 
+			trigger = { 
+				NOT = { vassal = { country = FRA country = MLO } }
+			}
+			type = breakvassal which = -1 #any liege except François Ier of France
+		}		
+		command = { type = revoltrisk which = 24 value = 3 } #Ghibellines
+		command = { type = revolt which = 389 } #Lombardia
+		command = { type = relation which = SPA value = -100 }
+		command = { type = sleepmonarch which = 089008 } #Milan City Council *
+		command = { type = wakemonarch which = 089015 } #Francesco III *
+		command = { type = wakemonarch which = 089016 } #Carlo I *
+		command = { type = wakemonarch which = 089017 } #Valois Regency *
+		command = { type = wakemonarch which = 089018 } #Luigi II *
+		command = { type = wakemonarch which = 089019 } #Carlo II Massimiliano *
+		command = { type = wakemonarch which = 089020 } #Enrico Alessandro *
+		command = { type = wakemonarch which = 089021 } #Valois Regency *
+		command = { type = wakemonarch which = 089022 } #Bourbon Regency *
+		command = { type = wakemonarch which = 089023 } #Gastone Giambattista *
+		command = { type = wakemonarch which = 089024 } #Filippo II *
+		command = { type = wakemonarch which = 089025 } #Filippo III *
+		command = { type = wakemonarch which = 089026 } #Luigi III *
+		command = { type = wakemonarch which = 089027 } #Luigi Filippo I *
+		command = { type = wakemonarch which = 089028 } #Luigi Filippo II *
+		command = { type = wakemonarch which = 089029 } #Luigi Filippo III * King of France in 1830
+		command = { type = trigger which = 285109 } #SPA: Milan defies the Empire
+	}
+	action_c = {
+		name = "ACTIONNAME228031C" #Impose self-determination
+		trigger = { 
+			ai = no
+			NOT = { exists = FRA } 
+		}
+		command = { type = breakvassal which = -1 }
+		command = { type = stability value = 2 }
+		command = { type = treasury value = -100 }
+		command = { type = addcore_national which = 402 } #Emilia (Parma in new map)
+		command = { type = relation which = PAP value = 50 }
+		command = { type = sleepevent which = 170050 } #FRA: A French dynasty in Milan
+		command = { type = trigger which = 285334 } #SPA: Milan defies the Empire
+		command = { type = trigger which = 179156 } #HAB: Milan defies the Empire
+	}
+}
+#(1535) The Fate of the Duchy -II- (SPA or HAB not emperors )
+#by Bordic
+#graphics by kolmy from GRT
+event = {
+	id = 228047
+	trigger = {
+		exists = FRA
+		NOT = {
+			event = 228031 #MLO: The Fate of the Duchy -I-
+		}
+	}
+	random = no
+	country = MLO
+	name = "EVENTNAME228031" #The Fate of the Duchy
+	desc = "EVENTHIST228047"
+	#-#On 2 November 1535 duke Francesco II died childless. At those times, the only dynasty having valid claims to legitimately rule over the duchy of Milan was the French House of Orléans, which last member, Louis XII, also King of France, had previously bequeathed his Orléanais inheritance to the husband of his daughter Claude, François of the House of Valois-Angouleme, also known as François Ier King of France. The claims to the duchy of Milan dated back to Bianca Visconti, King Louis XII's grandmother and sister of Filippo Maria Visconti, the last duke of Milan of his dynasty. Because of this inheritance, François Ier and his sons could consider themselves as the only legitimate candidates to rule over the imperial duchy. Also Pope Paulus III of the Farnese family was aiming at the imperial administration over Milan and Parma to be assigned by the emperor to his illegitimate son Pier Luigi.
+
+	date = { day = 1 month = November year = 1535 }
+
+	action_a = {
+		name = "ACTIONNAME228047A" #The Visconti-Orléans dynasty has claims
+		command = { type = flagname which = "Orleans" } #quartered Orléans/Milan
+		command = { type = setflag which = [Visconti-Orleans] }
+		command = { 
+			trigger = { 
+				NOT = { vassal = { country = FRA country = MLO } }
+			}
+			type = breakvassal which = -1 #any liege except François Ier of France
+		}
+		command = { type = stability value = 2 }
+		command = { type = addcore_national which = 402 } #Emilia (Parma in new map)
+		command = { type = relation which = PAP value = -50 }
+		command = { type = sleepmonarch which = 089008 } #Milan City Council *
+		command = { type = wakemonarch which = 089015 } #Francesco III *
+		command = { type = wakemonarch which = 089016 } #Carlo I *
+		command = { type = wakemonarch which = 089017 } #Valois Regency *
+		command = { type = wakemonarch which = 089018 } #Luigi II *
+		command = { type = wakemonarch which = 089019 } #Carlo II Massimiliano *
+		command = { type = wakemonarch which = 089020 } #Enrico Alessandro *
+		command = { type = wakemonarch which = 089021 } #Valois Regency *
+		command = { type = wakemonarch which = 089022 } #Bourbon Regency *
+		command = { type = wakemonarch which = 089023 } #Gastone Giambattista *
+		command = { type = wakemonarch which = 089024 } #Filippo II *
+		command = { type = wakemonarch which = 089025 } #Filippo III *
+		command = { type = wakemonarch which = 089026 } #Luigi III *
+		command = { type = wakemonarch which = 089027 } #Luigi Filippo I *
+		command = { type = wakemonarch which = 089028 } #Luigi Filippo II *
+		command = { type = wakemonarch which = 089029 } #Luigi Filippo III * King of France in 1830
+	}
+	action_b = {
+		name = "ACTIONNAME228047B" #Let's apply for self-determination
+		command = { type = breakvassal which = -1 } 
+		command = { type = stability value = 2 }
+		command = { type = treasury value = -100 }
+		command = { type = addcore_national which = 402 } #Emilia (Parma in new map)
+		command = { type = relation which = PAP value = 50 }
+		command = { type = sleepevent which = 170165 } #FRA: A French dynasty in Milan
+	}
+}
+
+#(1567-1584) Charles Borromeo
+#by Basileus - modified by YodaMaster
+event = {
+	id = 17316
+	trigger = {
+		religion = catholic
+		event = 102
+	}
+	random = no
+	country = MLO
+	name = "EVENTNAME17316" #Charles Borromeo
+	desc = "EVENTHIST17316"
+	#-#Charles Borromeo (1538-1584) became Archbishop of Milan after his uncle Giovanni Angelo de' Medici became Pope as Pius IV. Charles immediately applied the new policies and doctrines of the Council of Trent to Milan when he was still only 29, making the city just as disciplined as its Calvinist rival, Geneva, just across the Alps. Charles set up a printing press in his own palace to make the new legislation known, and subjected the clergy to rigourous examinations. He reformed the education system of Milan, making it far better than it was before. His reforms, however, conflicted with the secular authourities of Milan, as well as some of the unreformist clergy. He was canonized in 1614.
+
+	date = { day = 1 year = 1567 }
+	offset = 20
+	deathdate = { day = 7 year = 1584 }
+
+	action_a = {
+		name = "ACTIONNAME17316A" #A wonderful Archbishop!
+		command = { type = religion which = counterreform }
+		command = { type = missionaries value = 6 }
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 120 value = 3 }
+		command = { type = dip which = 3 value = 240 } #Isaac Brock changed 6 to 3
+		command = { type = adm which = 3 value = 240 } #Isaac Brock changed 6 to 3
+		command = { type = relation which = PAP value = 100 } #Isaac Brock: changed 200 to 100
+		command = { type = relation which = SPA value = 50 } #Isaac Brock: changed 100 to 50
+		command = { type = relation which = HAB value = 50 } #Isaac Brock: changed 100 to 50
+	}
+}
+
+#(1593-1595) The Banco di San Ambrogio
+event = {
+	id = 228014
+	random = no
+	country = MLO
+	name = "EVENTNAME228014" #The Banco di San Ambrogio
+	desc = "EVENTHIST228014"
+	#-#In 1593 the government set up the Banco di San Ambrogio, the first public bank in Milan. Milan became the most important financial centre in Northern Italy.
+
+	date = { day = 20 month = march year = 1593 }
+	offset = 30
+	deathdate = { day = 1 month = april year = 1595 }
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = ADM which = 1 value = 12 }
+		command = { type = treasury value = 100 }
+		command = { type = inflation value = -3 }
+		command = { type = loansize which = 100 }
+	}
+}
+
+#(1675-1715) Economic and Social Decadence - Ahistorical
+#by Bordic
+event = {
+	id = 228048
+	trigger = {
+		NOT = {
+			countrysize = 10
+			domestic = { type = innovative value = 9 }
+			domestic = { type = serfdom value = 3 }
+			domestic = { type = aristocracy value = 1 }
+			event = 338232 #ProvinceSpec*389: The plague in Milan
+		}
+	}
+	random = no
+	country = MLO
+	name = "EVENTNAME251066" #Economic and Social Decadence
+	desc = "EVENTHIST251066"
+	#-#In the late XVIIth century, the disuse of the Mediterranean sea as the main international trade junction between Europa and the East Indies brought the Italian economic system to collapse. Italy became more removed from the mainstream of European development and each local administration along the peninsula lagged behind that of any other European contemporary. The practice of agriculture as prevailing economic activity meant the coming back to power of the most conservative landowning aristocracy. That economic backwardness associated with the effects of Counterreform deeply affected Italian social life too, now less and less inclined to accept innovation and to develop some entrepreneurial attitude.
+
+	date = { day = 24 month = january year = 1675 }
+	offset = 60
+	deathdate = { day = 0 month = january year = 1715 }
+
+	action_a = {
+		name = "ALAS"
+		command = { type = stability value = -1 }
+		command = { type = provincetax which = -2 value = -2 }
+		command = { type = provincemanpower which = -2 value = -1 }
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = domestic which = MERCANTILISM value = 1 }
+		command = { type = domestic which = SERFDOM value = 1 }
+		command = { type = domestic which = LAND value = 1 }
+		command = { type = trade value = -500 }
+		command = { type = infra value = -500 }
+		command = { type = naval value = -500 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id : 228046 then 228058

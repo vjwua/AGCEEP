@@ -4,7 +4,7 @@
 
 country = {
 	tag = DAU
-	ai = "DAU_1419.ai"
+	ai = "DAU_1419.txt"
 	colonialattempts = 0
 	colonialnation = yes
 	major = no

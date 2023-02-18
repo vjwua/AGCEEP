@@ -1,0 +1,1197 @@
+#Serbia (SER)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1491) Fall of Constantinople, the Serbian reaction
+#MKJ(?)
+event = {
+	id = 80327
+	trigger = {
+		event = 3353 #TUR: City of Men's Desire
+	}
+	random = no
+	country = SER
+	name = "EVENTNAME80327" #The Fall of Constantinople
+	desc = "EVENTHIST80327"
+	#-#The Ottoman Empire has taken Constantinople. We are now one of the last vestiges of the Roman Empire left. How shall we respond?
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1491 }
+
+	action_a = {
+		name = "ACTIONNAME80327A" #Let the Roman Empire rest in peace at last
+		command = { type = relation which = TUR value = 100 }
+		command = { type = relation which = TRE value = 10 } #Trebizond content that the serbians don't claim THEIR byzantine throne
+		command = { type = sleepevent which = 80328} #SER: Restoration of the empire
+	}
+	action_b = {
+		name = "ACTIONNAME80327B" #We must become the new Roman Empire!
+		command = { type = relation which = TUR value = -200 }
+		command = { type = relation which = PAP value = -10 } #The Pope does not need another emperor and certainly not an orthodox one
+		command = { type = addcore which = 320 } #Dobrudja
+		command = { type = addcore which = 321 } #Rumelia
+		command = { type = addcore which = 355 } #Serbia
+		command = { type = addcore which = 356 } #Bulgaria
+		command = { type = addcore which = 357 } #Thrace
+		command = { type = addcore which = 358 } #Macedonia
+		command = { type = addcore which = 359 } #Hellas
+		command = { type = addcore which = 360 } #Morea
+		command = { type = addcore which = 361 } #Albania
+		command = { type = addcore which = 362 } #Ragusa
+		command = { type = addcore which = 363 } #Kosovo
+		command = { type = addcore which = 479 } #Ionia
+		command = { type = addcore which = 480 } #Crete
+		command = { type = addcore which = 481 } #Rhodes
+		command = { type = addcore which = 484 } #Cyprus
+		command = { type = addcore which = 820 } #Corfu
+	}
+}
+
+#(1419-1820) Restore Byzantium
+#MKJ(?)
+event = {
+	id = 80328
+	trigger = {
+		owned = { province = 357 data = -1 } #Thrace
+		control = { province = 357 data = -1 } #Thrace
+		religion = orthodox
+		NOT = { exists = BYZ }
+		atwar = no
+	}
+	random = no
+	country = SER
+	name = "EVENTNAME80328" #Restoration of the Roman Empire
+	desc = "EVENTHIST80328"
+	#-#After the fall of Constantinople, Serbia declared itself the successor of the Roman Empire, and led the charge against the Turk. Eventually victorious, the opportunity arose to restore the Empire.
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME80328A" #Restore the Roman Empire in Constantinople
+		command = { type = capital which = 357 } #Thrace
+		command = { type = conversion which = 357 } #Thrace
+		command = { type = provinceculture which = 357 value = greek } #Thrace
+		command = { type = remove_countryculture which = slavonic}
+		command = { type = add_countryculture which = greek }
+		command = { type = add_countryculture which = slavonic }
+		command = { type = conversion which = -1 }
+		command = { type = conversion which = -1 }
+		command = { type = missionaries value = 3 }
+		command = { type = diplomats value = 2 }
+		command = { type = merchants value = 2 }
+		command = { type = flagname which = "" }
+		command = { type = country which = BYZ }
+	}
+	action_b = {
+		name = "ACTIONNAME80328B" #Let Smederevo Remain the Capital of a New Empire
+		command = { type = conversion which = 357 } #Thrace
+		command = { type = provinceculture which = 357 value = greek } #Thrace
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = population which = 355 value = 30000 } #Serbia
+		command = { type = missionaries value = 3 }
+		command = { type = merchants value = 2 }
+		command = { type = provincetax which = 355 value = 3 } #Serbia
+		command = { type = provincetax which = 357 value = -2 } #Thrace
+		command = { type = revolt which = -1 }
+		command = { type = revoltrisk which = 24 value = 4 } #The greek population is pissed off, that the Serbians do not restore the roman empire
+	}
+}
+
+#(1420-1427) Income from estates in Hungary
+event = {
+	id = 277016
+	trigger = {
+		vassal = { country = HUN country = SER }
+	}
+	random = no
+	country = SER
+	name = "EVENTNAME277016" #Income from estates in Hungary
+	desc = "EVENTHIST277016"
+	#-#When Stefan Lazarevic swore an oath of vassalage to Emperor Sisgismund, he was made a noble of the Kingdom of Hungary and granted large personal estates in that Kingdom, including the town of Debrecen. These estates, according to Bertrand de la Broquierre, provided Serbian Desport with annual income of 50,000 ducats.
+
+	date = { day = 1 month = january year = 1420 }
+	offset = 150
+	deathdate = { day = 1 month = january year = 1427 }
+
+	action_a = {
+		name = "ACTIONNAME277016A" #I'm rich!
+		command = { type = treasury value = 50 }
+	}
+}
+
+#(1421-1426) Lordship of Zeta
+#by Aylo1
+event = {
+	id = 277000
+	random = no
+	country = SER
+	name = "EVENTNAME277000" #Lordship of Zeta
+	desc = "EVENTHIST277000"
+	#-#Dying during a visit to the Court of his uncle Stefan Lazarevic II, Balša III Balšic of Zeta was trying to gain support in his fight against Venice. Simultaneously the Venetians occupied the ports of Bar, Ulcinj and Budva - defeating Serb forces at Skadar (Dec 1422). It wasn't till 1426 that peace was concluded, whereby Venice's territorial boundaries were recognised and Serbia receive most of Zeta.
+
+	date = { day = 1 month = january year = 1421 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1426 }
+
+	action_a = {
+		name = "ACTIONNAME277000A" #Leave it to Venice
+		command = { type = relation which = VEN value = 25 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME277000B" #Press our rights
+		command = { type = relation which = VEN value = -100 }
+		command = { type = addcore which = 362 } #Ragusa\Zeta
+	}
+}
+
+#(1421-1425) Native aid in Zeta
+event = {
+	id = 277032
+	trigger = {
+		war = { country = SER country = VEN }
+		owned = { province = 362 data = VEN } #Ragusa
+	}
+	random = no
+	country = SER
+	name = "EVENTNAME277032" #Native aid in Zeta
+	desc = "EVENTHIST277032"
+	#-#During Serbian campaign to recapture the towns in Zeta that were taken by Venice after death of the last Balsic, most Montenegrin and Albanian tribes fought on the side of Serbian Despot. Albanian noble Ivan Kastrioti also sent aid to Serbian Despot.
+
+	date = { day = 28 month = april year = 1421 }
+	offset = 30
+	deathdate = { day = 1 month = december year = 1425 }
+
+	action_a = {
+		name = "ACTIONNAME277032A" #Welcome them into our armies
+		command = { type = INF which = -1 value = 10000 } #twice as numerous as for Venice, and they are not mercenaries
+	}
+}
+
+#(1421) Pretender to the Ottoman Throne
+event ={
+	id = 277031 #triggered by BYZ_23000 A / BYZ_23000 D
+	random = no
+	country = SER
+	name = "EVENTNAME277031" #Pretender to the Ottoman Throne
+	desc = "EVENTHIST277031"
+	#-#In 1421 the Ottoman Sultan, Mehmed I, died. His son, Murad II, ascended the throne. However, the Byzantines were holding Mehmed's brother, Mustafa, prisoner on the island of Lemnos. Hoping for the best, and urged on by his son (John VIII), Manuel II released this pretender to the throne, creating civil war in the Ottoman Empire. The Venetians took the opportunity to attack the Ottoman navy. Mustafa approched Despot of Serbia hoping to gain his support in addition to Byzantine. A loyal Ottoman vassal and a friend of late Sultan Mehmed I, Stefan Lazarevic flatly refused his request.
+
+	action_a = {
+		name = "ACTIONNAME277031A" #Refuse
+		command = { type = relation which = TUR value = 100 }
+		command = { type = relation which = BYZ value = -50 }
+		command = { type = relation which = VEN value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME277031B" #Aid the pretender
+		command = { type = relation which = TUR value = -100 }
+		command = { type = relation which = BYZ value = 50 }
+		command = { type = relation which = VEN value = 50 }
+		command = { type = treasury value = -20 }
+		command = { type = trigger which = 301119 } #TUR: Serbia aids the pretender
+	}
+}
+
+#(1425-1428) Stefan Lazarevic
+event = {
+	id = 277008
+	random = no
+	country = SER
+	name = "EVENTNAME277008" #Stefan Lazarevic
+	desc = "EVENTHIST277008"
+	#-#Stefan Lazarevic was the first western-style knight in Serbia, a member of the Order of the Dragon, but also a renowed poet and reformer. He modernized the army in Serbia, founded Resava School, a center for transcription and translation of books, established the Code of Mines law in Novo Brdo mines and wrote several valuable works such as The Grave Sobbing for Prince Lazar, The Inscription on the Kosovo Marble Column and A Homage to Love.\n \nAnd may we be together again,\n \nAnd see each other again,\n \nAnd meet in love again\n \nFor His sake,\n \nFor whom glory be with the Father\n \nAnd the Holy Spirit\n \nForever and ever.\n \nAmen
+
+	date = { day = 1 month = january year = 1425 }
+	offset = 200
+	deathdate = { day = 1 month = january year = 1428 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = infra value = 100 }
+		command = { type = land value = 100 }
+	}
+}
+
+#(1426) Treaty of Tata
+event = {
+	id = 277033
+	trigger = {
+		vassal = { country = HUN country = SER }
+	}
+	random = no
+	country = SER
+	name = "EVENTNAME277033" #Treaty of Tata
+	desc = "EVENTHIST277033"
+	#-#Despot Stefan Lazarevic's health was already failing after his wars with Venice and Bosnia. As he had no children, the logical choice of his hair was his nephew, Djuradj Brankovic, his close aide and successful general. Despot Stefan announced his decision at the council of Serbian nobles in Srebrenica and met no resistance. However, he still needed Emperor Sisgismund's blessing for this non-direct inheritance. In May 1426, a treaty was signed between Stefan and Sigismund in Hungarian town of Tata according to which Emperor Sigismund would recognize Djuradj as Stefan's heir but Djuradj would have to return the town of Belgrade and surrounding territories, including the fortress of Golubac, to Hungary upon Stefan's death. Emperor Sigismund was also named heir to Serbian Despotate in case of Djuradj's death without heirs. This, however, was only a formality as Djuradj never showed any signs of possibility to leave Serbia without an heir.
+
+	date = { day = 1 month = april year = 1426 }
+	offset = 10
+	deathdate = { day = 1 month = june year = 1426 }
+
+	action_a = {
+		name = "ACTIONNAME277033A" #The inheritance is secured
+		command = { type = stability value = 1 } #no resistance from the nobles or the Emperor
+		command = { }
+	}
+}
+
+#(1427-1430) Rebellion in Zeta
+event = {
+	id = 277034 #triggered by TUR_301120 A
+	random = no
+	country = SER
+	name = "EVENTNAME277034" #Rebellion in Zeta
+	desc = "EVENTHIST277034"
+	#-#Trying to use the succession in Serbia to gain lordship over Zeta, Stefan Balsic de Marmonte, the last of Baslic family, allied with disloyal noble Gojcin Crnojevic. An old enemy of Venice, Marmonte could only ask the Ottomans for help. Sultan Murad II gladly used any opportunity to distabilize Christian realms on the Balkans. Small Ottoman army lead by Stefan Balsic and aided by Gojcin Crnojevic and Albanian tribe of Dukadjuni plundered the countryside in Zeta but failed to capture any significant town.
+
+	action_a = {
+		name = "ACTIONNAME277034A" #Crush the rebels
+		command = { type = revolt which = 362 } #Ragusa
+	}
+}
+
+#(1427) Emperor Sigismund demands Belgrade
+event = {
+	id = 277009 #triggered by HUN_188017 A
+	random = no
+	country = SER
+	name = "EVENTNAME277009" #Emperor Sigismund demands Belgrade
+	desc = "EVENTHIST277009"
+	#-#When Stefan Lazarevic, Serbian Despot, became vassal of Hungarian King in 1403, he received as a reward the town of Belgrade on Danube and some territories south of the river, as well as the mining town of Srebrenica in eastern Bosnia and rich personal estates in Hungary. According to the agreement signed when Stefan II swore fealty, Serbia was obliged to return Belgrade and the territories around Danube river to Hungary upon Stefan's death. Emperor Sigismund decided to call on this treaty, which sparked another catastrophic conflict with the Ottoman Empire.
+
+	action_a = {
+		name = "ACTIONNAME277009A" #Return the territories as agreed
+		command = { type = provincetax which = 355 value = -2 } #Third of the base tax value seems like a good penalty for loosing a major town in the province
+		command = { type = provincemanpower which = 355 value = -1 } #People of Belgrade and the surrounding area provided significant manpower.
+		command = { type = relation which = HUN value = 100 } #The Emperor is pleased with his new vassal's loyalty.
+		command = { type = relation which = TUR value = -100 } #The Sultan is not pleased with the change of lordship over Belgrade.
+		command = { type = trigger which = 188018 } #HUN: Despot Djuradj returns Belgrade to Hungary
+	}
+	action_b = {
+		name = "ACTIONNAME277009B" #Break the treaty
+		command = { type = breakvassal which = HUN }
+		command = { type = relation which = TUR value = 100 } #The Sultan is pleased that Serbia is breaking away with Hungary.
+		command = { type = relation which = HUN value = -200 } #The Emperor is mad because of this dishonorable betrayal.
+		command = { type = sleepevent which = 277012 } #SER: Consequences of Golubac conflict
+		command = { type = trigger which = 188019 } #HUN: Despot Djuradj refuses to return Belgrade
+	}
+}
+#(1427) Emperor Sigismund leaves Belgrade to Serbia
+event = {
+	id = 277010 #triggered by HUN_188017 B
+	random = no
+	country = SER
+	name = "EVENTNAME277010" #Emperor Sigismund leaves Belgrade to Serbia
+	desc = "EVENTHIST277010"
+	#-#When Stefan Lazarevic, Serbian Despot, became vassal of Hungarian King in 1403, he received as a reward the town of Belgrade on Danube and some territories south of the river, as well as the mining town of Srebrenica in eastern Bosnia and rich personal estates in Hungary. According to the agreement signed when Stefan II swore fealty, Serbia was obliged to return Belgrade and the territories around Danube river to Hungary upon Stefan's death. In his great mercy, Emperor Sigismund decided to leave the prosperous town of Belgrade under lordship of Despot of Serbia.
+
+	action_a = {
+		name = "ACTIONNAME277010A" #God bless the kind Emperor Sigismund!
+		command = { type = relation which = HUN value = 200 } #This is gesture of great friendship
+		command = { type = relation which = TUR value = -100 } #Strengthening of friendship with Hungary is not looked favorably upon by the Ottoman Sultan.
+	}
+}
+#(1427) Duke Jeremija refuses to cede Golubac
+event ={
+	id = 277011 #triggered by HUN_188020 A
+	random = no
+	country = SER
+	name = "EVENTNAME277011" #Duke Jeremija refuses to cede Golubac
+	desc = "EVENTHIST277011"
+	#-#Golubac was one of the strategically most important fortresses on Danube. It was of uncertain origins, either Hungarian or Serbian. Golubac was awared to Despot Stefan Lazarevic along with Belgrade when he swore vassalage to Sigismund. When Djuradj Brankovic returned the territories to Sigismund, Duke Jeremija, Serbian governor of the fortress, refused to turn it over to Hungarians unless he is paid a compensation. Sigismund refused to be blackmailed and Jeremija turned the fortress over to Ottomans, starting another bloody conflict between Hungary and the Ottoman Empire.
+
+	action_a = {
+		name = "ACTIONNAME277011A" #It is not our problem
+		command = { type = desertion which = 355 value = 2000 } #Duke's men are no longer available to Despot
+		command = { type = trigger which = 301093 }	#TUR: Ottomans in Golubac
+		command = { }
+	}
+	action_b = {
+		name = "ACTIONNAME277011B" #We shall pay the compensation for the sake of peace
+		command = { type = treasury value = -12 } #Duke asked for 12000 ducats
+		command = { type = stability value = -1 } #loss of respect for being blackmailed by a duke
+		command = { type = domestic which = centralization value = -1 } #Duke Jeremija and his peers now have more power in Serbia
+		command = { type = domestic which = aristocracy value = 1 } #Duke Jeremija and his peers now have more power in Serbia
+		command = { type = sleepevent which = 277012 } #SER: Consequences of Golubac conflict
+	}
+}
+
+#(1428-1456) Mines of Novo Brdo
+#by Aylo1
+event = {
+	id = 277003
+	trigger = {
+		owned = { province = 363 data = -1 } #Kosovo
+	}
+	random = no
+	country = SER
+	name = "EVENTNAME277003" #Mines of Novo Brdo
+	desc = "EVENTHIST277003"
+	#-#Located near Gjilan in Kosovo, the gold and silver mines of Novo Brdo gave Djuradj Brankovic an annual income of about 200,000 Venetian Ducats. According to the French Knight Bertrand de la Broquierre, this made the Despot the richest monarch in Europe.
+
+	date = { day = 1 month = january year = 1428 }
+	offset = 150
+	deathdate = { day = 1 month = january year = 1456 }
+
+	action_a = {
+		name = "ACTIONNAME277003A" #I'm rich!
+		command = { type = treasury value = 200 }
+		command = { type = inflation value = 1 }
+	}
+}
+
+#(1428-1430) Fortress of Smederevo
+event = {
+	id = 277013
+	trigger = {
+		NOT = { owned = { province = 363 data = -1 } } #Kosovo, location of Serbia's southern strongholds
+	}
+	random = no
+	country = SER
+	name = "EVENTNAME277013" #Fortress of Smederevo
+	desc = "EVENTHIST277013"
+	#-#After the loss of southern fortresses of Nis and Krusevac and the northern fortress of Golubac, Djuradj Brankovic found himself without a large stronghold in his shrinking Despotate. He decided to undertake a rushed project of constructing the intimidating stronghold of Smederevo where he moved the capital of Serbia when Belgrade was returned to Hungary. The fortress was a smaller copy of Constantinople. With triangular base and 25 towers, it was the largest Serbian medieval citadel. Fortress of Smederevo was the peak of European medieval technology when it was constructed, but introduction of gunpowder artillery rendered it obsolete when the time came to defend against the final Ottoman invasion. Since this was a rushed project, people who worked on it lost much of their personal freedom and some were even driven to banditry.
+
+	date = { day = 1 month = january year = 1428 }
+	offset = 60
+	deathdate = { day = 1 month = december year = 1430 }
+
+	action_a = {
+		name = "ACTIONNAME277013A" #Use the treasure from Novo Brdo mines to build this mighty fortress
+		command = { type = fortress which = -2 value = 1 }
+		command = { type = domestic which = serfdom value = 2 }
+		command = { type = domestic which = offensive value = -1 }
+		command = { type = revoltrisk which = 36 value = 5 }
+	}
+	action_b = {
+		name = "ACTIONNAME277013B" #We have better use for this treasure
+		command = { type = treasury value = 200 }
+		command = { type = inflation value = 1 }
+	}
+}
+
+#(1428-1444) Consequences of Golubac conflict
+event = {
+	id = 277012
+	trigger = {
+		owned = { province = 363 data = TUR } #Kosovo, location of Nis and Krusevac
+		NOT = { war = { country = SER country = TUR } }
+		NOT = { war = { country = HUN country = TUR } }
+	}
+	random = no
+	country = SER
+	name = "EVENTNAME277012" #Consequences of Golubac conflict
+	desc = "EVENTHIST277012"
+	#-#After the transfer of Belgrade to Hungary and Ottoman occupation of Golubac, Ottoman Sultan sent his army against Serbia and occupied it's southern strongholds of Nis and Krusevac. Having defeated Hungarian army at Golubovac, the Ottomans were clearly having the upper hand. Struggling to save Serbia from destruction, Djuradj Brankovic swore a dual vassalage to Hungary and Ottoman Empire, paying 50,000 ducats and a cavalry unit to fight for the Sultan in internal conflicts of the Ottoman Empire.
+
+	date = { day = 1 month = may year = 1428 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1444 }
+
+	action_a = {
+		name = "ACTIONNAME277012A" #We have no other choice
+		command = { type = desertion which = -1 value = 2000 } #A unit departs to fight for the Sultan
+		command = { type = provincemanpower which = 355 value = -1 } #This unit has to be maintained at full strenght as part of tribute.
+		#The ducats came from the mines of Novo Brdo which aren't really represented in the game anyway.
+		command = { type = relation which = HUN value = -50 } #Hungarian King is not pleased with this move, but he is not in position to object
+		command = { type = relation which = TUR value = 100 }
+		command = { type = trigger which = 301094 } #TUR: Serbia submits
+		command = { type = trigger which = 130007 } #BOS: Consequences of Golubac conflict
+	}
+	action_b = {
+		name = "ACTIONNAME277012B" #Never!
+		command = { type = relation which = TUR value = -100 }
+		command = { type = relation which = HUN value = 100 } #Hungarian King is surprised and pleased that his vassal is willing to stand against the Ottomans until the end.
+	}
+}
+
+#(1429-1444) Income from estates in Hungary
+event = {
+	id = 277017
+	trigger = {
+		vassal = { country = HUN country = SER }
+	}
+	random = no
+	country = SER
+	name = "EVENTNAME277016" #Income from estates in Hungary
+	desc = "EVENTHIST277017"
+	#-#When Djuradj Brankovic swore oath of fealty to Emperor Sigismund, he also inherited his predecessor's estates in Hungary.
+
+	date = { day = 1 month = january year = 1429 }
+	offset = 150
+	deathdate = { day = 1 month = january year = 1444 }
+
+	action_a = {
+		name = "ACTIONNAME277016A" #I'm rich!
+		command = { type = treasury value = 50 }
+	}
+}
+
+#(1429) Despot and Prince of Rashka and Albania
+event = {
+	id = 277014
+	trigger = {
+			NOT = { war = { country = HUN country = SER }}
+			vassal = { country = HUN country = SER }
+	}
+	random = no
+	country = SER
+	name = "EVENTNAME277014" #Despot and Prince of Rashka and Albania
+	desc = "EVENTHIST277014"
+	#-#When Stefan Lazarevic became Sigismund's vassal, he was titled the Despot and Prince of Rashka and Albania. Stefan, however, persued peaceful policy and tried to culturally and economically advance his Despotate instead of seeking expansion into lands his title gave him claim on. Djuradj Brankovic inherited this title when he swore vassalage to Hungarian King, but he was too busy building up his defenses against eventual invasion of Ottomans to look for expansion southwards.
+
+	date = { day = 1 month = may year = 1429 }
+	offset = 30
+	deathdate = { day = 1 month = december year = 1444 }
+
+	action_a = {
+		name = "ACTIONNAME277014A" #We must turn to defense for now
+		command = { type = domestic which = offensive value = -1 } #preparations for defense
+		command = { }
+	}
+	action_b = {
+		name = "ACTIONNAME277014B" #We shall add Albania to our lands whatever the cost!
+		command = { type = addcore which = 361 } #Albania
+		command = { type = relation which = TUR value = -100 } #Turks are not pleased
+		command = { type = relation which = ALB value = -200 } #Albanians are gravely insulted if independent
+		command = { type = domestic which = offensive value = 1 } #preparations for invasion
+	}
+}
+
+#(1430-1456) Fall of Thessalonica
+event = {
+	id = 277015 #triggered by VEN_23007 A
+	trigger = { #not after 24th december 1456 and the death of Djuradj Brankovic
+		monarch = 0121001 #Djuradj Brankovic
+	}
+	random = no
+	country = SER
+	name = "EVENTNAME277015" #Fall of Thessalonica
+	desc = "EVENTHIST277015"
+	#-#When Thessalonica, defended by Republic of Venice, fell to the Ottoman Empire in 1430, Djuradj's son Grgur lead the unit of Serbian knights provided as part of Serbia's tribute. Due to Grgur's proximity to the field of battle and Djuradj's influence in Sultan's court, Serbian Despot was the first to react when Ottomans offered a number of high-ranking Greek captives for ransom. The tradition continued afterwards and many Greek, Bulgarian and Albanian captives found shelter in Djuradj's court, bringing with them their Byzantine experience and prestige.
+
+	action_a = {
+		name = "ACTIONNAME277015A" #Invest Novo Brdo treasure to help our Orthodox brothers
+		command = { type = stability value = -1 } #Serbian nobility is not pleased that foreign nobles are taking their places in Despot's court
+		command = { type = domestic which = aristocracy value = 1 } #Dramatic increase in the number of nobles in Serbia increases the power of aristocracy
+		command = { type = infra value = 1000 }
+		command = { type = trade value = 1000 }
+		command = { type = relation which = ALB value = 50 } #all surviving ex-Byzantine countries are pleased that Serbia is helping their countrymen
+		command = { type = relation which = TRE value = 50 }
+		command = { type = relation which = BYZ value = 50 }
+		command = { type = relation which = MRE value = 50 } #Morea
+		command = { type = relation which = THO value = 50 }
+		command = { type = relation which = ATH value = 50 } #Should Athens be included? It is ruled by Italians.
+		command = { type = relation which = CYP value = 50 } #What about Cyprus? It's a remnant of the crusades.
+		command = { type = trigger which = 301095 } #TUR: Djuradj Brankovic pays ransom for captives from Thessalonica
+	}
+	action_b = {
+		name = "ACTIONNAME277013B" #We have better use for this treasure
+		command = { type = treasury value = 200 }
+		command = { type = inflation value = 1 }
+	}
+}
+
+#(1434) Maria-Mara (1410-87)
+#by Aylo1
+event = {
+	id = 277005
+	random = no
+	country = SER
+	name = "EVENTNAME277005" #Maria-Mara (1410-87)
+	desc = "EVENTHIST277005"
+	#-#A daughter of Djuradj Brankovic, she was married off to Sultan Murâd II (4 April 1433) in an attempt to preserve the fragile peace between Serbia and the Ottoman Empire. Sent back to her father upon the death of Murâd II, she famously refused a proposal from the Byzantine Emperor Konstantinos XI. After her parent's deaths, she sought refuge from her brother Lazar II at the Sublime Porte where Mara was given an estate near Mt.Athos. Together with her half-sister Katerina they acted as intermediaries during the Turkish-Venetian War of 1463-79.
+
+	date = { day = 1 month = january year = 1434 }
+	offset = 30
+	deathdate = { day = 14 month = december year = 1434 }
+
+	action_a = {
+		name = "OK"
+		command = { type = relation which = BYZ value = -10 }
+		command = { type = relation which = TUR value = 25 }
+		command = { type = dynastic which = TUR } #Murâd II
+		command = { type = stability value = 1 } #peace
+	}
+}
+
+#(1434) Katarina Brankovic
+event = {
+	id = 277018
+	trigger = {
+		exists = SEI
+	}
+	random = no
+	country = SER
+	name = "EVENTNAME277018" #Katarina Brankovic
+	desc = "EVENTHIST277018"
+	#-#A daughter of Djuradj Brankovic, Catherine was married to Count Ulrich II of Cilli, Sigismund's brother-in-law.
+
+	date = { day = 1 month = january year = 1434 }
+	offset = 30
+	deathdate = { day = 14 month = december year = 1434 }
+
+	action_a = {
+		name = "OK"
+		command = { type = dynastic which = SEI }
+	}
+}
+
+#(1434-1435) Despot Djuradj
+#by Aylo1
+event = {
+	id = 277004
+	trigger = { exists = BYZ }
+	random = no
+	country = SER
+	name = "EVENTNAME277004" #Despot Djuradj
+	desc = "EVENTHIST277004"
+	#-#Succeeding Stephan Lazarevic II as Gospodin (Lord) of Serbia, Djuradj Brankovic was awarded the title of 'Despot' by a Byzantine envoy in May 1429.
+
+	date = { day = 1 month = october year = 1434 }
+	offset = 60
+	deathdate = { day = 1 month = march year = 1435 }
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = relation which = BYZ value = 75 }
+		command = { type = DIP which = 1 value = 240 }
+		command = { type = stability value = 1 }
+		command = { type = vp value = 20 }
+	}
+}
+
+#(1439) The Council of Florence and the Union of the Churches
+event = {
+	id = 3837 #triggered by BYZ_3833 A / BYZ_23020 B
+	random = no
+	country = SER
+	name = "EVENTNAME3833" #The Council of Florence and the Union of the Churches
+	desc = "EVENTHIST3835"
+	#-#Faced with the terrible onslaught of the Ottoman Turks, representatives of the Byzantine Empire and the Greek Orthodox Church have gone to the Council of Florence in order to negotiate a Union of the Churches. The Byzantines and their patriarch have agreed to great concessions, and Orthodoxy has virtually surrendered to Rome. Now, Byzantium is begging us to support them in their desperate struggle against the Ottomans!
+
+	action_a = {
+		name = "VERY_WELL"
+		command = { type = casusbelli which = TUR value = 60 }
+	}
+}
+
+#(1439-1444) Ottoman ultimatum
+event = {
+	id = 277019
+	trigger = {
+		neighbour = TUR
+		NOT = { vassal = { country = SER country = TUR } }
+	}
+	random = no
+	country = SER
+	name = "EVENTNAME277019" #Ottoman Ultimatum
+	desc = "EVENTHIST277019"
+	#-#In April 1439, a great Ottoman army lead by the Sultan himself approached the borders of Serbia. Murad II demanded that Despot Djuradj joins his invasion Bosnia and Hungary and allows unhindered passage of Ottoman troops through Serbia. After failing in attempts to secure Serbia's neutrality in the war, Djuradj refused Sultan's demands and the Ottomans attacked. Only Smederevo and Novo Brdo managed to withstand the initial assault of Turksih troops, and Djuradj fled to Hungary to seek help from the new Emperor Albrecht. Hungary didn't have enough troops to defend its borders and help Serbia at the same time, and Hungarian nobility blocked any attempt by Emperor Albrecht to bring German troops as reinforcements. Smederevo, the capital of Serbia, finally fell on August 18th.
+
+	date = { day = 1 month = april year = 1439 }
+	offset = 30
+	deathdate = { day = 14 month = december year = 1444 }
+
+	action_a = {
+		name = "ACTIONNAME277019A" #Refuse Sultan's demands
+		command = { type = relation which = HUN value = 100 } #Hungarians are very thankful
+		command = { type = relation which = TUR value = -200 } #The Sultan is not amused
+		command = { type = breakvassal which = TUR }
+		command = { type = trigger which = 301097 } #TUR: Serbian Despot defies the Sultan
+		command = { type = sleepevent which = 301098 } #TUR: Serbian Despot accepts our demands
+	}
+	action_b = {
+		name = "ACTIONNAME277019B" #We have no choice but to agree
+		command = { type = relation which = HUN value = -200 } #Hungary is betrayed
+		command = { type = relation which = TUR value = 100 } #The Sultan is pleased
+		command = { type = breakvassal which = HUN }
+	}
+}
+
+#(1440-1460 or 1442-1460) Loyalist victory in Hungary
+event = {
+	id = 277020 #triggered by HUN_188092 A or HUN_188091 A
+	random = no
+	country = SER
+	name = "EVENTNAME277020" #Loyalist victory in Hungary
+	desc = "EVENTHIST277020"
+	#-#When the conflict between Loyalists, who supported the rightful infante King Ladislaus Postumus, son of late Emperor Albrecht I, and Nationalists who wanted to install Polish King Wladyslaw, Despot Djuradj was not in a position to choose sides. His daughter's marriage with Ulrich II of Cilli, leader of Loyalist faction, already made his decision for him. Although Djuradj wasn't in a position to offer much active support to Ulrich's faction, Count of Cilli still maintained good relationships with his father-in-law. Fortunatelly for Serbia, the Loyalists won in Hungary and more active help against Turks can now be expected.
+
+	action_a = {
+		name = "ACTIONNAME277020A" #Finally some good news from Hungary
+		command = { type = relation which = HUN value = 200 } #Djuradj was in great relations with his son-in-law
+		command = { type = dynastic which = HUN } #marriage of Katarina Brankovic to Count Ulrich
+		command = { type = stability value = 1 } #general feeling of hope now that Hungary is again in position to protect Serbia
+	}
+}
+#(1440-1460 or 1442-1460) Nationalist victory in Hungary
+event = {
+	id = 277021 #triggered by HUN_188093 A or HUN_188094 A
+	random = no
+	country = SER
+	name = "EVENTNAME277021" #Nationalist victory in Hungary
+	desc = "EVENTHIST277021"
+	#-#When the conflict between Loyalists, who supported the rightful infante King Ladislaus Postumus, son of late Emperor Albrecht I, and Nationalists who wanted to install Polish King Wladyslaw, Despot Djuradj was not in a position to choose sides. His daughter's marriage with Ulrich II of Cilli, leader of Loyalist faction, already made his decision for him. Although Djuradj wasn't in a position to offer much active support to Ulrich's faction, Count of Cilli still maintained good relationships with his father-in-law. Unable to help his son-in-law and also unable to win King Wladyslaw's favor, Despot Djuradj turned to Republics of Venice and Ragusa for help, but both refused. His flight to Venice antagonized both Hungarians and Ottomans. King Wladyslaw seized Djuradj's estates in Hungary, while the Ottoman Sultan blinded his sons Grgur, who lead the Serbian unit in Ottoman army, and Stevan who was captured when Smederevo fell to Turks. However, King Wladyslaw came to understand the threat Ottomans represented and the small but significant aid the buffer Despotate of Serbia can provide. After spending some time fighting for the Venetians in Zeta, Despot Djuradj traveled back to Hungary to make peace and alliance against Ottomans with the new King. He succeeded, aided by their joint fear of Turks and help of Janko Hunyadi, a Wallachian noble and the leader of Nationalists who also served in the army of Stefan Lazarevic.
+
+	action_a = {
+		name = "ACTIONNAME277021A" #Time to make peace
+		command = { type = breakdynastic which = HUN } #death of Ulrich II of Cilli
+		command = { type = relation which = HUN value = 100 } #Improvement in relations, but smaller than in Loyalist victory
+		command = { type = stability value = 1 } #general feeling of hope now that Hungary is again in position to protect Serbia
+	}
+}
+
+#(1442-1460) Crusade against the Turks
+event = {
+	id = 277022 #triggered by HUN_188099 A
+	random = no
+	country = SER
+	name = "EVENTNAME277022" #Crusade against the Turks
+	desc = "EVENTHIST277022"
+	#-#After King Wladyslaw managed to pacify the opposition in Hungary, he turned his attention to the Ottoman Empire. At the same time, this problem was brought more closely into the attention of other Christian powers. Knights of Saint John, remnants of the Byzantine Empire and Republic of Ragusa were the most active in demands for coordinated offensive against the Turks. The dynastic civil war in Ottoman Empire made these initiatives sound more realistic than before. Pope's first reaction was to send Cardinal Julian Cesarini to aid the pacification of Wladyslaw's opponents in Hungary. Between Cesarini's splendid efforts and Hunyadi's great military leadership, Hungary was more ready for war than ever. Hunyadi won his first crushing vicotory against an invading Ottoman army in Hungary in 1442, and already in 1443 he broke the 80000-strong Ottoman army in Wallachia. These victories and the news of Ottoman defeat against Karaman greatly emboldened the Christian monarchs. Just after Hunyadi's victory in Wallachia, the Pope decided to aid the war effort with a fifth of his annual income. In June 1443, an army of 25,000 with focus on cavalry headed south to attack the Ottomans in Serbia. The army was lead by King Wladyslaw himself and his most loyal vassals: Janos Hunyadi, Djuradj Brankovic and Dracul. Despot Djuradj lead his army of 8000 men which was strengthened by Petar Kovacevic, Duke of Srebrenica, and his 600 knights. In November, Janos Hunyadi lead the charge of 12000 Hungarian knights that completely broke the Ottoman army near Nis. Sofia fell to Christian forces in December. The winter stop the Christian invasion and tired Hungarian soldiers returned to their Kingdom in January 1444. Despot Djuradj opposed this retreat, but he could not force his opinion on the Hungarian King. Invasion resumed in June 1444, aided by a fleet made of Venetian and Papal galleys, with Burgundian fleet on its way. Before any battle could take place, peace talks took place. Peace of Szeged was signed in which Sultan Murad II agreed to restore the Despotate of Serbia as dual vassal, to pay a compensation to Hungary and to aid the Hungarian King with an army of 25,000 soldiers against his enemies during the next ten years. Despot Djuradj was the main advocate of peace talks on Christian side and only managed to persuade Wladyslaw to agree by bribing Janos Hunyadi with some of his estates in Hungary.
+
+	action_a = {
+		name = "ACTIONNAME277022A" #Join the Crusade!
+		command = { type = breakvassal which = TUR } #break vassalage if Serbia is still vassal to Ottomans
+		command = { type = relation which = HUN value = 200 } #loyalty is greatly appreciated
+		command = { type = relation which = WAL value = 100 } #friends in need are friends indeed
+		command = { type = CAV which = -2 value = 600 } #cavalry from Srebrenica
+	}
+	action_b = {
+		name = "ACTIONNAME277022B" #We are too weak to help right now
+		command = { type = breakvassal which = HUN } #break vassalage
+		command = { type = relation which = HUN value = -200 } #betrayal
+		command = { type = stability value = -2 } #Serbia is left without friends
+	}
+}
+
+#(1444-1461) Loss of Srebrenica
+event = {
+	id = 277035 #triggered by BOS_130014 A
+	random = no
+	country = SER
+	name = "EVENTNAME277035" #Loss of Srebrenica
+	desc = "EVENTHIST277035"
+	#-#After Serbia was liberated from the Ottoman Empire, rich mining town of Srebrenica, still held by Turks, was cut off from the rest of the Ottoman forces. Before Despot Djuradj of Serbia could consolidate his Despotate and liberate Srebrenica, King Tomas attacked the town claiming to be fighting on the side of Christians and added it to his realm.
+
+	action_a = {
+		name = "ACTIONNAME277035A" #He shall pay for this
+		command = { type = provincetax which = 355 value = -1 } #Srebrenica is no longer part of Serbia
+	}
+}
+
+#(1444-1456) Reclaiming Zeta
+event = {
+	id = 277036
+	trigger = {
+		core = { province = 362 data = -1 } #Only if Stefan Lazarevic decided to push his claims when Balsa III died.
+		owned = { province = 362 data = BOS } #Only if Stepan and Bosnia managed to conquer Ragusa.
+	}
+	random = no
+	country = SER
+	name = "EVENTNAME277036" #Reclaiming Zeta
+	desc = "EVENTHIST277036"
+	#-#Djuradj's first goal after liberation of Serbia was to reclaim Zeta from Bosnian Duke Stepan Vukcic. Because of their common enemy in Bosnian King, Despot Djuradj and Duke Stepan made peace in 1444. Stepan returned the parts of Zeta he still held in 1445.
+
+	date = { day = 22 month = august year = 1444 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1456 }
+
+	action_a = {
+		name = "ACTIONNAME277036A" #Take back what belongs to us
+		command = { type = relation which = VEN value = -100 } #Venice is not pleased that Serbia is coming back to Zeta
+		command = { type = relation which = BOS value = -100 } #Made peace with enemy of the King
+		command = { type = relation which = ARG value = 50 } #New enemies of Venice
+		command = { type = trigger which = 130015 } #BOS: Duke Stepan returns Zeta
+	}
+	action_b = {
+		name = "ACTIONNAME277036B" #Abandon Zeta
+		command = { type = relation which = VEN value = 50 }
+		command = { type = relation which = BOS value = -100 } #Made peace with enemy of the King
+		command = { type = removecore which = 362 } #Djuradj gives up his claims
+	}
+}
+
+#(1444-1460) Consequence of the Peace of Szeged
+event ={
+	id = 277002 #triggered by HUN_188032
+	trigger = {
+		owned = { province = 363 data = -1 } #Kosovo
+		OR = {
+			owned = { province = 356 data = TUR } #Bulgaria
+			owned = { province = 358 data = TUR } #Macedonia
+			owned = { province = 361 data = TUR } #Albania
+		}
+	}
+	random = no
+	country = SER
+	name = "EVENTNAME188032" #Consequence of the Peace of Szeged
+	desc = "EVENTHIST277002"
+	#-#As a consequence of the Peace of Szeged, Kosovo is returned to the Ottoman Empire.
+
+	action_a = {
+		name = "OK"
+		command = { type = cedeprovince which = TUR value = 363 } #Kosovo
+		command = { type = trigger which = 301117 } #TUR: Peace of Szeged
+	}
+}
+
+#(1444-1460) The Second Crusade
+event = {
+	id = 277023 #triggered by HUN_188024 A
+	random = no
+	country = SER
+	name = "EVENTNAME277023" #The Second Crusade
+	desc = "EVENTHIST277023"
+	#-#Peace of Szeged was very badly received by the Catholic world. For them, especially those who didn't take part in the war, the peace was an end of a glorious conquest and great success for Christianity. Blame for the peace was rightfully thrown on Despot Djuradj Brankovic. He was considered to have selfishly rushed to secure the liberation of his Despotate without consideration for the possible complete triumph of Christianity. Under pressure of other Catholic monarchs rallied around Cardinal Cesarini, who claimed that no treaty with a heathen may be valid, King Wladyslaw decided to break the Peace of Szeged and attack the Ottoman Empire again. Despot Djuradj, an old and tired man, decided to return to Serbia and honor the peace agreement with Ottomans.
+
+	action_a = {
+		name = "ACTIONNAME277023A" #I'm tired of all this bloodshed
+		command = { type = stability value = 1 }
+		command = { type = relation which = HUN value = -100 }
+		command = { type = relation which = WAL value = -100 }
+		command = { type = relation which = ALB value = -100 }
+		command = { type = relation which = BYZ value = -100 }
+		command = { type = relation which = MRE value = -100 }
+		command = { type = relation which = PAP value = -100 }
+		command = { type = relation which = POL value = -100 }
+		command = { type = relation which = VEN value = -100 }
+		command = { type = relation which = HAB value = -100 }
+	}
+	action_b = {
+		name = "ACTIONNAME277023B" #Let's expel the Turks from the Balkans for good
+		command = { type = stability value = -1 }
+		command = { type = relation which = HUN value = 100 }
+		command = { type = relation which = WAL value = 100 }
+		command = { type = relation which = ALB value = 100 }
+		command = { type = relation which = BYZ value = 100 }
+		command = { type = relation which = MRE value = 100 }
+		command = { type = relation which = PAP value = 100 }
+		command = { type = relation which = POL value = 100 }
+		command = { type = relation which = VEN value = 100 }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = casusbelli which = TUR value = 12 }
+		command = { type = breakvassal which = TUR }
+		command = { type = war which = TUR }
+	}
+}
+
+#(1445) Paskoje Sorkocevic
+event = {
+	id = 277024
+	random = no
+	country = SER
+	name = "EVENTNAME277024" #Paskoje Sorkocevic
+	desc = "EVENTHIST277024"
+	#-#Despots Stefan Lazarevic and Djuradj Brankovic maintained a European-style court with a retinue of ministers. Most well known of those ministers is the Ragusan noble Paskoje Sorkocevic (Pasqualis Junii de Sorgo), Head of Treasury for Despot Djuradj from 1445 to 1453. Aside from handling the treasury and economy of the small Despotate, Paskoje also aided the Despot in diplomacy. His son, Jurije Sorkocevic, continued to serve the Despot as his emissary in foreign courts.
+
+	date = { day = 1 month = january year = 1445 }
+	offset = 30
+	deathdate = { day = 1 month = december year = 1445 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = infra value = 50 }
+		command = { type = trade value = 50 }
+		command = { type = diplomats value = 2 }
+		command = { type = merchants value = 1 }
+		command = { type = DIP which = 1 value = 96 }
+		command = { type = ADM which = 1 value = 96 }
+	}
+}
+
+#(1445-1450) Alliance with Stevan Crnojevic
+event = {
+	id = 277038
+	trigger = {
+		core = { province = 362 data = -1 } #Only if claim on Zeta is still active.
+		war = { country = SER country = VEN }
+		OR = {
+			owned = { province = 362 data = -1 } #Ragusa
+			owned = { province = 362 data = VEN } #Ragusa
+		} #can't happen if third side owns Ragusa
+	}
+	random = no
+	country = SER
+	name = "EVENTNAME277038" #Alliance with Stevan Crnojevic
+	desc = "EVENTHIST277038"
+	#-#In 1445, Skanderbeg of Albania joined Despot Djuradj's campaign against the presence of Republic of Venice in Zeta. By 1448, all Montenegrin and Albanian tribes were united behind Despot's general, Duke Altoman, even the rebellious Stevan Crnojevic. However, the incompetent Duke Altoman failed to use this to his adventage and Skanderbeg was forced to leave the war. Stevan Crnojevic betrayed Djuradj in 1451 but his brothers remained loyal to Serbian Despot. In 1452, Venetian armies lead by Stevan defeatd Duke Altoman and another Serbian army lead by Thomas Kantakouzenos, but in 1532 the situation changed and Zabljak, the capital of Crnojevics, fell to Serbian armies.
+
+	date = { day = 1 month = january year = 1445 }
+	offset = 50
+	deathdate = { day = 1 month = january year = 1450 }
+
+	action_a = {
+		name = "ACTIONNAME277038A" #We're gaining the upper hand
+		command = { type = relation which = ALB value = 100 } #enemy of my enemy is my friend
+		command = { type = INF which = -1 value = 3000 } #aid from Crnojevics and some tribes
+	}
+}
+
+#(1446) Marriage of Lazar Brankovic
+event = {
+	id = 277027
+	trigger = {
+		exists = MRE
+	}
+	random = no
+	country = SER
+	name = "EVENTNAME277027" #Marriage of Lazar Brankovic
+	desc = "EVENTHIST277027"
+	#-#Despot Konstantin Dragas of Morea made great efforts to defend his realm against Ottoman Turks. Part of this effort was strengthening of relations with Serbian Despot. In winter 1446, Konstantin married his niece Helena to Despot Djuradj's youngest son, Lazar.
+
+	date = { day = 0 month = september year = 1446 }
+	offset = 100
+	deathdate = { day = 29 month = december year = 1446 }
+
+	action_a = {
+		name = "OK"
+		command = { type = dynastic which = MRE }
+		command = { type = vp value = 5 }
+	}
+}
+
+#(1448-1461) Liberation of Srebrenica
+event = {
+	id = 277037 #triggered by BOS_130018 A
+	trigger = {
+		event = 277035 #SER: Loss of Srebrenica
+	}
+	random = no
+	country = SER
+	name = "EVENTNAME277037" #Liberation of Srebrenica
+	desc = "EVENTHIST277037"
+	#-#In 1448, Despot Djuradj used the opportunity of Ottoman invasion of Bosnia to ally with Duke Stepan Vukcic. He invaded Bosnia and took the lands around Srebrenica. In 1449, Despot's forces launched a surprise attack against the town itself and captured it.
+
+	action_a = {
+		name = "ACTIONNAME277037A" #Srebrenica is finally free
+		command = { type = provincetax which = 355 value = 1 } #Srebrenica is back in Serbia
+	}
+}
+
+#(1448-1460) The Third Crusade
+event = {
+	id = 277025 #triggered by HUN_188025 A
+	random = no
+	country = SER
+	name = "EVENTNAME277025" #The Third Crusade
+	desc = "EVENTHIST277025"
+	#-#Janos Hunyadi, the only leader of the Christian armies that survived the Battle of Varna, now hated the Turks with great passion. As soon as he was name the Guvernor of Hungary, he started preparing for another invasion of Turkish lands. Unlike King Wladyslaw, Janos Hunyadi failed to secure support of other Catholic monarchs and his vassals. The Pope refused to support Hunyadi's initiative until he settles his disputed with Emperor Friedrich III. Venice was too busy with their own problems both in the Balkans and in Italy, so they were more inclined to ally with Turks than to fight them. Aragonese King ignored Hunyadi's call for help completely. Relations between Despot Djuradj and Hungary were becoming colder even during the first crusade. Djuradj first opposed Wladyslaw's decision to withdraw, then talked him into signing the Peace of Szeged. In the second crusade, Despot Djuradj stayed neutral and now he was more inclined to change his policy and seek friendship of Ottomans. Not did he only stay neutral this time, but he also warned the Sultan of Hunyadi's attack.
+
+	action_a = {
+		name = "ACTIONNAME277025A" #Refuse to help Hunyadi and warn the Sultan
+		command = { type = stability value = 1 }
+		command = { type = relation which = HUN value = -100 }
+		command = { type = relation which = WAL value = -100 }
+		command = { type = relation which = ALB value = -100 }
+		command = { type = relation which = BYZ value = -100 }
+		command = { type = relation which = MRE value = -100 }
+		command = { type = relation which = TUR value = 100 }
+		command = { type = trigger which = 277026 } #SER: Devastation of Serbia
+	}
+	action_b = {
+		name = "ACTIONNAME277025B" #Refuse to help Hunyadi and stay neutral
+		command = { type = stability value = 1 }
+		command = { type = relation which = HUN value = -100 }
+		command = { type = relation which = WAL value = -100 }
+		command = { type = relation which = ALB value = -100 }
+		command = { type = relation which = BYZ value = -100 }
+		command = { type = relation which = MRE value = -100 }
+		command = { type = trigger which = 277026 } #SER: Devastation of Serbia
+	}
+	action_c = {
+		name = "ACTIONNAME277025C" #Surely we cannot be defeated this time
+		command = { type = stability value = -1 }
+		command = { type = relation which = HUN value = 100 }
+		command = { type = relation which = WAL value = 100 }
+		command = { type = relation which = ALB value = 100 }
+		command = { type = relation which = BYZ value = 100 }
+		command = { type = relation which = MRE value = 100 }
+		command = { type = casusbelli which = TUR value = 12 }
+		command = { type = breakvassal which = TUR }
+		command = { type = war which = TUR }
+	}
+}
+#(1448-1460) Devastation of Serbia
+event = {
+	id = 277026 #triggered by SER_277025 A / SER_277025 B
+	random = no
+	country = SER
+	name = "EVENTNAME277026" #Devastation of Serbia
+	desc = "EVENTHIST277026"
+	#-#Angry at Despot's refuasl to join him in his crusade, Janos Hunyadi ordered his troops to treat Serbia as enemy territory. Although there were no conflicts with Despot's troops as Hungarians were just passing through, they pillaged the land and caused great destruction.
+
+	action_a = {
+		name = "ACTIONNAME277026A" #Curse them!
+		command = { type = provincetax which = 355 value = -1 } #Serbia
+	}
+}
+
+#(1448-1460) Disaster at Kosovo
+event = {
+	id = 277028
+	trigger = {
+		event = 188025 #SER: The Third Crusade
+		NOT = { war = { country = SER country = TUR } } #didn't join the crusade
+		exists = HUN #Hungary didn't get annihilated by Ottomans
+	}
+	random = no
+	country = SER
+	name = "EVENTNAME277028" #Disaster at Kosovo
+	desc = "EVENTHIST277028"
+	#-#Hunyadi had an army of 70000, mostly cavalry, and met an even larger Turkish army lead by the Sultan himself. Thanks to unconnected betrayals of Djuradj Brankovic of Serbia and Dan of Wallachia, Hungarian army was dispersed and 17000 knights lost their lives. Despot Djuradj ordered all fleeing Hungarians to be allowed to pass through Serbia except Janos Hunyadi who was arrested and thrown into dungeon. This was Djuradj's revenge for Hunyadi's devastation of Serbia, but also a move influenced by his Head of Treasury, Paskoje Sorkocevic. Hungarian nobles met to discuss how to liberate Hunyadi. They decided to pledge to protect Serbia against all her enemies, never to order their armies to pass through Serbia unless allowed to do so by Serbian Despot, to pay 100000 ducats of compensation and to return to Djuradj all his estates in Hungary except those that will be given to Hunyadi as dowry of Djuradj's granddaughter Jelisaveta, daughter of late Ulrich II of Cilli, who was to marry one of Hunyadi's sons. Hunyadi's son was to stay in Smederevo as Djuradj's hostage until Hungary fulfills all its promises. Despite this favorable treaty, this move of Despot Djuradj finally broke Serbia's relationships with possible Catholic allies and forced him to seek to appease Ottoman Sultan while cooperating with remnants of Byzantine Empire.
+
+	date = { day = 1 month = september year = 1448 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1460 }
+
+	action_a = {
+		name = "ACTIONNAME277028A" #Imprison and ransom Janos Hunyadi
+		command = { type = relation which = HUN value = -200 } #treachery
+		command = { type = relation which = ALB value = -100 } #treachery
+		command = { type = breakvassal which = HUN } #no more tribute to Hungary
+		command = { type = dynastic which = HUN } #marriage of Jelisaveta
+		command = { type = treasury value = 100 } #compensation
+		command = { type = trigger which = 188026 } #HUN: Another Serbian betrayal
+	}
+	action_b = {
+		name = "ACTIONNAME277028B" #Let him pass
+		command = { type = relation which = HUN value = -100 } #Hunyadi still blames Djuradj for his defeat
+	}
+}
+
+#(1451-1453) Sultan Mehmed II
+event = {
+	id = 277029
+	trigger = {
+		NOT = { war = { country = SER country = TUR } }
+		NOT = { vassal = { country = HUN country = TUR } }
+		neighbour = TUR
+	}
+	random = no
+	country = SER
+	name = "EVENTNAME277029" #Sultan Mehmed II
+	desc = "EVENTHIST277029"
+	#-#Sultan Mehmed II succeeded his father Murad II in February 1451. A strong-willed man, Mehmed II was determined to either gain leaders of small Balkan states as loyal vassals or conquer them. Of all those leaders, he was most lax towards Despot Djuradj, probably because of influence his late father's wife, Mara Brankovic, who taught him about European culture. Mehmed II renewed Djuradj's oath of vassalage and gave him over some towns in southern Serbia as a token of gratitude for his loyalty.
+
+	date = { day = 4 month = february year = 1451 }
+	offset = 30
+	deathdate = { day = 1 month = december year = 1453 }
+
+	action_a = {
+		name = "ACTIONNAME277029A" #Put Serbia under Sultan's protection
+		command = { type = breakvassal which = HUN } #break vassalage if it still exists
+		command = { type = provincetax which = 363 value = 1 } #new towns added to province if already owned
+		command = { type = stability value = 1 } #finally a new protector after loss of friendship with Hungary
+	}
+	action_b = {
+		name = "ACTIONNAME277029B" #Never!
+		command = { type = relation which = TUR value = -100 }
+		command = { type = stability value = -1 } #surely Serbia cannot hope to defend against Ottomans much longer
+		command = { type = sleepevent which = 301118 } #TUR: Serbia submits again
+	}
+}
+
+#(1454) Reconciliation with Hunyadi
+event ={
+	id = 277030
+	trigger = {
+		event = 277028 #SER: Disaster at Kosovo
+		NOT = { war = { country = SER country = HUN } }
+		exists = HUN
+	}
+	random = no
+	country = SER
+	name = "EVENTNAME277030" #Reconciliation with Hunyadi
+	desc = "EVENTHIST277030"
+	#-#Good relations with the enlightened Sultan Mehmed II repaired Djuradj's lost reputation in Christian world. Thanks to the conflicts in Bosnia and Zeta, Djuradj and Hunyadi found themselves on the same side again. Their reconciliation was formalized with a treaty in Smederevo on August 7th. Djuradj's granddaughter was finally formally bethrothed to Hunyadi's younger son, Matthias, and Serbia became a dual vassal of Ottoman Empire and Hungarian Kingdom again.
+
+	date = { day = 1 month = january year = 1454 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1460 }
+
+	action_a = {
+		name = "ACTIONNAME277030A" #Let's put our differences aside
+		command = { type = relation which = HUN value = 100 }
+		command = { type = dynastic which = HUN }
+	}
+}
+
+#(1454-1456) West or East
+event = {
+	id = 277039
+	trigger = {
+		atwar = no
+		NOT = { countrysize = 5 } #too powerful to submit
+		neighbour = TUR
+		NOT = { vassal = { country = SER country = TUR } }
+	}
+	random = no
+	country = SER
+	name = "EVENTNAME277039" #West or East
+	desc = "EVENTHIST277039"
+	#-#After 1454, the political sentiment among Serbian nobility began to change. After many years of Hungarian failure to protect Serbia against Ottoman onslaught and with great support from Djuradj's daughter Mara, Serbian nobles began thinking that honest and loyal alliance with Ottoman Empire is the best option for Serbia. Internal conflicts of Hungary and actions of disloyal Lord of Belgrade against Despot Djuradj only strenghtened Turkophilic nobles in Serbia. Sultan Memhed II, aware of this change and with most of Serbia under his control, offered Despot Djuradj to let him rule a smaller despotate but with reduced tribute. Despot initially agreed, but changed his mind as Ottoman army was crossing Serbia to attack Belgrade. After suffering great losses in defense of Smederevo and Belgrade and even more to the plague that came afterwards and also took life of Janos Hunyadi, Despot Djuradj was forced to negotiate and new peace and vassalage with Ottoman Empire. He was stopped by death in 1456.
+
+	date = { day = 1 month = january year = 1454 }
+	offset = 30
+	deathdate = { day = 1 month = december year = 1456 }
+
+	action_a = {
+		name = "ACTIONNAME277039A" #We must submit or be crushed
+		command = { type = breakvassal which = HUN }
+		command = { type = stability value = 1 } #nobility favors the Ottomans
+		command = { type = relation which = HUN value = -100 }
+		command = { type = relation which = TUR value = 100 }
+		command = { type = cedeprovince which = TUR value = 361 } #Albania
+		command = { type = cedeprovince which = TUR value = 362 } #Ragusa
+		command = { type = cedeprovince which = TUR value = 363 } #Kosovo
+		command = { type = cedeprovince which = TUR value = 364 } #Bosnia
+	}
+	action_b = {
+		name = "ACTIONNAME277039B" #We must stand with our Christian brothers
+		command = { type = breakvassal which = TUR }
+		command = { type = stability value = -1 } #nobility favors the Ottomans
+		command = { type = relation which = HUN value = 100 }
+		command = { type = relation which = TUR value = -100 }
+		command = { type = sleepevent which = 301123 } #TUR: Serbia submits yet again
+	}
+}
+
+#(1458) Beginning of the End
+#by Aylo1
+event = {
+	id = 277007
+	random = no
+	country = SER
+	name = "EVENTNAME277007" #Beginning of the End
+	desc = "EVENTHIST277007"
+	#-#Succeeding his father in 1456, Lazar III's reign was marked by family quarrels in the face of Ottoman danger. His own death in 1458 paved the way for a period of unrest - beginning with the intrigues of his widow Jelena and his brother Stepan against the Grand Vojvoda, Mihajlo Andjelovic. When Mihajlo was captured by the Ottomans, Stephan assumed power as Stephan V (the Blind). Within a year he'd be ousted by his sister-in-law Jelena and her son-in-law Stepan Tomasevic of Bosnia in collusion with the Magyar King Mamuja I Korvin. Together they deposed Brankovic shortly before Smederevo fell to Ottoman forces.
+
+	date = { day = 19 month = january year = 1458 }
+
+	action_a = {
+		name = "ACTIONNAME277007A" #Accept Andjelovic's leadership
+		command = { type = sleepmonarch which = 0121004 } #Stefan Slepi
+		command = { type = sleepmonarch which = 0121005 } #Jelena Palaiologina (Regent)
+		command = { type = sleepmonarch which = 0121006 } #Stjepan Tomasevic
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = relation which = BOS value = -50 }
+		command = { type = relation which = TUR value = -50 }
+		command = { type = relation which = HUN value = -50 }
+		command = { type = stability value = 1 }
+		command = { type = trigger which = 277001 } #SER: Consequence of Lazar III's death
+	}
+	action_b = {
+		name = "ACTIONNAME277007B" #Support Stepan's candidacy
+		command = { type = sleepmonarch which = 0121003 } #Mihajlo
+		command = { type = sleepmonarch which = 0121005 } #Jelena Palaiologina (Regent)
+		command = { type = sleepmonarch which = 0121006 } #Stjepan Tomasevic
+		command = { type = relation which = BOS value = -50 }
+		command = { type = relation which = HUN value = -50 }
+		command = { type = relation which = TUR value = 25 } #Ottoman hostage
+		command = { type = revoltrisk which = 36 value = 4 }
+		command = { type = stability value = -1 }
+	}
+	action_c = {
+		name = "ACTIONNAME277007C" #Back Tomasevic
+		command = { type = sleepmonarch which = 0121003 } #Mihajlo
+		command = { type = sleepmonarch which = 0121004 } #Stefan Slepi
+		command = { type = relation which = TUR value = -100 }
+		command = { type = relation which = BOS value = 100 }
+		command = { type = relation which = HUN value = 75 }
+		command = { type = dynastic which = BOS } #Jelena\Marija and Stephan
+		command = { type = stability value = -2 }
+		command = { type = trigger which = 277001 } #SER: Consequence of Lazar III's death
+	}
+	action_d = {
+		name = "ACTIONNAME277007D" #All is lost!
+		command = { type = revoltrisk which = 36 value = 6 }
+		command = { type = stability value = -3 }
+		command = { type = trigger which = 277001 } #SER: Consequence of Lazar III's death
+	}
+}
+#(1458) Consequence of Lazar III's death
+event = {
+	id = 277001 #triggered by SER_277007 A / SER_277007 C / SER_277007 D
+	trigger = {
+		vassal = { country = TUR country = SER }
+	}
+	random = no
+	country = SER
+	name = "EVENTNAME277001" #Consequence of Lazar III's death
+	desc = "EVENTHIST277001"
+	#-#As a consequence of intrigues and political situation in Serbia, Ottoman threat is dangerously forgotten...
+
+	action_a = {
+		name = "ACTIONNAME277001A" #Not so good...
+		command = { type = breakvassal which = TUR }
+	}
+}
+
+#(1804) The first Montenegrin law - Ahistorical (for Serbia)
+event = {
+	id = 277006
+	random = no
+	country = SER
+	name = "EVENTNAME277006" #The first Montenegrin law
+	desc = "EVENTHIST277006"
+	#-#In 1798 Petar I introduced the first laws in Montenegro - Zakonik Petra I. This law was further updated with five new paragraphs at the assembly in Stanjevici (1803). His rule prepared Montenegro for the subsequent introduction of modern institutions of the state: court (called Kuluk), taxes (60 para per household annually), schools and larger commercial enterprises. He also introduced his guards (25), so called 'Perjanici', who were chosen from the most prestigious tribes. Perjanici were first police (dzandarmerija) forces in Montenegro whose duty was to arrest those facing Kuluk. \nPetar's intention to implement the law and strengthen the central government was met with the resistance from the Montenegrin tribes who had always had considerable freedom and autonomy. Determined to impose the rule of law Petar asked his guards to kill two prominent opponents of the new law. These two were the tribal heads of Komani and Cevljani.
+
+	date = { day = 12 month = february year = 1804 } #just before possible rulers for Principate
+
+	action_a = {
+		name = "ACTIONNAME277006A" #Update the law
+		command = { type = domestic which = innovative value = 2 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = stability value = -1 }
+		command = { type = sleepmonarch which = 0121041 } #Karadjordje Petrovic
+		command = { type = sleepmonarch which = 0121042 } #Miloš Obrenovic
+		command = { type = sleepleader which = 0121305 } #Karadjordje (SER)
+	}
+	action_b = {
+		name = "ACTIONNAME277006B" #Give up
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = sleepmonarch which = 0121041 } #Karadjordje Petrovic
+		command = { type = sleepmonarch which = 0121042 } #Miloš Obrenovic
+		command = { type = sleepmonarch which = 0121042 } #Miloš Obrenovic
+		command = { type = sleepleader which = 0121305 } #Karadjordje (SER)
+	}
+}
+
+#(1817) Assassination of Karadjordje
+event = {
+	id = 277040
+	trigger = {
+		monarch = 0121042 #Miloš Obrenovic
+		not = { war = { country = SER country = TUR } }
+	}
+	random = no
+	country = SER
+	name = "EVENTNAME277040" #Assassination of Karadjordje
+	desc = "EVENTHIST277040"
+	#-#Miloš Obrenovic was a different kind of rebel leader than Karadjordje. While Karadjordje pursued total war until ultimate liberation of Serbia, Miloš Obrenovic was more political. A veteran of the First Uprising under Karadjordje, Miloš realized that Serbia has no hope of withstanding the full assault of Ottoman military. As soon as the tide of war started to turn against him, Miloš negotiated a peace with the Ottomans granting Serbia an autonomy within the Empire. On July 24th 1817, Miloš Obrenovic order assassination of Karadjordje, solidifying his rule in Serbia and improving relations with the Ottoman Empire with one move. This started a blood feud between the newly formed noble houses of Karadjordjevic and Obrenovic which lasted until the extinction of the latter.
+
+	date = { day = 24 month = july year = 1817 }
+
+	action_a = {
+		name = "ACTIONNAME277040A" #Commit the bloody deed
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = stability value = -1 }
+		command = { type = relation which = TUR value = 100 }
+	}
+	action_b = {
+		name = "ACTIONNAME277040B" #Never!
+		command = { type = MIL which = 1 value = 36 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 277041

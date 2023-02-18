@@ -4,7 +4,7 @@
 
 country = {
 	tag = ORI
-	ai = "SmallTrade1.ai"
+	ai = "SmallTrade1.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -14,11 +14,11 @@ country = {
 	treasury = 100
 	inflation = 0
 	merchants = 0.083333
-	religion = { type = hinduism }
+	religion = { type = hindu }
 	culture = { type = bengali }
 	diplomacy = {
-		relation = { tag = SYR value = 5 }
-		relation = { tag = NAF value = 5 }
+		relation = { tag = HYA value = 5 }
+		relation = { tag = GON value = 5 }
 	}
 	knownprovinces = {
 		#Indian Mainland

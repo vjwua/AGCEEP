@@ -4,7 +4,7 @@
 
 country = {
 	tag = GEO
-	ai = "SmallTrade0.ai"
+	ai = "SmallTrade0.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -20,9 +20,9 @@ country = {
 		relation = { tag = TRE value = 75 }
 		relation = { tag = AKK value = 50 }
 		relation = { tag = SHI value = 50 }
-		relation = { tag = KAL value = 50 }
+		relation = { tag = THO value = 50 }
 		relation = { tag = STE value = 100 }
-		relation = { tag = SEV value = 170 }
+		relation = { tag = ABK value = 170 }
 	}
 	knownprovinces = {
 		1614 #Pope

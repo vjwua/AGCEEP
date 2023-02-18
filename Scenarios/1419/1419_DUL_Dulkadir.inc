@@ -4,7 +4,7 @@
 
 country = {
 	tag = DUL
-	ai = "SmallTrade0.ai"
+	ai = "SmallTrade0.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -18,7 +18,7 @@ country = {
 	culture = { type = turkish }
 	diplomacy = {
 		relation = { tag = TUR value = 75 }
-		relation = { tag = RAG value = 100 }
+		relation = { tag = RAM value = 100 }
 		relation = { tag = MAM value = 150 }
 	}
 	knownprovinces = {

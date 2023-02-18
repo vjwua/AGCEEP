@@ -1,0 +1,989 @@
+#The Palatinate - KurPfalz (PFA)
+
+#See AGCEEP_Alt_Germany.txt for KoG Alternative events
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419) The Hussite Wars
+event = {
+	id = 255600 #triggered by HUS_401000 / ROM_398000
+	random = no
+	country = PFA
+	name = "EVENTNAME188600" #The Hussite Wars
+	desc = "EVENTHIST188600"
+	#-#The Czech priest and professor Jan Hus developed radical reformatory demands on the base of the teachings of John Wyclif. Despite a guarantee of safe-conduct by Emperor Sigismund, he was executed at the stake for heresy at the Council of Constance in 1415. This could however not stop the Hussite movement in Bohemia. Hus' followers were rapidly growing, and when King Vaclav IV of Bohemia died and his brother Sigismund, already Emperor and King of Hungary was to succeed him, they, unwilling to forgive him the betrayal of Hus and afraid that he would suppress them, refused to acknowledge him and gained control of most of Bohemia proper - while the lands of the Bohemian crown and the catholic part of Bohemia accepted Sigismund. Due to its radical anti-clerical and anti-feudal tendencies Hussitism posed a big threat to the church and nobility in the countries adjacent to Bohemia. Several German and European princes therefore decided to oppose the Hussites and to support Sigismund in his struggle with them that lasted for almost two decades. Should we decide to fight these heretics, we should be aware that this would be internationally regarded as an intervention in favour of Sigismund as rightful King of Bohemia rather than a war of conquest, and that therefore, if Sigismund prevails and manages to restore royal authority, we would be expected to turn over any conquests in Bohemia to the Kingdom of Bohemia.
+
+	action_a = {
+		name = "ACTIONNAME258600B" #Express hostility
+		command = { type = relation which = HUS value = -200 }
+		command = { type = casusbelli which = HUS value = 120 }
+	}
+	action_b = {
+		name = "ACTIONNAME258600A" #Covertly provide aid
+		command = { type = treasury value = -25 }
+		command = { type = relation which = HUS value = 25 }
+	}
+}
+
+#(1447 or 1463) Burgundian Claims on the Palatinate - Ahistorical
+event = {
+	id = 20316 #triggered by BUR_28006
+	random = no
+	country = PFA
+	name = "EVENTNAME20316" #Burgundian Claims on the Palatinate
+	desc = "EVENTHIST20313"
+	#-#The Emperor has made Philip the Good of Burgundy King of Lotharingia, reviving the ninth century Kingdom of Lothar. The emperor has granted some of our lands to Burgundy!
+
+	action_a = {
+		name = "DAMN"
+		command = { type = casusbelli which = BUR value = 2500 }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = CAV which = -2 value = 6000 }
+	}
+}
+
+#(1449) Creation of the municipalities
+event = {
+	id = 29001
+	random = no
+	country = PFA
+	name = "EVENTNAME29001" #Creation of the municipalities
+	desc = "EVENTHIST29001"
+	#-#After unifying the Palatinate in 1449, Friedrich der Siegreich formed the bases of municipalities and ground laws that reorganized the Palatinate.
+
+	date = { day = 1 month = january year = 1449 }
+	offset = 1
+	deathdate = { day = 1 month = february year = 1449 }
+
+	action_a = {
+		name = "ACTIONNAME29001A" #Form the Ground Laws
+		command = { type = infra value = 100 }
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = provincetax which = 345 value = 1 } #Pfalz
+	}
+	action_b = {
+		name = "ACTIONNAME29001B" #Don't form the Ground Laws
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = domestic which = ARISTOCRACY value = -1 }
+		command = { type = domestic which = SERFDOM value = -2 }
+	}
+}
+
+#(1463-1480) Ruprecht von der Pfalz elected Archbishop-Elector of Cologne
+event = {
+	id = 255000 #triggered by KOL_202002
+	trigger = {
+		NOT = {
+			vassal = { country = KOL country = PFA }
+		}
+	}
+	random = no
+	country = PFA
+	name = "EVENTNAME255000" #Ruprecht von der Pfalz is elected Archbishop-Elector of Cologne
+	desc = "EVENTHIST202002"
+	#-#Ruprecht, the brother of the Palatine Elector Friedrich, was chosen as new Archbishop-Elector of Cologne and Duke of Westphalia in 1463. With the help of his brother he managed to stabilise the country's finances after the disastrous Feud of Soest and to recover some of the territories mortgaged by his predecessor.
+
+	action_a = {
+		name = "OK"
+		command = { type = vassal which = KOL }
+		command = { type = alliance which = KOL }
+		command = { type = treasury value = -50 }
+	}
+}
+
+#(1477-1482) The marriage with Mary of Burgundy	- Ahistorical
+#by Bordic
+event = {
+	id = 255010 #triggered by BUR_137038 B
+	random = no
+	country = PFA
+	name = "EVENTNAME255010" #The marriage with Mary of Burgundy
+	desc = "EVENTHIST255010"
+	#-#Mary of Valois was the only daughter of Charles le Téméraire (Charles the Rush) and so heiress of all the rich Burgundian domains from the Saone River up to the Low Countries. After her father prematurely died, Mary was only nineteen and Louis XI of France seized the opportunity to take possession of the duchy of Burgundy and also of Franche-Comté, Picardie and Artois. He justified his military intervention with the fact that these lands had always been fiefs to the French crown and that with Charles' death, the last member of the French Valois dynasty they had 'de facto', according to the salic law, reverted to France. But the choice of which prince should marry the Archduchess would be of particular importance for the future political and economical stability of Western Europe, so he urged Mary to accept his son, the Dauphin Charles, as husband, in order to secure the inheritance of the Low Countries for his descendants too, even by force of arms if necessary. Mary, however, distrusted Louis and declined any French support and offer of marriage but, in order to be recognized as legitimate ruler over the Low Countries and to get financial and military help of Flemish cities against the French aggression, she made so great concessions as to reduce the Burgundian states effectively to a sort of federation of provinces. Satisfied that the country was sufficiently weakened and disorganized, Louis XI ordered his army into Artois and Hainault, but the imminence of danger seemed to revive in the Burgundian provinces a spirit of loyalty towards the Valois heiress and arrangements were made for the marriage of Mary with Philipp der Edelmütige, Elector Palatine who would provide substantial diplomatic and military resources to withstand any French aggression.
+
+	action_a = {
+		name = "ACTIONNAME255010A" #The destiny of Low Countries is in our hands
+		command = { type = DIP which = 2 value = 60 }
+		command = { type = MIL which = 2 value = 24 }
+		command = { type = relation which = BUR value = 300 }
+	}
+}
+
+#(1482) The Elector Palatine inherits Burgundy - Ahistorical
+event = {
+	id = 255011 #triggered by BUR_137040 A / BUR_137039
+	random = no
+	country = PFA
+	name = "EVENTNAME255011" #The Elector Palatine inherits Burgundy
+	desc = "EVENTHIST255011"
+	#-#On 27 March 1482 Archduchess Marie incidentally fell from her horse while at hunting with a falcon in the surroundings of Bruges and died from injuries sustained. Although before dying she managed to have her husband Philipp be recognized from the cities in the Low Countries as legitimate successor to the throne of Burgundy, opposition was strong in the Valois ancestral lands of Bourgogne. The new Palatinate driven ducal policy, also conducted by the successors to the throne, was more focused to encourage the development of the thriving merchant cities in the Low Countries and the Rhineland.
+
+	action_a = {
+		name = "ACTIONNAME255011A" #We will rule over Burgundy
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = FRA value = -50 }
+		command = { type = add_countryculture which = dutch }
+		command = { type = addcore_national which = 339 } #Holland
+		command = { type = addcore_national which = 340 } #Zeeland
+		command = { type = addcore_national which = 378 } #Brabant
+		command = { type = addcore_national which = 379 } #Artois (if imperial fief)
+		command = { type = addcore_national which = 380 } #Flandern
+		command = { type = addcore_national which = 377 } #Luxemburg
+		command = { type = inherit which = BUR } #(no cores on French and Burgundian fiefs)
+		command = { type = setflag which = [DutchClaim] }
+	}
+}
+#(1482) The fate of Palatinate - Ahistorical
+event = {
+	id = 255012 #triggered by BUR_137040 B
+	random = no
+	country = PFA
+	name = "EVENTNAME255012" #The fate of Palatinate
+	desc = "EVENTHIST255012"
+	#-#On 27 March 1482 Archuchess Marie incidentally fell from her horse while at hunting with a falcon in the surroundings of Bruges and died from injuries sustained. Although before dying she managed to have her husband Philipp be recognized from the cities in the Low Countries as legitimate successor to the throne of Burgundy, opposition was strong in the Valois ancestral lands of Bourgogne. But in order to keep his right to the Burgundian succession Philipp of Wittelsbach decided to annex Palatinate as new Archduke of Burgundy.
+
+	action_a = {
+		name = "ACTIONNAME255012A" #Accept Mary's will (End Game)
+		command = { type = trigger which = 137043 } #BUR: Palatinate unified with Burgundy
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = desertion which = -1 value = 5000 }
+	}
+	action_b = {
+		name = "ACTIONNAME255012B" #Palatinate cannot accept this
+		command = { type = stability value = -2 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Landshut succession Sequence
+
+#(1503) War of Succession in Landshut
+event = {
+	id = 255001 #triggered by BAY_125006 A
+	random = no
+	country = PFA
+	name = "EVENTNAME255001" #War of Succession in Landshut
+	desc = "EVENTHIST255001"
+	#-#On December 1st 1503 Duke Georg the Rich of Bayern-Landshut died without a male successor. Despite several treaties made in the 15th century that should secure the inheritance for Bavaria-Munich he declared his daughter Elisabeth and her husband, the palatine elector Ruprecht, heirs of his duchy. This caused a war between the palatine and the bavarian Wittelsbach branches for the inheritance.
+
+	action_a = {
+		name = "ACTIONNAME255001A" #Press our claim
+		command = { type = casusbelli which = BAY value = 36 }
+		command = { type = relation which = BAY value = -100 }
+	}
+	action_b = {
+		name = "ACTIONNAME255001B" #Acknowledge the treaties between Munich and Landshut
+		command = { type = relation which = BAY value = 100 }
+		command = { type = trigger which = 125014 } #BAY: Inheritance of Bavaria-Landshut
+		command = { type = sleepevent which = 179001 } #HAB: The rewards of mediation
+	}
+}
+#(1503) Inheritance of Bavaria-Landshut
+event = {
+	id = 255002
+	trigger = { NOT = { exists = BAY } }
+	random = no
+	country = PFA
+	name = "EVENTNAME255002" #Inheritance of Bavaria-Landshut
+	desc = "EVENTHIST255002"
+	#-#On December 1st 1503 Duke Georg the Rich of Bayern-Landshut died without a male successor. Despite several treaties made in the 15th century that should secure the inheritance for Bavaria-Munich he declared his daughter Elisabeth and her husband, the palatine elector Ruprecht, heirs of his duchy. This caused a war between the palatine and the bavarian Wittelsbach branches for the inheritance. The Palatinate eventually prevailed and managed to secure Landshut.
+
+	date = { day = 1 month = december year = 1503 }
+
+	action_a = {
+		name = "AWESOME"
+		command = { type = provincetax which = -2 value = 7 }
+		command = { type = provincemanpower which = -2 value = 3 }
+		command = { type = population which = -2 value = 6000 }
+		command = { type = sleepevent which = 179001 } #HAB: The rewards of mediation
+	}
+}
+#(1505-1510) Inheritance of Bavaria-Landshut
+event = {
+	id = 255007 #triggered by BAY_125006 B / HAB_179001 B
+	random = no
+	country = PFA
+	name = "EVENTNAME255002" #Inheritance of Bavaria-Landshut
+	desc = "EVENTHIST255002"
+	#-#On December 1st 1503 Duke Georg the Rich of Bayern-Landshut died without a male successor. Despite several treaties made in the 15th century that should secure the inheritance for Bavaria-Munich he declared his daughter Elisabeth and her husband, the palatine elector Ruprecht, heirs of his duchy. This caused a war between the palatine and the bavarian Wittelsbach branches for the inheritance. The Palatinate eventually prevailed and managed to secure Landshut.
+
+	action_a = {
+		name = "AWESOME"
+		command = { type = provincetax which = -2 value = 7 }
+		command = { type = provincemanpower which = -2 value = 3 }
+		command = { type = population which = -2 value = 6000 }
+	}
+}
+#End of Landshut succession Sequence
+#-----------------------------------------------------------------------------------------------
+
+#(1508-1524) Fortification of Heidelberg - Flavor
+event = {
+	id = 29002
+	random = no
+	country = PFA
+	name = "EVENTNAME29002" #Fortification of Heidelberg
+	desc = "EVENTHIST29002"
+	#-#Ludwig V. reinforced the fortress elements of the castle of Heidelberg, among them the Artillery Garden and the Herb Tower. During this time the Library and the Ladies Building were erected and the Economy buildings enlarged. In 1524 Ludwig V. added the Ludwigsbau, an austere building with three storeys.
+
+	date = { day = 28 month = february year = 1508 }
+	offset = 3000
+	deathdate = { day = 29 month = december year = 1524 }
+
+	action_a = {
+		name = "ACTIONNAME29002A" #Fortify the City
+		command = { type = treasury value = -100 }
+		command = { type = infra value = 50 }
+		command = { type = land value = 50 }
+		command = { type = fortress which = 345 value = -3 } #Pfalz
+		#Pfalz fortress +3
+		command = { type = fortress which = 345 value = 1 } #Pfalz
+		command = { type = fortress which = 345 value = 1 } #Pfalz
+		command = { type = fortress which = 345 value = 1 } #Pfalz
+	}
+	action_b = {
+		name = "ACTIONNAME29002B" #We can't afford it
+		command = { type = vp value = -5 }
+	}
+}
+
+#(1527-1529) The League of Schmalkalden
+event = {
+	id = 3667
+	trigger = {
+		exists = HAB
+		OR = {
+			religion = protestant
+			religion = reformed
+		}
+	}
+	random = no
+	country = PFA
+	name = "EVENTNAME3109" #The League of Schmalkalden
+	desc = "EVENTHIST3109"
+	#-#After Emperor Charles V had rejected the Protestants' confessional positions at the Imperial Parliament of Augsburg (1529-1530), the North German Protestant Imperial estates formed the League of Schmalkalden, with a joint army and treasury and seeking ties abroad (France). The League enjoyed early successes in the years 1532-1540 as the Emperor was threaten by Turkish danger and forced to conclude Religious peace settlements in Nuremberg (1532) and Kaaden (1534).
+
+	date = { day = 1 month = january year = 1527 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1529 }
+
+	action_a = {
+		name = "ACTIONNAME3109A" #Give it our support
+		command = { type = relation which = FRA value = 100 }
+		command = { type = relation which = ENG value = 100 }
+		command = { type = relation which = BRA value = 150 }
+		command = { type = relation which = HAN value = 150 }
+		command = { type = relation which = HES value = 150 }
+		command = { type = relation which = BAD value = 150 }
+		command = { type = relation which = SAC value = 150 }
+		#command = { type = relation which = THU value = 150 } #Bayreuth
+		command = { type = relation which = KLE value = 100 }
+		command = { type = relation which = KOL value = 50 }
+		command = { type = relation which = BAY value = 50 }
+		command = { type = relation which = PAP value = -100 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = relation which = HAB value = -150 }
+		command = { type = relation which = STR value = 150 }
+	}
+	action_b = {
+		name = "ACTIONNAME3109B" #Ignore it
+		command = { type = relation which = BRA value = -100 }
+		command = { type = relation which = HAN value = -100 }
+		command = { type = relation which = HES value = -100 }
+		command = { type = relation which = BAD value = -100 }
+		command = { type = relation which = SAC value = -100 }
+		#command = { type = relation which = THU value = -100 } #Bayreuth
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = STR value = -100 }
+	}
+}
+
+#(1537) Castle Damage
+event = {
+	id = 29003
+	random = no
+	country = PFA
+	name = "EVENTNAME29003" #Castle Damage
+	desc = "EVENTHIST29003"
+	#-#In 1537 a lightning bolt hit the upper part of the castle destoying it, which caused turmoil in the nation.
+
+	date = { day = 1 month = may year = 1537 }
+	offset = 1
+	deathdate = { day = 1 month = september year = 1537 }
+
+	action_a = {
+		name = "DAMN"
+		command = { type = stability value = -3 }
+		command = { type = infra value = -50 }
+	}
+}
+
+#(1556) The Palace
+event = {
+	id = 29004
+	random = no
+	country = PFA
+	name = "EVENTNAME29004" #The Palace
+	desc = "EVENTHIST29004"
+	#-#After extensive rebuilding in 1556, the castle is finished by elector Otto Heinrich in a wonderful style. At the time most people thought it was the most beautiful palace north of the Alps.
+
+	date = { day = 1 month = january year = 1556 }
+	offset = 1
+	deathdate = { day = 1 month = february year = 1556 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = relation which = -1 value = 30 }
+		command = { type = relation which = -1 value = 25 }
+		command = { type = relation which = -1 value = 20 }
+		command = { type = relation which = -1 value = 15 }
+	}
+}
+
+#(1605-1609) The Evangelic Union
+event = {
+	id = 3668
+	trigger = {
+		 OR = {
+			religion = protestant
+			religion = reformed
+		}
+	}
+	random = no
+	country = PFA
+	name = "EVENTNAME3634" #The Evangelic Union
+	desc = "EVENTHIST3634"
+	#-#The Holy Roman Empire had a fragile balance, split between 10 major and nearly 400 minor states and principalities, as well as two opposing religions. The power of the Emperor was quite limited beyond his direct domains and the erratic and inconsistent behavior of some of them as Rudolph II, such increased frictions. In 1608, the Protestant city of Donauwerth refused Catholics the right to practice their cult and was banned from the Empire. As a reaction, most German Protestant states formed the Evangelic Union to defend their freedom.
+
+	date = { day = 1 month = january year = 1605 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1609 }
+
+	action_a = {
+		name = "ACTIONNAME3634A" #Prepare to Join
+		command = { type = relation which = FRA value = 100 }
+		command = { type = relation which = BRA value = 150 }
+		command = { type = relation which = HAN value = 150 }
+		command = { type = relation which = HES value = 150 }
+		command = { type = relation which = BAD value = 150 }
+		command = { type = relation which = SAC value = 150 }
+		#command = { type = relation which = THU value = 150 } #Bayreuth
+		command = { type = relation which = SHL value = 150 }
+		command = { type = relation which = KLE value = 100 }
+		command = { type = relation which = KOL value = 50 }
+		command = { type = relation which = BAY value = 50 }
+		command = { type = relation which = PAP value = -100 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = relation which = HAB value = -150 }
+	}
+	action_b = {
+		name = "ACTIONNAME3634B" #Stay Neutral
+		command = { type = relation which = BRA value = -100 }
+		command = { type = relation which = HAN value = -100 }
+		command = { type = relation which = HES value = -100 }
+		command = { type = relation which = BAD value = -100 }
+		command = { type = relation which = SAC value = -100 }
+		#command = { type = relation which = THU value = -100 } #Bayreuth
+		command = { type = relation which = HAB value = 50 }
+	}
+}
+
+#(1607-1609) The Catholic League
+event = {
+	id = 3669
+	trigger = {
+		OR = {
+			religion = catholic
+			religion = counterreform
+		}
+	}
+	random = no
+	country = PFA
+	name = "EVENTNAME3192" #The Catholic League
+	desc = "EVENTHIST3192"
+	#-#The German Catholic states felt threatened by the 1608 creation of the Evangelic Union of their northern Protestant neighbors, following the Donauwerth exclusion from the Empire. Feeling the urge to unite, they regrouped into a Catholic League that same year. The stage was set for the Thirty Years War.
+
+	date = { day = 1 month = january year = 1607 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1609 }
+
+	action_a = {
+		name = "ACTIONNAME3192A" #Prepare to Join
+		command = { type = relation which = FRA value = -100 }
+		command = { type = relation which = BRA value = -150 }
+		command = { type = relation which = HAN value = -150 }
+		command = { type = relation which = HES value = -150 }
+		command = { type = relation which = BAD value = -150 }
+		command = { type = relation which = SAC value = -150 }
+		#command = { type = relation which = THU value = -150 } #Bayreuth
+		command = { type = relation which = SHL value = -150 }
+		command = { type = relation which = KLE value = 50 }
+		command = { type = relation which = KOL value = 100 }
+		command = { type = relation which = BAY value = 100 }
+		command = { type = relation which = PAP value = 100 }
+		command = { type = relation which = SPA value = 100 }
+		command = { type = relation which = HAB value = 150 }
+	}
+	action_b = {
+		name = "ACTIONNAME3192B" #Stay Neutral
+		command = { type = relation which = BRA value = 50 }
+		command = { type = relation which = HAN value = 50 }
+		command = { type = relation which = HES value = 50 }
+		command = { type = relation which = BAD value = 50 }
+		command = { type = relation which = SAC value = 50 }
+		#command = { type = relation which = THU value = 50 } #Bayreuth
+		command = { type = relation which = BAY value = -50 }
+		command = { type = relation which = KLE value = -50 }
+		command = { type = relation which = KOL value = -50 }
+		command = { type = relation which = HAB value = -100 }
+	}
+}
+
+#(1619-1624) The Winter King of Prague
+event = {
+	id = 3665
+	trigger = {
+		OR = {
+			religion = protestant
+			religion = reformed
+		}
+		event = 3643 #BOH: The Winter King of Prague
+		NOT = {
+			vassal = { country = BOH country = PFA }
+		}
+	}
+	random = no
+	country = PFA
+	name = "EVENTNAME3665" #The Winter King of Prague
+	desc = "EVENTHIST3665"
+	#-#1596-1632, King of Bohemia (1619-20), elector palatine (1610-20) as Frederick V. The Protestant diet of Bohemia deposed the Roman Catholic King Ferdinand (Holy Roman Emperor Ferdinand II) and chose Frederick as King. Influenced by his minister Christian of Anhalt, Frederick accepted but did not receive the aid expected from his father-in-law, James I of England, and from the Protestant Union against Ferdinand.
+
+	date = { day = 20 month = march year = 1619 }
+	offset = 15
+	deathdate = { day = 29 month = december year = 1624 }
+
+	action_a = {
+		name = "ACTIONNAME3665A" #I will stay longer than a winter!
+		command = { type = vassal which = BOH }
+		command = { type = stability value = 2 }
+		command = { type = relation which = BOH value = 150 }
+		command = { type = relation which = HAB value = -150 }
+		command = { type = INF which = -1 value = 10000 }
+		command = { type = trigger which = 255013 } #PFA: The alliance with Bohemian Protestants nobles
+	}
+}
+#(1619-1624) The alliance with Bohemian Protestants nobles
+event = {
+	id = 255013 #triggered by PFA_3665
+	random = no
+	country = PFA
+	name = "EVENTNAME255013" #The alliance with Bohemian Protestants nobles
+	desc = "EVENTHIST255013"
+	#-#The emperor couldn't accept the decision of the Protestant nobles of Bohemia, as he also was King of Bohemia. He will send his experienced commander Jean Tcerclaes Tilly with his troops to Bohemia and in the battle of the White Mountain (8 November 1620), Fredrik of Pfalz reign will end and all protestant resistance in Austria and southern Germany will be crushed. Fredrik will escape from Bohemia. Thus he will be called the Winter King of Prague, due to his short reign.
+
+	action_a = {
+		name = "OK"
+		command = { type = alliance which = BOH }
+		command = { type = casusbelli which = HAB value = 60 }
+		command = { type = relation which = ENG value = -25 }
+		command = { type = relation which = BAY value = -50 }
+		command = { type = relation which = BRA value = -25 }
+		command = { type = relation which = HAN value = -25 }
+		command = { type = relation which = HES value = -25 }
+		command = { type = relation which = BAD value = -25 }
+	}
+}
+
+#(1619-1620) Dutch assistance by Alkar
+event = {
+	id = 255006 #triggered by HOL_186020 A
+	random = no
+	country = PFA
+	name = "EVENTNAME255006" #Assistance from the Netherlands
+	desc = "EVENTHIST255006"
+	#-#The Netherlands have sent us assistance to aid us against the Habsburgs
+
+	action_a = {
+		name = "GREAT"
+		command = { type = INF which = -2 value = 4000 }
+		command = { type = CAV which = -2 value = 1000 }
+		command = { type = treasury value = 50 }
+	}
+}
+
+#(1620-1624) Closing of the University
+event = {
+	id = 29005
+	trigger = {
+		event = 3665 #PFA: The Winter King of Prague
+	}
+	random = no
+	country = PFA
+	name = "EVENTNAME29005" #Closing of the University
+	desc = "EVENTHIST29005"
+	#-#At the start of the thirty years war the Heidelberg University was closed to protect the intellectuals and the University from destruction.
+
+	date = { day = 1 month = january year = 1620 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1624 }
+
+	action_a = {
+		name = "ACTIONNAME29005A" #Close the University
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = sleepevent which = 29006 } #PFA: The destruction of the University
+		command = { type = sleepevent which = 29007 } #PFA: The destruction of the University
+	}
+	action_b = {
+		name = "ACTIONNAME29005B" #Take the chance and leave the University open!
+		command = { type = stability value = -1 }
+		command = { type = sleepevent which = 29011 } #PFA: Opening of the University
+	}
+}
+#(1620-1648) The destruction of the University
+event = {
+	id = 29006
+	trigger = {
+		war = { country = PFA country = BAY }
+		control = { province = 345 data = BAY } #Pfalz
+		event = 3665 #PFA: The Winter King of Prague
+	}
+	random = no
+	country = PFA
+	name = "EVENTNAME29006" #The destruction of the University
+	desc = "EVENTHIST29006"
+	#-#The invading army catches the University open. They proceed to burn it to the ground and kill most of the intellectuals that are there. The total destruction of the university removes a vital part of the Palatinate economy.
+
+	date = { day = 2 month = january year = 1620 }
+	offset = 60
+	deathdate = { day = 1 month = january year = 1648 }
+
+	action_a = {
+		name = "ACTIONNAME29006A" #The Area is completely destroyed!
+		command = { type = domestic which = INNOVATIVE value = -2 }
+		command = { type = provincetax which = 345 value = -2 } #Pfalz
+		command = { type = infra value = -500 }
+		command = { type = trade value = -500 }
+		command = { type = sleepevent which = 29007 } #PFA: The destruction of the University
+	}
+}
+#(1620-1648) The destruction of the University
+event = {
+	id = 29007
+	trigger = {
+		war = { country = PFA country = FRA }
+		control = { province = 345 data = FRA } #Pfalz
+		event = 3665 #PFA: The Winter King of Prague
+	}
+	random = no
+	country = PFA
+	name = "EVENTNAME29007" #The destruction of the University
+	desc = "EVENTHIST29007"
+	#-#The invading army catches the University open. They proceed to burn it to the ground and kill most of the intellectuals that are there. The total destruction of the university removes a vital part of the Palatinate economy.
+
+	date = { day = 2 month = january year = 1620 }
+	offset = 60
+	deathdate = { day = 1 month = january year = 1648 }
+
+	action_a = {
+		name = "ACTIONNAME29006A" #The Area is completely destroyed!
+		command = { type = domestic which = INNOVATIVE value = -2 }
+		command = { type = provincetax which = 345 value = -2 } #Pfalz
+		command = { type = infra value = -500 }
+		command = { type = trade value = -500 }
+		command = { type = sleepevent which = 29006 } #PFA: The destruction of the University
+	}
+}
+
+#(1620-1648) Bibliotheca Palatina stolen
+event = {
+	id = 29009 #triggered by BAY_29008 A
+	random = no
+	country = PFA
+	name = "EVENTNAME29009" #Bibliotheca Palatina stolen
+	desc = "EVENTHIST29009"
+	#-#The Imperial General Tilly has stolen the Bibliotheca Palatina, and sent it to the Vatican! What should we do?
+
+	action_a = {
+		name = "ACTIONNAME29009A" #Protest, but nothing else
+		command = { type = stability value = -1 }
+		command = { type = sleepevent which = 29010 } #PFA: The recapturing of the Bibiotheca Palatina
+	}
+	action_b = {
+		name = "ACTIONNAME29009B" #Vow Revenge and plan to get it back!
+		command = { type = casusbelli which = PAP value = 144 }
+		command = { type = badboy value = 1 }
+	}
+}
+
+#(1620-1670) The recapturing of the Bibiotheca Palatina - Ahistorical
+event = {
+	id = 29010
+	trigger = {
+		exists = PAP
+		control = { province = 399 data = PFA } #Rome
+		event = 29009 #PFA: Bibliotheca Palatina stolen
+	}
+	random = no
+	country = PFA
+	name = "EVENTNAME29010" #The recapturing of the Bibiotheca Palatina
+	desc = "EVENTHIST29010"
+	#-#The armies of the Palatinate were able to sack Rome and regain the artifact the Bibliotheca Palatina!
+
+	date = { day = 2 month = january year = 1620 }
+	offset = 90
+	deathdate = { day = 1 month = january year = 1670 }
+
+	action_a = {
+		name = "ACTIONNAME29010A" #Send the Bibliotheca Palatina back to Heidelberg where it belongs!
+		command = { type = vp value = 30 }
+		command = { type = relation which = PAP value = -100 }
+	}
+}
+
+#(1652) Opening of the University
+event = {
+	id = 29011
+	trigger = {
+		event = 29005 #PFA: Closing of the University
+	}
+	random = no
+	country = PFA
+	name = "EVENTNAME29011" #Opening of the University
+	desc = "EVENTHIST29011"
+	#-#At the end of the thirty years war the Heidelberg University was reopened.
+
+	date = { day = 1 month = january year = 1652 }
+	offset = 10
+	deathdate = { day = 1 month = february year = 1652 }
+
+	action_a = {
+		name = "ACTIONNAME29011A" #Reopen the University
+		command = { type = domestic which = INNOVATIVE value = 1 }
+	}
+}
+
+#(1653) Publishing of the Heidelberg Catechism
+event = {
+	id = 29012
+	trigger = { religion = reformed }
+	random = no
+	country = PFA
+	name = "EVENTNAME29012" #Publishing of the Heidelberg Catechism
+	desc = "EVENTHIST29012"
+	#-#In 1653 the University of Heidelberg publishes the Heidelberg Catechism. This book becomes the most prominent religious body of its time.
+
+	date = { day = 1 month = january year = 1653 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1653 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = relation which = SCO value = 50 }
+		command = { type = relation which = HES value = 75 }
+		command = { type = relation which = HOL value = 75 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1676-1681) The League of Augsburg
+event = {
+	id = 3664 #triggered by FRA_3127 A
+	random = no
+	country = PFA
+	name = "EVENTNAME3198" #The League of Augsburg
+	desc = "EVENTHIST3198"
+	#-#The reunion policy of Louis XIV had been forced upon by the Empire in the 1684 by the Truce of Regensburg, mostly because the Emperor was preoccupied by the Turkish menace (siege of Vienna in 1683). The continued French claims and expansion to the detriment of the Habsburg possessions and the German states of the Empire led to the creation of the anti-French League of Augsburg (1686).
+
+	action_a = {
+		name = "ACTIONNAME3198A" #Defy French claims
+		command = { type = relation which = FRA value = -150 }
+		command = { type = relation which = ENG value = 150 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = BRA value = 150 }
+		command = { type = relation which = HOL value = 150 }
+		command = { type = relation which = HAN value = 100 }
+		command = { type = relation which = SPA value = 100 }
+		command = { type = relation which = HES value = 100 }
+		command = { type = relation which = KLE value = 100 }
+		command = { type = relation which = KOL value = 100 }
+		command = { type = relation which = BAD value = 100 }
+		#command = { type = relation which = THU value = 100 } #Bayreuth
+	}
+	action_b = {
+		name = "ACTIONNAME3198B" #Ignore it
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = ENG value = -100 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = BRA value = -100 }
+		command = { type = relation which = HOL value = -100 }
+		command = { type = relation which = HAN value = -50 }
+		command = { type = relation which = SPA value = -50 }
+		command = { type = relation which = HES value = -50 }
+		command = { type = relation which = KLE value = -50 }
+		command = { type = relation which = KOL value = -50 }
+		command = { type = relation which = BAD value = -50 }
+		#command = { type = relation which = THU value = -50 } #Bayreuth
+	}
+}
+
+#(1709) The frozen winter
+event = {
+	id = 29013
+	random = no
+	country = PFA
+	name = "EVENTNAME29013" #The frozen winter
+	desc = "EVENTHIST29013"
+	#-#There was a major freeze in the winter of 1708/1709 in the Palatinate. On the 10th of January in 1709 the Rhine river froze and was closed for five weeks. Wine froze into ice. Grapevines died. Cattle died in their sheds. Many Palatinates traveled down the Rhine to escape.
+
+	date = { day = 1 month = january year = 1709 }
+	offset = 1
+	deathdate = { day = 1 month = march year = 1709 }
+
+	action_a = {
+		name = "ACTIONNAME29013A" #Let them go
+		command = { type = population which = 345 value = -15000 } #Pfalz
+		command = { type = desertion which = 345 value = 10000 } #Pfalz
+		command = { type = revoltrisk which = 24 value = 3 }
+	}
+	action_b = {
+		name = "ACTIONNAME29013B" #Try to save them by burning whatever fuels we can find
+		command = { type = population which = 345 value = -2500 } #Pfalz
+		command = { type = desertion which = 345 value = 1000 } #Pfalz
+		command = { type = provincetax which = 345 value = -2 } #Pfalz
+		command = { type = revoltrisk which = 24 value = -1 }
+	}
+}
+
+#(1750) Building of the Wine Fass
+event = {
+	id = 29014
+	random = no
+	country = PFA
+	name = "EVENTNAME29014" #Building of the Wine Fass
+	desc = "EVENTHIST29014"
+	#-#In 1750 Karl Theodor had the largest barrel of wine made. Wine makers from the entire Rhine region were needed to fill the barrel. This collaboration and the following parties helped their relations with neighboring provinces.
+
+	date = { day = 1 month = may year = 1750 }
+	offset = 1
+	deathdate = { day = 1 month = august year = 1750 }
+
+	action_a = {
+		name = "ACTIONNAME29014A" #Build the Barrel
+		command = { type = relation which = -1 value = 30 }
+		command = { type = relation which = -1 value = 30 }
+		command = { type = relation which = -1 value = 30 }
+		command = { type = relation which = -1 value = 30 }
+		command = { type = treasury value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME29014B" #We can't waste money on such trivial things
+		command = { type = vp value = -5 }
+	}
+}
+
+#(1764) Castle Damage
+event = {
+	id = 29015
+	random = no
+	country = PFA
+	name = "EVENTNAME29015" #Castle Damage
+	desc = "EVENTHIST29015"
+	#-#In 1764 a lightning bolt hit the upper part of the castle for the second time, which destroyed all of the repares that were done after the last war. This time the the castle was finally abandoned.
+
+	date = { day = 1 month = may year = 1764 }
+	offset = 1
+	deathdate = { day = 1 month = september year = 1764 }
+
+	action_a = {
+		name = "DAMN"
+		command = { type = stability value = -3 }
+		command = { type = infra value = -50 }
+	}
+}
+
+#(1777) The Palatinate inherits Bavaria
+event = {
+	id = 255003 #triggered by BAY_125020 A
+	random = no
+	country = PFA
+	name = "EVENTNAME255003" #The Palatinate inherits Bavaria
+	desc = "EVENTHIST255003"
+	#-#On December 30th 1777 Duke Maximilian III Joseph, the last Bavarian Wittelsbach, died. By virtue of a contract signed in 1724 for the case of one Wittelsbach dynasty, dying out, the Palatine Elector Karl Theodor was the legitimate heir, with the condition, that he moved his court to Munich so that Bavaria could remain the main Wittelsbach country. Karl Theodor acknowledged the terms of the contract, making the Palatinate a mere, side country, although he loved his residence in Mannheim and felt like a stranger, among strangers in Munich. After more than 400 years of division the, Wittelsbach possessions were united again.
+
+	action_a = {
+		name = "ACTIONNAME255003A" #Accept the treaty and move to Munich (End Game)
+		command = { type = independence which = MAI }
+		command = { type = independence which = KOL }
+		command = { type = independence which = HES }
+		command = { type = independence which = BAD }
+		command = { type = independence which = WUR }
+		#command = { type = independence which = THU } #Bayreuth
+		command = { type = independence which = HEL }
+		command = { type = independence which = SAC }
+		command = { type = independence which = BRG }
+		command = { type = independence which = OLD }
+		command = { type = independence which = HAN }
+		command = { type = independence which = BRE }
+		command = { type = cedeprovince which = HAB value = 374 } #Alsace
+		command = { type = cedeprovince which = HAB value = 387 } #Franche-Comté
+		command = { type = cedeprovince which = HAB value = 377 } #Luxembourg
+		command = { type = cedeprovince which = HAB value = 378 } #Brabant
+		command = { type = cedeprovince which = HAB value = 379 } #Artois
+		command = { type = cedeprovince which = HAB value = 380 } #Flandern
+		command = { type = cedeprovince which = FRA value = 375 } #Lorraine
+		command = { type = cedeprovince which = FRA value = 376 } #Champagne
+		command = { type = cedeprovince which = FRA value = 409 } #Bourgogne
+		command = { type = cedeprovince which = PRU value = 343 } #Kleves
+		command = { type = cedeprovince which = HOL value = 337 } #Friesen
+		command = { type = cedeprovince which = HOL value = 338 } #Geldre
+		command = { type = cedeprovince which = HOL value = 340 } #Zeeland
+		command = { type = trigger which = 125021 } #BAY: The Palatinate is united with Bavaria
+		command = { type = trigger which = 125033 } #BAY: The Palatinate is united with Bavaria (Palatinate inherited Burgundy)
+	}
+	action_b = {
+		name = "ACTIONNAME255003B" #Ignore the treaty and stay in Mannheim
+		command = { type = inherit which = BAY }
+		command = { type = addcore which = 349 } #Bayern
+		command = { type = addcore which = 348 } #Ansbach
+		command = { type = relation which = KOL value = -200 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = stability value = -2 }
+	}
+}
+#(1777) The Palatinate inherits Bavaria - in case Bavaria doesn't exist
+event = {
+	id = 255008
+	trigger = {
+		NOT = { exists = BAY }
+	}
+	random = no
+	country = PFA
+	name = "EVENTNAME255008" #The Wittelsbach inheritance of Bavaria
+	desc = "EVENTHIST255008"
+	#-#On December 30th 1777 Duke Maximilian III Joseph, the last member of the Bavarian branch of the House of Wittelsbach, died. By virtue of a contract signed in 1724 for the case of one Wittelsbach dynasty dying out, the Palatine Elector Karl Theodor was the legitimate heir with claims to the Bavarian possessions. After more than 400 years of division the Wittelsbach possessions could be reunited again.
+
+	date = { day = 29 month = december year = 1777 } #30th in RL
+
+	action_a = {
+		name = "ACTIONNAME255008A" #The Wittelsbach possessions shall be united again
+		command = { type = stability value = 1 }
+		command = { type = addcore which = 349 } #Bayern
+		command = { type = addcore which = 348 } #Ansbach
+		command = { type = relation which = KOL value = -50 }
+		command = { type = relation which = HAB value = -50 }
+	}
+}
+
+#(1778) The Bavarian Succession of 1777
+event = {
+	id = 3666 #triggered by HAB_3207 A
+	random = no
+	country = PFA
+	name = "EVENTNAME3666" #Austria claims Straubing
+	desc = "EVENTHIST3666"
+	#-#After the extinction of the Wittelsbach dynasty in Bavaria (1777), Joseph II endeavored to strengthen the position of Austria within the Empire. His plan to exchange territories with Charles Theodore of the Palatinate, the heir of the Bavarian throne (Lower Bavaria and the Upper Palatinate for Lower Austria) led to the War of the Bavarian Succession (1778-1779). Prussia intervened in July 1778 in what she saw as a dangerous Austrian expansion. It was a short conflict which started with a Prussian invasion of Bohemia but was terminated in May 1779s when Empress Maria Theresa forced her son Joseph II to capitulate. The peace was concluded at Teschen on 16th May 1779 and Austria settled for the small Inn district.
+
+	action_a = {
+		name = "ACTIONNAME3666A" #Acknowledge the Austrian claims
+		command = { type = alliance which = HAB }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = sleepevent which = 255004 } #PFA: Austria is defeated
+	}
+	action_b = {
+		name = "ACTIONNAME3666B" #Defend Straubing against Habsburg
+		command = { type = alliance which = PRU }
+		command = { type = relation which = PRU value = 150 }
+		command = { type = casusbelli which = HAB value = 24 }
+	}
+}
+#(1778) Straubing is ceded to Austria
+event = {
+	id = 255009 #triggered by HAB_179092
+	trigger = {
+		core = { province = 348 data = -1 } #Ansbach
+	}
+	random = no
+	country = PFA
+	name = "EVENTNAME255005" #Straubing is ceded to Austria
+	desc = "EVENTHIST179092"
+	#-#After the extinction of the Wittelsbach dynasty in Bavaria in 1777, Joseph II endeavored to strengthen the position of Austria within the Empire by exchanging territories with Charles Theodore of the Palatinate, the heir of the Bavarian throne (Lower Bavaria and the Upper Palatinate for Lower Austria). Austria would then legitimatedly press her claims to Straubing, thereby expanding her influence into Southern Germany.
+
+	action_a = {
+		name = "OK"
+		command = { type = treasury value = 30 }
+		command = { type = cedeprovince which = HAB value = 348 } #Ansbach
+		command = { type = removecore which = 348 } #Ansbach
+		command = { type = relation which = HAB value = 50 }
+	}
+}
+
+#(1778-1783) Austria is defeated
+event = {
+	id = 255004
+	trigger = {
+		event = 3666
+		OR = {
+			AND = {
+				control = { province = 329 data = -1 }
+				control = { province = 330 data = -1 }
+				control = { province = 314 data = -1 }
+			}
+			AND = {
+				owned = { province = 328 data = HAB }
+				control = { province = 328 data = -1 }
+			}
+			AND = {
+				owned = { province = 351 data = HAB }
+				control = { province = 351 data = -1 }
+			}
+			AND = {
+				owned = { province = 378 data = HAB }
+				control = { province = 378 data = -1 }
+			}
+		}
+		control = { province = 349 data = -1 }
+	}
+	random = no
+	country = PFA
+	name = "EVENTNAME255004" #Austria is defeated
+	desc = "EVENTHIST255004"
+	#-#The War of Bavarian Succession caused by Austria's attempts to annex Straubing was a short conflict without great military action which started with a Prussian invasion of Bohemia and was terminated in May 1779 when Empress Maria Theresia forced her son Joseph II to capitulate. The peace was concluded at Teschen on 16th May 1779 and Austria settled for the small Inn district.
+
+	date = { day = 1 month = january year = 1778 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1783 }
+
+	action_a = {
+		name = "ACTIONNAME255004A" #We are victorious
+		command = { type = vp value = 50 }
+		command = { type = relation which = PRU value = 100 }
+	}
+}
+
+#(1780-1783) Straubing is ceded to Austria
+event = {
+	id = 255005 #triggered by HAB_179021
+	trigger = {
+		core = { province = 348 data = -1 } #Ansbach
+	}
+	random = no
+	country = PFA
+	name = "EVENTNAME255005" #Straubing is ceded to Austria
+	desc = "EVENTHIST255005"
+	#-#Despite resistance from Prussia, Austria managed to occupy and annex Straubing, thereby expanding into Southern Germany.
+
+	action_a = {
+		name = "OK"
+		command = { type = treasury value = 30 }
+		command = { type = cedeprovince which = HAB value = 348 } #Ansbach
+		command = { type = removecore which = 348 } #Ansbach
+		command = { type = relation which = HAB value = 50 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 255014

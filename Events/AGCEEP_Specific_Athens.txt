@@ -1,0 +1,287 @@
+#Duchy of Athens (ATH)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1423) Florentine Connection
+event = {
+	id = 117000
+	random = no
+	country = ATH
+	name = "EVENTNAME117000" #Florentine Connection
+	desc = "EVENTHIST117000"
+	#-#Hailing from the Repubblica di Firenze, the Acciaioli began in steelworks before becoming bankers and finally Ducas di Athens. Under their rule, numerous Florentine merchants established themselves in Hellas to exploit the rich Levantine trade routes. In return, the Duca enjoyed tax-free status on their Tuscan holdings. On 22 June 1422, Antonio I and the Signoria's envoy Tommaso Alderotti confirmed the arrangement which gave Florence the same trading rights as the Venetians in Negroponte. Continued amicable relations would play a role in installing Antonio's successor Nerio II. On 7 August 1422, he conceded privileges to Florentine merchants in Athens. In that year, Alfonso V of Aragon asserted his claim by appointing Tommaso Beraldo, a Catalan, duke. Giovanni Acciaioli, Antonio's brother and archbishop of Thebes, who was then in Rome, was sent to Venice to appeal the appointment of Tommaso to the senate there, but the pleas were ignored.
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 180
+	deathdate = { day = 1 month = january year = 1423 }
+
+	action_a = {
+		name = "ACTIONNAME117000A" #Sign the agreement
+		command = { type = provincetax which = 359 value = 1 }
+		command = { type = relation which = TOS value = 25 }
+		command = { type = relation which = ARG value = -50 }
+		command = { type = treasury value = 25 } #cash via TOS estates
+		command = { type = inflation value = 6 }
+		command = { type = merchants value = 3 }
+		command = { type = trade value = 200 }
+	}
+	action_b = {
+		name = "ACTIONNAME117000B" #Give the Serenissima exculsive rights
+		command = { type = relation which = TOS value = -25 }
+		command = { type = relation which = ARG value = -50 }
+		command = { type = relation which = VEN value = 25 }
+		command = { type = treasury value = -50 } #no tax exemption
+		command = { type = inflation value = 3 }
+		command = { type = merchants value = 1 }
+		command = { type = trade value = 100 }
+	}
+}
+
+#(1419-1435) Albanian Settlers
+event = {
+	id = 117001
+	random = no
+	country = ATH
+	name = "EVENTNAME117001" #Albanian Settlers
+	desc = "EVENTHIST117001"
+	#-#Like his father Nerio I, Antonio encouraged Albanian settlement throughout Attica, Spata and Liopesi where their leaders' gave their names to the fledging districts. Many more crossed to Salamis and Aegina with their flocks. Despite occassional Turkish raids and an outbreak of plague (1423), it was said 'that agriculture blossomed under the care of the Albanian peasants and the wooded mountains were used for hunting and hawking'.
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1435 }
+
+	action_a = {
+		name = "ACTIONNAME117001A" #Make themselves at home
+		command = { type = provincemanpower which = -1 value = 1 } #farming
+		command = { type = population which = 359 value = 1000 }
+		command = { type = trade value = 25 }
+	}
+}
+
+#(1435) The Succession to the Duchy of Athens
+event = {
+	id = 23009
+	trigger = {
+		exists = MRE
+	}
+	random = no
+	country = ATH
+	name = "EVENTNAME23009" #Antonio's Successor
+	desc = "EVENTHIST23009"
+	#-#Year 1435, Antonio I had died without issue. His widow Maria Melissene conspired with her Chalkokondylos relations, seized control of the Acroplis and sought Ottoman protection. When the Sultan arrested her envoy, she offered Athens to Despot Konstantinos Dragases but Antonio's nominated heir Nerio prevailed with Latin support - becoming Nerio II and Melissene's new husband.
+
+	date = { day = 1 month = january year = 1435 }
+	offset = 10
+	deathdate = { day = 29 month = january year = 1435 }
+
+	action_a = {
+		name = "ACTIONNAME23009A" #Honour Acciajuoli's will
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = relation which = MRE value = -50 }
+		command = { type = relation which = BYZ value = -50 }
+		command = { type = relation which = TOS value = 50 }
+		command = { type = relation which = VEN value = 25 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME23009B" #Send Chalkokondylos to Murâd II
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = relation which = TOS value = -25 }
+		command = { type = relation which = VEN value = -25 }
+		command = { type = relation which = MRE value = -25 }
+		command = { type = relation which = BYZ value = -25 }
+		command = { type = revoltrisk which = 36 value = 4 }
+		command = { type = treasury value = -50 }
+		command = { type = trigger which = 301071 } #TUR: Athenian Envoy
+	}
+	action_c = {
+		name = "ACTIONNAME23009C" #Accede to Dragases's scheme
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = trigger which = 23010 } #MRE: Byzantium inherits the Duchy of Athens
+		command = { type = stability value = -1 }
+	}
+}
+#(1435) Chalkokondylos Dynasty - Ahistorical
+event = {
+	id = 117002 #triggered by TUR_301071 B
+	random = no
+	country = ATH
+	name = "EVENTNAME117002" #Chalkokondylos Dynasty (1435-1511)
+	desc = "EVENTHIST117002"
+	#-#Owing to the machinations of Maria Melissene, the Arkhon Georgios Chalkokondylos became the new Duke of Athens. Father to the scholars Demetrios and Laonikos, they continued cultural revival of their predecessor but relations with the West floundered - in particular with the Florentines and Venetians whose influence was reduced.
+
+	action_a = {
+		name = "OK"
+		command = { type = sleepmonarch which = 014501 } #Nerio II
+		command = { type = sleepmonarch which = 014502 } #Antonio II
+		command = { type = sleepmonarch which = 014503 } #Nerio II
+		command = { type = sleepmonarch which = 014504 } #Francesco I
+		command = { type = sleepmonarch which = 014505 } #Francesco II
+		command = { type = wakemonarch which = 014506 } #Georgios *
+		command = { type = wakemonarch which = 014507 } #Nikolaos *
+		command = { type = wakemonarch which = 014508 } #Theophilos *
+		command = { type = wakemonarch which = 014509 } #Demetrios *
+		command = { type = remove_countryculture which = italian }
+		command = { type = religion which = orthodox }
+		command = { type = relation which = TOS value = -75 }
+		command = { type = relation which = VEN value = -75 }
+		command = { type = relation which = MRE value = -50 }
+		command = { type = relation which = BYZ value = -50 }
+		command = { type = sleepevent which = 117003 } #ATH: Era of Turbulence
+		command = { type = sleepevent which = 117004 } #ATH: Duchess of Athens
+	}
+}
+
+#(1441-1451) Era of Turbulence
+event = {
+	id = 117003
+	trigger = {
+		exists = MRE
+		exists = TUR
+	}
+	random = no
+	country = ATH
+	name = "EVENTNAME117003" #Era of Turbulence
+	desc = "EVENTHIST117003"
+	#-#Succeeding his Great-Uncle Antonio I, Nerio II proved a weak ruler - making himself unpopular with his arrogance. Deposed in favour of his brother Antonio II (r.1439-41), he was recalled only to have the Duchy invaded by the Morean Despots Konstantinos and Thomas Palaiologos. Forced to pay tribute he extradited Athens by submitting to the Ottoman Sultan Murâd II.
+
+	date = { day = 1 month = january year = 1441 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1451 }
+
+	action_a = {
+		name = "ACTIONNAME117003A" #Renew our oath to the Sultan
+		command = { type = relation which = MRE value = -100 }
+		command = { type = relation which = TUR value = 100 }
+		command = { type = treasury value = -50 } #tribute
+		command = { type = stability value = -2 }
+		command = { type = trigger which = 286004 } #MRE: Sultan's Ultimatum
+		}
+	action_b = {
+		name = "ACTIONNAME117003B" #Surrender to Dragases
+		command = { type = relation which = MRE value = 50 }
+		command = { type = treasury value = -75 } #tribute
+		command = { type = stability value = -1 }
+		command = { type = trigger which = 286005 } #MRE: Campaign of 1444
+	}
+	action_c = {
+		name = "ACTIONNAME117003C" #Prepare for the siege
+		command = { type = domestic which = offensive value = -1 }
+		command = { type = relation which = MRE value = -100 }
+		command = { type = INF which = 359 value = 3000 }
+		command = { type = CAV which = 359 value = 1000 }
+		command = { type = ART which = 359 value = 10 }
+		command = { type = treasury value = -100 }
+		command = { type = stability value = 1 }
+		command = { type = war which = MRE }
+	}
+}
+
+#(1451) Duchess of Athens
+event = {
+	id = 117004
+	random = NO
+	country = ATH
+	name = "EVENTNAME117004" #Duchess of Athens
+	desc = "EVENTHIST117004"
+	#-#Upon Nerio II's death, his widow Chiara Zorzi (adopted daughter of Antonio I) became Regent for their young son Francesco I. She soon took a lover in Bartolomeo Contarini (a Venetian Patrician of Nauplion) whom she enticed to poison his wife and become Chiara's consort (1453). Interpreting this as a move to cede Athens to Venice, the Ottoman Sultan encouraged Chiara's nephew 'Franco' to depose his Aunt - becoming Francesco II. Contarini and his stepson became prisoners of the Grand Turk, whilst Chiara was kept at Megara. She died in 1455.
+
+	date = { day = 11 month = march year = 1451 }
+	offset = 30
+	deathdate = { day = 19 month = september year = 1451 }
+
+	action_a = {
+		name = "ACTIONNAME117004A" #Let them wed
+		command = { type = relation which = TUR value = -100 }
+		command = { type = relation which = VEN value = 50 }
+		command = { type = dynastic which = VEN } #Bartolomeo Contarini
+		command = { type = DIP which = 1 value = 48 }
+		command = { type = MIL which = 1 value = 48 }
+		command = { type = stability value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME117004B" #Pack her off to a monastery
+		command = { type = relation which = VEN value = -25 }
+		command = { type = relation which = TUR value = 50 }
+		command = { type = DIP which = -1 value = 48 } #No mommy
+		command = { type = ADM which = -1 value = 48 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1453) Young Lovers
+event = {
+	id = 117005
+	trigger = {
+		neighbour = TUR
+	}
+	random = NO
+	country = ATH
+	name = "EVENTNAME117005" #Young Lovers end Athens
+	desc = "EVENTHIST117005"
+	#-#Mehmet II of the Ottoman Empire intervened at the insistence of the Athenian people on the behalf of the young duke Francis and summoned Bartolommeo and Chiara to his court at Adrianople. Another Acciajuoli, Francis II, was sent to Athens as a Turkish client duke and Chiara thus deprived of her power in the city. Evidently, the citizenry had mistrusted the two lovers influence over the young duke, for whose safety they may have feared. The new duke had Chiara murdered in 1454 at Megara and Bartolomeo appealed to the sultan for justice. The sultan outraged that Francis II took measures in his own hands, decided to take Athens into Turkish hands and Francis II deposed.
+
+	date = { day = 0 month = march year = 1453 }
+	offset = 30
+	deathdate = { day = 0 month = october year = 1458 }
+
+	action_a = {
+		name = "ACTIONNAME117005A" #Francis rules his way
+		command = { type = breakvassal which = TUR } #one does not murder the ex-duchess without asking the sultan
+		command = { type = revokeaccess which = TUR }
+		command = { type = cancelaccess which = TUR }
+		command = { type = relation which = TUR value = -100 }
+		command = { type = relation which = VEN value = -10 }
+	}
+	action_b = {
+		name = "ACTIONNAME117005B" #keep paying the turk
+		command = { type = relation which = TUR value = 30 }
+		command = { type = DIP which = -1 value = 48 }
+		command = { type = ADM which = -1 value = 48 }
+		command = { type = treasury value = -100 } #tribute
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1456-1820) Ottomans march on Athens
+event = {
+	id = 117006
+	trigger = {
+		monarch = 014505 #Francesco II will not happen if alternate dynasty had been chosen
+		event = 117005 #ATH: Young Lovers
+		neighbour = TUR
+		NOT = { 
+				exists = BYZ 
+				war = { country = TUR country = ATH }
+		}
+		OR = {
+			control = { province = 359 data = ATH } #Athens either controlled by Athens or Ottomans
+			control = { province = 359  data = TUR }
+		}
+	}
+	random = no
+	country = ATH
+	name = "EVENTNAME117006" #Ottomans march on Athens
+	desc = "EVENTHIST117006"
+	#-#Historically, in 1456, Ottoman troops occupied the Duchy of Athens except the Acropolis, where the last followers of Duke Francesco II had fled. Mehmed II had been informed by Contarini about the order to murder the former Duchess of Athens at Megara - and the Sultan did not take it lightly that his authority was questioned. Under terms of surrender, Mehmed graciously allowed the duke to continue to live and retain the lordship of Thebes.
+
+	date = { day = 4 month = june  year = 1456 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME141000A" #A generous offer (End Game)
+		command = { type = trigger which = 301134 } #TUR: Athens submits
+	}
+	action_b = {
+		name = "ACTIONNAME141000B" #Continue to hold out
+		command = { type = population which = 1609 value = -500 }
+		command = { type = infra value = -100 }
+		command = { type = trade value = -200 }
+		command = { type = manpower value = -2 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 117007

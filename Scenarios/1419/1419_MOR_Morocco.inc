@@ -4,7 +4,7 @@
 
 country = {
 	tag = MOR
-	ai = "MOR_1419.ai"
+	ai = "MOR_1419.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -15,7 +15,7 @@ country = {
 	inflation = 0
 	merchants = 0.083333
 	religion = { type = sunni }
-	culture = { type = delaware }
+	culture = { type = maghrebi }
 	diplomacy = {
 		relation = { tag = POR value = -200 refusetrade = no }
 		relation = { tag = CAS value = -200 refusetrade = no }
@@ -23,7 +23,7 @@ country = {
 		relation = { tag = KNI value = -200 refusetrade = no }
 		relation = { tag = SON value = 100 refusetrade = no }
 		relation = { tag = TUN value = 150 refusetrade = no }
-		relation = { tag = XHO value = 0 refusetrade = no }
+		relation = { tag = TLE value = 0 refusetrade = no }
 	}
 	knownprovinces = {
 		238 239 240 241 242 243 244 245 246 247 248 249 250 291 292 293 294

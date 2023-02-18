@@ -4,7 +4,7 @@
 
 country = {
 	tag = CHG
-	ai = "Large.ai"
+	ai = "Large.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -16,7 +16,7 @@ country = {
 	merchants = 0.083333
 	religion = { type = sunni }
 	culture = {
-		type = hawaiian #Uighur
+		type = uighur
 	}
 	diplomacy = { }
 	knownprovinces = {

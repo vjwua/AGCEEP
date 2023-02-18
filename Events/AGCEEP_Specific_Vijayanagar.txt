@@ -1,0 +1,723 @@
+#Vijayanagar (VIJ)
+
+#-----------------------------------------------------------------------------------------------
+
+#The Sangamas
+
+#(1430-1437) Lanka pays tribute
+event = {
+	id = 328060
+	trigger = { vassal = { country = BMD country = VIJ } }
+	random = no
+	country = VIJ
+	name = "EVENTNAME328060" #Vijayanagar ceases to pay tribute
+	desc = "EVENTHIST328060"
+	#-#After Ahmad Shah's invasion of Vijayanagar the King had been forced to pay annual tribute to the Bahmanids, but in 1430 Deva Raya II stopped this practice unilaterally. The Sultan demanded the King pay up but did nothing to punish him.
+
+	date = { day = 1 month = january year = 1430 }
+	offset = 180
+	deathdate = { day = 22 month = february year = 1437 }
+
+	action_a = {
+		name = "ACTIONNAME328060A" #We shall no longer be Bahmanid servants
+		command = { type = breakvassal which = BMD }
+		command = { type = relation which = BMD value = -25 }
+	}
+	action_b = {
+		name = "ACTIONNAME328060B" #Tribute is a small price to pay for security
+		command = { type = relation which = BMD value = 25 }
+	}
+}
+
+#(1437-1444) Bahmanid Victory
+event = {
+	id = 328061
+	trigger = {
+		war = { country = VIJ country = BMD }
+		OR = {
+			control = { province = 567 data = BMD } #Bangalore
+			control = { province = 549 data = BMD } #Goa
+			control = { province = 571 data = BMD } #Madras
+		}
+	}
+	random = no
+	country = VIJ
+	name = "EVENTNAME328061" #Bahmanid Victory
+	desc = "EVENTHIST328061"
+	#-#After Deva Raya refused to pay tribute to him, the new Bahmanid Sultan Ala-ud-din sent his brother Mohammad Khan to invade Vijayanagar. The Muslim armies proved superior to the Hindu ones and Deva Raya was soon in retreat. To make peace he sent 20 elephants, 200 dancing girls and a vast sum of money to the Sultan via Mohammad. The Khan was ambitious and Deva Raya secretly supported him in a rebellion against the Sultan, hoping that it would at best install a friendlier monarch and at worst divert their attention for some time.
+
+	date = { day = 27 month = february year = 1437 }
+	offset = 30
+	deathdate = { day = 1 month = may year = 1444 }
+
+	action_a = {
+		name = "ACTIONNAME328061A" #Secretly support Mohammad Khan
+		command = { type = relation which = BMD value = 25 }
+		command = { type = treasury value = -50 }
+		command = { type = trigger which = 410007 } #BMD: Devaraya II pays tribute
+	}
+	action_b = {
+		name = "ACTIONNAME328061B" #Pay our arrears to the Sultan
+		command = { type = relation which = BMD value = 50 }
+		command = { type = treasury value = -50 }
+		command = { type = trigger which = 410007 } #BMD: Devaraya II pays tribute
+		command = { type = sleepevent which = 410008 } #BMD: Mohammad Khan's rebellion
+	}
+	action_c = {
+		name = "ACTIONNAME328061C" #Fight desperately
+		command = { type = stability value = -2 }
+		command = { type = desertion which = -1 value = 2000 }
+	}
+}
+
+#(1442-1444) Deva Raya's Military Reorganization
+event = {
+	id = 328062
+	random = no
+	country = VIJ
+	name = "EVENTNAME328062" #Deva Raya's Military Reorganization
+	desc = "EVENTHIST328062"
+	#-#Alarmed by the success of the Bahmanids, Deva Raya called a general council of the nobility and principal brahmins in 1442 to demand an explanation for his military failures against the smaller and poorer Bahmani Sultanate. The council eventually decided that Muslim victories were due to the stronger horses imported by the Bahmanids and the permanent force of archers maintained by the Sultan. Determined to even the odds, Deva Raya encouraged Muslims to join his army by giving them religious freedom, erecting a mosque in the capital and placing a copy of the Koran before his throne so that they could bow to the King without sinning against their faith. He also required all his soldiers to learn the bow in addition to the pike and lance, and soon had sixty thousand soldiers skilled in archery.
+
+	date = { day = 1 month = january year = 1442 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1444 }
+
+	action_a = {
+		name = "ACTIONNAME328062A" #Allow Muslims in the army and train archers
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 48 value = 3 }
+		command = { type = treasury value = -25 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = domestic which = quality value = 1 }
+		command = { type = land value = 500 }
+	}
+	action_b = {
+		name = "ACTIONNAME328062B" #Require all soldiers to learn archery
+		command = { type = domestic which = quality value = 1 }
+	}
+}
+
+#(1443) Fraternal Ambition
+event = {
+	id = 328050
+	random = no
+	country = VIJ
+	name = "EVENTNAME328050" #Fraternal Ambition
+	desc = "EVENTHIST328050"
+	#-#As his reign continued, Deva Raya's brothers realized they were unlikely to inherit the throne. This proved too much for his brother to bear, and he began plotting against the King. Having sent away the guards on a pretext, a messenger invited the King to accompany him to festivities. Feeling ill from dinner, the King declined. The messenger then revealed a hidden dagger and stabbed the King with it repeatedly. Meanwhile, Devaraya's brother systematically slaughtered all his other brothers and government ministers, save only one who was away from the capital. Believing him dead, the assassin was overpowered by the King and a guard and Devaraya was able to catch his brother in the act of declaring himself King. Although Deva Raya outlived his brother, the attempt on his life was ultimately successful. The King lingered on for only a few months before passing away, probably due to the complications of his wounds.
+
+	date = { day = 1 month = april year = 1443 }
+	offset = 30
+	deathdate = { day = 1 month = june year = 1443 }
+
+	action_a = {
+		name = "ACTIONNAME328050A" #The King lays dying
+		command = { type = stability value = -3 }
+		command = { type = DIP which = -3 value = 12 }
+		command = { type = ADM which = -3 value = 12 }
+		command = { type = MIL which = -3 value = 12 }
+	}
+}
+
+#(1444-1446) The Reddy invade Orissa
+event = {
+	id = 328051
+	trigger = { owned = { province = 565 data = VIJ } } #Yanam
+	random = no
+	country = VIJ
+	name = "EVENTNAME328051" #The Reddy invade Orissa
+	desc = "EVENTHIST328051"
+	#-#Orissa and Vijayanagar were the two great Hindu Kingdoms of their day, but they were constantly at odds with each other. Whenever one was strong, the other was weak. In between them lay the independent buffer states of the Velama and the Reddy, strong enough to take advantage of instability. With a civil war waging in Orissa, the Reddy Kingdoms of Kondavidu and Rajahmundry saw a chance to expand their lands and invaded from the south.
+
+	date = { day = 1 month = january year = 1444 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1446 }
+
+	action_a = {
+		name = "ACTIONNAME328051A" #We could take advantage of this
+		#command = { type = addcore which = 565 } #Yanam
+		command = { type = casusbelli which = ORI value = 12 }
+	}
+}
+
+#(1485) Narasimha's Initiative
+event = {
+	id = 328056
+	trigger = {
+		OR = {
+			NOT = { owned = { province = 571 data = VIJ } } #Madras
+			NOT = { countrysize = 6 }
+		}
+	}
+	random = no
+	country = VIJ
+	name = "EVENTNAME328056" #Narasimha's Initiative
+	desc = "EVENTHIST328056"
+	#-#After generations of losing ground to invaders the Sangama dynasty no longer demanded the respect it once had. In 1485 a provincial governor named Narasimha Salwa set up a semi-independent realm of his own and began to push back Orissa and restore some of Vijayanagar's losses.
+
+	date = { day = 1 month = january year = 1485 }
+	offset = 75
+	deathdate = { day = 1 month = june year = 1485 }
+
+	action_a = {
+		name = "ACTIONNAME328056A" #Victory is worth a province or two
+		#command = { type = wakeleader which = 133001 } #Narasimha Salwa
+		command = { type = INF which = -1 value = 5000 }
+		command = { type = CAV which = -3 value = 1000 }
+		command = { type = provincetax which = -3 value = -1 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = aristocracy value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME328056B" #Crush this rebellion before it spreads
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 12 value = 6 }
+		command = { type = sleepmonarch which = 0164508 } #Narasimha
+	}
+}
+
+#(1485-1486) The Patricide of Praudha
+event = {
+	id = 328052
+	random = no
+	country = VIJ
+	name = "EVENTNAME328052" #The Patricide of Praudha
+	desc = "EVENTHIST328052"
+	#-#In 1485 the Sangama King Virupaksha was murdered by his own son, Praudha. This shocking act incensed the nation against the King and Virupaksha reigned only briefly and ineffectually before being murdered himself by his brother, Padea Rao.
+
+	date = { day = 1 month = june year = 1485 }
+	offset = 15
+	deathdate = { day = 1 month = july year = 1486 }
+
+	action_a = {
+		name = "ACTIONNAME328052A" #Shocking!
+		command = { type = stability value = -3 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = revoltrisk which = 6 value = 8 }
+	}
+}
+
+#(1486) End of the Sangama Dynasty
+event = {
+	id = 328057
+	trigger = { monarch = 0164508 } #Narasimha
+	random = no
+	country = VIJ
+	name = "EVENTNAME328057" #End of the Sangama Dynasty
+	desc = "EVENTHIST328057"
+	#-#The city of Vijayanagar was founded in 1336 as the capital of the Hoysala Kingdom. When their line became extinct, the new Sangama dynasty took the name of the city as its own. This Vijayanagar dynasty ruled until 1486 when the charismatic provincial governor Narasimha Salwa ousted Prince Padea Rao and usurped the throne, ending 74 years of Sangama rule.
+
+	date = { day = 1 month = january year = 1486 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1487 }
+
+	action_a = {
+		name = "ACTIONNAME328057A" #The usurper rules Vijayanagar now
+		command = { type = stability value = 1 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Chief Minister Narasa Sequence
+
+#(1490) Chief Minister Narasa
+event = {
+	id = 328058
+	trigger = {
+		monarch = 0164508 #Narasimha
+	}
+	random = no
+	country = VIJ
+	name = "EVENTNAME328058" #Chief Minister Narasa
+	desc = "EVENTHIST328058"
+	#-#Narasimha continued his campaigns against Vijayanagar's invaders after he became King, appointing a man named Narasa as his chief minister. With the King gone from Vijayanagar for so long, Narasa became the real ruler of Vijayanagar from 1490. Narasa worked towards the restoration of central power that had been eroded in the previous decade.
+
+	date = { day = 1 month = january year = 1490 }
+	offset = 180
+	deathdate = { day = 14 month = october year = 1490 } #death of Narasimha
+
+	action_a = {
+		name = "ACTIONNAME328058A" #An excellent minister
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = DIP which = 1 value = 10 }
+		command = { type = ADM which = 1 value = 10 }
+	}
+}
+#(1490) Narasa under Timma
+event = {
+	id = 328002
+	trigger = {
+		monarch = 0164509 #Timma
+	}
+	random = no
+	country = VIJ
+	name = "EVENTNAME328002" #Narasa under Timma
+	desc = "EVENTHIST328002"
+	#-#Prince Timma succeeded his father Narasimha but was soon murdered by an army commander during a period of political unrest.
+
+	date = { day = 14 month = october year = 1490 }
+	offset = 1
+	deathdate = { day = 29 month = december year = 1490 } #exact Timma's deathdate unknown
+
+	action_a = {
+		name = "ACTIONNAME328058A" #An excellent minister
+		command = { type = DIP which = 3 value = 3 }
+		command = { type = ADM which = 2 value = 3 }
+		command = { type = MIL which = 1 value = 3 }
+	}
+}
+#(1491-1503) Narasa under Immadi Narusimha
+event = {
+	id = 328003
+	trigger = {
+		monarch = 0164510 #Immadi Narusimha
+	}
+	random = no
+	country = VIJ
+	name = "EVENTNAME328003" #Narasa under Immadi Narusimha
+	desc = "EVENTHIST328003"
+	#-#After Timma's murder, the faithful Narasa then crowned the other prince, Immadi Narasimha, but retained all administrative powers until his death in order to bring stability to the Kingdom.
+
+	date = { day = 0 month = january year = 1491 }
+	offset = 1
+	deathdate = { day = 29 month = september year = 1503 } #exact Narasa's deathdate unknown
+
+	action_a = {
+		name = "ACTIONNAME328058A" #An excellent minister
+		command = { type = DIP which = 5 value = 168 }
+		command = { type = ADM which = 4 value = 168 }
+		command = { type = MIL which = 2 value = 168 }
+		command = { type = setflag which = [Narasa] }
+	}
+}
+#(1503) Death of Narasa
+event = {
+	id = 328004
+	trigger = {
+		monarch = 0164510 #Immadi Narusimha
+		event = 328003 #VIJ: Narasa under Immadi Narusimha
+		flag = [Narasa]
+	}
+	random = no
+	country = VIJ
+	name = "EVENTNAME328004" #The death of Narasa
+	desc = "EVENTHIST328004"
+	#-#Towards the end of his rule, Narasa had effectively carried on the dream of his King, Narasimha in protecting the empire's interests. He built a robust administration and an effective army. He had regained control over large domains in South India and kept the Bahamani Sultans and the Gajapatis at bay and brought the rebellious chiefs under control, making way for the golden era of Vijayanagar.
+
+	date = { day = 1 month = january year = 1503 }
+	offset = 200
+	deathdate = { day = 29 month = december year = 1503 } #exact Narasa's deathdate unknown
+
+	action_a = {
+		name = "ALAS"
+		command = { type = DIP which = -5 value = 24 }
+		command = { type = ADM which = -4 value = 24 }
+		command = { type = MIL which = -2 value = 24 }
+	}
+}
+#End of Chief Minister Narasa Sequence
+#-----------------------------------------------------------------------------------------------
+
+#(1500-1600) Pillar of Victory
+event = {
+	id = 328054
+	trigger = {
+		owned = { province = 571 data = VIJ } #Madras
+		event = 249009 #ORI: Gajapati Empire
+	}
+	random = no
+	country = VIJ
+	name = "EVENTNAME328054" #Pillar of Victory
+	desc = "EVENTHIST328054"
+	#-#Orissa was surrounded by enemies and although the country fought bravely, it could not always defend its conquests from invasion. In 1516 armies from Vijayanagar occupied Udayagiri and erected a pillar of victory at Simachalam. From that point on this southern region passed from the hands of the Oriya and was never again reconquered by them.
+
+	date = { day = 1 month = january year = 1500 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1600 }
+
+	action_a = {
+		name = "ACTIONNAME328054A" #This land is our land
+		command = { type = vp value = 5 }
+		command = { type = relation which = ORI value = -10 }
+		command = { type = revoltrisk which = 12 value = -1 }
+		#command = { type = AI which = peaceful.ai }
+	}
+}
+
+#(1505-1509) The Turbulent Reign of Vira Narasimha
+event = {
+	id = 328059
+	random = no
+	country = VIJ
+	name = "EVENTNAME328059" #The Turbulent Reign of Vira Narasimha
+	desc = "EVENTHIST328059"
+	#-#After the death of Tuluva Narassa, a struggle broke out as to who should rule the Kingdom. His son, Immadi Narasa, was nominally held the throne for two years, but by 1505, Vira Narasimha, half-brother to the deceased monarch, took control. Vira Narasimha was to spend his entire reign fighting rebel warlords.
+
+	date = { day = 1 month = january year = 1505 }
+	offset = 15
+	deathdate = { day = 1 month = may year = 1509 }
+
+	action_a = {
+		name = "ACTIONNAME328059A" #Woe to us!
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 48 value = 7 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = domestic which = centralization value = -2 }
+	}
+}
+
+#(1509-1529) The Oriya Invasion
+event = {
+	id = 328053 #triggered by ORI_249023
+	random = no
+	country = VIJ
+	name = "EVENTNAME328053" #The Oriya Invasion
+	desc = "EVENTHIST328053"
+	#-#The priest-king of Orissa, Prataprudra Deva, decided to invade Vijayanagar because of the apparent weakness of its new ruler. Prataprudra's plans did not include an invasion from the north, however. When the Sultan of Bengal invaded Orissa soon afterwards, the Oriya King was forced to rush his army back north. The exhausted forces that returned were no match for Krishnadeva Raya's fresh army and the Oriya were quickly defeated. This easy victory gave Krishadeva a taste for invasion that he sated by invading Orissa twice again, taking new territories each time.
+
+	action_a = {
+		name = "ACTIONNAME328053A" #A tempting target
+		command = { type = MIL which = 1 value = 120 }
+		command = { type = addcore which = 565 } #Yanam
+		#command = { type = AI which = VIJ_Krishnadeva.ai }
+	}
+}
+
+#(1510-1528) Krishna Deva Raya policies
+event = {
+	id = 30341
+	random = no
+	country = VIJ
+	name = "EVENTNAME30341" #Policies of Krishna Deva Raya
+	desc = "EVENTHIST30341"
+	#-#During his 20 year long reign, Krishna Deva Raya concentrated even more in his hands than his predecessors. To suppress possible unrest he reduced taxes, protected local merchants, and expanded agriculture and trade of the Kingdom.
+
+	date = { day = 1 month = january year = 1510 }
+	offset = 900
+	deathdate = { day = 1 month = january year = 1528 }
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = offensive value = 1 }
+		command = { type = domestic which = mercantilism value = 1 }
+		command = { type = stability value = 1 }
+		command = { type = infra value = 500 }
+		command = { type = trade value = 500 }
+		command = { type = treasury value = -100 }
+	}
+}
+
+#(1529-1545) The Nayakas
+event = {
+	id = 328100
+	trigger = {
+		OR = {
+			owned = { province = 568 data = -1 }
+			owned = { province = 572 data = -1 }
+			owned = { province = 575 data = -1 }
+		}
+		NOT = { domestic = { type = centralization value = 7 } }
+	}
+	random = no
+	country = VIJ
+	name = "EVENTNAME328100" #The Nayakas
+	desc = "EVENTHIST328100"
+	#-#Despite the fact that Vijayanagar's central authority was strongest during the reign of Krishna Deva Râya, the empire was really a weakly-centralized polity. Starting during his regin, the nayakas (governors) of outlying regions of the Empire began to establish more and more independence. By his death, Madurai, Ikkeri, Gingee, and Tanjavur were stylized as independent states who were close vassals of the Empire.
+
+	date = { day = 1 month = december year = 1529 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1545 }
+
+	action_a = {
+		name = "ACTIONNAME328100A" #Grant them more control
+		command = { type = independence which = IKK }
+		command = { type = independence which = MAD }
+		command = { type = independence which = GIN }
+		command = { type = independence which = MYS }
+		command = { type = independence which = COC }
+		command = { type = independence which = CLC }
+		command = { type = independence which = TRV }
+		command = { type = stability value = 1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = remove_countryculture which = tamil }
+	}
+	action_b = {
+		name = "ACTIONNAME328100B" #Exert greater control on the outlying regions
+		command = { type = stability value = -2 }
+		command = { type = revolt which = 568 } #Mangalore
+		command = { type = revolt which = 572 } #Pondicherry
+		command = { type = revolt which = 575 } #Madurai
+		command = { type = revolt which = -1 }
+		command = { type = revoltrisk which = 24 value = 5 }
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = remove_countryculture which = tamil }
+	}
+}
+
+#(1535) Krishna Deva Raya's succession crisis
+event = {
+	id = 30342
+	random = no
+	country = VIJ
+	name = "EVENTNAME30342" #Krishna Deva Raya's succession crisis
+	desc = "EVENTHIST30342"
+	#-#After the death of Krishna Deva Raya in 1529, his half-brother Achyuta has ascended the throne. However, he was soon challenged by Krishna Deva's son-in-law Rama Raya and had to make him a co-ruler. Achyuta invaded Bijapur, while Rama Raya was running the administration. He appointed his friends and relatives, took 3,000 Muslim soldiers into his service, and in 1535 put Achyuta in prison, proclaiming himself King. Southern nobles rebelled against Rama Raya. While he was fighting them, Achyuta was restored to the throne, and Rama Raya had to step down.
+
+	date = { day = 1 month = january year = 1535 }
+	offset = 90
+	deathdate = { day = 1 month = january year = 1536 }
+
+	action_a = {
+		name = "ACTIONNAME30342A" #Support Achyuta
+		command = { type = stability value = -2 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = revoltrisk which = 84 value = 3 }
+	}
+	action_b = {
+		name = "ACTIONNAME30342B" #Support Rama Raya
+		command = { type = revoltrisk which = 84 value = 6 }
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = stability value = -4 }
+		command = { type = sleepmonarch which = 0164513 } #Achyuta
+		command = { type = sleepmonarch which = 0164514 } #Venkata Raya
+		command = { type = sleepmonarch which = 0164515 } #Tirumala I
+		command = { type = sleepmonarch which = 0164517 } #Sadashiva Raya
+		command = { type = wakemonarch which = 0164516 } #Rama Raya
+		command = { type = wakeleader which = 0164804 } #Rama Raya (VIJ)
+		command = { type = cav which = -1 value = 3000 }
+	}
+}
+
+#(1543-1570) Rama Raya returns
+event = {
+	id = 328055
+	trigger = { NOT = { monarch = 0164516 } } #Rama Raya
+	random = no
+	country = VIJ
+	name = "EVENTNAME328055" #Rama Raya returns
+	desc = "EVENTHIST328055"
+	#-#Although he was unable to claim the throne, the son of Krishnadeva Raja still worked behind the scenes in Vijayanagar. Given a position in government, he acted as chief minister to several Kings in succession, placing his nephew Sadasiva on the throne in 1542 as a puppet King. Under his policies, Vijayanagar allied itself with Bijapur against Ahmadnagar, sending several armies north to destroy mosques and burn villages.
+
+	date = { day = 1 month = january year = 1543 }
+	offset = 1000
+	deathdate = { day = 1 month = january year = 1570 }
+
+	action_a = {
+		name = "ACTIONNAME328055A" #Let him become the power behind the throne
+		command = { type = sleepmonarch which = 0164517 } #Sadashiva Raya
+		command = { type = wakemonarch which = 0164516 } #Rama Raya
+		command = { type = relation which = BIJ value = 50 }
+		command = { type = casusbelli which = AHM value = 72 } #Ahmadnagar, if independent
+		command = { type = DIP which = 2 value = 120 }
+	}
+	action_b = {
+		name = "ACTIONNAME328055B" #Accept his counsel warily
+		command = { type = relation which = BIJ value = 25 }
+		command = { type = casusbelli which = AHM value = 36 } #Ahmadnagar, if independent
+		command = { type = DIP which = 1 value = 120 }
+	}
+	action_c = {
+		name = "ACTIONNAME328055C" #Exile him from Vijayanagar
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1559-1565) Mysore Revolts
+event = {
+	id = 4446
+	trigger = {
+		owned = { province = 570 data = -1 } # Mysore
+	}
+	random = no
+	country = VIJ
+	name = "EVENTNAME4446" #Mysore Revolts
+	desc = "EVENTHIST4446"
+	#-#The people of Mysore have grown tired of our rule and are uniting to demand their independence!
+
+	date = { day = 1 month = january year = 1559 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1565 }
+
+	action_a = {
+		name = "ACTIONNAME4446A" #Crush this insolence!
+		command = { type = revolt which = 570 } #Mysore
+		command = { type = revolt which = 570 } #Mysore
+		command = { type = revolt which = 570 } #Mysore
+		command = { type = stability value = -5 }
+	}
+	action_b = {
+		name = "ACTIONNAME4446B" #Make concessions
+		command = { type = stability value = -1 }
+		command = { type = vp value = -100 }
+		command = { type = treasury value = -200 }
+	}
+}
+
+#(1565-1820) The Fall of the City of Victory
+event = {
+	id = 3823
+	trigger = {
+		NOT = {
+			control = { province = 567 data = -1 }
+		}
+		OR = {
+			war = { country = GOL country = VIJ }
+			war = { country = BIJ country = VIJ }
+			war = { country = AHM country = VIJ }
+			war = { country = BMD country = VIJ }
+			control = { province = 567 data = REB }
+		}
+	}
+	random = no
+	country = VIJ
+	name = "EVENTNAME3823" #The Fall of The City of Victory
+	desc = "EVENTHIST3823"
+	#-#A combination of internal dissention and foreign attack has resulted in armies marching upon our capital in a lightning-quick campaign! Vijayanagar has been subjected to a thorough three-month sack, resulting in the complete disruption of the government, the massive loss of revenue, and the collapse of our authority in the provinces!
+
+	date = { day = 1 month = january year = 1565 }
+	offset = 5
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME3823A" #Cut our losses and regroup
+		command = { type = revoltrisk which = 120 value = 10 }
+		command = { type = remove_countryculture which = tamil }
+		command = { type = domestic which = centralization value = -3 }
+		command = { type = fortress which = -2 value = -1 } #Vijayanagar and Penukonda are essentially in the same province
+		command = { type = independence which = BIJ }
+		command = { type = independence which = GOL }
+		command = { type = independence which = IKK }
+		command = { type = independence which = MAD }
+		command = { type = independence which = GIN }
+		command = { type = independence which = COC }
+		command = { type = independence which = CLC }
+		command = { type = independence which = TRV }
+		command = { type = independence which = MYS }
+		command = { type = independence which = HYA }
+		command = { type = independence which = GON }
+		command = { type = independence which = MLW }
+		command = { type = independence which = AHM }
+		command = { type = independence which = GUJ }
+		command = { type = casusbelli which = MYS value = 60 } #5 years CB on MYS
+		command = { type = casusbelli which = GOL value = 60 } #5 years CB on GOL
+		command = { type = cedeprovince which = BGL value = 560 } #Odisa
+		command = { type = cedeprovince which = BGL value = 561 } #Berhampur
+		command = { type = cedeprovince which = AHM value = 548 } #Bombay
+		command = { type = cedeprovince which = BIJ value = 549 } #Goa
+		command = { type = cedeprovince which = BIJ value = 550 } #Maharashtra
+		command = { type = cedeprovince which = GOL value = 563 } #Bastar
+		command = { type = cedeprovince which = ORI value = 564 } #Palakimedi
+		command = { type = cedeprovince which = GOL value = 565 } #Yanam
+		command = { type = trigger which = 392000 } #GIN: The Fall of The City of Victory
+		command = { type = trigger which = 371000 } #IKK: The Fall of The City of Victory
+		command = { type = trigger which = 362000 } #MAD: The Fall of The City of Victory
+		command = { type = trigger which = 238000 } #MYS: The Fall of The City of Victory
+	}
+	action_b = {
+		name = "ACTIONNAME3823B" #Protect the whole nation!
+		command = { type = revoltrisk which = 120 value = 20 }
+		command = { type = stability value = -8 }
+		command = { type = treasury value = -400 }
+		command = { type = infra value = -1000 }
+		command = { type = trade value = -1000 }
+		command = { type = relation which = GOL value = -400 }
+		command = { type = relation which = MYS value = -400 }
+		command = { type = revoltrisk which = 60 value = 15 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = revolt which = 566 } #Hyderabad
+		command = { type = revolt which = 566 } #Hyderabad
+		command = { type = revolt which = 566 } #Hyderabad
+		command = { type = revolt which = 570 } #Mysore
+		command = { type = revolt which = 570 } #Mysore
+		command = { type = revolt which = 570 } #Mysore
+		command = { type = revolt which = 546 } #Malwa
+		command = { type = revolt which = 546 } #Malwa
+		command = { type = revolt which = 547 } #Gujarat
+		command = { type = revolt which = 547 } #Gujarat
+		command = { type = revolt which = 565 } #Yanam
+		command = { type = revolt which = 565 } #Yanam
+		command = { type = revolt which = 568 } #Mangalore
+		command = { type = revolt which = 568 } #Mangalore
+		command = { type = revolt which = 569 } #Kerala
+		command = { type = revolt which = 569 } #Kerala
+		command = { type = revolt which = 573 } #Cochin
+		command = { type = revolt which = 573 } #Cochin
+		command = { type = revolt which = 574 } #Trivandrum
+		command = { type = revolt which = 574 } #Trivandrum
+		command = { type = revolt which = 575 } #Madurai
+		command = { type = revolt which = 575 } #Madurai
+		command = { type = revolt which = 572 } #Pondicherry
+		command = { type = revolt which = 572 } #Pondicherry
+	}
+}
+
+#(1565-1600) The Death of Rama Raya
+event = {
+	id = 328001
+	trigger = {
+		OR = {
+			war = { country = GOL country = VIJ }
+			war = { country = BIJ country = VIJ }
+			war = { country = AHM country = VIJ }
+			war = { country = BMD country = VIJ }
+		}
+		NOT = { event = 3823 } #VIJ: The Fall of the City of Victory
+	}
+	random = no
+	country = VIJ
+	name = "EVENTNAME328001" #The Death of Rama Raya
+	desc = "EVENTHIST328001"
+	#-#On January 26, 1565, the Vijayanagara army met the grand alliance of Deccan Sultanates at Talikota between the villages of Rakkasa and Tangadi. Despite outnumbering the Deccan forces, the Vijayanagara forces were quickly defeated by a massive frontal attack following an artillery barrage. The capture and execution of Rama Raya was a major blow to the Empire. Matters were not helped when two key commanders fled the battlefield.
+
+	date = { day = 25 month = january year = 1565 }
+	offset = 5
+	deathdate = { day = 0 month = january year = 1600 }
+
+	action_a = {
+		name = "ACTIONNAME328001A" #We are doomed!
+		command = { type = stability value = -4 }
+		command = { type = revoltrisk which = 24 value = 10 }
+		command = { type = revolt which = -2 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Random Events
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1565) Cultural and Linquistic Tensions
+event = {
+	id = 328000
+	trigger = {
+		NOT = { year = 1565 }
+	}
+	random = yes
+	country = VIJ
+	name = "EVENTNAME328000" #Cultural and Linquistic Tensions
+	desc = "EVENTHIST328000"
+	#-#The different cultures and languages within the country of Vijanagar routinely led to tension.
+
+	action_a = {
+		name = "OK"
+		command = { type = stability value = -2 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 328005-328049 - next: 328063

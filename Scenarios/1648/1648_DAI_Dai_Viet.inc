@@ -4,7 +4,7 @@
 
 country = {
 	tag = DAI
-	ai = "SmallTrade1.ai"
+	ai = "SmallTrade1.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -14,7 +14,7 @@ country = {
 	treasury = 100
 	inflation = 0
 	merchants = 0
-	religion = { type = confucianism }
+	religion = { type = confucian }
 	culture = {
 		type = vietnamese
 	}
@@ -23,7 +23,7 @@ country = {
 		relation = { tag = CAM value = 100 }
 		relation = { tag = AYU value = 65 }
 		relation = { tag = CHA value = 75 }
-		relation = { tag = AMI value = 100 }
+		relation = { tag = LAX value = 100 }
 	}
 	knownprovinces = {
 		441 556 557 558 641 642 649 650 652 653 654 655 656 657 658 659 660 661 662 663 664 

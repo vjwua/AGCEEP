@@ -1,0 +1,187 @@
+#Habsburg Spain (HSP)
+
+#-----------------------------------------------------------------------------------------------
+#War of Spanish Succession Sequence
+#by Fodoron
+
+#(1705) The parliament of Barcelona declares Charles King
+event = {
+	id = 187000 #triggered by SPA_285211
+	random = no
+	country = HSP
+	name = "EVENTNAME187000" #The parliament of Barcelona declares Charles King
+	desc = "EVENTHIST187000"
+	#-#Felipe V was well accepted in all of Spain, and recognized as King by all the parliaments. However with the start of the war and the arrival of the French troops, and with the proclamation of Charles Habsburg as King in Vienna, his supporters (Austracists), were ready to change sides. Although there were supporters for both monarchs in all regions of Spain, the disenchantment with the Habsburg rule and the admiration for the French centralized model was higher in the former Kingdom of Castile, while in the former Kingdom of Aragon, besides the opposite sentiment, there was a profound hatred of the French for the loss of the Roselló and the bombardment of Barcelona by the French fleet a few years before.
+
+	action_a = {
+		name = "ACTIONNAME187000A" #A new King
+		command = { type = add_countryculture which = catalan }
+		command = { type = breakvassal which = SPA }
+		command = { type = stability value = 2 }
+		command = { type = dynastic which = HAB }
+		command = { type = relation which = HAB value = 200 }
+		command = { type = relation which = FRA value = -100 }
+		command = { type = relation which = SPA value = -250 }
+	}
+}
+#(1705) The Austracist party
+#by Bordic
+event = {
+	id = 187003 #triggered by HAB_179096
+	random = no
+	country = HSP
+	name = "EVENTNAME187003" #The Austracist party
+	desc = "EVENTHIST179096"
+	#-#The arrival of the Archduke to the coasts of Valencia raised most of the province in his favor, and after the conquest of Barcelona by the English troops, and with the Archduke Charles in the city, most of Catalonia declared her support for him, and he was proclaimed King by the parliament on November 7, 1705. Soon the parliament of Valencia took the same decision. The European war of Spanish succession had just become a civil war in Spain.
+
+	action_a = {
+		name = "ACTIONNAME187003A" #Down with the Bourbons
+		command = { type = war which = SPA }
+		command = { type = revoltrisk which = 108 value = 4 }
+		command = { type = INF which = 429 value = 11000 } #Catalonia
+		command = { type = CAV which = 429 value = 4000 } #Catalonia
+		command = { type = INF which = 427 value = 11000 } #Gerona
+		command = { type = CAV which = 427 value = 4000 } #Gerona
+		command = { type = treasury value = 200 }
+	}
+}
+#(1706-1711) Austracist victory in war of Spanish succession (AI event)
+event = {
+	id = 187001
+	trigger = {
+		ai = yes
+		event = 187000 #HSP: The parliament of Barcelona declares Charles King
+		OR = {
+			countrysize = 10
+			vassal = { country = HAB country = SPA }
+			vassal = { country = HAB country = FRA }
+		}
+		exists = SPA
+		exists = HAB
+		NOT = {
+			vassal = { country = SPA country = HAB }
+			vassal = { country = FRA country = HAB }
+		}
+	}
+	random = no
+	country = HSP
+	name = "EVENTNAME187001" #Austracist victory in war of Spanish succession
+	desc = "EVENTHIST187001"
+	#-#A victory has been achieved by the Austracist party. Charles Habsburg has been accepted as King of Spain as Carlos III.
+
+	date = { day = 9 month = october year = 1706 }
+	offset = 100
+	deathdate = { day = 17 month = april year = 1711 }
+
+	action_a = {
+		name = "ACTIONNAME187001A" #The Habsburgs won the civil war (End Game)
+		command = { type = stability value = 2 }
+		command = { type = trigger which = 285213 } #SPA: Bourbonist defeat in war of Spanish succession
+	}
+}
+#(1706-1711) Austracist victory in war of Spanish succession (human player)
+event = {
+	id = 187004
+	trigger = {
+		event = 187000 # HSP war of Spanish succession
+		ai = no
+		OR = {
+			countrysize = 10
+			vassal = { country = HAB country = SPA }
+			vassal = { country = HAB country = FRA }
+		}
+		exists = SPA
+		exists = HAB
+		NOT = {
+			vassal = { country = SPA country = HAB }
+			vassal = { country = FRA country = HAB }
+		}
+	}
+	random = no
+	country = HSP
+	name = "EVENTNAME187001" #Austracist victory in war of Spanish succession
+	desc = "EVENTHIST187001"
+	#-#A victory has been achieved by the Austracist party. Charles Habsburg has been accepted as King of Spain as Carlos III.
+
+	date = { day = 9 month = october year = 1706 }
+	offset = 60
+	deathdate = { day = 17 month = april year = 1711 }
+
+	action_a = {
+		name = "ACTIONNAME187004A" #We reunite Spain again
+		command = { type = stability value = 2 }
+		command = { type = inherit which = SPA }
+		command = { type = trigger which = 187005 } #HSP: Austrian rulers in Spain
+	}
+}
+#(1706-1711) Austrian rulers in Spain (HSP reunited Spain)
+event = {
+	id = 187005 #triggered by HSP_187004
+	random = no
+	country = HSP
+	name = "EVENTNAME187005" #Austrian rulers in Spain
+	desc = "EVENTHIST187005"
+	#-#Philippe d'Anjou has left the Kingdom and gone back to France, where he has been named Dauphin of France. Charles Habsburg has been accepted as King of Spain as Carlos III. The Austrian line of the Habsburg dynasty will continue ruling our now reunited country.
+
+	action_a = {
+		name = "GOOD"
+		command = { type = addcore which = 427 } #Gerona
+		command = { type = addcore which = 428 } #Navarra
+		command = { type = addcore which = 429 } #Catalonia
+		command = { type = addcore which = 430 } #Aragon
+		command = { type = addcore which = 431 } #Cantabria
+		command = { type = addcore which = 432 } #Asturias
+		command = { type = addcore which = 433 } #Galicia
+		command = { type = addcore which = 435 } #Leon
+		command = { type = addcore which = 436 } #Castilla
+		command = { type = addcore which = 437 } #Valencia
+		command = { type = addcore which = 438 } #Murcia
+		command = { type = addcore which = 439 } #Toledo
+		command = { type = addcore which = 440 } #Estramadura
+		command = { type = addcore which = 443 } #Andalusia
+		command = { type = addcore which = 444 } #Granada
+		command = { type = addcore which = 445 } #Gibraltar
+		command = { type = addcore which = 817 } #The Canary Islands
+		command = { type = addcore which = 821 } #The Baleares
+		command = { type = addcore which = 393 } #Napoli
+		command = { type = addcore which = 394 } #Apulia
+		command = { type = addcore which = 395 } #Messina
+		command = { type = addcore which = 396 } #Sicily
+		command = { type = addcore which = 397 } #Sardinia
+		command = { type = flagname which = "" }
+		command = { type = country which = SPA }
+		command = { type = badboy value = -2 }
+		command = { type = sleepevent which = 179082 } #HAB: Charles VI elected Holy Roman Emperor
+		command = { type = sleepevent which = 179083 } #HAB: The peace of Utrecht
+		command = { type = sleepevent which = 285215 } #SPA: The peace of Utrecht
+		command = { type = sleepevent which = 170055 } #FRA: The peace of Utrecht
+		command = { type = sleepevent which = 164017 } #ENG: The peace of Utrecht
+	}
+}
+#(1713) Habsburg Spain abandoned by all
+event = {
+	id = 187002 #triggered by HAB_179083
+	trigger = {
+		event = 187000 #HSP: The parliament of Barcelona declares Charles King
+	}
+	random = no
+	country = HSP
+	name = "EVENTNAME187002" #The Habsburg party abandoned by all
+	desc = "EVENTHIST187002"
+	#-#Charles left Spain in 1711 to take the imperial crown, leaving his wife, Elizabeth Christine Brunswick, as the regent. But in 1713 the situation had become untenable. A string of defeats had the Franco-Spanish armies at the doors of Barcelona, and the English had left the war. In March the regent left Barcelona, leaving Stahrenberg to reach an agreement with Felipe, and after surrendering Tarragona, the Austrians left. The people of Barcelona had to take a difficult decision.
+
+	action_a = {
+		name = "ACTIONNAME187002A" #We are on our own
+		command = { type = breakvassal which = HAB }
+		command = { type = stability value = 2 }
+		command = { type = relation which = HAB value = -25 }
+		command = { type = relation which = ENG value = -25 }
+		command = { type = remove_countryculture which = castilian }
+		command = { type = flagname which = "" }
+		command = { type = country which = CAT }
+	}
+}
+#End of War of Spanish Succession Sequence
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 187006

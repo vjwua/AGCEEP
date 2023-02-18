@@ -4,7 +4,7 @@
 
 country = {
 	tag = BUK
-	ai = "BUK_1561.ai"
+	ai = "BUK_1561.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -15,7 +15,7 @@ country = {
 	inflation = 0
 	merchants = 0
 	religion = { type = sunni }
-	culture = { type = uzbehk }
+	culture = { type = uzbek }
 	diplomacy = {
 		relation = { tag = KHI value = 50 }
 		relation = { tag = PER value = -200 }

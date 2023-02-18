@@ -4,7 +4,7 @@
 
 country = {
 	tag = ARK
-	ai = "SmallTrade1.ai"
+	ai = "SmallTrade1.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -14,12 +14,12 @@ country = {
 	treasury = 200
 	inflation = 0
 	merchants = 0
-	religion = { type = buddhism }
+	religion = { type = buddhist }
 	culture = { type = burmese }
 	diplomacy = {
-		relation = { tag = KHM value = 75 }
-		relation = { tag = PEG value = 65 }
-		relation = { tag = MYA value = 175 }
+		relation = { tag = LNA value = 75 }
+		relation = { tag = MON value = 65 }
+		relation = { tag = BRM value = 175 }
 	}
 	knownprovinces = {
 		543 544 545 553 554 555 556 557 558 559 560 561 565 571 572

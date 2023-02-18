@@ -1,0 +1,488 @@
+#Lorraine - Lothringen (LOR)
+
+#See AGCEEP_Alt_Germany.txt for KoG Alternative events
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1430) Internal reforms of Charles II
+event = {
+	id = 211011
+	random = no
+	country = LOR
+	name = "EVENTNAME211011" #Internal reforms of Charles II
+	desc = "EVENTHIST211011"
+	#-#Duke Charles II, surnamed 'le Hardi', the Bold, granted a right to be represented in the general estates of the Duchy to the Third Estate, i.e. the commons, who thus gained a certain extent of political power and voice for the first time in the history of Lorraine. Charles' motive for doing this was to limit and reduce the influence of the nobility and thereby strengthen Ducal authority.
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 3000
+	deathdate = { day = 29 month = december year = 1430 }
+
+	action_a = {
+		name = "ACTIONNAME211011A" #The commons shall have a say
+		command = { type = stability value = -2 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = revoltrisk which = 24 value = 3 }
+	}
+	action_b = {
+		name = "ACTIONNAME211011B" #What is the Third Estate?
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1431) The Succession in Lorraine
+event = {
+	id = 211000
+	trigger = { exists = PRO }
+	random = no
+	country = LOR
+	name = "EVENTNAME211000" #The Duke is dead
+	desc = "EVENTHIST211000"
+	#-#Upon the death of Duke Charles in 1431, his Duchy became a target of struggle between the French King Charles VII and duke Philippe III of Burgundy. By the will of Duke Charles, Lorraine was to pass to his daughter Isabella, who married René d'Anjou, duke of Bar, in 1420. This was disputed, however, by the male line heir Antoine, count of Vaudémont and nephew of Duke Charles. King Charles supported René d'Anjou with an army, but on the 2. July 1431 René lost to Antoine in the battle of Bugnéville and was imprisoned. His wife Isabella finally managed to negotiate for his ransom, and René was finally released after five years of capture. In a treaty confirmed at Chalons in 1445, Yolande, René's eldest daughter, married Antoine's son, Ferry II of Vaudemont, and René's second daughter Marguerite became the wife of Henry VI. of England.
+
+	date = { day = 25 month = january year = 1431 }
+
+	action_a = {
+		name = "ACTIONNAME211000A" #René is the new Duke!
+		command = { type = relation which = PRO value = 200 }
+		command = { type = relation which = FRA value = 100 }
+		command = { type = relation which = BUR value = -100 }
+		command = { type = revolt which = -2 }
+		command = { type = revoltrisk which = 60 value = 3 }
+		command = { type = dynastic which = PRO }
+		command = { type = trigger which = 262000 } #PRO: The succession in Lorraine
+		command = { type = trigger which = 262035 } #PRO: The succession in Lorraine (LOR liege of PRO)
+	}
+	action_b = {
+		name = "ACTIONNAME211000B" #No! Antoine is the rightful heir!
+		command = { type = sleepmonarch which = 078501 } #René I d'Anjou
+		command = { type = sleepmonarch which = 078502 } #Jean II
+		command = { type = sleepmonarch which = 078503 } #Nicolas
+		command = { type = sleepmonarch which = 078506 } #René II
+		command = { type = wakemonarch which = 078504 } #Antoine Ier °
+		command = { type = wakemonarch which = 078505 } #Ferry V °
+		command = { type = wakemonarch which = 078523 } #René II
+		command = { type = relation which = PRO value = -200 }
+		command = { type = relation which = FRA value = -100 }
+		command = { type = relation which = BUR value = 100 }
+		command = { type = trigger which = 137008 } #BUR: The succession in Lorraine
+		command = { type = trigger which = 262001 } #PRO: The succession in Lorraine
+	}
+}
+
+#(1447 or 1463) Burgundian Claims on Lorraine - Ahistorical
+event = {
+	id = 20322 #triggered by BUR_28006
+	random = no
+	country = LOR
+	name = "EVENTNAME20322" #Burgundian Claims on Lorraine
+	desc = "EVENTHIST20313"
+	#-#The Emperor has made Philip the Good of Burgundy King of Lotharingia, reviving the ninth century Kingdom of Lothar. The emperor has granted some of our lands to Burgundy!
+
+	action_a = {
+		name = "DAMN"
+		command = { type = casusbelli which = BUR value = 2500 }
+		command = { type = CAV which = -2 value = 6000 }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = alliance which = PRO }
+		command = { type = alliance which = HEL }
+	}
+}
+
+#(1473) The Accession of René II (René d'Anjou chosen as heir in 1431)
+event = {
+	id = 211001
+	trigger = {
+		exists = PRO
+		OR = {
+			event = 262000 #PRO: The succession in Lorraine
+			event = 262035 #PRO: The succession in Lorraine (LOR liege of PRO)
+		}
+		vassal = { country = PRO country = LOR }
+	}
+	random = no
+	country = LOR
+	name = "EVENTNAME211001" #The accession of René II
+	desc = "EVENTHIST211001"
+	#-#After the death of Duke Nicholas the title fell to René, grandson of the two combatants René d'Anjou and Antoine de Vaudémont. René II thus united the two rival lines in Lorraine.
+
+	date = { day = 24 month = august year = 1473 }
+
+	action_a = {
+		name = "ACTIONNAME211001A" #Long live Duke René!
+		command = { type = breakvassal which = PRO }
+		command = { type = stability value = 2 }
+		command = { type = trigger which = 262002 } #PRO: The accession of René II
+	}
+}
+#(1473) The Accession of René II (René d'Anjou chosen as heir in 1431) (LOR not vassal of PRO)
+event = {
+	id = 211012
+	trigger = {
+		exists = PRO
+		OR = {
+			event = 262000 #PRO: The succession in Lorraine
+			event = 262035 #PRO: The succession in Lorraine (LOR liege of PRO)
+		}
+		NOT = {
+			vassal = { country = PRO country = LOR }
+		}
+	}
+	random = no
+	country = LOR
+	name = "EVENTNAME211001" #The accession of René II
+	desc = "EVENTHIST211001"
+	#-#After the death of Duke Nicholas the title fell to René, grandson of the two combatants René d'Anjou and Antoine de Vaudémont. René II thus united the two rival lines in Lorraine.
+
+	date = { day = 24 month = august year = 1473 }
+
+	action_a = {
+		name = "ACTIONNAME211001A" #Long live Duke René!
+		command = { type = stability value = -1 }
+		command = { type = trigger which = 262002 } #PRO: The accession of René II
+	}
+}
+
+#(1480 or 1482) The succession in Provence
+event = {
+	id = 211002 #triggered by PRO_262012 B or PRO_262014 B
+	trigger = {
+		NOT = {
+			vassal = { country = PRO country = LOR }
+		}
+	}
+	random = no
+	country = LOR
+	name = "EVENTNAME211002" #The succession in Provence
+	desc = "EVENTHIST211002"
+	#-#According to the will of the late King René his possessions were to be divided between his two heirs - René II of Lorraine and Charles II of Maine. Charles was to have Provence, while René was to inherit the duchy of Bar on the border of Lorraine. Duke René II disputed Charles' right to Provence, and now our claims to Provence has finally been acknowledged!
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = vassal which = PRO }
+		command = { type = relation which = PRO value = 400 }
+		command = { type = relation which = FRA value = -100 }
+	}
+}
+#(1480 or 1482) The succession in Provence
+event = {
+	id = 211013 #triggered by PRO_262012 B or PRO_262014 B
+	trigger = {
+		vassal = { country = PRO country = LOR }
+	}
+	random = no
+	country = LOR
+	name = "EVENTNAME211002" #The succession in Provence
+	desc = "EVENTHIST211002"
+	#-#According to the will of the late King René his possessions were to be divided between his two heirs - René II of Lorraine and Charles II of Maine. Charles was to have Provence, while René was to inherit the duchy of Bar on the border of Lorraine. Duke René II disputed Charles' right to Provence, and now our claims to Provence has finally been acknowledged!
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = breakvassal which = PRO }
+		command = { type = dynastic which = PRO }
+		command = { type = relation which = PRO value = 400 }
+		command = { type = relation which = FRA value = -100 }
+	}
+}
+
+#(1480-1482) The House of Anjou-Lorraine in Provence
+event = {
+	id = 211003
+	trigger = {
+		exists = PRO
+		OR = {
+			event = 211002 #LOR: The succession in Provence
+			event = 211013 #LOR: The succession in Provence
+		}
+		ai = no
+	}
+	random = no
+	country = LOR
+	name = "EVENTNAME211003" #The House of Anjou-Lorraine in Provence
+	desc = "EVENTHIST211003"
+	#-#Following the death of the late Count of Provence the closest heir to the title is our Duke René II, the grandson of the late René of Provence. Following the accession of René II there is now a question about uniting our realm under one administration or not.
+
+	date = { day = 10 month = july year = 1480 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1482 }
+
+	action_a = {
+		name = "ACTIONNAME211003A" #Unite the holdings of our House!
+		command = { type = vp value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME211003B" #There is no need for that
+		command = { type = sleepevent which = 262016 } #PRO: The House of Anjou-Lorraine in Provence
+		command = { type = sleepevent which = 262017 } #PRO: The House of Anjou-Lorraine in Provence
+	}
+}
+#(1480-1483) The House of Anjou-Lorraine in Provence - PRO AI
+event = {
+	id = 211004 #triggered by PRO_262017
+	random = no
+	country = LOR
+	name = "EVENTNAME211004" #The House of Anjou-Lorraine in Provence
+	desc = "EVENTHIST211004"
+	#-#Our now Duke René II is also Count of Provence. He has expressed a desire to unite his holdings under the administration of Provence.
+
+	action_a = {
+		name = "EXCELLENT"
+		command = { type = inherit which = PRO }
+		command = { type = vp value = 24 }
+	}
+}
+#(1480) The House of Anjou-Lorraine in Provence AI
+event = {
+	id = 211005
+	trigger = {
+		exists = PRO
+		OR = {
+			event = 211002 #LOR: The succession in Provence
+			event = 211013 #LOR: The succession in Provence
+		}
+		ai = yes
+	}
+	random = no
+	country = LOR
+	name = "AI_EVENT"
+	desc = ""
+
+	date = { day = 10 month = july year = 1480 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1480 }
+
+	action_a = {
+		name = "OK" #Enquire about unification!
+		command = { type = vp value = 1 }
+	}
+}
+
+#(1480-1482) The Anjou heritage - Not owning Napoli
+event = {
+	id = 211006
+	trigger = {
+		event = 211004 #Human played Lorraine has inherited PRO
+		NOT = { owned = { province = 393 data = -1 } } #Napoli
+	}
+	random = no
+	country = LOR
+	name = "EVENTNAME211006" #The Anjou heritage
+	desc = "EVENTHIST211006"
+	#-#With the extinction of the senior branch of the Anjous that previously ruled in Anjou, Provence, Lorraine and Naples the cadet branch of Anjou-Lorraine has risen to power. It is now a question if we should take up the mantle.
+
+	date = { day = 10 month = july year = 1480 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1482 }
+
+	action_a = {
+		name = "ACTIONNAME211006A" #Yes - we are the Anjou!
+		command = { type = flagname which = "" }
+		command = { type = country which = PRO }
+		command = { type = addcore which = 406 } #Provence
+		command = { type = addcore which = 412 } #Maine
+		command = { type = addcore which = 393 } #Napoli
+		command = { type = addcore which = 394 } #Apulia
+		command = { type = stability value = -3 } #For pissing off a lot of neighbours
+		command = { type = relation which = FRA value = -200 }
+		command = { type = relation which = ARG value = -200 }
+		command = { type = relation which = SPA value = -200 }
+		command = { type = relation which = PAP value = -200 }
+		command = { type = relation which = BUR value = -200 }
+	}
+	action_b = {
+		name = "ACTIONNAME211006B" #Let bygones be bygones
+		command = { type = stability value = 1 }
+		command = { type = relation which = FRA value = 200 }
+		command = { type = relation which = ARG value = 200 }
+		command = { type = relation which = SPA value = 200 }
+		command = { type = relation which = PAP value = 100 }
+		command = { type = relation which = BUR value = 100 }
+	}
+}
+#(1480-1482) The Anjou heritage - Owning Napoli
+event = {
+	id = 211007
+	trigger = {
+		event = 211004 #Human played Lorraine has inherited PRO
+		owned = { province = 393 data = -1 } #Napoli
+	}
+	random = no
+	country = LOR
+	name = "EVENTNAME211007" #The Anjou heritage
+	desc = "EVENTHIST211007"
+	#-#With the extinction of the senior branch of the Anjous that previously ruled in Anjou, Provence, Lorraine and Naples the cadet branch of Anjou-Lorraine has risen to power. It is now a question if we should take up the mantle.
+
+	date = { day = 10 month = july year = 1480 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1482 }
+
+	action_a = {
+		name = "ACTIONNAME211007A" #Yes - we are the Anjou!
+		command = { type = flagname which = "" }
+		command = { type = country which = PRO }
+		command = { type = addcore which = 406 } #Provence
+		command = { type = addcore which = 412 } #Maine
+		command = { type = addcore which = 393 } #Napoli
+		command = { type = addcore which = 394 } #Apulia
+		command = { type = addcore which = 395 } #Messina
+		command = { type = addcore which = 396 } #Sicily
+		command = { type = stability value = -3 } #For pissing off a lot of neighbours
+		command = { type = relation which = FRA value = -200 }
+		command = { type = relation which = ARG value = -200 }
+		command = { type = relation which = SPA value = -200 }
+		command = { type = relation which = PAP value = -200 }
+		command = { type = relation which = BUR value = -200 }
+	}
+	action_b = {
+		name = "ACTIONNAME211007B" #Let bygones be bygones
+		command = { type = stability value = 1 }
+		command = { type = relation which = FRA value = 200 }
+		command = { type = relation which = ARG value = 200 }
+		command = { type = relation which = SPA value = 200 }
+		command = { type = relation which = PAP value = 100 }
+		command = { type = relation which = BUR value = 100 }
+	}
+}
+
+#(1525) The revolt of the 'Rustauds'
+event = {
+	id = 211008 #triggered by STR_288001 B
+	random = no
+	country = LOR
+	name = "EVENTNAME211008" #The revolt of the 'Rustauds'
+	desc = "EVENTHIST211008"
+	#-#In parallel to the movement of the Reform the revolt extended from the peasants. In 1525, they were 50.000 to devastate Low-Alsace, exceeded by the abuses of the nobility and the clergy. They spread the countryside setting fire castles, villages, small cities and abbeys which were on their way. \n Strassburg sided with them and supports them. The revolt thus extends from our side of the border...
+
+	action_a = {
+		name = "ACTIONNAME211008A" #They shall pay for that!
+		command = { type = revolt which = 375 } #Lorraine
+		command = { type = revolt which = 375 } #Lorraine
+		command = { type = casusbelli which = STR value = 36 }
+	}
+}
+
+#(1584-1588) The Guise Catholic League
+event = {
+	id = 211009
+	trigger = {
+		OR = {
+			event = 170109 #FRA: The Catholic League
+			exists = FUC
+		}
+	}
+	random = no
+	country = LOR
+	name = "EVENTNAME211009" #The Guise Catholic League
+	desc = "EVENTHIST211009"
+	#-#In June 1584 the King's younger brother and heir appararent the duke of Anjou died, and with him died the hope many Frenchman had placed on his succession to the throne. Henry III had no son and was unlikely ever to have one. This left Henry of Navarre as heir, thereby raising the spectre that the next King of France might be a heretic. In September 1584 Henry duke of Guise and his brothers the duke of Mayenne and the Cardinal of Guise met at Nancy and founded league to keep Navarre off the throne. Philip II signed a treaty with the new League, and military operations began at once. By the end of the year, much of north and central France was under Guise control, and France was once again at war. Dynastically tied to the house of Lorraine, the Guise family held considerably sway with the Duke.
+
+	date = { day = 10 month = june year = 1584 }
+	offset = 30
+	deathdate = { day = 23 month = december year = 1588 }
+
+	action_a = {
+		name = "ACTIONNAME211009A" #Support the Catholic League
+		command = { type = relation which = FPR value = -100 }
+		command = { type = religion which = counterreform }
+		command = { type = relation which = FUC value = 100 }
+		command = { type = dynastic which = FUC }
+		command = { type = treasury value = -25 }
+		command = { type = trigger which = 172006 } #FUC: Support from Lorraine
+	}
+	action_b = {
+		name = "ACTIONNAME211009B" #Too risky!
+		command = { type = relation which = FUC value = -100 }
+		command = { type = relation which = FPR value = 50 }
+	}
+}
+
+#(1733) Habsburg Inheritance of Lothringen
+event = {
+	id = 3632 #triggered by POL_3495 B / POL_258086 A / POL_3487
+	random = no
+	country = LOR
+	name = "EVENTNAME3632" #Habsburg Inheritance of Lothringen
+	desc = "EVENTHIST3632"
+	#-#In 1733 there had been great conflict in Europe centered on the election of King Stanislaw Leszczynski. Russia and Austria had supported Friedrich Augustus II's son, but he lost the election. War had been close and several plans had been discussed to secure peace for all. One was that Friedrich Augustus II's son got the throne and Stanislaw would have been compensated with Lorraine. However that situation never materialized and when François III Stephan of Lorraine married Maria-Theresia of Austria the lands of Lorraine would be inherited by their eldest son, Josef.
+
+	action_a = {
+		name = "ACTIONNAME3632A" #François III Stephan married Maria-Theresia
+		command = { type = wakemonarch which = 078519 } #François III Stephan °
+		command = { type = wakemonarch which = 078520 } #Joseph I °
+		command = { type = wakemonarch which = 078521 } #Léopold II *
+		command = { type = wakemonarch which = 078522 } #François IV *
+		command = { type = sleepmonarch which = 078517 } #Stanislas I
+		command = { type = sleepmonarch which = 078518 } #Noble Council *
+		command = { type = relation which = HAB value = 150 }
+		command = { type = dynastic which = HAB }
+		command = { type = stability value = 5 }
+		command = { type = treasury value = 500 }
+		command = { type = sleepevent which = 17370 } #TOS: The rule of the House of Lorraine
+		command = { type = sleepevent which = 193039 } #ITA: The rule of the House of Lorraine
+		command = { type = trigger which = 3100 } #HAB: Habsburg Inheritance of Lothringen
+	}
+}
+
+#(1765-1790) The fate of Lorraine (no War of Polish Succession) - Ahistorical
+event = {
+	id = 211010
+	trigger = {
+		exists = HAB
+		NOT = {
+			vassal = { country = LOR country = HAB }
+		}
+		event = 3632 #LOR: Habsburg Inheritance of Lothringen
+		monarch = 078520 #Joseph Ier
+	}
+	random = no
+	country = LOR
+	name = "EVENTNAME211010" #The fate of Lorraine
+	desc = "EVENTHIST211010"
+	#-#Following the death of Duke François III Stephan, his son Joseph Ier, also co-regent with his mother Maria Theresa of Austria, had the opportunity to incorporate the Duchy of Lorraine into the Habsburgs' hereditary dominions as the imperial fief of Lothringen. There is now a question about absorbing our ducal title into the imperial administration or not.
+
+	date = { day = 18 month = august year = 1765 }
+	offset = 30
+	deathdate = { day = 22 month = february year = 1790 }
+
+	action_a = {
+		name = "ACTIONNAME211010A" #Unite the holdings of our House! (End Game)
+		command = { type = trigger which = 179126 } #HAB: The reversion of Lothringen
+	}
+	action_b = {
+		name = "ACTIONNAME211010B" #Keep the ducal title separate
+		command = { type = relation which = HAB value = -25 }
+		command = { type = vp value = 5 }
+	}
+}
+
+#(1766) French Inheritance of Lothringen
+event = {
+	id = 3735
+	trigger = {
+		NOT = { event = 3632 }
+	}
+	random = no
+	country = LOR
+	name = "EVENTNAME3735" #French Inheritance of Lothringen
+	desc = "EVENTHIST3735"
+	#-#On the death (1733) of Augustus II, Stanislaw returned to Poland from France and was again elected King. Under Russian pressure, a minority of the Polish diet chose instead Augustus III, precipitating the War of the Polish Succession. Stanislaw, besieged at Danzig, received only moral support from France, while his rival was backed by Holy Roman Emperor Charles VI and had full military aid from Russia. Stanislaw was obliged to flee from Danzig in 1734, and in 1735 he accepted the terms of the preliminary Treaty of Vienna. He kept the royal title but renounced his actual rights in favor of Augustus III. In exchange, he received Lorraine and Bar, with the provision that they were to pass directly to the French crown upon his death. The former duke of Lorraine (later Holy Roman Emperor Francis I) was compensated with the promise of Tuscany. Stanislaw' daughter, Maria Leszczynska, was married to Louis XV of France, but because of his many amorous escapades she appeals to the Pope to annul her marriage and he does. She immediately leaves France for Poland. When Stanislaw dies a couple of months later the petty noble of Lorraine declare the agreement of 1733 dissolved and they split the territory between them. But of course France will not look the other way...
+
+	date = { day = 22 month = february year = 1766 }
+	offset = 1
+	deathdate = { day = 23 month = february year = 1766 }
+
+	action_a = {
+		name = "ACTIONNAME3735A" #France will inherit (End Game)
+		command = { type = trigger which = 3736 } #FRA: French Inheritance of Lothringen
+	}
+	action_b = {
+		name = "ACTIONNAME3735B" #Lothringen is divided among its noblemen
+		command = { type = relation which = FRA value = -200 }
+		command = { type = stability value = -6 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 211014

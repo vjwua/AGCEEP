@@ -4,7 +4,7 @@
 
 country = {
 	tag = GRA
-	ai = "SmallTrade1.ai"
+	ai = "SmallTrade1.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -16,9 +16,9 @@ country = {
 	merchants = 0.083333
 	religion = { type = sunni }
 	culture = {
-		type = delaware
+		type = maghrebi
 		type = berber
-		type = iberian
+		type = castilian
 	}
 	diplomacy = {
 		relation = { tag = POR value = 80 refusetrade = no }

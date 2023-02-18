@@ -1,0 +1,225 @@
+#Aden (ADE)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1450-1454) Dissolution of the Rasulid State
+event = {
+	id = 101000
+	trigger = {
+		monarch = 01506 #Civil War
+	}
+	random = no
+	country = ADE
+	name = "EVENTNAME101000" #Dissolution of the Rasulid State
+	desc = "EVENTHIST101000"
+	#-#The Rasulid Dynasty, rulers of South Yemen since 1229, entered a rapid tailspin after the death of Yusuf II as multiple princes grasped for the throne. In four years time, the dynasty would have been supplanted by the Tahirids, hereditary governors of Aden.
+
+	date = { day = 1 month = january year = 1450 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1453 }
+
+	action_a = {
+		name = "ACTIONNAME101000A" #No good can come of this
+		command = { type = stability value = -6 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = revoltrisk which = 48 value = 12 }
+		command = { type = revolt which = -2 }
+	}
+}
+
+#(1454) Tahirid Takeover
+event = {
+	id = 101001
+	random = no
+	country = ADE
+	name = "EVENTNAME101001" #Tahirid Takeover
+	desc = "EVENTHIST101001"
+	#-#The Tahirids, military governors of Aden, deposed the last quarreling Rasulid Amirs and assumed the government of the Yemen.
+
+	date = { day = 1 month = january year = 1454 }
+	offset = 60
+	deathdate = { day = 29 month = march year = 1454 }
+
+	action_a = {
+		name = "ACTIONNAME101001A" #A new day dawns
+		command = { type = stability value = 2 }
+		command = { type = INF which = -1 value = 6000 }
+	}
+}
+
+#(1498-1679) The Portuguese covet Aden!
+event = {
+	id = 101004
+	trigger = {
+		event = 18012 #POR: Commercial Conflict in the Indian Ocean
+		owned = { province = 500 data = -1 } #Aden
+		control = { province = 500 data = -1 } #Aden
+		owned = { province = 573 data = POR } #Cochin
+		control = { province = 573 data = POR } #Cochin
+	}
+	random = no
+	country = ADE
+	name = "EVENTNAME101004" #The Portuguese Covet Aden
+	desc = "EVENTHIST60003"
+	#-#These Portuguese visitors envy the richness of our Kingdom. We cannot trust them.
+
+	date = { day = 1 month = january year = 1498 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1679 }
+
+	action_a = {
+		name = "ACTIONNAME60003A" #All their bases belong to us!
+		command = { type = casusbelli which = POR value = 600 }
+		command = { type = sleepevent which = 260047 } #POR: Sultan has bowed to our demands
+	}
+	action_b = {
+		name = "ACTIONNAME60003B" #Submit without a fight
+		command = { type = sleepevent which = 260046 } #POR: Sultan has defied our demands
+	}
+}
+
+#(1503-1510) Portuguese Damage the Spice Trade
+#by sturmvogel
+event = {
+	id = 101005
+	trigger = {
+		owned = { province = 756 data = POR } #Socotra
+	}
+	random = no
+	country = ADE
+	name = "EVENTNAME219010" #Portuguese Damage the Spice Trade
+	desc = "EVENTHIST219010"
+	#-#The Portuguese seizure of Socotra allowed them to decimate the Muslim trade into the Red Sea. Income from the entrepôts at Alexandria and Aden were badly damaged until the sailors could adjust to their presence and switch to slower, safer trade routes.
+
+	date = { day = 1 month = january year = 1503 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1510 }
+
+	action_a = {
+		name = "ACTIONNAME338283A" #Damn Portuguese!
+		command = { type = relation which = POR value = -100 }
+		command = { type = merchants value = -2 }
+		command = { type = infra value = -100 }
+		command = { type = trade value = -750 }
+	}
+}
+
+#(1516) Mamluk Invasion
+event = {
+	id = 101002
+	trigger = {
+		owned = { province = 747 data = MAM } #Nile
+		NOT = {
+			vassal = { country = ADE country = MAM }
+		}
+		exists = POR
+		event = 219009 #MAM: Fight Back Against the Portuguese Interference in the Spice Trade
+	}
+	random = no
+	country = ADE
+	name = "EVENTNAME101002" #Mamluk Invasion
+	desc = "EVENTHIST101002"
+	#-#in the struggle for the control of the trade route between Egypt and India via the Red Sea, Afonso de Albuquerque realized that he could only exercise lasting control over the Red Sea from Aden, but his attempt to take the city in 1513 failed. The Mamluks now decided to conquer Yemen using land forces. Their troops landed in Kamaran and then just out of Zabid where they inflicted devastating defeat on Tahirids. Finally they conquered Taizz and Sana'a, leaving the Tahirids with nothing outside the city of Aden by 1517.
+
+	date = { day = 1 month = january year = 1516 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1516 }
+
+	action_a = {
+		name = "ACTIONNAME101002A" #To the barricades!
+		command = { type = stability value = -6 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = relation which = MAM value = -400 }
+	}
+}
+
+#(1538) The Fall of Aden
+event = {
+	id = 101003
+	trigger = {
+		OR = {
+			owned = { province = 495 data = TUR } #Jordan
+			owned = { province = 747 data = TUR } #Nile
+		}
+		NOT = {
+			vassal = { country = ADE country = TUR }
+		}
+	}
+	random = no
+	country = ADE
+	name = "EVENTNAME101003" #The Fall of Aden
+	desc = "EVENTHIST101003"
+	#-#Amir bin Dawud, last of the Tahirids, after saving his city from hostile takeover for 22 years, was betrayed and murdered by Sulaiman Pasha, who delivered the city to the Ottoman Sultan.
+
+	date = { day = 26 month = july year = 1538 }
+
+	action_a = {
+		name = "ACTIONNAME101003A" #We have no choice but to accept
+		command = { type = sleepmonarch which = 01525 } #Local Imams *
+		command = { type = wakemonarch which = 01512 } #Turkish Governors
+		command = { type = trigger which = 301101 } #TUR: Expedition of Sulaiman Pasha
+	}
+	action_b = {
+		name = "ACTIONNAME101003B" #We shall never surrender!
+		command = { type = stability value = -6 }
+		command = { type = desertion which = -1 value = 10000 }
+		command = { type = revolt which = -2 }
+	}
+}
+
+#(1635) Yemeni Independence
+event = {
+	id = 101006
+	trigger = {
+		vassal = { country = TUR country = ADE }
+		OR = {
+			event = 321003 #YEM: Height of Qasimi Power
+			NOT = { exists = YEM } #Yemen
+		}
+	}
+	random = no
+	country = ADE
+	name = "EVENTNAME301103" #Yemeni Independence
+	desc = "EVENTHIST321003"
+	#-#Having repulsed the Turks, the Qasimi line of Imams came to exercise sovereignty over the bulk of modern day Yemen, extending their influence as far away as Dofhar.
+
+	date = { day = 1 month = january year = 1635 }
+	offset = 30
+	deathdate = { day = 29 month = march year = 1635 }
+
+	action_a = {
+		name = "FREEDOM"
+		command = { type = breakvassal which = TUR }
+		command = { type = stability value = 3 }
+	}
+}
+
+#(1728) Breakaway of Lahej
+event = {
+	id = 101007 #also triggered by YEM_321004 A
+	trigger = {
+		vassal = { country = YEM country = ADE }
+	}
+	random = no
+	country = YEM
+	name = "EVENTNAME321004" #Breakaway of Lahej
+	desc = "EVENTHIST321004"
+	#-#Symptomatic of a decline in Qasimi fortunes, southern Yemen regained its independence in 1728 under the Sultans of Lahej.
+
+	date = { day = 1 month = january year = 1728 }
+	offset = 120
+	deathdate = { day = 29 month = december year = 1728 }
+
+	action_a = {
+		name = "FREEDOM"
+		command = { type = breakvassal which = YEM }
+		command = { type = stability value = 3 }
+		command = { type = sleepevent which = 321004 } #YEM: Breakaway of Lahej
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 101008

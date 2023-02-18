@@ -1,0 +1,3107 @@
+#Hungary (HUN)
+
+#See AGCEEP_Alt_Germany.txt for KoG Alternative events
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419) The Hussite Wars
+event = {
+	id = 188600 #triggered by HUS_401000 / ROM_398000
+	random = no
+	country = HUN
+	name = "EVENTNAME188600" #The Hussite Wars
+	desc = "EVENTHIST188600"
+	#-#The Czech priest and professor Jan Hus developed radical reformatory demands on the base of the teachings of John Wyclif. Despite a guarantee of safe-conduct by Emperor Sigismund, he was executed at the stake for heresy at the Council of Constance in 1415. This could however not stop the Hussite movement in Bohemia. Hus' followers were rapidly growing, and when King Vaclav IV of Bohemia died and his brother Sigismund, already Emperor and King of Hungary was to succeed him, they, unwilling to forgive him the betrayal of Hus and afraid that he would suppress them, refused to acknowledge him and gained control of most of Bohemia proper - while the lands of the Bohemian crown and the catholic part of Bohemia accepted Sigismund. Due to its radical anti-clerical and anti-feudal tendencies Hussitism posed a big threat to the church and nobility in the countries adjacent to Bohemia. Several German and European princes therefore decided to oppose the Hussites and to support Sigismund in his struggle with them that lasted for almost two decades. Should we decide to fight these heretics, we should be aware that this would be internationally regarded as an intervention in favour of Sigismund as rightful King of Bohemia rather than a war of conquest, and that therefore, if Sigismund prevails and manages to restore royal authority, we would be expected to turn over any conquests in Bohemia to the Kingdom of Bohemia.
+
+	action_a = {
+		name = "OK"
+		command = { type = alliance which = ROM }
+		command = { type = dynastic which = ROM }
+		command = { type = relation which = HUS value = -200 }
+		command = { type = casusbelli which = HUS value = 120 }
+	}
+}
+
+#(1421-1425) Dalmatia is returned to Venice
+event = {
+	id = 188034
+	trigger = {
+		owned = { province = 365 data = -1 } #Dalmatia
+		control = { province = 365 data = -1 } #Dalmatia
+		NOT = { war = { country = HUN country = VEN } }
+		neighbour = VEN
+		NOT = {
+			owned = { province = 362 data = -1 } #Ragusa
+			owned = { province = 368 data = -1 } #Istria
+		}
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188034" #Dalmatia is returned to Venice
+	desc = "EVENTHIST188034"
+	#-#Having now fought against Venice over the last 3 years, Sigismund now realized that with the loss of all his towns of Cividale, Sacile, Prata, Portogruaro, Belluno, Feltre, Udine as well as his inland Dalmatian lands, that continuing this war was fruitless. An agreement was arranged in which Venice would retain these conquered lands on the condition that the Venetian gains in Croatia be returned. 16 years later, Sigismund sold his status as lord of Dalmatia to Venice.
+
+	date = { day = 0 month = may year = 1421 }
+	offset = 40
+	deathdate = { day = 0 month = november year = 1425 }
+
+	action_a = {
+		name = "ACTIONNAME188034A" #Hungary agree to peace
+		command = { type = cedeprovince which = VEN value = 365 } #Dalmatia
+		command = { type = relation which = VEN value = 50 }
+		command = { type = sleepevent which = 326073 } #VEN: Dalmatia is returned to Venice
+	}
+	action_b = {
+		name = "ACTIONNAME188034B" #No agreement!
+		command = { type = badboy value = 1 }
+		command = { type = revolt which = 365 } #Dalmatia
+	}
+}
+
+#(1421) Contested Throne
+event = {
+	id = 188010 #triggered by WAL_329001 A
+	trigger = {
+		NOT = { vassal = { country = WAL country = HUN } }
+		NOT = { war = { country = HUN country = WAL } }
+		neighbour = WAL
+		event = 329001 #WAL: Struggle in Wallachia
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188010" #Dan II
+	desc = "EVENTHIST329001"
+	#-#In 1421 Sigismund of Hungary helps Dan II ascend to the throne. Dan II will rule between november 1421 and 1431 with many interruptions, as Radu will attempt a number of times to regain power.
+
+	date = { day = 1 month = october year = 1421 }
+	offset = 0
+	deathdate = { day = 29 month = november year = 1421 }
+
+	action_a = {
+		name = "ACTIONNAME188010A" #Dan II ascends in Wallachia
+		command = { type = vassal which = WAL }
+		command = { type = alliance which = WAL }
+		command = { }
+	}
+}
+
+#(1425) Succession of Bayern-Straubing
+event = {
+	id = 188001
+	trigger = {
+		exists = BAY
+		exists = HAB
+		owned = { province = 348 data = -1 }
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188001" #Death of Johann of Bavaria-Straubing
+	desc = "EVENTHIST188001"
+	#-#In 1425 Duke Johann II the Merciless of Bavaria-Straubing (in Lower Bavaria) died and the Wittelsbach subbranch was extinct. Surprisingly, emperor Sigismund initially did not grant Straubing's possessions to one of the other Wittelsbach branches, but to Habsburg. This decision was opposed by the Wittelsbachs and revised in 1429 when Sigismund decided to divide it among the Bavarian Wittelsbach branches, with Bavaria-Munich getting the majority.
+
+	date = { day = 6 month = january year = 1425 }
+
+	action_a = {
+		name = "ACTIONNAME188001A" #Grant Straubing to Habsburg
+		command = { type = relation which = HAB value = 100 }
+		command = { type = relation which = TYR value = 50 }
+		command = { type = relation which = BAY value = -50 }
+		command = { type = cedeprovince which = HAB value = 348 } #Ansbach
+		command = { type = trigger which = 179019 } #HAB: Bavaria-Straubing is granted to Habsburg
+	}
+	action_b = {
+		name = "ACTIONNAME188001B" #Grant Straubing to the Bavarian Wittelsbachs
+		command = { type = relation which = BAY value = 50 }
+		command = { type = cedeprovince which = BAY value = 348 } #Ansbach
+		command = { type = trigger which = 125000 } #BAY: Inheritance of Bavaria-Straubing
+		command = { type = sleepevent which = 188002 } #HUN: Sigismund reverses his decision regarding Bayern-Straubing
+		command = { type = sleepevent which = 3207 } #The Bavarian Succession of 1777; the Habsburgs based their claim on bavarian territories on the emperor's decision of 1425 #HAB: Austrian claims on Straubing
+	}
+}
+#(1425) Succession of Bayern-Straubing
+event = {
+	id = 188003
+	trigger = {
+		NOT = { exists = BAY }
+		owned = { province = 348 data = -1 }
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188001" #Death of Johann of Bavaria-Straubing
+	desc = "EVENTHIST188001"
+	#-#In 1425 Duke Johann II the Merciless of Bavaria-Straubing (in Lower Bavaria) died and the Wittelsbach subbranch was extinct. Surprisingly, emperor Sigismund initially did not grant Straubing's possessions to one of the other Wittelsbach branches, but to Habsburg. This decision was opposed by the Wittelsbachs and revised in 1429 when Sigismund decided to divide it among the Bavarian Wittelsbach branches, with Bavaria-Munich getting the majority.
+
+	date = { day = 6 month = january year = 1425 }
+
+	action_a = {
+		name = "ACTIONNAME188001B" #Grant Straubing to the Bavarian Wittelsbachs
+		command = { type = independence which = BAY }
+		command = { type = trigger which = 125000 } #BAY: Inheritance of Bavaria-Straubing
+		command = { type = sleepevent which = 188002 } #HUN: Sigismund reverses his decision regarding Bayern-Straubing
+		command = { type = sleepevent which = 3207 } #The Bavarian Succession of 1777; the Habsburgs based their claim on bavarian territories on the emperor's decision of 1425 #HAB: Austrian claims on Straubing
+	}
+}
+#(1425) Succession of Bayern-Straubing
+event = {
+	id = 188004
+	trigger = {
+		exists = BAY
+		NOT = { exists = HAB }
+		owned = { province = 348 data = -1 }
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188001" #Death of Johann of Bavaria-Straubing
+	desc = "EVENTHIST188001"
+	#-#In 1425 Duke Johann II the Merciless of Bavaria-Straubing (in Lower Bavaria) died and the Wittelsbach subbranch was extinct. Surprisingly, emperor Sigismund initially did not grant Straubing's possessions to one of the other Wittelsbach branches, but to Habsburg. This decision was opposed by the Wittelsbachs and revised in 1429 when Sigismund decided to divide it among the Bavarian Wittelsbach branches, with Bavaria-Munich getting the majority.
+
+	date = { day = 6 month = january year = 1425 }
+
+	action_a = {
+		name = "ACTIONNAME188001B" #Grant Straubing to the Bavarian Wittelsbachs
+		command = { type = relation which = BAY value = 50 }
+		command = { type = cedeprovince which = BAY value = 348 } #Ansbach
+		command = { type = trigger which = 125000 } #BAY: Inheritance of Bavaria-Straubing
+		command = { type = sleepevent which = 188002 } #HUN: Sigismund reverses his decision regarding Bayern-Straubing
+		command = { type = sleepevent which = 3207 } #The Bavarian Succession of 1777; the Habsburgs based their claim on bavarian territories on the emperor's decision of 1425 #HAB: Austrian claims on Straubing
+	}
+}
+
+#(1427-1428) Bosnia submits
+event ={
+	id = 188029
+	trigger = {
+		NOT = { vassal = { country = BOS country = HUN } }
+		exists = BOS
+		event = 130006 #BOS: Heir to the throne
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188029" #Bosnia submits
+	desc = "EVENTHIST130006"
+	#-#An opportunist by nature, Tvrtko II, Ottoman vassal, sought to break free from his master. In 1423, two years after his coronation, Tvrtko tried to form closer relationship with Republic of Venice. In 1424, a small Ottoman army raided Bosnia as a warning, but this didn't change Tvrtko's mind much. In 1425, Tvrtko II started negotiations with Emperor Sigismund to join the league against Ottomans. He agreed to Sigismund's demand to name Count Hermann of Cilli, one of most powerful Hungarian nobles, as his heir. The alliance with Hungary was delayed, however, because of Hungarian failures against Hussites in Bohemia. After punishing Serbia for dealing with Hungarians, Ottomans sent another raiding expedition into Bosnia in 1426. Determined to ally with Hungary, Tvrtko II named Hermann of Cilli heir to the Bosnian throne if Tvrtko dies without a heir or his heir dies without one. In 1428, Tvrtko II got even closer to his goals by marrying daughter of a Hungarian noble.
+
+	date = { day = 2 month = september year = 1427 }
+	offset = 0
+	deathdate = { day = 29 month = july year = 1428 }
+
+	action_a = {
+		name = "ACTIONNAME188029A" #We have secured Bosnia against Turks
+		command = { type = relation which = BOS value = 100 }
+		command = { type = relation which = TUR value = -100 }
+		command = { type = vassal which = BOS }
+		command = { type = alliance which = BOS }
+	}
+}
+
+#(1427) Death of Stefan Lazarevic
+event = {
+	id = 188017
+	trigger = {
+		vassal = { country = HUN country = SER }
+		NOT = { war = { country = HUN country = SER } }
+		owned = { province = 354 data = -1 } #Banat
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188017" #Death of Stefan Lazarevic
+	desc = "EVENTHIST188017"
+	#-#When Stefan Lazarevic, Serbian Despot, became vassal of Hungarian King in 1403, he received as a reward the town of Belgrade on Danube and some territories south of the river, as well as the mining town of Srebrenica in eastern Bosnia and rich personal estates in Hungary. According to the agreement signed when Stefan II swore fealty, Serbia was obliged to return Belgrade and the territories around Danube river to Hungary upon Stefan's death. Emperor Sigismund decided to call on this treaty, which sparked another catastrophic conflict with the Ottoman Empire.
+
+	date = { day = 17 month = september year = 1427 }
+	offset = 2
+	deathdate = { day = 19 month = november year = 1427 }
+
+	action_a = {
+		name = "ACTIONNAME188017A" #Demand Belgrade from Despot Djuradj of Serbia
+		command = { type = trigger which = 277009 } #SER: Return Belgrade to Hungary
+	}
+	action_b = {
+		name = "ACTIONNAME188017B" #Leave Belgrade to Serbia
+		command = { type = removecore which = 355 } #Sigismund gives up his claims on Belgrade
+		command = { type = relation which = SER value = 200 } #Belgrade was the capital and major town and Serbs are very glad and surprised with Emperor's generosity
+		command = { type = trigger which = 277010 } #SER: Emperor Sigismund leaves Belgrade to Serbia
+		command = { type = sleepevent which = 277012 } #SER: Consequences of Golubac conflict
+	}
+}
+#(1427) Despot Djuradj returns Belgrade to Hungary
+event = {
+	id = 188018 #triggered by SER_277009 A
+	random = no
+	country = HUN
+	name = "EVENTNAME188018" #Despot Djuradj returns Belgrade to Hungary
+	desc = "EVENTHIST188018"
+	#-#Despot Djuradj remained loyal to Emperor Sigismund and gave over the Belgrade and accompanying territories during the Emperor's visit to Belgrade which lasted from September 17th until November 19th.
+
+	action_a = {
+		name = "ACTIONNAME188018A" #We are pleased with his loyalty
+		command = { type = relation which = SER value = 100 }
+		command = { type = provincetax which = 354 value = 2 } #Losses of Serbia are transferred into Banat, as Belgrade becomes part of that province.
+		command = { type = provincemanpower which = 354 value = 1 } #Losses of Serbia are transferred into Banat, as Belgrade becomes part of that province.
+		command = { type = removecore which = 355 } #The rest of Serbia is no longer claimed by Hungary (good chances of gaining core again soon enough)
+		command = { type = relation which = TUR value = -100 } #The Sultan is not pleased with the change of lordship over Belgrade.
+		command = { type = trigger which = 188020 } #HUN: Duke Jeremija refuses to cede Golubac
+	}
+}
+#(1427) Despot Djuradj refuses to return Belgrade
+event = {
+	id = 188019 #triggered by SER_277009 B
+	random = no
+	country = HUN
+	name = "EVENTNAME188019" #Despot Djuradj refuses to return Belgrade
+	desc = "EVENTHIST188019"
+	#-#Treacherous Despot Djuradj of Serbia decided not honor the agreement of his predeccesor and break Serbia's vassalage to Hungary.
+
+	action_a = {
+		name = "ACTIONNAME188019A" #He shall pay for this!
+		command = { type = relation which = SER value = -200 }
+		command = { type = addcore which = 355 } #Serbia
+		command = { type = addcore which = 363 } #Kosovo (Emperor may now rightfully conquer Serbia and remove the Despot from power)
+	}
+}
+#(1427) Duke Jeremija refuses to cede Golubac
+event ={
+	id = 188020 #triggered by HUN_188018 A
+	random = no
+	country = HUN
+	name = "EVENTNAME188020" #Duke Jeremija refuses to cede Golubac
+	desc = "EVENTHIST188020"
+	#-#Golubac was one of the strategically most important fortresses on Danube. It was of uncertain origins, either Hungarian or Serbian. Golubac was awared to Despot Stefan Lazarevic along with Belgrade when he swore vassalage to Sigismund. When Djuradj Brankovic returned the territories to Sigismund, Duke Jeremija, Serbian governor of the fortress, refused to turn it over to Hungarians unless he is paid a compensation. Sigismund refused to be blackmailed and Jeremija turned the fortress over to Ottomans, starting another bloody conflict between Hungary and the Ottoman Empire.
+
+	action_a = {
+		name = "ACTIONNAME188020A" #We shall not be blackmailed!
+		command = { type = trigger which = 277011 } #SER: Duke Jeremija refuses to cede Golubac
+	}
+	action_b = {
+		name = "ACTIONNAME188020B" #Pay the compensation for the sake of peace
+		command = { type = treasury value = -12 } #Duke asked for 12000 ducats
+		command = { type = fortress which = 354 value = 1 } #Banat, the fortress of Golubac adds significantly to the defenses of the province
+		command = { type = stability value = -1 } #loss of respect for being blackmailed by a petty Serbian duke...and to compensate for gaining a fortress level for 12 gold
+		command = { type = sleepevent which = 277012 } #SER: Consequences of Golubac conflict
+	}
+}
+#(1427) Ottomans in Golubac
+event ={
+	id = 188021 #triggered by TUR_301093
+	random = no
+	country = HUN
+	name = "EVENTNAME188021" #Ottomans in Golubac
+	desc = "EVENTHIST188021"
+	#-#With Sigismund's refusal to pay the compensation, Duke Jeremija turned the fortress over to Turks who immediatelly moved to garrison it with their own troops.
+
+	action_a = {
+		name = "CURSES"
+		command = { type = revolt which = 354 } #Banat, Turks are causing trouble in Banat, but even with victory against revolters, Hungary will never regain Golubac
+		command = { type = relation which = TUR value = -100 }
+	}
+}
+
+#(1428-1460) Dual vassalage of Serbia
+event = {
+	id = 188033 #triggered by TUR_301094
+	trigger = {
+		NOT = {
+			war = { country = SER country = HUN }
+			alliance = { country = SER country = HUN }
+		}
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188033" #Dual vassalage of Serbia
+	desc = "EVENTHIST188033"
+	#-#On several occasions, Serbian Despot was a vassal of the Hungarian King and the Ottoman Sultan at the same time. While the vassalage to Ottoman Sultan weighed more in gold and regular military aid, Serbia would usually either fight for the Christians or stay neutral in case of a large war against the Ottoman Empire.
+
+	action_a = {
+		name = "ACTIONNAME188033A" #Their aid is welcome
+		command = { type = alliance which = SER }
+	}
+}
+
+#(1429) Sigismund reverses his decision regarding Bayern-Straubing
+event = {
+	id = 188002
+	trigger = {
+		event = 179019 #HAB: Straubing granted to Habsburg
+		NOT = {
+			control = { province = 349 data = HAB }
+			vassal = { country = HAB country = BAY }
+		}
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188002" #Sigismund reverses his decision regarding Bayern-Straubing
+	desc = "EVENTHIST188002"
+	#-#Facing strong opposition against his controversial decision to let the possessions of Bayern-Straubing pass to Habsburg, Emperor Sigismund reverted his judgement in 1429 and divided Straubing among the remaining bavarian Wittelsbachs.
+
+	date = { day = 1 month = january year = 1429 }
+	offset = 180
+	deathdate = { day = 29 month = december year = 1429 }
+
+	action_a = {
+		name = "ACTIONNAME188002A" #Sigismund changes his mind
+		command = { type = trigger which = 125000 } #BAY: Inheritance of Bavaria-Straubing
+		command = { type = trigger which = 179020 } #HAB: Sigismund reverses his decision regarding Bayern-Straubing
+		command = { type = relation which = BAY value = 50 }
+		command = { type = relation which = HAB value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME188002B" #Sigismund maintains his old decision
+		command = { type = relation which = BAY value = -100 }
+		command = { type = relation which = HAB value = 50 }
+	}
+}
+
+#(1429) Meeting in Lutsk
+event = {
+	id = 40200
+	trigger = {
+		exists = LIT
+		exists = POL
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME40200" #Meeting in Lutsk
+	desc = "EVENTHIST40200"
+	#-#In January of 1429 Assembly of East and Central European leaders was held in Lutsk. Emperor Sigismund, as well as the Polish King Jagiello and Lithuanian Grand Duke Vytautas were the major participants. During the meeting the Emperor offered a crown of independent Kingdom of Lithuania to Vitautas. Jagiello apparently agreed, but after the uproar in the Polish camp, he quickly rescinded his agreement and hastily left the meeting together with Polish nobles. Soon after, Jagiello offered Polish crown to Vytautas citing poor health and inability to rule, which Emperor Sigismund agreed to. However, the Pope, recognizing a danger of recently converted Lithuanian lands being lost to Orthodoxy, forbade the sending of the crown, and Polish nobles led by Zbigniew Olesnicki captured it on its way to Wilno.
+
+	date = { day = 1 month = january year = 1429 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1430 }
+
+	action_a = {
+		name = "ACTIONNAME40200A" #Offer the Crown
+		command = { type = relation which = POL value = -50 }
+		command = { type = relation which = LIT value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME40200B" #Don't offer
+		command = { type = sleepevent which = 40201 } #PAP: Meeting in Lutsk
+		command = { type = sleepevent which = 40202 } #POL: Meeting in Lutsk
+		command = { type = sleepevent which = 40203 } #LIT: Jagiello agrees to the Emperor's offer
+		command = { type = relation which = POL value = 10 }
+		command = { type = sleepevent which = 20113 } #POL: Privileges of Jedlnia and Krakow
+	}
+}
+
+#(1430-1438) Civil war in Bosnia
+event ={
+	id = 188030
+	trigger = {
+		NOT = { vassal = { country = BOS country = HUN } }
+		neighbour = BOS
+		event = 130008 #BOS: Internal conflicts
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188030" #Civil war in Bosnia
+	desc = "EVENTHIST188030"
+	#-#Kingdom of Bosnia was a chaotic realms where dukes constantly battle each other for territories. The most famous rivalry of that age was between Pavlovic and Kosaca families. After a quiet period, the rivalry revived when Duke Radoslav Pavlovic attacked and defeated the Republic of Ragusa because they tried to turn Cavtat, a town they bought from him, into a fortress. Duke Sandalj Hranic Kosaca immediately intervened on Ragusan side and attacked his archrival. King Tvrtko II was mostly helpless to solve the dispute. Since Duke Sandalj had the support of the Ottomans, Duke Radoslav asked Despot Djuradj of Serbia to broker peace. At almost the same time, King Tvrtko II went to war with Zlatonosovic family in eastern Bosnia. Since they were friends of Duke Sandalj and Serbian Despot, King Tvrtko II decided to throw his lot with Duke Radoslav. A real civil war started in Bosnia. As Kings faction began to loose the war, treacherous Duke Radoslav switched sides and joined the Serbian Despot's camp in 1433. This coalition of Serbian Despot and Bosnian Dukes put forth their own candidate for Tvrtko's replacement: Radivoj. The hostilities temporarily ceased when Emperor Sigismund announced his support for King Tvrtko II and Despot Djuradj withdrew from the conflict. Hungarian army arrived as promised in 1434 and changed the tide of the battle. Coalition of rebellious Dukes was defeated and forts held by Ottomans liberated. Duke Sandalj was crushed by Duke Djuradj Vojsalic, who joined forces with King Tvrtko II when Hungarian army arrived, and died from illness in March 1435. King Tvrtko traveled to Hungary to swear vassalage to Emperor Sigismund. Upon his return to Bosnia, he started a campaign together with Duke Radoslav Pavlovic to destroy Stepan Vukcic, the new Duke Kosaca. King Tvtrko II was also aided by Croatian Princes Ivan and Stepan Frankopan who acted on the orders of Emperor Sigismund. Ottomans intervened on the behalf of Stepan Vukcic and reconquered one of the forts in Bosnia holding it against Hungarian troops until the end of the conflict. In 1436, Ivan Frankopan is denied the succession of the estates that belonged to his late father-in-law and switches sides to join Duke Stepan Vukcic. Hungarian army defeated and probably killed Ivan Frankopan. King Tvrtko II realized that he will not be able to expel the Turks from Bosnia and crush Stepan Vukcic, so he renewed his oath to Ottoman Sultan and reconciled with his enemy. Together with Stepan Vukcic and the Ottoman forces, the King turned on Duke Radoslav and utterly defeated him in 1438.
+
+	date = { day = 1 month = january year = 1430 }
+	offset = 20
+	deathdate = { day = 29 month = july year = 1438 }
+
+	action_a = {
+		name = "ACTIONNAME188030A" #Bosnia is ours again
+		command = { type = relation which = SER value = -50 }
+		command = { type = relation which = TUR value = -100 }
+		command = { type = relation which = BOS value = 200 }
+		command = { type = vassal which = BOS }
+		command = { type = alliance which = BOS }
+		command = { type = desertion which = -1 value = 5000 } #Losses in Bosnia
+	}
+}
+
+#(1436) The Dragon
+event = {
+	id = 188011
+	trigger = {
+		NOT = { vassal = { country = WAL country = HUN } }
+		NOT = { war = { country = HUN country = WAL } }
+		neighbour = WAL
+		OR = {
+			event = 19000 #WAL: The Dragon -I-
+			event = 329010 #WAL: The Dragon -II-
+		}
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME19000" #The Dragon
+	desc = "EVENTHIST19000"
+	#-#The German Emperor Sigismund of Luxembourg and his 2nd wife, Barbara von Cilli, founded the Order of the Dragon in 1387 as a secret military and religious organization with the aim of protecting the Catholic Church against heretics, such as the Hussites (who rose in Bohemia recently). An additional objective is the organization of Crusades against the Ottoman Turks, who had overrun most of the Balkan peninsula. On February 8, 1431, Vlad, henceforth known as Vlad Dracul, or the Dragon, was inducted in this order along with King Ladislas of Poland and Prince Lazarevic of Serbia. In addition, the Holy Roman Emperor has invested Vlad Dracul as the sovereign ruler of the Princedom of Wallachia. Dracul made good his claim by expelling Alexandru during the winter of 1436, and taking the throne.
+
+	date = { day = 26 month = december year = 1436 }
+
+	action_a = {
+		name = "ACTIONNAME188011A" #Vlad is our ally!
+		command = { type = vassal which = WAL }
+		command = { type = alliance which = WAL }
+		command = { }
+	}
+}
+
+#(1437-1490) Settlement of Dalmatia
+#by Toio
+event = {
+	id = 188006
+	trigger = {
+		atwar = no
+		owned = { province = 365 data = VEN } #Dalmatia
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188006" #Cease the Hungarian claims
+	desc = "EVENTHIST188006"
+	#-#Over the period of twenty years, this struggle weakened the Hungarian influence. In 1409, Ladislaus of Naples sold his rights over Dalmatia to Venice for 100,000 Ducats. Venice gradually took over most of Dalmatia by 1420. In 1437, Sigismund recognized Venetian rule over Dalmatia in return for 100,000 Ducats. The city of Omis yielded to Venice in 1444, and only Dubrovnik preserved its freedom.
+
+	date = { day = 0 month = march year = 1437 }
+	offset = 30
+	deathdate = { day = 0 month = january year = 1490 }
+
+	action_a = {
+		name = "ACTIONNAME188006A" #Offer Dalmatia
+		command = { type = treasury value = 25 }
+	}
+	action_b = {
+		name = "ACTIONNAME188006B" #Keep Dalmatia
+		command = { type = relation which = VEN value = -50 }
+		command = { type = sleepevent which = 326045 } #VEN: Finally all Dalmatia is ours
+		command = { type = sleepevent which = 188007 } #HUN: Releasing Hungarian claims
+	}
+}
+
+#(1437-1490) Settlement of Dalmatia
+#by Toio
+event = {
+	id = 188007
+	trigger = {
+		event = 326045 #VEN: Finally all Dalmatia is ours
+		atwar = no
+		owned = { province = 365 data = VEN } #Dalmatia
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188007" #Releasing Hungarian claims
+	desc = "EVENTHIST188007"
+	#-#In 1437, Sigismund recognized Venetian rule over Dalmatia in return for 100,000 Ducats.
+
+	date = { day = 0 month = march year = 1437 }
+	offset = 30
+	deathdate = { day = 0 month = january year = 1490 }
+
+	action_a = {
+		name = "ACTIONNAME188007" #Our claim is now unjustified
+		command = { type = removecore which = 365 } #Dalmatia
+		command = { type = remove_countryculture which = dalmatian }
+		command = { type = treasury value = 50 }
+		command = { type = manpower value = -1 }
+		command = { type = relation which = VEN value = 25 }
+	}
+}
+
+#(1438-1439) Coronation of Albrecht of Habsburg
+event = {
+	id = 188100 #triggered by HAB_179079
+	random = no
+	country = HUN
+	name = "EVENTNAME188100" #Coronation of Albrecht of Habsburg
+	desc = "EVENTHIST188100"
+	#-#Albrecht of Habsburg, Archduke of Austria, was crowned King of Hungary in Székesfehérvar on January 1st 1438. Austria and Hungary thus entered into personal union.
+
+	action_a = {
+		name = "ACTIONNAME188100A" #Hail the new King!
+		command = { type = relation which = HAB value = 300 }
+		command = { type = stability value = 1 }
+		command = { type = diplomats value = 3 }
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = domestic which = aristocracy value = 1 }
+	}
+}
+
+#(1439) The Council of Florence and the Union of the Churches
+event = {
+	id = 3835 #triggered by BYZ_3833 A / BYZ_23020 B
+	random = no
+	country = HUN
+	name = "EVENTNAME3833" #The Council of Florence and the Union of the Churches
+	desc = "EVENTHIST3835"
+	#-#Faced with the terrible onslaught of the Ottoman Turks, representatives of the Byzantine Empire and the Greek Orthodox Church have gone to the Council of Florence in order to negotiate a Union of the Churches. The Byzantines and their patriarch have agreed to great concessions, and Orthodoxy has virtually surrendered to Rome. Now, Byzantium is begging us to support them in their desperate struggle against the Ottomans!
+
+	action_a = {
+		name = "VERY_WELL"
+		command = { type = casusbelli which = TUR value = 60 }
+	}
+}
+
+#(1440) The Vacant Throne
+event = {
+	id = 188090
+	trigger = {
+		countrysize = 6
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188090" #The Vacant Throne
+	desc = "EVENTHIST188101"
+	#-#In 1439 Albrecht of Habsburg, King of Hungary, fell ill, probably of cholera, while campaigning against the Ottomans. Within one month he died, leaving two minor daughters and his pregnant wife Elizabeth. For the case of the unborn child being male, Albrecht declared that his son would be his successor in all his fiefs just before his death. Based on this will, Elizabeth attempted to get the Parliament to appoint her Queen Regent for her unborn baby. Still feeling menaced by the Ottomans, a majority of the Diet consisting mostly of the middle and lower nobility however did not want to trust the country's fortune upon a woman and an unborn child and, led by the Transylvanian noble Janos Hunyadi, desired an adult King with a decent powerbase instead. It was Hunyadi who proposed the most obvious choice, Wladyslaw III, King of the other big Christian Kingdom in East Europe, Poland. Initially with the consent of Elizabeth, deputies of the Diet approached the nineteen-year-old Wladyslaw in Krakow and offered him the Hungarian crown. Meanwhile, Elizabeth gave birth to a son, the male heir Albrecht and she had hoped for, and called him Ladislaus. Since then, she was determined to secure the throne for her child and thus withdrew her approval of the offer to the Polish King. But instructed by Hunyadi and other magnates, negotiations continued. When Wladyslaw eventually accepted the proferred throne on March 8th 1440 and everything seemed ready for his coronation and the union of the two Kingdoms, Elizabeth fled Hungary to Austria with her son and the stolen Holy crown of Hungary. She had Ladislaus crowned King in Székesfehérvár on May 1st, more than two months before Wladyslaw's coronation on July 17th. The scene was set for a civil war between the supporters of Elizabeth and Ladislaus, called 'Loyalists' who were strongest in Western Hungary and Slovakia and championed by Ulrich of Cilli on the one side and the supporters of Wladyslaw, the 'Nationalists', based largely in the East and Transylvania and led by Janos Hunyadi, on the other.
+
+	date = { day = 8 month = march year = 1440 }
+
+	action_a = { #Nationalist side
+		name = "ACTIONNAME188090A" #Ignore Elizabeth and make Wladyslaw of Poland King
+		command = { type = wakemonarch which = 061003 } #Ulászló I
+		command = { type = wakemonarch which = 061004 } #Interregnum
+		command = { type = wakemonarch which = 061005 } #General-Captains of Hungary (Regency)
+		command = { type = wakeleader which = 061300 } #János Hunyadi (HUN)
+		command = { type = stability value = -3 }
+		command = { type = breakvassal which = HAB }
+		command = { type = breakdynastic which = HAB }
+		command = { type = relation which = POL value = 100 }
+		command = { type = treasury value = 150 }
+		command = { type = revolt which = 316 } #Carpathia
+		command = { type = revolt which = 316 } #Carpathia (where Jan Jiskra held out for a long time)
+		command = { type = revolt which = 325 } #Magyar
+		command = { type = revolt which = 326 } #Presburg
+		command = { type = revolt which = 352 } #Odenburg
+		command = { type = revolt which = 353 } #Pest
+		command = { type = revolt which = -1 }
+		command = { type = province_revoltrisk which = 316 value = 10 } #Carpathia
+		command = { type = province_revoltrisk which = 325 value = 10 } #Magyar
+		command = { type = province_revoltrisk which = 326 value = 10 } #Presburg
+		command = { type = province_revoltrisk which = 352 value = 10 } #Odenburg
+		command = { type = province_revoltrisk which = 353 value = 10 } #Pest
+		command = { type = province_revoltrisk which = 367 value = 14 } #Krain
+		command = { type = removecore which = 316 } #Carpathia
+		#command = { type = AI which = peaceful.ai }
+		command = { type = trigger which = 179101 } #HAB: Succession conflict in Hungary
+		command = { type = setflag which = [Wladyslaw] }
+		command = { type = sleepevent which = 188093 } #HUN: Victory of the supporters of Wladyslaw
+		command = { type = sleepevent which = 188091 } #HUN: Victory of the supporters of Ladislaus Postumus
+	}
+	action_b = { #Loyalist side
+		name = "ACTIONNAME188090B" #Ladislaus Postumus is rightful King of Hungary
+		command = { type = wakemonarch which = 061008 } #Elizabeth of Luxemburg °
+		command = { type = wakemonarch which = 061009 } #Ulrich of Cilli (Regent) °
+		command = { type = wakeleader which = 061301 } #Jan Jiskra (HUN)
+		command = { type = stability value = -4 }
+		command = { type = relation which = POL value = -50 }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = relation which = SEI value = 100 } #Styria
+		command = { type = revolt which = 317 } #Ruthenia
+		command = { type = revolt which = 323 } #Transylvania
+		command = { type = revolt which = 323 } #Transylvania (Hunyadi's power base)
+		command = { type = revolt which = 324 } #Maros
+		command = { type = revolt which = 354 } #Banat
+		command = { type = revolt which = 355 } #Serbia
+		command = { type = revolt which = -1 }
+		command = { type = province_revoltrisk which = 317 value = 12 } #Ruthenia
+		command = { type = province_revoltrisk which = 323 value = 12 } #Transylvania
+		command = { type = province_revoltrisk which = 324 value = 12 } #Maros
+		command = { type = province_revoltrisk which = 354 value = 12 } #Banat
+		command = { type = province_revoltrisk which = 355 value = 12 } #Serbia
+		#command = { type = AI which = peaceful.ai }
+		command = { type = capital which = 325 } #Magyar
+		command = { type = capital which = 352 } #Odenburg
+		command = { type = capital which = 326 } #Presburg
+		command = { type = setflag which = [Presburg] }
+		command = { type = sleepevent which = 258100 } #POL: The Hungarian throne
+		command = { type = trigger which = 179148 } #HAB: Habsburg rule in Hungary
+		command = { type = trigger which = 179102 } #HAB: Coronation of Ladislaus Postumus in Hungary (vassalage renewed)
+		command = { type = setflag which = [Ladislaus] }
+		command = { type = sleepevent which = 188092 } #HUN: Victory of the supporters of Ladislaus Postumus
+		command = { type = sleepevent which = 188094 } #HUN: Victory of the supporters of Wladyslaw
+	}
+}
+
+#(1440-1460) Loyalist victory (if Hungary took Nationalist side)
+event = {
+	id = 188092
+	trigger = {
+		flag = [Wladyslaw]
+		OR = {
+			owned = { province = 325 data = HAB } #Magyar
+			owned = { province = 326 data = HAB } #Presburg
+			owned = { province = 324 data = HAB } #Maros
+			AND = {
+				owned = { province = 325 data = -1 } #Magyar
+				control = { province = 325 data = REB }
+			}
+			AND = {
+				owned = { province = 326 data = -1 } #Presburg
+				control = { province = 326 data = REB }
+			}
+			AND = {
+				owned = { province = 324 data = -1 } #Maros
+				control = { province = 324 data = REB }
+			}
+			NOT = {
+				AND = {
+					owned = { province = 325 data = -1 } #Magyar
+					owned = { province = 326 data = -1 } #Presburg
+					owned = { province = 324 data = -1 } #Maros
+				}
+			}
+		}
+		OR = {
+			owned = { province = 316 data = HAB } #Carpathia
+			owned = { province = 353 data = HAB } #Pest
+			AND = {
+				owned = { province = 316 data = -1 } #Carpathia
+				control = { province = 316 data = REB }
+			}
+			AND = {
+				owned = { province = 353 data = -1 } #Pest
+				control = { province = 353 data = REB }
+			}
+			NOT = {
+				AND = {
+					owned = { province = 316 data = -1 } #Carpathia
+					owned = { province = 353 data = -1 } #Pest
+				}
+			}
+		}
+		OR = {
+			owned = { province = 352 data = HAB } #Odenburg
+			owned = { province = 317 data = HAB } #Ruthenia
+			owned = { province = 354 data = HAB } #Banat
+			AND = {
+				owned = { province = 352 data = -1 } #Odenburg
+				control = { province = 352 data = REB }
+			}
+			AND = {
+				owned = { province = 317 data = -1 } #Ruthenia
+				control = { province = 317 data = REB }
+			}
+			AND = {
+				owned = { province = 354 data = -1 } #Banat
+				control = { province = 354 data = REB }
+			}
+			NOT = {
+				AND = {
+					owned = { province = 352 data = -1 } #Odenburg
+					owned = { province = 317 data = -1 } #Ruthenia
+					owned = { province = 354 data = -1 } #Banat
+				}
+			}
+		}
+		NOT = { war = { country = HUN country = HAB } } #War needs to be over, otherwise there could be weird consequences
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188091" #Victory of the supporters of Ladislaus Postumus
+	desc = "EVENTHIST188091"
+	#-#Since most of Hungary has been captured by the Habsburgs and their Hungarian supporters, support for King Ulászló and Janos Hunyadi is fading and Ladislaus Postumus is commonly acknowledged as rightful King.
+
+	date = { day = 9 month = march year = 1440 }
+	offset = 10
+	deathdate = { day = 9 month = march year = 1460 }
+
+	action_a = {
+		name = "ACTIONNAME188092A" #Accept Ladislaus
+		command = { type = vp value = -150 }
+		command = { type = breakvassal which = POL }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = wakemonarch which = 061008 } #Elizabeth of Luxemburg °
+		command = { type = wakemonarch which = 061009 } #Ulrich of Cilli (Regent) °
+		command = { type = sleepmonarch which = 061003 } #Ulászló I
+		command = { type = sleepmonarch which = 061004 } #Interregnum
+		command = { type = sleepmonarch which = 061005 } #General-Captains of Hungary (Regency)
+		command = { type = trigger which = 258108 } #POL: The Hungarian throne
+		command = { type = province_revoltrisk which = 316 value = -10 } #Carpathia
+		command = { type = province_revoltrisk which = 325 value = -10 } #Magyar
+		command = { type = province_revoltrisk which = 326 value = -10 } #Presburg
+		command = { type = province_revoltrisk which = 352 value = -10 } #Odenburg
+		command = { type = province_revoltrisk which = 353 value = -10 } #Pest
+		command = { type = province_revoltrisk which = 367 value = -14 } #Krain
+		command = { type = stability value = 2 }
+		command = { type = clrflag which = [Wladyslaw] }
+		command = { type = trigger which = 277020 } #SER: Loyalist victory in Hungary
+	}
+}
+#(1440-1460) Nationalist victory (if Hungary took Loyalists side)
+event = {
+	id = 188093
+	trigger = {
+		flag = [Ladislaus]
+		OR = {
+			AND = {
+				owned = { province = 325 data = -1 } #Magyar
+				control = { province = 325 data = REB }
+			}
+			AND = {
+				owned = { province = 324 data = -1 } #Maros
+				control = { province = 324 data = REB }
+			}
+			AND = {
+				owned = { province = 353 data = -1 } #Pest
+				control = { province = 353 data = REB }
+			}
+			NOT = {
+				AND = {
+					owned = { province = 325 data = -1 } #Magyar
+					owned = { province = 324 data = -1 } #Maros
+					owned = { province = 353 data = -1 } #Pest
+				}
+			}
+		}
+		OR = {
+			AND = {
+				owned = { province = 323 data = -1 } #Transylvania
+				control = { province = 323 data = REB }
+			}
+			AND = {
+				owned = { province = 317 data = -1 } #Ruthenia
+				control = { province = 317 data = REB }
+			}
+			AND = {
+				owned = { province = 326 data = -1 } #Presburg
+				control = { province = 326 data = REB }
+			}
+			NOT = {
+				AND = {
+					owned = { province = 323 data = -1 } #Transylvania
+					owned = { province = 317 data = -1 } #Ruthenia
+					owned = { province = 326 data = -1 } #Presburg
+				}
+			}
+		}
+		OR = {
+			AND = {
+				owned = { province = 355 data = -1 } #Serbia
+				control = { province = 355 data = REB }
+			}
+			AND = {
+				owned = { province = 354 data = -1 } #Banat
+				control = { province = 354 data = REB }
+			}
+			NOT = {
+				AND = {
+					owned = { province = 355 data = -1 } #Serbia
+					owned = { province = 354 data = -1 } #Banat
+				}
+			}
+		}
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188093" #Victory of the supporters of Wladyslaw
+	desc = "EVENTHIST188093"
+	#-#Since most of Hungary has been captured by Wladyslaw's supporters, support for Ladislaus Postumus is fading and Ulászló is commonly acknowledged as rightful King.
+
+	date = { day = 9 month = march year = 1440 }
+	offset = 10
+	deathdate = { day = 9 month = march year = 1460 }
+
+	action_a = {
+		name = "ACTIONNAME188093A" #Accept Wladyslaw
+		command = { type = wakeleader which = 061300 } #János Hunyadi (HUN)
+		command = { type = breakvassal which = HAB }
+		command = { type = relation which = POL value = 100 }
+		command = { type = sleepmonarch which = 061008 } #Elizabeth of Luxemburg °
+		command = { type = sleepmonarch which = 061009 } #Ulrich of Cilli (Regent) °
+		command = { type = wakemonarch which = 061003 } #Ulászló I
+		command = { type = wakemonarch which = 061004 } #Interregnum
+		command = { type = wakemonarch which = 061005 } #General-Captains of Hungary (Regency)
+		command = { type = province_revoltrisk which = 317 value = -12 } #Ruthenia
+		command = { type = province_revoltrisk which = 323 value = -12 } #Transylvania
+		command = { type = province_revoltrisk which = 324 value = -12 } #Maros
+		command = { type = province_revoltrisk which = 354 value = -12 } #Banat
+		command = { type = province_revoltrisk which = 355 value = -12 } #Serbia
+		command = { type = stability value = 2 }
+		command = { type = capital which = 325 } #Magyar
+		command = { type = clrflag which = [Ladislaus] }
+		command = { type = trigger which = 277021 } #SER: Nationalist victory in Hungary
+	}
+}
+#(1442-1460) Loyalist victory (if Hungary took Loyalists side)
+event = {
+	id = 188091
+	trigger = {
+		flag = [Ladislaus]
+		OR = {
+			AND = {
+				owned = { province = 326 data = -1 } #Presburg
+				control = { province = 326 data = -1 }
+			}
+			NOT = {
+				owned = { province = 326 data = -1 } #Presburg
+			}
+		}
+		OR = {
+			AND = {
+				owned = { province = 325 data = -1 } #Magyar
+				control = { province = 325 data = -1 }
+			}
+			NOT = {
+				owned = { province = 325 data = -1 } #Magyar
+			}
+		}
+		OR = {
+			AND = {
+				owned = { province = 324 data = -1 } #Maros
+				control = { province = 324 data = -1 }
+			}
+			AND = {
+				owned = { province = 353 data = -1 } #Pest
+				control = { province = 353 data = -1 }
+			}
+			NOT = {
+				AND = {
+					owned = { province = 324 data = -1 } #Maros
+					owned = { province = 353 data = -1 } #Pest
+				}
+			}
+		}
+		OR = {
+			AND = {
+				owned = { province = 323 data = -1 } #Transylvania
+				control = { province = 323 data = -1 }
+			}
+			AND = {
+				owned = { province = 317 data = -1 } #Ruthenia
+				control = { province = 317 data = -1 }
+			}
+			NOT = {
+				AND = {
+					owned = { province = 323 data = -1 } #Transylvania
+					owned = { province = 317 data = -1 } #Ruthenia
+				}
+			}
+		}
+		OR = {
+			AND = {
+				owned = { province = 355 data = -1 } #Serbia
+				control = { province = 355 data = -1 }
+			}
+			AND = {
+				owned = { province = 354 data = -1 } #Banat
+				control = { province = 354 data = -1 }
+			}
+			NOT = {
+				AND = {
+					owned = { province = 355 data = -1 } #Serbia
+					owned = { province = 354 data = -1 } #Banat
+				}
+			}
+		}
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188091" #Victory of the supporters of Ladislaus Postumus
+	desc = "EVENTHIST188091"
+	#-#Since most of Hungary has been captured by the Habsburgs and their Hungarian supporters, support for King Ulászló and Janos Hunyadi is fading and Ladislaus Postumus is commonly acknowledged as rightful King.
+
+	date = { day = 1 month = december year = 1442 }
+	offset = 30
+	deathdate = { day = 9 month = march year = 1460 }
+
+	action_a = {
+		name = "ACTIONNAME188091A" #Victory is ours
+		command = { type = wakeleader which = 061300 } #János Hunyadi (HUN)
+		command = { type = breakvassal which = POL }
+		command = { type = province_revoltrisk which = 317 value = -12 } #Ruthenia
+		command = { type = province_revoltrisk which = 323 value = -12 } #Transylvania
+		command = { type = province_revoltrisk which = 324 value = -12 } #Maros
+		command = { type = province_revoltrisk which = 354 value = -12 } #Banat
+		command = { type = province_revoltrisk which = 355 value = -12 } #Serbia
+		command = { type = stability value = 2 }
+		command = { type = capital which = 325 } #Magyar
+		command = { type = clrflag which = [Ladislaus] }
+		command = { type = trigger which = 277020 } #SER: Loyalist victory in Hungary
+	}
+}
+#(1442-1460) Nationalist victory (if Hungary took Nationalist side)
+event = {
+	id = 188094
+	trigger = {
+		flag = [Wladyslaw]
+		OR = {
+			AND = {
+				owned = { province = 325 data = -1 } #Magyar
+				control = { province = 325 data = -1 }
+			}
+			NOT = {
+				owned = { province = 325 data = -1 } #Magyar
+			}
+		}
+		OR = {
+			AND = {
+				owned = { province = 316 data = -1 } #Carpathia
+				control = { province = 316 data = -1 }
+			}
+			AND = {
+				owned = { province = 353 data = -1 } #Pest
+				control = { province = 353 data = -1 }
+			}
+			NOT = {
+				AND = {
+					owned = { province = 316 data = -1 } #Carpathia
+					owned = { province = 353 data = -1 } #Pest
+				}
+			}
+		}
+		OR = {
+			AND = {
+				owned = { province = 316 data = -1 } #Odenburg
+				control = { province = 316 data = -1 }
+			}
+			AND = {
+				owned = { province = 326 data = -1 } #Presburg
+				control = { province = 326 data = -1 }
+			}
+			NOT = {
+				AND = {
+					owned = { province = 316 data = -1 } #Odenburg
+					owned = { province = 326 data = -1 } #Presburg
+				}
+			}
+		}
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188093" #Victory of the supporters of Wladyslaw
+	desc = "EVENTHIST188093"
+	#-#Since most of Hungary has been captured by Wladyslaw's supporters, support for Ladislaus Postumus is fading and Ulászló is commonly acknowledged as rightful King.
+
+	date = { day = 1 month = december year = 1442 }
+	offset = 30
+	deathdate = { day = 9 month = march year = 1460 }
+
+	action_a = {
+		name = "ACTIONNAME188094A" #Victory is ours
+		command = { type = province_revoltrisk which = 316 value = -10 } #Carpathia
+		command = { type = province_revoltrisk which = 325 value = -10 } #Magyar
+		command = { type = province_revoltrisk which = 326 value = -10 } #Presburg
+		command = { type = province_revoltrisk which = 352 value = -10 } #Odenburg
+		command = { type = province_revoltrisk which = 353 value = -10 } #Pest
+		command = { type = province_revoltrisk which = 367 value = -14 } #Krain
+		command = { type = stability value = 2 }
+		command = { type = clrflag which = [Wladyslaw] }
+		command = { type = trigger which = 277021 } #SER: Nationalist victory in Hungary
+	}
+}
+
+#(1440-1460) Serbia submits to the new King
+event ={
+	id = 188022
+	trigger = {
+		exists = SER
+		NOT = { vassal = { country = SER country = HUN } }
+		NOT = { vassal = { country = HUN country = SER } }
+		NOT = { war = { country = HUN country = SER } }
+		OR = {
+			event = 188091 #HUN: Loyalist victory
+		 	event = 188092 #HUN: Loyalist victory
+			event = 188093 #HUN: Nationalist victory
+		 	event = 188094 #HUN: Nationalist victory
+		 	event = 188095 #HUN: Nationalist victory, by Elisabeth's death
+		}
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188022" #Serbia submits to the new King
+	desc = "EVENTHIST188022"
+	#-#When the conflict between Loyalists, who supported the rightful infante King Ladislaus Postumus, son of late Emperor Albrecht I, and Nationalists who wanted to install Polish King Wladyslaw, Despot Djuradj was not in a position to choose sides. His daughter's marriage with Ulrich II of Cilli, leader of Loyalist faction, already made his decision for him. Although Djuradj wasn't in a position to offer much active support to Ulrich's faction, Count of Cilli still maintained good relationships with his father-in-law. Unable to help his son-in-law and also unable to win King Wladyslaw's favor, Despot Djuradj turned to Republics of Venice and Ragusa for help, but both refused. His flight to Venice antagonized both Hungarians and Ottomans. King Wladyslaw seized Djuradj's estates in Hungary, while the Ottoman Sultan blinded his sons Grgur, who lead the Serbian unit in Ottoman army, and Stevan who was captured when Smederevo fell to Turks. However, King Wladyslaw came to understand the threat Ottomans represented and the small but significant aid the buffer Despotate of Serbia can provide. After spending some time fighting for the Venetians in Zeta, Despot Djuradj traveled back to Hungary to make peace and alliance against Ottomans with the new King. He succeeded, aided by their joint fear of Turks and help of Janko Hunyadi, a Wallachian noble and the leader of Nationalists who also served in the army of Stefan Lazarevic.
+
+	date = { day = 9 month = march year = 1440 }
+	offset = 2
+	deathdate = { day = 1 month = january year = 1460 }
+
+	action_a = {
+		name = "ACTIONNAME188022A" #Renew the old vassalage
+		command = { type = vassal which = SER }
+		command = { type = alliance which = SER }
+		command = { }
+	}
+}
+
+#(1442-1456) Crusade against the Turks
+event = {
+	id = 188099
+	trigger = {
+		neighbour = TUR
+		leader = 061300 #János Hunyadi (HUN)
+		OR = {
+			event = 188091 #HUN: Loyalist victory
+		 	event = 188092 #HUN: Loyalist victory
+			event = 188093 #HUN: Nationalist victory
+		 	event = 188094 #HUN: Nationalist victory
+		 	event = 188095 #HUN: Nationalist victory, by Elisabeth's death
+		}
+		atwar = no
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188099" #Crusade against the Turks
+	desc = "EVENTHIST188099"
+	#-#After King Wladyslaw managed to pacify the opposition Hungary, he turned his attention to the Ottoman Empire. At the same time, this problem was brought more closely into the attention of other Christian powers. Knights of Saint John, remnants of the Byzantine Empire and Republic of Ragusa were the most active in demands for coordinated offensive against the Turks. The dynastic civil war in Ottoman Empire made these initiatives sound more realistic than before. Pope's first reaction was to send Cardinal Julian Cesarini to aid the pacification of Wladyslaw's opponents in Hungary. Between Cesarini's splendid efforts and Hunyadi's great military leadership, Hungary was more ready for war than ever. Hunyadi won his first crushing vicotory against an invading Ottoman army in Hungary in 1442, and already in 1443 he broke the 80000-strong Ottoman army in Wallachia. These victories and the news of Ottoman defeat against Karaman greatly emboldened the Christian monarchs. Just after Hunyadi's victory in Wallachia, the Pope decided to aid the war effort with a fifth of his annual income. In June 1443, an army of 25,000 with focus on cavalry headed south to attack the Ottomans in Serbia. The army was lead by King Wladyslaw himself and his most loyal vassals: Janos Hunyadi, Djuradj Brankovic and Dracul. In November, Janos Hunyadi lead the charge of 12000 Hungarian knights that completely broke the Ottoman army near Nis. Sofia fell to Christian forces in December. The winter stop the Christian invasion and tired Hungarian soldiers returned to their Kingdom in January 1444. Invasion resumed in June 1444, aided by a fleet made of Venetian and Papal galleys, with Burgundian fleet on its way.
+
+	date = { day = 1 month = june year = 1442 }
+	offset = 10
+	deathdate = { day = 1 month = june year = 1456 }
+
+	action_a = {
+		name = "ACTIONNAME188099A" #Now let's take care of the Turks
+		command = { type = stability value = 1 }
+		command = { type = treasury value = 150 }
+		command = { type = CAV which = -2 value = 6000 }
+		command = { type = relation which = HAB value = 30 }
+		command = { type = relation which = VEN value = 30 }
+		command = { type = relation which = SER value = 30 }
+		command = { type = relation which = PAP value = 30 }
+		command = { type = relation which = POL value = 30 }
+		command = { type = casusbelli which = TUR value = 12 }
+		command = { type = war which = TUR }
+		#command = { type = AI which = HUN_Crusade.ai }
+		command = { type = trigger which = 277022 } #SER: Crusade against the Turks
+	}
+	action_b = {
+		name = "ACTIONNAME188099B" #We dare not
+		command = { type = stability value = -2 }
+		command = { type = vp value = -50 }
+		command = { type = sleepevent which = 329003 } #WAL: Battle of Varna
+	}
+}
+
+#(1443) Count of Cilli inherits Bosnia - Ahistorical
+event ={
+	id = 188031 #triggered by BOS_130010 C
+	trigger = {
+		NOT = { vassal = { country = BOS country = HUN } }
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188031" #Count of Cilli inherits Bosnia
+	desc = "EVENTHIST188031"
+	#-#Close to the end of his life, Tvrtko II was scared of Ottoman progress in the Balkans and feld to Venice. He died in November 1443 without a male heir, but he outlived Hermann of Cilli who was supposed to inherit Bosnia in such case. With Hungary loosing a war against Ottoman Empire, Emperor Albrecht I was not in a position to press the claims of Hermann's successors. The only two remaining choices were the two sons of Stefan Ostoja, Tvrtko's predecessor, Radivoj and Tomas. Just before his death, King Tvrtko II insisted that the treaty he signed with Hermann II be honored and that Count Ulrich of Cilli becomes King of Bosnia.
+
+	action_a = {
+		name = "GOOD"
+		command = { type = vassal which = BOS }
+		command = { type = alliance which = BOS }
+		command = { }
+	}
+}
+
+#(1443) Death of Elizabeth
+#Nationalist victory in the civil war if Hungary went with Wladyslaw (Nationalists)
+event = {
+	id = 188095
+	trigger = {
+		flag = [Wladyslaw]
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188095" #End of civil war
+	desc = "EVENTHIST188095"
+	#-#Elizabeth of Luxemburg, the mother of Ladislaus Postumus, who had tried to secure the Hungarian throne for her son against Wladyslaw III of Poland, died on December 13th 1443. With Emperor Friedrich V lacking the energy and ability to continue the efforts for the crown of St. Stephen, the Pope encouraging a settlement that would allow for a Hungarian crusade against the Ottomans and fortune in battle against the supporters of Ladislaus, the succession conflict in Hungarian was practically ended by this. Ulászló and Janos Hunyadi were finally able to devote most of their energy towards a campaign against the Ottomans and attempt to stop them from overrunning the Balkans.
+
+	date = { day = 13 month = december year = 1443 }
+
+	action_a = {
+		name = "ACTIONNAME188095A" #Now let's take care of the Turks
+		command = { type = province_revoltrisk which = 316 value = -10 } #Carpathia
+		command = { type = province_revoltrisk which = 325 value = -10 } #Magyar
+		command = { type = province_revoltrisk which = 326 value = -10 } #Presburg
+		command = { type = province_revoltrisk which = 352 value = -10 } #Odenburg
+		command = { type = province_revoltrisk which = 353 value = -10 } #Pest
+		command = { type = province_revoltrisk which = 367 value = -14 } #Krain
+		command = { type = clrflag which = [Wladyslaw] }
+		command = { type = stability value = 2 }
+	}
+}
+
+#(1444-1460) Peace of Szeged
+event ={
+	id = 188023
+	trigger = {
+		event = 188099 #HUN: Crusade against the Turks
+		NOT = { war = { country = HUN country = TUR } } #crusade must be over
+		NOT = { vassal = { country = HUN country = TUR } } #complete victory must not have been achieved
+		exists = TUR #complete victory must not have been achieved
+		NOT = { #Following trigger makes sure that Hungary hasn't suffered ahistorical losses to Turks during the crusade and that at least Wallachia, Serbia and Albania have been liberated.
+			owned = { province = 352 data = TUR } #Odenburg
+			owned = { province = 353 data = TUR } #Pest
+			owned = { province = 351 data = TUR } #Banat
+			owned = { province = 355 data = TUR } #Serbia
+			owned = { province = 322 data = TUR } #Wallachia
+			owned = { province = 316 data = TUR } #Carpathia
+			owned = { province = 317 data = TUR } #Ruthenia
+			owned = { province = 323 data = TUR } #Transylvania
+			owned = { province = 324 data = TUR } #Maros
+			owned = { province = 325 data = TUR } #Magyar
+			owned = { province = 326 data = TUR } #Presburg
+			owned = { province = 361 data = TUR } #Albania
+			owned = { province = 365 data = TUR } #Croatia
+		}
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188023" #Peace of Szeged
+	desc = "EVENTHIST188023"
+	#-#Plagued with internal conflicts and wars in the east, Sultan Murad II offered to negotiate a peace as soon as the crusade was resumed in 1444. King Wladyslaw was against signing peace when the war was going so well, but he changed his mind after being persuaded by Janos Hunyadi and Djuradj Brankovic. Peace of Szeged was signed in which Sultan Murad II agreed to restore the Despotate of Serbia as dual vassal, to pay a compensation to Hungary and to aid the Hungarian King with an army of 25,000 soldiers against his enemies during the next ten years.
+
+	date = { day = 1 month = january year = 1444 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1460 }
+
+	action_a = {
+		name = "ACTIONNAME188023A" #Sign the Peace of Szeged
+		command = { type = stability value = -1 } #nobility was sure that complete victory against the Ottomans was within reach
+		command = { type = independence which = SER }
+		command = { type = independence which = ALB }
+		command = { type = independence which = WAL }
+		command = { type = trigger which = 188032 } #HUN: Consequence of the Peace of Szeged
+		command = { type = trigger which = 301117 } #TUR: Peace of Szeged
+	}
+	action_b = {
+		name = "ACTIONNAME188023B" #Refuse to sign the Peace of Szeged
+		command = { type = domestic which = aristocracy value = 1 } #influence of the nobility
+		command = { type = badboy value = 3 }
+	}
+}
+#(1444-1460) Consequence of the Peace of Szeged
+event ={
+	id = 188032
+	trigger = {
+		owned = { province = 363 data = -1 } #Kosovo
+		exists = SER
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188032" #Consequence of the Peace of Szeged
+	desc = "EVENTHIST188032"
+	#-#On June 12, 1444, after three days of discussion, the treaty was completed. The final terms stated that Murad would return 24 Serbian cities, including the large fortresses of Golubac and Smederevo, to the exiled Serbian monarch, Brankovic.
+
+	action_a = {
+		name = "OK"
+		command = { type = cedeprovince which = SER value = 363 } #Kosovo
+		command = { type = trigger which = 277002 } #SER: Consequence of the Peace of Szeged
+	}
+}
+#(1444-1460) Dual vassalage of Serbia
+event = {
+	id = 188035 #triggered by TUR_301117
+	trigger = {
+		NOT = {
+			war = { country = SER country = HUN }
+			alliance = { country = SER country = HUN }
+		}
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188033" #Dual vassalage of Serbia
+	desc = "EVENTHIST188033"
+	#-#On several occasions, Serbian Despot was a vassal of the Hungarian King and the Ottoman Sultan at the same time. While the vassalage to Ottoman Sultan weighed more in gold and regular military aid, Serbia would usually either fight for the Christians or stay neutral in case of a large war against the Ottoman Empire.
+
+	action_a = {
+		name = "ACTIONNAME188033A" #Their aid is welcome
+		command = { type = alliance which = SER }
+	}
+}
+
+#(1444-1460) The Second Crusade
+event ={
+	id = 188024
+	trigger = {
+		event = 188023 #HUN: Peace of Szeged
+		NOT = { war = { country = HUN country = TUR } } #not already in new war against Turks
+		NOT = { vassal = { country = HUN country = TUR } } #complete victory must not have been achieved by another war in the meantime
+		exists = TUR
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188024" #The Second Crusade
+	desc = "EVENTHIST188024"
+	#-#Peace of Szeged was very badly received by the Catholic world. For them, especially those who didn't take part in the war, the peace was an end of a glorious conquest and great success for Christianity. Under pressure of other Catholic monarchs rallied around Cardinal Cesarini, who claimed that no treaty with a heathen may be valid, King Wladyslaw decided to break the Peace of Szeged and attack the Ottoman Empire again.
+
+	date = { day = 1 month = september year = 1444 }
+	offset = 300
+	deathdate = { day = 1 month = january year = 1460 }
+
+	action_a = {
+		name = "ACTIONNAME188024A" #To war again!
+		command = { type = stability value = 1 }
+		command = { type = treasury value = 150 }
+		command = { type = CAV which = -2 value = 6000 }
+		command = { type = relation which = HAB value = 30 }
+		command = { type = relation which = VEN value = 30 }
+		command = { type = relation which = SER value = 30 }
+		command = { type = relation which = PAP value = 30 }
+		command = { type = relation which = POL value = 30 }
+		command = { type = casusbelli which = TUR value = 12 }
+		command = { type = war which = TUR }
+		command = { type = trigger which = 277023 } #SER: The Second Crusade
+	}
+	action_b = {
+		name = "ACTIONNAME188024B" #We must honor the treaty
+		command = { type = stability value = -1 }
+		command = { type = sleepevent which = 329003 } #WAL: Battle of Varna
+	}
+}
+
+#(1444) Ulászlo's death -I-
+event = {
+	id = 188096
+	trigger = {
+		OR = {
+			event = 188093 #HUN: Nationalist victory
+		 	event = 188094 #HUN: Nationalist victory
+		 	event = 188095 #HUN: Nationalist victory, by Elisabeth's death
+		}
+		vassal = { country = POL country = HUN }
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188096" #Death of King Ulászló
+	desc = "EVENTHIST188096"
+	#-#When on November 10th 1444 King Ulászló was killed in the battle of Varna against the Ottomans and Janos Hunyadi merely escaped alive, Hungary was plunged into another crisis. Succession of the dead King was unclear, a huge part of the Hungarian nobility had died in the battle, many magnates were glad to have no central authority over them. Austria, reviving Ladislaus Postumus' claim on Hungary, occupied the Hungarian border districts, Jan Jiskra seized Spis and the Cilli family took control of Slovakia, driving out the supporters of Ulászló I. Once again Hungary was heading for a full blown civil war.
+
+	date = { day = 10 month = november year = 1444 }
+
+	action_a = {
+		name = "ACTIONNAME188096A" #Our King is dead!
+		command = { type = stability value = -1 } #lowered from -5, since Kings die all the time with no stab hits
+		command = { type = breakvassal which = POL }
+		command = { type = cedeprovince which = HAB value = 351 } #Austria
+		command = { type = cedeprovince which = HAB value = 350 } #Salzburg
+		command = { type = cedeprovince which = HAB value = 352 } #Odenburg
+		command = { type = revolt which = 326 } #Presburg
+		command = { type = revolt which = 316 } #Carpathia
+		command = { type = revolt which = 317 } #Ruthenia
+		command = { type = revolt which = 323 } #Transylvania
+		command = { type = revolt which = 324 } #Maros
+		command = { type = revolt which = 325 } #Magyar
+		command = { type = revolt which = 352 } #Odenburg
+		command = { type = revolt which = 354 } #Banat
+		command = { type = revolt which = 366 } #Croatia
+		#command = { type = AI which = peaceful.ai }
+		command = { type = sleepevent which = 188015 } #HUN: Death of King Ulászló -II-
+	}
+}
+#(1444) Ulászlo's death -II-
+event = {
+	id = 188015
+	trigger = {
+		OR = {
+			event = 188093 #HUN: Nationalist victory
+		 	event = 188094 #HUN: Nationalist victory
+		 	event = 188095 #HUN: Nationalist victory, by Elisabeth's death
+		}
+		NOT = { vassal = { country = POL country = HUN } }
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188096" #Death of King Ulászló
+	desc = "EVENTHIST188096"
+	#-#When on November 10th 1444 King Ulászló was killed in the battle of Varna against the Ottomans and Janos Hunyadi merely escaped alive, Hungary was plunged into another crisis. Succession of the dead King was unclear, a huge part of the Hungarian nobility had died in the battle, many magnates were glad to have no central authority over them. Austria, reviving Ladislaus Postumus' claim on Hungary, occupied the Hungarian border districts, Jan Jiskra seized Spis and the Cilli family took control of Slovakia, driving out the supporters of Ulászló I. Once again Hungary was heading for a full blown civil war.
+
+	date = { day = 10 month = november year = 1444 }
+
+	action_a = {
+		name = "ACTIONNAME188096A" #Our King is dead!
+		command = { type = stability value = -1 } #lowered from -5, since Kings die all the time with no stab hits
+		command = { type = cedeprovince which = HAB value = 351 } #Austria
+		command = { type = cedeprovince which = HAB value = 350 } #Salzburg
+		command = { type = cedeprovince which = HAB value = 352 } #Odenburg
+		command = { type = revolt which = 326 } #Presburg
+		command = { type = revolt which = 316 } #Carpathia
+		command = { type = revolt which = 317 } #Ruthenia
+		command = { type = revolt which = 323 } #Transylvania
+		command = { type = revolt which = 324 } #Maros
+		command = { type = revolt which = 325 } #Magyar
+		command = { type = revolt which = 352 } #Odenburg
+		command = { type = revolt which = 354 } #Banat
+		command = { type = revolt which = 366 } #Croatia
+		#command = { type = AI which = peaceful.ai }
+		command = { type = sleepevent which = 188096 } #HUN: Death of King Ulászló -I-
+	}
+}
+
+#(1445) The National Diet of 1445
+event = {
+	id = 188097
+	trigger = {
+		OR = {
+			event = 188093 #Nationalist victory
+		 	event = 188094 #Nationalist victory
+		 	event = 188095 #Nationalist victory, by Elisabeth's death
+		}
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188097" #The National Diet of 1445
+	desc = "EVENTHIST188097"
+	#-#When the country was about to disintegrate, Janos Hunyadi took the initiative and managed to convene a NationalDiet in April 1445. The measure of the crisis can be judged by the fact that for the first time ever Hungarian Towns were represented. Pointing out the necessity of united action against the Ottomans, Hunyadi achieved a settlement. The former supporters of Ulászló acknowledged Ladislaus Postumus as rightful King and the Diet demanded Emperor Friedrich V to turn over Ladislaus, who was kept in Vienna, and the Holy Crown of St. Stephen to the Hungarian people. Until the return of Ladislaus seven 'Captains' elected by the Diet were to rule the country and to restore law and order. Hunyadi was the first and most powerful of these Captains and five of the rest were his supporters. Only the final man to make up the seven was not one of his choice. The Hussite mercenary captain Jan Jiskra had built such a strong base in Slovakia and surrounding districts that he could not be ignored if the Diet and Hunyadi did not want to have to fight him immediately. Despite the balance of power being firmly in favour of Hunyadi and his peers this temporary solution worked very well. Even most of the magnates who had been hostile towards Ulászló and Hunyadi did at this time not want to risk the Kingdom's very existance. In the following year, peace was maintained and relative stability restored.
+
+	date = { day = 1 month = april year = 1445 }
+
+	action_a = {
+		name = "ACTIONNAME188097A" #Save the country
+		command = { type = stability value = 2 }
+		command = { type = domestic which = aristocracy value = -1 } #towns represented at the Diet
+		command = { type = relation which = HAB value = 50 } #Ladislaus is accepted
+	}
+}
+
+#(1446) Hunyadi appointed Gubernator
+event = {
+	id = 188098
+	trigger = {
+		OR = {
+			event = 188093 #Nationalist victory
+		 	event = 188094 #Nationalist victory
+		 	event = 188095 #Nationalist victory, by Elisabeth's death
+		}
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188098" #Janos Hunyadi appointed Gubernator
+	desc = "EVENTHIST188098"
+	#-#The settlement achieved at the National Diet of 1444 was quite successful in stabilising the country, but the Captains managed neither to get Friedrich V to release Ladislaus Postumus nor to recover control over the parts of Upper Hungary seized by Jan Jizkra who refused to cooperate despite being one of the seven captains. A more permanent solution was needed and a new diet summoned at Pest in June 1446. Hunyadi's supporters among the populace and the lesser nobility very vocally demanded his appointment as Royal Regent, leaving the Diet with little choice, and Hunyadi was elected Gubernator of Hungary for as long as it would take to free Ladislaus, deliberately passing over the Palatine László Garai. The other magnates, distrustful of Hunyadi who had risen from a country squire to the most important person in Hungary within ten years, and envying him for his power and popularity, managed to install several limitations on Hunyadi's authority. A regency council, composed mostly of opponents of Hunyadi, was to 'assist' him in his duties, Garai stayed Palatine and kept some power and themagnates during the regency used every opportunity to resist Hunyadi and stall his measures. Nevertheless Hunyadi at the same Diet and another in 1447 got a whole series of popular reforms passed, e.g. the decree ordering the demolition of the new castles, most of them little better than robber-strongholds, the decree compelling the great officers of state to suspend their functions during the session of the diet, the decree declaring illegal the new fashion of forming confederations afterthe Polish model, all of which measures were obviously directed against the tyranny and the lawlessness of the oligarchy. Due to the resistance of the magnates and wars against the Ottomans and Jizkra, most of these measures remained dead letter, but still some of them had the intended effect.
+
+	date = { day = 1 month = june year = 1446 }
+
+	action_a = {
+		name = "ACTIONNAME188098A" #Appoint Hunyadi regent and try to reform
+		command = { type = wakemonarch which = 061006 } #János Hunyadi (Regent)
+		command = { type = revoltrisk which = 70 value = 3 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = domestic which = centralization value = 2 } #should it be here?
+		command = { type = domestic which = aristocracy value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME188098B" #Appoint László Garai and avoid changes
+		command = { type = wakemonarch which = 061007 } #László Garai (Regent) °
+		command = { type = stability value = -2 }
+	}
+}
+
+#(1446-1447) Boyars Revolt in Wallachia
+event = {
+	id = 188012
+	trigger = {
+		NOT = { vassal = { country = WAL country = HUN } }
+		NOT = { war = { country = HUN country = WAL } }
+		neighbour = WAL
+		OR = {
+			event = 329004 #WAL: Boyars Revolt -I-
+			event = 329017 #WAL: Boyars Revolt -II-
+		}
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188012" #Boyars Revolt in Wallachia
+	desc = "EVENTHIST329004"
+	#-#Boyars revolt against Vlad II, who is killed along with the eldest son. Some speculate that the Hungarians had something to do with it, due to Vlad's reluctance of aiding the Crusade at Varna. Nevertheless, the country is in turmoil. Hunyadi restores the 'Danesti' faction to power in the person of Vladislav II.
+
+	date = { day = 15 month = december year = 1446 }
+	offset = 0
+	deathdate = { day = 1 month = march year = 1447 }
+
+	action_a = {
+		name = "ACTIONNAME188012A" #Wallachia is in turmoil!
+		command = { type = vassal which = WAL }
+		command = { }
+	}
+}
+
+#(1448-1460) The Third Crusade
+event ={
+	id = 188025
+	trigger = {
+		monarch = 061006 #Janos Hunyadi
+		event = 188024 #HUN: The Second Crusade
+		NOT = { war = { country = HUN country = TUR } } #not already in new war against Turks
+		NOT = { vassal = { country = HUN country = TUR } } #complete victory must not have been achieved by another war in the meantime
+		exists = TUR
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188025" #The Third Crusade
+	desc = "EVENTHIST188025"
+	#-#Janos Hunyadi, the only leader of the Christian armies that survived the Battle of Varna, now hated the Turks with great passion. As soon as he was name the Guvernor of Hungary, he started preparing for another invasion of Turkish lands. Unlike King Wladyslaw, Janos Hunyadi failed to secure support of other Catholic monarchs and his vassals. The Pope refused to support Hunyadi's initiative until he settles his disputed with Emperor Friedrich III. Venice was too busy with their own problems both in the Balkans and in Italy, so they were more inclined to ally with Turks than to fight them. Aragonese King ignored Hunyadi's call for help completely. Djuradj Brankovic of Serbia, like in the Second Crusade, decided to stay neutral. Only Skanderbeg of Albania joined Hunyadi in his war. Hunyadi had an army of 70000, mostly cavalry, and met an even larger Turkish army lead by the Sultan himself. Thanks to unconnected betrayals of Djuradj Brankovic of Serbia and Dan of Wallachia, Hungarian army was dispersed and 17000 knights lost their lives.
+
+	date = { day = 1 month = september year = 1448 }
+	offset = 300
+	deathdate = { day = 1 month = january year = 1460 }
+
+	action_a = {
+		name = "ACTIONNAME188025A" #This time we must win
+		command = { type = stability value = 1 }
+		command = { type = treasury value = 150 }
+		command = { type = CAV which = -2 value = 20000 } #This has to be playtested. A correct value should be established to give Hunyadi historically accurate armies.
+		command = { type = relation which = HAB value = -50 }
+		command = { type = relation which = PAP value = -50 }
+		command = { type = casusbelli which = TUR value = 12 }
+		command = { type = war which = TUR }
+		command = { type = trigger which = 277025 } #SER: The Third Crusade
+	}
+	action_b = {
+		name = "ACTIONNAME188025B" #Let the Turks be and focus on western diplomacy
+		command = { type = stability value = -1 }
+		command = { type = relation which = PAP value = 50 }
+		command = { type = relation which = HAB value = 50 }
+	}
+}
+
+#(1448-1460) Another Serbian betrayal
+event ={
+	id = 188026 #triggered by SER_277028 A
+	random = no
+	country = HUN
+	name = "EVENTNAME188026" #Another Serbian betrayal
+	desc = "EVENTHIST188026"
+	#-#Despot Djuradj ordered all fleeing Hungarians to be allowed to pass through Serbia except Janos Hunyadi who was arrested and thrown into dungeon. This was Djuradj's revenge for Hunyadi's devastation of Serbia, but also a move influenced by his Head of Treasury, Paskoje Sorkocevic. Hungarian nobles met to discuss how to liberate Hunyadi. They decided to pledge to protect Serbia against all her enemies, never to order their armies to pass through Serbia unless allowed to do so by Serbian Despot, to pay 100000 ducats of compensation and to return to Djuradj all his estates in Hungary except those that will be given to Hunyadi as dowry of Djuradj's granddaughter Jelisaveta, daughter of late Ulrich II of Cilli, who was to marry one of Hunyadi's sons. Hunyadi's son was to stay in Smederevo as Djuradj's hostage until Hungary fulfills all its promises. This act of betrayal marked the formal end of friendship between Hungary and Serbia.
+
+	action_a = {
+		name = "ACTIONNAME188026A" #We have no choice here
+		command = { type = relation which = SER value = -200 } #treachery
+		command = { type = treasury value = -100 } #compensation to Serbia
+		command = { type = dynastic which = SER } #marriage of Jelisaveta to Hunyadi's son
+		command = { type = alliance which = SER } #swear to protect Serbia
+		command = { type = domestic which = aristocracy value = 1 } #nobles had to decide on their own
+	}
+}
+
+#(1450) Absolution from treaty with Serbia
+event ={
+	id = 188027
+	trigger = {
+		exists = SER
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188027" #Absolution from treaty with Serbia
+	desc = "EVENTHIST188027"
+	#-#In April 1450, Pope Nicolaus V freed Janos Hunyadi from his obligations to Despot Djurad of Serbia. Hunyadi immediately moved to seize Djuradj's rich estates in Hungary.
+
+	date = { day = 1 month = april year = 1450 }
+	offset = 20
+	deathdate = { day = 1 month = may year = 1450 }
+
+	action_a = {
+		name = "ACTIONNAME188027A" #Now he shall pay
+		command = { type = casusbelli which = SER value = 6 } #a reason to expel Serbia from alliance and maybe even declare war
+	}
+}
+
+#(1454) Reconciliation with Djuradj
+event ={
+	id = 188028
+	trigger = {
+		NOT = {
+			vassal = { country = SER country = HUN }
+			war = { country = SER country = HUN }
+		}
+		exists = SER
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188028" #Reconciliation with Djuradj
+	desc = "EVENTHIST188028"
+	#-#Good relations with the enlightened Sultan Mehmed II repaired Djuradj's lost reputation in Christian world. Thanks to the conflicts in Bosnia and Zeta, Djuradj and Hunyadi found themselves on the same side again. Their reconciliation was formalized with a treaty in Smederevo on August 7th. Djuradj's granddaughter was finally formally bethrothed to Hunyadi's younger son, Matthias, and Serbia became a dual vassal of Ottoman Empire and Hungarian Kingdom again.
+
+	date = { day = 1 month = january year = 1454 }
+	offset = 200
+	deathdate = { day = 29 month = december year = 1454 }
+
+	action_a = {
+		name = "ACTIONNAME188028A" #Let's put our differences aside
+		command = { type = relation which = SER value = 100 }
+		command = { type = dynastic which = SER }
+		command = { type = vassal which = SER }
+		command = { type = alliance which = SER }
+	}
+}
+
+#(1458) Election of Mathias Corvinus
+event = {
+	id = 188108
+	random = no
+	country = HUN
+	name = "EVENTNAME188108" #The Coronation of Mathias Corvinus
+	desc = "EVENTHIST188108"
+	#-#After the death of Ladislaus Postumus, the time had come for a national King. Despite the magnates' hostility towards his family and several foreign candidates, there was overwhelming popular support for the only surviving son of Janos Hunyadi whose deeds were kindly remembered, Mathias. The 17-year-old had apparently inherited his father's talents in full measure. Besides, his uncle Mihály Szilâgyi had quickly assumed control of the country at the head of 15,000 veterans who had served under Janos Hunyadi. On January 24th 1458, 40,000 Hungarian nobles assembled on the frozen ice of the Danube and unanimously elected Mathias, who soon received the surname 'Corvinus' from the raven on his escutcheon, King of Hungary.
+
+	date = { day = 24 month = january year = 1458 }
+
+	action_a = {
+		name = "ACTIONNAME188108A" #Let him be King
+		#command = { type = AI which = HUN_Corvinus1.ai }
+		command = { type = relation which = BOH value = 100 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = POL value = -100 }
+		command = { type = breakvassal which = HAB }
+		command = { type = breakvassal which = POL }
+		command = { type = stability value = 2 }
+		command = { type = dynastic which = BOH } #Mathias was married to the daughter of Jiri Podiebrad
+		command = { type = technology which = latin }
+		command = { type = setflag which = [Corvinus] }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = flagname which = "Corvinus" }
+	}
+}
+
+#(1459) Friedrich of Austria crowned King
+event = {
+	id = 188110
+	trigger = {
+		flag = [Corvinus]
+		exists = HAB
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188110" #Friedrich of Austria crowned King
+	desc = "EVENTHIST188110"
+	#-#After Mathias had quickly taken measures to assume greater authority, several malcontent nobles led by Laszló Garai offered the Hungarian throne to Emperor Friedrich III. Friedrich accepted and was crowned King of Hungary in Vienna-Neustadt with the crown of St. Stephen - that had been taken to Austria after the death of Albrecht of Austria, Hungary and Bohemia -, however, due to struggles with the estates of Austria and his brother Albrecht and his very cautious character, hesitated to invade Hungary in order to secure his claim. Unwilling to wait, the supporters of Friedrich rose up in revolt in Northern Hungary on their own.
+
+	date = { day = 4 month = march year = 1459 }
+
+	action_a = {
+		name = "ACTIONNAME188110A" #Crush the traitors
+		command = { type = revolt which = 325 } #Magyar
+		command = { type = revolt which = 326 } #Presburg
+		command = { type = stability value = -1 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = revoltrisk which = 60 value = 3 }
+	}
+}
+
+#(1460-1485) Serbian refugees
+event = {
+	id = 188116
+	trigger = {
+		flag = [Corvinus]
+		NOT = { exists = SER }
+		owned = { province = 354 data = -1 } #Banat
+		OR = {
+			AND = {
+				owned = { province = 355 data = -1 } #Serbia
+				control = { province = 355 data = TUR } #Serbia
+			}
+			owned = { province = 355 data = TUR } #Serbia
+			owned = { province = 363 data = TUR } #Kosovo
+		}
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188116" #Serbian refugees
+	desc = "EVENTHIST188116"
+	#-#Serbia was annexed by the Ottoman Empire in 1459. As a consequence, many Serbs fled north, to the Kingdom of Hungary. Matthias Corvinus gladly welcomed these refugees and let them settle in the southern border districts. Since they were outside Hungarian laws for troop raising, they made for a new reliable army at the hands of the King. The new levy of soldiers based on the refugee Serbs became an impressive light cavalry force, used mainly for raids and counter-raids against the Ottomans and Austria, but also very useful in battle, that was soon known as Hussars. In the following centuries, the Hussars were the world's most famous and respected cavalry units. The Serb refugees were also of immense value for the defense of the Hungarian border.
+
+	date = { day = 1 month = january year = 1460 }
+	offset = 900
+	deathdate = { day = 29 month = december year = 1485 }
+
+	action_a = {
+		name = "ACTIONNAME188116A" #Create the Hussars and the military border
+		command = { type = provinceculture which = 354 value = slavonic } #Banat
+		command = { type = population which = 354 value = 5000 } #Banat
+		command = { type = population which = 355 value = -5000 } #Serbia
+		command = { type = provincemanpower which = 354 value = 5 } #Banat
+		command = { type = provincemanpower which = 355 value = 2 } #Serbia
+		command = { type = fortress which = 354 value = 1 } #Banat
+		command = { type = fortress which = 355 value = 1 } #Serbia
+		command = { type = CAV which = 354 value = 10000 } #Banat
+		command = { type = add_countryculture which = slavonic }
+		command = { type = trigger which = 301028 } #TUR: Serbians flee to Hungary
+	}
+}
+
+#(1460-1478) Back to Buda (safety event in case of HUN_188090 B and capital not restored)
+event = {
+	id = 188016
+	trigger = {
+		atwar = no
+		flag = [Presburg]
+		owned = { province = 325 data = -1 } #Magyar
+		control = { province = 325 data = -1 } #Magyar
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188016" #Back to Buda
+	desc = "EVENTHIST188016"
+	#-#Now that the civil war is finally ended and the noble factions seem to be fully reconciled, we can move our capital city back to Buda.
+
+	date = { day = 10 month = march year = 1460 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1478 }
+
+	action_a = {
+		name = "GOOD"
+		command = { type = capital which = 325 } #Magyar
+		command = { type = clrflag which = [Presburg] }
+		command = { }
+	}
+}
+
+#(1462) Formation of the Black Brigade
+event = {
+	id = 188109
+	trigger = { flag = [Corvinus] }
+	random = no
+	country = HUN
+	name = "EVENTNAME188109" #The Fekete Sereg
+	desc = "EVENTHIST188109"
+	#-#After rising to the throne, Mathias Corvinus soon realized that he needed a permanent, well-trained military force with its loyalty attached personally to him in order to consolidate his power and to stand a chance against the Bohemian Hussites and Ottoman Janissaries. He found excellent material for this new army in the troops of the Hussite mercenaries Jan Vitovec and Jan Jizkra who had seized Hungarian lands during the reign of Ladislaus Postumus. By making them Hungarian nobles and army commanders, he achieved a settlement with them, recovering the lands and taking most of their men into his service. Of these troops who had been trained in the most modern Hussite tactics he formed the 'Fekete Sereg' (Black Brigade), named after the colour of its armour, an elite troop of 6000 soldiers that was to become the backbone of his army.
+
+	date = { day = 1 month = january year = 1462 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1462 }
+
+	action_a = {
+		name = "ACTIONNAME188109A" #Create the Black Brigade
+		command = { type = land value = 500 }
+		command = { type = domestic which = quality value = 1 }
+		command = { type = domestic which = land value = 1 }
+		command = { type = INF which = -2 value = 6000 }
+		command = { type = treasury value = -50 }
+		command = { type = addcore which = 316 } #carpathia
+	}
+	action_b = {
+		name = "ACTIONNAME188109B" #We don't need them
+		command = { type = vp value = -5 }
+	}
+}
+
+#(1462-1469) Peace with Austria
+event = {
+	id = 188111
+	trigger = {
+		exists = HAB
+		event = 188110 #HUN: Friedrich of Austria crowned King
+		control = { province = 325 data = -1 }
+		control = { province = 326 data = -1 }
+		NOT = { war = { country = HAB country = HUN } }
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188111" #Peace with Austria
+	desc = "EVENTHIST188111"
+	#-#The revolt of the North Hungarian nobles intending to put Emperor Friedrich III on the Hungarian throne was quickly crushed, lacking support among the populace. When Matthias had also secured peace with Jiri Podiebrad of Bohemia, he was about to threaten Austria. Therefore Friedrich III gladly agreed to Mathias' offer of paying a ransom of 60000 ducats for the holy crown of St. Stephen, letting Austria retain the border districts it had controlled since 1444, ceding the city of Sopron and allowing Friedrich to use the title of Hungarian King in exchange for abandoning his claim to the Kingdom of Hungary.
+
+	date = { day = 1 month = january year = 1462 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1469 }
+
+	action_a = {
+		name = "ACTIONNAME188111A" #Offer peace to Friedrich
+		command = { type = trigger which = 179109 } #HAB: Corvinus' offer
+	}
+	action_b = {
+		name = "ACTIONNAME188111B" #Punish the insult
+		command = { type = casusbelli which = HAB value = 12 }
+		command = { type = war which = HAB }
+	}
+}
+#(1462-1469) Friedrich accepts
+event = {
+	id = 188112 #triggered by HAB_179109 A
+	random = no
+	country = HUN
+	name = "EVENTNAME188112" #Friedrich accepts
+	desc = "EVENTHIST188112"
+	#-#Friedrich III has accepted the treaty offered to him. The holy crown of St. Stephen is now ours again and Matthias legitimacy will increase by being crowned with it.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = stability value = 3 }
+		command = { type = revoltrisk value = -3 }
+		command = { type = treasury value = -100 }
+		command = { type = cedeprovince which = HAB value = 351 } #Austria
+		command = { type = cedeprovince which = HAB value = 350 } #Salzburg
+		command = { type = cedeprovince which = HAB value = 352 } #Odenburg
+		command = { type = removecore which = 352 } #Odenburg
+	}
+}
+
+#(1464-1466) Army reforms of Mathias Corvinus
+event = {
+	id = 188113
+	trigger = { flag = [Corvinus] }
+	random = no
+	country = HUN
+	name = "EVENTNAME188113" #Army reforms of Mathias Corvinus
+	desc = "EVENTHIST188113"
+	#-#In 1459 Mathias Corvinus began ambitious reforms of the Hungarian army that he intended to make equal to the Ottoman and Hussite military by implementing modern tactics and organization. Instead of relying on the feudal banderia, he created permanent forces. Besides his elite troops, the Black Brigade and the Hussars, from 1465 on he created a large standing army by enlistment in Hungary and Croatia. This army was efficiently organized, led by a regular commissariat and provided with canons and ballistic machines. It did not only provide Corvinus with military power for his numerous campaigns, but also served as a police force and a civilizing medium, forcefully suppressing the lawlessness of the Hungarian nobility and collecting taxes from defiant nobles.
+
+	date = { day = 0 month = january year = 1464 }
+	offset = 900
+	deathdate = { day = 29 month = december year = 1466 }
+
+	action_a = {
+		name = "ACTIONNAME188113A" #Reform the army
+		command = { type = domestic which = land value = 2 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = land value = 1500 }
+	}
+}
+
+#(1464) The Crusade of Pius II (Hungarian version)
+#by the Council of Ten (Democratic Venetian AAR)
+event = {
+	id = 188005 #triggered by VEN_326028 B
+	random = no
+	country = HUN
+	name = "EVENTNAME251015" #The Crusade that Never Was
+	desc = "EVENTHIST188005"
+	#-#In 1459 Pope Pius II called the Congress of Mantua to organise a crusade against the Turk, but only a few delegates showed up. By 1461 the crusade had made no progress so Pius asked Mehmed II to convert. Since that didn't work either, he decided to lead the crusade himself despite being ill. France was at odds with the Pope, Burgundy delayed their help, Milan was trying to seize Genoa, and Florence cynically advised the Pope to let the Turks and the Venetians wear each other out. But the Venetians and the Hungarians signed their support in 1463. Thousands of destitute men from all of Europe came to the Pope's call and he led them to Ancona in the summer of 1464, where he became very ill. While waiting for the Venetian fleet, plague broke out and the crusade army melted away. On August 14, when the Venetians finally arrived, the Pope expired. Doge Christoforo Moro seeing no army and no fleet but his 12 galleys, returned home. This time however the Venetians have chosen to continue the crusade.
+
+	action_a = {
+		name = "ACTIONNAME188005A" #Any help against the Turks is welcome
+		command = { type = treasury value = 40 } #The crusade funds for the Hungarians
+		command = { type = casusbelli which = TUR value = 6 } #A crusade is a good reason to fight
+		command = { type = relation which = PAP value = 50 }
+	}
+}
+
+#(1466) The Bohemian throne
+event = {
+	id = 188119
+	trigger = {
+		OR = {
+			event = 251054 #PAP: Excommunication of Jiriz Podiebrad
+			event = 236005 #MUS: Excommunication of Jiriz Podiebrad
+		}
+		OR = {
+			NOT = { exists = BRA }
+			event = 132013 #BRA: The Bohemian throne
+		}
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188119" #The Bohemian throne
+	desc = "EVENTHIST188119"
+	#-#Jiriz Podiebrad, King of Bohemia, was an Utraquist, a member of the moderate wing of the heretic Hussite movement. Despite having promised to return to the catholic church and to suppress heresy in Bohemia to the Pope before his election, he openly favoured the Hussites and showed hardly any intention to abandon his faith. Pope Pius II, determined to fight Hussitism, condemned Podiebrad's heretic attitude more and more vocally and encouraged an uprising of the catholic nobility in 1465. In order to back the rebels and depose Podiebrad, Pius' successor Paul II excommunicated the Bohemian King on December 23rd 1466, released all his subjects from their oaths of allegiance and searched for a reliably catholic prince who would drive him away and take the Bohemian throne. After Friedrich II of Brandenburg's refusal to champion the campaign, Pius turned to Matthias Corvinus of Hungary. Betraying his former ally Podiebrad, Matthias accepted and invaded Moravia.
+
+	date = { day = 22 month = december year = 1466 }
+	offset = 0
+	deathdate = { day = 24 month = december year = 1466 }
+
+	action_a = {
+		name = "ACTIONNAME188119A" #Accept the offer and claim the Bohemian throne
+		command = { type = addcore which = 328 } #Bohemia
+		command = { type = addcore which = 329 } #Erz
+		command = { type = addcore which = 330 } #Sudeten
+		command = { type = addcore which = 314 } #Silesia
+		command = { type = addcore which = 315 } #Moravia
+		command = { type = war which = BOH }
+		command = { type = setflag which = [Corvinus_Bohemia] }
+		#command = { type = AI which = HUN_Corvinus2.ai }
+	}
+	action_b = {
+		name = "ACTIONNAME188119B" #Reject the Pope's proposal
+		command = { type = stability value = -2 }
+		command = { type = relation which = BOH value = 50 }
+		command = { type = sleepevent which = 129016 } #BOH: Matthias Corvinus proclaimed King by the Catholics
+	}
+}
+
+#(1466-1470) Administrative and social reforms of Mathias Corvinus
+event = {
+	id = 188114
+	trigger = { flag = [Corvinus] }
+	random = no
+	country = HUN
+	name = "EVENTNAME188114" #Administrative and social reforms of Mathias Corvinus
+	desc = "EVENTHIST188114"
+	#-#During his reign, Mathias Corvinus quite significantly changed the Hungarian state and society. He managed to increase the royal income dramatically by making the poorer members of the Diet who were unable to attend it regularly agree to grant taxes several years in advance, outmaneuvering the high nobility, by establishing a regular, functional system of tax collection and by having the treasury administered by specialists with separate functions. Instead of trying to impose much-needed reforms without the consent of the Diet, he managed to reach an agreement with most of the deputies, especially of the lower nobility and the towns, so that he could pass 450 new statutes in a fully legal, unquestionable way. In these statutes, he codified and modernized Hungarian law and state organization. Several laws protected the towns and peasantry from encroachments of the higher classes, he tried to introduce a jurisdiction judging irrespective of status and simplified almost all branches of law, which gained him the epithet of 'the Just'. A new official class, appointed only by ability and merit, helped him enact these policies.
+
+	date = { day = 0 month = january year = 1466 }
+	offset = 1500
+	deathdate = { day = 29 month = december year = 1470 }
+
+	action_a = {
+		name = "ACTIONNAME188114A" #Reform administration and legislation
+		command = { type = stability value = -1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = serfdom value = -2 }
+		command = { type = domestic which = innovative value = 2 }
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = infra value = 1000 }
+	}
+	action_b = {
+		name = "ACTIONNAME188114B" #No need for reforms
+		command = { type = stability value = 2 }
+	}
+}
+
+#(1467-1469) Alliance with Moldavia
+event = {
+	id = 188013 #triggered by MOL_231012 A
+	random = no
+	country = HUN
+	name = "EVENTNAME188013" #Alliance with Moldavia
+	desc = "EVENTHIST231012"
+	#-#The Pope negociates a peace between Stephen and Mathias of Hungary. Following the defeat at Baia, Mathias abandoned temporarly his designs on Moldavia. The Pope sent a legate to Budapest and Suceava to lobby for an anti-Turkish alliance between the two enemies, mission which was successful.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = alliance which = MOL }
+		command = { }
+	}
+}
+
+#(1467) Academia Istropolitana
+event = {
+	id = 188115
+	trigger = {
+		flag = [Corvinus]
+		owned = { province = 326 data = -1 } #Presburg
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188115" #Academia Istropolitana
+	desc = "EVENTHIST188115"
+	#-#Heeding the advice of the Humanist Cardinal Janos Vitéz and being a big supporter of arts, science and education himself, Mathias Corvinus decided to found a second university, besides the already existing one in Pécs, in the Slovak city of Prešporok (called Poszony by the Hungarians). He obtained the approval of Pope Paul II in 1465 and the Academia Istropolitana - Istropolis is the latin name of Prešporok - was officially opened on July 20th 1467. It had four faculties, Arts, Theology, Law and Medicine, and soon became the cultural center of Slovakia and the focal point of Hungarian humanism.
+
+	date = { day = 20 month = july year = 1467 }
+
+	action_a = {
+		name = "ACTIONNAME188115A" #Create a university in Prešporok
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = infra value = 150 }
+		command = { type = population which = 326 value = 500 } #Presburg
+		command = { type = treasury value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME188115B" #Why? We already got one
+		command = { type = vp value = -5 }
+	}
+}
+
+#(1471-1485) Peace of Olmütz -I-
+event = {
+	id = 188120 #triggered by BOH_129026 A
+	random = no
+	country = HUN
+	name = "EVENTNAME188120" #Peace of Olmütz
+	desc = "EVENTHIST188120"
+	#-#Even after the death of Jiri Podiebrad and the election of Vladislav Jagiello, warfare between Bohemia and Matthias Corvinus of Hungary who maintained his claim to the Bohemian throne continued. Despite Polish support for Bohemia, no side eventually managed to gain the upper hand; while Matthias failed in all his attempts to invade Bohemia proper and was threatened by Hungarian rebels and Friedrich III, the lands of the Bohemian crown, Silesia, Moravia and Lusatia, were almost completely occupied by him and could, despite several determined attacks, never be recovered. Realizing this, and desiring to secure their positions, both parties agreed on a peace in Olmütz which came into effect in 1478. By the treaty, Corvinus was to retain the lands of the Bohemian crown until his death when Bohemia could buy them back for 400.000 Florins and was allowed to style himself King of Bohemia in these lands, but gave up his claim on the rest of Bohemia.
+
+	action_a = {
+		name = "ACTIONNAME188120A" #There shall be peace with Bohemia
+		command = { type = removecore which = 328 } #Bohemia
+		command = { type = removecore which = 330 } #Sudeten
+		command = { type = cedeprovince which = BOH value = 330 } #Sudeten
+		command = { type = stability value = 1 }
+		command = { type = relation which = POL value = 50 }
+		command = { type = clrflag which = [Corvinus_Bohemia] }
+		command = { type = trigger which = 129027 } #BOH: Peace concluded
+	}
+	action_b = {
+		name = "ACTIONNAME188120B" #Maintain our claim on all of Bohemia
+		command = { type = stability value = -2 }
+		command = { type = relation which = BOH value = -100 }
+	}
+}
+
+#(1473) Janus Pannonius
+#The description is half paraphrase half copy of the gloss
+#found in The Quest of the Miracle Stag: The Poetry
+#of Hungary, edited by Adam Makkai, Atlantis-
+#Centaur, Chicago, 1996, p. 41. "One for Pope Paul" was
+#translated by George Burrough and Adam Makkai and is found on p. 42.
+event = {
+	id = 188050
+	random = no
+	country = HUN
+	name = "EVENTNAME188050" #Janus Pannonius
+	desc = "EVENTHIST188050"
+	#-#Janus Pannonius (1434 - 1472) is widely considered the first significant Hungarian poet. His uncle, János Vitéz, Bishop of Várad, sent him to Ferrarra, where, besides rhetoric, Greek, Latin, philosophy, and poetics, Pannonius was also trained as a diplomat. He later went to Padua where he became a friend of Galeotto Marzio - Mantegna painted a portrait of the two which has unfortunately been lost. Pannonius' sharp witted poetry like 'One for Pope Paul': 'Rome, do not ask for the Pontiff Paul to be testicle-tested!/ Isn't his daughter herself manly enough, like her Dad?' made him famous throughout Italy. Pannonius earned his doctorate in 1458 and returned to Hungary to serve as personal secretary to King Mattias Corvinus. In 1459 he became Bishop of Pécs. He devoted most of his time as Bishop to political writings. He was later appointed Head Chamberlain to the Queen and then sent to Rome to consult with the Pope about the Turkish threat. In 1468 he accompanied the King on his war in Morava and around 1470 he was made Palatine in charge of southern Hungary and Slavonia. The King, however, soon distanced himself from Janus which caused the poet to join a conspiracy against the King which was quickly quashed. Pannonius died in the castle of his friends the Brothers Thuz near Zagreb. King Corvinus then collected his poetry for inclusion in the King's library - the Corvinae.
+
+	date = { day = 1 month = january year = 1473 }
+
+	action_a = {
+		name = "OK"
+		command = { type = infra value = 75 }
+	}
+}
+
+#(1478-1490) Peace of Olmütz -II-
+event = {
+	id = 188008
+	trigger = {
+		event = 188119 #HUN: The Bohemian throne
+		NOT = { event = 129016 } #BOH: Matthias Corvinus proclaimed King by the Catholics
+		NOT = { war = { country = BOH country = HUN } }
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188120" #Peace of Olmütz
+	desc = "EVENTHIST188008"
+	#-#Even after the death of Jiri Podiebrad and the election of Vladislav Jagiello, warfare between Bohemia and Matthias Corvinus of Hungary who maintained his claim to the Bohemian throne continued. With Polish support Bohemia eventually managed to gain the upper hand. Realizing this both parties agreed on a peace in Olmütz which came into effect in 1478. By the treaty, Corvinus was forced to gave up his claims on Bohemia.
+
+	date = { day = 1 month = january year = 1478 }
+	offset = 30
+	deathdate = { day = 1 month = april year = 1490 }
+
+	action_a = {
+		name = "ACTIONNAME188120A" #There shall be peace with Bohemia
+		command = { type = removecore which = 328 } #Bohemia
+		command = { type = removecore which = 329 } #Erz
+		command = { type = removecore which = 330 } #Sudeten
+		command = { type = removecore which = 314 } #Silesia
+		command = { type = removecore which = 315 } #Moravia
+		command = { type = cedeprovince which = BOH value = 314 } #Bohemia
+		command = { type = cedeprovince which = BOH value = 315 } #Erz
+		command = { type = cedeprovince which = BOH value = 328 } #Sudeten
+		command = { type = cedeprovince which = BOH value = 329 } #Silesia
+		command = { type = cedeprovince which = BOH value = 330 } #Moravia
+		command = { type = stability value = 1 }
+		command = { type = clrflag which = [Corvinus_Bohemia] }
+		command = { type = relation which = POL value = 100 }
+		command = { type = relation which = BOH value = 100 }
+	}
+	action_b = {
+		name = "ACTIONNAME188120B" #Maintain our claim on all of Bohemia
+		command = { type = stability value = -2 }
+		command = { type = relation which = BOH value = -100 }
+	}
+}
+
+#(1479) Conflict with Friedrich III
+event = {
+	id = 188121
+	trigger = {
+		NOT = { flag = [Corvinus_Bohemia] } #Either no conflict with Bohemia or the conflict is over
+		flag = [Corvinus]
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188121" #Conflict with Friedrich III
+	desc = "EVENTHIST188121"
+	#-#About a decade after the treaty of Sopron that had concluded their first clash, the conflict between Mathias Corvinus and Emperor Friedrich III was sparked again by several relatively minor incidents. Both were deeply distrustful of each other, Friedrich accusing Mathias of maintaining a secret agreement with the Ottomans and letting their raiding troops pass through Hungarian lands for their invasions of Austria. When Mathias was still fighting Vladislav Jagiello of Bohemia to gain the Bohemian throne - that he had been promised by the Pope -, Friedrich formally recognized Vladislav as King of Bohemia and elector of the Holy Roman Empire. The rivaly deteriorated into a personal feud after Friedrich in 1477 had given sanctuary to one of Mathias' advisors, Johann Beckenschlager, the Archbishop of Esztergom, who had left Hungary because of a disagreement with Corvinus. This caused Mathias to invade Austria and siege Vienna, which made Friedrich grudgingly accept a truce by which he acknowledged Corvinus as Bohemian King and promised to abandon his support for Beckenschlager. However only two years later Friedrich got Beckenschlager elected Archbishop of Salzburg. Mathias decided this provocation was too much, and began a determined invasion of Austria and Styria with the goal to humiliate Friedrich and expand his territory.
+
+	date = { day = 1 month = january year = 1479 }
+	offset = 100
+	deathdate = { day = 29 month = december year = 1479 }
+
+	action_a = {
+		name = "ACTIONNAME188121A" #Invade Austria
+		command = { type = addcore which = 327 } #Ostmarch
+		command = { type = addcore which = 351 } #Austria
+		command = { type = addcore which = 369 } #Steiermark
+		command = { type = addcore which = 352 } #Odenburg
+		command = { type = addcore which = 367 } #Krain
+		command = { type = casusbelli which = HAB value = 60 }
+		command = { type = relation which = HAB value = -200 }
+		#command = { type = AI which = HUN_Corvinus3.ai }
+	}
+	action_b = {
+		name = "ACTIONNAME188121B" #Avoid a conflict with Friedrich
+		command = { type = relation which = HAB value = 50 }
+	}
+}
+
+#(1490) Death of Mathias Corvinus with Austria existing
+event = {
+	id = 188122
+	trigger = {
+		flag = [Corvinus]
+		exists = HAB
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188122" #Death of Mathias Corvinus
+	desc = "EVENTHIST188122"
+	#-#In the last years of his reign Mathias Corvinus tried to ensure the succession of his highly gifted, but illegitimate son Janos, made him the largest landholder in Hungary after the King by several grants of territory, put him in charge of several of the strongest and most important fortresses, gave him the holy crown of St. Stephen and got a majority of the royal council to support Janos. However Mathias died of a stroke before the matter was definitely secured, and the young, inexperienced Janos was soon deprived of his rights and his property by the Hungarian magnates who were fed up with the strong central rule introduced by Mathias and desired a monarch 'whose beard they could hold in their fists'. Such a candidate was found in Vladislav Jagiello, King of Bohemia since 1471. Called 'King All Right' by his Bohemian subjects because of his weakness, irresoluteness and saying yes to everything, obviously completely incompetent for ruling a Kingdom and having already initiated a rapid decline of Bohemia, he was the easily controllable puppet King the magnates were looking for. Vladislav was elected King on July 5th 1490 and immediately thereafter accepted the compact of Farkashida in which he confirmed all existing privileges of the nobility and took back all legal and administrative reforms, including the efficient system of taxation regarded as repressive by the magnates. After 3 decades of prosperity and modernisation, the election of Vladislav initiated a rapid decline, ending up in the disaster of Mohacs. Another candidate to the throne was Maximilian of Habsburg who maintained the claim of his father Friedrich III, but since he had already proven to be a capable ruler and would have been likely to use his powerbase in the Empire, Austria and Burgundy to consolidate his authority in Hungary, he was no popular choice. Had Janos Corvinus indeed managed to become King, he might have continued the achievements of his father, but would have been violently opposed by the powerful magnates.
+
+	date = { day = 5 month = april year = 1490 }
+
+	action_a = {
+		name = "ACTIONNAME188122A" #Elect Vladislav Jagiello
+		command = { type = technology which = orthodox }
+		command = { type = domestic which = aristocracy value = 3 }
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = domestic which = serfdom value = 2 }
+		command = { type = domestic which = quality value = -1 }
+		command = { type = domestic which = land value = -3 }
+		command = { type = domestic which = offensive value = -1 }
+		command = { type = stability value = 2 }
+		#command = { type = AI which = peaceful.ai }
+		command = { type = setflag which = [Jagiello] }
+		command = { type = clrflag which = [Corvinus] }
+		command = { type = cedeprovince which = BOH value = 314 } #Silesia
+		command = { type = cedeprovince which = BOH value = 315 } #Moravia
+		command = { type = cedeprovince which = BOH value = 329 } #Erz
+		command = { type = cedeprovince which = BOH value = 330 } #Sudeten
+		command = { type = cedeprovince which = HAB value = 327 } #Ostmarch
+		command = { type = cedeprovince which = HAB value = 350 } #Salzburg
+		command = { type = cedeprovince which = HAB value = 351 } #Austria
+		command = { type = removecore which = 327 } #Ostmarch
+		command = { type = removecore which = 328 } #Bohemia
+		command = { type = removecore which = 330 } #Sudeten
+		command = { type = removecore which = 314 } #Silesia
+		command = { type = removecore which = 315 } #Moravia
+		command = { type = removecore which = 329 } #Erz
+		command = { type = removecore which = 351 } #Austria
+		command = { type = removecore which = 369 } #Steiermark
+		command = { type = removecore which = 352 } #Odenburg
+		command = { type = removecore which = 367 } #Krain
+		command = { type = removecore which = 364 } #Bosnia
+		command = { type = removecore which = 355 } #Serbia
+		command = { type = removecore which = 366 } #Croatia
+		command = { type = removecore which = 326 } #Presburg
+		command = { type = removecore which = 354 } #Banat
+		command = { type = removecore which = 365 } #Dalmatia
+		command = { type = trigger which = 258104 } #POL: Wladyslaw Jagiello, King of Hungary
+		command = { type = flagname which = "" }
+	}
+	action_b = {
+		name = "ACTIONNAME188122B" #Janos Corvinus shall be King!
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = independence which = TRA }
+		command = { type = trigger which = 179112 } #HAB: Civil War in Hungary
+		command = { type = trigger which = 301029 } #TUR: The Kingdom of Hungary
+		command = { type = stability value = -6 }
+		command = { type = cedeprovince which = BOH value = 314 } #Silesia
+		command = { type = cedeprovince which = BOH value = 315 } #Moravia
+		command = { type = cedeprovince which = BOH value = 329 } #Erz
+		command = { type = cedeprovince which = BOH value = 330 } #Sudeten
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = domestic which = quality value = -1 }
+		command = { type = domestic which = land value = -3 }
+		command = { type = domestic which = offensive value = -1 }
+		command = { type = removecore which = 328 } #Bohemia
+		command = { type = removecore which = 330 } #Sudeten
+		command = { type = removecore which = 314 } #Silesia
+		command = { type = removecore which = 315 } #Moravia
+		command = { type = removecore which = 329 } #Erz
+		command = { type = removecore which = 364 } #Bosnia
+		command = { type = removecore which = 355 } #Serbia
+		command = { type = removecore which = 366 } #Croatia
+		command = { type = removecore which = 326 } #Presburg
+		command = { type = removecore which = 354 } #Banat
+		command = { type = removecore which = 365 } #Dalmatia
+		command = { type = revoltrisk which = 240 value = 8 }
+		command = { type = sleepmonarch which = 061013 } #Jagiellon #Ulászló II
+		command = { type = wakemonarch which = 061016 } #Janos I Corvinus °
+	}
+	action_c = {
+		name = "ACTIONNAME188122C" #Elect Maximilian of Habsburg (End Game)
+		command = { type = cedeprovince which = BOH value = 314 } #Silesia
+		command = { type = cedeprovince which = BOH value = 315 } #Moravia
+		command = { type = cedeprovince which = BOH value = 329 } #Erz
+		command = { type = cedeprovince which = BOH value = 330 } #Sudeten
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = domestic which = quality value = -1 }
+		command = { type = domestic which = land value = -3 }
+		command = { type = domestic which = offensive value = -1 }
+		command = { type = trigger which = 188036 } #HUN: Ottoman influence in the Balkans
+		command = { type = trigger which = 188037 } #HUN: The fate of the Kingdom of Hungary
+		command = { type = trigger which = 179111 } #HAB: Inheritance of Hungary
+		command = { type = trigger which = 301029 } #TUR: The Kingdom of Hungary
+	}
+}
+#(1490) Ottoman influence in the Balkans - Ahistorical
+event = {
+	id = 188036 #triggered by HUN_188122 C
+	trigger = {
+		OR = {
+			owned = { province = 319 data = -1 } #Bujak
+			owned = { province = 320 data = -1 } #Dobrudja
+			owned = { province = 321 data = -1 } #Rumelia
+			owned = { province = 355 data = -1 } #Serbia
+			owned = { province = 356 data = -1 } #Bulgaria
+			owned = { province = 357 data = -1 } #Thrace
+			owned = { province = 358 data = -1 } #Macedonia
+			owned = { province = 361 data = -1 } #Albania
+			owned = { province = 362 data = -1 } #Ragusa
+			owned = { province = 363 data = -1 } #Kosovo
+			owned = { province = 364 data = -1 } #Bosnia
+			owned = { province = 365 data = -1 } #Dalmatia
+			owned = { province = 366 data = -1 } #Croatia
+		}
+		neighbour = TUR
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188036" #Ottoman influence in the Balkans
+	desc = "EVENTHIST301029"
+	#-#The Kingdom of Hungary has received a new monarch who lacks the support of a huge part of a nobility. There can be expected to be a long internal struggle which would probably give the Sultan an excellent opportunity to expand north.
+
+	action_a = {
+		name = "OK"
+		command = { type = cedeprovince which = TUR value = 319 } #Bujak
+		command = { type = cedeprovince which = TUR value = 320 } #Dobrudja
+		command = { type = cedeprovince which = TUR value = 321 } #Rumelia
+		command = { type = cedeprovince which = TUR value = 355 } #Serbia
+		command = { type = cedeprovince which = TUR value = 356 } #Bulgaria
+		command = { type = cedeprovince which = TUR value = 357 } #Thrace
+		command = { type = cedeprovince which = TUR value = 358 } #Macedonia
+		command = { type = cedeprovince which = TUR value = 361 } #Albania
+		command = { type = cedeprovince which = TUR value = 362 } #Ragusa
+		command = { type = cedeprovince which = TUR value = 363 } #Kosovo
+		command = { type = cedeprovince which = TUR value = 364 } #Bosnia
+		command = { type = cedeprovince which = TUR value = 365 } #Dalmatia
+		command = { type = cedeprovince which = TUR value = 366 } #Croatia
+		command = { type = independence which = MOL }
+		command = { type = independence which = WAL }
+	}
+}
+#(1490) The fate of the Kingdom of Hungary - Ahistorical
+event = {
+	id = 188037 #triggered by HUN_188122 C
+	trigger = {
+		OR = {
+			owned = { province = 318 data = -1 } #Moldova
+			owned = { province = 319 data = -1 } #Bujak
+			owned = { province = 320 data = -1 } #Dobrudja
+			owned = { province = 321 data = -1 } #Rumelia
+			owned = { province = 322 data = -1 } #Wallachia
+			owned = { province = 355 data = -1 } #Serbia
+			owned = { province = 356 data = -1 } #Bulgaria
+			owned = { province = 358 data = -1 } #Macedonia
+			owned = { province = 361 data = -1 } #Albania
+			owned = { province = 362 data = -1 } #Ragusa
+			owned = { province = 363 data = -1 } #Kosovo
+			owned = { province = 364 data = -1 } #Bosnia
+			owned = { province = 365 data = -1 } #Dalmatia
+			owned = { province = 366 data = -1 } #Croatia
+			owned = { province = 368 data = -1 } #Istria
+		}
+		NOT = {
+			neighbour = TUR
+		}
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188037" #The fate of the Kingdom of Hungary
+	desc = "EVENTHIST188037"
+	#-#The Kingdom of Hungary has received a new monarch who lacks the support of a huge part of a nobility.
+
+	action_a = {
+		name = "OK"
+		command = { type = independence which = MOL }
+		command = { type = independence which = WAL }
+		command = { type = independence which = BOS }
+		command = { type = independence which = SER }
+		command = { type = independence which = CRO }
+		command = { type = independence which = ALB }
+		command = { type = independence which = BUL }
+		command = { type = trigger which = 188038 } #HUN: Death of Mathias Corvinus and Moldavia
+		command = { type = trigger which = 188039 } #HUN: Death of Mathias Corvinus and Serbia
+		command = { type = trigger which = 188040 } #HUN: Death of Mathias Corvinus and Croatia
+		command = { type = trigger which = 188041 } #HUN: Death of Mathias Corvinus and Albania
+		command = { type = trigger which = 188042 } #HUN: Death of Mathias Corvinus and Bulgaria
+	}
+}
+#(1490) Death of Mathias Corvinus and Moldavia - Ahistorical
+event = {
+	id = 188038 #triggered by HUN_188037
+	trigger = {
+		owned = { province = 319 data = -1 } #Bujak
+		exists = MOL
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188038" #Death of Mathias Corvinus and Moldavia
+	desc = "EVENTHIST188037"
+	#-#The Kingdom of Hungary has received a new monarch who lacks the support of a huge part of a nobility.
+
+	action_a = {
+		name = "OK"
+		command = { type = cedeprovince which = MOL value = 319 } #Bujak
+	}
+}
+#(1490) Death of Mathias Corvinus and Serbia - Ahistorical
+event = {
+	id = 188039 #triggered by HUN_188037
+	trigger = {
+		owned = { province = 363 data = -1 } #Kosovo
+		exists = SER
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188039" #Death of Mathias Corvinus and Serbia
+	desc = "EVENTHIST188037"
+	#-#The Kingdom of Hungary has received a new monarch who lacks the support of a huge part of a nobility.
+
+	action_a = {
+		name = "OK"
+		command = { type = cedeprovince which = SER value = 363 } #Kosovo
+	}
+}
+#(1490) Death of Mathias Corvinus and Croatia - Ahistorical
+event = {
+	id = 188040 #triggered by HUN_188037
+	trigger = {
+		OR = {
+			owned = { province = 365 data = -1 } #Dalmatia
+			owned = { province = 368 data = -1 } #Istria
+		}
+		exists = CRO
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188040" #Death of Mathias Corvinus and Croatia
+	desc = "EVENTHIST188037"
+	#-#The Kingdom of Hungary has received a new monarch who lacks the support of a huge part of a nobility.
+
+	action_a = {
+		name = "OK"
+		command = { type = cedeprovince which = CRO value = 365 } #Dalmatia
+		command = { type = cedeprovince which = CRO value = 368 } #Istria
+	}
+}
+#(1490) Death of Mathias Corvinus and Albania - Ahistorical
+event = {
+	id = 188041 #triggered by HUN_188037
+	trigger = {
+		owned = { province = 362 data = -1 } #Ragusa
+		exists = ALB
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188041" #Death of Mathias Corvinus and Albania
+	desc = "EVENTHIST188037"
+	#-#The Kingdom of Hungary has received a new monarch who lacks the support of a huge part of a nobility.
+
+	action_a = {
+		name = "OK"
+		command = { type = cedeprovince which = ALB value = 362 } #Ragusa
+	}
+}
+#(1490) Death of Mathias Corvinus and Bulgaria - Ahistorical
+event = {
+	id = 188042 #triggered by HUN_188037
+	trigger = {
+		OR = {
+			owned = { province = 320 data = -1 } #Dobrudja
+			owned = { province = 321 data = -1 } #Rumelia
+			owned = { province = 356 data = -1 } #Bulgaria
+			owned = { province = 358 data = -1 } #Macedonia
+		}
+		exists = BUL
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188042" #Death of Mathias Corvinus and Bulgaria
+	desc = "EVENTHIST188037"
+	#-#The Kingdom of Hungary has received a new monarch who lacks the support of a huge part of a nobility.
+
+	action_a = {
+		name = "OK"
+		command = { type = cedeprovince which = BUL value = 320 } #Dobrudja
+		command = { type = cedeprovince which = BUL value = 321 } #Rumelia
+		command = { type = cedeprovince which = BUL value = 356 } #Bulgaria
+		command = { type = cedeprovince which = BUL value = 358 } #Macedonia
+	}
+}
+#(1490) Death of Mathias Corvinus with Habsburgs dead - Ahistorical
+event = {
+	id = 188123
+	trigger = {
+		flag = [Corvinus]
+		NOT = { exists = HAB }
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188123" #The succession of Mathias Corvinus
+	desc = "EVENTHIST188123"
+	#-#In the last years of his reign Mathias Corvinus tried to ensure the succession of his highly gifted, but illegitimate son Janos, made him the largest landholder in Hungary after the King by several grants of territory, put him in charge of several of the strongest and most important fortresses, gave him the holy crown of St. Stephen and got a majority of the royal council to support Janos. However Mathias died of a stroke before the matter was definitely secured, and the young, inexperienced Janos was soon deprived of his rights and his property by the Hungarian magnates who were fed up with the strong central rule introduced by Mathias and desired a monarch 'whose beard they could hold in their fists'. Such a candidate was found in Vladislav Jagiello, King of Bohemia since 1471. Called 'King All Right' by his Bohemian subjects because of his weakness, irresoluteness and saying yes to everything, obviously completely incompetent for ruling a Kingdom and having already initiated a rapid decline of Bohemia, he was the easily controllable puppet King the magnates were looking for. Vladislav was elected King on July 5th 1490 and immediately thereafter accepted the compact of Farkashida in which he confirmed all existing privileges of the nobility and took back all legal and administrative reforms, including the efficient system of taxation regarded as repressive by the magnates. After 3 decades of prosperity and modernisation, the election of Vladislav initiated a rapid decline, ending up in the disaster of Mohacs. Had Janos Corvinus indeed managed to become King, he might have continued the achievements of his father, but would have been violently opposed by the powerful magnates.
+
+	date = { day = 5 month = april year = 1490 }
+
+	action_a = {
+		name = "ACTIONNAME188122A" #Elect Vladislav Jagiello
+		command = { type = technology which = orthodox }
+		command = { type = domestic which = aristocracy value = 3 }
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = domestic which = serfdom value = 2 }
+		command = { type = domestic which = quality value = -1 }
+		command = { type = domestic which = land value = -3 }
+		command = { type = domestic which = offensive value = -1 }
+		command = { type = stability value = 2 }
+		#command = { type = AI which = peaceful.ai }
+		command = { type = setflag which = [Jagiello] }
+		command = { type = clrflag which = [Corvinus] }
+		command = { type = cedeprovince which = BOH value = 314 } #Silesia
+		command = { type = cedeprovince which = BOH value = 315 } #Moravia
+		command = { type = cedeprovince which = BOH value = 329 } #Erz
+		command = { type = cedeprovince which = BOH value = 330 } #Sudeten
+		command = { type = removecore which = 328 } #Bohemia
+		command = { type = removecore which = 330 } #Sudeten
+		command = { type = removecore which = 314 } #Silesia
+		command = { type = removecore which = 315 } #Moravia
+		command = { type = removecore which = 329 } #Erz
+		command = { type = removecore which = 364 } #Bosnia
+		command = { type = removecore which = 355 } #Serbia
+		command = { type = removecore which = 366 } #Croatia
+		command = { type = removecore which = 326 } #Presburg
+		command = { type = removecore which = 354 } #Banat
+		command = { type = removecore which = 365 } #Dalmatia
+		command = { type = trigger which = 258104 } #POL: Wladyslaw Jagiello, King of Hungary
+		command = { type = flagname which = "" }
+	}
+	action_b = {
+		name = "ACTIONNAME188122B" #Janos Corvinus shall be King!
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = independence which = TRA }
+		command = { type = trigger which = 301029 } #TUR: The Kingdom of Hungary
+		command = { type = stability value = -6 }
+		command = { type = cedeprovince which = BOH value = 314 } #Silesia
+		command = { type = cedeprovince which = BOH value = 315 } #Moravia
+		command = { type = cedeprovince which = BOH value = 329 } #Erz
+		command = { type = cedeprovince which = BOH value = 330 } #Sudeten
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = domestic which = quality value = -1 }
+		command = { type = domestic which = land value = -3 }
+		command = { type = domestic which = offensive value = -1 }
+		command = { type = removecore which = 328 } #Bohemia
+		command = { type = removecore which = 330 } #Sudeten
+		command = { type = removecore which = 314 } #Silesia
+		command = { type = removecore which = 315 } #Moravia
+		command = { type = removecore which = 329 } #Erz
+		command = { type = removecore which = 364 } #Bosnia
+		command = { type = removecore which = 355 } #Serbia
+		command = { type = removecore which = 366 } #Croatia
+		command = { type = removecore which = 326 } #Presburg
+		command = { type = removecore which = 354 } #Banat
+		command = { type = removecore which = 365 } #Dalmatia
+		command = { type = sleepmonarch which = 061013 } #Jagiellon #Ulászló II
+		command = { type = wakemonarch which = 061016 } #Janos I Corvinus °
+		command = { type = revoltrisk which = 240 value = 8 }
+	}
+}
+#(1490 or 1504) Restitution of Polish lands - Ahistorical
+event = {
+	id = 188014 #triggered by POL_258104
+	trigger = {
+		OR = {
+			owned = { province = 291 data = -1 } #Masovia
+			owned = { province = 292 data = -1 } #Podlasia
+			owned = { province = 293 data = -1 } #Volyn
+			owned = { province = 297 data = -1 } #Podolia
+			owned = { province = 298 data = -1 } #Galizien
+			owned = { province = 299 data = -1 } #Krakow
+			owned = { province = 300 data = -1 } #Wielkopolska
+			owned = { province = 301 data = -1 } #Danzig
+			owned = { province = 303 data = -1 } #Poznan
+		}
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME129042" #Restitution of Polish lands
+	desc = "EVENTHIST188014"
+	#-#With the election of Vladislav Jagiello as King of Hungary, Polish lands could be restituted to the Crown of Poland.
+
+	action_a = {
+		name = "ACTIONNAME129042A" #Restitute them
+		command = { type = cedeprovince which = POL value = 291 } #Masovia
+		command = { type = cedeprovince which = POL value = 292 } #Podlasia
+		command = { type = cedeprovince which = POL value = 293 } #Volyn
+		command = { type = cedeprovince which = POL value = 297 } #Podolia
+		command = { type = cedeprovince which = POL value = 298 } #Galizien
+		command = { type = cedeprovince which = POL value = 299 } #Krakow
+		command = { type = cedeprovince which = POL value = 300 } #Wielkopolska
+		command = { type = cedeprovince which = POL value = 301 } #Danzig
+		command = { type = cedeprovince which = POL value = 303 } #Poznan
+	}
+	action_b = {
+		name = "ACTIONNAME188014B" #Keep them under Hungarian rule
+		command = { type = revoltrisk which = 120 value = 5 }
+		command = { type = vp value = -50 }
+	}
+}
+
+#(1504) Death of Janos Corvinus - Corvinus prevails
+event = {
+	id = 188124
+	trigger = {
+		flag = [Corvinus]
+		NOT = { exists = TRA }
+		countrysize = 10
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188124" #Death of Janos Corvinus
+	desc = "EVENTHIST188124"
+	#-#Janos Corvinus died prematurely on October 12th 1504. His only son Christopher is a weakly, ill child expected to die soon. Therefore shortly before his death he has approached Janos Zapolya, the most influential Hungarian magnate who is known to be opposed to a foreign King, and offered him the throne in order to reach reconciliation between the crown and the magnates. The ambitious Zapolya accepts and will become King as Janos II. By giving the crown to him, opposition against central authority among the nobility will be substantially weakened - considering that all his friends and supporters can be expected to continue backing him as King.
+
+	date = { day = 11 month = october year = 1504 }
+
+	action_a = {
+		name = "ACTIONNAME188124A" #Zapolya shall be King
+		command = { type = wakemonarch which = 061017 } #János II Zápolya
+		command = { type = wakemonarch which = 061018 } #János III Zápolya
+		command = { type = sleepmonarch which = 061014 } #Cardinal Bakócz (Regent)
+		command = { type = sleepmonarch which = 061015 } #Lajos II
+		command = { type = sleepmonarch which = 061019 } #János I Zápolya
+		command = { type = sleepmonarch which = 061020 } #János II Zápolya
+		command = { type = stability value = 1 }
+		command = { type = revoltrisk value = -3 }
+		command = { type = technology which = orthodox }
+	}
+}
+#(1504) Death of Janos Corvinus - Corvinus fails
+event = {
+	id = 188125
+	trigger = {
+		flag = [Corvinus]
+		OR = {
+			exists = TRA
+			NOT = { countrysize = 10 }
+		}
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188125" #Death of Janos Corvinus
+	desc = "EVENTHIST188125"
+	#-#Janos Corvinus died prematurely on October 12th 1504. His only son Christopher is a weakly, ill child expected to die soon. During his reign, Hungary has virtually disintegrated due to the hefty resistance of the nobility against a strong King and foreign powers taking advantage of Hungary's instability. The magnates who desired a weak puppet King already in 1490 have prevailed and manage to install Vladislav Jagiello of Bohemia now, an incompetent, irresolute figurehead who will lead Hungary into disaster.
+
+	date = { day = 11 month = october year = 1504 }
+
+	action_a = { #same effects as in the 1490 event
+		name = "ACTIONNAME188125A" #Crown Vladislav Jagiello
+		command = { type = technology which = orthodox } #or even worse?
+		command = { type = removecore which = 351 } #Austria
+		command = { type = removecore which = 369 } #Steiermark
+		command = { type = removecore which = 352 } #Odenburg
+		command = { type = removecore which = 367 } #Krain
+		command = { type = domestic which = aristocracy value = 3 }
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = domestic which = serfdom value = 2 }
+		command = { type = stability value = 2 }
+		#command = { type = AI which = peaceful.ai }
+		command = { type = setflag which = [Jagiello] }
+		command = { type = clrflag which = [Corvinus] }
+		command = { type = revoltrisk value = -8 }
+		command = { type = wakemonarch which = 061048 } #Ulászló II °
+		command = { type = inherit which = TRA }
+		command = { type = trigger which = 258104 } #POL: Wladyslaw Jagiello, King of Hungary
+	}
+}
+
+#(1520-1526) Suleyman demands the Submission of Hungary
+event = {
+	id = 19009 #triggered by TUR_19008
+	trigger = {
+		NOT = { monarch = 061017 } #János II Zápolya (Janos Corvinus prevailed)
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME19009" #Suleyman Demands Our Submission
+	desc = "EVENTHIST19009"
+	#-#In 1520, Suleyman I demanded an extension of the peace between Constantinople and Buda, with the additional terms that young King Lajos submit to the authority of the Sultan and reject the right of the Habsburgs to inherit Hungary. Lajos was also warned by Pope Leo X not to make peace with the Turk. Lajos detained Suleyman's ambassador while frantically seeking help around Europe. Due to his wars with France, however, his brother-in-law, Emperor Charles V of Spain, advised him to agree to Suleyman's demands. His other brother-in-law, Archduke Ferdinand of Austria, promised him aid, but was in no position to grant it. Lajos' only other possible ally, Poland, was under attack by the Crimean Tatars. Lajos faced Suleyman alone.
+
+	action_a = {
+		name = "ACTIONNAME19009A" #Delay the ambassador, we must find allies
+		command = { type = breakvassal which = POL } #you never know...
+		command = { type = breakvassal which = HAB }
+		command = { type = breakvassal which = BOH }
+		command = { type = breakvassal which = TUR }
+		command = { type = relation which = TUR value = -100 }
+		command = { type = sleepevent which = 19011 } #TUR: Lajos submits to Suleyman
+		command = { type = sleepevent which = 301067 } #TUR: János II submits to Suleyman
+		command = { type = trigger which = 19010 } #TUR: Lajos insults Suleyman
+	}
+	action_b = {
+		name = "ACTIONNAME19009B" #We must submit
+		command = { type = breakvassal which = POL }
+		command = { type = breakvassal which = HAB }
+		command = { type = breakvassal which = BOH }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = relation which = PAP value = -50 }
+		command = { type = relation which = TUR value = 100 }
+		command = { type = stability value = -4 }
+		command = { type = removecore which = 355 } #Serbia
+		command = { type = removecore which = 364 } #Bosnia
+		command = { type = removecore which = 365 } #Dalmatia
+		command = { type = cedeprovince which = TUR value = 355 } #Serbia
+		command = { type = cedeprovince which = TUR value = 364 } #Bosnia
+		command = { type = cedeprovince which = TUR value = 365 } #Dalmatia
+		command = { type = sleepevent which = 301067 } #TUR: János II submits to Suleyman
+	}
+}
+#(1520-1526) Suleyman demands the Submission of Hungary - Ahistorical
+event = {
+	id = 188009 #triggered by TUR_19008
+	trigger = { monarch = 061017 } #János II Zápolya (Janos Corvinus failed)
+	random = no
+	country = HUN
+	name = "EVENTNAME19009" #Suleyman Demands Our Submission
+	desc = "EVENTHIST188009"
+	#-#In 1520, Suleyman I demanded an extension of the peace between Constantinople and Buda, with the additional terms that János II Zápolya submit to the authority of the Sultan and reject the right of the Habsburgs to inherit Hungary. János II was also warned by Pope Leo X not to make peace with the Turk. János II detained Suleyman's ambassador while frantically seeking help around Europe. Finding no ally able to grant a good military support in his fight against the Turk, János II had to face Suleyman alone.
+
+	action_a = {
+		name = "ACTIONNAME19009A" #Delay the ambassador, we must find allies
+		command = { type = breakvassal which = POL } #you never know...
+		command = { type = breakvassal which = HAB }
+		command = { type = breakvassal which = BOH }
+		command = { type = breakvassal which = TUR }
+		command = { type = relation which = TUR value = -100 }
+		command = { type = sleepevent which = 19011 } #TUR: Lajos submits to Suleyman
+		command = { type = sleepevent which = 301067 } #TUR: János II submits to Suleyman
+		command = { type = trigger which = 301066 } #TUR: János II insults Suleyman
+	}
+	action_b = {
+		name = "ACTIONNAME19009B" #We must submit
+		command = { type = breakvassal which = POL }
+		command = { type = breakvassal which = HAB }
+		command = { type = breakvassal which = BOH }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = relation which = PAP value = -50 }
+		command = { type = relation which = TUR value = 100 }
+		command = { type = stability value = -4 }
+		command = { type = removecore which = 355 } #Serbia
+		command = { type = removecore which = 364 } #Bosnia
+		command = { type = removecore which = 365 } #Dalmatia
+		command = { type = cedeprovince which = TUR value = 355 } #Serbia
+		command = { type = cedeprovince which = TUR value = 364 } #Bosnia
+		command = { type = cedeprovince which = TUR value = 365 } #Dalmatia
+		command = { type = sleepevent which = 19011 } #TUR: Lajos submits to Suleyman
+	}
+}
+
+#(1526) The Invasion of Hungary
+event = {
+	id = 19013
+	trigger = {
+		event = 19010 #TUR: Lajos insults Suleyman
+		NOT = {
+			vassal = { country = HUN country = TUR }
+			vassal = { country = HUN country = HAB }
+		}
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME19013" #The Turks Approach
+	desc = "EVENTHIST19013"
+	#-#After seizing Belgrade and several other key forts guarding Hungary, Suleyman gave Lajos one last chance to see reason. An uprising in Egypt gave Lajos another year of breathing space, but he was still unable to find support in Europe. With the Sultan at the head of an 80,000 man army, Lajos prepared to face him with only 30,000 men.
+
+	date = { day = 23 month = august year = 1526 }
+
+	action_a = {
+		name = "ACTIONNAME19013A" #We will fight them!
+		command = { type = trigger which = 19014 } #HUN: The Battle of Mohacs
+		command = { type = cedeprovince which = TUR value = 355 } #Serbia
+	}
+	action_b = {
+		name = "ACTIONNAME19013B" #We cannot hope to prevail
+		command = { type = breakvassal which = POL }
+		command = { type = breakvassal which = HAB }
+		command = { type = breakvassal which = BOH }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = PAP value = -50 }
+		command = { type = relation which = SPA value = -50 }
+		command = { type = relation which = CAS value = -50 } #In case Spain never formed
+		command = { type = relation which = TUR value = 100 }
+		command = { type = stability value = -4 }
+		command = { type = removecore which = 355 } #Serbia
+		command = { type = removecore which = 364 } #Bosnia
+		command = { type = removecore which = 365 } #Dalmatia
+		command = { type = cedeprovince which = TUR value = 355 } #Serbia
+		command = { type = cedeprovince which = TUR value = 364 } #Bosnia
+		command = { type = cedeprovince which = TUR value = 365 } #Dalmatia
+		command = { type = trigger which = 301124 } #TUR: Lajos eventually submits to Suleyman
+	}
+}
+#(1526) The Battle of Mohacs
+event = {
+	id = 19014 #triggered by HUN_19013 A
+	random = no
+	country = HUN
+	name = "EVENTNAME19014" #The Battle of Mohacs
+	desc = "EVENTHIST19014"
+	#-#At the battle of Mohacs, the Hungarian army fought bravely and well, but was utterly defeated and virtually destroyed. Worst of all, King Lajos himself perished in the rout, thrown from his horse and drowned while fording a creek. With no army and no leadership, nothing could prevent the Turks from marching wherever they would. Lajos, a mere youth of twenty-one, had left no heir. Nothing could be done until the nobles selected a new King.
+
+	action_a = {
+		name = "ACTIONNAME19014A" #Disaster!
+		command = { type = stability value = -4 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = trigger which = 19016 } #HUN: Electing a New King
+		command = { type = trigger which = 3642 } #Election of the King of Bohemia #BOH: The Death of King Lajos of Bohemia
+	}
+}
+#(1526) The Battle of Mohacs, pt II
+event = {
+	id = 19016 #triggered by HUN_19014
+	random = no
+	country = HUN
+	name = "EVENTNAME19016" #Electing a New King
+	desc = "EVENTHIST19016"
+	#-#With Hungary defeated, Suleyman ordered the nobility of Hungary to chose whomever they wished for King, so long as he was not a Habsburg. Most of the nobles voted for János Zápolya of Transylvania, as he had the only army in Hungary. Led by the nobility of Croatia, however, many nobles argued for Ferdinand of Austria, despite the Sultan's orders, saying that only he could protect them from Suleyman.
+
+	action_a = {
+		name = "ACTIONNAME19016A" #Elect János Zápolya of Transylvania
+		command = { type = stability value = -4 }
+		command = { type = cedeprovince which = HAB value = 326 } #Presburg
+		command = { type = cedeprovince which = HAB value = 351 } #Austria
+		command = { type = cedeprovince which = HAB value = 350 } #Salzburg
+		command = { type = cedeprovince which = HAB value = 352 } #Odenburg
+		command = { type = cedeprovince which = HAB value = 367 } #Krain
+		command = { type = cedeprovince which = HAB value = 369 } #Steiermark
+		command = { type = cedeprovince which = HAB value = 327 } #Ostmarch
+		command = { type = relation which = TUR value = 150 }
+		command = { type = breakvassal which = POL }
+		command = { type = breakvassal which = HAB }
+		command = { type = breakvassal which = BOH }
+		command = { type = alliance which = TUR }
+		command = { type = sleepevent which = 3185 } #HAB: The Habsburg Inheritance of Hungary
+		command = { type = trigger which = 3186 } #HAB: The Turk is expanding in Hungary
+	}
+	action_b = {
+		name = "ACTIONNAME19016B" #Elect Ferdinand Habsburg of Austria
+		command = { type = breakvassal which = POL } #you never know...
+		command = { type = breakvassal which = TUR }
+		command = { type = breakvassal which = BOH }
+		command = { type = dynastic which = HAB }
+		command = { type = alliance which = HAB }
+		command = { type = relation which = HAB value = 200 }
+		command = { type = stability value = -4 }
+		command = { type = cedeprovince which = TUR value = 317 } #Ruthenia
+		command = { type = cedeprovince which = TUR value = 323 } #Transylvania
+		command = { type = cedeprovince which = TUR value = 354 } #Banat
+		command = { type = cedeprovince which = TUR value = 362 } #Ragusa
+		command = { type = cedeprovince which = TUR value = 364 } #Bosnia
+		command = { type = cedeprovince which = TUR value = 365 } #Dalmatia
+		command = { type = cedeprovince which = TUR value = 366 } #Croatia
+		command = { type = trigger which = 19018 } #HUN: The Habsburg rule in Hungary
+	}
+}
+#(1526) The Assassination of Lajos II - Ahistorical - Lajos II submitted to the Sultan
+event = {
+	id = 19015
+	trigger = {
+		OR = {
+			event = 19011 #TUR: Lajos submits to Suleyman
+			event = 301124 #TUR: Lajos eventually submits to Suleyman
+		}
+		NOT = { #just for safety as HUN should be TUR vassal
+			vassal = { country = HUN country = TUR }
+			vassal = { country = HUN country = HAB }
+		}
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME19015" #The Assassination of Lajos II
+	desc = "EVENTHIST19015"
+	#-#The nobles of Hungary were growing increasingly dissatisfied with the leadership of the boy-king. His failure to join the League of Cambrai against Venice and take back Dalmatia was not well-received. Submitting to be the vassal of the heathen Turks was the last straw. On August, 22, 1526, King Lajos of Hungary and Bohemia was assassinated by a conspiracy of nobles.
+
+	date = { day = 24 month = August year = 1526 }
+
+	action_a = {
+		name = "ACTIONNAME19015A" #Down with the King!
+		command = { type = stability value = -2 }
+		command = { type = trigger which = 19017 } #HUN: Electing a New King
+		command = { type = trigger which = 3642 } #Election of the King of Bohemia #BOH: The Death of King Lajos of Bohemia
+	}
+}
+#(1526) Electing a New King - Ahistorical
+event = {
+	id = 19017 #triggered by HUN_19015
+	random = no
+	country = HUN
+	name = "EVENTNAME19016" #Electing a New King
+	desc = "EVENTHIST19017"
+	#-#With Lajos II dead, Suleyman ordered the nobility of Hungary to chose whomever they wished to be King, so long as he was not a Habsburg. Most of the nobles voted for János Zápolya of Transylvania. Led by the nobility of Croatia, however, any nobles argued for Ferdinand of Austria, despite the Sultan's orders, saying that only he could protect them from Suleyman.
+
+	action_a = {
+		name = "ACTIONNAME19016A" #Elect János Zápolya of Transylvania
+		command = { type = stability value = -4 }
+		command = { type = relation which = TUR value = 150 }
+		command = { type = breakvassal which = POL }
+		command = { type = breakvassal which = HAB }
+		command = { type = breakvassal which = BOH }
+		command = { type = cedeprovince which = HAB value = 351 } #Austria
+		command = { type = cedeprovince which = HAB value = 350 } #Salzburg
+		command = { type = cedeprovince which = HAB value = 326 } #Presburg
+		command = { type = cedeprovince which = HAB value = 352 } #Odenburg
+		command = { type = cedeprovince which = HAB value = 367 } #Krain
+		command = { type = cedeprovince which = HAB value = 369 } #Steiermark
+		command = { type = cedeprovince which = HAB value = 327 } #Ostmarch
+		command = { type = sleepevent which = 179131 } #HAB: The Habsburg Inheritance of Hungary
+		command = { type = trigger which = 179143 } #HAB: The Turk is expanding in Hungary
+	}
+	action_b = {
+		name = "ACTIONNAME19016B" #Elect Ferdinand Habsburg of Austria
+		command = { type = breakvassal which = POL } #you never know...
+		command = { type = breakvassal which = TUR }
+		command = { type = breakvassal which = BOH }
+		command = { type = dynastic which = HAB }
+		command = { type = alliance which = HAB }
+		command = { type = relation which = HAB value = 200 }
+		command = { type = stability value = -4 }
+		command = { type = trigger which = 19018 } #HUN: The Habsburg rule in Hungary
+	}
+}
+#(1526) The Death of King Lajos of Hungary - Ahistorical - No Turkish vassal, no Battle of Mohacs
+event = {
+	id = 19025
+	trigger = {
+		exists = HAB
+		NOT = {
+			event = 19013 #HUN: The Turks Approach (the battle of Mohacs)
+			event = 19015 #HUN: The Assassination of Lajos II (Lajos II submitted to the Sultan)
+		}
+		monarch = 061015 #Lajos II
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME19025" #The Death of King Lajos of Hungary
+	desc = "EVENTHIST19025"
+	#-#Lajos II (Louis), King of Hungary, Bohemia, and Croatia, was the last of the Jagiello dynasty in the two Kingdoms. While riding with his companions on a hunting trip, King Lajos fell off his horse after it was suddenly startled, causing him to break his neck. Lajos left no direct heir. The Diet, Hungary's Parliament, convened to decide who would be the dead King's successor. Two factions formed around the candidates who were most likely to succeed him. The first was Louis's brother-in-law, Ferdinand of Habsburg, and the other was János Zápolya of Transylvania. Ferdinand's claim was supported by Spain, Bohemia, England and the Papacy, while France, the Ottoman Empire, and Poland backed Zápolya. The Diet voted to give Zápolya the crowns of Hungary and Croatia. Ferdinand lauched a lightning campaign against the disorganized Kingdom, and managed to secure a portion of it for himself.
+
+	date = { day = 26 month = August year = 1526 }
+
+	action_a = {
+		name = "ACTIONNAME19025A" #Elect János Zápolya (possibly End Game)
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = stability value = -4 }
+		command = { type = revoltrisk which = 72 value = 1 }
+		command = { type = revoltrisk which = 60 value = 1 }
+		command = { type = revoltrisk which = 48 value = 1 }
+		command = { type = revoltrisk which = 36 value = 1 }
+		command = { type = revoltrisk which = 24 value = 1 }
+		command = { type = revoltrisk which = 12 value = 1 }
+		command = { type = domestic which = CENTRALIZATION value = -2 }
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = relation which = SPA value = -150 }
+		command = { type = relation which = HAB value = -150 }
+		command = { type = relation which = ENG value = -150 }
+		command = { type = relation which = PAP value = -150 }
+		command = { type = relation which = FRA value = 150 }
+		command = { type = relation which = POL value = 150 }
+		command = { type = relation which = TUR value = 150 }
+		command = { type = sleepevent which = 179133 } #HAB: The Habsburg Inheritance of Hungary
+		command = { type = trigger which = 179132 } #HAB: The Death of King Lajos of Hungary
+	}
+	action_b = {
+		name = "ACTIONNAME19016B" #Elect Ferdinand Habsburg of Austria
+		command = { type = dynastic which = HAB }
+		command = { type = alliance which = HAB }
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 36 value = 1 }
+		command = { type = revoltrisk which = 24 value = 1 }
+		command = { type = revoltrisk which = 12 value = 1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = trigger which = 19018 } #HUN: The Habsburg rule in Hungary
+	}
+}
+
+#(1540) The Death of János Zápolya -I-
+event = {
+	id = 19020 #triggered by TUR_19019 A
+	random = no
+	country = HUN
+	name = "EVENTNAME19019" #The Death of János Zápolya
+	desc = "EVENTHIST19019"
+	#-#Zápolya's reign was contested from the very beginning. In 1538, Zápolya had secretly promised Ferdinand of Austria the Hungarian crown in order to buy peace. In 1540, while putting down a revolt in Transylvania, János died from illness, just three weeks after his Polish princess-bride had given him a son, János Sigusmund. With Zapolya's death, Ferdinand again invaded Hungary to try to claim his inheritance. Finally the Ottoman Sultan, having had enough with the chaos in his vassal, Hungary, split the country into three parts. He kept Southern and Central Hungary for himself, giving Eastern Hungary to János Sigusmund, while letting Ferdinand hold the Western portion. Hungary would remain divided between the three countries for the next 170 years.
+
+	action_a = {
+		name = "ACTIONNAME19020A" #János Sigismund will be the Prince of Transylvania
+		command = { type = capital which = 323 } #Transylvania
+		command = { type = cedeprovince which = HAB value = 351 } #Austria
+		command = { type = cedeprovince which = HAB value = 350 } #Salzburg
+		command = { type = cedeprovince which = HAB value = 316 } #Carpathia
+		command = { type = cedeprovince which = HAB value = 326 } #Presburg
+		command = { type = cedeprovince which = HAB value = 327 } #Ostmarch
+		command = { type = cedeprovince which = HAB value = 352 } #Odenburg
+		command = { type = cedeprovince which = HAB value = 367 } #Krain
+		command = { type = cedeprovince which = HAB value = 369 } #Steiermark
+		command = { type = cedeprovince which = HAB value = 368 } #Istria
+		command = { type = cedeprovince which = POL value = 297 } #Podolia
+		command = { type = cedeprovince which = POL value = 298 } #Galizien
+		command = { type = cedeprovince which = POL value = 299 } #Krakow
+		command = { type = cedeprovince which = TUR value = 325 } #Magyar
+		command = { type = cedeprovince which = TUR value = 353 } #Pest
+		command = { type = cedeprovince which = TUR value = 354 } #Banat
+		command = { type = cedeprovince which = TUR value = 362 } #Ragusa
+		command = { type = cedeprovince which = TUR value = 364 } #Bosnia
+		command = { type = cedeprovince which = TUR value = 365 } #Dalmatia
+		command = { type = cedeprovince which = TUR value = 366 } #Croatia
+		command = { type = cedeprovince which = TUR value = 365 } #Serbia if Hungary did run amok before
+		command = { type = cedeprovince which = TUR value = 363 } #Kosovo just in case
+		command = { type = cedeprovince which = TUR value = 361 } #Albania
+		command = { type = cedeprovince which = TUR value = 319 } #Bujak
+		command = { type = independence which = POL }
+		command = { type = independence which = BOH }
+		command = { type = independence which = MOL }
+		command = { type = independence which = WAL }
+		command = { type = remove_countryculture which = slavonic } #Transylvania at this time cedes all slavonic provinces
+		command = { type = add_countryculture which = romanian }
+		command = { type = flagname which = "" }
+		command = { type = country which = TRA }
+		command = { type = sleepevent which = 19024 } #HUN: The Death of János Zápolya
+	}
+}
+#(1540) The Death of János Zápolya -II-
+event = {
+	id = 19024
+	trigger = {
+		NOT = { monarch = 061035 } #Ferdinand I °
+		NOT = {
+			vassal = { country = TUR country = HUN }
+			vassal = { country = HAB country = HUN }
+		}
+		exists = HAB
+		NOT = { event = 19020 } #HUN: The Death of János Zápolya
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME19019" #The Death of János Zápolya
+	desc = "EVENTHIST19024"
+	#-#Zápolya's reign was contested from the very beginning. In 1538, Zápolya had secretly promised Ferdinand of Austria the Hungarian crown in order to buy peace. In 1540, while putting down a revolt in Transylvania, János died from illness, just three weeks after his Polish princess-bride had given him a son, János Sigusmund. With Zapolya's death, Ferdinand again invaded Hungary to try to claim his inheritance.
+
+	date = { day = 22 month = july year = 1540 }
+
+	action_a = {
+		name = "ACTIONNAME19016A" #Elect János Zápolya of Transylvania
+		command = { type = stability value = -4 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revoltrisk which = 72 value = 1 }
+		command = { type = revoltrisk which = 60 value = 1 }
+		command = { type = revoltrisk which = 48 value = 1 }
+		command = { type = revoltrisk which = 36 value = 1 }
+		command = { type = revoltrisk which = 24 value = 1 }
+		command = { type = revoltrisk which = 12 value = 1 }
+		command = { type = sleepevent which = 179136 } #HAB: The Habsburg Inheritance of Hungary
+		command = { type = trigger which = 19026 } #HAB: The Death of János Zápolya
+	}
+	action_b = {
+		name = "ACTIONNAME19016B" #Elect Ferdinand Habsburg of Austria
+		command = { type = dynastic which = HAB }
+		command = { type = alliance which = HAB }
+		command = { type = relation which = HAB value = 200 }
+		command = { type = stability value = -2 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revoltrisk which = 36 value = 1 }
+		command = { type = revoltrisk which = 24 value = 1 }
+		command = { type = revoltrisk which = 12 value = 1 }
+		command = { type = trigger which = 19018 } #HUN: The Habsburg rule in Hungary
+	}
+}
+#(1526 or 1540) The Habsburg rule in Hungary
+event = {
+	id = 19018 #triggered by HUN_19016 B / HUN_19017 B / HUN_19024 B / HUN_19025 B
+	random = no
+	country = HUN
+	name = "EVENTNAME19018" #The Habsburg rule in Hungary
+	desc = "EVENTHIST19018"
+	#-#The Hungary nobility was able to keep Hungary from being absorbed into the Austria state for almost 170 years. The Habsburgs were forced to rule Hungary as a seperate state until the early 18th Century.
+
+	action_a = {
+		name = "ACTIONNAME19018A" #The Habsburg rulers of Hungary
+		command = { type = breakvassal which = POL } #you never know...
+		command = { type = breakvassal which = TUR }
+		command = { type = breakvassal which = BOH }
+		command = { type = dynastic which = HAB }
+		command = { type = relation which = HAB value = 200 }
+		command = { type = wakemonarch which = 061035 } #Ferdinand I °
+		command = { type = wakemonarch which = 061036 } #Maksimillian I *
+		command = { type = wakemonarch which = 061037 } #Rudolf I *
+		command = { type = wakemonarch which = 061038 } #Mátyás II *
+		command = { type = wakemonarch which = 061039 } #Ferdinand II *
+		command = { type = wakemonarch which = 061040 } #Ferdinand III *
+		command = { type = wakemonarch which = 061041 } #Lipót I *
+		command = { type = wakemonarch which = 061042 } #József I *
+		command = { type = wakemonarch which = 061043 } #Karol VI *
+		command = { type = wakemonarch which = 061044 } #Mária Terézia *
+		command = { type = wakemonarch which = 061045 } #József II *
+		command = { type = wakemonarch which = 061046 } #Lipót II *
+		command = { type = wakemonarch which = 061047 } #Ferenc I *
+		command = { type = sleepmonarch which = 061017 } #János II Zápolya (could be woken up)
+		command = { type = sleepmonarch which = 061018 } #János III Zápolya (could be woken up)
+		command = { type = sleepmonarch which = 061019 } #János I Zápolya
+		command = { type = sleepmonarch which = 061020 } #János II Zápolya
+		command = { type = sleepmonarch which = 061021 } #István Báthory *
+		command = { type = sleepmonarch which = 061022 } #Christofer Báthory *
+		command = { type = sleepmonarch which = 061023 } #Sigismund Báthory *
+		command = { type = sleepmonarch which = 061024 } #Mihai Viteazul *
+		command = { type = sleepmonarch which = 061025 } #Interregnum *
+		command = { type = sleepmonarch which = 061026 } #István Bocskai *
+		command = { type = sleepmonarch which = 061027 } #Gábor Báthory *
+		command = { type = sleepmonarch which = 061028 } #Gábor Bethlen *
+		command = { type = sleepmonarch which = 061029 } #György I Rákóczy *
+		command = { type = sleepmonarch which = 061030 } #György II Rákóczy *
+		command = { type = sleepmonarch which = 061031 } #Ferenc I Rákóczy *
+		command = { type = sleepmonarch which = 061049 } #Imrich Tököli *
+		command = { type = sleepmonarch which = 061032 } #Ferenc II Rákóczy *
+		command = { type = sleepmonarch which = 061033 } #Ferenc III Rákóczy *
+		command = { type = sleepmonarch which = 061034 } #György III Rákóczy *
+	}
+}
+
+#(1604) Religious Rebellion
+event = {
+	id = 3641
+	trigger = {
+		monarch = 061037 #Rudolf I *
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME3641" #Religious Rebellion
+	desc = "EVENTHIST3641"
+	#-#In 1604 Rudolf I (1552-1612) was intent on re-imposing Catholicism on the Hungarians, provoking their first popular insurrection against Habsburg rule. The insurrectionists found a leader in István Bocskai (1557--1606), prince of Transylvania in 1605 and 1606, who fused the popular forces with his own army. Already at war with the Turks, the Habsburgs now faced an uncompromising civil war. A threefold settlement was finally forced on the dynasty: the Treaties of Vienna and Zsitvatorok of 1606 and the legislation of the Hungarian diet of 1608. Together these secured for Hungary religious freedom, constitutional autonomy, and the right of habeas corpus.
+
+	date = { day = 1 month = january year = 1604 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1604 }
+
+	action_a = {
+		name = "ACTIONNAME3641A" #Fight for the cause of the Reformed Faith
+		command = { type = revoltrisk which = 36 value = 6 }
+		command = { type = religion which = reformed }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = PAP value = -100 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = relation which = SWE value = 100 }
+		command = { type = relation which = LIT value = 100 }
+		command = { type = relation which = PRU value = 100 }
+		command = { type = relation which = DAN value = 100 }
+		command = { type = relation which = HOL value = 100 }
+		command = { type = domestic which = INNOVATIVE value = 2 }
+		command = { type = stability value = -2 }
+	}
+	action_b = {
+		name = "ACTIONNAME3641B" #Fight for the cause of the Catholic Faith
+		command = { type = revoltrisk which = 36 value = 6 }
+		command = { type = religion which = counterreform }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = relation which = PAP value = 100 }
+		command = { type = relation which = SPA value = 100 }
+		command = { type = relation which = SWE value = -100 }
+		command = { type = relation which = ENG value = -100 }
+		command = { type = relation which = PRU value = -100 }
+		command = { type = relation which = DAN value = -100 }
+		command = { type = relation which = HOL value = -100 }
+		command = { type = domestic which = INNOVATIVE value = -2 }
+		command = { type = stability value = -2 }
+	}
+}
+
+#(1614-1820) The Hungarian Vampire - Flavor
+#by Johan Andersson
+event = {
+	id = 1503
+	random = no
+	country = HUN
+	name = "EVENTNAME1503" #The Hungarian Vampire
+	desc = "EVENTHIST1503"
+	#-#Elizabeth Báthory was a niece of the nobleman Stephen Bathory, but she had a cruel and bloody story. She tried to live like a vampire and slaughtered nore than 600 virgins in an attempt to renew her youth by bathing in their blood. She was executed in 1614 after being imprisoned.
+
+	date = { day = 0 month = january year = 1614 }
+	offset = 300
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "OK"
+		command = { type = stability value = -1 }
+		command = { type = domestic which = innovative value = -1 }
+	}
+}
+
+#(1614-1622) uskok event, by Isaac Brock
+event = {
+	id = 188000
+	trigger = {
+		event = 326003 #HUN: target of uskok event
+		event = 326004 #VEN: declared war
+		NOT = { war = { country = VEN country = CRO } }
+		OR = {
+			owned = { province = 368 data = VEN } #Istria
+		 	owned = { province = 365 data = VEN } #Dalmatia
+		}
+	}
+	random = no
+	country = HUN
+	name = "EVENTNAME188000" #The Uskok resettlement
+	desc = "EVENTHIST188000"
+	#-#The uskoks were refugees from the Balkans who settled in the town of Senj on the Dalmatian coast, from where they could protect the frontier. Their piracy led to war between Croatia and Venice. As part of the peace the Uskoks were forcibly relocated away from the coast.
+
+	date = { day = 1 month = january year = 1614 }
+	offset = 1
+	deathdate = { day = 1 month = january year = 1622 }
+
+	action_a = {
+		name = "ACTIONNAME188000A" #Resettle the uskoks
+		command = { type = provincemanpower which = 366 value = 2 } #Croatia
+		command = { type = relation which = VEN value = 50 }
+		command = { type = relation which = TUR value = 30 }
+		command = { type = manpower value = -5 }
+		command = { type = desertion which = -1 value = 3000 }
+		command = { type = naval value = -500 }
+		command = { type = provincemanpower which = 368 value = -1 } #Istria
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Random Events
+#-----------------------------------------------------------------------------------------------
+
+#Rebellion against Mathias Corvinus
+event = {
+	id = 188117
+	trigger = {
+		monarch = 061012 #Mátyás Corvin
+	}
+	random = yes
+	country = HUN
+	name = "EVENTNAME188117" #Rebellion against Mathias Corvinus
+	desc = "EVENTHIST188117"
+	#-#Throughout the reign of Mathias Corvinus, there were numerous rebellions of the nobility, angry about the loss of their privileges, the increased taxes and greater royal authority. Every once in a while, some barons and prelates would assemble and plan his deposition while he was busy elsewhere. All these attempts were quickly crushed when Mathias arrived like a tempest with his royal troops and scattered the rebels. Nevertheless, the constant occupation with dissent in Hungary prevented him from obtaining even greater military successes in his campaigns against Bohemia and Austria.
+
+	action_a = {
+		name = "ACTIONNAME188117A" #Crush these fools
+		command = { type = revolt which = -1 }
+		command = { type = stability value = -1 }
+	}
+}
+
+#Rebellion against Mathias Corvinus
+event = {
+	id = 188118
+	trigger = {
+		monarch = 061012 #Mátyás Corvin
+		atwar = yes
+	}
+	random = yes
+	country = HUN
+	name = "EVENTNAME188117" #Rebellion against Mathias Corvinus
+	desc = "EVENTHIST188117"
+	#-#Throughout the reign of Mathias Corvinus, there were numerous rebellions of the nobility, angry about the loss of their privileges, the increased taxes and greater royal authority. Every once in a while, some barons and prelates would assemble and plan his deposition while he was busy elsewhere. All these attempts were quickly crushed when Mathias arrived like a tempest with his royal troops and scattered the rebels. Nevertheless, the constant occupation with dissent in Hungary prevented him from obtaining even greater military successes in his campaigns against Bohemia and Austria.
+
+	action_a = {
+		name = "ACTIONNAME188117A" #Crush these fools
+		command = { type = revolt which = -1 }
+		command = { type = stability value = -1 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 188043-188049 - next: 188051

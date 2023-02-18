@@ -1,0 +1,55 @@
+#Palembang (PAL)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1478-1820) The End of the Majapahit Empire
+#MKJ(?)
+event = {
+	id = 80708 #triggered by MTR_234000 A
+	trigger = {
+		vassal = { country = MTR country = PAL }
+	}
+	country = PAL
+	random = no
+	name = "EVENTNAME80707" #The End of the Majapahit Empire
+	desc = "EVENTHIST80707"
+	#-#The Majapahit Empire is dead. We owe their successors nothing.
+
+	action_a = {
+		name = "ACTIONNAME80707A" #We shall rule ourselves
+		command = { type = breakvassal which = MTR }
+	}
+}
+
+#(1500-1820) Conversion of Palembang
+#MKJ(?)
+event = {
+	id = 80701
+	trigger = {
+		NOT = { religion = sunni }
+	}
+	country = PAL
+	random = no
+	name = "EVENTNAME80701" #Conversion of Palembang
+	desc = "EVENTHIST80701"
+	#-#Palembang became Muslim during the turn of the 16th century, forcing out the Buddhist nobility, the Priyayi.
+
+	date = { day = 1 month = january year = 1500 }
+	offset = 2000
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME80701A" #The Sultans shall rule
+		command = { type = religion which = sunni }
+		command = { type = wakemonarch which = 0148001 } #The Sultans
+		command = { type = provincereligion which = -2 value = sunni }
+	}
+	action_b = {
+		name = "ACTIONNAME80701B" #The Priyayi shall rule
+		command = { type = stability value = 1 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 318000

@@ -180,7 +180,7 @@ globaldata = {
 		id = { type = 6000 id = 10 }
 		type = vassalization
 		expirydate = { day = 29 month = december year = 1420 }
-		participant = { DLH JAI }
+		participant = { DLH RAJ }
 	}
 	alliance = {
 		id = { type = 6000 id = 12 }
@@ -205,7 +205,7 @@ globaldata = {
 		id = { type = 6000 id = 15 }
 		type = vassalization
 		expirydate = { year = 1820 }
-		participant = { DAU BEA }
+		participant = { DAU FOI }
 	}
 	alliance = {
 		id = { type = 6000 id = 16 }
@@ -217,25 +217,25 @@ globaldata = {
 		id = { type = 6000 id = 17 }
 		type = vassalization
 		expirydate = { day = 15 month = june year = 1480 }
-		participant = { MTR SWA }
+		participant = { MTR BIM }
 	}
 	alliance = {
 		id = { type = 6000 id = 18 }
 		type = vassalization
 		expirydate = { day = 15 month = august year = 1491 }
-		participant = { MYA ARK }
+		participant = { BRM ARK }
 	}
 	alliance = {
 		id = { type = 6000 id = 19 }
 		type = vassalization
 		expirydate = { day = 15 month = august year = 1491 }
-		participant = { CHI LGD }
+		participant = { CHI LCH }
 	}
 	alliance = {
 		id = { type = 6000 id = 20 }
 		type = vassalization
 		expirydate = { day = 15 month = august year = 1491 }
-		participant = { POL MIN }
+		participant = { POL MAS }
 	}
 	alliance = {
 		id = { type = 6000 id = 21 }
@@ -337,7 +337,7 @@ globaldata = {
 		id = { type = 6000 id = 37 }
 		type = vassalization
 		expirydate = { day = 1 month = january year = 1500 }
-		participant = { FAT COI }
+		participant = { CLC COC }
 	}
 	alliance = {
 		id = { type = 6000 id = 38 }
@@ -367,7 +367,7 @@ globaldata = {
 		id = { type = 6000 id = 42 }
 		type = vassalization
 		expirydate = { day = 1 month = january year = 1440 }
-		participant = { GEO SEV }
+		participant = { GEO ABK }
 	}
 	alliance = {
 		id = { type = 6000 id = 43 }
@@ -391,7 +391,7 @@ globaldata = {
 		id = { type = 6000 id = 46 }
 		type = vassalization
 		expirydate = { year = 1820 }
-		participant = { ORM GHA }
+		participant = { ORM GHR }
 	}
 	alliance = {
 		id = { type = 6000 id = 47 }
@@ -409,7 +409,7 @@ globaldata = {
 		id = { type = 6000 id = 49 }
 		type = vassalization
 		expirydate = { day = 29 month = december year = 1520 }
-		participant = { MAM RAG }
+		participant = { MAM RAM }
 	}
 	alliance = {
 		id = { type = 6000 id = 50 }
@@ -433,7 +433,7 @@ globaldata = {
 		id = { type = 6000 id = 53 }
 		type = vassalization
 		expirydate = { year = 1820 }
-		participant = { PAP PAM }
+		participant = { PAP MOD }
 	}
 	alliance = {
 		id = { type = 6000 id = 54 }
@@ -469,13 +469,13 @@ globaldata = {
 		id = { type = 9423 id = 3 }
 		type = militaryalliance
 		expirydate = { year = 1429 }
-		participant = { XHO TUN }
+		participant = { TLE TUN }
 	}
 	alliance = {
 		id = { type = 9423 id = 4 }
 		type = militaryalliance
 		expirydate = { year = 1431 }
-		participant = { LIT POL MIN}
+		participant = { LIT POL MAS }
 	}
 	alliance = {
 		id = { type = 9423 id = 5 }
@@ -505,7 +505,7 @@ globaldata = {
 		id = { type = 9423 id = 9 }
 		type = militaryalliance
 		expirydate = { year = 1454 }
-		participant = { KAR TEK }
+		participant = { KAR GZI }
 	}
 	alliance = {
 		id = { type = 9423 id = 10 }
@@ -517,7 +517,7 @@ globaldata = {
 		id = { type = 9423 id = 11 }
 		type = militaryalliance
 		expirydate = { year = 1500 }
-		participant = { TYR PRM STR WUR }
+		participant = { TYR SEI STR WUR }
 	}
 	alliance = {
 		id = { type = 9423 id = 12 }
@@ -553,7 +553,7 @@ globaldata = {
 		id = { type = 9423 id = 17 }
 		type = militaryalliance
 		expirydate = { year = 1453 }
-		participant = { MLO PAM MAN }
+		participant = { MLO MOD MAN }
 	}
 	alliance = { #Ottomans allied with Albania, Bosnia and Wallachia
 		id = { type = 9423 id = 18 }
@@ -577,13 +577,13 @@ globaldata = {
 		id = { type = 9423 id = 21 }
 		type = militaryalliance
 		expirydate = { day = 10 month = february year = 1500 }
-		participant = { CAM AMI }
+		participant = { CAM LAX }
 	}
 	alliance = {
 		id = { type = 9423 id = 22 }
 		type = militaryalliance
 		expirydate = { day = 10 month = february year = 1450 }
-		participant = { KHM MYA }
+		participant = { LNA BRM }
 	}
 	alliance = {
 		id = { type = 9423 id = 23 }
@@ -595,13 +595,13 @@ globaldata = {
 		id = { type = 9423 id = 24 }
 		type = militaryalliance
 		expirydate = { day = 10 month = february year = 1445 }
-		participant = { PEG ARK }
+		participant = { MON ARK }
 	}
 	alliance = {
 		id = { type = 9423 id = 25 }
 		type = militaryalliance
 		expirydate = { day = 29 month = december year = 1500 }
-		participant = { BYZ SPR }
+		participant = { BYZ MRE }
 	}
 	alliance = {
 		id = { type = 9423 id = 26 }
@@ -625,7 +625,7 @@ globaldata = {
 		id = { type = 9423 id = 29 }
 		type = militaryalliance
 		expirydate = { day = 29 month = december year = 1500 }
-		participant = { GEL MUN }
+		participant = { GEL BRG }
 	}
 	alliance = {
 		id = { type = 9423 id = 30 }
@@ -643,7 +643,7 @@ globaldata = {
 		id = { type = 9423 id = 32 }
 		type = militaryalliance
 		expirydate = { year = 1450 }
-		participant = { JAI MLW }
+		participant = { RAJ MLW }
 	}
 	alliance = {
 		id = { type = 9423 id = 33 }
@@ -655,7 +655,7 @@ globaldata = {
 		id = { type = 9423 id = 34 }
 		type = militaryalliance
 		expirydate = { year = 1429 }
-		participant = { MAM DUL RAG }
+		participant = { MAM DUL RAM }
 	}
 	alliance = {
 		id = { type = 9423 id = 35 }
@@ -667,7 +667,7 @@ globaldata = {
 		id = { type = 9423 id = 36 }
 		type = militaryalliance
 		expirydate = { year = 1429 }
-		participant = { GUJ MES }
+		participant = { GUJ SIN }
 	}
 	alliance = {
 		id = { type = 9423 id = 37 }
@@ -679,7 +679,7 @@ globaldata = {
 		id = { type = 9423 id = 38 }
 		type = militaryalliance
 		expirydate = { day = 10 month = february year = 1500 }
-		participant = { CHI KOR HAM TAU }
+		participant = { CHI KOR HAM MUB }
 	}
 	alliance = {
 		id = { type = 9423 id = 39 }
@@ -836,13 +836,13 @@ globaldata = {
 		id = { type = 6000 id = 121 }
 		type = dynasticalliance
 		expirydate = { year = 1820 }
-		participant = { HAB PRM }
+		participant = { HAB SEI }
 	}
 	alliance = {
 		id = { type = 6000 id = 122 }
 		type = dynasticalliance
 		expirydate = { year = 1820 }
-		participant = { PRM TYR }
+		participant = { SEI TYR }
 	}
 	alliance = {
 		id = { type = 6000 id = 123 }
@@ -860,13 +860,13 @@ globaldata = {
 		id = { type = 6000 id = 127 }
 		type = dynasticalliance
 		expirydate = { day = 15 month = august year = 1434 }
-		participant = { LIT MIN }
+		participant = { LIT MAS }
 	}
 	alliance = {
 		id = { type = 6000 id = 128 }
 		type = dynasticalliance
 		expirydate = { day = 29 month = december year = 1460 }
-		participant = { ATH SPR }
+		participant = { ATH MRE }
 	}
 	alliance = {
 		id = { type = 6000 id = 129 }
@@ -884,7 +884,7 @@ globaldata = {
 		id = { type = 6000 id = 131 }
 		type = dynasticalliance
 		expirydate = { year = 1439 }
-		participant = { MOR XHO }
+		participant = { MOR TLE }
 	}
 	alliance = {
 		id = { type = 6000 id = 132 }
@@ -908,13 +908,13 @@ globaldata = {
 		id = { type = 6000 id = 135 }
 		type = dynasticalliance
 		expirydate = { day = 25 month = january year = 1431 }
-		participant = { GUJ MES }
+		participant = { GUJ SIN }
 	}
 	alliance = {
 		id = { type = 6000 id = 136 }
 		type = dynasticalliance
 		expirydate = { year = 1422 }
-		participant = { THE VIJ }
+		participant = { BMD VIJ }
 	}
 
 	emperor = HUN

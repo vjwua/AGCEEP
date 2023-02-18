@@ -4,7 +4,7 @@
 
 country = {
 	tag = SCO
-	ai = "SmallTrade1.ai"
+	ai = "SmallTrade1.txt"
 	flagname = "Saltire"
 	colonialattempts = 0
 	colonialnation = yes
@@ -16,7 +16,7 @@ country = {
 	inflation = 0
 	merchants = 0
 	religion = { type = reformed }
-	culture = { type = gaelic }
+	culture = { type = celtic }
 	diplomacy = {
 		relation = { tag = ENG value = -200 }
 		relation = { tag = FRA value = 100 }

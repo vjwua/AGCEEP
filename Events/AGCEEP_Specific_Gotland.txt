@@ -1,0 +1,173 @@
+#Gotland (GOT)
+
+#-----------------------------------------------------------------------------------------------
+#Erik VII Sequence
+
+#(1419-1459) Erik resides in Gotland
+event = {
+	id = 367000
+	trigger = {
+		event = 159045 #DAN: Rebellion in Sweden
+	}
+	random = no
+	country = GOT
+	name = "EVENTNAME367000" #Erik resides in Gotland
+	desc = "EVENTHIST367000"
+	#-#Following the wars against the counts of Holstein the unrest in Sweden was very high due to the war taxes imposed by Erik. In 1434 this resulted in major rebellion in north and central Sweden. Erik had no choice but to sign a treaty that severely reduced his power in Sweden or face a full-scale Swedish war. He ended up signing the treaty and was now obliged to heed the advice to the Swedish State Council as well as only allow Swedish nobles to govern Swedish provinces. Erik was furious and left for his castle in Gotland leaving the administration of Denmark in the hands of the Danish State Council. Even though Erik had left Denmark proper he was still the rightful King of Denmark and recognised as such in all of Europe.
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1459 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = addcore which = 307 } #Sjælland
+		command = { type = addcore which = 309 } #Jylland
+		command = { type = addcore which = 251 } #Skåne
+		command = { type = relation which = SWE value = -100 }
+		command = { type = relation which = NOR value = -50 }
+		command = { type = relation which = DAN value = -25 }
+		command = { type = relation which = POM value = 200 }
+		command = { type = wakemonarch which = 053501 } #Erik
+	}
+}
+#(1419-1459) Beginning of the pirating
+event = {
+	id = 367001
+	trigger = {
+		event = 367000 #GOT: Erik resides in Gotland
+		exists = DAN
+		OR = {
+			AND = {
+				NOT = { vassal = { country = GOT country = DAN } }
+				NOT = { vassal = { country = DAN country = GOT } }
+			}
+			event = 159046 #DAN: The future heir
+		}
+	}
+	random = no
+	country = GOT
+	name = "EVENTNAME367001" #Beginning of the pirating
+	desc = "EVENTHIST367001"
+	#-#In 1437 the Danish State Council summoned Erik from Gotland because the increased unrest among the peasantry had unleashed a fullscale revolt. Erik arrived in Denmark with a demand that the State Council should accept Bogislaw IX of Pomerania as his heir. The Danish State Council rejected this demand and Erik returned to Gotland from where he began a profitable pirating business.
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 1
+	deathdate = { day = 1 month = january year = 1459 }
+
+	action_a = {
+		name = "ACTIONNAME367001A" #Let the pirating begin!
+		command = { type = breakvassal which = DAN }
+		command = { type = treasury value = 200 } #Plunder - Reduced from 300 - Sute]{h
+		command = { type = badboy value = 5 } #Piracy isn't accepted
+		command = { type = warships which = -2 value = 5 } #Pirate fleet
+		command = { type = galleys which = -2 value = 10 } #Pirate fleet
+		command = { type = domestic which = land value = -3 }
+		command = { type = trigger which = 291021 } #SWE: Erik has lost support from Denmark
+	}
+}
+#(1419-1459) The invasion of Gotland
+event = {
+	id = 367006
+	trigger = {
+		OR = {
+			event = 291022 #SWE: The invasion of Gotland is lauched #1
+			control = { province = 308 data = SWE }
+		}
+		event = 291021 #Swedish event: Erik has lost support from Denmark
+	}
+	random = no
+	country = GOT
+	name = "EVENTNAME367006" #The invasion of Gotland
+	desc = "EVENTHIST367006"
+	#-#In 1449 the Swedish forces tried to invaded Gotland. While Erik was succesful in defending the island, he realised that there was no way he could win the war. Therefore to spite Sweden he surrendered control of Gotland to Denmark and left for Pomerania.
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1459 }
+
+	action_a = {
+		name = "ACTIONNAME367006A" #Return control of Gotland to Denmark (End Game)
+		command = { type = independence which = POM } #If Gotland inherited Pomerania
+		command = { type = trigger which = 291024 } #SWE: The invasion of Gotland
+		command = { type = trigger which = 159049 } #DAN: The invasion of Gotland
+		command = { type = sleepevent which = 291025 } #SWE: Gotland is yet again in Danish hands
+	}
+	action_b = {
+		name = "ACTIONNAME367006B" #The fight against Sweden isn't lost yet
+		command = { type = war which = SWE } #If triggered by the Swedish event: The invasion of Gotland
+		command = { type = sleepevent which = 291025 } #SWE: Gotland is yet again in Danish hands
+	}
+}
+#(1446-1459) Erik inherits Pomerania -1-
+event = {
+	id = 367002 #triggered by POM_259004 A
+	random = no
+	country = GOT
+	name = "EVENTNAME367002" #Erik inherits Pomerania
+	desc = "EVENTHIST367002"
+	#-#In 1446 Boguslaw IX died. His heir Erik of Pomerania was however currently the ruler of Gotland, where he had resided since he lost his position as the King of Denmark, Norway and Sweden. When Boguslaw IX died Erik remained on Gotland from where he governed until he returned control of Gotland to Denmark in 1449 as the result of a Swedish attempt to invade Gotland.
+
+	action_a = {
+		name = "ACTIONNAME367002A" #Pomerania is ruled from Gotland
+		command = { type = vassal which = POM } #Pomerania
+		command = { }
+	}
+}
+#(1446-1459) Erik inherits Pomerania -2-
+event = {
+	id = 367003 #triggered by POM_259004 B
+	random = no
+	country = GOT
+	name = "EVENTNAME367003" #Erik inherits Pomerania
+	desc = "EVENTHIST367003"
+	#-#In 1446 Boguslaw IX died. His heir Erik of Pomerania was however currently the ruler of Gotland, where he had resided since he lost his position as the King of Denmark, Norway and Sweden. When Boguslaw IX died Erik moved to Pomerania from where he ruled until his death.
+
+	action_a = {
+		name = "ACTIONNAME367003A" #Gotland is ruled from Pomerania
+		command = { type = stability value = -1 }
+		command = { }
+	}
+}
+#(1446-1459) Erik inherits Pomerania -3-
+event = {
+	id = 367004 #triggered by POM_259004 C
+	random = no
+	country = GOT
+	name = "EVENTNAME367004" #Erik inherits Pomerania
+	desc = "EVENTHIST367004"
+	#-#In 1446 Boguslaw IX died. His heir Erik of Pomerania was however currently the ruler of Gotland, where he had resided since he lost his position as the King of Denmark, Norway and Sweden. When Boguslaw IX died Erik declared Gotland a part of Pomerania. This however resulted in massive protests from both Sweden and Denmark and Erik had to carefully consider his options. An alternative could be to simply make Gotland a Pomeranian vassal for the time being.
+
+	action_a = {
+		name = "ACTIONNAME367004A" #Erik declares Gotland a part of Pomerania (End Game)
+		command = { type = trigger which = 259005 } #POM: Gotland becomes a part of Pomerania
+	}
+	action_b = {
+		name = "ACTIONNAME367004B" #Erik declares Gotland a Pomeranian vassal
+		command = { type = trigger which = 259006 } #POM: Gotland becomes a Pomeranian vassal
+	}
+}
+#(1446-1459) Erik inherits Pomerania -4-
+event = {
+	id = 367005 #triggered by POM_259004 D
+	random = no
+	country = GOT
+	name = "EVENTNAME367005" #Erik inherits Pomerania
+	desc = "EVENTHIST367005"
+	#-#In 1446 Boguslaw IX died. His heir Erik of Pomerania was however currently the ruler of Gotland, where he had resided since he lost his position as the King of Denmark, Norway and Sweden. When Boguslaw IX died Erik remained on Gotland and declared Pomerania a part of Gotland despite massive protests from the Holy Roman Empire.
+
+	action_a = {
+		name = "ACTIONNAME367005A" #Pomerania and Gotland is united
+		command = { type = inherit which = POM }
+		command = { type = badboy value = 2 }
+		command = { type = addcore which = 302 } #Hinterpommern
+		command = { type = relation which = LAT value = -25 }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = relation which = BRA value = -75 }
+		#command = { type = relation which = SLZ value = -75 } #Salzburg
+	}
+}
+#End of Erik VII Sequence
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 367007

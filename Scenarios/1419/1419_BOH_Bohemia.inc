@@ -4,8 +4,7 @@
 
 country = {
 	tag = BOH
-	ai = "SmallTrade2.ai"
-	#ai = "BOH_WenceslausIV.ai"
+	ai = "SmallTrade2.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no

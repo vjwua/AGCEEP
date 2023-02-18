@@ -1,0 +1,114 @@
+#Ternate (TER)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1470-1820) Founding of the Sultanate
+#MKJ(?)
+event = {
+	id = 308000
+	trigger = {
+		NOT = { religion = sunni }
+	}
+	country = TER
+	random = no
+	name = "EVENTNAME308000" #Founding of the Sultanate
+	desc = "EVENTHIST308000"
+	#-#With the founding of the Sultanate of Ternate, the area became a Muslim Kingdom.
+
+	date = { day = 1 month = january year = 1470 }
+	offset = 2000
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME308000A" #Found a great Muslim dynasty
+		command = { type = religion which = sunni }
+		command = { type = provincereligion which = -2 value = sunni }
+	}
+	action_b = {
+		name = "ACTIONNAME308000B" #Do not found the sultanate
+		command = { type = stability value = -2 }
+	}
+}
+
+#(1478-1820) The End of the Majapahit Empire
+event = {
+	id = 308003 #triggered by MTR_234000 A
+	trigger = {
+		vassal = { country = MTR country = TER }
+	}
+	country = TER
+	random = no
+	name = "EVENTNAME80707" #The End of the Majapahit Empire
+	desc = "EVENTHIST80707"
+	#-#The Majapahit Empire is dead. We owe their successors nothing.
+
+	action_a = {
+		name = "ACTIONNAME80707A" #We shall rule ourselves
+		command = { type = breakvassal which = MTR }
+	}
+}
+
+#(1522-1635) Portuguese vassalization of Ternate
+event = {
+	id = 308001 #triggered by POR_260078
+	random = no
+	country = TER
+	name = "EVENTNAME260083" #The Portuguese treaty of friendship with Ternate
+	desc = "EVENTHIST260078"
+	#-#In 1522 Antonio de Brito arrived in Ternate, concluded a treaty of friendship with the King, and built a fort for the Portuguese.
+
+	action_a = {
+		name = "ACTIONNAME308001A" #This will help regulate trade
+		command = { type = relation which = POR value = 175 }
+		command = { type = breakvassal which = MND }
+		command = { type = breakvassal which = LUW }
+		command = { type = breakvassal which = BUT }
+		command = { type = breakvassal which = MKS }
+		command = { type = breakvassal which = ORI }
+		command = { type = breakvassal which = BEI }
+		command = { type = breakvassal which = MTR }
+		command = { type = breakvassal which = MLC }
+		command = { type = breakvassal which = PAL }
+		command = { type = breakvassal which = ATJ }
+		command = { type = breakvassal which = CHI }
+		command = { type = breakvassal which = NIP }
+		command = { type = trigger which = 260083 } #POR: The Portuguese treaty of friendship with Ternate.
+	}
+}
+
+#(1667) Tidore submits to VOC (Ternate's part)
+event = {
+	id = 308002
+	trigger = {
+		exists = HOL
+		NOT = { war = { country = TER country = HOL } }
+		event = 3503 #HOL: Vereenigde Oostindische Compagnie
+	}
+	random = no
+	country = TER
+	name = "EVENTNAME308002" #Tidore submits to VOC
+	desc = "EVENTHIST308002"
+	#-#Speelman expedition forced the Sultan of Tidore (now free of Spanish presence) to submit to the VOC. A peace treaty was signed between Ternate and Tidore, now both under VOC control.
+
+	date = { day = 1 month = january year = 1667 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1668 }
+
+	action_a = {
+		name = "ACTIONNAME308002A" #Submit to VOC (End Game)
+		command = { type = breakvassal which = POR }
+		command = { type = breakvassal which = SPA }
+		command = { type = trigger which = 186421 } #HOL: Tidore submits to VOC
+	}
+	action_b = {
+		name = "ACTIONNAME308002B" #Attack VOC!
+		command = { type = breakvassal which = POR }
+		command = { type = breakvassal which = SPA }
+		command = { type = relation which = HOL value = -200 }
+		command = { type = war which = HOL }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 308003

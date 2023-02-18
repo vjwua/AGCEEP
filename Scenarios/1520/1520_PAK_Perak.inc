@@ -4,7 +4,7 @@
 
 country = {
 	tag = PAK
-	ai = "SmallTrade1.ai"
+	ai = "SmallTrade1.txt"
 	policy = {
 		aristocracy = 7
 		centralization = 3

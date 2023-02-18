@@ -1,0 +1,165 @@
+#Malindi (MLI)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1498-1560) Dominance of Portugal
+#by sturmvogel
+event = {
+	id = 113000
+	trigger = {
+		exists = POR
+		event = 260066 #POR: Discovery of Malindi
+		NOT = {
+			war = { country = MLI country = POR }
+			vassal = { country = MLI country = POR }
+		}
+	}
+	random = no
+	country = MLI
+	name = "EVENTNAME113000" #Dominance of Portugal
+	desc = "EVENTHIST113000"
+	#-#When Vasco da Gama, a Portuguese explorer, landed outside of Malindi, he received a warm welcome from the Sheik. In Malindi, he employed Shuhaib al-Din Ahmed to guide him from Malindi to India. Later when Pedro Alvares Cabral visited Malindi, the Sheik there accepted the King of Portugal as his lord.
+
+	date = { day = 1 month = january year = 1498 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1560 }
+
+	action_a = {
+		name = "ACTIONNAME113000A" #The King of Portugal shall be our overlord
+		command = { type = relation which = POR value = 100 }
+		command = { type = relation which = MOM value = -100 }
+		command = { type = breakvassal which = MOM }
+		command = { type = breakvassal which = MGU }
+		command = { type = breakvassal which = ZAN }
+		command = { type = breakvassal which = KIL }
+		command = { type = trigger which = 260067 } #POR: Vassalization of Malindi
+	}
+	action_b = {
+		name = "ACTIONNAME113000B" #We must battle the heathens!
+		command = { type = relation which = POR value = -200 }
+		command = { type = relation which = MOM value = 50 }
+		#sleep all events where Malindi gets benefits from being an ally of Portugal
+	}
+}
+
+#(1528-1560) Cooperation with Portugal against Mombasa
+#by sturmvogel
+event = {
+	id = 113002
+	trigger = {
+		exists = POR
+		event = 260066 #POR: Discovery of Malindi
+		exists = MOM
+		NOT = {
+			war = { country = MLI country = POR }
+			vassal = { country = MLI country = POR }
+		}
+	}
+	random = no
+	country = MLI
+	name = "EVENTNAME113002" #Cooperation with Portugal against Mombasa
+	desc = "EVENTHIST260111"
+	#-#In October 1528 the fleet of Nuno da Cunha sought refuge in Malindi which was freely granted. However when the fleet became pinned against the coast by the north-east monsoon it became imperative that the fleet find a better harbor to winter over until the monsoon ended. He sailed for Mombasa where he was allowed to anchor, but he was insulted by the restrictions placed on him by the Sultan of Mombasa. He resolved to avenge this insult and the Sheik of Malindi, happy to see injury done to his rival, offered troops. Nuno da Cunha, appreciative of his support, offered the rulership of Mombasa to a relative of the Sheik, but he was turned down when the Portuguese proved to be too few in numbers to garrison the town.
+
+	date = { day = 1 month = october year = 1528 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1560 }
+
+	action_a = {
+		name = "ACTIONNAME113002A" #We shall cooperate
+		command = { type = relation which = POR value = 100 }
+		command = { type = relation which = MOM value = -100 }
+		command = { type = breakvassal which = MOM }
+		command = { type = breakvassal which = MGU }
+		command = { type = breakvassal which = ZAN }
+		command = { type = breakvassal which = KIL }
+		command = { type = trigger which = 260111 } #POR: Malindi cooperates against Mombasa
+	}
+	action_b = {
+		name = "ACTIONNAME113002B" #That is not our fight
+		command = { type = relation which = POR value = -200 }
+		command = { type = relation which = MOM value = 50 }
+	}
+}
+
+#(1570-1588) Vassalization of Malindi
+#by sturmvogel
+event = {
+	id = 113003
+	trigger = {
+		exists = POR
+		event = 260066 #POR: Discovery of Malindi
+		NOT = {
+			war = { country = MLI country = POR }
+			vassal = { country = MLI country = POR }
+		}
+	}
+	random = no
+	country = MLI
+	name = "EVENTNAME260067" #Vassalization of Malindi
+	desc = "EVENTHIST260069"
+	#-#While waiting reinforcements for his planned expedition against Monomotapa Francisco Barreto, Capitão of Moçambique, cruised the East African coast to show the flag. He was received very hospitably by the Sheik of Malindi who relied on the Portuguese to protect him against his enemies.
+
+	date = { day = 1 month = may year = 1570 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1588 }
+
+	action_a = {
+		name = "ACTIONNAME113000A" #The King of Portugal shall be our overlord
+		command = { type = relation which = POR value = 100 }
+		command = { type = relation which = MOM value = -100 }
+		command = { type = breakvassal which = MOM }
+		command = { type = breakvassal which = MGU }
+		command = { type = breakvassal which = ZAN }
+		command = { type = breakvassal which = KIL }
+		command = { type = trigger which = 260069 } #POR: Vassalization of Malindi
+	}
+	action_b = {
+		name = "ACTIONNAME113003B" #We don't need protection
+		command = { type = relation which = POR value = -200 }
+		command = { type = relation which = MOM value = 50 }
+	}
+}
+
+#(1690-1720) The Omani Empire in Africa
+#by sturmvogel
+event = {
+	id = 113001
+	trigger = {
+		event = 248003 #OMA: Swahilis seek aid
+		owned = { province = 763 data = OMA } #Mombasa
+		control = { province = 763 data = OMA }
+		NOT = {
+			countrysize = 2
+			war = { country = OMA country = KIL }
+		}
+	}
+	random = no
+	country = MLI
+	name = "EVENTNAME160001" #The Omani Empire in Africa
+	desc = "EVENTHIST113001"
+	#-#By taking Mombasa in 1698 from Portugal after a three-year siege Oman became the dominant power along the Swahili Coast. They now controlled Malindi's access to markets in Arabia, Persia and India. In recognition of this the rulers of Malindi submitted to the Sultans of Oman.
+
+	date = { day = 1 month = january year = 1690 }
+	offset = 100
+	deathdate = { day = 29 month = december year = 1720 }
+
+	action_a = {
+		name = "ACTIONNAME160001A" #Submit to Oman
+		command = { type = trigger which = 248013 } #OMA: The submission of Malindi
+		command = { type = trade value = 500 }
+		command = { type = merchants value = 1 }
+	}
+
+	action_b = {
+		name = "ACTIONNAME373003B" #Adhere to Portugal
+		command = { type = relation which = POR value = 200 }
+		command = { type = stability value = -1 }
+		command = { type = trade value = -250 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 113004
+

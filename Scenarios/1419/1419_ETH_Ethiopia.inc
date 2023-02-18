@@ -4,7 +4,7 @@
 
 country = {
 	tag = ETH
-	ai = "Large.ai"
+	ai = "Large.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no

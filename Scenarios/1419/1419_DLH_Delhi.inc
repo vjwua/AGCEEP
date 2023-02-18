@@ -4,7 +4,7 @@
 
 country = {
 	tag = DLH
-	ai = "DLH_1419.ai"
+	ai = "DLH_1419.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -19,12 +19,12 @@ country = {
 	diplomacy = {
 		relation = { tag = MLW value = -50 }
 		relation = { tag = GUJ value = 25 }
-		relation = { tag = MES value = 25 }
-		relation = { tag = JAI value = 25 }
-		relation = { tag = NAF value = 25 }
-		relation = { tag = SYR value = 25 }
+		relation = { tag = SIN value = 25 }
+		relation = { tag = RAJ value = 25 }
+		relation = { tag = GON value = 25 }
+		relation = { tag = HYA value = 25 }
 		relation = { tag = TIM value = -75 refusetrade = no }
-		relation = { tag = JUT value = -50 }
+		relation = { tag = JAI value = -50 }
 	}
 	knownprovinces = {
 		#Indian Mainland

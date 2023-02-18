@@ -4,7 +4,7 @@
 
 country = {
 	tag = SON
-	ai = "SON_1600_Mohammad.ai"
+	ai = "SON_1600_Mohammad.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -15,7 +15,7 @@ country = {
 	inflation = 0
 	merchants = 0
 	religion = { type = sunni }
-	culture = { type = mali }
+	culture = { type = mande }
 	diplomacy = {
 		relation = { tag = MOR value = -200 }
 	}

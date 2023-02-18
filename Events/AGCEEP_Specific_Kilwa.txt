@@ -1,0 +1,103 @@
+#Kilwa (KIL)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1498-1560) Portugal demands submission
+event = {
+	id = 333000
+	trigger = {
+		event = 18031 #POR: Submission of Kilwa
+		exists = POR
+	}
+	random = no
+	country = KIL
+	name = "EVENTNAME333000" #Portugal demands submission
+	desc = "EVENTHIST333000"
+	#-#A commander of the strong Portuguese navy demands our submission. Should we agree and become vassals of the Portuguese King, or defy the Crusaders and fight them?
+
+	date = { day = 1 month = january year = 1498 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1560 }
+
+	action_a = {
+		name = "ACTIONNAME333000A" #Agree to vassalship
+		command = { type = stability value = -2 }
+		command = { type = treasury value = -200 }
+		command = { type = sleepevent which = 18034 } #POR: Sultan refuses our demands
+	}
+	action_b = {
+		name = "ACTIONNAME333000B" #Defy the Portuguese
+		command = { type = war which = POR }
+		command = { type = stability value = -6 }
+		command = { type = sleepevent which = 18033 } #POR: Sultan agrees to our demands
+	}
+}
+
+#(1690-1720) The Omani Empire in Africa
+#by sturmvogel
+event = {
+	id = 333001
+	trigger = {
+		event = 248003 #OMA: Swahilis seek aid
+		owned = { province = 763 data = OMA } #Mombasa
+		control = { province = 763 data = OMA }
+		NOT = {
+			countrysize = 2
+			war = { country = OMA country = KIL }
+		}
+	}
+	random = no
+	country = KIL
+	name = "EVENTNAME160001" #The Omani Empire in Africa
+	desc = "EVENTHIST333001"
+	#-#By taking Mombasa in 1698 from Portugal after a three-year siege Oman became the dominant power along the Swahili Coast. They now controlled Kilwa's access to markets in Arabia, Persia and India. In recognition of this the rulers of Kilwa submitted to the Sultans of Oman.
+
+	date = { day = 1 month = january year = 1690 }
+	offset = 100
+	deathdate = { day = 29 month = december year = 1720 }
+
+	action_a = {
+		name = "ACTIONNAME160001A" #Submit to Oman
+		command = { type = trigger which = 248012 } #OMA: The submission of Kilwa
+		command = { type = trade value = 500 }
+		command = { type = merchants value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME373003B" #Adhere to Portugal
+		command = { type = relation which = POR value = 200 }
+		command = { type = stability value = -1 }
+		command = { type = trade value = -250 }
+	}
+}
+
+#(1771-1784) Kilwa rejects the Omani governor
+#by sturmvogel
+event = {
+	id = 333002
+	trigger = {
+		vassal = { country = OMA country = KIL }
+		NOT = {
+			war = { country = OMA country = KIL }
+		}
+	}
+	random = no
+	country = KIL
+	name = "EVENTNAME333002" #Kilwa rejects the Omani governor
+	desc = "EVENTHIST333002"
+	#-#The Kilwans took advantage of the annual voyage of the Omani wâlî, or governor, to Zanzibar to seize his citadel in his absence. Furthermore they informed him that he would not be welcomed back. The wâlî made no effort to reclaim his post.
+
+	date = { day = 1 month = january year = 1771 }
+	offset = 900
+	deathdate = { day = 29 month = december year = 1784 }
+
+	action_a = {
+		name = "ACTIONNAME160001A" #Submit to Oman
+		command = { type = breakvassal which = OMA }
+		command = { type = merchants value = 1 } #French traders taking advantage of low prices for slaves
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 333003
+

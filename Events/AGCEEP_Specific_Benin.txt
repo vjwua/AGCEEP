@@ -1,0 +1,110 @@
+#Benin (BEN)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1445-1452) Political reforms of Ewuare
+event = {
+	id = 127002
+	random = no
+	country = BEN
+	name = "EVENTNAME127002" #Ewuare centralizes the power of the oba
+	desc = "EVENTHIST127002"
+	#-#Oba Ewuare reduced the influence of the uzama, a body of hereditary chiefs who participated in the selection of the oba, by instituting primogeniture. He also created new categories of chiefs that he appointed himself.
+
+	date = { day = 0 month = january year = 1445 }
+	offset = 120
+	deathdate = { day = 0 month = january year = 1452 }
+
+	action_a = {
+		name = "ACTIONNAME127002A" #Make the reforms
+		command = { type = ADM which = 1 value = 240 }
+		command = { type = stability value = 1 }
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = domestic which = centralization value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME127002B" #Leave things as they are
+		command = { type = vp value = -1 }
+	}
+}
+
+#(1486-1514) Portuguese offer of Christianity
+event = {
+	id = 127000
+	trigger = {
+		exists = POR
+		religion = pagan
+		NOT = {
+			vassal = { country = TUR country = BEN }
+			alliance = { country = TUR country = BEN }
+		}
+	}
+	random = no
+	country = BEN
+	name = "EVENTNAME127000" #The Portuguese embassy to the King of Benin
+	desc = "EVENTHIST127000"
+	#-#In 1486 Joham Affom da Aviero made contact with the King of Benin. The King of Benin then sent an ambassador to the King of Portugal because he desired to learn about Portugal. He was entertained and shown many good things of the Kingdom of Portugal. The King of Portugal then sent him back to Benin with some catholic priests, who were to rebuke the idolatries of the negroes, and a few merchants along with some gifts for the King Benin.
+
+	date = { day = 0 month = january year = 1486 }
+	offset = 60
+	deathdate = { day = 0 month = january year = 1514 }
+
+	action_a = {
+		name = "ACTIONNAME127000A" #Accept their gifts but do not enforce Christianity
+		command = { type = relation which = POR value = 150 }
+		command = { type = trade value = 100 }
+		command = { type = treasury value = 10 }
+		command = { type = domestic which = innovative value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME127000B" #Convert to Christianity
+		command = { type = relation which = POR value = 200 }
+		command = { type = trade value = 100 }
+		command = { type = treasury value = 10 }
+		command = { type = missionaries value = 1 }
+		command = { type = religion which = catholic }
+		command = { type = sleepevent which = 127001 } #BEN: The second Portuguese embassy to the King of Benin
+	}
+}
+
+#(1515-1660) Second Portuguese offer of Christianity
+event = {
+	id = 127001
+	trigger = {
+		exists = POR
+		religion = pagan
+		NOT = {
+			vassal = { country = TUR country = BEN }
+			alliance = { country = TUR country = BEN }
+		}
+	}
+	random = no
+	country = BEN
+	name = "EVENTNAME127001" #The second Portuguese embassy to the King of Benin
+	desc = "EVENTHIST127001"
+	#-#In 1514 the King of Portugal sent priests again to the King of Benin. When the priests arrived they brought gifts and desired to explain Christianity to the King of Benin, but he replied that he was too busy with war to consider the mystery of Christianity. However his son and many nobles did convert and were even taught to read. The Portuguese also began giving military aid to the King fo Benin.
+
+	date = { day = 1 month = january year = 1515 }
+	offset = 60
+	deathdate = { day = 0 month = january year = 1660 }
+
+	action_a = {
+		name = "ACTIONNAME127001A" #Accept their gifts but do not enforce Christianity
+		command = { type = relation which = POR value = 150 }
+		command = { type = land value = 100 }
+		command = { type = treasury value = 10 }
+	}
+	action_b = {
+		name = "ACTIONNAME127001B" #Convert to Christianity
+		command = { type = relation which = POR value = 200 }
+		command = { type = land value = 100 }
+		command = { type = treasury value = 10 }
+		command = { type = missionaries value = 1 }
+		command = { type = religion which = catholic }
+		command = { type = provincereligion which = 792 value = catholic } #Accra
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 127003

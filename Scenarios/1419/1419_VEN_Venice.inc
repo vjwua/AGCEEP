@@ -4,7 +4,7 @@
 
 country = {
 	tag = VEN
-	ai = "VEN_1419.ai"
+	ai = "VEN_1419.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -17,7 +17,7 @@ country = {
 	religion = { type = catholic }
 	culture = {
 		type = lombard
-		type = syrian
+		type = dalmatian
 		type = greek
 	}
 	diplomacy = {
@@ -25,8 +25,8 @@ country = {
 		relation = { tag = ATH value = 135 }
 		relation = { tag = MAN value = 175 }
 		relation = { tag = GEN value = 75 }
-		relation = { tag = KAL value = 150 }
-		relation = { tag = SPR value = 150 access = yes }
+		relation = { tag = THO value = 150 }
+		relation = { tag = MRE value = 150 access = yes }
 	}
 	knownprovinces = {
 		1614 #Pope

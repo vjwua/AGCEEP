@@ -4,7 +4,7 @@
 
 country = {
 	tag = KON
-	ai = "Large.ai"
+	ai = "Large.txt"
 	monarchtable = "scenarios\1648\monarchs\monarchs_kon.txt"
 	colonialattempts = 0
 	colonialnation = no

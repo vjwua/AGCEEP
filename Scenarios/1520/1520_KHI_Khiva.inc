@@ -4,7 +4,7 @@
 
 country = {
 	tag = KHI
-	ai = "SmallTrade1.ai"
+	ai = "SmallTrade1.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -16,8 +16,8 @@ country = {
 	merchants = 0.083333
 	religion = { type = sunni }
 	culture = {
-		type = canary
-		type = uzbehk
+		type = turkoman
+		type = uzbek
 	}
 	diplomacy = {
 		relation = { tag = UZB value = 100 }

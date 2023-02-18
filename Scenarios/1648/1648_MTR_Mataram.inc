@@ -4,7 +4,7 @@
 
 country = {
 	tag = MTR
-	ai = "SmallTrade1.ai"
+	ai = "SmallTrade1.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -17,7 +17,7 @@ country = {
 	religion = { type = sunni }
 	culture = { type = javan }
 	diplomacy = {
-		relation = { tag = BTM value = -50 }
+		relation = { tag = BTN value = -50 }
 		relation = { tag = HOL value = -150 }
 	}
 	knownprovinces = {

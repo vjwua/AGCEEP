@@ -4,7 +4,7 @@
 
 country = {
 	tag = LIT
-	ai = "Large.ai"
+	ai = "Large.txt"
 	policy = {
 		aristocracy = 9
 		centralization = 0

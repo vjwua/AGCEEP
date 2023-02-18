@@ -4,7 +4,7 @@
 
 country = {
 	tag = HAN
-	ai = "SmallTrade1.ai"
+	ai = "SmallTrade1.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -19,7 +19,7 @@ country = {
 	diplomacy = {
 		relation = { tag = BRE value = 150 }
 		relation = { tag = OLD value = 140 }
-		relation = { tag = MUN value = 140 }
+		relation = { tag = BRG value = 140 }
 		relation = { tag = MEC value = 140 }
 		relation = { tag = SAC value = 140 }
 		relation = { tag = HES value = 140 }

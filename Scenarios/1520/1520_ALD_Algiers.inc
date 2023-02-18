@@ -4,7 +4,7 @@
 
 country = {
 	tag = ALD
-	ai = "SmallTrade1.ai"
+	ai = "SmallTrade1.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -16,14 +16,14 @@ country = {
 	merchants = 0.083333
 	religion = { type = sunni }
 	culture = {
-		type = delaware
+		type = maghrebi
 		type = berber
 	}
 	diplomacy = {
 		relation = { tag = KNI value = -200 refusetrade = no }
 		relation = { tag = TUR value = 100 refusetrade = no }
 		relation = { tag = SPA value = -200 refusetrade = no }
-		relation = { tag = XHO value = 50 refusetrade = no }
+		relation = { tag = TLE value = 50 refusetrade = no }
 		relation = { tag = MOR value = 50 refusetrade = no }
 	}
 	knownprovinces = {

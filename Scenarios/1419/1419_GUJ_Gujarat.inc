@@ -4,7 +4,7 @@
 
 country = {
 	tag = GUJ
-	ai = "SmallTrade3.ai"
+	ai = "SmallTrade3.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -19,10 +19,10 @@ country = {
 	diplomacy = {
 		relation = { tag = DLH value = 25 }
 		relation = { tag = TIM value = -75 refusetrade = no }
-		relation = { tag = MES value = 150 }
+		relation = { tag = SIN value = 150 }
 		relation = { tag = MLW value = -100 }
-		relation = { tag = THE value = -50 }
-		relation = { tag = JAI value = 5 }
+		relation = { tag = BMD value = -50 }
+		relation = { tag = RAJ value = 5 }
 	}
 	knownprovinces = {
 		#Indian Mainland

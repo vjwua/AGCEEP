@@ -1,0 +1,53 @@
+#Banjar (BJR)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1478-1820) End of Madja
+event = {
+	id = 427000 #triggered by MTR_234000 A
+	trigger = {
+		vassal = { country = MTR country = BJR }
+	}
+	country = BJR
+	random = no
+	name = "EVENTNAME80707" #The End of the Majapahit Empire
+	desc = "EVENTHIST80707"
+	#-#The Majapahit Empire is dead. We owe their successors nothing.
+
+	action_a = {
+		name = "ACTIONNAME80707A" #We shall rule ourselves
+		command = { type = breakvassal which = MTR }
+	}
+}
+
+#(1515-1820) Banjar converts to Islam
+#MKJ(?)
+event = {
+	id = 80702
+	trigger = {
+		NOT = { religion = sunni }
+	}
+	country = BJR
+	random = no
+	name = "EVENTNAME80702" #Banjar converts to Islam
+	desc = "EVENTHIST80702"
+	#-#Banjar had been under increasing pressure from external and internal sources to convert to Islam. Much of the populace had already converted by the time the Raja himself converted, becoming the Sultan of Banjar.
+
+	date = { day = 1 month = january year = 1515 }
+	offset = 2000
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME80702A" #Become the Sultan of Banjar
+		command = { type = religion which = sunni }
+		command = { type = provincereligion which = -2 value = sunni }
+	}
+	action_b = {
+		name = "ACTIONNAME80702B" #Remain Raja of Banjar
+		command = { type = stability value = -2 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 427001

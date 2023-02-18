@@ -9,7 +9,7 @@ country = {
 			[TOS_Republic] = yes
 		}
 	}
-	ai = "SmallCRC0.ai"
+	ai = "SmallCRC0.txt"
 	flagname = "Republic"
 	colonialattempts = 0
 	colonialnation = no

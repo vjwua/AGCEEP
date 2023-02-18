@@ -1,0 +1,186 @@
+#Bijapur (BIJ)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1489-1520) The Sultanate of Bijapur
+event = {
+	id = 360000 #triggered by BMD_30332
+	random = no
+	country = BIJ
+	name = "EVENTNAME360000" #The Sultanate of Bijapur
+	desc = "EVENTHIST30332"
+	#-#After the false accusation and execution of Mahmud Gawan, the Bahmani Sultanate slowly fell into decline. In 1489-90 the governors of Ahmadnagar and Bijapur declared their independence, and Bidar followed up soon after. The ruler of the Bahmani Sultanate became a mere figurehead in the hands of the cunning Qasim Barid. The last sultan disappeared on his way to Mekkah, and with him the Bahmani dynasty came to an end.
+
+	action_a = {
+		name = "ACTIONNAME360000A" #Who can stop us?
+		command = { type = INF which = -2 value = 10000 }
+		command = { type = CAV which = -2 value = 10000 }
+		command = { type = relation which = VIJ value = -200 }
+		command = { type = relation which = BMD value = -150 }
+		command = { type = breakvassal which = BMD }
+		command = { type = religion which = sunni }
+		command = { type = add_countryculture which = marathi }
+		command = { type = trigger which = 410057 } #BMD: The Sultanate of Bijapur
+	}
+}
+
+#(1502-1505) Sunni or Shia
+event = {
+	id = 30343
+	trigger = {
+		monarch = 041500 #Yusuf Adil Shah
+		religion = sunni
+	}
+	random = no
+	country = BIJ
+	name = "EVENTNAME30343" #Sunni or Shia
+	desc = "EVENTHIST30343"
+	#-#In 1502 the ruler of Bijapur, feeling the rising power of Shia Persia and Shah Ismail, as well as a pressure from some of the nobles at his court, has converted to Shia religion.
+
+	date = { day = 1 month = january year = 1502 }
+	offset = 400
+	deathdate = { day = 1 month = january year = 1505 }
+
+	action_a = {
+		name = "ACTIONNAME30343A" #Convert to Shia
+		command = { type = religion which = shia }
+		command = { type = stability value = -1 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = relation which = PER value = 100 }
+		command = { type = relation which = MOG value = -60 }
+		command = { type = relation which = DLH value = -60 }
+	}
+	action_b = {
+		name = "ACTIONNAME30343B" #Remain Sunni
+		command = { type = stability value = 1 }
+		command = { type = relation which = PER value = -60 }
+		command = { type = domestic which = innovative value = -1 }
+	}
+}
+
+#(1536-1538) Sunni or Shia
+event = {
+	id = 30344
+	trigger = {
+		monarch = 041504 #Ibrahim Adil Shah
+		religion = shia
+	}
+	random = no
+	country = BIJ
+	name = "EVENTNAME30344" #Ibrahim Adil Shah ponders a question
+	desc = "EVENTHIST30344"
+	#-#Soon after ascending the throne, the ruler of Bijapur Ibrahim Adil Shah converted back to Sunni.
+
+	date = { day = 1 month = january year = 1536 }
+	offset = 400
+	deathdate = { day = 1 month = january year = 1538 }
+
+	action_a = {
+		name = "ACTIONNAME30344A" #Convert to Sunni
+		command = { type = religion which = sunni }
+		command = { type = stability value = 1 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = domestic which = aristocracy value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME30344B" #Remain Shia
+		command = { type = stability value = -1 }
+		command = { type = domestic which = aristocracy value = -1 }
+	}
+}
+
+#(1558-1560) Sunni or Shia
+event = {
+	id = 30345
+	trigger = {
+		monarch = 041505 #Ali Adil Shah
+		religion = sunni
+	}
+	random = no
+	country = BIJ
+	name = "EVENTNAME30345" #Ali Adil Shah returns to one true faith
+	desc = "EVENTHIST30345"
+	#-#Soon after ascending the throne, the ruler of Bijapur Ali Adil Shah re-converted back to Shia creed.
+
+	date = { day = 1 month = january year = 1558 }
+	offset = 400
+	deathdate = { day = 1 month = january year = 1560 }
+
+	action_a = {
+		name = "ACTIONNAME30345A" #Convert back to Shia
+		command = { type = religion which = shia }
+		command = { type = stability value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME30345B" #Remain Sunni
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1677-1685) The Disintegration of Bahmani Sultanate
+event = {
+	id = 30350
+	trigger = {
+		NOT = { exists = MAH }
+	}
+	random = no
+	country = BIJ
+	name = "EVENTNAME30350" #Rise of the Mahrattis
+	desc = "EVENTHIST30350"
+	#-#Shivaji was a great general in the service of the last ruler of Bijapur, Sikandar Adil Shah. After the Mughal invasion Bijapur was annexed, but Shivaji escaped and started the fight against the Mughals and Islamic domination in south central India.
+
+	date = { day = 29 month = december year = 1677 }
+	offset = 3000
+	deathdate = { day = 29 month = december year = 1685 }
+
+	action_a = {
+		name = "ACTIONNAME30350A" #Surrender to Mahrattis onslaught
+		command = { type = flagname which = "" }
+		command = { type = country which = MAH }
+		command = { type = religion which = hindu }
+		command = { type = domestic which = centralization value = -4 }
+		command = { type = domestic which = land value = 2 }
+		command = { type = domestic which = offensive value = 1 }
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = stability value = -2 }
+		command = { type = province_revoltrisk which = 548 value = -15 } #Bombay
+		command = { type = province_revoltrisk which = 549 value = -5 } #Goa
+		command = { type = province_revoltrisk which = 550 value = -15 } #Maharashtra
+	}
+}
+
+#(1686-1820) The Disintegration of Bahmani Sultanate
+event = {
+	id = 30351
+	trigger = {
+		NOT = { exists = MAH }
+	}
+	random = no
+	country = BIJ
+	name = "EVENTNAME30350" #Rise of the Mahrattis
+	desc = "EVENTHIST30351"
+	#-#Shahu Shambhaji was a great general in the service of the last ruler of Bijapur, Sikandar Adil Shah. After the Mughal invasion in 1686 Bijapur was annexed, but Shambhaji escaped and started the fight against the Mughals and Islamic domination in south central India.
+
+	date = { day = 29 month = december year = 1686 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME30350A" #Surrender to Mahrattis onslaught
+		command = { type = flagname which = "" }
+		command = { type = country which = MAH }
+		command = { type = religion which = hindu }
+		command = { type = domestic which = centralization value = -4 }
+		command = { type = domestic which = land value = 2 }
+		command = { type = domestic which = offensive value = 1 }
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = stability value = -2 }
+		command = { type = province_revoltrisk which = 548 value = -15 } #Bombay
+		command = { type = province_revoltrisk which = 549 value = -5 } #Goa
+		command = { type = province_revoltrisk which = 550 value = -15 } #Maharashtra
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 360001

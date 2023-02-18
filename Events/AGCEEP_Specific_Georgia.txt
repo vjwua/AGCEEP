@@ -1,0 +1,134 @@
+#Georgia (GEO)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1458-1463) Civil War
+event = {
+	id = 175004
+	trigger = {
+		NOT = { domestic = { type = centralization value = 8 } }
+	}
+	random = no
+	country = GEO
+	name = "EVENTNAME175004" #Bagrat VI's uprising
+	desc = "EVENTHIST175004"
+	#-#In 1458 Bagrat VI, eristav (stateholder) of Imereti rose against Giorgi VIII, marking the end of a centralized Georgian state.
+
+	date = { day = 1 month = january year = 1458 }
+	offset = 12
+	deathdate = { day = 1 month = january year = 1463 }
+
+	action_a = {
+		name = "OK"
+		command = { type = stability value = -4 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revoltrisk which = 20 value = 5 }
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+	}
+}
+
+#(1464-1466) The Split
+event = {
+	id = 175005
+	trigger = { event = 175004 }
+	random = no
+	country = GEO
+	name = "EVENTNAME175005" #Battle at Parvani
+	desc = "EVENTHIST175005"
+	#-#As the civil war between Imereti and Kartli-Kakheti was raging, a noble, Kvarkvark Jakel met King Giorgi VIII's armies in the Battle at Parvani, defeated him, and took him captive. Bagrat VI of Imereti used this opportunity to take Kartli. As the nobles were not interested in any centralization of Georgia, Giorgi soon was released, and was accepted as a leader of Kakheti, but could not even think of trying to regain the throne of a united Georgia. In the meantime, Bagrat, having proclaimed himself as the King of Imereti-Kartli, had barely any supporters in the later, permanently resided in Imereti and beared the title only by word, while in fact, Konstantin II was the true ruler of Kartli.
+
+	date = { day = 1 month = march year = 1464 }
+	offset = 12
+	deathdate = { day = 1 month = january year = 1466 }
+
+	action_a = {
+		name = "ACTIONNAME175005A" #Stay loyal to Giorgi
+		command = { type = stability value = -2 }
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = removecore which = 470 } #Kolkhis
+		command = { type = flagname which = "" }
+		command = { type = country which = KAK }
+		command = { type = independence which = IMR }
+		command = { type = cedeprovince which = IMR value = 468 } #Kouban
+		command = { type = cedeprovince which = IMR value = 469 } #Abkhazia
+		command = { type = cedeprovince which = IMR value = 475 } #Trabzon
+		command = { type = revolt which = 472 } #Iveria
+		command = { type = revolt which = 472 } #Iveria
+		command = { type = revolt which = 471 } #Daghestan
+		command = { type = trigger which = 399000 } #IMR: Georgia falls apart
+	}
+	action_b = {
+		name = "ACTIONNAME175005B" #Bagrat VI. is the new King
+		command = { type = stability value = -2 }
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = domestic which = CENTRALIZATION value = -2 }
+		command = { type = removecore which = 472 } #Iveria
+		command = { type = flagname which = "" }
+		command = { type = country which = IMR }
+		command = { type = independence which = KAK }
+		command = { type = cedeprovince which = KAK value = 471 } #Daghestan
+		command = { type = cedeprovince which = KAK value = 473 } #Armenia
+		command = { type = revolt which = 470 } #Kolkhis
+		command = { type = revolt which = 470 } #Kolkhis
+		command = { type = revolt which = 469 } #Abkhazia
+		command = { type = revolt which = 475 } #Trabzon
+		command = { type = trigger which = 349000 } #independence event #KAK: Georgia falls apart
+		command = { type = sleepevent which = 400000 } #Abkhazian realignment events #ABK: Abkhazia hails Bagrat VI.
+		command = { type = sleepevent which = 400001 } #ABK: Abkhazia disobeys
+	}
+}
+
+#(1460-1600) Split if they don't have Imereti
+event = {
+	id = 175006
+	trigger = {
+		NOT = {
+			event = 175005
+			owned = { province = 470 data = -1 } #Georgia-Imereti
+		}
+	}
+	random = no
+	country = GEO
+	name = "EVENTNAME175006" #Our grip on royal title is waning
+	desc = "EVENTHIST175006"
+	#-#As one by one, our posessions are being taken by various enemies, our realm is reduced to the small Kingdom of Kakheti in eastern Georgia, so that we can't bear the title of georgian Kings any longer.
+
+	date = { day = 1 month = january year = 1460 }
+	offset = 120
+	deathdate = { day = 1 month = january year = 1600 }
+
+	action_a = {
+		name = "ACTIONNAME175006A" #So fades our glory
+		command = { type = vp value = -20 }
+		command = { type = removecore which = 470 } #Kolkhis
+		command = { type = flagname which = "" }
+		command = { type = country which = KAK }
+	}
+}
+
+#(1816-1819) First Georgian newspaper
+event = {
+	id = 175101
+	random = no
+	country = GEO
+	name = "EVENTNAME175101" #First Georgian newspaper
+	desc = "EVENTHIST175101"
+	#-#Sakartvelos gazeti, 'Gazette of Georgia', was the first newspaper printed in the Georgian language. Printed in 1819 when all three Kingdoms of Georgia were finally subjugated by the Russian Empire, it brought the light of the modern industrial world into Georgia. For the coming two centuries the fate of Georgia would be merged with that of Russia, but despite everything, Georgian culture proved itself strong enough to survive in the multicultural empire and stay as it was, an exception in the annals of history.
+
+	date = { day = 1 month = january year = 1816 }
+	offset = 5
+	deathdate = { day = 1 month = january year = 1819 }
+
+	action_a = {
+		name = "OK"
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = infra value = 1000 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 175000-175003 - next: 175007

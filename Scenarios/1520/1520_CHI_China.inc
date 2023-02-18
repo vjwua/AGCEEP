@@ -4,7 +4,7 @@
 
 country = {
 	tag = CHI
-	ai = "CHI_1525_Perfectionist.ai"
+	ai = "CHI_1525_Perfectionist.txt"
 	policy = {
 		aristocracy = 9
 		centralization = 7
@@ -24,10 +24,10 @@ country = {
 	treasury = 800
 	inflation = 0.4
 	merchants = 0.083333
-	religion = { type = confucianism }
+	religion = { type = confucian }
 	culture = {
 		type = han
-		type = cantonese
+		type = zhuang
 	}
 	diplomacy = {
 		relation = { tag = CAM value = 45.000 }

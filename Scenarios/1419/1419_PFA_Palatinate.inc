@@ -4,7 +4,7 @@
 
 country = {
 	tag = PFA
-	ai = "SmallTrade1.ai"
+	ai = "SmallTrade1.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -27,7 +27,7 @@ country = {
 		relation = { tag = LOR value = 150 }
 		relation = { tag = BOH value = 140 }
 		relation = { tag = WUR value = 140 }
-		relation = { tag = MUN value = 140 }
+		relation = { tag = BRG value = 140 }
 		relation = { tag = MAI value = 140 }
 	}
 	knownprovinces = {

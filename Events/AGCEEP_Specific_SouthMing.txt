@@ -1,0 +1,582 @@
+#Southern Ming (SMI)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1633-1644) Zhang Xian Zhong founds Da Xi
+event = {
+	id = 317001
+	trigger = {
+		NOT = {
+			stability = 1
+			exists = DAX
+			event = 147124
+		}
+		owned = { province = 1558 data = -1 } #Lanzhou
+	}
+	random = no
+	country = SMI
+	name = "EVENTNAME317001" #Resistant leader declares an independent state
+	desc = "EVENTHIST317001"
+	#-#The Ming Dynasty's incompetence and disruption of politics by eunuchs, officials forming opposing parties, corruption plus external pressures caused the decline in Ming power. This resulted in increasing strain on the people burdened by heavy taxes, famine, displacement from farmlands, etc. The Ming forces found it increasingly difficult to deal with the ever increasing peasant uprisings. By 1635, leaders from various resistance groups and camps gathered in a meeting which resulted in agreement to coordinate their efforts to overthrow of Ming. In the following years rebel forces advanced through Henan, Hubei, Anhui, Shaanxi, Gansu, and Sichuan. On the first month of November 1644, Zhang Xian Zhong declared the establishment of the new Da Xi state.
+
+	date = { day = 1 month = february year = 1633 }
+	offset = 300
+	deathdate = { day = 1 month = december year = 1644 }
+
+	action_a = {
+		name = "ACTIONNAME317001A" #We shall crush them!
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 6 value = 1 }
+		command = { type = desertion which = -1 value = 10000 }
+		command = { type = independence which = DAX }
+		command = { type = trigger which = 315001 } #DAX: We openly declare war
+		#command = { type = AI which = china_conquest.ai }
+		command = { type = sleepevent which = 147124 } #CHI: Resistant leader declares an independent state
+	}
+}
+
+#(1634-1644) Li Zi Cheng founds Da Shun
+event = {
+	id = 317000
+	trigger = {
+		NOT = {
+			stability = 1
+			exists = DAS
+			event = 147123
+		}
+		owned = { province = 1563 data = -1 } #Shaanxi
+	}
+	random = no
+	country = SMI
+	name = "EVENTNAME317000" #Resistant leader declares an independent state
+	desc = "EVENTHIST317000"
+	#-#The Ming Dynasty's incompetence and disruption of politics by eunuchs, officials forming opposing parties, corruption plus external pressures caused the decline in Ming power. This resulted in increasing strain on the people burdened by heavy taxes, famine, displacement from farmlands, etc. The Ming forces found it increasingly difficult to deal with the ever increasing peasant uprisings. By 1635, leaders from various resistance groups and camps gathered in a meeting which resulted in agreement to coordinate their efforts to overthrow of Ming. In the following years rebel forces advanced through Henan, Hubei, Anhui, Shaanxi, Gansu, and Sichuan. On the first month of 1644, Li Zi Cheng declared the establishment of the new Da Shun state.
+
+	date = { day = 1 month = march year = 1634 }
+	offset = 300
+	deathdate = { day = 1 month = july year = 1644 }
+
+	action_a = {
+		name = "ACTIONNAME317000A" #We shall crush them!
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 6 value = 1 }
+		command = { type = desertion which = -1 value = 10000 }
+		command = { type = desertion which = -1 value = 10000 }
+		command = { type = independence which = DAS }
+		command = { type = trigger which = 314001 } #DAS: We openly declare war
+		#command = { type = AI which = china_conquest.ai }
+		command = { type = sleepevent which = 147123 } #CHI: Resistant leader declares an independent state
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#"The End of the Ming Dynasty" events
+
+#AI only
+
+#(1633-1820) The End of the Ming Dynasty -III-
+event = {
+	id = 317014 #triggered by CHI_147055
+	random = no
+	country = SMI
+	name = "AI_EVENT"
+	desc = ""
+
+	action_a = {
+		name = "OK"
+		command = { type = trigger which = 315007 } #DAX: The Imperial Throne
+	}
+}
+#(1634-1820) The End of the Ming Dynasty -II-
+event = {
+	id = 317013 #triggered by CHI_147054
+	random = no
+	country = SMI
+	name = "AI_EVENT"
+	desc = ""
+
+	action_a = {
+		name = "OK"
+		command = { type = trigger which = 314007 } #DAS: The Imperial Throne
+	}
+}
+#(1644-1820) The End of the Ming Dynasty -I-
+event = {
+	id = 317012 #triggered by CHI_147053
+	random = no
+	country = SMI
+	name = "AI_EVENT"
+	desc = ""
+
+	action_a = {
+		name = "OK"
+		command = { type = trigger which = 221008 } #MCH: The Imperial Throne
+	}
+}
+#(1644-1820) The End of the Ming Dynasty -IV-
+event = {
+	id = 317015 #triggered by CHI_147056
+	random = no
+	country = SMI
+	name = "AI_EVENT"
+	desc = ""
+
+	action_a = {
+		name = "OK"
+		command = { type = trigger which = 204018 } #KOR: The Imperial Throne
+	}
+}
+#End of "The End of the Ming Dynasty" events
+#-----------------------------------------------------------------------------------------------
+
+#(1644-1680) We have no choice but to rely on foreign trade
+#by sturmvogel
+event = {
+	id = 317016
+	trigger = {
+		OR = {
+			owned = { province = 649 data = -1 } #Hebei
+			owned = { province = 657 data = -1 } #Kowloon
+			owned = { province = 659 data = -1 } #Guangdong
+			owned = { province = 660 data = -1 } #Hainan
+			owned = { province = 661 data = -1 } #Guanxi
+			owned = { province = 662 data = -1 } #Hanoi
+			owned = { province = 663 data = -1 } #Tanh Noah
+			owned = { province = 664 data = -1 } #Da Nang
+			owned = { province = 665 data = -1 } #Dalat
+			owned = { province = 666 data = -1 } #Mekong Delta
+		}
+	}
+	random = no
+	country = SMI
+	name = "EVENTNAME317016" #We have no choice but to rely on foreign trade
+	desc = "EVENTHIST317016"
+	#-#Cut off from its traditional sources of revenue the remnant Ming rulers had little choice but to turn to foreign trade to fund their efforts to restore their dynasty's fortunes. Neither the Spanish nor the Dutch were happy to have Chinese competitors intrude on turf they regarded as their own.
+
+	date = { day = 1 month = january year = 1644 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1680 }
+
+	action_a = {
+		name = "ACTIONNAME317016A" #Needs must when the devil drives
+		command = { type = merchants value = 6 }
+		command = { type = trade value = 500 }
+		command = { type = domestic which = mercantilism value = -3 }
+		command = { type = warships which = -1 value = 3 }
+		command = { type = relation which = HOL value = -50 }
+		command = { type = relation which = SPA value = -50 }
+	}
+}
+
+#(1644-1820) Claiming the Imperial Throne - Ahistorical
+event = {
+	id = 317002
+	trigger = {
+		owned = { province = 649 data = -1 } #Hebei
+		control = { province = 649 data = -1 } #Hebei
+		owned = { province = 650 data = -1 } #Shandong
+		owned = { province = 651 data = -1 } #Jinan
+		owned = { province = 652 data = -1 } #Jiangsu
+		owned = { province = 653 data = -1 } #Shanghai
+		owned = { province = 654 data = -1 } #Anhui
+		owned = { province = 655 data = -1 } #Zhejiang
+		owned = { province = 1562 data = -1 } #Shanxi
+		owned = { province = 1563 data = -1 } #Shaanxi
+		owned = { province = 1564 data = -1 } #Henan
+		owned = { province = 1565 data = -1 } #Hubei
+		owned = { province = 1567 data = -1 } #Nanchang
+		countrysize = 16
+		NOT = { exists = CHI }
+	}
+	random = no
+	country = SMI
+	name = "EVENTNAME317002" #Claiming the Imperial Throne
+	desc = "EVENTHIST317002"
+	#-#The displaced ruler of the Ming Dynasty through careful warfare, diplomacy and other various means is able to once again claim to be the legitimate Emperor of China.
+
+	date = { day = 1 month = january year = 1644 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME317002A" #Long live the Emperor!
+		command = { type = stability value = 1 }
+		command = { type = capital which = 654 } #Anhui (Ming will not return to Beijing...)
+		command = { type = flagname which = "" }
+		command = { type = country which = CHI }
+		command = { type = trigger which = 147133 } #CHI: Ming Dynasty back to the throne
+	}
+}
+
+#(1650-1662) Koxinga in Ming service
+#by sturmvogel
+event = {
+	id = 317020
+	random = no
+	country = SMI
+	name = "EVENTNAME147059" #Koxinga in Ming service
+	desc = "EVENTHIST147059"
+	#-#Koxinga has joined our service.
+
+	date = { day = 1 month = january year = 1650 }
+	offset = 0
+	deathdate = { day = 23 month = august year = 1662 }
+
+	action_a = {
+		name = "OK"
+		command = { type = wakeleader which = 0147800 } #Koxinga (SMI)
+		command = { type = sleepevent which = 147059 } #CHI: Koxinga in Ming service
+	}
+}
+
+#(1652-1683) Refuge in Taiwan
+event = {
+	id = 317019
+	trigger = {
+		owned = { province = 689 data = -1 } #Taiwan
+		control = { province = 689 data = -1 }
+		NOT = {
+			countrysize = 4
+			provincereligion = { province = 689 data = pagan } #not a TP
+		}
+	}
+	random = no
+	country = SMI
+	name = "EVENTNAME317019" #Refuge in Taiwan
+	desc = "EVENTHIST317019"
+	#-#The usurping Qing begin to surround us. Shall we seek a place of safety in Taiwan?
+
+	date = { day = 0 month = january year = 1652 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1683 }
+
+	action_a = {
+		name = "ACTIONNAME317019A" #Move the capital to Taiwan
+		command = { type = stability value = -1 }
+		command = { type = trade value = -200 }
+		command = { type = capital which = 689 } #Taiwan
+	}
+	action_b = {
+		name = "ACTIONNAME317019B" #Remain where we are
+		command = { type = stability value = 1 }
+		command = { type = sleepevent which = 147134 } #CHI: Collapse of the Southern Ming
+	}
+}
+
+#(1655-1662) Zheng Chenggong forbids trade with Manila -I-
+#by sturmvogel
+#Sources: http://www.gutenberg-e.org/andrade/andrade10.html
+event = {
+	id = 317003
+	trigger = {
+		event = 338454 #Province_Spec*690: Southern Ming aware of European settlement of Luzon
+		owned = { province = 689 data = HOL } #Taiwan
+	}
+	random = no
+	country = SMI
+	name = "EVENTNAME317003" #Zheng Chenggong forbids trade with Manila
+	desc = "EVENTHIST317003"
+	#-#By 1655 Zheng Chenggong, known as Koxinga in the West from his title of Guoxingye (Lord of the Imperial Surname), which was pronounced ''Kok seng ia'' in southern Fujianese, had become predominant in the Ming court and he was determined to prevent the Western powers from interfering with Ming trade and to assert sovereignty over Taiwan's native inhabitants. He sent a letter to the VOC's Governor of Taiwan in August 1655. The Spanish, wrote Chenggong, had been mistreating his sailors, and he had therefore issued an edict that forbade Chinese to sail to Manila on pain of death. He enclosed a copy of the edict and requested that the Governor propagate it in Formosa and enforce it by confiscating the junks and property of any who disobeyed. But the language of the edict raised the hackles of the VOC. First, it said that the Dutch ''behave more like animals than Christians.'' Second, it referred to Chinese who lived in the Dutch colony as Chenggong's subjects. Third, and most important, it threatened punishment not only for Chinese but also for ''anyone outside of our nation who extends money for trade with Manila.'' If company officials did as Chenggong asked and published the edict, they would be admitting that Chenggong had sovereignty over the Chinese colonists in Formosa. The Governor and the council decided they must refuse Chenggong's request to preserve ''the sovereignty of the Netherlanders.'' They replied with a ''compliment letter,'' which politely declined his request.
+
+	date = { day = 1 month = august year = 1655 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1662 }
+
+	action_a = {
+		name = "ACTIONNAME317003A" #We must punish the Westerners by denying them trade
+		command = { type = addcore which = 689 } #Taiwan
+		command = { type = merchants value = -2 }
+		command = { type = trade value = -100 }
+		command = { type = relation which = HOL value = -25 }
+		command = { type = trigger which = 338455 } #Province_Spec*690: Koxinga claims sovereignty over Taiwan and disrupts trade
+		command = { type = trigger which = 186081 } #HOL: Koxinga claims sovereignty over Taiwan and disrupts trade
+		command = { type = sleepevent which = 317017 } #SMI: Zheng Chenggong forbids trade with Manila -II-
+	}
+	action_b = {
+		name = "ACTIONNAME317003B" #Leave the Westerners alone
+		command = { type = treasury value = -150 }
+		command = { type = sleepevent which = 317017 } #SMI: Zheng Chenggong forbids trade with Manila -II-
+	}
+}
+#(1655-1662) Zheng Chenggong forbids trade with Manila -II-
+event = {
+	id = 317017
+	trigger = {
+		event = 338454 #Province_Spec*690: Southern Ming aware of European settlement of Luzon
+		NOT = {
+			owned = { province = 689 data = HOL } #Taiwan
+		}
+	}
+	random = no
+	country = SMI
+	name = "EVENTNAME317003" #Zheng Chenggong forbids trade with Manila
+	desc = "EVENTHIST317017"
+	#-#By 1655 Zheng Chenggong, known as Koxinga in the West from his title of Guoxingye (Lord of the Imperial Surname), which was pronounced ''Kok seng ia'' in southern Fujianese, had become predominant in the Ming court and he was determined to prevent the Western powers from interfering with Ming trade and to assert sovereignty over Taiwan's native inhabitants. He sent a letter to the Governor of Taiwan in August 1655. The Spanish, wrote Chenggong, had been mistreating his sailors, and he had therefore issued an edict that forbade Chinese to sail to Manila on pain of death. He enclosed a copy of the edict and requested that the Governor propagate it in Formosa and enforce it by confiscating the junks and property of any who disobeyed. But the language of the edict raised the hackles of the Westerners. First, it said that they ''behave more like animals than Christians.'' Second, it referred to Chinese who lived in the colony as Chenggong's subjects. Third, and most important, it threatened punishment not only for Chinese but also for ''anyone outside of our nation who extends money for trade with Manila.'' If officials did as Chenggong asked and published the edict, they would be admitting that Chenggong had sovereignty over the Chinese colonists in Formosa. The Governor and the council decided they must refuse Chenggong's request to preserve ''their sovereignty.'' They replied with a ''compliment letter,'' which politely declined his request.
+
+	date = { day = 1 month = august year = 1655 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1662 }
+
+	action_a = {
+		name = "ACTIONNAME317003A" #We must punish the Westerners by denying them trade
+		command = { type = addcore which = 689 } #Taiwan
+		command = { type = merchants value = -2 }
+		command = { type = trade value = -100 }
+		command = { type = relation which = HOL value = -25 }
+		command = { type = trigger which = 338455 } #Province_Spec*690: Koxinga claims sovereignty over Taiwan and disrupts trade
+		command = { type = trigger which = 338456 } #Province_Spec*689: Koxinga claims sovereignty over Taiwan and disrupts trade
+		command = { type = sleepevent which = 317003 } #SMI: Zheng Chenggong forbids trade with Manila -I-
+	}
+	action_b = {
+		name = "ACTIONNAME317003B" #Leave the Westerners alone
+		command = { type = treasury value = -150 }
+		command = { type = sleepevent which = 317003 } #SMI: Zheng Chenggong forbids trade with Manila -I-
+	}
+}
+
+#(1661-1667) Koxinga invades Taiwan
+event = {
+	id = 317018
+	trigger = {
+		owned = { province = 689 data = HOL } #Taiwan
+		event = 317003 #Zheng Chenggong forbids trade with Manila
+	}
+	random = no
+	country = SMI
+	name = "EVENTNAME317018" #Koxinga invades Taiwan
+	desc = "EVENTHIST317018"
+	#-#In April 1661 Zheng Chenggong, known as Koxinga in the West, besieged the Dutch in Fort Zeelandia. After a 9 months siege, Governor Coyett surrendered Taiwan to Koxinga.
+
+	date = { day = 1 month = april year = 1661 }
+	offset = 60
+	deathdate = { day = 1 month = january year = 1667 }
+
+	action_a = {
+		name = "ACTIONNAME317018A" #It is our destiny
+		command = { type = relation which = HOL value = -100 }
+		command = { type = trigger which = 186082 } #HOL: Koxinga attacks Taiwan
+	}
+	action_b = {
+		name = "ACTIONNAME317018B" #We are too weak
+		command = { }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Plausible Chinese events if Southern Ming survive
+
+#(1704) Ancestor worship is filial piety
+event = {
+	id = 317005 #triggered by PAP_251012 B / MUS_236001 B
+	random = no
+	country = SMI
+	name = "EVENTNAME147047" #Ancestor worship is filial piety
+	desc = "EVENTHIST147047"
+	#-#On several occasions since 1645, the Jesuit missionaries in China were criticized because they were letting their converts worship their ancestors. The Jesuits explained that it was only a courtesy and an act of filial piety that was facilitating the acceptation of the Christianity in the very traditional Chinese society. Surprisingly, in 1704, Rome officially declares ancestor worship to be filial piety.
+
+	action_a = {
+		name = "OK"
+		command = { type = infra value = 100 }
+	}
+}
+
+#(1722) The Expulsion of the Jesuits
+event = {
+	id = 317007
+	random = no
+	country = SMI
+	name = "EVENTNAME10036" #The Expulsion of the Jesuits
+	desc = "EVENTHIST10036"
+	#-#Due to recent events, it now seems that the Jesuits may have outlived their usefulness. Although their knowledge is great, it is foreign to us and sometimes causes much commotion among our scholars and the common folk, disrupting the stability of our realm. They have been for decades interfering in the internal affairs of our nation - the final straw was their meddling in the recent succession. Perhaps it is time for them to go.
+
+	date = { day = 1 month = january year = 1722 }
+	offset = 300
+	deathdate = { day = 1 month = january year = 1723 }
+
+	action_a = {
+		name = "ACTIONNAME10036A" #Expel them!
+		command = { type = technology which = exotic }
+		command = { type = infra value = -1000 }
+		command = { type = trade value = -1000 }
+		command = { type = domestic which = innovative value = -3 }
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = stability value = 3 }
+	}
+	action_b = {
+		name = "ACTIONNAME10036B" #No, they are too valuable!
+		command = { type = domestic which = innovative value = 2 }
+		command = { type = stability value = -3 }
+	}
+}
+
+#(1723) Jesuits stay for long
+event = {
+	id = 317006
+	trigger = { event = 317005 }
+	random = no
+	country = SMI
+	name = "EVENTNAME147048" #Effects of Jesuit missionaries on society
+	desc = "EVENTHIST147048"
+	#-#With more and more conversions in Chinese Elite, society is changing...
+
+	date = { day = 1 month = january year = 1723 }
+	offset = 300
+	deathdate = { day = 1 month = january year = 1724 }
+
+	action_a = {
+		name = "OH_WELL"
+		command = { type = domestic which = innovative value = 2 }
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1793) Lord Macartney's Mission
+event = {
+	id = 317008
+	random = no
+	country = SMI
+	name = "EVENTNAME10038" #Lord Macartney's Mission
+	desc = "EVENTHIST10038"
+	#-#Reports have reached us that a diplomatic mission has arrived on our shores from the far-off western barbarian nation of England, led by a certain Lord Macartney. He is said to bring with him the friendly greetings of his King, ideas for facilitating the trade between our nations, and various mechanical wonders. Shall receive this mission?
+
+	date = { day = 1 month = october year = 1793 }
+	offset = 30
+	deathdate = { day = 1 month = november year = 1793 }
+
+	action_a = {
+		name = "ACTIONNAME10038A" #Reject the overtures of these rude western devils!
+		command = { type = relation which = ENG value = -100 }
+		command = { type = domestic which = innovative value = -2 }
+		command = { type = trade value = -1000 }
+		command = { type = stability value = 3 }
+	}
+	action_b = {
+		name = "ACTIONNAME10038B" #We are interested in hearing their ideas
+		command = { type = relation which = ENG value = 100 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = trade value = 500 }
+		command = { type = stability value = -3 }
+	}
+}
+
+#(1796) The White Lotus Rebellion
+event = {
+	id = 317009
+	trigger = {
+		owned = { province = 649 data = -1 } #Hebei
+	}
+	random = no
+	country = SMI
+	name = "EVENTNAME10039" #The White Lotus Rebellion
+	desc = "EVENTHIST10039"
+	#-#Widespread rumors seem to indicate that the Cult of the White Lotus, a secret revolutionary society, is planning rebellion. What shall we do?
+
+	date = { day = 1 month = january year = 1796 }
+	offset = 300
+	deathdate = { day = 1 month = january year = 1797 }
+
+	action_a = {
+		name = "ACTIONNAME10039A" #It's likely just harmless talk
+		command = { type = revoltrisk which = 24 value = 15 }
+		command = { type = stability value = -4 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME10039B" #Crush these plotters!
+		command = { type = revoltrisk which = 24 value = 6 }
+		command = { type = stability value = -2 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = treasury value = -500 }
+	}
+}
+
+#(1811) The Celestial Order Rebellion
+event = {
+	id = 317010
+	trigger = {
+		owned = { province = 649 data = -1 } #Hebei
+	}
+	random = no
+	country = SMI
+	name = "EVENTNAME10033" #The Celestial Order Rebellion
+	desc = "EVENTHIST10033"
+	#-#Widespread rumors seem to indicate that the Cult of the Celestial Order, a secret revolutionary society, is planning rebellion. What shall we do?
+
+	date = { day = 1 month = january year = 1811 }
+	offset = 300
+	deathdate = { day = 1 month = january year = 1812 }
+
+	action_a = {
+		name = "ACTIONNAME10033A" #It's likely just harmless talk
+		command = { type = revoltrisk which = 24 value = 15 }
+		command = { type = stability value = -4 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME10033B" #Crush these plotters!
+		command = { type = revoltrisk which = 24 value = 6 }
+		command = { type = stability value = -2 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = treasury value = -500 }
+	}
+}
+
+#(1813) The Eight Trigrams Rebellion
+event = {
+	id = 317011
+	trigger = {
+		owned = { province = 649 data = -1 } #Hebei
+	}
+	random = no
+	country = SMI
+	name = "EVENTNAME10040" #The Celestial Order Rebellion
+	desc = "EVENTHIST10040"
+	#-#Widespread rumors seem to indicate that the Cult of the Celestial Order, a secret revolutionary society, is planning rebellion. What shall we do?
+
+	date = { day = 18 month = october year = 1813 }
+	offset = 1
+	deathdate = { day = 19 month = october year = 1813 }
+
+	action_a = {
+		name = "ACTIONNAME10040A" #It's likely just harmless talk
+		command = { type = revoltrisk which = 24 value = 10 }
+		command = { type = stability value = -6 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME10040B" #Crush these plotters!
+		command = { type = revoltrisk which = 24 value = 4 }
+		command = { type = stability value = -4 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = treasury value = -700 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 317004 - next: 317021

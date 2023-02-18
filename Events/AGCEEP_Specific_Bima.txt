@@ -1,0 +1,54 @@
+#Bima (BIM)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1478-1820) The End of the Majapahit Empire
+event = {
+	id = 407001 #triggered by MTR_234000 A
+	trigger = {
+		vassal = { country = MTR country = BIM }
+	}
+	country = BIM
+	random = no
+	name = "EVENTNAME80707" #The End of the Majapahit Empire
+	desc = "EVENTHIST80707"
+	#-#The Majapahit Empire is dead. We owe their successors nothing.
+
+	action_a = {
+		name = "ACTIONNAME80707A" #We shall rule ourselves
+		command = { type = breakvassal which = MTR }
+	}
+}
+
+#(1609-1820) Founding of the Sultanate
+#MKJ(?)
+event = {
+	id = 407000
+	trigger = {
+		NOT = { religion = sunni }
+	}
+	country = BIM
+	random = no
+	name = "EVENTNAME407000" #Founding of the Sultanate
+	desc = "EVENTHIST407000"
+	#-#With the founding of the Sultanate of Bima, the area became a Muslim Kingdom.
+
+	date = { day = 1 month = january year = 1609 }
+	offset = 2000
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME407000A" #Found a great Muslim dynasty
+		command = { type = religion which = sunni }
+		command = { type = provincereligion which = -2 value = sunni }
+		command = { type = domestic which = centralization value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME407000B" #Do not found the sultanate
+		command = { type = stability value = -2 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 407002

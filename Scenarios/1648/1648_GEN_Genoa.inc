@@ -4,7 +4,7 @@
 
 country = {
 	tag = GEN
-	ai = "SmallCRC3.ai"
+	ai = "SmallCRC3.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no

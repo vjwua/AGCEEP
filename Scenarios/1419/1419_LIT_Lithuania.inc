@@ -4,7 +4,7 @@
 
 country = {
 	tag = LIT
-	ai = "Large.ai"
+	ai = "Large.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -26,7 +26,7 @@ country = {
 		relation = { tag = BOH value = 165 }
 		relation = { tag = HUN value = 165 }
 		relation = { tag = CRO value = 165 }
-		relation = { tag = MIN value = 165 }
+		relation = { tag = MAS value = 165 }
 	}
 	knownprovinces = {
 		1614 #Pope

@@ -4,7 +4,7 @@
 
 country = {
 	tag = ENG
-	ai = "ENG_1635.ai"
+	ai = "ENG_1635.txt"
 	flagname = "Union"
 	policy = {
 		aristocracy = 10

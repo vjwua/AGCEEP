@@ -4,7 +4,7 @@
 
 country = {
 	tag = UZB
-	ai = "UZB_1510.ai"
+	ai = "UZB_1510.txt"
 	policy = {
 		aristocracy = 8
 		centralization = 7
@@ -25,7 +25,7 @@ country = {
 	inflation = 0.00000
 	merchants = 0.083333
 	religion = { type = sunni }
-	culture = { type = uzbehk }
+	culture = { type = uzbek }
 	diplomacy = {
 		relation = { tag = MOG value = -100 refusetrade = no }
 		relation = { tag = PER value = -50 refusetrade = no }

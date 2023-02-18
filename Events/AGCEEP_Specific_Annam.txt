@@ -1,0 +1,240 @@
+#Annam (ANN)
+
+#Direct Citations
+# "Insight Guides: Vietnam" by Hans Hofer
+# "Vietnam: a country study"
+
+#-----------------------------------------------------------------------------------------------
+
+#(1620-1630) Cambodia Has Switched Allegiances
+event = {
+	id = 107000
+	trigger = {
+		exists = CAM
+		event = 140013 #CAM: Cambodian-Vietnamese Marriage
+		NOT = {
+			vassal = { country = CAM country = ANN }
+		}
+	}
+	random = no
+	country = ANN
+	name = "EVENTNAME65144" #Cambodia Has Switched Allegiances
+	desc = "EVENTHIST65144"
+	#-#With the marriage in 1620 of King Chey Chettha II (1618-28) of Cambodia and the daughter of Sai Vuong, one of the Nguyen lords (1558-1778), who ruled southern Vietnam for most of the period of the restored Le dynasty (1428-1788), Cambodia orbited into the Vietnamese sphere of influence.
+
+	date = { day = 1 month = january year = 1620 }
+	offset = 30
+	deathdate = { day = 18 month = june year = 1630 }
+
+	action_a = {
+		name = "SPLENDID"
+		command = { type = vassal which = CAM }
+		command = { }
+	}
+}
+
+#(1631) Building Two Great Walls
+event = {
+	id = 107005
+	trigger = {
+		owned = { province = 664 data = -1 } #Da Nang
+	}
+	random = no
+	country = ANN
+	name = "EVENTNAME107005" #Building Two Great Walls
+	desc = "EVENTHIST107005"
+	#-#At the beginning of the 16th century, a lot of divisions occured in vietnamese governement, and some local feudal lords decided to take matters into their own hands. In the north, the exhausted Le dynasty had been overthrown by the governor of Hanoi, Mac Dang Dung which was succeeded later by the Trinh lords as 'protector' of Le Kings. And in the south, another feudal lord, Nguyen Kirn, had set up a Vietnamese government-in-exile in Laos, built around a descendant of the Le. When Nguyen Kirn died in 1545, murdered by supporters of the Mac clan, the struggle degenerated into a long civil war that lasted almost two centuries. In this indecisive struggle, the south remained largely on the defensive. In 1631, in order to repulse invading Trinh forces, the Nguyen completed the building of two huge walls of six meters high and eighteen kilometers long across the Vietnamese plain of Quang-Tri near its narrow waist at Dong-Hoi. The country remained divided on that line for 150 years.
+
+	date = { day = 1 month = january year = 1631 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1631 }
+
+
+	action_a = {
+		name = "ACTIONNAME107005A" #We can't trust those Trinh!
+		command = { type = fortress which = 664 value = 1 } #Da Nang
+		command = { type = relation which = DAI value = -75 }
+		command = { type = treasury value = -100 }
+		command = { type = population which = 666 value = 2000 } #Mekong Delta
+		command = { type = stability value = 1 }
+		command = { type = sleepevent which = 107006 } #ANN: Building Two Great Walls
+	}
+	action_b = {
+		name = "ACTIONNAME107005B" #Let optimism rule
+		command = { type = relation which = DAI value = 30 }
+		command = { type = stability value = -1 }
+		command = { type = sleepevent which = 107006 } #ANN: Building Two Great Walls
+	}
+}
+#(1631) Building Two Great Walls
+event = {
+	id = 107006
+	trigger = {
+		owned = { province = 665 data = -1 } #Da Lat
+		NOT = { event = 107005 } #ANN: Building Two Great Walls
+	}
+	random = no
+	country = ANN
+	name = "EVENTNAME107005" #Building Two Great Walls
+	desc = "EVENTHIST107005"
+	#-#At the beginning of the 16th century, a lot of divisions occured in vietnamese governement, and some local feudal lords decided to take matters into their own hands. In the north, the exhausted Le dynasty had been overthrown by the governor of Hanoi, Mac Dang Dung which was succeeded later by the Trinh lords as 'protector' of Le Kings. And in the south, another feudal lord, Nguyen Kirn, had set up a Vietnamese government-in-exile in Laos, built around a descendant of the Le. When Nguyen Kirn died in 1545, murdered by supporters of the Mac clan, the struggle degenerated into a long civil war that lasted almost two centuries. In this indecisive struggle, the south remained largely on the defensive. In 1631, in order to repulse invading Trinh forces, the Nguyen completed the building of two huge walls of six meters high and eighteen kilometers long across the Vietnamese plain of Quang-Tri near its narrow waist at Dong-Hoi. The country remained divided on that line for 150 years.
+
+	date = { day = 1 month = march year = 1631 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1631 }
+
+	action_a = {
+		name = "ACTIONNAME107005A" #We can't trust those Trinh!
+		command = { type = fortress which = 665 value = 1 } #Da Lat
+		command = { type = relation which = DAI value = -75 }
+		command = { type = treasury value = -100 }
+		command = { type = population which = 666 value = 2000 } #Mekong Delta
+		command = { type = stability value = 1 }
+		command = { type = sleepevent which = 107005 } #ANN: Building Two Great Walls
+	}
+	action_b = {
+		name = "ACTIONNAME107005B" #Let optimism rule
+		command = { type = relation which = DAI value = 30 }
+		command = { type = stability value = -1 }
+		command = { type = sleepevent which = 107005 } #ANN: Building Two Great Walls
+	}
+}
+
+#(1674-1680) Annexation of Mekong Delta
+event = {
+	id = 107001
+	trigger = { event = 140013 }
+	random = no
+	country = ANN
+	name = "EVENTNAME107001" #Annexation of Mekong Delta
+	desc = "EVENTHIST107001"
+	#-#The Vietnamese were involved in a lengthy civil war until 1674, but upon its conclusion they promptly annexed sizable areas of contiguous Cambodian territory in the region of the Mekong Delta. Cambodia was cut off from access to the sea. Trade with the outside world was possible only with Vietnamese permission.
+
+	date = { day = 18 month = june year = 1674 }
+	offset = 30
+	deathdate = { day = 18 month = june year = 1680 }
+
+	action_a = {
+		name = "SPLENDID"
+		command = { type = addcore which = 666 } #Mekong Delta
+		command = { type = stability value = 1 }
+		command = { type = trigger which = 140014 } #CAM: Loss of Mekong Delta and Access to the Sea
+	}
+}
+
+#(1773-1801) Tay Son Uprising
+event = {
+	id = 107002
+	random = no
+	country = ANN
+	name = "EVENTNAME107002" #Tay Son Uprising
+	desc = "EVENTHIST107002"
+	#-#The Tay Son Rebellion (1771-1802), which ended the Le and Trinh dynasties, was led by three brothers from the village of Tay Son in Binh Dinh Province. The brothers, who were of the Ho clan (to which Ho Quy Ly had belonged), adopted the name Nguyen. The eldest brother, Nguyen Nhac, began an attack on the ruling Nguyen family by capturing Quang Nam and Binh Dinh provinces in 1772. The chief principle and main slogan of the Tay Son was seize the property of the rich and distribute it to the poor. In each village the Tay Son controlled, oppressive landlords and scholar-officials were punished and their property redistributed. The Tay Son also abolished taxes, burned the tax and land registers, freed prisoners from local jails, and distributed the food from storehouses to the hungry. As the rebellion gathered momentum, it gained the support of army deserters, merchants, scholars, local officials, and bonzes.
+
+	date = { day = 1 month = january year = 1773 }
+	offset = 60
+	deathdate = { day = 29 month = december year = 1801 }
+
+	action_a = {
+		name = "ACTIONNAME107002A" #Good riddance!
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revoltrisk which = 432 value = 5 }
+		command = { type = stability value = -6 }
+	}
+}
+
+#(1789-1802) Nguyen Anh
+event = {
+	id = 107003
+	trigger = {
+		exists = DAI
+		OR = {
+			event = 107002 #ANN: Tay Son Uprising
+			event = 157006 #DAI: Tay Son Uprising
+		}
+	}
+	random = no
+	country = ANN
+	name = "EVENTNAME107003" #Nguyen Anh
+	desc = "EVENTHIST107003"
+	#-#In 1773 Nguyen Nhac seized Qui Nhon, which became the Tay Son capital. By 1778 the Tay Son had effective control over the southern part of the country, including Gia Dinh (later Saigon). The ruling Nguyen family were all killed by the Tay Son rebels, with the exception of Nguyen Anh, the sixteen-year-old nephew of the last Nguyen lord, who escaped to the Mekong Delta. There he was able to gather a body of supporters and retake Gia Dinh. The city changed hands several times until 1783, when the Tay Son brothers destroyed Nguyen Anh's fleet and drove him to take refuge on Phu Quoc Island. Soon thereafter, he met with French missionary bishop Pigneau de Behaine and asked him to be his emissary in obtaining French support to defeat the Tay Son. Pigneau de Behaine took Nguyen Anh's five-year-old son, Prince Canh, and departed for Pondichery in French India to plead for support for the restoration of the Nguyen. Finding none there, he went to Paris in 1786 to lobby on Nguyen Anh's behalf. Louis XVI ostensibly agreed to provide four ships, 1,650 men, and supplies in exchange for Nguyen Anh's promise to cede to France the port of Tourane (Da Nang) and the island of Poulo Condore. However, the local French authorities in India, under secret orders from the King, refused to supply the promised ships and men. Determined to see French military intervention in Vietnam, Pigneau de Behaine himself raised funds for two ships and supplies from among the French merchant community in India, hired deserters from the French navy to man them, and sailed back to Vietnam in 1789. When Pigneau de Behaine returned to Vietnam in 1789, Nguyen Anh was in control of Gia Dinh. In the succeeding years, the bishop brought Nguyen Anh a steady flow of ships, arms, and European advisers, who supervised the building of forts, shipyards, cannon foundries and bomb factories, and instructed the Vietnamese in the manufacture and use of modern armaments.
+
+	date = { day = 1 month = january year = 1789 }
+	offset = 30
+	deathdate = { day = 29 month = may year = 1802 }
+
+	action_a = {
+		name = "ACTIONNAME107003A" #Let it begin!
+		command = { type = war which = DAI }
+		command = { type = domestic which = CENTRALIZATION value = 2 }
+		command = { type = domestic which = INNOVATIVE value = 2 }
+		command = { type = domestic which = LAND value = 2 }
+		command = { type = domestic which = OFFENSIVE value = 2 }
+		command = { type = domestic which = QUALITY value = 2 }
+		command = { type = land value = 5000 }
+		command = { type = stability value = 2 }
+		command = { type = treasury value = 1000 }
+	}
+	action_b = {
+		name = "ACTIONNAME107003B" #We are cowards!
+		command = { type = stability value = -1 }
+		command = { type = relation which = DAI value = 50 }
+		command = { type = sleepevent which = 107004 } #ANN: Birth of Vietnam
+	}
+}
+
+#(1789-1820) Birth of Vietnam
+event = {
+	id = 107004
+	trigger = {
+		event = 107003 #ANN: Nguyen Anh
+		control = { province = 662 data = -1 } #Hanoi
+		control = { province = 663 data = -1 } #Tanh Noah
+	}
+	random = no
+	country = ANN
+	name = "EVENTNAME107004" #Birth of Vietnam
+	desc = "EVENTHIST107004"
+	#-#Nguyen's cause was also greatly aided by divisions within the Tay Son leadership, following the death of Quang Trung, and the inability of the new leaders to deal with the problems of famine and natural disasters that wracked the war-torn country. After a steady assault on the north, Nguyen Anh's forces took Phu Xuan in June 1801 and Thang Long a year later. In June 1802, Nguyen Anh adopted the reign name Gia Long to express the unifying of the country--Gia from Gia Dinh (Saigon) and Long from Thang Long (Hanoi). As a symbol of this unity, Gia Long changed the name of the country from Dai Viet to Nam Viet. For the Chinese, however, this was too reminiscent of the wayward General Trieu Da. In conferring investiture on the new government, the Chinese inverted the name to Viet Nam, the first use of that name for the country. Acting as a typical counterrevolutionary government, the Gia Long regime harshly suppressed any forces opposing it or the interests of the bureaucracy and the landowners.
+
+	date = { day = 1 month = january year = 1789 }
+	offset = 70
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME107004A" #We are one!
+		command = { type = inherit which = DAI }
+		command = { type = stability value = 3 }
+		command = { type = addcore which = 1554 } #Lao Cai
+		command = { type = addcore which = 662 } #Hanoi
+		command = { type = addcore which = 663 } #Tanh Noah
+		command = { type = sleepevent which = 157008 } #DAI: A power vacuum
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Random Events
+#-----------------------------------------------------------------------------------------------
+
+#White Elephants
+event = {
+	id = 107007
+	random = yes
+	country = ANN
+	name = "EVENTNAME107007" #White Elephants
+	desc = "EVENTHIST107007"
+	#-#The Buddhist Kings of Southeast Asia have always treasured the possession of white elephants, enhancing royal prestige and ensuring the country's prosperity.
+
+	action_a = {
+		name = "SPLENDID"
+		command = { type = stability value = 1 }
+		command = { type = revoltrisk which = 12 value = -3 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 107008

@@ -1,0 +1,898 @@
+#Wirtemberg (WUR)
+
+#See AGCEEP_Alt_Germany.txt for KoG Alternative events
+
+#-----------------------------------------------------------------------------------------------
+
+#(1442) Wirtemberg is divided
+event = {
+	id = 331001
+	random = no
+	country = WUR
+	name = "EVENTNAME331001" #Treaty of Nürtingen
+	desc = "EVENTHIST331001"
+	#-#By the treaty of Nürtingen signed in 1442 the county of Wirtemberg was divided between the brothers Ulrich who got the Rems and Neckar valleys in the norteast and the city of Stuttgart and Eberhard who received the south and west of Wirtemberg.
+
+	date = { day = 1 month = january year = 1442 }
+	offset = 100
+	deathdate = { day = 29 month = december year = 1442 }
+
+	action_a = {
+		name = "ACTIONNAME331001A" #Accept the division
+		command = { type = provincetax which = 372 value = -3 } #Württemberg
+		command = { type = provincemanpower which = 372 value = -2 } #Württemberg
+		command = { type = desertion which = 372 value = 5000 } #Württemberg
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME331001B" #Wirtemberg must remain united
+		command = { type = sleepevent which = 331002 } #WUR: Wirtemberg is united again
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 60 value = 4 }
+		command = { type = revolt which = 372 } #Württemberg
+	}
+}
+
+#(1482) Wirtemberg united again
+event = {
+	id = 331002
+	trigger = { event = 331001 }
+	random = no
+	country = WUR
+	name = "EVENTNAME331002" #Wirtemberg is united again
+	desc = "EVENTHIST331002"
+	#-#When his brother Ulrich died in 1482, Count Eberhard V of Wirtemberg-Urach managed to secure his brother's possessions for himself in the Treaty of Münsingen, in which Wirtemberg was declared indivisable for the future, too. The County of Wirtemberg was reunited.
+
+	date = { day = 1 month = january year = 1482 }
+	offset = 100
+	deathdate = { day = 29 month = december year = 1482 }
+
+	action_a = {
+		name = "ACTIONNAME331002A" #Finally!
+		command = { type = vp value = 20 }
+		command = { type = provincetax which = 372 value = 3 } #Württemberg
+		command = { type = provincemanpower which = 372 value = 2 } #Württemberg
+		command = { type = INF which = 372 value = 4000 } #Württemberg
+	}
+}
+
+#(1488-1493) The Swabian League
+#by Bordic
+event = {
+	id = 331042 #triggered by HAB_179087 A
+	random = no
+	country = WUR
+	name = "EVENTNAME179087" #The Swabian League
+	desc = "EVENTHIST179087"
+	#-#Due to the aggressive policies of the House of Wittelsbach aiming at the extension of the duchy of Bavaria at the expenses of neighbouring countries and the strong independence claims of the Swiss subjects opposing the imperial rule, the princes of South-West Germany and Austria formed a league with military defensive purposes, such as the preservation of the imperial status quo. Supporters of the Swabian league were Frederick V of Austria, Eberhard VI of Wirtemberg and Berthold I Archbishop of Mainz, the latter saw this a a first step towards the realization of his planned reform of the Reich's administration.
+
+	action_a = {
+		name = "ACTIONNAME331042A" #Support the league
+		command = { type = relation which = BAY value = -50 }
+		command = { type = relation which = HEL value = -50 }
+		command = { type = relation which = MAI value = 25 }
+		command = { type = relation which = HAB value = 25 }
+	}
+	action_b = {
+		name = "ACTIONNAME331042B" #Oppose the league
+		command = { type = stability value = -1 }
+		command = { type = relation which = BAY value = 25 }
+		command = { type = relation which = HEL value = 25 }
+		command = { type = relation which = HAB value = -25 }
+		command = { type = relation which = MAI value = -25 }
+		command = { type = relation which = LOR value = -25 }
+		command = { type = relation which = PFA value = -25 }
+		command = { type = relation which = STR value = -25 }
+		command = { type = relation which = SEI value = -25 }
+		command = { type = relation which = TYR value = -25 }
+	}
+}
+
+#(1495) Wirtemberg becomes a duchy
+event = {
+	id = 331003
+	trigger = { relation = { country = HAB data = 0 } }
+	random = no
+	country = WUR
+	name = "EVENTNAME331003" #The Duchy of Wirtemberg
+	desc = "EVENTHIST331003"
+	#-#At the diet of Worms in 1495 Count Eberhard V. was appointed Duke by emperor Maximilian. This raised the status of Wirtemberg considerably. Also at that diet Teck and Markgröningen were bestowed upon Eberhard and the privilege to bear the Reichssturmfahne, the Empire's war flag.
+
+	date = { day = 1 month = january year = 1495 }
+	offset = 100
+	deathdate = { day = 29 month = december year = 1495 }
+
+	action_a = {
+		name = "AWESOME"
+		command = { type = vp value = 40 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = provincetax which = -2 value = 1 }
+		command = { type = provincemanpower which = -2 value = 1 }
+		command = { type = population which = -2 value = 1000 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = -1 value = 50 }
+		command = { type = relation which = -1 value = 50 }
+		command = { type = relation which = -1 value = 50 }
+		command = { type = relation which = -1 value = 50 }
+	}
+}
+
+#(1514) The "Poor Conrad"
+#lower centralization required
+event = {
+	id = 331004
+	trigger = {
+		domestic = { type = centralization value = 3 }
+		domestic = { type = serfdom value = 6 }
+	}
+	random = no
+	country = WUR
+	name = "EVENTNAME331004" #Rebellion of the Poor Conrad
+	desc = "EVENTHIST331004"
+	#-#In 1514, peasants from wirtemberg who were upset by Duke Ulrich's high taxes and incompetent rule and tired of being exploited by the local nobility formed a bond called the 'Poor Conrad' and rebelled against their Duke. Ulrich asked the burghers for support in this struggle.
+
+	date = { day = 1 month = january year = 1514 }
+	offset = 200
+	deathdate = { day = 29 month = december year = 1514 }
+
+	action_a = {
+		name = "ACTIONNAME331004A" #Ask the burghers for support
+		command = { type = trigger which = 331005 } #WUR: Treaty of Tübingen
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 60 value = 7 }
+	}
+	action_b = {
+		name = "ACTIONNAME331004B" #Make concessions to the peasants
+		command = { type = domestic which = serfdom value = -3 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = stability value = -2 }
+		command = { type = provincetax which = 372 value = -2 } #Württemberg
+	}
+	action_c = {
+		name = "ACTIONNAME331004C" #We can take those peasants on
+		command = { type = revoltrisk which = 60 value = 8 }
+		command = { type = stability value = -3 }
+		command = { type = revolt which = 372 } #Württemberg
+	}
+}
+#(1514) Treaty of Tübingen
+event = {
+	id = 331005 #triggered by WUR_331004 A
+	random = no
+	country = WUR
+	name = "EVENTNAME331005" #Treaty of Tübingen
+	desc = "EVENTHIST331005"
+	#-#To be able to put down the Poor Conrad, Duke Ulrich needed the support of the burghers who demanded more influence in exchange. In the treaty of Tübingen the burghers promised to pay Ulrich's debts and to support him financially and militarily in the struggle, while Ulrich excluded nobles and peasants from the estates, thus making the burghers the most influential class in his duchy. The Poor Conrad was defeated quickly.
+
+	action_a = {
+		name = "ACTIONNAME331005A" #Sign the treaty
+		command = { type = domestic which = aristocracy value = -3 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = treasury value = 50 }
+		command = { type = revoltrisk which = 60 value = -4 }
+	}
+}
+
+#(1519) Ulrich is forced to leave
+event = {
+	id = 331000
+	trigger = { exists = HAB }
+	random = no
+	country = WUR
+	name = "EVENTNAME331000" #The deposition of Duke Ulrich
+	desc = "EVENTHIST331000"
+	#-#In 1515 Duke Ulrich had his marshall Hans von Hutten killed because he had an affair with Hutten's wife. This upset whole Southern Germany. When in 1519 he seized the imperial city of Reutlingen, the strong internal and foreign opposition that had built up against him stepped in and forced him to leave Wirtemberg. The duchy was sold to emperor Charles V. for 220.000 Gulden by the estates of Wirtemberg.
+
+	date = { day = 1 month = january year = 1519 }
+	offset = 100
+	deathdate = { day = 29 month = december year = 1519 }
+
+	action_a = {
+		name = "ACTIONNAME331000A" #Sell Wirtemberg to Austria (End Game)
+		command = { type = trigger which = 179004 } #HAB: Purchase of Wirtemberg
+	}
+	action_b = {
+		name = "ACTIONNAME331000B" #Ulrich remains duke nevertheless
+		command = { type = relation which = BAY value = -100 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = BAD value = -100 }
+		command = { type = relation which = PFA value = -100 }
+		command = { type = relation which = MAI value = -100 }
+		command = { type = relation which = HES value = -100 }
+		command = { type = relation which = TYR value = -100 }
+		command = { type = relation which = STR value = -100 }
+		command = { type = relation which = LOR value = -100 }
+		command = { type = stability value = -3 }
+		command = { type = desertion which = 372 value = 5000 } #Württemberg
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+	}
+}
+
+#(1534-1549) Duke Ulrich returns (Hessen)
+event = {
+	id = 331010
+	trigger = { event = 179005 }
+	random = no
+	country = WUR
+	name = "EVENTNAME331010" #Duke Ulrich returns
+	desc = "EVENTHIST331010"
+	#-#Ulrich, former duke of Wirtemberg - his country had been sold to the Habsburgs - fled to Hessen. In his exile he became a protestant and convinced Philipp of Hessen to help him recover his possession for the sake of protestantism. Philipp occupied Wirtemberg with his troops and demanded the restoration of the independent duchy. Eventually the Habsburgs gave in to the pressure and returned Wirtemberg to Ulrich in 1534. Ulrich immediately introduced protestantism in Wirtemberg and improved all fortifications to protect his country from future invasions.
+
+	date = { day = 1 month = january year = 1534 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1549 }
+
+	action_a = {
+		name = "ACTIONNAME331010A" #Wirtemberg is finally restored
+		command = { type = religion which = protestant }
+		command = { type = provincereligion which = 372 value = protestant } #Württemberg
+		command = { type = fortress which = 372 value = 1 } #Württemberg
+		command = { type = relation which = HES value = 150 }
+		command = { type = relation which = HAB value = -150 }
+	}
+}
+#(1534-1549) Duke Ulrich returns (Saxony)
+event = {
+	id = 331013
+	trigger = { event = 179006 }
+	random = no
+	country = WUR
+	name = "EVENTNAME331013" #Duke Ulrich returns
+	desc = "EVENTHIST331013"
+	#-#Ulrich, former duke of Wirtemberg - his country had been sold to the Habsburgs - fled to Saxony. In his exile he became a protestant and convinced Johann Friedrich of Saxony to help him recover his possession for the sake of protestantism. Johann Friedrich occupied Wirtemberg with his troops and demanded the restoration of the independent duchy. Eventually the Habsburgs gave in to the pressure and returned Wirtemberg to Ulrich in 1534. Ulrich immediately introduced protestantism in Wirtemberg and improved all fortifications to protect his country from future invasions.
+
+	date = { day = 1 month = january year = 1534 }
+	offset = 5
+	deathdate = { day = 29 month = december year = 1549 }
+
+	action_a = {
+		name = "ACTIONNAME331013A" #Wirtemberg is finally restored
+		command = { type = religion which = protestant }
+		command = { type = provincereligion which = 372 value = protestant } #Württemberg
+		command = { type = fortress which = 372 value = 1 } #Württemberg
+		command = { type = relation which = SAC value = 150 }
+		command = { type = relation which = HAB value = -150 }
+	}
+}
+
+#(1551-1553) Reforms of Christoph
+event = {
+	id = 331020
+	random = no
+	country = WUR
+	name = "EVENTNAME331020" #Financial crisis
+	desc = "EVENTHIST331020"
+	#-#Because of Duke Ulrich's multiple wars and the indeminities he had to pay to the Emperor for fighting him several times, the new Duke Christoph inherited a large debt from his father. Following the example of the Treaty of Tübingen, he decided to cooperate with the burghers represented in Wirtemberg's estates, the Landschaft. Between 1551 and 1554 terms for financial aid were negotiated, and eventually the Duchy's budget was consolidated and the debt decreased. In return, Christoph made the estates a permanent institution with an important position in the country.
+
+	date = { day = 1 month = january year = 1551 }
+	offset = 600
+	deathdate = { day = 1 month = january year = 1553 }
+
+	action_a = {
+		name = "ACTIONNAME331020A" #Make the Landschaft a permanent institution
+		command = { type = treasury value = 100 }
+		command = { type = provincetax which = -2 value = 1 }
+		command = { type = domestic which = aristocracy value = -2 }
+		command = { type = domestic which = centralization value = -2 }
+	}
+	action_b = {
+		name = "ACTIONNAME331020B" #Don't make further concessions to the burghers
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1555) The Landrecht of Wirtemberg
+event = {
+	id = 331021
+	random = no
+	country = WUR
+	name = "EVENTNAME331021" #The Landrecht of Wirtemberg
+	desc = "EVENTHIST331021"
+	#-#Christoph was a visionary Duke and the most productive legislator and reformer in Wirtemberg's history. Soon after his ascension, he ordered a code of law for Wirtemberg, the Landrecht, that he introduced in 1555. This constitution was considered exemplary in its modern, humanist spirit and therefore imitated by other German princes and towns such as Baden, the Palatinate and Nürnberg.
+
+	date = { day = 1 month = january year = 1555 }
+	offset = 350
+	deathdate = { day = 29 month = december year = 1555 }
+
+	action_a = {
+		name = "ACTIONNAME331021A" #Establish the Landrecht
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = gainbuilding which = -2 value = courthouse }
+		command = { type = stability value = -3 }
+	}
+	action_b = {
+		name = "ACTIONNAME331021B" #Leave things as they are
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1557) Measurement regulation
+event = {
+	id = 331022
+	random = no
+	country = WUR
+	name = "EVENTNAME331022" #Measurement regulation
+	desc = "EVENTHIST331022"
+	#-#In 1557 Christoph issued a regulation of measurements for his Wirtemberg. Therein he defined uniformous measurements for length, weigth, surface, quantity and volume in order to promote and more efficiently control the economy.
+
+	date = { day = 1 month = january year = 1557 }
+	offset = 200
+	deathdate = { day = 29 month = december year = 1557 }
+
+	action_a = {
+		name = "ACTIONNAME331022A" #Regulate measurements
+		command = { type = domestic which = mercantilism value = 2 }
+		command = { type = infra value = 250 }
+		command = { type = trade value = 200 }
+	}
+	action_b = {
+		name = "ACTIONNAME331022B" #There's no need to regulate this
+		command = { type = domestic which = mercantilism value = -1 }
+	}
+}
+
+#(1559) Reform of the education system
+event = {
+	id = 331023
+	random = no
+	country = WUR
+	name = "EVENTNAME331023" #Reform of the education system
+	desc = "EVENTHIST331023"
+	#-#One of the greatest accomplisments of Duke Christoph was his ambitious reform of Wirtemberg's education system that he began in 1559. School structure, organisation, curricula and the educative principles were changed and improved in all of Christoph's possessions. His goal was to make a suitable education accessible to everybody, even girls.
+
+	date = { day = 1 month = january year = 1559 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1559 }
+
+	action_a = {
+		name = "ACTIONNAME331023A" #Try to improve the education
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = stability value = -2 }
+		command = { type = treasury value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME331023B" #Reform the military instead
+		command = { type = domestic which = quality value = 2 }
+		command = { type = domestic which = offensive value = 1 }
+		command = { type = stability value = -3 }
+		command = { type = treasury value = -70 }
+	}
+	action_c = {
+		name = "ACTIONNAME331023C" #Do nothing
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1580-1586) Building activity of Ludwig the Pious
+event = {
+	id = 331024
+	random = no
+	country = WUR
+	name = "EVENTNAME331024" #Building activity of Ludwig the Pious
+	desc = "EVENTHIST331024"
+	#-#While his predecessor Christoph made himself memorable by his reforms, the effects of Ludwig's rule can still be seen today in some of the many buildings that were constructed during his rule. Ludwig was very keen on a good representation and reputation, and he wanted to show his greatness to posterity. Ordered by him, his court architect Georg Beer, one of the most notable German renaissance builders, constructed the Neue Lusthaus, an expensive palace, the Landschaftshaus, a new residence for the estates, the Collegium Illustre, an elite academy, and several churches. Especially the Duke's capital Stuttgart was changed massively and developed into a true residential city.
+
+	date = { day = 1 month = january year = 1580 }
+	offset = 2000
+	deathdate = { day = 1 month = january year = 1586 }
+
+	action_a = {
+		name = "ACTIONNAME331024A" #Let Beer build monuments of our Duke's rule
+		command = { type = treasury value = -100 }
+		command = { type = infra value = 300 }
+		command = { type = vp value = 20 }
+		command = { type = population which = -2 value = 5000 }
+	}
+	action_b = {
+		name = "ACTIONNAME331024B" #Don't waste our money on buildings
+		command = { type = vp value = -5 }
+	}
+}
+
+#(1595-1597) Purchase of territories from Baden
+event = {
+	id = 331025
+	random = no
+	country = WUR
+	name = "EVENTNAME331025" #Territorial expansion
+	desc = "EVENTHIST331025"
+	#-#Duke Friedrich intended to obtain greater influence by expanding Wirtemberg's territory. In 1595 and 1596, soon after inheriting the Duchy, he managed to purchase the territories of Besigheim, Mundelsheim, Altensteig, Liebenzell and half of Lochgau from the Margrave of Baden-Durlach. He had to negotiate toughly to get the estates to grant him the money necessary to finance the deal.
+
+	date = { day = 1 month = january year = 1595 }
+	offset = 600
+	deathdate = { day = 1 month = january year = 1597 }
+
+	action_a = {
+		name = "ACTIONNAME331025A" #Offer to purchase these lands
+		command = { type = trigger which = 122000 } #BAD: Wirtemberg offers to buy border territories
+	}
+	action_b = {
+		name = "ACTIONNAME331025B" #Save the money
+		command = { type = vp value = -1 }
+	}
+}
+#(1595-1597) Deal with Baden-Durlach concluded
+event = {
+	id = 331027 #triggered by BAD_122000 A
+	random = no
+	country = WUR
+	name = "EVENTNAME331027" #Deal with Baden-Durlach concluded
+	desc = "EVENTHIST331027"
+	#-#The Margrave of Baden-Durlach has agreed to sell the border territories we offered to buy. This will increase our power base and hopefully our political influence.
+
+	action_a = {
+		name = "ACTIONNAME331027A" #Fine
+		command = { type = treasury value = -50 }
+		command = { type = provincetax which = -2 value = 2 }
+		command = { type = provincemanpower which = -2 value = 1 }
+		command = { type = population which = -2 value = 2500 }
+		command = { type = relation which = BAD value = 30 }
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1599) Wirtemberg pays to end vassalage
+event = {
+	id = 331017
+	trigger = {
+		vassal = { country = HAB country = WUR }
+		OR = {
+			event = 179005 #HAB: The loss of Wirtemberg (help from Hessen)
+			event = 179006 #HAB: The loss of Wirtemberg (help from Saxony)
+		}
+		NOT = { event = 179007 } #HAB: Wirtemberg secured for Austria
+	}
+	random = no
+	country = WUR
+	name = "EVENTNAME331017" #End of the vassalage to the Habsburgs
+	desc = "EVENTHIST331017"
+	#-#Although Duke Ulrich had been returned Wirtemberg by the Habsburgs, he remained their vassal. In 1599 Duke Friedrich decided that it was time to end this status and offered a large sum to emperor Rudolf to be released.
+
+	date = { day = 1 month = january year = 1599 }
+	offset = 100
+	deathdate = { day = 29 month = december year = 1599 }
+
+	action_a = {
+		name = "ACTIONNAME331017A" #Make the request
+		command = { type = trigger which = 179008 } #HAB: Wirtemberg requests to be released
+	}
+	action_b = {
+		name = "ACTIONNAME331017B" #Stay loyal to the Habsburgs
+		command = { type = relation which = HAB value = 50 }
+		command = { type = stability value = 1 }
+	}
+}
+#(1599) Wirtemberg is released from the vassalage
+event = {
+	id = 331019 #triggered by HAB_179008 A
+	random = no
+	country = WUR
+	name = "EVENTNAME331019" #Wirtemberg is released from the vassalage
+	desc = "EVENTHIST331019"
+	#-#Emperor Rudolf has agreed to release Wirtemberg from the vassalage. Wirtemberg is a direct imperial fief again, able to act more independently than before. However, the compensation paid to the Habsburgs has severely hurt the country's treasury.
+
+	action_a = {
+		name = "OK"
+		command = { type = treasury value = -150 }
+		command = { type = breakvassal which = HAB }
+		command = { type = vp value = 30 }
+		command = { type = stability value = 2 }
+	}
+}
+
+#(1607) Attempt to abolish the estates' influence
+event = {
+	id = 331028
+	random = no
+	country = WUR
+	name = "EVENTNAME331028" #Conflict with the estates
+	desc = "EVENTHIST331028"
+	#-#The great influence of the Landschaft in Wirtemberg bothered Friedrich who was keen on expanding his authority, an early pseudo-absolutistic prince. In January he summoned the Landschaft and proposed a complete revision of the Treaty of Tübingen that had introduced the estates' participation in political power and a new constitution assigning much more power to the Duke. This was rejected, which caused Friedrich to dissolve the Landschaft. Already in March he made a second, more moderate attempt to change Wirtemberg's constitution in favour of central authority. This time the estates agreed.
+
+	date = { day = 1 month = january year = 1607 }
+	offset = 100
+	deathdate = { day = 29 month = december year = 1607 }
+
+	action_a = {
+		name = "ACTIONNAME331028A" #Accept moderate changes
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = stability value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME331028B" #Insist on strong central authority
+		command = { type = domestic which = centralization value = 4 }
+		command = { type = stability value = -4 }
+		command = { type = revoltrisk which = 6 value = 60 }
+	}
+	action_c = {
+		name = "ACTIONNAME331028C" #Don't touch the estates' privileges
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1698-1733) The Absolutism
+event = {
+	id = 331033
+	random = no
+	country = WUR
+	name = "EVENTNAME331033" #Absolutism under Eberhard Ludwig
+	desc = "EVENTHIST331033"
+	#-#The example of Louis XIV's Absolutism in France influenced almost all of Europe, and many princes, even those with diminutive factual power, were eager to copy him, both in his authority and in his extravagancy. Eberhard Ludwig of Wirtemberg was one of these princes. Despite fighting him in the War of Spanish Succession, he was a great admirer of Louis and his French state, and he attempted to rule in a similar way. In Wirtemberg however, the Estates had a strong influence and extensive privileges since the 16th century, and they were eager to keep this position. Eberhard Ludwig summoned them only once during his reign and thereby simply ignored Wirtemberg's constitution, substantially strengthening his position, but also causing dissent against his rule.
+
+	date = { day = 1 month = january year = 1698 }
+	offset = 5000
+	deathdate = { day = 1 month = january year = 1733 }
+
+	action_a = {
+		name = "ACTIONNAME331033A" #Introduce absolutist rule
+		command = { type = domestic which = CENTRALIZATION value = 3 }
+		command = { type = domestic which = INNOVATIVE value = 1 } #the Landstände were always quite conservative
+		command = { type = stability value = -3 }
+	}
+	action_b = {
+		name = "ACTIONNAME331033B" #Maintain the Estates' influence
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1704-1710) The Commissioning of Ludwigsburg
+event = {
+	id = 331034
+	random = no
+	country = WUR
+	name = "EVENTNAME331034" #The Commissioning of Ludwigsburg
+	desc = "EVENTHIST331034"
+	#-#Eberhard Ludwig of Wirtemberg was keen on copying not only Louis XIV's absolutist rule, but also his castle Versailles since he, like Louis, wanted to demonstrate his greatness and power by constructing a splendid castle. Following Louis' example, he chose a little, insignificant village, Ludwigsburg, close to his capital, Stuttgart, as site for his project. In 1704 the builders Johann Friedrich Nette and Donato Giuseppe Frisoni were recruited for the construction of a castle similar to Versailles. Initially, Nette planed a palace comprising three wings, connected by narrow galleries, around a representative court. Frisoni expanded it by two more side buildings and a magnificent baroque castle church. While thecastle was built, the former village Ludwigsburg was transformed into a representative residential town, also with Nette and Frisoni in charge. Eberhard Ludwig officially moved his residence to Ludwigsburg in 1718.
+
+	date = { day = 1 month = january year = 1704 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1710 }
+
+	action_a = {
+		name = "ACTIONNAME331034A" #Build Ludwigsburg
+		command = { type = stability value = -1 }
+		command = { type = treasury value = -300 }
+	}
+	action_b = {
+		name = "ACTIONNAME331034B" #We don't need it
+		command = { type = stability value = 1 }
+		command = { type = sleepevent which = 331035 } #WUR: Eberhard Ludwig moves to Ludwigsburg
+	}
+}
+#(1718-1720) Ludwigsburg stands in Unearthly Glory
+event = {
+	id = 331035
+	trigger = { event = 331034 }
+	random = no
+	country = WUR
+	name = "EVENTNAME331035" #Eberhard Ludwig moves to Ludwigsburg
+	desc = "EVENTHIST331035"
+	#-#In 1718 the construction of the castle in Ludwigsburg was almost complete, and Eberhard Ludwig decided to move to his new residence. Consisting of 18 buildings with 452 rooms, it is the biggest baroque castle in Germany. Its interior and the garden, designed by famous Italian, French and Dutch artists, are among the most beautiful examples of baroque art, architecture and horticulture.
+
+	date = { day = 1 month = january year = 1718 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1720 }
+
+	action_a = {
+		name = "ACTIONNAME331035A" #We have built a Swabian Versailles
+		command = { type = vp value = 300 }
+		command = { type = stability value = 3 }
+		command = { type = provincetax which = -2 value = 1 }
+		command = { type = population which = -2 value = 500 }
+	}
+}
+
+#(1733-1734) Süß-Oppenheimer
+event = {
+	id = 331030
+	random = no
+	country = WUR
+	name = "EVENTNAME331030" #Joseph Süß-Oppenheimer's economic policies
+	desc = "EVENTHIST331030"
+	#-#Duke Carl Alexander of Wirtemberg was heavily influenced by his financial adviser Joseph Süß-Oppenheimer, a Jewish merchant from Frankfurt. Süß-Oppenheimer wanted to conduct radical economic reforms according to mercantilist principles and following the example of France, thus modernising the economy andcreating a solid base for absolutistic rule.Despite the resistanceof Wirtemberg's estates and of the nobility he was determined to enact these mercantilist policies and had the full support of the Duke. He established monopolies for leather, wine, tobacco and salt, taking he free trade in salt which had been guaranteed to communities for centuries under state control, and extended the already existing one on manufacturing. At his order, several porcelain and silk factories were built and the first bank in southern Germany founded. These measures were initially quite successful. Süß-Oppenheimer thereby managed to greatly increase the Duke's wealth, to expand his authority and introduce effective control of Wirtemberg's economy. However, he was bitterly opposed by the wealthy classes who feared for the estates' and their own privileges, were generally against a strong central authority and had a certain hostility towards Oppenheimer because he was a Jew and considered a parvenu.
+
+	date = { day = 1 month = november year = 1733 }
+	offset = 200
+	deathdate = { day = 1 month = november year = 1734 }
+
+	action_a = {
+		name = "ACTIONNAME331030A" #Let Oppenheimer reform the economy against the resistance
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 36 value = 3 }
+		command = { type = domestic which = mercantilism value = 4 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = provincetax which = -2 value = 2 }
+		command = { type = treasury value = 100 }
+		command = { type = gainbuilding which = -2 value = cityrights }
+		command = { type = gainmanufactory which = -2 value = luxury }
+		command = { type = loansize which = 300 }
+		command = { type = inflation value = 5 }
+		command = { type = ADM which = 2 value = 60 }
+	}
+	action_b = {
+		name = "ACTIONNAME331030B" #Limit his efforts
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 36 value = 1 }
+		command = { type = domestic which = mercantilism value = 2 }
+		command = { type = provincetax which = -2 value = 1 }
+		command = { type = treasury value = 40 }
+		command = { type = gainbuilding which = -2 value = cityrights }
+		command = { type = inflation value = 2 }
+		command = { type = ADM which = 1 value = 60 }
+	}
+	action_c = {
+		name = "ACTIONNAME331030C" #Don't appoint Süß-Oppenheimer
+		command = { type = vp value = -5 }
+		command = { type = sleepevent which = 331031 } #WUR: The trial of Süß-Oppenheimer
+	}
+}
+
+#(1734) A catholic Duke
+event = {
+	id = 331029
+	trigger = {
+		OR = {
+			religion = protestant
+			religion = reformed
+		}
+	}
+	random = no
+	country = WUR
+	name = "EVENTNAME331029" #A Catholic Duke
+	desc = "EVENTHIST331029"
+	#-#On November 23rd 1731 Friedrich Ludwig, the only legitimate son of Duke Eberhard Ludwig and heir to the throne of Wirtemberg, died. Since Eberhard Ludwig was already 55 and his wife 51 years old, it was evident that they would have no more offspring. Therefore, Carl Alexander of Wirtemberg-Winnental, a side branch of the ducal dynasty, was successor to the throne. Carl Alexander had served successfully in the Imperial army during the Turk Wars and the War of Spanish Successionand became a close confidant of Prince Eugene and the Emperor. They convinced him to ceremonially convert to catholicism in the court chapel of Vienna in 1712. When Eberhard Ludwig died in 1733 and Carl Alexander was to succeed to Wirtemberg, the estates, afraid that catholicism would be imposed on them and their privileges reduced, forced him to accept the Religions-Reversalien, a guarantee to maintain protestantism as the Duchy's main religion.
+
+	date = { day = 1 month = january year = 1734 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1734 }
+
+	action_a = {
+		name = "ACTIONNAME331029A" #Keep Protestantism as official religion
+		command = { type = stability value = 1 }
+		command = { type = relation which = HAB value = 100 }
+	}
+	action_b = {
+		name = "ACTIONNAME331029B" #Introduce catholicism as new state religion
+		command = { type = religion which = catholic }
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 3 value = 24 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = relation which = HAB value = 200 }
+	}
+}
+
+#(1738) The trial of Süß-Oppenheimer
+event = {
+	id = 331031
+	trigger = { event = 331030 }
+	random = no
+	country = WUR
+	name = "EVENTNAME331031" #The trial of Süß-Oppenheimer
+	desc = "EVENTHIST331031"
+	#-#After the unexpected early death of Carl Alexander, the hatred towards his minister Süß-Oppenheimer erupted openly. The Landstände who had suspected Carl Alexander and Oppenheimer of intending to suppress its influence and thewealthy classes who had felt threatened by his economic policies now wanted to see Oppenheimer dead. Since he considered itthe only way to cope with the unrest and distract the tensions from the ducal dynasty, the regent Carl Rudolf let Oppenheimer's enemies put up a trial against him in which he was accused of high treason, fraud, defalcation and adultery. From the beginning it was an unfair process: he was denied information on the reproaches, his assigned counsel did nothing for him,the judges were appointed by the estates, his pleading remained unread and he was not even allowed to attend to his trials.Eventually he was, also in absence, condemned to death and strangled at the marketplace of Stuttgart where his dead body was exhibited for 6 years.
+
+	date = { day = 1 month = february year = 1738 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1738 }
+
+	action_a = {
+		name = "ACTIONNAME331031A" #Have him executed and take back most reforms
+		command = { type = stability value = 1 }
+		command = { type = domestic which = mercantilism value = -2 }
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = provincetax which = -2 value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME331031B" #Keep Süß-Oppenheimer as minister
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 120 value = 2 }
+		command = { type = ADM which = 2 value = 120 }
+	}
+}
+
+#(1740-1743) Karl Eugen
+event = {
+	id = 331036
+	random = no
+	country = WUR
+	name = "EVENTNAME331036" #Despotism and extravagance
+	desc = "EVENTHIST331036"
+	#-#During the long reign of Karl Eugen despotism and extravagance reached their peak in Wirtemberg. Huge amounts of money were spent for his personal amusement: new castles, excessive feasts and several travels. His ministers financed this by extortion, sale of offices, loans, monopolies, lotteries and French subsidies. During his whole reign, dissensions with his subjects arose that he sought to suppress by tyrannic measures. Critics like the writers Schubarth and Schiller were either imprisoned or banned. Nonetheless, his rule also had good aspects: he further enhanced ducal control of the economy, supported the establishment of a porcelain manufactory in Ludwigsburg and created a standing army that was involved in the Seven Years War.
+
+	date = { day = 1 month = january year = 1740 }
+	offset = 1000
+	deathdate = { day = 1 month = january year = 1743 }
+
+	action_a = {
+		name = "ACTIONNAME331036A" #Karl Eugen rules as he pleases
+		command = { type = provincetax which = 372 value = -2 } #Württemberg
+		command = { type = province_revoltrisk which = 372 value = 4 } #Württemberg
+		command = { type = domestic which = innovative value = -3 }
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = domestic which = mercantilism value = 1 }
+		command = { type = domestic which = land value = 1 }
+		command = { type = INF which = -2 value = 6000 }
+		command = { type = relation which = FRA value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME331036B" #Make concessions
+		command = { type = provincetax which = 372 value = -2 } #Württemberg
+		command = { type = stability value = -1 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = relation which = FRA value = 50 }
+	}
+}
+
+#(1770) Estates appeal to the Reichshofrat
+event = {
+	id = 331037
+	random = no
+	country = WUR
+	name = "EVENTNAME331037" #Estates appeal to the Reichshofrat
+	desc = "EVENTHIST331037"
+	#-#When Karl Eugen's ministers imposed several new, unconstitional taxes in 1764, the Landschaft appealed to the, supreme court of the Empire, the Reichshofrat against all the offenses and grievances. The Reichshofrat decided in favour, of the estates in 1770, thus confirming Wirtemberg's old constitution, and the Duke was compelled to agree to the, Erbvergleich that limited his power.
+
+	date = { day = 1 month = january year = 1770 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1770 }
+
+	action_a = {
+		name = "ACTIONNAME331037A" #Accept the compromise
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = mercantilism value = -1 }
+		command = { type = province_revoltrisk which = 372 value = -4 } #Württemberg
+	}
+}
+
+#(1770) Hohe Karlsschule
+event = {
+	id = 331032
+	country = WUR
+	name = "EVENTNAME331032" #Hohe Karlsschule
+	desc = "EVENTHIST331032"
+	#-#In 1767 members of the Wirtemberg army informed Duke Carl Eugen about the horribly bad educational background of his officers and advised him to create an academy for young officers. This idea was realised in 1770. Carl Eugen commissioned Christoph Dionysius Seeger with the establishment of a school for children of soldiers at the ducal castle Solitude. On December 16th 1770 the academy was officially founded as a gardener school, however from the beginning it was to educate officers just as well as gardeners. The classes and the tuition followed strict military principles: drill, permanent supervision and wearing uniforms were forced upon the students. Nevertheless, it soon became a quite famous and highly esteemed institution, emphasizing not only military training, but trying to give the future officers a wide, versatileknowledge. They learned French, Latin, Greek, Italian and High German, were taught artillery theory, engineering, strategy, law and philosophy and additionally got specific professional educations, e.g. forestry, medicine, economy or arts that were supposed to prepare them for their functions as officers, clerks or Ducal artists. Due to this outstanding quality, not only students from Wirtemberg, but from the whole of Germany and from abroad were interested in the school. In order to be able to accomodate them, the academy was moved to Stuttgart and made a residential school. In the next years, it quickly developed from a purely military academy into a more general institution, visited by several famous politicians, scientists, officers and artists, most notably Friedrich Schiller whose work was deeply influenced by his time at the Karlsschule. Acknowledging this, it was transformed to a university called 'Carls Hohe Schule' on February 11th 1782.
+
+	date = { day = 16 month = december year = 1770 }
+
+	action_a = {
+		name = "ACTIONNAME331032A" #Create the military academy
+		command = { type = treasury value = -50 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = land value = 500 } #able officers are educated and taught modern army doctrines
+		command = { type = domestic which = quality value = 1 }
+		command = { type = infra value = 300 }
+	}
+	action_b = {
+		name = "ACTIONNAME331032B" #It's a waste of money
+		command = { type = vp value = -5 }
+	}
+}
+
+#(1771-1774) Influence of Franziska von Hohenheim
+event = {
+	id = 331038
+	random = no
+	country = WUR
+	name = "EVENTNAME331038" #Influence of Franziska von Hohenheim
+	desc = "EVENTHIST331038"
+	#-#In the last years of his reign, Karl Eugen became more of a benevolent monarch than the tyrant he had been before. This change was probably due to the influence of his mistress Franziska von Hohenheim that he got to know and fell in love with in 1771. She used her position to get the Duke to care about his subjects and improve their situation. Instead of wasting his money for his pleasure, the Duke started to provide funds for viticulture, education and the construction of roads and generally was more dedicated to the administration of his countries. In a manifest proclaimed in the country's churches on his 50th birthday in 1778, the Duke openly regretted his mistakes and declared his desire for a reversal and recommencement. Corrupt ministers were replaced, some imprisoned dissidents released and former unfair decisions annuled. Therefore Franziska was very popular among the populace despite her illegitimate liaison with the Duke. After the death of Karl Eugen's first wife, Friederike Elisabeth Sofie, he was able to marry Franziska and did so in 1785.
+
+	date = { day = 1 month = january year = 1771 }
+	offset = 1000
+	deathdate = { day = 1 month = january year = 1774 }
+
+	action_a = {
+		name = "ACTIONNAME331038A" #Fine
+		command = { type = infra value = 400 } #improvement of roads, viticulture and education
+		command = { type = provincetax which = -2 value = 3 }
+		command = { type = ADM which = 2 value = 3000 } #until the end of Karl Eugen's reign
+		command = { type = domestic which = innovative value = 1 }
+	}
+}
+
+#(1803-1806) Reichsdeputationshauptschluss; Württemberg doubles its territory (1803)
+event = {
+	id = 331039
+	trigger = {
+		event = 12124 #FRA: General Bonaparte First Consul
+		owned = { province = 344 data = FRA } #France owns the whole German left bank of the Rhine (Köln, Pfalz and Alsace)
+		owned = { province = 345 data = FRA }
+		owned = { province = 374 data = FRA }
+	}
+	random = no
+	country = WUR
+	name = "EVENTNAME331039" #The deputation of the Empire
+	desc = "EVENTHIST331039"
+	#-#By the Treaty of Lunéville of 1801 the empire formally ceded everything left of the Rhine to Napoleonic France, with the princes who thereby lost territory demanding a compensation and the empire disintegrating, it was evident that the empire would need to be drastically reformed. Negotiations began in 1802, and victorious France soon tried to influence them, in order to strengthen the medium powers like Bavaria, Württemberg, Baden and Hessen to be counterweights against Austria and Prussia. On February 25th an agreement was reached. The two most important decisions were the Mediatisation of all free cities except for Bremen, Hamburg, Lübeck, Frankfurt, Augsburg and Nürnberg and of most small independent principalities andthe Secularisation of almost all church possessions in the empire. The big countries in Southern Germany that France wantedto ally with, Bavaria, Wirtemberg and Baden, massively increased their territories. By receiving the possessions of the abbeys of Ellwangen and Weingarten, several small former church territories and the Imperial cities of Weil, Reutlingen, Eßlingen, Rottweil, Aalen, Gieningen, Hall, Gmünd and Heilbronn, Wirtemberg got in total 850 sqm of new land with 124000 inhabitants.
+
+	date = { day = 25 month = february year = 1803 }
+	offset = 720
+	deathdate = { day = 29 month = december year = 1806 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = provincetax which = -2 value = 7 }
+		command = { type = provincemanpower which = -2 value = 4 }
+		command = { type = population which = -2 value = 30000 }
+	}
+}
+
+#(1806-1813) The Kingdom of Württemberg (1806)
+event = {
+	id = 331040
+	trigger = {
+		event = 331039
+		relation = { country = FRA data = -50 }
+	}
+	random = no
+	country = WUR
+	name = "EVENTNAME331040" #The Kingdom of Württemberg
+	desc = "EVENTHIST331040"
+	#-#When war between Napoléon and Austria started again in 1805, Friedrich of Wirtemberg first intended to stay neutral. However, faced with the impressive French army invading Southern Germany and realising that this would be the only way to prevent his country from being overrun, he accepted Napoléons proposal of an alliance. Because of that alliance he was one of the German princes who profited most from the peace with Austria signed in Pressburg. He was ceded most of the Habsburg possessions in Swabia and, since the empire was dissolved, achieved unlimited sovereignty in his territories. Thushe was able to declare himself King on January 1st 1806. After his coronation, Friedrich began to reform his country after the example of France. The administration was centralized, a system of ressort ministeries created, the country divided into several districts, the law adjusted to the Code Napoléon and serfdom largely abolished. Württemberg, as the Kingdom was called, had developed into a modern state, and this was not changed by the eventual defeat of Napoléon.
+
+	date = { day = 1 month = january year = 1806 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1813 }
+
+	action_a = {
+		name = "ACTIONNAME331040A" #Finally a King's crown
+		command = { type = vp value = 50 }
+		command = { type = diplomats value = 3 }
+		command = { type = DIP which = 1 value = 180 }
+		command = { type = provincetax which = -2 value = 3 } #Habsburg possessions in Swabia
+		command = { type = provincemanpower which = -2 value = 1 } #Habsburg possessions in Swabia
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = FRA value = 200 }
+		command = { type = domestic which = centralization value = 3 }
+		command = { type = domestic which = innovative value = 3 }
+		command = { type = domestic which = serfdom value = -3 }
+	}
+}
+
+#(1819) Constitution of 1819
+event = {
+	id = 331041
+	random = no
+	country = WUR
+	name = "EVENTNAME331041" #The Constitution of 1819
+	desc = "EVENTHIST331041"
+	#-#Since the last years of Friedrich I's reign, the introduction of a constitution in Württemberg had been contemplated by the King and his ministers and demanded by both democrats and the conservative old estates in Wirtemberg. There was however a conflict about how influence would be distributed. The sketch of a new constitution making few concessions and vesting most of the power in the Duke presented to representatives of the estates and the country was rejected shortly before Friedrich's death in 1816, and it was upon his successor Wilhelm to find a compromise. Finally on September 25th 1819, a constitution was enacted by the King. Therein, a bi-camerial parliament, the upper chamber(Standesherrenkammer) composed of representatives of the King, the nobility and the old estates, the lower (Abgeordnetenhaus)elected by census vote, was created and granted some influence (e.g. it had to consent to the appointment of ministers and to the King's budget), while most of the power remained with the King. Although these parliaments were dominated by the bourgeoisie and the nobility, the constitution can be considered the beginning of representative democracy in Württemberg.
+
+	date = { day = 25 month = september year = 1819 }
+
+	action_a = {
+		name = "ACTIONNAME331041A" #Compromise
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME331041B" #More power to the old estates
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = domestic which = centralization value = -2 }
+	}
+	action_c = {
+		name = "ACTIONNAME331041C" #Why do we need a constitution anyway?
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = stability value = -2 }
+	}
+	action_d = {
+		name = "ACTIONNAME331041D" #More democratic elements
+		command = { type = domestic which = innovative value = 3 }
+		command = { type = domestic which = serfdom value = -2 }
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = stability value = -3 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 331043

@@ -4,7 +4,7 @@
 
 country = {
 	tag = POL
-	ai = "POL_1419.ai"
+	ai = "POL_1419.txt"
 	policy = {
 		aristocracy = 8
 		centralization = 2

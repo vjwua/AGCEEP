@@ -1,0 +1,627 @@
+#Cologne (KOL)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1444) Feud of Soest
+event = {
+	id = 202000
+	trigger = {
+		domestic = { type = centralization value = 4 }
+		exists = KLE
+		NOT = { vassal = { country = KOL country = KLE } }
+	}
+	random = no
+	country = KOL
+	name = "EVENTNAME202000" #The Feud of Soest
+	desc = "EVENTHIST200001"
+	#-#In the Feud of Soest that lasted from 1444 to 1449 the westphalian town of Soest, which was then among the biggest and richest cities of Germany, backed by Cologne's old enemy, the Duke of Kleve, managed to maintain its liberty against the claims of Archbishop Dietrich of Cologne. Like many other territorial princes of his time, the archbishop tried to consolidate his rule and to extend it according to the principles of roman law against the resistance of the Westphalian cities. A great part of former episcopal authority had been granted to the westphalian towns by incompetent archbishops, or outright assumed by the town councils. Thereby, so argumented the council of Soest, it became part of the town's liberty charter. The archbishop's desire to recover his old rights therefore seemed to be an attack on Soest's very existance. The town opposed these policies by accepting the Duke of Kleve and Mark as its new overlord on June 5th 1444. Kleve had been struggling for hegemony in the region with the colonian archbishops for a long time, and they took this chance to win a useful ally. The Duke confirmed Soest's privileges and granted new ones to them. This sparked a feud between the Archbishop and the Duke, which soon turned into major war with Burgundy, Münster, Osnabrück, Paderborn, Lippstadt, Hohenstein, Hoya and Lippe supporting Kleve and Bavaria, Saxony, Nassau and Brandenburg on Cologne's side. At the peak of the conflict, both factions fielded over 100000 soldiers. The possessions of Kleve and Cologne were severely devastated and depopulated. The turning point was when a bohemian mercenary army recruited by the Archbishop failed to take Soest and Lippstadt in 1447. Johann of Kleve, the son of the Duke who led the klevian army, then managed to convince the Bohemians to stop fighting. The feud ended with the decision of Pope Nicolas in favour of Kleve in 1449 that both sides had agreed to accept at a congress in Maastricht.
+
+	date = { day = 4 month = june year = 1444 }
+
+	action_a = {
+		name = "ACTIONNAME202000A" #Fight the rebellious towns and Kleve
+		command = { type = provincetax which = 344 value = -1 } #Köln
+		command = { type = provincemanpower which = 344 value = -1 } #Köln
+		command = { type = population which = 344 value = -1000 } #Köln
+		command = { type = province_revoltrisk which = 344 value = 5 } #Köln
+		command = { type = relation which = KLE value = -100 }
+		command = { type = casusbelli which = KLE value = 60 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = serfdom value = 1 }
+		command = { type = trigger which = 200001 } #KLE: The Feud of Soest
+		command = { type = relation which = BAY value = 50 }
+		command = { type = relation which = BRA value = 50 }
+		command = { type = relation which = SAC value = 50 }
+		command = { type = relation which = BUR value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME202000B" #Grant more privileges to the Westphalian towns
+		command = { type = provincetax which = 344 value = -1 } #Köln
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = relation which = KLE value = -50 }
+		command = { type = sleepevent which = 202001 } #KOL: Victory in the Feud of Soest
+	}
+}
+
+#(1444-1450) Victory in the Feud of Soest
+event = {
+	id = 202001
+	trigger = {
+		OR = {
+			vassal = { country = KOL country = KLE }
+			owned = { province = 343 data = -1 }
+		}
+		event = 200001
+	}
+	random = no
+	country = KOL
+	name = "EVENTNAME202001" #Victory in the Feud of Soest
+	desc = "EVENTHIST202001"
+	#-#We have managed to defeat the Duke of Kleve and the rebellious Westphalian towns. Hence, we have achieved hegemony in our region by defeating our archenemy and we are now able to consolidate and expand our authority.
+
+	date = { day = 6 month = june year = 1444 }
+	offset = 5
+	deathdate = { day = 1 month = january year = 1450 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = vp value = 30 }
+		command = { type = independence which = KLE }
+		command = { type = provincetax which = -2 value = 1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = serfdom value = 1 }
+		command = { type = province_revoltrisk which = 344 value = -5 } #Köln
+	}
+}
+
+#(1447 or 1463) Burgundian Claims on Cologne - Ahistorical
+event = {
+	id = 20313 #triggered by BUR_28006
+	random = no
+	country = KOL
+	name = "EVENTNAME20313" #Burgundian Claims on Cologne
+	desc = "EVENTHIST20313"
+	#-#The Emperor has made Philip the Good of Burgundy King of Lotharingia, reviving the ninth century Kingdom of Lothar. The emperor has granted some of our lands to Burgundy!
+
+	action_a = {
+		name = "DAMN"
+		command = { type = casusbelli which = BUR value = 2500 }
+		command = { type = CAV which = -2 value = 6000 }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = alliance which = KLE }
+		command = { type = alliance which = OLD }
+		command = { type = alliance which = PFA }
+		command = { type = alliance which = BRG }
+	}
+}
+
+#(1463-1480) Ruprecht von der Pfalz is elected Archbishop-Elector of Cologne
+event = {
+	id = 202002
+	trigger = {
+		exists = PFA
+		NOT = { war = { country = KOL country = PFA } }
+	}
+	random = no
+	country = KOL
+	name = "EVENTNAME202002" #Ruprecht von der Pfalz, Archbishop-Elector of Cologne
+	desc = "EVENTHIST202002"
+	#-#Ruprecht, the brother of the Palatine Elector Friedrich, was chosen as new Archbishop-Elector of Cologne and Duke of Westphalia in 1463. With the help of his brother he managed to stabilise the country's finances after the disastrous Feud of Soest and to recover some of the territories mortgaged by his predecessor.
+
+	date = { day = 14 month = february year = 1463 }
+	offset = 20
+	deathdate = { day = 1 month = january year = 1480 }
+
+	action_a = {
+		name = "OK"
+		command = { type = dynastic which = PFA }
+		command = { type = relation which = PFA value = 50 }
+		command = { type = trigger which = 255000 } #PFA: Ruprecht von der Pfalz is elected Archbishop-Elector of Cologne
+		command = { type = treasury value = 50 }
+	}
+}
+
+#(1463-1480) Ruprecht von der Pfalz succeeds to the Archbishopric
+event = {
+	id = 202003
+	trigger = {
+		event = 202002 #PFA: Ruprecht von der Pfalz, Archbishop-Elector of Cologne
+		NOT = {
+			event = 255000 #PFA: Ruprecht von der Pfalz is elected Archbishop-Elector of Cologne
+			alliance = { country = KOL country = PFA }
+			war = { country = KOL country = PFA }
+		}
+	}
+	random = no
+	country = KOL
+	name = "EVENTNAME202003" #Ruprecht von der Pfalz succeeds to the Archbishopric
+	desc = "EVENTHIST202003"
+	#-#With his new throne Ruprecht brought the Palatinate into Cologne's alliance.
+
+	date = { day = 29 month = february year = 1463 }
+	offset = 20
+	deathdate = { day = 15 month = january year = 1480 }
+
+	action_a = {
+		name = "VIVAT"
+		command = { type = alliance which = PFA }
+		command = { type = DIP which = 2 value = 12 }
+	}
+}
+
+#(1480) Death of Ruprecht von der Pfalz
+event = {
+	id = 202019
+	trigger = {
+		vassal = { country = PFA country = KOL }
+	}
+	random = no
+	country = KOL
+	name = "EVENTNAME202019" #Death of Ruprecht von der Pfalz
+	desc = "EVENTHIST202019"
+	#-#With the death of Ruprecht von der Pfalz, any Palatine influence over Cologne has been lost.
+
+	date = { day = 16 month = july year = 1480 }
+
+	action_a = {
+		name = "OH_WELL"
+		command = { type = breakvassal which = PFA }
+		command = { type = stability value = 2 }
+	}
+}
+
+#(1480-1508) Hermann of Hessen elected Archbishop-Elector
+event = {
+	id = 202004
+	trigger = {
+		exists = HES
+		NOT = { war = { country = KOL country = HES } }
+		OR = {
+			event = 202003 #KOL: Death of Ruprecht von der Pfalz
+			NOT = { vassal = { country = PFA country = KOL } }
+		}
+	}
+	random = no
+	country = KOL
+	name = "EVENTNAME202004" #Hermann of Hessen, Archbishop-Elector of Cologne
+	desc = "EVENTHIST202004"
+	#-#After Ruprecht von der Pfalz the cathedral chapter of Cologne elected Hermann IV, a a younger brother of the Landgrave of Hessen. Hermann cooperated closely with his relatives in Hessen and was keen on using his high office in the interest of his family.
+
+	date = { day = 17 month = july year = 1480 }
+	offset = 20
+	deathdate = { day = 19 month = october year = 1508 }
+
+	action_a = {
+		name = "OK"
+		command = { type = dynastic which = HES }
+		command = { type = relation which = PFA value = -50 }
+		command = { type = relation which = HES value = 50 }
+		command = { type = trigger which = 185002 } #HES: Hermann of Hessen is elected Archbishop-Elector of Cologne
+	}
+}
+
+#(1480-1508) Hermann of Hessen succeeds to the Archbishopric
+event = {
+	id = 202005
+	trigger = {
+		event = 185002 #HES: Hermann of Hessen elected Archbishop of Cologne
+		NOT = {
+			alliance = { country = KOL country = HES }
+			war = { country = KOL country = HES }
+		}
+	}
+	random = no
+	country = KOL
+	name = "EVENTNAME202005" #Hermann of Hessen succeeds to the Archbishopric
+	desc = "EVENTHIST202005"
+	#-#With his new throne Hermann brought Hessen into Cologne's alliance
+
+	date = { day = 29 month = july year = 1480 }
+	offset = 20
+	deathdate = { day = 19 month = october year = 1508 }
+
+	action_a = {
+		name = "VIVAT"
+		command = { type = alliance which = HES }
+		command = { type = DIP which = 2 value = 12 }
+	}
+}
+
+#(1508) Independence restored
+event = {
+	id = 202006
+	trigger = {
+		OR = {
+			vassal = { country = HES country = KOL }
+			vassal = { country = PFA country = KOL }
+		}
+	}
+	random = no
+	country = KOL
+	name = "EVENTNAME202006" #Death of Hermann of Hessen
+	desc = "EVENTHIST202006"
+	#-#When Hermann of Hessen died in 1508, the chapter opted to select a local noble instead of a member of a big dynasty as new Archbishop-Elector. Philipp II of Dhaun-Oberstein rose to the throne of Cologne and Westphalia, and after six successive Archbishop-Electors can be considered such neutral candidates who let Cologne conduct an independent policy.
+
+	date = { day = 20 month = october year = 1508 }
+
+	action_a = {
+		name = "ACTIONNAME202006A" #We are free again
+		command = { type = breakvassal which = HES }
+		command = { type = breakdynastic which = HES }
+		command = { type = relation which = HES value = -50 }
+		command = { type = breakvassal which = PFA }
+	}
+}
+
+#(1518-1520) Response of the Papacy to Luther
+event = {
+	id = 202021 #triggered by 102
+	random = no
+	country = KOL
+	name = "EVENTNAME251074" #Response of the Papacy to Luther
+	desc = "EVENTHIST251074"
+	#-#After receiving checked for heresy and forwarded Luther's letter, Leo X responded over the next three years, ''with great care as is proper,'' by deploying a series of papal theologians and envoys against Luther. Perhaps he hoped the matter would die down of its own accord, because in 1518 he dismissed Luther as ''a drunken German'' who ''when sober will change his mind''.
+
+	action_a = {
+		name = "ACTIONNAME251074A" #Luther will change his mind...
+		command = { type = religion which = counterreform }
+	}
+}
+
+#(1527-1529) The League of Schmalkalden
+event = {
+	id = 3673
+	trigger = {
+		exists = HAB
+		OR = {
+			religion = protestant
+			religion = reformed
+		}
+	}
+	random = no
+	country = KOL
+	name = "EVENTNAME3109" #The League of Schmalkalden
+	desc = "EVENTHIST3109"
+	#-#After Emperor Charles V had rejected the Protestants' confessional positions at the Imperial Parliament of Augsburg (1529-1530), the North German Protestant Imperial estates formed the League of Schmalkalden, with a joint army and treasury and seeking ties abroad (France). The League enjoyed early successes in the years 1532-1540 as the Emperor was threaten by Turkish danger and forced to conclude Religious peace settlements in Nuremberg (1532) and Kaaden (1534).
+
+	date = { day = 1 month = january year = 1527 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1529 }
+
+	action_a = {
+		name = "ACTIONNAME3109A" #Give it our support
+		command = { type = relation which = BRA value = 50 }
+		command = { type = relation which = HAN value = 50 }
+		command = { type = relation which = HES value = 50 }
+		command = { type = relation which = PFA value = 50 }
+		command = { type = relation which = SAC value = 50 }
+		#command = { type = relation which = THU value = 50 } #Bayreuth
+		command = { type = relation which = BAD value = 50 }
+		command = { type = relation which = PAP value = -50 }
+		command = { type = relation which = SPA value = -50 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = STR value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME3109B" #Ignore it
+		command = { type = relation which = BRA value = -150 }
+		command = { type = relation which = HAN value = -150 }
+		command = { type = relation which = HES value = -150 }
+		command = { type = relation which = PFA value = -150 }
+		command = { type = relation which = SAC value = -150 }
+		#command = { type = relation which = THU value = -150 } #Bayreuth
+		command = { type = relation which = BAD value = -150 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = BAY value = 50 }
+		command = { type = relation which = STR value = -150 }
+	}
+}
+
+#(1583-1612) The Bavarian Archbishops
+event = {
+	id = 3852
+	trigger = {
+		exists = BAY
+		NOT = { war = { country = KOL country = BAY } }
+	}
+	random = no
+	country = KOL
+	name = "EVENTNAME3852" #The Bavarian Archbishops
+	desc = "EVENTHIST3852"
+	#-#Ernst, a member of the ruling Wittelsbach family of Bavaria, has been appointed Archbishop of Cologne. This may mean a new era of Bavarian influence here. How shall we proceed?
+
+	date = { day = 1 month = april year = 1583 }
+	offset = 20
+	deathdate = { day = 16 month = february year = 1612 }
+
+	action_a = {
+		name = "ACTIONNAME3852A" #Allow Bavarian influence
+		command = { type = dynastic which = BAY }
+		command = { type = relation which = BAY value = 200 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = trigger which = 3853 } #BAY: The Archbishop in Cologne
+	}
+}
+
+#(1583-1612) Ernst of Wittelsbach succeeds to the Archbishopric
+event = {
+	id = 202020
+	trigger = {
+		event = 3852 #KOL: The Bavarian Archbishops
+		NOT = {
+			event = 3853 #BAY: The Archbishop in Cologne
+			alliance = { country = KOL country = BAY }
+			war = { country = KOL country = BAY }
+		}
+	}
+	random = no
+	country = KOL
+	name = "EVENTNAME202020" #Ernst of Wittelsbach succeeds to the Archbishopric
+	desc = "EVENTHIST202020"
+	#-#With his new throne Ernst brought Bavaria into Cologne's alliance.
+
+	date = { day = 28 month = april year = 1583 }
+	offset = 20
+	deathdate = { day = 16 month = february year = 1612 }
+
+	action_a = {
+		name = "VIVAT"
+		command = { type = alliance which = BAY }
+		command = { type = DIP which = 2 value = 12 }
+	}
+}
+
+#(1605-1609) The Evangelic Union
+event = {
+	id = 3674
+	trigger = {
+		OR = {
+			religion = protestant
+			religion = reformed
+		}
+	}
+	random = no
+	country = KOL
+	name = "EVENTNAME3634" #The Evangelic Union
+	desc = "EVENTHIST3634"
+	#-#The Holy Roman Empire had a fragile balance, split between 10 major and nearly 400 minor states and principalities, as well as two opposing religions. The power of the Emperor was quite limited beyond his direct domains and the erratic and inconsistent behavior of some of them as Rudolph II, such increased frictions. In 1608, the Protestant city of Donauwerth refused Catholics the right to practice their cult and was banned from the Empire. As a reaction, most German Protestant states formed the Evangelic Union to defend their freedom.
+
+	date = { day = 1 month = january year = 1605 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1609 }
+
+	action_a = {
+		name = "ACTIONNAME3634A" #Prepare to Join
+		command = { type = relation which = BRA value = 50 }
+		command = { type = relation which = HAN value = 50 }
+		command = { type = relation which = HES value = 50 }
+		command = { type = relation which = PFA value = 50 }
+		command = { type = relation which = SAC value = 50 }
+		#command = { type = relation which = THU value = 50 } #Bayreuth
+		command = { type = relation which = BAD value = 50 }
+		command = { type = relation which = PAP value = -50 }
+		command = { type = relation which = SPA value = -50 }
+		command = { type = relation which = HAB value = -100 }
+	}
+	action_b = {
+		name = "ACTIONNAME3634B" #Stay Neutral
+		command = { type = relation which = BRA value = -150 }
+		command = { type = relation which = HAN value = -150 }
+		command = { type = relation which = HES value = -150 }
+		command = { type = relation which = PFA value = -150 }
+		command = { type = relation which = SAC value = -150 }
+		#command = { type = relation which = THU value = -150 } #Bayreuth
+		command = { type = relation which = BAD value = -150 }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = BAY value = 50 }
+	}
+}
+
+#(1607-1609) The Catholic League
+event = {
+	id = 3675
+	trigger = {
+		OR = {
+			religion = catholic
+			religion = counterreform
+		}
+	}
+	random = no
+	country = KOL
+	name = "EVENTNAME3192" #The Catholic League
+	desc = "EVENTHIST3192"
+	#-#The German Catholic states felt threatened by the 1608 creation of the Evangelic Union of their northern Protestant neighbors, following the Donauwerth exclusion from the Empire. Feeling the urge to unite, they regrouped into a Catholic League that same year. The stage was set for the Thirty Years War.
+
+	date = { day = 1 month = january year = 1607 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1609 }
+
+	action_a = {
+		name = "ACTIONNAME3192A" #Prepare to Join
+		command = { type = relation which = BRA value = -100 }
+		command = { type = relation which = HAN value = -100 }
+		command = { type = relation which = HES value = -100 }
+		command = { type = relation which = PFA value = -100 }
+		command = { type = relation which = SAC value = -100 }
+		#command = { type = relation which = THU value = -100 } #Bayreuth
+		command = { type = relation which = BAD value = -100 }
+		command = { type = relation which = BAY value = 100 }
+		command = { type = relation which = KLE value = 100 }
+		command = { type = relation which = PAP value = 150 }
+		command = { type = relation which = SPA value = 150 }
+		command = { type = relation which = HAB value = 150 }
+	}
+	action_b = {
+		name = "ACTIONNAME3192B" #Stay Neutral
+		command = { type = relation which = BRA value = 50 }
+		command = { type = relation which = HAN value = 50 }
+		command = { type = relation which = HES value = 50 }
+		command = { type = relation which = PFA value = 50 }
+		command = { type = relation which = SAC value = 50 }
+		#command = { type = relation which = THU value = 50 } #Bayreuth
+		command = { type = relation which = BAD value = 50 }
+		command = { type = relation which = PAP value = -50 }
+		command = { type = relation which = SPA value = -50 }
+		command = { type = relation which = HAB value = -100 }
+	}
+}
+
+#(1676-1681) The League of Augsburg
+event = {
+	id = 3663 #triggered by FRA_3127 A
+	random = no
+	country = KOL
+	name = "EVENTNAME3198" #The League of Augsburg
+	desc = "EVENTHIST3198"
+	#-#The reunion policy of Louis XIV had been forced upon by the Empire in the 1684 by the Truce of Regensburg, mostly because the Emperor was preoccupied by the Turkish menace (siege of Vienna in 1683). The continued French claims and expansion to the detriment of the Habsburg possessions and the German states of the Empire led to the creation of the anti-French League of Augsburg (1686).
+
+	action_a = {
+		name = "ACTIONNAME3198A" #Defy French claims
+		command = { type = relation which = FRA value = -150 }
+		command = { type = relation which = ENG value = 150 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = BRA value = 150 }
+		command = { type = relation which = HOL value = 150 }
+		command = { type = relation which = HAN value = 100 }
+		command = { type = relation which = SPA value = 100 }
+		command = { type = relation which = HES value = 100 }
+		command = { type = relation which = KLE value = 100 }
+		command = { type = relation which = BAD value = 100 }
+		command = { type = relation which = PFA value = 100 }
+		#command = { type = relation which = THU value = 100 } #Bayreuth
+	}
+	action_b = {
+		name = "ACTIONNAME3198B" #Ignore it
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = ENG value = -100 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = BRA value = -100 }
+		command = { type = relation which = HOL value = -100 }
+		command = { type = relation which = HAN value = -50 }
+		command = { type = relation which = SPA value = -50 }
+		command = { type = relation which = HES value = -50 }
+		command = { type = relation which = KLE value = -50 }
+		command = { type = relation which = BAD value = -50 }
+		command = { type = relation which = PFA value = -50 }
+		#command = { type = relation which = THU value = -50 } #Bayreuth
+	}
+}
+
+#(1701) The Grand alliance (Spanish war of succession Cologne version)
+#by Fodoron for BAY, modified for KOL
+event = {
+	id = 202022 #triggered by BAY 125030 A
+	random = no
+	country = KOL
+	name = "EVENTNAME125030" #The Grand Alliance
+	desc = "EVENTHIST125030"
+	#-#For years Europe has been preparing for the death of childless Carlos II of Spain. He was related to several royal families in Europe, but after the death of the designated heir, Joseph Ferdinand Wittelbach of Bavaria, at the age of six, the royal houses of Austria and France had a similar claim. But both were too powerful, and the addition of the Spanish empire would make any of them unstoppable, and so candidates not destined to their thrones, Philip of Anjou and Charles Habsburg, were discussed as heirs to Carlos, and several partition agreements were negotiated. That is precisely what everybody wanted to prevent in Spain. A will was redacted and the agonizing Carlos signed it. It left the Kingdom to Philip Anjou, but it contained two crucial clauses, the condition that the crowns of France and Spain should never be held by the same person and that the Spanish possessions could not be divided. Austria, of course, rejected it, but the rest of Europe seemed to agree, as the equilibrium was not broken. But Louis misjudged the uneasiness that the rest of Europe displayed for the French expansionism, and made several mistakes after the Spanish succession. He closed the Spanish-American commerce to the English and the Dutch, he recognized James III Stuart as King of England, and French troops occupied the fortresses in Spanish Netherlands. In February, the French States had ratified the right of Philip of Anjou to the crown of France, violating the will of Carlos II. The maritime powers had the motive and the excuse, and Austria discovered that now she had allies for the war of Spanish succession. The only allies of France were the Wittelsbach: the electors of Bavaria, Cologne and Trier, and the Duke of Savoy. Maximilian II of Bavaria had been named governor of the Spanish Netherlands. The Bavarian participation in the war lasted until the battle of Blenheim in 1704, when she was knocked out of the war by a crushing defeat. Colognes Archbishop was a Wittelsbach and the brother of the elector of Bavaria and aided his brother.
+
+	action_a = {
+		name = "ACTIONNAME202022A" #Support Bavaria in this
+		command = { type = casusbelli which = HAB value = 120 }
+		command = { type = alliance which = BAY } #probably won't work because already in alliance - but if not it's historical
+		command = { type = relation which = SPA value = 75 }
+		command = { type = relation which = FRA value = 75 }
+		command = { type = relation which = HAB value = -50 }
+		command = { type = relation which = ENG value = -25 }
+		command = { type = relation which = HOL value = -25 }
+		command = { type = relation which = BAY value = 100 }
+	}
+	action_b = {
+		name = "ACTIONNAME125030B" #We don't care who inherits Spain
+		command = { type = relation which = SPA value = -25 }
+		command = { type = relation which = FRA value = -25 }
+		command = { type = relation which = HAB value = 75 }
+		command = { type = relation which = ENG value = 25 }
+		command = { type = relation which = HOL value = 25 }
+		command = { type = relation which = BAY value = -25 }
+	}
+}
+
+#(1761) End of Wittelsbach influence
+event = {
+	id = 202007
+	trigger = {
+		event = 3853 #BAY: The Archbishop in Cologne
+		vassal = { country = BAY country = KOL }
+	}
+	random = no
+	country = KOL
+	name = "EVENTNAME202007" #End of Wittelsbach influence
+	desc = "EVENTHIST202007"
+	#-#After five successive Wittelsbach Archbishop-Electors and having developed into almost a Bavarian side country, in 1761 the cathedral chapter of Cologne elected Maximilian Friedrich of Königsegg-Rothenfels, a member of an insignificant small dynasty, instead of a Wittelsbach candidate.
+
+	date = { day = 6 month = february year = 1761 }
+
+	action_a = {
+		name = "ACTIONNAME202007A" #Elect Maximilian Friedrich
+		command = { type = breakvassal which = BAY }
+		command = { type = breakdynastic which = BAY }
+		command = { type = relation which = BAY value = -100 }
+		command = { type = stability value = -2 }
+	}
+}
+
+#(1784-1801) The Habsburg Archbishops
+event = {
+	id = 202008
+	trigger = {
+		exists = HAB
+		NOT = { war = { country = KOL country = HAB } }
+	}
+	random = no
+	country = KOL
+	name = "EVENTNAME202008" #The Habsburg Archbishop-Electors
+	desc = "EVENTHIST202008"
+	#-#Cologne's attempt to achieve independence from dynastic interests was short-lived: When Maximilian Friedrich died, the cathedral chapter conceded to the Emperor's efforts to install an Archbishop-Elector from the Habsburg dynasty and elected Maximilian Franz of Austria. The next Archbishop, Anton Viktor, was also a Habsburg, and the Emperor seemed to have gained the influence in the Rhineland he desired.
+
+	date = { day = 15 month = april year = 1784 }
+	offset = 20
+	deathdate = { day = 26 month = july year = 1801 }
+
+	action_a = {
+		name = "OK"
+		command = { type = dynastic which = HAB }
+		command = { type = relation which = HAB value = 50 }
+		command = { type = trigger which = 179018 } #HAB: Habsburg Archbishops in Cologne #HAB_Maximilian Franz of Austria is elected Archbishop-Elector of Cologne
+	}
+}
+
+#(1784-1801) Maximilian Franz of Austria succeeds to the Archbishopric
+event = {
+	id = 202009
+	trigger = {
+		event = 202008 #KOL: The Habsburg Archbishop-Electors
+		NOT = {
+			event = 179018 #HAB: The Archbishop in Cologne
+			alliance = { country = KOL country = HAB }
+			war = { country = KOL country = HAB }
+		}
+	}
+	random = no
+	country = KOL
+	name = "EVENTNAME202009" #Maximilian Franz of Austria succeeds to the Archbishopric
+	desc = "EVENTHIST202009"
+	#-#With his new throne Maximilian Franz brought Austria into Cologne's alliance.
+
+	date = { day = 29 month = april year = 1784 }
+	offset = 20
+	deathdate = { day = 26 month = july year = 1801 }
+
+	action_a = {
+		name = "VIVAT"
+		command = { type = alliance which = HAB }
+		command = { type = DIP which = 2 value = 12 }
+	}
+}
+
+#202010 to 202018 reserved for elections
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 202023
+

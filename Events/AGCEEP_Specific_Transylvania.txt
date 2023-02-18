@@ -1,0 +1,860 @@
+#Transylvania (TRA)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1526-1820) Reclaiming the Crown of Hungary - Ahistorical
+event = {
+	id = 282010
+	trigger = {
+		NOT = { exists = HUN }
+		stability = 0
+		owned = { province = 316 data = -1 } #Carpathia
+		control = { province = 316 data = -1 }
+		owned = { province = 317 data = -1 } #Ruthenia
+		control = { province = 317 data = -1 }
+		owned = { province = 323 data = -1 } #Transylvania
+		control = { province = 323 data = -1 }
+		owned = { province = 324 data = -1 } #Maros
+		control = { province = 324 data = -1 }
+		owned = { province = 325 data = -1 } #Magyar
+		control = { province = 325 data = -1 }
+		owned = { province = 353 data = -1 } #Pest
+		control = { province = 353 data = -1 }
+	}
+	random = no
+	country = TRA
+	name = "EVENTNAME282010" #Reclaim the crown of Hungary
+	desc = "EVENTHIST282010"
+	#-#Ever since Transylvania became independent of Hungary there has always been the hope that one day Transylvania would be able to reunite with the old Hungarian lands and resurrect the Kingdom of Hungary. Through our dogged determination and skill this is now possible. Shall we claim the crown of Hungary and take our place as a Kingdom among the other countries of Europe?
+
+	date = { day = 29 month = august year = 1526 }
+	offset = 360
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME282010A" #Forge a greater Transylvania instead
+		command = { type = stability value = -1 }
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = domestic which = ARISTOCRACY value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME282010B" #Claim the crown of Hungary
+		command = { type = flagname which = "" }
+		command = { type = country which = HUN }
+		command = { type = addcore which = 316 } #Carpathia
+		command = { type = addcore which = 317 } #Ruthenia
+		command = { type = addcore which = 324 } #Maros
+		command = { type = addcore which = 325 } #Magyar
+		command = { type = addcore which = 326 } #Presburg
+		command = { type = addcore which = 352 } #Odenburg
+		command = { type = addcore which = 353 } #Pest
+		command = { type = addcore which = 354 } #Banat
+		command = { type = add_countryculture which = slovak }
+		command = { type = capital which = 325 } #Magyar
+	}
+}
+
+#(1540-1551) Fráter György
+event = {
+	id = 282001
+	trigger = {
+		NOT = { exists = HUN }
+		NOT = {
+			vassal = { country = TUR country = TRA }
+			vassal = { country = HAB country = TRA }
+			vassal = { country = TRA country = HAB }
+			vassal = { country = TRA country = TUR }
+		}
+	}
+	random = no
+	country = TRA
+	name = "EVENTNAME282001" #Fráter György (1482-1551)
+	desc = "EVENTHIST282001"
+	#-#Born George Utjesenovic the priest, diplomat and statesman played a prominent role in Hungarian politics. Formerly a servant in the Corvinus then Zápolya household he joined a Pauline monastery where his talent and zeal earned him rapid promotion. Fate brought him to János I Zápolya, becoming chief advisor and guardian of Zápolya's son János II Zsigmond. Owing to his tact, György kept the Principality independent from both Ferdinand of Austria and Süleymân of Turkey. In time his deceit caught up with him - forcing György to temporarily acknowledge Vienna. Alas his continued double-dealing incited war between Austria and Turkey - ultimately his death at the hands of the Imperial General Castaldo.
+
+	date = { day = 23 month = july year = 1540 }
+	offset = 360
+	deathdate = { day = 16 month = december year = 1551 }
+
+	action_a = {
+		name = "ACTIONNAME282001A" #Ally with Ferdinand I
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = CAV which = -2 value = 2000 }
+		command = { type = ART which = -2 value = 10 }
+		command = { type = revoltrisk which = 36 value = -2 }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = relation which = SPA value = 75 }
+		command = { type = relation which = PAP value = 50 }
+		command = { type = relation which = TUR value = -100 }
+		command = { type = treasury value = 100 }
+		command = { type = stability value = 1 }
+		command = { type = trigger which = 179064 } #HAB: Siebenbürgen Agreement
+	}
+	action_b = {
+		name = "ACTIONNAME282001B" #Ally with Süleymân I
+		command = { type = desertion which = -1 value = 7000 }
+		command = { type = revoltrisk which = 36 value = 2 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = PAP value = -100 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = relation which = TUR value = 100 }
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = treasury value = -75 }
+		command = { type = stability value = -1 }
+		command = { type = trigger which = 301063 } #TUR: Erdil Submits
+	}
+	action_c = {
+		name = "ACTIONNAME282001C" #Our loyalties are flexible
+		command = { type = desertion which = -1 value = 6000 }
+		command = { type = INF which = -2 value = 3000 }
+		command = { type = CAV which = -2 value = 2000 }
+		command = { type = revoltrisk which = 36 value = 4 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = PAP value = -100 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = relation which = TUR value = -100 }
+		command = { type = DIP which = 2 value = 36 }
+		command = { type = treasury value = -50 }
+		command = { type = stability value = -2 }
+		command = { type = diplomats value = 1 }
+	}
+	action_d = {
+		name = "ACTIONNAME282001D" #Pursue an independent policy
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = revoltrisk which = 36 value = -4 }
+		command = { type = relation which = HAB value = -75 }
+		command = { type = relation which = PAP value = -75 }
+		command = { type = relation which = SPA value = -75 }
+		command = { type = relation which = TUR value = -75 }
+		command = { type = treasury value = 50 }
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1568) Edict of Torda
+event = {
+	id = 282002
+	random = no
+	country = TRA
+	name = "EVENTNAME282002" #Edict of Torda
+	desc = "EVENTHIST282002"
+	#-#János II Zsigmond (1540-1571) is best known for passing the Edict of Torda. Mastermined by Ferencz David, it was a first of its kind. Vicars were allowed to preach the gospel according to their interpretation. Congregations kept the ministers whose doctrine they approved. It was forbidden to imprison or persecute anyone for their relgion 'for faith is the gift of God'. Rather Catholics, Lutheran, Calvinists and Unitarians were encouraged to respect each others faith and use their reasoning to guide them.
+
+	date = { day = 1 month = january year = 1568 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1568 }
+
+	action_a = {
+		name = "ACTIONNAME282002A" #Egy az Isten (God is One)
+		command = { type = domestic which = INNOVATIVE value = 2 }
+		command = { type = relation which = PAP value = -100 }
+		command = { type = revoltrisk which = 36 value = -4 }
+		command = { type = relation which = -1 value = 100 }
+		command = { type = relation which = -1 value = 100 }
+		command = { type = relation which = -1 value = 100 }
+		command = { type = missionaries value = 1 }
+		command = { type = stability value = 3 }
+	}
+}
+
+#(1575-1576) Mantle of the Jagiello -I-
+event = {
+	id = 282003
+	trigger = {
+		exists = POL
+		NOT = { war = { country = POL country = TRA } }
+		exists = TUR
+		NOT = { event = 282016 } #TRA: Mantle of the Jagiello -II-
+	}
+	random = no
+	country = TRA
+	name = "EVENTNAME282003" #Mantle of the Jagiello
+	desc = "EVENTHIST282003"
+	#-#After Henryk I Walezy abandoned his Polish throne, the Szlachta at the urging of its Chancellor Jan Zamoyski elected István I Báthory King of the Polish-Lithuanian Commonwealth. On hearing of his unexpected elevation, Báthory summoned the Transylvanian Estates and persuaded them to elect his brother Kristóf prince in his stead. Kristóf's reign saw Transylvania alternate its allegiance between his brother and the Sultan to preserve its independence.
+
+	date = { day = 12 month = december year = 1575 }
+	offset = 30
+	deathdate = { day = 1 month = may year = 1576 }
+
+	action_a = {
+		name = "ACTIONNAME282003A" #A pro-Polish policy
+		command = { type = casusbelli which = TUR value = 36 }
+		command = { type = relation which = TUR value = -100 }
+		command = { type = relation which = POL value = 50 }
+		command = { type = CAV which = -2 value = 4000 } #Polish Hussars
+		command = { type = treasury value = -25 }
+		command = { type = stability value = 1 }
+		command = { type = sleepevent which = 282016 } #TRA: Mantle of the Jagiello -II-
+	}
+	action_b = {
+		name = "ACTIONNAME282003B" #A pro-Ottoman policy
+		command = { type = casusbelli which = POL value = 36 }
+		command = { type = relation which = POL value = -100 }
+		command = { type = relation which = TUR value = 50 }
+		command = { type = INF which = -2 value = 3000 } #Turkish Janissaries
+		command = { type = ART which = -2 value = 5 }
+		command = { type = treasury value = -50 }
+		command = { type = stability value = -1 }
+		command = { type = sleepevent which = 282016 } #TRA: Mantle of the Jagiello -II-
+	}
+}
+#(1575-1576) Mantle of the Jagiello -II-
+event = {
+	id = 282016
+	trigger = {
+		exists = POL
+		NOT = { war = { country = POL country = TRA } }
+		NOT = { exists = TUR }
+		NOT = { event = 282003 } #TRA: Mantle of the Jagiello -I-
+	}
+	random = no
+	country = TRA
+	name = "EVENTNAME282003" #Mantle of the Jagiello
+	desc = "EVENTHIST282016"
+	#-#After Henryk I Walezy abandoned his Polish throne, the Szlachta at the urging of its Chancellor Jan Zamoyski elected István I Báthory King of the Polish-Lithuanian Commonwealth. On hearing of his unexpected elevation, Báthory summoned the Transylvanian Estates and persuaded them to elect his brother Kristóf prince in his stead.
+
+	date = { day = 12 month = december year = 1575 }
+	offset = 30
+	deathdate = { day = 1 month = may year = 1576 }
+
+	action_a = {
+		name = "ACTIONNAME282003A" #A pro-Polish policy
+		command = { type = relation which = POL value = 50 }
+		command = { type = CAV which = -2 value = 4000 } #Polish Hussars
+		command = { type = treasury value = -25 }
+		command = { type = stability value = 1 }
+		command = { type = sleepevent which = 282003 } #TRA: Mantle of the Jagiello -I-
+	}
+	action_b = {
+		name = "ACTIONNAME282016B" #A neutral policy
+		command = { }
+		command = { type = sleepevent which = 282003 } #TRA: Mantle of the Jagiello -I-
+	}
+}
+
+#(1594) Abdications of Zsigmond Báthory
+event = {
+	id = 282005
+	random = no
+	country = TRA
+	name = "EVENTNAME282005" #Abdications of Zsigmond Báthory
+	desc = "EVENTHIST282005"
+	#-#Upon Báthory's separation from his wife Archduchess Maria-Christina, Zsigmond planned to take holy vows. Initially resigning in favour of a cousin Boldizsár Báthory (July 24 1594), he reversed the decision and deposed him (August 8 1594). In 1598, Báthory again abdicated - this time to Rudolf II of Austria, then Boldizsár's brother Cardinal András but made another comeback when the Principate was occupied by Mihály II Vitéz. His fickleness (probably caused by the infamous Báthory madness) in time sparked a conflict with his neighbours.
+
+	date = { day = 23 month = july year = 1594 }
+
+	action_a = {
+		name = "ACTIONNAME282005A" #Resign our throne
+		command = { type = breakvassal which = HAB }
+		command = { type = breakvassal which = WAL }
+		command = { type = relation which = POL value = 50 }
+		command = { type = relation which = HAB value = -75 }
+		command = { type = relation which = WAL value = -75 }
+		command = { type = sleepmonarch which = 0124010 } #Báthory Zsigmond I
+		command = { type = wakemonarch which = 0124011 } #Boldizsár Báthory
+		command = { type = wakemonarch which = 0124012 } #Báthory Zsigmond I (Restored)
+		command = { type = wakemonarch which = 0124013 } #Rudolf I
+		command = { type = wakemonarch which = 0124014 } #András Báthory
+		command = { type = stability value = -2 }
+	}
+	action_b = {
+		name = "ACTIONNAME282005B" #Remain Voivode
+		command = { type = relation which = HAB value = 25 }
+		command = { type = relation which = WAL value = 25 }
+		command = { type = stability value = 1 }
+		command = { type = sleepevent which = 282006 } #TRA: Báthory's Last Stand
+	}
+}
+
+#(1595) Treaty of Gyulafehérvár
+event = {
+	id = 282004
+	trigger = {
+		exists = WAL
+		NOT = {
+			vassal = { country = POL country = TRA }
+		}
+	}
+	random = no
+	country = TRA
+	name = "EVENTNAME282004" #Treaty of Gyulafehérvár
+	desc = "EVENTHIST282004"
+	#-#Transylvania habitually kept cordial relations with the Porte to counter the hostile Habsburgs. When Zsigmond Báthory (nephew of István I Báthory) reached his majority, he soon proved his mettle by signing the Treaty of Gyulafehérvár (Alba Julia) with Voivode Mihály II Vitéz of Wallachia - whereby Mihály recognised Báthory as his liege. That year, the alliance brought a string of victories against the Ottoman Turks at Calugareni (August 13), Targoviste (October 8), Bucharest (October 12), Bralia and Wallachia (October 29) - astonishing contemporary Europe. In 1596 the offensive continued with Viteazul attacking Vidin, Pleven, Nicopolis and Babadag.
+
+	date = { day = 1 month = january year = 1595 }
+	offset = 30
+	deathdate = { day = 1 month = august year = 1595 }
+
+	action_a = {
+		name = "ACTIONNAME282004A" #Sign the Treaty
+		command = { type = domestic which = OFFENSIVE value = 2 } #Mihály II Vitéz
+		command = { type = domestic which = QUALITY value = 1 }
+		command = { type = relation which = TUR value = -150 }
+		command = { type = relation which = WAL value = 50 }
+		command = { type = INF which = -2 value = 6000 }
+		command = { type = CAV which = -2 value = 2000 }
+		command = { type = alliance which = WAL }
+		command = { type = vassal which = WAL }
+		command = { type = war which = TUR }
+	}
+	action_b = {
+		name = "ACTIONNAME282004B" #Don't Sign
+		command = { type = casusbelli which = WAL value = 36 }
+		command = { type = relation which = WAL value = -100 }
+		command = { type = relation which = TUR value = 25 }
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1599) Báthory's Last Stand
+event = {
+	id = 282006
+	trigger = {
+		OR = {
+			war = { country = TRA country = HAB }
+			war = { country = TRA country = WAL }
+		}
+		atwar = yes
+		monarch = 0124014 #Báthory András
+	}
+	random = no
+	country = TRA
+	name = "EVENTNAME282006" #Báthory's Last Stand
+	desc = "EVENTHIST282006"
+	#-#When Zsigmond Báthory resigned in favour of his cousin András Báthory, Transylvania fell under the Polish sphere of influence as Cardinal András was already a Polish vassal. Báthory's decision ultimately turned his allies against him. Beginning on October 5 1599, Mihály II Vitéz of Wallachia and György Básta (an Austrian general), launched a campaign against the Principality. On October 18 Mihály defeated András at the Battle of Selimbar - giving him control of the Capitol Gyulafehérvár. Zsigmond Báthory hastened to reclaim his throne with a force of Cossacks and Poles, only to be defeated at Suceava. Still Romanian peasants and nobles alike hated Vitéz, despite his attempts at endearing himself to them. Who shall be our Prince?
+
+	date = { day = 1 month = january year = 1599 }
+	offset = 30
+	deathdate = { day = 17 month = october year = 1599 } #Battle of Selimbar
+
+	action_a = {
+		name = "ACTIONNAME282006A" #Zsigmond Báthory
+		command = { type = sleepmonarch which = 0124014 } #Báthory András
+		command = { type = wakemonarch which = 0124015 } #Báthory Zsigmond I (Restored)
+		command = { type = wakeleader which = 0124301 } #Zsigmond Báthory (TRA)
+		command = { type = relation which = POL value = 50 }
+		command = { type = relation which = WAL value = -100 }
+		command = { type = INF which = -2 value = 2000 }
+		command = { type = CAV which = -2 value = 1000 }
+		command = { type = stability value = 1 }
+		command = { type = war which = TUR }
+	}
+	action_b = {
+		name = "ACTIONNAME282006B" #Mihály Vitéz (possibly End Game)
+		command = { type = sleepmonarch which = 0124014 } #Báthory András
+		command = { type = sleepmonarch which = 0124036 } #Interregnum
+		command = { type = wakemonarch which = 0124016 } #Mihály Vitéz °
+		command = { type = wakemonarch which = 0124017 } #Interregnum
+		command = { type = relation which = POL value = -50 }
+		command = { type = relation which = WAL value = 100 }
+		command = { type = revoltrisk which = 72 value = 8 }
+		command = { type = revolt which = -2 }
+		command = { type = revolt which = -2 }
+		command = { type = stability value = -3 }
+		command = { type = trigger which = 329000 } #WAL: Union of Transylvania
+	}
+}
+
+#(1604) Religious Rebellion
+event = {
+	id = 19012
+	random = no
+	country = TRA
+	name = "EVENTNAME3641" #Religious Rebellion
+	desc = "EVENTHIST3641"
+	#-#Emperor Rudolf II (1552--1612) of Hungary was intent on re-imposing Catholicism on the Hungarians, Rudolf in 1604 provoked their first popular insurrection against Habsburg rule. The insurrectionists found a leader in István Bocskai (1557--1606), prince of Transylvania in 1605 and 1606, who fused the popular forces with his own army. Already at war with the Turks, the Habsburgs now faced an uncompromising civil war. A threefold settlement was finally forced on the dynasty: the Treaties of Vienna and Zsitvatorok of 1606 and the legislation of the Hungarian diet of 1608. Together these secured for Hungary religious freedom, constitutional autonomy, and the right of habeas corpus.
+
+	date = { day = 1 month = january year = 1604 }
+	offset = 30
+	deathdate = { day = 29 month = december year = 1604 }
+
+	action_a = {
+		name = "ACTIONNAME3641A" #Fight for the cause of the Reformed Faith
+		command = { type = revoltrisk which = 36 value = 6 }
+		command = { type = religion which = reformed }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = PAP value = -100 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = relation which = SWE value = 100 }
+		command = { type = relation which = LIT value = 100 }
+		command = { type = relation which = PRU value = 100 }
+		command = { type = relation which = DAN value = 100 }
+		command = { type = relation which = HOL value = 100 }
+		command = { type = domestic which = INNOVATIVE value = 2 }
+		command = { type = stability value = -2 }
+	}
+	action_b = {
+		name = "ACTIONNAME3641B" #Fight for the cause of the Catholic Faith
+		command = { type = revoltrisk which = 36 value = 6 }
+		command = { type = religion which = counterreform }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = relation which = PAP value = 100 }
+		command = { type = relation which = SPA value = 100 }
+		command = { type = relation which = SWE value = -100 }
+		command = { type = relation which = ENG value = -100 }
+		command = { type = relation which = PRU value = -100 }
+		command = { type = relation which = DAN value = -100 }
+		command = { type = relation which = HOL value = -100 }
+		command = { type = domestic which = INNOVATIVE value = -2 }
+		command = { type = stability value = -2 }
+	}
+}
+
+#(1618-1629) Magyar Renaissance
+event = {
+	id = 282009
+	trigger = {
+		NOT = { exists = HUN }
+		OR = {
+			religion = protestant
+			religion = reformed
+		}
+	}
+	random = no
+	country = TRA
+	name = "EVENTNAME282009" #Magyar Renaissance
+	desc = "EVENTHIST282009"
+	#-#Bethlen was likened to his great predecessor - Mátyás Corvin (1458-1490). Like Corvin he embarked on reforms aimed at improving the state. Ruling as an 'Enlightened Autocrat' he developed mines and industry whilst nationalising foreign trade. A patron of the Arts and Learning, Gábor took peculiar interest in education - founding schools for the children of serfs. In addition he sent students to Protestant universities in England, the Low Countries and the Holy Roman Empire. Calvinism flourished. Despite the huge cost of his projects, Bethlen built a new palace at Gyulafehérvár - keeping an opulent court and a standing army of mercenaries to conduct his ambitious foreign policy.
+
+	date = { day = 1 month = january year = 1618 }
+	offset = 365
+	deathdate = { day = 15 month = november year = 1629 }
+
+	action_a = {
+		name = "ACTIONNAME282009A" #Strengthen the economy
+		command = { type = domestic which = MERCANTILISM value = 2 }
+		command = { type = provincetax which = -2 value = 1 }
+		command = { type = ADM which = 2 value = 60 }
+		command = { type = treasury value = -150 }
+		command = { type = merchants value = 2 }
+		command = { type = trade value = 100 }
+	}
+	action_b = {
+		name = "ACTIONNAME282009B" #Invest in Arts and Learning
+		command = { type = domestic which = INNOVATIVE value = 1 }
+		command = { type = relation which = SWE value = 25 }
+		command = { type = relation which = BRA value = 25 }
+		command = { type = relation which = ENG value = 25 }
+		command = { type = relation which = DAN value = 25 }
+		command = { type = relation which = HOL value = 25 }
+		command = { type = treasury value = -125 }
+		command = { type = diplomats value = 1 }
+		command = { type = infra value = 100 }
+	}
+	action_c = {
+		name = "ACTIONNAME282009C" #Exhibition of royal power
+		command = { type = gainmanufactory which = -2 value = luxury } #Palace
+		command = { type = domestic which = CENTRALIZATION value = 1 }
+		command = { type = domestic which = ARISTOCRACY value = -1 }
+		command = { type = DIP which = 1 value = 120 }
+		command = { type = treasury value = -200 }
+		command = { type = stability value = -1 }
+		command = { type = vp value = 25 }
+	}
+	action_d = {
+		name = "ACTIONNAME282009D" #Maintainance of a mercenary force
+		command = { type = domestic which = OFFENSIVE value = -1 }
+		command = { type = domestic which = QUALITY value = 1 }
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = ART which = -2 value = 10 }
+		command = { type = treasury value = -100 }
+		command = { type = land value = 100 }
+	}
+}
+
+#(1618-1622) Fortunes of War
+event = {
+	id = 282007
+	trigger = {
+		event = 3189 #HAB: Religious Peace of Augsburg
+		event = 3194 #HAB: Defenestration of Prague
+		OR = {
+			religion = protestant
+			religion = reformed
+		}
+	}
+	random = no
+	country = TRA
+	name = "EVENTNAME282007" #Fortunes of War
+	desc = "EVENTHIST282007"
+	#-#Defenestration of Prague (1618) gave Gábor Bethlen pretext to invade Hungary as 'Defender of the Magyar constitution and liberties'. Ignoring Hetman István Zólkiewski's counteroffer of a Polish alliance against the Turks, Bethlen joined forces with the Czech and Moravian army of Count Thurn and besieged Vienna only to be ousted by Imperial forces. Preliminary negotiations failed as Bethlen insisted on including the Bohemians, but was elected King of Hungary. Yet Austrian arms won the Battle of White Mountain (8 November 1620) forcing Bethlen to conclude the Peace of Nikolsburg (31 December 1620). Ferdinand kept St.Stephen's crown upon confirming the Peace of Vienna (1606). Bethlen became an 'Imperial Prince' with counties in the Upper Theiss and fortresses in Tokaj, Munkacs and Ecsed. Had Gábor accepted Zólkiewski's offer.
+
+	date = { day = 1 month = january year = 1618 }
+	offset = 180
+	deathdate = { day = 1 month = january year = 1622 }
+
+	action_a = {
+		name = "ACTIONNAME282007A" #Join the German Princes
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = SPA value = -75 }
+		command = { type = relation which = SAC value = -75 }
+		command = { type = relation which = POL value = -50 }
+		command = { type = relation which = BOH value = 100 }
+		command = { type = relation which = PFA value = 100 }
+		command = { type = relation which = HES value = 100 }
+		command = { type = relation which = TUR value = 50 }
+		command = { type = INF which = -2 value = 4500 } #Magyar volunteers
+		command = { type = CAV which = -2 value = 1500 }
+		command = { type = ART which = -2 value = 5 }
+		command = { type = war which = HAB }
+	}
+	action_b = {
+		name = "ACTIONNAME282007B" #Consent to Zólkiewski's offer
+		command = { type = CAV which = -2 value = 5000 } #Lisowczycy
+		command = { type = revoltrisk which = 36 value = 4 }
+		command = { type = casusbelli which = TUR value = 36 }
+		command = { type = casusbelli which = BOH value = 36 }
+		command = { type = casusbelli which = PFA value = 36 }
+		command = { type = casusbelli which = HES value = 36 }
+		command = { type = relation which = BOH value = -100 }
+		command = { type = relation which = HES value = -100 }
+		command = { type = relation which = PFA value = -100 }
+		command = { type = relation which = TUR value = -100 }
+		command = { type = relation which = HAB value = 100 }
+		command = { type = relation which = SPA value = 100 }
+		command = { type = stability value = -2 }
+		command = { type = sleepevent which = 282008 } #TRA: Meet the In-Laws
+	}
+}
+
+#(1622-1629) Meet the In-Laws
+event = {
+	id = 282008
+	trigger = {
+		event = 282007 #TRA: Fortunes of War
+	}
+	random = no
+	country = TRA
+	name = "EVENTNAME282008" #Meet the In-Laws
+	desc = "EVENTHIST282008"
+	#-#Despite his gains in the Peace of Nikolsburg (1620) Gábor rejoined the war against Vienna as an ally of the Protestants (1623-26). Yet the Treaties of Vienna and Pressburg awarded Bethlen no more than a renewal of the concessions from Nikolsburg. Hence he tried reconciling with Austria to secure an alliance against the Porte and a Habsburg bride. Ferdinand II refused on both accounts. Accordingly Bethlen became firmly entrenched in the Protestant camp - marrying the sister-in-law of Gustavus Adolphus of Sweden, Catherine Hohenzollern of Brandenburg.
+
+	date = { day = 1 month = january year = 1622 }
+	offset = 180
+	deathdate = { day = 15 month = november year = 1629 }
+
+	action_a = {
+		name = "ACTIONNAME282008A" #Seek a Habsburg Bride
+		command = { type = relation which = HAB value = 50 }
+		command = { type = relation which = SWE value = -25 }
+		command = { type = relation which = BRA value = -25 }
+		command = { type = treasury value = -75 }
+		command = { type = trigger which = 179065 } #HAB: For an Archduchess's hand
+	}
+	action_b = {
+		name = "ACTIONNAME282008B" #Seek a Protestant Bride
+		command = { type = relation which = HAB value = -25 }
+		command = { type = relation which = SWE value = 25 }
+		command = { type = relation which = BRA value = 50 }
+		command = { type = treasury value = -50 }
+		command = { type = trigger which = 132014 } #BRA: Matchmaker
+	}
+}
+
+#(1630-1648) Transylvanian Resurgence
+event = {
+	id = 282011
+	trigger = {
+		NOT = {
+			alliance = { country = HAB country = TRA }
+			vassal = { country = HAB country = TRA }
+		}
+	}
+	random = no
+	country = TRA
+	name = "EVENTNAME282011" #Transylvanian Resurgence
+	desc = "EVENTHIST282011"
+	#-#György I Rákóczi continued Bethlen's persuit of political and religious liberty for the Magyars. Toward that end he formed an alliance with Gustavus Adolphus of Sweden whilst feigning amity to Habsburg-Austria. By the final years of the Thirty Years War (1618-48), Rákóczi at the urging of Swedes, French and Ottomans declared war against Ferdinand III (2 February 1644). The hard-pressed Austrians soon lost Royal Hungary to Transylvanian forces and Vienna was compelled to conclude the Peace of Linz (16 September 1645) - according full religious liberty to the Magyars and the fortress of Regec and the Tokaj district to Rákóczi.
+
+	date = { day = 1 month = january year = 1630 }
+	offset = 360
+	deathdate = { day = 11 month = october year = 1648 }
+
+	action_a = {
+		name = "ACTIONNAME282011A" #Heed their call
+		command = { type = addcore which = 316 } #Carpathia
+		command = { type = addcore which = 317 } #Ruthenia
+		command = { type = addcore which = 326 } #Presburg
+		command = { type = addcore which = 352 } #Odenburg
+		command = { type = INF which = -2 value = 6000 }
+		command = { type = CAV which = -2 value = 4000 }
+		command = { type = ART which = -2 value = 20 }
+		command = { type = casusbelli which = HAB value = 48 }
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = SPA value = -100 }
+		command = { type = relation which = SWE value = 150 }
+		command = { type = relation which = FRA value = 150 }
+		command = { type = relation which = TUR value = 150 }
+		command = { type = treasury value = -150 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME282011B" #Stay out of the conflict
+		command = { type = stability value = 1 }
+	}
+}
+
+#(1648-1656) Rákóczi's Polish Ambition -I-
+event = {
+	id = 282012
+	trigger = {
+		NOT = { exists = HUN }
+		exists = POL
+		exists = SWE
+		NOT = { war = { country = TRA country = SWE } }
+		vassal = { country = TUR country = TRA }
+		NOT = { vassal = { country = TRA country = POL } }
+	}
+	random = no
+	country = TRA
+	name = "EVENTNAME282012" #Rákóczi's Polish Ambition
+	desc = "EVENTHIST282012"
+	#-#Sharing his father's ambition for the Polish Crown, György II Rákóczi allied himself in 1649 with the Cossack Hetman Bogdan IV Khmelnitsky and the Hospodars of Moldavia and Wallachia. Yet he achieved little til joining forces with a warlike Karl X Gustav of Sweden in an act of defiance against his suzerain the Sultan. Occupying Karkow and Warsaw in 1657, Polish resolve and the sudden Swedish withdraw left Rákóczi without allies. An angry Sultan had even dispatched the Crimean Tartars after him forcing the Prince to accept the most humiliating of terms with Jan II Kazimieras of Poland before returning home to be deposed by the Porte.
+
+	date = { day = 12 month = october year = 1648 }
+	offset = 360
+	deathdate = { day = 7 month = october year = 1656 }
+
+	action_a = {
+		name = "ACTIONNAME282012A" #Team up with the Cossacks and Danubian Hospodars
+		command = { type = breakvassal which = TUR }
+		command = { type = casusbelli which = POL value = 48 }
+		command = { type = relation which = POL value = -100 }
+		command = { type = relation which = TUR value = -100 }
+		command = { type = relation which = UKR value = 150 }
+		command = { type = relation which = MOL value = 150 }
+		command = { type = relation which = WAL value = 150 }
+		command = { type = stability value = -1 }
+		command = { type = sleepevent which = 282000 } #TRA: Rákóczi's Polish Ambition -II-
+	}
+	action_b = {
+		name = "ACTIONNAME282012B" #Collaborate with Karl X Gustav
+		command = { type = breakvassal which = TUR }
+		command = { type = casusbelli which = POL value = 48 }
+		command = { type = relation which = POL value = -100 }
+		command = { type = relation which = TUR value = -100 }
+		command = { type = relation which = SWE value = 150 }
+		command = { type = stability value = -1 }
+		command = { type = sleepevent which = 282000 } #TRA: Rákóczi's Polish Ambition -II-
+	}
+	action_c = {
+		name = "ACTIONNAME282012C" #Obey to our suzerain, the Sultan
+		command = { type = domestic which = CENTRALIZATION value = -1 }
+		command = { type = relation which = POL value = 25 }
+		command = { type = relation which = TUR value = 50 }
+		command = { type = stability value = 1 }
+		command = { type = sleepevent which = 282000 } #TRA: Rákóczi's Polish Ambition -II-
+		command = { type = sleepevent which = 282017 } #TRA: Agreement with Karl X Gustav of Sweden -I-
+		command = { type = sleepevent which = 282018 } #TRA: Agreement with Karl X Gustav of Sweden -II-
+	}
+}
+#(1648-1656) Rákóczi's Polish Ambition -II-
+event = {
+	id = 282000
+	trigger = {
+		NOT = { exists = HUN }
+		exists = POL
+		exists = SWE
+		NOT = { war = { country = TRA country = SWE } }
+		NOT = { vassal = { country = TRA country = POL } }
+		NOT = { vassal = { country = TUR country = TRA } }
+	}
+	random = no
+	country = TRA
+	name = "EVENTNAME282012" #Rákóczi's Polish Ambition
+	desc = "EVENTHIST282000"
+	#-#Sharing his father's ambition for the Polish Crown, György II Rákóczi allied himself in 1649 with the Cossack Hetman Bogdan IV Khmelnitsky and the Hospodars of Moldavia and Wallachia. Yet he achieved little til joining forces with a warlike Karl X Gustav of Sweden.
+
+	date = { day = 12 month = october year = 1648 }
+	offset = 360
+	deathdate = { day = 7 month = october year = 1656 }
+
+	action_a = {
+		name = "ACTIONNAME282012A" #Team up with the Cossacks and Danubian Hospodars
+		command = { type = casusbelli which = POL value = 48 }
+		command = { type = relation which = POL value = -100 }
+		command = { type = relation which = TUR value = -100 }
+		command = { type = relation which = UKR value = 150 }
+		command = { type = relation which = MOL value = 150 }
+		command = { type = relation which = WAL value = 150 }
+		command = { type = stability value = -1 }
+		command = { type = sleepevent which = 282012 } #TRA: Rákóczi's Polish Ambition -I-
+	}
+	action_b = {
+		name = "ACTIONNAME282012B" #Collaborate with Karl X Gustav
+		command = { type = casusbelli which = POL value = 48 }
+		command = { type = relation which = POL value = -100 }
+		command = { type = relation which = TUR value = -100 }
+		command = { type = relation which = SWE value = 150 }
+		command = { type = stability value = -1 }
+		command = { type = sleepevent which = 282012 } #TRA: Rákóczi's Polish Ambition -I-
+	}
+}
+
+#(1657) Rákóczi's involvment in First Northern War -I-
+#by Duc de Guise
+event = {
+	id = 282017
+	trigger = {
+		war = { country = SWE country = POL }
+		NOT = {
+			war = { country = TRA country = POL }
+			vassal = { country = TRA country = POL }
+		}
+		NOT = { vassal = { country = POL country = TRA } }
+	}
+	random = no
+	country = TRA
+	name = "EVENTNAME282017" #Agreement with Karl X Gustav of Sweden
+	desc = "EVENTHIST282017"
+	#-#Rákóczi had an agreement with Sweden in order to conquer the Polish throne.
+
+	date = { day = 1 month = january year = 1657 }
+	offset = 10
+	deathdate = { day = 29 month = june year = 1657 }
+
+	action_a = {
+		name = "ACTIONNAME282017A" #We want the Polish Crown!
+		command = { type = relation which = SWE value = 200 }
+		command = { type = relation which = POL value = -200 }
+		command = { type = casusbelli which = POL value = 6 }
+	}
+	action_b = {
+		name = "ACTIONNAME282017B" #Stay out of the conflict
+		command = { type = relation which = SWE value = -100 }
+		command = { type = relation which = POL value = 20 }
+	}
+}
+#(1657) Rákóczi's involvment in First Northern War -II-
+#by Duc de Guise
+event = {
+	id = 282018
+	trigger = {
+		war = { country = SWE country = POL }
+		NOT = {
+			war = { country = TRA country = POL }
+			vassal = { country = TRA country = POL }
+		}
+		vassal = { country = POL country = TRA }
+	}
+	random = no
+	country = TRA
+	name = "EVENTNAME282017" #Agreement with Karl X Gustav of Sweden
+	desc = "EVENTHIST282017"
+	#-#Rákóczi had an agreement with Sweden in order to conquer the Polish throne.
+
+	date = { day = 1 month = january year = 1657 }
+	offset = 10
+	deathdate = { day = 29 month = june year = 1657 }
+
+	action_a = {
+		name = "ACTIONNAME282017A" #We want the Polish Crown!
+		command = { type = breakvassal which = POL }
+		command = { type = relation which = SWE value = 200 }
+		command = { type = relation which = POL value = -200 }
+		command = { type = casusbelli which = POL value = 6 }
+	}
+	action_b = {
+		name = "ACTIONNAME282017B" #Stay out of the conflict
+		command = { type = relation which = SWE value = -100 }
+		command = { type = relation which = POL value = 20 }
+	}
+}
+
+#(1658-1662) Unrest in Transylvania
+event = {
+	id = 282013
+	trigger = {
+		NOT = { exists = HUN }
+	}
+	random = no
+	country = TRA
+	name = "EVENTNAME282013" #Unrest in Transylvania
+	desc = "EVENTHIST282013"
+	#-#Following György II Rákóczi's deposition by the Porte, an inept Ákos Barcsay was initially chosen. But Barcsay was soon replaced with a more able János Kemény. Alas for the Porte, Kemény defected to the Habsburgs - embroiling Transylvania in a war with the Ottomans. In the end, the Sultan prevailed appointing Mihály I Apafi to the Principate.
+
+	date = { day = 7 month = october year = 1658 }
+	offset = 90
+	deathdate = { day = 22 month = january year = 1662 }
+
+	action_a = {
+		name = "OK"
+		command = { type = relation which = HAB value = -50 }
+		command = { type = relation which = TUR value = -50 }
+		command = { type = revoltrisk which = 72 value = 6 }
+		command = { type = stability value = -3 }
+		command = { type = revolt which = -2 }
+		command = { type = revolt which = -2 }
+		command = { type = revolt which = -2 }
+	}
+}
+
+#(1681-1699) Thököly's Kuruc Uprising
+event = {
+	id = 282014
+	trigger = {
+		NOT = { exists = HUN }
+		event = 3332 #HAB: Chastening of Hungary
+		event = 3333 #HAB: Insurrection of Imre Tököll
+	}
+	random = no
+	country = TRA
+	name = "EVENTNAME282014" #Thököly's Kuruc Uprising
+	desc = "EVENTHIST282014"
+	#-#Failure of Wesselényi Conspiracy against Habsburg oppression resulted in the establishment of an absolutist and repressive regime in Hungary. Scores of prominent Magyar families were arrested and their estates forfeited to the Austrian crown. Many more fled to Transylvania including Imre Thököly who led an insurrection against Leopold I to restore the constitution and revoke his harsh measures. Seeing young Thököly's successes, Mihály I Apafi joined the uprising. Yet it was the Austrians who prevailed and bringing with it the final days of an independent Transylvania.
+
+	date = { day = 1 month = january year = 1681 }
+	offset = 360
+	deathdate = { day = 26 month = january year = 1699 }
+
+	action_a = {
+		name = "ACTIONNAME282014A" #Join the Patriotic Movement
+		command = { type = relation which = HAB value = -100 }
+		command = { type = stability value = 1 }
+		command = { type = war which = HAB }
+	}
+	action_b = {
+		name = "ACTIONNAME282014B" #Remain aloof
+		command = { type = relation which = HAB value = 25 }
+		command = { type = stability value = -2 }
+	}
+}
+
+#(1703-1711) Rákóczi's Kuruc Uprising
+event = {
+	id = 282015
+	trigger = {
+		NOT = { exists = HUN }
+		event = 3201 #HAB: Noble Revolt in Hungary
+	}
+	random = no
+	country = TRA
+	name = "EVENTNAME282015" #Rákóczi's Kuruc Uprising
+	desc = "EVENTHIST282015"
+	#-#Three years into the War of Spanish Succession (1700-1714), Ferenc Rákóczi began a war of national liberation. His Kurucok forces soon occupied Upper Hungary and named him Prince of Transylvania (8 June 1704). But an Imperial victory at Blenheim (13 August 1704) against Rákóczi's French allies began a reversal of fortune. Having failed to reach an agreement with Leopold I of Austria, Rákóczi deposed Leopold from the Hungarian throne in hopes of securing further French support. Instead both sides fought to the bitter end. Without allies the Kurucok suffered loss after loss, effectively ending the uprising in the Treaty of Szatmár (11 May 1711). Henceforth the Magyars and Transylvania became a part of the Austrian Empire.
+
+	date = { day = 15 month = june year = 1703 }
+	offset = 360
+	deathdate = { day = 1 month = may year = 1711 }
+
+	action_a = {
+		name = "ACTIONNAME282015A" #Cum Deo pro patria et libertate! (With God for Country and Liberty)
+		command = { type = relation which = HAB value = -100 }
+		command = { type = relation which = FRA value = 75 }
+		command = { type = treasury value = 120 } #French subsidies
+		command = { type = war which = HAB }
+	}
+	action_b = {
+		name = "ACTIONNAME282015B" #Better not
+		command = { type = relation which = HAB value = 25 }
+		command = { type = stability value = -2 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 282019

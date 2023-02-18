@@ -1,0 +1,1017 @@
+#Uzbeks (UZB)
+
+#-----------------------------------------------------------------------------------------------
+#Eastern Horde Sequence
+
+#(1428) Independence of the Uzbeks
+event = {
+	id = 325004 #triggered by STE_287000
+	random = no
+	country = UZB
+	name = "EVENTNAME325004" #Independence of the Uzbeks
+	desc = "EVENTHIST325004"
+	#-#In 1428, Abul Khayr was declared khan of the Uzbek people in Sibir (near-modern day Tobolsk). His reign marked a separation of Uzbek and Golden Horde foreign policies into two entirely different categories. The Uzbeks were free to pursue their interests which would be determined to lie within the regions of Khwarizm and Transoxiana. From Khayr's beginning, the Shaybanid dynasty would eventually carve a large empire and a name into history for themselves.
+
+	action_a = {
+		name = "ACTIONNAME325004A" #Free at last!
+		command = { type = dynastic which = SIB }
+		command = { type = relation which = SIB value = 50 }
+		command = { type = relation which = STE value = -150 }
+		command = { type = capital which = 1573 } #Tobolsk
+		command = { type = addcore which = 521 } #Karabogaz
+		command = { type = addcore which = 522 } #Khwarizm
+		command = { type = addcore which = 1533 } #Khiva
+	}
+}
+#(1450-1500) Formation of the Sibir Khanate
+event = {
+	id = 325008 #triggered by STE_287001
+	random = no
+	country = UZB
+	name = "EVENTNAME325008" #The Formation of the Sibir Khanate
+	desc = "EVENTHIST325008"
+	#-#Following the disintegration of the Horde, descendents of On Khan formed the Khanate of Sibir, near the modern day city of Tyumen. They quickly established their domain, which existed from Kurgan in the west, to Ichim in the east. This Khanate would survive well into the 16th century until it was extinguished by Cossacks from Russia.
+
+	action_a = {
+		name = "ACTIONNAME325008A" #Our primary focus is in the south
+		command = { type = relation which = SIB value = -100 }
+		command = { type = cedeprovince which = SIB value = 1573 } #Tobolsk
+		command = { type = cedeprovince which = SIB value = 1571 } #Jalutorovsk
+		command = { type = cedeprovince which = SIB value = 1570 } #Sadrinsk
+		command = { type = cedeprovince which = SIB value = 578 } #Ichim
+		command = { type = cedeprovince which = SIB value = 510 } #Kurgan
+		command = { type = cedeprovince which = SIB value = 511 } #Kustanai
+		command = { type = cedeprovince which = SIB value = 512 } #Tenghiz
+		command = { type = cedeprovince which = SIB value = 513 } #Orsk
+		command = { type = cedeprovince which = SIB value = 514 } #Irgiz
+		command = { type = cedeprovince which = SIB value = 515 } #Alga
+		command = { type = trigger which = 325021 } #UZB: Consequence of the Formation of the Sibir Khanate
+		command = { type = trigger which = 280000 } #SIB: The Formation of the Sibir Khanate
+	}
+}
+#(1450-1500) Consequence of the formation of the Sibir Khanate
+event = {
+	id = 325021 #triggered by UZB_325008
+	trigger = {
+		owned = { province = 1575 data = -1 } #Sergino
+		countrysize = 2 #Sergino is not the last Uzbek province
+	}
+	random = no
+	country = UZB
+	name = "EVENTNAME325021" #Consequence of the Formation of the Sibir Khanate
+	desc = "EVENTHIST325021"
+	#-#Our primary focus is in the south.
+
+	action_a = {
+		name = "OK"
+		command = { type = provinceculture which = 1575 value = tatar } #Sergino
+		command = { type = cedeprovince which = SIB value = 1575 } #Sergino
+	}
+}
+#End of Eastern Horde Sequence
+#-----------------------------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------------------------
+#Uzbeks in Khiva Sequence
+
+#(1428-1468) Uzbeks on Offensive
+event = {
+	id = 65006
+	trigger = {
+		exists = TIM
+		atwar = no
+		NOT = {
+			war = { country = UZB country = TIM }
+			alliance = { country = UZB country = TIM }
+			event = 325017
+		}
+		OR = {
+			owned = { province = 521 data = TIM } #Karabogaz
+			owned = { province = 522 data = TIM } #Khwarizm
+			owned = { province = 1533 data = TIM } #Khiva
+		}
+	}
+	random = no
+	country = UZB
+	name = "EVENTNAME65006" #Uzbeks on Offensive
+	desc = "EVENTHIST65006"
+	#-#During his lifetime (1425-1468), Abu'l Khayr carved himself a huge empire, stretching from Tura in Northern Siberia all the way down to Khwarizm.
+
+	date = { day = 1 month = january year = 1428 }
+	offset = 500
+	deathdate = { day = 1 month = january year = 1468 }
+
+	action_a = {
+		name = "ACTIONNAME65006A" #Show them all who we are!
+		command = { type = CAV which = -1 value = 10000 }
+		command = { type = war which = TIM }
+		command = { type = domestic which = quality value = 1 }
+		command = { type = domestic which = offensive value = 1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = stability value = 4 }
+	}
+	action_b = {
+		name = "ACTIONNAME65006B" #Those lands are a total waste
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = offensive value = -1 }
+		command = { type = infra value = 400 }
+		command = { type = vp value = -20 }
+	}
+}
+#(1428-1468) Uzbeks on Offensive
+event = {
+	id = 325017
+	trigger = {
+		exists = KHI
+		atwar = no
+		NOT = {
+			alliance = { country = UZB country = KHI }
+			event = 65006
+		}
+		OR = {
+			owned = { province = 521 data = KHI } #Karabogaz
+			owned = { province = 522 data = KHI } #Khwarizm
+			owned = { province = 1533 data = KHI } #Khiva
+		}
+	}
+	random = no
+	country = UZB
+	name = "EVENTNAME65006" #Uzbeks on Offensive
+	desc = "EVENTHIST65006"
+	#-#During his lifetime (1425-1468), Abu'l Khayr carved himself a huge empire, stretching from Tura in Northern Siberia all the way down to Khwarizm.
+
+	date = { day = 1 month = january year = 1428 }
+	offset = 500
+	deathdate = { day = 1 month = january year = 1468 }
+
+	action_a = {
+		name = "ACTIONNAME65006A" #Show them all who we are!
+		command = { type = CAV which = -1 value = 10000 }
+		command = { type = war which = KHI }
+		command = { type = domestic which = quality value = 1 }
+		command = { type = domestic which = offensive value = 1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = stability value = 4 }
+	}
+	action_b = {
+		name = "ACTIONNAME65006B" #Those lands are a total waste
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = offensive value = -1 }
+		command = { type = infra value = 400 }
+		command = { type = vp value = -20 }
+	}
+}
+#(1428-1468) Uzbeks on Offensive
+event = {
+	id = 325018
+	trigger = {
+		exists = KHI
+		atwar = no
+		event = 65006
+		NOT = { alliance = { country = UZB country = KHI } }
+		OR = {
+			owned = { province = 521 data = KHI } #Karabogaz
+			owned = { province = 522 data = KHI } #Khwarizm
+			owned = { province = 1533 data = KHI } #Khiva
+		}
+	}
+	random = no
+	country = UZB
+	name = "EVENTNAME65006" #Uzbeks on Offensive
+	desc = "EVENTHIST65006"
+	#-#During his lifetime (1425-1468), Abu'l Khayr carved himself a huge empire, stretching from Tura in Northern Siberia all the way down to Khwarizm.
+
+	date = { day = 1 month = january year = 1428 }
+	offset = 500
+	deathdate = { day = 1 month = january year = 1468 }
+
+	action_a = {
+		name = "ACTIONNAME65006A" #Show them all who we are!
+		command = { type = CAV which = -1 value = 5000 }
+		command = { type = war which = KHI }
+		command = { type = stability value = 2 }
+	}
+	action_b = {
+		name = "ACTIONNAME65006B" #Those lands are a total waste
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = offensive value = -1 }
+		command = { type = infra value = 400 }
+		command = { type = vp value = -20 }
+	}
+}
+#(1419-1500) Uzbeks on Offensive
+event = {
+	id = 325019 #triggered by KHI_303001
+	random = no
+	country = UZB
+	name = "EVENTNAME303001" #The Uzbek Offensive
+	desc = "EVENTHIST303001"
+	#-#In 1431, Abul Khayr of the Uzbeks launched an offensive on the city of Khwarizm. With its capture he established Uzbek control over the region.
+
+	action_a = {
+		name = "ACTIONNAME325019A" #We march victoriously into Khwarazim
+		command = { type = inherit which = KHI }
+		command = { type = provincemanpower which = -1 value = 1 }
+		command = { type = provincemanpower which = -1 value = 1 }
+	}
+}
+#(1425-1820) Khayr's Summer Residence
+event = {
+	id = 325003
+	trigger = {
+		owned = { province = 1534 data = -1 } #Kyzylkum
+		control = { province = 1534 data = -1 } #Kyzylkum
+		OR = {
+			owned = { province = 1533 data = -1 } #Khiva
+			AND = {
+				owned = { province = 522 data = -1 } #Khwarizm
+				owned = { province = 523 data = -1 } #Kara Kum
+			}
+		}
+	}
+	random = no
+	country = UZB
+	name = "EVENTNAME325003" #Khayr's Summer Residence
+	desc = "EVENTHIST325003"
+	#-#Upon the capture of Khwarizm, Khayr made Sygnak his summer residence and the city henceforth, became the major trading area for the people of the Great Steppes. The region also became profitable as through his consolidation, Khayr managed to unite the Turkic people of Khwarizim.
+
+	date = { day = 1 month = january year = 1425 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME325003A" #Enjoy the beauty of Sygnak
+		command = { type = capital which = 1534 } #Kyzylkum
+		command = { type = cot which = 1534 } #Kyzylkum
+		command = { type = provincetax which = 1534 value = 2 } #Kyzylkum
+		command = { type = provincemanpower which = 1534 value = 3 } #Kyzylkum
+		command = { type = stability value = 3 }
+		command = { type = add_countryculture which = turkoman }
+		#command = { type = AI which = "UZB-Summer.ai" }
+	}
+}
+#(1444-1820) The Uzbek Peoples
+event = {
+	id = 325005
+	trigger = {
+		owned = { province = 1533 data = -1 } #Khiva
+		owned = { province = 522 data = -1 } #Khwarizm
+	}
+	random = no
+	country = UZB
+	name = "EVENTNAME325005" #The Uzbek Peoples
+	desc = "EVENTHIST325005"
+	#-#When Abul Khayr conquered Khwarizm, he sent into motion the events that would contribute to the fall of the Timurid Empire and the rise of Uzbek Khanates. Their culture had begun to differ from those of other Mongols prior to Khayr's conquest, and his efforts allowed the Uzbek peoples to declare their complete independence. From now on, with the help of their Turkoman allies, the destiny of the Uzbeks would lie in the south, not in the north.
+
+	date = { day = 1 month = january year = 1440 }
+	offset = 500
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME325005A" #Settle
+		command = { type = add_countryculture which = uzbek }
+		command = { type = remove_countryculture which = tatar }
+		command = { type = remove_countryculture which = turkoman } #to make Uzbek primary
+		command = { type = add_countryculture which = turkoman }
+		command = { type = provinceculture which = 516 value = uzbek } #Aralsk
+		command = { type = provinceculture which = 518 value = uzbek } #Ust Urt
+		command = { type = provinceculture which = 522 value = uzbek } #Khwarizm
+		command = { type = provinceculture which = 1533 value = uzbek } #Khiva
+		command = { type = provinceculture which = 1534 value = uzbek } #Kyzylkum
+		command = { type = provinceculture which = 1535 value = uzbek } #Karsak
+		command = { type = provincemanpower which = 1533 value = 1 } #Khiva
+		command = { type = provincemanpower which = 522 value = 1 } #Khwarizm
+		command = { type = provincemanpower which = 518 value = 1 } #Ust Urt
+		command = { type = domestic which = centralization value = 3 }
+		command = { type = domestic which = serfdom value = 2 }
+		command = { type = domestic which = offensive value = 1 }
+		command = { type = stability value = 2 }
+		command = { type = population which = -1 value = 2000 }
+		command = { type = provincetax which = -3 value = 1 }
+		command = { type = population which = -1 value = 2000 }
+		command = { type = provincetax which = -3 value = 1 }
+		command = { type = relation which = STE value = -200 }
+		command = { type = relation which = SIB value = -100 }
+	}
+}
+#End of Uzbeks in Khiva Sequence
+#-----------------------------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------------------------
+#Independence of Kazakh Sequence
+
+#(1440-1820) The Oirat Invasion
+event = {
+	id = 325009
+	trigger = {
+		OR = {
+			owned = { province = 579 data = -1 } #Karaganda
+			owned = { province = 1536 data = -1 } #Nura
+		}
+		NOT = { exists = KZK }
+	}
+	random = no
+	country = UZB
+	name = "EVENTNAME325009" #The Oirat Invasion
+	desc = "EVENTHIST325009"
+	#-#Starting around the mid-15th century, Khayr's eastern lands came under attack from the Oirats, a people of Mughulistan. The Oirats pillaged and destroyed much of the east and are mainly responsible for the lack of expansion during the rest of Khayr's reign. Eventually, the actions of Oirats, would allow the Kazakh Horde to break free from the weakened Uzbek Khanate.
+
+	date = { day = 1 month = january year = 1440 }
+	offset = 10
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME325009A" #Curse them!
+		command = { type = stability value = -3 }
+		command = { type = desertion which = 1536 value = 5000 } #Nura
+		command = { type = revolt which = 1536 } #Nura
+		command = { type = revolt which = 1536 } #Nura
+		command = { type = revolt which = 579 } #Karaganda
+		command = { type = revolt which = 579 } #Karaganda
+		command = { type = revolt which = 1536 } #Nura
+		command = { type = revolt which = 1535 } #Karsak
+		command = { type = setflag which = [oirat] }
+	}
+}
+#(1440-1820) Oirat Raiders
+event = {
+	id = 325010
+	trigger = { flag = [oirat] }
+	random = yes
+	country = UZB
+	name = "EVENTNAME325010" #Oirat Raiders
+	desc = "EVENTHIST325010"
+	#-#Try as they might, the Uzbeks could not hold the Oirats back. With superior tactics, the Oirat were unstoppable in the east.
+
+	date = { day = 1 month = january year = 1440 }
+	offset = 10
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME325010A" #Woe is us
+		command = { type = desertion which = 579 value = 5000 } #Karaganda
+		command = { type = desertion which = 579 value = 5000 } #Karaganda
+		command = { type = revolt which = 579 } #Karaganda
+		command = { type = revolt which = 579 } #Karaganda
+		command = { type = revolt which = 1536 } #Nura
+	}
+}
+#(1440-1820) Oirat Marauders
+event = {
+	id = 325011
+	trigger = { flag = [oirat] }
+	random = yes
+	country = UZB
+	name = "EVENTNAME325011" #Oirat Marauders
+	desc = "EVENTHIST325011"
+	#-#The Oirats ruin the countryside which causes havok within our economy, but for what? Its not like they want to rule the lands, but just make them uninhabitable.
+
+	date = { day = 1 month = january year = 1440 }
+	offset = 10
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME325011A" #What wretched luck have we
+		command = { type = desertion which = 1535 value = 5000 } #Karsak
+		command = { type = desertion which = 1535 value = 5000 } #Karsak
+		command = { type = revolt which = 1535 } #Karsak
+		command = { type = revolt which = 1535 } #Karsak
+		command = { type = revolt which = 1536 } #Nura
+	}
+}
+#(1440-1820) The Oirats again...
+event = {
+	id = 325012
+	trigger = { flag = [oirat] }
+	random = yes
+	country = UZB
+	name = "EVENTNAME325012" #The Oirats again...
+	desc = "EVENTHIST325012"
+	#-#Here come more raiders for a purpose still yet unknown.
+
+	date = { day = 1 month = january year = 1440 }
+	offset = 10
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME325012A" #Stop!?
+		command = { type = desertion which = 517 value = 5000 } #Turgai
+		command = { type = desertion which = 517 value = 5000 } #Turgai
+		command = { type = revolt which = 517 } #Turgai
+		command = { type = revolt which = 517 } #Turgai
+		command = { type = revolt which = 579 } #Karaganda
+	}
+}
+#(1460-1820) The Formation of the Kazakh Horde
+event = {
+	id = 325002
+	trigger = {
+		OR = {
+			owned = { province = 521 data = -1 } #Karabogaz
+			owned = { province = 522 data = -1 } #Khwarizm
+			owned = { province = 523 data = -1 } #Kara Kum
+			owned = { province = 524 data = -1 } #Turmenistan
+		}
+		NOT = {
+			exists = KZK
+			countrysize = 50 #make tougher sequence for 50+
+		}
+	}
+	random = no
+	country = UZB
+	name = "EVENTNAME325002" #The Formation of the Kazakh Horde
+	desc = "EVENTHIST325002"
+	#-#Attacks from the Oirats in the mid-fifteenth century, left the eastern lands of Abul Khayr, vulnerable to would be aspirants to power. In 1469, Janibek and Ghirei, distant relatives of Khayr, exploited this vacuum of power and established their state in the lands between the Chu and Talas rivers. The sons of Barak Khan, a rival claimant, the two had been waiting for a time to move on Khayr's lands. The destruction at the hands of the Oirats, gave them there chance.
+
+	date = { day = 1 month = january year = 1460 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME325002A" #Damn them!
+		command = { type = independence which = KZK }
+		command = { type = removecore which = 516 } #Aralsk
+		command = { type = removecore which = 517 } #Turgai
+		command = { type = removecore which = 579 } #Karaganda
+		command = { type = removecore which = 1535 } #Karsak
+		command = { type = removecore which = 1536 } #Nura
+		command = { type = stability value = -4 }
+		command = { type = trigger which = 207000 } #KZK: The Formation of the Kazakh Horde
+		command = { type = sleepevent which = 325006 } #UZB: The Formation of the Kazakh Horde
+		command = { type = clrflag which = [oirat] }
+	}
+}
+#(1460-1820) The Formation of the Kazakh Horde
+event = {
+	id = 325006
+	trigger = {
+		OR = {
+			owned = { province = 521 data = -1 } #Karabogaz
+			owned = { province = 522 data = -1 } #Khwarizm
+			owned = { province = 523 data = -1 } #Kara Kum
+			owned = { province = 524 data = -1 } #Turmenistan
+		}
+		OR = {
+			owned = { province = 512 data = -1 } #Tenghiz
+			owned = { province = 513 data = -1 } #Orsk
+			owned = { province = 514 data = -1 } #Irgiz
+			owned = { province = 578 data = -1 } #Ichim
+		}
+		NOT = {
+			exists = KZK
+			countrysize = 50
+		}
+	}
+	random = no
+	country = UZB
+	name = "EVENTNAME325006" #The Formation of the Kazakh Horde
+	desc = "EVENTHIST325006"
+	#-#Attacks from the Oirats in the mid-fifteenth century, left the eastern lands of Abul Khayr, vulnerable to would be aspirants to power. In 1469, Janibek and Ghirei, distant relatives of Khayr, exploited this vacuum of power and established their state in the lands between the Chu and Talas rivers. The sons of Barak Khan, a rival claimant, the two had been waiting for a time to move on Khayr's lands. The destruction at the hands of the Oirats, gave them there chance.
+
+	date = { day = 1 month = january year = 1460 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME325006A" #Cede the lands to Sibir
+		command = { type = independence which = KZK }
+		command = { type = removecore which = 516 } #Aralsk
+		command = { type = removecore which = 517 } #Turgai
+		command = { type = removecore which = 579 } #Karaganda
+		command = { type = removecore which = 1535 } #Karsak
+		command = { type = removecore which = 1536 } #Nura
+		command = { type = stability value = -4 }
+		command = { type = trigger which = 207000 } #KZK: The Formation of the Kazakh Horde
+		command = { type = sleepevent which = 325002 } #UZB: The Formation of the Kazakh Horde
+		command = { type = cedeprovince which = SIB value = 578 } #Ichim
+		command = { type = cedeprovince which = SIB value = 512 } #Tenghiz
+		command = { type = cedeprovince which = SIB value = 513 } #Orsk
+		command = { type = cedeprovince which = SIB value = 514 } #Irgiz
+		command = { type = relation which = SIB value = 50 }
+		command = { type = clrflag which = [oirat] }
+	}
+	action_b = {
+		name = "ACTIONNAME325006B" #Cede the lands to the Kazakh Horde
+		command = { type = independence which = KZK }
+		command = { type = removecore which = 516 } #Aralsk
+		command = { type = removecore which = 517 } #Turgai
+		command = { type = removecore which = 579 } #Karaganda
+		command = { type = removecore which = 1535 } #Karsak
+		command = { type = removecore which = 1536 } #Nura
+		command = { type = stability value = -4 }
+		command = { type = trigger which = 207000 } #KZK: The Formation of the Kazakh Horde
+		command = { type = trigger which = 325007 } #UZB: Lands of the Kazakh
+		command = { type = sleepevent which = 325002 } #UZB: The Formation of the Kazakh Horde
+		command = { type = cedeprovince which = KHI value = 514 } #Irgiz
+		command = { type = relation which = KZK value = 100 }
+		command = { type = clrflag which = [oirat] }
+	}
+	action_c = {
+		name = "ACTIONNAME325006C" #Fools! We are in the right!
+		command = { type = independence which = KZK }
+		command = { type = removecore which = 516 } #Aralsk
+		command = { type = removecore which = 517 } #Turgai
+		command = { type = removecore which = 579 } #Karaganda
+		command = { type = removecore which = 1535 } #Karsak
+		command = { type = removecore which = 1536 } #Nura
+		command = { type = stability value = -6 }
+		command = { type = trigger which = 207000 } #KZK: The Formation of the Kazakh Horde
+		command = { type = sleepevent which = 325002 } #UZB: The Formation of the Kazakh Horde
+		command = { type = cedeprovince which = KHI value = 514 } #Irgiz
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = 512 } #Tenghiz
+		command = { type = revolt which = 513 } #Orsk
+		command = { type = revolt which = 578 } #Ichim
+		command = { type = relation which = SIB value = -25 }
+		command = { type = relation which = SIB value = -25 }
+		command = { type = clrflag which = [oirat] }
+	}
+}
+#(1460-1820) Lands of the Kazakh
+event = {
+	id = 325007 #triggered by UZB_325006 B
+	random = no
+	country = UZB
+	name = "EVENTNAME325007" #Lands of the Kazakh
+	desc = "EVENTHIST325007"
+	#-#By the mid-sixteenth century, the Kazakhs would expand their rule to included lands immediately south and north of the Syr Dara river, including lands northwest of the Aral Sea.
+
+	action_a = {
+		name = "OK"
+		command = { type = revolt which = -1 }
+		command = { type = cedeprovince which = KZK value = 578 } #Ichim
+		command = { type = cedeprovince which = KZK value = 512 } #Tenghiz
+		command = { type = cedeprovince which = KZK value = 513 } #Orsk
+		command = { type = cedeprovince which = KZK value = 514 } #Irgiz
+	}
+}
+#End of Independence of Kazakh Sequence
+#-----------------------------------------------------------------------------------------------
+
+#(1459-1469) Abul Khayr and Abû Sa'id
+event = {
+	id = 325015 #triggered by TIM_296616
+	random = no
+	country = UZB
+	name = "EVENTNAME325015" #Abul Khayr and Abû Sa'id
+	desc = "EVENTHIST325015"
+	#-#Abû Sa'id had been living in the court of Ulugh Beg and in 1449 attempted to seize the throne. Failing, he later tried to seize Bukhara, another failure which ended in his imprisonment. However, upon the assaisnation of 'Abd al-Latîf, he was released and proclaimed ruler by the nobles and clergy of Samarkand. In June of 1451, with the help of Abul Khayr, he defeated the forces of 'Abd Allâh Mîrzâ. Sa'id lavished Khayr with gifts, including Ûlûgh Beg's daughter in marriage.
+
+	action_a = {
+		name = "ACTIONNAME325015A" #Improved relations
+		command = { type = relation which = TIM value = 75 }
+		command = { type = dynastic which = TIM }
+	}
+}
+
+#(1468) Death of Abu'l Khair
+event = {
+	id = 65030
+	trigger = {
+		OR = {
+			event = 325002
+			event = 325006
+			exists = KZK
+		}
+	}
+	random = no
+	country = UZB
+	name = "EVENTNAME65030" #Death of Abul' Khair
+	desc = "EVENTHIST65030"
+	#-#During his long lifetime Abu'l Khair managed to create a huge empire stretching from Siberia in the North to Khiva and Urgench in the South. However, his ascension in 1428, sponsored by a wily Ulugh Beg, was never recognized by relatives of Khan Baraq, especially his sons, Jani Beg and Giray Khan. In 1460s they led the tribes of the remnants of the White Horde into the lands controlled by Abu'l Khair. Supported by the ruler of Oirats, they laid a claim to Semirech'e. Abu'l Khair didn't recognize the claim, and a conflict ensued. In 1468, a combined army of Kazakhs and Oirats defeated Abu'l Khair's forces. Both Abu'l Khair and his son Sultan Haidar were killed, and the might of Uzbeks has crumbled. The power has passed into the hands of Abu'l Khair grandson Shaibani, who had to flee and live in exile for a long time, before he could reassemble the Uzbek clans.
+
+	date = { day = 1 month = january year = 1468 }
+
+	action_a = {
+		name = "DRATS"
+		command = { type = stability value = -6 }
+		command = { type = revoltrisk which = 36 value = 6 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = desertion which = -1 value = 5000 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Uzbeks in Samarkand Sequence
+
+#(1488-1510) Shaibani's Ambition
+event = {
+	id = 325013
+	trigger = {
+		OR = {
+			owned = { province = 1533 data = -1 } #Khiva
+			owned = { province = 1534 data = -1 } #Kyzylkum
+		}
+	}
+	random = no
+	country = UZB
+	name = "EVENTNAME325013" #Shaibani's Ambition
+	desc = "EVENTHIST325013"
+	#-#In 1468, both Abu'l Khayr and his son, Sheikh Haidar, were killed in a battle versus the breakaway Kazakhs. A temporary peace, between the Kazakhs and Uzbeks, allowed Shaibani Khan, Abu'l Khayr's grandson, to turn his attentions to the south. By the early 16th century he lead an invasion force of nomadic Uzbek tribes to conquer the region known as Transoxiana, 'that which lies beyond the Oxus river'.
+
+	date = { day = 1 month = january year = 1488 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1510 }
+
+
+	action_a = {
+		name = "ACTIONNAME325013A" #We shall crush them
+		command = { type = stability value = 1 }
+		command = { type = relation which = TIM value = -400 } #Timurid Empire
+		command = { type = INF which = -2 value = 10000 }
+		command = { type = CAV which = -2 value = 20000 }
+		command = { type = treasury value = 200 }
+		command = { type = addcore which = 1532 } #Bukhara
+		command = { type = addcore which = 1591 } #Surkhandarya
+		command = { type = addcore which = 1592 } #Samarkand
+		command = { type = addcore which = 1594 } #Uzbek
+		command = { type = addcore which = 1599 } #Kirgisistan
+		#command = { type = AI which = "UZB-Shaibani.ai" }
+	}
+}
+#(1490-1530) Shaibani in Samarkand
+event = {
+	id = 325016 #triggered by TIM_296772
+	random = no
+	country = UZB
+	name = "EVENTNAME325016" #Shaibani in Samarkand
+	desc = "EVENTHIST325016"
+	#-#After marching through Bukhara, it was only a matter of time before Shaibani of the Uzbeks came to collect Samarkand. Although the city would swap back and forth between the Uzbeks and Timurid princes for brief period of times, the reign of the Timurids from Samarkand was pretty much at an end. The future of the Timurids lay in the southern lands.
+
+	action_a = {
+		name = "ACTIONNAME325016A" #It is ours!
+		command = { type = inherit which = TIM }
+		command = { type = revolt which = 1592 } #Samarkand
+	}
+}
+#(1495-1530) Conquest of Samarkand
+event = {
+	id = 325014
+	trigger = {
+		owned = { province = 1592 data = -1 } #Samarkand
+		control = { province = 1592 data = -1 } #Samarkand
+	}
+	random = no
+	country = UZB
+	name = "EVENTNAME325014" #Conquest of Samarkand
+	desc = "EVENTHIST325014"
+	#-#After his sucessful conquest of Samarkand, Shaibani chose to make the former Timurid capital, his capital. Now he was faced with only one more Timurid successor state to subdue.
+
+	date = { day = 1 month = january year = 1495 }
+	offset = 10
+	deathdate = { day = 1 month = january year = 1530 }
+
+	action_a = {
+		name = "ACTIONNAME325014A" #Make it our new capital
+		command = { type = stability value = 1 }
+		command = { type = capital which = 1592 } #Samarkand
+		command = { type = vp value = 50 }
+		command = { type = removecot which = 1534 } #Kyzylkum
+		command = { type = addcore which = 524 } #Turkmenistan
+		command = { type = addcore which = 523 } #Kara Kum
+		command = { type = addcore which = 1530 } #Khorasan
+		command = { type = addcore which = 1531 } #Herat
+		command = { type = provincemanpower which = 1534 value = -3 } #Kyzylkum
+		command = { type = provincemanpower which = 1592 value = 1 } #Samarkand
+		command = { type = relation which = KHO value = -400 } #Khorasan
+		#command = { type = AI which = "UZB-Samarkand.ai" }
+	}
+}
+#End of Uzbeks in Samarkand Sequence
+#-----------------------------------------------------------------------------------------------
+
+#(1500-1550) Annexation of Khorasan
+event = {
+	id = 325020
+	trigger = {
+		exists = KHO
+		exists = PER
+		owned = { province = 1531 data = KHO } #Herat
+		control = { province = 1531 data = -1 } #Herat
+		NOT = {
+			alliance = { country = PER country = UZB }
+			vassal = { country = PER country = UZB }
+			vassal = { country = UZB country = PER }
+		}
+	}
+	random = no
+	country = UZB
+	name = "EVENTNAME254025" #Annexation of Khorasan
+	desc = "EVENTHIST254025"
+	#-#During the early years of the Safavid dynasty, both the Safavids and Uzbeks were at odds to conquer the Kingdom of Khorasan. The victor only needed to successfully siege Herat and the remaining Timurid forces would crumble.
+
+	date = { day = 1 month = march year = 1500 }
+	offset = 10
+	deathdate = { day = 1 month = march year = 1550 }
+
+	action_a = {
+		name = "ACTIONNAME254025A" #We win
+		command = { type = inherit which = KHO }
+		command = { type = stability value = 1 }
+		command = { type = relation which = PER value = -200 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Independence of Khiva
+
+#(1510-1820) Formation of Khiva Khanate
+event = {
+	id = 325000
+	trigger = {
+		owned = { province = 1592 data = -1 } #Samarkand
+		control = { province = 1592 data = -1 } #Samarkand
+		OR = {
+			owned = { province = 1594 data = -1 } #Uzbek
+			owned = { province = 1599 data = -1 } #Tadjikistan
+			owned = { province = 1598 data = -1 } #Kirgisistan
+		}
+		OR = {
+			owned = { province = 1533 data = -1 } #Khiva
+			owned = { province = 522 data = -1 } #Khwarizm
+		}
+		OR = {
+			core = { province = 518 data = -1 } #Ust Urt
+			core = { province = 521 data = -1 } #Karabogaz
+			core = { province = 522 data = -1 } #Khwarizm
+			core = { province = 523 data = -1 } #Kara Kum
+			core = { province = 524 data = -1 } #Turkmenistan
+		}
+		NOT = { exists = KHI }
+	}
+	random = no
+	country = UZB
+	name = "EVENTNAME325000" #Formation of Khiva Khanate
+	desc = "EVENTHIST325000"
+	#-#While Shaibani Khan was busy conquering the Timurid states of Central Asia and Khorasan, the nomadic Uzbeks in the west became restless. In 1511, the two sultans, Ilbars and Balbars conquered the Khwarazm region and founded the Khiva Khanate. Unsurprisingly, this Khanate would become a thorn in the side of the late Bukhara Khanate and was frequently at odds with it.
+
+	date = { day = 1 month = january year = 1510 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "DRATS"
+		command = { type = independence which = KHI }
+		command = { type = capital which = 1592 } #Samarkand
+		command = { type = removecore which = 521 } #Karabogaz
+		command = { type = removecore which = 518 } #Ust Urt
+		command = { type = removecore which = 522 } #Khwarizm
+		command = { type = removecore which = 524 } #Turkmenistan
+		command = { type = removecore which = 523 } #Kara Kum
+		command = { type = stability value = -1 }
+		command = { type = trigger which = 303000 } #KHI: The Khiva Khanate
+	}
+}
+#(1510-1820) Khiva and The Western Provinces
+event = {
+	id = 325001 #triggered by KHI_303000
+	random = no
+	country = UZB
+	name = "EVENTNAME325001" #Khiva and The Western Provinces
+	desc = "EVENTHIST325001"
+	#-#After the initial capture of Ugrench, all the other western provinces would leave the control of the Shaibanid state.
+
+	action_a = {
+		name = "ACTIONNAME325001A" #How bad is our luck?
+		command = { type = cedeprovince which = KHI value = 522 } #Khwarizm
+		command = { type = cedeprovince which = KHI value = 523 } #Kara Kum
+		command = { type = cedeprovince which = KHI value = 521 } #Karabogaz
+		command = { type = cedeprovince which = KHI value = 520 } #Bouzatchi
+		command = { type = cedeprovince which = KHI value = 524 } #Turkmenistan
+		command = { type = cedeprovince which = KHI value = 519 } #Emba
+		command = { type = cedeprovince which = SIB value = 514 } #Irgiz
+		command = { type = cedeprovince which = SIB value = 513 } #Orsk
+		command = { type = cedeprovince which = AST value = 515 } #Alga
+	}
+}
+#(1511-1820) Independence of Khiva
+event = {
+	id = 65023
+	trigger = {
+		exists = KHI
+		OR = {
+			core = { province = 522 data = -1 } #Khwarizm
+			core = { province = 1533 data = -1 } #Khiva
+		}
+	}
+	random = no
+	country = UZB
+	name = "EVENTNAME65023" #Independence of Khiva
+	desc = "EVENTHIST65023"
+	#-#People of Khiva were always openly hostile to rulers of Bukhara. This hostility goes back to the times of Abu'l Khayr, when part of the tribes refused to follow him, and remained settled in the areas around Khiva and Urganj. Subsequently the area was reconquered by Muhammad Shaibani, and later on Ubaid'Allah, which didn't bring much popularity to the Bukharan rulers. The latter, however, never staked any claims to these lands, and used their military supremacy to keep Khiva vassalized, and protect the trade with Muscovy.
+
+	date = { day = 1 month = january year = 1511 }
+	offset = 200
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME65023A" #Recede the claim to these lands
+		command = { type = relation which = KHI value = 50 }
+		command = { type = removecore which = 1533 } #Khiva
+		command = { type = removecore which = 522 } #Khwarizm
+	}
+	action_b = {
+		name = "ACTIONNAME65023B" #Be defiant!
+		command = { type = relation which = KHI value = -100 }
+		command = { type = stability value = -1 }
+		command = { type = trigger which = 65024 } #KHI: Prepare to defend
+	}
+}
+#End of Independence of Khiva
+#-----------------------------------------------------------------------------------------------
+
+#(1510) Death of Shaibani
+event = {
+	id = 65031
+	random = no
+	country = UZB
+	name = "EVENTNAME65031" #Death of Shaibani
+	desc = "EVENTHIST65031"
+	#-#Muhammad Shaibani was able to return from his exile and re-assemble the scattered Uzbek clans only after the death of Jani Beg in 1480. However, he quickly made Uzbeks a power to be reckoned with again, just like during the days of his grandfather, Abu'l Khair. He managed to clear the remaining Timurid princes out of Transoxiana, defeated and drove Babur out of Samarqand, and expanded as far south as Herat when he expelled the last Timurid ruler, Hussain BayKarah. That brough him into a conflict with a Shiite ruler of Iran, Shah Ismail. Not only the lands were at stake, but religion as well. In 1510, Ismail managed to lure Shaibani into an ambush and had him killed. His skull was stuffed with straw and sent to Ottoman Sultan Bayezid. With the death of Shaibani, the power in the Khanate was split between Samarqand and Bukhara, with two Khans ruling simultaneously. Uzbeks has lost their offensive momentum for the next 20 years, but regained it for a short period of time during the rule of the 'Warrior Khan' Ubaid'Allah.
+
+	date = { day = 1 month = december year = 1510 }
+
+	action_a = {
+		name = "DRATS"
+		command = { type = stability value = -3 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = revoltrisk which = 36 value = 6 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = desertion which = -1 value = 5000 }
+	}
+}
+
+#(1539-1556) Death Of Ubaid'Allah
+event = {
+	id = 65009
+	trigger = {
+		event = 325013 #UZB: Shaibani's Ambition
+	}
+	random = no
+	country = UZB
+	name = "EVENTNAME65009" #Death of Ubaid'Allah Khan
+	desc = "EVENTHIST65009"
+	#-#After the death of Ubaid'Allah Khan in 1539, the Uzbek empire slowly slid, due to a lack of strong personalities, into factional fighting, which culminated, after the death of Abd-al Latif in 1549, in a full scale struggle for power.
+
+	date = { day = 1 month = january year = 1539 }
+	offset = 200
+	deathdate = { day = 1 month = january year = 1556 }
+
+	action_a = {
+		name = "ACTIONNAME65009A" #Decentralize
+		command = { type = stability value = -1 }
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = domestic which = quality value = -1 }
+		command = { type = domestic which = offensive value = -2 }
+		#command = { type = AI which = "uzbek_1510.ai" }
+	}
+}
+
+#(1552) The succession of Abd al-Latif
+event = {
+	id = 65010
+	trigger = {
+		monarch = 0162007 #Abd al-Latif
+	}
+	random = no
+	country = UZB
+	name = "EVENTNAME65010" #Succession of Abd al-Latif
+	desc = "EVENTHIST65010"
+	#-#Following the death of Abd al-Latif, a short political brawl followed, which, however, had far reaching long term consequences. Pir Muhammad quickly jumped on opportunity and captured Bukhara, however, lacking any military support, he had to flee upon hearing the news that Nawruz Ahmad is on his way. The next 7 years saw a constant figthing between Pir Muhammad nephew Abd'Allah and Nawruz Ahmad. The civil war effectively ended in 1556 when Nawruz Ahmad died of drunkeness, allowing Pir Muhammad to ascend to the throne.
+
+	date = { day = 1 month = january year = 1552 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1552 }
+
+	action_a = {
+		name = "ACTIONNAME65010A" #Support Nawruz Ahmad
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 72 value = 7 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = wakemonarch which = 0162030 } #Nawruz Ahmad
+		command = { type = sleepmonarch which = 0162008 } #Nawruz Ahmad
+		command = { type = wakeleader which = 0162302 } #Nawruz Ahmad Khan (UZB)
+		command = { type = wakeleader which = 0162309 } #Burhan Sultan (UZB)
+		command = { type = domestic which = offensive value = -2 }
+	}
+	action_b = {
+		name = "ACTIONNAME65010B" #Support Pir Muhammad
+		command = { type = stability value = -4 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = revoltrisk which = 84 value = 9 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = wakemonarch which = 0162031 } #Pir Muhammad I °
+		command = { type = sleepmonarch which = 0162008 } #Nawruz Ahmad
+		command = { type = sleepmonarch which = 0162009 } #Pir Muhammad I
+		command = { type = wakeleader which = 0162303 } #Abdullah II (UZB)
+		command = { type = wakeleader which = 0162310 } #Khusrau Sultan (UZB)
+	}
+}
+
+#(1561) The succession of 1561
+event = {
+	id = 65011
+	trigger = {
+		OR = {
+			monarch = 0162009 #Pir Muhammad I
+			monarch = 0162031 #Pir Muhammad I °
+		}
+	}
+	random = no
+	country = UZB
+	name = "EVENTNAME65011" #Deposition of Pir Muhammad
+	desc = "EVENTHIST65011"
+	#-#Pir Muhammad, who had a reputation of being wily and greedy, tried to jostle Bukhara from his nephew Abd'Allah by offering him an exchange of appanages. Abd'Allah originally agreed, however, upon learning of real importance of Bukhara, Abd'Allah decided to call the deal off, and move his capital to Bukhara, and replace Pir Muhammad with his father Iskandar.
+
+	date = { day = 1 month = january year = 1561 }
+	offset = 30
+	deathdate = { day = 12 month = february year = 1561 }
+
+	action_a = {
+		name = "ACTIONNAME65011A" #Depose Pir Muhammad
+		command = { type = wakemonarch which = 0162032 } #Iskandar Bahadur
+		command = { type = sleepmonarch which = 0162010 } #Iskandar Bahadur
+		command = { type = domestic which = centralization value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME65011B" #Leave the old man alone
+		command = { type = domestic which = offensive value = -1 }
+		command = { type = stability value = -1 }
+	}
+}
+
+#(1558) Anthony Jenkinson travels to Bukhara
+event = {
+	id = 65012
+	trigger = {
+		exists = RUS
+		owned = { province = 1532 data = -1 } #Bukhara
+		NOT = {
+			war = { country = RUS country = UZB }
+		}
+	}
+	random = no
+	country = UZB
+	name = "EVENTNAME65012" #Anthony Jenkinson travels to Bukhara
+	desc = "EVENTHIST65012"
+	#-#Anthony Jenkinson has travelled to Bukhara on behalf of both Czar Ivan IV and Muscovy Trading Company in 1558. Ivan was very interested in establishing trade contacts with Bukhara, as Muscovy served as a stopover for the goods from India and China into Western Europe.
+
+	date = { day = 1 month = april year = 1558 }
+	offset = 23
+	deathdate = { day = 29 month = december year = 1558 }
+
+	action_a = {
+		name = "ACTIONNAME65012A" #Establish trade with Muscovy
+		command = { type = treasury value = 100 }
+		command = { type = merchants value = 3 }
+		command = { type = trade value = 500 }
+		command = { type = domestic which = mercantilism value = -1 }
+		command = { type = relation which = RUS value = 50 }
+	}
+}
+
+#(1561-1820) The Khanate of Bukhara
+event = {
+	id = 325022
+	trigger = {
+		owned = { province = 1532 data = -1 } #Bukhara
+		control = { province = 1532 data = -1 } #Bukhara
+		event = 65011 #UZB: Deposition of Pir Muhammad
+		NOT = {
+			monarch = 0162009 #Pir Muhammad I
+			monarch = 0162031 #Pir Muhammad I °
+		}
+	}
+	random = no
+	country = UZB
+	name = "EVENTNAME325022" #The Khanate of Bukhara
+	desc = "EVENTHIST325022"
+	#-#During the co-reign of Iskandar Bahadur and Abd Allah II, the capital of the Uzbeks moved away from Samarkand to Bukhara. The capital move, was another large step in transition of the Uzbeks from nomadic ways to settled urban life. In time, Bukhara would come to eclipse Samarkand as the most important city of the Bukhara Khanate.
+
+	date = { day = 1 month = january year = 1561 }
+	offset = 10
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME325022A" #Make it our new capital!
+		command = { type = stability value = 1 }
+		command = { type = flagname which = "" }
+		command = { type = country which = BUK }
+		command = { type = capital which = 1532 } #Bukhara
+		command = { type = vp value = 50 }
+		command = { type = population which = 1532 value = 2000 } #Bukhara
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 325023

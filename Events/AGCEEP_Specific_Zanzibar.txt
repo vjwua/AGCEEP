@@ -1,0 +1,149 @@
+#Zanzibar (ZAN)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1498-1560) First contact with Portugal
+event = {
+	id = 373000 #triggered by POR_260107
+	random = no
+	country = ZAN
+	name = "EVENTNAME373000" #First contact with Portugal
+	desc = "EVENTHIST260107"
+	#-#On the way back to Portugal, da Gama made a stop at Zanzibar, whose ruler sent fresh food to them along with professions of friendship.
+
+	action_a = {
+		name = "ACTIONNAME260107A" #We make another friend
+		command = { type = relation which = POR value = 100 }
+		command = { type = treasury value = -10 }
+	}
+}
+
+#(1503-1520) A pirate by any other name
+event = {
+	id = 373001 #triggered by POR_260108
+	random = no
+	country = ZAN
+	name = "EVENTNAME373001" #A pirate by any other name
+	desc = "EVENTHIST373001"
+	#-#Despite its ill-treatment at the hands of Ravasco, Zanzibar recognized Portugal's naval dominance and remained friendly with the Portuguese until Portugal could no longer protect it.
+
+	action_a = {
+		name = "ACTIONNAME373001A" #Prudence dictates that we swallow our pride
+		command = { type = relation which = POR value = 100 }
+		command = { type = treasury value = -25 }
+	}
+	action_b = {
+		name = "ACTIONNAME373001B" #We must defend ourselves
+		command = { type = breakvassal which = POR }
+		command = { type = treasury value = -25 }
+		command = { type = stability value = -1 } #unhappy merchants
+		command = { type = casusbelli which = POR value = 12 }
+		command = { type = relation which = POR value = -100 }
+	}
+}
+
+#(1652-1680) Raid on Zanzibar
+#by sturmvogel
+event = {
+	id = 373004 #triggered by OMA_248015 A
+	random = no
+	country = ZAN
+	name = "EVENTNAME248015" #Raid on Zanzibar
+	desc = "EVENTHIST373004"
+	#-#An Omani fleet sacked Zanzibar in 1652. Queen Mwana Mwema pledged submission to the Sultan of Oman in the face of overwhelming power.
+
+	action_a = {
+		name = "ACTIONNAME373004A" #Submit to Oman
+		command = { type = breakvassal which = POR }
+		command = { type = treasury value = -25 }
+		command = { type = relation which = POR value = -100 }
+		command = { type = merchants value = -1 }
+		command = { type = trade value = -250 }
+		command = { type = trigger which = 248028 } #OMA: Submission of Zanzibar
+	}
+	action_b = {
+		name = "ACTIONNAME373004B" #Remain faithful to Portugal
+		command = { type = treasury value = -50 }
+		command = { type = merchants value = -2 }
+		command = { type = trade value = -500 }
+		command = { type = relation which = POR value = 100 }
+		command = { type = relation which = OMA value = -100 }
+		command = { type = trigger which = 248016 } #OMA: Zanzibar refuses to submit
+		command = { type = sleepevent which = 260122 } #POR: Reassert Portuguese authority over Zanzibar
+	}
+	action_c = {
+		name = "ACTIONNAME373004C" #A pox on both their houses
+		command = { type = breakvassal which = POR }
+		command = { type = treasury value = -50 }
+		command = { type = merchants value = -2 }
+		command = { type = trade value = -500 }
+		command = { type = relation which = POR value = -100 }
+		command = { type = relation which = OMA value = -100 }
+		command = { type = trigger which = 248016 } #OMA: Zanzibar refuses to submit
+		command = { type = trigger which = 260123 } #POR: Faithless Zanzibar
+		command = { type = sleepevent which = 260122 } #POR: Reassert Portuguese authority over Zanzibar
+	}
+}
+
+#(1652-1820) Zanzibar dominated by Oman
+event = {
+	id = 373002
+	trigger = {
+		vassal = { country = OMA country = ZAN }
+	}
+	random = no
+	country = ZAN
+	name = "EVENTNAME373002" #Zanzibar dominated by Oman
+	desc = "EVENTHIST373002"
+	#-#Zanzibar's new overlords decided to change its flag.
+
+	date = { day = 1 month = january year = 1652 }
+	offset = 10
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME186000A" #Change the flag
+		command = { type = flagname which = "Sultanate" }
+	}
+}
+
+#(1690-1720) The Omani Empire in Africa
+#by sturmvogel
+event = {
+	id = 373003
+	trigger = {
+		event = 248003 #OMA: Swahilis seek aid
+		owned = { province = 763 data = OMA } #Mombasa
+		control = { province = 763 data = OMA }
+		NOT = {
+			countrysize = 2
+			war = { country = OMA country = ZAN }
+		}
+	}
+	random = no
+	country = ZAN
+	name = "EVENTNAME160001" #The Omani Empire in Africa
+	desc = "EVENTHIST373003"
+	#-#By taking Mombasa in 1698 from Portugal after a three-year siege Oman became the dominant power along the Swahili Coast. They now controlled Zanzibar's access to markets in Arabia, Persia and India. In recognition of this the rulers of Zanzibar submitted to the Sultans of Oman.
+
+	date = { day = 1 month = january year = 1690 }
+	offset = 100
+	deathdate = { day = 29 month = december year = 1720 }
+
+	action_a = {
+		name = "ACTIONNAME160001A" #Submit to Oman
+		command = { type = trigger which = 248011 } #OMA: The submission of Zanzibar
+		command = { type = trade value = 500 }
+		command = { type = merchants value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME373003B" #Adhere to Portugal
+		command = { type = relation which = POR value = 200 }
+		command = { type = stability value = -1 }
+		command = { type = trade value = -250 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 373005

@@ -4,7 +4,7 @@
 
 country = {
 	tag = AYU
-	ai = "SmallTrade1.ai"
+	ai = "SmallTrade1.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -14,15 +14,15 @@ country = {
 	treasury = 200
 	inflation = 0
 	merchants = 0
-	religion = { type = buddhism }
+	religion = { type = buddhist }
 	culture = { type = thai }
 	diplomacy = {
-		relation = { tag = KHM value = 25 }
+		relation = { tag = LNA value = 25 }
 		relation = { tag = DAI value = 100 }
-		relation = { tag = MYA value = 75 }
+		relation = { tag = BRM value = 75 }
 		relation = { tag = CAM value = 65 }
-		relation = { tag = AMI value = 100 }
-		relation = { tag = PEG value = 100 }
+		relation = { tag = LAX value = 100 }
+		relation = { tag = MON value = 100 }
 	}
 	knownprovinces = {
 		543 544 545 553 554 555 556 557 558 559 560 561 565 571 572 641

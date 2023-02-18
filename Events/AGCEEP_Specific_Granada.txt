@@ -1,0 +1,686 @@
+#Granada (GRA)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1550) Proclamation of al-Andalus
+event = {
+	id = 176012
+	trigger = {
+		owned = { province = 443 data = -1 } #Andalusia
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME176012" #al-Andalus belongs to us
+	desc = "EVENTHIST176012"
+	#-#The conquest of Cordoba and the rescue of its beautiful mosque from Christian hands has ignited the hopes of the granedins of recovering al-Andalus. We reclaim what is rightfully ours.
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 60
+	deathdate = { day = 29 month = december year = 1550 }
+
+	action_a = {
+		name = "ACTIONNAME176012A" #Let the Christians know and tremble
+		command = { type = addcore which = 443 } #Andalusia
+		command = { type = addcore which = 438 } #Murcia
+		command = { type = addcore which = 441 } #Lost in 1147 #Tago
+		command = { type = addcore which = 442 } #Lost in 1249 #Algarve
+		command = { type = addcore which = 436 } #Lost between 1085-1177 #Castilla
+		command = { type = addcore which = 437 } #Lost in 1238 #Valencia
+		command = { type = addcore which = 439 } #Lost between 1085-1212 #Toledo
+		command = { type = addcore which = 440 } #Lost in 1229 #Estramadura
+		command = { type = addcore which = 430 } #Lost in 1118 #Aragon
+		command = { type = addcore which = 821 } #Lost in 1229. All were in Muslim hands in year 1000 and had significant Muslim pop. #The Baleares
+		command = { type = relation which = SPA value = -400 }
+		command = { type = relation which = CAS value = -400 }
+		command = { type = relation which = ARG value = -300 }
+		command = { type = relation which = POR value = -300 }
+		command = { type = relation which = NAV value = -100 }
+		command = { type = relation which = TLE value = 50 } #Tlemcen, Northafricans are mildly happy
+		command = { type = relation which = MOR value = 50 }
+		command = { type = relation which = TUN value = 50 }
+		command = { type = stability value = 2 }
+	}
+}
+
+#(1419) The Banu al-Sarraj I
+event = {
+	id = 176001
+	trigger = {
+		owned = { province = 444 data = -1 }
+		owned = { province = 445 data = -1 }
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME176001" #The Banu al-Sarraj Play Kingmakers
+	desc = "EVENTHIST176001"
+	#-#The Banu al-Sarraj (sons of the saddler, abencerrajes), a noble family who traced ancestry to the Ansar tribes that helped the Prophet in Medina, decided in 1419 to play Kingmakers and control the power by choosing the emir. They were religious traditionalists and managed to split the arab nobility of Granada in two parties, the other led by the Banu Bannigas (Venegas) family. Their actions started a period of unstability and civil wars that no doubt contributed to the final demise of Granada. Their first coup was to oust young emir Muhammad VIII and kill his vizier Ali al-Amin, bethroning Muhammad IX with Yusuf ben al-Sarraj as his vizier.
+
+	date = { day = 15 month = march year = 1419 }
+
+	action_a = {
+		name = "ACTIONNAME176001A" #Ally the Banu al-Sarraj!
+		command = { type = revolt which = 445 } #Gibraltar represents Bannigas territory #Gibraltar
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 12 value = 2 }
+		command = { type = provincetax which = 445 value = -1 } #Gibraltar represents Bannigas territory #Gibraltar
+		command = { type = provincemanpower which = 445 value = -1 } #Gibraltar represents Bannigas territory #Gibraltar
+		command = { type = domestic which = aristocracy value = 1 } #The nobility increases power
+	}
+	action_b = {
+		name = "ACTIONNAME176001B" #Fight the Banu al-Sarraj!
+		command = { type = revolt which = 444 } #Granada represents al-Sarraj territory #Granada
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 12 value = 2 }
+		command = { type = provincetax which = 444 value = -1 } #Granada represents al-Sarraj territory #Granada
+		command = { type = provincemanpower which = 444 value = -1 } #Granada represents al-Sarraj territory #Granada
+		command = { type = domestic which = aristocracy value = -1 } #The emir increases power over nobility
+	}
+}
+
+#(1425-1476) The loss of Gibraltar
+#This event is designed to help AI Granada survive longer due to Castile historic internal problems.
+#This event is not intended to benefit the human player that will not meet the conditions of not owning Gibraltar
+event = {
+	id = 176007
+	trigger = {
+		atwar = no
+		NOT = { vassal = { country = CAS country = GRA } }
+		NOT = { owned = { province = 445 data = -1 } } #Gibraltar
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME176007" #The Loss of Gibraltar
+	desc = "EVENTHIST176007"
+	#-#In 1462, Alonso de Arcos, sheriff of Tarifa, receives news from a traitor that the fortress of Gibraltar is lightly defended, since most of the troops have left for Granada and Malaga to participate in the fights between Saad ben Ali and Yusuf V partisans. With 80 knights and 200 infantrymen, Alonso quickly sets siege to Gibraltar and calls for help from local nobles. The rock fortress, almost undefended, would surrender promptly, on the 20th of August.
+
+	date = { day = 1 month = january year = 1425 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1476 }
+
+	action_a = {
+		name = "ACTIONNAME176007A" #Survival requires submission!
+		command = { type = stability value = -2 } #Submission is unpopular
+		command = { type = domestic which = aristocracy value = -1 } #The nobles are war prone
+		command = { type = relation which = CAS value = 400 } #Good relationships to prevent a new war
+		command = { type = trigger which = 142006 } #Vassalage to CAS to ensure mid term survival #CAS: Granada buys peace
+	}
+	action_b = {
+		name = "ACTIONNAME176007B" #Allah awaits us in paradise!
+		command = { type = stability value = 2 }
+		command = { type = domestic which = aristocracy value = 2 } #Nobles are happy with war
+		command = { type = domestic which = offensive value = 3 } #Jihad and initiative morale
+		command = { type = relation which = CAS value = -50 }
+		command = { type = INF which = -2 value = 10000 } #Jihad recruits. AI Granada needs help
+		command = { type = CAV which = -2 value = 5000 }
+	}
+}
+
+#(1427) The Banu al-Sarraj II
+event = {
+	id = 176002
+	trigger = {
+		owned = { province = 444 data = -1 }
+		owned = { province = 445 data = -1 }
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME176002" #The Banu Bannigas Counterattack
+	desc = "EVENTHIST176002"
+	#-#In 1427 the Banu Bannigas were able to drive out Muhammad IX and reinstate Muhammad VIII as the emir again, with Ridwan Bannigas as his vizier. Muhammad IX took refuge in Tunisia. Muhammad VIII forgave the Banu al-Sarraj for their coup.
+
+	date = { day = 1 month = january year = 1427 }
+
+	action_a = {
+		name = "ACTIONNAME176002A" #Let us forgive!
+		command = { type = stability value = 1 }
+		command = { type = revoltrisk which = 12 value = -2 }
+		command = { type = provincetax which = -1 value = 1 } #Granada recovers
+		command = { type = provincemanpower which = -1 value = 1 } #Granada recovers
+		command = { type = domestic which = aristocracy value = -1 } #The legal emir consolidates
+	}
+}
+
+#(1429) The Banu al-Sarraj III
+event = {
+	id = 176003
+	trigger = {
+		owned = { province = 444 data = -1 }
+		owned = { province = 445 data = -1 }
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME176003" #The Banu al-Sarraj Triumph
+	desc = "EVENTHIST176003"
+	#-#The Banu al-Sarraj did not accept the loss of power. They secured the help of Juan II of Castile, while their candidate, Muhammad IX, obtained help from the sultan of Tunisia. Muhammad VIII was captured and imprisoned. Yusuf ben al-Sarraj was again the vizier.
+
+	date = { day = 1 month = january year = 1429 }
+
+	action_a = {
+		name = "ACTIONNAME176003A" #Hopefully the fights will end!
+		command = { type = stability value = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = CAV which = -2 value = 5000 } #African troops
+		command = { type = domestic which = aristocracy value = 1 } #the nobility wins
+	}
+}
+
+#(1432) The Banu al-Sarraj IV
+event = {
+	id = 176004
+	trigger = {
+		owned = { province = 444 data = -1 }
+		owned = { province = 445 data = -1 }
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME176004" #More Infighting in Granada
+	desc = "EVENTHIST176004"
+	#-#To prevent a new uprising, Muhammad IX ordered the beheading of Muhammad VIII in prison. The Bannigas then obtained the help of Juan II of Castile and defeated Muhammad IX at the battle of - La higuera - at the doors of Granada, killing the vizier Yusuf ben al-Sarraj and instating Yusuf IV as emir. In a new turn of events, Muhammad IX reorganized his forces, defeated the Christians and ordered the beheading of Yusuf IV after only three months in power.
+
+	date = { day = 1 month = january year = 1432 }
+
+	action_a = {
+		name = "ACTIONNAME176004A" #Lets defeat the Bannigas and their Christian allies!
+		command = { type = stability value = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = domestic which = aristocracy value = 1 } #The emir relays on the nobles more
+	}
+}
+
+#(1441-1444) The emir requests aid
+event = {
+	id = 7123
+	random = no
+	trigger = {
+		exists = MAM
+		neighbour = CAS
+	}
+	country = GRA
+	name = "EVENTNAME7123" #The emir requests aid
+	desc = "EVENTHIST7123"
+	#-#Despite tributes agreed to end the hostilities with Juan II of Castile in 1432, Muhammad IX and Muhammad X will manage to recover several frontier strongholds by force, taking advantage of Juan's troubled last years. In 1441, Muhammad IX requests the aid of the Mamluk sultan, Said Caqmaq for his campaigns against the Castillians. Caqmaq inevitably rejects the request alleging the distance, and commits himself to giving money, arms and sumptuous presents.
+
+	date = { day = 29 month = september year = 1441 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1444 }
+
+	action_a = {
+		name = "ACTIONNAME7123A" #Request aid from our brothers
+		command = { type = relation which = CAS value = -25 }
+		command = { type = trigger which = 24051 } #MAM: The emir of Granada asks for help
+	}
+	action_b = {
+		name = "ACTIONNAME7123B" #We can handle the situation
+		command = { type = stability value = -1 }
+	}
+}
+#(1441-1444) The Mamluks send money
+event = {
+	id = 7153 #triggered by MAM_24051 A
+	random = no
+	country = GRA
+	name = "EVENTNAME7153" #Sultan sends us money
+	desc = "EVENTHIST7153"
+	#-#The sultan has rejected our petition of military aid. Nevertheless, he has sent some sumptuous presents instead.
+
+	action_a = {
+		name = "ACTIONNAME7153A" #Well, it's bhan nothing...
+		command = { type = treasury value = 100 }
+		command = { type = diplomats value = 2 }
+		command = { type = relation which = MAM value = 25 }
+	}
+}
+#(1441-1444) The Mamluks send troops
+event = {
+	id = 7154 #triggered by MAM_24051 B
+	random = no
+	country = GRA
+	name = "EVENTNAME7154" #Sultan sends troops to help us
+	desc = "EVENTHIST7154"
+	#-#The sultan has accepted our request. His best troops are coming!
+
+	action_a = {
+		name = "GOOD_NEWS"
+		command = { type = treasury value = 50 }
+		command = { type = INF which = -1 value = 5000 }
+		command = { type = CAV which = -1 value = 1000 }
+		command = { type = relation which = MAM value = 75 }
+	}
+}
+#(1441-1444) The Mamluks send nothing
+event = {
+	id = 7155 #triggered by MAM_24051 C
+	random = no
+	country = GRA
+	name = "EVENTNAME7155" #Sultan refuses to help us
+	desc = "EVENTHIST7155"
+	#-#That unfaithful sultan has rejected our request for military aid. He will send nothing.
+
+	action_a = {
+		name = "ACTIONNAME7155A" #How insulting!
+		command = { type = relation which = MAM value = -100 }
+		command = { type = casusbelli which = MAM value = 24 }
+	}
+}
+
+#(1445-1454) The Banu al-Sarraj V
+event = {
+	id = 176005
+	trigger = {
+		owned = { province = 444 data = -1 }
+		owned = { province = 445 data = -1 }
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME176005" #Civil War
+	desc = "EVENTHIST176005"
+	#-#Granada falls into civil war in 1445. The Bannigas supported Yusuf V, while the Banu al-Sarraj supported first Muhammad X, and after 1447, again his uncle Muhammad IX. In 1451 the Bannigas changed their support to Muhammad XI, son of Muhammad VIII. In 1451 a new candidate will emerge on his own, Saad ben Ali. Granada has at that point three emirs simultaneously in different parts of the emirate. Saad ben Ali triumphs will enlisten him the help of the Banu al-Sarraj and the african troops. He would emerge as the victor in the civil war in 1454, after killing Muhammad X and Muhammad XI. He was succesful in eliminating all the competing branches of the Banu Nasr (nasrid) family.
+
+	date = { day = 1 month = january year = 1445 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1454 }
+
+	action_a = {
+		name = "ACTIONNAME176005A" #They are tearing Granada apart!
+		command = { type = stability value = -2 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = domestic which = centralization value = -2 } #The territory splits recognizing different emirs
+	}
+}
+
+#(1452) Frontier wars
+event = {
+	id = 176013
+	trigger = {
+		owned = { province = 444 data = -1 } #Granada
+		owned = { province = 445 data = -1 } #Gibraltar
+		neighbour = CAS
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME176013" #Truce Violation
+	desc = "EVENTHIST176013"
+	#-#The truce between Castile and Granada, renewed every few years, obliged Granada to pay tribute in exchange for peace. But the truce conditions allowed for a low intensity frontier war, excluding sudden attacks upon towns and castles, provided they were mere forays, conducted furtively, without sound of trumpet or display of banners or pitching of camps or regular investment, and that they did not last above three days. These conditions ensured the survival of the frontier noblemen, castilian fronteros and grenadin zegries, that made a living out of the frontier war and were in charge of keeping the frontier safe even when central power was weak. But on occasions, the truce was violated by any of the sides. One such occasion was the invasion of Murcia by Abdalbar in the name of Muhammad IX in 1451. He sacked Murcia and Orihuela, but was defeated near Lorca by frontero Alonso Fajardo -the Brave- at the battle of Alporchones.
+
+	date = { day = 17 month = march year = 1452 }
+
+	action_a = {
+		name = "ACTIONNAME176013A" #Ignore the truce and grab the bounty!
+		command = { type = relation which = CAS value = -100 } #Important for AI CAS-GRA historic behavior
+		command = { type = treasury value = 50 }
+	}
+}
+
+#(1462) The Banu al-Sarraj VI
+event = {
+	id = 176006
+	random = no
+	country = GRA
+	name = "EVENTNAME176006" #The Fall of the Banu al-Sarraj
+	desc = "EVENTHIST176006"
+	#-#Saad ben Ali, tired of the meddling of the Banu al-Sarraj in the emirate, managed to kill several of them, including his vizier Mafarrij ben al-Sarraj. The Christian legend will later blame the killings onto his grandson Boabdil. The surviving Banu al-Sarraj fled and managed to crown Yusuf V, but he died within a year. Some Banu al-Sarraj took refuge in Castile where they swore revenge.
+
+	date = { day = 1 month = january year = 1462 }
+
+	action_a = {
+		name = "ACTIONNAME176006A" #Will this be the end of it?
+		command = { type = stability value = 1 }
+		command = { type = revolt which = -1 }
+		command = { type = domestic which = centralization value = 2 } #The emir takes control
+		command = { type = domestic which = aristocracy value = -1 } #The emir takes control
+	}
+}
+
+#(1465) Abu al-Hasan's rebellion
+event = {
+	id = 176008
+	random = no
+	country = GRA
+	name = "EVENTNAME176008" #Abu al-Hasan's rebellion
+	desc = "EVENTHIST176008"
+	#-#In 1465, the emir's son Abu al-Hasan rebelled against the rule of his father with the support of the Banu al-Sarraj. He soon succeded in seizing the power.
+
+	date = { day = 1 month = january year = 1465 }
+
+	action_a = {
+		name = "ACTIONNAME176008A" #The son will bring peace!
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = stability value = -1 }
+		command = { type = domestic which = aristocracy value = 1 } #Nobility is behind rebellion
+	}
+}
+
+#(1478) The war of Granada I
+event = {
+	id = 7121
+	trigger = {
+		vassal = { country = CAS country = GRA }
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME7121" #The Christians request submission
+	desc = "EVENTHIST7121"
+	#-#In 1478 Queen Isabella, still at war to secure her throne against part of the nobility and Portugal, and in need of money, requested payment of the tribute, that had not been paid since 1465. Abu al-Hasan response to the ambassador was: Tell your sovereigns that the Kings of Granada that used to pay tribute in money to the castilian crown are dead. Our mint at present coins nothing but blades of scimetars and heads of lances.
+
+	date = { day = 1 month = january year = 1478 }
+
+	action_a = {
+		name = "ACTIONNAME7121A" #We shall tolerate their insolence no longer!
+		command = { type = inf which = -2 value = 5000 }
+		command = { type = breakvassal which = CAS }
+		command = { type = breakvassal which = SPA }
+		command = { type = relation which = SPA value = -50 }
+		command = { type = relation which = CAS value = -50 }
+		command = { type = stability value = 2 }
+		command = { type = treasury value = 50 }
+	}
+	action_b = {
+		name = "ACTIONNAME7121B" #Once more we buy peace
+		command = { type = stability value = -1 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = relation which = SPA value = 50 }
+		command = { type = relation which = CAS value = 50 }
+		command = { type = treasury value = -100 }
+	}
+}
+
+#(1481) The war of Granada II
+event = {
+	id = 176009
+	trigger = {
+		atwar = no
+		NOT = {
+			vassal = { country = CAS country = GRA }
+			vassal = { country = SPA country = GRA }
+		}
+		OR = {
+			neighbour = CAS
+			neighbour = SPA
+		}
+		NOT = { owned = { province = 443 data = -1 } } #Andalusia
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME176009" #A Christmas Present for the Christians
+	desc = "EVENTHIST176009"
+	#-#Two nights after christmas eve in 1481, Abu al-Hasan led his army under the mantle of a storm, and fell upon the sleeping Christian fortified town of Zahara. Every resistance from the surprised garrison was crushed, and all the citizens, men, women, and children were taken to Granada and sold as slaves. The Marquis of Cadiz would retaliate two months later, and capture the Muslim town of Alhama, deep inside Granada territory. Fernando and Isabel gave orders of holding Alhama at any cost. The war of Granada had started.
+
+	date = { day = 1 month = january year = 1481 }
+
+	action_a = {
+		name = "ACTIONNAME176009A" #Attack Zahara!
+		command = { type = stability value = 1 }
+		command = { type = domestic which = aristocracy value = 1 } #Nobles profit from attacks
+		command = { type = relation which = SPA value = -150 } #SPA is upset and prevents stability hit
+		command = { type = relation which = CAS value = -150 }
+		command = { type = war which = CAS } #The attack was taken as a DoW by Spain
+		command = { type = war which = SPA }
+		command = { type = treasury value = 100 } #Bounty
+	}
+	action_b = {
+		name = "ACTIONNAME176009B" #Appease the Christians!
+		command = { type = stability value = -1 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = relation which = SPA value = 50 }
+		command = { type = relation which = CAS value = 50 }
+		command = { type = treasury value = -50 } #Payment of tribute
+	}
+}
+
+#(1482) Muhammad XII's rebellion
+event = {
+	id = 7122
+	random = no
+	country = GRA
+	name = "EVENTNAME7122" #The emir falls in love with a Christian
+	desc = "EVENTHIST7122"
+	#-#A Christian captive girl, Isabel de Solis, converted to Islam and renamed Zoraya, was sent to the emir's harem. Abu al-Hasan fell in love to the point of abandoning his former first wife, Aixa, daughter of Muhammad X. Aixa and her son Muhammad XII Boabdil, staged a coup with the help of her family and the Banu al-Sarraj. Abu al-Hasan fled with his supporters and continued fighting. The fight between father and son would divide the emirate in the face of the already started final war with the Christians. The skillful manipulation that Fernando II of Aragon made of these disputes would inspire Machiavello to model his prince after him.
+
+	date = { day = 1 month = january year = 1482 }
+
+	action_a = {
+		name = "ACTIONNAME7122A" #The emir has no moral standards!
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = stability value = -2 }
+		command = { type = domestic which = centralization value = -1 }
+	}
+}
+
+#(1483) Muhammad XII captured by the Christians
+event = {
+	id = 176010
+	trigger = {
+		OR = {
+			war = { country = GRA country = CAS }
+			war = { country = GRA country = SPA }
+			war = { country = GRA country = ARG }
+		}
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME176010" #Capture of the Emir by the Christians
+	desc = "EVENTHIST176010"
+	#-#Muhammad XII Boabdil managed through military incompetence to be captured by the Christians after the disastrous battle of Lucena. His conditions for release, - the pact of Cordova -, in addition to payment and hostages, included the surrender to the Christians of the parts of the Kingdom in the hands of his rivals, his father Abu al-Hasan and his uncle Muhammad XIII, in exchange for the Christian's help. This pact greatly upset the granedins, leading to Boabdil ousting.
+
+	date = { day = 20 month = april year = 1483 }
+
+	action_a = {
+		name = "ACTIONNAME176010A" #The Emir is selling Granada to the Christians
+		command = { type = stability value = -2 } #Subjets very upset
+		command = { type = domestic which = centralization value = -1 } #Emir loses control
+		command = { type = revoltrisk which = 12 value = 4 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -2 }
+		command = { type = treasury value = -50 }
+	}
+}
+
+#(1489) Muhammad XIII abdication
+event = {
+	id = 176011
+	trigger = {
+		OR = {
+			event = 7121 #GRA: The Christians request submission
+			event = 176009 #GRA: A Christmas Present for the Christians
+		}
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME176011" #Abdication of Muhammad XIII
+	desc = "EVENTHIST176011"
+	#-#In 1489, after a string of defeats at the hands of Fernando II of Aragon, the capable Muhammad XIII lost most of the cities that supported him. Tired and defeated he abdicated to his rival and nephew, Muhammad XII Boabdil, sold his possessions to Fernando II, and left to Fez, where he was imprisoned for treason. The war of Granada entered its final stage.
+
+	date = { day = 1 month = january year = 1489 }
+
+	action_a = {
+		name = "ACTIONNAME176011A" #The emirate is united but maybe too late
+		command = { type = stability value = 1 }
+		command = { type = revoltrisk which = 12 value = -2 }
+		command = { type = provincetax which = -1 value = 1 } #End of civil strife
+		command = { type = provincemanpower which = -1 value = 1 }
+		command = { type = domestic which = aristocracy value = -1 } #Emir gets more control over nobility
+	}
+}
+
+#(1490-1820) Submission of Granada - Ahistorical
+event = {
+	id = 176015
+	trigger = {
+		vassal = { country = SPA country = GRA }
+		atwar = no
+		OR = {
+			event = 7125 #SPA: Third Phase of the War of Granada
+			year = 1500
+		}
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME176015" #Submission of Granada
+	desc = "EVENTHIST176015"
+	#-#After the wars against the Spaniards, Granada has lost independence for good...
+
+	date = { day = 1 month = january year = 1490 }
+	offset = 720
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME176015A" #Spain is our master (End Game)
+		command = { type = trigger which = 285266 } #SPA: Submission of Granada
+	}
+	action_b = {
+		name = "ACTIONNAME176015B" #Never!
+		command = { type = breakvassal which = SPA }
+		command = { type = war which = SPA }
+	}
+}
+
+#(1596-1603) Plague
+event = {
+	id = 176014
+	random = no
+	country = GRA
+	name = "EVENTNAME176014" #Plague
+	desc = "EVENTHIST176014"
+	#-#The reoccuring epidemics that struck Granada between 1596 and 1602 greatly disrupted civic life as citizens fled to the countryside. While unintentionally helpful the toll was fearful regardless. Over 10 percent of the population died during these epidemics.
+
+	date = { day = 1 month = january year = 1596 }
+	offset = 2500
+	deathdate = { day = 1 month = january year = 1603 }
+
+	action_a = {
+		name = "OK"
+		command = { type = stability value = -1 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Random Events
+#-----------------------------------------------------------------------------------------------
+
+#Modeled after Obelixeke's Mongolian Empire Scenario GRA random events with permission by Fodoron.
+
+#(1419-1820) The assassination of a chieftain
+event = {
+	id = 176020
+	random = yes
+	country = GRA
+	name = "EVENTNAME176020" #Assassination of a berber chief
+	desc = "EVENTHIST176020"
+	#-#The struggle for power whithin the Nasrid Emirate often included the assassination of the most promiment rival, thus carrying a great unstability into the realm.
+
+	action_a = {
+		name = "ACTIONNAME176020A" #Punish the killers!
+		command = { type = stability value = -1 }
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -3 }
+	}
+	action_b = {
+		name = "ACTIONNAME176020B" #Don't do anything
+		command = { type = stability value = -2 }
+	}
+	action_c = {
+		name = "ACTIONNAME176020C" #Pay off the victim's family
+		command = { type = treasury value = -50 }
+	}
+}
+
+#(1419-1820) Christian raids
+event = {
+	id = 176021
+	trigger = {
+		neighbour = CAS
+		NOT = { vassal = { country = CAS country = GRA } }
+	}
+	random = yes
+	country = GRA
+	name = "EVENTNAME176021" #Castilian razzia
+	desc = "EVENTHIST176021"
+	#-#During the Nasrid domination of Granada, Christian raids were pretty habitual. Those attacks were not meant only for territory domination, but for morale and bounty reasons also.
+
+	action_a = {
+		name = "ACTIONNAME176021A" #The Christians are upon us!
+		command = { type = stability value = -1 }
+		command = { type = treasury value = -25 }
+		command = { type = population which = -1 value = -300 }
+		command = { type = casusbelli which = CAS value = 24 }
+	}
+}
+
+#(1419-1820) Nasrid razzia in Castilla
+event = {
+	id = 176022
+	trigger = {
+		neighbour = CAS
+		NOT = { vassal = { country = CAS country = GRA } }
+	}
+	random = yes
+	country = GRA
+	name = "EVENTNAME176022" #Nasrid razzia in Castilla
+	desc = "EVENTHIST176022"
+	#-#During the Nasrid domination of Granada, Muslim raids carried into Christian territory were pretty habitual. Those attacks were not only meant for territory domination, but for morale and bounty reasons also.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = stability value = 1 }
+		command = { type = treasury value = 25 }
+		command = { type = relation which = CAS value = -25 }
+	}
+}
+
+#(1419-1820) Christian diplomats
+event = {
+	id = 176023
+	trigger = {
+		exists = CAS
+		NOT = { war = { country = GRA country = CAS } }
+	}
+	random = yes
+	country = GRA
+	name = "EVENTNAME176023" #Castilian ambassador asks for an audience
+	desc = "EVENTHIST176023"
+	#-#In the everchanging relations between the Nasrids and the Christian Kingdoms of the Peninsule, diplomats played a tremendous role in a game that some times lead to a war or a peace.
+
+	action_a = {
+		name = "ACTIONNAME176023A" #Welcome him
+		command = { type = relation which = CAS value = 25 }
+		command = { type = DIP which = 1 value = 24 }
+	}
+	action_b = {
+		name = "ACTIONNAME176023B" #Turn him away
+		command = { type = relation which = CAS value = -25 }
+		command = { type = MIL which = 1 value = 24 }
+	}
+}
+
+#(1419-1820) Mozarab revolt
+event = {
+	id = 176024
+	trigger = {
+		NOT = { domestic = { type = innovative value = 5 } }
+	}
+	random = yes
+	country = GRA
+	name = "EVENTNAME176024" #Mozarab revolt
+	desc = "EVENTHIST176024"
+	#-#The Mozarabs were the Christian community that lived among the Muslims in al-Andalus. They could keep their religion by paying high taxes and by not showing signs of their faith openly. But sometimes, the pressure of the Muslim community was so high that they rebelled.
+
+	action_a = {
+		name = "ACTIONNAME176024A" #Crush the mozarabs!
+		command = { type = revolt which = -1 }
+		command = { type = revolt which = -3 }
+		command = { type = stability value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME176024B" #Relax the pressure
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = stability value = -2 }
+		command = { type = provincetax which = -3 value = -1 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 176015-176019 - next: 176025

@@ -4,7 +4,7 @@
 
 country = {
 	tag = ZAP
-	ai = "SmallTrade1.ai"
+	ai = "SmallTrade1.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -15,7 +15,7 @@ country = {
 	inflation = 0
 	merchants = 0
 	religion = { type = pagan }
-	culture = { type = zapotek }
+	culture = { type = zapotec }
 	diplomacy = {
 		relation = { tag = MAA value = -100 }
 		relation = { tag = AZT value = -100 }

@@ -4,7 +4,7 @@
 
 country = {
 	tag = PAP
-	ai = "SmallCRC0.ai"
+	ai = "SmallCRC0.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -19,7 +19,7 @@ country = {
 	diplomacy = {
 		relation = { tag = KNI value = 175 }
 		relation = { tag = NAP value = 75 }
-		relation = { tag = PIS value = 75 }
+		relation = { tag = SIE value = 75 }
 	}
 	knownprovinces = {
 		1614 #Pope

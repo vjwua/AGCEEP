@@ -1,0 +1,455 @@
+#Navarre (NAV)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1423) Privilege of Union
+#by Fodoron
+event = {
+	id = 241020
+	random = no
+	country = NAV
+	name = "EVENTNAME241020" #The Privilege of Union
+	desc = "EVENTHIST241020"
+	#-#Carlos III the noble, considered a frivolous wasteful monarch, was however a skillful diplomat. Conscious that Navarre, surrounded by powerful neighbors, could not longer win battles, he maintained good relationships with Castile, Aragon, France and England. Internally, he pacified the capital by granting the Privilege of Union in 1423. Up until then, the capital was not a city but three, the Bourgh of Navarraria, originated over the Roman Pompaelus, the Bourgh of Saint Cernin, populated by urban Franks, and the Bourgh of Saint Nicholas, populated by rural Franks, those two originated from pilgrimage through the road of Santiago. With the Privilege of the Union, all the differences were erased, and over 200 years of wars and confrontations ended. However, Carlos III expenses, that made the court of Navarre more sumptuous that those of Paris and London, almost bankrupted the country.
+
+	date = { day = 8 month = september year = 1423 }
+
+	action_a = {
+		name = "ACTIONNAME241020A" #A noble King indeed. Pitty he expends so much
+		command = { type = stability value = 2 }
+		command = { type = population which = 428 value = 500 } #Navarra
+		command = { type = relation which = CAS value = 50 }
+		command = { type = relation which = FRA value = 50 }
+		command = { type = relation which = ENG value = 50 }
+		command = { type = relation which = ARG value = 50 }
+		command = { type = treasury value = -50 }
+		command = { type = DIP which = 2 value = 24 }
+		command = { type = ADM which = -2 value = 12 }
+	}
+}
+
+#(1441) Death of Queen Blanca
+#by Havard - modified by Fodoron
+event = {
+	id = 241021
+	random = no
+	country = NAV
+	name = "EVENTNAME241021" #Towards a Civil War
+	desc = "EVENTHIST241021"
+	#-#Within Carlos III policies, Aragon was to have a special place. When his daughter Blanca, heir to the Kingdom, widowed from Martin the Young, heir to Aragon, she was remarried in 1419 to Juan, the second son of the new King of Aragon, the Castilian Fernando de Antequera. When Carlos III died, Blanca became the Queen. Juan, the consort, expent all his time fighting against his Castilian relative Juan II, and his constable Don Alvaro de Luna in defense of his Castilian possessions. Blanca and Juan had three children, Carlos, the older, received the heir title of Prince of Viana, Blanca was married to Prince Enrique of Castile creating a great scandal, as the marriage was never consumated, and she was returned intact a few years later, and Leonor, the younger, was married to Gaston IV, Count of Foix. In 1441, Queen Blanca I of Navarre died. According to the law of the Kingdom, the crown belonged to Carlos, but in her testament Blanca stipulated that Carlos should not take the crown without the consent of his father. It was clearly a courtesy to her husband. But Juan, necesitated of the Navarran resources to continue his fights against Luna, refused to relinquish the crown, although he left the government in the hands of Carlos. This decision caused a great upheaval in Navarre, whose nobility was already split in two powerful clans, the mountaneers shephardic Beaumont, and the riverside agricultural Gramont, ready to offer their support to the King or the Prince in exchange for increasing their power and weakening their rivals.
+
+	date = { day = 1 month = april year = 1441 }
+
+	action_a = {
+		name = "ACTIONNAME241021A" #Juan decides to hold to the crown
+		command = { type = stability value = -2 }
+		command = { type = relation which = CAS value = -50 }
+		command = { type = revoltrisk which = 60 value = 5 }
+	}
+	action_b = {
+		name = "ACTIONNAME241021B" #Juan decides to pass the crown to his son
+		command = { type = stability value = 1 }
+		command = { type = relation which = CAS value = 50 }
+		command = { type = sleepmonarch which = 097002 } #Joanes II.a Trastamarakoa
+		command = { type = wakemonarch which = 097003 } #Karlos IV.a Bianakoa °
+		command = { type = wakemonarch which = 097004 } #Blanka II.a °
+		command = { type = wakemonarch which = 097005 } #Leonor I.a
+		command = { type = sleepevent which = 241022 } #NAV: Finally the Civil War Explodes
+		command = { type = sleepevent which = 241023 } #NAV: Juan, also King of Aragon
+	}
+}
+
+#(1451) Second marriage of Juan I of Navarre (civil war)
+#by Havard - modified by Fodoron
+event = {
+	id = 241022
+	trigger = {
+		monarch = 097002 #Joanes II.a Trastamarakoa
+	}
+	random = no
+	country = NAV
+	name = "EVENTNAME241022" #Finally the Civil War Explodes
+	desc = "EVENTHIST241022"
+	#-#As the Castilian nobles started to defect his side in his wars against Juan II of Castile and Alvaro de Luna, Juan I of Navarre needed more help. So he decided in 1444 to marry Juana Enriquez, the daughter of Fadrique Enriquez, Admiral of Castile, a title not related to the sea, but second in rank to the King, and also a bitter rival of Luna. But the strategy did not pay off. On the military front he suffered a crushing defeat at Olmedo in 1445, losing all his possessions in Castile, while his brother Enrique was killed. In Navarre his second marriage was badly received, and removed any remaining legitimacy to the crown that he could have. At the same time he completely allienated his son Carlos, who finally decided to take his crown from his father's head when he gained the support of the Castilians of Luna, and the Beaumonts, while obviously the Gramonts rushed in support of his father. The country suffered enormously from this confrontation, as incursions, crop burning and cattle slaughtering were the preferred methods of fighting. Finally, at the battle of Aybar in 1452, Carlos was decisively defeated and imprisonned for two years. In 1455 Juan stripped Carlos and Blanca of their rights to the crown, and named Leonor, his youngest daughter married to Gaston IV of Foix, governor and heir of Navarre on the condition of using his armies to conquer the Beaumont strongholds. After his release, Carlos travelled to Sicily, seeking the help of his uncle, the King of Aragon, Alfonso V. To show that the divisions continued, in 1457 the parliaments at Estella declared Leonor and Gaston heirs to the Kingdom, while the parliaments at Pamplona confirmed Carlos as rightful King.
+
+	date = { day = 7 month = september year = 1451 }
+
+	action_a = {
+		name = "OUCH"
+		command = { type = stability value = -4 }
+		command = { type = revoltrisk which = 60 value = 4 }
+		command = { type = revolt which = -2 }
+		command = { type = provincetax which = 428 value = -1 } #Navarra
+		command = { type = treasury value = -25 }
+	}
+}
+
+#(1461) Juan I of Navarre, Juan II of Aragon
+#by Fodoron
+event = {
+	id = 241023
+	trigger = {
+		exists = ARG
+		monarch = 097002 #Joanes II.a Trastamarakoa
+	}
+	random = no
+	country = NAV
+	name = "EVENTNAME241023" #Juan, also King of Aragon
+	desc = "EVENTHIST241023"
+	#-#With the death of Alfonso V of Aragon, his brother Juan I of Navarre becomes Juan II of Aragon. But Alfonso has left the Kingdom of Aragon in total disarray with his Italian adventures. The economical crisis of the County of Barcelona has the society split in two, the urban patrician nobility or Biga, the high nobility and the church in one side, and the artisans, merchants and burgheoises, or Busca, in the other side, with the peasants, or payeses of Remensa, opposed to their oppressing rural nobility. The nobility opposes the King, while the citizens and peasants try to extract from him rights and more power in exchange for their support. It is a poisoned gift for somebody like Juan, used to get what he wants by force. At the same time Carlos becomes the heir to Aragon, a situation that displeases Queen Juana, who already has a gifted son with Juan of name Fernando. The Beaumonts, supporters of Carlos, claim for a union with Aragon, the Gramonts defend the independence with Leonor and Gaston. Juan suspects Carlos might be joining the Castilians again, and inprisons him, and the civil war explodes again in both Navarre and Aragon. Juan is forced to release Carlos, but sick of tuberculosis, he dies in September 1461, leaving his sister Blanca as heir to his claim to the throne of Navarre. Juan has to fight the Castilians and Beaumonts, while he has the help of the Gramonts, Gaston of Foix and Louis XI of France. Blanca is an obstacle to the claim of Leonor and Gaston, but Juan will deliver her to Gaston who will inprison her in Moncada until her dead in 1464. When Enrique IV abandons his claim to the crown of Aragon offered by the rebel party in Barcelona, the Castilians leave the war, and the Beaumonts are defeated. Looks like peace, but it is only a respite.
+
+	date = { day = 7 month = september year = 1461 }
+
+	action_a = {
+		name = "ACTIONNAME241023A" #The heir has died, long life the new heir
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 24 value = -1 }
+		command = { type = relation which = ARG value = 50 }
+		command = { type = add_countryculture which = catalan }
+		command = { type = dynastic which = ARG }
+		command = { type = trigger which = 111062 } #ARG: The two crowns
+	}
+}
+
+#(1470) The war continues
+#by Fodoron
+event = {
+	id = 241024
+	random = no
+	country = NAV
+	name = "EVENTNAME241024" #Leonor Against Juan
+	desc = "EVENTHIST241024"
+	#-#With Carlos and Blanca death, Navarre is running out of heirs. But the matter is not settled between the Beaumonts and Gramonts. The civil war is suicidal for Navarre, weakening her while her neighbors are sharpening their knifes. Louis XI, the spider King, has his eyes set in Navarre. His sister Madeleine of France is married to Gaston, son of Leonor and Gaston IV of Foix. Navarre is steering towards France once more after a century of Iberian influence. Once Louis has obtained the Rousillon from desperate Juan, he shifts his support to the rebels in Barcelona, that have offered the County to Renee of Anjou, Count of Provence. With the help of Louis, Leonor and Gaston, who have shown themselves as quite incompetent in ruling Navarre, decide to seize the chance and take the crown from old, blind, Juan, since it looks like he is going to live forever, or at least outlast them. The orphaned Beaumonts are more than happy to have someone to follow in hope of recovering their lost properties. Juan will once more disinherit one of his rebel children, naming Leonor's son, Gaston, heir to Navarre. But Gaston will die in a tournament in 1470, leaving two young children, Francois Febus and Catherine with his widow Madeleine de France. Juan has no choice but to reinstate Leonor as heir to Navarre. The war between Beaumont and Gramont however continued.
+
+	date = { day = 27 month = november year = 1470 }
+
+	action_a = {
+		name = "ACTIONNAME241024A" #Another heir bites the dust
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 24 value = 5 }
+	}
+}
+
+#(1476) The Castilian Protectorate
+#by Fodoron
+event = {
+	id = 241025
+	random = no
+	country = NAV
+	name = "EVENTNAME241025" #The Castilian Protectorate
+	desc = "EVENTHIST241025"
+	#-#The ascension of Fernando to the throne of Castile is going to change radically the situation in Navarre. Castile has always supported the Beaumonts against Juan and the Gramonts. Fernando is able to convince his father that Castile can play a role in the pacification of Navarre. Instead of dropping the support of the Beaumonts, Fernando signs with Juan the Treaty of Tudela in 1476, establishing a defensive protectorate of Castile over Navarre. Castile will guarantee the safety of the Beaumonts and will defend Navarre from foreign agression. Isabel and Fernando are designing the union of Spain, and strongly prefer a dynastic union with Navarre. For the first time, Juan seems to trust one of his children. The Castilian protectorate will last thirty years, and although it will not end the war between the Beaumonts and Gramonts, it will greatly abate it. It will also serve as a Spanish counterweight against the French orientation of the House of Foix.
+
+	date = { day = 4 month = october year = 1476 }
+
+	action_a = {
+		name = "ACTIONNAME241025A" #Accept the protectorate
+		command = { type = stability value = 1 }
+		command = { type = revoltrisk which = 24 value = -2 }
+		command = { type = relation which = CAS value = 200 }
+	}
+	action_b = {
+		name = "ACTIONNAME241025B" #Reject the protectorate
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 24 value = 5 }
+		command = { type = relation which = CAS value = -50 }
+		command = { type = sleepevent which = 241027 } #NAV: A Temporary Solution
+	}
+}
+
+#(1481-1482) The Foix inheritance (AI)
+#by Fodoron
+event = {
+	id = 241000 #triggered by FOI_351003 B
+	trigger = { ai = yes }
+	random = no
+	country = NAV
+	name = "EVENTNAME241000" #The Foix inheritance
+	desc = "EVENTHIST241000"
+	#-#In December 1481, François Phoebus of Foix became King of Navarre. Although he ruled his domains separately, this time he has decided to incorporate his counties of Foix, Bigorre and Béarn to the traditional lands of Navarre.
+
+	action_a = {
+		name = "ACTIONNAME241000A" #Great (End Game)
+		command = { type = stability value = 1 }
+	}
+}
+event = {
+	id = 241001 #triggered by FOI_351003 B
+	trigger = { ai = no }
+	random = no
+	country = NAV
+	name = "EVENTNAME241000" #The Foix inheritance
+	desc = "EVENTHIST241000"
+	#-#In December 1481, François Phoebus of Foix became King of Navarre. Although he ruled his domains separately, this time he has decided to incorporate his counties of Foix, Bigorre and Béarn to the traditional lands of Navarre.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = stability value = 1 }
+		command = { type = inherit which = FOI } #Foix
+		command = { type = add_countryculture which = french }
+	}
+}
+
+#(1484) The marriage of Catherine
+#by Fodoron
+event = {
+	id = 241026
+	random = no
+	country = NAV
+	name = "EVENTNAME241026" #The Marriage of Catherine
+	desc = "EVENTHIST241026"
+	#-#When Juan finally dies in January 1479 at age 82, her daughter Leonor is on her last leg. She is crowned but dies two weeks later. She leaves her Kingdom to his young grandson Francois Febus. He is 11 years old, but since 1472 he is also the Count of Foix. His mother Madeleine of France, sister of Louis XI, acts as the Regent. However the wars between Beaumonts and Gramonts reignite, and for two years Francois Febus cannot be crowned, finally he will be crowned in Pamplona in December 1481. However he died in January 1483. According to legend he was given a poisoned flute to play. 1483 was therefore a momentous year for Navarre. The crown had to go to Catherine, who was 15 years old, while her mother Madeleine of France acted as Regent. But his uncle Jean of Foix, Viscount of Narbonne, claimed the crown for himself. His brother Gaston was never King of Navarre, and therefore, as son of Leonor he had a better claim to the crown than Catherine according to Salic law. Jean, brother-in-law of Louis XII of France, had the support of the French Kings. Castile, as protector of Navarre, offered the hand of Juan, son of the Catholic Kings, to Catherine. This solution had the support of both Beaumonts and Gramonts. But Madeleine wanted a different solution, and against the decision of the Navarran parliaments, married her daughter to Jean III Albret in January 1484. Jean Albret was the owner of very extensive lands in the South of France. He was not only quite incompetent, but his French possessions were more important to him than his smaller Navarran Kingdom. The judicial and military war between Jean of Foix-Narbonne and Catherine and Jean of Albret will prevent the crowning of Catherine and Jean as Kings of Navarre until 1494. The dynastic fights between the Foix on top of the continuous civil war will cause the final demise of the small Kingdom.
+
+	date = { day = 4 month = january year = 1484 }
+
+	action_a = {
+		name = "ACTIONNAME241026A" #Marry her to Jean d'Albret
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 120 value = 5 }
+		command = { type = relation which = SPA value = -25 }
+		command = { type = treasury value = 50 }
+		command = { type = dynastic which = FOI }
+		command = { type = add_countryculture which = french }
+		command = { type = remove_countryculture which = catalan }
+	}
+	action_b = {
+		name = "ACTIONNAME241026B" #Marry her to Juan Trastamara
+		command = { type = stability value = 1 }
+		command = { type = revoltrisk which = 120 value = 2 }
+		command = { type = relation which = SPA value = 200 }
+		command = { type = dynastic which = SPA }
+		command = { type = add_countryculture which = castilian }
+	}
+}
+
+#(1494-1497) War of Succession in the Foix territories
+event = {
+	id = 241002
+	trigger = {
+		owned = { province = 425 data = -1 } #Bearn
+		core = { province = 425 data = -1 }
+	}
+	random = no
+	country = NAV
+	name = "EVENTNAME351007" #War of Succession in the Foix territories
+	desc = "EVENTHIST351007"
+	#-#Upon the premature childless death of François Phoebus his sister Catherine succeeded him. This arrangement was opposed by the next male relative, Jean Vicomte de Narbonne who started contesting his niece's and her husband's inheritance in 1494. The war lasted for three years and crippled the whole country until Jean finally submitted in the Peace of Tarbes on September 7th 1497.
+
+	date = { day = 1 month = january year = 1494 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1497 }
+
+	action_a = {
+		name = "ACTIONNAME241002A" #Foix is mine
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 36 value = 6 }
+		command = { type = revolt which = 425 } #Bearn
+		command = { type = revolt which = 425 } #Bearn
+	}
+}
+
+#(1497) The Castilian Protectorate II
+#by Fodoron
+event = {
+	id = 241027
+	trigger = {
+		neighbour = SPA
+		exists = FRA
+	}
+	random = no
+	country = NAV
+	name = "EVENTNAME241027" #A Temporary Solution
+	desc = "EVENTHIST241027"
+	#-#The different wars were ravaging the country. In Navarre between Beaumonts and Gramonts, and in Foix between supporters of Jean d'Albret and Catherine, and supporters of Jean of Foix-Narbonne. Finally Castile will pacify the Beaumonts, after the treaty of Pamplona-Medina del Campo in January 1494, when Jean and Catherine accepted the marriage of their heir to the heir of Spain, and the continuation of the Castilian protectorate. The peace in Navarre will allow the crowning of the Kings in Pamplona, and three years later the defeat of Jean of Foix-Narbonne and the peace of Tarbes on September 7, 1497. Catherine and Jean were finally uncontested Kings of Navarre under Spanish protectorship. But the confrontation between Spain and France that was starting in Italy will leave no room for a neutral Navarre. Strategically, Navarre could be used as a backdoor to invade the neighboring country, allowing the armies crossing the Pyrenees unmolested. A war between France and Spain over Navarre was in the horizon. This time Navarre seemed to tilt towards Spain.
+
+	date = { day = 7 month = september year = 1497 }
+
+	action_a = {
+		name = "ACTIONNAME241027A" #Accept Spanish protectorate and become their vassal
+		command = { type = stability value = 1 }
+		command = { type = revoltrisk which = 96 value = -2 }
+		command = { type = relation which = SPA value = 200 }
+		command = { type = dynastic which = SPA }
+		command = { type = trigger which = 285041 } #vassalization of Navarre for 9 years #SPA: The Castilian protectorate of Navarre
+	}
+	action_b = {
+		name = "ACTIONNAME241027B" #Reject Spanish propositions
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 96 value = 5 }
+		command = { type = relation which = SPA value = -25 }
+	}
+}
+
+#(1507) The Castilian protectorate III
+#by Fodoron
+event = {
+	id = 241028
+	trigger = {
+		neighbour = SPA
+		exists = FRA
+	}
+	random = no
+	country = NAV
+	name = "EVENTNAME241028" #The Final Crisis
+	desc = "EVENTHIST241028"
+	#-#At the time the confrontation between France and Spain, Navarre was ruled by incompetent hands. Since 1502 Louis XII of France was supporting the claim of his nephew Gaston of Foix, Duke of Nemours, son of Jean of Foix-Narbonne, and a French general, to the throne of Navarre. The Castilian protectorate had kept Louis from declaring war to Catherine and Jean Albret, but after the death of Isabel, Fernando married Germaine of Foix, Gaston's sister. Worried about this strenghthening of their rival claim, Catherine and Jean signed a treaty with Felipe I Habsburg, consort King of Castile in 1506, but they are betting on the wrong horse. Felipe dies, and Castile falls into a troubled regency by Cardinal Cisneros. A Beaumont sublevation in 1507 is defeated, and Navarre considers herself free of the Castilian protectorate and breaks the many treaties of dynastic union, the last one between Henry of Navarre and Isabel of Castile in 1504. The hands of Louis are now free, and he declares war to Jean Albret and Catherina in their French possessions, as he knows that an invansion of Navarre will provoke a Spanish reaction. However, at the league of Cambrai treaty in 1508, Maximilian of Austria, father of Felipe, and granfather of the heir, Carlos, will obtain from Louis the compromise of not attacking Navarre for one year. The days of Navarre are counted. She has been weakened by a still unresolved civil war, dynastic fights and is conducting a very poor diplomacy. The only question is if it will become a part of France or Spain.
+
+	date = { day = 4 month = march year = 1507 }
+
+	action_a = {
+		name = "ACTIONNAME241028A" #We can take care of ourselves
+		command = { type = stability value = 1 }
+		command = { type = revoltrisk which = 60 value = -2 }
+		command = { type = breakvassal which = SPA }
+		command = { type = breakdynastic which = SPA }
+	}
+	action_b = {
+		name = "ACTIONNAME241028B" #We need Spanish protection
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk which = 60 value = 2 }
+		command = { type = relation which = SPA value = 50 }
+		command = { type = sleepevent which = 241029 } #NAV: The End of Navarre
+	}
+}
+
+#(1512-1516) The End of Navarre
+#by Fodoron
+event = {
+	id = 241029
+	trigger = {
+		neighbour = SPA
+		NOT = {
+			exists = ARG
+			event = 111008 #ARG: Aragon claims Navarre
+		}
+		OR = { 
+			core_claim = { province = 389 data = FRA } #Lombardia (France intervened in the Italian Wars)
+			core_national = { province = 389 data = FRA } #Lombardia
+		}
+		OR = {
+			event = 17024 #PAP: The Holy League against France
+			event = 236006 #MUS: The Holy League against France
+		}
+	}
+	random = no
+	country = NAV
+	name = "EVENTNAME241029" #The End of Navarre
+	desc = "EVENTHIST241029"
+	#-#In 1512, the war over Milan had Louis XII of France excommunicated and at war against the Holy League formed by the Pope, Spain, Venice and England. At the battle of Ravenna, the Spanish troops of Fernando killed his brother-in-law and French general, Gaston of Foix, nephew of Louis. Fernando, married to his sister Germaine of Foix, suddenly inherited the claim that Louis had been using in his attempts at incorporating Navarre to France. The English and Spanish were preparing an invasion of France through the Pyrenees and Fernando requested guarantees for the neutrality of Navarre. In a final diplomatic blunder, Jean and Catherine refused and entered into a defensive alliance with France at the treaty of Blois of 1512. Fernando invaded Navarre with the support of the Beaumonts, defeating the French and the Gramonts. The English troops under command of Dorset, left disgusted of being used, leaving the Basque flank exposed, but the Basques defended San Sebastian from the French, and the Duke of Alba successfully held Pamplona. Finally the French had to withdraw with great loss. Fernando obtained a legitimation for keeping Navarre when the Pope excommunicated the Kings of Navarre for their alliance with the schismatic Louis. The Beaumonts and the population, that was tired of the civil war, swore allegiance to the new King in exchange for the recognition of their former privileges, and the Parliaments crowned him as King of Navarre in 1513. Fernando, then Regent of Castille in the name of his daughter Juana the Mad, decided to incorporate the Kingdom of Navarre to the Kingdom of Castile instead of to his own Kingdom of Aragon. Jean Albret would try to recover his Kingdom in 1516 after the death of Fernando, and the French would try to conquer Navarre in 1520, taking advantage of the Comuneros rebellion in Castile, but they failed to raise significant support and were defeated by the Spanish armies. The Basse-Navarre, north of the Pyrenees was abandoned in 1530 due to the difficulty of its defense, and was ceded to France by the heirs of Albret in 1620.
+
+	date = { day = 4 month = may year = 1512 }
+	offset = 30
+	deathdate = { day = 23 month = january year = 1516 } #Fernando's death
+
+	action_a = {
+		name = "ACTIONNAME241029A" #The Beaumonts welcome the Spaniards
+		command = { type = trigger which = 285042 } #SPA: The conquest of Navarre
+		#Navarra inherited by Spain
+	}
+	action_b = {
+		name = "ACTIONNAME241029B" #The Gramonts submit to France and fight back
+		command = { type = stability value = -2 }
+		command = { type = revolt which = -1 }
+		command = { type = trigger which = 170012 } #FRA: The war of Navarre
+		#Navarra vassalized by France, and war against Spain
+	}
+}
+#(1512-1516) The War of Navarre
+#by Fodoron
+event = {
+	id = 241030 #triggered by FRA_170012
+	trigger = {
+		exists = SPA
+		NOT = { war = { country = NAV country = SPA } }
+	}
+	random = no
+	country = NAV
+	name = "EVENTNAME241030" #The Gramont Resistance
+	desc = "EVENTHIST241030"
+	#-#The alliance of Jean d'Albret and Louis XII of France in the context of the wars of Italy, precipitated the Spanish invasion of Navarre. The Beaumonts supported the invasion, and surrendered Pamplona to the Old Duke of Alba. The Gramonts were quickly overrun. The French armies under command of the Daulphin made numerous mistakes, ignoring the requests of Jean d'Albret, using the Navarrans and Gascoigners to lead the assaults and abusing the local population. The siege of Pamplona was a complete failure, and with the arrival of the winter they suffered grave loses, retreating back to France in a difficult march across the Pyrenees. By the spring of 1513, the Spaniards had resisted the French attack in the Basque region and were the masters of Navarre.
+
+	action_a = {
+		name = "ACTIONNAME241030A" #Let's fight the Spaniards
+		command = { type = war which = SPA }
+		command = { type = relation which = SPA value = -300 }
+	}
+}
+
+#(1555-1575) The Crown of France
+event = {
+	id = 3589
+	trigger = {
+		owned = { province = 385 data = -1 } #Ile de France
+		control = { province = 385 data = -1 } #Ile de France
+		control = { province = 376 data = -1 } #Champagne
+		NOT = {
+			exists = FRA
+			exists = DAU
+		}
+	}
+	random = no
+	country = NAV
+	name = "EVENTNAME3606" #The Crown of France
+	desc = "EVENTHIST3606"
+	#-#Since the Early Medieval times one of the most powerful Frankish Kingdoms had been centered at Paris and around Ile-de-France from which it took its name. Later on one of its Kings managed not only to unite the large area formerly called 'Gallia', but also to conquer most of Germany, Northern Italy and become chosen as Holy Roman Emperor, namely Charlemagne. His heritage was very powerful and important. The Duke of Normandy might be the most powerful man in France, but he was not France, only the French King was never so powerless. The Legacy of Charlemagne lived on and the greatest wish of man powerful monarch was bear the Crown of France...
+
+	date = { day = 1 month = january year = 1555 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1575 }
+
+	action_a = {
+		name = "ACTIONNAME3606A" #France is reborn with me
+		command = { type = vp value = 200 }
+		command = { type = remove_countryculture which = basque }
+		command = { type = add_countryculture which = french }
+		command = { type = add_countryculture which = basque } #to order them properly
+		command = { type = stability value = 3 }
+		command = { type = capital which = 385 } #Ile de France
+		command = { type = flagname which = "" }
+		command = { type = country which = FRA }
+		command = { type = addcore which = 376 } #Champagne
+		command = { type = addcore which = 382 } #Calais
+		command = { type = addcore which = 383 } #Picardie
+		command = { type = addcore which = 384 } #Caux
+		command = { type = addcore which = 385 } #Ile de France
+		command = { type = addcore which = 386 } #Nivernais
+		#command = { type = addcore which = 387 } #Franche-Comté
+		command = { type = addcore which = 406 } #Provence
+		command = { type = addcore which = 407 } #Dauphiné
+		command = { type = addcore which = 408 } #Lyonnais
+		command = { type = addcore which = 409 } #Bourgogne
+		command = { type = addcore which = 410 } #Berri
+		command = { type = addcore which = 411 } #Orleanais
+		command = { type = addcore which = 412 } #Maine
+		command = { type = addcore which = 413 } #Normandie
+		command = { type = addcore which = 414 } #Armor
+		command = { type = addcore which = 415 } #Bretagne
+		command = { type = addcore which = 416 } #Morbihan
+		command = { type = addcore which = 417 } #Vendée
+		command = { type = addcore which = 418 } #Poitou
+		command = { type = addcore which = 419 } #Limousin
+		command = { type = addcore which = 420 } #Auvergne
+		command = { type = addcore which = 421 } #Cévennes
+		command = { type = addcore which = 422 } #Languedoc
+		command = { type = addcore which = 423 } #Guyenne
+		command = { type = addcore which = 424 } #Gascogne
+		command = { type = addcore which = 425 } #Béarn
+		#command = { type = addcore which = 426 } #Roussillon
+		command = { type = INF which = 385 value = 15000 } #Ile de France
+		command = { type = CAV which = 385 value = 10000 } #Ile de France
+		command = { type = ART which = 385 value = 30 } #Ile de France
+	}
+	action_b = {
+		name = "ACTIONNAME3606B" #Let France rest in peace
+		command = { type = vp value = -100 }
+		command = { type = stability value = -3 }
+		command = { type = relation which = ENG value = 150 }
+		command = { type = relation which = BUR value = 150 }
+		command = { type = relation which = HAB value = 150 }
+		command = { type = relation which = SPA value = 150 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 241003

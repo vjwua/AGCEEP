@@ -4,7 +4,7 @@
 
 country = {
 	tag = RYA
-	ai = "SmallTrade0.ai"
+	ai = "SmallTrade0.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -17,6 +17,7 @@ country = {
 	religion = { type = orthodox }
 	culture = {
 		type = russian
+		type = tatar
 	}
 	diplomacy = {
 		relation = { tag = RUS value = 150 refusetrade = no }

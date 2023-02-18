@@ -4,7 +4,7 @@
 
 country = {
 	tag = TUR
-	ai = "TUR_1640_IbrahimI.ai"
+	ai = "TUR_1640_IbrahimI.txt"
 	policy = {
 		aristocracy = 10
 		centralization = 6
@@ -31,8 +31,8 @@ country = {
 		type = slavonic
 		type = greek
 		type = albanian
-		type = delaware
-		type = syrian
+		type = maghrebi
+		type = dalmatian
 	}
 	diplomacy = {
 		relation = { tag = FRA value = 25 }
@@ -92,6 +92,9 @@ country = {
 		364 365 366 367 464 465 470 472 473 474 475 476 477 478 479 481 482 483 484 485 486 488 489
 		490 491 492 493 494 495 496 497 498 508 734 735 736 737 738 739 740 741 742 743 744 745 746
 		747 748 749 820 1609 1610 1611
+	}
+	claimedprovinces = {
+		499 500 752
 	}
 	city = {
 		fortress = { level = 3 }

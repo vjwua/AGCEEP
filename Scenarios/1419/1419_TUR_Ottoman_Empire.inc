@@ -4,7 +4,7 @@
 
 country = {
 	tag = TUR
-	ai = "TUR_1419_MehmedI.ai"
+	ai = "TUR_1419_MehmedI.txt"
 	flagname = "Ancient"
 	colonialattempts = 0
 	colonialnation = no
@@ -24,8 +24,8 @@ country = {
 	diplomacy = {
 		relation = { tag = BYZ value = -75 access = yes }
 		relation = { tag = ATH value = 50 }
-		relation = { tag = SPR value = -100 access = yes }
-		relation = { tag = TEK value = 100 access = yes } #Ghazi
+		relation = { tag = MRE value = -100 access = yes }
+		relation = { tag = GZI value = 100 access = yes } #Ghazi
 		relation = { tag = KNI value = -200 }
 		relation = { tag = KAR value = 25 }
 		relation = { tag = CAN value = 155 }
@@ -38,8 +38,8 @@ country = {
 		relation = { tag = ALB value = 100 }
 		relation = { tag = BOS value = 50 }
 		relation = { tag = WAL value = 50 }
-		relation = { tag = KAL value = 75 }
-		relation = { tag = JAI value = 30 } #Rajputana
+		relation = { tag = THO value = 75 }
+		relation = { tag = RAJ value = 30 }
 		relation = { tag = GUJ value = 30 }
 		relation = { tag = DUL value = 75 }
 	}

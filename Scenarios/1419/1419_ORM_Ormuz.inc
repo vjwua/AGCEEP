@@ -4,7 +4,7 @@
 
 country = {
 	tag = ORM
-	ai = "SmallTrade2.ai"
+	ai = "SmallTrade2.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -21,7 +21,7 @@ country = {
 		relation = { tag = HAD value = 125 }
 		relation = { tag = YEM value = 125 }
 		relation = { tag = MRA value = 125 }
-		relation = { tag = GHA value = 125 }
+		relation = { tag = GHR value = 125 }
 		relation = { tag = HAA value = 125 }
 		relation = { tag = TIM value = 100 }
 		relation = { tag = BAS value = -50 }

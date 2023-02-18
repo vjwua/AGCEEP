@@ -4,7 +4,7 @@
 
 country = {
 	tag = ETH
-	ai = "Large.ai"
+	ai = "Large.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -17,7 +17,7 @@ country = {
 	religion = { type = orthodox }
 	culture = { type = ethiopian }
 	diplomacy = {
-		relation = { tag = CYR value = -150 }
+		relation = { tag = ADA value = -150 }
 	}
 	knownprovinces = {
 		743 744 745 746 747 748 749 750 751 752 753 754 755 757 758 759 760 761 1516 1517 1518 1519 1059 1060 1061 1062 1588 1589 1590

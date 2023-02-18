@@ -4,7 +4,7 @@
 
 country = {
 	tag = STE
-	ai = "Large.ai"
+	ai = "Large.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -15,7 +15,7 @@ country = {
 	inflation = 0
 	merchants = 0.083333
 	religion = { type = sunni }
-	culture = { type = naskapi }
+	culture = { type = tatar }
 	diplomacy = {
 		relation = { tag = MOS value = 120 access = yes}
 		relation = { tag = RYA value = 120 access = yes }
@@ -27,7 +27,7 @@ country = {
 		relation = { tag = MAM value = -150 refusetrade = no }
 		relation = { tag = SHI value = 75 refusetrade = no }
 		relation = { tag = UZB value = 150 refusetrade = no }
-		relation = { tag = SEV value = 100 }
+		relation = { tag = ABK value = 100 }
 		relation = { tag = GEO value = 100 }
 	}
 	knownprovinces = {

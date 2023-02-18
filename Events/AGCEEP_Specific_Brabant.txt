@@ -1,0 +1,308 @@
+#Brabant (HAU)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1420) Filips van Saint-Pol
+event = {
+	id = 182000
+	random = no
+	country = HAU
+	name = "EVENTNAME182000" #Filips van Saint-Pol
+	desc = "EVENTHIST182000"
+	#-#Duke Jan IV of Brabant was a weak, incompetent ruler. His main interest was being left alone, and for the sake of maintaining peace and not alienating anybody, he made intolerable concessions to Jan of Bavaria and was a mere puppet of his Burgundian cousin. Being leery of Burgundian influence, lamenting the loss of Brabant's former power and upset about Jan's favouritism, the estates of Brabant approached Jan's younger, a lot more gifted brother Filips and, after Jan had refused to even listen to their complaints, made Filips ruwaert (regent). For two years, Jan entirely lost control of his possessions.
+
+	date = { day = 1 month = september year = 1420 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1420 }
+
+	action_a = {
+		name = "OUCH"
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 60 value = 5 }
+	}
+}
+
+#(1422) Het Nieuwe Regiment
+event = {
+	id = 182001
+	trigger = {
+		event = 182000 #HAU: Filips van Saint-Pol
+	}
+	random = no
+	country = HAU
+	name = "EVENTNAME182001" #Het Nieuwe Regiment
+	desc = "EVENTHIST182001"
+	#-#On May 12th 1422 Jan IV finally gave in to the pressure from the estates and his brother. He accepted all demands they had made and declared all actions of Filips as ruwaert legal. An expansion of the limits to Ducal power established by the Joyeuse Entree, the 'Nieuwe Regiment' was introduced. By this agreement the Duke was virtually under the control of a council appointed by the estates. Filips was given some lands in Brabant and stayed involved in the ruling the country.
+
+	date = { day = 11 month = may year = 1422 }
+
+	action_a = {
+		name = "ACTIONNAME182001A" #Accept the settlement
+		command = { type = revoltrisk value = -3 }
+		command = { type = stability value = 1 }
+		command = { type = ADM which = 2 value = 100 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = wakeleader which = 057802 } #F. van Saint-Pol (HAU)
+	}
+	action_b = {
+		name = "ACTIONNAME182001B" #Refuse negotiations
+		command = { type = stability value = -1 }
+		command = { type = revolt which = -2 }
+	}
+}
+
+#(1424) Jacqueline's invasion of Hainault
+event = {
+	id = 182002
+	trigger = { owned = { province = 379 data= -1 } }
+	random = no
+	country = HAU
+	name = "EVENTNAME182002" #The Countess of Hainault and the Duke of Gloucester
+	desc = "EVENTHIST182002"
+	#-#Jacqueline, daughter of Wilhelm, the last Count of Holland, Hainault and Zeeland, and rightful heiress to his possessions, was deprived of her inheritance by her uncle Jan of Bavaria and her husband Jan IV of Brabant. In an angry reaction, she declared her marriage invalid, fled to England and there fell in love with Humphrey of Gloucester, brother of the King, whom, after obtaining a dispens from the Antipope, she married and declared her coregent. With an English army, the couple on October 26th crossed the channel, landed in Calais and invaded Hainault. They managed to take control of most of the county and even threatened Brabant. Only with the support of his Burgundian cousin - and because her husband left her to be with his mistress - Jan IV of Brabant managed to beat her back, and the superior troops of Philipp captured Jacqueline in 1425.
+
+	date = { day = 26 month = october year = 1424 }
+
+	action_a = {
+		name = "ACTIONNAME182002A" #Beat her back with Burgundian help
+		command = { type = revolt which = 379 } #Artois
+		command = { type = revolt which = 379 } #Artois
+		command = { type = province_revoltrisk which = 379 value = 8 } #Artois
+		command = { type = INF which = -2 value = 6000 }
+		command = { type = CAV which = -2 value = 3000 }
+		command = { type = relation which = ENG value = -50 }
+		command = { type = trigger which = 137009 } #BUR: Support for Jan of Brabant
+	}
+	action_b = {
+		name = "ACTIONNAME182002B" #Fight her alone
+		command = { type = revolt which = 379 } #Artois
+		command = { type = revolt which = 379 } #Artois
+		command = { type = province_revoltrisk which = 379 value = 8 } #Artois
+		command = { type = relation which = ENG value = -100 }
+	}
+}
+
+#(1425) The Dutch Wittelsbach possessions (Luxemburg honoured the agreement)
+event = {
+	id = 182004 #triggered by LUX_213001 A
+	random = no
+	country = HAU
+	name = "EVENTNAME137024" #The Dutch Wittelsbach possessions
+	desc = "EVENTHIST213001"
+	#-#Jan of Bavaria, husband of Elisabeth of Görlitz and as such pawnee of Luxemburg, died, probably of poison, on January 6th 1425. While his wife retained her pawn Luxemburg, the Duchy of Bavaria-Straubing was seized by Emperor Sigismund as a vacant Imperial fief and his part of the Dutch Wittelsbach inheritance passed to Burgundy, on the base of a treaty that had just been concluded, which is why the Duke of Burgundy was immediately suspected of having ordered the assassination of Jan.
+
+	action_a = {
+		name = "OK"
+		command = { }
+	}
+}
+
+#(1425) The Dutch Wittelsbach possessions (Luxemburg honoured the agreement - no BUR version)
+event = {
+	id = 182005 #triggered by LUX_213002
+	trigger = { 
+		OR = {
+			owned = { province = 339 data = -1 } #Holland
+			owned = { province = 379 data = -1 } #Artois
+		}
+	}
+	random = no
+	country = HAU
+	name = "EVENTNAME137024" #The Dutch Wittelsbach possessions
+	desc = "EVENTHIST213002"
+	#-#Jan of Bavaria, husband of Elisabeth of Görlitz and as such pawnee of Luxemburg, died, probably of poison, on January 6th 1425. While his wife retained her pawn Luxemburg, the Duchy of Bavaria-Straubing was seized by Emperor Sigismund as a vacant Imperial fief.
+
+	action_a = {
+		name = "OK"
+		command = { }
+	}
+}
+
+#(1425-1427) Foundation of the university of Leuven, by Archeolooginspe
+event = {
+	id = 182302
+	random = no
+	country = HAU
+	name = "EVENTNAME182302" #Foundation of the university of Leuven
+	desc = "EVENTHIST182302"
+	#-#Founded in 1425 by Pope Martin V, the K.U.Leuven bears the honour of being the oldest Catholic university in the world still in existence and the oldest university in the Low Countries.In its early days this University was modelled on the universities of Paris, Cologne and Vienna. In a short time it grew into one of the largest and most renowned universities in Europe. Its academic fame attracted scientists who have made valuable contributions to European culture. Let us enumerate a few renowned names. In the 16th century the humanist, Desiderius Erasmus, lectured here. He founded the Collegium Trilingue in 1517 for the study of Hebrew, Latin and Greek - the first of its kind. The tutor of the young emperor Charles V, Adriaan Cardinal Florensz of Utrecht, was a professor here before being elected in 1522 as the last non-Italian Pope before Pope John Paul II. The philologist, legal scholar and historian, Justus Lipsius, taught here for years.
+
+	date = { day = 1 month = january year = 1425 }
+	offset = 360
+	deathdate = { day = 1 month = january year = 1427 }
+
+	action_a = {
+		name = "ACTIONNAME182302A" #Found the university
+		command = { type = infra value = 150 }
+		command = { type = diplomats value = 1 }
+		command = { type = missionaries value = 1 }
+		command = { type = relation which = PAP value = 10 }
+		command = { type = treasury value = -45 }
+	}
+	action_b = {
+		name = "ACTIONNAME182302B" #Our money is better spent on a hall for wool
+		command = { type = trade value = 150 }
+		command = { type = merchants value = 1 }
+		command = { type = treasury value = -45 }
+	}
+	action_c = {
+		name = "ACTIONNAME182302C" #We better keep the money in our pockets
+		command = { type = relation which = PAP value = -10 }
+		command = { type = vp value = -1 }
+	}
+}
+
+#(1427-1430) Consequence of the death of Jan IV
+event = {
+	id = 182003
+	trigger = {
+		exists = BUR
+		OR = {
+			owned = { province = 339 data = -1 } #Holland
+			owned = { province = 340 data = -1 } #Zeeland
+		}
+	}
+	random = no
+	country = HAU
+	name = "EVENTNAME182003" #Consequence of the death of Jan IV
+	desc = "EVENTHIST182003"
+	#-#Jan IV of Brabant had almost always been been a sickly man, so his premature death in April 1427 came as no surprise, and had been anticipated in particular by his Burgundian cousin. While his brother Filips succeeded him in Brabant, Burgundy took full control of Hainault, Holland and Zeeland. Being in no position to openly oppose the move, and also lacking the claim his brother had due to his marriage with Jacqueline, heiress of Holland, Hainault and Zeeland, Filips had to accept the fact.
+
+	date = { day = 17 month = april year = 1427 }
+	offset = 10
+	deathdate = { day = 29 month = april year = 1430 }
+
+	action_a = {
+		name = "ACTIONNAME182003A" #Renounce the Dutch Wittelsbach possessions
+		command = { type = cedeprovince which = BUR value = 339 } #Holland
+		command = { type = cedeprovince which = BUR value = 340 } #Zeeland
+		command = { type = removecore which = 339 } #Holland
+		command = { type = removecore which = 340 } #Zeeland
+		command = { type = trigger which = 137024 } #BUR: The Dutch Wittelsbach possessions
+	}
+	action_b = {
+		name = "ACTIONNAME182003B" #Defy Burgundy
+		command = { type = breakvassal which = BUR }
+		command = { type = war which = BUR }
+		command = { type = stability value = -2 }
+		command = { type = relation which = BUR value = -300 }
+		command = { type = trigger which = 137025 } #BUR: The Dutch Wittelsbach possessions
+	}
+}
+
+#(1430) The Succession in Brabant
+#modified by Jester and mandead to nullify RevoltRisk generated by HAU_182002
+event = {
+	id = 3775
+	trigger = {
+		exists = BUR
+	}
+	random = no
+	country = HAU
+	name = "EVENTNAME3775" #The Succession in Brabant
+	desc = "EVENTHIST3775"
+	#-#The Duchy of Brabant had been under Burgundian influence for a while in the decades leading up to 1430 with side branches of the Burgundian dynasty occupying the title of Duke and on the 1st of August, 1430 it formally passed to the control of Philip the Good of Burgundy further strengthening the Burgundian hold on the Netherlands and continuing Philip's moves towards their unification.\n \n An alternative, however, would have been to offer the duchy to Philip's illegitimate son, Anthony, the Grand Bastard of Burgundy. This would ensure the duchy's independence through an illegitimate line of the Valois-Bourgogne dynasty, yet the Burgundian alliance would also safeguard the duchy against French aggression. Though only a boy at the time, Anthony would grow up to become a strong and respected warrior, as well as a powerful influence over and ally of his younger half-brother, Charles the Bold.
+
+	date = { day = 3 month = august year = 1430 }
+
+	action_a = {
+		name = "ACTIONNAME3775A" #Let us be a part of Great Burgundy (End Game)
+		command = { type = trigger which = 3776 } #BUR: The Succession in Brabant
+	}
+	action_b = {
+		name = "ACTIONNAME3775B" #Offer the ducal crown to the Bastard of Burgundy
+		#command = { type = flagname which = "Valois" } -- re-enable when full GFX set available
+		command = { type = trigger which = 3778 } #BUR: The Succession in Brabant
+		command = { type = stability value = -3 }
+		command = { type = revolt which = -1 }
+		command = { type = add_countryculture which = french }
+		command = { type = province_revoltrisk which = 379 value = -8 } #Artois
+	}
+}
+
+#(1559-1648) Creation of the Dutch Republic
+event = {
+	id = 28003
+	trigger = {
+		owned = { province = 337 data = -1 }
+		owned = { province = 338 data = -1 }
+		owned = { province = 339 data = -1 }
+		control = { province = 339 data = -1 }
+		owned = { province = 340 data = -1 }
+		NOT = {	exists = HOL }
+	}
+	random = no
+	country = HAU
+	name = "EVENTNAME3900" #Creation of the Dutch Republic
+	desc = "EVENTHIST28003"
+	#-#The monopoly on positions of authority by those born in Brabant, many of whom abused their positions for personal profit, has become a source of resentment in the remainder of the low countries. Demands for power to be devolved to the cities were presented by the burghers of Amsterdam, Haarlem and Delft. Most of the remaining cities outside Brabant and some of the rural nobility soon signed up to this League of Holland. We have two courses of action to choose between. Firstly, we could replace some of our officials with wavering individuals from within the League, thus dividing the League, removing one of their key grievances and cleansing our bureaucracy of graft. Alternatively, we might have to accede to the League's demand to share power.
+
+	date = { day = 1 month = january year = 1559 }
+	offset = 3600
+	deathdate = { day = 1 month = january year = 1648 }
+
+	action_a = {
+		name = "ACTIONNAME28002A" #Become Holland
+		command = { type = inflation value = 10 }
+		command = { type = stability value = -1 }
+		command = { type = flagname which = "" }
+		command = { type = country which = HOL }
+		command = { type = flagname which = "Princevlag" }
+		command = { type = setflag which = [Princevlag] }
+		command = { type = capital which = 339 } #Holland
+		command = { type = sleepevent which = 3900 } #HOL: Creation of the Dutch Republic
+		command = { type = domestic which = CENTRALIZATION value = -5 }
+		command = { type = domestic which = ARISTOCRACY value = -3 }
+		command = { type = domestic which = SERFDOM value = -2 }
+		command = { type = domestic which = MERCANTILISM value = -2 }
+		command = { type = domestic which = INNOVATIVE value = 2 }
+		command = { type = domestic which = QUALITY value = -3 }
+		command = { type = addcore which = 337 } #Friesen
+		command = { type = addcore which = 338 } #Geldre
+		command = { type = addcore which = 339 } #Holland
+		command = { type = addcore which = 340 } #Zeeland
+		command = { type = addcore which = 378 } #Brabant
+		command = { type = addcore which = 380 } #Flandern
+	}
+	action_b = {
+		name = "ACTIONNAME28003B" #Remain as Brabant
+		command = { type = vp value = 200 }
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 48 value = 8 }
+		command = { type = domestic which = CENTRALIZATION value = 3 }
+		command = { type = domestic which = ARISTOCRACY value = 1 }
+		command = { type = domestic which = SERFDOM value = 1 }
+		command = { type = domestic which = INNOVATIVE value = -1 }
+		command = { type = gainbuilding which = -1 value = bailiff }
+		command = { type = gainbuilding which = -1 value = bailiff }
+		command = { type = gainbuilding which = -1 value = bailiff }
+		command = { type = gainbuilding which = -1 value = bailiff }
+		command = { type = gainbuilding which = -1 value = courthouse }
+		command = { type = gainbuilding which = -1 value = courthouse }
+	}
+}
+
+#(1559-1648) The Dutch Republic
+event = {
+	id = 3812 #triggered by HOL_3900
+	random = no
+	country = HAU
+	name = "EVENTNAME3806" #The Dutch Republic
+	desc = "EVENTHIST3806"
+	#-#A united Dutch Republic has broken free from the oppressors. This is a chance to unite the Netherlands at last... Shall we join our brothers and sisters in the republic?
+
+	action_a = {
+		name = "ACTIONNAME3806A" #Join the new Republic (End Game)
+		command = { type = trigger which = 3813 } #HOL: Brabant joins the Republic
+	}
+	action_b = {
+		name = "ACTIONNAME3806B" #Walk our own path
+		command = { type = relation which = HOL value = -100 }
+		command = { type = stability value = -2 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 182004

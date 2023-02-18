@@ -1,0 +1,56 @@
+#Kazan (KAZ)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1427-1429 or 1438-1440 or 1462-1465 or 1466) Independence of Kazan
+#by Garbon
+event = {
+	id = 40059 #triggered by STE_287022 A or STE_287023 A or STE_287025 A or STE_3689 A
+	random = no
+	country = KAZ
+	name = "EVENTNAME40059" #Independence of Kazan
+	desc = "EVENTHIST40059"
+	#-#Fearing revolts and assassination, Ulugh Muhammad left Sarai and settled in Kazan, founding an independent Khanate of Kazan.
+
+	action_a = {
+		name = "ACTIONNAME40059A" #Success at last!
+		command = { type = wakemonarch which = 067500 } #Ulugh Muhammad
+		command = { type = wakeleader which = 067801 } #Ulugh Muhammad (KAZ)
+		command = { type = relation which = STE value = -400 }
+		command = { type = CAV which = -2 value = 10000 }
+		command = { type = relation which = MOS value = -50 }
+		command = { type = relation which = RYA value = -50 }
+		command = { type = breakvassal which = STE }
+		command = { type = breakvassal which = CRI }
+		#command = { type = AI which = "kazan.ai" }
+	}
+}
+
+#(1435-1445) Death of Ulugh Muhammed
+#by Garbon
+event = {
+	id = 40061
+	trigger = {
+		event = 40058 #STE: Ulugh Muhammad flees
+	}
+	random = no
+	country = KAZ
+	name = "EVENTNAME40061" #Death of Ulugh Muhammed
+	desc = "EVENTHIST40061"
+	#-#Ulugh Muhammad has been murdered! With his death, the way is open for improved relations with the Golden Horde.
+
+	date = { day = 1 month = january year = 1435 }
+	offset = 60
+	deathdate = { day = 1 month = january year = 1445 }
+
+	action_a = {
+		name = "ACTIONNAME40061A" #That's inevitability for you
+		command = { type = sleepmonarch which = 067500 } #Ulugh Muhammad
+		command = { type = sleepleader which = 067801 } #Ulugh Muhammad (KAZ)
+		command = { type = relation which = STE value = 100 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 198000

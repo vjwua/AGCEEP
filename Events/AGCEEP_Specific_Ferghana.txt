@@ -1,0 +1,75 @@
+#Ferghana (FRG)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1469-1504) Princes of Ferghana
+event = {
+	id = 243001 #triggered by TIM_296612
+	random = no
+	country = FRG
+	name = "EVENTNAME243001" #Princes of Ferghana
+	desc = "EVENTHIST243001"
+	#-#Upon the death of Abû Sa'id, the Empire literally fell to pieces. Husain Baiqara, great-grandson of Timur's son, Umar Shaikh, succeeded in occupying Eastern Persia and Khwarizm. The rest of Sa'id's Kingdom was divided between his four sons. The eldest, Ahmad, was established in Samarkand and Bukhara. His second son, Sultan Mahmud was given Badaskhan, Khultan, Tirmiz, Qunduz, and Hisar. Ulugh Beg, his third, was given Kabul and Ghazni with the fourth, Umar Shaikh as ruler of Ferghana. The glory days of the Timurid Empire were at an end.
+
+	action_a = {
+		name = "ACTIONNAME243001A" #We shall be unstoppable!
+		command = { type = CAV which = -1 value = 5000 }
+		command = { type = CAV which = -1 value = 5000 }
+		command = { type = relation which = TIM value = -300 }
+		command = { type = relation which = KHO value = -300 }
+		command = { type = relation which = KAB value = -100 }
+		command = { type = relation which = BLK value = -200 }
+		command = { type = relation which = FAR value = -400 }
+		command = { type = relation which = UZB value = -100 }
+		command = { type = relation which = AKK value = -400 }
+		command = { type = relation which = QAR value = -400 }
+		command = { type = breakvassal which = TIM }
+		command = { type = remove_countryculture which = uighur } #check for duplicates
+		command = { type = remove_countryculture which = turkoman } #check for duplicates
+		command = { type = add_countryculture which = uighur }
+		command = { type = add_countryculture which = turkoman }
+	}
+}
+
+#(1490-1530) Kingdom of Kabul
+event = {
+	id = 243000
+	trigger = {
+		exists = UZB
+		war = { country = UZB country = FRG }
+		owned = { province = 1527 data = -1 } #Kabul
+		control = { province = 1527 data = -1 } #Kabul
+		NOT = { exists = KAB }
+	}
+	random = no
+	country = FRG
+	name = "EVENTNAME243000" #Kingdom of Kabul
+	desc = "EVENTHIST243000"
+	#-#Despite starting of as a ruler in Ferghana, his uncles and the Uzbeks eventually forced Babur to retreat south to the Kingdom of Kabul.
+
+	date = { day = 1 month = november year = 1490 }
+	offset = 1
+	deathdate = { day = 1 month = november year = 1530 }
+
+	action_a = {
+		name = "ACTIONNAME243000A" #Our destiny lies in the south
+		command = { type = capital which = 1527 } #Kabul
+		command = { type = flagname which = "" }
+		command = { type = country which = KAB }
+		command = { type = stability value = -2 }
+		command = { type = vp value = -50 }
+		command = { type = addcore which = 1524 } #Quetta
+		command = { type = addcore which = 1525 } #Qandahar
+		command = { type = addcore which = 1527 } #Kabul
+		command = { type = cedeprovince which = UZB value = 1594 } #Uzbek
+		command = { type = cedeprovince which = UZB value = 1532 } #Bukhara
+		command = { type = cedeprovince which = UZB value = 1592 } #Samarkand
+		command = { type = cedeprovince which = UZB value = 1591 } #Surkhandarya
+		command = { type = cedeprovince which = UZB value = 1598 } #Tadjikistan
+		command = { type = cedeprovince which = UZB value = 1599 } #Kirgisistan
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 243002

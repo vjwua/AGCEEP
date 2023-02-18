@@ -1,0 +1,54 @@
+#Angoche (ANG)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1572-1579) Destruction of the Sete traders
+#by sturmvogel
+event = {
+	id = 441000
+	trigger = {
+		OR = {
+			owned = { province = 1511 data = POR } #Nembire
+			control = { province = 1511 data = POR } #Nembire
+			event = 260113 #POR: Barreto-Homem Expedition
+		}
+	}
+	random = no
+	country = ANG
+	name = "EVENTNAME441000" #Destruction of the Sete traders
+	desc = "EVENTHIST441000"
+	#-#The Portuguese massacre of the Muslim trading community at Sete destroyed Angoche's access to the gold trade with Monomotapa. From now on it would depend on ivory from areas not controlled by the Portuguese.
+
+	date = { day = 1 month = july year = 1572 }
+	offset = 100
+	deathdate = { day = 1 month = january year = 1579 }
+
+	action_a = {
+		name = "DAMN"
+		command = { type = merchants value = -2 }
+		command = { type = trade value = -500 }
+	}
+}
+
+#(1511-1560) Angoche burnt by the Portuguese
+#by sturmvogel
+event = {
+	id = 441001 #triggered by POR_260115 A
+	random = no
+	country = ANG
+	name = "EVENTNAME441001" #Angoche burnt by the Portuguese
+	desc = "EVENTHIST441001"
+	#-#Irritated by the resistance of Angoche's merchants to the Portuguese efforts to establish a monopoly over trade in Southeastern Africa, the Governor-General of India, Afonso de Albuquerque, ordered the town razed to the ground as an object lesson. António de Saldanha, Captain of Sofala sailed on 1 July 1511 with some 60 men and burnt Angoche despite 1200 defenders.
+
+	action_a = {
+		name = "DAMN"
+		command = { type = treasury value = -50 }
+		command = { type = merchants value = -2 }
+		command = { type = trade value = -500 }
+		command = { type = relation which = POR value = -100 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 441002

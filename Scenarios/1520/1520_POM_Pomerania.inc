@@ -4,7 +4,7 @@
 
 country = {
 	tag = POM
-	ai = "SmallTrade1.ai"
+	ai = "SmallTrade1.txt"
 	flagname = "Stettin"
 	colonialattempts = 0
 	colonialnation = no

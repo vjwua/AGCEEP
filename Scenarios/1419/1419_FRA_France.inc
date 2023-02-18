@@ -4,7 +4,7 @@
 
 country = {
 	tag = FRA
-	ai = "FRA_1419_HYW.ai"
+	ai = "FRA_1419_HYW.txt"
 	colonialattempts = 0
 	colonialnation = yes
 	major = no

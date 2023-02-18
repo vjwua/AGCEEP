@@ -4,7 +4,7 @@
 
 country = {
 	tag = KNI
-	ai = "SmallCRC0.ai"
+	ai = "SmallCRC0.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -24,8 +24,8 @@ country = {
 		relation = { tag = MOR value = -200 refusetrade = no }
 		relation = { tag = ALD value = -200 refusetrade = no }
 		relation = { tag = TUN value = -200 refusetrade = no }
-		relation = { tag = FEZ value = -200 refusetrade = no }
-		relation = { tag = XHO value = -200 refusetrade = no }
+		relation = { tag = SUS value = -200 refusetrade = no }
+		relation = { tag = TLE value = -200 refusetrade = no }
 	}
 	knownprovinces = {
 		1614 #Pope

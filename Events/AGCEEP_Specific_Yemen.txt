@@ -1,0 +1,174 @@
+#Yemen (YEM)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1507) The Imamate of Sharaf al-Din
+event = {
+	id = 321000
+	random = no
+	country = YEM
+	name = "EVENTNAME321000" #The Imamate of Sharaf al-Din
+	desc = "EVENTHIST321000"
+	#-#The Zayidi State in the Yemen had been in state of disorder bordering on anarchy from the mid-thirteenth century until 1507, when Imam Sharaf al-Din was elected. During his long reign, Sharaf al-Din would subdue rebellious elements within the polity while saving his state from repeated invasions from both the north and the south.
+
+	date = { day = 1 month = january year = 1507 }
+	offset = 20
+	deathdate = { day = 29 month = january year = 1507 }
+
+	action_a = {
+		name = "ACTIONNAME321000A" #I forsee Better Days Ahead
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = stability value = 3 }
+		command = { type = INF which = -2 value = 6000 }
+	}
+}
+
+#(15731572) The Defeat of Mutahhar
+event = {
+	id = 321001
+	trigger = {
+		OR = {
+			owned = { province = 495 data = TUR } #Jordan
+			owned = { province = 747 data = TUR } #Nile
+		}
+		NOT = {
+			vassal = { country = YEM country = TUR }
+		}
+		monarch = 0149502 #Mutahhar
+	}
+	random = no
+	country = YEM
+	name = "EVENTNAME321001" #The Defeat of Mutahhar
+	desc = "EVENTHIST321001"
+	#-#The Ottoman Campaign in the Yemen of 1571-72 resulted in the defeat and subsequent death, of illness, in November 1572 of the Imam Mutahhar and subjection of the Zayidi State. The rest of the Saadi line of Imams will be prisoners in Constantinople.
+
+	date = { day = 1 month = november year = 1572 }
+	offset = 15
+	deathdate = { day = 29 month = november year = 1572 }
+
+	action_a = {
+		name = "ACTIONNAME321001A" #We Cannot Escape the Turkish Umbrella
+		command = { type = sleepmonarch which = 0149520 } #Local Imams *
+		command = { type = wakemonarch which = 0149503 } #Turkish Governors
+		command = { type = trigger which = 301102 } #TUR: Expedition to the Yemen
+	}
+	action_b = {
+		name = "ACTIONNAME321001B" #We Will Continue the Fight!
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = desertion which = -1 value = 5000 }
+		command = { type = stability value = -6 }
+		command = { type = relation which = TUR value = -200 }
+	}
+}
+
+#(1598-1619) The Anti-Turkish Resistance
+event = {
+	id = 321002
+	trigger = {
+		vassal = { country = TUR country = YEM }
+	}
+	random = no
+	country = YEM
+	name = "EVENTNAME321002" #The Anti-Turkish Resistance
+	desc = "EVENTHIST321002"
+	#-#After nearly three decades of Turkish rule, Mansur al-Qasim led a resistance movement to regain Yemeni independence. Though Mansur would not live to see it, the Ottomans would withdraw from the Yemen by 1635.
+
+	date = { day = 1 month = january year = 1598 }
+	offset = 60
+	deathdate = { day = 29 month = december year = 1619 }
+
+	action_a = {
+		name = "ACTIONNAME321002A" #We Will Shake Off this Tyranny
+		command = { type = breakvassal which = TUR }
+		command = { type = INF which = -2 value = 8000 }
+	}
+}
+
+#(1635) Height of Qasimi Power
+event = {
+	id = 321003
+	trigger = {
+		OR = {
+			NOT = {
+				vassal = { country = TUR country = YEM }
+			}
+			AND = {
+				exists = ADE
+				NOT = {
+					vassal = { country = TUR country = ADE }
+				}
+			}
+		}
+	}
+	random = no
+	country = YEM
+	name = "EVENTNAME321003" #Height of Qasimi Power
+	desc = "EVENTHIST321003"
+	#-#Having repulsed the Turks, the Qasimi line of Imams came to exercise sovereignty over the bulk of modern day Yemen, extending their influence as far away as Dofhar.
+
+	date = { day = 1 month = january year = 1635 }
+	offset = 30
+	deathdate = { day = 29 month = february year = 1635 }
+
+	action_a = {
+		name = "ACTIONNAME321003A" #We Have Come Into our Own
+		command = { type = addcore which = 500 } #Aden
+		command = { type = INF which = -2 value = 5000 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = trigger which = 301103 } #TUR: Yemeni Independence
+	}
+}
+#(1635) Yemeni Independence
+event = {
+	id = 321005 #triggered by TUR_301103
+	trigger = {
+		vassal = { country = TUR country = ADE }
+	}
+	random = no
+	country = YEM
+	name = "EVENTNAME301103" #Yemeni Independence
+	desc = "EVENTHIST301103"
+	#-#Recognizing the fruitlessness of their campaign in the Yemen, the Turks withdrew, leaving the Yemen to the rule of Qasimi line of Imams.
+
+	action_a = {
+		name = "FREEDOM"
+		command = { type = breakvassal which = TUR }
+		command = { type = stability value = 3 }
+	}
+}
+
+#(1728) Breakaway of Lahej
+event = {
+	id = 321004
+	trigger = {
+		owned = { province = 500 data = -1 } #Aden
+	}
+	random = no
+	country = YEM
+	name = "EVENTNAME321004" #Breakaway of Lahej
+	desc = "EVENTHIST321004"
+	#-#Symptomatic of a decline in Qasimi fortunes, southern Yemen regainsed its independence in 1728 under the Sultans of Lahej.
+
+	date = { day = 1 month = january year = 1728 }
+	offset = 120
+	deathdate = { day = 29 month = december year = 1728 }
+
+	action_a = {
+		name = "ACTIONNAME321004A" #We Are too Weak to Stop Them
+		command = { type = independence which = ADE }
+		command = { type = relation which = ADE value = -100 }
+		command = { type = removecore which = 500 } #Aden
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = trigger which = 101007 } #ADE: Breakaway of Lahej
+	}
+	action_b = {
+		name = "ACTIONNAME321004B" #They Shall Not Escape so Easily
+		command = { type = revolt which = 500 } #Aden
+		command = { type = revolt which = 500 } #Aden
+		command = { type = revoltrisk which = 60 value = 12 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 321006

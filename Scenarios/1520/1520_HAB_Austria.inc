@@ -9,7 +9,7 @@ country = {
 			[Imperialflag] = yes
 		}
 	}
-	ai = "HAB_1519_Imperial.ai"
+	ai = "HAB_1519_Imperial.txt"
 	flagname = "Imperial"
 	policy = {
 		aristocracy = 7

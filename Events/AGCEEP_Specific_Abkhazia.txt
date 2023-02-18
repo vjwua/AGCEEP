@@ -1,0 +1,54 @@
+#Abkhazia (ABK)
+
+#-----------------------------------------------------------------------------------------------
+
+#(1440-1450) Abkhazia realigns itself to Imereti, if it was vassalized to Kakheti
+event = {
+	id = 400000
+	trigger = {
+		exists = IMR
+		event = 400001
+	}
+	random = no
+	country = ABK
+	name = "EVENTNAME400000" #Abkhazia hails Bagrat VI
+	desc = "EVENTHIST400000"
+	#-#Once Georgia fell apart, Abkhazia, as a nominal part of the Imereti region, came under control of the new Imeretine Kingdom, just like many other tribal princedoms in west Georgia.
+
+	date = { day = 1 month = january year = 1440 }
+	offset = 12
+	deathdate = { day = 1 month = january year = 1550 }
+
+	action_a = { name = "OK"
+		command = { type = relation which = KAK value = -25 }
+		command = { type = relation which = IMR value = 50 }
+		command = { type = trigger which = 399001 } # Imereti vassalizes them #IMR: Abkhazia pledges allegiance
+	}
+}
+
+#(1440-1450) Breaks vassalization with Kakheti
+event = {
+	id = 400001
+	trigger = {
+		vassal = { country = KAK country = ABK }
+		NOT = { neighbour = KAK }
+	}
+	random = no
+	country = ABK
+	name = "EVENTNAME400001" #Abkhazia disobeys
+	desc = "EVENTHIST400001"
+	#-#When Georgia became divided, the remaining Kings of Kakheti were unable to impose their rule over Abkhazia
+
+	date = { day = 1 month = january year = 1440 }
+	offset = 12
+	deathdate = { day = 1 month = january year = 1550 }
+
+		action_a = { name = "ACTIONNAME400001A" #Let us be free, then
+		command = { type = stability value = 1 }
+		command = { type = breakvassal which = KAK }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 400002

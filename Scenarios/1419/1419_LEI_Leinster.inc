@@ -4,7 +4,7 @@
 
 country = {
 	tag = LEI	
-	ai = "SmallTrade0.ai"
+	ai = "SmallTrade0.txt"
 	colonialattempts = 0
 	colonialnation = yes
 	major = no
@@ -15,7 +15,7 @@ country = {
 	inflation = 0
 	merchants = 1.166667
 	religion = { type = catholic }
-	culture = { type = gaelic }
+	culture = { type = celtic }
 	diplomacy = {
 		relation = { tag = ENG value = 25 refusetrade = no }
 	}

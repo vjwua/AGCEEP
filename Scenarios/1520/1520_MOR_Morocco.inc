@@ -4,7 +4,7 @@
 
 country = {
 	tag = MOR
-	ai = "MOR_1472_Wattasid.ai"
+	ai = "MOR_1472_Wattasid.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -16,14 +16,14 @@ country = {
 	merchants = 0.083333
 	religion = { type = sunni }
 	culture = {
-		type = delaware
+		type = maghrebi
 	}
 	diplomacy = {
 		relation = { tag = KNI value = -200 refusetrade = no }
 		relation = { tag = POR value = -150 refusetrade = no }
 		relation = { tag = SPA value = -150 refusetrade = no }
 		relation = { tag = ALD value = 50 refusetrade = no }
-		relation = { tag = FEZ value = -100 refusetrade = no }
+		relation = { tag = SUS value = -100 refusetrade = no }
 		relation = { tag = SON value = -100 refusetrade = no }
 	}
 	knownprovinces = {

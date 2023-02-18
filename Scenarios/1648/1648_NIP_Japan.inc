@@ -4,7 +4,7 @@
 
 country = {
 	tag = NIP
-	ai = "NIP_1603_EdoPeriod.ai"
+	ai = "NIP_1603_EdoPeriod.txt"
 	policy = {
 		aristocracy = 5
 		centralization = 6
@@ -24,7 +24,7 @@ country = {
 	treasury = 300
 	inflation = 0
 	merchants = 0.983333
-	religion = { type = confucianism }
+	religion = { type = confucian }
 	culture = { type = japanese }
 	diplomacy = {
 		relation = { tag = HOL value = 150 }

@@ -1,0 +1,251 @@
+#Stettin (STT)
+
+#See AGCEEP_Alt_Germany.txt for KoG Alternative events
+
+#-----------------------------------------------------------------------------------------------
+
+#(1419-1820) Reunification of Pomerania
+event = {
+	id = 283003
+	trigger = {
+		owned = { province = 302 data = -1 } #Hinterpommern
+		NOT = { exists = POM } #Should not be necessary, but you never know...
+	}
+	random = no
+	country = STT
+	name = "EVENTNAME283003" #Reunification of Pomerania
+	desc = "EVENTHIST283003"
+	#-#Pomerania is reunified.
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 100
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME283003A" #Pomerania is one again
+		command = { type = addcore which = 302 } #Hinterpommern
+		command = { type = flagname which = "" }
+		command = { type = country which = POM }
+		command = { type = vp value = 50 }
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = flagname which = "Stettin" }
+		command = { type = setflag which = [Stettin] }
+	}
+}
+
+#(1428) Unrest in Stettin
+event = {
+	id = 283004
+	country = STT
+	random = no
+	name = "EVENTNAME283004" #Unrest in Stettin
+	desc = "EVENTHIST283004"
+	#-#Discontent with the city authorities, two members of the Stettin city council agitated the citizenry into overthrowing the council and installing a new one. Unable to tolerate this act and keen on taking advantage of it, Duke Casimir of Pomerania-Stettin seized the city and captured the troublemakers. He held a harsh tribunal, had the two ringleaders executed in public, restored the town council, ordered the city to pay damages and renounced several of its privileges. The result of this was a notable consolidation of Ducal authority in the rich hanseatic city.
+
+	date = { day = 1 month = january year = 1428 }
+	offset = 300
+	deathdate = { day = 29 month = december year = 1428 }
+
+	action_a = {
+		name = "ACTIONNAME283004A" #Punish the traitors harshly
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = provincetax which = -2 value = 1 }
+		command = { type = stability value = 1 }
+		command = { type = revolt which = -2 }
+	}
+	action_b = {
+		name = "ACTIONNAME283004B" #Be merciful
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = stability value = -1 }
+		command = { type = revoltrisk value = 3 }
+	}
+}
+
+#(1451) Death of Duke Joachim
+event = {
+	id = 283005
+	trigger = {
+		exists = BRA
+		NOT = {
+			vassal = { country = STT country = BRA }
+			war = { country = STT country = BRA }
+		}
+	}
+	random = no
+	country = STT
+	name = "EVENTNAME283005" #Death of Duke Joachim
+	desc = "EVENTHIST283005"
+	#-#Duke Joachim of Stettin died prematurely of the plague in 1451, with his son and heir Otto still a minor. His mother Elisabeth, a daughter of Margrave Johann of Brandenburg, took the regency while his uncle Friedrich II of Brandenburg became his guardian. Thus Pomerania-Stettin was effectively controlled by the Hohenzollern for a decade.
+
+	date = { day = 22 month = september year = 1451 }
+
+	action_a = {
+		name = "ACTIONNAME283005A" #Accept Friedrich of Brandenburg as guardian
+		command = { type = relation which = BRA value = 200 }
+		command = { type = stability value = 2 }
+		command = { type = trigger which = 132020 } #BRA: Regency in Pomerania-Stettin
+		command = { type = setflag which = [Regency] }
+	}
+}
+
+#(1460) Duke Otto takes control of his Duchy
+event = {
+	id = 283006
+	trigger = {
+		flag = [Regency]
+		vassal = { country = BRA country = STT }
+	}
+	random = no
+	country = STT
+	name = "EVENTNAME283006" #Duke Otto takes control of his country
+	desc = "EVENTHIST283006"
+	#-#In 1460, at the age of 15, Otto III took control of the Duchy of Pomerania-Stettin, ending the regency of his mother and Brandenburg's strong influence on his country.
+
+	date = { day = 1 month = january year = 1460 }
+	offset = 100
+	deathdate = { day = 28 month = may year = 1460 }
+
+	action_a = {
+		name = "OK"
+		command = { type = breakvassal which = BRA }
+		command = { type = stability value = 3 }
+	}
+}
+
+#(1464) Succession in Pomerania-Stettin -I-
+event = {
+	id = 283000
+	trigger = {
+		exists = POM
+		exists = BRA
+	}
+	random = no
+	country = STT
+	name = "EVENTNAME283000" #The succession in Pomerania-Stettin
+	desc = "EVENTHIST283000"
+	#-#Otto III of Pomerania-Stettin died of the plague in 1464, without an heir. Both his relatives in Pomerania-Wolgast - the Dukes Erich II and Wartislaw IX - and his feudal overlord, the Elector of Brandenburg, claimed the inheritance. After several years of struggling, Erich of Pomerania-Wolgast secured the inheritance against Brandenburg's claims, however had to accept its feudal suzerainty. After multiple divisions, most of Pomerania was then united again under Erich, and his son Bogislaw obtained the rest, becoming Duke of all of Pomerania.
+
+	date = { day = 11 month = september year = 1464 }
+
+	action_a = {
+		name = "ACTIONNAME283000A" #Pomerania-Wolgast (End Game)
+		command = { type = trigger which = 259000 } #POM: Inheritance of Pomerania-Stettin
+	}
+	action_b = {
+		name = "ACTIONNAME283000B" #Brandenburg (End Game)
+		command = { type = trigger which = 132018 } #BRA: Inheritance of Stettin
+	}
+	action_c = {
+		name = "FREEDOM"
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = stability value = -4 }
+		command = { type = revoltrisk which = 120 value = 5 }
+	}
+}
+#(1464) The succession in Pomerania-Stettin -II-
+event = {
+	id = 283001
+	trigger = {
+		NOT = { exists = POM }
+	}
+	random = no
+	country = STT
+	name = "EVENTNAME283000" #The succession in Pomerania-Stettin
+	desc = "EVENTHIST283000"
+	#-#Otto III of Pomerania-Stettin died of the plague in 1464, without an heir. Both his relatives in Pomerania-Wolgast - the Dukes Erich II and Wartislaw IX - and his feudal overlord, the Elector of Brandenburg, claimed the inheritance. After several years of struggling, Erich of Pomerania-Wolgast secured the inheritance against Brandenburg's claims, however had to accept its feudal suzerainty. After multiple divisions, most of Pomerania was then united again under Erich, and his son Bogislaw obtained the rest, becoming Duke of all of Pomerania.
+
+	date = { day = 11 month = september year = 1464 }
+
+	action_a = {
+		name = "ACTIONNAME283001A" #Pomerania-Wolgast
+		command = { type = addcore which = 302 } #Hinterpommern
+		command = { type = relation which = BRA value = -50 }
+		command = { type = flagname which = "" }
+		command = { type = country which = POM }
+		command = { type = flagname which = "Stettin" }
+		command = { type = setflag which = [Stettin] }
+	}
+}
+#(1464) The succession in Pomerania-Stettin -III-
+event = {
+	id = 283002
+	trigger = {
+		exists = POM
+		NOT = { exists = BRA }
+	}
+	random = no
+	country = STT
+	name = "EVENTNAME283000" #The succession in Pomerania-Stettin
+	desc = "EVENTHIST283002"
+	#-#Otto III of Pomerania-Stettin died of the plague in 1464, without an heir. His relatives in Pomerania-Wolgast - the Dukes Erich II and Wartislaw IX - managed to secure the inheritance. After multiple divisions, most of Pomerania was then united again under Erich, and his son Bogislaw obtained the rest, becoming Duke of all of Pomerania.
+
+	date = { day = 11 month = september year = 1464 }
+
+	action_a = {
+		name = "ACTIONNAME283000A" #Pomerania-Wolgast (End Game)
+		command = { type = trigger which = 259001 } #POM: Inheritance of Pomerania-Stettin
+	}
+	action_b = {
+		name = "FREEDOM"
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = stability value = -4 }
+		command = { type = revoltrisk which = 120 value = 5 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Ahistorical: if Stettin survived - Principality of Rügen
+#-----------------------------------------------------------------------------------------------
+
+#(1478) The succession in Rügen -I-
+event = {
+	id = 283009
+	trigger = {
+		NOT = { exists = POM }
+	}
+	random = no
+	country = STT
+	name = "EVENTNAME283009" #The succession in Rügen
+	desc = "EVENTHIST283009"
+	#-#Wartislaw X died in 1478 without an heir. Bogislaw claimed the inheritance.
+
+	date = { day = 16 month = december year = 1478 }
+
+	action_a = {
+		name = "ACTIONNAME283001A" #Pomerania-Wolgast
+		command = { type = addcore which = 302 } #Hinterpommern
+		command = { type = flagname which = "" }
+		command = { type = country which = POM }
+		command = { type = flagname which = "Stettin" }
+		command = { type = setflag which = [Stettin] }
+	}
+}
+#(1478) The succession in Rügen -II-
+event = {
+	id = 283010
+	trigger = {
+		exists = POM
+	}
+	random = no
+	country = STT
+	name = "EVENTNAME283009" #The succession in Rügen
+	desc = "EVENTHIST283010"
+	#-#Wartislaw X died in 1478 without an heir. Bogislaw X of Pomerania-Wolgast claimed the inheritance and became Duke of all of Pomerania.
+
+	date = { day = 16 month = december year = 1478 }
+
+	action_a = {
+		name = "ACTIONNAME283000A" #Pomerania-Wolgast (End Game)
+		command = { type = trigger which = 259022 } #POM: Inheritance of Rügen
+	}
+	action_b = {
+		name = "FREEDOM"
+		command = { type = domestic which = centralization value = -2 }
+		command = { type = stability value = -4 }
+		command = { type = revoltrisk which = 120 value = 5 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 283011

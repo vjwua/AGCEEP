@@ -4,7 +4,7 @@
 
 country = {
 	tag = BAY
-	ai = "SmallCRC0.ai"
+	ai = "SmallCRC0.txt"
 	colonialattempts = 0
 	colonialnation = no
 	major = no
@@ -20,7 +20,7 @@ country = {
 		relation = { tag = HAB value = 100 }
 		relation = { tag = KOL value = 150 }
 		relation = { tag = FRA value = 100 }
-		relation = { tag = MUN value = 110 }
+		relation = { tag = BRG value = 110 }
 		relation = { tag = PFA value = -150 }
 		relation = { tag = SWE value = -150 }
 	}
