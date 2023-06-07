@@ -15,7 +15,7 @@ country = {
 	inflation = 0
 	merchants = 0
 	religion = { type = sunni }
-	culture = { type = nubian }
+	culture = { type = nubian type = arabic }
 	diplomacy = { }
 	knownprovinces = {
 		357 497 498 499 500 743 744 745 746 747 748 749 750 751 752 753 754 755 757 758 759 

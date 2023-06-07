@@ -1295,9 +1295,9 @@ history = {
 	252013 #MOD: Duke Alfonso's Artillery
 	252014 #MOD: Orlando Furioso
 	252017 #MOD: The Economic Crisis
-	254018 #PER: Shiite Immigrants
+	254018 #PER: Shi'a Immigrants
 	254022 #PER: Attack on Hormouz
-	254010 #PER: Khiva and Shiite Governors
+	254010 #PER: Khiva and Shi'a Governors
 	257008 #SIE: The Economic Crisis
 	258006 #POL: Kazimierz Siemionowicz
 	258007 #POL: Johannes Hevelius
@@ -1668,16 +1668,16 @@ history = {
 	338236 #The plague in Parma - 402 #Emilia
 	338237 #The plague in Florence - 401 #Firenze
 	338238 #The plague in Siena - 400 #Siena
-	338246 #Shiite Emigration - 472 #Armenia
-	338247 #Shiite Emigration - 471 #Daghestan
-	338248 #Shiite Emigration - 533 #Isfahan
-	338249 #Shiite Emigration - 489 #Iraq
-	338250 #Shiite Emigration - 485 #Aleppo
-	338251 #Shiite Emigration - 490 #Syria
-	338252 #Shiite Emigration - 508 #Basrah
-	338253 #Shiite Emigration - 475 #Trabzon
-	338254 #Shiite Emigration - 483 #Adana
-	338255 #Shiite Emigration - 474 #Sivas
+	338246 #Shi'a Emigration - 472 #Armenia
+	338247 #Shi'a Emigration - 471 #Daghestan
+	338248 #Shi'a Emigration - 533 #Isfahan
+	338249 #Shi'a Emigration - 489 #Iraq
+	338250 #Shi'a Emigration - 485 #Aleppo
+	338251 #Shi'a Emigration - 490 #Syria
+	338252 #Shi'a Emigration - 508 #Basrah
+	338253 #Shi'a Emigration - 475 #Trabzon
+	338254 #Shi'a Emigration - 483 #Adana
+	338255 #Shi'a Emigration - 474 #Sivas
 	338260 #Conversion of the Inca - 169 #Cuzco
 	338261 #Idolatry in Perú - 169 #Cuzco
 	338266 #The European Rule - 29 #Tlaxcala
@@ -1707,6 +1707,8 @@ history = {
 	338490 #Frisian province change - 337 #Friesen
 	338495 #Kalmyk Migration - 467 #Kalmuk
 	338496 #Swiss expansion - 405 #Savoie
+	338499 #Sikhism in Panjab
+	338500 #Sikhism in Chandigahr
 	338900 #Mongolia Depopulation Events
 	338901
 	338902

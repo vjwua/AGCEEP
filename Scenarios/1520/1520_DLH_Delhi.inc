@@ -24,7 +24,7 @@ country = {
 	treasury = 100
 	inflation = 0
 	merchants = 0.083333
-	religion = { type = sunni }
+	religion = { type = eastern_sunni }
 	culture = { type = afghani }
 	diplomacy = {
 		relation = { tag = MOG value = -100 refusetrade = no }

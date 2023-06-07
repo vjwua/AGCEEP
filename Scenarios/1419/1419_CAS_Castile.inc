@@ -52,7 +52,10 @@ country = {
 		431 432 433 435 436 438 439 440 443 817
 	}
 	nationalprovinces = {
-		431 432 433 435 436 438 439 440 443 444 445
+		431 432 433 435 436 438 439 440 443
+	}
+	claimedprovinces = {
+		444 445
 	}
 	city = {
 		fortress = { level = 1 }
@@ -78,8 +81,6 @@ country = {
 		fortress = { level = 1 }
 		population = 18000
 		location = 435
-		capital = yes
-		bailiff = yes
 	}
 	city = {
 		fortress = { level = 1 }
@@ -90,6 +91,8 @@ country = {
 		fortress = { level = 1 }
 		population = 44000
 		location = 439
+		capital = yes
+		bailiff = yes
 	}
 	city = {
 		fortress = { level = 1 }
@@ -108,7 +111,7 @@ country = {
 	landunit = {
 		id = { type = 9423 id = 508 }
 		name = "Armada Real"
-		location = 435
+		location = 439
 		infantry = 30000
 		cavalry = 5000
 	}

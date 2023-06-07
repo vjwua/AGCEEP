@@ -1,0 +1,2798 @@
+#Fantasy Granada (GRA) - Fantasy
+
+#by Jinnai and Sute]{h
+#modified and compiled by YodaMaster with suggestions by Fodoron and crash63
+#further modified by mandead and ConjurerDragon for AGCEEP 1.60
+#please note that this scenario is considered WIP and will require further testing
+
+#Events range: 3000000-3000999
+
+#-----------------------------------------------------------------------------------------------
+
+#(1420-1460) Nasrid Domination
+event = {
+	id = 3000001
+	trigger = {
+		NOT = { countrysize = 3 }
+		NOT = { stability = 2 }
+		isvassal = no
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME3000001" #Nasrid Domination
+	desc = "EVENTHIST3000001"
+	#-#During the rule of the Nasrid emirs, Al-Andalus was in a near-constant state of chaos. The only cities under Muslim control were Granada, Malaga and Almeria - the last bastion of the Moors in Iberia. With a tattered army, a continuously bickering nobility, and the increasing power of their northern Christian neighbors, the future of Granada was bleak. By now united against the lingering Muslim threat, the Christians demanded the complete surrender of Granada. The small Emirate tried to buy time from the Christians and unite the remaining Moorish nobility, but it was a costly and ultimately futile ambition.
+
+	date = { day = 1 month = january year = 1420 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1460 }
+
+	action_a = {
+		name = "ACTIONNAME3000001A" #Buy some time, for I yearn for my maidens
+		command = { type = stability value = -1 }
+		command = { type = treasury value = -100 }
+		command = { type = domestic which = offensive value = -1 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = DIP which = 2 value = 24 }
+		command = { type = revolt which = -2 } #Citizens angry at the Emirs apathy
+		command = { type = relation which = CAS value = 50 }
+		command = { type = relation which = POR value = 50 }
+		command = { type = relation which = ARG value = 50 }
+		command = { type = relation which = NAV value = 50 }
+		command = { type = vp value = -5 }
+	}
+	action_b = {
+		name = "ACTIONNAME3000001B" #Buy some time and reconcile with the nobles
+		command = { type = stability value = -3 }
+		command = { type = treasury value = -150 }
+		command = { type = domestic which = offensive value = -1 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = DIP which = 1 value = 12 }
+		command = { type = ADM which = 1 value = 12 }
+		command = { type = revoltrisk value = 1 }
+		command = { type = revolt which = -2 } #Citizens angry at the Emirs apathy
+		command = { type = relation which = CAS value = 25 }
+		command = { type = relation which = POR value = 25 }
+		command = { type = relation which = ARG value = 25 }
+		command = { type = relation which = NAV value = 25 }
+		command = { type = vp value = -5 }
+	}
+	action_c = {
+		name = "ACTIONNAME3000001C" #Reconcile with the nobles, but the Christians won't get one dirham!
+		command = { type = stability value = -2 }
+		command = { type = treasury value = -50 }
+		command = { type = domestic which = aristocracy value = 2 }
+		command = { type = domestic which = serfdom value = 1 }
+		command = { type = ADM which = 2 value = 24 }
+	}
+}
+
+#(1425-1460) Military Reforms
+event = {
+	id = 3000002
+	trigger = {
+		isvassal = no
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME3000002" #Military Reforms
+	desc = "EVENTHIST3000002"
+	#-#The chain of fortifications built by the Nasrid dynasty were impressive and had proved their effectiveness in repelling the Christians many times over. The Aquiddafar castles, located on Jabal Al-Haya (Mountain of Life), were able to rout the Christians in the battle of Wadi Odya in 1342. However, the Nasrid dynasty was reluctant to construct any more of these great citadels for fear of Christian backlash and the prospect of a united invasion of the Emirate.
+
+	date = { day = 1 month = june year = 1425 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1460 }
+
+	action_a = {
+		name = "ACTIONNAME3000002A" #Do nothing
+		command = { type = stability value = 1 }
+		command = { type = badboy value = -1 }
+		command = { type = domestic which = offensive value = -1 }
+		command = { type = domestic which = quality value = -2 }
+		command = { type = provincemanpower which = -2 value = -1 }
+		command = { type = manpower value = -2 }
+		command = { type = land value = -500 }
+		command = { type = DIP which = 1 value = 24 }
+		command = { type = MIL which = -1 value = 24 }
+		command = { type = relation which = ARG value = 50 }
+		command = { type = relation which = CAS value = 50 }
+		command = { type = relation which = POR value = 50 }
+		command = { type = relation which = NAV value = 50 }
+		command = { type = vp value = -10 }
+	}
+	action_b = {
+		name = "ACTIONNAME3000002B" #Reform the Army, but make no repairs
+		command = { type = domestic which = quality value = 1 }
+		command = { type = domestic which = offensive value = 2 }
+		command = { type = treasury value = -100 }
+		command = { type = land value = 300 }
+	}
+	action_c = {
+		name = "ACTIONNAME3000002C" #Rebuild the fortifications and reform the Army
+		command = { type = stability value = -2 }
+		command = { type = domestic which = quality value = 1 }
+		command = { type = domestic which = offensive value = 1 }
+		command = { type = fortress which = -2 value = 1 }
+		command = { type = provincemanpower which = -3 value = 1 }
+		command = { type = land value = 500 }
+		command = { type = treasury value = -200 }
+		command = { type = DIP which = -1 value = 24 }
+		command = { type = MIL which = 1 value = 24 }
+		command = { type = relation which = ARG value = -50 }
+		command = { type = relation which = CAS value = -50 }
+		command = { type = relation which = POR value = -50 }
+		command = { type = relation which = NAV value = -50 }
+	}
+}
+
+#(1420-1820) The Conquest of Tullaytillah and Córdoba
+event = {
+	id = 3000003
+	trigger = {
+		owned = { province = 439 data = -1 } #Toledo
+		control = { province = 439 data = -1 } #Toledo
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME3000003" #The Conquest of Tullaytillah and Córdoba
+	desc = "EVENTHIST3000003"
+	#-#In 1085 the city of Toledo was captured by a Christian army, and in 1236 Córdoba suffered the same fate. These were once great cities of Islam, but under Christian rule much of what was once great was destroyed. Córdoba was once one of the holiest cities in the world and the Umayyads' capital in Iberia. The city was the birth place of Averros and Miamonides, men of great knowledge. Córdoba once boasted more than seventy libraries, five bazaars, street lighting and over five-hundred-thousand tenets. Never again would it rise to such prominence. However, it still remained an important city to Muslims in the west, mostly of Berber descent. Many still clung to dreams of the day when they could once again bring it to light, but others looked to the future and the new seat of power in Granada.
+
+	date = { day = 1 month = june year = 1420 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME3000003A" #No, Granada is the future
+		command = { type = stability value = -1 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = vp value = 50 }
+		command = { type = relation which = TUR value = 25 }
+		command = { type = relation which = YEM value = 25 }
+		command = { type = relation which = IRA value = 25 }
+	}
+	action_b = {
+		name = "ACTIONNAME3000003B" #Yes, let us move the capital back to Córdoba
+		command = { type = stability value = -1 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = capital which = 439 }
+		command = { type = provincetax which = 439 value = 1 }
+		command = { type = provincemanpower which = 439 value = 1 }
+		command = { type = cityname which = 439 value = "Córdoba" }
+		command = { type = provincetax which = 444 value = -1 }
+		command = { type = provincemanpower which = 444 value = -1 }
+		command = { type = vp value = 50 }
+		command = { type = relation which = TUR value = -25 }
+		command = { type = relation which = YEM value = -25 }
+		command = { type = relation which = IRA value = -25 }
+		command = { type = setflag which = [Toledo_Capital] }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#"Loss of power of the Banu al-Sarraj" Sequence
+
+#(1427-1428) Loss of power of the Banu al-Sarraj -I-
+event = {
+	id = 3000062
+	trigger = {
+		countrysize = 5
+		event = 176012 #GRA: al-Andalus belongs to us
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME3000062" #Loss of power of the Banu al-Sarraj
+	desc = "EVENTHIST3000062"
+	#-#With Granada's astounding military victories, the Banu Bannigas' power grew at the expense of the increasingly isolated Banu al-Sarraj.
+
+	date = { day = 2 month = january year = 1427 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1428 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = stability value = 1 }
+		command = { type = sleepmonarch which = 054005 } #Muhammad IX the Left-handed
+		command = { type = sleepmonarch which = 054007 } #Civil war
+		command = { type = sleepmonarch which = 054008 } #Saad ben Ali
+		command = { type = sleepmonarch which = 054010 } #Saad ben Ali
+		command = { type = sleepevent which = 176003 } #GRA: The Banu al-Sarraj Triumph
+		command = { type = sleepevent which = 176004 } #GRA: More Infighting in Granada
+		command = { type = sleepevent which = 176005 } #GRA: Civil War
+		command = { type = sleepevent which = 176006 } #GRA: The Fall of the Banu al-Sarraj
+		command = { type = sleepevent which = 3000063 } #GRA: Loss of power of the Banu al-Sarraj -II-
+		command = { type = sleepevent which = 3000064 } #GRA: Loss of power of the Banu al-Sarraj -III-
+	}
+}
+
+#(1429-1431) Loss of power of the Banu al-Sarraj -II-
+event = {
+	id = 3000063
+	trigger = {
+		countrysize = 5
+		event = 176012 #GRA: al-Andalus belongs to us
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME3000062" #Loss of power of the Banu al-Sarraj
+	desc = "EVENTHIST3000062"
+	#-#With Granada's astounding military victories, the Banu Bannigas' power grew at the expense of the increasingly isolated Banu al-Sarraj.
+
+	date = { day = 2 month = january year = 1429 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1431 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = stability value = 1 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = sleepmonarch which = 054005 } #Muhammad IX the Left-handed
+		command = { type = sleepmonarch which = 054007 } #Civil war
+		command = { type = sleepmonarch which = 054008 } #Saad ben Ali
+		command = { type = sleepmonarch which = 054010 } #Saad ben Ali
+		command = { type = sleepevent which = 176004 } #GRA: More Infighting in Granada
+		command = { type = sleepevent which = 176005 } #GRA: Civil War
+		command = { type = sleepevent which = 176006 } #GRA: The Fall of the Banu al-Sarraj
+		command = { type = sleepevent which = 3000064 } #GRA: Loss of power of the Banu al-Sarraj -III-
+	}
+}
+
+#(1432-1446) Loss of power of the Banu al-Sarraj -III-
+event = {
+	id = 3000064
+	trigger = {
+		countrysize = 5
+		event = 176012 #GRA: al-Andalus belongs to us
+		NOT = {
+			monarch = 054007 #Civil war
+			event = 176005 #GRA: Civil War
+		}
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME3000062" #Loss of power of the Banu al-Sarraj
+	desc = "EVENTHIST3000062"
+	#-#With Granada's astounding military victories, the Banu Bannigas' power grew at the expense of the increasingly isolated Banu al-Sarraj.
+
+	date = { day = 2 month = january year = 1432 }
+	offset = 10
+	deathdate = { day = 29 month = december year = 1446 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = stability value = 1 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = sleepmonarch which = 054007 } #Civil war
+		command = { type = sleepmonarch which = 054008 } #Saad ben Ali
+		command = { type = sleepmonarch which = 054010 } #Saad ben Ali
+		command = { type = sleepevent which = 176005 } #GRA: Civil War
+		command = { type = sleepevent which = 176006 } #GRA: The Fall of the Banu al-Sarraj
+
+	}
+}
+
+#End of "Loss of power of the Banu al-Sarraj" Sequence
+#-----------------------------------------------------------------------------------------------
+
+#(1430-1520) Revival of Al-Andalus
+event = {
+	id = 3000004
+	trigger = {
+		stability = -2
+		owned = { province = 438 data = -1 } #Murcia
+		control = { province = 438 data = -1 } #Murcia
+		owned = { province = 440 data = -1 } #Estramadura
+		control = { province = 440 data = -1 } #Estramadura
+		owned = { province = 443 data = -1 } #Andalusia
+		control = { province = 443 data = -1 } #Andalusia
+		owned = { province = 444 data = -1 } #Granada
+		control = { province = 444 data = -1 } #Granada
+		owned = { province = 445 data = -1 } #Gibraltar
+		control = { province = 445 data = -1 } #Gibraltar
+		isvassal = no
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME3000004" #Revival of Al-Andalus
+	desc = "EVENTHIST3000004"
+	#-#Having defeated the Christians and united the remnants of Muslim Iberia in the south, Granada was successful in regaining some of the ground lost during the Iberian Christians' so-called 'Reconquista'. Having restored the southern Moorish cities to at least a somewhat stable state in the time of the Bani Kiram and the southern Taifas of the 12th century, the emirs were able to unite Muslim efforts and undertake urgently-needed reforms.
+
+	date = { day = 1 month = june year = 1430 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1520 }
+
+	action_a = {
+		name = "ACTIONNAME3000004A" #Begin Andalusian Revival!
+		command = { type = stability value = 1 }
+		command = { type = badboy value = 5 }
+		command = { type = domestic which = centralization value = 2 }
+		command = { type = provincetax which = 438 value = 1 }
+		command = { type = provincetax which = 444 value = 2 }
+		command = { type = provincetax which = 443 value = 2 }
+		command = { type = provincetax which = 445 value = 1 }
+		command = { type = provincemanpower which = -2 value = 2 }
+		command = { type = addcore_claim which = 426 } #Roussillon
+		command = { type = addcore_claim which = 427 } #Gerona
+		command = { type = addcore_claim which = 428 } #Navarra
+		command = { type = addcore_claim which = 429 } #Catalonia
+		command = { type = addcore_claim which = 430 } #Aragon
+		command = { type = addcore_claim which = 431 } #Cantabria
+		command = { type = addcore_claim which = 432 } #Asturias
+		command = { type = addcore_claim which = 433 } #Galicia
+		command = { type = addcore_claim which = 434 } #Oporto
+		command = { type = addcore_claim which = 435 } #Leon
+		command = { type = addcore_claim which = 436 } #Castilla
+		command = { type = addcore_claim which = 437 } #Valencia
+		command = { type = addcore_claim which = 441 } #Tago
+		command = { type = addcore_claim which = 442 } #Algarve
+		command = { type = addcore_claim which = 821 } #The Baleares
+		command = { type = relation which = CAS value = -50 }
+		command = { type = relation which = SPA value = -50 }
+		command = { type = relation which = ARG value = -50 }
+		command = { type = relation which = POR value = -50 }
+		command = { type = relation which = NAV value = -50 }
+		command = { type = relation which = TUR value = -50 }
+		command = { type = relation which = YEM value = -25 }
+		command = { type = relation which = IRA value = -25 }
+		command = { type = setflag which = [Resurgent_Granada] }
+		command = { type = trigger which = 3000005 } #Responses from Iberians
+		command = { type = trigger which = 3000006 }
+		command = { type = trigger which = 3000007 }
+		command = { type = trigger which = 3000008 }
+		command = { type = trigger which = 3000009 }
+	}
+}
+
+#(1460-1520) The Moors are Rising
+event = {
+	id = 3000005 #triggered by GRA_3000004
+	random = no
+	country = SPA
+	name = "EVENTNAME3000005" #The Moors are Rising
+	desc = "EVENTHIST3000005"
+	#-#The infidels in southern Iberia refused to submit to Christian rule. They have now managed to regroup and take back most of the south. As their power continues to grow, their nefarious presence threatens all of Christian Iberia. In order to thwart this rising tide, the remaining Iberian successor states must attempt to put aside their differences and confront the old enemy once more.
+
+	action_a = {
+	name = "ACTIONNAME3000005" #To arms!
+		command = { type = casusbelli which = GRA value = 240 }
+		command = { type = alliance which = CAS }
+		command = { type = alliance which = ARG }
+		command = { type = alliance which = POR }
+		command = { type = alliance which = NAV }
+		command = { type = relation which = CAS value = 25 }
+		command = { type = relation which = ARG value = 25 }
+		command = { type = relation which = POR value = 25 }
+		command = { type = relation which = NAV value = 25 }
+		command = { type = setflag which = [Resurgent_Granada] }
+	}
+}
+
+#(1460-1520) The Moors are Rising
+event = {
+	id = 3000006 #triggered by GRA_3000004
+	random = no
+	country = CAS
+	name = "EVENTNAME3000005" #The Moors are Rising
+	desc = "EVENTHIST3000005"
+	#-#The infidels in southern Iberia refused to submit to Christian rule. They have now managed to regroup and take back most of the south. As their power continues to grow, their nefarious presence threatens all of Christian Iberia. In order to thwart this rising tide, the remaining Iberian successor states must attempt to put aside their differences and confront the old enemy once more.
+
+	action_a = {
+	name = "ACTIONNAME3000005" #To arms!
+		command = { type = casusbelli which = GRA value = 240 }
+		command = { type = alliance which = SPA }
+		command = { type = alliance which = ARG }
+		command = { type = alliance which = POR }
+		command = { type = alliance which = NAV }
+		command = { type = relation which = SPA value = 25 }
+		command = { type = relation which = ARG value = 25 }
+		command = { type = relation which = POR value = 25 }
+		command = { type = relation which = NAV value = 25 }
+		command = { type = setflag which = [Resurgent_Granada] }
+	}
+}
+
+#(1460-1520) The Moors are Rising
+event = {
+	id = 3000007 #triggered by GRA_3000004
+	random = no
+	country = ARG
+	name = "EVENTNAME3000005" #The Moors are Rising
+	desc = "EVENTHIST3000005"
+	#-#The infidels in southern Iberia refused to submit to Christian rule. They have now managed to regroup and take back most of the south. As their power continues to grow, their nefarious presence threatens all of Christian Iberia. In order to thwart this rising tide, the remaining Iberian successor states must attempt to put aside their differences and confront the old enemy once more.
+
+	action_a = {
+	name = "ACTIONNAME3000005" #To arms!
+		command = { type = casusbelli which = GRA value = 240 }
+		command = { type = alliance which = CAS }
+		command = { type = alliance which = SPA }
+		command = { type = alliance which = POR }
+		command = { type = alliance which = NAV }
+		command = { type = relation which = CAS value = 25 }
+		command = { type = relation which = SPA value = 25 }
+		command = { type = relation which = POR value = 25 }
+		command = { type = relation which = NAV value = 25 }
+		command = { type = setflag which = [Resurgent_Granada] }
+	}
+}
+
+#(1460-1520) The Moors are Rising
+event = {
+	id = 3000008 #triggered by GRA_3000004
+	random = no
+	country = POR
+	name = "EVENTNAME3000005" #The Moors are Rising
+	desc = "EVENTHIST3000005"
+	#-#The infidels in southern Iberia refused to submit to Christian rule. They have now managed to regroup and take back most of the south. As their power continues to grow, their nefarious presence threatens all of Christian Iberia. In order to thwart this rising tide, the remaining Iberian successor states must attempt to put aside their differences and confront the old enemy once more.
+
+	action_a = {
+	name = "ACTIONNAME3000005" #To arms!
+		command = { type = casusbelli which = GRA value = 240 }
+		command = { type = alliance which = CAS }
+		command = { type = alliance which = SPA }
+		command = { type = alliance which = ARG }
+		command = { type = alliance which = NAV }
+		command = { type = relation which = CAS value = 25 }
+		command = { type = relation which = SPA value = 25 }
+		command = { type = relation which = ARG value = 25 }
+		command = { type = relation which = NAV value = 25 }
+		command = { type = setflag which = [Resurgent_Granada] }
+	}
+}
+
+#(1460-1520) The Moors are Rising
+event = {
+	id = 3000009 #triggered by GRA_3000004
+	random = no
+	country = NAV
+	name = "EVENTNAME3000005" #The Moors are Rising
+	desc = "EVENTHIST3000005"
+	#-#The infidels in southern Iberia refused to submit to Christian rule. They have now managed to regroup and take back most of the south. As their power continues to grow, their nefarious presence threatens all of Christian Iberia. In order to thwart this rising tide, the remaining Iberian successor states must attempt to put aside their differences and confront the old enemy once more.
+
+	action_a = {
+	name = "ACTIONNAME3000005" #To arms!
+		command = { type = casusbelli which = GRA value = 240 }
+		command = { type = alliance which = CAS }
+		command = { type = alliance which = SPA }
+		command = { type = alliance which = ARG }
+		command = { type = alliance which = POR }
+		command = { type = relation which = CAS value = 25 }
+		command = { type = relation which = SPA value = 25 }
+		command = { type = relation which = ARG value = 25 }
+		command = { type = relation which = POR value = 25 }
+		command = { type = setflag which = [Resurgent_Granada] }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Capital relocation
+
+#(1460-1560) The Moors control Tago
+event = {
+	id = 3000010
+	trigger = {
+		owned = { province = 441 data = POR } #Tago
+		control = { province = 441 data = GRA } #Tago
+		owned = { province = 434 data = POR } #Oporto
+		OR = {
+			flag = [Caliphate_Granada]
+			flag = [Resurgent_Granada]
+		}
+	}
+	province = 441 #Tago
+	random = no
+	name = "EVENTNAME3000010" #The Moors control Tago
+	desc = "EVENTHIST3000010"
+	#-#With Granadan power on the rise, the southern lands of Al-Andalus are no longer safe for Christians. Much like our Visigoth ancestors before us, we Christians are now forced to retreat from Tago to the safer mountainous regions in the north, from where we may regroup and once again push back the Muslim invaders.
+
+	date = { day = 1 month = june year = 1460 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1560 }
+
+	action_a = {
+		name = "ACTIONNAME3000010A" #Move the capital north to Porto
+		command = { type = stability value = -1 }
+		command = { type = domestic which = land value = 1 }
+		command = { type = domestic which = offensive value = -1 }
+		command = { type = provincetax which = 441 value = -2 } #Tago
+		command = { type = population which = 441 value = -1000 } #Tago
+		command = { type = capital which = 434 } #Oporto
+		command = { type = provincetax which = 434 value = 1 } #Oporto
+		command = { type = population which = 434 value = 500 } #Oporto
+		command = { type = fortress which = 434 value = 1 } #Oporto
+		command = { type = vp value = -25 }
+		command = { type = sleepevent which = 600133 } #AI 1468
+		command = { type = sleepevent which = 600134 } #AI 1473
+		command = { type = sleepevent which = 600135 } #AI 1481
+		command = { type = sleepevent which = 600136 } #AI 1500
+		command = { type = sleepevent which = 600137 } #AI 1504
+		command = { type = sleepevent which = 600138 } #AI 1514
+		command = { type = sleepevent which = 600139 } #AI 1521
+		command = { type = sleepevent which = 600140 } #AI 1557
+		command = { type = sleepevent which = 600141 } #AI 1580
+		command = { type = sleepevent which = 18004 } #POR: Royal Charters
+		command = { type = ai which = SmallTrade1.txt }
+	}
+	action_b = {
+		name = "ACTIONNAME3000010B" #We will not be cowed
+		command = { type = stability value = -3 }
+		command = { type = vp value = -10 }
+	}
+}
+
+#(1460-1560) The Moors control Catalonia
+event = {
+	id = 3000065
+	trigger = {
+		owned = { province = 429 data = ARG } #Catalonia
+		control = { province = 429 data = GRA } #Catalonia
+		owned = { province = 430 data = ARG } #Aragon
+		OR = {
+			flag = [Caliphate_Granada]
+			flag = [Resurgent_Granada]
+		}
+	}
+	province = 429 #Barcelona
+	random = no
+	name = "EVENTNAME3000065" #The Moors control Catalonia
+	desc = "EVENTHIST3000065"
+	#-#With Granadan power on the rise, the southern lands of Al-Andalus are no longer safe for Christians. Much like our Visigoth ancestors before us, we Christians are now forced to retreat from Catalonia to the safer mountainous regions in the north, from where we may regroup and once again push back the Muslim invaders.
+
+	date = { day = 1 month = june year = 1460 }
+	offset = 30
+	deathdate = { day = 1 month = january year = 1560 }
+
+	action_a = {
+		name = "ACTIONNAME3000065A" #Move the capital north to Zaragoza
+		command = { type = stability value = -1 }
+		command = { type = domestic which = land value = 1 }
+		command = { type = domestic which = offensive value = -1 }
+		command = { type = provincetax which = 429 value = -2 } #Catalonia
+		command = { type = population which = 429 value = -1000 } #Catalonia
+		command = { type = capital which = 430 } #Aragon
+		command = { type = provincetax which = 430 value = 1 } #Aragon
+		command = { type = population which = 430 value = 500 } #Aragon
+		command = { type = fortress which = 430 value = 1 } #Aragon
+		command = { type = vp value = -25 }
+		command = { type = sleepevent which = 600133 } #AI 1468
+		command = { type = sleepevent which = 600134 } #AI 1473
+		command = { type = sleepevent which = 600135 } #AI 1481
+		command = { type = sleepevent which = 600136 } #AI 1500
+		command = { type = sleepevent which = 600137 } #AI 1504
+		command = { type = sleepevent which = 600138 } #AI 1514
+		command = { type = sleepevent which = 600139 } #AI 1521
+		command = { type = sleepevent which = 600140 } #AI 1557
+		command = { type = sleepevent which = 600141 } #AI 1580
+		command = { type = ai which = SmallTrade1.txt }
+	}
+	action_b = {
+		name = "ACTIONNAME3000065B" #We will not be cowed
+		command = { type = stability value = -3 }
+		command = { type = vp value = -10 }
+	}
+}
+
+#(1419-1820) Toledo encircled by the Moors
+event = {
+	id = 3000013
+	trigger = {
+		atwar = no
+		event = 176012 #GRA: al-Andalus belongs to us!
+		owned = { province = 435 data = -1 } #Léon
+		control = { province = 435 data = -1 } #Léon
+		owned = { province = 438 data = GRA } #Murcia
+		owned = { province = 440 data = GRA } #Estramadura
+		owned = { province = 443 data = GRA } #Andalusia
+		OR = {
+			owned = { province = 431 data = -1 } #Cantabria
+			owned = { province = 432 data = -1 } #Asturias
+			owned = { province = 433 data = -1 } #Galicia
+		}
+		OR = {
+			flag = [Caliphate_Granada]
+			flag = [Resurgent_Granada]
+		}
+	}
+	random = no
+	country = CAS
+	name = "EVENTNAME3000013" #Toledo encircled by the Moors
+	desc = "EVENTHIST3000013"
+	#-#The unthinkable has happened: the Moors have managed to reconquer the lands surrounding our capital of Toledo, leaving it incredibly vulnerable to a siege that our forces may never be able to relieve. The situation for the government and royal family is now extremely precarious, and some are suggesting we move the court north to the old capital at Léon.
+
+	date = { day = 1 month = january year = 1419 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME3000013A" #Move the capital north to Léon
+		command = { type = vp value = -50 }
+		command = { type = stability value = -3 }
+		command = { type = capital which = 435 } #Léon
+		command = { type = ADM which = -1 value = 36 }
+		command = { type = MIL which = 1 value = 36 }
+		command = { type = revolt which = 439 } #Toledo
+		command = { type = provincetax which = 439 value = -2 } #Toledo
+		command = { type = provincemanpower which = 439 value = -1 } #Toledo
+		command = { type = population which = 439 value = -5000 } #Toledo
+		command = { type = fortress which = 435 value = 1 } #Léon
+		command = { type = provincetax which = 435 value = 2 } #Léon
+		command = { type = provincemanpower which = 435 value = 1 } #Léon
+		command = { type = population which = 435 value = 5000 } #Léon
+		command = { type = cityname which = 435 value = "Léon" }
+		command = { type = domestic which = land value = 2 }
+		command = { type = domestic which = offensive value = -2 }
+		command = { type = sleepevent which = 142015 } #CAS: Aragon and Castile are One
+		command = { type = sleepevent which = 142014 } #CAS: Regnum Hispaniorum
+		command = { type = sleepevent which = 142016 } #CAS: The Forging of the Spanish Identity
+		command = { type = sleepevent which = 111023 } #ARG: Aragon and Castile are One
+		command = { type = sleepevent which = 111025 } #ARG: Regnum Hispaniorum
+		command = { type = sleepevent which = 3000018 } #GRA: The Treaty of Córdoba
+	}
+	action_b = {
+		name = "ACTIONNAME3000013B" #Toledo shall never fall!
+		command = { type = vp value = -25 }
+		command = { type = stability value = 1 }
+		command = { type = MIL which = -1 value = 36 }
+		command = { type = relation which = GRA value = -50 }
+		command = { type = INF which = 439 value = 5000 } #Toledo
+		command = { type = CAV which = 439 value = 1000 } #Toledo
+		command = { type = fortress which = 439 value = 1 } #Toledo
+		command = { type = domestic which = land value = 1 }
+		command = { type = domestic which = offensive value = -1 }
+		command = { type = sleepevent which = 3000015 } #CAS: The Treaty of Léon -I-
+		command = { type = sleepevent which = 3000011 } #CAS: The Treaty of Léon -II-
+		command = { type = sleepevent which = 142015 } #CAS: Aragon and Castile are One
+		command = { type = sleepevent which = 142014 } #CAS: Regnum Hispaniorum
+		command = { type = sleepevent which = 142016 } #CAS: The Forging of the Spanish Identity
+		command = { type = sleepevent which = 111023 } #ARG: Aragon and Castile are One
+		command = { type = sleepevent which = 111025 } #ARG: Regnum Hispaniorum
+		command = { type = sleepevent which = 3000018 } #GRA: The Treaty of Córdoba
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#(1450-1650) The Treaty of Léon -I-
+event = {
+	id = 3000015
+	trigger = {
+		atwar = no
+		event = 3000013 #CAS: Toledo encircled by the Moors
+		OR = {
+			neighbour = FRA
+			owned = { province = 423 data = FRA } #Guyenne
+			owned = { province = 424 data = FRA } #Gascogne
+			owned = { province = 425 data = FRA } #Béarn
+			owned = { province = 426 data = FRA } #Roussillon
+			AND = {
+				neighbour = FOI
+				OR = {
+					alliance = { country = FRA country = FOI }
+					vassal = { country = FRA country = FOI }
+				}
+			}
+		}
+		neighbour = GRA
+		NOT = { alliance = { country = CAS country = FRA } }
+		NOT = { vassal = { country = CAS country = GRA } }
+		NOT = { vassal = { country = CAS country = FRA } }
+		NOT = { vassal = { country = FRA country = CAS } }
+		NOT = { countrysize = 10 }
+		NOT = { provincereligion = { province = 436 data = catholic } } #Castilla
+		NOT = { provincereligion = { province = 438 data = catholic } } #Murcia
+		NOT = { provincereligion = { province = 439 data = catholic } } #Toledo
+		NOT = { provincereligion = { province = 440 data = catholic } } #Estramadura
+		NOT = { provincereligion = { province = 443 data = catholic } } #Andalusia
+		NOT = { event = 3000011 } #CAS: The Treaty of Léon -II-
+	}
+	random = no
+	country = CAS
+	name = "EVENTNAME3000015" #The Treaty of Léon
+	desc = "EVENTHIST3000015"
+	#-#In response to the growing power of France and Granada, Castile summoned the Iberian kings to a meeting in Léon in order to agree on final borders across the peninsula, and ensure the survival and protection of Christian Iberia. Here Castile offered to forfeit its claims on the Kingdom of Castile (thereby reverting to its ancestral crown lands in Léon) in exchange for peace with Granada, safe passage for all Christian Iberians, and a halt to further Granadan expansion in the north. Henceforth, the southern half of the realm would be ceded to Granada, and the northern half would become a French vassal as the Kingdom of Léon.
+
+	date = { day = 1 month = january year = 1450 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1650 }
+
+	action_a = {
+		name = "ACTIONNAME3000015B" #Request French suzerainty
+		command = { type = MIL which = 3 value = 60 }
+		command = { type = DIP which = -3 value = 60 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = domestic which = offensive value = -1 }
+		command = { type = relation which = FRA value = 100 }
+		command = { type = relation which = PAP value = 50 }
+		command = { type = relation which = GRA value = -50 }
+		command = { type = trigger which = 3000033 } #FRA: Castile Requests Vassalage
+		command = { type = sleepevent which = 3000011 } #CAS: The Treaty of Léon -II-
+	}
+	action_b = {
+		name = "ACTIONNAME3000015A" #Offer the Treaty
+		command = { type = revoltrisk which = 60 value = 1 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = domestic which = offensive value = -1 }
+		command = { type = relation which = FRA value = -100 }
+		command = { type = relation which = PAP value = -50 }
+		command = { type = relation which = GRA value = 50 }
+		command = { type = trigger which = 3000030 } #GRA: The Treaty of Léon
+		command = { type = sleepevent which = 3000011 } #CAS: The Treaty of Léon -II-
+	}
+}
+
+#(1450-1650) The Treaty of Léon -II-
+event = {
+	id = 3000011
+	trigger = {
+		atwar = no
+		event = 3000013 #CAS: Toledo encircled by the Moors
+		NOT = {
+			neighbour = FRA
+			owned = { province = 423 data = FRA } #Guyenne
+			owned = { province = 424 data = FRA } #Gascogne
+			owned = { province = 425 data = FRA } #Béarn
+			owned = { province = 426 data = FRA } #Roussillon
+			AND = {
+				neighbour = FOI
+				OR = {
+					alliance = { country = FRA country = FOI }
+					vassal = { country = FRA country = FOI }
+				}
+			}
+		}
+		neighbour = GRA
+		NOT = { alliance = { country = CAS country = FRA } }
+		NOT = { vassal = { country = CAS country = GRA } }
+		NOT = { vassal = { country = CAS country = FRA } }
+		NOT = { vassal = { country = FRA country = CAS } }
+		NOT = { countrysize = 10 }
+		NOT = { provincereligion = { province = 436 data = catholic } } #Castilla
+		NOT = { provincereligion = { province = 438 data = catholic } } #Murcia
+		NOT = { provincereligion = { province = 439 data = catholic } } #Toledo
+		NOT = { provincereligion = { province = 440 data = catholic } } #Estramadura
+		NOT = { provincereligion = { province = 443 data = catholic } } #Andalusia
+		NOT = { event = 3000015 } #CAS: The Treaty of Léon -I-
+	}
+	random = no
+	country = CAS
+	name = "EVENTNAME3000015" #The Treaty of Léon
+	desc = "EVENTHIST3000011"
+	#-#In response to the growing power of Granada, Castile summoned the Iberian kings to a meeting in Léon in order to agree on final borders across the peninsula, and ensure the survival and protection of Christian Iberia. Here Castile offered to forfeit its claims on the Kingdom of Castile (thereby reverting to its ancestral crown lands in Léon) in exchange for loyalty to Granada, safe passage for all Christian Iberians, and a halt to further Granadan expansion in the north. Henceforth, the southern half of the realm would be ceded to Granada, and the northern half would become a Granadan vassal as the Kingdom of Léon.
+
+	date = { day = 1 month = january year = 1450 }
+	offset = 3
+	deathdate = { day = 29 month = december year = 1650 }
+
+	action_a = {
+		name = "ACTIONNAME3000015A" #Offer the Treaty
+		command = { type = revoltrisk which = 60 value = 1 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = domestic which = offensive value = -1 }
+		command = { type = relation which = PAP value = -50 }
+		command = { type = relation which = GRA value = 50 }
+		command = { type = trigger which = 3000030 } #GRA: The Treaty of Léon
+		command = { type = sleepevent which = 3000015 } #CAS: The Treaty of Léon -I-
+	}
+}
+
+event = {
+	id = 3000030 #triggered by CAS_3000015 A / CAS_3000011
+	random = no
+	country = GRA
+	name = "EVENTNAME3000015" #The Treaty of Léon
+	desc = "EVENTHIST3000011"
+	#-#In response to the growing power of Granada, Castile summoned the Iberian kings to a meeting in Léon in order to agree on final borders across the peninsula, and ensure the survival and protection of Christian Iberia. Here Castile offered to forfeit its claims on the Kingdom of Castile (thereby reverting to its ancestral crown lands in Léon) in exchange for loyalty to Granada, safe passage for all Christian Iberians, and a halt to further Granadan expansion in the north. Henceforth, the southern half of the realm would be ceded to Granada, and the northern half would become a Granadan vassal as the Kingdom of Léon.
+
+	action_a = {
+		name = "ACTIONNAME3000018A" #Accept the treaty
+		command = { type = stability value = -1 }
+		command = { type = vassal which = CAS }
+		command = { type = alliance which = CAS }
+		command = { type = cedeprovince which = CAS value = 433 } #Galicia
+		command = { type = cedeprovince which = CAS value = 432 } #Astrurias
+		command = { type = cedeprovince which = CAS value = 431 } #Cantabria
+		command = { type = remove_countryculture which = castilian }
+		command = { type = provinceculture which = 444 value = maghrebi } #Granada
+		command = { type = provinceculture which = 445 value = maghrebi } #Gibraltar
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = domestic which = land value = -1 }
+		command = { type = domestic which = offensive value = -1 }
+		command = { type = relation which = MOR value = -50 }
+		command = { type = relation which = TLE value = -50 }
+		command = { type = relation which = TUN value = -50 }
+		command = { type = relation which = CAS value = 50 }
+		command = { type = relation which = POR value = 50 }
+		command = { type = relation which = ARG value = 50 }
+		command = { type = trigger which = 3000031 } #CAS: The Treaty of Léon is accepted
+	}
+	action_b = {
+		name = "ACTIONNAME3000018B" #Reject the treaty
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = domestic which = offensive value = 1 }
+		command = { type = relation which = MOR value = 50 }
+		command = { type = relation which = TLE value = 50 }
+		command = { type = relation which = TUN value = 50 }
+		command = { type = relation which = CAS value = -50 }
+		command = { type = relation which = POR value = -50 }
+		command = { type = relation which = ARG value = -50 }
+		command = { type = trigger which = 3000032 } #CAS: The Treaty of Léon is rejected
+	}
+}
+
+event = {
+	id = 3000031 #triggered by GRA_3000030 A
+	random = no
+	country = CAS
+	name = "EVENTNAME3000031" #The Treaty of Léon is accepted
+	desc = "EVENTHIST3000031"
+	#-#The Emir of Granada has accepted the Treaty of Léon. Christians from Al-Andalus are flocking north to our realm, which is now once again known simply as Léon.
+
+	action_a = {
+		name = "GREAT"
+		command = { type = stability value = -1 }
+		command = { type = DIP which = 3 value = 60 }
+		command = { type = alliance which = GRA }
+		command = { type = flagname which = "Leon" }
+		command = { type = countryname value = "LEO" }
+		command = { type = cedeprovince which = GRA value = 430 } #Aragon
+		command = { type = cedeprovince which = GRA value = 436 } #Castilla
+		command = { type = cedeprovince which = GRA value = 437 } #Valencia
+		command = { type = cedeprovince which = GRA value = 438 } #Murcia
+		command = { type = cedeprovince which = GRA value = 439 } #Toledo
+		command = { type = cedeprovince which = GRA value = 440 } #Estramadura
+		command = { type = cedeprovince which = GRA value = 441 } #Tago
+		command = { type = cedeprovince which = GRA value = 442 } #Algarve
+		command = { type = cedeprovince which = GRA value = 443 } #Andalusia
+		command = { type = cedeprovince which = GRA value = 445 } #Gibraltar
+		command = { type = cedeprovince which = GRA value = 817 } #The Canary Islands
+		command = { type = cedeprovince which = GRA value = 821 } #The Baleares
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = domestic which = offensive value = -1 }
+		command = { type = domestic which = land value = -1 }
+		command = { type = relation which = GRA value = 200 }
+		command = { type = relation which = MOR value = 50 }
+		command = { type = relation which = TLE value = 50 }
+		command = { type = relation which = TUN value = 50 }
+		command = { type = population which = -2 value = 8000 }
+		command = { type = population which = -1 value = 4000 }
+		command = { type = population which = -1 value = 4000 }
+		command = { type = removecore_national which = 436 } #Castilla
+		command = { type = removecore_national which = 438 } #Murcia
+		command = { type = removecore_national which = 439 } #Toledo
+		command = { type = removecore_national which = 440 } #Estramadura
+		command = { type = removecore_national which = 443 } #Andalusia
+		command = { type = removecore_national which = 444 } #Granada
+		command = { type = removecore_national which = 445 } #Gibraltar
+		command = { type = removecore_national which = 817 } #The Canary Islands
+		command = { type = sleepevent which = 142017 } #CAS: Second Phase of the War of Granada
+	}
+}
+
+event = {
+	id = 3000032 #triggered by GRA_3000030 B
+	trigger = {
+		OR = {
+			neighbour = FRA
+			owned = { province = 423 data = FRA } #Guyenne
+			owned = { province = 424 data = FRA } #Gascogne
+			owned = { province = 425 data = FRA } #Béarn
+			owned = { province = 426 data = FRA } #Roussillon
+		}
+	}
+	random = no
+	country = CAS
+	name = "EVENTNAME3000032" #The Treaty of Léon is rejected
+	desc = "EVENTHIST3000032"
+	#-#The Emir of Granada has rejected the Treaty of Léon. He probably desires yet another war against us, so we must appeal to the King of France for protection.
+
+	action_a = {
+		name = "DAMN"
+		command = { type = stability value = -1 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = domestic which = offensive value = -1 }
+		command = { type = relation which = FRA value = 75 }
+		command = { type = relation which = PAP value = 25 }
+		command = { type = relation which = GRA value = -50 }
+		command = { type = trigger which = 3000033 } #FRA: Castile Requests Vassalage
+	}
+}
+
+event = {
+	id = 3000033 #triggered by CAS_3000015 B or CAS_3000032
+	random = no
+	country = FRA
+	name = "EVENTNAME3000033" #Castile Requests Vassalage
+	desc = "EVENTHIST3000033"
+	#-#The Emir of Granada has rejected the proposed Treaty of Léon between the Muslims and Christians in Iberia, leading the King of Castile to ask for our protection. He has offered to become a vassal of France in exchange for defence against the Moors.
+
+	action_a = {
+		name = "ACTIONNAME3000033A" #And they shall have it
+		command = { type = stability value = 1 }
+		command = { type = vassal which = CAS }
+		command = { type = alliance which = CAS }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = domestic which = offensive value = 1 }
+		command = { type = relation which = CAS value = 200 }
+		command = { type = relation which = PAP value = 100 }
+		command = { type = relation which = ARG value = 50 }
+		command = { type = relation which = POR value = 50 }
+		command = { type = relation which = GRA value = -50 }
+	}
+	action_b = {
+		name = "ACTIONNAME3000033B" #We dare not enrage the Muslims
+		command = { type = stability value = -1 }
+		command = { type = relation which = CAS value = -100 }
+		command = { type = relation which = PAP value = -50 }
+		command = { type = relation which = ARG value = -25 }
+		command = { type = relation which = POR value = -25 }
+		command = { type = relation which = GRA value = 100 }
+	}
+}
+
+#(1500-1820) The Treaty of Córdoba
+event = {
+	id = 3000018
+	trigger = {
+		flag = [Resurgent_Granada]
+		NOT = { war = { country = GRA country = SPA } }
+		NOT = { war = { country = GRA country = POR } }
+		owned = { province = 438 data = -1 } #Murcia
+		control = { province = 438 data = -1 } #Murcia
+		owned = { province = 439 data = -1 } #Toledo
+		control = { province = 439 data = -1 } #Toledo
+		owned = { province = 443 data = -1 } #Andalusia
+		control = { province = 443 data = -1 } #Andalusia
+		owned = { province = 444 data = -1 } #Granada
+		control = { province = 444 data = -1 } #Granada
+		owned = { province = 445 data = -1 } #Gibraltar
+		control = { province = 445 data = -1 } #Gibraltar
+		countrysize = 6
+		exists = SPA
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME3000018" #The Treaty of Córdoba
+	desc = "EVENTHIST3000018"
+	#-#With Muslim power on the rise in the south, many Christian kingdoms had moved on to exploration and exploitation of the New World. For both sides, centuries of near-constant religious warfare had become ruinously expensive, and little had been achieved beyond the depletion of Iberia's manpower and resources. Equally, Granada was finding itself more and more alienated from the eastern Islamic world for fear of a new western Caliphate being established. As a result, the Treaty of Córdoba was proposed: beneficial to both sides, the Iberians would grudgingly recognize Granada's right to exist as an independent Islamic realm, whilst Granada would agree to end its northern expansion against the Christians.
+
+	date = { year = 1500 }
+	offset = 60
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME3000018A" #Accept the treaty
+		command = { type = stability value = 1 }
+		command = { type = removecore_national which = 426 }
+		command = { type = removecore_national which = 427 }
+		command = { type = removecore_national which = 428 }
+		command = { type = removecore_national which = 429 }
+		command = { type = removecore_national which = 430 }
+		command = { type = removecore_national which = 431 }
+		command = { type = removecore_national which = 432 }
+		command = { type = removecore_national which = 433 }
+		command = { type = removecore_national which = 434 }
+		command = { type = removecore_national which = 435 }
+		command = { type = removecore_national which = 436 }
+		command = { type = removecore_national which = 437 }
+		command = { type = removecore_national which = 440 }
+		command = { type = removecore_national which = 441 }
+		command = { type = removecore_national which = 442 }
+		command = { type = DIP which = 2 value = 60 }
+		command = { type = vp value = 100 }
+		command = { type = trigger which = 3000019 } #SPA: The Treaty of Córdoba
+		command = { type = sleepevent which = 3000016 } #GRA: The Caliphate of Granada -I-
+		command = { type = sleepevent which = 3000017 } #GRA: The Caliphate of Granada -II-
+	}
+	action_b = {
+		name = "ACTIONNAME3000018B" #Reject the treaty
+		command = { type = stability value = -2 }
+		command = { type = DIP which = -2 value = 90 }
+		command = { type = vp value = -10 }
+	}
+}
+
+#(1500-1820) The Treaty of Córdoba
+event = {
+	id = 3000019 #triggered by GRA_3000018 A
+	random = no
+	country = SPA
+	name = "EVENTNAME3000018" #The Treaty of Córdoba
+	desc = "EVENTHIST3000019"
+	#-#With the signing of the Treaty of Córdoba, Spain recognized Granada's existence as an independent Islamic realm with dominion over southern Al-Andalus, on the proviso that the Granadans halted their northward advance into Christendom. In turn, both sides could live in peace in their respective spheres of influence, and Spain could concentrate on the more profitable business of exploration and exploitation of the New World.
+
+	action_a = {
+		name = "OK"
+		command = { type = stability value = 1 }
+		command = { type = removecore_national which = 438 } #Murcia
+		command = { type = removecore_national which = 439 } #Toledo
+		command = { type = removecore_national which = 440 } #Estramadura
+		command = { type = removecore_national which = 821 } #The Baleares
+		command = { type = removecore_national which = 443 } #Andalusia
+		command = { type = removecore_national which = 444 } #Granada
+		command = { type = removecore_national which = 445 } #Gibraltar
+		command = { type = removecore_national which = 817 } #The Canary Islands
+		command = { type = revoltrisk value = 1 }
+	}
+}
+
+#(1419-1820) The Caliphate of Granada -I-
+event = {
+	id = 3000016
+	trigger = {
+		domestic = { type = innovative value = 7 }
+		NOT = { domestic = { type = serfdom value = 3 } }
+		countrysize = 11
+		stability = 3
+		religion = sunni
+		flag = [Resurgent_Granada]
+		OR = {
+			NOT = { event = 301030 } #TUR: The Sultan becomes 'Khalifa'
+			AND = {
+				NOT = { exists = TUR }
+				event = 301030 #TUR: The Sultan becomes 'Khalifa'
+			}
+		}
+		NOT = { event = 3000017 } #GRA: The Caliphate of Granada -II-
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME3000016" #The Caliphate of Granada
+	desc = "EVENTHIST3000016"
+	#-#The Emir of Granada may now claim the title of Caliph in order to help grant more legitimacy to our rule in the face of forces that might threaten Granada's recent conquests. Our new Granadan Caliph now demands the restitution of all the ancient Almohad lands now held by our Iberian vassals, and indeed those ruled by foreign Berber princes. Doubtless there are those who defy our claims, but our supremacy over Iberia is not in doubt, and we claim the title of Caliph by right of both conquest and divinity.
+
+	date = { year = 1419 }
+	offset = 60
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME3000016A" #We need the title of Caliph to protect our people
+		command = { type = stability value = 1 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = manpower value = 5 }
+		command = { type = provincetax which = -2 value = 1 }
+		command = { type = provincemanpower which = -3 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincemanpower which = -3 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincemanpower which = -3 value = 1 }
+		#Almohads
+		command = { type = addcore_claim which = 732 } #Tangiers
+		command = { type = addcore_claim which = 733 } #Fez
+		command = { type = addcore_claim which = 806 } #Toubkal
+		command = { type = addcore_claim which = 805 } #Sahara
+		command = { type = addcore_claim which = 1595 } #Anti Atlas
+		command = { type = addcore_claim which = 734 } #Orania
+		command = { type = addcore_claim which = 735 } #Atlas
+		command = { type = addcore_claim which = 736 } #Aures
+		command = { type = addcore_claim which = 737 } #Al Djazair
+		command = { type = addcore_claim which = 738 } #Kabylia
+		command = { type = addcore_claim which = 739 } #Tunisia
+		command = { type = addcore_claim which = 740 } #Tripolitania
+		command = { type = addcore_claim which = 817 } #The Canary Islands
+		#Sicily
+		command = { type = addcore_claim which = 395 } #Messina
+		command = { type = addcore_claim which = 396 } #Sicily
+		command = { type = addcore_claim which = 819 } #Malta
+		command = { type = flagname which = "Caliphate" }
+		command = {
+			trigger = {
+				flag = [Toledo_Capital]
+			}
+			type = countryname value = "CRD"
+		}
+		command = { type = clrflag which = [Resurgent_Granada] }
+		command = { type = setflag which = [Caliphate_Granada] }
+		command = { type = trigger which = 3000048 } #CAS: The Caliphate of Granada
+		command = { type = trigger which = 3000049 } #POR: The Caliphate of Granada
+		command = { type = trigger which = 3000050 } #ARG: The Caliphate of Granada
+		command = { type = trigger which = 3000051 } #NAV: The Caliphate of Granada
+		command = { type = sleepevent which = 3000017 } #GRA: The Caliphate of Granada -II-
+	}
+}
+
+#(1419-1820) The Caliphate of Granada -II-
+event = {
+	id = 3000017
+	trigger = {
+		domestic = { type = innovative value = 7 }
+		NOT = { domestic = { type = serfdom value = 3 } }
+		countrysize = 11
+		stability = 3
+		religion = sunni
+		flag = [Resurgent_Granada]
+		AND = {
+			exists = TUR
+			event = 301030 #TUR: The Sultan becomes 'Khalifa'
+		}
+		NOT = { event = 3000016 } #GRA: The Caliphate of Granada -I-
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME3000016" #The Caliphate of Granada
+	desc = "EVENTHIST3000016"
+	#-#The Emir of Granada may now claim the title of Caliph in order to help grant more legitimacy to our rule in the face of forces that might threaten Granada's recent conquests. Our new Granadan Caliph now demands the restitution of all the ancient Almohad lands now held by our Iberian vassals, and indeed those ruled by foreign Berber princes. Doubtless there are those who defy our claims, but our supremacy over Iberia is not in doubt, and we claim the title of Caliph by right of both conquest and divinity.
+
+	date = { year = 1419 }
+	offset = 60
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "ACTIONNAME3000016A" #We need the title of Caliph to protect our people
+		command = { type = stability value = 1 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = domestic which = serfdom value = -1 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = manpower value = 5 }
+		command = { type = provincetax which = -2 value = 1 }
+		command = { type = provincemanpower which = -3 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincemanpower which = -3 value = 1 }
+		command = { type = provincetax which = -1 value = 1 }
+		command = { type = provincemanpower which = -3 value = 1 }
+		#Almohads
+		command = { type = addcore_claim which = 732 } #Tangiers
+		command = { type = addcore_claim which = 733 } #Fez
+		command = { type = addcore_claim which = 806 } #Toubkal
+		command = { type = addcore_claim which = 805 } #Sahara
+		command = { type = addcore_claim which = 1595 } #Anti Atlas
+		command = { type = addcore_claim which = 734 } #Orania
+		command = { type = addcore_claim which = 735 } #Atlas
+		command = { type = addcore_claim which = 736 } #Aures
+		command = { type = addcore_claim which = 737 } #Al Djazair
+		command = { type = addcore_claim which = 738 } #Kabylia
+		command = { type = addcore_claim which = 739 } #Tunisia
+		command = { type = addcore_claim which = 740 } #Tripolitania
+		command = { type = addcore_claim which = 817 } #The Canary Islands
+		#Sicily
+		command = { type = addcore_claim which = 395 } #Messina
+		command = { type = addcore_claim which = 396 } #Sicily
+		command = { type = addcore_claim which = 819 } #Malta
+		command = { type = breakdynastic which = TUR }
+		command = { type = relation which = TUR value = -75 }
+		command = { type = flagname which = "Caliphate" }
+		command = {
+			trigger = {
+				flag = [Toledo_Capital]
+			}
+			type = countryname value = "CRD"
+		}
+		command = { type = clrflag which = [Resurgent_Granada] }
+		command = { type = setflag which = [Caliphate_Granada] }
+		command = { type = trigger which = 3000048 } #CAS: The Caliphate of Granada
+		command = { type = trigger which = 3000049 } #POR: The Caliphate of Granada
+		command = { type = trigger which = 3000050 } #ARG: The Caliphate of Granada
+		command = { type = trigger which = 3000051 } #NAV: The Caliphate of Granada
+		command = { type = sleepevent which = 3000016 } #GRA: The Caliphate of Granada -I-
+	}
+}
+
+#(1419-1820) The Caliphate of Granada
+event = {
+	id = 3000048 #triggered by GRA_3000016 / GRA_3000017
+	trigger = {
+		vassal = { country = GRA country = CAS }
+		OR = {
+			owned = { province = 732 data = -1 } #Tangiers
+			owned = { province = 733 data = -1 } #Fez
+			owned = { province = 806 data = -1 } #Toubkal
+			owned = { province = 805 data = -1 } #Sahara
+			owned = { province = 1595 data = -1 } #Anti Atlas
+			owned = { province = 734 data = -1 } #Orania
+			owned = { province = 735 data = -1 } #Atlas
+			owned = { province = 736 data = -1 } #Aures
+			owned = { province = 737 data = -1 } #Al Djazair
+			owned = { province = 738 data = -1 } #Kabylia
+			owned = { province = 739 data = -1 } #Tunisia
+			owned = { province = 740 data = -1 } #Tripolitania
+			owned = { province = 817 data = -1 } #The Canary Islands
+			#Extra
+			owned = { province = 821 data = -1 } #The Baleares
+			owned = { province = 395 data = -1 } #Messina
+			owned = { province = 396 data = -1 } #Sicily
+			owned = { province = 819 data = -1 } #Malta
+		}
+	}
+	random = no
+	country = CAS
+	name = "EVENTNAME3000016" #The Caliphate of Granada
+	desc = "EVENTHIST3000048"
+	#-#The Emir of Granada has claimed the title of Caliph in order to help grant more legitimacy to his rule in the face of forces that might threaten Granada's recent conquests. This so-called Granadan 'Caliph' now demands the restitution of all the ancient Almohad lands now held by his Iberian vassals, and even those ruled by foreign Berber princes.
+
+	action_a = {
+		name = "ACTIONNAME3000048A" #Bow to the demands of the Caliph
+		command = { type = cedeprovince which = GRA value = 732 } #Tangiers
+		command = { type = cedeprovince which = GRA value = 733 } #Fez
+		command = { type = cedeprovince which = GRA value = 806 } #Toubkal
+		command = { type = cedeprovince which = GRA value = 805 } #Sahara
+		command = { type = cedeprovince which = GRA value = 1595 } #Anti Atlas
+		command = { type = cedeprovince which = GRA value = 734 } #Orania
+		command = { type = cedeprovince which = GRA value = 735 } #Atlas
+		command = { type = cedeprovince which = GRA value = 736 } #Aures
+		command = { type = cedeprovince which = GRA value = 737 } #Al Djazair
+		command = { type = cedeprovince which = GRA value = 738 } #Kabylia
+		command = { type = cedeprovince which = GRA value = 739 } #Tunisia
+		command = { type = cedeprovince which = GRA value = 740 } #Tripolitania
+		command = { type = cedeprovince which = GRA value = 817 } #The Canary Islands
+		command = { type = cedeprovince which = GRA value = 821 } #The Baleares
+		command = { type = cedeprovince which = GRA value = 395 } #Messina
+		command = { type = cedeprovince which = GRA value = 396 } #Sicily
+		command = { type = cedeprovince which = GRA value = 819 } #Malta
+		command = { type = removecore_national which = 732 } #Tangiers
+		command = { type = removecore_national which = 733 } #Fez
+		command = { type = removecore_national which = 806 } #Toubkal
+		command = { type = removecore_national which = 805 } #Sahara
+		command = { type = removecore_national which = 1595 } #Anti Atlas
+		command = { type = removecore_national which = 734 } #Orania
+		command = { type = removecore_national which = 735 } #Atlas
+		command = { type = removecore_national which = 736 } #Aures
+		command = { type = removecore_national which = 737 } #Al Djazair
+		command = { type = removecore_national which = 738 } #Kabylia
+		command = { type = removecore_national which = 739 } #Tunisia
+		command = { type = removecore_national which = 740 } #Tripolitania
+		command = { type = removecore_national which = 817 } #The Canary Islands
+		command = { type = removecore_national which = 821 } #The Baleares
+		command = { type = removecore_national which = 395 } #Messina
+		command = { type = removecore_national which = 396 } #Sicily
+		command = { type = removecore_national which = 819 } #Malta
+	}
+	action_b = {
+		name = "ACTIONNAME3000048B" #Enough is enough!
+		command = { type = breakvassal which = GRA }
+	}
+}
+
+#(1419-1820) The Caliphate of Granada
+event = {
+	id = 3000049 #triggered by GRA_3000016 / GRA_3000017
+	trigger = {
+		vassal = { country = GRA country = POR }
+		OR = {
+			owned = { province = 732 data = -1 } #Tangiers
+			owned = { province = 733 data = -1 } #Fez
+			owned = { province = 806 data = -1 } #Toubkal
+			owned = { province = 805 data = -1 } #Sahara
+			owned = { province = 1595 data = -1 } #Anti Atlas
+			owned = { province = 734 data = -1 } #Orania
+			owned = { province = 735 data = -1 } #Atlas
+			owned = { province = 736 data = -1 } #Aures
+			owned = { province = 737 data = -1 } #Al Djazair
+			owned = { province = 738 data = -1 } #Kabylia
+			owned = { province = 739 data = -1 } #Tunisia
+			owned = { province = 740 data = -1 } #Tripolitania
+			owned = { province = 817 data = -1 } #The Canary Islands
+			#Extra
+			owned = { province = 821 data = -1 } #The Baleares
+			owned = { province = 395 data = -1 } #Messina
+			owned = { province = 396 data = -1 } #Sicily
+			owned = { province = 819 data = -1 } #Malta
+		}
+	}
+	random = no
+	country = POR
+	name = "EVENTNAME3000016" #The Caliphate of Granada
+	desc = "EVENTHIST3000048"
+	#-#The Emir of Granada has claimed the title of Caliph in order to help grant more legitimacy to his rule in the face of forces that might threaten Granada's recent conquests. This so-called Granadan 'Caliph' now demands the restitution of all the ancient Almohad lands now held by his Iberian vassals, and even those ruled by foreign Berber princes.
+
+	action_a = {
+		name = "ACTIONNAME3000048A" #Bow to the demands of the Caliph
+		command = { type = cedeprovince which = GRA value = 732 } #Tangiers
+		command = { type = cedeprovince which = GRA value = 733 } #Fez
+		command = { type = cedeprovince which = GRA value = 806 } #Toubkal
+		command = { type = cedeprovince which = GRA value = 805 } #Sahara
+		command = { type = cedeprovince which = GRA value = 1595 } #Anti Atlas
+		command = { type = cedeprovince which = GRA value = 734 } #Orania
+		command = { type = cedeprovince which = GRA value = 735 } #Atlas
+		command = { type = cedeprovince which = GRA value = 736 } #Aures
+		command = { type = cedeprovince which = GRA value = 737 } #Al Djazair
+		command = { type = cedeprovince which = GRA value = 738 } #Kabylia
+		command = { type = cedeprovince which = GRA value = 739 } #Tunisia
+		command = { type = cedeprovince which = GRA value = 740 } #Tripolitania
+		command = { type = cedeprovince which = GRA value = 817 } #The Canary Islands
+		command = { type = cedeprovince which = GRA value = 821 } #The Baleares
+		command = { type = cedeprovince which = GRA value = 395 } #Messina
+		command = { type = cedeprovince which = GRA value = 396 } #Sicily
+		command = { type = cedeprovince which = GRA value = 819 } #Malta
+		command = { type = removecore_national which = 732 } #Tangiers
+		command = { type = removecore_national which = 733 } #Fez
+		command = { type = removecore_national which = 806 } #Toubkal
+		command = { type = removecore_national which = 805 } #Sahara
+		command = { type = removecore_national which = 1595 } #Anti Atlas
+		command = { type = removecore_national which = 734 } #Orania
+		command = { type = removecore_national which = 735 } #Atlas
+		command = { type = removecore_national which = 736 } #Aures
+		command = { type = removecore_national which = 737 } #Al Djazair
+		command = { type = removecore_national which = 738 } #Kabylia
+		command = { type = removecore_national which = 739 } #Tunisia
+		command = { type = removecore_national which = 740 } #Tripolitania
+		command = { type = removecore_national which = 817 } #The Canary Islands
+		command = { type = removecore_national which = 821 } #The Baleares
+		command = { type = removecore_national which = 395 } #Messina
+		command = { type = removecore_national which = 396 } #Sicily
+		command = { type = removecore_national which = 819 } #Malta
+	}
+	action_b = {
+		name = "ACTIONNAME3000048B" #Enough is enough!
+		command = { type = breakvassal which = GRA }
+	}
+}
+
+#(1419-1820) The Caliphate of Granada
+event = {
+	id = 3000050 #triggered by GRA_3000016 / GRA_3000017
+	trigger = {
+		vassal = { country = GRA country = ARG }
+		OR = {
+			owned = { province = 732 data = -1 } #Tangiers
+			owned = { province = 733 data = -1 } #Fez
+			owned = { province = 806 data = -1 } #Toubkal
+			owned = { province = 805 data = -1 } #Sahara
+			owned = { province = 1595 data = -1 } #Anti Atlas
+			owned = { province = 734 data = -1 } #Orania
+			owned = { province = 735 data = -1 } #Atlas
+			owned = { province = 736 data = -1 } #Aures
+			owned = { province = 737 data = -1 } #Al Djazair
+			owned = { province = 738 data = -1 } #Kabylia
+			owned = { province = 739 data = -1 } #Tunisia
+			owned = { province = 740 data = -1 } #Tripolitania
+			owned = { province = 817 data = -1 } #The Canary Islands
+			#Extra
+			owned = { province = 821 data = -1 } #The Baleares
+			owned = { province = 395 data = -1 } #Messina
+			owned = { province = 396 data = -1 } #Sicily
+			owned = { province = 819 data = -1 } #Malta
+		}
+	}
+	random = no
+	country = ARG
+	name = "EVENTNAME3000016" #The Caliphate of Granada
+	desc = "EVENTHIST3000048"
+	#-#The Emir of Granada has claimed the title of Caliph in order to help grant more legitimacy to his rule in the face of forces that might threaten Granada's recent conquests. This so-called Granadan 'Caliph' now demands the restitution of all the ancient Almohad lands now held by his Iberian vassals, and even those ruled by foreign Berber princes.
+
+	action_a = {
+		name = "ACTIONNAME3000048A" #Bow to the demands of the Caliph
+		command = { type = cedeprovince which = GRA value = 732 } #Tangiers
+		command = { type = cedeprovince which = GRA value = 733 } #Fez
+		command = { type = cedeprovince which = GRA value = 806 } #Toubkal
+		command = { type = cedeprovince which = GRA value = 805 } #Sahara
+		command = { type = cedeprovince which = GRA value = 1595 } #Anti Atlas
+		command = { type = cedeprovince which = GRA value = 734 } #Orania
+		command = { type = cedeprovince which = GRA value = 735 } #Atlas
+		command = { type = cedeprovince which = GRA value = 736 } #Aures
+		command = { type = cedeprovince which = GRA value = 737 } #Al Djazair
+		command = { type = cedeprovince which = GRA value = 738 } #Kabylia
+		command = { type = cedeprovince which = GRA value = 739 } #Tunisia
+		command = { type = cedeprovince which = GRA value = 740 } #Tripolitania
+		command = { type = cedeprovince which = GRA value = 817 } #The Canary Islands
+		command = { type = cedeprovince which = GRA value = 821 } #The Baleares
+		command = { type = cedeprovince which = GRA value = 395 } #Messina
+		command = { type = cedeprovince which = GRA value = 396 } #Sicily
+		command = { type = cedeprovince which = GRA value = 819 } #Malta
+		command = { type = removecore_national which = 732 } #Tangiers
+		command = { type = removecore_national which = 733 } #Fez
+		command = { type = removecore_national which = 806 } #Toubkal
+		command = { type = removecore_national which = 805 } #Sahara
+		command = { type = removecore_national which = 1595 } #Anti Atlas
+		command = { type = removecore_national which = 734 } #Orania
+		command = { type = removecore_national which = 735 } #Atlas
+		command = { type = removecore_national which = 736 } #Aures
+		command = { type = removecore_national which = 737 } #Al Djazair
+		command = { type = removecore_national which = 738 } #Kabylia
+		command = { type = removecore_national which = 739 } #Tunisia
+		command = { type = removecore_national which = 740 } #Tripolitania
+		command = { type = removecore_national which = 817 } #The Canary Islands
+		command = { type = removecore_national which = 821 } #The Baleares
+		command = { type = removecore_national which = 395 } #Messina
+		command = { type = removecore_national which = 396 } #Sicily
+		command = { type = removecore_national which = 819 } #Malta
+	}
+	action_b = {
+		name = "ACTIONNAME3000048B" #Enough is enough!
+		command = { type = breakvassal which = GRA }
+	}
+}
+
+#(1419-1820) The Caliphate of Granada
+event = {
+	id = 3000051 #triggered by GRA_3000016 / GRA_3000017
+	trigger = {
+		vassal = { country = GRA country = NAV }
+		OR = {
+			owned = { province = 732 data = -1 } #Tangiers
+			owned = { province = 733 data = -1 } #Fez
+			owned = { province = 806 data = -1 } #Toubkal
+			owned = { province = 805 data = -1 } #Sahara
+			owned = { province = 1595 data = -1 } #Anti Atlas
+			owned = { province = 734 data = -1 } #Orania
+			owned = { province = 735 data = -1 } #Atlas
+			owned = { province = 736 data = -1 } #Aures
+			owned = { province = 737 data = -1 } #Al Djazair
+			owned = { province = 738 data = -1 } #Kabylia
+			owned = { province = 739 data = -1 } #Tunisia
+			owned = { province = 740 data = -1 } #Tripolitania
+			owned = { province = 817 data = -1 } #The Canary Islands
+			#Extra
+			owned = { province = 821 data = -1 } #The Baleares
+			owned = { province = 395 data = -1 } #Messina
+			owned = { province = 396 data = -1 } #Sicily
+			owned = { province = 819 data = -1 } #Malta
+		}
+	}
+	random = no
+	country = NAV
+	name = "EVENTNAME3000016" #The Caliphate of Granada
+	desc = "EVENTHIST3000048"
+	#-#The Emir of Granada has claimed the title of Caliph in order to help grant more legitimacy to his rule in the face of forces that might threaten Granada's recent conquests. This so-called Granadan 'Caliph' now demands the restitution of all the ancient Almohad lands now held by his Iberian vassals, and even those ruled by foreign Berber princes.
+
+	action_a = {
+		name = "ACTIONNAME3000048A" #Bow to the demands of the Caliph
+		command = { type = cedeprovince which = GRA value = 732 } #Tangiers
+		command = { type = cedeprovince which = GRA value = 733 } #Fez
+		command = { type = cedeprovince which = GRA value = 806 } #Toubkal
+		command = { type = cedeprovince which = GRA value = 805 } #Sahara
+		command = { type = cedeprovince which = GRA value = 1595 } #Anti Atlas
+		command = { type = cedeprovince which = GRA value = 734 } #Orania
+		command = { type = cedeprovince which = GRA value = 735 } #Atlas
+		command = { type = cedeprovince which = GRA value = 736 } #Aures
+		command = { type = cedeprovince which = GRA value = 737 } #Al Djazair
+		command = { type = cedeprovince which = GRA value = 738 } #Kabylia
+		command = { type = cedeprovince which = GRA value = 739 } #Tunisia
+		command = { type = cedeprovince which = GRA value = 740 } #Tripolitania
+		command = { type = cedeprovince which = GRA value = 817 } #The Canary Islands
+		command = { type = cedeprovince which = GRA value = 821 } #The Baleares
+		command = { type = cedeprovince which = GRA value = 395 } #Messina
+		command = { type = cedeprovince which = GRA value = 396 } #Sicily
+		command = { type = cedeprovince which = GRA value = 819 } #Malta
+		command = { type = removecore_national which = 732 } #Tangiers
+		command = { type = removecore_national which = 733 } #Fez
+		command = { type = removecore_national which = 806 } #Toubkal
+		command = { type = removecore_national which = 805 } #Sahara
+		command = { type = removecore_national which = 1595 } #Anti Atlas
+		command = { type = removecore_national which = 734 } #Orania
+		command = { type = removecore_national which = 735 } #Atlas
+		command = { type = removecore_national which = 736 } #Aures
+		command = { type = removecore_national which = 737 } #Al Djazair
+		command = { type = removecore_national which = 738 } #Kabylia
+		command = { type = removecore_national which = 739 } #Tunisia
+		command = { type = removecore_national which = 740 } #Tripolitania
+		command = { type = removecore_national which = 817 } #The Canary Islands
+		command = { type = removecore_national which = 821 } #The Baleares
+		command = { type = removecore_national which = 395 } #Messina
+		command = { type = removecore_national which = 396 } #Sicily
+		command = { type = removecore_national which = 819 } #Malta
+	}
+	action_b = {
+		name = "ACTIONNAME3000048B" #Enough is enough!
+		command = { type = breakvassal which = GRA }
+	}
+}
+
+#(1450-1650) Trade shifts to Sevilla
+event = {
+	id = 3000020
+	trigger = {
+		atwar = no
+		stability = 3
+		owned = { province = 441 data = -1 }
+		control = { province = 441 data = -1 }
+		owned = { province = 443 data = -1 }
+		control = { province = 443 data = -1 }
+		domestic = { type = mercantilism value = 8 }
+		NOT = { cot = 443 }
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME3000020" #Trade shifts to Sevilla
+	desc = "EVENTHIST3000020"
+	#-#Thanks to the concentration of Moorish power under our influence, almost all trade in Al-Andalus now flows south through the great port city of Sevilla.
+
+	date = { day = 1 month = january year = 1450 }
+	offset = 360
+	deathdate = { day = 29 month = december year = 1650 }
+
+	action_a = {
+		name = "ACTIONNAME3000020A" #Just as planned
+		command = { type = treasury value = 50 }
+		command = { type = removecot which = 441 }
+		command = { type = population which = 441 value = -3000 } #Tago
+		command = { type = cot which = 443 }
+		command = { type = ADM which = 1 value = 36 }
+		command = { type = merchants value = 6 }
+		command = { type = population which = 443 value = 1000 } #Andalusia
+	}
+}
+
+#(1500-1700) Rebirth of Portuguese Trade
+event = {
+	id = 3000029
+	trigger = {
+		atwar = no
+		countrysize = 10
+		event = 3000020 #GRA: Trade shifts to Sevilla
+		stability = 3
+		owned = { province = 441 data = -1 }
+		control = { province = 441 data = -1 }
+		NOT = { cot = 441 }
+	}
+	random = no
+	country = POR
+	name = "EVENTNAME3000029" #Rebirth of Portuguese Trade
+	desc = "EVENTHIST3000029"
+	#-#Thanks to our colonial efforts and the increasingly mercantilist policies of the Moors, European trade is returning to Portugal once again.
+
+	date = { day = 1 month = january year = 1500 }
+	offset = 1800
+	deathdate = { day = 29 month = december year = 1700 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = cot which = 441 } #Tago
+		command = { type = capital which = 441 } #Tago
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#AI events if Rebirth of Portuguese trade
+
+event = {
+	id = 3000012
+	trigger = {
+		ai = yes
+		event = 3000029 #POR: Rebirth of Portuguese trade
+	}
+	random = no
+	country = POR
+	name = "AI_EVENT"
+	desc = "Gaspar and Miguel Corte Real"
+
+	date = { day = 1 month = may year = 1500 }
+	offset = 30
+	deathdate = { day = 29 month = october year = 1503 }
+
+	action_a = {
+		name = "Change to CorteReal AI"
+		command = { type = ai which = POR_1500_CorteReal.txt }
+	}
+}
+
+event = {
+	id = 3000014
+	trigger = {
+		ai = yes
+		event = 3000029 #POR: Rebirth of Portuguese trade
+	}
+	random = no
+	country = POR
+	name = "AI_EVENT"
+	desc = "Manuel A takes the throne"
+
+	date = { day = 1 month = january year = 1504 }
+	offset = 30
+	deathdate = { day = 29 month = october year = 1513 }
+
+	action_a = {
+		name = "Change to Manuel AI"
+		command = { type = ai which = POR_1504_Manuel.txt }
+	}
+}
+
+event = {
+	id = 3000044
+	trigger = {
+		ai = yes
+		event = 3000029 #POR: Rebirth of Portuguese trade
+	}
+	random = no
+	country = POR
+	name = "AI_EVENT"
+	desc = "Manuel B takes the throne"
+
+	date = { day = 1 month = january year = 1514 }
+	offset = 30
+	deathdate = { day = 29 month = september year = 1521 }
+
+	action_a = {
+		name = "Change to 3 explorers AI"
+		command = { type = ai which = POR_1514_3explorers.txt }
+	}
+}
+
+event = {
+	id = 3000045
+	trigger = {
+		ai = yes
+		event = 3000029 #POR: Rebirth of Portuguese trade
+	}
+	random = no
+	country = POR
+	name = "AI_EVENT"
+	desc = "Joao III takes the throne"
+
+	date = { day = 16 month = december year = 1521 }
+	offset = 30
+	deathdate = { day = 29 month = april year = 1557 }
+
+	action_a = {
+		name = "Change to Generic AI"
+		command = { type = ai which = POR_1521_JoaoIII.txt }
+	}
+}
+
+event = {
+	id = 3000046
+	trigger = {
+		ai = yes
+		event = 3000029 #POR: Rebirth of Portuguese trade
+	}
+	random = no
+	country = POR
+	name = "AI_EVENT"
+	desc = "Sebastiano takes the throne"
+
+	date = { day = 12 month = june year = 1557 }
+	offset = 30
+	deathdate = { day = 29 month = november year = 1579 }
+
+	action_a = {
+		name = "Change to Sebastiano AI"
+		command = { type = ai which = POR_1557_Sebastiano.txt }
+	}
+}
+
+event = {
+	id = 3000047
+	trigger = {
+		ai = yes
+		event = 3000029 #POR: Rebirth of Portuguese trade
+	}
+	random = no
+	country = POR
+	name = "AI_EVENT"
+	desc = "Change to vassal AI"
+
+	date = { day = 1 month = february year = 1580 }
+	offset = 30
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "Change to vassal AI"
+		command = { type = ai which = POR_1580_vassal.txt }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Inca
+
+#(1500-1700) The Inca Empire
+event = {
+	id = 3000021
+	trigger = {
+		atwar = no
+		neighbour = INC
+		NOT = { vassal = { country = GRA country = INC } }
+		NOT = { vassal = { country = INC country = GRA } }
+		flag = [Caliphate_Granada]
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME3000021" #The Inca Empire
+	desc = "EVENTHIST3000021"
+	#-#When the expansion of the Granadan colonial empire reached the mysterious Inca of the New World, Granada was faced with a tough choice: the zealous Berbers wanted to convert the Inca to Islam by the sword, while some of the more cosmopolitan Maghrebis suggested the use of teachers and missionaries. It was hoped that building an alliance with the rich and fascinating land of the Inca might bring more benefits than simply resorting to armed invasion.
+
+	date = { day = 1 month = january year = 1500 }
+	offset = 400
+	deathdate = { day = 29 month = december year = 1700 }
+
+	action_a = {
+		name = "ACTIONNAME3000021A" #Prepare for an invasion
+		command = { type = relation which = INC value = -100 }
+		command = { type = casusbelli which = INC value = 60 }
+		command = { type = conquistador which = -1 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = domestic which = land value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3000021B" #Send missionaries
+		command = { type = diplomats value = -1 }
+		command = { type = missionaries value = -6 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = trigger which = 3000022 } #INC: Muslim Missionaries
+	}
+}
+
+#(1500-1700) Muslim Missionaries
+event = {
+	id = 3000022 #triggered by GRA_3000021 B
+	random = no
+	country = INC
+	name = "EVENTNAME3000022" #Muslim Missionaries
+	desc = "EVENTHIST3000022"
+	#-#Our lands are being proselytized by missionaries from the nearby Muslim colonies. They don't appear to mean us any harm - yet - but they are preaching their strange religion to both the nobility and peasants. More worrying is the new and incredible kinds of weapons these people carry, which are not made of wood or obsidian but... something else.
+
+	action_a = {
+		name = "ACTIONNAME3000022A" #Watch them closely
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 36 value = 6 }
+		command = { type = casusbelli which = GRA value = 36 }
+		command = { type = provincereligion which = -1 value = sunni }
+		command = { type = provincereligion which = -4 value = sunni }
+		command = { type = provincereligion which = -4 value = sunni }
+		command = { type = domestic which = innovative value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3000022B" #Embrace the new religion
+		command = { type = stability value = -6 }
+		command = { type = revoltrisk which = 36 value = 12 }
+		command = { type = dynastic which = GRA }
+		command = { type = relation which = GRA value = 150 }
+		command = { type = religion which = sunni }
+		command = { type = provincereligion which = -2 value = sunni }
+		command = { type = provincereligion which = -4 value = sunni }
+		command = { type = provincereligion which = -4 value = sunni }
+		command = { type = provincereligion which = -4 value = sunni }
+		command = { type = provincereligion which = -4 value = sunni }
+		command = { type = domestic which = innovative value = 3 }
+		command = { type = technology which = asian }
+	}
+	action_c = {
+		name = "ACTIONNAME3000022C" #Execute their missionaries and converts!
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 36 value = 2 }
+		command = { type = relation which = GRA value = -100 }
+		command = { type = casusbelli which = GRA value = 36 }
+		command = { type = domestic which = innovative value = -1 }
+	}
+}
+
+#(1500-1700) The Inca Silver Trade
+event = {
+	id = 3000023
+	trigger = {
+		atwar = no
+		event = 3000021 #GRA: The Inca Empire
+		stability = 3
+		owned = { province = 158 data = -1 } #Cartagena
+		owned = { province = 168 data = -1 } #Lima
+		owned = { province = 194 data = -1 } #Potosi
+		OR = {
+			owned = { province = 160 data = -1 } #Bogota
+			owned = { province = 161 data = -1 } #Cupica
+		}
+		NOT = { exists = INC }
+		flag = [Caliphate_Granada]
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME3000023" #The Inca Silver Trade
+	desc = "EVENTHIST3000023"
+	#-#With the Inca Empire now fully subdued and under the control of Granada, its vast wealth is quickly starting to flow into the coffers of the local emirs. The lucrative silver deposits of Potosi are perhaps the single greatest source of wealth in South America, and the trade routes to Cartagena and Lima mean baghlahs full of silver could be sailed to and from the ports of Iberia. With this in mind, from which port should we ship all this silver?
+
+	date = { day = 1 month = january year = 1500 }
+	offset = 1800
+	deathdate = { day = 29 month = december year = 1700 }
+
+	action_a = {
+		name = "ACTIONNAME3000023A" #Cartagena
+		command = { type = merchants value = 6 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = cot which = 158 } #Cartagena
+		command = { type = addcore_claim which = 158 } #Cartagena
+		command = { type = fortress which = 158 value = 1 } #Cartagena
+		command = { type = population which = 158 value = 5000 } #Cartagena
+		command = { type = provincereligion which = 158 value = sunni }	#Cartagena
+		command = { type = provinceculture which = 158 value = maghrebi } #Cartagena
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = centralization value = 1 }
+		command = { type = domestic which = mercantilism value = 1 }
+		command = { type = domestic which = land value = -1 }
+		command = { type = removecot which = 169 } #Cuzco
+	}
+	action_b = {
+		name = "ACTIONNAME3000023B" #Lima
+		command = { type = merchants value = 6 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = revolt which = 168 } #Lima
+		command = { type = cot which = 168 } #Lima
+		command = { type = addcore_claim which = 168 } #Lima
+		command = { type = fortress which = 168 value = 1 } #Lima
+		command = { type = population which = 168 value = 5000 } #Lima
+		command = { type = provincereligion which = 168 value = sunni }	#Lima
+		command = { type = provinceculture which = 168 value = maghrebi } #Lima
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = centralization value = -1 }
+		command = { type = domestic which = mercantilism value = -1 }
+		command = { type = domestic which = land value = -1 }
+		command = { type = removecot which = 169 } #Cuzco
+	}
+}
+
+#(1550-1750) The Inca Culture
+event = {
+	id = 3000028
+	trigger = {
+		atwar = no
+		event = 3000023 #GRA: The Inca Silver Trade
+		stability = 3
+		owned = { province = 169 data = -1 } #Cuzco
+		NOT = { exists = INC }
+		flag = [Caliphate_Granada]
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME3000028" #The Inca Culture
+	desc = "EVENTHIST3000028"
+	#-#With the Inca Empire firmly under the control of Granada, the time has come to decide the fate of this once-proud culture. Whilst many leading Maghrebis suggest letting the Inca maintain their customs in exchange for conversion to Islam, the Berber nobility find the culture and religion of the Inca far too integrated, and antithetical to Muslim values, that they advocate stamping out both.
+
+	date = { day = 1 month = january year = 1550 }
+	offset = 1800
+	deathdate = { day = 29 month = december year = 1750 }
+
+	action_a = {
+		name = "ACTIONNAME3000026A" #Conversion is the price they must pay
+		command = { type = stability value = -1 }
+		command = { type = missionaries value = -6 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = conversion which = 160 } #Bogota
+		command = { type = conversion which = 162 } #Cali
+		command = { type = conversion which = 164 } #Guayaquil
+		command = { type = conversion which = 165 } #Cajamarca
+		command = { type = conversion which = 166 } #Huanuco
+		command = { type = conversion which = 167 } #Ayacucho
+		command = { type = conversion which = 168 } #Lima
+		command = { type = conversion which = 169 } #Cuzco
+		command = { type = conversion which = 170 } #Arequipa
+		command = { type = conversion which = 171 } #Moquega
+		command = { type = revolt which = 167 } #Ayacucho
+		command = { type = revolt which = 169 } #Cuzco
+		command = { type = religiousrevolt which = 163 } #Azuay
+		command = { type = religiousrevolt which = 1482 } #Montana
+		command = { type = religiousrevolt which = 1483 } #Atalaya
+		command = { type = religiousrevolt which = 1484 } #Manu
+		command = { type = religiousrevolt which = 193 } #Titicaca
+		command = { type = religiousrevolt which = 194 } #Potosi
+		command = { type = religiousrevolt which = 172 } #Arica
+		command = { type = religiousrevolt which = 219 } #Tucuman
+ 	}
+	action_b = {
+		name = "ACTIONNAME3000026B" #We must stamp out these heathens
+		command = { type = stability value = -2 }
+		command = { type = missionaries value = 6 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = revolt which = 167 } #Ayacucho
+		command = { type = revolt which = 168 } #Lima
+		command = { type = revolt which = 169 } #Cuzco
+		command = { type = revolt which = 170 } #Arequipa
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Aztecs
+
+#(1500-1700) The Aztec Empire
+event = {
+	id = 3000024
+	trigger = {
+		atwar = no
+		neighbour = AZT
+		NOT = { exists = SPA }
+		NOT = { vassal = { country = GRA country = AZT } }
+		NOT = { vassal = { country = AZT country = GRA } }
+		flag = [Caliphate_Granada]
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME3000024" #The Aztec Empire
+	desc = "EVENTHIST3000024"
+	#-#When the expansion of the Granadan colonial empire reached the mysterious Aztecs of the New World, Granada was faced with a tough choice: the zealous Berbers wanted to convert the Aztecs to Islam by the sword, while some of the more cosmopolitan Maghrebis suggested the use of teachers and missionaries. It was hoped that building an alliance with the rich and fascinating land of the Aztecs might bring more benefits than simply resorting to armed invasion.
+
+	date = { day = 1 month = january year = 1500 }
+	offset = 1800
+	deathdate = { day = 29 month = december year = 1700 }
+
+	action_a = {
+		name = "ACTIONNAME3000021A" #Prepare for an invasion
+		command = { type = relation which = AZT value = -100 }
+		command = { type = casusbelli which = AZT value = 60 }
+		command = { type = conquistador which = -1 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = domestic which = land value = -1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3000021B" #Send missionaries
+		command = { type = diplomats value = -1 }
+		command = { type = missionaries value = -6 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = trigger which = 3000025 } #AZT: Muslim Missionaries
+	}
+}
+
+#(1500-1700) Muslim Missionaries
+event = {
+	id = 3000025 #triggered by GRA_3000024 B
+	random = no
+	country = AZT
+	name = "EVENTNAME3000022" #Muslim Missionaries
+	desc = "EVENTHIST3000022"
+	#-#Our lands are being proselytized by missionaries from the nearby Muslim colonies. They don't appear to mean us any harm - yet - but they are preaching their strange religion to both the nobility and peasants. More worrying is the new and incredible kinds of weapons these people carry, which are not made of wood or obsidian but... something else.
+
+	action_a = {
+		name = "ACTIONNAME3000022A" #Watch them closely
+		command = { type = stability value = -3 }
+		command = { type = revoltrisk which = 36 value = 6 }
+		command = { type = casusbelli which = GRA value = 36 }
+		command = { type = provincereligion which = -1 value = sunni }
+		command = { type = provincereligion which = -4 value = sunni }
+		command = { type = provincereligion which = -4 value = sunni }
+		command = { type = domestic which = innovative value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3000022B" #Embrace the new religion
+		command = { type = stability value = -6 }
+		command = { type = revoltrisk which = 36 value = 12 }
+		command = { type = dynastic which = GRA }
+		command = { type = relation which = GRA value = 150 }
+		command = { type = religion which = sunni }
+		command = { type = provincereligion which = -2 value = sunni }
+		command = { type = provincereligion which = -4 value = sunni }
+		command = { type = provincereligion which = -4 value = sunni }
+		command = { type = provincereligion which = -4 value = sunni }
+		command = { type = provincereligion which = -4 value = sunni }
+		command = { type = domestic which = innovative value = 3 }
+		command = { type = technology which = asian }
+	}
+	action_c = {
+		name = "ACTIONNAME3000022C" #Execute their missionaries and converts!
+		command = { type = stability value = -2 }
+		command = { type = revoltrisk which = 36 value = 2 }
+		command = { type = relation which = GRA value = -100 }
+		command = { type = casusbelli which = GRA value = 36 }
+		command = { type = domestic which = innovative value = -1 }
+	}
+}
+
+#(1500-1700) The Aztec Gold Trade
+event = {
+	id = 3000027
+	trigger = {
+		atwar = no
+		event = 3000024 #GRA: The Aztec Empire
+		stability = 3
+		owned = { province = 27 data = -1 } #Tenochtitlan
+		owned = { province = 29 data = -1 } #Tlaxcala
+		owned = { province = 30 data = -1 } #Atlixco
+		NOT = { exists = AZT }
+		flag = [Caliphate_Granada]
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME3000027" #The Aztec Gold Trade
+	desc = "EVENTHIST3000027"
+	#-#With the Aztec Empire now fully subdued and under the control of Granada, its vast wealth is quickly starting to flow into the coffers of the local emirs. The lucrative gold deposits of Tenochtitlan are perhaps the single greatest source of wealth in North America, but the backward Aztecs had neither the knowledge nor tools to realize their mines' huge potential. Furthermore, the provincial infrastructure is wholly inadequate to sustain the large treasure fleets that will be required to ship all this gold back to Iberia. With this in mind, should we focus on expanding the mines or the ports?
+
+	date = { day = 1 month = january year = 1500 }
+	offset = 1800
+	deathdate = { day = 29 month = december year = 1700 }
+
+	action_a = {
+		name = "ACTIONNAME3000027A" #The mines
+		command = { type = merchants value = 6 }
+		command = { type = infra value = 400 }
+		command = { type = mine which = 27 value = 15 } #Tenochtitlan
+		command = { type = provincetax which = 27 value = 4 } #Tenochtitlan
+		command = { type = addcore_claim which = 27 } #Tenochtitlan
+		command = { type = gainmanufactory which = 27 value = refinery } #Tenochtitlan
+		command = { type = population which = 27 value = 5000 } #Tenochtitlan
+		command = { type = provincereligion which = 27 value = sunni }	#Tenochtitlan
+		command = { type = provinceculture which = 27 value = maghrebi } #Tenochtitlan
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = domestic which = mercantilism value = 1 }
+		command = { type = domestic which = aristocracy value = 1 }
+		command = { type = domestic which = land value = 1 }
+	}
+	action_b = {
+		name = "ACTIONNAME3000027B" #The ports
+		command = { type = colonists value = 6 }
+		command = { type = naval value = 800 }
+		command = { type = trade value = 800 }
+		command = { type = transports which = 29 value = 5 } #Tlaxcala
+		command = { type = warships which = 29 value = 15 } #Tlaxcala
+		command = { type = gainbuilding which = 29 value = shipyard } #Tlaxcala
+		command = { type = provincetax which = 29 value = 1 } #Tlaxcala
+		command = { type = addcore_claim which = 29 } #Tlaxcala
+		command = { type = gainmanufactory which = 29 value = navalequipment } #Tlaxcala
+		command = { type = population which = 29 value = 5000 } #Tlaxcala
+		command = { type = provincereligion which = 29 value = sunni }	#Tlaxcala
+		command = { type = provinceculture which = 29 value = maghrebi } #Tlaxcala
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = domestic which = mercantilism value = -1 }
+		command = { type = domestic which = aristocracy value = -1 }
+		command = { type = domestic which = land value = -1 }
+	}
+}
+
+#(1550-1750) The Aztec Culture
+event = {
+	id = 3000026
+	trigger = {
+		atwar = no
+		event = 3000027 #GRA: The Aztec Gold Trade
+		stability = 3
+		owned = { province = 27 data = -1 } #Tenochtitlan
+		NOT = { exists = AZT }
+		flag = [Caliphate_Granada]
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME3000026" #The Aztec Culture
+	desc = "EVENTHIST3000026"
+	#-#With the Aztec Empire firmly under the control of Granada, the time has come to decide the fate of this once-proud culture. Whilst many leading Maghrebis suggest letting the Aztecs maintain their customs in exchange for conversion to Islam, the Berber nobility find the culture and religion of the Aztecs far too integrated, and antithetical to Muslim values, that they advocate stamping out both.
+
+	date = { day = 1 month = january year = 1550 }
+	offset = 1800
+	deathdate = { day = 29 month = december year = 1750 }
+
+	action_a = {
+		name = "ACTIONNAME3000026A" #Conversion is the price they must pay
+		command = { type = stability value = -1 }
+		command = { type = missionaries value = -6 }
+		command = { type = domestic which = innovative value = 1 }
+		command = { type = conversion which = 24 } #Jalisco
+		command = { type = conversion which = 25 } #Saltillo
+		command = { type = conversion which = 26 } #Michoachen
+		command = { type = conversion which = 27 } #Tenochtitlan
+		command = { type = conversion which = 28 } #Tampico
+		command = { type = conversion which = 29 } #Tlaxcala
+		command = { type = conversion which = 30 } #Atlixco
+		command = { type = revolt which = 27 } #Tenochtitlan
+		command = { type = religiousrevolt which = 32 } #Tehuacan
+		command = { type = religiousrevolt which = 31 } #Tehuantepec
+ 	}
+	action_b = {
+		name = "ACTIONNAME3000026B" #We must stamp out these heathens
+		command = { type = stability value = -2 }
+		command = { type = missionaries value = 6 }
+		command = { type = domestic which = innovative value = -1 }
+		command = { type = revolt which = 27 } #Tenochtitlan
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Culture conversion Events
+#-----------------------------------------------------------------------------------------------
+
+#-----------------------------------------------------------------------------------------------
+#Aragon
+
+event = {
+	id = 3000034
+	trigger = {
+		atwar = no
+		owned = { province = 437 data = -1 } #Valencia
+		owned = { province = 438 data = -1 } #Murcia
+		owned = { province = 439 data = -1 } #Toledo
+		provincereligion = { province = 438 data = sunni } #Murcia
+		OR = {
+			provincereligion = { province = 436 data = sunni } #Castilla
+			provincereligion = { province = 439 data = sunni } #Toledo
+		}
+		stability = 3
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME3000034" #Berber culture spreads to Valencia
+	desc = "EVENTHIST3000034"
+	#-#With the conversion of nearby provinces to Islam this province has seen an increase in Muslim traders at the expense of Christians. Over time, their culture has slowly been assimilated into our own.
+
+	date = { day = 1 month = january year = 1475 }
+	offset = 1800
+	deathdate = { day = 29 month = december year = 1675 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = stability value = -1 }
+		command = { type = revolt which = 437 } #Valencia
+		command = { type = provinceculture which = 437 value = berber } #Valencia
+		command = { type = population which = 437 value = -3000 } #Valencia
+		command = { type = trigger which = 3000035 } #ARG: Refugees from Valencia
+	}
+}
+
+event = {
+	id = 3000035 #triggered by GRA_3000034
+	random = no
+	country = ARG
+	name = "EVENTNAME3000035" #Refugees from Valencia
+	desc = "EVENTHIST3000035"
+	#-#The invading Berbers have sacked the province of Valencia, forcing most of the local Catalans to flee north to Castile.
+
+	action_a = {
+		name = "ACTIONNAME3000035A" #House them
+		command = { type = removecore_national which = 437 } #Valencia
+		command = { type = population which = -2 value = 2000 }
+		command = { type = population which = -1 value = 1000 }
+		command = { type = relation which = GRA value = -50 }
+		command = { type = casusbelli which = GRA value = 36 }
+	}
+}
+
+event = {
+	id = 3000036
+	trigger = {
+		atwar = no
+		owned = { province = 437 data = -1 } #Valencia
+		owned = { province = 438 data = -1 } #Murcia
+		owned = { province = 821 data = -1 } #The Baleares
+		provincereligion = { province = 437 data = sunni } #Valencia
+		provincereligion = { province = 438 data = sunni } #Murcia
+		stability = 3
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME3000036" #Maghrebi culture spreads to The Baleares
+	desc = "EVENTHIST3000034"
+	#-#With the conversion of nearby provinces to Islam this province has seen an increase in Muslim traders at the expense of Christians. Over time, their culture has slowly been assimilated into our own.
+
+	date = { day = 1 month = january year = 1475 }
+	offset = 1800
+	deathdate = { day = 29 month = december year = 1675 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = stability value = -1 }
+		command = { type = revolt which = 821 } #The Baleares
+		command = { type = provinceculture which = 821 value = maghrebi } #The Baleares
+		command = { type = population which = 821 value = -500 } #The Baleares
+		command = { type = trigger which = 3000037 } #ARG: Refugees from The Baleares
+	}
+}
+
+event = {
+	id = 3000037 #triggered by GRA_3000036
+	random = no
+	country = ARG
+	name = "EVENTNAME3000037" #Refugees from The Baleares
+	desc = "EVENTHIST3000037"
+	#-#The invading Maghrebis have sacked the province of The Baleares, forcing most of the local Catalans to flee north to Castile.
+
+	action_a = {
+		name = "ACTIONNAME3000035A" #House them
+		command = { type = removecore_national which = 821 } #The Baleares
+		command = { type = population which = -2 value = 500 }
+		command = { type = relation which = GRA value = -50 }
+		command = { type = casusbelli which = GRA value = 36 }
+	}
+}
+
+event = {
+	id = 3000038
+	trigger = {
+		atwar = no
+		owned = { province = 430 data = -1 } #Aragon
+		owned = { province = 436 data = -1 } #Castilla
+		owned = { province = 437 data = -1 } #Valencia
+		provincereligion = { province = 436 data = sunni } #Castilla
+		provincereligion = { province = 437 data = sunni } #Aragon
+		stability = 3
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME3000038" #Berber culture spreads to Aragon
+	desc = "EVENTHIST3000034"
+	#-#With the conversion of nearby provinces to Islam this province has seen an increase in Muslim traders at the expense of Christians. Over time, their culture has slowly been assimilated into our own.
+
+	date = { day = 1 month = january year = 1475 }
+	offset = 1800
+	deathdate = { day = 29 month = december year = 1675 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = stability value = -1 }
+		command = { type = revolt which = 430 } #Aragon
+		command = { type = provinceculture which = 430 value = berber } #Aragon
+		command = { type = population which = 430 value = -2000 } #Aragon
+		command = { type = trigger which = 3000039 } #ARG: Refugees from Aragon
+	}
+}
+
+event = {
+	id = 3000039 #triggered by GRA_3000038
+	random = no
+	country = ARG
+	name = "EVENTNAME3000039" #Refugees from Aragon
+	desc = "EVENTHIST3000039"
+	#-#The invading Berbers have sacked the province of Aragon, forcing most of the local Catalans to flee north to Castile.
+
+	action_a = {
+		name = "ACTIONNAME3000035A" #House them
+		command = { type = removecore_national which = 430 } #Aragon
+		command = { type = population which = -2 value = 1000 }
+		command = { type = population which = -1 value = 1000 }
+		command = { type = relation which = GRA value = -50 }
+		command = { type = casusbelli which = GRA value = 36 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#Portugal
+
+event = {
+	id = 3000040
+	trigger = {
+		event = 3000020 #GRA: Trade shifts to Sevilla
+		atwar = no
+		owned = { province = 440 data = -1 } #Estramadura
+		owned = { province = 442 data = -1 } #Algarve
+		owned = { province = 443 data = -1 } #Andalusia
+		control = { province = 443 data = -1 } #Andalusia
+		provincereligion = { province = 443 data = sunni }
+		stability = 3
+		OR = {
+			provincereligion = { province = 440 data = sunni } #Estramadura
+			provincereligion = { province = 441 data = sunni } #Tago
+		}
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME3000040" #Berber culture spreads to Algarve
+	desc = "EVENTHIST3000034"
+	#-#With the conversion of nearby provinces to Islam this province has seen an increase in Muslim traders at the expense of Christians. Over time, their culture has slowly been assimilated into our own.
+
+	date = { day = 1 month = january year = 1475 }
+	offset = 1800
+	deathdate = { day = 29 month = december year = 1675 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = stability value = -1 }
+		command = { type = revolt which = 442 } #Algarve
+		command = { type = provinceculture which = 442 value = berber } #Algarve
+		command = { type = population which = 442 value = -1000 } #Algarve
+		command = { type = explorer which = 443 } #Andalusia
+		command = { type = colonists value = 6 }
+		command = { type = trigger which = 3000041 } #POR: Refugees from Algarve
+	}
+}
+
+event = {
+	id = 3000041 #triggered by GRA_3000040
+	random = no
+	country = POR
+	name = "EVENTNAME3000041" #Refugees from Algarve
+	desc = "EVENTHIST3000041"
+	#-#The invading Berbers have sacked the province of Algarve, forcing most of the local Portuguese to flee north to Castile.
+
+	action_a = {
+		name = "ACTIONNAME3000035A" #House them
+		command = { type = removecore_national which = 442 } #Algarve
+		command = { type = population which = -2 value = 1000 }
+		command = { type = relation which = GRA value = -50 }
+		command = { type = casusbelli which = GRA value = 36 }
+	}
+}
+
+event = {
+	id = 3000042
+	trigger = {
+		event = 3000020 #GRA: Trade shifts to Sevilla
+		atwar = no
+		owned = { province = 440 data = -1 } #Estramadura
+		owned = { province = 441 data = -1 } #Tago
+		owned = { province = 442 data = -1 } #Algarve
+		owned = { province = 443 data = -1 } #Andalusia
+		control = { province = 443 data = -1 } #Andalusia
+		provincereligion = { province = 440 data = sunni } #Estramadura
+		provincereligion = { province = 442 data = sunni } #Algarve
+		stability = 3
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME3000042" #Berber culture spreads to Tago
+	desc = "EVENTHIST3000034"
+	#-#With the conversion of nearby provinces to Islam this province has seen an increase in Muslim traders at the expense of Christians. Over time, their culture has slowly been assimilated into our own.
+
+	date = { day = 1 month = january year = 1475 }
+	offset = 1800
+	deathdate = { day = 29 month = december year = 1675 }
+
+	action_a = {
+		name = "GREAT"
+		command = { type = stability value = -1 }
+		command = { type = revolt which = 441 } #Tago
+		command = { type = provinceculture which = 441 value = berber } #Tago
+		command = { type = population which = 441 value = -3000 } #Tago
+		command = { type = explorer which = 443 } #Andalusia
+		command = { type = conquistador which = 443 } #Andalusia
+		command = { type = colonists value = 6 }
+		command = { type = trigger which = 3000043 } #POR: Refugees from Tago
+	}
+}
+
+event = {
+	id = 3000043 #triggered by GRA_3000042
+	random = no
+	country = POR
+	name = "EVENTNAME3000043" #Refugees from Tago
+	desc = "EVENTHIST3000043"
+	#-#The invading Berbers have sacked the province of Tago, forcing most of the local Portuguese to flee north to Castile.
+
+	action_a = {
+		name = "ACTIONNAME3000035A" #House them
+		command = { type = removecore_national which = 441 } #Tago
+		command = { type = population which = -2 value = 2000 }
+		command = { type = population which = -1 value = 1000 }
+		command = { type = relation which = GRA value = -50 }
+		command = { type = casusbelli which = GRA value = 36 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#After the Treaty of Léon
+
+event = {
+	id = 3000052
+	trigger = {
+		provincereligion = { province = 436 data = sunni } #Castilla
+		OR = {
+			event = 3000030 #GRA: The Treaty of Léon
+			NOT = { exists = CAS }
+		}
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME3000052" #Berber culture dominant in Castilla
+	desc = "EVENTHIST3000052"
+	#-#With the mass exodus of Christian Iberians from this province, Berbers are now the dominant culture group.
+
+	date = { day = 1 month = january year = 1450 }
+	offset = 180
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "GOOD"
+		command = { type = population which = 436 value = -2000 } #Castilla
+		command = { type = provinceculture which = 436 value = berber } #Castilla
+		command = { type = trigger which = 3000057 } #CAS: Refugees from Castilla
+	}
+}
+
+event = {
+	id = 3000057 #triggered by GRA_3000052
+	trigger = {
+		OR = {
+			religion = catholic
+			religion = counterreform
+		}
+	}
+	random = no
+	country = CAS
+	name = "EVENTNAME3000057" #Refugees from Castilla
+	desc = "EVENTHIST3000057"
+	#-#Christian Iberians from provinces now reconquered by Granada emigrate north to Castile.
+
+	action_a = {
+		name = "ACTIONNAME3000035A" #House them
+		command = { type = population which = -2 value = 2000 }
+	}
+}
+
+event = {
+	id = 3000053
+	trigger = {
+		provincereligion = { province = 438 data = sunni } #Murcia
+		OR = {
+			event = 3000030 #GRA: The Treaty of Léon
+			NOT = { exists = CAS }
+		}
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME3000053" #Maghrebi culture dominant in Murcia
+	desc = "EVENTHIST3000053"
+	#-#With the mass exodus of Christian Iberians from this province, Maghrebis are now the dominant culture group.
+
+	date = { day = 1 month = january year = 1450 }
+	offset = 180
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "GOOD"
+		command = { type = population which = 438 value = -2000 } #Murcia
+		command = { type = provinceculture which = 438 value = maghrebi } #Murcia
+		command = { type = trigger which = 3000058 } #CAS: Refugees from Murcia
+	}
+}
+
+event = {
+	id = 3000058 #triggered by GRA_3000053
+	trigger = {
+		OR = {
+			religion = catholic
+			religion = counterreform
+		}
+	}
+	random = no
+	country = CAS
+	name = "EVENTNAME3000058" #Refugees from Murcia
+	desc = "EVENTHIST3000057"
+	#-#Christian Iberians from provinces now reconquered by Granada emigrate north to Castile.
+
+	action_a = {
+		name = "ACTIONNAME3000035A" #House them
+		command = { type = population which = -2 value = 2000 }
+	}
+}
+
+event = {
+	id = 3000054
+	trigger = {
+		provincereligion = { province = 439 data = sunni } #Toledo
+		OR = {
+			event = 3000030 #GRA: The Treaty of Léon
+			NOT = { exists = CAS }
+		}
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME3000054" #Berber culture dominant in Toledo
+	desc = "EVENTHIST3000052"
+	#-#With the mass exodus of Christian Iberians from this province, Berbers are now the dominant culture group.
+
+	date = { day = 1 month = january year = 1450 }
+	offset = 180
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "GOOD"
+		command = { type = population which = 439 value = -5000 } #Toledo
+		command = { type = provinceculture which = 439 value = berber } #Toledo
+		command = { type = trigger which = 3000059 } #CAS: Refugees from Toledo
+	}
+}
+
+event = {
+	id = 3000059 #triggered by GRA_3000054
+	trigger = {
+		OR = {
+			religion = catholic
+			religion = counterreform
+		}
+	}
+	random = no
+	country = CAS
+	name = "EVENTNAME3000059" #Refugees from Toledo
+	desc = "EVENTHIST3000057"
+	#-#Christian Iberians from provinces now reconquered by Granada emigrate north to Castile.
+
+	action_a = {
+		name = "ACTIONNAME3000035A" #House them
+		command = { type = population which = -2 value = 5000 }
+	}
+}
+
+event = {
+	id = 3000055
+	trigger = {
+		provincereligion = { province = 440 data = sunni } #Estramadura
+		OR = {
+			event = 3000030 #GRA: The Treaty of Léon
+			NOT = { exists = CAS }
+		}
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME3000055" #Berber culture dominant in Estramadura
+	desc = "EVENTHIST3000052"
+	#-#With the mass exodus of Christian Iberians from this province, Berbers are now the dominant culture group.
+
+	date = { day = 1 month = january year = 1450 }
+	offset = 180
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "GOOD"
+		command = { type = population which = 440 value = -2000 } #Estramadura
+		command = { type = provinceculture which = 440 value = berber } #Estramadura
+		command = { type = trigger which = 3000060 } #CAS: Refugees from Estramadura
+	}
+}
+
+event = {
+	id = 3000060 #triggered by GRA_3000055
+	trigger = {
+		OR = {
+			religion = catholic
+			religion = counterreform
+		}
+	}
+	random = no
+	country = CAS
+	name = "EVENTNAME3000060" #Refugees from Estramadura
+	desc = "EVENTHIST3000057"
+	#-#Christian Iberians from provinces now reconquered by Granada emigrate north to Castile.
+
+	action_a = {
+		name = "ACTIONNAME3000035A" #House them
+		command = { type = population which = -2 value = 2000 }
+	}
+}
+
+event = {
+	id = 3000056
+	trigger = {
+		provincereligion = { province = 443 data = sunni } #Andalusia
+		OR = {
+			event = 3000030 #GRA: The Treaty of Léon
+			NOT = { exists = CAS }
+		}
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME3000056" #Maghrebi culture dominant in Andalusia
+	desc = "EVENTHIST3000053"
+	#-#With the mass exodus of Christian Iberians from this province, Maghrebis are now the dominant culture group.
+
+	date = { day = 1 month = january year = 1450 }
+	offset = 180
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "GOOD"
+		command = { type = population which = 443 value = -5000 } #Andalusia
+		command = { type = provinceculture which = 443 value = maghrebi } #Andalusia
+		command = { type = trigger which = 3000061 } #CAS: Refugees from Andalusia
+	}
+}
+
+event = {
+	id = 3000061 #triggered by GRA_3000056
+	trigger = {
+		OR = {
+			religion = catholic
+			religion = counterreform
+		}
+	}
+	random = no
+	country = CAS
+	name = "EVENTNAME3000061" #Refugees from Andalusia
+	desc = "EVENTHIST3000057"
+	#-#Christian Iberians from provinces now reconquered by Granada emigrate north to Castile.
+
+	action_a = {
+		name = "ACTIONNAME3000035A" #House them
+		command = { type = population which = -2 value = 5000 }
+	}
+}
+
+event = {
+	id = 3000066
+	trigger = {
+		provincereligion = { province = 817 data = sunni } #The Canary Islands
+		OR = {
+			event = 3000030 #GRA: The Treaty of Léon
+			NOT = { exists = CAS }
+		}
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME3000066" #Berber culture dominant in The Canary Islands
+	desc = "EVENTHIST3000052"
+	#-#With the mass exodus of Christian Iberians from this province, Berbers are now the dominant culture group.
+
+	date = { day = 1 month = january year = 1450 }
+	offset = 180
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "GOOD"
+		command = { type = population which = 817 value = -250 } #The Canary Islands
+		command = { type = provinceculture which = 817 value = berber } #The Canary Islands
+		command = { type = trigger which = 3000067 } #CAS: Refugees from The Canary Islands
+	}
+}
+
+event = {
+	id = 3000067 #triggered by GRA_3000066
+	trigger = {
+		OR = {
+			religion = catholic
+			religion = counterreform
+		}
+	}
+	random = no
+	country = CAS
+	name = "EVENTNAME3000067" #Refugees from The Canary Islands
+	desc = "EVENTHIST3000067"
+	#-#The invading Berbers have sacked the province of The Canary Islands, forcing most of the local Castilians to sail back to Castile.
+
+	action_a = {
+		name = "ACTIONNAME3000035A" #House them
+		command = { type = population which = -2 value = 250 }
+		command = { type = colonists value = 1 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+#After the Caliphate of Granada
+
+event = {
+	id = 3000068
+	trigger = {
+		provincereligion = { province = 395 data = sunni } #Messina
+		OR = {
+			event = 3000016 #GRA: The Caliphate of Granada -I-
+			event = 3000017 #GRA: The Caliphate of Granada -II-
+			NOT = { exists = ARG }
+		}
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME3000068" #Maghrebi culture spreads to Messina
+	desc = "EVENTHIST3000068"
+	#-#With the mass exodus of Christian Italians from this province, Maghrebis are now the dominant culture group.
+
+	date = { day = 1 month = january year = 1450 }
+	offset = 180
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "GOOD"
+		command = { type = population which = 395 value = -5000 } #Messina
+		command = { type = provinceculture which = 395 value = maghrebi } #Messina
+		command = { type = trigger which = 3000069 } #NAP: Refugees from Messina
+	}
+}
+
+event = {
+	id = 3000069 #triggered by GRA_3000068
+	trigger = {
+		OR = {
+			religion = catholic
+			religion = counterreform
+		}
+	}
+	random = no
+	country = NAP
+	name = "EVENTNAME3000069" #Refugees from Messina
+	desc = "EVENTHIST3000069"
+	#-#Christian Italians from provinces now reconquered by Granada emigrate north to Naples.
+
+	action_a = {
+		name = "ACTIONNAME3000035A" #House them
+		command = { type = population which = -2 value = 5000 }
+	}
+}
+
+event = {
+	id = 3000070
+	trigger = {
+		provincereligion = { province = 396 data = sunni } #Sicily
+		OR = {
+			event = 3000016 #GRA: The Caliphate of Granada -I-
+			event = 3000017 #GRA: The Caliphate of Granada -II-
+			NOT = { exists = ARG }
+		}
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME3000070" #Maghrebi culture spreads to Sicily
+	desc = "EVENTHIST3000068"
+	#-#With the mass exodus of Christian Italians from this province, Maghrebis are now the dominant culture group.
+
+	date = { day = 1 month = january year = 1450 }
+	offset = 180
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "GOOD"
+		command = { type = population which = 396 value = -5000 } #Sicily
+		command = { type = provinceculture which = 396 value = maghrebi } #Sicily
+		command = { type = trigger which = 3000071 } #NAP: Refugees from Sicily
+	}
+}
+
+event = {
+	id = 3000071 #triggered by GRA_3000070
+	trigger = {
+		OR = {
+			religion = catholic
+			religion = counterreform
+		}
+	}
+	random = no
+	country = NAP
+	name = "EVENTNAME3000071" #Refugees from Sicily
+	desc = "EVENTHIST3000069"
+	#-#Christian Italians from provinces now reconquered by Granada emigrate north to Naples.
+
+	action_a = {
+		name = "ACTIONNAME3000035A" #House them
+		command = { type = population which = -2 value = 5000 }
+	}
+}
+
+event = {
+	id = 3000072
+	trigger = {
+		provincereligion = { province = 819 data = sunni } #Malta
+		OR = {
+			event = 3000016 #GRA: The Caliphate of Granada -I-
+			event = 3000017 #GRA: The Caliphate of Granada -II-
+			NOT = { exists = ARG }
+		}
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME3000072" #The Maltese return to Muslim rule
+	desc = "EVENTHIST3000072"
+	#-#The reconquest of Malta by the Caliph's forces has brought the people of that island back under Muslim rule once again.
+
+	date = { day = 1 month = january year = 1450 }
+	offset = 180
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "GOOD"
+		command = { type = add_countryculture which = maltese }
+		command = { type = population which = 819 value = -2000 } #Malta
+		command = { type = trigger which = 3000073 } #NAP: Refugees from Malta
+	}
+}
+
+event = {
+	id = 3000073 #triggered by GRA_3000072
+	trigger = {
+		OR = {
+			religion = catholic
+			religion = counterreform
+		}
+	}
+	random = no
+	country = NAP
+	name = "EVENTNAME3000073" #Refugees from Malta
+	desc = "EVENTHIST3000073"
+	#-#With the reconquest of Malta by forces of the new Caliph of Córdoba, many of the Maltese Christians who helped defend the island from invasion now flock to our borders.
+
+	action_a = {
+		name = "ACTIONNAME3000035A" #House them
+		command = { type = population which = -2 value = 2000 }
+		command = { type = provincetax which = -2 value = 1 }
+	}
+}
+
+event = {
+	id = 3000074
+	trigger = {
+		event = 3000072 #GRA: The Maltese return to Muslim rule
+		OR = {
+			NOT = {
+				provincereligion = { province = 819 data = sunni } #Malta
+			}
+			NOT = {
+				owned = { province = 819 data = GRA } #Malta
+				control = { province = 819 data = GRA } #Malta
+			}
+		}
+	}
+	random = no
+	country = GRA
+	name = "EVENTNAME3000074" #The Maltese shake off Muslim rule
+	desc = "EVENTHIST3000074"
+	#-#The people of Malta have once again rejected Muslim rule, and in doing so we no longer have an affinity for their culture and customs.
+
+	date = { day = 1 month = january year = 1450 }
+	offset = 180
+	deathdate = { year = 1820 }
+
+	action_a = {
+		name = "CURSES"
+		command = { type = remove_countryculture which = maltese }
+		command = { type = stability value = -1 }
+	}
+}
+
+#-----------------------------------------------------------------------------------------------
+
+#First free id: 3000075

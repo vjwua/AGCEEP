@@ -20,14 +20,14 @@ country = {
 		type = zhuang
 	}
 	diplomacy = {
-		relation = { tag = KOR value = 50 guaranteed = { year = 1500 month = january day = 1 } }
-		relation = { tag = HAM value = 100 access = yes guaranteed = { year = 1450 month = january day = 1 } }
-		relation = { tag = TIB value = 50 guaranteed = { year = 1450 month = january day = 1 } }
+		relation = { tag = KOR value = 50 guaranteed = { year = 1418 month = january day = 1 } }
+		relation = { tag = HAM value = 100 access = yes guaranteed = { year = 1418 month = january day = 1 } }
+		relation = { tag = TIB value = 50 guaranteed = { year = 1418 month = january day = 1 } }
 		relation = { tag = LNA value = 40 }
 		relation = { tag = CHA value = 40 }
 		relation = { tag = BRM value = 40 }
 		relation = { tag = MUB value = 40 }
-		relation = { tag = LCH value = 0 guaranteed = { year = 1420 month = january day = 1 } }
+		relation = { tag = LCH value = 0 guaranteed = { year = 1418 month = january day = 1 } }
 		relation = { tag = MGL value = -25 }
 		relation = { tag = MCH value = 25 }
 	}

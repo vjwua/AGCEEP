@@ -14,7 +14,7 @@ country = {
 	treasury = 400
 	inflation = 0.100000
 	merchants = 0.083333
-	religion = { type = sunni }
+	religion = { type = eastern_sunni }
 	culture = {
 		type = uighur
 		type = turkoman

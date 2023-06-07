@@ -25,7 +25,7 @@ country = {
 	inflation = 0
 	merchants = 2.166667
 	religion = { type = catholic }
-	culture = { type = anglosaxon }
+	culture = { type = english }
 	diplomacy = {
 		relation = { tag = SCO value = -150 }
 		relation = { tag = FRA value = -100 }

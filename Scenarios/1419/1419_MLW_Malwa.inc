@@ -14,7 +14,7 @@ country = {
 	treasury = 120
 	inflation = 0
 	merchants = 0.083333
-	religion = { type = sunni }
+	religion = { type = eastern_sunni }
 	culture = { type = hindi }
 	diplomacy = {
 		relation = { tag = DLH value = -50 }

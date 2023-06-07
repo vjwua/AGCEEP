@@ -26,7 +26,7 @@ country = {
 	inflation = 0
 	merchants = 0
 	religion = { type = protestant }
-	culture = { type = anglosaxon }
+	culture = { type = english }
 	diplomacy = {
 		relation = { tag = OMA value = 80 }
 		relation = { tag = EIR value = -200 }

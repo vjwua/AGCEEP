@@ -14,7 +14,7 @@ country = {
 	treasury = 50
 	inflation = 0
 	merchants = 0.083333
-	religion = { type = sunni }
+	religion = { type = eastern_sunni }
 	culture = { type = mataco }
 	diplomacy = {
 		relation = { tag = HOL value = 125 }

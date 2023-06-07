@@ -24,7 +24,7 @@ country = {
 	treasury = 100
 	inflation = 0
 	merchants = 0
-	religion = { type = sunni }
+	religion = { type = eastern_sunni }
 	culture = { type = javan }
 	diplomacy = {
 		relation = { tag = MLC value = 175 }

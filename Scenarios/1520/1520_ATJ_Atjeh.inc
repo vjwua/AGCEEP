@@ -14,7 +14,7 @@ country = {
 	treasury = 200
 	inflation = 0
 	merchants = 0
-	religion = { type = sunni }
+	religion = { type = eastern_sunni }
 	culture = { type = indonesian }
 	diplomacy = {
 		relation = { tag = POR value = -100 }

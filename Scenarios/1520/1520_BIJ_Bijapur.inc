@@ -14,7 +14,7 @@ country = {
 	treasury = 100
 	inflation = 0
 	merchants = 0.083333
-	religion = { type = shia }
+	religion = { type = eastern_shia }
 	culture = {
 		type = telugu
 		type = marathi

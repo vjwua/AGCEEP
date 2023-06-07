@@ -429,7 +429,7 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME230017A" #We have lost Hindustan but kept our life
-		#command = { type = AI which = peaceful.ai }
+		#command = { type = AI which = peaceful.txt }
 		command = { type = stability value = -3 }
 		command = { type = capital which = 1523 } #(Lahore?) #Thar
 		command = { type = cedeprovince which = BGL value = 543 } #Delhi
@@ -672,7 +672,7 @@ event = {
 
 	action_a = {
 		name = "ACTIONNAME230207A" #Lay siege to Chittor
-		#command = { type = AI which = MOG_Rajputs.ai }
+		#command = { type = AI which = MOG_Rajputs.txt }
 		command = { type = casusbelli which = RAJ value = 24 } #Rajputana
 		command = { type = relation which = RAJ value = -50 }
 	}
@@ -693,7 +693,7 @@ event = {
 	action_a = {
 		name = "ACTIONNAME230210A" #Impudence!
 		command = { type = casusbelli which = RAJ value = 36 }
-		#command = { type = AI which = MOG_Rajputs.ai }
+		#command = { type = AI which = MOG_Rajputs.txt }
 	}
 }
 #(1567 or 1567-1605) Mewar submits to Mughal rule - Ahistorical
@@ -709,7 +709,7 @@ event = {
 		name = "ACTIONNAME230209A" #The Rajput princes are left with no choice now
 		command = { type = vassal which = RAJ }
 		command = { type = treasury value = 50 }
-		#command = { type = AI which = default.ai }
+		#command = { type = AI which = default.txt }
 	}
 }
 
@@ -839,7 +839,7 @@ event = {
 	action_a = {
 		name = "ACTIONNAME230214A" #Then we shall give him war!
 		command = { type = casusbelli which = RAJ value = 12 }
-		#command = { type = AI which = MOG_Rajputs.ai }
+		#command = { type = AI which = MOG_Rajputs.txt }
 	}
 }
 #(1573-1605) Peace at last
@@ -935,7 +935,15 @@ event = {
 		command = { type = domestic which = innovative value = 1 }
 	}
 	action_d = {
-		name = "ACTIONNAME230001D" #Keep the Faith
+		name = "ACTIONNAME230001D" #Convert to Sikhism
+		command = { type = stability value = -3 }
+		command = { type = religion which = sikh }
+		command = { type = revolt which = 543 } #Delhi
+		command = { type = revoltrisk value = 1 }
+		command = { type = domestic which = innovative value = 1 }
+	}
+	action = {
+		name = "ACTIONNAME230001E" #Keep the Faith
 		command = { type = stability value = -1 }
 		command = { type = revolt which = 543 } #Delhi
 		command = { type = revoltrisk value = 1 }
@@ -1136,12 +1144,17 @@ event = {
 #(1606-1611) Return to Islam
 event = {
 	id = 230002
-	trigger = { NOT = { religion = sunni } }
+	trigger = {
+		NOT = {
+			religion = sunni
+			religion = eastern_sunni
+		}
+	}
 	random = no
 	country = MOG
 	name = "EVENTNAME230002" #Return to Islam
 	desc = "EVENTHIST230002"
-	#-#After Akbar's death there was tremendous pressure to return to Islam. Some tried to use this opportunity to usher in stricter Shiite teachings.
+	#-#After Akbar's death there was tremendous pressure to return to Islam. Some tried to use this opportunity to usher in stricter Shi'a teachings.
 
 	date = { day = 27 month = october year = 1606 }
 	offset = 400
@@ -1150,7 +1163,7 @@ event = {
 	action_a = {
 		name = "ACTIONNAME230002A" #Return to our Sunni ways
 		command = { type = stability value = 1 }
-		command = { type = religion which = sunni }
+		command = { type = religion which = eastern_sunni }
 		command = { type = provincereligion which = 543 value = sunni } #Delhi
 		command = { type = technology which = Muslim }
 		command = { type = domestic which = innovative value = -1 }
@@ -1158,7 +1171,7 @@ event = {
 	action_b = {
 		name = "ACTIONNAME230002B" #Impliment the more strict teachings of Sh'ia
 		command = { type = stability value = -1 }
-		command = { type = religion which = shia }
+		command = { type = religion which = eastern_shia }
 		command = { type = provincereligion which = 543 value = shia } #Delhi
 		command = { type = technology which = Muslim }
 		command = { type = domestic which = innovative value = -2 }
@@ -1522,10 +1535,17 @@ event = {
 		command = { type = domestic which = centralization value = 2 }
 	}
 	action_b = {
-		name = "ACTIONNAME6903B" #Let him and his movement be.
+		name = "ACTIONNAME6903B" #Let him and his movement be
 		command = { type = stability value = -4 }
 		command = { type = domestic which = innovative value = 1 }
 		command = { type = domestic which = centralization value = -3 }
+	}
+	action_c = {
+		name = "ACTIONNAME6903C" #Let the Sikhs settle their own affairs
+		command = { type = stability value = -3 }
+		command = { type = independence which = KSH }
+		command = { type = domestic which = innovative value = 2 }
+		command = { type = domestic which = quality value = 1 }
 	}
 }
 

@@ -48,7 +48,10 @@ country = {
 		251 307 308 309
 	}
 	nationalprovinces = {
-		251 307 308 309
+		251 307 309
+	}
+	claimedprovinces = {
+		308
 	}
 	city = {
 		fortress = { level = 1 }

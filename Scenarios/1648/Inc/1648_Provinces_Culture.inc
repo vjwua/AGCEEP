@@ -172,17 +172,17 @@ province = { id = 328 religion = catholic } #Bohemia
 province = { id = 329 religion = catholic } #Erz
 
 #Welsh Act of Union
-province = { id = 243 culture = "anglosaxon" } #Wales
+province = { id = 243 culture = "english" } #Wales
 #English Colonies
-province = { id = 64 religion = protestant culture = "anglosaxon" } #Roanoke
-province = { id = 68 religion = protestant culture = "anglosaxon" } #Chesapeake
-province = { id = 102 religion = reformed culture = "anglosaxon" } #Connecticut
-province = { id = 103 religion = reformed culture = "anglosaxon" } #Massachusetts
-province = { id = 104 religion = reformed culture = "anglosaxon" } #Penobscot
-province = { id = 1568 religion = protestant culture = "anglosaxon" } #Bermuda
-province = { id = 1569 religion = protestant culture = "anglosaxon" } #Bahamas
-province = { id = 147 religion = protestant culture = "anglosaxon" } #Antigua
-province = { id = 152 religion = protestant culture = "anglosaxon" } #Barbados
+province = { id = 64 religion = protestant culture = "english" } #Roanoke
+province = { id = 68 religion = protestant culture = "english" } #Chesapeake
+province = { id = 102 religion = reformed culture = "english" } #Connecticut
+province = { id = 103 religion = reformed culture = "english" } #Massachusetts
+province = { id = 104 religion = reformed culture = "english" } #Penobscot
+province = { id = 1568 religion = protestant culture = "english" } #Bermuda
+province = { id = 1569 religion = protestant culture = "english" } #Bahamas
+province = { id = 147 religion = protestant culture = "english" } #Antigua
+province = { id = 152 religion = protestant culture = "english" } #Barbados
 
 #Ukraine and ukrainian culture provinces
 province = { id = 295 culture = "ukrainian" } #Ukraine
@@ -210,6 +210,8 @@ province = { id = 86 religion = protestant culture = "scandinavian" } #Delaware
 province = { id = 145 religion = protestant culture = "scandinavian" } #St. Thomas
 province = { id = 664 religion = confucian } #Da Nang
 province = { id = 665 religion = confucian } #Da Lat
+province = { id = 1520 religion = sikh } #Chandigahr
+province = { id = 1521 religion = sikh } #Panjab
 
 
 #Natives

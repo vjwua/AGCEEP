@@ -1050,8 +1050,8 @@ history = {
 	252011 #MOD: The Sound of Music
 	252013 #MOD: Duke Alfonso's Artillery
 	252014 #MOD: Orlando Furioso
-	254010 #PER: Khiva and Shiite Governors
-	254018 #PER: Shiite Immigrants
+	254010 #PER: Khiva and Shi'a Governors
+	254018 #PER: Shi'a Immigrants
 	254025 #PER: Annexation of Khorasan
 	258037 #POL: Piotr Tomicki the Royal Chancellor
 	260007 #POR: Diogo Cao returns to Portugal with some Kongolese
@@ -1178,16 +1178,16 @@ history = {
 	338219 #Puerto Rico Goldmine Sequence
 	338220 #
 	338223 #Moron Goldminse Sequence
-	338246 #Shiite Emigration - 472 #Armenia
-	338247 #Shiite Emigration - 471 #Daghestan
-	338248 #Shiite Emigration - 533 #Isfahan
-	338249 #Shiite Emigration - 489 #Iraq
-	338250 #Shiite Emigration - 485 #Aleppo
-	338251 #Shiite Emigration - 490 #Syria
-	338252 #Shiite Emigration - 508 #Basrah
-	338253 #Shiite Emigration - 475 #Trabzon
-	338254 #Shiite Emigration - 483 #Adana
-	338255 #Shiite Emigration - 474 #Sivas
+	338246 #Shi'a Emigration - 472 #Armenia
+	338247 #Shi'a Emigration - 471 #Daghestan
+	338248 #Shi'a Emigration - 533 #Isfahan
+	338249 #Shi'a Emigration - 489 #Iraq
+	338250 #Shi'a Emigration - 485 #Aleppo
+	338251 #Shi'a Emigration - 490 #Syria
+	338252 #Shi'a Emigration - 508 #Basrah
+	338253 #Shi'a Emigration - 475 #Trabzon
+	338254 #Shi'a Emigration - 483 #Adana
+	338255 #Shi'a Emigration - 474 #Sivas
 	338266 #The European Rule - 29 #Tlaxcala
 	338277 #The Portuguese Have Conquered Al-Kharam - 504 #Al-Kharam
 	338289 #Portuguese Settlement of Mozambique - 768 #Mtawa

@@ -14,7 +14,7 @@ country = {
 	treasury = 100
 	inflation = 0
 	merchants = 0
-	religion = { type = sunni } #Palembang conversion in 1500
+	religion = { type = eastern_sunni } #Palembang conversion in 1500
 	culture = { type = malay }
 	diplomacy = {
 		relation = { tag = MTR value = 125.000 }

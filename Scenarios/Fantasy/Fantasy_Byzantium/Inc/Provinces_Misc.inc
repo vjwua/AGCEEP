@@ -1,4 +1,4 @@
-#AGCEEP - The Grand Campaign - 1419
+#AGCEEP - Fantasy Byzantium
 
 #-----------------------------------------------------------------------------------------------
 #Provinces: miscellaneous

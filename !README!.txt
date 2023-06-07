@@ -1,5 +1,6 @@
 WELCOME TO THE AGCEEP
 Bundled version with "For the Glory"
+AGCEEP Website: www.agceep.org
 
 #-----------------------------------------------------------------------------------------------
 
@@ -7,33 +8,27 @@ We are trying to make the best mod we can focusing on History, alternative histo
 
 Options:
 
-Once you start the AGCEEP you can then select a scenario.  We have the 1419, 1520 and 1648 scenario and a special fantasy Byzantium scenario.
+Once you start the AGCEEP you can then select a scenario. We have the 1419, 1520 and 1648 scenarios, as well as special fantasy Byzantium and Granada scenarios with a particular focus on those countries.
 
-Once you select a scenario you will then be presented with more options than the standard EU2 game.
+Once you select a scenario you will then be presented with more options than the standard EU2/FtG game.
 
 Use Random events:
-  If clicked NO, this option will disable the use of the AGCEEP Random events.  In their place you will receive "commercials" advertising features of the AGCEEP.  These commercials are unavoidable and cannot be gotten rid of, since the game needs random events to run.
+  If clicked NO, this option will disable the use of the AGCEEP Random events.
 
 Alternative Events:
-  If clicked YES, then certain Fantasy events will be enabled that will allow the formation of the Kingdom of Germany, the formation of the Kingdom of Italy, an Independent Wales, and a new crusade by the Order of St. John and England.
+  If clicked YES, then certain Fantasy events will be enabled that will allow the formation of the imperial kingdoms of Germany and Italy, an Independent Wales, a Unified Iberia, and a new crusade by the Order of St. John and England.
 
 #-----------------------------------------------------------------------------------------------
 
 The High Council are the users designated with compiling and curating the AGCEEP. They are: 
 
-Twoflower
-doktarr
-Mad King James
-ribbon22
 Garbon
-Sun_Zi_36
-Norrefeldt
-dharper
-YodaMaster
-Fodoron
 mandead
+ConjurerDragon
 
 Additional HC members may be voted in by consensus of current active members.
+
+A huge thanks to all former HC members from yesteryear, without whom this project would never have survived for so long, and to MichaelM for his continued support for FtG!
 
 #-----------------------------------------------------------------------------------------------
 
@@ -50,4 +45,4 @@ John_Keats, Ryoken69, Johnny Canuck, Steph, Jessums, Artemis667, Third Angel, Pr
 Dracleath, Aetius, Neuromancer, Suleyman, Aylo1, Laur, Wido, Bordic, Alkar, Yarovit, Greebo, Emre Yigit,
 Malodini, Chimera, btg, nelly664, George Borges, Raudex, Wiande, Aegnor, Solmyr, BarristerBoy, Andravius,
 Toio, Todor, Yacine Gouaref (cpt frakas), Kasperus, George Borges, Zius, zBla, Txini, Maulet, Chema_Cagi,
-Moragues, Xaloc, Sulayman, Barbalele, Jan Zamojsky, Jester, ConjurerDragon, Ayeshteni, vjwua, others and all HC members!
+Moragues, Xaloc, Sulayman, Barbalele, Jan Zamojsky, Jester, Ayeshteni, vjwua, others, and all HC members!

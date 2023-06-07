@@ -17,6 +17,7 @@ country = {
 	religion = { type = sunni } #from 1504 Sunni Rulers
 	culture = {
 		type = nubian
+		type = arabic
 	}
 	diplomacy = { }
 	knownprovinces = {

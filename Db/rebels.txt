@@ -1,0 +1,173 @@
+#AGCEEP - List of rebel types
+
+#
+#DEFAULT REBEL TYPES (do not delete!)
+#
+
+REB = { #Peasant Rebels
+	type = peasants
+	morale_base = parent
+	morale_multiplier = 0.8
+	tech_base = latin
+	tech_bonus = -3
+	min_tech = 0
+	may_defect = no
+	army = {
+		infantry = 90
+		cavalry = 5
+		artillery = 5
+	}
+	possible = {
+		domestic = { type = serfdom value = 2 } # no peasant revolts if max or almost max free subjects
+	}
+}
+
+R01 = { #Aristocrat Rebels
+	type = aristocrats
+	morale_base = parent
+	tech_base = latin
+	tech_bonus = -1
+	min_tech = 0
+	army = {
+		infantry = 60
+		cavalry = 40
+		artillery = 0
+	}
+	possible = {
+		domestic = { type = aristocracy value = 5 }
+	}
+}
+
+R02 = { #Religious Rebels
+	type = religious
+	morale_base = parent
+	tech_base = latin
+	tech_bonus = -1
+	min_tech = 0
+	army = {
+		infantry = 70
+		cavalry = 20
+		artillery = 10
+	}
+	possible = {
+		NOT = {
+			domestic = { type = innovative value = 9 } # no religious revolts if max or almost max innovative
+		}
+	}
+	weight = 5
+}
+
+R03 = { #Cultural Rebels
+	type = cultural
+	morale_base = parent
+	tech_base = latin
+	tech_bonus = -1
+	min_tech = 0
+	army = {
+		infantry = 70
+		cavalry = 20
+		artillery = 10
+	}
+	weight = 3
+}
+
+R04 = { #Colonial Rebels
+	type = colonial
+	morale_base = parent
+	tech_base = latin
+	tech_bonus = -1
+	min_tech = 0
+	army = {
+		infantry = 80
+		cavalry = 10
+		artillery = 10
+	}
+	possible = {
+		year = 1600
+	}
+	weight = 10
+}
+
+R05 = { #Nationalist Rebels
+	type = nationalist
+	morale_base = default
+	tech_base = latin
+	tech_bonus = 0
+	min_tech = 0
+	army = {
+		infantry = 65
+		cavalry = 25
+		artillery = 10
+	}
+	possible = {
+		domestic = { type = centralization value = 3 } # no nationalist revolts if low centralization
+		year = 1700
+	}
+	weight = 10
+}
+
+R06 = { #Pirate Raiders
+	type = pirates
+	morale_base = default
+	tech_base = latin
+	tech_bonus = -2
+	min_tech = 0
+	may_defect = no
+	may_declare_independence = no
+	may_overthrow_government = no
+	army = {
+		infantry = 95
+		cavalry = 0
+		artillery = 5
+	}
+	possible = {
+		domestic = { type = land value = 3 } # no pirate raids if high naval
+	}
+	weight = 1
+}
+
+#
+#REGIONAL REBEL TYPES
+#
+
+NDR = { #Dutch Rebels
+	type = nationalist
+	morale_base = parent
+	tech_base = latin
+	retreat = yes
+	army = {
+		infantry = 70
+		cavalry = 15
+		artillery = 15
+	}
+	possible = {
+		NOT = {
+			tag = HOL
+			culture = dutch
+		}
+		year = 1550
+	}
+	area = "Low Countries"
+	weight = 500
+}
+
+USR = { #American Rebels
+	type = colonial
+	morale_base = parent
+	tech_base = latin
+	retreat = yes
+	army = {
+		infantry = 80
+		cavalry = 10
+		artillery = 10
+	}
+	possible = {
+		NOT = {
+			tag = USA
+		}
+		culture = english
+		year = 1750
+	}
+	area = America
+	weight = 500
+}

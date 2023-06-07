@@ -16,7 +16,7 @@ country = {
 	merchants = 2.166667
 	religion = { type = catholic }
 	culture = {
-		type = anglosaxon
+		type = english
 	}
 	wardates = {
 		BUR = { year = 1414 month = august day = 8 }

@@ -14,7 +14,7 @@ country = {
 	treasury = 200
 	inflation = 0
 	merchants = 0
-	religion = { type = orthodox }
+	religion = { type = miaphysite }
 	culture = { type = ethiopian }
 	diplomacy = {
 		relation = { tag = ADA value = -150 }

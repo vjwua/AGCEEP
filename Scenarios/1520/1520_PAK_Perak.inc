@@ -25,7 +25,7 @@ country = {
 	treasury = 150
 	inflation = 0
 	merchants = 0
-	religion = { type = sunni }
+	religion = { type = eastern_sunni }
 	culture = { type = malay }
 	diplomacy = {
 		relation = { tag = MTR value = 175.000 }

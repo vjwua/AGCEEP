@@ -14,7 +14,7 @@ country = {
 	treasury = 200
 	inflation = 0
 	merchants = 0.083333
-	religion = { type = orthodox }
+	religion = { type = miaphysite }
 	culture = { type = nubian }
 	diplomacy = { }
 	knownprovinces = {
